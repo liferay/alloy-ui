@@ -26,6 +26,7 @@ var L = A.Lang,
 	PARSE_CONTENT = 'ParseContent',
 	QUEUE = 'queue',
 	SCRIPT = 'script',
+	SEMICOLON = ';',
 	SRC = 'src',
 
 	SCRIPT_TYPES = {
@@ -148,11 +149,32 @@ var ParseContent = A.Component.create(
 			 */
 			parseContent: function(content) {
 				var instance = this;
+
 				var output = instance._clean(content);
 
 				instance._dispatch(output);
 
 				return output;
+			},
+
+			/**
+			 * Add inline script data to the queue.
+			 *
+			 * @method _addInlineScript
+			 * @param {String} data The script content which should be added to the queue
+			 * @protected
+			 */
+			_addInlineScript: function(data) {
+				var instance = this;
+
+				instance.get(QUEUE).add(
+					{
+						args: data,
+						context: instance,
+						fn: instance.globalEval,
+						timeout: 0
+					}
+				);
 			},
 
 			/**
@@ -244,12 +266,21 @@ var ParseContent = A.Component.create(
 			 */
 			_dispatch: function(output) {
 				var instance = this;
+
 				var queue = instance.get(QUEUE);
+
+				var scriptContent = [];
 
 				output.js.each(function(node, i) {
 					var src = node.get(SRC);
 
 					if (src) {
+						if (scriptContent.length) {
+							instance._addInlineScript(scriptContent.join(SEMICOLON));
+
+							scriptContent.length = 0;
+						}
+
 						queue.add({
 							autoContinue: false,
 							fn: function () {
@@ -264,18 +295,15 @@ var ParseContent = A.Component.create(
 						});
 					}
 					else {
-						queue.add({
-							fn: function () {
-								var dom = node._node;
+						var dom = node._node;
 
-								instance.globalEval(
-									dom.text || dom.textContent || dom.innerHTML || ''
-								);
-							},
-							timeout: 0
-						});
+						scriptContent.push(dom.text || dom.textContent || dom.innerHTML || '');
 					}
 				});
+
+				if (scriptContent.length) {
+					instance._addInlineScript(scriptContent.join(SEMICOLON));
+				}
 
 				queue.run();
 			}
@@ -285,4 +313,4 @@ var ParseContent = A.Component.create(
 
 A.namespace('Plugin').ParseContent = ParseContent;
 
-}, '@VERSION@' ,{requires:['async-queue','aui-base','plugin'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['async-queue','aui-base','plugin']});
