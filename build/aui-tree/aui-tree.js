@@ -925,14 +925,14 @@ var L = A.Lang,
 /**
  * A base class for TreeNode, providing:
  * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li>The node for the TreeView component</li>
+ *	<li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *	<li>The node for the TreeView component</li>
  * </ul>
  *
  * Quick Example:<br/>
  *
  * <pre><code>var instance = new A.TreeNode({
-    boundingBox: ''
+	boundingBox: ''
 }).render();
  * </code></pre>
  *
@@ -1038,7 +1038,7 @@ var TreeNode = A.Component.create(
 
 			/**
 			 * Whether the TreeNode could have children or not (i.e. if any
-	         * children is present the TreeNode is a leaf).
+			 * children is present the TreeNode is a leaf).
 			 *
 			 * @attribute leaf
 			 * @default true
@@ -1711,8 +1711,8 @@ var isFunction = L.isFunction,
 /**
  * A base class for TreeNodeIO, providing:
  * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li>Ajax support to load the children of the current TreeNode</li>
+ *	<li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *	<li>Ajax support to load the children of the current TreeNode</li>
  * </ul>
  *
  * Quick Example:<br/>
@@ -2017,32 +2017,32 @@ var TreeNodeIO = A.Component.create(
 				instance.set(LOADED, false);
 			},
 
-		    /**
-		     * Create custom events.
-		     *
-		     * @method _createEvents
-		     * @private
-		     */
+			/**
+			 * Create custom events.
+			 *
+			 * @method _createEvents
+			 * @private
+			 */
 			_createEvents: function() {
 				var instance = this;
 
 				instance.publish(
 					EV_TREE_NODE_PAGINATOR_CLICK,
 					{
-			            defaultFn: instance._defPaginatorClickFn,
-			            prefix: TREE_NODE_IO
-		        	}
+						defaultFn: instance._defPaginatorClickFn,
+						prefix: TREE_NODE_IO
+					}
 				);
 			},
 
-		    /**
-		     * Default paginatorClick event handler. Increment the
+			/**
+			 * Default paginatorClick event handler. Increment the
 			 * <code>paginator.start</code> to the next <code>paginator.limit</code>.
-		     *
-		     * @method _defPaginatorClickFn
-		     * @param {EventFacade} event The Event object
-		     * @protected
-		     */
+			 *
+			 * @method _defPaginatorClickFn
+			 * @param {EventFacade} event The Event object
+			 * @protected
+			 */
 			_defPaginatorClickFn: function(event) {
 				var instance = this;
 				var paginator = instance.get(PAGINATOR);
@@ -2056,13 +2056,13 @@ var TreeNodeIO = A.Component.create(
 				}
 			},
 
-		    /**
-		     * Fires the paginatorClick event.
-		     *
-		     * @method _handlePaginatorClickEvent
-		     * @param {EventFacade} event paginatorClick event facade
-		     * @protected
-		     */
+			/**
+			 * Fires the paginatorClick event.
+			 *
+			 * @method _handlePaginatorClickEvent
+			 * @param {EventFacade} event paginatorClick event facade
+			 * @protected
+			 */
 			_handlePaginatorClickEvent: function(event) {
 				var instance = this;
 				var ownerTree = instance.get(OWNER_TREE);
@@ -2079,7 +2079,7 @@ var TreeNodeIO = A.Component.create(
 
 			/**
 			 * If not specified on the TreeNode some attributes are inherited from the
-		     * ownerTree by this method.
+			 * ownerTree by this method.
 			 *
 			 * @method _inheritOwnerTreeAttrs
 			 * @protected
@@ -2159,8 +2159,8 @@ var TreeNodeIO = A.Component.create(
 
 			/**
 			 * Adds two extra IO data parameter to the request to handle the
-		     * paginator. By default these parameters are <code>limit</code> and
-		     * <code>start</code>.
+			 * paginator. By default these parameters are <code>limit</code> and
+			 * <code>start</code>.
 			 *
 			 * @method _syncPaginatorIOData
 			 * @protected
@@ -2250,8 +2250,8 @@ var	CHECKBOX = 'checkbox',
  *
  * A base class for TreeNodeCheck, providing:
  * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li>Checkbox support for the TreeNode</li>
+ *	<li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *	<li>Checkbox support for the TreeNode</li>
  * </ul>
  *
  * Check the list of <a href="TreeNodeCheck.html#configattributes">Configuration Attributes</a> available for
@@ -2485,9 +2485,9 @@ var	CHILD = 'child',
  *
  * A base class for TreeNodeTask, providing:
  * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li>3 states checkbox support</li>
- *    <li>Automatic check/uncheck the parent status based on the children checked status</li>
+ *	<li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *	<li>3 states checkbox support</li>
+ *	<li>Automatic check/uncheck the parent status based on the children checked status</li>
  * </ul>
  *
  * Check the list of <a href="TreeNodeTask.html#configattributes">Configuration Attributes</a> available for
@@ -2577,7 +2577,6 @@ var TreeNodeTask = A.Component.create(
 
 A.TreeNodeTask = TreeNodeTask;
 
-
 /*
 * TreeNodeRadio
 */
@@ -2596,9 +2595,9 @@ var	TREE_NODE_RADIO = 'tree-node-radio',
  *
  * A base class for TreeNodeRadio, providing:
  * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li>3 states checkbox support</li>
- *    <li>Automatic check/uncheck the parent status based on the children checked status</li>
+ *	<li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *	<li>3 states checkbox support</li>
+ *	<li>Automatic check/uncheck the parent status based on the children checked status</li>
  * </ul>
  *
  * Check the list of <a href="TreeNodeRadio.html#configattributes">Configuration Attributes</a> available for
@@ -2693,7 +2692,6 @@ var TreeNodeRadio = A.Component.create(
 );
 
 A.TreeNodeRadio = TreeNodeRadio;
-
 
 /**
  * TreeNode types hash map.
@@ -3250,7 +3248,7 @@ var TreeViewDD = A.Component.create(
 				}
 
 				if (instance.ddDelegate) {
-					 instance.ddDelegate.destroy();
+					instance.ddDelegate.destroy();
 				}
 			},
 
