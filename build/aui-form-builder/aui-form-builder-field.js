@@ -543,9 +543,7 @@ var FormBuilderField = A.Component.create({
 			var instance = this;
 			var strings = instance.getStrings();
 
-			var value = A.DataType.Boolean.parse(
-				o.record.get(DATA).value
-			);
+			var value = A.DataType.Boolean.parse(o.data.value);
 
 			return value ? strings[YES] : strings[NO];
 		},
@@ -772,7 +770,7 @@ var FormBuilderField = A.Component.create({
 
 A.FormBuilderField = FormBuilderField;
 
-A.FormBuilder.types['field'] = A.FormBuilderField;
+A.FormBuilder.types.field = A.FormBuilderField;
 var L = A.Lang,
 	isArray = L.isArray,
 	isNumber = L.isNumber,
@@ -902,7 +900,7 @@ var FormBuilderButtonField = A.Component.create({
 
 			return model;
 		},
-		
+
 		_uiSetButtonType: function(val) {
 			var instance = this;
 			var templateNode = instance.get(TEMPLATE_NODE);
@@ -916,7 +914,7 @@ var FormBuilderButtonField = A.Component.create({
 
 A.FormBuilderButtonField = FormBuilderButtonField;
 
-A.FormBuilder.types['button'] = A.FormBuilderButtonField;
+A.FormBuilder.types.button = A.FormBuilderButtonField;
 var L = A.Lang,
 	isArray = L.isArray,
 	isBoolean = L.isBoolean,
@@ -1193,7 +1191,7 @@ var FormBuilderFieldsetField = A.Component.create({
 
 A.FormBuilderFieldsetField = FormBuilderFieldsetField;
 
-A.FormBuilder.types['fieldset'] = A.FormBuilderFieldsetField;
+A.FormBuilder.types.fieldset = A.FormBuilderFieldsetField;
 var L = A.Lang,
 
 	DOT = '.',
@@ -1264,7 +1262,7 @@ var FormBuilderFileUploadField = A.Component.create({
 
 A.FormBuilderFileUploadField = FormBuilderFileUploadField;
 
-A.FormBuilder.types['fileupload'] = A.FormBuilderFileUploadField;
+A.FormBuilder.types.fileupload = A.FormBuilderFileUploadField;
 var Lang = A.Lang,
 	AArray = A.Array,
 	isString = Lang.isString,
@@ -1431,7 +1429,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 								formatter: function(o) {
 									var editorOptions = instance.predefinedValueEditor.get(OPTIONS);
 
-									var values = AArray(o.record.get(DATA).value);
+									var values = AArray(o.data.value);
 
 									var labels = A.Array.map(values, function (val) {
 										return editorOptions[val];
@@ -1487,7 +1485,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 						var buffer = [];
 
 						A.each(
-							o.record.get(DATA).value,
+							o.data.value,
 							function(item, index, collection) {
 								buffer.push(item.label);
 							}
@@ -1893,7 +1891,7 @@ var FormBuilderTextField = A.Component.create({
 						}
 					}),
 					formatter: function(o) {
-						var value = o.record.get(DATA).value;
+						var value = o.data.value;
 
 						return strings[WIDTH_VALUES_MAP[value]];
 					},
@@ -1920,7 +1918,7 @@ var FormBuilderTextField = A.Component.create({
 
 A.FormBuilderTextField = FormBuilderTextField;
 
-A.FormBuilder.types['text'] = A.FormBuilderTextField;
+A.FormBuilder.types.text = A.FormBuilderTextField;
 var L = A.Lang,
 	isArray = L.isArray,
 	isNumber = L.isNumber,
@@ -1937,7 +1935,7 @@ var L = A.Lang,
 	CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
 	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
 
-	TPL_TEXTAREA = '<textarea id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD, CSS_FIELD_TEXT, CSS_FIELD_TEXTAREA].join(SPACE) + '" name="{name}">{value}</textarea>'
+	TPL_TEXTAREA = '<textarea id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD, CSS_FIELD_TEXT, CSS_FIELD_TEXTAREA].join(SPACE) + '" name="{name}">{value}</textarea>';
 
 var FormBuilderTextAreaField = A.Component.create({
 
@@ -1958,7 +1956,7 @@ var FormBuilderTextAreaField = A.Component.create({
 	EXTENDS: A.FormBuilderTextField,
 
 	prototype: {
-		
+
 		getPropertyModel: function() {
 			var instance = this;
 			var options = instance.get(OPTIONS);
@@ -1983,6 +1981,6 @@ var FormBuilderTextAreaField = A.Component.create({
 
 A.FormBuilderTextAreaField = FormBuilderTextAreaField;
 
-A.FormBuilder.types['textarea'] = A.FormBuilderTextAreaField;
+A.FormBuilder.types.textarea = A.FormBuilderTextAreaField;
 
 }, '@VERSION@' ,{skinnable:true, requires:['aui-datatype','aui-panel','aui-tooltip']});

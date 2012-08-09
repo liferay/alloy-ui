@@ -40,7 +40,6 @@ var Lang = A.Lang,
 	CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
 	DIAGRAM = 'diagram',
 	DIAGRAM_BUILDER = 'diagram-builder',
-	DISK = 'disk',
 	DRAGGABLE = 'draggable',
 	DROP = 'drop',
 	DROP_CONFIG = 'dropConfig',
@@ -76,10 +75,8 @@ var Lang = A.Lang,
 	_SPACE = ' ',
 	_DOT = '.',
 	_HASH = '#',
-	_SPACE = ' ',
 	_UNDERLINE = '_',
 
-	CSS_COLUMN = AgetClassName(COLUMN),
 	CSS_DIAGRAM_BUILDER_CANVAS = AgetClassName(DIAGRAM, BUILDER, CANVAS),
 	CSS_DIAGRAM_BUILDER_CONTENT_CONTAINER = AgetClassName(DIAGRAM, BUILDER, CONTENT, CONTAINER),
 	CSS_DIAGRAM_BUILDER_DROP_CONTAINER = AgetClassName(DIAGRAM, BUILDER, DROP, CONTAINER),
@@ -162,10 +159,10 @@ var AvailableField = A.Component.create({
 	},
 
 	getAvailableFieldByNode: function(node) {
-		var node = A.one(node);
+		node = A.one(node);
 
 		if (isNode(node)) {
-			return node.getData(AVAILABLE_FIELD)
+			return node.getData(AVAILABLE_FIELD);
 		}
 
 		return null;
@@ -465,7 +462,7 @@ var DiagramBuilderBase = A.Component.create(
 
 				instance.after({
 					render: instance._afterRender,
-					'recordset:update': instance._afterRecordsetUpdate
+					'model:change': instance._afterModelChange
 				});
 
 				instance.after(instance._afterUiSetHeight, instance, '_uiSetHeight');
@@ -523,7 +520,7 @@ var DiagramBuilderBase = A.Component.create(
 				}
 			},
 
-			_afterRecordsetUpdate: function(event) {
+			_afterModelChange: function(event) {
 				var instance = this;
 
 				instance._handleSaveEvent();
@@ -804,6 +801,7 @@ var Lang = A.Lang,
 	AArray = A.Array,
 
 	ACTIVE_ELEMENT = 'activeElement',
+	ATTRIBUTE_NAME = 'attributeName',
 	AVAILABLE_FIELD = 'availableField',
 	AVAILABLE_FIELDS = 'availableFields',
 	BACKSPACE = 'backspace',
@@ -864,8 +862,6 @@ var Lang = A.Lang,
 	PARENT_NODE = 'parentNode',
 	PENCIL = 'pencil',
 	RADIUS = 'radius',
-	RECORDS = 'records',
-	RECORDSET = 'recordset',
 	REGION = 'region',
 	RENDERED = 'rendered',
 	REQUIRED = 'required',
@@ -885,6 +881,7 @@ var Lang = A.Lang,
 	TRANSITION = 'transition',
 	TRANSITIONS = 'transitions',
 	TYPE = 'type',
+	VALUE = 'value',
 	VISIBLE = 'visible',
 	WIDTH = 'width',
 	XY = 'xy',
@@ -1222,7 +1219,7 @@ var DiagramBuilder = A.Component.create({
 				tabView.enableTab(A.DiagramBuilder.SETTINGS_TAB);
 				tabView.selectTab(A.DiagramBuilder.SETTINGS_TAB);
 
-				instance.propertyList.set(RECORDSET, connector.getProperties());
+				instance.propertyList.set(DATA, connector.getProperties());
 
 				instance.editingConnector = instance.selectedConnector = connector;
 			}
@@ -1238,7 +1235,7 @@ var DiagramBuilder = A.Component.create({
 				tabView.enableTab(A.DiagramBuilder.SETTINGS_TAB);
 				tabView.selectTab(A.DiagramBuilder.SETTINGS_TAB);
 
-				instance.propertyList.set(RECORDSET, diagramNode.getProperties());
+				instance.propertyList.set(DATA, diagramNode.getProperties());
 
 				diagramNode.get(BOUNDING_BOX).addClass(CSS_DIAGRAM_NODE_EDITING);
 
@@ -1538,20 +1535,16 @@ var DiagramBuilder = A.Component.create({
 			var instance = this;
 			var editingNode = instance.editingNode;
 			var editingConnector = instance.editingConnector;
-			var recordset = instance.propertyList.get(RECORDSET);
+			var modelList = instance.propertyList.get(DATA);
 
 			if (editingNode) {
-				AArray.each(recordset.get(RECORDS), function(record) {
-					var data = record.get(DATA);
-
-					editingNode.set(data.attributeName, data.value);
+				modelList.each(function(model) {
+					editingNode.set(model.get(ATTRIBUTE_NAME), model.get(VALUE));
 				});
 			}
 			else if (editingConnector) {
-				AArray.each(recordset.get(RECORDS), function(record) {
-					var data = record.get(DATA);
-
-					editingConnector.set(data.attributeName, data.value);
+				modelList.each(function(model) {
+					editingConnector.set(model.get(ATTRIBUTE_NAME), model.get(VALUE));
 				});
 			}
 		},

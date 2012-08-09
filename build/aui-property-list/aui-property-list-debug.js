@@ -111,7 +111,7 @@ A.PropertyList = A.Base.create(DATATABLE, A.DataTable, [], {
 						editor: instance.getDefaultEditor(),
 						formatter: function(o) {
 							var instance = this;
-							var data = o.record.get(DATA);
+							var data = o.data;
 
 							if (!data) {
 								return;
