@@ -529,7 +529,7 @@ var TreeViewDD = A.Component.create(
 				}
 
 				if (instance.ddDelegate) {
-					 instance.ddDelegate.destroy();
+					instance.ddDelegate.destroy();
 				}
 			},
 
