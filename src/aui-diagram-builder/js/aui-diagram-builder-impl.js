@@ -8,6 +8,7 @@ var Lang = A.Lang,
 	AArray = A.Array,
 
 	ACTIVE_ELEMENT = 'activeElement',
+	ATTRIBUTE_NAME = 'attributeName',
 	AVAILABLE_FIELD = 'availableField',
 	AVAILABLE_FIELDS = 'availableFields',
 	BACKSPACE = 'backspace',
@@ -68,8 +69,6 @@ var Lang = A.Lang,
 	PARENT_NODE = 'parentNode',
 	PENCIL = 'pencil',
 	RADIUS = 'radius',
-	RECORDS = 'records',
-	RECORDSET = 'recordset',
 	REGION = 'region',
 	RENDERED = 'rendered',
 	REQUIRED = 'required',
@@ -89,6 +88,7 @@ var Lang = A.Lang,
 	TRANSITION = 'transition',
 	TRANSITIONS = 'transitions',
 	TYPE = 'type',
+	VALUE = 'value',
 	VISIBLE = 'visible',
 	WIDTH = 'width',
 	XY = 'xy',
@@ -426,7 +426,7 @@ var DiagramBuilder = A.Component.create({
 				tabView.enableTab(A.DiagramBuilder.SETTINGS_TAB);
 				tabView.selectTab(A.DiagramBuilder.SETTINGS_TAB);
 
-				instance.propertyList.set(RECORDSET, connector.getProperties());
+				instance.propertyList.set(DATA, connector.getProperties());
 
 				instance.editingConnector = instance.selectedConnector = connector;
 			}
@@ -442,7 +442,7 @@ var DiagramBuilder = A.Component.create({
 				tabView.enableTab(A.DiagramBuilder.SETTINGS_TAB);
 				tabView.selectTab(A.DiagramBuilder.SETTINGS_TAB);
 
-				instance.propertyList.set(RECORDSET, diagramNode.getProperties());
+				instance.propertyList.set(DATA, diagramNode.getProperties());
 
 				diagramNode.get(BOUNDING_BOX).addClass(CSS_DIAGRAM_NODE_EDITING);
 
@@ -742,20 +742,16 @@ var DiagramBuilder = A.Component.create({
 			var instance = this;
 			var editingNode = instance.editingNode;
 			var editingConnector = instance.editingConnector;
-			var recordset = instance.propertyList.get(RECORDSET);
+			var modelList = instance.propertyList.get(DATA);
 
 			if (editingNode) {
-				AArray.each(recordset.get(RECORDS), function(record) {
-					var data = record.get(DATA);
-
-					editingNode.set(data.attributeName, data.value);
+				modelList.each(function(model) {
+					editingNode.set(model.get(ATTRIBUTE_NAME), model.get(VALUE));
 				});
 			}
 			else if (editingConnector) {
-				AArray.each(recordset.get(RECORDS), function(record) {
-					var data = record.get(DATA);
-
-					editingConnector.set(data.attributeName, data.value);
+				modelList.each(function(model) {
+					editingConnector.set(model.get(ATTRIBUTE_NAME), model.get(VALUE));
 				});
 			}
 		},

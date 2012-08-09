@@ -1058,7 +1058,7 @@ var BaseOptionsCellEditor = A.Component.create({
 
 				if (val) {
 					if (!isArray(val)) {
-						val = val.split(_COMMA);
+						val = String(val).split(_COMMA);
 					}
 
 					AArray.each(val, function(value) {

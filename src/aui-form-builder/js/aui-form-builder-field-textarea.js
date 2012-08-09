@@ -14,7 +14,7 @@ var L = A.Lang,
 	CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
 	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
 
-	TPL_TEXTAREA = '<textarea id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD, CSS_FIELD_TEXT, CSS_FIELD_TEXTAREA].join(SPACE) + '" name="{name}">{value}</textarea>'
+	TPL_TEXTAREA = '<textarea id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD, CSS_FIELD_TEXT, CSS_FIELD_TEXTAREA].join(SPACE) + '" name="{name}">{value}</textarea>';
 
 var FormBuilderTextAreaField = A.Component.create({
 
@@ -35,7 +35,7 @@ var FormBuilderTextAreaField = A.Component.create({
 	EXTENDS: A.FormBuilderTextField,
 
 	prototype: {
-		
+
 		getPropertyModel: function() {
 			var instance = this;
 			var options = instance.get(OPTIONS);
@@ -60,4 +60,4 @@ var FormBuilderTextAreaField = A.Component.create({
 
 A.FormBuilderTextAreaField = FormBuilderTextAreaField;
 
-A.FormBuilder.types['textarea'] = A.FormBuilderTextAreaField;
+A.FormBuilder.types.textarea = A.FormBuilderTextAreaField;
