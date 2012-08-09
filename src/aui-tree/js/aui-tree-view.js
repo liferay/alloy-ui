@@ -409,7 +409,7 @@ var isNumber = L.isNumber,
 						'<span class="'+CSS_ICON+'"></span>'+
 						'<span class="'+CSS_TREE_DRAG_HELPER_LABEL+'"></span>'+
 					'</div>'+
-				 '</div>';
+				'</div>';
 
 /**
  * A base class for TreeViewDD, providing:
@@ -530,7 +530,7 @@ var TreeViewDD = A.Component.create(
 				}
 
 				if (instance.ddDelegate) {
-					 instance.ddDelegate.destroy();
+					instance.ddDelegate.destroy();
 				}
 			},
 
