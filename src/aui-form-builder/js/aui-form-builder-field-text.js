@@ -95,7 +95,7 @@ var FormBuilderTextField = A.Component.create({
 						}
 					}),
 					formatter: function(o) {
-						var value = o.record.get(DATA).value;
+						var value = o.data.value;
 
 						return strings[WIDTH_VALUES_MAP[value]];
 					},
@@ -122,4 +122,4 @@ var FormBuilderTextField = A.Component.create({
 
 A.FormBuilderTextField = FormBuilderTextField;
 
-A.FormBuilder.types['text'] = A.FormBuilderTextField;
+A.FormBuilder.types.text = A.FormBuilderTextField;

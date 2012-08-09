@@ -39,7 +39,6 @@ var Lang = A.Lang,
 	CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
 	DIAGRAM = 'diagram',
 	DIAGRAM_BUILDER = 'diagram-builder',
-	DISK = 'disk',
 	DRAGGABLE = 'draggable',
 	DROP = 'drop',
 	DROP_CONFIG = 'dropConfig',
@@ -75,10 +74,8 @@ var Lang = A.Lang,
 	_SPACE = ' ',
 	_DOT = '.',
 	_HASH = '#',
-	_SPACE = ' ',
 	_UNDERLINE = '_',
 
-	CSS_COLUMN = AgetClassName(COLUMN),
 	CSS_DIAGRAM_BUILDER_CANVAS = AgetClassName(DIAGRAM, BUILDER, CANVAS),
 	CSS_DIAGRAM_BUILDER_CONTENT_CONTAINER = AgetClassName(DIAGRAM, BUILDER, CONTENT, CONTAINER),
 	CSS_DIAGRAM_BUILDER_DROP_CONTAINER = AgetClassName(DIAGRAM, BUILDER, DROP, CONTAINER),
@@ -161,10 +158,10 @@ var AvailableField = A.Component.create({
 	},
 
 	getAvailableFieldByNode: function(node) {
-		var node = A.one(node);
+		node = A.one(node);
 
 		if (isNode(node)) {
-			return node.getData(AVAILABLE_FIELD)
+			return node.getData(AVAILABLE_FIELD);
 		}
 
 		return null;
@@ -464,7 +461,7 @@ var DiagramBuilderBase = A.Component.create(
 
 				instance.after({
 					render: instance._afterRender,
-					'recordset:update': instance._afterRecordsetUpdate
+					'model:change': instance._afterModelChange
 				});
 
 				instance.after(instance._afterUiSetHeight, instance, '_uiSetHeight');
@@ -522,7 +519,7 @@ var DiagramBuilderBase = A.Component.create(
 				}
 			},
 
-			_afterRecordsetUpdate: function(event) {
+			_afterModelChange: function(event) {
 				var instance = this;
 
 				instance._handleSaveEvent();
