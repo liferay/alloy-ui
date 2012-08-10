@@ -13,7 +13,7 @@ DataSourceControl.ATTRS = {
 	 * The data source that results will be read from. This can either be
 	 * an existing <a href="DataSource.html">DataSource</a> object, or it can be a
 	 * value that would be passed to <a href="DataSource.html">DataSource</a>.
-	 * 
+	 *
 	 * @attribute dataSource
 	 * @default null
 	 * @type Object | String | Function | Array
@@ -68,7 +68,7 @@ DataSourceControl.ATTRS = {
 	 * The type of the data source passed into <a href="AutoComplete.html#config_dataSource">dataSource</a>.
 	 * This can be used to explicitly declare what kind of <a href="DataSource.html">DataSource</a> object will
 	 * be created.
-	 * 
+	 *
 	 * @attribute dataSourceType
 	 * @default null
 	 * @type String
@@ -158,7 +158,7 @@ DataSourceControl.prototype = {
 		instance.publish(BINDUI);
 		instance.publish(SYNCUI);
 	},
-	
+
 	renderUI: function() {
 		var instance = this;
 

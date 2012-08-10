@@ -2,15 +2,15 @@ var AObject = A.Object,
 	Lang = A.Lang,
 	UA = A.UA,
 	DOC = A.config.doc,
-	
+
 	NAME = 'audio',
 
 	getClassName = A.getClassName,
-	
+
 	CSS_AUDIO = getClassName(NAME),
 	CSS_AUDIO_NODE = getClassName(NAME, 'node'),
-	
-	DEFAULT_PLAYER_PATH = A.config.base + 'aui-audio/assets/player.swf',	
+
+	DEFAULT_PLAYER_PATH = A.config.base + 'aui-audio/assets/player.swf',
 	FIXED_ATTRIBUTES = 'fixedAttributes',
 	FLASH_VARS = 'flashVars',
 	MP3 = 'mp3',
@@ -18,9 +18,9 @@ var AObject = A.Object,
 	SRC = 'src',
 	SWF_URL = 'swfUrl',
 	URL = 'url',
-	
+
 	REGEX_FILE_EXTENSION = /\.([^\.]+)$/;
-	
+
 var Audio = A.Component.create(
 	{
 		NAME: NAME,
@@ -98,14 +98,14 @@ var Audio = A.Component.create(
 
 			_renderSwf: function () {
 				var instance = this;
-				
+
 				var swfUrl = instance.get(SWF_URL);
 
 				if (swfUrl) {
 					var flashVars = instance.get(FLASH_VARS);
-					
+
 					instance._setMedia(flashVars);
-					
+
 					var flashVarString = A.QueryString.stringify(flashVars);
 
 					if (instance._swfId) {
@@ -114,11 +114,11 @@ var Audio = A.Component.create(
 					else {
 						instance._swfId = A.guid();
 					}
-					
+
 					var applicationType = 'type="application/x-shockwave-flash" data="' + swfUrl + '"';
-					
+
 					var movie = '';
-					
+
 					if (UA.ie) {
 						applicationType = 'classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"';
 
@@ -126,7 +126,7 @@ var Audio = A.Component.create(
 					}
 
 					var fixedAttributes = instance.get(FIXED_ATTRIBUTES);
-					
+
 					var fixedAttributesParam = [];
 
 					for (var attributeName in fixedAttributes) {
@@ -134,15 +134,15 @@ var Audio = A.Component.create(
 							fixedAttributesParam.push('<param name="', attributeName, '" value="', fixedAttributes[attributeName], '" />');
 						}
 					}
-					
+
 					var flashVarsParam = '';
-					
+
 					if (flashVarString) {
 						flashVarsParam = '<param name="flashVars" value="' + flashVarString + '" />';
 					}
-					
+
 					var height = instance.get('swfHeight');
-					
+
 					var width = instance.get('swfWidth');
 
 					var tplObj = Lang.sub(
@@ -181,15 +181,15 @@ var Audio = A.Component.create(
 
 				return audio;
 			},
-			
+
 			_setMedia: function(flashVars) {
 				var instance = this;
-				
+
 				if (!AObject.owns(flashVars, MP3) && !AObject.owns(flashVars, 'mp4') && !AObject.owns(flashVars, 'flv')) {
 					var audioUrl = instance.get(URL);
 
 					var type = instance.get('type');
-				
+
 					if (!type) {
 						var typeMatch = REGEX_FILE_EXTENSION.exec(audioUrl);
 
@@ -197,7 +197,7 @@ var Audio = A.Component.create(
 							type = typeMatch[1];
 						}
 					}
-					
+
 					flashVars[type] = audioUrl;
 				}
 			},
@@ -294,7 +294,7 @@ var Audio = A.Component.create(
 		}
 	}
 );
-	
+
 Audio.TPL_AUDIO = '<audio id="{0}" controls class="' + CSS_AUDIO_NODE + '"></audio>';
 
 Audio.TPL_AUDIO_FALLBACK = '<div class="' + CSS_AUDIO_NODE + '"></div>';
