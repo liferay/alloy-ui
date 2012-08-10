@@ -960,7 +960,7 @@ var ImageViewer = A.Component.create(
 			},
 
 			/**
-			 * Creates the preload image instance, and add's it 
+			 * Creates the preload image instance, and add's it
 			 * to the internal pool.
 			 *
 			 * @method _createPreloadImage
@@ -2279,7 +2279,6 @@ AUI.add('aui-media-viewer-plugin', function(A) {
 
 var Lang = A.Lang,
 	Do = A.Do,
-	IE = A.UA.ie,
 
 	STR_ABOUT_BLANK = 'about:blank',
 	STR_BODY = 'body',

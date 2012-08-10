@@ -71,7 +71,7 @@ var Editor = A.Component.create(
 						instance.toolbar.addGroupType(type, data);
 					}
 				);
-			}			
+			}
 		}
 	}
 );
@@ -390,9 +390,9 @@ A.mix(
 
 							if (!IGNORE_TAGS[tagName]) {
 								var parent = item.ancestor();
-	
+
 								var wrapper = addWrapper(parent, item, val);
-	
+
 								wrapper.append(item);
 							}
 						}
@@ -1530,7 +1530,7 @@ GROUPS[INSERT] = {
 						if (!isNaN(padding)) {
 							imgStyles.padding = padding;
 						}
- 
+
 						toolbarAlign.some(
 							function(item, index, collection) {
 								var instance = this;
@@ -1602,7 +1602,7 @@ GROUPS[INSERT] = {
 						overlay.hide();
 					}
 				);
-				
+
 				var imgSizeDetection = A.Node.create(TPL_INSERTIMAGE_IMG);
 
 				var heightField = imageForm.getField('height');
@@ -3786,5 +3786,5 @@ A.namespace('Plugin').EditorCreoleCode = EditorCreoleCode;
 }, '@VERSION@' ,{requires:['aui-base','editor-base','aui-editor-html-creole','aui-editor-creole-parser']});
 
 
-AUI.add('aui-editor', function(A){}, '@VERSION@' ,{use:['aui-editor-base','aui-editor-tools-plugin','aui-editor-menu-plugin','aui-editor-toolbar-plugin','aui-editor-bbcode-plugin','aui-editor-creole-parser','aui-editor-creole-plugin'], skinnable:true});
+AUI.add('aui-editor', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-editor-base','aui-editor-tools-plugin','aui-editor-menu-plugin','aui-editor-toolbar-plugin','aui-editor-bbcode-plugin','aui-editor-creole-parser','aui-editor-creole-plugin']});
 
