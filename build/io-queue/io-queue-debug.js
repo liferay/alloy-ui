@@ -2,15 +2,15 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('io-queue', function(Y) {
 
 /**
 Extends IO to implement Queue for synchronous
 transaction processing.
-@module io-base
+@module io
 @submodule io-queue
 @for IO
 **/
@@ -163,4 +163,4 @@ _queue.size = function () { io.qSize(); };
 Y.io.queue = _queue;
 
 
-}, '3.4.0' ,{requires:['io-base','queue-promote']});
+}, '3.6.0' ,{requires:['io-base','queue-promote']});

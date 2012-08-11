@@ -2,15 +2,15 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('io-form', function(Y) {
 
 /**
 * Extends IO to enable HTML form data serialization, when specified
 * in the transaction's configuration object.
-* @module io-base
+* @module io
 * @submodule io-form
 * @for IO
 */
@@ -100,4 +100,4 @@ Y.mix(Y.IO.prototype, {
 }, true);
 
 
-}, '3.4.0' ,{requires:['io-base','node-base']});
+}, '3.6.0' ,{requires:['io-base','node-base']});

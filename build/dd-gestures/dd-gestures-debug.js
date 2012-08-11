@@ -2,20 +2,25 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('dd-gestures', function(Y) {
 
 
-    /*
-    * This module is the conditional loaded DD file to support gesture events.
-    * In the event that DD is loaded onto a device that support touch based events
-    * This module is loaded and over rides 2 key methods on DD.Drag and DD.DDM to
-    * attach the gesture events.
+    /**
+    * This module is the conditional loaded `dd` module to support gesture events
+    * in the event that `dd` is loaded onto a device that support touch based events.
+    *
+    * This module is loaded and over rides 2 key methods on `DD.Drag` and `DD.DDM` to
+    * attach the gesture events. Overrides `DD.Drag._prep` and `DD.DDM._setupListeners`
+    * methods as well as set's the property `DD.Drag.START_EVENT` to `gesturemovestart`
+    * to enable gesture movement instead of mouse based movement.
+    * @module dd
+    * @submodule dd-gestures
     */
     Y.log('Drag gesture support loaded', 'info', 'drag-gestures');
-
+    
     Y.DD.Drag.START_EVENT = 'gesturemovestart';
 
     Y.DD.Drag.prototype._prep = function() {
@@ -45,4 +50,4 @@ YUI.add('dd-gestures', function(Y) {
 
 
 
-}, '3.4.0' ,{skinnable:false, requires:['dd-drag', 'event-synthetic', 'event-gestures']});
+}, '3.6.0' ,{skinnable:false, requires:['dd-drag', 'event-synthetic', 'event-gestures']});

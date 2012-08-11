@@ -81,7 +81,7 @@
 <div id="wrapper">
 	<h1>Alloy - Debounce Demo</h1>
 
-	<p>A debouncer is a term that comes from electrical engineering. It helps keep functions from executing too many times, by waiting until the user has paused some task for a specific amount of time. This is useful for times when you want to do some expensive operation in javascript, but don't want it to slow down the interaction. For example, let's say that when a user types into a text box, on key press you want to: 
+	<p>A debouncer is a term that comes from electrical engineering. It helps keep functions from executing too many times, by waiting until the user has paused some task for a specific amount of time. This is useful for times when you want to do some expensive operation in javascript, but don't want it to slow down the interaction. For example, let's say that when a user types into a text box, on key press you want to:
 		<ul>
 			<li>manipulating large sections of the DOM</li>
 			<li>perform an ajax request</li>
@@ -89,7 +89,7 @@
 		</ul>
 		these would all be good cases for debouncing.
 	</p>
-	
+
 	<div id="demo">
 		See it in action between a regular keypress event, and a keypress with a debounced method (and a 500ms delay):
 		<div class="aui-ctrl-holder">
@@ -100,8 +100,8 @@
 				<span class="debounce count-container">The <strong>debounced</strong> function was called <span>0</span> times.</span>
 			</p>
 		</div>
-	</div>	
-	
+	</div>
+
 	<p>Another good use cases would be if you want to have 2 specific debounced functions for different tasks, and use interaction to cancel one and perform the other. For instance, if you have a menu, and on "mouseleave" you don't want to close the menu right away (but you do want it to disappear after a short delay). But if the user moves back over it, you don't want it to hide at all.<br />
 	In this case, you have have 2 functions, a hider and a shower. Then on the menu node, you could say, on mouseenter, hider.cancel();shower(); and you would also say on mouseleave, shower.cancel();hider(); (in this case, you would give the shower a delay of 0 by default so that it always shows right away).</p>
 

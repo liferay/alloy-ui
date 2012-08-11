@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('editor-lists', function(Y) {
 
@@ -78,7 +78,7 @@ YUI.add('editor-lists', function(Y) {
                     }
                     //Selection here..
                     Y.log('Selecting the new node', 'info', 'editorLists');
-                    (new inst.Selection()).selectNode(li, true, focusEnd);
+                    (new inst.EditorSelection()).selectNode(li, true, focusEnd);
                 }
             }
         },
@@ -129,4 +129,4 @@ YUI.add('editor-lists', function(Y) {
 
 
 
-}, '3.4.0' ,{skinnable:false, requires:['editor-base']});
+}, '3.6.0' ,{skinnable:false, requires:['editor-base']});

@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('calendar-base', function(Y) {
 
@@ -180,4 +180,4 @@ Y.CalendarBase = Y.extend( CalendarBase, Y.Widget, {
 });
 
 
-}, '3.4.0' ,{requires:['widget', 'datatype-date']});
+}, '3.6.0' ,{requires:['widget', 'datatype-date']});

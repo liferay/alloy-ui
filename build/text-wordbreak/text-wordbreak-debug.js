@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('text-wordbreak', function(Y) {
 
@@ -367,4 +367,4 @@ WordBreak = {
 Text.WordBreak = WordBreak;
 
 
-}, '3.4.0' ,{requires:['array-extras', 'text-data-wordbreak']});
+}, '3.6.0' ,{requires:['array-extras', 'text-data-wordbreak']});

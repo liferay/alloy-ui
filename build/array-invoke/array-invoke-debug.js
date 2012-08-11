@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('array-invoke', function(Y) {
 
@@ -35,7 +35,7 @@ Y.Array.invoke = function(items, name) {
         ret = [];
 
     Y.Array.each(Y.Array(items), function(item, i) {
-        if (isFunction(item[name])) {
+        if (item && isFunction(item[name])) {
             ret[i] = item[name].apply(item, args);
         }
     });
@@ -44,4 +44,4 @@ Y.Array.invoke = function(items, name) {
 };
 
 
-}, '3.4.0' ,{requires:['yui-base']});
+}, '3.6.0' ,{requires:['yui-base']});

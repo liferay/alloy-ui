@@ -1,0 +1,12 @@
+.yui3-datatable-selection {
+	outline: 0;
+}
+
+.yui3-datatable-highlight-overlay {
+	position: absolute;
+	z-index: 1;
+}
+
+.yui3-datatable-highlight-overlay-active {
+	z-index: 2;
+}

@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('exec-command', function(Y) {
 
@@ -95,6 +95,16 @@ YUI.add('exec-command', function(Y) {
                 this.get('host').on('dom:keypress', Y.bind(function(e) {
                     this._lastKey = e.keyCode;
                 }, this));
+            },
+            _wrapContent: function(str, override) {
+                var useP = (this.getInstance().host.editorPara && !override ? true : false);
+                
+                if (useP) {
+                    str = '<p>' + str + '</p>';
+                } else {
+                    str = str + '<br>';
+                }
+                return str;
             }
         }, {
             /**
@@ -130,7 +140,7 @@ YUI.add('exec-command', function(Y) {
                 */
                 wrap: function(cmd, tag) {
                     var inst = this.getInstance();
-                    return (new inst.Selection()).wrapContent(tag);
+                    return (new inst.EditorSelection()).wrapContent(tag);
                 },
                 /**
                 * Inserts the provided HTML at the cursor, should be a single element.
@@ -142,8 +152,8 @@ YUI.add('exec-command', function(Y) {
                 */
                 inserthtml: function(cmd, html) {
                     var inst = this.getInstance();
-                    if (inst.Selection.hasCursor() || Y.UA.ie) {
-                        return (new inst.Selection()).insertContent(html);
+                    if (inst.EditorSelection.hasCursor() || Y.UA.ie) {
+                        return (new inst.EditorSelection()).insertContent(html);
                     } else {
                         this._command('inserthtml', html);
                     }
@@ -158,10 +168,10 @@ YUI.add('exec-command', function(Y) {
                 */
                 insertandfocus: function(cmd, html) {
                     var inst = this.getInstance(), out, sel;
-                    if (inst.Selection.hasCursor()) {
-                        html += inst.Selection.CURSOR;
+                    if (inst.EditorSelection.hasCursor()) {
+                        html += inst.EditorSelection.CURSOR;
                         out = this.command('inserthtml', html);
-                        sel = new inst.Selection();
+                        sel = new inst.EditorSelection();
                         sel.focusCursor(true, true);
                     } else {
                         this.command('inserthtml', html);
@@ -176,7 +186,7 @@ YUI.add('exec-command', function(Y) {
                 */
                 insertbr: function(cmd) {
                     var inst = this.getInstance(),
-                        sel = new inst.Selection(),
+                        sel = new inst.EditorSelection(),
                         html = '<var>|</var>', last = null,
                         q = (Y.UA.webkit) ? 'span.Apple-style-span,var' : 'var';
 
@@ -236,7 +246,7 @@ YUI.add('exec-command', function(Y) {
                 */
                 addclass: function(cmd, cls) {
                     var inst = this.getInstance();
-                    return (new inst.Selection()).getSelected().addClass(cls);
+                    return (new inst.EditorSelection()).getSelected().addClass(cls);
                 },
                 /**
                 * Remove a class from all of the elements in the selection
@@ -248,7 +258,7 @@ YUI.add('exec-command', function(Y) {
                 */
                 removeclass: function(cmd, cls) {
                     var inst = this.getInstance();
-                    return (new inst.Selection()).getSelected().removeClass(cls);
+                    return (new inst.EditorSelection()).getSelected().removeClass(cls);
                 },
                 /**
                 * Adds a forecolor to the current selection, or creates a new element and applies it
@@ -260,18 +270,18 @@ YUI.add('exec-command', function(Y) {
                 */
                 forecolor: function(cmd, val) {
                     var inst = this.getInstance(),
-                        sel = new inst.Selection(), n;
+                        sel = new inst.EditorSelection(), n;
 
                     if (!Y.UA.ie) {
                         this._command('useCSS', false);
                     }
-                    if (inst.Selection.hasCursor()) {
+                    if (inst.EditorSelection.hasCursor()) {
                         if (sel.isCollapsed) {
                             if (sel.anchorNode && (sel.anchorNode.get('innerHTML') === '&nbsp;')) {
                                 sel.anchorNode.setStyle('color', val);
                                 n = sel.anchorNode;
                             } else {
-                                n = this.command('inserthtml', '<span style="color: ' + val + '">' + inst.Selection.CURSOR + '</span>');
+                                n = this.command('inserthtml', '<span style="color: ' + val + '">' + inst.EditorSelection.CURSOR + '</span>');
                                 sel.focusCursor(true, true);
                             }
                             return n;
@@ -292,7 +302,7 @@ YUI.add('exec-command', function(Y) {
                 */
                 backcolor: function(cmd, val) {
                     var inst = this.getInstance(),
-                        sel = new inst.Selection(), n;
+                        sel = new inst.EditorSelection(), n;
                     
                     if (Y.UA.gecko || Y.UA.opera) {
                         cmd = 'hilitecolor';
@@ -300,13 +310,13 @@ YUI.add('exec-command', function(Y) {
                     if (!Y.UA.ie) {
                         this._command('useCSS', false);
                     }
-                    if (inst.Selection.hasCursor()) {
+                    if (inst.EditorSelection.hasCursor()) {
                         if (sel.isCollapsed) {
                             if (sel.anchorNode && (sel.anchorNode.get('innerHTML') === '&nbsp;')) {
                                 sel.anchorNode.setStyle('backgroundColor', val);
                                 n = sel.anchorNode;
                             } else {
-                                n = this.command('inserthtml', '<span style="background-color: ' + val + '">' + inst.Selection.CURSOR + '</span>');
+                                n = this.command('inserthtml', '<span style="background-color: ' + val + '">' + inst.EditorSelection.CURSOR + '</span>');
                                 sel.focusCursor(true, true);
                             }
                             return n;
@@ -340,7 +350,7 @@ YUI.add('exec-command', function(Y) {
                 fontname2: function(cmd, val) {
                     this._command('fontname', val);
                     var inst = this.getInstance(),
-                        sel = new inst.Selection();
+                        sel = new inst.EditorSelection();
                     
                     if (sel.isCollapsed && (this._lastKey != 32)) {
                         if (sel.anchorNode.test('font')) {
@@ -361,7 +371,7 @@ YUI.add('exec-command', function(Y) {
                     this._command('fontsize', val);
 
                     var inst = this.getInstance(),
-                        sel = new inst.Selection();
+                        sel = new inst.EditorSelection();
                     
                     if (sel.isCollapsed && sel.anchorNode && (this._lastKey != 32)) {
                         if (Y.UA.webkit) {
@@ -372,7 +382,7 @@ YUI.add('exec-command', function(Y) {
                         if (sel.anchorNode.test('font')) {
                             sel.anchorNode.set('size', val);
                         } else if (Y.UA.gecko) {
-                            var p = sel.anchorNode.ancestor(inst.Selection.DEFAULT_BLOCK_TAG);
+                            var p = sel.anchorNode.ancestor(inst.EditorSelection.DEFAULT_BLOCK_TAG);
                             if (p) {
                                 p.setStyle('fontSize', '');
                             }
@@ -405,18 +415,25 @@ YUI.add('exec-command', function(Y) {
                 * @param {String} tag The tag to deal with
                 */
                 list: function(cmd, tag) {
-                    var inst = this.getInstance(), html,
+                    var inst = this.getInstance(), html, self = this,
+                        /*
+                        The yui3- class name below is not a skinnable class,
+                        it's a utility class used internally by editor and 
+                        stripped when completed, calling getClassName on this
+                        is a waste of resources.
+                        */
                         DIR = 'dir', cls = 'yui3-touched',
                         dir, range, div, elm, n, str, s, par, list, lis,
                         useP = (inst.host.editorPara ? true : false),
-                        sel = new inst.Selection();
+                        sel = new inst.EditorSelection();
 
                     cmd = 'insert' + ((tag === 'ul') ? 'un' : '') + 'orderedlist';
                     
                     if (Y.UA.ie && !sel.isCollapsed) {
                         range = sel._selection;
                         html = range.htmlText;
-                        div = inst.Node.create(html);
+                        div = inst.Node.create(html) || inst.one('body');
+
                         if (div.test('li') || div.one('li')) {
                             this._command(cmd, null);
                             return;
@@ -428,11 +445,7 @@ YUI.add('exec-command', function(Y) {
 
                             str = '<div>';
                             lis.each(function(l) {
-                                if (useP) {
-                                    str += '<p>' + l.get('innerHTML') + '</p>';
-                                } else {
-                                    str += l.get('innerHTML') + '<br>';
-                                }
+                                str = self._wrapContent(l.get('innerHTML'));
                             });
                             str += '</div>';
                             s = inst.Node.create(str);
@@ -457,8 +470,8 @@ YUI.add('exec-command', function(Y) {
                             range.select();
                         } else {
                             par = Y.one(range.parentElement());
-                            if (!par.test(inst.Selection.BLOCKS)) {
-                                par = par.ancestor(inst.Selection.BLOCKS);
+                            if (!par.test(inst.EditorSelection.BLOCKS)) {
+                                par = par.ancestor(inst.EditorSelection.BLOCKS);
                             }
                             if (par) {
                                 if (par.hasAttribute(DIR)) {
@@ -469,9 +482,9 @@ YUI.add('exec-command', function(Y) {
                                 html = html.split(/<br>/i);
                             } else {
                                 var tmp = inst.Node.create(html),
-                                ps = tmp.all('p');
+                                ps = tmp ? tmp.all('p') : null;
 
-                                if (ps.size()) {
+                                if (ps && ps.size()) {
                                     html = [];
                                     ps.each(function(n) {
                                         html.push(n.get('innerHTML'));
@@ -483,7 +496,7 @@ YUI.add('exec-command', function(Y) {
                             list = '<' + tag + ' id="ie-list">';
                             Y.each(html, function(v) {
                                 var a = inst.Node.create(v);
-                                if (a.test('p')) {
+                                if (a && a.test('p')) {
                                     if (a.hasAttribute(DIR)) {
                                         dir = a.getAttribute(DIR);
                                     }
@@ -509,7 +522,7 @@ YUI.add('exec-command', function(Y) {
                             if (par && par.hasAttribute(DIR)) {
                                 dir = par.getAttribute(DIR);
                             }
-                            html = Y.Selection.getText(par);
+                            html = Y.EditorSelection.getText(par);
                             if (html === '') {
                                 var sdir = '';
                                 if (dir) {
@@ -526,27 +539,24 @@ YUI.add('exec-command', function(Y) {
                         }
                     } else {
                         inst.all(tag).addClass(cls);
-                        if (sel.anchorNode.test(inst.Selection.BLOCKS)) {
+                        if (sel.anchorNode.test(inst.EditorSelection.BLOCKS)) {
                             par = sel.anchorNode;
                         } else {
-                            par = sel.anchorNode.ancestor(inst.Selection.BLOCKS);
+                            par = sel.anchorNode.ancestor(inst.EditorSelection.BLOCKS);
                         }
                         if (!par) { //No parent, find the first block under the anchorNode
-                            par = sel.anchorNode.one(inst.Selection.BLOCKS);
+                            par = sel.anchorNode.one(inst.EditorSelection.BLOCKS);
                         }
 
                         if (par && par.hasAttribute(DIR)) {
                             dir = par.getAttribute(DIR);
                         }
                         if (par && par.test(tag)) {
+                            var hasPParent = par.ancestor('p');
                             html = inst.Node.create('<div/>');
                             elm = par.all('li');
                             elm.each(function(h) {
-                                if (useP) {
-                                    html.append('<p>' + h.get('innerHTML') + '</p>');
-                                } else {
-                                    html.append(h.get('innerHTML') + '<br>');
-                                }
+                                html.append(self._wrapContent(h.get('innerHTML'), hasPParent));
                             });
                             if (dir) {
                                 if (useP) {
@@ -556,11 +566,11 @@ YUI.add('exec-command', function(Y) {
                                 }
                             }
                             if (useP) {
-                                par.replace(html.get('innerHTML'));
-                            } else {
-                                par.replace(html);
+                                html = inst.Node.create(html.get('innerHTML'));
                             }
-                            sel.selectNode(html.get('firstChild'));
+                            var fc = html.get('firstChild');
+                            par.replace(html);
+                            sel.selectNode(fc);
                         } else {
                             this._command(cmd, null);
                         }
@@ -589,12 +599,12 @@ YUI.add('exec-command', function(Y) {
                 justify: function(cmd, val) {
                     if (Y.UA.webkit) {
                         var inst = this.getInstance(),
-                            sel = new inst.Selection(),
+                            sel = new inst.EditorSelection(),
                             aNode = sel.anchorNode;
 
                             var bgColor = aNode.getStyle('backgroundColor');
                             this._command(val);
-                            sel = new inst.Selection();
+                            sel = new inst.EditorSelection();
                             if (sel.anchorNode.test('div')) {
                                 var html = '<span>' + sel.anchorNode.get('innerHTML') + '</span>';
                                 sel.anchorNode.set('innerHTML', html);
@@ -708,4 +718,4 @@ YUI.add('exec-command', function(Y) {
 
 
 
-}, '3.4.0' ,{skinnable:false, requires:['frame']});
+}, '3.6.0' ,{skinnable:false, requires:['frame']});

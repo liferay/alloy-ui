@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('dd-drag', function(Y) {
 
@@ -726,7 +726,9 @@ YUI.add('dd-drag', function(Y) {
         * @param {Event} e The Event
         */
         _fixDragStart: function(e) {
-            e.preventDefault();
+            if (this.validClick(e)) {
+                e.preventDefault();
+            }
         },
         /** 
         * @private
@@ -973,6 +975,7 @@ YUI.add('dd-drag', function(Y) {
         * @description Internal init handler
         */
         initializer: function(cfg) {
+
             this.get(NODE).dd = this;
 
             if (!this.get(NODE).get('id')) {
@@ -1018,7 +1021,16 @@ YUI.add('dd-drag', function(Y) {
         _unprep: function() {
             var node = this.get(NODE);
             node.removeClass(DDM.CSS_PREFIX + '-draggable');
-            node.detachAll();
+            node.detachAll('mouseup');
+            node.detachAll('dragstart');
+            node.detachAll(Drag.START_EVENT);
+            this.mouseXY = [];
+            this.deltaXY = [0,0];
+            this.startXY = [];
+            this.nodeXY = [];
+            this.lastXY = [];
+            this.actXY = [];
+            this.realXY = [];
         },
         /**
         * @method start
@@ -1134,9 +1146,11 @@ YUI.add('dd-drag', function(Y) {
         * @description This method performs the alignment before the element move.
         * @param {Array} eXY The XY to move the element to, usually comes from the mousemove DOM event.
         */
-        _alignNode: function(eXY) {
+        _alignNode: function(eXY, scroll) {
             this._align(eXY);
-            this._moveNode();
+            if (!scroll) {
+                this._moveNode();
+            }
         },
         /**
         * @private
@@ -1188,7 +1202,7 @@ YUI.add('dd-drag', function(Y) {
         */
         _defDragFn: function(e) {
             if (this.get('move')) {
-                if (e.scroll) {
+                if (e.scroll && e.scroll.node) {
                     e.scroll.node.set('scrollTop', e.scroll.top);
                     e.scroll.node.set('scrollLeft', e.scroll.left);
                 }
@@ -1242,7 +1256,6 @@ YUI.add('dd-drag', function(Y) {
         */
         destructor: function() {
             this._unprep();
-            this.detachAll();
             if (this.target) {
                 this.target.destroy();
             }
@@ -1255,4 +1268,4 @@ YUI.add('dd-drag', function(Y) {
 
 
 
-}, '3.4.0' ,{skinnable:false, requires:['dd-ddm-base']});
+}, '3.6.0' ,{skinnable:false, requires:['dd-ddm-base']});

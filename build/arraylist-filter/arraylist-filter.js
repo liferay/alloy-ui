@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('arraylist-filter', function(Y) {
 
@@ -11,6 +11,7 @@ YUI.add('arraylist-filter', function(Y) {
  * Collection utilities beyond what is provided in the YUI core
  * @module collection
  * @submodule arraylist-filter
+ * @deprecated Use ModelList or a custom subclass implementation
  */
 
 /*
@@ -29,6 +30,7 @@ Y.mix(Y.ArrayList.prototype, {
      * @param { Function } validator Boolean function to determine in or out.
      * @return { ArrayList } New instance based on who passed the validator.
      * @for ArrayList
+     * @deprecated Use ModelList or a custom subclass implementation
      */
     filter: function(validator) {
         var items = [];
@@ -47,4 +49,4 @@ Y.mix(Y.ArrayList.prototype, {
 });
 
 
-}, '3.4.0' ,{requires:['arraylist']});
+}, '3.6.0' ,{requires:['arraylist']});

@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('widget-stack', function(Y) {
 
@@ -100,10 +100,8 @@ YUI.add('widget-stack', function(Y) {
          * zIndex will be converted to 0
          */
         zIndex: {
-            value:1,
-            setter: function(val) {
-                return this._setZIndex(val);
-            }
+            value : 0,
+            setter: '_setZIndex'
         }
     };
 
@@ -115,8 +113,8 @@ YUI.add('widget-stack', function(Y) {
      * @type Object
      */
     Stack.HTML_PARSER = {
-        zIndex: function(contentBox) {
-            return contentBox.getStyle(ZINDEX);
+        zIndex: function (srcNode) {
+            return this._parseZIndex(srcNode);
         }
     };
 
@@ -189,6 +187,41 @@ YUI.add('widget-stack', function(Y) {
          */
         _renderUIStack: function() {
             this._stackNode.addClass(Stack.STACKED_CLASS_NAME);
+        },
+
+        /**
+        Parses a `zIndex` attribute value from this widget's `srcNode`.
+
+        @method _parseZIndex
+        @param {Node} srcNode The node to parse a `zIndex` value from.
+        @return {Mixed} The parsed `zIndex` value.
+        @protected
+        **/
+        _parseZIndex: function (srcNode) {
+            var zIndex;
+
+            // Prefers how WebKit handles `z-index` which better matches the
+            // spec:
+            //
+            // * http://www.w3.org/TR/CSS2/visuren.html#z-index
+            // * https://bugs.webkit.org/show_bug.cgi?id=15562
+            //
+            // When a node isn't rendered in the document, and/or when a
+            // node is not positioned, then it doesn't have a context to derive
+            // a valid `z-index` value from.
+            if (!srcNode.inDoc() || srcNode.getStyle('position') === 'static') {
+                zIndex = 'auto';
+            } else {
+                // Uses `getComputedStyle()` because it has greater accuracy in
+                // more browsers than `getStyle()` does for `z-index`.
+                zIndex = srcNode.getComputedStyle('zIndex');
+            }
+
+            // This extension adds a stacking context to widgets, therefore a
+            // `srcNode` witout a stacking context (i.e. "auto") will return
+            // `null` from this DOM parser. This way the widget's default or
+            // user provided value for `zIndex` will be used.
+            return zIndex === 'auto' ? null : zIndex;
         },
 
         /**
@@ -409,4 +442,4 @@ YUI.add('widget-stack', function(Y) {
     Y.WidgetStack = Stack;
 
 
-}, '3.4.0' ,{requires:['base-build', 'widget']});
+}, '3.6.0' ,{requires:['base-build', 'widget']});

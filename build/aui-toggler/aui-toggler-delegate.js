@@ -124,7 +124,7 @@ var TogglerDelegate = A.Component.create({
 			var contentNode = header.next(content) || header.one(content);
 
 			if (!contentNode) {
-				var wrapper = header.next(DOT + CSS_TOGGLER_CONTENT_WRAPPER); 
+				var wrapper = header.next(DOT + CSS_TOGGLER_CONTENT_WRAPPER);
 
 				if (wrapper) {
 					contentNode = wrapper.get(FIRST_CHILD);

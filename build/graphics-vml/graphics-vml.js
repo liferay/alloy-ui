@@ -2,14 +2,16 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('graphics-vml', function(Y) {
 
-var Y_LANG = Y.Lang,
+var SHAPE = "vmlShape",
+    Y_LANG = Y.Lang,
     IS_NUM = Y_LANG.isNumber,
     IS_ARRAY = Y_LANG.isArray,
+    IS_STRING = Y_LANG.isString,
     Y_DOM = Y.DOM,
     Y_SELECTOR = Y.Selector,
     DOCUMENT = Y.config.doc,
@@ -20,7 +22,8 @@ var Y_LANG = Y.Lang,
 	VMLRect,
 	VMLEllipse,
 	VMLGraphic,
-    VMLPieSlice;
+    VMLPieSlice,
+    _getClassName = Y.ClassNameManager.getClassName;
 
 function VMLDrawing() {}
 
@@ -36,7 +39,47 @@ function VMLDrawing() {}
  */
 VMLDrawing.prototype = {
     /**
-     * Current x position of the drqwing.
+     * Value for rounding up to coordsize
+     *
+     * @property _coordSpaceMultiplier
+     * @type Number
+     * @private
+     */
+    _coordSpaceMultiplier: 100,
+
+    /**
+     * Rounds dimensions and position values based on the coordinate space.
+     *
+     * @method _round
+     * @param {Number} The value for rounding
+     * @return Number
+     * @private
+     */
+    _round:function(val)
+    {
+        return Math.round(val * this._coordSpaceMultiplier);
+    },
+
+    /**
+     * Concatanates the path.
+     *
+     * @method _addToPath
+     * @param {String} val The value to add to the path string.
+     * @private
+     */
+    _addToPath: function(val)
+    {
+        this._path = this._path || "";
+        if(this._movePath)
+        {
+            this._path += this._movePath;
+            this._movePath = null;
+        }
+        this._path += val;
+    },
+
+    /**
+     * Current x position of the drawing.
      *
      * @property _currentX
      * @type Number
@@ -65,21 +108,24 @@ VMLDrawing.prototype = {
      * @param {Number} y y-coordinate for the end point.
      */
     curveTo: function(cp1x, cp1y, cp2x, cp2y, x, y) {
-        var hiX,
-            loX,
-            hiY,
-            loY;
-        x = Math.round(x);
-        y = Math.round(y);
-        this._path += ' c ' + Math.round(cp1x) + ", " + Math.round(cp1y) + ", " + Math.round(cp2x) + ", " + Math.round(cp2y) + ", " + x + ", " + y;
+        var w,
+            h,
+            pts,
+            right,
+            left,
+            bottom,
+            top;
+        this._addToPath(" c " + this._round(cp1x) + ", " + this._round(cp1y) + ", " + this._round(cp2x) + ", " + this._round(cp2y) + ", " + this._round(x) + ", " + this._round(y));
+        right = Math.max(x, Math.max(cp1x, cp2x));
+        bottom = Math.max(y, Math.max(cp1y, cp2y));
+        left = Math.min(x, Math.min(cp1x, cp2x));
+        top = Math.min(y, Math.min(cp1y, cp2y));
+        w = Math.abs(right - left);
+        h = Math.abs(bottom - top);
+        pts = [[this._currentX, this._currentY] , [cp1x, cp1y], [cp2x, cp2y], [x, y]]; 
+        this._setCurveBoundingBox(pts, w, h);
         this._currentX = x;
         this._currentY = y;
-        hiX = Math.max(x, Math.max(cp1x, cp2x));
-        hiY = Math.max(y, Math.max(cp1y, cp2y));
-        loX = Math.min(x, Math.min(cp1x, cp2x));
-        loY = Math.min(y, Math.min(cp1y, cp2y));
-        this._trackSize(hiX, hiY);
-        this._trackSize(loX, loY);
     },
 
     /**
@@ -146,6 +192,73 @@ VMLDrawing.prototype = {
     },
 
     /**
+     * Draws a circle. Used internally by `CanvasCircle` class.
+     *
+     * @method drawCircle
+     * @param {Number} x y-coordinate
+     * @param {Number} y x-coordinate
+     * @param {Number} r radius
+     * @protected
+     */
+	drawCircle: function(x, y, radius) {
+        var startAngle = 0,
+            endAngle = 360,
+            circum = radius * 2;
+
+        endAngle *= 65535;
+        this._drawingComplete = false;
+        this._trackSize(x + circum, y + circum);
+        this.moveTo((x + circum), (y + radius));
+        this._addToPath(" ae " + this._round(x + radius) + ", " + this._round(y + radius) + ", " + this._round(radius) + ", " + this._round(radius) + ", " + startAngle + ", " + endAngle);
+        return this;
+    },
+    
+    /**
+     * Draws an ellipse.
+     *
+     * @method drawEllipse
+     * @param {Number} x x-coordinate
+     * @param {Number} y y-coordinate
+     * @param {Number} w width
+     * @param {Number} h height
+     * @protected
+     */
+	drawEllipse: function(x, y, w, h) {
+        var startAngle = 0,
+            endAngle = 360,
+            radius = w * 0.5,
+            yRadius = h * 0.5;
+        endAngle *= 65535;
+        this._drawingComplete = false;
+        this._trackSize(x + w, y + h);
+        this.moveTo((x + w), (y + yRadius));
+        this._addToPath(" ae " + this._round(x + radius) + ", " + this._round(x + radius) + ", " + this._round(y + yRadius) + ", " + this._round(radius) + ", " + this._round(yRadius) + ", " + startAngle + ", " + endAngle);
+        return this;
+    },
+    
+    /**
+     * Draws a diamond.     
+     * 
+     * @method drawDiamond
+     * @param {Number} x y-coordinate
+     * @param {Number} y x-coordinate
+     * @param {Number} width width
+     * @param {Number} height height
+     * @protected
+     */
+    drawDiamond: function(x, y, width, height)
+    {
+        var midWidth = width * 0.5,
+            midHeight = height * 0.5;
+        this.moveTo(x + midWidth, y);
+        this.lineTo(x + width, y + midHeight);
+        this.lineTo(x + midWidth, y + height);
+        this.lineTo(x, y + midHeight);
+        this.lineTo(x + midWidth, y);
+        return this;
+    },
+
+    /**
      * Draws a wedge.
      *
      * @method drawWedge
@@ -157,24 +270,22 @@ VMLDrawing.prototype = {
      * @param {Number} yRadius [optional] y radius for wedge.
      * @private
      */
-    drawWedge: function(x, y, startAngle, arc, radius, yRadius)
+    drawWedge: function(x, y, startAngle, arc, radius)
     {
         var diameter = radius * 2;
-        x = Math.round(x);
-        y = Math.round(y);
-        yRadius = yRadius || radius;
-        radius = Math.round(radius);
-        yRadius = Math.round(yRadius);
         if(Math.abs(arc) > 360)
         {
             arc = 360;
         }
-        startAngle *= -65535;
-        arc *= 65536;
-        this._path += " m " + x + " " + y + " ae " + x + " " + y + " " + radius + " " + yRadius + " " + startAngle + " " + arc;
-        this._trackSize(diameter, diameter); 
         this._currentX = x;
         this._currentY = y;
+        startAngle *= -65535;
+        arc *= 65536;
+        startAngle = Math.round(startAngle);
+        arc = Math.round(arc);
+        this.moveTo(x, y);
+        this._addToPath(" ae " + this._round(x) + ", " + this._round(y) + ", " + this._round(radius) + " " + this._round(radius) + ", " +  startAngle + ", " + arc);
+        this._trackSize(diameter, diameter); 
         return this;
     },
 
@@ -188,22 +299,19 @@ VMLDrawing.prototype = {
     lineTo: function(point1, point2, etc) {
         var args = arguments,
             i,
-            len;
+            len,
+            path = ' l ';
         if (typeof point1 === 'string' || typeof point1 === 'number') {
             args = [[point1, point2]];
         }
         len = args.length;
-        if(!this._path)
-        {
-            this._path = "";
-        }
-        this._path += ' l ';
         for (i = 0; i < len; ++i) {
-            this._path += ' ' + Math.round(args[i][0]) + ', ' + Math.round(args[i][1]);
+            path += ' ' + this._round(args[i][0]) + ', ' + this._round(args[i][1]);
             this._trackSize.apply(this, args[i]);
             this._currentX = args[i][0];
             this._currentY = args[i][1];
         }
+        this._addToPath(path);
         return this;
     },
 
@@ -215,11 +323,7 @@ VMLDrawing.prototype = {
      * @param {Number} y y-coordinate for the end point.
      */
     moveTo: function(x, y) {
-        if(!this._path)
-        {
-            this._path = "";
-        }
-        this._path += ' m ' + Math.round(x) + ', ' + Math.round(y);
+        this._movePath = " m " + this._round(x) + ", " + this._round(y);
         this._trackSize(x, y);
         this._currentX = x;
         this._currentY = y;
@@ -239,7 +343,8 @@ VMLDrawing.prototype = {
             w = this.get("width"),
             h = this.get("height"),
             path = this._path,
-            pathEnd = "";
+            pathEnd = "",
+            multiplier = this._coordSpaceMultiplier;
         this._fillChangeHandler();
         this._strokeChangeHandler();
         if(path)
@@ -257,14 +362,16 @@ VMLDrawing.prototype = {
         {
             node.path = path + pathEnd;
         }
-        if(w && h)
+        if(!isNaN(w) && !isNaN(h))
         {
-            node.coordSize =  w + ', ' + h;
+            node.coordOrigin = this._left + ", " + this._top;
+            node.coordSize = (w * multiplier) + ", " + (h * multiplier);
             node.style.position = "absolute";
-            node.style.width = w + "px";
-            node.style.height = h + "px";
+            node.style.width =  w + "px";
+            node.style.height =  h + "px";
         }
         this._path = path;
+        this._movePath = null;
         this._updateTransform();
     },
 
@@ -279,13 +386,93 @@ VMLDrawing.prototype = {
     },
 
     /**
+     * Ends a fill and stroke
+     *
+     * @method closePath
+     */
+    closePath: function()
+    {
+        this._addToPath(" x e");
+    },
+
+    /**
      * Clears the path.
      *
      * @method clear
      */
     clear: function()
     {
-		this._path = "";
+		this._right = 0;
+        this._bottom = 0;
+        this._width = 0;
+        this._height = 0;
+        this._left = 0;
+        this._top = 0;
+        this._path = "";
+        this._movePath = null;
+    },
+    
+    /**
+     * Returns the points on a curve
+     *
+     * @method getBezierData
+     * @param Array points Array containing the begin, end and control points of a curve.
+     * @param Number t The value for incrementing the next set of points.
+     * @return Array
+     * @private
+     */
+    getBezierData: function(points, t) {  
+        var n = points.length,
+            tmp = [],
+            i,
+            j;
+
+        for (i = 0; i < n; ++i){
+            tmp[i] = [points[i][0], points[i][1]]; // save input
+        }
+        
+        for (j = 1; j < n; ++j) {
+            for (i = 0; i < n - j; ++i) {
+                tmp[i][0] = (1 - t) * tmp[i][0] + t * tmp[parseInt(i + 1, 10)][0];
+                tmp[i][1] = (1 - t) * tmp[i][1] + t * tmp[parseInt(i + 1, 10)][1]; 
+            }
+        }
+        return [ tmp[0][0], tmp[0][1] ]; 
+    },
+  
+    /**
+     * Calculates the bounding box for a curve
+     *
+     * @method _setCurveBoundingBox
+     * @param Array pts Array containing points for start, end and control points of a curve.
+     * @param Number w Width used to calculate the number of points to describe the curve.
+     * @param Number h Height used to calculate the number of points to describe the curve.
+     * @private
+     */
+    _setCurveBoundingBox: function(pts, w, h)
+    {
+        var i = 0,
+            left = this._currentX,
+            right = left,
+            top = this._currentY,
+            bottom = top,
+            len = Math.round(Math.sqrt((w * w) + (h * h))),
+            t = 1/len,
+            xy;
+        for(; i < len; ++i)
+        {
+            xy = this.getBezierData(pts, t * i);
+            left = isNaN(left) ? xy[0] : Math.min(xy[0], left);
+            right = isNaN(right) ? xy[0] : Math.max(xy[0], right);
+            top = isNaN(top) ? xy[1] : Math.min(xy[1], top);
+            bottom = isNaN(bottom) ? xy[1] : Math.max(xy[1], bottom);
+        }
+        left = Math.round(left * 10)/10;
+        right = Math.round(right * 10)/10;
+        top = Math.round(top * 10)/10;
+        bottom = Math.round(bottom * 10)/10;
+        this._trackSize(right, bottom);
+        this._trackSize(left, top);
     },
 
     /**
@@ -344,13 +531,13 @@ VMLShape = function()
 {
     this._transforms = [];
     this.matrix = new Y.Matrix();
-    this.rotationMatrix = new Y.Matrix();
+    this._normalizedMatrix = new Y.Matrix();
     VMLShape.superclass.constructor.apply(this, arguments);
 };
 
 VMLShape.NAME = "vmlShape";
 
-Y.extend(VMLShape, Y.BaseGraphic, Y.mix({
+Y.extend(VMLShape, Y.GraphicBase, Y.mix({
 	/**
 	 * Indicates the type of shape
 	 *
@@ -382,10 +569,39 @@ Y.extend(VMLShape, Y.BaseGraphic, Y.mix({
 	{
 		var host = this,
             graphic = cfg.graphic;
-        host._graphic = graphic;
 		host.createNode();
+        if(graphic)
+        {
+            this._setGraphic(graphic);
+        }
         this._updateHandler();
 	},
+ 
+    /**
+     * Set the Graphic instance for the shape.
+     *
+     * @method _setGraphic
+     * @param {Graphic | Node | HTMLElement | String} render This param is used to determine the graphic instance. If it is a `Graphic` instance, it will be assigned
+     * to the `graphic` attribute. Otherwise, a new Graphic instance will be created and rendered into the dom element that the render represents.
+     * @private
+     */
+    _setGraphic: function(render)
+    {
+        var graphic;
+        if(render instanceof Y.VMLGraphic)
+        {
+		    this._graphic = render;
+        }
+        else
+        {
+            render = Y.one(render);
+            graphic = new Y.VMLGraphic({
+                render: render
+            });
+            graphic._appendShape(this);
+            this._graphic = graphic;
+        }
+    },
 
 	/**
 	 * Creates the dom node for the shape.
@@ -404,6 +620,7 @@ Y.extend(VMLShape, Y.BaseGraphic, Y.mix({
 			id,
 			type,
 			nodestring,
+            visibility = this.get("visible") ? "visible" : "hidden",
 			strokestring,
 			classString,
 			stroke,
@@ -415,12 +632,12 @@ Y.extend(VMLShape, Y.BaseGraphic, Y.mix({
 			fill,
 			fillstring;
 			id = this.get("id");
-			type = this._type;
-			classString = 'vml' + type + ' yui3-vmlShape yui3-' + this.constructor.NAME; 
+			type = this._type == "path" ? "shape" : this._type;
+			classString = 'vml' + type + ' ' + _getClassName(SHAPE) + " " + _getClassName(this.constructor.NAME); 
 			stroke = this._getStrokeProps();
 			fill = this._getFillProps();
 			
-			nodestring  = '<' + type + '  xmlns="urn:schemas-microsft.com:vml" id="' + id + '" class="' + classString + '" style="behavior:url(#default#VML);display:inline-block;position:absolute;left:' + x + 'px;top:' + y + 'px;width:' + w + 'px;height:' + h + 'px;"';
+			nodestring  = '<' + type + '  xmlns="urn:schemas-microsft.com:vml" id="' + id + '" class="' + classString + '" style="behavior:url(#default#VML);display:inline-block;position:absolute;left:' + x + 'px;top:' + y + 'px;width:' + w + 'px;height:' + h + 'px;visibility:' + visibility + '"';
 
 		    if(stroke && stroke.weight && stroke.weight > 0)
 			{
@@ -485,7 +702,7 @@ Y.extend(VMLShape, Y.BaseGraphic, Y.mix({
 				node.appendChild(this._fillNode);
 			}
 
-			this.node = node;
+            this.node = node;
             this._strokeFlag = false;
             this._fillFlag = false;
 	},
@@ -819,7 +1036,14 @@ Y.extend(VMLShape, Y.BaseGraphic, Y.mix({
                     {
                         if(gradient.hasOwnProperty(i))
                         {
-                            this._fillNode.setAttribute(i, gradient[i]);
+                            if(i == "colors")
+                            {
+                                this._fillNode.colors.value = gradient[i];
+                            }
+                            else
+                            {
+                                this._fillNode[i] = gradient[i];
+                            }
                         }
                     }
                 }
@@ -912,7 +1136,7 @@ Y.extend(VMLShape, Y.BaseGraphic, Y.mix({
 			fx = fill.fx,
 			fy = fill.fy,
 			r = fill.r,
-			pct,
+            pct,
 			rotation = fill.rotation || 0;
 		if(type === "linear")
 		{
@@ -952,17 +1176,12 @@ Y.extend(VMLShape, Y.BaseGraphic, Y.mix({
 			opacity = isNumber(opacity) ? opacity : 1;
 			pct = stop.offset || i/(len-1);
 			pct *= (r * 2);
-			if(pct <= 1)
-			{
-				pct = Math.round(100 * pct) + "%";
-				oi = i > 0 ? i + 1 : "";
-				gradientProps["opacity" + oi] = opacity + "";
-				colorstring += ", " + pct + " " + color;
-			}
+            pct = Math.round(100 * pct) + "%";
+            oi = i > 0 ? i + 1 : "";
+            gradientProps["opacity" + oi] = opacity + "";
+            colorstring += ", " + pct + " " + color;
 		}
-		pct = stops[1].offset || 0;
-		pct *= 100;
-		if(parseInt(pct, 10) < 100)
+		if(parseFloat(pct) < 100)
 		{
 			colorstring += ", 100% " + color;
 		}
@@ -1004,93 +1223,85 @@ Y.extend(VMLShape, Y.BaseGraphic, Y.mix({
 			transformOrigin,
             x = this.get("x"),
             y = this.get("y"),
-            w = this.get("width"),
-            h = this.get("height"),
-            cx,
-            cy,
-            dx,
-            dy,
-            originX,
-            originY,
-            translatedCenterX,
-            translatedCenterY,
-            oldBounds,
-            newBounds,
             tx,
             ty,
-            keys = [],
             matrix = this.matrix,
-            rotationMatrix = this.rotationMatrix,
+            normalizedMatrix = this._normalizedMatrix,
+            isPathShape = this instanceof Y.VMLPath,
             i = 0,
             len = this._transforms.length;
-
         if(this._transforms && this._transforms.length > 0)
 		{
             transformOrigin = this.get("transformOrigin");
+       
+            if(isPathShape)
+            {
+                normalizedMatrix.translate(this._left, this._top);
+            }
+            //vml skew matrix transformOrigin ranges from -0.5 to 0.5.
+            //subtract 0.5 from values
+            tx = transformOrigin[0] - 0.5;
+            ty = transformOrigin[1] - 0.5;
+            
+            //ensure the values are within the appropriate range to avoid errors
+            tx = Math.max(-0.5, Math.min(0.5, tx));
+            ty = Math.max(-0.5, Math.min(0.5, ty));
             for(; i < len; ++i)
             {
                 key = this._transforms[i].shift();
                 if(key)
                 {
-                    if(key == "rotate")
-                    {
-                        tx = transformOrigin[0];
-                        ty =  transformOrigin[1];
-                        oldBounds = this.getBounds(matrix);
-                        matrix[key].apply(matrix, this._transforms[i]);
-                        rotationMatrix[key].apply(rotationMatrix, this._transforms[i]);
-                        newBounds = this.getBounds(matrix);
-                        cx = w * 0.5;
-                        cy = h * 0.5;
-                        originX = w * (tx);
-                        originY = h * (ty);
-                        translatedCenterX = cx - originX;
-                        translatedCenterY = cy - originY;
-                        translatedCenterX = (matrix.a * translatedCenterX + matrix.b * translatedCenterY);
-                        translatedCenterY = (matrix.d * translatedCenterX + matrix.d * translatedCenterY);
-                        translatedCenterX += originX;
-                        translatedCenterY += originY;
-                        matrix.dx = rotationMatrix.dx + translatedCenterX - (newBounds.right - newBounds.left)/2;
-                        matrix.dy = rotationMatrix.dy + translatedCenterY - (newBounds.bottom - newBounds.top)/2;
-                    }
-                    else if(key == "scale")
-                    {
-				        transformOrigin = this.get("transformOrigin");
-                        tx = x + (transformOrigin[0] * this.get("width"));
-                        ty = y + (transformOrigin[1] * this.get("height")); 
-                        matrix.translate(tx, ty);
-                        matrix[key].apply(matrix, this._transforms[i]); 
-                        matrix.translate(0 - tx, 0 - ty);
-                    }
-                    else
-                    {
-                        matrix[key].apply(matrix, this._transforms[i]); 
-                        rotationMatrix[key].apply(rotationMatrix, this._transforms[i]); 
-                    }
-                    keys.push(key);
+                    normalizedMatrix[key].apply(normalizedMatrix, this._transforms[i]); 
+                    matrix[key].apply(matrix, this._transforms[i]); 
                 }
 			}
-            transform = matrix.toFilterText();
+            if(isPathShape)
+            {
+                normalizedMatrix.translate(-this._left, -this._top);
+            }
+            transform = normalizedMatrix.a + "," + 
+                        normalizedMatrix.c + "," + 
+                        normalizedMatrix.b + "," + 
+                        normalizedMatrix.d + "," + 
+                        0 + "," +
+                        0;
 		}
-        dx = matrix.dx;
-        dy = matrix.dy;
         this._graphic.addToRedrawQueue(this);    
-        //only apply the filter if necessary as it degrades image quality
-        if(Y.Array.indexOf(keys, "skew") > -1 || Y.Array.indexOf(keys, "scale") > -1)
-		{
-            node.style.filter = transform;
-        }
-        else if(Y.Array.indexOf(keys,"rotate") > -1)
+        if(transform)
         {
-            node.style.rotation = this._rotation;
-            dx = rotationMatrix.dx;
-            dy = rotationMatrix.dy;
+            if(!this._skew)
+            {
+                this._skew = DOCUMENT.createElement( '<skew class="vmlskew" xmlns="urn:schemas-microsft.com:vml" on="false" style="behavior:url(#default#VML);display:inline-block;" />');
+                this.node.appendChild(this._skew); 
+            }
+            this._skew.matrix = transform;
+            this._skew.on = true;
+            //use offset for translate
+            this._skew.offset = this._getSkewOffsetValue(normalizedMatrix.dx) + "px, " + this._getSkewOffsetValue(normalizedMatrix.dy) + "px";
+            this._skew.origin = tx + ", " + ty;
         }
-        this._transforms = [];
-        x += dx;
-        y += dy;
+        if(this._type != "path")
+        {
+            this._transforms = [];
+        }
         node.style.left = x + "px";
-		node.style.top = y + "px";
+        node.style.top =  y + "px";
+    },
+    
+    /**
+     * Normalizes the skew offset values between -32767 and 32767.
+     *
+     * @method _getSkewOffsetValue
+     * @param {Number} val The value to normalize
+     * @return Number
+     * @private
+     */
+    _getSkewOffsetValue: function(val)
+    {
+        var sign = Y.MatrixUtil.sign(val),
+            absVal = Math.abs(val);
+        val = Math.min(absVal, 32767) * sign;
+        return val;
     },
 	
 	/**
@@ -1194,16 +1405,6 @@ Y.extend(VMLShape, Y.BaseGraphic, Y.mix({
 		this._addTransform("skewY", arguments);
 	 },
 
-
-	/**
-     * Storage for `rotation` atribute.
-     *
-     * @property _rotation
-     * @type Number
-	 * @private
-	 */
-	_rotation: 0,
-
 	/**
 	 * Rotates the shape clockwise around it transformOrigin.
 	 *
@@ -1212,7 +1413,6 @@ Y.extend(VMLShape, Y.BaseGraphic, Y.mix({
 	 */
 	 rotate: function(deg)
 	 {
-		this._rotation += deg;
 		this._addTransform("rotate", arguments);
 	 },
 
@@ -1353,50 +1553,21 @@ Y.extend(VMLShape, Y.BaseGraphic, Y.mix({
 	 */
 	getBounds: function(cfg)
 	{
-	    var wt,
-            bounds = {},
-            matrix = cfg || this.matrix,
-            a = matrix.a,
-            b = matrix.b,
-            c = matrix.c,
-            d = matrix.d,
-            dx = matrix.dx,
-            dy = matrix.dy,
-            w = this.get("width"),
-            h = this.get("height"),
-            left = this.get("x"), 
-            top = this.get("y"), 
-            right = left + w,
-            bottom = top + h,
-			stroke = this.get("stroke"),
-            //[x1, y1]
-            x1 = (a * left + c * top + dx), 
-            y1 = (b * left + d * top + dy),
-            //[x2, y2]
-            x2 = (a * right + c * top + dx),
-            y2 = (b * right + d * top + dy),
-            //[x3, y3]
-            x3 = (a * left + c * bottom + dx),
-            y3 = (b * left + d * bottom + dy),
-            //[x4, y4]
-            x4 = (a * right + c * bottom + dx),
-            y4 = (b * right + d * bottom + dy);
-        bounds.left = Math.min(x3, Math.min(x1, Math.min(x2, x4)));
-        bounds.right = Math.max(x3, Math.max(x1, Math.max(x2, x4)));
-        bounds.top = Math.min(y2, Math.min(y4, Math.min(y3, y1)));
-        bounds.bottom = Math.max(y2, Math.max(y4, Math.max(y3, y1)));
-        //if there is a stroke, extend the bounds to accomodate
-        if(stroke && stroke.weight)
+		var stroke = this.get("stroke"),
+			w = this.get("width"),
+			h = this.get("height"),
+			x = this.get("x"),
+			y = this.get("y"),
+            wt = 0;
+		if(stroke && stroke.weight)
 		{
 			wt = stroke.weight;
-            bounds.left -= wt;
-            bounds.right += wt;
-            bounds.top -= wt;
-            bounds.bottom += wt;
 		}
-        bounds.width = bounds.right - bounds.left;
-        bounds.height = bounds.bottom - bounds.top;
-        return bounds;
+        w = (x + w + wt) - (x - wt); 
+        h = (y + h + wt) - (y - wt);
+        x -= wt;
+        y -= wt;
+		return this._normalizedMatrix.getContentRect(w, h, x, y);
 	},
 	
     /**
@@ -1406,22 +1577,38 @@ Y.extend(VMLShape, Y.BaseGraphic, Y.mix({
      */
     destroy: function()
     {
-        var parentNode = this._graphic && this._graphic._node ? this._graphic._node : null,
-            node = this.node;
+        var graphic = this.get("graphic");
+        if(graphic)
+        {
+            graphic.removeShape(this);
+        }
+        else
+        {
+            this._destroy();
+        }
+    },
+
+    /**
+     *  Implementation for shape destruction
+     *
+     *  @method destroy
+     *  @protected
+     */
+    _destroy: function()
+    {
         if(this.node)
         {   
             if(this._fillNode)
             {
-                node.removeChild(this._fillNode);
+                this.node.removeChild(this._fillNode);
+                this._fillNode = null;
             }
             if(this._strokeNode)
             {
-                node.removeChild(this._strokeNode);
+                this.node.removeChild(this._strokeNode);
+                this._strokeNode = null;
             }
-            if(parentNode)
-            {
-                parentNode.removeChild(node);
-            }
+            Y.one(this.node).remove(true);
         }
     }
 }, Y.VMLDrawing.prototype));
@@ -1453,6 +1640,7 @@ VMLShape.ATTRS = {
      *        <dt>translateY</dt><dd>Translates the shape along the y-axis.</dd>
      *        <dt>skewX</dt><dd>Skews the shape around the x-axis.</dd>
      *        <dt>skewY</dt><dd>Skews the shape around the y-axis.</dd>
+     *        <dt>matrix</dt><dd>Specifies a 2D transformation matrix comprised of the specified six values.</dd>      
      *    </dl>
      * </p>
      * <p>Applying transforms through the transform attribute will reset the transform matrix and apply a new transform. The shape class also contains corresponding methods for each transform
@@ -1475,23 +1663,15 @@ VMLShape.ATTRS = {
             var i = 0,
                 len,
                 transform;
-            this._rotation = 0;
             this.matrix.init();	
-		    this._transforms = this.matrix.getTransformArray(val);
+            this._normalizedMatrix.init();	
+            this._transforms = this.matrix.getTransformArray(val);
             len = this._transforms.length;
             for(;i < len; ++i)
             {
                 transform = this._transforms[i];
-                if(transform[0] == "rotate")  
-                {
-                    this._rotation += transform[1];
-                }
             }
             this._transform = val;
-            if(this.initialized)
-            {
-                this._updateTransform();
-            }
             return val;
 		},
 
@@ -1784,37 +1964,18 @@ VMLPath = function()
 };
 
 VMLPath.NAME = "vmlPath";
-Y.extend(VMLPath, Y.VMLShape, {
-	/**
-     * Updates `Shape` based on attribute changes.
-     *
-     * @method _updateHandler
-	 * @private
-	 */
-    _updateHandler: function()
-    {   
-        var host = this;
-            host._fillChangeHandler();
-            host._strokeChangeHandler();
-        host._updateTransform();
-    }
-});
+Y.extend(VMLPath, Y.VMLShape);
 VMLPath.ATTRS = Y.merge(Y.VMLShape.ATTRS, {
 	/**
 	 * Indicates the width of the shape
 	 * 
-	 * @config width 
+	 * @config width
 	 * @type Number
 	 */
 	width: {
 		getter: function()
 		{
-			return this._width;
-		},
-
-		setter: function(val)
-		{
-			this._width = val;
+			var val = Math.max(this._right - this._left, 0);
 			return val;
 		}
 	},
@@ -1828,13 +1989,7 @@ VMLPath.ATTRS = Y.merge(Y.VMLShape.ATTRS, {
 	height: {
 		getter: function()
 		{
-			return this._height;
-		},
-
-		setter: function(val)
-		{
-			this._height = val;
-			return val;
+			return Math.max(this._bottom - this._top, 0);
 		}
 	},
 	
@@ -1910,14 +2065,12 @@ Y.extend(VMLEllipse, Y.VMLShape, {
 	_type: "oval"
 });
 VMLEllipse.ATTRS = Y.merge(Y.VMLShape.ATTRS, {
-	//
-	// Horizontal radius for the ellipse. This attribute is not implemented in Canvas.
-    // Will add in 3.4.1.
-	//
-	// @config xRadius
-	// @type Number
-	// @readOnly
-	//
+	/**
+	 * Horizontal radius for the ellipse. 
+	 *
+	 * @config xRadius
+	 * @type Number
+	 */
 	xRadius: {
 		lazyAdd: false,
 
@@ -1936,14 +2089,13 @@ VMLEllipse.ATTRS = Y.merge(Y.VMLShape.ATTRS, {
 		}
 	},
 
-	//
-	// Vertical radius for the ellipse. This attribute is not implemented in Canvas. 
-    // Will add in 3.4.1.
-	//
-	// @config yRadius
-	// @type Number
-	// @readOnly
-	//
+	/**
+	 * Vertical radius for the ellipse. 
+	 *
+	 * @config yRadius
+	 * @type Number
+	 * @readOnly
+	 */
 	yRadius: {
 		lazyAdd: false,
 		
@@ -2282,7 +2434,10 @@ VMLGraphic.ATTRS = {
         setter: function(val)
         {
             this._resizeDown = val;
-            this._redraw();
+            if(this._node)
+            {
+                this._redraw();
+            }
             return val;
         }
     },
@@ -2357,7 +2512,7 @@ VMLGraphic.ATTRS = {
     }
 };
 
-Y.extend(VMLGraphic, Y.BaseGraphic, {
+Y.extend(VMLGraphic, Y.GraphicBase, {
     /**
      * Storage for `x` attribute.
      *
@@ -2384,11 +2539,19 @@ Y.extend(VMLGraphic, Y.BaseGraphic, {
      */
     getXY: function()
     {
-        var node = Y.one(this._node),
+        var node = this.parentNode,
+            x = this.get("x"),
+            y = this.get("y"),
             xy;
         if(node)
         {
-            xy = node.getXY();
+            xy = Y.one(node).getXY();
+            xy[0] += x;
+            xy[1] += y;
+        }
+        else
+        {
+            xy = Y.DOM._getOffset(this._node);
         }
         return xy;
     },
@@ -2407,7 +2570,8 @@ Y.extend(VMLGraphic, Y.BaseGraphic, {
      * @private
      */
     initializer: function(config) {
-        var render = this.get("render");
+        var render = this.get("render"),
+            visibility = this.get("visible") ? "visible" : "hidden";
         this._shapes = {};
 		this._contentBounds = {
             left: 0,
@@ -2416,6 +2580,7 @@ Y.extend(VMLGraphic, Y.BaseGraphic, {
             bottom: 0
         };
         this._node = this._createGraphic();
+        this._node.style.visibility = visibility;
         this._node.setAttribute("id", this.get("id"));
         if(render)
         {
@@ -2450,7 +2615,7 @@ Y.extend(VMLGraphic, Y.BaseGraphic, {
     destroy: function()
     {
         this.clear();
-        this._node.parentNode.removeChild(this._node);
+        Y.one(this._node).remove(true);
     },
 
     /**
@@ -2463,6 +2628,10 @@ Y.extend(VMLGraphic, Y.BaseGraphic, {
     addShape: function(cfg)
     {
         cfg.graphic = this;
+        if(!this.get("visible"))
+        {
+            cfg.visible = false;
+        }
         var shapeClass = this._getShapeClass(cfg.type),
             shape = new shapeClass(cfg);
         this._appendShape(shape);
@@ -2498,16 +2667,17 @@ Y.extend(VMLGraphic, Y.BaseGraphic, {
      */
     removeShape: function(shape)
     {
-        if(!shape instanceof VMLShape)
+        if(!(shape instanceof VMLShape))
         {
             if(Y_LANG.isString(shape))
             {
                 shape = this._shapes[shape];
             }
         }
-        if(shape && shape instanceof VMLShape)
+        if(shape && (shape instanceof VMLShape))
         {
-            shape.destroy();
+            shape._destroy();
+            this._shapes[shape.get("id")] = null;
             delete this._shapes[shape.get("id")];
         }
         if(this.get("autoDraw"))
@@ -2562,7 +2732,7 @@ Y.extend(VMLGraphic, Y.BaseGraphic, {
      * @method clear
      */
     clear: function() {
-        this._removeAllShapes();
+        this.removeAllShapes();
         this._removeChildren(this._node);
     },
 
@@ -2588,7 +2758,10 @@ Y.extend(VMLGraphic, Y.BaseGraphic, {
                 }
             }
         }
-        this._node.style.visibility = visibility;
+        if(this._node)
+        {
+            this._node.style.visibility = visibility;
+        }
     },
 
     /**
@@ -2628,9 +2801,7 @@ Y.extend(VMLGraphic, Y.BaseGraphic, {
      * @private
      */
     _createGraphic: function() {
-        var group = DOCUMENT.createElement('<group xmlns="urn:schemas-microsft.com:vml" style="behavior:url(#default#VML);display:block;zoom:1;" />');
-		group.style.display = "block";
-        group.style.position = 'absolute';
+        var group = DOCUMENT.createElement('<group xmlns="urn:schemas-microsft.com:vml" style="behavior:url(#default#VML);display:block;position:absolute;top:0px;left:0px;zoom:1;" />');
         return group;
     },
 
@@ -2737,7 +2908,7 @@ Y.extend(VMLGraphic, Y.BaseGraphic, {
         var shapeBox,
             box;
         this._shapes[shape.get("id")] = shape;
-        if(!this.get("resizeDown"))
+        if(!this._resizeDown)
         {
             shapeBox = shape.getBounds();
             box = this._contentBounds;
@@ -2763,7 +2934,7 @@ Y.extend(VMLGraphic, Y.BaseGraphic, {
      */
     _redraw: function()
     {
-        var box = this.get("resizeDown") ? this._getUpdatedContentBounds() : this._contentBounds;
+        var box = this._resizeDown ? this._getUpdatedContentBounds() : this._contentBounds;
         if(this.get("autoSize"))
         {
             this.setSize(box.right, box.bottom);
@@ -2816,4 +2987,4 @@ Y.VMLGraphic = VMLGraphic;
 
 
 
-}, '3.4.0' ,{requires:['graphics'], skinnable:false});
+}, '3.6.0' ,{requires:['graphics'], skinnable:false});

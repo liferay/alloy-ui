@@ -2,16 +2,16 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('arraylist-add', function(Y) {
 
 /**
  * Collection utilities beyond what is provided in the YUI core
  * @module collection
- * @main collection
  * @submodule arraylist-add
+ * @deprecated Use ModelList or a custom ArrayList subclass
  */
 
 /*
@@ -29,6 +29,7 @@ Y.mix(Y.ArrayList.prototype, {
      * which the item should be inserted.
      * @return {ArrayList} the instance.
      * @for ArrayList
+     * @deprecated Use ModelList or a custom ArrayList subclass
      * @chainable
      */
     add: function(item, index) {
@@ -55,6 +56,7 @@ Y.mix(Y.ArrayList.prototype, {
      * @param { Function } comparator optional a/b function to test equivalence.
      * @return {ArrayList} the instance.
      * @for ArrayList
+     * @deprecated Use ModelList or a custom ArrayList subclass
      * @chainable
      */
     remove: function(needle, all, comparator) {
@@ -80,6 +82,7 @@ Y.mix(Y.ArrayList.prototype, {
      * @param { mixed } b other item to test equivalance.
      * @return { Boolean } true if items are deemed equivalent.
      * @for ArrayList
+     * @deprecated Use ModelList or a custom ArrayList subclass
      */
     itemsAreEqual: function(a, b) {
         return a === b;
@@ -88,4 +91,4 @@ Y.mix(Y.ArrayList.prototype, {
 });
 
 
-}, '3.4.0' ,{requires:['arraylist']});
+}, '3.6.0' ,{requires:['arraylist']});

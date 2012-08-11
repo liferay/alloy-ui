@@ -899,7 +899,7 @@ GROUPS[INSERT] = {
 						if (!isNaN(padding)) {
 							imgStyles.padding = padding;
 						}
- 
+
 						toolbarAlign.some(
 							function(item, index, collection) {
 								var instance = this;
@@ -971,7 +971,7 @@ GROUPS[INSERT] = {
 						overlay.hide();
 					}
 				);
-				
+
 				var imgSizeDetection = A.Node.create(TPL_INSERTIMAGE_IMG);
 
 				var heightField = imageForm.getField('height');
