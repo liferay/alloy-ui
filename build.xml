@@ -849,8 +849,8 @@
 	</target>
 
 	<target name="version-aui">
-		<input addProperty="version" message="Enter the new version:"/>
 		<var name="old.version" value="${release.version}"/>
+		<input addProperty="version" message="Enter the new version (currently ${old.version}):"/>
 		<echo>Old version: ${old.version}</echo>
 		<echo>New version: ${version}</echo>
 		<replace file="${project.dir}/build.properties">
