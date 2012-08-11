@@ -127,7 +127,7 @@ var FormBuilderButtonField = A.Component.create({
 
 			return model;
 		},
-		
+
 		_uiSetButtonType: function(val) {
 			var instance = this;
 			var templateNode = instance.get(TEMPLATE_NODE);
@@ -141,4 +141,4 @@ var FormBuilderButtonField = A.Component.create({
 
 A.FormBuilderButtonField = FormBuilderButtonField;
 
-A.FormBuilder.types['button'] = A.FormBuilderButtonField;
+A.FormBuilder.types.button = A.FormBuilderButtonField;

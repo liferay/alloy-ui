@@ -70,7 +70,7 @@ var Editor = A.Component.create(
 						instance.toolbar.addGroupType(type, data);
 					}
 				);
-			}			
+			}
 		}
 	}
 );

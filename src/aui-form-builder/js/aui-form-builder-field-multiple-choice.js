@@ -164,7 +164,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 								formatter: function(o) {
 									var editorOptions = instance.predefinedValueEditor.get(OPTIONS);
 
-									var values = AArray(o.record.get(DATA).value);
+									var values = AArray(o.data.value);
 
 									var labels = A.Array.map(values, function (val) {
 										return editorOptions[val];
@@ -220,7 +220,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 						var buffer = [];
 
 						A.each(
-							o.record.get(DATA).value,
+							o.data.value,
 							function(item, index, collection) {
 								buffer.push(item.label);
 							}
