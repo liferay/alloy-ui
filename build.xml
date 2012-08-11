@@ -403,6 +403,40 @@
 		</if>
 	</target>
 
+	<target name="version-aui">
+		<input addProperty="version" message="Enter the new version:"/>
+		<var name="old.version" value="${release.version}"/>
+		<echo>Old version: ${old.version}</echo>
+		<echo>New version: ${version}</echo>
+		<replace file="${project.dir}/build.properties">
+			<replacefilter token="release.version=${old.version}" value="release.version=${version}" />
+		</replace>
+
+		<if>
+			<isset property="portal.src.directory" />
+			<then>
+				<var name="portal.web.dir" value="${portal.src.directory}/portal-web"/>
+				<var name="portal.thirdparty.dir" value="${portal.web.dir}/third-party"/>
+				<var name="old.alloy.zip" value="alloy-${old.version}.zip"/>
+				<var name="new.alloy.zip" value="alloy-${version}.zip"/>
+
+				<if>
+					<available file="${portal.thirdparty.dir}/${old.alloy.zip}" />
+					<then>
+						<echo>Moving ${portal.thirdparty.dir}/${old.alloy.zip} to ${portal.thirdparty.dir}/${new.alloy.zip}</echo>
+						<move file="${portal.thirdparty.dir}/${old.alloy.zip}" tofile="${portal.thirdparty.dir}/${new.alloy.zip}" />
+					</then>
+				</if>
+
+				<echo>Replacing ${old.alloy.zip} with ${new.alloy.zip} in ${portal.web.dir}/build.xml</echo>
+				<replace file="${portal.web.dir}/build.xml">
+					<replacetoken expandProperties="true"><![CDATA[<property name="alloy.file" value="${old.alloy.zip}" />]]></replacetoken>
+					<replacevalue expandProperties="true"><![CDATA[<property name="alloy.file" value="${new.alloy.zip}" />]]></replacevalue>
+				</replace>
+			</then>
+		</if>
+	</target>
+
 	<target name="release" depends="release-minimal,clean-release" />
 
 	<target name="remove-whitespace">
