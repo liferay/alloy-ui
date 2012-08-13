@@ -1312,7 +1312,6 @@ var DateCellEditor = A.Component.create({
 		getElementsValue: function() {
 			var instance = this;
 			var elements = instance.calendar.get('selectedDates').join(_COMMA);
-			console.log(elements);
 			return elements;
 		},
 
