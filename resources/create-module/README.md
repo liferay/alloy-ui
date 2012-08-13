@@ -1,11 +1,12 @@
-You can run .create.sh and it will create all of the directories and files for you that you need to have.
+You can run `.create.sh` and it will create all of the directories and files for you that you need to have.
 
 So here is how developing a new component might go:
-Navigate to resources/create-module/ and run
+Navigate to `resources/create-module/` and run: 
 
-./create.sh aui-new-component
+	./create.sh aui-new-component
 
 This will create a directory called "aui-new-component" inside of src (with the build.* files and sub-directories files), like so:
+
 	src/
 		assets/
 			aui-new-component-core.css
@@ -15,6 +16,7 @@ This will create a directory called "aui-new-component" inside of src (with the 
 			aui-new-component.js
 
 This will also create a new entry in the demos directory called "new-component" (for demos we strip the aui- prefix for clarity), like so:
+
 	demos/
 		index.html
 
@@ -22,33 +24,33 @@ What I would recommend if you're building a new component from scratch is actual
 
 In fact, if you open up the index.html, you'll see some boilerplate code added for you, and you can start your component:
 
-AUI().add(
-	'aui-new-component',
-	function(A) {
-		// Build your component here
+	AUI().add(
+		'aui-new-component',
+		function(A) {
+			// Build your component here
 
-		A.myNewComponent = function(value) {
-			alert('my value: ' + value);
-		};
-	},
-	'@VERSION',
-	{
-		requires: ['aui-base', 'aui-component'],
-		use: []
-	}
-);
+			A.myNewComponent = function(value) {
+				alert('my value: ' + value);
+			};
+		},
+		'@VERSION',
+		{
+			requires: ['aui-base', 'aui-component'],
+			use: []
+		}
+	);
 
-AUI().ready(
-	'aui-new-component',
-	function(A) {
-		// Use your component here
+	AUI().ready(
+		'aui-new-component',
+		function(A) {
+			// Use your component here
 
-		A.myNewComponent('using a new component');
-	}
-);
+			A.myNewComponent('using a new component');
+		}
+	);
 
 You can build and test and do as many iterations as you want to make sure it's working in here.
-Once you're confident it's all ready to go, copy over the body of the module (in this case it's only the A.myNewComponent = function(){...} part) into src/aui-new-component/js/aui-new-component.js
+Once you're confident it's all ready to go, copy over the body of the module (in this case it's only the `A.myNewComponent = function(){…}` part) into `src/aui-new-component/js/aui-new-component.js`
 
 If there are any modules that your component requires, make sure to specify them in the build.properties, so in this example it would be like so:
 component.requires=aui-base,aui-component
