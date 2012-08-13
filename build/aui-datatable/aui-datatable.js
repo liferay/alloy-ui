@@ -7,6 +7,7 @@ var Lang = A.Lang,
 	isObject = Lang.isObject,
 	isString = Lang.isString,
 	LString = Lang.String,
+	DataType = A.DataType,
 
 	isBaseEditor = function(val) {
 		return (val instanceof A.BaseCellEditor);
@@ -1306,13 +1307,14 @@ var DateCellEditor = A.Component.create({
 		initializer: function() {
 			var instance = this;
 
-			instance.on('calendar:select', A.bind(instance._onDateSelect, instance));
+			instance.on('calendar:dateClick', A.bind(instance._onDateSelect, instance));
 		},
 
 		getElementsValue: function() {
 			var instance = this;
-
-			return instance.calendar.getFormattedSelectedDates().join(_COMMA);
+			var elements = instance.calendar.get('selectedDates').join(_COMMA);
+			console.log(elements);
+			return elements;
 		},
 
 		_afterRender: function() {
@@ -1329,9 +1331,7 @@ var DateCellEditor = A.Component.create({
 		_onDateSelect: function(event) {
 			var instance = this;
 
-			instance.elements.val(
-				event.date.formatted.join(_COMMA)
-			);
+			instance.elements.val(event.date);
 		},
 
 		_setCalendar: function(val) {
@@ -1346,15 +1346,21 @@ var DateCellEditor = A.Component.create({
 		},
 
 		_uiSetValue: function(val) {
-			var instance = this;
-			var calendar = instance.calendar;
+			var instance = this,
+				calendar = instance.calendar;
 
 			if (calendar) {
-				if (val && isString(val)) {
-					val = val.split(_COMMA);
+				if (!isArray(val) && isString(val)) {
+					val = [val];
 				}
 
-				instance.calendar.set('dates', val);
+				AArray.each(val, function (date, index) {
+					val[index] = new Date(date);
+				});
+
+				instance.calendar._clearSelection(); // Forced to call because it's private method
+				instance.calendar.selectDates(val);
+				instance.calendar.set('date', val[0]);
 			}
 		}
 	}
@@ -1362,7 +1368,7 @@ var DateCellEditor = A.Component.create({
 
 A.DateCellEditor = DateCellEditor;
 
-}, '@VERSION@' ,{skinnable:true, requires:['datatable-base','aui-calendar','aui-toolbar','aui-form-validator','overlay','sortable']});
+}, '@VERSION@' ,{skinnable:true, requires:['datatable-base','calendar','datatype-date','aui-toolbar','aui-form-validator','overlay','sortable']});
 AUI.add('aui-datatable-selection', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
