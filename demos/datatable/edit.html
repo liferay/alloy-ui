@@ -27,7 +27,7 @@
 
 <script type="text/javascript">
 
-AUI().use('aui-datatable', 'lang/calendar-base_pt-BR', 'lang/datatype-date-format_pt-BR', 'datatable-sort', 'aui-datatype', 'console', function(A) {
+AUI().use('aui-datatable', 'datatable-sort', 'aui-datatype', 'console', function(A) {
 
 	new A.Console().render();
 
@@ -37,8 +37,7 @@ AUI().use('aui-datatable', 'lang/calendar-base_pt-BR', 'lang/datatype-date-forma
 	// Columns must match data parameter names
 	var data = [
 		{name:"John A. Smith&gt;ABC&lt;", address:"1236 Some Street", city:"San Francisco", state:"CA", amount:5, active:"yes", colors:["red"], fruit:["banana","cherry"], last_login:"4/19/2007"},
-		{name:"Joan B. Jones", address:"3271 Another Ave", city:"New York", state:"NY", amount:3, active:"no", colors:["red","blue"], fruit:["apple"], last_login:["Mon Dec 13 1982 12:00:00 GMT-0300 (BRT)","Tue Dec 14 1982 12:00:00 GMT-0300 (BRT)","Mon Dec 20 1982 12:00:00 GMT-0300 (BRT)"]},
-		{name:"Bob C. Uncle", address:"9996 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["cherry"], last_login:"1/23/2004"},
+		{name:"Bob C. Uncle", address:"9996 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["cherry"], last_login:["2004/10/01", "2004/10/04", "2004/10/06"]},
 		{name:"John D. Smith", address:"1623 Some Street", city:"San Francisco", state:"CA", amount:5, active:"yes", colors:["red"], fruit:["cherry"], last_login:"4/19/2007"},
 		{name:"Joan E. Jones", address:"3217 Another Ave", city:"New York", state:"NY", amount:3, active:"no", colors:["red","blue"], fruit:["apple","cherry"], last_login:"2/15/2006"},
 		{name:"Bob F. Uncle", address:"9899 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["banana"], last_login:"1/23/2004"},
@@ -178,11 +177,12 @@ AUI().use('aui-datatable', 'lang/calendar-base_pt-BR', 'lang/datatype-date-forma
 					width:'400px',
 					showPrevMonth: true,
 					showNextMonth: true,
-					date: new Date(2006,11,1),
 					selectionMode: 'multiple',
+					dateFormat: '%m/%d/%Y',
 					// - DEPRECATED selectMultipleDates: true
 					// selectionMode now handles Multiple dates
 				},
+
 				validator: {
 					rules: {
 						value: {
