@@ -47,7 +47,14 @@ var BUFFER_CSS_TEXT = [],
 	STR_BRACKET_OPEN = '{',
 	STR_BRACKET_CLOSE = '}',
 
+	STR_CHECKBOX = 'checkbox',
+	STR_CHECKED = 'checked',
 	STR_HTTPS = 'https',
+	STR_INPUT = 'INPUT',
+	STR_OPTION = 'OPTION',
+	STR_RADIO = 'radio',
+	STR_SELECTED = 'selected',
+	STR_STAR = '*',
 	STR_URL = 'url(',
 	STR_URL_DOMAIN = STR_URL + DOMAIN,
 
@@ -61,6 +68,17 @@ var html5shiv = GLOBAL_AUI.html5shiv,
 	// after trying to print the second time
 	isStylesheetDefined = function(obj) {
 		return obj && (obj + STR_EMPTY !== undefined);
+	},
+
+	toggleNode = function(node, origNode, prop) {
+		var state = origNode[prop];
+
+		if (state) {
+			node.setAttribute(prop, state);
+		}
+		else {
+			node.removeAttribute(prop);
+		}
 	};
 
 	html5shiv(DOC);
@@ -128,7 +146,6 @@ A.mix(
 			var instance = this;
 
 			var css = STR_EMPTY;
-			var rule;
 			var rules = cssText.match(REGEX_RULE);
 
 			if (rules) {
@@ -184,7 +201,7 @@ A.mix(
 						buffer[0] = CSS_PRINTFIX_PREFIX + html5Element;
 						buffer[1] = cssClass;
 
-						node.className =  buffer.join(STR_BLANK);
+						node.className = buffer.join(STR_BLANK);
 					}
 				}
 			}
@@ -198,11 +215,13 @@ A.mix(
 			bodyClone.className = bodyEl.className;
 			bodyClone.id = bodyEl.id;
 
+			var originalNodes = bodyEl.getElementsByTagName(STR_STAR);
+			var length = originalNodes.length;
+
 			// IE will throw a mixed content warning when using https
 			// and calling clone node if the body contains elements with
 			// an inline background-image style that is relative to the domain.
 			if (UA.secure) {
-				var allElements = bodyEl.getElementsByTagName('*');
 				var bodyElStyle = bodyEl.style;
 
 				var elStyle;
@@ -210,8 +229,8 @@ A.mix(
 
 				bodyElStyle.display = 'none';
 
-				for (var i = 0, allElementsLength = allElements.length; i < allElementsLength; i++) {
-					elStyle = allElements[i].style;
+				for (i = 0; i < length; i++) {
+					elStyle = originalNodes[i].style;
 
 					backgroundImage = elStyle.backgroundImage;
 
@@ -226,7 +245,38 @@ A.mix(
 				bodyElStyle.display = STR_EMPTY;
 			}
 
-			var bodyHTML = bodyEl.cloneNode(true).innerHTML;
+			var bodyElClone = bodyEl.cloneNode(true);
+
+			var newNodes = bodyElClone.getElementsByTagName(STR_STAR);
+
+			if (length == newNodes.length) {
+				while (length--) {
+					var newNode = newNodes[length];
+					var newNodeName = newNode.nodeName;
+
+					if (newNodeName == STR_INPUT || newNodeName == STR_OPTION) {
+						var originalNode = originalNodes[length];
+						var originalNodeName = originalNode.nodeName;
+
+						if (originalNodeName == newNodeName) {
+							var prop = null;
+
+							if (newNodeName == STR_OPTION) {
+								prop = STR_SELECTED;
+							}
+							else if (newNodeName == STR_INPUT && (newNode.type == STR_CHECKBOX || newNode.type == STR_RADIO)) {
+								prop = STR_CHECKED;
+							}
+
+							if (prop !== null) {
+								toggleNode(newNode, originalNode, prop);
+							}
+						}
+					}
+				}
+			}
+
+			var bodyHTML = bodyElClone.innerHTML;
 
 			bodyHTML = bodyHTML.replace(REGEX_CLONE_NODE_CLEANUP, TAG_REPLACE_ORIGINAL).replace(REGEX_TAG, TAG_REPLACE_FONT);
 
@@ -266,7 +316,6 @@ A.mix(
 			var cssText = STR_EMPTY;
 
 			var ruleStyle = rule.style;
-			var selectorText;
 			var ruleCSSText;
 			var ruleSelectorText;
 
@@ -288,6 +337,8 @@ A.mix(
 
 			buffer = buffer || [];
 
+			var i;
+
 			if (isStylesheetDefined(styleSheet)) {
 				var imports = styleSheet.imports;
 
@@ -298,12 +349,12 @@ A.mix(
 
 					// IE can crash when trying to access imports more than 3 levels deep
 					if (level <= 3 && isStylesheetDefined(imports) && imports.length) {
-						for (var i = 0, length = imports.length; i < length; i++) {
+						for (i = 0, length = imports.length; i < length; i++) {
 							instance._getAllStyleSheets(imports[i], mediaType, level + 1, buffer);
 						}
 					}
 					else if (styleSheet.length) {
-						for (var i = 0, length = styleSheet.length; i < length; i++) {
+						for (i = 0, length = styleSheet.length; i < length; i++) {
 							instance._getAllStyleSheets(styleSheet[i], mediaType, level, buffer);
 						}
 					}
@@ -312,7 +363,7 @@ A.mix(
 						var ruleStyleSheet;
 
 						if (rules && rules.length) {
-							for (var i = 0, length = rules.length; i < length; i++) {
+							for (i = 0, length = rules.length; i < length; i++) {
 								ruleStyleSheet = rules[i].styleSheet;
 
 								if (ruleStyleSheet) {

@@ -386,7 +386,7 @@ TreeBrowserView.prototype = {
 						allResults,
 						function(options) {
 							var tempNode = node.createNode.apply(instance, [options]);
-	
+
 							node.appendChild(tempNode);
 						}
 					);
@@ -600,7 +600,7 @@ var DataBrowser = A.Component.create(
 					}
 				}
 			}
-		}	
+		}
 	}
 );
 

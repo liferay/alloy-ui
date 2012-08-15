@@ -195,11 +195,11 @@ var TextboxList = A.Component.create(
 
 				instance.entries.add(entry);
 			},
-									 
+
 			addEntries: function(instance) {
 				var instance = this;
 				var inputNode = instance.inputNode;
-				
+
 				instance.entries.add(inputNode.val(), {});
 			},
 

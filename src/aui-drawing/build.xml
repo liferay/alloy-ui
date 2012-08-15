@@ -2,6 +2,5 @@
 
 <project name="AlloyComponent" default="local">
 	<property file="build.properties" />
-
 	<import file="../../resources/builder/bootstrap.xml" />
 </project>

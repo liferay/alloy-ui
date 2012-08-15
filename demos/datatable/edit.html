@@ -27,7 +27,7 @@
 
 <script type="text/javascript">
 
-AUI().use('aui-datatable', 'aui-datatype', 'console', function(A) {
+AUI().use('aui-datatable', 'datatable-sort', 'aui-datatype', 'console', function(A) {
 
 	new A.Console().render();
 
@@ -95,10 +95,13 @@ AUI().use('aui-datatable', 'aui-datatype', 'console', function(A) {
 	});
 
 	var nestedCols = [
-		{ key:"name", editor: gEditor },
+		{
+			key:"name",
+			editor: gEditor
+		},
 		{
 			key:"address",
-			editor: new A.TextCellEditor({
+			editor: new A.TextAreaCellEditor({
 				on: {
 					save: function(event) {
 						// A.log('saving', event.prevVal, event.newVal);
@@ -110,7 +113,10 @@ AUI().use('aui-datatable', 'aui-datatype', 'console', function(A) {
 				return column.value;
 			}
 		},
-        { key:"city", editor: new A.TextAreaCellEditor() },
+        {
+        	key:"city",
+        	editor: new A.TextAreaCellEditor()
+        },
         {
 			key:"state",
 			editor: new A.DropDownCellEditor({
@@ -180,20 +186,19 @@ AUI().use('aui-datatable', 'aui-datatype', 'console', function(A) {
 	];
 
 	// Creates a DataTable with 3 columns and 3 rows
-	window.dtable = new A.DataTable.Base({
-		columnset: nestedCols,
-		recordset: data,
-		editEvent: 'dblclick'
+	window.dtable = new A.DataTable({
+		columns: nestedCols,
+		data: data,
+		editEvent: 'dblclick',
+		plugins: [
+			{
+				fn: A.Plugin.DataTableHighlight,
+				cfg: {
+					highlightRange: false
+				}
+			}
+		]
 	})
-	.plug(A.Plugin.DataTableSelection, {
-		multiple: false,
-		mouseEvent: 'mousedown'
-	})
-	.plug(A.Plugin.DataTableScroll, {
-		height: 800,
-		width: 1000
-	})
-	.plug(A.Plugin.DataTableSort)
 	.render("#dt1");
 
 	dtable.get('boundingBox').unselectable();
@@ -201,8 +206,6 @@ AUI().use('aui-datatable', 'aui-datatype', 'console', function(A) {
 });
 
 </script>
-
-<button onclick="table.unplug(AUI().Plugin.DataTableEvents);">Unplug A.Plugin.DataTableEvents</button>
 
 </body>
 </html>

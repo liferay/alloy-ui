@@ -102,19 +102,20 @@ AUI().use('aui-property-list', function(A) {
 	];
 
 	window.pList = new A.PropertyList({
-		recordset: properties,
-		width: 250,
+		data: properties,
+		// width: 200,
+		height: 200,
 		on: {
-			'recordset:update': function(event) {
-				var record = event.updated[0];
+			'model:change': function(event) {
+				var model = event.target;
 
-				console.log('save', record.get('data'));
+				console.log('Saved', model, model.lastChange.value.prevVal, model.lastChange.value.newVal, model.get('value'));
 			}
 		}
 	})
 	.render('#dt1');
 
-	pList.get('boundingBox').unselectable();
+	// pList.get('boundingBox').unselectable();
 
 });
 
