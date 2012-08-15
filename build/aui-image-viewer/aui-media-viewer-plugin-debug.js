@@ -7,7 +7,6 @@ AUI.add('aui-media-viewer-plugin', function(A) {
 
 var Lang = A.Lang,
 	Do = A.Do,
-	IE = A.UA.ie,
 
 	STR_ABOUT_BLANK = 'about:blank',
 	STR_BODY = 'body',

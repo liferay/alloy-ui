@@ -571,7 +571,7 @@ A.Event.define(
 						while (result !== false && !event.stopped && tmpEl && tmpEl !== delegateEl);
 
 						result = ((result !== false) && (event.stopped !== 2));
-					}					
+					}
 				}
 				else {
 					result = notifier.fire(event);

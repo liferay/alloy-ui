@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('escape', function(Y) {
 
@@ -59,7 +59,7 @@ Escape = {
     characters escaped, allowing the string to be used safely inside a regex.
     The following characters, and all whitespace characters, are escaped:
 
-        - # $ ^ * ( ) + [ ] { } | \ , . ?
+        - $ ^ * ( ) + [ ] { } | \ , . ?
 
     If _string_ is not already a string, it will be coerced to a string.
 
@@ -69,7 +69,10 @@ Escape = {
     @static
     **/
     regex: function (string) {
-        return (string + '').replace(/[\-#$\^*()+\[\]{}|\\,.?\s]/g, '\\$&');
+        // There's no need to escape !, =, and : since they only have meaning
+        // when they follow a parenthesized ?, as in (?:...), and we already
+        // escape parens and question marks.
+        return (string + '').replace(/[\-$\^*()+\[\]{}|\\,.?\s]/g, '\\$&');
     },
 
     // -- Protected Static Methods ---------------------------------------------
@@ -93,4 +96,4 @@ Escape.regexp = Escape.regex;
 Y.Escape = Escape;
 
 
-}, '3.4.0' ,{requires:['yui-base']});
+}, '3.6.0' ,{requires:['yui-base']});

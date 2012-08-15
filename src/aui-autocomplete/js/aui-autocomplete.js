@@ -68,7 +68,7 @@ var Lang = A.Lang,
  * </ul>
  *
  * Quick Example:<br/>
- * 
+ *
  * <pre><code>var instance = new A.AutoComplete({
  *	dataSource: [['AL', 'Alabama', 'The Heart of Dixie'],
  * 	['AK', 'Alaska', 'The Land of the Midnight Sun'],
@@ -117,9 +117,9 @@ var AutoComplete = A.Component.create(
 
 		ATTRS: {
 			/**
-			 * Always show the results container, instead of only showing when the 
+			 * Always show the results container, instead of only showing when the
 			 * user is requesting them.
-			 * 
+			 *
 			 * @attribute alwaysShowContainer
 			 * @default false
 			 * @type Boolean
@@ -131,7 +131,7 @@ var AutoComplete = A.Component.create(
 			/**
 			 * Automatically highlight the first item in the list when the results are
 			 * made visible.
-			 * 
+			 *
 			 * @attribute autoHighlight
 			 * @default true
 			 * @type Boolean
@@ -141,7 +141,7 @@ var AutoComplete = A.Component.create(
 			},
 
 			/**
-			 * If set to true, the <a href="AutoComplete.html#method_filterResults">filterResults</a> 
+			 * If set to true, the <a href="AutoComplete.html#method_filterResults">filterResults</a>
 			 * method will be run on the response from the data source.
 			 *
 			 * @attribute applyLocalFilter
@@ -154,7 +154,7 @@ var AutoComplete = A.Component.create(
 
 			/**
 			 * To use a button
-			 * 
+			 *
 			 * @attribute button
 			 * @default true
 			 * @type Boolean
@@ -168,7 +168,7 @@ var AutoComplete = A.Component.create(
 			 * The data source that results will be read from. This can either be
 			 * an existing <a href="DataSource.html">DataSource</a> object, or it can be a
 			 * value that would be passed to <a href="DataSource.html">DataSource</a>.
-			 * 
+			 *
 			 * @attribute dataSource
 			 * @default null
 			 * @type Object | String | Function | Array
@@ -181,7 +181,7 @@ var AutoComplete = A.Component.create(
 			 * The type of the data source passed into <a href="AutoComplete.html#config_dataSource">dataSource</a>.
 			 * This can be used to explicitly declare what kind of <a href="DataSource.html">DataSource</a> object will
 			 * be created.
-			 * 
+			 *
 			 * @attribute dataSourceType
 			 * @default null
 			 * @type String
@@ -193,7 +193,7 @@ var AutoComplete = A.Component.create(
 			/**
 			 * The character used to indicate the beginning or ending of a new value. Most commonly used
 			 * is a ",".
-			 * 
+			 *
 			 * @attribute delimChar
 			 * @default null
 			 * @type String
@@ -215,7 +215,7 @@ var AutoComplete = A.Component.create(
 			/**
 			 * If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, this
 			 * will clear a selection when the overlay closes unless a user explicitly selects an item.
-			 * 
+			 *
 			 * @attribute forceSelection
 			 * @default false
 			 * @type Boolean
@@ -249,7 +249,7 @@ var AutoComplete = A.Component.create(
 			/**
 			 * The maximum number of results to display.
 			 *
-			 * 
+			 *
 			 * @attribute maxResultsDisplayed
 			 * @default 10
 			 * @type Number
@@ -302,7 +302,7 @@ var AutoComplete = A.Component.create(
 			/**
 			 * When <a href="AutoComplete.html#config_applyLocalFilter">applyLocalFilter</a> is true,
 			 * setting this to true will match only results with the same case.
-			 * 
+			 *
 			 * @attribute queryMatchCase
 			 * @default false
 			 * @type Boolean
@@ -315,7 +315,7 @@ var AutoComplete = A.Component.create(
 			 * When <a href="AutoComplete.html#config_applyLocalFilter">applyLocalFilter</a> is true,
 			 * setting this to true will match results which contain the query anywhere in the text,
 			 * instead of just matching just items that start with the query.
-			 * 
+			 *
 			 * @attribute queryMatchContains
 			 * @default false
 			 * @type Boolean
@@ -325,7 +325,7 @@ var AutoComplete = A.Component.create(
 			},
 
 			/**
-			 * For IO DataSources, AutoComplete will automatically insert a "?" between the server URI and 
+			 * For IO DataSources, AutoComplete will automatically insert a "?" between the server URI and
 			 * the encoded query string. To prevent this behavior, you can
 			 * set this value to false. If you need to customize this even further, you
 			 * can override the <a href="AutoComplete.html#method_generateRequest">generateRequest</a> method.
@@ -373,8 +373,8 @@ var AutoComplete = A.Component.create(
 			},
 
 			/**
-			 * If <a href="AutoComplete.html#config_autoHighlight">autoHighlight</a> is enabled, whether or not the 
-			 * input field should be automatically updated with the first result as the user types, 
+			 * If <a href="AutoComplete.html#config_autoHighlight">autoHighlight</a> is enabled, whether or not the
+			 * input field should be automatically updated with the first result as the user types,
 			 * automatically selecting the portion of the text the user has not typed yet.
 			 *
 			 * @attribute typeAhead
@@ -386,7 +386,7 @@ var AutoComplete = A.Component.create(
 			},
 
 			/**
-			 * If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, number of seconds 
+			 * If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, number of seconds
 			 * to delay before updating the input. In order to prevent certain race conditions, this value must
 			 * always be greater than the <a href="AutoComplete.html#config_queryDelay">queryDelay</a>.
 			 *
@@ -1725,7 +1725,7 @@ var AutoComplete = A.Component.create(
 			},
 
 			/**
-			 * Pre-populates the container with the 
+			 * Pre-populates the container with the
 			 * <a href="Autocomplete.html#config_maxResultsDisplayed">maxResultsDisplayed</a>
 			 * number of list items.
 			 *

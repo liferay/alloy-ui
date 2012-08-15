@@ -283,9 +283,9 @@ A.extend(
 
 					var interactionNode = A.one(selector);
 
-					 for (var i = eventType.length - 1; i >= 0; i--) {
+					for (var i = eventType.length - 1; i >= 0; i--) {
 						renderHandles[i] = interactionNode.once(eventType[i], renderInteraction);
-					 }
+					}
 
 					delete config.render;
 				}

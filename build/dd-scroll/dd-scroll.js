@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('dd-scroll', function(Y) {
 
@@ -242,7 +242,15 @@ YUI.add('dd-scroll', function(Y) {
             if (nl < 0) {
                 nl = xy[0];
             }
+            if (ho.con) {
+                if (!ho.con.inRegion([nl + sl, nt + st])) {
+                    move = false;
+                }
+            }
             if (move) {
+                ho.actXY = [nl, nt];
+                ho._alignNode([nl, nt], true); //We are srolling..
+                xy = ho.actXY;
                 ho.actXY = [nl, nt];
                 ho._moveNode({ node: win, top: st, left: sl});
                 if (!st && !sl) {
@@ -317,14 +325,6 @@ YUI.add('dd-scroll', function(Y) {
         end: function(xy) {
             this._dimCache = null;
             this._cancelScroll();
-        },
-        /**
-        * @method toString
-        * @description General toString method for logging
-        * @return String name for the object
-        */
-        toString: function() {
-            return S.NAME + ' #' + this.get('node').get('id');
         }
     });
 
@@ -431,4 +431,4 @@ YUI.add('dd-scroll', function(Y) {
 
 
 
-}, '3.4.0' ,{optional:['dd-proxy'], requires:['dd-drag'], skinnable:false});
+}, '3.6.0' ,{skinnable:false, optional:['dd-proxy'], requires:['dd-drag']});

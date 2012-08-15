@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('plugin', function(Y) {
 
@@ -231,4 +231,4 @@ YUI.add('plugin', function(Y) {
     Y.namespace("Plugin").Base = Plugin;
 
 
-}, '3.4.0' ,{requires:['base-base']});
+}, '3.6.0' ,{requires:['base-base']});

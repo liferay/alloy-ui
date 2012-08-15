@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('widget-uievents', function(Y) {
 
@@ -230,4 +230,4 @@ Y.mix(Widget.prototype, {
 }, true); // overwrite existing EventTarget methods
 
 
-}, '3.4.0' ,{requires:['widget-base', 'node-event-delegate']});
+}, '3.6.0' ,{requires:['widget-base', 'node-event-delegate']});

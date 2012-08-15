@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('node-base', function(Y) {
 
@@ -115,6 +115,8 @@ var Y_Node = Y.Node,
  * @method create
  * @static
  * @param {String} html The markup used to create the element
+ * Use <a href="../classes/Escape.html#method_html">`Y.Escape.html()`</a>
+ * to escape html content.
  * @param {HTMLDocument} doc An optional document context
  * @return {Node} A Node instance bound to a DOM node or fragment
  * @for Node
@@ -130,7 +132,9 @@ Y.mix(Y_Node.prototype, {
     /**
      * Creates a new Node using the provided markup string.
      * @method create
-     * @param {String} html The markup used to create the element
+     * @param {String} html The markup used to create the element.
+     * Use <a href="../classes/Escape.html#method_html">`Y.Escape.html()`</a>
+     * to escape html content.
      * @param {HTMLDocument} doc An optional document context
      * @return {Node} A Node instance bound to a DOM node or fragment
      */
@@ -140,6 +144,8 @@ Y.mix(Y_Node.prototype, {
      * Inserts the content before the reference node.
      * @method insert
      * @param {String | Node | HTMLElement | NodeList | HTMLCollection} content The content to insert
+     * Use <a href="../classes/Escape.html#method_html">`Y.Escape.html()`</a>
+     * to escape html content.
      * @param {Int | Node | HTMLElement | String} where The position to insert at.
      * Possible "where" arguments
      * <dl>
@@ -187,6 +193,8 @@ Y.mix(Y_Node.prototype, {
      * Inserts the content as the firstChild of the node.
      * @method prepend
      * @param {String | Node | HTMLElement} content The content to insert
+     * Use <a href="../classes/Escape.html#method_html">`Y.Escape.html()`</a>
+     * to escape html content.
      * @chainable
      */
     prepend: function(content) {
@@ -197,6 +205,8 @@ Y.mix(Y_Node.prototype, {
      * Inserts the content as the lastChild of the node.
      * @method append
      * @param {String | Node | HTMLElement} content The content to insert
+     * Use <a href="../classes/Escape.html#method_html">`Y.Escape.html()`</a>
+     * to escape html content.
      * @chainable
      */
     append: function(content) {
@@ -206,6 +216,8 @@ Y.mix(Y_Node.prototype, {
     /**
      * @method appendChild
      * @param {String | HTMLElement | Node} node Node to be appended
+     * Use <a href="../classes/Escape.html#method_html">`Y.Escape.html()`</a>
+     * to escape html content.
      * @return {Node} The appended node
      */
     appendChild: function(node) {
@@ -216,6 +228,8 @@ Y.mix(Y_Node.prototype, {
      * @method insertBefore
      * @param {String | HTMLElement | Node} newNode Node to be appended
      * @param {HTMLElement | Node} refNode Node to be inserted before
+     * Use <a href="../classes/Escape.html#method_html">`Y.Escape.html()`</a>
+     * to escape html content.
      * @return {Node} The inserted node
      */
     insertBefore: function(newNode, refNode) {
@@ -235,7 +249,11 @@ Y.mix(Y_Node.prototype, {
 
     /**
      * Replaces the node's current content with the content.
+     * Note that this passes to innerHTML and is not escaped.
+     * Use <a href="../classes/Escape.html#method_html">`Y.Escape.html()`</a>
+     * to escape html content or `set('text')` to add as text.
      * @method setContent
+     * @deprecated Use setHTML
      * @param {String | Node | HTMLElement | NodeList | HTMLCollection} content The content to insert
      * @chainable
      */
@@ -247,12 +265,30 @@ Y.mix(Y_Node.prototype, {
     /**
      * Returns the node's current content (e.g. innerHTML)
      * @method getContent
+     * @deprecated Use getHTML
      * @return {String} The current content
      */
     getContent: function(content) {
         return this.get('innerHTML');
     }
 });
+
+/**
+ * Replaces the node's current html content with the content provided.
+ * Note that this passes to innerHTML and is not escaped.
+ * Use `Y.Escape.html()` to escape HTML, or `set('text')` to add as text.
+ * @method setHTML
+ * @param {String | HTML | Node | HTMLElement | NodeList | HTMLCollection} content The content to insert
+ * @chainable
+ */
+Y.Node.prototype.setHTML = Y.Node.prototype.setContent;
+
+/**
+ * Returns the node's current html content (e.g. innerHTML)
+ * @method getHTML
+ * @return {String} The html content
+ */
+Y.Node.prototype.getHTML = Y.Node.prototype.getContent;
 
 Y.NodeList.importMethod(Y.Node.prototype, [
     /**
@@ -263,10 +299,12 @@ Y.NodeList.importMethod(Y.Node.prototype, [
      */
     'append',
 
-    /** Called on each Node instance
-      * @method insert
-      * @see Node.insert
-      */
+    /**
+     * Called on each Node instance
+     * @for NodeList
+     * @method insert
+     * @see Node.insert
+     */
     'insert',
 
     /**
@@ -277,29 +315,57 @@ Y.NodeList.importMethod(Y.Node.prototype, [
      */
     'appendChild',
 
-    /** Called on each Node instance
-      * @method insertBefore
-      * @see Node.insertBefore
-      */
+    /**
+     * Called on each Node instance
+     * @for NodeList
+     * @method insertBefore
+     * @see Node.insertBefore
+     */
     'insertBefore',
 
-    /** Called on each Node instance
-      * @method prepend
-      * @see Node.prepend
-      */
+    /**
+     * Called on each Node instance
+     * @for NodeList
+     * @method prepend
+     * @see Node.prepend
+     */
     'prepend',
 
-    /** Called on each Node instance
-      * @method setContent
-      * @see Node.setContent
-      */
+    /**
+     * Called on each Node instance
+     * Note that this passes to innerHTML and is not escaped.
+     * Use `Y.Escape.html()` to escape HTML, or `set('text')` to add as text.
+     * @for NodeList
+     * @method setContent
+     * @deprecated Use setHTML
+     */
     'setContent',
 
-    /** Called on each Node instance
-      * @method getContent
-      * @see Node.getContent
-      */
-    'getContent'
+    /**
+     * Called on each Node instance
+     * @for NodeList
+     * @method getContent
+     * @deprecated Use getHTML
+     */
+    'getContent',
+
+    /**
+     * Called on each Node instance
+     * Note that this passes to innerHTML and is not escaped.
+     * Use `Y.Escape.html()` to escape HTML, or `set('text')` to add as text.
+     * @for NodeList
+     * @method setHTML
+     * @see Node.setHTML
+     */
+    'setHTML',
+
+    /**
+     * Called on each Node instance
+     * @for NodeList
+     * @method getHTML
+     * @see Node.getHTML
+     */
+    'getHTML'
 ]);
 /**
  * @module node
@@ -373,7 +439,7 @@ Y_Node.ATTRS = {
                 children = [];
 
                 for (i = 0, len = childNodes.length; i < len; ++i) {
-                    if (childNodes[i][TAG_NAME]) {
+                    if (childNodes[i].tagName) {
                         children[children.length] = childNodes[i];
                     }
                 }
@@ -755,8 +821,20 @@ Y.mix(Y_Node.prototype, {
         return Y.DOM.getStyle(this._node, 'display') === 'none';
     },
 
+    /**
+     * Displays or hides the node.
+     * If the "transition" module is loaded, toggleView optionally
+     * animates the toggling of the node using either the default
+     * transition effect ('fadeIn'), or the given named effect.
+     * @method toggleView
+     * @for Node
+     * @param {Boolean} [on] An optional boolean value to force the node to be shown or hidden
+     * @param {Function} [callback] An optional function to run after the transition completes.
+     * @chainable
+     */
     toggleView: function(on, callback) {
         this._toggleView.apply(this, arguments);
+        return this;
     },
 
     _toggleView: function(on, callback) {
@@ -837,6 +915,16 @@ Y.NodeList.importMethod(Y.Node.prototype, [
      */
     'hide',
 
+    /**
+     * Displays or hides each node.
+     * If the "transition" module is loaded, toggleView optionally
+     * animates the toggling of the nodes using either the default
+     * transition effect ('fadeIn'), or the given named effect.
+     * @method toggleView
+     * @param {Boolean} [on] An optional boolean value to force the nodes to be shown or hidden
+     * @param {Function} [callback] An optional function to run after the transition completes.
+     * @chainable
+     */
     'toggleView'
 ]);
 
@@ -899,6 +987,177 @@ if (Y.config.doc.createElement('form').elements.nodeType) {
     };
 }
 
+/**
+ * Provides methods for managing custom Node data.
+ * 
+ * @module node
+ * @main node
+ * @submodule node-data
+ */
+
+Y.mix(Y.Node.prototype, {
+    _initData: function() {
+        if (! ('_data' in this)) {
+            this._data = {};
+        }
+    },
+
+    /**
+    * @method getData
+    * @for Node
+    * @description Retrieves arbitrary data stored on a Node instance.
+    * If no data is associated with the Node, it will attempt to retrieve
+    * a value from the corresponding HTML data attribute. (e.g. node.getData('foo')
+    * will check node.getAttribute('data-foo')).
+    * @param {string} name Optional name of the data field to retrieve.
+    * If no name is given, all data is returned.
+    * @return {any | Object} Whatever is stored at the given field,
+    * or an object hash of all fields.
+    */
+    getData: function(name) {
+        this._initData();
+        var data = this._data,
+            ret = data;
+
+        if (arguments.length) { // single field
+            if (name in data) {
+                ret = data[name];
+            } else { // initialize from HTML attribute
+                ret = this._getDataAttribute(name);
+            }
+        } else if (typeof data == 'object' && data !== null) { // all fields
+            ret = {};
+            Y.Object.each(data, function(v, n) {
+                ret[n] = v;
+            });
+
+            ret = this._getDataAttributes(ret);
+        }
+
+        return ret;
+
+    },
+
+    _getDataAttributes: function(ret) {
+        ret = ret || {};
+        var i = 0,
+            attrs = this._node.attributes,
+            len = attrs.length,
+            prefix = this.DATA_PREFIX,
+            prefixLength = prefix.length,
+            name;
+
+        while (i < len) {
+            name = attrs[i].name;
+            if (name.indexOf(prefix) === 0) {
+                name = name.substr(prefixLength);
+                if (!(name in ret)) { // only merge if not already stored
+                    ret[name] = this._getDataAttribute(name);
+                }
+            }
+
+            i += 1;
+        }
+
+        return ret;
+    },
+
+    _getDataAttribute: function(name) {
+        var name = this.DATA_PREFIX + name,
+            node = this._node,
+            attrs = node.attributes,
+            data = attrs && attrs[name] && attrs[name].value;
+
+        return data;
+    },
+
+    /**
+    * @method setData
+    * @for Node
+    * @description Stores arbitrary data on a Node instance.
+    * This is not stored with the DOM node.
+    * @param {string} name The name of the field to set. If no val
+    * is given, name is treated as the data and overrides any existing data.
+    * @param {any} val The value to be assigned to the field.
+    * @chainable
+    */
+    setData: function(name, val) {
+        this._initData();
+        if (arguments.length > 1) {
+            this._data[name] = val;
+        } else {
+            this._data = name;
+        }
+
+       return this;
+    },
+
+    /**
+    * @method clearData
+    * @for Node
+    * @description Clears internally stored data.
+    * @param {string} name The name of the field to clear. If no name
+    * is given, all data is cleared.
+    * @chainable
+    */
+    clearData: function(name) {
+        if ('_data' in this) {
+            if (typeof name != 'undefined') {
+                delete this._data[name];
+            } else {
+                delete this._data;
+            }
+        }
+
+        return this;
+    }
+});
+
+Y.mix(Y.NodeList.prototype, {
+    /**
+    * @method getData
+    * @for NodeList
+    * @description Retrieves arbitrary data stored on each Node instance
+    * bound to the NodeList.
+    * @see Node
+    * @param {string} name Optional name of the data field to retrieve.
+    * If no name is given, all data is returned.
+    * @return {Array} An array containing all of the data for each Node instance. 
+    * or an object hash of all fields.
+    */
+    getData: function(name) {
+        var args = (arguments.length) ? [name] : [];
+        return this._invoke('getData', args, true);
+    },
+
+    /**
+    * @method setData
+    * @for NodeList
+    * @description Stores arbitrary data on each Node instance bound to the
+    *  NodeList. This is not stored with the DOM node.
+    * @param {string} name The name of the field to set. If no name
+    * is given, name is treated as the data and overrides any existing data.
+    * @param {any} val The value to be assigned to the field.
+    * @chainable
+    */
+    setData: function(name, val) {
+        var args = (arguments.length > 1) ? [name, val] : [name];
+        return this._invoke('setData', args);
+    },
+
+    /**
+    * @method clearData
+    * @for NodeList
+    * @description Clears data on all Node instances bound to the NodeList.
+    * @param {string} name The name of the field to clear. If no name
+    * is given, all data is cleared.
+    * @chainable
+    */
+    clearData: function(name) {
+        var args = (arguments.length) ? [name] : [];
+        return this._invoke('clearData', [name]);
+    }
+});
 
 
-}, '3.4.0' ,{requires:['dom-base', 'node-core', 'event-base']});
+}, '3.6.0' ,{requires:['dom-base', 'node-core', 'event-base']});

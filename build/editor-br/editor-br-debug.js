@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('editor-br', function(Y) {
 
@@ -37,15 +37,14 @@ YUI.add('editor-br', function(Y) {
             }
             if (e.keyCode == 13) {
                 var host = this.get(HOST), inst = host.getInstance(),
-                    sel = new inst.Selection(),
+                    sel = new inst.EditorSelection(),
                     last = '';
 
                 if (sel) {
                     if (Y.UA.ie) {
                         if (!sel.anchorNode || (!sel.anchorNode.test(LI) && !sel.anchorNode.ancestor(LI))) {
-                            sel._selection.pasteHTML('<br>');
-                            sel._selection.collapse(false);
-                            sel._selection.select();
+                            var host = this.get(HOST);
+                            host.execCommand('inserthtml', inst.EditorSelection.CURSOR);
                             e.halt();
                         }
                     }
@@ -136,4 +135,4 @@ YUI.add('editor-br', function(Y) {
 
 
 
-}, '3.4.0' ,{skinnable:false, requires:['editor-base']});
+}, '3.6.0' ,{skinnable:false, requires:['editor-base']});

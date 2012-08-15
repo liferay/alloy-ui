@@ -2,29 +2,33 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('querystring-parse', function(Y) {
 
 /**
- * <p>The QueryString module adds support for serializing JavaScript objects into
- * query strings and parsing JavaScript objects from query strings format.</p>
+ * The QueryString module adds support for serializing JavaScript objects into
+ * query strings and parsing JavaScript objects from query strings format.
  *
- * <p>The QueryString namespace is added to your YUI instance including static methods
- * Y.QueryString.parse(..) and Y.QueryString.stringify(..).</p>
+ * The QueryString namespace is added to your YUI instance including static methods
+ * `Y.QueryString.parse(..)` and `Y.QueryString.stringify(..)`.
  *
- * <p>The <code>querystring</code> module is a rollup of <code>querystring-parse</code> and
- * <code>querystring-stringify</code>.</p>
+ * The `querystring` module is a alias for `querystring-parse` and
+ * `querystring-stringify`.
  *
- * <p>As their names suggest, <code>querystring-parse</code> adds support for parsing
- * Query String data (Y.QueryString.parse) and <code>querystring-stringify</code> for serializing
- * JavaScript data into Query Strings (Y.QueryString.stringify).  You may choose to
+ * As their names suggest, `querystring-parse` adds support for parsing
+ * Query String data (`Y.QueryString.parse`) and `querystring-stringify` for serializing
+ * JavaScript data into Query Strings (`Y.QueryString.stringify`).  You may choose to
  * include either of the submodules individually if you don't need the
- * complementary functionality, or include the rollup for both.</p>
+ * complementary functionality, or include the rollup for both.
  *
  * @module querystring
  * @main querystring
+*/
+/**
+ * The QueryString module adds support for serializing JavaScript objects into
+ * query strings and parsing JavaScript objects from query strings format.
  * @class QueryString
  * @static
  */
@@ -159,4 +163,4 @@ QueryString.unescape = function (s) {
 
 
 
-}, '3.4.0' ,{requires:['array-extras', 'yui-base']});
+}, '3.6.0' ,{requires:['array-extras', 'yui-base'], supersedes:['querystring-parse-simple']});

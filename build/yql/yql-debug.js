@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('yql', function(Y) {
 
@@ -32,6 +32,18 @@ YUI.add('yql', function(Y) {
         }
         if (!params.env) {
             params.env = Y.YQLRequest.ENV;
+        }
+
+        this._context = this;
+
+        if (opts && opts.context) {
+            this._context = opts.context;
+            delete opts.context;
+        }
+        
+        if (params && params.context) {
+            this._context = params.context;
+            delete params.context;
         }
         
         this._params = params;
@@ -66,10 +78,24 @@ YUI.add('yql', function(Y) {
         */
         _params: null,
         /**
+        * @private
+        * @property _context
+        * @description The context to execute the callback in
+        */
+        _context: null,
+        /**
+        * @private
+        * @method _internal
+        * @description Internal Callback Handler
+        */
+        _internal: function() {
+            this._callback.apply(this._context, arguments);
+        },
+        /**
         * @method send
         * @description The method that executes the YQL Request.
         * @chainable
-        * @returns {YQLRequest}
+        * @return {YQLRequest}
         */
         send: function() {
             var qs = [], url = ((this._opts && this._opts.proto) ? this._opts.proto : Y.YQLRequest.PROTO);
@@ -83,6 +109,12 @@ YUI.add('yql', function(Y) {
             url += ((this._opts && this._opts.base) ? this._opts.base : Y.YQLRequest.BASE_URL) + qs;
             
             var o = (!Y.Lang.isFunction(this._callback)) ? this._callback : { on: { success: this._callback } };
+
+            o.on = o.on || {};
+            this._callback = o.on.success;
+
+            o.on.success = Y.bind(this._internal, this);
+
             if (o.allowCache !== false) {
                 o.allowCache = true;
             }
@@ -143,4 +175,4 @@ YUI.add('yql', function(Y) {
 
 
 
-}, '3.4.0' ,{requires:['jsonp', 'jsonp-url']});
+}, '3.6.0' ,{requires:['jsonp', 'jsonp-url']});

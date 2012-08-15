@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('intl', function(Y) {
 
@@ -154,4 +154,4 @@ Y.augment(Y.Intl, Y.EventTarget);
 Y.Intl.publish("intl:langChange", {emitFacade:true});
 
 
-}, '3.4.0' ,{requires:['event-custom', 'intl-base']});
+}, '3.6.0' ,{requires:['event-custom', 'intl-base']});

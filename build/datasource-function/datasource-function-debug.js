@@ -2,13 +2,14 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('datasource-function', function(Y) {
 
 /**
- * Provides a DataSource implementation which can be used to retrieve data from a custom function.
+ * Provides a DataSource implementation which can be used to retrieve data from
+ * a custom function.
  *
  * @module datasource
  * @submodule datasource-function
@@ -53,9 +54,10 @@ Y.mix(DSFn, {
 
     ATTRS: {
         /**
+        * Stores the function that will serve the response data.
+        *
         * @attribute source
-        * @description Pointer to live data.
-        * @type MIXED
+        * @type {Any}
         * @default null
         */
         source: {
@@ -66,15 +68,16 @@ Y.mix(DSFn, {
     
 Y.extend(DSFn, Y.DataSource.Local, {
     /**
-     * Passes query string to IO. Fires <code>response</code> event when
-     * response is received asynchronously.
+     * Passes query data to the source function. Fires <code>response</code>
+     * event with the function results (synchronously).
      *
      * @method _defRequestFn
      * @param e {Event.Facade} Event Facade with the following properties:
      * <dl>
      * <dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>
      * <dt>request (Object)</dt> <dd>The request.</dd>
-     * <dt>callback (Object)</dt> <dd>The callback object with the following properties:
+     * <dt>callback (Object)</dt> <dd>The callback object with the following
+     * properties:
      *     <dl>
      *         <dt>success (Function)</dt> <dd>Success handler.</dd>
      *         <dt>failure (Function)</dt> <dd>Failure handler.</dd>
@@ -109,4 +112,4 @@ Y.extend(DSFn, Y.DataSource.Local, {
 Y.DataSource.Function = DSFn;
 
 
-}, '3.4.0' ,{requires:['datasource-local']});
+}, '3.6.0' ,{requires:['datasource-local']});

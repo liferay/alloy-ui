@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('sortable', function(Y) {
 
@@ -41,8 +41,14 @@ YUI.add('sortable', function(Y) {
         * @description A reference to the DD.Delegate instance.
         */
         delegate: null,
+        /**
+        * @property drop
+        * @type DD.Drop
+        * @description A reference to the DD.Drop instance
+        */
+        drop: null,
         initializer: function() {
-            var id = 'sortable-' + Y.guid(), c,
+            var id = 'sortable-' + Y.guid(),
                 delConfig = {
                     container: this.get(CONT),
                     nodes: this.get(NODES),
@@ -65,11 +71,12 @@ YUI.add('sortable', function(Y) {
                 cloneNode: true
             });
 
-            c = new Y.DD.Drop({
+            this.drop =  new Y.DD.Drop({
                 node: this.get(CONT),
                 bubbleTarget: del,
                 groups: del.dd.get('groups')
-            }).on('drop:over', Y.bind(this._onDropOver, this));
+            });
+            this.drop.on('drop:over', Y.bind(this._onDropOver, this));
             
             del.on({
                 'drag:start': Y.bind(this._onDragStart, this),
@@ -101,9 +108,7 @@ YUI.add('sortable', function(Y) {
         _onDropOver: function(e) {
             if (!e.drop.get(NODE).test(this.get(NODES))) {
                 var nodes = e.drop.get(NODE).all(this.get(NODES));
-                if (nodes.size() === 0) {
-                    e.drop.get(NODE).append(e.drag.get(NODE));
-                }
+                e.drop.get(NODE).append(e.drag.get(NODE));
             }
         },
         /**
@@ -187,9 +192,13 @@ YUI.add('sortable', function(Y) {
         * @description Handles the DragStart event and initializes some settings.
         */
         _onDragStart: function(e) {
-            this.delegate.get('lastNode').setStyle(ZINDEX, '');
-            this.delegate.get(this.get(OPACITY_NODE)).setStyle(OPACITY, this.get(OPACITY));
-            this.delegate.get(CURRENT_NODE).setStyle(ZINDEX, '999');
+            var del = this.delegate,
+                lastNode = del.get('lastNode');
+            if (lastNode && lastNode.getDOMNode()) {
+                lastNode.setStyle(ZINDEX, '');
+            }
+            del.get(this.get(OPACITY_NODE)).setStyle(OPACITY, this.get(OPACITY));
+            del.get(CURRENT_NODE).setStyle(ZINDEX, '999');
         },
         /**
         * @private
@@ -222,7 +231,7 @@ YUI.add('sortable', function(Y) {
             return this;
         },
         /**
-        * @method plug
+        * @method sync
         * @description Passthrough to the DD.Delegate syncTargets method.
         * @chainable
         */
@@ -231,6 +240,7 @@ YUI.add('sortable', function(Y) {
             return this;
         },
         destructor: function() {
+            this.drop.destroy();
             this.delegate.destroy();
             Sortable.unreg(this);
         },
@@ -306,7 +316,7 @@ YUI.add('sortable', function(Y) {
         * A custom callback to allow a user to extract some sort of id or any other data from the node to use in the "ordering list" and then that data should be returned from the callback.
         * @method getOrdering
         * @param Function callback 
-        * @returns Array
+        * @return Array
         */
         getOrdering: function(callback) {
             var ordering = [];
@@ -457,60 +467,50 @@ YUI.add('sortable', function(Y) {
 
     /**
     * @event copy
-    * @description A Sortable node was moved.
-    * @param {Event.Facade} event An Event Facade object with the following specific property added:
-    * <dl>
-    * <dt>same</dt><dd>Moved to the same list.</dd>
-    * <dt>drag</dt><dd>The Drag Object</dd>
-    * <dt>drop</dt><dd>The Drop Object</dd>
-    * </dl>
+    * @description A Sortable node was moved with a copy.
+    * @param {Event.Facade} event An Event Facade object
+    * @param {Boolean} event.same Moved to the same list.
+    * @param {DD.Drag} event.drag The drag instance.
+    * @param {DD.Drop} event.drop The drop instance.
     * @type {Event.Custom}
-    *
-    *
+    */
+    /**
     * @event move
-    * @description A Sortable node was moved.
+    * @description A Sortable node was moved with a move.
     * @param {Event.Facade} event An Event Facade object with the following specific property added:
-    * <dl>
-    * <dt>same</dt><dd>Moved to the same list.</dd>
-    * <dt>drag</dt><dd>The Drag Object</dd>
-    * <dt>drop</dt><dd>The Drop Object</dd>
-    * </dl>
+    * @param {Boolean} event.same Moved to the same list.
+    * @param {DD.Drag} event.drag The drag instance.
+    * @param {DD.Drop} event.drop The drop instance.
     * @type {Event.Custom}
-    *
-    *
+    */
+    /**
     * @event insert
-    * @description A Sortable node was moved.
+    * @description A Sortable node was moved with an insert.
     * @param {Event.Facade} event An Event Facade object with the following specific property added:
-    * <dl>
-    * <dt>same</dt><dd>Moved to the same list.</dd>
-    * <dt>drag</dt><dd>The Drag Object</dd>
-    * <dt>drop</dt><dd>The Drop Object</dd>
-    * </dl>
+    * @param {Boolean} event.same Moved to the same list.
+    * @param {DD.Drag} event.drag The drag instance.
+    * @param {DD.Drop} event.drop The drop instance.
     * @type {Event.Custom}
-    *
-    *
+    */
+    /**
     * @event swap
-    * @description A Sortable node was moved.
+    * @description A Sortable node was moved with a swap.
     * @param {Event.Facade} event An Event Facade object with the following specific property added:
-    * <dl>
-    * <dt>same</dt><dd>Moved to the same list.</dd>
-    * <dt>drag</dt><dd>The Drag Object</dd>
-    * <dt>drop</dt><dd>The Drop Object</dd>
-    * </dl>
+    * @param {Boolean} event.same Moved to the same list.
+    * @param {DD.Drag} event.drag The drag instance.
+    * @param {DD.Drop} event.drop The drop instance.
     * @type {Event.Custom}
-    *
-    *
+    */
+    /**
     * @event moved
     * @description A Sortable node was moved.
     * @param {Event.Facade} event An Event Facade object with the following specific property added:
-    * <dl>
-    * <dt>same</dt><dd>Moved to the same list.</dd>
-    * <dt>drag</dt><dd>The Drag Object</dd>
-    * <dt>drop</dt><dd>The Drop Object</dd>
-    * </dl>
+    * @param {Boolean} event.same Moved to the same list.
+    * @param {DD.Drag} event.drag The drag instance.
+    * @param {DD.Drop} event.drop The drop instance.
     * @type {Event.Custom}
     */
 
 
 
-}, '3.4.0' ,{requires:['dd-delegate', 'dd-drop-plugin', 'dd-proxy']});
+}, '3.6.0' ,{requires:['dd-delegate', 'dd-drop-plugin', 'dd-proxy']});

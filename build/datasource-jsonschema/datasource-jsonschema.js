@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('datasource-jsonschema', function(Y) {
 
@@ -107,4 +107,4 @@ Y.extend(DataSourceJSONSchema, Y.Plugin.Base, {
 Y.namespace('Plugin').DataSourceJSONSchema = DataSourceJSONSchema;
 
 
-}, '3.4.0' ,{requires:['datasource-local', 'plugin', 'dataschema-json']});
+}, '3.6.0' ,{requires:['datasource-local', 'plugin', 'dataschema-json']});

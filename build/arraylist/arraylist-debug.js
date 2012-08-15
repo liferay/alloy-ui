@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('arraylist', function(Y) {
 
@@ -156,7 +156,9 @@ ArrayListProto = {
  */
 ArrayListProto._item = ArrayListProto.item;
 
-ArrayList.prototype  = ArrayListProto;
+// Mixed onto existing proto to preserve constructor NOT being an own property.
+// This has bitten me when composing classes by enumerating, copying prototypes.
+Y.mix(ArrayList.prototype, ArrayListProto);
 
 Y.mix( ArrayList, {
 
@@ -216,4 +218,4 @@ Y.mix( ArrayList, {
 Y.ArrayList = ArrayList;
 
 
-}, '3.4.0' ,{requires:['yui-base']});
+}, '3.6.0' ,{requires:['yui-base']});
