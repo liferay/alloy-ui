@@ -815,6 +815,7 @@ var DatePickerSelect = A.Component.create(
 
 				instance._populateSelects();
 				instance._syncSelectsUI();
+				instance._selectCurrentDate();
 			},
 
 			/**
@@ -896,8 +897,8 @@ var DatePickerSelect = A.Component.create(
 			 * @protected
 			 */
 			_bindSelectEvents: function() {
-				var instance = this;
-				var selects = instance.get(SELECT_WRAPPER_NODE).all(SELECT);
+				var instance = this,
+					selects = instance.get(SELECT_WRAPPER_NODE).all(SELECT);
 
 				selects.on('change', instance._onSelectChange, instance);
 				selects.on('keypress', instance._onSelectChange, instance);
@@ -912,20 +913,20 @@ var DatePickerSelect = A.Component.create(
 			 * @return {Array}
 			 */
 			_getAppendOrder: function() {
-				var instance = this;
-				var appendOrder = instance.get(APPEND_ORDER);
+				var instance = this,
+					appendOrder = instance.get(APPEND_ORDER),
 
-				var mapping = {
-					d: instance.get(DAY_NODE),
-					m: instance.get(MONTH_NODE),
-					y: instance.get(YEAR_NODE)
-				};
+					mapping = {
+						d: instance.get(DAY_NODE),
+						m: instance.get(MONTH_NODE),
+						y: instance.get(YEAR_NODE)
+					},
 
-				var firstField = mapping[ appendOrder[0] ];
-				var secondField = mapping[ appendOrder[1] ];
-				var thirdField = mapping[ appendOrder[2] ];
+					firstField = mapping[ appendOrder[0] ],
+					secondField = mapping[ appendOrder[1] ],
+					thirdField = mapping[ appendOrder[2] ],
 
-				var id = instance.get('id');
+					id = instance.get('id');
 
 				firstField.setAttribute(DATA_COMPONENT_ID, id);
 				secondField.setAttribute(DATA_COMPONENT_ID, id);
@@ -944,8 +945,7 @@ var DatePickerSelect = A.Component.create(
 			_afterSelectDate: function(event) {
 				var instance = this;
 
-				console.log(instance.calendar.get('selectedDates'));
-				instance._syncSelectsUI();
+				instance._syncSelectsUI(event.date);
 			},
 
 			/**
@@ -981,7 +981,7 @@ var DatePickerSelect = A.Component.create(
 					instance._uiSetCurrentMonth();
 
 					if (validDay) {
-						instance._selectCurrentDay();
+						instance._selectCurrentDay(date);
 					}
 				}
 			},
@@ -1009,9 +1009,8 @@ var DatePickerSelect = A.Component.create(
 			 * @return {Date}
 			 */
 			getCurrentDate: function(offsetYear, offsetMonth, offsetDay) {
-				var instance = this;
-
-				var date = instance._normalizeYearMonth();
+				var instance = this,
+					date = instance._normalizeYearMonth();
 
 				return DateMath.getDate(date.year + toInt(offsetYear), date.month + toInt(offsetMonth), date.day + toInt(offsetDay));
 			},
@@ -1023,9 +1022,9 @@ var DatePickerSelect = A.Component.create(
 			 * @protected
 			 */
 			_populateDays: function() {
-				var instance = this;
-				var dayNode = instance.get(DAY_NODE);
-				var daysInMonth = instance._getDaysInMonth();
+				var instance = this,
+					dayNode = instance.get(DAY_NODE),
+					daysInMonth = instance._getDaysInMonth();
 
 				if (instance.get(POPULATE_DAY)) {
 					instance._populateSelect(dayNode, 1, daysInMonth, null, null, instance.get(NULLABLE_DAY));
@@ -1039,10 +1038,10 @@ var DatePickerSelect = A.Component.create(
 			 * @protected
 			 */
 			_populateMonths: function() {
-				var instance = this;
-				var monthNode = instance.get(MONTH_NODE);
-				var localeMap = instance._getLocaleMap();
-				var monthLabels = localeMap.B;
+				var instance = this,
+					monthNode = instance.get(MONTH_NODE),
+					localeMap = instance._getLocaleMap(),
+					monthLabels = localeMap.B;
 
 				if (instance.get(POPULATE_MONTH)) {
 					instance._populateSelect(monthNode, 0, (monthLabels.length - 1), monthLabels, null, instance.get(NULLABLE_MONTH));
@@ -1056,9 +1055,9 @@ var DatePickerSelect = A.Component.create(
 			 * @protected
 			 */
 			_populateYears: function() {
-				var instance = this;
-				var yearRange = instance.get(YEAR_RANGE);
-				var yearNode = instance.get(YEAR_NODE);
+				var instance = this,
+					yearRange = instance.get(YEAR_RANGE),
+					yearNode = instance.get(YEAR_NODE);
 
 				if (instance.get(POPULATE_YEAR)) {
 					instance._populateSelect(yearNode, yearRange[0], yearRange[1], null, null, instance.get(NULLABLE_YEAR));
@@ -1078,10 +1077,9 @@ var DatePickerSelect = A.Component.create(
 			 * @return {String}
 			 */
 			_populateSelect: function(select, fromIndex, toIndex, labels, values, nullable) {
-				var i = 0;
-				var index = fromIndex;
-
-				var selectEl = A.Node.getDOMNode(select);
+				var i = 0,
+					index = fromIndex,
+					selectEl = A.Node.getDOMNode(select);
 
 				select.empty();
 				labels = labels || [];
@@ -1094,8 +1092,8 @@ var DatePickerSelect = A.Component.create(
 				}
 
 				while (index <= toIndex) {
-					var value = values[index] || index;
-					var label = labels[index] || index;
+					var value = values[index] || index,
+						label = labels[index] || index;
 
 					selectEl.options[i] = new Option(label, index);
 
@@ -1119,35 +1117,33 @@ var DatePickerSelect = A.Component.create(
 				instance._populateYears();
 
 				// restricting dates based on the selects values
-				var monthOptions = instance.get(MONTH_NODE).all(OPTION);
-				var yearOptions = instance.get(YEAR_NODE).all(OPTION);
+				var monthOptions = instance.get(MONTH_NODE).all(OPTION),
+					yearOptions = instance.get(YEAR_NODE).all(OPTION),
 
-				var mLength = monthOptions.size() - 1;
-				var yLength = yearOptions.size() - 1;
+					mLength = monthOptions.size() - 1,
+					yLength = yearOptions.size() - 1,
 
-				var firstMonth = monthOptions.item(0).val();
-				var firstYear = yearOptions.item(0).val();
-				var lastMonth = monthOptions.item(mLength).val();
-				var lastYear = yearOptions.item(yLength).val();
+					firstMonth = monthOptions.item(0).val(),
+					firstYear = yearOptions.item(0).val(),
+					lastMonth = monthOptions.item(mLength).val(),
+					lastYear = yearOptions.item(yLength).val(),
 
-				var maxMonthDays = instance._getDaysInMonth(lastYear, lastMonth);
+					maxMonthDays = instance._getDaysInMonth(lastYear, lastMonth),
 
-				var minDate = new Date(firstYear, firstMonth, 1);
-				var maxDate = new Date(lastYear, lastMonth, maxMonthDays);
+					minDate = new Date(firstYear, firstMonth, 1),
+					maxDate = new Date(lastYear, lastMonth, maxMonthDays);
 
-				instance.calendar.set(MAX_DATE, maxDate);
+				instance.calendar.set(MAX_DATE, maxDate),
 				instance.calendar.set(MIN_DATE, minDate);
 			},
 
 			_renderCalendar: function() {
-				var instance = this;
-
-				var datePickerConfig = {
-					calendar: instance.get(CALENDAR),
-					trigger: instance.get(TRIGGER).item(0)
-				};
-
-				var datePicker = new A.DatePicker(datePickerConfig).render();
+				var instance = this,
+					datePickerConfig = {
+						calendar: instance.get(CALENDAR),
+						trigger: instance.get(TRIGGER).item(0)
+					},
+					datePicker = new A.DatePicker(datePickerConfig).render();
 
 				datePicker.addTarget(instance);
 				instance.datePicker = datePicker;
@@ -1161,14 +1157,14 @@ var DatePickerSelect = A.Component.create(
 			 * @protected
 			 */
 			_renderElements: function() {
-				var instance = this;
+				var instance = this,
 
-				var boundingBox = instance.get(BOUNDING_BOX);
-				var contentBox = instance.get(CONTENT_BOX);
+					boundingBox = instance.get(BOUNDING_BOX),
+					contentBox = instance.get(CONTENT_BOX),
 
-				var dayNode = instance.get(DAY_NODE);
-				var monthNode = instance.get(MONTH_NODE);
-				var yearNode = instance.get(YEAR_NODE);
+					dayNode = instance.get(DAY_NODE),
+					monthNode = instance.get(MONTH_NODE),
+					yearNode = instance.get(YEAR_NODE);
 
 				dayNode.addClass(CSS_DATEPICKER_DAY);
 				monthNode.addClass(CSS_DATEPICKER_MONTH);
@@ -1186,8 +1182,8 @@ var DatePickerSelect = A.Component.create(
 
 				if (!monthNode.inDoc(A.config.doc)) {
 					// append elements
-					var selectWrapper = instance.get(SELECT_WRAPPER_NODE);
-					var orderedFields = instance._getAppendOrder();
+					var selectWrapper = instance.get(SELECT_WRAPPER_NODE),
+						orderedFields = instance._getAppendOrder();
 
 					// this textNode is to prevent layout shifting only
 					// simulate the default browser space between inputs/selects on re-append
@@ -1212,10 +1208,9 @@ var DatePickerSelect = A.Component.create(
 			 * @protected
 			 */
 			_renderTriggerButton: function() {
-				var instance = this;
-
-				var trigger = instance.get(TRIGGER).item(0);
-				var contentBox = instance.get(CONTENT_BOX);
+				var instance = this,
+					trigger = instance.get(TRIGGER).item(0),
+					contentBox = instance.get(CONTENT_BOX);
 
 				instance._buttonItem = new A.ButtonItem({
 					boundingBox: instance.get(BUTTON_NODE),
@@ -1232,26 +1227,14 @@ var DatePickerSelect = A.Component.create(
 				}
 			},
 
-			_getSelectedDate: function () {
-				var instance = this;
-
-				console.log(instance.calendar.get('date'));
-				return DataType.Date.parse(instance.calendar.get('date'));
-			},
-
 			/**
 			 * Select the current day on the respective input field.
 			 *
 			 * @method _selectCurrentDay
 			 * @protected
 			 */
-			_selectCurrentDay: function() {
-				var instance = this,
-					currentDate = instance._getSelectedDate();
-
-				console.log('Current date no calendario: ', currentDate);
-				console.log('valor no input: ', instance.get(DAY_NODE).val());
-				console.log(String(currentDate.getDate()));
+			_selectCurrentDay: function(currentDate) {
+				var instance = this;
 
 				instance.get(DAY_NODE).val(
 					String(currentDate.getDate())
@@ -1264,9 +1247,8 @@ var DatePickerSelect = A.Component.create(
 			 * @method _selectCurrentMonth
 			 * @protected
 			 */
-			_selectCurrentMonth: function() {
-				var instance = this,
-					currentDate = instance._getSelectedDate();
+			_selectCurrentMonth: function(currentDate) {
+				var instance = this;
 
 				instance.get(MONTH_NODE).val(
 					String(currentDate.getMonth())
@@ -1279,9 +1261,8 @@ var DatePickerSelect = A.Component.create(
 			 * @method _selectCurrentYear
 			 * @protected
 			 */
-			_selectCurrentYear: function() {
-				var instance = this,
-					currentDate = instance._getSelectedDate();
+			_selectCurrentYear: function(currentDate) {
+				var instance = this;
 
 				instance.get(YEAR_NODE).val(
 					String(currentDate.getFullYear())
@@ -1294,12 +1275,13 @@ var DatePickerSelect = A.Component.create(
 			 * @method _syncSelectsUI
 			 * @protected
 			 */
-			_syncSelectsUI: function() {
-				var instance = this;
+			_syncSelectsUI: function(date) {
+				var instance = this,
+					date = (date) ? date : instance.calendar.get('date');
 
-				instance._selectCurrentDay();
-				instance._selectCurrentMonth();
-				instance._selectCurrentYear();
+				instance._selectCurrentDay(date);
+				instance._selectCurrentMonth(date);
+				instance._selectCurrentYear(date);
 			},
 
 			/**
