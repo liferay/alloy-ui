@@ -4,7 +4,11 @@
 <head>
 	<script src="../../build/aui/aui.js" type="text/javascript"></script>
 
+	<script src="../../src/javascript/i18n/calendar-pt-br.js" type="text/javascript" charset="utf-8"></script>
+
 	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../build/aui-calendar/assets/skins/sam/aui-calendar.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../build/aui-button-item/assets/skins/sam/aui-button-item.css" type="text/css" media="screen" />
 </head>
 
 <style type="text/css" media="screen">
@@ -22,7 +26,7 @@
 }
 </style>
 
-<body class="yui3-skin-sam">
+<body>
 <h1>Alloy - DatePicker</h1>
 
 <div class="aui-datepicker-example aui-helper-clearfix" id="dynamicDatePicker">
@@ -72,7 +76,7 @@
 
 <script type="text/javascript" charset="utf-8">
 
-AUI().use('aui-datepicker', function(A) {
+AUI().use('aui-datepicker-deprecated', function(A) {
 	/*
  		Simple Datepicker
 	*/
@@ -80,17 +84,12 @@ AUI().use('aui-datepicker', function(A) {
 	var simpleDatepicker1 = new A.DatePicker({
 		trigger: '#trigger1',
 		calendar: {
-			// dates: [ '10/10/2010' ], // DEPRECATED
-			date: new Date(2010, 10, 10),
-			// selectMultipleDates: true // DEPRECATED
-			showNextMonth: true,
-			selectionMode: 'multiple',
+			dates: [ '10/10/2010' ],
+			selectMultipleDates: true
 		},
-
-		dateFormat: '%m/%d/%Y'
 		// setValue: false,
 		// on: {
-		// 	'calendar:dateClick': function() {
+		// 	'calendar:select': function() {
 		// 		console.log('select');
 		// 	}
 		// }
@@ -101,7 +100,7 @@ AUI().use('aui-datepicker', function(A) {
 		Creating dynamically
 		--------------------------------------------------------------------
 	*/
-	// var datepicker1 = new A.DatePickerSelect().render('#dynamicDatePicker');
+	var datepicker1 = new A.DatePickerSelect().render('#dynamicDatePicker');
 
 	/*
 		Creating from markup
