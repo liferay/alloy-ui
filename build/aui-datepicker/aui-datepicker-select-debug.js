@@ -69,6 +69,7 @@ var Lang = A.Lang,
 	SELECT_WRAPPER_NODE = 'selectWrapperNode',
 	SPACE = ' ',
 	SRC_NODE = 'srcNode',
+	TODAY_DATE = new Date(),
 	TRIGGER = 'trigger',
 	WRAPPER = 'wrapper',
 	YEAR = 'year',
@@ -975,7 +976,7 @@ var DatePickerSelect = A.Component.create(
 			 */
 			_syncSelectsUI: function(date) {
 				var instance = this,
-					date = (date) ? date : instance.calendar.get('date');
+					date = (date) ? date : TODAY_DATE;
 
 				instance._selectCurrentDay(date);
 				instance._selectCurrentMonth(date);
