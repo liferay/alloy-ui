@@ -1383,7 +1383,7 @@ var DateCellEditor = A.Component.create({
 				mask = instance.get('dateFormat'),
 				locale = instance.get('locale');
 
-			return DataType.Date.format(date, { format: mask });
+			return DataType.Date.format(date, { format: mask, locale: locale });
 		},
 
 		_afterDateSelect: function(event) {
