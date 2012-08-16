@@ -286,13 +286,20 @@ var ButtonItem = A.Component.create(
 		},
 
 		constructor: function(config) {
-			if (isString(config)) {
-				config = {
-					icon: config
-				};
+			var buttonType = 'button';
+
+			if (config) {
+				if (isString(config)) {
+					config = {
+						icon: config
+					};
+				}
+				else if (config.type) {
+					buttonType = config.type;
+				}
 			}
 
-			this.BOUNDING_TEMPLATE = Lang.sub(TPL_BUTTON, [config.type || 'button']);
+			this.BOUNDING_TEMPLATE = Lang.sub(TPL_BUTTON, [buttonType]);
 
 			ButtonItem.superclass.constructor.call(this, config);
 		},
@@ -602,4 +609,4 @@ var ButtonItem = A.Component.create(
 
 A.ButtonItem = ButtonItem;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-state-interaction','widget-child'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-state-interaction','widget-child']});
