@@ -2275,10 +2275,6 @@ var FormBuilderRadioField = A.Component.create({
 
 	ATTRS: {
 
-		name: {
-			value: RADIO
-		},
-
 		template: {
 			valueFn: function() {
 				return TPL_RADIO;
