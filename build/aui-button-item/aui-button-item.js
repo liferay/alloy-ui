@@ -40,7 +40,7 @@ var Lang = A.Lang,
 
 	REGEX_ICON = new RegExp(CSS_ICON + '-([a-zA-Z0-9-]+)'),
 
-	TPL_BUTTON = '<button type="button"></button>',
+	TPL_BUTTON = '<button type="{0}"></button>',
 	TPL_ICON = '<span class="' + [CSS_BUTTON_ICON, CSS_ICON].join(' ') + '"></span>',
 	TPL_LABEL = '<span class="' + CSS_BUTTON_LABEL + '"></span>';
 
@@ -291,6 +291,8 @@ var ButtonItem = A.Component.create(
 					icon: config
 				};
 			}
+
+			this.BOUNDING_TEMPLATE = Lang.sub(TPL_BUTTON, [config.type || 'button']);
 
 			ButtonItem.superclass.constructor.call(this, config);
 		},
