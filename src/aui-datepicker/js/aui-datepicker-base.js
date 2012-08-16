@@ -9,12 +9,12 @@ var Lang = A.Lang,
 	CALENDAR = 'calendar',
 	CONTENT_BOX = 'contentBox',
 	CURRENT_NODE = 'currentNode',
+	DATEPICKER = 'date-picker',
 	FORMATTER = 'formatter',
 	LOCALE = 'locale',
 	SELECT_MULTIPLE_DATES = 'selectionMode',
-	SET_VALUE = 'setValue',
+	SET_VALUE = 'setValue';
 
-	DATEPICKER = 'date-picker';
 
 var DatePicker = A.Component.create({
 	NAME: DATEPICKER,
