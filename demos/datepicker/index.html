@@ -83,10 +83,8 @@ AUI().use('aui-datepicker', function(A) {
 			// dates: [ '10/10/2010' ], // DEPRECATED
 			date: new Date(2010, 10, 10),
 			// selectMultipleDates: true // DEPRECATED
-			showNextMonth: true,
 			selectionMode: 'multiple',
 		},
-
 		dateFormat: '%m/%d/%Y'
 		// setValue: false,
 		// on: {
@@ -101,7 +99,13 @@ AUI().use('aui-datepicker', function(A) {
 		Creating dynamically
 		--------------------------------------------------------------------
 	*/
-	var datepicker1 = new A.DatePickerSelect().render('#dynamicDatePicker');
+	var datepicker1 = new A.DatePickerSelect({
+		calendar: {
+			date: new Date(2010, 05, 10)
+		},
+
+		appendOrder: [ 'm', 'y', 'd' ]
+	}).render('#dynamicDatePicker');
 
 	/*
 		Creating from markup
@@ -113,9 +117,7 @@ AUI().use('aui-datepicker', function(A) {
 		contentBox: '#srcNode',
 		boundingBox: '#datePickerBB',
 
-		appendOrder: [ 'y', 'm', 'd' ],
 		calendar: {
-			dates: [ '10/10/2010' ],
 			dateFormat: '%m/%d/%y'
 		},
 
