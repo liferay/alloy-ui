@@ -33,7 +33,7 @@ var Lang = A.Lang,
 
 	REGEX_ICON = new RegExp(CSS_ICON + '-([a-zA-Z0-9-]+)'),
 
-	TPL_BUTTON = '<button type="button"></button>',
+	TPL_BUTTON = '<button type="{0}"></button>',
 	TPL_ICON = '<span class="' + [CSS_BUTTON_ICON, CSS_ICON].join(' ') + '"></span>',
 	TPL_LABEL = '<span class="' + CSS_BUTTON_LABEL + '"></span>';
 
@@ -277,13 +277,24 @@ var ButtonItem = A.Component.create(
 		},
 
 		constructor: function(config) {
-			if (Lang.isString(config)) {
-				config = {
-					icon: config
-				};
+			var instance = this;
+
+			var buttonType = 'button';
+
+			if (config) {
+				if (Lang.isString(config)) {
+					config = {
+						icon: config
+					};
+				}
+				else if (config.type) {
+					buttonType = config.type;
+				}
 			}
 
-			ButtonItem.superclass.constructor.call(this, config);
+			instance.BOUNDING_TEMPLATE = Lang.sub(TPL_BUTTON, [buttonType]);
+
+			ButtonItem.superclass.constructor.call(instance, config);
 		},
 
 		UI_ATTRS: [ICON, LABEL, TITLE],
@@ -534,4 +545,4 @@ var ButtonItem = A.Component.create(
 
 A.ButtonItem = A.Base.build(NAME, ButtonItem, [A.WidgetChild], { dynamic: false });
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-state-interaction','widget-child']});
+}, '@VERSION@' ,{requires:['aui-base','aui-state-interaction','widget-child'], skinnable:true});

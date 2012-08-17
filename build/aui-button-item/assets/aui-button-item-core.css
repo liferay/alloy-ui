@@ -60,8 +60,3 @@
 .gecko .aui-buttonitem-icon-only .aui-buttonitem-icon {
 	margin-top: -3px;
 }
-
-.win.safari .aui-buttonitem-icon-only .aui-buttonitem-icon {
-	margin-top: -1px;
-	margin-left: -3px;
-}
