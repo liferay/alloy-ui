@@ -455,7 +455,7 @@ var FormBuilderField = A.Component.create({
 
 				// TODO - Change checking to use hashes O(1) instead of indexOf arrays O(N)
 				if (AArray.indexOf(readOnlyAttributes, attribute) > -1) {
-					property.editor = false;
+					property.readOnly = true;
 				}
 
 				properties.push(property);
