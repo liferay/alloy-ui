@@ -28,6 +28,7 @@ var Lang = A.Lang,
 	CHECKED = 'checked',
 	CLICK = 'click',
 	CONTENT_BOX = 'contentBox',
+	DATA = 'data',
 	DATATABLE = 'datatable',
 	DATE_CELL_EDITOR = 'dateCellEditor',
 	DD = 'dd',
@@ -58,13 +59,17 @@ var Lang = A.Lang,
 	MOUSEDOWN = 'mousedown',
 	MULTIPLE = 'multiple',
 	NAME = 'name',
+	ONLY = 'only',
 	OPTION = 'option',
 	OPTIONS = 'options',
 	OPTIONS_CELL_EDITOR = 'optionsCellEditor',
 	OUTPUT_FORMATTER = 'outputFormatter',
 	PENCIL = 'pencil',
 	RADIO_CELL_EDITOR = 'radioCellEditor',
+	READ = 'read',
+	READ_ONLY = 'readOnly',
 	REMOVE = 'remove',
+	RENDER = 'render',
 	RENDERED = 'rendered',
 	RETURN = 'return',
 	ROW = 'row',
@@ -145,8 +150,11 @@ A.mix(CellEditorSupport.prototype, {
 			editEvent = instance.get(EDIT_EVENT);
 
 		instance.CLASS_NAMES_CELL_EDITOR_SUPPORT = {
-			cell: instance.getClassName(CELL)
+			cell: instance.getClassName(CELL),
+			readOnly: instance.getClassName(READ, ONLY)
 		};
+
+		instance.after(RENDER, instance._afterCellEditorSupportRender);
 
 		instance.delegate(editEvent, instance._onEditCell, _DOT+instance.CLASS_NAMES_CELL_EDITOR_SUPPORT.cell, instance);
 	},
@@ -163,6 +171,14 @@ A.mix(CellEditorSupport.prototype, {
 		return recordEditor || columnEditor;
 	},
 
+	_afterCellEditorSupportRender: function() {
+		var instance = this;
+
+		instance._syncModelsReadOnlyUI();
+
+		instance.body.after(A.bind(instance._syncModelsReadOnlyUI, instance), instance.body, RENDER);
+	},
+
 	_onEditCell: function(event) {
 		var instance = this,
 			activeCell = instance.get(ACTIVE_CELL),
@@ -171,7 +187,7 @@ A.mix(CellEditorSupport.prototype, {
 			record = instance.getRecord(alignNode),
 			editor = instance.getEditor(record, column);
 
-		if (isBaseEditor(editor)) {
+		if (isBaseEditor(editor) && !record.get(READ_ONLY)) {
 			if (!editor.get(RENDERED)) {
 				editor.on({
 					visibleChange: A.bind(instance._onEditorVisibleChange, instance),
@@ -214,6 +230,21 @@ A.mix(CellEditorSupport.prototype, {
 		if (event.newVal) {
 			editor._syncFocus();
 		}
+	},
+
+	_syncModelReadOnlyUI: function(model) {
+		var instance = this,
+			row = instance.getRow(model);
+
+		row.toggleClass(instance.CLASS_NAMES_CELL_EDITOR_SUPPORT[READ_ONLY], model.get(READ_ONLY) === true);
+	},
+
+	_syncModelsReadOnlyUI: function() {
+		var instance = this;
+
+		instance.get(DATA).each(function(model) {
+			instance._syncModelReadOnlyUI(model);
+		});
 	},
 
 	// Deprecated methods
