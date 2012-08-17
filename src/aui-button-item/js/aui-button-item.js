@@ -285,6 +285,8 @@ var ButtonItem = A.Component.create(
 		},
 
 		constructor: function(config) {
+			var instance = this;
+
 			var buttonType = 'button';
 
 			if (config) {
@@ -298,9 +300,9 @@ var ButtonItem = A.Component.create(
 				}
 			}
 
-			this.BOUNDING_TEMPLATE = Lang.sub(TPL_BUTTON, [buttonType]);
+			instance.BOUNDING_TEMPLATE = Lang.sub(TPL_BUTTON, [buttonType]);
 
-			ButtonItem.superclass.constructor.call(this, config);
+			ButtonItem.superclass.constructor.call(instance, config);
 		},
 
 		UI_ATTRS: [HANDLER, ICON, LABEL, TITLE, TYPE],
