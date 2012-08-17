@@ -14,6 +14,7 @@ var Lang = A.Lang,
 
 	DOC = A.config.doc,
 	INNER_HTML = 'innerHTML',
+	NORMALIZE = 'normalize',
 	REGEX_DASH = /-([a-z])/gi,
 	REGEX_ESCAPE_REGEX = /([.*+?^$(){}|[\]\/\\])/g,
 	REGEX_NL2BR = /\r?\n/g,
