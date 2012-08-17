@@ -704,7 +704,7 @@ var Paginator = A.Component.create(
 					// query all anchor that represents the page links
 					var pageLinks = node.all(DOT+CSS_PAGINATOR_PAGE_LINK);
 
-					if (pageLinks) {
+					if (pageLinks.size()) {
 						pageLinks.removeClass(CSS_PAGINATOR_CURRENT_PAGE);
 
 						// loop all pages from range.start to range.end
