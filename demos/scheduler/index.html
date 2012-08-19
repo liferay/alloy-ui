@@ -210,6 +210,18 @@ AUI().ready('aui-scheduler', 'aui-scheduler-calendar', function(A) {
 		content: 'Testing event 1 - overlap'
 	});
 
+	window.evt2 = new A.SchedulerEvent({
+		startDate: new Date(2010, 9, 2, 7),
+		endDate: new Date(2010, 9, 8, 12),
+		content: 'Testing event 2 - overlap'
+	});
+
+	window.testCalendar = new A.SchedulerCalendar({
+		events: [window.evt1, window.evt2],
+		color: 'green'
+	});
+
+
 	var eduardoCalendar = new A.SchedulerCalendar({
 		events: [
 			{
@@ -241,6 +253,7 @@ AUI().ready('aui-scheduler', 'aui-scheduler-calendar', function(A) {
 	});
 
 	var events1 = [
+		testCalendar,
 		eduardoCalendar,
 		johnCalendar,
 
