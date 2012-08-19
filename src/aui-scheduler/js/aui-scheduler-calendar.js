@@ -3,10 +3,6 @@ var Lang = A.Lang,
 	isBoolean = Lang.isBoolean,
 	isString = Lang.isString,
 
-	isSchedulerEvent = function(val) {
-		return (val instanceof A.SchedulerEvent);
-	},
-
 	COLOR = 'color',
 	DISABLED = 'disabled',
 	EVENTS = 'events',
@@ -68,6 +64,7 @@ var SchedulerCalendar = A.Component.create({
 			instance.after('disabledChange', instance._afterDisabledChange);
 			instance.after('eventsChange', instance._afterEventsChange);
 			instance.after('visibleChange', instance._afterVisibleChange);
+			instance.on('eventsChange', instance._onEventsChange);
 
 			instance._uiSetColor(
 				instance.get(COLOR)
@@ -108,6 +105,15 @@ var SchedulerCalendar = A.Component.create({
 			var instance = this;
 
 			instance._uiSetVisible(event.newVal);
+		},
+
+		_onEventsChange: function(event) {
+			var instance = this;
+			var scheduler = instance.get(SCHEDULER);
+
+			if (scheduler) {
+				scheduler.removeEvents(instance);
+			}
 		},
 
 		_propagateAttr: function(attrName, attrValue) {
@@ -152,7 +158,6 @@ var SchedulerCalendar = A.Component.create({
 			instance._propagateAttr(VISIBLE, instance.get(VISIBLE));
 
 			if (scheduler) {
-				scheduler.removeEvents(instance);
 				scheduler.addEvents(val);
 				scheduler.syncEventsUI();
 			}
