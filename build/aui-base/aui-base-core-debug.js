@@ -447,7 +447,11 @@ A.mix(
 		removeItem: function(a, item) {
 			var index = arrayIndexOf(a, item);
 
-			return AArray.remove(a, index);
+			if (index > -1) {
+				return AArray.remove(a, index);
+			}
+
+			return a;
 		}
 	}
 );
