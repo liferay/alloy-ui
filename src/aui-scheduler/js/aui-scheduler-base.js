@@ -1,10 +1,8 @@
 var Lang = A.Lang,
-	isString = Lang.isString,
 	isArray = Lang.isArray,
 	isDate = Lang.isDate,
 	isFunction = Lang.isFunction,
 	isNumber = Lang.isNumber,
-	isObject = Lang.isObject,
 
 	isScheduler = function(val) {
 		return (val instanceof A.Scheduler);
@@ -116,14 +114,12 @@ SchedulerEventSupport.ATTRS = {
 A.mix(SchedulerEventSupport.prototype, {
 	addEvent: function(evt) {
 		var instance = this;
-		var events = instance.get(EVENTS);
+		var events = [].concat(instance.get(EVENTS));
 
-		if (A.Array.indexOf(events, evt) > -1) {
-			A.Array.removeItem(events, evt);
+		if (A.Array.indexOf(events, evt) === -1) {
+			events.push(evt);
+			instance.set(EVENTS, events);
 		}
-
-		events.push(evt);
-		instance.set(EVENTS, events);
 	},
 
 	addEvents: function(events) {
@@ -144,7 +140,7 @@ A.mix(SchedulerEventSupport.prototype, {
 
 	removeEvent: function(evt) {
 		var instance = this;
-		var events = instance.get(EVENTS);
+		var events = [].concat(instance.get(EVENTS));
 
 		if (events.length) {
 			A.Array.removeItem(events, evt);
