@@ -178,6 +178,11 @@ var DatePickerSelect = A.Component.create(
 				value: {}
 			},
 
+			datePickerConfig: {
+				value: null,
+				setter: '_setDatePickerConfig'
+			},
+
 			/**
 			 * DOM Node to display the day of the DatePickerSelect. If not
              * specified try to query using HTML_PARSER an element inside
@@ -513,7 +518,6 @@ var DatePickerSelect = A.Component.create(
 
 				instance._populateSelects();
 				instance._syncSelectsUI();
-				instance._selectCurrentDate();
 			},
 
 			/**
@@ -672,7 +676,8 @@ var DatePickerSelect = A.Component.create(
 				if (!validDay || !validMonth || !validYear) {
 					instance.calendar._clearSelection();
 				} else {
-					instance._selectCurrentDate(date);
+					// instance._selectCurrentDate(date);
+					instance.datePicker.set('selectedDates', date);
 				}
 
 				if (monthChanged) {
@@ -684,20 +689,17 @@ var DatePickerSelect = A.Component.create(
 				}
 			},
 
-			/**
-			 * Select the current date returned by
-			 * <a href="Calendar.html#method_getCurrentDate">getCurrentDate</a>.
-			 *
-			 * @method selectCurrentDate
-			 * @protected
-			 */
-			_selectCurrentDate: function(date) {
-				var instance = this,
-					currentDate = (date) ? date : instance.getCurrentDate();
 
-				instance.calendar._clearSelection();
-				instance.calendar.selectDates(currentDate);
-				instance.calendar.set('date', currentDate);
+			_setDatePickerConfig: function (val) {
+				var instance = this;
+
+				return A.merge(
+					{
+						calendar: instance.get(CALENDAR),
+						trigger: instance.get(TRIGGER).item(0)
+					},
+					val || {}
+				);
 			},
 
 			/**
@@ -837,11 +839,7 @@ var DatePickerSelect = A.Component.create(
 
 			_renderCalendar: function() {
 				var instance = this,
-					datePickerConfig = {
-						calendar: instance.get(CALENDAR),
-						trigger: instance.get(TRIGGER).item(0)
-					},
-					datePicker = new A.DatePicker(datePickerConfig).render();
+					datePicker = new A.DatePicker(instance.get('datePickerConfig')).render();
 
 				datePicker.addTarget(instance);
 				instance.datePicker = datePicker;
@@ -975,7 +973,8 @@ var DatePickerSelect = A.Component.create(
 			 */
 			_syncSelectsUI: function(date) {
 				var instance = this,
-					date = (date) ? date : TODAY_DATE;
+					selectedDates = instance.datePicker.get('selectedDates'),
+					date = (date) ? date : selectedDates[0];
 
 				instance._selectCurrentDay(date);
 				instance._selectCurrentMonth(date);
