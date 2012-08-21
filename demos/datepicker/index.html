@@ -74,28 +74,6 @@
 
 AUI().use('aui-datepicker', function(A) {
 	/*
- 		Simple Datepicker
-	*/
-
-	var simpleDatepicker1 = new A.DatePicker({
-		trigger: '#trigger1',
-		calendar: {
-			// dates: [ '10/10/2010' ], // DEPRECATED
-			date: new Date(2010, 10, 10),
-			// selectMultipleDates: true // DEPRECATED
-			selectionMode: 'multiple',
-		},
-		dateFormat: '%m/%d/%Y'
-		// setValue: false,
-		// on: {
-		// 	'calendar:dateClick': function() {
-		// 		console.log('select');
-		// 	}
-		// }
-	})
-	.render('#datePicker');
-
-	/*
 		Creating dynamically
 		--------------------------------------------------------------------
 	*/
@@ -103,7 +81,9 @@ AUI().use('aui-datepicker', function(A) {
 		calendar: {
 			date: new Date(2010, 05, 10)
 		},
-
+		datePickerConfig: {
+			selectedDates: new Date(2010, 03, 03)
+		},
 		appendOrder: [ 'm', 'y', 'd' ]
 	}).render('#dynamicDatePicker');
 
@@ -139,6 +119,28 @@ AUI().use('aui-datepicker', function(A) {
 		yearRange: [ 1980, (new Date).getFullYear() ]
 	}).render();
 
+	/*
+ 		Simple Datepicker
+	*/
+
+	var simpleDatepicker1 = new A.DatePicker({
+		trigger: '#trigger1',
+		calendar: {
+			// dates: [ '10/10/2010' ], // DEPRECATED
+			// date: new Date(2010, 10, 10), // FIXED FIRST DAY OF MONTH
+			// selectMultipleDates: true // DEPRECATED
+			selectionMode: 'multiple',
+		},
+		selectedDates: [new Date(2010, 02, 01), new Date(2010, 02, 05)],
+		dateFormat: '%m/%d/%Y'
+		// setValue: false,
+		// on: {
+		// 	'calendar:dateClick': function() {
+		// 		console.log('select');
+		// 	}
+		// }
+	})
+	.render('#datePicker');
 });
 
 </script>
