@@ -75,6 +75,18 @@ var DatePicker = A.Component.create({
 		},
 
 		/**
+		 * Default selected Dates
+		 *
+		 * @attribute selectedDates
+		 * @default true
+		 * @type Array
+		 */
+		selectedDates: {
+			value: new Date(),
+			setter: AArray
+		},
+
+		/**
 		 * If true set the selected date with the correct
 		 * dateFormat to the value of the input field
 		 * which is hosting the Calendar.
@@ -110,6 +122,8 @@ var DatePicker = A.Component.create({
 			value: 'mousedown'
 		}
 	},
+
+	UI_ATTRS: ['selectedDates'],
 
 	EXTENDS: A.OverlayContext,
 
@@ -270,6 +284,23 @@ var DatePicker = A.Component.create({
 			var value = instance.get(FORMATTER).apply(instance, [dateObj]);
 
 			instance.get(CURRENT_NODE).val(value);
+		},
+
+		/**
+		 * Setter of selectedDates attribute
+		 *
+		 * @method _uiSetSelectedDates
+		 * @param {Array} Array of dates
+		 * @protected
+		 */
+		_uiSetSelectedDates: function (val) {
+			var instance = this;
+
+			instance.calendar._clearSelection();
+			instance.calendar.selectDates(val);
+			instance.calendar.set('date', val[0]);
+
+			instance._setTriggerValue(instance.calendar.get('selectedDates'));
 		}
 	}
 });

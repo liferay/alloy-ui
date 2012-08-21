@@ -75,6 +75,18 @@ var DatePicker = A.Component.create({
 		},
 
 		/**
+		 * Default selected Dates
+		 *
+		 * @attribute selectedDates
+		 * @default true
+		 * @type Array
+		 */
+		selectedDates: {
+			value: new Date(),
+			setter: AArray
+		},
+
+		/**
 		 * If true set the selected date with the correct
 		 * dateFormat to the value of the input field
 		 * which is hosting the Calendar.
@@ -110,6 +122,8 @@ var DatePicker = A.Component.create({
 			value: 'mousedown'
 		}
 	},
+
+	UI_ATTRS: ['selectedDates'],
 
 	EXTENDS: A.OverlayContext,
 
@@ -270,6 +284,23 @@ var DatePicker = A.Component.create({
 			var value = instance.get(FORMATTER).apply(instance, [dateObj]);
 
 			instance.get(CURRENT_NODE).val(value);
+		},
+
+		/**
+		 * Setter of selectedDates attribute
+		 *
+		 * @method _uiSetSelectedDates
+		 * @param {Array} Array of dates
+		 * @protected
+		 */
+		_uiSetSelectedDates: function (val) {
+			var instance = this;
+
+			instance.calendar._clearSelection();
+			instance.calendar.selectDates(val);
+			instance.calendar.set('date', val[0]);
+
+			instance._setTriggerValue(instance.calendar.get('selectedDates'));
 		}
 	}
 });
@@ -479,6 +510,11 @@ var DatePickerSelect = A.Component.create(
 			 */
 			calendar: {
 				value: {}
+			},
+
+			datePickerConfig: {
+				value: null,
+				setter: '_setDatePickerConfig'
 			},
 
 			/**
@@ -816,7 +852,6 @@ var DatePickerSelect = A.Component.create(
 
 				instance._populateSelects();
 				instance._syncSelectsUI();
-				instance._selectCurrentDate();
 			},
 
 			/**
@@ -975,7 +1010,8 @@ var DatePickerSelect = A.Component.create(
 				if (!validDay || !validMonth || !validYear) {
 					instance.calendar._clearSelection();
 				} else {
-					instance._selectCurrentDate(date);
+					// instance._selectCurrentDate(date);
+					instance.datePicker.set('selectedDates', date);
 				}
 
 				if (monthChanged) {
@@ -987,20 +1023,17 @@ var DatePickerSelect = A.Component.create(
 				}
 			},
 
-			/**
-			 * Select the current date returned by
-			 * <a href="Calendar.html#method_getCurrentDate">getCurrentDate</a>.
-			 *
-			 * @method selectCurrentDate
-			 * @protected
-			 */
-			_selectCurrentDate: function(date) {
-				var instance = this,
-					currentDate = (date) ? date : instance.getCurrentDate();
 
-				instance.calendar._clearSelection();
-				instance.calendar.selectDates(currentDate);
-				instance.calendar.set('date', currentDate);
+			_setDatePickerConfig: function (val) {
+				var instance = this;
+
+				return A.merge(
+					{
+						calendar: instance.get(CALENDAR),
+						trigger: instance.get(TRIGGER).item(0)
+					},
+					val || {}
+				);
 			},
 
 			/**
@@ -1140,11 +1173,7 @@ var DatePickerSelect = A.Component.create(
 
 			_renderCalendar: function() {
 				var instance = this,
-					datePickerConfig = {
-						calendar: instance.get(CALENDAR),
-						trigger: instance.get(TRIGGER).item(0)
-					},
-					datePicker = new A.DatePicker(datePickerConfig).render();
+					datePicker = new A.DatePicker(instance.get('datePickerConfig')).render();
 
 				datePicker.addTarget(instance);
 				instance.datePicker = datePicker;
@@ -1278,7 +1307,8 @@ var DatePickerSelect = A.Component.create(
 			 */
 			_syncSelectsUI: function(date) {
 				var instance = this,
-					date = (date) ? date : TODAY_DATE;
+					selectedDates = instance.datePicker.get('selectedDates'),
+					date = (date) ? date : selectedDates[0];
 
 				instance._selectCurrentDay(date);
 				instance._selectCurrentMonth(date);
