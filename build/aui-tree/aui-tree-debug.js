@@ -101,6 +101,8 @@ TreeData.ATTRS = {
 };
 
 A.mix(TreeData.prototype, {
+	childrenLength: 0,
+
 	/**
 	 * Construction logic executed during TreeData instantiation. Lifecycle.
 	 *
@@ -529,7 +531,9 @@ A.mix(TreeData.prototype, {
 	 * @return {boolean}
 	 */
 	hasChildNodes: function() {
-		return ( this.get(CHILDREN).length > 0 );
+		var instance = this;
+
+		return (instance.getChildrenLength() > 0);
 	},
 
 	/**
@@ -553,6 +557,12 @@ A.mix(TreeData.prototype, {
 		}
 
 		return cNodes;
+	},
+
+	getChildrenLength: function() {
+		var instance = this;
+
+		return (instance.childrenLength || instance.get(CHILDREN).length);
 	},
 
 	/**
@@ -814,6 +824,8 @@ A.mix(TreeData.prototype, {
 					node = instance.createNode(node);
 
 					if (hasChildren && lazyLoad) {
+						node.childrenLength = children.length;
+
 						A.setTimeout(function() {
 							node.set(CHILDREN, children);
 						}, 50);
@@ -2198,10 +2210,11 @@ var TreeNodeIO = A.Component.create(
 						hasMoreData = (newNodes.length > 0);
 					}
 
+					var childrenLength = instance.getChildrenLength();
 					var start = paginator.start;
-					var total = paginator.total || children.length;
+					var total = paginator.total || childrenLength;
 
-					var showPaginator = hasMoreData && (total > children.length);
+					var showPaginator = hasMoreData && (total > childrenLength);
 
 					if (paginator.alwaysVisible || showPaginator) {
 						instance.get(CONTAINER).append(
