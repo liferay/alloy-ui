@@ -101,7 +101,6 @@ TreeData.ATTRS = {
 };
 
 A.mix(TreeData.prototype, {
-
 	childrenLength: 0,
 
 	/**
