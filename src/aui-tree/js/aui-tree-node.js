@@ -1355,10 +1355,11 @@ var TreeNodeIO = A.Component.create(
 						hasMoreData = (newNodes.length > 0);
 					}
 
+					var childrenLength = instance.getChildrenLength();
 					var start = paginator.start;
-					var total = paginator.total || children.length;
+					var total = paginator.total || childrenLength;
 
-					var showPaginator = hasMoreData && (total > children.length);
+					var showPaginator = hasMoreData && (total > childrenLength);
 
 					if (paginator.alwaysVisible || showPaginator) {
 						instance.get(CONTAINER).append(
