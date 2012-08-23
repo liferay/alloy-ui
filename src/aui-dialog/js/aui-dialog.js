@@ -376,9 +376,11 @@ Dialog.prototype = {
 		}
 
 		if (close) {
+			var closeId = A.guid();
+
 			var closeConfig = {
 				icon: CLOSETHICK,
-				id: CLOSETHICK,
+				id: closeId,
 				handler: {
 					fn: instance.close,
 					context: instance
@@ -391,6 +393,8 @@ Dialog.prototype = {
 			}
 
 			instance.set(ICONS, icons);
+
+			instance._closeId = closeId;
 		}
 
 		instance.publish(
@@ -592,14 +596,16 @@ Dialog.prototype = {
 	_setDefaultARIAValues: function() {
 		var instance = this;
 
+		var icons = instance.icons;
+
 		if (!instance.get(USE_ARIA)) {
 			return;
 		}
 
 		instance.aria.setRole('dialog', instance.get(BOUNDING_BOX));
 
-		if (instance.icons) {
-			var closeThick = instance.icons.item(CLOSETHICK);
+		if (icons) {
+			var closeThick = icons.item(instance._closeId) || null;
 
 			if (closeThick){
 				instance.aria.setAttribute('controls', instance.get('id'), closeThick.get(BOUNDING_BOX));
