@@ -4,7 +4,11 @@
 <head>
 	<script src="../../build/aui/aui.js" type="text/javascript"></script>
 
+	<script src="../../src/javascript/i18n/calendar-pt-br.js" type="text/javascript" charset="utf-8"></script>
+
 	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../build/aui-calendar/assets/skins/sam/aui-calendar.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../build/aui-button-item/assets/skins/sam/aui-button-item.css" type="text/css" media="screen" />
 </head>
 
 <style type="text/css" media="screen">
@@ -22,7 +26,7 @@
 }
 </style>
 
-<body class="yui3-skin-sam">
+<body>
 <h1>Alloy - DatePicker</h1>
 
 <div class="aui-datepicker-example aui-helper-clearfix" id="dynamicDatePicker">
@@ -72,20 +76,31 @@
 
 <script type="text/javascript" charset="utf-8">
 
-AUI().use('aui-datepicker', function(A) {
+AUI().use('aui-datepicker-deprecated', function(A) {
+	/*
+ 		Simple Datepicker
+	*/
+
+	var simpleDatepicker1 = new A.DatePicker({
+		trigger: '#trigger1',
+		calendar: {
+			dates: [ '10/10/2010' ],
+			selectMultipleDates: true
+		},
+		// setValue: false,
+		// on: {
+		// 	'calendar:select': function() {
+		// 		console.log('select');
+		// 	}
+		// }
+	})
+	.render('#datePicker');
+
 	/*
 		Creating dynamically
 		--------------------------------------------------------------------
 	*/
-	var datepicker1 = new A.DatePickerSelect({
-		calendar: {
-			date: new Date(2010, 05, 10),
-			selectedDates: new Date(2010, 03, 03)
-		},
-		datePickerConfig: {
-		},
-		appendOrder: [ 'm', 'y', 'd' ]
-	}).render('#dynamicDatePicker');
+	var datepicker1 = new A.DatePickerSelect().render('#dynamicDatePicker');
 
 	/*
 		Creating from markup
@@ -97,8 +112,9 @@ AUI().use('aui-datepicker', function(A) {
 		contentBox: '#srcNode',
 		boundingBox: '#datePickerBB',
 
+		appendOrder: [ 'y', 'm', 'd' ],
 		calendar: {
-			selectedDates: [new Date(2011, 2, 20)],
+			dates: [ '10/10/2010' ],
 			dateFormat: '%m/%d/%y'
 		},
 
@@ -120,25 +136,6 @@ AUI().use('aui-datepicker', function(A) {
 		yearRange: [ 1980, (new Date).getFullYear() ]
 	}).render();
 
-	/*
- 		Simple Datepicker
-	*/
-
-	var simpleDatepicker1 = new A.DatePicker({
-		trigger: '#trigger1',
-		calendar: {
-			selectionMode: 'multiple',
-			selectedDates: [new Date(2010, 02, 01), new Date(2010, 02, 05)],
-			dateFormat: '%m/%d/%Y'
-		},
-		// setValue: false,
-		// on: {
-		// 	'calendar:dateClick': function() {
-		// 		console.log('select');
-		// 	}
-		// }
-	})
-	.render('#datePicker');
 });
 
 </script>
