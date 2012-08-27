@@ -69,7 +69,6 @@ var Lang = A.Lang,
 	SELECT_WRAPPER_NODE = 'selectWrapperNode',
 	SPACE = ' ',
 	SRC_NODE = 'srcNode',
-	TODAY_DATE = new Date(),
 	TRIGGER = 'trigger',
 	WRAPPER = 'wrapper',
 	YEAR = 'year',
@@ -176,12 +175,7 @@ var DatePickerSelect = A.Component.create(
 			 * @type Object
 			 */
 			calendar: {
-				value: {}
-			},
-
-			datePickerConfig: {
-				value: null,
-				setter: '_setDatePickerConfig'
+				setter: '_setCalendar'
 			},
 
 			/**
@@ -478,7 +472,7 @@ var DatePickerSelect = A.Component.create(
 
 				instance._bindSelectEvents();
 
-				instance.after('calendar:dateClick', instance._afterSelectDate);
+				instance.after('calendar:selectionChange', instance._afterSelectionChange);
 			},
 
 			/**
@@ -645,10 +639,13 @@ var DatePickerSelect = A.Component.create(
 			 * @param {Event} event
 			 * @protected
 			 */
-			_afterSelectDate: function(event) {
-				var instance = this;
+			_afterSelectionChange: function(event) {
+				var instance = this,
+					selectedDates = event.newSelection;
 
-				instance._syncSelectsUI(event.date);
+				if (selectedDates.length) {
+					instance._syncSelectsUI(selectedDates[selectedDates.length-1]);
+				}
 			},
 
 			/**
@@ -677,8 +674,7 @@ var DatePickerSelect = A.Component.create(
 				if (!validDay || !validMonth || !validYear) {
 					instance.calendar._clearSelection();
 				} else {
-					// instance._selectCurrentDate(date);
-					instance.datePicker.set('selectedDates', date);
+					instance.calendar.set('selectedDates', date);
 				}
 
 				if (monthChanged) {
@@ -690,14 +686,12 @@ var DatePickerSelect = A.Component.create(
 				}
 			},
 
-
-			_setDatePickerConfig: function (val) {
+			_setCalendar: function (val) {
 				var instance = this;
 
 				return A.merge(
 					{
-						calendar: instance.get(CALENDAR),
-						trigger: instance.get(TRIGGER).item(0)
+						selectedDates: new Date()
 					},
 					val || {}
 				);
@@ -834,13 +828,17 @@ var DatePickerSelect = A.Component.create(
 					minDate = new Date(firstYear, firstMonth, 1),
 					maxDate = new Date(lastYear, lastMonth, maxMonthDays);
 
-				instance.calendar.set(MAX_DATE, maxDate),
+				instance.calendar.set(MAX_DATE, maxDate);
 				instance.calendar.set(MIN_DATE, minDate);
 			},
 
 			_renderCalendar: function() {
 				var instance = this,
-					datePicker = new A.DatePicker(instance.get('datePickerConfig')).render();
+					datePickerConfig = {
+						calendar: instance.get(CALENDAR),
+						trigger: instance.get(TRIGGER).item(0)
+					},
+					datePicker = new A.DatePicker(datePickerConfig).render();
 
 				datePicker.addTarget(instance);
 				instance.datePicker = datePicker;
@@ -974,8 +972,9 @@ var DatePickerSelect = A.Component.create(
 			 */
 			_syncSelectsUI: function(date) {
 				var instance = this,
-					selectedDates = instance.datePicker.get('selectedDates'),
-					date = (date) ? date : selectedDates[0];
+					selectedDates = instance.calendar.get('selectedDates');
+
+				date = date || (selectedDates.length ? selectedDates[0] : new Date());
 
 				instance._selectCurrentDay(date);
 				instance._selectCurrentMonth(date);

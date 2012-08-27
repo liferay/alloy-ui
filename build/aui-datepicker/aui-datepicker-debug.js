@@ -1,19 +1,21 @@
 AUI.add('aui-datepicker-base', function(A) {
 var Lang = A.Lang,
+	isArray	= Lang.isArray,
 	isBoolean = Lang.isBoolean,
 	isFunction = Lang.isFunction,
-	isArray	= Lang.isArray,
 	isString = Lang.isString,
-	DataType = A.DataType,
+
 	AArray = A.Array,
+	DataType = A.DataType,
 
 	CALENDAR = 'calendar',
 	CONTENT_BOX = 'contentBox',
 	CURRENT_NODE = 'currentNode',
+	DATE_FORMAT = 'dateFormat',
 	DATEPICKER = 'date-picker',
 	FORMATTER = 'formatter',
 	LOCALE = 'locale',
-	SELECT_MULTIPLE_DATES = 'selectionMode',
+	SELECT_MODE = 'selectionMode',
 	SET_VALUE = 'setValue';
 
 
@@ -34,20 +36,6 @@ var DatePicker = A.Component.create({
 		},
 
 		/**
-		 * The default date format string which can be overriden for
-		 * localization support. The format must be valid according to
-		 * <a href="DataType.Date.html">A.DataType.Date.format</a>.
-		 *
-		 * @attribute dateFormat
-		 * @default %m/%d/%Y
-		 * @type String
-		 */
-		dateFormat: {
-			value: '%m/%d/%Y',
-			validator: isString
-		},
-
-		/**
 		 * Function to format the array of the selected dates before set the
          * value of the input.
 		 *
@@ -62,28 +50,16 @@ var DatePicker = A.Component.create({
 
 				if (isArray(dates)) {
 					AArray.each(dates, function (date, index) {
-						formattedDates[index] = instance.formatDate(date);
+						formattedDates[index] = instance.calendar.formatDate(date);
 					});
 
 					return formattedDates.join(',');
 				} else {
-					return instance.formatDate(dates);
+					return instance.calendar.formatDate(dates);
 				}
 			},
 
 			validator: isFunction
-		},
-
-		/**
-		 * Default selected Dates
-		 *
-		 * @attribute selectedDates
-		 * @default true
-		 * @type Array
-		 */
-		selectedDates: {
-			value: new Date(),
-			setter: AArray
 		},
 
 		/**
@@ -123,8 +99,6 @@ var DatePicker = A.Component.create({
 		}
 	},
 
-	UI_ATTRS: ['selectedDates'],
-
 	EXTENDS: A.OverlayContext,
 
 	prototype: {
@@ -135,18 +109,19 @@ var DatePicker = A.Component.create({
 		 * @protected
 		 */
 		initializer: function () {
-			var instance = this;
-
-			instance.calendar = new A.Calendar(
-				instance.get(CALENDAR)
-			);
-		},
-
-		formatDate: function (date) {
 			var instance = this,
-				locale = instance.get(LOCALE);
+				calendarConfig = instance.get(CALENDAR),
+				calendar = new A.Calendar(calendarConfig);
 
-			return DataType.Date.format(date, {format: instance.get('dateFormat'), locale: locale});
+			instance.calendar = calendar;
+
+			// TODO
+
+			instance.after('calendar:selectionChange', instance._afterSelectionChange);
+
+			if (calendarConfig.hasOwnProperty('selectedDates')) {
+				calendar.set('selectedDates', calendarConfig.selectedDates);
+			}
 		},
 
 		/**
@@ -161,14 +136,6 @@ var DatePicker = A.Component.create({
 			DatePicker.superclass.bindUI.apply(this, arguments);
 
 			instance.on('show', instance._onShowOverlay);
-			instance.after('calendar:dateClick', instance._afterSelectDate);
-
-			// Set the value of the trigger with the Calendar current date
-			if (instance.get(SET_VALUE)) {
-				instance._setTriggerValue(
-					instance.formatDate(instance.calendar.get('date'))
-				);
-			}
 		},
 
 		/**
@@ -187,20 +154,14 @@ var DatePicker = A.Component.create({
 		/**
 		 * Fires when a date is selected on the Calendar.
 		 *
-		 * @method _afterSelectDate
+		 * @method _afterSelectionChange
 		 * @param {Event} event
 		 * @protected
 		 */
-		_afterSelectDate: function (event) {
+		_afterSelectionChange: function (event) {
 			var instance = this;
 
-			if (instance.calendar.get(SELECT_MULTIPLE_DATES) != 'multiple') {
-				instance.hide();
-			}
-
-			if (instance.get(SET_VALUE)) {
-				instance._setTriggerValue(instance.calendar.get('selectedDates'));
-			}
+			instance._uiSetSelectedDates(event.newSelection);
 		},
 
 		/**
@@ -286,21 +247,20 @@ var DatePicker = A.Component.create({
 			instance.get(CURRENT_NODE).val(value);
 		},
 
-		/**
-		 * Setter of selectedDates attribute
-		 *
-		 * @method _uiSetSelectedDates
-		 * @param {Array} Array of dates
-		 * @protected
-		 */
 		_uiSetSelectedDates: function (val) {
 			var instance = this;
 
-			instance.calendar._clearSelection();
-			instance.calendar.selectDates(val);
-			instance.calendar.set('date', val[0]);
+			if (instance.calendar.get(SELECT_MODE) !== 'multiple') {
+				instance.hide();
+			}
 
-			instance._setTriggerValue(instance.calendar.get('selectedDates'));
+			if (instance.get(SET_VALUE)) {
+				instance._setTriggerValue(val);
+			}
+
+			if (val.length) {
+				instance.calendar.set('date', val[val.length-1]);
+			}
 		}
 	}
 });
@@ -329,6 +289,47 @@ A.DatepickerManager = new A.OverlayManager({
 	 */
 	zIndexBase: 1000
 });
+
+var Calendar = function() {};
+
+Calendar.ATTRS = {
+	/**
+	 * The default date format string which can be overriden for
+	 * localization support. The format must be valid according to
+	 * <a href="DataType.Date.html">A.DataType.Date.format</a>.
+	 *
+	 * @attribute dateFormat
+	 * @default %m/%d/%Y
+	 * @type String
+	 */
+	dateFormat: {
+		value: '%m/%d/%Y',
+		validator: isString
+	},
+
+	selectedDates: {
+		readOnly: false,
+		setter: function(val) {
+			var instance = this;
+
+			instance._clearSelection();
+
+			instance.selectDates(val);
+		}
+	}
+};
+
+Calendar.prototype = {
+	formatDate: function (date) {
+		var instance = this,
+			dateFormat = instance.get(DATE_FORMAT),
+			locale = instance.get(LOCALE);
+
+		return DataType.Date.format(date, {format: dateFormat, locale: locale});
+	}
+};
+
+A.Base.mix(A.Calendar, [Calendar]);
 
 }, '@VERSION@' ,{skinnable:true, requires:['aui-datatype','calendar','aui-overlay-context']});
 AUI.add('aui-datepicker-select', function(A) {
@@ -402,7 +403,6 @@ var Lang = A.Lang,
 	SELECT_WRAPPER_NODE = 'selectWrapperNode',
 	SPACE = ' ',
 	SRC_NODE = 'srcNode',
-	TODAY_DATE = new Date(),
 	TRIGGER = 'trigger',
 	WRAPPER = 'wrapper',
 	YEAR = 'year',
@@ -509,12 +509,7 @@ var DatePickerSelect = A.Component.create(
 			 * @type Object
 			 */
 			calendar: {
-				value: {}
-			},
-
-			datePickerConfig: {
-				value: null,
-				setter: '_setDatePickerConfig'
+				setter: '_setCalendar'
 			},
 
 			/**
@@ -811,7 +806,7 @@ var DatePickerSelect = A.Component.create(
 
 				instance._bindSelectEvents();
 
-				instance.after('calendar:dateClick', instance._afterSelectDate);
+				instance.after('calendar:selectionChange', instance._afterSelectionChange);
 			},
 
 			/**
@@ -978,10 +973,13 @@ var DatePickerSelect = A.Component.create(
 			 * @param {Event} event
 			 * @protected
 			 */
-			_afterSelectDate: function(event) {
-				var instance = this;
+			_afterSelectionChange: function(event) {
+				var instance = this,
+					selectedDates = event.newSelection;
 
-				instance._syncSelectsUI(event.date);
+				if (selectedDates.length) {
+					instance._syncSelectsUI(selectedDates[selectedDates.length-1]);
+				}
 			},
 
 			/**
@@ -1010,8 +1008,7 @@ var DatePickerSelect = A.Component.create(
 				if (!validDay || !validMonth || !validYear) {
 					instance.calendar._clearSelection();
 				} else {
-					// instance._selectCurrentDate(date);
-					instance.datePicker.set('selectedDates', date);
+					instance.calendar.set('selectedDates', date);
 				}
 
 				if (monthChanged) {
@@ -1023,14 +1020,12 @@ var DatePickerSelect = A.Component.create(
 				}
 			},
 
-
-			_setDatePickerConfig: function (val) {
+			_setCalendar: function (val) {
 				var instance = this;
 
 				return A.merge(
 					{
-						calendar: instance.get(CALENDAR),
-						trigger: instance.get(TRIGGER).item(0)
+						selectedDates: new Date()
 					},
 					val || {}
 				);
@@ -1167,13 +1162,17 @@ var DatePickerSelect = A.Component.create(
 					minDate = new Date(firstYear, firstMonth, 1),
 					maxDate = new Date(lastYear, lastMonth, maxMonthDays);
 
-				instance.calendar.set(MAX_DATE, maxDate),
+				instance.calendar.set(MAX_DATE, maxDate);
 				instance.calendar.set(MIN_DATE, minDate);
 			},
 
 			_renderCalendar: function() {
 				var instance = this,
-					datePicker = new A.DatePicker(instance.get('datePickerConfig')).render();
+					datePickerConfig = {
+						calendar: instance.get(CALENDAR),
+						trigger: instance.get(TRIGGER).item(0)
+					},
+					datePicker = new A.DatePicker(datePickerConfig).render();
 
 				datePicker.addTarget(instance);
 				instance.datePicker = datePicker;
@@ -1307,8 +1306,9 @@ var DatePickerSelect = A.Component.create(
 			 */
 			_syncSelectsUI: function(date) {
 				var instance = this,
-					selectedDates = instance.datePicker.get('selectedDates'),
-					date = (date) ? date : selectedDates[0];
+					selectedDates = instance.calendar.get('selectedDates');
+
+				date = date || (selectedDates.length ? selectedDates[0] : new Date());
 
 				instance._selectCurrentDay(date);
 				instance._selectCurrentMonth(date);
