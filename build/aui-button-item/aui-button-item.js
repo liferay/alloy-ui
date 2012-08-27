@@ -518,7 +518,14 @@ var ButtonItem = A.Component.create(
 
 					var boundFn = A.rbind.apply(A, [fn, context, args].concat(customArgs || []));
 
-					instance._interactionHandle = instance.on(type, boundFn);
+					instance._interactionHandle = instance.on(
+						type,
+						function() {
+							if (!instance.get('disabled')) {
+								boundFn.apply(this, arguments);
+							}
+						}
+					);
 				}
 			},
 
