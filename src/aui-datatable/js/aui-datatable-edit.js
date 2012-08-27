@@ -300,7 +300,6 @@ var BaseCellEditor = A.Component.create({
 
 		inputFormatter: {
 			value: function(val) {
-
 				if (isString(val)) {
 					val = val.replace(REGEX_NL, TPL_BR);
 				}
@@ -1341,7 +1340,7 @@ var DateCellEditor = A.Component.create({
 				var instance = this,
 					values = [];
 
-				AArray.each(val, function (date, index) {
+				AArray.each(val, function(date, index) {
 					values.push(instance.formatDate(date).toString());
 				});
 
@@ -1354,7 +1353,7 @@ var DateCellEditor = A.Component.create({
 				var instance = this,
 					values = [];
 
-				AArray.each(val, function (date, index) {
+				AArray.each(val, function(date, index) {
 					values.push(DataType.Date.parse(date));
 				});
 
@@ -1378,7 +1377,7 @@ var DateCellEditor = A.Component.create({
 			return instance.calendar.get('selectedDates');
 		},
 
-		formatDate: function (date) {
+		formatDate: function(date) {
 			var instance = this,
 				mask = instance.get('dateFormat'),
 				locale = instance.get('locale');
@@ -1421,14 +1420,13 @@ var DateCellEditor = A.Component.create({
 				formatedValue;
 
 			if (calendar) {
-
 				if (!isArray(val)) {
 					val = [val];
 				}
 
-				formatedValue = instance.formatValue(instance.get(OUTPUT_FORMATTER), val)
+				formatedValue = instance.formatValue(instance.get(OUTPUT_FORMATTER), val);
 
-				calendar._clearSelection(); // Should be a public method
+				calendar._clearSelection();
 				calendar.set('date', formatedValue[0]);
 				calendar.selectDates(formatedValue);
 			}

@@ -79,10 +79,10 @@ AUI().use('aui-datepicker', function(A) {
 	*/
 	var datepicker1 = new A.DatePickerSelect({
 		calendar: {
-			date: new Date(2010, 05, 10)
+			date: new Date(2010, 05, 10),
+			selectedDates: new Date(2010, 03, 03)
 		},
 		datePickerConfig: {
-			selectedDates: new Date(2010, 03, 03)
 		},
 		appendOrder: [ 'm', 'y', 'd' ]
 	}).render('#dynamicDatePicker');
@@ -98,6 +98,7 @@ AUI().use('aui-datepicker', function(A) {
 		boundingBox: '#datePickerBB',
 
 		calendar: {
+			selectedDates: [new Date(2011, 2, 20)],
 			dateFormat: '%m/%d/%y'
 		},
 
@@ -126,13 +127,10 @@ AUI().use('aui-datepicker', function(A) {
 	var simpleDatepicker1 = new A.DatePicker({
 		trigger: '#trigger1',
 		calendar: {
-			// dates: [ '10/10/2010' ], // DEPRECATED
-			// date: new Date(2010, 10, 10), // FIXED FIRST DAY OF MONTH
-			// selectMultipleDates: true // DEPRECATED
 			selectionMode: 'multiple',
+			selectedDates: [new Date(2010, 02, 01), new Date(2010, 02, 05)],
+			dateFormat: '%m/%d/%Y'
 		},
-		selectedDates: [new Date(2010, 02, 01), new Date(2010, 02, 05)],
-		dateFormat: '%m/%d/%Y'
 		// setValue: false,
 		// on: {
 		// 	'calendar:dateClick': function() {
