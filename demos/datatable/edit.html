@@ -36,9 +36,8 @@ AUI().use('aui-datatable', 'datatable-sort', 'aui-datatype', 'console', function
 
 	// Columns must match data parameter names
 	var data = [
-		{name:"John A. Smith<b>dfsdf</b>&gt;ABC&lt;", address:"1236 Some Street", city:"San Francisco", state:"CA", amount:5, active:"yes", colors:["red"], fruit:["banana","cherry"], last_login:"4/19/2007"},
-		{name:"Joan B. Jones", address:"3271 Another Ave", city:"New York", state:"NY", amount:3, active:"no", colors:["red","blue"], fruit:["apple"], last_login:"2/15/2006"},
-		{name:"Bob C. Uncle", address:"9996 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["cherry"], last_login:"1/23/2004"},
+		{name:"John A. Smith&gt;ABC&lt;", address:"1236 Some Street", city:"San Francisco", state:"CA", amount:5, active:"yes", colors:["red"], fruit:["banana","cherry"], last_login:"4/19/2007"},
+		{name:"Bob C. Uncle", address:"9996 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["cherry"], last_login:["2004/10/01", "2004/10/04", "2004/10/06"]},
 		{name:"John D. Smith", address:"1623 Some Street", city:"San Francisco", state:"CA", amount:5, active:"yes", colors:["red"], fruit:["cherry"], last_login:"4/19/2007"},
 		{name:"Joan E. Jones", address:"3217 Another Ave", city:"New York", state:"NY", amount:3, active:"no", colors:["red","blue"], fruit:["apple","cherry"], last_login:"2/15/2006"},
 		{name:"Bob F. Uncle", address:"9899 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["banana"], last_login:"1/23/2004"},
@@ -53,7 +52,7 @@ AUI().use('aui-datatable', 'datatable-sort', 'aui-datatype', 'console', function
 		{name:"Bob O. Uncle", address:"9959 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["kiwi","cherry"], last_login:"1/23/2004"},
 		{name:"John P. Smith", address:"6123 Some Street", city:"San Francisco", state:"CA", amount:5, active:"yes", colors:["red"], fruit:["banana"], last_login:"4/19/2007"},
 		{name:"Joan Q. Jones", address:"3281 Another Ave", city:"New York", state:"NY", amount:3, active:"no", colors:["red","blue"], fruit:["apple"], last_login:"2/15/2006"},
-		{name:"Bob R. Uncle", address:"9989 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["apple"], last_login:"1/23/2004"}
+		{name:"Bob R. Uncle", address:"9989 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["apple"], last_login:"2012/08/08"}
 	];
 
 	window.gEditor = new A.TextAreaCellEditor({
@@ -172,8 +171,18 @@ AUI().use('aui-datatable', 'datatable-sort', 'aui-datatype', 'console', function
 			sortable: true,
 			editor: new A.DateCellEditor({
 				calendar: {
-					selectMultipleDates: true
+					/**
+					* Options from YUI3 Calendar
+					*/
+					width:'400px',
+					showPrevMonth: true,
+					showNextMonth: true,
+					selectionMode: 'multiple',
+					dateFormat: '%m/%d/%Y',
+					// - DEPRECATED selectMultipleDates: true
+					// selectionMode now handles Multiple dates
 				},
+
 				validator: {
 					rules: {
 						value: {

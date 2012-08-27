@@ -3495,7 +3495,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 A.Base.mix(A.SchedulerTableView, [ A.SchedulerTableViewDD ]);
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-event','aui-calendar','aui-button-item','dd-drag','dd-delegate','dd-drop','dd-constrain']});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-event','aui-datatype','aui-button-item','dd-drag','dd-delegate','dd-drop','dd-constrain']});
 AUI.add('aui-scheduler-event', function(A) {
 var Lang = A.Lang,
 	isString = Lang.isString,
