@@ -6,20 +6,27 @@ AUI.add('aui-button-item', function(A) {
  */
 
 var Lang = A.Lang,
+	isString = Lang.isString,
 
 	getClassName = A.ClassNameManager.getClassName,
 
 	NAME = 'buttonitem',
 
+	BOUNDING_BOX = 'boundingBox',
+	BUTTON = 'button',
 	CONTENT_BOX = 'contentBox',
 	DOT = '.',
+	HANDLER = 'handler',
 	ICON = 'icon',
 	ICON_NODE = 'iconNode',
 	LABEL = 'label',
 	LABEL_NODE = 'labelNode',
 	ONLY = 'only',
+	RESET = 'reset',
 	STATE = 'state',
+	SUBMIT = 'submit',
 	TITLE = 'title',
+	TYPE = 'type',
 
 	CSS_BUTTON = getClassName(NAME),
 	CSS_BUTTON_ICON = getClassName(NAME, ICON),
@@ -235,6 +242,20 @@ var ButtonItem = A.Component.create(
 			title: {
 				setter: '_setTitle',
 				value: false
+			},
+
+			/**
+			 * Button type.
+			 *
+			 * @attribute type
+			 * @default button
+			 * @type String
+			 */
+			type: {
+				validator: function(val) {
+					return (val === BUTTON || val === SUBMIT || val === RESET);
+				},
+				value: BUTTON
 			}
 		},
 
@@ -297,7 +318,7 @@ var ButtonItem = A.Component.create(
 			ButtonItem.superclass.constructor.call(instance, config);
 		},
 
-		UI_ATTRS: [ICON, LABEL, TITLE],
+		UI_ATTRS: [ICON, LABEL, TITLE, TYPE],
 
 		prototype: {
 			BOUNDING_TEMPLATE: TPL_BUTTON,
@@ -331,7 +352,7 @@ var ButtonItem = A.Component.create(
 				var title = instance.get('title');
 
 				if (icon) {
-					instance._uiSetIcon(icon)
+					instance._uiSetIcon(icon);
 				}
 
 				if (label) {
@@ -464,7 +485,7 @@ var ButtonItem = A.Component.create(
 				var hasLabelOnly = (!icon && label);
 				var hasIconOnly = (icon && !label);
 
-				var boundingBox = instance.get('boundingBox');
+				var boundingBox = instance.get(BOUNDING_BOX);
 
 				boundingBox.toggleClass(CSS_BUTTON_ICON_LABEL, hasIconAndLabel);
 				boundingBox.toggleClass(CSS_BUTTON_ICON_ONLY, hasIconOnly);
@@ -535,9 +556,24 @@ var ButtonItem = A.Component.create(
 			_uiSetTitle: function(val) {
 				var instance = this;
 
-				var boundingBox = instance.get('boundingBox');
+				var boundingBox = instance.get(BOUNDING_BOX);
 
-				boundingBox.setAttribute('title', val);
+				boundingBox.setAttribute(TITLE, val);
+			},
+
+			/**
+			 * Updates the UI for the type in response to the <a href="ButtonItem.html#event_typeChange">typeChange</a> event.
+			 *
+			 * @method _uiSetType
+			 * @param {String} val The new value
+			 * @protected
+			 */
+			_uiSetType: function(val) {
+				var instance = this;
+
+				var boundingBox = instance.get(BOUNDING_BOX);
+
+				boundingBox.setAttribute(TYPE, val);
 			}
 		}
 	}
