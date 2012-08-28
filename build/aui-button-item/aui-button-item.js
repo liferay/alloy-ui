@@ -137,29 +137,7 @@ var ButtonItem = A.Component.create(
 			 */
 			handler: {
 				lazyAdd: false,
-				value: null,
-				setter: function(value) {
-					var instance = this;
-
-					var fn = value;
-					var context = instance;
-					var args = instance;
-					var type = 'click';
-
-					if (Lang.isObject(fn)) {
-						var handlerConfig = fn;
-
-						fn = handlerConfig.fn || fn;
-						context = handlerConfig.context || context;
-						type = handlerConfig.type || type;
-					}
-
-					if (Lang.isFunction(fn)) {
-						instance.on(type, A.rbind(fn, context, args, handlerConfig.args));
-					}
-
-					return value;
-				}
+				value: null
 			},
 
 			/**
@@ -303,7 +281,7 @@ var ButtonItem = A.Component.create(
 			var buttonType = 'button';
 
 			if (config) {
-				if (Lang.isString(config)) {
+				if (isString(config)) {
 					config = {
 						icon: config
 					};
@@ -318,7 +296,7 @@ var ButtonItem = A.Component.create(
 			ButtonItem.superclass.constructor.call(instance, config);
 		},
 
-		UI_ATTRS: [ICON, LABEL, TITLE, TYPE],
+		UI_ATTRS: [HANDLER, ICON, LABEL, TITLE, TYPE],
 
 		prototype: {
 			BOUNDING_TEMPLATE: TPL_BUTTON,
@@ -490,6 +468,55 @@ var ButtonItem = A.Component.create(
 				boundingBox.toggleClass(CSS_BUTTON_ICON_LABEL, hasIconAndLabel);
 				boundingBox.toggleClass(CSS_BUTTON_ICON_ONLY, hasIconOnly);
 				boundingBox.toggleClass(CSS_BUTTON_LABEL_ONLY, hasLabelOnly);
+			},
+
+			/**
+			 * Updates the UI for the icon in response to the <a href="ButtonItem.html#event_HandlerChange">Handler</a> event.
+			 *
+			 * @method _uiSetHandler
+			 * @param {String} val Handler name
+			 * @protected
+			 */
+			_uiSetHandler: function(value) {
+				var instance = this;
+
+				var fn = value;
+				var parent = instance.get('parent');
+				var context = (parent && parent._DEFAULT_CONTEXT) || instance._DEFAULT_CONTEXT || instance;
+
+				var type = 'click';
+
+				var args = instance;
+				var customArgs;
+
+				if (Lang.isObject(fn)) {
+					var handlerConfig = fn;
+
+					fn = handlerConfig.fn || fn;
+					context = handlerConfig.context || context;
+					type = handlerConfig.type || type;
+
+					customArgs = handlerConfig.args;
+				}
+
+				if (Lang.isFunction(fn)) {
+					var interactionHandle = instance._interactionHandle;
+
+					if (interactionHandle) {
+						interactionHandle.detach();
+					}
+
+					var boundFn = A.rbind.apply(A, [fn, context, args].concat(customArgs || []));
+
+					instance._interactionHandle = instance.on(
+						type,
+						function() {
+							if (!instance.get('disabled')) {
+								boundFn.apply(this, arguments);
+							}
+						}
+					);
+				}
 			},
 
 			/**
