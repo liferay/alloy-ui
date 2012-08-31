@@ -542,6 +542,10 @@ var FormValidator = A.Component.create({
 
 			var fieldRules = instance.get(RULES)[field.get(NAME)];
 
+			if (!fieldRules) {
+				return;
+			}
+
 			var required = instance.normalizeRuleValue(fieldRules.required);
 			var hasValue = YUI.AUI.defaults.FormValidator.RULES.required.apply(instance, [field.val(), field]);
 
