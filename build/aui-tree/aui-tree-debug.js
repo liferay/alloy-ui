@@ -1045,7 +1045,10 @@ var TreeNode = A.Component.create(
 			 * @type String
 			 */
 			id: {
-				validator: isString
+				validator: isString,
+				valueFn: function() {
+					return A.guid();
+				}
 			},
 
 			/**
