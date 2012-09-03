@@ -10,6 +10,8 @@ var L = A.Lang,
 	isBoolean = L.isBoolean,
 	isString = L.isString,
 
+	UA = A.UA,
+
 	BOUNDING_BOX = 'boundingBox',
 	CHILDREN = 'children',
 	CONTAINER = 'container',
@@ -577,8 +579,9 @@ var TreeViewDD = A.Component.create(
 			 * @protected
 			 */
 			_bindDragDrop: function() {
-				var instance = this;
-				var boundingBox = instance.get(BOUNDING_BOX);
+				var instance = this,
+					boundingBox = instance.get(BOUNDING_BOX),
+					dragInitHandle = null;
 
 				instance._createDragInitHandler = function() {
 					instance.ddDelegate = new A.DD.Delegate(
@@ -604,11 +607,19 @@ var TreeViewDD = A.Component.create(
 
 					dd.removeInvalid('a');
 
-					dragInitHandle.detach();
+					if (dragInitHandle) {
+						dragInitHandle.detach();
+					}
+
 				};
 
 				// only create the drag on the init elements if the user mouseover the boundingBox for init performance reasons
-				var dragInitHandle = boundingBox.on(['focus', 'mousedown', 'mousemove'], instance._createDragInitHandler);
+				if (!UA.mobile) {
+					dragInitHandle = boundingBox.on(['focus', 'mousedown', 'mousemove'], instance._createDragInitHandler);
+				}
+				else {
+					instance._createDragInitHandler();
+				}
 
 				// drag & drop listeners
 				instance.on('drag:align', instance._onDragAlign);
