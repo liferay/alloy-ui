@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
-YUI.add('calendar', function(Y) {
+YUI.add('calendar', function (Y, NAME) {
 
 /**
  * The Calendar component is a UI widget that allows users
@@ -551,5 +551,4 @@ Y.Calendar = Y.extend(Calendar, Y.CalendarBase, {
   }
 });
 
-
-}, '3.6.0' ,{requires:['calendar-base', 'calendarnavigator'], lang:['de', 'en', 'fr', 'ja', 'nb-NO', 'pt-BR', 'ru', 'zh-HANT-TW']});
+}, '3.7.1pr1', {"requires": ["calendar-base", "calendarnavigator"], "lang": ["de", "en", "fr", "ja", "nb-NO", "pt-BR", "ru", "zh-HANT-TW"], "skinnable": true});

@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
-YUI.add('model', function(Y) {
+YUI.add('model', function (Y, NAME) {
 
 /**
 Attribute-based data model with APIs for getting, setting, validating, and
@@ -426,7 +426,7 @@ Y.Model = Y.extend(Model, Y.Base, {
                     });
                 }
 
-                parsed = facade.parsed = self.parse(response);
+                parsed = facade.parsed = self._parse(response);
 
                 self.setAttrs(parsed, options);
                 self.changed = {};
@@ -541,7 +541,7 @@ Y.Model = Y.extend(Model, Y.Base, {
                     }
 
                     if (response) {
-                        parsed = facade.parsed = self.parse(response);
+                        parsed = facade.parsed = self._parse(response);
                         self.setAttrs(parsed, options);
                     }
 
@@ -867,6 +867,24 @@ Y.Model = Y.extend(Model, Y.Base, {
     },
 
     /**
+    Calls the public, overrideable `parse()` method and returns the result.
+
+    Override this method to provide a custom pre-parsing implementation. This
+    provides a hook for custom persistence implementations to "prep" a response
+    before calling the `parse()` method.
+
+    @method _parse
+    @param {Any} response Server response.
+    @return {Object} Attribute hash.
+    @protected
+    @see Model.parse()
+    @since 3.6.1
+    **/
+    _parse: function (response) {
+        return this.parse(response);
+    },
+
+    /**
     Calls the public, overridable `validate()` method and fires an `error` event
     if validation fails.
 
@@ -973,4 +991,4 @@ Y.Model = Y.extend(Model, Y.Base, {
 });
 
 
-}, '3.6.0' ,{requires:['base-build', 'escape', 'json-parse']});
+}, '3.7.1pr1', {"requires": ["base-build", "escape", "json-parse"]});

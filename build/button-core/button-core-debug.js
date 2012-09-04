@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
-YUI.add('button-core', function(Y) {
+YUI.add('button-core', function (Y, NAME) {
 
 /**
 * Provides an interface for working with button-like DOM nodes
@@ -251,4 +251,4 @@ Y.mix(Button.prototype, Y.AttributeCore.prototype);
 Y.ButtonCore = Button;
 
 
-}, '3.6.0' ,{requires:['attribute-core', 'classnamemanager', 'node-base']});
+}, '3.7.1pr1', {"requires": ["attribute-core", "classnamemanager", "node-base"]});

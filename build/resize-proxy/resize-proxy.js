@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
-YUI.add('resize-proxy', function(Y) {
+YUI.add('resize-proxy', function (Y, NAME) {
 
 var ACTIVE_HANDLE_NODE = 'activeHandleNode',
 	CURSOR = 'cursor',
@@ -170,4 +170,4 @@ Y.namespace('Plugin');
 Y.Plugin.ResizeProxy = ResizeProxy;
 
 
-}, '3.6.0' ,{requires:['resize-base', 'plugin'], skinnable:false});
+}, '3.7.1pr1', {"requires": ["plugin", "resize-base"]});

@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
-YUI.add('button-group', function(Y) {
+YUI.add('button-group', function (Y, NAME) {
 
 /**
 * A Widget to create groups of buttons
@@ -191,4 +191,4 @@ Y.ButtonGroup = Y.extend(ButtonGroup, Y.Widget, {
 });
 
 
-}, '3.6.0' ,{requires:['button-plugin', 'cssbutton', 'widget']});
+}, '3.7.1pr1', {"requires": ["button-plugin", "cssbutton", "widget"]});

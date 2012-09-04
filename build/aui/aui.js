@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
 /**
  * The YUI module contains the components required for building the YUI seed
@@ -160,7 +160,7 @@ properties.
 (function() {
 
     var proto, prop,
-        VERSION = '3.6.0',
+        VERSION = '3.7.1pr1',
         PERIOD = '.',
         BASE = 'http://yui.yahooapis.com/',
         /*
@@ -334,7 +334,7 @@ proto = {
 
         if (!Env) {
             Y.Env = {
-                core: ['get','features','intl-base','yui-log','yui-later','loader-base', 'loader-rollup', 'loader-yui3'],
+                core: ['get', 'features', 'intl-base', 'yui-log', 'yui-later', 'loader-base', 'loader-rollup', 'loader-yui3'],
                 loaderExtras: ['loader-rollup', 'loader-yui3'],
                 mods: {}, // flat module map
                 versions: {}, // version module map
@@ -1954,7 +1954,7 @@ Or you can delay until a node is available (with `available` or `contentready`):
     
 
 */
-YUI.add('yui-base', function(Y) {
+YUI.add('yui-base', function (Y, NAME) {
 
 /*
  * YUI stub
@@ -3780,7 +3780,7 @@ Y.UA.compareVersions = function (a, b) {
 };
 YUI.Env.aliases = {
     "anim": ["anim-base","anim-color","anim-curve","anim-easing","anim-node-plugin","anim-scroll","anim-xy"],
-    "app": ["app-base","app-transitions","lazy-model-list","model","model-list","model-sync-rest","router","view","view-node-map"],
+    "app": ["app-base","app-content","app-transitions","lazy-model-list","model","model-list","model-sync-rest","router","view","view-node-map"],
     "attribute": ["attribute-base","attribute-complex"],
     "autocomplete": ["autocomplete-base","autocomplete-sources","autocomplete-list","autocomplete-plugin"],
     "base": ["base-base","base-pluginhost","base-build"],
@@ -3818,8 +3818,8 @@ YUI.Env.aliases = {
 };
 
 
-}, '3.6.0' );
-YUI.add('get', function(Y) {
+}, '3.7.1pr1', {"use": ["yui-base", "get", "features", "intl-base", "yui-log", "yui-later", "loader-base", "loader-rollup", "loader-yui3"]});
+YUI.add('get', function (Y, NAME) {
 
 /*jslint boss:true, expr:true, laxbreak: true */
 
@@ -5069,8 +5069,8 @@ Transaction.prototype = {
 };
 
 
-}, '3.6.0' ,{requires:['yui-base']});
-YUI.add('features', function(Y) {
+}, '3.7.1pr1', {"requires": ["yui-base"]});
+YUI.add('features', function (Y, NAME) {
 
 var feature_tests = {};
 
@@ -5402,9 +5402,8 @@ add('load', '17', {
     "ua": "ie"
 });
 
-
-}, '3.6.0' ,{requires:['yui-base']});
-YUI.add('intl-base', function(Y) {
+}, '3.7.1pr1', {"requires": ["yui-base"]});
+YUI.add('intl-base', function (Y, NAME) {
 
 /**
  * The Intl utility provides a central location for managing sets of
@@ -5491,8 +5490,8 @@ Y.mix(Y.namespace('Intl'), {
 });
 
 
-}, '3.6.0' ,{requires:['yui-base']});
-YUI.add('yui-log', function(Y) {
+}, '3.7.1pr1', {"requires": ["yui-base"]});
+YUI.add('yui-log', function (Y, NAME) {
 
 /**
  * Provides console log capability and exposes a custom event for
@@ -5601,8 +5600,8 @@ INSTANCE.message = function() {
 };
 
 
-}, '3.6.0' ,{requires:['yui-base']});
-YUI.add('yui-later', function(Y) {
+}, '3.7.1pr1', {"requires": ["yui-base"]});
+YUI.add('yui-later', function (Y, NAME) {
 
 /**
  * Provides a setTimeout/setInterval wrapper. This module is a `core` YUI module, <a href="../classes/YUI.html#method_later">it's documentation is located under the YUI class</a>.
@@ -5678,8 +5677,8 @@ Y.Lang.later = Y.later;
 
 
 
-}, '3.6.0' ,{requires:['yui-base']});
-YUI.add('loader-base', function(Y) {
+}, '3.7.1pr1', {"requires": ["yui-base"]});
+YUI.add('loader-base', function (Y, NAME) {
 
 /**
  * The YUI loader core
@@ -5694,7 +5693,7 @@ if (!YUI.Env[Y.version]) {
             BUILD = '/build/',
             ROOT = VERSION + BUILD,
             CDN_BASE = Y.Env.base,
-            GALLERY_VERSION = 'gallery-2012.08.01-13-16',
+            GALLERY_VERSION = 'gallery-2012.08.22-20-00',
             TNT = '2in3',
             TNT_VERSION = '4',
             YUI2_VERSION = '2.9.0',
@@ -6398,6 +6397,10 @@ Y.Loader.prototype = {
         DEBUG: {
             'searchExp': '-min\\.js',
             'replaceStr': '-debug.js'
+        },
+        COVERAGE: {
+            'searchExp': '-min\\.js',
+            'replaceStr': '-coverage.js'
         }
     },
     /*
@@ -6580,6 +6583,26 @@ Y.Loader.prototype = {
             self.filter = self.FILTER_DEFS[f];
             if (f == 'DEBUG') {
                 self.require('yui-log', 'dump');
+            }
+        }
+
+        if (self.filterName && self.coverage) {
+            if (self.filterName == 'COVERAGE' && L.isArray(self.coverage) && self.coverage.length) {
+                var mods = [];
+                for (i = 0; i < self.coverage.length; i++) {
+                    var mod = self.coverage[i];
+                    if (self.moduleInfo[mod] && self.moduleInfo[mod].use) {
+                        mods = [].concat(mods, self.moduleInfo[mod].use);
+                    } else {
+                        mods.push(mod);
+                    }
+                }
+                self.filters = self.filters || {};
+                Y.Array.each(mods, function(mod) {
+                    self.filters[mod] = self.FILTER_DEFS.COVERAGE;
+                });
+                self.filterName = 'RAW';
+                self.filter = self.FILTER_DEFS[self.filterName];
             }
         }
         
@@ -7060,7 +7083,7 @@ Y.Loader.prototype = {
     * @method _explodeRollups
     */
     _explodeRollups: function() {
-        var self = this, m, i, a, v, len, len2,
+        var self = this, m, m2, i, a, v, len, len2,
         r = self.required;
 
         if (!self.allowRollup) {
@@ -7070,11 +7093,11 @@ Y.Loader.prototype = {
                     if (m && m.use) {
                         len = m.use.length;
                         for (a = 0; a < len; a++) {
-                            m = self.getModule(m.use[a]);
-                            if (m && m.use) {
-                                len2 = m.use.length;
+                            m2 = self.getModule(m.use[a]);
+                            if (m2 && m2.use) {
+                                len2 = m2.use.length;
                                 for (v = 0; v < len2; v++) {
-                                    r[m.use[v]] = true;
+                                    r[m2.use[v]] = true;
                                 }
                             } else {
                                 r[m.use[a]] = true;
@@ -8384,8 +8407,8 @@ Y.Loader.prototype = {
 
 
 
-}, '3.6.0' ,{requires:['get', 'features']});
-YUI.add('loader-rollup', function(Y) {
+}, '3.7.1pr1', {"requires": ["get", "features"]});
+YUI.add('loader-rollup', function (Y, NAME) {
 
 /**
  * Optional automatic rollup logic for reducing http connections
@@ -8483,8 +8506,8 @@ Y.Loader.prototype._rollup = function() {
 };
 
 
-}, '3.6.0' ,{requires:['loader-base']});
-YUI.add('loader-yui3', function(Y) {
+}, '3.7.1pr1', {"requires": ["loader-base"]});
+YUI.add('loader-yui3', function (Y, NAME) {
 
 /* This file is auto-generated by src/loader/scripts/meta_join.js */
 
@@ -8559,6 +8582,7 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
     "app": {
         "use": [
             "app-base",
+            "app-content",
             "app-transitions",
             "lazy-model-list",
             "model",
@@ -8575,6 +8599,12 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
             "pjax-base",
             "router",
             "view"
+        ]
+    },
+    "app-content": {
+        "requires": [
+            "app-base",
+            "pjax-content"
         ]
     },
     "app-transitions": {
@@ -8662,7 +8692,7 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
     },
     "attribute-core": {
         "requires": [
-            "yui-base"
+            "oop"
         ]
     },
     "attribute-events": {
@@ -8672,7 +8702,7 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
     },
     "attribute-extras": {
         "requires": [
-            "yui-base"
+            "oop"
         ]
     },
     "autocomplete": {
@@ -9863,6 +9893,13 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
             "yui-throttle"
         ]
     },
+    "gesture-simulate": {
+        "requires": [
+            "async-queue",
+            "event-simulate",
+            "node-screen"
+        ]
+    },
     "get": {
         "requires": [
             "yui-base"
@@ -10239,7 +10276,8 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
     "node-event-simulate": {
         "requires": [
             "node-base",
-            "event-simulate"
+            "event-simulate",
+            "gesture-simulate"
         ]
     },
     "node-flick": {
@@ -10332,13 +10370,20 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
     "pjax": {
         "requires": [
             "pjax-base",
-            "io-base"
+            "pjax-content"
         ]
     },
     "pjax-base": {
         "requires": [
             "classnamemanager",
             "node-event-delegate",
+            "router"
+        ]
+    },
+    "pjax-content": {
+        "requires": [
+            "io-base",
+            "node-base",
             "router"
         ]
     },
@@ -10672,8 +10717,7 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
             "event-custom",
             "substitute",
             "json-stringify"
-        ],
-        "skinnable": true
+        ]
     },
     "test-console": {
         "requires": [
@@ -10935,14 +10979,11 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
         ]
     }
 };
-YUI.Env[Y.version].md5 = '5a681478005a2bdc375c61ddfa610d1e';
+YUI.Env[Y.version].md5 = '2631b5fb2c08064b4e8385f1142513e5';
 
 
-}, '3.6.0' ,{requires:['loader-base']});
-
-
-YUI.add('yui', function(Y){}, '3.6.0' ,{use:['yui-base','get','features','intl-base','yui-log','yui-later','loader-base', 'loader-rollup', 'loader-yui3']});
-
+}, '3.7.1pr1', {"requires": ["loader-base"]});
+YUI.add('yui', function (Y, NAME) {}, '3.7.1pr1', {"use": ["yui-base", "get", "features", "intl-base", "yui-log", "yui-later", "loader-base", "loader-rollup", "loader-yui3"]});
 ;(function() {
 	var AUI_config = {
 		filter: 'raw',
@@ -11017,8 +11058,6 @@ YUI.add('yui', function(Y){}, '3.6.0' ,{use:['yui-base','get','features','intl-b
 						'aui-selector': {requires:['selector-css3'], skinnable:false},
 						'aui-simple-anim': {requires:['aui-base'], skinnable:false},
 						'aui-skin-base': {path: 'aui-skin-base/css/aui-skin-base.css', type: 'css'},
-						'aui-skin-classic-all': {path: 'aui-skin-classic/css/aui-skin-classic-all.css', type: 'css'},
-						'aui-skin-classic': {path: 'aui-skin-classic/css/aui-skin-classic.css', type: 'css', requires:['aui-skin-base']},
 						'aui-sortable': {requires:['aui-base','dd-constrain','dd-drag','dd-drop','dd-proxy'], skinnable:true},
 						'aui-state-interaction': {requires:['aui-base','plugin'], skinnable:false},
 						'aui-swf': {requires:['aui-base','querystring-parse-simple','querystring-stringify-simple'], skinnable:false},

@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
-YUI.add('sortable', function(Y) {
+YUI.add('sortable', function (Y, NAME) {
 
 
     /**
@@ -107,7 +107,6 @@ YUI.add('sortable', function(Y) {
         */
         _onDropOver: function(e) {
             if (!e.drop.get(NODE).test(this.get(NODES))) {
-                var nodes = e.drop.get(NODE).all(this.get(NODES));
                 e.drop.get(NODE).append(e.drag.get(NODE));
             }
         },
@@ -416,11 +415,13 @@ YUI.add('sortable', function(Y) {
         * @description Test a Node or a selector for the container
         */
         _test: function(node, test) {
+            var ret;
             if (test instanceof Y.Node) {
-                return (test === node);
+                ret = (test === node);
             } else {
-                return node.test(test);
+                ret = node.test(test);
             }
+            return ret;
         },
         /**
         * @static
@@ -513,4 +514,4 @@ YUI.add('sortable', function(Y) {
 
 
 
-}, '3.6.0' ,{requires:['dd-delegate', 'dd-drop-plugin', 'dd-proxy']});
+}, '3.7.1pr1', {"requires": ["dd-delegate", "dd-drop-plugin", "dd-proxy"]});

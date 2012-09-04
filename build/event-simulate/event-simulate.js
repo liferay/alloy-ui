@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
 YUI.add('event-simulate', function(Y) {
 
@@ -920,7 +920,7 @@ Y.Event.simulate = function(target, type, options){
             
     // touch low-level event simulation        
     } else if (touchEvents[type]) {
-        if((Y.config.win && ("ontouchstart" in Y.config.win)) && !(Y.UA.chrome && Y.UA.chrome < 6)) {
+        if((Y.config.win && ("ontouchstart" in Y.config.win)) && !(Y.UA.phantomjs) && !(Y.UA.chrome && Y.UA.chrome < 6)) {
             simulateTouchEvent(target, type, 
                 options.bubbles, options.cancelable, options.view, options.detail, 
                 options.screenX, options.screenY, options.clientX, options.clientY, 
@@ -950,4 +950,4 @@ Y.Event.simulate = function(target, type, options){
 
 
 
-}, '3.6.0' ,{requires:['event-base']});
+}, '3.7.1pr1' ,{requires:['event-base']});

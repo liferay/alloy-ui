@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
-YUI.add('resize-base', function(Y) {
+YUI.add('resize-base', function (Y, NAME) {
 
 /**
  * The Resize Utility allows you to make an HTML element resizable.
@@ -1651,4 +1651,4 @@ Y.each(Y.Resize.prototype.ALL_HANDLES, function(handle, i) {
 });
 
 
-}, '3.6.0' ,{skinnable:true, requires:['base', 'widget', 'substitute', 'event', 'oop', 'dd-drag', 'dd-delegate', 'dd-drop']});
+}, '3.7.1pr1', {"requires": ["base", "widget", "substitute", "event", "oop", "dd-drag", "dd-delegate", "dd-drop"], "skinnable": true});

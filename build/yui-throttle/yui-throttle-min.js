@@ -2,9 +2,9 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
-YUI.add("yui-throttle",function(a){
+YUI.add("yui-throttle",function(b,a){
 /*! Based on work by Simon Willison: http://gist.github.com/292562 */
-a.throttle=function(c,b){b=(b)?b:(a.config.throttleTime||150);if(b===-1){return(function(){c.apply(null,arguments);});}var d=a.Lang.now();return(function(){var e=a.Lang.now();if(e-d>b){d=e;c.apply(null,arguments);}});};},"3.6.0",{requires:["yui-base"]});
+b.throttle=function(d,c){c=(c)?c:(b.config.throttleTime||150);if(c===-1){return(function(){d.apply(null,arguments);});}var e=b.Lang.now();return(function(){var f=b.Lang.now();if(f-e>c){e=f;d.apply(null,arguments);}});};},"3.7.1pr1",{"requires":["yui-base"]});

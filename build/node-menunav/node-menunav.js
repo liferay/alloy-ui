@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
 YUI.add('node-menunav', function(Y) {
 
@@ -1392,7 +1392,7 @@ Y.extend(NodeMenuNav, Y.Plugin.Base, {
 	            //  submenu immediately.
 	            //  http://yuilibrary.com/projects/yui3/ticket/2528316
 	            
-	            Y.message("Pause path");
+	            //Y.message("Pause path");
 	            
 	            menuNav._hoverTimer = later(submenuShowDelay, menuNav, function () {
                     showSubmenu(0);
@@ -2188,4 +2188,4 @@ Y.namespace('Plugin');
 Y.Plugin.NodeMenuNav = NodeMenuNav;
 
 
-}, '3.6.0' ,{requires:['node', 'classnamemanager', 'node-focusmanager', 'plugin']});
+}, '3.7.1pr1' ,{requires:['node', 'classnamemanager', 'node-focusmanager', 'plugin']});

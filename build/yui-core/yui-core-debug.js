@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
 /**
  * The YUI module contains the components required for building the YUI seed
@@ -160,7 +160,7 @@ properties.
 (function() {
 
     var proto, prop,
-        VERSION = '3.6.0',
+        VERSION = '3.7.1pr1',
         PERIOD = '.',
         BASE = 'http://yui.yahooapis.com/',
         /*
@@ -334,7 +334,7 @@ proto = {
 
         if (!Env) {
             Y.Env = {
-                core: ['get','intl-base'],
+                core: ['intl-base'],
                 loaderExtras: ['loader-rollup', 'loader-yui3'],
                 mods: {}, // flat module map
                 versions: {}, // version module map
@@ -1973,7 +1973,7 @@ Or you can delay until a node is available (with `available` or `contentready`):
     
 
 */
-YUI.add('yui-base', function(Y) {
+YUI.add('yui-base', function (Y, NAME) {
 
 /*
  * YUI stub
@@ -3799,7 +3799,7 @@ Y.UA.compareVersions = function (a, b) {
 };
 YUI.Env.aliases = {
     "anim": ["anim-base","anim-color","anim-curve","anim-easing","anim-node-plugin","anim-scroll","anim-xy"],
-    "app": ["app-base","app-transitions","lazy-model-list","model","model-list","model-sync-rest","router","view","view-node-map"],
+    "app": ["app-base","app-content","app-transitions","lazy-model-list","model","model-list","model-sync-rest","router","view","view-node-map"],
     "attribute": ["attribute-base","attribute-complex"],
     "autocomplete": ["autocomplete-base","autocomplete-sources","autocomplete-list","autocomplete-plugin"],
     "base": ["base-base","base-pluginhost","base-build"],
@@ -3837,4 +3837,4 @@ YUI.Env.aliases = {
 };
 
 
-}, '3.6.0' );
+}, '3.7.1pr1');

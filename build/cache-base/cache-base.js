@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
-YUI.add('cache-base', function(Y) {
+YUI.add('cache-base', function (Y, NAME) {
 
 /**
  * The Cache utility provides a common configurable interface for components to
@@ -436,4 +436,4 @@ Y.extend(Cache, Y.Base, {
 Y.Cache = Cache;
 
 
-}, '3.6.0' ,{requires:['base']});
+}, '3.7.1pr1', {"requires": ["base"]});

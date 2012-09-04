@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
 /**
  * The YUI module contains the components required for building the YUI seed
@@ -160,7 +160,7 @@ properties.
 (function() {
 
     var proto, prop,
-        VERSION = '3.6.0',
+        VERSION = '3.7.1pr1',
         PERIOD = '.',
         BASE = 'http://yui.yahooapis.com/',
         /*
@@ -3818,7 +3818,7 @@ YUI.Env.aliases = {
 };
 
 
-}, '3.6.0' );
+}, '3.7.1pr1' );
 YUI.add('get', function(Y) {
 
 /*jslint boss:true, expr:true, laxbreak: true */
@@ -5069,7 +5069,7 @@ Transaction.prototype = {
 };
 
 
-}, '3.6.0' ,{requires:['yui-base']});
+}, '3.7.1pr1' ,{requires:['yui-base']});
 YUI.add('features', function(Y) {
 
 var feature_tests = {};
@@ -5403,7 +5403,7 @@ add('load', '17', {
 });
 
 
-}, '3.6.0' ,{requires:['yui-base']});
+}, '3.7.1pr1' ,{requires:['yui-base']});
 YUI.add('intl-base', function(Y) {
 
 /**
@@ -5491,7 +5491,7 @@ Y.mix(Y.namespace('Intl'), {
 });
 
 
-}, '3.6.0' ,{requires:['yui-base']});
+}, '3.7.1pr1' ,{requires:['yui-base']});
 YUI.add('yui-log', function(Y) {
 
 /**
@@ -5601,7 +5601,7 @@ INSTANCE.message = function() {
 };
 
 
-}, '3.6.0' ,{requires:['yui-base']});
+}, '3.7.1pr1' ,{requires:['yui-base']});
 YUI.add('yui-later', function(Y) {
 
 /**
@@ -5678,10 +5678,10 @@ Y.Lang.later = Y.later;
 
 
 
-}, '3.6.0' ,{requires:['yui-base']});
+}, '3.7.1pr1' ,{requires:['yui-base']});
 
 
-YUI.add('yui', function(Y){}, '3.6.0' ,{use:['yui-base','get','features','intl-base','yui-log','yui-later']});
+YUI.add('yui', function(Y){}, '3.7.1pr1' ,{use:['yui-base','get','features','intl-base','yui-log','yui-later']});
 
 YUI.add('oop', function(Y) {
 
@@ -6072,7 +6072,7 @@ Y.rbind = function(f, c) {
 };
 
 
-}, '3.6.0' ,{requires:['yui-base']});
+}, '3.7.1pr1' ,{requires:['yui-base']});
 YUI.add('features', function(Y) {
 
 var feature_tests = {};
@@ -6406,7 +6406,7 @@ add('load', '17', {
 });
 
 
-}, '3.6.0' ,{requires:['yui-base']});
+}, '3.7.1pr1' ,{requires:['yui-base']});
 YUI.add('dom-core', function(Y) {
 
 var NODE_TYPE = 'nodeType',
@@ -6779,7 +6779,7 @@ Y_DOM = {
 Y.DOM = Y_DOM;
 
 
-}, '3.6.0' ,{requires:['oop','features']});
+}, '3.7.1pr1' ,{requires:['oop','features']});
 YUI.add('dom-base', function(Y) {
 
 /**
@@ -7463,7 +7463,7 @@ Y.mix(Y.DOM, {
 });
 
 
-}, '3.6.0' ,{requires:['dom-core']});
+}, '3.7.1pr1' ,{requires:['dom-core']});
 YUI.add('dom-style', function(Y) {
 
 (function(Y) {
@@ -7790,7 +7790,7 @@ Y.Color = {
 
 
 
-}, '3.6.0' ,{requires:['dom-base']});
+}, '3.7.1pr1' ,{requires:['dom-base']});
 YUI.add('dom-style-ie', function(Y) {
 
 (function(Y) {
@@ -8093,7 +8093,7 @@ if (!testFeature('style', 'computedStyle')) {
 })(Y);
 
 
-}, '3.6.0' ,{requires:['dom-style']});
+}, '3.7.1pr1' ,{requires:['dom-style']});
 YUI.add('dom-screen', function(Y) {
 
 (function(Y) {
@@ -8698,7 +8698,7 @@ Y.mix(DOM, {
 })(Y);
 
 
-}, '3.6.0' ,{requires:['dom-base', 'dom-style']});
+}, '3.7.1pr1' ,{requires:['dom-base', 'dom-style']});
 YUI.add('selector-native', function(Y) {
 
 (function(Y) {
@@ -9068,13 +9068,13 @@ Y.mix(Y.Selector, Selector, true);
 })(Y);
 
 
-}, '3.6.0' ,{requires:['dom-base']});
+}, '3.7.1pr1' ,{requires:['dom-base']});
 YUI.add('selector', function(Y) {
 
 
 
 
-}, '3.6.0' ,{requires:['selector-native']});
+}, '3.7.1pr1' ,{requires:['selector-native']});
 YUI.add('event-custom-base', function(Y) {
 
 /**
@@ -11275,7 +11275,7 @@ for that signature.
 **/
 
 
-}, '3.6.0' ,{requires:['oop']});
+}, '3.7.1pr1' ,{requires:['oop']});
 YUI.add('event-custom-complex', function(Y) {
 
 
@@ -11773,7 +11773,7 @@ FACADE_KEYS = Y.Object.keys(FACADE);
 
 
 
-}, '3.6.0' ,{requires:['event-custom-base']});
+}, '3.7.1pr1' ,{requires:['event-custom-base']});
 YUI.add('node-core', function(Y) {
 
 /**
@@ -13365,7 +13365,7 @@ Y.NodeList.importMethod(Y.Node.prototype, [
 ]);
 
 
-}, '3.6.0' ,{requires:['dom-core', 'selector']});
+}, '3.7.1pr1' ,{requires:['dom-core', 'selector']});
 YUI.add('node-base', function(Y) {
 
 /**
@@ -14521,7 +14521,7 @@ Y.mix(Y.NodeList.prototype, {
 });
 
 
-}, '3.6.0' ,{requires:['dom-base', 'node-core', 'event-base']});
+}, '3.7.1pr1' ,{requires:['dom-base', 'node-core', 'event-base']});
 (function () {
 var GLOBAL_ENV = YUI.Env;
 
@@ -15822,7 +15822,10 @@ if (Y.UA.ie) {
     Y.on(EVENT_READY, Event._poll);
 }
 
-add(win, "unload", onUnload);
+try {
+    add(win, "unload", onUnload);
+} catch(e) {
+}
 
 Event.Custom = Y.CustomEvent;
 Event.Subscriber = Y.Subscriber;
@@ -15887,7 +15890,7 @@ Y.Env.evt.plugins.contentready = {
 };
 
 
-}, '3.6.0' ,{requires:['event-custom-base']});
+}, '3.7.1pr1' ,{requires:['event-custom-base']});
 YUI.add('pluginhost-base', function(Y) {
 
     /**
@@ -15985,7 +15988,7 @@ YUI.add('pluginhost-base', function(Y) {
 
         /**
          * Removes a plugin from the host object. This will destroy the 
-         * plugin instance and delete the namepsace from the host object. 
+         * plugin instance and delete the namespace from the host object. 
          *
          * @method unplug
          * @param {String | Function} plugin The namespace of the plugin, or the plugin class with the static NS namespace property defined. If not provided,
@@ -16068,7 +16071,7 @@ YUI.add('pluginhost-base', function(Y) {
     Y.namespace("Plugin").Host = PluginHost;
 
 
-}, '3.6.0' ,{requires:['yui-base']});
+}, '3.7.1pr1' ,{requires:['yui-base']});
 YUI.add('pluginhost-config', function(Y) {
 
     /**
@@ -16198,7 +16201,7 @@ YUI.add('pluginhost-config', function(Y) {
     };
 
 
-}, '3.6.0' ,{requires:['pluginhost-base']});
+}, '3.7.1pr1' ,{requires:['pluginhost-base']});
 YUI.add('event-delegate', function(Y) {
 
 /**
@@ -16520,7 +16523,7 @@ delegate._applyFilter = function (filter, args, ce) {
 Y.delegate = Y.Event.delegate = delegate;
 
 
-}, '3.6.0' ,{requires:['node-base']});
+}, '3.7.1pr1' ,{requires:['node-base']});
 YUI.add('node-event-delegate', function(Y) {
 
 /**
@@ -16574,7 +16577,7 @@ Y.Node.prototype.delegate = function(type) {
 };
 
 
-}, '3.6.0' ,{requires:['node-base', 'event-delegate']});
+}, '3.7.1pr1' ,{requires:['node-base', 'event-delegate']});
 YUI.add('node-pluginhost', function(Y) {
 
 /**
@@ -16660,7 +16663,7 @@ Y.NodeList.prototype.unplug = function() {
 };
 
 
-}, '3.6.0' ,{requires:['node-base', 'pluginhost']});
+}, '3.7.1pr1' ,{requires:['node-base', 'pluginhost']});
 YUI.add('node-screen', function(Y) {
 
 /**
@@ -16898,7 +16901,7 @@ Y.Node.prototype.inRegion = function(node2, all, altRegion) {
 };
 
 
-}, '3.6.0' ,{requires:['node-base', 'dom-screen']});
+}, '3.7.1pr1' ,{requires:['node-base', 'dom-screen']});
 YUI.add('node-style', function(Y) {
 
 (function(Y) {
@@ -17004,7 +17007,7 @@ Y.NodeList.importMethod(Y.Node.prototype, ['getStyle', 'getComputedStyle', 'setS
 })(Y);
 
 
-}, '3.6.0' ,{requires:['dom-style', 'node-base']});
+}, '3.7.1pr1' ,{requires:['dom-style', 'node-base']});
 YUI.add('querystring-stringify-simple', function(Y) {
 
 /*global Y */
@@ -17065,7 +17068,7 @@ QueryString.stringify = function (obj, c) {
 };
 
 
-}, '3.6.0' ,{requires:['yui-base']});
+}, '3.7.1pr1' ,{requires:['yui-base']});
 YUI.add('io-base', function(Y) {
 
 /**
@@ -17197,7 +17200,7 @@ IO.prototype = {
         }
 
         if (!use) {
-            if (win && win.FormData && config.data instanceof FormData) {
+            if (win && win.FormData && config.data instanceof win.FormData) {
                 transaction.c.upload.onprogress = function (e) {
                     io.progress(transaction, e, config);
                 };
@@ -18057,7 +18060,7 @@ Y.mix(Y.IO.prototype, {
 
 
 
-}, '3.6.0' ,{requires:['event-custom-base', 'querystring-stringify-simple']});
+}, '3.7.1pr1' ,{requires:['event-custom-base', 'querystring-stringify-simple']});
 YUI.add('json-parse', function(Y) {
 
 /**
@@ -18287,7 +18290,7 @@ if ( Native ) {
 Y.JSON.useNativeParse = useNative;
 
 
-}, '3.6.0' ,{requires:['yui-base']});
+}, '3.7.1pr1' ,{requires:['yui-base']});
 YUI.add('transition', function(Y) {
 
 /**
@@ -18986,7 +18989,7 @@ Transition.DEFAULT_TOGGLE = 'fade';
 
 
 
-}, '3.6.0' ,{requires:['node-style']});
+}, '3.7.1pr1' ,{requires:['node-style']});
 YUI.add('selector-css2', function(Y) {
 
 /**
@@ -19430,7 +19433,7 @@ if (Y.Selector.useNative && Y.config.doc.querySelector) {
 
 
 
-}, '3.6.0' ,{requires:['selector-native']});
+}, '3.7.1pr1' ,{requires:['selector-native']});
 YUI.add('selector-css3', function(Y) {
 
 /**
@@ -19582,7 +19585,7 @@ Y.Selector.combinators['~'] = {
 };
 
 
-}, '3.6.0' ,{requires:['selector-native', 'selector-css2']});
+}, '3.7.1pr1' ,{requires:['selector-native', 'selector-css2']});
 YUI.add('yui-log', function(Y) {
 
 /**
@@ -19692,7 +19695,7 @@ INSTANCE.message = function() {
 };
 
 
-}, '3.6.0' ,{requires:['yui-base']});
+}, '3.7.1pr1' ,{requires:['yui-base']});
 YUI.add('dump', function(Y) {
 
 /**
@@ -19797,7 +19800,7 @@ YUI.add('dump', function(Y) {
 
 
 
-}, '3.6.0' ,{requires:['yui-base']});
+}, '3.7.1pr1' ,{requires:['yui-base']});
 YUI.add('transition-timer', function(Y) {
 
 /**
@@ -20131,12 +20134,12 @@ Transition.behaviors.top = Transition.behaviors.bottom = Transition.behaviors.ri
 Y.Transition = Transition;
 
 
-}, '3.6.0' ,{requires:['transition']});
-YUI.add('simpleyui', function(Y) {
+}, '3.7.1pr1' ,{requires:['transition']});
+YUI.add('simpleyui', function (Y, NAME) {
 
 // empty
 
 
 
-}, '3.6.0' ,{use:['yui','oop','dom','event-custom-base','event-base','pluginhost','node','event-delegate','io-base','json-parse','transition','selector-css3','dom-style-ie','querystring-stringify-simple']});
+}, '3.7.1pr1', {"use": ["yui", "oop", "dom", "event-custom-base", "event-base", "pluginhost", "node", "event-delegate", "io-base", "json-parse", "transition", "selector-css3", "dom-style-ie", "querystring-stringify-simple"]});
 var Y = YUI().use('*');

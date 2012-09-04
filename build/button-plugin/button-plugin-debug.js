@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
-YUI.add('button-plugin', function(Y) {
+YUI.add('button-plugin', function (Y, NAME) {
 
 /**
 * A Button Plugin
@@ -136,4 +136,4 @@ ButtonPlugin.createNode = function(node, config) {
 Y.namespace('Plugin').Button = ButtonPlugin;
 
 
-}, '3.6.0' ,{requires:['button-core', 'cssbutton', 'node-pluginhost']});
+}, '3.7.1pr1', {"requires": ["button-core", "cssbutton", "node-pluginhost"]});

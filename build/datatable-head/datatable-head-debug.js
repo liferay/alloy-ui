@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
 YUI.add('datatable-head', function(Y) {
 
@@ -530,4 +530,4 @@ Y.namespace('DataTable').HeaderView = Y.Base.create('tableHeader', Y.View, [], {
 });
 
 
-}, '3.6.0' ,{requires:['datatable-core', 'view', 'classnamemanager']});
+}, '3.7.1pr1' ,{requires:['datatable-core', 'view', 'classnamemanager']});

@@ -2,14 +2,14 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
-YUI.add('app-transitions', function(Y) {
+YUI.add('app-transitions', function (Y, NAME) {
 
 /**
-Provides view transitions for `Y.App` in browsers which support native CSS3
-transitions.
+`Y.App` extension that provides view transitions in browsers which support
+native CSS3 transitions.
 
 @module app
 @submodule app-transitions
@@ -17,22 +17,23 @@ transitions.
 **/
 
 /**
-Provides view transitions for `Y.App` in browsers which support native CSS3
-transitions.
+`Y.App` extension that provides view transitions in browsers which support
+native CSS3 transitions.
 
 View transitions provide an nice way to move from one "page" to the next that is
 both pleasant to the user and helps to communicate a hierarchy between sections
 of an application.
 
-When this module is used, it will automatically mix itself in to `Y.App` and
-transition between `activeView` changes using the following effects:
+When the `"app-transitions"` module is used, it will automatically mix itself
+into `Y.App` and transition between `activeView` changes using the following
+effects:
 
-  * **`fade`**: Cross-fades between the old an new active views.
+  - **`fade`**: Cross-fades between the old an new active views.
 
-  * **`slideLeft`**: The old and new active views are positioned next to each
+  - **`slideLeft`**: The old and new active views are positioned next to each
     other and both slide to the left.
 
-  * **`slideRight`**: The old and new active views are positioned next to each
+  - **`slideRight`**: The old and new active views are positioned next to each
     other and both slide to the right.
 
 **Note:** Transitions are an opt-in feature and are enabled via an app's
@@ -245,4 +246,4 @@ Y.mix(Y.App.CLASS_NAMES, {
 });
 
 
-}, '3.6.0' ,{requires:['app-base']});
+}, '3.7.1pr1', {"requires": ["app-base"]});

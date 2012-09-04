@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
-YUI.add('dd-drag', function(Y) {
+YUI.add('dd-drag', function (Y, NAME) {
 
 
     /**
@@ -510,18 +510,15 @@ YUI.add('dd-drag', function(Y) {
                         DDM._unregTarget(this.target);
                         this.target = null;
                     }
-                    return false;
                 } else {
                     if (!Y.Lang.isObject(config)) {
                         config = {};
                     }
-                    config.bubbleTargets = ('bubbleTargets' in config) ? config.bubbleTargets : Y.Object.values(this._yuievt.targets);
+                    config.bubbleTargets = config.bubbleTargets || Y.Object.values(this._yuievt.targets);
                     config.node = this.get(NODE);
                     config.groups = config.groups || this.get('groups');
                     this.target = new Y.DD.Drop(config);
                 }
-            } else {
-                return false;
             }
         },
         /**
@@ -1222,22 +1219,22 @@ YUI.add('dd-drag', function(Y) {
         _move: function(ev) {
             if (this.get('lock')) {
                 return false;
-            } else {
-                this.mouseXY = [ev.pageX, ev.pageY];
-                if (!this._dragThreshMet) {
-                    var diffX = Math.abs(this.startXY[0] - ev.pageX),
-                    diffY = Math.abs(this.startXY[1] - ev.pageY);
-                    if (diffX > this.get('clickPixelThresh') || diffY > this.get('clickPixelThresh')) {
-                        this._dragThreshMet = true;
-                        this.start();
-                        this._alignNode([ev.pageX, ev.pageY]);
-                    }
-                } else {
-                    if (this._clickTimeout) {
-                        this._clickTimeout.cancel();
-                    }
+            }
+
+            this.mouseXY = [ev.pageX, ev.pageY];
+            if (!this._dragThreshMet) {
+                var diffX = Math.abs(this.startXY[0] - ev.pageX),
+                diffY = Math.abs(this.startXY[1] - ev.pageY);
+                if (diffX > this.get('clickPixelThresh') || diffY > this.get('clickPixelThresh')) {
+                    this._dragThreshMet = true;
+                    this.start();
                     this._alignNode([ev.pageX, ev.pageY]);
                 }
+            } else {
+                if (this._clickTimeout) {
+                    this._clickTimeout.cancel();
+                }
+                this._alignNode([ev.pageX, ev.pageY]);
             }
         },
         /**
@@ -1271,4 +1268,4 @@ YUI.add('dd-drag', function(Y) {
 
 
 
-}, '3.6.0' ,{skinnable:false, requires:['dd-ddm-base']});
+}, '3.7.1pr1', {"requires": ["dd-ddm-base"]});

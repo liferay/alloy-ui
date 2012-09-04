@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
-YUI.add('oop', function(Y) {
+YUI.add('oop', function (Y, NAME) {
 
 /**
 Adds object inheritance and manipulation utilities to the YUI instance. This
@@ -247,6 +247,17 @@ Y.some = function(o, f, c, proto) {
  * function can be provided to handle other data types,
  * filter keys, validate values, etc.
  *
+ * NOTE: Cloning a non-trivial object is a reasonably heavy operation, due to
+ * the need to recurrsively iterate down non-primitive properties. Clone
+ * should be used only when a deep clone down to leaf level properties
+ * is explicitly required.
+ *
+ * In many cases (for example, when trying to isolate objects used as 
+ * hashes for configuration properties), a shallow copy, using Y.merge is 
+ * normally sufficient. If more than one level of isolation is required, 
+ * Y.merge can be used selectively at each level which needs to be 
+ * isolated from the original without going all the way to leaf properties.
+ *
  * @method clone
  * @param {object} o what to clone.
  * @param {boolean} safe if true, objects will not have prototype
@@ -394,4 +405,4 @@ Y.rbind = function(f, c) {
 };
 
 
-}, '3.6.0' ,{requires:['yui-base']});
+}, '3.7.1pr1', {"requires": ["yui-base"]});

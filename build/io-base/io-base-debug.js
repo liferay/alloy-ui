@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
 YUI.add('io-base', function(Y) {
 
@@ -136,7 +136,7 @@ IO.prototype = {
         }
 
         if (!use) {
-            if (win && win.FormData && config.data instanceof FormData) {
+            if (win && win.FormData && config.data instanceof win.FormData) {
                 transaction.c.upload.onprogress = function (e) {
                     io.progress(transaction, e, config);
                 };
@@ -1000,4 +1000,4 @@ Y.mix(Y.IO.prototype, {
 
 
 
-}, '3.6.0' ,{requires:['event-custom-base', 'querystring-stringify-simple']});
+}, '3.7.1pr1' ,{requires:['event-custom-base', 'querystring-stringify-simple']});

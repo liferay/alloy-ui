@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
-YUI.add('resize-plugin', function(Y) {
+YUI.add('resize-plugin', function (Y, NAME) {
 
 /**
  * The Resize Plugin allows you to make a Node or a Widget resizable. It supports all the functionality of
@@ -198,12 +198,11 @@ var ResizePlugin = function(config) {
                       * @private
                       */
                    _isDifferent: function(oldVal, newVal) {
+                       var retValue = false;
                        if (oldVal !== newVal) {
-                           return newVal;
+                           retValue = newVal;
                        }
-                       else {
-                           return false;
-                       }
+                       return retValue;
                    }
 
 
@@ -212,4 +211,4 @@ var ResizePlugin = function(config) {
         Y.Plugin.Resize = ResizePlugin;
 
 
-}, '3.6.0' ,{requires:['resize-base', 'plugin'], optional:['resize-constrain'], skinnable:false});
+}, '3.7.1pr1', {"requires": ["resize-base", "plugin"], "optional": ["resize-constrain"]});

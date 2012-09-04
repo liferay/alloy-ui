@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
 YUI.add('attribute-events', function(Y) {
 
@@ -112,7 +112,8 @@ YUI.add('attribute-events', function(Y) {
          * @chainable
          */
         _setAttrs : function(attrs, opts) {
-            for (var attr in attrs) {
+            var attr;
+            for (attr in attrs) {
                 if ( attrs.hasOwnProperty(attr) ) {
                     this.set(attr, attrs[attr], opts);
                 }
@@ -198,4 +199,4 @@ YUI.add('attribute-events', function(Y) {
     Y.AttributeEvents = AttributeEvents;
 
 
-}, '3.6.0' ,{requires:['event-custom']});
+}, '3.7.1pr1' ,{requires:['event-custom']});

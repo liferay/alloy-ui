@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
 YUI.add('highlight-accentfold', function(Y) {
 
@@ -148,4 +148,4 @@ Highlight = Y.mix(Y.Highlight, {
 });
 
 
-}, '3.6.0' ,{requires:['highlight-base', 'text-accentfold']});
+}, '3.7.1pr1' ,{requires:['highlight-base', 'text-accentfold']});

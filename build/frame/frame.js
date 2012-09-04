@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
-YUI.add('frame', function(Y) {
+YUI.add('frame', function (Y, NAME) {
 
 
     /**
@@ -1006,4 +1006,4 @@ YUI.add('frame', function(Y) {
 
 
 
-}, '3.6.0' ,{skinnable:false, requires:['base', 'node', 'selector-css3', 'substitute', 'yui-throttle']});
+}, '3.7.1pr1', {"requires": ["base", "node", "selector-css3", "substitute", "yui-throttle"]});
