@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
-YUI.add('view', function(Y) {
+YUI.add('view', function (Y, NAME) {
 
 /**
 Represents a logical piece of an application's user interface, and provides a
@@ -429,4 +429,4 @@ Y.View = Y.extend(View, Y.Base, {
 
 
 
-}, '3.6.0' ,{requires:['base-build', 'node-event-delegate']});
+}, '3.7.1pr1', {"requires": ["base-build", "node-event-delegate"]});

@@ -2,11 +2,14 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
 YUI.add('datatable-base-deprecated', function(Y) {
 
+// API Doc comments disabled to avoid deprecated class leakage into
+// non-deprecated class API docs.  See the 3.4.1 datatable API doc files in the
+// download at http://yui.zenfs.com/releases/yui3/yui_3.4.1.zip for reference.
 var YLang = Y.Lang,
     YisValue = YLang.isValue,
     fromTemplate = Y.Lang.sub,
@@ -47,7 +50,10 @@ var YLang = Y.Lang,
     
 
 
-/**
+// API Doc comments disabled to avoid deprecated class leakage into
+// non-deprecated class API docs.  See the 3.4.1 datatable API doc files in the
+// download at http://yui.zenfs.com/releases/yui3/yui_3.4.1.zip for reference.
+/*
  * The Column class defines and manages attributes of Columns for DataTable.
  *
  * @class Column
@@ -64,7 +70,7 @@ function Column(config) {
 //
 /////////////////////////////////////////////////////////////////////////////
 Y.mix(Column, {
-    /**
+    /*
      * Class name.
      *
      * @property NAME
@@ -81,7 +87,7 @@ Y.mix(Column, {
 //
 /////////////////////////////////////////////////////////////////////////////
     ATTRS: {
-        /**
+        /*
         Unique internal identifier, used to stamp ID on TH element.
         
         @attribute id
@@ -93,7 +99,7 @@ Y.mix(Column, {
             readOnly: true
         },
         
-        /**
+        /*
         User-supplied identifier. Defaults to id.
         @attribute key
         @type {String}
@@ -102,7 +108,7 @@ Y.mix(Column, {
             valueFn: "_defaultKey"
         },
 
-        /**
+        /*
         Points to underlying data field (for sorting or formatting, for
         example). Useful when column doesn't hold any data itself, but is just
         a visual representation of data from another column or record field.
@@ -116,7 +122,7 @@ Y.mix(Column, {
             valueFn: "_defaultField"
         },
 
-        /**
+        /*
         Display label for column header. Defaults to key.
 
         @attribute label
@@ -126,7 +132,7 @@ Y.mix(Column, {
             valueFn: "_defaultLabel"
         },
         
-        /**
+        /*
         Array of child column definitions (for nested headers).
 
         @attribute children
@@ -137,7 +143,7 @@ Y.mix(Column, {
             value: null
         },
         
-        /**
+        /*
         TH abbr attribute.
 
         @attribute abbr
@@ -155,7 +161,7 @@ Y.mix(Column, {
             getter: "_getClassnames"
         },
         
-        /**
+        /*
         Formating template string or function for cells in this column.
 
         Function formatters receive a single object (described below) and are
@@ -181,7 +187,7 @@ Y.mix(Column, {
         **/
         formatter: {},
 
-        /**
+        /*
         The default markup to display in cells that have no corresponding record
         data or content from formatters.
 
@@ -226,7 +232,7 @@ Y.extend(Column, Y.Widget, {
     // ATTRIBUTE HELPERS
     //
     /////////////////////////////////////////////////////////////////////////////
-    /**
+    /*
     * Return ID for instance.
     *
     * @method _defaultId
@@ -237,7 +243,7 @@ Y.extend(Column, Y.Widget, {
         return Y.guid();
     },
 
-    /**
+    /*
     * Return key for instance. Defaults to ID if one was not provided.
     *
     * @method _defaultKey
@@ -248,7 +254,7 @@ Y.extend(Column, Y.Widget, {
         return Y.guid();
     },
 
-    /**
+    /*
     * Return field for instance. Defaults to key if one was not provided.
     *
     * @method _defaultField
@@ -259,7 +265,7 @@ Y.extend(Column, Y.Widget, {
         return this.get("key");
     },
 
-    /**
+    /*
     * Return label for instance. Defaults to key if one was not provided.
     *
     * @method _defaultLabel
@@ -270,7 +276,7 @@ Y.extend(Column, Y.Widget, {
         return this.get("key");
     },
 
-    /**
+    /*
      * Updates the UI if changes are made to abbr.
      *
      * @method _afterAbbrChange
@@ -286,7 +292,7 @@ Y.extend(Column, Y.Widget, {
     // PROPERTIES
     //
     /////////////////////////////////////////////////////////////////////////////
-    /**
+    /*
      * Reference to Column's current position index within its Columnset's keys
      * array, if applicable. This property only applies to non-nested and bottom-
      * level child Columns. Value is set by Columnset code.
@@ -296,7 +302,7 @@ Y.extend(Column, Y.Widget, {
      */
     keyIndex: null,
     
-    /**
+    /*
     * Array of TH IDs associated with this column, for TD "headers" attribute.
     * Value is set by Columnset code
     *
@@ -305,7 +311,7 @@ Y.extend(Column, Y.Widget, {
     */
     headers: null,
 
-    /**
+    /*
      * Number of cells the header spans. Value is set by Columnset code.
      *
      * @property colSpan
@@ -314,7 +320,7 @@ Y.extend(Column, Y.Widget, {
      */
     colSpan: 1,
     
-    /**
+    /*
      * Number of rows the header spans. Value is set by Columnset code.
      *
      * @property rowSpan
@@ -323,7 +329,7 @@ Y.extend(Column, Y.Widget, {
      */
     rowSpan: 1,
 
-    /**
+    /*
      * Column's parent Column instance, if applicable. Value is set by Columnset
      * code.
      *
@@ -332,7 +338,7 @@ Y.extend(Column, Y.Widget, {
      */
     parent: null,
 
-    /**
+    /*
      * The Node reference to the associated TH element.
      *
      * @property thNode
@@ -354,7 +360,7 @@ Y.extend(Column, Y.Widget, {
     // METHODS
     //
     /////////////////////////////////////////////////////////////////////////////
-    /**
+    /*
     * Initializer.
     *
     * @method initializer
@@ -364,7 +370,7 @@ Y.extend(Column, Y.Widget, {
     initializer: function(config) {
     },
 
-    /**
+    /*
     * Destructor.
     *
     * @method destructor
@@ -373,7 +379,7 @@ Y.extend(Column, Y.Widget, {
     destructor: function() {
     },
 
-    /**
+    /*
      * Returns classnames for Column.
      *
      * @method _getClassnames
@@ -388,7 +394,7 @@ Y.extend(Column, Y.Widget, {
     // SYNC
     //
     ////////////////////////////////////////////////////////////////////////////
-    /**
+    /*
     * Syncs UI to intial state.
     *
     * @method syncUI
@@ -398,7 +404,7 @@ Y.extend(Column, Y.Widget, {
         this._uiSetAbbr(this.get("abbr"));
     },
 
-    /**
+    /*
      * Updates abbr.
      *
      * @method _uiSetAbbr
@@ -411,7 +417,10 @@ Y.extend(Column, Y.Widget, {
 });
 
 Y.Column = Column;
-/**
+// API Doc comments disabled to avoid deprecated class leakage into
+// non-deprecated class API docs.  See the 3.4.1 datatable API doc files in the
+// download at http://yui.zenfs.com/releases/yui3/yui_3.4.1.zip for reference.
+/*
  * The Columnset class defines and manages a collection of Columns.
  *
  * @class Columnset
@@ -428,7 +437,7 @@ function Columnset(config) {
 //
 /////////////////////////////////////////////////////////////////////////////
 Y.mix(Columnset, {
-    /**
+    /*
      * Class name.
      *
      * @property NAME
@@ -445,7 +454,7 @@ Y.mix(Columnset, {
     //
     /////////////////////////////////////////////////////////////////////////////
     ATTRS: {
-        /**
+        /*
         * @attribute definitions
         * @description Array of column definitions that will populate this Columnset.
         * @type Array
@@ -468,7 +477,7 @@ Y.extend(Columnset, Y.Base, {
     // ATTRIBUTE HELPERS
     //
     /////////////////////////////////////////////////////////////////////////////
-    /**
+    /*
     * @method _setDefinitions
     * @description Clones definitions before setting.
     * @param definitions {Array} Array of column definitions.
@@ -484,7 +493,7 @@ Y.extend(Columnset, Y.Base, {
     // PROPERTIES
     //
     /////////////////////////////////////////////////////////////////////////////
-    /**
+    /*
      * Top-down tree representation of Column hierarchy. Used to create DOM
      * elements.
      *
@@ -493,7 +502,7 @@ Y.extend(Columnset, Y.Base, {
      */
     tree: null,
 
-    /**
+    /*
      * Hash of all Columns by ID.
      *
      * @property idHash
@@ -501,7 +510,7 @@ Y.extend(Columnset, Y.Base, {
      */
     idHash: null,
 
-    /**
+    /*
      * Hash of all Columns by key.
      *
      * @property keyHash
@@ -509,7 +518,7 @@ Y.extend(Columnset, Y.Base, {
      */
     keyHash: null,
 
-    /**
+    /*
      * Array of only Columns that are meant to be displayed in DOM.
      *
      * @property keys
@@ -522,7 +531,7 @@ Y.extend(Columnset, Y.Base, {
     // METHODS
     //
     /////////////////////////////////////////////////////////////////////////////
-    /**
+    /*
     * Initializer. Generates all internal representations of the collection of
     * Columns.
     *
@@ -625,7 +634,7 @@ Y.extend(Columnset, Y.Base, {
         this._setHeaders();
     },
 
-    /**
+    /*
     * Destructor.
     *
     * @method destructor
@@ -639,7 +648,7 @@ Y.extend(Columnset, Y.Base, {
     // COLUMN HELPERS
     //
     /////////////////////////////////////////////////////////////////////////////
-    /**
+    /*
     * Cascade certain properties to children if not defined on their own.
     *
     * @method _cascadePropertiesToChildren
@@ -684,7 +693,7 @@ Y.extend(Columnset, Y.Base, {
         }
     },
 
-    /**
+    /*
     * @method _setColSpans
     * @description Calculates and sets colSpan attribute on given Column.
     * @param column {Array} Column instance.
@@ -716,7 +725,7 @@ Y.extend(Columnset, Y.Base, {
         column.colSpan = terminalChildNodes;
     },
 
-    /**
+    /*
     * @method _setRowSpans
     * @description Calculates and sets rowSpan attribute on all Columns.
     * @private
@@ -782,7 +791,7 @@ Y.extend(Columnset, Y.Base, {
         parseDomTreeForRowSpan(this.tree);
     },
 
-    /**
+    /*
     * @method _setHeaders
     * @description Calculates and sets headers attribute on all Columns.
     * @private
@@ -812,23 +821,50 @@ Y.extend(Columnset, Y.Base, {
 });
 
 Y.Columnset = Columnset;
+// API Doc comments disabled to avoid deprecated class leakage into
+// non-deprecated class API docs.  See the 3.4.1 datatable API doc files in the
+// download at http://yui.zenfs.com/releases/yui3/yui_3.4.1.zip for reference.
 /**
- * The DataTable widget provides a progressively enhanced DHTML control for
- * displaying tabular data across A-grade browsers.
- *
- * @module datatable
- * @main datatable
- */
+The DataTable widget provides a progressively enhanced DHTML control for
+displaying tabular data across A-grade browsers.
+
+DEPRECATED. As of YUI 3.5.0, DataTable has been rebuilt.  This module
+corresponds to the 3.4.1 version of DataTable and will be removed from the
+library in a future version.
+
+See http://yuilibrary.com/yui/docs/migration.html for help upgrading to the
+latest version.
+
+For complete API docs for the classes in this and other deprecated
+DataTable-related modules, refer to the static API doc files in the 3.4.1
+download at http://yui.zenfs.com/releases/yui3/yui_3.4.1.zip
+
+@module datatable-deprecated
+@main datatable-deprecated
+@deprecated
+**/
 
 /**
- * Provides the base DataTable implementation, which can be extended to add
- * additional functionality, such as sorting or scrolling.
- *
- * @module datatable
- * @submodule datatable-base
- */
+Provides the base DataTable implementation, which can be extended to add
+additional functionality, such as sorting or scrolling.
 
-/**
+DEPRECATED. As of YUI 3.5.0, DataTable has been rebuilt.  This module
+corresponds to the 3.4.1 version of DataTable and will be removed from the
+library in a future version.
+
+See http://yuilibrary.com/yui/docs/migration.html for help upgrading to the
+latest version.
+
+For complete API docs for the classes in this and other deprecated
+DataTable-related modules, refer to the static API doc files in the 3.4.1
+download at http://yui.zenfs.com/releases/yui3/yui_3.4.1.zip
+
+@module datatable-deprecated
+@submodule datatable-base-deprecated
+@deprecated
+**/
+
+/*
  * Base class for the DataTable widget.
  * @class DataTable.Base
  * @extends Widget
@@ -845,7 +881,7 @@ function DTBase(config) {
 /////////////////////////////////////////////////////////////////////////////
 Y.mix(DTBase, {
 
-    /**
+    /*
      * Class name.
      *
      * @property NAME
@@ -862,7 +898,7 @@ Y.mix(DTBase, {
 //
 /////////////////////////////////////////////////////////////////////////////
     ATTRS: {
-        /**
+        /*
         * @attribute columnset
         * @description Pointer to Columnset instance.
         * @type Array | Y.Columnset
@@ -871,7 +907,7 @@ Y.mix(DTBase, {
             setter: "_setColumnset"
         },
 
-        /**
+        /*
         * @attribute recordset
         * @description Pointer to Recordset instance.
         * @type Array | Y.Recordset
@@ -893,7 +929,7 @@ Y.mix(DTBase, {
 
         },*/
 
-        /**
+        /*
         * @attribute summary
         * @description Summary.
         * @type String
@@ -901,7 +937,7 @@ Y.mix(DTBase, {
         summary: {
         },
 
-        /**
+        /*
         * @attribute caption
         * @description Caption
         * @type String
@@ -909,7 +945,7 @@ Y.mix(DTBase, {
         caption: {
         },
 
-        /**
+        /*
         * @attribute thValueTemplate
         * @description Tokenized markup template for TH value.
         * @type String
@@ -919,7 +955,7 @@ Y.mix(DTBase, {
             value: TEMPLATE_VALUE
         },
 
-        /**
+        /*
         * @attribute tdValueTemplate
         * @description Tokenized markup template for TD value.
         * @type String
@@ -929,7 +965,7 @@ Y.mix(DTBase, {
             value: TEMPLATE_VALUE
         },
 
-        /**
+        /*
         * @attribute trTemplate
         * @description Tokenized markup template for TR node creation.
         * @type String
@@ -958,7 +994,7 @@ Y.mix(DTBase, {
 //
 /////////////////////////////////////////////////////////////////////////////
 Y.extend(DTBase, Y.Widget, {
-    /**
+    /*
     * @property thTemplate
     * @description Tokenized markup template for TH node creation.
     * @type String
@@ -966,7 +1002,7 @@ Y.extend(DTBase, Y.Widget, {
     */
     thTemplate: TEMPLATE_TH,
 
-    /**
+    /*
     * @property tdTemplate
     * @description Tokenized markup template for TD node creation.
     * @type String
@@ -974,7 +1010,7 @@ Y.extend(DTBase, Y.Widget, {
     */
     tdTemplate: TEMPLATE_TD,
     
-    /**
+    /*
     * @property _theadNode
     * @description Pointer to THEAD node.
     * @type {Node}
@@ -982,7 +1018,7 @@ Y.extend(DTBase, Y.Widget, {
     */
     _theadNode: null,
     
-    /**
+    /*
     * @property _tbodyNode
     * @description Pointer to TBODY node.
     * @type {Node}
@@ -990,7 +1026,7 @@ Y.extend(DTBase, Y.Widget, {
     */
     _tbodyNode: null,
     
-    /**
+    /*
     * @property _msgNode
     * @description Pointer to message display node.
     * @type {Node}
@@ -1003,7 +1039,7 @@ Y.extend(DTBase, Y.Widget, {
     // ATTRIBUTE HELPERS
     //
     /////////////////////////////////////////////////////////////////////////////
-    /**
+    /*
     * @method _setColumnset
     * @description Converts Array to Y.Columnset.
     * @param columns {Array | Y.Columnset}
@@ -1014,7 +1050,7 @@ Y.extend(DTBase, Y.Widget, {
         return YLang.isArray(columns) ? new Y.Columnset({definitions:columns}) : columns;
     },
 
-    /**
+    /*
      * Updates the UI if Columnset is changed.
      *
      * @method _afterColumnsetChange
@@ -1025,7 +1061,7 @@ Y.extend(DTBase, Y.Widget, {
         this._uiSetColumnset(e.newVal);
     },
 
-    /**
+    /*
     * @method _setRecordset
     * @description Converts Array to Y.Recordset.
     * @param records {Array | Recordset}
@@ -1041,7 +1077,7 @@ Y.extend(DTBase, Y.Widget, {
         return rs;
     },
     
-    /**
+    /*
     * Updates the UI if Recordset is changed.
     *
     * @method _afterRecordsetChange
@@ -1052,7 +1088,7 @@ Y.extend(DTBase, Y.Widget, {
         this._uiSetRecordset(e.newVal);
     },
 
-    /**
+    /*
     * Updates the UI if Recordset records are changed.
     *
     * @method _afterRecordsChange
@@ -1063,7 +1099,7 @@ Y.extend(DTBase, Y.Widget, {
         this._uiSetRecordset(this.get('recordset'));
     },
 
-    /**
+    /*
      * Updates the UI if summary is changed.
      *
      * @method _afterSummaryChange
@@ -1074,7 +1110,7 @@ Y.extend(DTBase, Y.Widget, {
         this._uiSetSummary(e.newVal);
     },
 
-    /**
+    /*
      * Updates the UI if caption is changed.
      *
      * @method _afterCaptionChange
@@ -1091,7 +1127,7 @@ Y.extend(DTBase, Y.Widget, {
     //
     ////////////////////////////////////////////////////////////////////////////
 
-    /**
+    /*
     * Destructor.
     *
     * @method destructor
@@ -1107,7 +1143,7 @@ Y.extend(DTBase, Y.Widget, {
     //
     ////////////////////////////////////////////////////////////////////////////
 
-    /**
+    /*
     * Renders UI.
     *
     * @method renderUI
@@ -1133,7 +1169,7 @@ Y.extend(DTBase, Y.Widget, {
         this._addCaptionNode(this._tableNode);
    },
 
-    /**
+    /*
     * Creates and attaches TABLE element to given container.
     *
     * @method _addTableNode
@@ -1148,7 +1184,7 @@ Y.extend(DTBase, Y.Widget, {
         return this._tableNode;
     },
 
-    /**
+    /*
     * Creates and attaches COLGROUP element to given TABLE.
     *
     * @method _addColgroupNode
@@ -1174,7 +1210,7 @@ Y.extend(DTBase, Y.Widget, {
         return this._colgroupNode;
     },
 
-    /**
+    /*
     * Creates and attaches THEAD element to given container.
     *
     * @method _addTheadNode
@@ -1189,7 +1225,7 @@ Y.extend(DTBase, Y.Widget, {
         }
     },
 
-    /**
+    /*
     * Creates and attaches TBODY element to given container.
     *
     * @method _addTbodyNode
@@ -1202,7 +1238,7 @@ Y.extend(DTBase, Y.Widget, {
         return this._tbodyNode;
     },
 
-    /**
+    /*
     * Creates and attaches message display element to given container.
     *
     * @method _addMessageNode
@@ -1215,7 +1251,7 @@ Y.extend(DTBase, Y.Widget, {
         return this._msgNode;
     },
 
-    /**
+    /*
     * Creates and attaches CAPTION element to given container.
     *
     * @method _addCaptionNode
@@ -1233,7 +1269,7 @@ Y.extend(DTBase, Y.Widget, {
     //
     ////////////////////////////////////////////////////////////////////////////
 
-    /**
+    /*
     * Binds events.
     *
     * @method bindUI
@@ -1266,7 +1302,7 @@ Y.extend(DTBase, Y.Widget, {
     //
     ////////////////////////////////////////////////////////////////////////////
 
-    /**
+    /*
     * Syncs UI to intial state.
     *
     * @method syncUI
@@ -1283,7 +1319,7 @@ Y.extend(DTBase, Y.Widget, {
         this._uiSetCaption(this.get("caption"));
     },
 
-    /**
+    /*
      * Updates summary.
      *
      * @method _uiSetSummary
@@ -1295,7 +1331,7 @@ Y.extend(DTBase, Y.Widget, {
         this._tableNode.set("summary", val);
     },
 
-    /**
+    /*
      * Updates caption.
      *
      * @method _uiSetCaption
@@ -1321,7 +1357,7 @@ Y.extend(DTBase, Y.Widget, {
     // THEAD/COLUMNSET FUNCTIONALITY
     //
     ////////////////////////////////////////////////////////////////////////////
-    /**
+    /*
      * Updates THEAD.
      *
      * @method _uiSetColumnset
@@ -1359,7 +1395,7 @@ Y.extend(DTBase, Y.Widget, {
 
      },
      
-    /**
+    /*
     * Creates and attaches header row element.
     *
     * @method _addTheadTrNode
@@ -1374,7 +1410,7 @@ Y.extend(DTBase, Y.Widget, {
      },
      
 
-    /**
+    /*
     * Creates header row element.
     *
     * @method _createTheadTrNode
@@ -1408,7 +1444,7 @@ Y.extend(DTBase, Y.Widget, {
         return tr;
     },
 
-    /**
+    /*
     * Attaches header row element.
     *
     * @method _attachTheadTrNode
@@ -1419,7 +1455,7 @@ Y.extend(DTBase, Y.Widget, {
         o.thead.appendChild(o.tr);
     },
 
-    /**
+    /*
     * Creates and attaches header cell element.
     *
     * @method _addTheadThNode
@@ -1433,7 +1469,7 @@ Y.extend(DTBase, Y.Widget, {
         o.column.thNode = o.th;
     },
 
-    /**
+    /*
     * Creates header cell element.
     *
     * @method _createTheadThNode
@@ -1462,7 +1498,7 @@ Y.extend(DTBase, Y.Widget, {
         return Ycreate(fromTemplate(this.thTemplate, o));
     },
 
-    /**
+    /*
     * Attaches header cell element.
     *
     * @method _attachTheadThNode
@@ -1478,7 +1514,7 @@ Y.extend(DTBase, Y.Widget, {
     // TBODY/RECORDSET FUNCTIONALITY
     //
     ////////////////////////////////////////////////////////////////////////////
-    /**
+    /*
      * Updates TBODY.
      *
      * @method _uiSetRecordset
@@ -1565,7 +1601,7 @@ Y.extend(DTBase, Y.Widget, {
         return fromTemplate(template, o);
     },
 
-    /**
+    /*
     * Creates and attaches data row element.
     *
     * @method _addTbodyTrNode
@@ -1580,7 +1616,7 @@ Y.extend(DTBase, Y.Widget, {
         this._attachTbodyTrNode(o);
     },
 
-    /**
+    /*
     * Creates data row element.
     *
     * @method _createTbodyTrNode
@@ -1608,7 +1644,7 @@ Y.extend(DTBase, Y.Widget, {
         return o.tr;
     },
 
-    /**
+    /*
     * Attaches data row element.
     *
     * @method _attachTbodyTrNode
@@ -1631,7 +1667,7 @@ Y.extend(DTBase, Y.Widget, {
         tbody.insertBefore(tr, nextSibling);
     },
 
-    /**
+    /*
     * Creates and attaches data cell element.
     *
     * @method _addTbodyTdNode
@@ -1644,7 +1680,7 @@ Y.extend(DTBase, Y.Widget, {
         delete o.td;
     },
     
-    /**
+    /*
     Creates a TD Node from the tdTemplate property using the input object as
     template {placeholder} values.  The created Node is also assigned to the
     `td` property on the input object.
@@ -1661,7 +1697,7 @@ Y.extend(DTBase, Y.Widget, {
             (data.td = Ycreate(fromTemplate(this.tdTemplate, data))));
     },
 
-    /**
+    /*
     * Creates data cell element.
     *
     * @method _createTbodyTdNode
@@ -1676,7 +1712,7 @@ Y.extend(DTBase, Y.Widget, {
         return o.td || this.createCell(o);
     },
     
-    /**
+    /*
     * Attaches data cell element.
     *
     * @method _attachTbodyTdNode
@@ -1687,7 +1723,7 @@ Y.extend(DTBase, Y.Widget, {
         o.tr.appendChild(o.td);
     },
 
-    /**
+    /*
      * Returns markup to insert into data cell element.
      *
      * @method formatDataCell
@@ -1707,4 +1743,4 @@ Y.extend(DTBase, Y.Widget, {
 Y.namespace("DataTable").Base = DTBase;
 
 
-}, '3.6.0' ,{requires:['recordset-base','widget','substitute','event-mouseenter']});
+}, '3.7.1pr1' ,{requires:['recordset-base','widget','substitute','event-mouseenter']});

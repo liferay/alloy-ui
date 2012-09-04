@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
 YUI.add('event-outside', function(Y) {
 
@@ -37,8 +37,14 @@ YUI.add('event-outside', function(Y) {
  * a different name for the created Event, pass it as a second argument like so:
  * <code>Y.Event.defineOutside(eventType, "yonderclick")</code>.
  *
+ * This module was contributed by Brett Stimmerman, promoted from his
+ * gallery-outside-events module at
+ * http://yuilibrary.com/gallery/show/outside-events
+ *
  * @module event
  * @submodule event-outside
+ * @author brettstimmerman
+ * @since 3.4.0
  */
 
 // Outside events are pre-defined for each of these native DOM events
@@ -56,10 +62,11 @@ var nativeEvents = [
  * a different name for the created Event, pass it as a second argument like so:
  * <code>Y.Event.defineOutside(eventType, "yonderclick")</code>.
  *
- * @method Y.Event.defineOutside
+ * @method defineOutside
  * @param {String} event DOM event
  * @param {String} name (optional) custom outside event name
  * @static
+ * @for Event
  */
 Y.Event.defineOutside = function (event, name) {
     name = name || (event + 'outside');
@@ -104,4 +111,4 @@ Y.Array.each(nativeEvents, function (event) {
 });
 
 
-}, '3.6.0' ,{requires:['event-synthetic']});
+}, '3.7.1pr1' ,{requires:['event-synthetic']});

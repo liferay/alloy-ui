@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
 YUI.add('datatable-datasource', function(Y) {
 
@@ -184,4 +184,4 @@ Y.extend(DataTableDataSource, Y.Plugin.Base, {
 Y.namespace("Plugin").DataTableDataSource = DataTableDataSource;
 
 
-}, '3.6.0' ,{requires:['datatable-base','plugin','datasource-local']});
+}, '3.7.1pr1' ,{requires:['datatable-base','plugin','datasource-local']});

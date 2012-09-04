@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
 YUI.add('dom-core', function(Y) {
 
@@ -19,6 +19,19 @@ var NODE_TYPE = 'nodeType',
     CONTAINS = 'contains',
     COMPARE_DOCUMENT_POSITION = 'compareDocumentPosition',
     EMPTY_ARRAY = [],
+    
+    // IE < 8 throws on node.contains(textNode)
+    supportsContainsTextNode = (function() {
+        var node = Y.config.doc.createElement('div'),
+            textNode = node.appendChild(Y.config.doc.createTextNode('')),
+            result = false;
+        
+        try {
+            result = node.contains(textNode);
+        } catch(e) {}
+
+        return result;
+    })(),
 
 /** 
  * The DOM utility provides a cross-browser abtraction layer
@@ -155,16 +168,19 @@ Y_DOM = {
 
         if ( !needle || !element || !needle[NODE_TYPE] || !element[NODE_TYPE]) {
             ret = false;
-        } else if (element[CONTAINS])  {
-            if (Y.UA.opera || needle[NODE_TYPE] === 1) { // IE & SAF contains fail if needle not an ELEMENT_NODE
+        } else if (element[CONTAINS] &&
+                // IE < 8 throws on node.contains(textNode) so fall back to brute.
+                // Falling back for other nodeTypes as well.
+                (needle[NODE_TYPE] === 1 || supportsContainsTextNode)) {
                 ret = element[CONTAINS](needle);
-            } else {
-                ret = Y_DOM._bruteContains(element, needle); 
-            }
-        } else if (element[COMPARE_DOCUMENT_POSITION]) { // gecko
+        } else if (element[COMPARE_DOCUMENT_POSITION]) {
+            // Match contains behavior (node.contains(node) === true).
+            // Needed for Firefox < 4.
             if (element === needle || !!(element[COMPARE_DOCUMENT_POSITION](needle) & 16)) { 
                 ret = true;
             }
+        } else {
+            ret = Y_DOM._bruteContains(element, needle);
         }
 
         return ret;
@@ -377,4 +393,4 @@ Y_DOM = {
 Y.DOM = Y_DOM;
 
 
-}, '3.6.0' ,{requires:['oop','features']});
+}, '3.7.1pr1' ,{requires:['oop','features']});

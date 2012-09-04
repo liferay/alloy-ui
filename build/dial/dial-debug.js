@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
-YUI.add('dial', function(Y) {
+YUI.add('dial', function (Y, NAME) {
 
 /**
  * Create a circular dial value range input visualized as a draggable handle on a
@@ -1295,4 +1295,4 @@ YUI.add('dial', function(Y) {
     Y.Dial = Dial;
 
 
-}, '3.6.0' ,{lang:['en','es' ], skinnable:true, requires:['widget', 'dd-drag', 'substitute', 'event-mouseenter', 'event-move', 'event-key', 'transition', 'intl']});
+}, '3.7.1pr1', {"requires": ["widget", "dd-drag", "substitute", "event-mouseenter", "event-move", "event-key", "transition", "intl"], "lang": ["en", "es"], "skinnable": true});

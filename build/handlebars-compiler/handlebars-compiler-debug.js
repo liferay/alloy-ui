@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
-YUI.add('handlebars-compiler', function(Y) {
+YUI.add('handlebars-compiler', function (Y, NAME) {
 
 /*!
 Handlebars.js - Copyright (C) 2011 Yehuda Katz
@@ -1799,4 +1799,4 @@ function.
 */
 
 
-}, '3.6.0' ,{requires:['handlebars-base']});
+}, '3.7.1pr1', {"requires": ["handlebars-base"]});

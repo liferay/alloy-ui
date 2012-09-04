@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
 YUI.add('history-html5', function(Y) {
 
@@ -187,4 +187,4 @@ if (useHistoryHTML5 === true || (useHistoryHTML5 !== false &&
 }
 
 
-}, '3.6.0' ,{optional:['json'], requires:['event-base', 'history-base', 'node-base']});
+}, '3.7.1pr1' ,{requires:['event-base', 'history-base', 'node-base'], optional:['json']});

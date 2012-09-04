@@ -72,8 +72,6 @@
 						'aui-selector': {requires:['selector-css3'], skinnable:false},
 						'aui-simple-anim': {requires:['aui-base'], skinnable:false},
 						'aui-skin-base': {path: 'aui-skin-base/css/aui-skin-base.css', type: 'css'},
-						'aui-skin-classic-all': {path: 'aui-skin-classic/css/aui-skin-classic-all.css', type: 'css'},
-						'aui-skin-classic': {path: 'aui-skin-classic/css/aui-skin-classic.css', type: 'css', requires:['aui-skin-base']},
 						'aui-sortable': {requires:['aui-base','dd-constrain','dd-drag','dd-drop','dd-proxy'], skinnable:true},
 						'aui-state-interaction': {requires:['aui-base','plugin'], skinnable:false},
 						'aui-swf': {requires:['aui-base','querystring-parse-simple','querystring-stringify-simple'], skinnable:false},

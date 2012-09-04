@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
-YUI.add('dd-constrain', function(Y) {
+YUI.add('dd-constrain', function (Y, NAME) {
 
 
     /**
@@ -529,33 +529,34 @@ YUI.add('dd-constrain', function(Y) {
 
             if (!ticks || (ticks.length === 0)) {
                 return pos;
-            } else if (ticks[0] >= pos) {
+            }
+            if (ticks[0] >= pos) {
                 return ticks[0];
-            } else {
-                for (i = 0; i < len; i++) {
-                    next = (i + 1);
-                    if (ticks[next] && ticks[next] >= pos) {
-                        diff1 = pos - ticks[i];
-                        diff2 = ticks[next] - pos;
-                        ret = (diff2 > diff1) ? ticks[i] : ticks[next];
-                        if (off1 && off2) {
-                            if (ret > off2) {
-                                if (ticks[i]) {
-                                    ret = ticks[i];
-                                } else {
-                                    ret = ticks[len - 1];
-                                }
+            }
+
+            for (i = 0; i < len; i++) {
+                next = (i + 1);
+                if (ticks[next] && ticks[next] >= pos) {
+                    diff1 = pos - ticks[i];
+                    diff2 = ticks[next] - pos;
+                    ret = (diff2 > diff1) ? ticks[i] : ticks[next];
+                    if (off1 && off2) {
+                        if (ret > off2) {
+                            if (ticks[i]) {
+                                ret = ticks[i];
+                            } else {
+                                ret = ticks[len - 1];
                             }
                         }
-                        return ret;
                     }
-
+                    return ret;
                 }
-                return ticks[ticks.length - 1];
+
             }
+            return ticks[ticks.length - 1];
         }
     });
 
 
 
-}, '3.6.0' ,{skinnable:false, requires:['dd-drag']});
+}, '3.7.1pr1', {"requires": ["dd-drag"]});

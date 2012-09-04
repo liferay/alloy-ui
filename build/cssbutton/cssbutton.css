@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
 .yui3-button {
     /* Structure */
@@ -145,5 +145,6 @@ a.yui3-button {
 .yui3-skin-night .yui3-button:-moz-focusring {
     outline-color: rgba(255, 255, 255, 0.85);
 }
+
 /* YUI CSS Detection Stamp */
 #yui3-css-stamp.cssbutton { display: none; }

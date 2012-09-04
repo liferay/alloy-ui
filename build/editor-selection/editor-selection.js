@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
-YUI.add('editor-selection', function(Y) {
+YUI.add('editor-selection', function (Y, NAME) {
 
     /**
      * Wraps some common Selection/Range functionality into a simple object
@@ -1009,4 +1009,4 @@ YUI.add('editor-selection', function(Y) {
 
 
 
-}, '3.6.0' ,{skinnable:false, requires:['node']});
+}, '3.7.1pr1', {"requires": ["node"]});

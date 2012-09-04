@@ -2,19 +2,34 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
 YUI.add('datatable-sort-deprecated', function(Y) {
 
+// API Doc comments disabled to avoid deprecated class leakage into
+// non-deprecated class API docs.  See the 3.4.1 datatable API doc files in the
+// download at http://yui.zenfs.com/releases/yui3/yui_3.4.1.zip for reference.
 /**
- * Plugs DataTable with sorting functionality.
- *
- * @module datatable
- * @submodule datatable-sort
- */
+Plugs DataTable with sorting functionality.
 
-/**
+DEPRECATED. As of YUI 3.5.0, DataTable has been rebuilt.  This module
+is designed to work with `datatable-base-deprecated` (effectively the 3.4.1
+version of DataTable) and will be removed from the library in a future version.
+
+See http://yuilibrary.com/yui/docs/migration.html for help upgrading to the
+latest version.
+
+For complete API docs for the classes in this and other deprecated
+DataTable-related modules, refer to the static API doc files in the 3.4.1
+download at http://yui.zenfs.com/releases/yui3/yui_3.4.1.zip
+
+@module datatable-deprecated
+@submodule datatable-sort-deprecated
+@deprecated
+**/
+
+/*
  * Adds column sorting to DataTable.
  * @class DataTableSort
  * @extends Plugin.Base
@@ -40,7 +55,7 @@ function DataTableSort() {
 //
 /////////////////////////////////////////////////////////////////////////////
 Y.mix(DataTableSort, {
-    /**
+    /*
      * The namespace for the plugin. This will be the property on the host which
      * references the plugin instance.
      *
@@ -52,7 +67,7 @@ Y.mix(DataTableSort, {
      */
     NS: "sort",
 
-    /**
+    /*
      * Class name.
      *
      * @property NAME
@@ -69,7 +84,7 @@ Y.mix(DataTableSort, {
 //
 /////////////////////////////////////////////////////////////////////////////
     ATTRS: {
-        /**
+        /*
         * @attribute trigger
         * @description Defines the trigger that causes a column to be sorted:
         * {event, selector}, where "event" is an event type and "selector" is
@@ -83,7 +98,7 @@ Y.mix(DataTableSort, {
             writeOnce: "initOnly"
         },
         
-        /**
+        /*
         * @attribute lastSortedBy
         * @description Describes last known sort state: {key,dir}, where
         * "key" is column key and "dir" is either "asc" or "desc".
@@ -94,7 +109,7 @@ Y.mix(DataTableSort, {
             lazyAdd: false
         },
         
-        /**
+        /*
         * @attribute template
         * @description Tokenized markup template for TH sort element.
         * @type String
@@ -104,7 +119,7 @@ Y.mix(DataTableSort, {
             value: TEMPLATE
         },
 
-        /**
+        /*
          * Strings used in the UI elements.
          *
          * The strings used are defaulted from the datatable-sort language pack
@@ -135,7 +150,7 @@ Y.extend(DataTableSort, Y.Plugin.Base, {
     // METHODS
     //
     /////////////////////////////////////////////////////////////////////////////
-    /**
+    /*
     * Initializer.
     *
     * @method initializer
@@ -180,7 +195,7 @@ Y.extend(DataTableSort, Y.Plugin.Base, {
         }
     },
 
-    /**
+    /*
     * @method _setLastSortedBy
     * @description Normalizes lastSortedBy
     * @param val {String | Object} {key, dir} or "key"
@@ -201,7 +216,7 @@ Y.extend(DataTableSort, Y.Plugin.Base, {
         }
     },
 
-    /**
+    /*
      * Updates sort UI.
      *
      * @method _uiSetLastSortedBy
@@ -258,7 +273,7 @@ Y.extend(DataTableSort, Y.Plugin.Base, {
         }
     },
 
-    /**
+    /*
     * Before header cell element is created, inserts link markup around {value}.
     *
     * @method _beforeCreateTheadThNode
@@ -286,7 +301,7 @@ Y.extend(DataTableSort, Y.Plugin.Base, {
         }
     },
 
-    /**
+    /*
     * Before header cell element is attached, sets applicable class names.
     *
     * @method _beforeAttachTheadThNode
@@ -309,7 +324,7 @@ Y.extend(DataTableSort, Y.Plugin.Base, {
         }
     },
 
-    /**
+    /*
     * Before header cell element is attached, sets applicable class names.
     *
     * @method _beforeAttachTbodyTdNode
@@ -331,7 +346,7 @@ Y.extend(DataTableSort, Y.Plugin.Base, {
             o.td.replaceClass(YgetClassName(DATATABLE, notdir), YgetClassName(DATATABLE, dir));
         }
     },
-    /**
+    /*
     * In response to the "trigger" event, sorts the underlying Recordset and
     * updates the lastSortedBy attribute.
     *
@@ -369,4 +384,4 @@ Y.namespace("Plugin").DataTableSort = DataTableSort;
 
 
 
-}, '3.6.0' ,{requires:['datatable-base-deprecated','plugin','recordset-sort'], lang:['en']});
+}, '3.7.1pr1' ,{requires:['datatable-base-deprecated','plugin','recordset-sort'], lang:['en']});
