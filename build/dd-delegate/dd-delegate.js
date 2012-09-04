@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
-YUI.add('dd-delegate', function(Y) {
+YUI.add('dd-delegate', function (Y, NAME) {
 
 
     /**
@@ -174,7 +174,7 @@ YUI.add('dd-delegate', function(Y) {
                 groups = this.dd.get('groups');
                 config = this.get('dragConfig');
                 
-                if (config && 'groups' in config) {
+                if (config && config.groups) {
                     groups = config.groups;
                 }
 
@@ -342,4 +342,4 @@ YUI.add('dd-delegate', function(Y) {
 
 
 
-}, '3.6.0' ,{skinnable:false, requires:['dd-drag', 'event-mouseenter', 'dd-drop-plugin']});
+}, '3.7.1pr1', {"requires": ["dd-drag", "dd-drop-plugin", "event-mouseenter"]});

@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
 /**
  * The YUI module contains the components required for building the YUI seed
@@ -160,7 +160,7 @@ properties.
 (function() {
 
     var proto, prop,
-        VERSION = '3.6.0',
+        VERSION = '3.7.1pr1',
         PERIOD = '.',
         BASE = 'http://yui.yahooapis.com/',
         /*
@@ -3799,7 +3799,7 @@ Y.UA.compareVersions = function (a, b) {
 };
 YUI.Env.aliases = {
     "anim": ["anim-base","anim-color","anim-curve","anim-easing","anim-node-plugin","anim-scroll","anim-xy"],
-    "app": ["app-base","app-transitions","lazy-model-list","model","model-list","model-sync-rest","router","view","view-node-map"],
+    "app": ["app-base","app-content","app-transitions","lazy-model-list","model","model-list","model-sync-rest","router","view","view-node-map"],
     "attribute": ["attribute-base","attribute-complex"],
     "autocomplete": ["autocomplete-base","autocomplete-sources","autocomplete-list","autocomplete-plugin"],
     "base": ["base-base","base-pluginhost","base-build"],
@@ -3837,7 +3837,7 @@ YUI.Env.aliases = {
 };
 
 
-}, '3.6.0' );
+}, '3.7.1pr1' );
 YUI.add('get', function(Y) {
 
 /*jslint boss:true, expr:true, laxbreak: true */
@@ -5105,7 +5105,7 @@ Transaction.prototype = {
 };
 
 
-}, '3.6.0' ,{requires:['yui-base']});
+}, '3.7.1pr1' ,{requires:['yui-base']});
 YUI.add('features', function(Y) {
 
 var feature_tests = {};
@@ -5440,7 +5440,7 @@ add('load', '17', {
 });
 
 
-}, '3.6.0' ,{requires:['yui-base']});
+}, '3.7.1pr1' ,{requires:['yui-base']});
 YUI.add('intl-base', function(Y) {
 
 /**
@@ -5528,7 +5528,7 @@ Y.mix(Y.namespace('Intl'), {
 });
 
 
-}, '3.6.0' ,{requires:['yui-base']});
+}, '3.7.1pr1' ,{requires:['yui-base']});
 YUI.add('yui-log', function(Y) {
 
 /**
@@ -5638,7 +5638,7 @@ INSTANCE.message = function() {
 };
 
 
-}, '3.6.0' ,{requires:['yui-base']});
+}, '3.7.1pr1' ,{requires:['yui-base']});
 YUI.add('yui-later', function(Y) {
 
 /**
@@ -5715,8 +5715,8 @@ Y.Lang.later = Y.later;
 
 
 
-}, '3.6.0' ,{requires:['yui-base']});
+}, '3.7.1pr1' ,{requires:['yui-base']});
 
 
-YUI.add('yui', function(Y){}, '3.6.0' ,{use:['yui-base','get','features','intl-base','yui-log','yui-later']});
+YUI.add('yui', function(Y){}, '3.7.1pr1' ,{use:['yui-base','get','features','intl-base','yui-log','yui-later']});
 

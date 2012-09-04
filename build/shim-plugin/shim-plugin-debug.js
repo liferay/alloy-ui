@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
 YUI.add('shim-plugin', function(Y) {
 
@@ -110,4 +110,4 @@ YUI.add('shim-plugin', function(Y) {
     Y.Plugin.Shim = Shim;
 
 
-}, '3.6.0' ,{requires:['node-style', 'node-pluginhost']});
+}, '3.7.1pr1' ,{requires:['node-style', 'node-pluginhost']});

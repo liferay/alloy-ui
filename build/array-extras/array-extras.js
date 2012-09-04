@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
 YUI.add('array-extras', function(Y) {
 
@@ -87,7 +87,7 @@ A.unique = function (array, testFn) {
     var i       = 0,
         len     = array.length,
         results = [],
-        j, match, result, resultLen, value;
+        j, result, resultLen, value;
 
     // Note the label here. It's used to jump out of the inner loop when a value
     // is not unique.
@@ -370,5 +370,38 @@ A.zip = function(a, a2) {
     return results;
 };
 
+/**
+Flattens an array of nested arrays at any abitrary depth into a single, flat
+array.
 
-}, '3.6.0' ,{requires:['yui-base']});
+@method flatten
+@param {Array} a Array with nested arrays to flatten.
+@return {Array} An array whose nested arrays have been flattened.
+@static
+@since 3.6.1
+**/
+A.flatten = function(a) {
+    var result = [],
+        i, len, val;
+
+    // Always return an array.
+    if (!a) {
+        return result;
+    }
+
+    for (i = 0, len = a.length; i < len; ++i) {
+        val = a[i];
+
+        if (L.isArray(val)) {
+            // Recusively flattens any nested arrays.
+            result.push.apply(result, A.flatten(val));
+        } else {
+            result.push(val);
+        }
+    }
+
+    return result;
+};
+
+
+}, '3.7.1pr1' ,{requires:['yui-base']});

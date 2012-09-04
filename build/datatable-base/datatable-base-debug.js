@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
 YUI.add('datatable-base', function(Y) {
 
@@ -687,4 +687,4 @@ Y.DataTable = Y.mix(
     Y.DataTable); // Migrate static and namespaced classes
 
 
-}, '3.6.0' ,{requires:['datatable-core', 'base-build', 'widget', 'datatable-head', 'datatable-body']});
+}, '3.7.1pr1' ,{requires:['datatable-core', 'base-build', 'widget', 'datatable-head', 'datatable-body']});

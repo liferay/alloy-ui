@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
-YUI.add('substitute', function(Y) {
+YUI.add('substitute', function (Y, NAME) {
 
 /**
  * String variable substitution and string formatting.
@@ -31,7 +31,9 @@ YUI.add('substitute', function(Y) {
     `var greeting = Y.substitute("Hello, {who}!", { who: "World" });`
 
     {placeholder} tokens that are undefined on the object map will be left in
-    tact (leaving unsightly "{placeholder}"s in the output string).
+    tact (leaving unsightly "{placeholder}"s in the output string).  If your
+    replacement strings *should* include curly braces, use `{LBRACE}` and
+    `{RBRACE}` in your object map string value.
 
     If a function is passed as a third argument, it will be called for each
     {placeholder} found.  The {placeholder} name is passed as the first value
@@ -163,5 +165,4 @@ YUI.add('substitute', function(Y) {
 
 
 
-
-}, '3.6.0' ,{optional:['dump'], requires:['yui-base']});
+}, '3.7.1pr1', {"requires": ["yui-base"], "optional": ["dump"]});

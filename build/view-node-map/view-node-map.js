@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
-YUI.add('view-node-map', function(Y) {
+YUI.add('view-node-map', function (Y, NAME) {
 
 /**
 View extension that adds a static `getByNode()` method that returns the nearest
@@ -88,4 +88,4 @@ NodeMap.prototype = {
 Y.View.NodeMap = NodeMap;
 
 
-}, '3.6.0' ,{requires:['view']});
+}, '3.7.1pr1', {"requires": ["view"]});

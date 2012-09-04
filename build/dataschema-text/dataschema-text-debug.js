@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
 YUI.add('dataschema-text', function(Y) {
 
@@ -187,4 +187,4 @@ var Lang = Y.Lang,
 Y.DataSchema.Text = Y.mix(SchemaText, Y.DataSchema.Base);
 
 
-}, '3.6.0' ,{requires:['dataschema-base']});
+}, '3.7.1pr1' ,{requires:['dataschema-base']});

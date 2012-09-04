@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
-YUI.add('test-console', function(Y) {
+YUI.add('test-console', function (Y, NAME) {
 
 /**
 Provides a specialized log console widget that's pre-configured to display YUI
@@ -59,6 +59,54 @@ Y.namespace('Test').Console = Y.extend(TestConsole, Y.Console, {
                 TestRunner: true
             }
         });
+
+        Y.Test.Runner.on('complete', Y.bind(this._parseCoverage, this));
+    },
+
+    // -- Protected Coverage Parser ---------------------------------------------
+    /**
+    * Parses YUITest coverage results if they are available and logs them.
+    * @method _parseCoverage
+    * @private
+    */
+    _parseCoverage: function() {
+        var coverage = Y.Test.Runner.getCoverage();
+        if (!coverage) {
+            return;
+        }
+
+        var cov = {
+            lines: {
+                hit: 0,
+                miss: 0,
+                total: 0,
+                percent: 0
+            },
+            functions: {
+                hit: 0,
+                miss: 0,
+                total: 0,
+                percent: 0
+            }
+        };
+
+        Y.Object.each(coverage, function(info) {
+            cov.lines.total += info.coveredLines;
+            cov.lines.hit += info.calledLines;
+            cov.lines.miss += (info.coveredLines - info.calledLines);
+            cov.lines.percent = Math.floor((cov.lines.hit / cov.lines.total) * 100);
+            
+            cov.functions.total += info.coveredFunctions;
+            cov.functions.hit += info.calledFunctions;
+            cov.functions.miss += (info.coveredFunctions - info.calledFunctions);
+            cov.functions.percent = Math.floor((cov.functions.hit / cov.functions.total) * 100);
+        });
+
+        
+        var coverageLog = 'Lines: Hit:' + cov.lines.hit + ' Missed:' + cov.lines.miss + ' Total:' + cov.lines.total + ' Percent:' + cov.lines.percent + '%\n';
+        coverageLog += 'Functions: Hit:' + cov.functions.hit + ' Missed:' + cov.functions.miss + ' Total:' + cov.functions.total + ' Percent:' + cov.functions.percent + '%';
+
+        this.log('Coverage: ' + coverageLog, 'info', 'TestRunner');
     },
 
     // -- Protected Event Handlers ---------------------------------------------
@@ -102,4 +150,4 @@ Y.namespace('Test').Console = Y.extend(TestConsole, Y.Console, {
 });
 
 
-}, '3.6.0' ,{skinnable:true, requires:['console-filters', 'test']});
+}, '3.7.1pr1', {"requires": ["console-filters", "test"], "skinnable": true});

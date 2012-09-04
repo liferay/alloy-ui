@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
 YUI.add('event-touch', function(Y) {
 
@@ -31,7 +31,7 @@ Y.DOMEventFacade.prototype._touch = function(e, currentTarget, wrapper) {
 
     var i,l, etCached, et,touchCache;
 
-    Y.log("Calling facade._touch() with e = " + e);
+    Y.log("Calling facade._touch() with e = " + e, "info", "event-touch");
 
     if (e.touches) {
         Y.log("Found e.touches. Replicating on facade");
@@ -53,7 +53,7 @@ Y.DOMEventFacade.prototype._touch = function(e, currentTarget, wrapper) {
     }
 
     if (e.targetTouches) {
-        Y.log("Found e.targetTouches. Replicating on facade");
+        Y.log("Found e.targetTouches. Replicating on facade", "info", "event-touch");
 
         /**
          * Array of individual touch events still in contact with the touch
@@ -71,12 +71,12 @@ Y.DOMEventFacade.prototype._touch = function(e, currentTarget, wrapper) {
 
             this.targetTouches[i] = etCached || new Y.DOMEventFacade(et, currentTarget, wrapper);
             
-            if (etCached) { Y.log("Found native event in touches. Using same facade in targetTouches"); }
+            if (etCached) { Y.log("Found native event in touches. Using same facade in targetTouches", "info", "event-touch"); }
         }
     }
 
     if (e.changedTouches) {
-        Y.log("Found e.changedTouches. Replicating on facade");        
+        Y.log("Found e.changedTouches. Replicating on facade", "info", "event-touch");
 
         /**
         An array of event-specific touch events.
@@ -101,7 +101,7 @@ Y.DOMEventFacade.prototype._touch = function(e, currentTarget, wrapper) {
 
             this.changedTouches[i] = etCached || new Y.DOMEventFacade(et, currentTarget, wrapper);
             
-            if (etCached) { Y.log("Found native event in touches. Using same facade in changedTouches"); }
+            if (etCached) { Y.log("Found native event in touches. Using same facade in changedTouches", "info", "event-touch"); }
         }
     }
 
@@ -131,4 +131,4 @@ if (Y.Node.DOM_EVENTS) {
 }
 
 
-}, '3.6.0' ,{requires:['node-base']});
+}, '3.7.1pr1' ,{requires:['node-base']});

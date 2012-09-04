@@ -6,6 +6,7 @@ var Lang = A.Lang,
 	isObject = Lang.isObject,
 	isString = Lang.isString,
 	LString = Lang.String,
+	DataType = A.DataType,
 
 	isBaseEditor = function(val) {
 		return (val instanceof A.BaseCellEditor);
@@ -1327,6 +1328,37 @@ var DateCellEditor = A.Component.create({
 			setter: '_setCalendar',
 			validator: isObject,
 			value: null
+		},
+
+		dateFormat: {
+			value: '%D',
+			validator: isString
+		},
+
+		inputFormatter: {
+			value: function(val) {
+				var instance = this,
+					values = [];
+
+				AArray.each(val, function(date, index) {
+					values.push(instance.formatDate(date).toString());
+				});
+
+				return values;
+			}
+		},
+
+		outputFormatter: {
+			value: function(val) {
+				var instance = this,
+					values = [];
+
+				AArray.each(val, function(date, index) {
+					values.push(DataType.Date.parse(date));
+				});
+
+				return values;
+			}
 		}
 	},
 
@@ -1336,13 +1368,28 @@ var DateCellEditor = A.Component.create({
 		initializer: function() {
 			var instance = this;
 
-			instance.on('calendar:select', A.bind(instance._onDateSelect, instance));
+			instance.after('calendar:dateClick', A.bind(instance._afterDateSelect, instance));
 		},
 
 		getElementsValue: function() {
 			var instance = this;
 
-			return instance.calendar.getFormattedSelectedDates().join(_COMMA);
+			return instance.calendar.get('selectedDates');
+		},
+
+		formatDate: function(date) {
+			var instance = this,
+				mask = instance.get('dateFormat'),
+				locale = instance.get('locale');
+
+			return DataType.Date.format(date, { format: mask, locale: locale });
+		},
+
+		_afterDateSelect: function(event) {
+			var instance = this,
+				selectedDates = instance.calendar.get('selectedDates');
+
+			instance.elements.val(AArray.invoke(selectedDates, 'getTime').join(_COMMA));
 		},
 
 		_afterRender: function() {
@@ -1354,14 +1401,6 @@ var DateCellEditor = A.Component.create({
 				instance.get(CALENDAR)
 			)
 			.render(instance.bodyNode);
-		},
-
-		_onDateSelect: function(event) {
-			var instance = this;
-
-			instance.elements.val(
-				event.date.formatted.join(_COMMA)
-			);
 		},
 
 		_setCalendar: function(val) {
@@ -1376,15 +1415,20 @@ var DateCellEditor = A.Component.create({
 		},
 
 		_uiSetValue: function(val) {
-			var instance = this;
-			var calendar = instance.calendar;
+			var instance = this,
+				calendar = instance.calendar,
+				formatedValue;
 
 			if (calendar) {
-				if (val && isString(val)) {
-					val = val.split(_COMMA);
+				if (!isArray(val)) {
+					val = [val];
 				}
 
-				instance.calendar.set('dates', val);
+				formatedValue = instance.formatValue(instance.get(OUTPUT_FORMATTER), val);
+
+				calendar._clearSelection();
+				calendar.set('date', formatedValue[0]);
+				calendar.selectDates(formatedValue);
 			}
 		}
 	}

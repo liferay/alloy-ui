@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0
-build: 3.6.0
+version: 3.7.1pr1
+build: 3.7.1pr1
 */
 YUI.add('datatable-sort', function(Y) {
 
@@ -896,4 +896,4 @@ Y.DataTable.Sortable = Sortable;
 Y.Base.mix(Y.DataTable, [Sortable]);
 
 
-}, '3.6.0' ,{requires:['datatable-base'], lang:['en']});
+}, '3.7.1pr1' ,{lang:['en'], requires:['datatable-base']});
