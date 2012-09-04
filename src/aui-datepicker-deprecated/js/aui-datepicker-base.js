@@ -1,22 +1,15 @@
 var Lang = A.Lang,
-	isArray	= Lang.isArray,
 	isBoolean = Lang.isBoolean,
 	isFunction = Lang.isFunction,
-	isString = Lang.isString,
-
-	AArray = A.Array,
-	DataType = A.DataType,
 
 	CALENDAR = 'calendar',
 	CONTENT_BOX = 'contentBox',
 	CURRENT_NODE = 'currentNode',
-	DATE_FORMAT = 'dateFormat',
-	DATEPICKER = 'date-picker',
 	FORMATTER = 'formatter',
-	LOCALE = 'locale',
-	SELECT_MODE = 'selectionMode',
-	SET_VALUE = 'setValue';
+	SELECT_MULTIPLE_DATES = 'selectMultipleDates',
+	SET_VALUE = 'setValue',
 
+	DATEPICKER = 'date-picker';
 
 var DatePicker = A.Component.create({
 	NAME: DATEPICKER,
@@ -43,28 +36,16 @@ var DatePicker = A.Component.create({
 		 * @type function
 		 */
 		formatter: {
-			value: function (dates) {
-				var instance = this,
-					formattedDates = [];
-
-				if (isArray(dates)) {
-					AArray.each(dates, function (date, index) {
-						formattedDates[index] = instance.calendar.formatDate(date);
-					});
-
-					return formattedDates.join(',');
-				} else {
-					return instance.calendar.formatDate(dates);
-				}
+			value: function(dates) {
+				return dates.formatted.join(',');
 			},
-
 			validator: isFunction
 		},
 
 		/**
 		 * If true set the selected date with the correct
-		 * dateFormat to the value of the input field
-		 * which is hosting the Calendar.
+		 * <a href="Calendar.html#config_dateFormat">dateFormat</a> to the
+		 * value of the input field which is hosting the Calendar.
 		 *
 		 * @attribute setValue
 		 * @default true
@@ -107,20 +88,12 @@ var DatePicker = A.Component.create({
 		 * @method initializer
 		 * @protected
 		 */
-		initializer: function () {
-			var instance = this,
-				calendarConfig = instance.get(CALENDAR),
-				calendar = new A.Calendar(calendarConfig);
+		initializer: function() {
+			var instance = this;
 
-			instance.calendar = calendar;
-
-			// TODO
-
-			instance.after('calendar:selectionChange', instance._afterSelectionChange);
-
-			if (calendarConfig.hasOwnProperty('selectedDates')) {
-				calendar.set('selectedDates', calendarConfig.selectedDates);
-			}
+			instance.calendar = new A.Calendar(
+				instance.get(CALENDAR)
+			);
 		},
 
 		/**
@@ -129,12 +102,20 @@ var DatePicker = A.Component.create({
 		 * @method bindUI
 		 * @protected
 		 */
-		bindUI: function () {
+		bindUI: function() {
 			var instance = this;
 
 			DatePicker.superclass.bindUI.apply(this, arguments);
 
 			instance.on('show', instance._onShowOverlay);
+			instance.after('calendar:select', instance._afterSelectDate);
+
+			// Set the value of the trigger with the Calendar current date
+			if (instance.get(SET_VALUE)) {
+				instance._setTriggerValue(
+					instance.calendar._getSelectEventData().date
+				);
+			}
 		},
 
 		/**
@@ -144,7 +125,7 @@ var DatePicker = A.Component.create({
 		 * @method destructor
 		 * @protected
 		 */
-		destructor: function () {
+		destructor: function() {
 			var instance = this;
 
 			instance.calendar.destroy();
@@ -153,14 +134,20 @@ var DatePicker = A.Component.create({
 		/**
 		 * Fires when a date is selected on the Calendar.
 		 *
-		 * @method _afterSelectionChange
+		 * @method _afterSelectDate
 		 * @param {Event} event
 		 * @protected
 		 */
-		_afterSelectionChange: function (event) {
+		_afterSelectDate: function(event) {
 			var instance = this;
 
-			instance._uiSetSelectedDates(event.newSelection);
+			if (!instance.calendar.get(SELECT_MULTIPLE_DATES)) {
+				instance.hide();
+			}
+
+			if (instance.get(SET_VALUE)) {
+				instance._setTriggerValue(event.date);
+			}
 		},
 
 		/**
@@ -171,7 +158,7 @@ var DatePicker = A.Component.create({
 		 * @param {Event} event
 		 * @protected
 		 */
-		_onShowOverlay: function (event) {
+		_onShowOverlay: function(event) {
 			var instance = this;
 
 			instance._renderCalendar();
@@ -183,7 +170,7 @@ var DatePicker = A.Component.create({
 		 * @method _renderCalendar
 		 * @protected
 		 */
-		_renderCalendar: function () {
+		_renderCalendar: function() {
 			var instance = this;
 
 			instance.calendar.render(
@@ -200,7 +187,7 @@ var DatePicker = A.Component.create({
 		 * @protected
 		 * @return {}
 		 */
-		_setCalendar: function (val) {
+		_setCalendar: function(val) {
 			var instance = this;
 
 			A.mix(val, {
@@ -218,7 +205,7 @@ var DatePicker = A.Component.create({
 		 * @protected
 		 * @return {boolean}
 		 */
-		_setStack: function (value) {
+		_setStack: function(value) {
 			var instance = this;
 
 			if (value) {
@@ -238,28 +225,12 @@ var DatePicker = A.Component.create({
 		 * @param {Object} dateObj Object containing date information
 		 * @protected
 		 */
-		_setTriggerValue: function (dateObj) {
+		_setTriggerValue: function(dateObj) {
 			var instance = this;
 
 			var value = instance.get(FORMATTER).apply(instance, [dateObj]);
 
 			instance.get(CURRENT_NODE).val(value);
-		},
-
-		_uiSetSelectedDates: function (val) {
-			var instance = this;
-
-			if (instance.calendar.get(SELECT_MODE) !== 'multiple') {
-				instance.hide();
-			}
-
-			if (instance.get(SET_VALUE)) {
-				instance._setTriggerValue(val);
-			}
-
-			if (val.length) {
-				instance.calendar.set('date', val[val.length-1]);
-			}
 		}
 	}
 });
@@ -288,44 +259,3 @@ A.DatepickerManager = new A.OverlayManager({
 	 */
 	zIndexBase: 1000
 });
-
-var Calendar = function() {};
-
-Calendar.ATTRS = {
-	/**
-	 * The default date format string which can be overriden for
-	 * localization support. The format must be valid according to
-	 * <a href="DataType.Date.html">A.DataType.Date.format</a>.
-	 *
-	 * @attribute dateFormat
-	 * @default %m/%d/%Y
-	 * @type String
-	 */
-	dateFormat: {
-		value: '%m/%d/%Y',
-		validator: isString
-	},
-
-	selectedDates: {
-		readOnly: false,
-		setter: function(val) {
-			var instance = this;
-
-			instance._clearSelection();
-
-			instance.selectDates(val);
-		}
-	}
-};
-
-Calendar.prototype = {
-	formatDate: function (date) {
-		var instance = this,
-			dateFormat = instance.get(DATE_FORMAT),
-			locale = instance.get(LOCALE);
-
-		return DataType.Date.format(date, {format: dateFormat, locale: locale});
-	}
-};
-
-A.Base.mix(A.Calendar, [Calendar]);
