@@ -10,6 +10,8 @@ var L = A.Lang,
 	isBoolean = L.isBoolean,
 	isString = L.isString,
 
+	UA = A.UA,
+
 	BOUNDING_BOX = 'boundingBox',
 	CHILDREN = 'children',
 	CONTAINER = 'container',
@@ -40,7 +42,7 @@ var L = A.Lang,
 		return ( v instanceof A.TreeNode );
 	},
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_TREE_HITAREA = getCN(TREE, HITAREA),
 	CSS_TREE_ICON = getCN(TREE, ICON),
@@ -157,8 +159,6 @@ var TreeView = A.Component.create(
 				var boundingBox = instance.get(BOUNDING_BOX);
 
 				boundingBox.setData(TREE_VIEW, instance);
-
-				instance.initTreeData();
 			},
 
 			/**
@@ -410,7 +410,7 @@ var isNumber = L.isNumber,
 						'<span class="'+CSS_ICON+'"></span>'+
 						'<span class="'+CSS_TREE_DRAG_HELPER_LABEL+'"></span>'+
 					'</div>'+
-				'</div>';
+				 '</div>';
 
 /**
  * A base class for TreeViewDD, providing:
@@ -579,8 +579,9 @@ var TreeViewDD = A.Component.create(
 			 * @protected
 			 */
 			_bindDragDrop: function() {
-				var instance = this;
-				var boundingBox = instance.get(BOUNDING_BOX);
+				var instance = this,
+					boundingBox = instance.get(BOUNDING_BOX),
+					dragInitHandle = null;
 
 				instance._createDragInitHandler = function() {
 					instance.ddDelegate = new A.DD.Delegate(
@@ -606,11 +607,20 @@ var TreeViewDD = A.Component.create(
 
 					dd.removeInvalid('a');
 
-					dragInitHandle.detach();
+					if (dragInitHandle) {
+						dragInitHandle.detach();
+					}
+
 				};
 
-				// only create the drag on the init elements if the user mouseover the boundingBox for init performance reasons
-				var dragInitHandle = boundingBox.on(['focus', 'mousedown', 'mousemove'], instance._createDragInitHandler);
+				// Check for mobile devices and execute _createDragInitHandler before events
+				if (!UA.mobile) {
+					// only create the drag on the init elements if the user mouseover the boundingBox for init performance reasons
+					dragInitHandle = boundingBox.on(['focus', 'mousedown', 'mousemove'], instance._createDragInitHandler);
+				}
+				else {
+					instance._createDragInitHandler();
+				}
 
 				// drag & drop listeners
 				instance.on('drag:align', instance._onDragAlign);
