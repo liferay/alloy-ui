@@ -613,7 +613,7 @@ var TreeViewDD = A.Component.create(
 				};
 
 				// Check for mobile devices and execute _createDragInitHandler before events
-				if (!UA.mobile) {
+				if (!UA.touch) {
 					// only create the drag on the init elements if the user mouseover the boundingBox for init performance reasons
 					dragInitHandle = boundingBox.on(['focus', 'mousedown', 'mousemove'], instance._createDragInitHandler);
 				}
