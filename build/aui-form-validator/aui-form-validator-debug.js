@@ -541,12 +541,17 @@ var FormValidator = A.Component.create({
 		validatable: function(field) {
 			var instance = this;
 
+			var validatable = false;
+
 			var fieldRules = instance.get(RULES)[field.get(NAME)];
 
-			var required = instance.normalizeRuleValue(fieldRules.required);
-			var hasValue = YUI.AUI.defaults.FormValidator.RULES.required.apply(instance, [field.val(), field]);
+			if (fieldRules) {
+				var required = instance.normalizeRuleValue(fieldRules.required);
 
-			return (required || (!required && hasValue) || fieldRules.custom);
+				validatable = (required || (!required && YUI.AUI.defaults.FormValidator.RULES.required.apply(instance, [field.val(), field])) || fieldRules.custom);
+			}
+
+			return !!validatable;
 		},
 
 		validate: function() {
