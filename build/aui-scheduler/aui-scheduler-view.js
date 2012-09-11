@@ -48,7 +48,6 @@ var Lang = A.Lang,
 	COLUMN_TIME = 'columnTime',
 	CONTAINER = 'container',
 	CONTENT = 'content',
-	CREATION_END_DATE = 'creationEndDate',
 	CREATION_START_DATE = 'creationStartDate',
 	DATE = 'date',
 	VIEW_DATE = 'viewDate',
@@ -109,7 +108,6 @@ var Lang = A.Lang,
 	MARKERCELLS_NODE = 'markercellsNode',
 	MARKERS = 'markers',
 	MARKERS_NODE = 'markersNode',
-	MIN_DURATION = 'minDuration',
 	MONTH = 'month',
 	MONTH_CONTAINER_NODE = 'monthContainerNode',
 	MONTH_ROW_CONTAINER = 'monthRowContainer',
@@ -1087,7 +1085,7 @@ var SchedulerDayView = A.Component.create({
 				if (instance[RESIZING]) {
 					var endDate = DateMath.add(instance.draggingEventEndDate, DateMath.MINUTES, delta);
 
-					if (DateMath.getMinutesOffset(endDate, instance.draggingEventStartDate) < recorder.get(MIN_DURATION)) {
+					if (DateMath.getMinutesOffset(endDate, instance.draggingEventStartDate) < 30) {
 						return;
 					}
 
@@ -1237,7 +1235,6 @@ var SchedulerDayView = A.Component.create({
 					recorder.set(END_DATE, endDate);
 
 					instance[CREATION_START_DATE] = startDate;
-					instance[CREATION_END_DATE] = endDate;
 
 					event.halt();
 				}
@@ -1280,7 +1277,6 @@ var SchedulerDayView = A.Component.create({
 				instance._dragTickAlignX(instance[ACTIVE_COLUMN]);
 			}
 
-			var creationEndDate = instance[CREATION_END_DATE];
 			var creationStartDate = instance[CREATION_START_DATE];
 
 			if (creationStartDate) {
@@ -1289,9 +1285,13 @@ var SchedulerDayView = A.Component.create({
 					instance.getTickY()
 				);
 
+				var down = (delta >= instance._delta);
+
 				if (instance._delta !== delta) {
 					if (delta > 0) {
-						recorder.set(END_DATE, DateMath.add(creationEndDate, DateMath.MINUTES, delta));
+						var newDelta = down ? Math.max(delta, recorder.get(DURATION)) : delta;
+
+						recorder.set(END_DATE, DateMath.add(creationStartDate, DateMath.MINUTES, newDelta));
 					}
 					else {
 						recorder.set(START_DATE, DateMath.add(creationStartDate, DateMath.MINUTES, delta));
@@ -1318,7 +1318,6 @@ var SchedulerDayView = A.Component.create({
 			}
 
 			instance[CREATION_START_DATE] = null;
-			instance[CREATION_END_DATE] = null;
 			instance[RESIZING] = false;
 			instance[START_XY] = null;
 
