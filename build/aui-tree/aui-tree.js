@@ -2665,6 +2665,7 @@ var L = A.Lang,
 	NODE = 'node',
 	OWNER_TREE = 'ownerTree',
 	ROOT = 'root',
+	SELECT_ON_TOGGLE = 'selectOnToggle',
 	SPACE = ' ',
 	TREE = 'tree',
 	TREE_NODE = 'tree-node',
@@ -2784,6 +2785,11 @@ var TreeView = A.Component.create(
 
 			paginator: {
 				value: null
+			},
+
+			selectOnToggle: {
+				validator: isBoolean,
+				value: false
 			}
 		},
 
@@ -2916,13 +2922,12 @@ var TreeView = A.Component.create(
 				var boundingBox = instance.get(BOUNDING_BOX);
 
 				// expand/collapse delegations
-				boundingBox.delegate('click', A.bind(instance._onClickHitArea, instance), DOT+CSS_TREE_HITAREA);
+				boundingBox.delegate('click', A.bind(instance._onClickNodeEl, instance), DOT+CSS_TREE_NODE_CONTENT);
 				boundingBox.delegate('dblclick', A.bind(instance._onClickHitArea, instance), DOT+CSS_TREE_ICON);
 				boundingBox.delegate('dblclick', A.bind(instance._onClickHitArea, instance), DOT+CSS_TREE_LABEL);
 				// other delegations
 				boundingBox.delegate('mouseenter', A.bind(instance._onMouseEnterNodeEl, instance), DOT+CSS_TREE_NODE_CONTENT);
 				boundingBox.delegate('mouseleave', A.bind(instance._onMouseLeaveNodeEl, instance), DOT+CSS_TREE_NODE_CONTENT);
-				boundingBox.delegate('click', A.bind(instance._onClickNodeEl, instance), DOT+CSS_TREE_NODE_CONTENT);
 			},
 
 			/**
@@ -2936,15 +2941,21 @@ var TreeView = A.Component.create(
 				var instance = this;
 				var treeNode = instance.getNodeByChild( event.currentTarget );
 
-				if (treeNode && !treeNode.isSelected()) {
-					var lastSelected = instance.get(LAST_SELECTED);
-
-					// select drag node
-					if (lastSelected) {
-						lastSelected.unselect();
+				if (treeNode) {
+					if (event.target.test(DOT+CSS_TREE_HITAREA)) {
+						treeNode.toggle();
 					}
 
-					treeNode.select();
+					if (instance.get(SELECT_ON_TOGGLE) && !treeNode.isSelected()) {
+						var lastSelected = instance.get(LAST_SELECTED);
+
+						// select drag node
+						if (lastSelected) {
+							lastSelected.unselect();
+						}
+
+						treeNode.select();
+					}
 				}
 			},
 
