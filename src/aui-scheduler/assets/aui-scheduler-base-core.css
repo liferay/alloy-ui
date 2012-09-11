@@ -36,7 +36,7 @@
     width: 160px;
 }
 
-.aui-scheduler-base-controls .aui-scheduler-base-current-date,
+.aui-scheduler-base-controls .aui-scheduler-base-view-date,
 .aui-scheduler-base-controls .aui-scheduler-base-nav,
 .aui-scheduler-base-controls .aui-scheduler-base-today { float: left }
 
@@ -51,4 +51,4 @@
     margin: 0 5px 0 10px;
 }
 
-.aui-scheduler-base-controls .aui-scheduler-base-current-date { font-weight: bold }
+.aui-scheduler-base-controls .aui-scheduler-base-view-date { font-weight: bold }

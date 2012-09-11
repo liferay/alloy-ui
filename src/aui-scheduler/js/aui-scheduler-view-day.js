@@ -384,16 +384,16 @@ var SchedulerDayView = A.Component.create({
 
 		getNextDate: function() {
 			var instance = this;
-			var currentDate = instance.get(SCHEDULER).get(CURRENT_DATE);
+			var date = instance.get(SCHEDULER).get(DATE);
 
-			return DateMath.add(currentDate, DateMath.DAY, 1);
+			return DateMath.add(date, DateMath.DAY, 1);
 		},
 
 		getPrevDate: function() {
 			var instance = this;
-			var currentDate = instance.get(SCHEDULER).get(CURRENT_DATE);
+			var date = instance.get(SCHEDULER).get(DATE);
 
-			return DateMath.subtract(currentDate, DateMath.DAY, 1);
+			return DateMath.subtract(date, DateMath.DAY, 1);
 		},
 
 		getColumnByDate: function(date) {
@@ -410,20 +410,20 @@ var SchedulerDayView = A.Component.create({
 
 		getDateByColumn: function(colNumber) {
 			var instance = this;
-			var currentDate = DateMath.safeClearTime(
-				instance.get(SCHEDULER).get(CURRENT_DATE));
+			var viewDate = DateMath.safeClearTime(
+				instance.get(SCHEDULER).get(VIEW_DATE));
 
-			return DateMath.add(currentDate, DateMath.DAY, colNumber);
+			return DateMath.add(viewDate, DateMath.DAY, colNumber);
 		},
 
 		getDateDaysOffset: function(date) {
 			var instance = this;
 
-			var currentDate = DateMath.safeClearTime(
-				instance.get(SCHEDULER).get(CURRENT_DATE));
+			var viewDate = DateMath.safeClearTime(
+				instance.get(SCHEDULER).get(VIEW_DATE));
 
 			return DateMath.getDayOffset(
-				DateMath.safeClearTime(date), currentDate);
+				DateMath.safeClearTime(date), viewDate);
 		},
 
 		getYCoordTime: function(top) {
@@ -525,13 +525,13 @@ var SchedulerDayView = A.Component.create({
 
 		syncDaysHeaderUI: function() {
 			var instance = this;
-			var currentDate = instance.get(SCHEDULER).get(CURRENT_DATE);
+			var viewDate = instance.get(SCHEDULER).get(VIEW_DATE);
 			var formatter = instance.get(HEADER_DATE_FORMATTER);
 			var locale = instance.get(LOCALE);
 
 			instance[COL_HEADER_DAYS_NODE].all(ANCHOR).each(
 				function(columnNode, i) {
-					var columnDate = DateMath.add(currentDate, DateMath.DAY, i);
+					var columnDate = DateMath.add(viewDate, DateMath.DAY, i);
 
 					columnNode.toggleClass(
 						CSS_SCHEDULER_TODAY_HD, DateMath.isToday(columnDate));
@@ -778,7 +778,7 @@ var SchedulerDayView = A.Component.create({
 			});
 		},
 
-		_uiSetCurrentDate: function(val) {
+		_uiSetDate: function(val) {
 			var instance = this;
 
 			instance.syncColumnsUI();
@@ -796,7 +796,7 @@ var SchedulerDayView = A.Component.create({
 					var colNumber = toNumber(event.currentTarget.attr(DATA_COLNUMBER));
 
 					scheduler.set(
-						CURRENT_DATE, instance.getDateByColumn(colNumber));
+						VIEW_DATE, instance.getDateByColumn(colNumber));
 
 					scheduler.set(ACTIVE_VIEW, dayView);
 				}

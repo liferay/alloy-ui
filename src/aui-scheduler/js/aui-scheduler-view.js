@@ -49,7 +49,8 @@ var Lang = A.Lang,
 	CONTENT = 'content',
 	CREATION_END_DATE = 'creationEndDate',
 	CREATION_START_DATE = 'creationStartDate',
-	CURRENT_DATE = 'currentDate',
+	DATE = 'date',
+	VIEW_DATE = 'viewDate',
 	DATA = 'data',
 	DAY = 'day',
 	DAYS = 'days',
@@ -282,12 +283,10 @@ var SchedulerView = A.Component.create({
 			instance.syncStdContent();
 		},
 
-		adjustCurrentDate: function() {
+		getAdjustedViewDate: function(val) {
 			var instance = this;
-			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
 
-			scheduler.set(CURRENT_DATE, currentDate);
+			return val;
 		},
 
 		flushViewCache: function() {
@@ -322,13 +321,12 @@ var SchedulerView = A.Component.create({
 		syncEventUI: function(evt) {
 		},
 
-		_uiSetCurrentDate: function(val) {
+		_uiSetDate: function(val) {
 		},
 
 		_afterRender: function(event) {
 			var instance = this;
-
-			instance.adjustCurrentDate();
+			var scheduler = instance.get(SCHEDULER);
 
 			instance._uiSetScrollable(
 				instance.get(SCROLLABLE)
@@ -359,16 +357,6 @@ var SchedulerView = A.Component.create({
 			if (bodyNode) {
 				bodyNode.toggleClass(CSS_SCHEDULER_VIEW_SCROLLABLE, val);
 				bodyNode.toggleClass(CSS_SCHEDULER_VIEW_NOSCROLL, !val);
-			}
-		},
-
-		_uiSetVisible: function(val) {
-			var instance = this;
-
-			SchedulerView.superclass._uiSetVisible.apply(this, arguments);
-
-			if (val && instance.get(RENDERED)) {
-				instance.adjustCurrentDate();
 			}
 		}
 	}
