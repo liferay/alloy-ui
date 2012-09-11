@@ -36,7 +36,7 @@
 								<a href="#" class="aui-scheduler-base-icon-prev aui-icon">Prev</a>
 								<a href="#" class="aui-scheduler-base-icon-next aui-icon">Next</a>
 							</div>
-							<div class="aui-scheduler-base-current-date"></div>
+							<div class="aui-scheduler-base-view-date"></div>
 						</div>
 						<div class="aui-scheduler-base-views"></div>
 					</div>
@@ -346,7 +346,7 @@ AUI().ready('aui-scheduler', 'aui-scheduler-calendar', function(A) {
 		views: [view12, view11, view13],
 		events: events1,
 		eventRecorder: eventRecorder,
-		currentDate: new Date(2010, 9, 12)
+		date: new Date(2010, 9, 12)
 	})
 	.render();
 
@@ -411,7 +411,7 @@ AUI().ready('aui-scheduler', 'aui-scheduler-calendar', function(A) {
 	// 	views: [view0, view2, view1],
 	// 	events: events2,
 	// 	eventRecorder: new A.SchedulerEventRecorder(),
-	// 	currentDate: new Date(2010, 9, 4)
+	// 	date: new Date(2010, 9, 4)
 	// })
 	// .render('#wrapper');
 

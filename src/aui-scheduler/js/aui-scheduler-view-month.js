@@ -33,23 +33,28 @@ var SchedulerMonthView = A.Component.create({
 	EXTENDS: A.SchedulerTableView,
 
 	prototype: {
+		getAdjustedViewDate: function(val) {
+			var instance = this;
+
+			return DateMath.findMonthStart(val);
+		},
 
 		getNextDate: function() {
 			var instance = this;
 
 			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
+			var date = scheduler.get(DATE);
 
-			return DateMath.add(currentDate, DateMath.MONTH, 1);
+			return DateMath.add(date, DateMath.MONTH, 1);
 		},
 
 		getPrevDate: function() {
 			var instance = this;
 
 			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
+			var date = scheduler.get(DATE);
 
-			return DateMath.subtract(currentDate, DateMath.MONTH, 1);
+			return DateMath.subtract(date, DateMath.MONTH, 1);
 		},
 
 		plotEvents: function() {
@@ -58,10 +63,10 @@ var SchedulerMonthView = A.Component.create({
 			A.SchedulerMonthView.superclass.plotEvents.apply(instance, arguments);
 
 			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
+			var viewDate = scheduler.get(VIEW_DATE);
 
-			var monthEnd = DateMath.findMonthEnd(currentDate);
-			var monthStart = DateMath.findMonthStart(currentDate);
+			var monthEnd = DateMath.findMonthEnd(viewDate);
+			var monthStart = DateMath.findMonthStart(viewDate);
 
 			var currentIntervalStart = instance._findCurrentIntervalStart();
 
@@ -78,13 +83,10 @@ var SchedulerMonthView = A.Component.create({
 
 		_findCurrentIntervalStart: function() {
 			var instance = this;
-
 			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
+			var viewDate = scheduler.get(VIEW_DATE);
 
-			var monthStartDate = DateMath.findMonthStart(currentDate);
-
-			return instance._findFirstDayOfWeek(monthStartDate);
+			return instance._findFirstDayOfWeek(viewDate);
 		},
 
 		_findFirstDayOfWeek: function(date) {

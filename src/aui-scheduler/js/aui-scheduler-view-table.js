@@ -391,19 +391,19 @@ var SchedulerTableView = A.Component.create({
 		getNextDate: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
+			var viewDate = scheduler.get(VIEW_DATE);
 			var displayDaysInterval = instance.get(DISPLAY_DAYS_INTERVAL);
 
-			return DateMath.add(currentDate, DateMath.DAY, displayDaysInterval);
+			return DateMath.add(viewDate, DateMath.DAY, displayDaysInterval);
 		},
 
 		getPrevDate: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
+			var viewDate = scheduler.get(VIEW_DATE);
 			var displayDaysInterval = instance.get(DISPLAY_DAYS_INTERVAL);
 
-			return DateMath.subtract(currentDate, DateMath.DAY, displayDaysInterval);
+			return DateMath.subtract(viewDate, DateMath.DAY, displayDaysInterval);
 		},
 
 		hideEventsOverlay: function() {
@@ -456,10 +456,10 @@ var SchedulerTableView = A.Component.create({
 		syncDaysHeaderUI: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
+			var viewDate = scheduler.get(VIEW_DATE);
 			var formatter = instance.get(HEADER_DATE_FORMATTER);
 			var locale = instance.get(LOCALE);
-			var firstDayOfWeekDt = instance._findFirstDayOfWeek(currentDate);
+			var firstDayOfWeekDt = instance._findFirstDayOfWeek(viewDate);
 
 			instance.colHeaderDaysNode.all(DIV).each(
 				function(columnNode, i) {
@@ -509,17 +509,17 @@ var SchedulerTableView = A.Component.create({
 		_findCurrentIntervalEnd: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
+			var viewDate = scheduler.get(VIEW_DATE);
 			var displayDaysInterval = instance.get(DISPLAY_DAYS_INTERVAL);
 
-			return DateMath.add(currentDate, DateMath.DAY, displayDaysInterval);
+			return DateMath.add(viewDate, DateMath.DAY, displayDaysInterval);
 		},
 
 		_findCurrentIntervalStart: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
 
-			return scheduler.get(CURRENT_DATE);
+			return scheduler.get(VIEW_DATE);
 		},
 
 		_findFirstDayOfWeek: function(date) {
@@ -716,7 +716,7 @@ var SchedulerTableView = A.Component.create({
 			evt.syncNodeUI();
 		},
 
-		_uiSetCurrentDate: function(val) {
+		_uiSetDate: function(val) {
 			var instance = this;
 
 			instance.syncDaysHeaderUI();

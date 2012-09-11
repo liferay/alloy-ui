@@ -31,23 +31,19 @@ var SchedulerWeekView = A.Component.create({
 	EXTENDS: A.SchedulerDayView,
 
 	prototype: {
-		adjustCurrentDate: function() {
+		getAdjustedViewDate: function(val) {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
 			var firstDayOfWeek = scheduler.get(FIRST_DAY_OF_WEEK);
 
-			scheduler.set(
-				CURRENT_DATE,
-				DateMath.getFirstDayOfWeek(currentDate, firstDayOfWeek)
-			);
+			return DateMath.getFirstDayOfWeek(val, firstDayOfWeek);
 		},
 
 		getNextDate: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
-			var firstDayOfWeekDate = instance._firstDayOfWeek(currentDate);
+			var date = scheduler.get(DATE);
+			var firstDayOfWeekDate = instance._firstDayOfWeek(date);
 
 			return DateMath.add(firstDayOfWeekDate, DateMath.WEEK, 1);
 		},
@@ -55,8 +51,8 @@ var SchedulerWeekView = A.Component.create({
 		getPrevDate: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
-			var firstDayOfWeekDate = instance._firstDayOfWeek(currentDate);
+			var date = scheduler.get(DATE);
+			var firstDayOfWeekDate = instance._firstDayOfWeek(date);
 
 			return DateMath.subtract(firstDayOfWeekDate, DateMath.WEEK, 1);
 		},
