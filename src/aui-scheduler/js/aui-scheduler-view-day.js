@@ -721,7 +721,7 @@ var SchedulerDayView = A.Component.create({
 				if (instance[RESIZING]) {
 					var endDate = DateMath.add(instance.draggingEventEndDate, DateMath.MINUTES, delta);
 
-					if (DateMath.getMinutesOffset(endDate, instance.draggingEventStartDate) <= recorder.get(DURATION)) {
+					if (DateMath.getMinutesOffset(endDate, instance.draggingEventStartDate) < recorder.get(MIN_DURATION)) {
 						return;
 					}
 
