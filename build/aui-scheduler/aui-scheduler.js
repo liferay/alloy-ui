@@ -35,9 +35,6 @@ var Lang = A.Lang,
 	CLEARFIX = 'clearfix',
 	CONTROLS = 'controls',
 	CONTROLS_NODE = 'controlsNode',
-	CURRENT = 'current',
-	CURRENT_DATE = 'currentDate',
-	CURRENT_DATE_NODE = 'currentDateNode',
 	DATE = 'date',
 	END_DATE = 'endDate',
 	EVENT_CLASS = 'eventClass',
@@ -67,6 +64,8 @@ var Lang = A.Lang,
 	TODAY_NODE = 'todayNode',
 	TRIGGER_NODE = 'triggerNode',
 	VIEW = 'view',
+	VIEW_DATE = 'viewDate',
+	VIEW_DATE_NODE = 'viewDateNode',
 	VIEW_STACK = 'viewStack',
 	VIEWS = 'views',
 	VIEWS_NODE = 'viewsNode',
@@ -76,7 +75,7 @@ var Lang = A.Lang,
 	CSS_HELPER_CLEARFIX = getCN(HELPER, CLEARFIX),
 	CSS_ICON = getCN(ICON),
 	CSS_SCHEDULER_CONTROLS = getCN(SCHEDULER_BASE, CONTROLS),
-	CSS_SCHEDULER_CURRENT_DATE = getCN(SCHEDULER_BASE, CURRENT, DATE),
+	CSS_SCHEDULER_VIEW_DATE = getCN(SCHEDULER_BASE, VIEW, DATE),
 	CSS_SCHEDULER_HD = getCN(SCHEDULER_BASE, HD),
 	CSS_SCHEDULER_ICON_NEXT = getCN(SCHEDULER_BASE, ICON, NEXT),
 	CSS_SCHEDULER_ICON_PREV = getCN(SCHEDULER_BASE, ICON, PREV),
@@ -87,7 +86,7 @@ var Lang = A.Lang,
 	CSS_SCHEDULER_VIEWS = getCN(SCHEDULER_BASE, VIEWS),
 
 	TPL_SCHEDULER_CONTROLS = '<div class="'+CSS_SCHEDULER_CONTROLS+'"></div>',
-	TPL_SCHEDULER_CURRENT_DATE = '<div class="'+CSS_SCHEDULER_CURRENT_DATE+'"></div>',
+	TPL_SCHEDULER_VIEW_DATE = '<div class="'+CSS_SCHEDULER_VIEW_DATE+'"></div>',
 	TPL_SCHEDULER_HD = '<div class="'+CSS_SCHEDULER_HD+'"></div>',
 	TPL_SCHEDULER_ICON_NEXT = '<a href="#" class="'+[ CSS_ICON, CSS_SCHEDULER_ICON_NEXT ].join(SPACE)+'">Next</a>',
 	TPL_SCHEDULER_ICON_PREV = '<a href="#" class="'+[ CSS_ICON, CSS_SCHEDULER_ICON_PREV ].join(SPACE)+'">Prev</a>',
@@ -211,6 +210,11 @@ var SchedulerBase = A.Component.create({
 			validator: isSchedulerView
 		},
 
+		date: {
+			value: new Date(),
+			validator: isDate
+		},
+
 		eventRecorder: {
 			setter: '_setEventRecorder'
 		},
@@ -252,11 +256,9 @@ var SchedulerBase = A.Component.create({
 			value: []
 		},
 
-		currentDate: {
-			valueFn: function() {
-				return new Date();
-			},
-			validator: isDate
+		viewDate: {
+			getter: '_getViewDate',
+			readOnly: true
 		},
 
 		/**
@@ -280,9 +282,9 @@ var SchedulerBase = A.Component.create({
 			}
 		},
 
-		currentDateNode: {
+		viewDateNode: {
 			valueFn: function() {
-				return A.Node.create(TPL_SCHEDULER_CURRENT_DATE);
+				return A.Node.create(TPL_SCHEDULER_VIEW_DATE);
 			}
 		},
 
@@ -327,7 +329,7 @@ var SchedulerBase = A.Component.create({
 
 	HTML_PARSER: {
 		controlsNode: DOT+CSS_SCHEDULER_CONTROLS,
-		currentDateNode: DOT+CSS_SCHEDULER_CURRENT_DATE,
+		viewDateNode: DOT+CSS_SCHEDULER_VIEW_DATE,
 		headerNode: DOT+CSS_SCHEDULER_HD,
 		iconNextNode: DOT+CSS_SCHEDULER_ICON_NEXT,
 		iconPrevNode: DOT+CSS_SCHEDULER_ICON_PREV,
@@ -336,7 +338,7 @@ var SchedulerBase = A.Component.create({
 		viewsNode: DOT+CSS_SCHEDULER_VIEWS
 	},
 
-	UI_ATTRS: [CURRENT_DATE],
+	UI_ATTRS: [DATE],
 
 	AUGMENTS: [A.SchedulerEventSupport, A.WidgetStdMod],
 
@@ -349,7 +351,7 @@ var SchedulerBase = A.Component.create({
 			instance[VIEW_STACK] = {};
 
 			instance[CONTROLS_NODE] = instance.get(CONTROLS_NODE);
-			instance[CURRENT_DATE_NODE] = instance.get(CURRENT_DATE_NODE);
+			instance[VIEW_DATE_NODE] = instance.get(VIEW_DATE_NODE);
 			instance[HEADER] = instance.get(HEADER_NODE);
 			instance[ICON_NEXT_NODE] = instance.get(ICON_NEXT_NODE);
 			instance[ICON_PREV_NODE] = instance.get(ICON_PREV_NODE);
@@ -500,6 +502,8 @@ var SchedulerBase = A.Component.create({
 				if (eventRecorder) {
 					eventRecorder.hideOverlay();
 				}
+
+				instance._uiSetDate(instance.get(DATE));
 			}
 		},
 
@@ -509,6 +513,8 @@ var SchedulerBase = A.Component.create({
 			instance.renderView(
 				instance.get(ACTIVE_VIEW)
 			);
+
+			instance._uiSetDate(instance.get(DATE));
 		},
 
 		_bindDelegate: function() {
@@ -561,11 +567,23 @@ var SchedulerBase = A.Component.create({
 			return results;
 		},
 
+		_getViewDate: function() {
+			var instance = this,
+				date = instance.get(DATE),
+				activeView = instance.get(ACTIVE_VIEW);
+
+			if (activeView) {
+				date = activeView.getAdjustedViewDate(date);
+			}
+
+			return date;
+		},
+
 		_onClickToday: function(event) {
 			var instance = this;
 
 			instance.set(
-				CURRENT_DATE,
+				DATE,
 				instance.get(ACTIVE_VIEW).getToday()
 			);
 
@@ -576,7 +594,7 @@ var SchedulerBase = A.Component.create({
 			var instance = this;
 
 			instance.set(
-				CURRENT_DATE,
+				DATE,
 				instance.get(ACTIVE_VIEW).get(NEXT_DATE)
 			);
 
@@ -587,7 +605,7 @@ var SchedulerBase = A.Component.create({
 			var instance = this;
 
 			instance.set(
-				CURRENT_DATE,
+				DATE,
 				instance.get(ACTIVE_VIEW).get(PREV_DATE)
 			);
 
@@ -655,7 +673,7 @@ var SchedulerBase = A.Component.create({
 
 			instance[CONTROLS_NODE].append(instance[TODAY_NODE]);
 			instance[CONTROLS_NODE].append(instance[NAV_NODE]);
-			instance[CONTROLS_NODE].append(instance[CURRENT_DATE_NODE]);
+			instance[CONTROLS_NODE].append(instance[VIEW_DATE_NODE]);
 
 			A.Array.each(views, function(view) {
 				instance[VIEWS_NODE].append( instance._createViewTriggerNode(view) );
@@ -668,7 +686,7 @@ var SchedulerBase = A.Component.create({
 			instance.setStdModContent(WidgetStdMod.HEADER, instance[HEADER].getDOM());
 		},
 
-		_uiSetCurrentDate: function(val) {
+		_uiSetDate: function(val) {
 			var instance = this;
 
 			var formatter = instance.get(NAVIGATION_DATE_FORMATTER);
@@ -678,13 +696,13 @@ var SchedulerBase = A.Component.create({
 				var activeView = instance.get(ACTIVE_VIEW);
 
 				if (activeView) {
-					activeView._uiSetCurrentDate(val);
+					activeView._uiSetDate(val);
 
 					formatter = activeView.get(NAVIGATION_DATE_FORMATTER);
 					navigationTitle = formatter.call(activeView, val);
 				}
 
-				instance[CURRENT_DATE_NODE].html(navigationTitle);
+				instance[VIEW_DATE_NODE].html(navigationTitle);
 
 				instance.syncEventsUI();
 			}
@@ -747,7 +765,8 @@ var Lang = A.Lang,
 	CONTENT = 'content',
 	CREATION_END_DATE = 'creationEndDate',
 	CREATION_START_DATE = 'creationStartDate',
-	CURRENT_DATE = 'currentDate',
+	DATE = 'date',
+	VIEW_DATE = 'viewDate',
 	DATA = 'data',
 	DAY = 'day',
 	DAYS = 'days',
@@ -980,12 +999,10 @@ var SchedulerView = A.Component.create({
 			instance.syncStdContent();
 		},
 
-		adjustCurrentDate: function() {
+		getAdjustedViewDate: function(val) {
 			var instance = this;
-			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
 
-			scheduler.set(CURRENT_DATE, currentDate);
+			return val;
 		},
 
 		flushViewCache: function() {
@@ -1020,13 +1037,12 @@ var SchedulerView = A.Component.create({
 		syncEventUI: function(evt) {
 		},
 
-		_uiSetCurrentDate: function(val) {
+		_uiSetDate: function(val) {
 		},
 
 		_afterRender: function(event) {
 			var instance = this;
-
-			instance.adjustCurrentDate();
+			var scheduler = instance.get(SCHEDULER);
 
 			instance._uiSetScrollable(
 				instance.get(SCROLLABLE)
@@ -1057,16 +1073,6 @@ var SchedulerView = A.Component.create({
 			if (bodyNode) {
 				bodyNode.toggleClass(CSS_SCHEDULER_VIEW_SCROLLABLE, val);
 				bodyNode.toggleClass(CSS_SCHEDULER_VIEW_NOSCROLL, !val);
-			}
-		},
-
-		_uiSetVisible: function(val) {
-			var instance = this;
-
-			SchedulerView.superclass._uiSetVisible.apply(this, arguments);
-
-			if (val && instance.get(RENDERED)) {
-				instance.adjustCurrentDate();
 			}
 		}
 	}
@@ -1459,16 +1465,16 @@ var SchedulerDayView = A.Component.create({
 
 		getNextDate: function() {
 			var instance = this;
-			var currentDate = instance.get(SCHEDULER).get(CURRENT_DATE);
+			var date = instance.get(SCHEDULER).get(DATE);
 
-			return DateMath.add(currentDate, DateMath.DAY, 1);
+			return DateMath.add(date, DateMath.DAY, 1);
 		},
 
 		getPrevDate: function() {
 			var instance = this;
-			var currentDate = instance.get(SCHEDULER).get(CURRENT_DATE);
+			var date = instance.get(SCHEDULER).get(DATE);
 
-			return DateMath.subtract(currentDate, DateMath.DAY, 1);
+			return DateMath.subtract(date, DateMath.DAY, 1);
 		},
 
 		getColumnByDate: function(date) {
@@ -1485,20 +1491,20 @@ var SchedulerDayView = A.Component.create({
 
 		getDateByColumn: function(colNumber) {
 			var instance = this;
-			var currentDate = DateMath.safeClearTime(
-				instance.get(SCHEDULER).get(CURRENT_DATE));
+			var viewDate = DateMath.safeClearTime(
+				instance.get(SCHEDULER).get(VIEW_DATE));
 
-			return DateMath.add(currentDate, DateMath.DAY, colNumber);
+			return DateMath.add(viewDate, DateMath.DAY, colNumber);
 		},
 
 		getDateDaysOffset: function(date) {
 			var instance = this;
 
-			var currentDate = DateMath.safeClearTime(
-				instance.get(SCHEDULER).get(CURRENT_DATE));
+			var viewDate = DateMath.safeClearTime(
+				instance.get(SCHEDULER).get(VIEW_DATE));
 
 			return DateMath.getDayOffset(
-				DateMath.safeClearTime(date), currentDate);
+				DateMath.safeClearTime(date), viewDate);
 		},
 
 		getYCoordTime: function(top) {
@@ -1600,13 +1606,13 @@ var SchedulerDayView = A.Component.create({
 
 		syncDaysHeaderUI: function() {
 			var instance = this;
-			var currentDate = instance.get(SCHEDULER).get(CURRENT_DATE);
+			var viewDate = instance.get(SCHEDULER).get(VIEW_DATE);
 			var formatter = instance.get(HEADER_DATE_FORMATTER);
 			var locale = instance.get(LOCALE);
 
 			instance[COL_HEADER_DAYS_NODE].all(ANCHOR).each(
 				function(columnNode, i) {
-					var columnDate = DateMath.add(currentDate, DateMath.DAY, i);
+					var columnDate = DateMath.add(viewDate, DateMath.DAY, i);
 
 					columnNode.toggleClass(
 						CSS_SCHEDULER_TODAY_HD, DateMath.isToday(columnDate));
@@ -1853,7 +1859,7 @@ var SchedulerDayView = A.Component.create({
 			});
 		},
 
-		_uiSetCurrentDate: function(val) {
+		_uiSetDate: function(val) {
 			var instance = this;
 
 			instance.syncColumnsUI();
@@ -1871,7 +1877,7 @@ var SchedulerDayView = A.Component.create({
 					var colNumber = toNumber(event.currentTarget.attr(DATA_COLNUMBER));
 
 					scheduler.set(
-						CURRENT_DATE, instance.getDateByColumn(colNumber));
+						VIEW_DATE, instance.getDateByColumn(colNumber));
 
 					scheduler.set(ACTIVE_VIEW, dayView);
 				}
@@ -2151,23 +2157,19 @@ var SchedulerWeekView = A.Component.create({
 	EXTENDS: A.SchedulerDayView,
 
 	prototype: {
-		adjustCurrentDate: function() {
+		getAdjustedViewDate: function(val) {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
 			var firstDayOfWeek = scheduler.get(FIRST_DAY_OF_WEEK);
 
-			scheduler.set(
-				CURRENT_DATE,
-				DateMath.getFirstDayOfWeek(currentDate, firstDayOfWeek)
-			);
+			return DateMath.getFirstDayOfWeek(val, firstDayOfWeek);
 		},
 
 		getNextDate: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
-			var firstDayOfWeekDate = instance._firstDayOfWeek(currentDate);
+			var date = scheduler.get(DATE);
+			var firstDayOfWeekDate = instance._firstDayOfWeek(date);
 
 			return DateMath.add(firstDayOfWeekDate, DateMath.WEEK, 1);
 		},
@@ -2175,8 +2177,8 @@ var SchedulerWeekView = A.Component.create({
 		getPrevDate: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
-			var firstDayOfWeekDate = instance._firstDayOfWeek(currentDate);
+			var date = scheduler.get(DATE);
+			var firstDayOfWeekDate = instance._firstDayOfWeek(date);
 
 			return DateMath.subtract(firstDayOfWeekDate, DateMath.WEEK, 1);
 		},
@@ -2620,19 +2622,19 @@ var SchedulerTableView = A.Component.create({
 		getNextDate: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
+			var viewDate = scheduler.get(VIEW_DATE);
 			var displayDaysInterval = instance.get(DISPLAY_DAYS_INTERVAL);
 
-			return DateMath.add(currentDate, DateMath.DAY, displayDaysInterval);
+			return DateMath.add(viewDate, DateMath.DAY, displayDaysInterval);
 		},
 
 		getPrevDate: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
+			var viewDate = scheduler.get(VIEW_DATE);
 			var displayDaysInterval = instance.get(DISPLAY_DAYS_INTERVAL);
 
-			return DateMath.subtract(currentDate, DateMath.DAY, displayDaysInterval);
+			return DateMath.subtract(viewDate, DateMath.DAY, displayDaysInterval);
 		},
 
 		hideEventsOverlay: function() {
@@ -2685,10 +2687,10 @@ var SchedulerTableView = A.Component.create({
 		syncDaysHeaderUI: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
+			var viewDate = scheduler.get(VIEW_DATE);
 			var formatter = instance.get(HEADER_DATE_FORMATTER);
 			var locale = instance.get(LOCALE);
-			var firstDayOfWeekDt = instance._findFirstDayOfWeek(currentDate);
+			var firstDayOfWeekDt = instance._findFirstDayOfWeek(viewDate);
 
 			instance.colHeaderDaysNode.all(DIV).each(
 				function(columnNode, i) {
@@ -2738,17 +2740,17 @@ var SchedulerTableView = A.Component.create({
 		_findCurrentIntervalEnd: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
+			var viewDate = scheduler.get(VIEW_DATE);
 			var displayDaysInterval = instance.get(DISPLAY_DAYS_INTERVAL);
 
-			return DateMath.add(currentDate, DateMath.DAY, displayDaysInterval);
+			return DateMath.add(viewDate, DateMath.DAY, displayDaysInterval);
 		},
 
 		_findCurrentIntervalStart: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
 
-			return scheduler.get(CURRENT_DATE);
+			return scheduler.get(VIEW_DATE);
 		},
 
 		_findFirstDayOfWeek: function(date) {
@@ -2945,7 +2947,7 @@ var SchedulerTableView = A.Component.create({
 			evt.syncNodeUI();
 		},
 
-		_uiSetCurrentDate: function(val) {
+		_uiSetDate: function(val) {
 			var instance = this;
 
 			instance.syncDaysHeaderUI();
@@ -3019,23 +3021,28 @@ var SchedulerMonthView = A.Component.create({
 	EXTENDS: A.SchedulerTableView,
 
 	prototype: {
+		getAdjustedViewDate: function(val) {
+			var instance = this;
+
+			return DateMath.findMonthStart(val);
+		},
 
 		getNextDate: function() {
 			var instance = this;
 
 			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
+			var date = scheduler.get(DATE);
 
-			return DateMath.add(currentDate, DateMath.MONTH, 1);
+			return DateMath.add(date, DateMath.MONTH, 1);
 		},
 
 		getPrevDate: function() {
 			var instance = this;
 
 			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
+			var date = scheduler.get(DATE);
 
-			return DateMath.subtract(currentDate, DateMath.MONTH, 1);
+			return DateMath.subtract(date, DateMath.MONTH, 1);
 		},
 
 		plotEvents: function() {
@@ -3044,10 +3051,10 @@ var SchedulerMonthView = A.Component.create({
 			A.SchedulerMonthView.superclass.plotEvents.apply(instance, arguments);
 
 			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
+			var viewDate = scheduler.get(VIEW_DATE);
 
-			var monthEnd = DateMath.findMonthEnd(currentDate);
-			var monthStart = DateMath.findMonthStart(currentDate);
+			var monthEnd = DateMath.findMonthEnd(viewDate);
+			var monthStart = DateMath.findMonthStart(viewDate);
 
 			var currentIntervalStart = instance._findCurrentIntervalStart();
 
@@ -3064,13 +3071,10 @@ var SchedulerMonthView = A.Component.create({
 
 		_findCurrentIntervalStart: function() {
 			var instance = this;
-
 			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
+			var viewDate = scheduler.get(VIEW_DATE);
 
-			var monthStartDate = DateMath.findMonthStart(currentDate);
-
-			return instance._findFirstDayOfWeek(monthStartDate);
+			return instance._findFirstDayOfWeek(viewDate);
 		},
 
 		_findFirstDayOfWeek: function(date) {

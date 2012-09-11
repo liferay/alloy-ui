@@ -35,9 +35,6 @@ var Lang = A.Lang,
 	CLEARFIX = 'clearfix',
 	CONTROLS = 'controls',
 	CONTROLS_NODE = 'controlsNode',
-	CURRENT = 'current',
-	CURRENT_DATE = 'currentDate',
-	CURRENT_DATE_NODE = 'currentDateNode',
 	DATE = 'date',
 	END_DATE = 'endDate',
 	EVENT_CLASS = 'eventClass',
@@ -67,6 +64,8 @@ var Lang = A.Lang,
 	TODAY_NODE = 'todayNode',
 	TRIGGER_NODE = 'triggerNode',
 	VIEW = 'view',
+	VIEW_DATE = 'viewDate',
+	VIEW_DATE_NODE = 'viewDateNode',
 	VIEW_STACK = 'viewStack',
 	VIEWS = 'views',
 	VIEWS_NODE = 'viewsNode',
@@ -76,7 +75,7 @@ var Lang = A.Lang,
 	CSS_HELPER_CLEARFIX = getCN(HELPER, CLEARFIX),
 	CSS_ICON = getCN(ICON),
 	CSS_SCHEDULER_CONTROLS = getCN(SCHEDULER_BASE, CONTROLS),
-	CSS_SCHEDULER_CURRENT_DATE = getCN(SCHEDULER_BASE, CURRENT, DATE),
+	CSS_SCHEDULER_VIEW_DATE = getCN(SCHEDULER_BASE, VIEW, DATE),
 	CSS_SCHEDULER_HD = getCN(SCHEDULER_BASE, HD),
 	CSS_SCHEDULER_ICON_NEXT = getCN(SCHEDULER_BASE, ICON, NEXT),
 	CSS_SCHEDULER_ICON_PREV = getCN(SCHEDULER_BASE, ICON, PREV),
@@ -87,7 +86,7 @@ var Lang = A.Lang,
 	CSS_SCHEDULER_VIEWS = getCN(SCHEDULER_BASE, VIEWS),
 
 	TPL_SCHEDULER_CONTROLS = '<div class="'+CSS_SCHEDULER_CONTROLS+'"></div>',
-	TPL_SCHEDULER_CURRENT_DATE = '<div class="'+CSS_SCHEDULER_CURRENT_DATE+'"></div>',
+	TPL_SCHEDULER_VIEW_DATE = '<div class="'+CSS_SCHEDULER_VIEW_DATE+'"></div>',
 	TPL_SCHEDULER_HD = '<div class="'+CSS_SCHEDULER_HD+'"></div>',
 	TPL_SCHEDULER_ICON_NEXT = '<a href="#" class="'+[ CSS_ICON, CSS_SCHEDULER_ICON_NEXT ].join(SPACE)+'">Next</a>',
 	TPL_SCHEDULER_ICON_PREV = '<a href="#" class="'+[ CSS_ICON, CSS_SCHEDULER_ICON_PREV ].join(SPACE)+'">Prev</a>',
@@ -211,6 +210,11 @@ var SchedulerBase = A.Component.create({
 			validator: isSchedulerView
 		},
 
+		date: {
+			value: new Date(),
+			validator: isDate
+		},
+
 		eventRecorder: {
 			setter: '_setEventRecorder'
 		},
@@ -252,11 +256,9 @@ var SchedulerBase = A.Component.create({
 			value: []
 		},
 
-		currentDate: {
-			valueFn: function() {
-				return new Date();
-			},
-			validator: isDate
+		viewDate: {
+			getter: '_getViewDate',
+			readOnly: true
 		},
 
 		/**
@@ -280,9 +282,9 @@ var SchedulerBase = A.Component.create({
 			}
 		},
 
-		currentDateNode: {
+		viewDateNode: {
 			valueFn: function() {
-				return A.Node.create(TPL_SCHEDULER_CURRENT_DATE);
+				return A.Node.create(TPL_SCHEDULER_VIEW_DATE);
 			}
 		},
 
@@ -327,7 +329,7 @@ var SchedulerBase = A.Component.create({
 
 	HTML_PARSER: {
 		controlsNode: DOT+CSS_SCHEDULER_CONTROLS,
-		currentDateNode: DOT+CSS_SCHEDULER_CURRENT_DATE,
+		viewDateNode: DOT+CSS_SCHEDULER_VIEW_DATE,
 		headerNode: DOT+CSS_SCHEDULER_HD,
 		iconNextNode: DOT+CSS_SCHEDULER_ICON_NEXT,
 		iconPrevNode: DOT+CSS_SCHEDULER_ICON_PREV,
@@ -336,7 +338,7 @@ var SchedulerBase = A.Component.create({
 		viewsNode: DOT+CSS_SCHEDULER_VIEWS
 	},
 
-	UI_ATTRS: [CURRENT_DATE],
+	UI_ATTRS: [DATE],
 
 	AUGMENTS: [A.SchedulerEventSupport, A.WidgetStdMod],
 
@@ -349,7 +351,7 @@ var SchedulerBase = A.Component.create({
 			instance[VIEW_STACK] = {};
 
 			instance[CONTROLS_NODE] = instance.get(CONTROLS_NODE);
-			instance[CURRENT_DATE_NODE] = instance.get(CURRENT_DATE_NODE);
+			instance[VIEW_DATE_NODE] = instance.get(VIEW_DATE_NODE);
 			instance[HEADER] = instance.get(HEADER_NODE);
 			instance[ICON_NEXT_NODE] = instance.get(ICON_NEXT_NODE);
 			instance[ICON_PREV_NODE] = instance.get(ICON_PREV_NODE);
@@ -500,6 +502,8 @@ var SchedulerBase = A.Component.create({
 				if (eventRecorder) {
 					eventRecorder.hideOverlay();
 				}
+
+				instance._uiSetDate(instance.get(DATE));
 			}
 		},
 
@@ -509,6 +513,8 @@ var SchedulerBase = A.Component.create({
 			instance.renderView(
 				instance.get(ACTIVE_VIEW)
 			);
+
+			instance._uiSetDate(instance.get(DATE));
 		},
 
 		_bindDelegate: function() {
@@ -561,11 +567,23 @@ var SchedulerBase = A.Component.create({
 			return results;
 		},
 
+		_getViewDate: function() {
+			var instance = this,
+				date = instance.get(DATE),
+				activeView = instance.get(ACTIVE_VIEW);
+
+			if (activeView) {
+				date = activeView.getAdjustedViewDate(date);
+			}
+
+			return date;
+		},
+
 		_onClickToday: function(event) {
 			var instance = this;
 
 			instance.set(
-				CURRENT_DATE,
+				DATE,
 				instance.get(ACTIVE_VIEW).getToday()
 			);
 
@@ -576,7 +594,7 @@ var SchedulerBase = A.Component.create({
 			var instance = this;
 
 			instance.set(
-				CURRENT_DATE,
+				DATE,
 				instance.get(ACTIVE_VIEW).get(NEXT_DATE)
 			);
 
@@ -587,7 +605,7 @@ var SchedulerBase = A.Component.create({
 			var instance = this;
 
 			instance.set(
-				CURRENT_DATE,
+				DATE,
 				instance.get(ACTIVE_VIEW).get(PREV_DATE)
 			);
 
@@ -655,7 +673,7 @@ var SchedulerBase = A.Component.create({
 
 			instance[CONTROLS_NODE].append(instance[TODAY_NODE]);
 			instance[CONTROLS_NODE].append(instance[NAV_NODE]);
-			instance[CONTROLS_NODE].append(instance[CURRENT_DATE_NODE]);
+			instance[CONTROLS_NODE].append(instance[VIEW_DATE_NODE]);
 
 			A.Array.each(views, function(view) {
 				instance[VIEWS_NODE].append( instance._createViewTriggerNode(view) );
@@ -668,7 +686,7 @@ var SchedulerBase = A.Component.create({
 			instance.setStdModContent(WidgetStdMod.HEADER, instance[HEADER].getDOM());
 		},
 
-		_uiSetCurrentDate: function(val) {
+		_uiSetDate: function(val) {
 			var instance = this;
 
 			var formatter = instance.get(NAVIGATION_DATE_FORMATTER);
@@ -678,13 +696,13 @@ var SchedulerBase = A.Component.create({
 				var activeView = instance.get(ACTIVE_VIEW);
 
 				if (activeView) {
-					activeView._uiSetCurrentDate(val);
+					activeView._uiSetDate(val);
 
 					formatter = activeView.get(NAVIGATION_DATE_FORMATTER);
 					navigationTitle = formatter.call(activeView, val);
 				}
 
-				instance[CURRENT_DATE_NODE].html(navigationTitle);
+				instance[VIEW_DATE_NODE].html(navigationTitle);
 
 				instance.syncEventsUI();
 			}
