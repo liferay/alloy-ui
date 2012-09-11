@@ -928,6 +928,10 @@ var SchedulerEventRecorder = A.Component.create({
 			}
 		},
 
+		minDuration: {
+			value: 30
+		},
+
 		strings: {
 			value: {},
 			setter: function(val) {

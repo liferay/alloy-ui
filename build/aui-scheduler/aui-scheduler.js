@@ -805,6 +805,7 @@ var Lang = A.Lang,
 	MARKERCELLS_NODE = 'markercellsNode',
 	MARKERS = 'markers',
 	MARKERS_NODE = 'markersNode',
+	MIN_DURATION = 'minDuration',
 	MONTH = 'month',
 	MONTH_CONTAINER_NODE = 'monthContainerNode',
 	MONTH_ROW_CONTAINER = 'monthRowContainer',
@@ -1795,7 +1796,7 @@ var SchedulerDayView = A.Component.create({
 				if (instance[RESIZING]) {
 					var endDate = DateMath.add(instance.draggingEventEndDate, DateMath.MINUTES, delta);
 
-					if (DateMath.getMinutesOffset(endDate, instance.draggingEventStartDate) <= recorder.get(DURATION)) {
+					if (DateMath.getMinutesOffset(endDate, instance.draggingEventStartDate) < recorder.get(MIN_DURATION)) {
 						return;
 					}
 
@@ -4424,6 +4425,10 @@ var SchedulerEventRecorder = A.Component.create({
 			valueFn: function() {
 				return A.SchedulerEvent;
 			}
+		},
+
+		minDuration: {
+			value: 30
 		},
 
 		strings: {
