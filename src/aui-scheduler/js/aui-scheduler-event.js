@@ -60,6 +60,7 @@ var Lang = A.Lang,
 	SCHEDULER = 'scheduler',
 	SCHEDULER_EVENT = 'scheduler-event',
 	SCHEDULER_EVENT_RECORDER = 'scheduler-event-recorder',
+	SHORT = 'short',
 	START_DATE = 'startDate',
 	TEMPLATE = 'template',
 	TITLE = 'title',
@@ -80,6 +81,7 @@ var Lang = A.Lang,
 	CSS_SCHEDULER_EVENT_RECORDER = getCN(SCHEDULER_EVENT, RECORDER),
 	CSS_SCHEDULER_EVENT_REPEATED = getCN(SCHEDULER_EVENT, REPEATED),
 	CSS_SCHEDULER_EVENT_REPEATER = getCN(SCHEDULER_EVENT, REPEATER),
+	CSS_SCHEDULER_EVENT_SHORT = getCN(SCHEDULER_EVENT, SHORT),
 	CSS_SCHEDULER_EVENT_TITLE = getCN(SCHEDULER_EVENT, TITLE),
 	CSS_SCHEDULER_EVENT_ICONS = getCN(SCHEDULER_EVENT, ICONS),
 	CSS_SCHEDULER_EVENT_ICON_DISABLED = getCN(SCHEDULER_EVENT, ICON, DISABLED),
@@ -581,6 +583,12 @@ var SchedulerEvent = A.Component.create({
 			instance._uiSetDisabled(event.newVal);
 		},
 
+		_afterEndDateChange: function(event) {
+			var instance = this;
+
+			instance._uiSetEndDate(event.newVal);
+		},
+
 		_afterVisibleChange: function(event) {
 			var instance = this;
 
@@ -605,6 +613,7 @@ var SchedulerEvent = A.Component.create({
 			instance.after({
 				allDayChange: instance._afterAllDayChange,
 				disabledChange: instance._afterDisabledChange,
+				endDateChange: instance._afterEndDateChange,
 				parentEventChange: instance._afterParentEventChange,
 				repeatChange: instance._afterRepeatChange,
 				visibleChange: instance._afterVisibleChange
@@ -702,6 +711,9 @@ var SchedulerEvent = A.Component.create({
 			instance._uiSetDisabled(
 				instance.get(DISABLED)
 			);
+			instance._uiSetEndDate(
+				instance.get(END_DATE)
+			);
 			instance._uiSetVisible(
 				instance.get(VISIBLE)
 			);
@@ -749,6 +761,12 @@ var SchedulerEvent = A.Component.create({
 			var instance = this;
 
 			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_DISABLED, !!val);
+		},
+
+		_uiSetEndDate: function(val) {
+			var instance = this;
+
+			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_SHORT, instance.getMinutesDuration() <= 30);
 		},
 
 		_uiSetParentEvent: function(val) {
