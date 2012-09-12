@@ -23,6 +23,7 @@ var Lang = A.Lang,
 	_PROPAGATE_SET = '_propagateSet',
 
 	ACTIVE_VIEW = 'activeView',
+	ALL = 'all',
 	BORDER_COLOR = 'borderColor',
 	BORDER_COLOR_RGB = 'borderColorRGB',
 	BORDER_STYLE = 'borderStyle',
@@ -32,6 +33,7 @@ var Lang = A.Lang,
 	COLOR_BRIGHTNESS_FACTOR = 'colorBrightnessFactor',
 	COLOR_SATURATION_FACTOR = 'colorSaturationFactor',
 	CONTENT = 'content',
+	DAY = 'day',
 	DISABLED = 'disabled',
 	DURATION = 'duration',
 	END_DATE = 'endDate',
@@ -71,6 +73,7 @@ var Lang = A.Lang,
 
 	CSS_ICON = getCN(ICON),
 	CSS_SCHEDULER_EVENT = getCN(SCHEDULER_EVENT),
+	CSS_SCHEDULER_EVENT_ALL_DAY = getCN(SCHEDULER_EVENT, ALL, DAY),
 	CSS_SCHEDULER_EVENT_CONTENT = getCN(SCHEDULER_EVENT, CONTENT),
 	CSS_SCHEDULER_EVENT_HIDDEN = getCN(SCHEDULER_EVENT, HIDDEN),
 	CSS_SCHEDULER_EVENT_DISABLED = getCN(SCHEDULER_EVENT, DISABLED),
@@ -126,7 +129,29 @@ var SchedulerEvent = A.Component.create({
 
 		titleDateFormat: {
 			getter: '_getTitleDateFormat',
-			validator: isString
+			value: function() {
+				var instance = this;
+
+				var allDay = instance.get(ALL_DAY);
+				var scheduler = instance.get(SCHEDULER);
+				var isoTime = scheduler && scheduler.get(ACTIVE_VIEW).get(ISO_TIME);
+
+				var hourFormat = isoTime ? TITLE_DT_FORMAT_ISO : TITLE_DT_FORMAT_US;
+
+				var format = {
+					endDate: DASH+SPACE+hourFormat,
+					startDate: hourFormat
+				};
+
+				if (instance.getMinutesDuration() <= 30) {
+					delete format.endDate;
+				}
+				else if (allDay) {
+					format = {};
+				}
+
+				return format;
+			}
 		},
 
 		endDate: {
@@ -491,10 +516,19 @@ var SchedulerEvent = A.Component.create({
 
 		syncNodeTitleUI: function(propagate) {
 			var instance = this;
-			var sDate = instance._formatDate(instance.get(START_DATE));
-			var eDate = instance._formatDate(instance.get(END_DATE));
 
-			instance.setTitle([sDate, eDate].join(SPACE+NDASH+SPACE), propagate);
+			var format = instance.get(TITLE_DATE_FORMAT);
+			var title = [];
+
+			if (format.startDate) {
+				title.push(instance._formatDate(instance.get(START_DATE), format.startDate));
+			}
+
+			if (format.endDate) {
+				title.push(instance._formatDate(instance.get(END_DATE), format.endDate));
+			}
+
+			instance.setTitle(title.join(SPACE), propagate);
 		},
 
 		split: function() {
@@ -535,6 +569,12 @@ var SchedulerEvent = A.Component.create({
 			instance.syncNodeUI();
 		},
 
+		_afterAllDayChange: function(event) {
+			var instance = this;
+
+			instance._uiSetAllDay(event.newVal);
+		},
+
 		_afterDisabledChange: function(event) {
 			var instance = this;
 
@@ -563,10 +603,11 @@ var SchedulerEvent = A.Component.create({
 			var instance = this;
 
 			instance.after({
+				allDayChange: instance._afterAllDayChange,
 				disabledChange: instance._afterDisabledChange,
-				visibleChange: instance._afterVisibleChange,
 				parentEventChange: instance._afterParentEventChange,
-				repeatChange: instance._afterRepeatChange
+				repeatChange: instance._afterRepeatChange,
+				visibleChange: instance._afterVisibleChange
 			});
 
 			instance._syncUIAttrs();
@@ -655,6 +696,9 @@ var SchedulerEvent = A.Component.create({
 		_syncUIAttrs: function() {
 			var instance = this;
 
+			instance._uiSetAllDay(
+				instance.get(ALL_DAY)
+			);
 			instance._uiSetDisabled(
 				instance.get(DISABLED)
 			);
@@ -673,8 +717,6 @@ var SchedulerEvent = A.Component.create({
 			var instance = this;
 			var locale = instance.get(LOCALE);
 
-			format = format || instance.get(TITLE_DATE_FORMAT);
-
 			return A.DataType.Date.format(date, {
 				format: format,
 				locale: locale
@@ -684,13 +726,23 @@ var SchedulerEvent = A.Component.create({
 		_getTitleDateFormat: function(val) {
 			var instance = this;
 
-			if (!isString(val)) {
-				var scheduler = instance.get(SCHEDULER);
-
-				val = (scheduler && scheduler.get(ACTIVE_VIEW).get(ISO_TIME)) ? TITLE_DT_FORMAT_ISO : TITLE_DT_FORMAT_US;
+			if (isString(val)) {
+				val = {
+					endDate: val,
+					startDate: val
+				};
+			}
+			else if (isFunction(val)) {
+				val = val.call(instance);
 			}
 
 			return val;
+		},
+
+		_uiSetAllDay: function(val) {
+			var instance = this;
+
+			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_ALL_DAY, !!val);
 		},
 
 		_uiSetDisabled: function(val) {
