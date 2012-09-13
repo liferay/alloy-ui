@@ -3567,7 +3567,22 @@ var Lang = A.Lang,
 	VISIBLE = 'visible',
 
 	TITLE_DT_FORMAT_ISO = '%H:%M',
-	TITLE_DT_FORMAT_US = '%I:%M',
+	TITLE_DT_FORMAT_US_HOURS = '%l',
+	TITLE_DT_FORMAT_US_MINUTES = ':%M',
+
+	getUSDateFormat = function(date) {
+		var format = [TITLE_DT_FORMAT_US_HOURS];
+
+		if (date.getMinutes() > 0) {
+			format.push(TITLE_DT_FORMAT_US_MINUTES);
+		}
+
+		if (date.getHours() >= 12) {
+			format.push('p');
+		}
+
+		return format.join(EMPTY_STR);
+	},
 
 	getCN = A.getClassName,
 
@@ -3633,21 +3648,23 @@ var SchedulerEvent = A.Component.create({
 			value: function() {
 				var instance = this;
 
-				var allDay = instance.get(ALL_DAY);
+				var format = {
+					endDate: NDASH+SPACE+TITLE_DT_FORMAT_ISO,
+					startDate: TITLE_DT_FORMAT_ISO
+				};
+
 				var scheduler = instance.get(SCHEDULER);
 				var isoTime = scheduler && scheduler.get(ACTIVE_VIEW).get(ISO_TIME);
 
-				var hourFormat = isoTime ? TITLE_DT_FORMAT_ISO : TITLE_DT_FORMAT_US;
-
-				var format = {
-					endDate: DASH+SPACE+hourFormat,
-					startDate: hourFormat
-				};
+				if (!isoTime) {
+					format.endDate = NDASH+SPACE+getUSDateFormat(instance.get(END_DATE));
+					format.startDate = getUSDateFormat(instance.get(START_DATE));
+				}
 
 				if (instance.getMinutesDuration() <= 30) {
 					delete format.endDate;
 				}
-				else if (allDay) {
+				else if (instance.get(ALL_DAY)) {
 					format = {};
 				}
 
