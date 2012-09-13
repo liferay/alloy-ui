@@ -11,6 +11,11 @@
     text-decoration: underline;
 }
 
+.aui-scheduler-event-short .aui-scheduler-event-content {
+    display: inline;
+    white-space: nowrap;
+}
+
 .aui-scheduler-event-title {
     display: inline;
     font: bold 10px Verdana,sans-serif;
