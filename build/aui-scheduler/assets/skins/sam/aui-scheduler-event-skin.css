@@ -25,15 +25,6 @@
 	background-repeat: repeat;
 }
 
-.aui-scheduler-event-meeting .aui-scheduler-event-icons,
-.aui-scheduler-event-meeting .aui-scheduler-event-icon-meeting {
-	display: block;
-}
-
-.aui-scheduler-event-meeting .aui-scheduler-event-icons .aui-scheduler-event-icon-meeting {
-	background-position: 0 0;
-}
-
 .aui-scheduler-event-disabled .aui-scheduler-event-icons,
 .aui-scheduler-event-disabled .aui-scheduler-event-icon-disabled {
 	display: block;
@@ -41,6 +32,15 @@
 
 .aui-scheduler-event-disabled .aui-scheduler-event-icons .aui-scheduler-event-icon-disabled {
 	background-position: 0 -28px;
+}
+
+.aui-scheduler-event-meeting .aui-scheduler-event-icons,
+.aui-scheduler-event-meeting .aui-scheduler-event-icon-meeting {
+	display: block;
+}
+
+.aui-scheduler-event-meeting .aui-scheduler-event-icons .aui-scheduler-event-icon-meeting {
+	background-position: 0 0;
 }
 
 .aui-scheduler-event-reminder .aui-scheduler-event-icons,
