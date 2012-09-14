@@ -3533,10 +3533,12 @@ var Lang = A.Lang,
 	INHERIT = 'inherit',
 	ISO_TIME = 'isoTime',
 	LOCALE = 'locale',
+	MEETING = 'meeting',
 	NEVER = 'never',
 	NODE = 'node',
 	OVERLAY = 'overlay',
 	RECORDER = 'recorder',
+	REMINDER = 'reminder',
 	REPEATED = 'repeated',
 	REPEATER = 'repeater',
 	SCHEDULER = 'scheduler',
@@ -3574,17 +3576,19 @@ var Lang = A.Lang,
 	CSS_SCHEDULER_EVENT = getCN(SCHEDULER_EVENT),
 	CSS_SCHEDULER_EVENT_ALL_DAY = getCN(SCHEDULER_EVENT, ALL, DAY),
 	CSS_SCHEDULER_EVENT_CONTENT = getCN(SCHEDULER_EVENT, CONTENT),
-	CSS_SCHEDULER_EVENT_HIDDEN = getCN(SCHEDULER_EVENT, HIDDEN),
 	CSS_SCHEDULER_EVENT_DISABLED = getCN(SCHEDULER_EVENT, DISABLED),
-	CSS_SCHEDULER_EVENT_RECORDER = getCN(SCHEDULER_EVENT, RECORDER),
-	CSS_SCHEDULER_EVENT_REPEATED = getCN(SCHEDULER_EVENT, REPEATED),
-	CSS_SCHEDULER_EVENT_REPEATER = getCN(SCHEDULER_EVENT, REPEATER),
-	CSS_SCHEDULER_EVENT_SHORT = getCN(SCHEDULER_EVENT, SHORT),
-	CSS_SCHEDULER_EVENT_TITLE = getCN(SCHEDULER_EVENT, TITLE),
-	CSS_SCHEDULER_EVENT_ICONS = getCN(SCHEDULER_EVENT, ICONS),
+	CSS_SCHEDULER_EVENT_HIDDEN = getCN(SCHEDULER_EVENT, HIDDEN),
 	CSS_SCHEDULER_EVENT_ICON_DISABLED = getCN(SCHEDULER_EVENT, ICON, DISABLED),
+	CSS_SCHEDULER_EVENT_ICON_MEETING = getCN(SCHEDULER_EVENT, ICON, MEETING),
+	CSS_SCHEDULER_EVENT_ICON_REMINDER = getCN(SCHEDULER_EVENT, ICON, REMINDER),
 	CSS_SCHEDULER_EVENT_ICON_REPEATED = getCN(SCHEDULER_EVENT, ICON, REPEATED),
-	CSS_SCHEDULER_EVENT_ICON_REPEATER = getCN(SCHEDULER_EVENT, ICON, REPEATER);
+	CSS_SCHEDULER_EVENT_ICONS = getCN(SCHEDULER_EVENT, ICONS),
+	CSS_SCHEDULER_EVENT_MEETING = getCN(SCHEDULER_EVENT, MEETING),
+	CSS_SCHEDULER_EVENT_RECORDER = getCN(SCHEDULER_EVENT, RECORDER),
+	CSS_SCHEDULER_EVENT_REMINDER = getCN(SCHEDULER_EVENT, REMINDER),
+	CSS_SCHEDULER_EVENT_REPEATED = getCN(SCHEDULER_EVENT, REPEATED),
+	CSS_SCHEDULER_EVENT_SHORT = getCN(SCHEDULER_EVENT, SHORT),
+	CSS_SCHEDULER_EVENT_TITLE = getCN(SCHEDULER_EVENT, TITLE);
 
 var SchedulerEvent = A.Component.create({
 	NAME: SCHEDULER_EVENT,
@@ -3677,10 +3681,20 @@ var SchedulerEvent = A.Component.create({
 			validator: isBoolean
 		},
 
+		meeting: {
+			value: false,
+			validator: isBoolean
+		},
+
 		node: {
 			valueFn: function() {
 				return A.NodeList.create(A.Node.create(this.EVENT_NODE_TEMPLATE).setData(SCHEDULER_EVENT, this));
 			}
+		},
+
+		reminder: {
+			value: false,
+			validator: isBoolean
 		},
 
 		repeated: {
@@ -3715,9 +3729,10 @@ var SchedulerEvent = A.Component.create({
 									'<div class="' + CSS_SCHEDULER_EVENT_TITLE + '"></div>' +
 									'<div class="' + CSS_SCHEDULER_EVENT_CONTENT + '"></div>' +
 									'<div class="' + CSS_SCHEDULER_EVENT_ICONS + '">' +
-										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_REPEATED].join(_SPACE) + '"></span>' +
-										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_REPEATER].join(_SPACE) + '"></span>' +
 										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_DISABLED].join(_SPACE) + '"></span>' +
+										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_MEETING].join(_SPACE) + '"></span>' +
+										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_REMINDER].join(_SPACE) + '"></span>' +
+										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_REPEATED].join(_SPACE) + '"></span>' +
 									'</div>' +
 								'</div>',
 
@@ -3990,16 +4005,28 @@ var SchedulerEvent = A.Component.create({
 			instance._uiSetEndDate(event.newVal);
 		},
 
-		_afterVisibleChange: function(event) {
+		_afterMeetingChange: function(event) {
 			var instance = this;
 
-			instance._uiSetVisible(event.newVal);
+			instance._uiSetMeeting(event.newVal);
+		},
+
+		_afterReminderChange: function(event) {
+			var instance = this;
+
+			instance._uiSetReminder(event.newVal);
 		},
 
 		_afterRepeatedChange: function(event) {
 			var instance = this;
 
 			instance._uiSetRepeated(event.newVal);
+		},
+
+		_afterVisibleChange: function(event) {
+			var instance = this;
+
+			instance._uiSetVisible(event.newVal);
 		},
 
 		_bindUIAttrs: function() {
@@ -4009,6 +4036,8 @@ var SchedulerEvent = A.Component.create({
 				allDayChange: instance._afterAllDayChange,
 				disabledChange: instance._afterDisabledChange,
 				endDateChange: instance._afterEndDateChange,
+				meetingChange: instance._afterMeetingChange,
+				reminderChange: instance._afterReminderChange,
 				repeatedChange: instance._afterRepeatedChange,
 				visibleChange: instance._afterVisibleChange
 			});
@@ -4063,11 +4092,17 @@ var SchedulerEvent = A.Component.create({
 			instance._uiSetEndDate(
 				instance.get(END_DATE)
 			);
-			instance._uiSetVisible(
-				instance.get(VISIBLE)
+			instance._uiSetMeeting(
+				instance.get(MEETING)
+			);
+			instance._uiSetReminder(
+				instance.get(REMINDER)
 			);
 			instance._uiSetRepeated(
 				instance.get(REPEATED)
+			);
+			instance._uiSetVisible(
+				instance.get(VISIBLE)
 			);
 		},
 
@@ -4113,6 +4148,18 @@ var SchedulerEvent = A.Component.create({
 			var instance = this;
 
 			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_SHORT, instance.getMinutesDuration() <= 30);
+		},
+
+		_uiSetMeeting: function(val) {
+			var instance = this;
+
+			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_MEETING, !!val);
+		},
+
+		_uiSetReminder: function(val) {
+			var instance = this;
+
+			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_REMINDER, !!val);
 		},
 
 		_uiSetRepeated: function(val) {
