@@ -100,7 +100,7 @@ var SchedulerTableView = A.Component.create({
 				return A.DataType.Date.format(
 					date,
 					{
-						format: '%a',
+						format: '%A',
 						locale: scheduler.get(LOCALE)
 					}
 				);
@@ -607,6 +607,10 @@ var SchedulerTableView = A.Component.create({
 				var columnNode = A.Node.create(TPL_SVT_GRID_COLUMN);
 
 				firstRowNode.append(columnNode);
+
+				if (i == 0) {
+					columnNode.addClass(CSS_SVT_COLGRID_FIRST);
+				}
 
 				instance[COLUMN_TABLE_GRID].push(columnNode);
 			}

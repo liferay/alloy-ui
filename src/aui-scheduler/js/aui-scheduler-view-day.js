@@ -154,7 +154,7 @@ var SchedulerDayView = A.Component.create({
 				return A.DataType.Date.format(
 					date,
 					{
-						format: '%a %m/%d',
+						format: '%d %A',
 						locale: scheduler.get(LOCALE)
 					}
 				);
@@ -204,7 +204,7 @@ var SchedulerDayView = A.Component.create({
 				return A.DataType.Date.format(
 					date,
 					{
-						format: '%A, %b %d, %Y',
+						format: '%A, %B %d, %Y',
 						locale: scheduler.get(LOCALE)
 					}
 				);

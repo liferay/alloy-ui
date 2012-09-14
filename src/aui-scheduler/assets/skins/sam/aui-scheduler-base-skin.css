@@ -1,9 +1,16 @@
-.aui-scheduler-base-icon-next, .aui-scheduler-base-icon-prev {
+.aui-scheduler-base-icon-next,
+.aui-scheduler-base-icon-prev,
+.aui-scheduler-base-icon-next.yui3-button,
+.aui-scheduler-base-icon-next.yui3-button:hover,
+.aui-scheduler-base-icon-prev.yui3-button,
+.aui-scheduler-base-icon-prev.yui3-button:hover {
 	background: url(scheduler-arrows.png) no-repeat 0 0;
 	height: 17px;
 	width: 29px;
 }
 
-.aui-scheduler-base-icon-prev {
+.aui-scheduler-base-icon-prev,
+.aui-scheduler-base-icon-prev.yui3-button,
+.aui-scheduler-base-icon-prev.yui3-button:hover {
 	background-position: 0 -17px;
 }
