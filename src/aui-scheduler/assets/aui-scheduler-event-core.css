@@ -2,6 +2,7 @@
 
 .aui-scheduler-event-content {
     font-size: 12px;
+    line-height: 12px;
     font-family: Tahoma, sans-serif;
     padding: 2px;
     text-align: left;
@@ -18,8 +19,8 @@
 }
 
 .aui-scheduler-event-title {
-    display: inline-block;
-    font-size: 10px;
+    display: inline;
+    font-size: 11px;
     font-weight: bold;
     font-family: Tahoma, sans-serif;
     overflow: hidden;
@@ -91,7 +92,7 @@
     height: 100%;
     position: relative;
     white-space: nowrap;
-    line-height: 16px;
+    line-height: 20px;
 }
 
 .aui-scheduler-view-table-row-container {
@@ -200,19 +201,23 @@
 }
 
 .aui-scheduler-view-table-data-event .aui-scheduler-event-content {
-    font-size: 10px;
+    font-size: 11px;
 }
 
 .aui-scheduler-view-table-data-event .aui-icon-arrowstop-1-l {
     left: 0;
     position: absolute;
-    top: 0;
+    top: 3px;
+    background-image: url(scheduler-arrows.png);
+    background-position: -4px -17px;
 }
 
 .aui-scheduler-view-table-data-event .aui-icon-arrowstop-1-r {
     position: absolute;
     right: 0;
     top: 0;
+    background-image: url(scheduler-arrows.png);
+    background-position: -10px 3px;
 }
 
 .aui-scheduler-event-recorder-overlay {
