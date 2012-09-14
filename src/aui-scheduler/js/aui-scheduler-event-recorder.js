@@ -18,6 +18,7 @@ var L = A.Lang,
 	OFFSET_HEIGHT = 'offsetHeight',
 	OFFSET_WIDTH = 'offsetWidth',
 	OVERLAY_OFFSET = 'overlayOffset',
+	REPEATED = 'repeated',
 	RENDERED = 'rendered',
 	SAVE = 'save',
 	SCHEDULER_CHANGE = 'schedulerChange',
@@ -44,7 +45,6 @@ var L = A.Lang,
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_DATE = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, DATE),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_FORM = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, FORM),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_HEADER = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, HEADER),
-	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_REPEAT = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, REPEAT),
 
 	TPL_OVERLAY_BODY_CONTENT = new A.Template(
 		'<div class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_SHADOW, ' ', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW, '"></div>',
@@ -56,11 +56,6 @@ var L = A.Lang,
 		'</div>',
 		'<div class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_BODY, '">',
 			'<label class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_DATE, '">{date}</label>',
-			'<select class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_REPEAT, '" name="repeat">',
-				'<tpl for="eventRepeat">',
-					'<option {[ (parent.repeat && parent.repeat.value) == parent.eventRepeat[$i].value ? \'selected="selected"\' : "" ]} value="{value}">{description}</option>',
-				'</tpl>',
-			'</select>',
 		'</div>'
 	),
 
@@ -103,11 +98,9 @@ var SchedulerEventRecorder = A.Component.create({
 					{
 						'delete': 'Delete',
 						'description-hint': 'e.g., Dinner at Brian\'s',
-						'no-repeat': 'No repeat',
 						cancel: 'Cancel',
 						description: 'Description',
 						edit: 'Edit',
-						repeat: 'Repeat',
 						save: 'Save',
 						when: 'When'
 					},
@@ -354,7 +347,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var values = instance.serializeForm();
 
 			newEvt.set(CONTENT, values[CONTENT]);
-			newEvt.set(REPEAT, values[REPEAT]);
+			newEvt.set(REPEATED, values[REPEATED]);
 
 			return newEvt;
 		},
@@ -382,8 +375,7 @@ var SchedulerEventRecorder = A.Component.create({
 				content: evt.get(CONTENT) || strings['description-hint'],
 				date: instance.getFormattedDate(),
 				endDate: evt.get(END_DATE).getTime(),
-				eventRepeat: instance.eventRepeatArray,
-				repeat: evt.get(REPEAT),
+				repeated: evt.get(REPEATED),
 				startDate: evt.get(START_DATE).getTime()
 			};
 		},
@@ -396,17 +388,6 @@ var SchedulerEventRecorder = A.Component.create({
 
 		populateForm: function() {
 			var instance = this;
-
-			if (!instance.eventRepeatArray) {
-				instance.eventRepeatArray = [];
-
-				A.each(A.SchedulerEventRepeat, function(item) {
-					instance.eventRepeatArray.push({
-						description: item[DESCRIPTION],
-						value: item[VALUE]
-					});
-				});
-			}
 
 			instance.formNode.setContent(
 				instance.get(TEMPLATE).parse(instance.getTemplateData())

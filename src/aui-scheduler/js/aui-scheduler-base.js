@@ -380,10 +380,6 @@ var SchedulerBase = A.Component.create({
 			var instance = this;
 
 			A.Array.each(instance.get(EVENTS), function(evt) {
-				evt.eachRepeatedEvent(function(repeatedEvt) {
-					delete repeatedEvt._filtered;
-				});
-
 				delete evt._filtered;
 			});
 		},
@@ -553,11 +549,6 @@ var SchedulerBase = A.Component.create({
 			A.Array.each(events, function(evt) {
 				if (filterFn.apply(instance, [evt])) {
 					results.push(evt);
-				}
-				else if (evt.isRepeatableDate(date)) {
-					var repeatedEvt = evt.repeatByDate(date);
-
-					results.push(repeatedEvt);
 				}
 			});
 
