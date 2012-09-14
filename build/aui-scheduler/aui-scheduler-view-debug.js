@@ -125,7 +125,6 @@ var Lang = A.Lang,
 	OVERLAY = 'overlay',
 	PAD = 'pad',
 	PADDING_NODE = 'paddingNode',
-	PARENT_EVENT = 'parentEvent',
 	PARENT_NODE = 'parentNode',
 	PROXY = 'proxy',
 	PROXY_NODE = 'proxyNode',
@@ -2194,10 +2193,6 @@ var SchedulerTableView = A.Component.create({
 
 			if (evtSplitInfo.right) {
 				node.addClass(CSS_SVT_TABLE_DATA_EVENT_RIGHT).append(TPL_SVT_EV_ICON_RIGHT);
-			}
-
-			if (evt.get(PARENT_EVENT)) {
-				node.addClass(CSS_SVT_TABLE_DATA_EVENT_REPEATED);
 			}
 		},
 

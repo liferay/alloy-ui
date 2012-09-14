@@ -381,10 +381,6 @@ var SchedulerBase = A.Component.create({
 			var instance = this;
 
 			A.Array.each(instance.get(EVENTS), function(evt) {
-				evt.eachRepeatedEvent(function(repeatedEvt) {
-					delete repeatedEvt._filtered;
-				});
-
 				delete evt._filtered;
 			});
 		},
@@ -554,11 +550,6 @@ var SchedulerBase = A.Component.create({
 			A.Array.each(events, function(evt) {
 				if (filterFn.apply(instance, [evt])) {
 					results.push(evt);
-				}
-				else if (evt.isRepeatableDate(date)) {
-					var repeatedEvt = evt.repeatByDate(date);
-
-					results.push(repeatedEvt);
 				}
 			});
 
@@ -840,7 +831,6 @@ var Lang = A.Lang,
 	OVERLAY = 'overlay',
 	PAD = 'pad',
 	PADDING_NODE = 'paddingNode',
-	PARENT_EVENT = 'parentEvent',
 	PARENT_NODE = 'parentNode',
 	PROXY = 'proxy',
 	PROXY_NODE = 'proxyNode',
@@ -2910,10 +2900,6 @@ var SchedulerTableView = A.Component.create({
 			if (evtSplitInfo.right) {
 				node.addClass(CSS_SVT_TABLE_DATA_EVENT_RIGHT).append(TPL_SVT_EV_ICON_RIGHT);
 			}
-
-			if (evt.get(PARENT_EVENT)) {
-				node.addClass(CSS_SVT_TABLE_DATA_EVENT_REPEATED);
-			}
 		},
 
 		_syncEventNodeUI: function(evt, container, celDate) {
@@ -3524,8 +3510,6 @@ var Lang = A.Lang,
 	_SPACE = ' ',
 	_UNDERLINE = '_',
 
-	_PROPAGATE_SET = '_propagateSet',
-
 	ACTIVE_VIEW = 'activeView',
 	ALL = 'all',
 	ALL_DAY = 'allDay',
@@ -3542,7 +3526,6 @@ var Lang = A.Lang,
 	DISABLED = 'disabled',
 	END_DATE = 'endDate',
 	EVENT_CLASS = 'eventClass',
-	EVENT_STACK = 'eventStack',
 	HIDDEN = 'hidden',
 	HSB_COLOR = 'hsbColor',
 	ICON = 'icon',
@@ -3553,9 +3536,7 @@ var Lang = A.Lang,
 	NEVER = 'never',
 	NODE = 'node',
 	OVERLAY = 'overlay',
-	PARENT_EVENT = 'parentEvent',
 	RECORDER = 'recorder',
-	REPEAT = 'repeat',
 	REPEATED = 'repeated',
 	REPEATER = 'repeater',
 	SCHEDULER = 'scheduler',
@@ -3702,12 +3683,9 @@ var SchedulerEvent = A.Component.create({
 			}
 		},
 
-		parentEvent: {
-		},
-
-		repeat: {
-			value: _EMPTY_STR,
-			setter: '_setRepeat'
+		repeated: {
+			value: false,
+			validator: isBoolean
 		},
 
 		scheduler: {
@@ -3743,17 +3721,9 @@ var SchedulerEvent = A.Component.create({
 									'</div>' +
 								'</div>',
 
-		eventStack: null,
-
 		initializer: function() {
 			var instance = this;
 			var node = instance.get(NODE);
-
-			instance[EVENT_STACK] = {};
-
-			A.Array.each(instance.get(EVENT_CLASS).PROPAGATE_ATTRS, function(attrName) {
-				instance.after(attrName+CHANGE, instance._propagateAttrChange);
-			});
 
 			instance._bindUIAttrs();
 
@@ -3763,11 +3733,6 @@ var SchedulerEvent = A.Component.create({
 		destroy: function() {
 			var instance = this;
 
-			instance.eachRepeatedEvent(function(evt, uid) {
-				evt.destroy();
-			});
-
-			instance[EVENT_STACK] = {};
 			instance.get(NODE).remove(true);
 		},
 
@@ -3865,32 +3830,6 @@ var SchedulerEvent = A.Component.create({
 			return DateMath.before(startDate, evtStartDate);
 		},
 
-		repeatByDate: function(date) {
-			var instance = this;
-			var uid = instance.uidByDate(date);
-
-			if (!instance[EVENT_STACK][uid]) {
-				var startDate = DateMath.clone(date);
-				var endDate = DateMath.clone(date);
-
-				DateMath.copyHours(startDate, instance.get(START_DATE));
-				DateMath.copyHours(endDate, instance.get(END_DATE));
-
-				var newEvt = new instance.get(EVENT_CLASS)({
-					endDate: endDate,
-					parentEvent: instance,
-					scheduler: instance.get(SCHEDULER),
-					startDate: startDate
-				});
-
-				newEvt.copyPropagateAttrValues(instance);
-
-				instance[EVENT_STACK][uid] = newEvt;
-			}
-
-			return instance[EVENT_STACK][uid];
-		},
-
 		intersects: function(evt) {
 			var instance = this;
 			var endDate = instance.get(END_DATE);
@@ -3927,13 +3866,6 @@ var SchedulerEvent = A.Component.create({
 				instance.get(START_DATE), instance.get(END_DATE));
 		},
 
-		isRepeatableDate: function(date) {
-			var instance = this;
-			var repeat = instance.get(REPEAT);
-
-			return (repeat && repeat.validate(instance, date));
-		},
-
 		getClearEndDate: function() {
 			var instance = this;
 
@@ -3954,16 +3886,7 @@ var SchedulerEvent = A.Component.create({
 			instance.set(END_DATE, DateMath.add(DateMath.clone(date), DateMath.MINUTES, duration));
 		},
 
-		uidByDate: function(date) {
-			var instance = this;
-
-			date = isDate(date) ?
-					DateMath.safeClearTime(date) : instance.getClearStartDate();
-
-			return [SCHEDULER_EVENT, date.getTime()].join(_UNDERLINE);
-		},
-
-		setContent: function(content, propagate) {
+		setContent: function(content) {
 			var instance = this;
 
 			instance.get(NODE).each(function(node) {
@@ -3971,15 +3894,9 @@ var SchedulerEvent = A.Component.create({
 
 				contentNode.setContent(content);
 			});
-
-			if (propagate) {
-				instance.eachRepeatedEvent(function(evt, uid) {
-					evt.setContent(content);
-				});
-			}
 		},
 
-		setTitle: function(content, propagate) {
+		setTitle: function(content) {
 			var instance = this;
 
 			instance.get(NODE).each(function(node) {
@@ -3987,24 +3904,18 @@ var SchedulerEvent = A.Component.create({
 
 				titleNode.setContent(content);
 			});
-
-			if (propagate) {
-				instance.eachRepeatedEvent(function(evt, uid) {
-					evt.setTitle(content);
-				});
-			}
 		},
 
-		syncNodeUI: function(propagate) {
+		syncNodeUI: function() {
 			var instance = this;
 
 			instance._syncUIAttrs();
-			instance.syncNodeColorUI(propagate);
-			instance.syncNodeTitleUI(propagate);
-			instance.syncNodeContentUI(propagate);
+			instance.syncNodeColorUI();
+			instance.syncNodeTitleUI();
+			instance.syncNodeContentUI();
 		},
 
-		syncNodeColorUI: function(propagate) {
+		syncNodeColorUI: function() {
 			var instance = this;
 			var node = instance.get(NODE);
 			var borderColor = instance.getBorderColor();
@@ -4020,21 +3931,15 @@ var SchedulerEvent = A.Component.create({
 
 				node.setStyles(styles);
 			}
-
-			if (propagate) {
-				instance.eachRepeatedEvent(function(evt, uid) {
-					evt.syncNodeColorUI();
-				});
-			}
 		},
 
-		syncNodeContentUI: function(propagate) {
+		syncNodeContentUI: function() {
 			var instance = this;
 
-			instance.setContent(instance.get(CONTENT), propagate);
+			instance.setContent(instance.get(CONTENT));
 		},
 
-		syncNodeTitleUI: function(propagate) {
+		syncNodeTitleUI: function() {
 			var instance = this,
 				format = instance.get(TITLE_DATE_FORMAT),
 				startDate = instance.get(START_DATE),
@@ -4049,7 +3954,7 @@ var SchedulerEvent = A.Component.create({
 				title.push(instance._formatDate(endDate, format.endDate));
 			}
 
-			instance.setTitle(title.join(_SPACE), propagate);
+			instance.setTitle(title.join(_SPACE));
 		},
 
 		split: function() {
@@ -4065,29 +3970,6 @@ var SchedulerEvent = A.Component.create({
 			}
 
 			return [ [ s1, e1 ] ];
-		},
-
-		eachRepeatedEvent: function(fn) {
-			var instance = this;
-
-			A.each(instance[EVENT_STACK], fn, instance);
-		},
-
-		unlink: function() {
-			var instance = this;
-
-			if (instance.get(PARENT_EVENT)) {
-				instance.set(PARENT_EVENT, null);
-			}
-			else {
-				instance.eachRepeatedEvent(function(evt, uid) {
-					evt.unlink();
-				});
-			}
-
-			instance[EVENT_STACK] = {};
-
-			instance.syncNodeUI();
 		},
 
 		_afterAllDayChange: function(event) {
@@ -4114,16 +3996,10 @@ var SchedulerEvent = A.Component.create({
 			instance._uiSetVisible(event.newVal);
 		},
 
-		_afterRepeatChange: function(event) {
+		_afterRepeatedChange: function(event) {
 			var instance = this;
 
-			instance._uiSetRepeat(event.newVal);
-		},
-
-		_afterParentEventChange: function(event) {
-			var instance = this;
-
-			instance._uiSetParentEvent(event.newVal);
+			instance._uiSetRepeated(event.newVal);
 		},
 
 		_bindUIAttrs: function() {
@@ -4133,47 +4009,11 @@ var SchedulerEvent = A.Component.create({
 				allDayChange: instance._afterAllDayChange,
 				disabledChange: instance._afterDisabledChange,
 				endDateChange: instance._afterEndDateChange,
-				parentEventChange: instance._afterParentEventChange,
-				repeatChange: instance._afterRepeatChange,
+				repeatedChange: instance._afterRepeatedChange,
 				visibleChange: instance._afterVisibleChange
 			});
 
 			instance._syncUIAttrs();
-		},
-
-		_propagateAttrChange: function(event) {
-			var instance = this;
-			var attrName = event.attrName;
-			var newVal = event.newVal;
-
-			instance.eachRepeatedEvent(function(evt, uid) {
-				var propFn = evt[_PROPAGATE_SET+_toInitialCap(attrName)];
-
-				if (propFn) {
-					propFn.apply(instance, [evt, attrName, newVal]);
-				}
-				else {
-					evt.set(attrName, event.newVal);
-				}
-
-				evt.syncNodeUI();
-			});
-
-			instance.syncNodeUI();
-		},
-
-		_propagateSetEndDate: function(evt, attrName, val) {
-			var endDate = DateMath.clone(evt.get(END_DATE));
-
-			DateMath.copyHours(endDate, val);
-			evt.set(END_DATE, endDate);
-		},
-
-		_propagateSetStartDate: function(evt, attrName, val) {
-			var startDate = DateMath.clone(evt.get(START_DATE));
-
-			DateMath.copyHours(startDate, val);
-			evt.set(START_DATE, startDate);
 		},
 
 		_setColor: function(val) {
@@ -4196,16 +4036,6 @@ var SchedulerEvent = A.Component.create({
 			}
 
 			return val;
-		},
-
-		_setRepeat: function(val) {
-			var instance = this;
-
-			if (isString(val)) {
-				val = A.SchedulerEventRepeat[val];
-			}
-
-			return isObject(val) ? val : null;
 		},
 
 		_setScheduler: function(val) {
@@ -4236,11 +4066,8 @@ var SchedulerEvent = A.Component.create({
 			instance._uiSetVisible(
 				instance.get(VISIBLE)
 			);
-			instance._uiSetParentEvent(
-				instance.get(PARENT_EVENT)
-			);
-			instance._uiSetRepeat(
-				instance.get(REPEAT)
+			instance._uiSetRepeated(
+				instance.get(REPEATED)
 			);
 		},
 
@@ -4288,17 +4115,10 @@ var SchedulerEvent = A.Component.create({
 			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_SHORT, instance.getMinutesDuration() <= 30);
 		},
 
-		_uiSetParentEvent: function(val) {
+		_uiSetRepeated: function(val) {
 			var instance = this;
 
 			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_REPEATED, !!val);
-		},
-
-		_uiSetRepeat: function(val) {
-			var instance = this;
-			var value = !!val && val !== A.SchedulerEventRepeat[NEVER];
-
-			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_REPEATER, value);
 		},
 
 		_uiSetVisible: function(val) {
@@ -4310,81 +4130,6 @@ var SchedulerEvent = A.Component.create({
 });
 
 A.SchedulerEvent = SchedulerEvent;
-A.SchedulerEventRepeat = {
-	never: {
-		description: 'Never repeat',
-		validate: function(evt, date) {
-			return false;
-		},
-		value: 'never'
-	},
-
-	daily: {
-		description: 'Every day',
-		validate: function(evt, date) {
-			return true;
-		},
-		value: 'daily'
-	},
-
-	monthly: {
-		description: 'Every month',
-		validate: function(evt, date) {
-			var endDate = evt.get(END_DATE);
-			var startDate = evt.get(START_DATE);
-
-			return (startDate.getDate() === date.getDate());
-		},
-		value: 'monthly'
-	},
-
-	monWedFri: {
-		description: 'Every Monday, Wednesday and Friday',
-		validate: function(evt, date) {
-			return DateMath.isMonWedOrFri(date);
-		},
-		value: 'monWedFri'
-	},
-
-	tuesThurs: {
-		description: 'Every Tuesday and Thursday',
-		validate: function(evt, date) {
-			return DateMath.isTueOrThu(date);
-		},
-		value: 'tuesThurs'
-	},
-
-	weekDays: {
-		description: 'Every week days',
-		validate: function(evt, date) {
-			return DateMath.isWeekDay(date);
-		},
-		value: 'weekDays'
-	},
-
-	weekly: {
-		description: 'Every week',
-		validate: function(evt, date) {
-			var endDate = evt.get(END_DATE);
-			var startDate = evt.get(START_DATE);
-
-			return (startDate.getDay() === date.getDay());
-		},
-		value: 'weekly'
-	},
-
-	yearly: {
-		description: 'Every year',
-		validate: function(evt, date) {
-			var endDate = evt.get(END_DATE);
-			var startDate = evt.get(START_DATE);
-
-			return ((startDate.getMonth() === date.getMonth()) && (startDate.getDay() === date.getDay()));
-		},
-		value: 'yearly'
-	}
-
-};
 var L = A.Lang,
 	isArray = L.isArray,
 
@@ -4405,6 +4150,7 @@ var L = A.Lang,
 	OFFSET_HEIGHT = 'offsetHeight',
 	OFFSET_WIDTH = 'offsetWidth',
 	OVERLAY_OFFSET = 'overlayOffset',
+	REPEATED = 'repeated',
 	RENDERED = 'rendered',
 	SAVE = 'save',
 	SCHEDULER_CHANGE = 'schedulerChange',
@@ -4431,7 +4177,6 @@ var L = A.Lang,
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_DATE = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, DATE),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_FORM = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, FORM),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_HEADER = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, HEADER),
-	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_REPEAT = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, REPEAT),
 
 	TPL_OVERLAY_BODY_CONTENT = new A.Template(
 		'<div class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_SHADOW, ' ', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW, '"></div>',
@@ -4443,11 +4188,6 @@ var L = A.Lang,
 		'</div>',
 		'<div class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_BODY, '">',
 			'<label class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_DATE, '">{date}</label>',
-			'<select class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_REPEAT, '" name="repeat">',
-				'<tpl for="eventRepeat">',
-					'<option {[ (parent.repeat && parent.repeat.value) == parent.eventRepeat[$i].value ? \'selected="selected"\' : "" ]} value="{value}">{description}</option>',
-				'</tpl>',
-			'</select>',
 		'</div>'
 	),
 
@@ -4490,11 +4230,9 @@ var SchedulerEventRecorder = A.Component.create({
 					{
 						'delete': 'Delete',
 						'description-hint': 'e.g., Dinner at Brian\'s',
-						'no-repeat': 'No repeat',
 						cancel: 'Cancel',
 						description: 'Description',
 						edit: 'Edit',
-						repeat: 'Repeat',
 						save: 'Save',
 						when: 'When'
 					},
@@ -4741,7 +4479,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var values = instance.serializeForm();
 
 			newEvt.set(CONTENT, values[CONTENT]);
-			newEvt.set(REPEAT, values[REPEAT]);
+			newEvt.set(REPEATED, values[REPEATED]);
 
 			return newEvt;
 		},
@@ -4769,8 +4507,7 @@ var SchedulerEventRecorder = A.Component.create({
 				content: evt.get(CONTENT) || strings['description-hint'],
 				date: instance.getFormattedDate(),
 				endDate: evt.get(END_DATE).getTime(),
-				eventRepeat: instance.eventRepeatArray,
-				repeat: evt.get(REPEAT),
+				repeated: evt.get(REPEATED),
 				startDate: evt.get(START_DATE).getTime()
 			};
 		},
@@ -4783,17 +4520,6 @@ var SchedulerEventRecorder = A.Component.create({
 
 		populateForm: function() {
 			var instance = this;
-
-			if (!instance.eventRepeatArray) {
-				instance.eventRepeatArray = [];
-
-				A.each(A.SchedulerEventRepeat, function(item) {
-					instance.eventRepeatArray.push({
-						description: item[DESCRIPTION],
-						value: item[VALUE]
-					});
-				});
-			}
 
 			instance.formNode.setContent(
 				instance.get(TEMPLATE).parse(instance.getTemplateData())

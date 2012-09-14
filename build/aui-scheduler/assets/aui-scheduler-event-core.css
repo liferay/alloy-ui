@@ -25,12 +25,6 @@
     white-space: nowrap;
 }
 
-.aui-scheduler-event.aui-scheduler-event-repeated {
-    opacity: 0.8;
-    -ms-filter: alpha(opacity=80);
-    filter: alpha(opacity=80);
-}
-
 .yui3-dd-proxy .aui-scheduler-event {
     opacity: .7;
     filter: alpha(opacity=70);
@@ -203,11 +197,6 @@
     font-size: 11px;
 }
 
-.aui-scheduler-view-table-data-event-repeated {
-    background-color: transparent;
-    color: #D96666;
-}
-
 .aui-scheduler-view-table-data-event .aui-icon-arrowstop-1-l {
     left: 0;
     position: absolute;
@@ -272,7 +261,8 @@
     width: 100%;
 }
 
-.aui-scheduler-event-recorder-overlay-repeat {
+.aui-scheduler-event-recorder-overlay-date {
+    display: block;
     margin: 10px 0 15px;
 }
 
