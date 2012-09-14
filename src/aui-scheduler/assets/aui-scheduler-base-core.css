@@ -6,21 +6,20 @@
 }
 
 .aui-scheduler-base-nav {
-    width: 61px;
-    padding: 5px;
+    width: 70px;
 }
 
 .aui-scheduler-base-nav .aui-scheduler-base-icon-next,
 .aui-scheduler-base-nav .aui-scheduler-base-icon-prev { float: left }
 
-.aui-scheduler-base-nav .aui-scheduler-base-icon-next { margin-left: 3px }
+.aui-scheduler-base-nav .aui-scheduler-base-icon-next { margin-left: 6px }
 
 .aui-scheduler-base-hd {
     border-color: #DDD;
     border-width: 1px 0 1px 0;
     border-style: solid;
     color: #1D1D1D;
-    padding: 4px 0 3px 0;
+    padding: 6px 0 3px 0;
 }
 
 .aui-scheduler-base-controls { float: left }
@@ -34,8 +33,10 @@
 
 .aui-scheduler-base-views {
     line-height: 27px;
-    width: 182px;
+    width: 172px;
 }
+
+.aui-scheduler-base-controls .aui-scheduler-base-view-date { margin-left: 4px }
 
 .aui-scheduler-base-controls .aui-scheduler-base-view-date,
 .aui-scheduler-base-controls .aui-scheduler-base-nav,
@@ -45,14 +46,22 @@
 
 .aui-scheduler-base-controls .aui-scheduler-base-today {
     color: #1D1D1D;
-    margin: 1px 5px 0 10px;
-    padding-top: 6px;
+    margin: 0 6px 0 10px;
 }
 
 .aui-scheduler-base-controls .aui-scheduler-base-current-date { font-weight: bold }
 
 .yui3-button-selected {
     background: #f8f8f8
+}
+
+.aui-scheduler-base .yui3-widget-hd .yui3-button {
+    padding: 5px 10px 5px 10px;
+}
+.aui-scheduler-base-views .yui3-button {
+    display: inline-block;
+    float: left;
+    margin: 0 6px 0 0;
 }
 
 .yui3-skin-sam .yui3-button-primary, .yui3-skin-sam .yui3-button-selected {
