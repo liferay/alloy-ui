@@ -20,6 +20,7 @@
     border-width: 1px 0 1px 0;
     border-style: solid;
     color: #1D1D1D;
+    padding: 4px 0 3px 0;
 }
 
 .aui-scheduler-base-controls { float: left }
@@ -33,22 +34,35 @@
 
 .aui-scheduler-base-views {
     line-height: 27px;
-    width: 160px;
+    width: 182px;
 }
 
 .aui-scheduler-base-controls .aui-scheduler-base-view-date,
 .aui-scheduler-base-controls .aui-scheduler-base-nav,
 .aui-scheduler-base-controls .aui-scheduler-base-today { float: left }
 
-.aui-scheduler-base-views .aui-scheduler-base-view {
-    color: #1D1D1D;
-    float: left;
-    margin-right: 10px;
-}
+.aui-scheduler-base-views .aui-scheduler-base-view {}
 
 .aui-scheduler-base-controls .aui-scheduler-base-today {
     color: #1D1D1D;
-    margin: 0 5px 0 10px;
+    margin: 1px 5px 0 10px;
+    padding-top: 6px;
+}
+
+.aui-scheduler-base-controls .aui-scheduler-base-current-date { font-weight: bold }
+
+.yui3-button-selected {
+    background: #f8f8f8
+}
+
+.yui3-skin-sam .yui3-button-primary, .yui3-skin-sam .yui3-button-selected {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+    -webkit-text-shadow: none;
+    -moz-text-shadow: none;
+    text-shadow: none;
 }
 
 .aui-scheduler-base-controls .aui-scheduler-base-view-date { font-weight: bold }

@@ -38,7 +38,7 @@
     height: 52px;
     border-top: 1px solid #ddd;
     margin-top: -1px;
-    padding-right: 1px;
+    padding-right: 4px;
 }
 
 .aui-scheduler-view-scrollable {
@@ -88,6 +88,7 @@
 .aui-scheduler-view-day-content .yui3-widget-hd {
     border-bottom: 1px solid #ddd;
     color: #555;
+    padding-top: 4px
 }
 
 .aui-scheduler-view-day-content .yui3-widget-bd { height: 600px }
@@ -115,22 +116,28 @@
 
 .aui-scheduler-view-day-header-day a {
     color: #555;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: normal;
     text-decoration: none;
     display: block;
+    padding: 2px;
 }
 
 .aui-scheduler-view-day-header-day a:hover { text-decoration: underline }
 
 .aui-scheduler-view-day-header-day { text-align: center }
 
+.aui-scheduler-view-day-header-day .aui-scheduler-today-hd {
+    color: #333333;
+    font-weight: bold;
+}
+
 .aui-scheduler-view-day-header-view-label {
-    margin: 0 1px;
+    margin: 0 -4px;
     position: absolute;
     text-align: right;
     top: 26px;
-    width: 60px;
+    width: 60px
 }
 
 .aui-scheduler-view-day { background: #fff }
@@ -149,9 +156,7 @@
     display: none;
 }
 
-.aui-scheduler-view-day .aui-scheduler-view-table .aui-scheduler-view-table-data-col {
-    padding-top: 4px;
-}
+.aui-scheduler-view-day .aui-scheduler-view-table .aui-scheduler-view-table-data-col {}
 
 .aui-scheduler-view-day .aui-scheduler-view-table .aui-scheduler-view-table-data-col-title {
     display: none;
