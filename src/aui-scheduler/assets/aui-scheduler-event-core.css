@@ -261,13 +261,8 @@
     width: 100%;
 }
 
-.aui-scheduler-event-recorder-overlay-date {
-    display: block;
-    margin: 10px 0 15px;
-}
-
 .aui-scheduler-event-recorder-overlay-body {
-    margin-top: 15px;
+    margin: 10px 0 15px;
 }
 
 .aui-scheduler-event.aui-scheduler-event-recorder {
