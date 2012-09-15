@@ -31,6 +31,7 @@ var Lang = A.Lang,
 	DATA_VIEW_NAME = 'data-view-name',
 
 	ACTIVE_VIEW = 'activeView',
+	BUTTON = 'button',
 	CLEARFIX = 'clearfix',
 	CONTROLS = 'controls',
 	CONTROLS_NODE = 'controlsNode',
@@ -55,6 +56,7 @@ var Lang = A.Lang,
 	NEXT_DATE = 'nextDate',
 	PREV = 'prev',
 	PREV_DATE = 'prevDate',
+	RADIO = 'radio',
 	RENDERED = 'rendered',
 	SCHEDULER = 'scheduler',
 	START_DATE = 'startDate',
@@ -84,14 +86,16 @@ var Lang = A.Lang,
 	CSS_SCHEDULER_VIEW_ = getCN(SCHEDULER_BASE, VIEW, EMPTY_STR),
 	CSS_SCHEDULER_VIEWS = getCN(SCHEDULER_BASE, VIEWS),
 
+	CSS_SCHEDULER_VIEW_SELECTED = 'yui3-button-selected',
+
 	TPL_SCHEDULER_CONTROLS = '<div class="'+CSS_SCHEDULER_CONTROLS+'"></div>',
 	TPL_SCHEDULER_VIEW_DATE = '<div class="'+CSS_SCHEDULER_VIEW_DATE+'"></div>',
 	TPL_SCHEDULER_HD = '<div class="'+CSS_SCHEDULER_HD+'"></div>',
-	TPL_SCHEDULER_ICON_NEXT = '<a href="#" class="'+[ CSS_ICON, CSS_SCHEDULER_ICON_NEXT ].join(SPACE)+'">Next</a>',
-	TPL_SCHEDULER_ICON_PREV = '<a href="#" class="'+[ CSS_ICON, CSS_SCHEDULER_ICON_PREV ].join(SPACE)+'">Prev</a>',
+	TPL_SCHEDULER_ICON_NEXT = '<button class="'+[ CSS_ICON, CSS_SCHEDULER_ICON_NEXT ].join(SPACE)+' yui3-button">Next</button>',
+	TPL_SCHEDULER_ICON_PREV = '<button class="'+[ CSS_ICON, CSS_SCHEDULER_ICON_PREV ].join(SPACE)+' yui3-button">Prev</button>',
 	TPL_SCHEDULER_NAV = '<div class="'+CSS_SCHEDULER_NAV+'"></div>',
-	TPL_SCHEDULER_TODAY = '<a href="#" class="'+CSS_SCHEDULER_TODAY+'">{today}</a>',
-	TPL_SCHEDULER_VIEW = '<a href="#" class="'+[ CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_ ].join(SPACE)+'{name}" data-view-name="{name}">{label}</a>',
+	TPL_SCHEDULER_TODAY = '<button class="'+CSS_SCHEDULER_TODAY+' yui3-button">{today}</button>',
+	TPL_SCHEDULER_VIEW = '<button class="'+[ CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_ ].join(SPACE)+'{name}" data-view-name="{name}">{label}</button>',
 	TPL_SCHEDULER_VIEWS = '<div class="'+CSS_SCHEDULER_VIEWS+'"></div>';
 
 var SchedulerEventSupport = function() {};
@@ -337,7 +341,7 @@ var SchedulerBase = A.Component.create({
 		viewsNode: DOT+CSS_SCHEDULER_VIEWS
 	},
 
-	UI_ATTRS: [DATE],
+	UI_ATTRS: [DATE, ACTIVE_VIEW],
 
 	AUGMENTS: [A.SchedulerEventSupport, A.WidgetStdMod],
 
@@ -479,6 +483,47 @@ var SchedulerBase = A.Component.create({
 			instance.plotViewEvents(instance.get(ACTIVE_VIEW));
 		},
 
+		renderButtonGroup: function() {
+			var instance = this;
+
+			instance.buttonGroup = new A.ButtonGroup({
+				srcNode: instance[VIEWS_NODE],
+				type: RADIO,
+				on: {
+					selectionChange: A.bind(instance._onButtonGroupSelectionChange, instance)
+				}
+			}).render();
+		},
+
+		/**
+		 * Sync SchedulerBase StdContent.
+		 *
+		 * @method syncStdContent
+		 * @protected
+		 */
+		syncStdContent: function() {
+			var instance = this;
+			var views = instance.get(VIEWS);
+
+			instance[NAV_NODE].append(instance[ICON_PREV_NODE]);
+			instance[NAV_NODE].append(instance[ICON_NEXT_NODE]);
+
+			instance[CONTROLS_NODE].append(instance[TODAY_NODE]);
+			instance[CONTROLS_NODE].append(instance[NAV_NODE]);
+			instance[CONTROLS_NODE].append(instance[VIEW_DATE_NODE]);
+
+			A.Array.each(views, function(view) {
+				instance[VIEWS_NODE].append( instance._createViewTriggerNode(view) );
+			});
+
+			instance[HEADER].append(instance[CONTROLS_NODE]);
+			instance[HEADER].append(instance[VIEWS_NODE]);
+			instance[HEADER].addClass(CSS_HELPER_CLEARFIX);
+
+			instance.setStdModContent(WidgetStdMod.HEADER, instance[HEADER].getDOM());
+		},
+
+
 		_afterActiveViewChange: function(event) {
 			var instance = this;
 
@@ -503,19 +548,19 @@ var SchedulerBase = A.Component.create({
 		},
 
 		_afterRender: function(event) {
-			var instance = this;
+			var instance = this,
+				activeView = instance.get(ACTIVE_VIEW);
 
-			instance.renderView(
-				instance.get(ACTIVE_VIEW)
-			);
+			instance.renderView(activeView);
+			instance.renderButtonGroup();
 
 			instance._uiSetDate(instance.get(DATE));
+			instance._uiSetActiveView(activeView);
 		},
 
 		_bindDelegate: function() {
 			var instance = this;
 
-			instance[VIEWS_NODE].delegate('click', instance._onClickViewTrigger, DOT+CSS_SCHEDULER_VIEW, instance);
 			instance[CONTROLS_NODE].delegate('click', instance._onClickPrevIcon, DOT+CSS_SCHEDULER_ICON_PREV, instance);
 			instance[CONTROLS_NODE].delegate('click', instance._onClickNextIcon, DOT+CSS_SCHEDULER_ICON_NEXT, instance);
 			instance[CONTROLS_NODE].delegate('click', instance._onClickToday, DOT+CSS_SCHEDULER_TODAY, instance);
@@ -602,9 +647,9 @@ var SchedulerBase = A.Component.create({
 			event.preventDefault();
 		},
 
-		_onClickViewTrigger: function(event) {
-			var instance = this;
-			var viewName = event.currentTarget.attr(DATA_VIEW_NAME);
+		_onButtonGroupSelectionChange: function(event) {
+			var instance = this,
+				viewName = event.originEvent.target.attr(DATA_VIEW_NAME);
 
 			instance.set(ACTIVE_VIEW, instance.getViewByName(viewName));
 
@@ -648,32 +693,18 @@ var SchedulerBase = A.Component.create({
 			return views;
 		},
 
-		/**
-		 * Sync SchedulerBase StdContent.
-		 *
-		 * @method syncStdContent
-		 * @protected
-		 */
-		syncStdContent: function() {
+		_uiSetActiveView: function(val) {
 			var instance = this;
-			var views = instance.get(VIEWS);
 
-			instance[NAV_NODE].append(instance[ICON_PREV_NODE]);
-			instance[NAV_NODE].append(instance[ICON_NEXT_NODE]);
+			if (val) {
+				var activeView = val.get(NAME),
+					activeNav = instance[VIEWS_NODE].one(DOT+CSS_SCHEDULER_VIEW_+activeView);
 
-			instance[CONTROLS_NODE].append(instance[TODAY_NODE]);
-			instance[CONTROLS_NODE].append(instance[NAV_NODE]);
-			instance[CONTROLS_NODE].append(instance[VIEW_DATE_NODE]);
-
-			A.Array.each(views, function(view) {
-				instance[VIEWS_NODE].append( instance._createViewTriggerNode(view) );
-			});
-
-			instance[HEADER].append(instance[CONTROLS_NODE]);
-			instance[HEADER].append(instance[VIEWS_NODE]);
-			instance[HEADER].addClass(CSS_HELPER_CLEARFIX);
-
-			instance.setStdModContent(WidgetStdMod.HEADER, instance[HEADER].getDOM());
+				if (activeNav) {
+					instance[VIEWS_NODE].all(BUTTON).removeClass(CSS_SCHEDULER_VIEW_SELECTED);
+					activeNav.addClass(CSS_SCHEDULER_VIEW_SELECTED);
+				}
+			}
 		},
 
 		_uiSetDate: function(val) {
