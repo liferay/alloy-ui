@@ -17,6 +17,14 @@
 	margin: 0 1px;
 }
 
+.aui-scheduler-event-disabled {
+	-moz-opacity:.80;
+	filter:alpha(opacity=80);
+	opacity:.80;
+	background-image: url(scheduler-background-striped.png);
+	background-repeat: repeat;
+}
+
 .aui-scheduler-event-disabled .aui-scheduler-event-icons,
 .aui-scheduler-event-disabled .aui-scheduler-event-icon-disabled {
 	display: block;
