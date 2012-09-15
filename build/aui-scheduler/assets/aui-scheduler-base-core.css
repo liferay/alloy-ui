@@ -33,7 +33,8 @@
 
 .aui-scheduler-base-views {
     line-height: 27px;
-    width: 172px;
+    width: 300px;
+    text-align: right;
 }
 
 .aui-scheduler-base-controls .aui-scheduler-base-view-date { margin-left: 4px }
@@ -41,8 +42,6 @@
 .aui-scheduler-base-controls .aui-scheduler-base-view-date,
 .aui-scheduler-base-controls .aui-scheduler-base-nav,
 .aui-scheduler-base-controls .aui-scheduler-base-today { float: left }
-
-.aui-scheduler-base-views .aui-scheduler-base-view {}
 
 .aui-scheduler-base-controls .aui-scheduler-base-today {
     color: #1D1D1D;
@@ -59,8 +58,6 @@
     padding: 5px 10px 5px 10px;
 }
 .aui-scheduler-base-views .yui3-button {
-    display: inline-block;
-    float: left;
     margin: 0 6px 0 0;
 }
 
