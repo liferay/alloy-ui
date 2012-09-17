@@ -842,7 +842,7 @@ var SchedulerDayView = A.Component.create({
 				paddingNode.hide();
 			}
 
-			evt.syncNodeUI();
+			evt.syncUI();
 
 			instance.syncEventTopUI(evt);
 			instance.syncEventHeightUI(evt);
@@ -2227,7 +2227,7 @@ var SchedulerTableView = A.Component.create({
 
 			evtNode.appendTo(container);
 
-			evt.syncNodeUI();
+			evt.syncUI();
 		},
 
 		_uiSetDate: function(val) {
@@ -2783,4 +2783,4 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 A.Base.mix(A.SchedulerTableView, [ A.SchedulerTableViewDD ]);
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-event','aui-datatype','aui-button-item','dd-drag','dd-delegate','dd-drop','dd-constrain']});
+}, '@VERSION@' ,{requires:['aui-scheduler-event','aui-datatype','aui-button-item','dd-drag','dd-delegate','dd-drop','dd-constrain'], skinnable:true});

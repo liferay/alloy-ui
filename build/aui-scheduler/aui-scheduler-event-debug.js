@@ -252,9 +252,55 @@ var SchedulerEvent = A.Component.create({
 			var instance = this;
 			var node = instance.get(NODE);
 
-			instance._bindUIAttrs();
+			instance.bindUI();
+			instance.syncUI();
+		},
 
-			instance.syncNodeUI(true);
+		bindUI: function() {
+			var instance = this;
+
+			instance.after({
+				allDayChange: instance._afterAllDayChange,
+				colorChange: instance._afterColorChange,
+				disabledChange: instance._afterDisabledChange,
+				endDateChange: instance._afterEndDateChange,
+				meetingChange: instance._afterMeetingChange,
+				reminderChange: instance._afterReminderChange,
+				repeatedChange: instance._afterRepeatedChange,
+				visibleChange: instance._afterVisibleChange
+			});
+		},
+
+		syncUI: function() {
+			var instance = this;
+
+			instance._uiSetAllDay(
+				instance.get(ALL_DAY)
+			);
+			instance._uiSetColor(
+				instance.get(COLOR)
+			);
+			instance._uiSetDisabled(
+				instance.get(DISABLED)
+			);
+			instance._uiSetEndDate(
+				instance.get(END_DATE)
+			);
+			instance._uiSetMeeting(
+				instance.get(MEETING)
+			);
+			instance._uiSetReminder(
+				instance.get(REMINDER)
+			);
+			instance._uiSetRepeated(
+				instance.get(REPEATED)
+			);
+			instance._uiSetVisible(
+				instance.get(VISIBLE)
+			);
+
+			instance.syncNodeTitleUI();
+			instance.syncNodeContentUI();
 		},
 
 		destroy: function() {
@@ -268,7 +314,7 @@ var SchedulerEvent = A.Component.create({
 
 			instance.get(NODE).push(A.Node.create(instance.EVENT_NODE_TEMPLATE).setData(SCHEDULER_EVENT, instance));
 
-			instance.syncNodeUI();
+			instance.syncUI();
 		},
 
 		copyDates: function(evt) {
@@ -433,33 +479,6 @@ var SchedulerEvent = A.Component.create({
 			});
 		},
 
-		syncNodeUI: function() {
-			var instance = this;
-
-			instance._syncUIAttrs();
-			instance.syncNodeColorUI();
-			instance.syncNodeTitleUI();
-			instance.syncNodeContentUI();
-		},
-
-		syncNodeColorUI: function() {
-			var instance = this;
-			var node = instance.get(NODE);
-			var borderColor = instance.getBorderColor();
-
-			if (node) {
-				var styles = {
-					borderWidth: instance.get(BORDER_WIDTH),
-					borderColor: borderColor,
-					backgroundColor: instance.get(COLOR),
-					borderStyle: instance.get(BORDER_STYLE),
-					color: INHERIT
-				};
-
-				node.setStyles(styles);
-			}
-		},
-
 		syncNodeContentUI: function() {
 			var instance = this;
 
@@ -505,6 +524,12 @@ var SchedulerEvent = A.Component.create({
 			instance._uiSetAllDay(event.newVal);
 		},
 
+		_afterColorChange: function(event) {
+			var instance = this;
+
+			instance._uiSetColor(event.newVal);
+		},
+
 		_afterDisabledChange: function(event) {
 			var instance = this;
 
@@ -539,22 +564,6 @@ var SchedulerEvent = A.Component.create({
 			var instance = this;
 
 			instance._uiSetVisible(event.newVal);
-		},
-
-		_bindUIAttrs: function() {
-			var instance = this;
-
-			instance.after({
-				allDayChange: instance._afterAllDayChange,
-				disabledChange: instance._afterDisabledChange,
-				endDateChange: instance._afterEndDateChange,
-				meetingChange: instance._afterMeetingChange,
-				reminderChange: instance._afterReminderChange,
-				repeatedChange: instance._afterRepeatedChange,
-				visibleChange: instance._afterVisibleChange
-			});
-
-			instance._syncUIAttrs();
 		},
 
 		_setColor: function(val) {
@@ -592,32 +601,6 @@ var SchedulerEvent = A.Component.create({
 			return val;
 		},
 
-		_syncUIAttrs: function() {
-			var instance = this;
-
-			instance._uiSetAllDay(
-				instance.get(ALL_DAY)
-			);
-			instance._uiSetDisabled(
-				instance.get(DISABLED)
-			);
-			instance._uiSetEndDate(
-				instance.get(END_DATE)
-			);
-			instance._uiSetMeeting(
-				instance.get(MEETING)
-			);
-			instance._uiSetReminder(
-				instance.get(REMINDER)
-			);
-			instance._uiSetRepeated(
-				instance.get(REPEATED)
-			);
-			instance._uiSetVisible(
-				instance.get(VISIBLE)
-			);
-		},
-
 		_formatDate: function(date, format) {
 			var instance = this;
 			var locale = instance.get(LOCALE);
@@ -648,6 +631,24 @@ var SchedulerEvent = A.Component.create({
 			var instance = this;
 
 			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_ALL_DAY, !!val);
+		},
+
+		_uiSetColor: function(val) {
+			var instance = this;
+			var node = instance.get(NODE);
+			var borderColor = instance.getBorderColor();
+
+			if (node) {
+				var styles = {
+					borderWidth: instance.get(BORDER_WIDTH),
+					borderColor: borderColor,
+					backgroundColor: val,
+					borderStyle: instance.get(BORDER_STYLE),
+					color: INHERIT
+				};
+
+				node.setStyles(styles);
+			}
 		},
 
 		_uiSetDisabled: function(val) {
@@ -1124,4 +1125,4 @@ var SchedulerEventRecorder = A.Component.create({
 
 A.SchedulerEventRecorder = SchedulerEventRecorder;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-color-util','aui-datatype','aui-template','aui-toolbar','io-form','querystring','overlay']});
+}, '@VERSION@' ,{requires:['aui-base','aui-color-util','aui-datatype','aui-template','aui-toolbar','io-form','querystring','overlay'], skinnable:true});
