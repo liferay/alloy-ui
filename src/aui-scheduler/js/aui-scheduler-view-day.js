@@ -479,7 +479,7 @@ var SchedulerDayView = A.Component.create({
 				paddingNode.hide();
 			}
 
-			evt.syncNodeUI();
+			evt.syncUI();
 
 			instance.syncEventTopUI(evt);
 			instance.syncEventHeightUI(evt);

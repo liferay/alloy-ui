@@ -713,7 +713,7 @@ var SchedulerTableView = A.Component.create({
 
 			evtNode.appendTo(container);
 
-			evt.syncNodeUI();
+			evt.syncUI();
 		},
 
 		_uiSetDate: function(val) {
