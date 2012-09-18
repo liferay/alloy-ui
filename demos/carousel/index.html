@@ -23,6 +23,9 @@
 		}
 
 		.aui-carousel-item {
+			display: block;
+			cursor: e-resize;
+
 			-moz-border-radius: 10px;
 			-webkit-border-radius: 10px;
 			border-radius: 10px;
@@ -30,11 +33,38 @@
 			text-indent: -9999em;
 		}
 
+		a.aui-carousel-item {
+			cursor: pointer;
+		}
+
 		#customMenu {
 			position: relative;
 			z-index: 40;
 			background: #ccc;
 		}
+
+		.item-link {
+			background: #EBAEAE;
+
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+			border-radius: 5px;
+
+			color: #5B0000;
+			font-size: 14px;
+			font-weight: bold;
+			left: 30px;
+			padding: 3px 8px;
+			position: absolute;
+			text-decoration: underline;
+			text-indent: 0;
+			top: 190px;
+		}
+
+		.item-link:hover {
+			color: #000;
+		}
+
 	</style>
 </head>
 
@@ -44,8 +74,8 @@
 	<h1>Alloy - Carousel Demo</h1>
 
 	<div id="demo">
-		<div style="background: url(article0.png); width: 940px; height: 253px;" class="aui-carousel-item aui-carousel-item-active">Article0</div>
-		<div style="background: url(article1.png); width: 940px; height: 253px;" class="aui-carousel-item">Article1</div>
+		<div style="background: url(article0.png); width: 940px; height: 253px;" class="aui-carousel-item aui-carousel-item-active">Article0 <a href="http://deploy.alloyui.com/" class="item-link">Learn more about our business benefits</a></div>
+		<a href="http://deploy.alloyui.com/" style="background: url(article1.png); width: 940px; height: 253px;" class="aui-carousel-item">Article1</a>
 		<div style="background: url(article2.png); width: 940px; height: 253px;" class="aui-carousel-item">Article2</div>
 		<div style="background: url(article3.png); width: 940px; height: 253px;" class="aui-carousel-item">Article3</div>
 		<div style="background: url(article0.png); width: 940px; height: 253px;" class="aui-carousel-item">Article4</div>
@@ -70,7 +100,7 @@ AUI().ready('aui-carousel', function(A) {
 
 	var component = new A.Carousel(
 		{
-			intervalTime: 1,
+			intervalTime: 5,
 			contentBox: '#demo',
 			activeIndex: 0,
 			// activeIndex: 'rand',
