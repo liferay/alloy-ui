@@ -1004,7 +1004,7 @@ var SchedulerDayView = A.Component.create({
 			var group = [];
 
 			A.Array.each(events, function(evtCmp) {
-				if (!evt._filtered && evt.intersectHours(evtCmp)) {
+				if (!evt._filtered && evtCmp.get(VISIBLE) && evt.intersectHours(evtCmp)) {
 					group.push(evtCmp);
 				}
 			});
@@ -2783,4 +2783,4 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 A.Base.mix(A.SchedulerTableView, [ A.SchedulerTableViewDD ]);
 
-}, '@VERSION@' ,{requires:['aui-scheduler-event','aui-datatype','aui-button-item','dd-drag','dd-delegate','dd-drop','dd-constrain'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-event','aui-datatype','aui-button-item','dd-drag','dd-delegate','dd-drop','dd-constrain']});
