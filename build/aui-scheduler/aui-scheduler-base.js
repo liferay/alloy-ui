@@ -71,6 +71,7 @@ var Lang = A.Lang,
 	VIEW_STACK = 'viewStack',
 	VIEWS = 'views',
 	VIEWS_NODE = 'viewsNode',
+	VISIBLE = 'visible',
 
 	getCN = A.getClassName,
 
@@ -409,9 +410,10 @@ var SchedulerBase = A.Component.create({
 				var startDate = evt.getClearStartDate();
 				var endDate = evt.getClearEndDate();
 
-				return (DateMath.compare(date, startDate) ||
+				return (evt.get(VISIBLE) &&
+						(DateMath.compare(date, startDate) ||
 						DateMath.compare(date, endDate) ||
-						DateMath.between(date, startDate, endDate));
+						DateMath.between(date, startDate, endDate)));
 			});
 		},
 
