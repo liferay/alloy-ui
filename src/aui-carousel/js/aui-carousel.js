@@ -21,6 +21,9 @@ var Lang = A.Lang,
 
 	DOT = '.',
 
+	GESTURE_FLICK_FILTER_DISTANCE = 75,
+	GESTURE_FLICK_FILTER_VELOCITY = 0.5,
+
 	SELECTOR_MENU_INDEX = DOT + CSS_MENU_INDEX,
 	SELECTOR_MENU_NEXT = DOT + CSS_MENU_NEXT,
 	SELECTOR_MENU_PAUSE = DOT + CSS_MENU_PAUSE,
@@ -117,6 +120,8 @@ var Carousel = A.Component.create(
 				);
 
 				instance._bindMenu();
+
+				instance._bindItemGestures();
 
 				if (instance.get('playing') === true) {
 					instance._afterPlayingChange(
@@ -241,6 +246,30 @@ var Carousel = A.Component.create(
 				instance.nodeMenuItemSelector = nodeMenuItemSelector;
 			},
 
+			_bindItemGestures: function() {
+				var instance = this;
+
+				var contentBox = instance.get('contentBox');
+
+				var nodeSelection = contentBox.all(DOT + CSS_ITEM);
+
+				var gestureFlickFilter = {
+					minDistance: GESTURE_FLICK_FILTER_DISTANCE,
+					minVelocity: GESTURE_FLICK_FILTER_VELOCITY
+				};
+
+				nodeSelection.each(
+					function(item, index, collection) {
+						item.on(
+							'flick',
+							instance._onFlickHandler,
+							gestureFlickFilter,
+							instance
+						);
+					}
+				);
+			},
+
 			_clearIntervalRotationTask: function() {
 				var instance = this;
 
@@ -322,6 +351,28 @@ var Carousel = A.Component.create(
 
 				if (handler) {
 					handler.apply(instance, arguments);
+				}
+			},
+
+			_onFlickHandler: function(event) {
+				var instance = this;
+
+				var handler;
+
+				var distance = event.flick.distance;
+
+				if (event.flick.axis == 'x') {
+					// event.flick.axis has more consistant behavior than {axis: 'x'}
+					if (distance < 0) {//Think backwards for touch.
+						handler = instance._updateIndexNext;
+					}
+					else if (distance > 0) {
+						handler = instance._updateIndexPrev;
+					}
+
+					if (handler) {
+						handler.apply(instance, arguments);
+					}
 				}
 			},
 
