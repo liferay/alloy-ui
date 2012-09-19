@@ -305,9 +305,13 @@ var TreeView = A.Component.create(
 				if (treeNode) {
 					if (event.target.test(DOT+CSS_TREE_HITAREA)) {
 						treeNode.toggle();
+
+						if (!instance.get(SELECT_ON_TOGGLE)) {
+							return;
+						}
 					}
 
-					if (instance.get(SELECT_ON_TOGGLE) && !treeNode.isSelected()) {
+					if (!treeNode.isSelected()) {
 						var lastSelected = instance.get(LAST_SELECTED);
 
 						// select drag node
