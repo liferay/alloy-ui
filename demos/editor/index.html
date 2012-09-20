@@ -67,7 +67,19 @@ AUI().ready('aui-editor', function(A) {
 
 	var component = new A.Editor(
 			{
-				content: '<p><a href="http://www.test.com" target="_blank"><img src="../../build/aui-editor/assets/skins/sam/blankimage.png" align="left" style="border: 1px solid; padding: 5px;" alt="test" /></a></p><p>Test Content 1</p><p><b>Test Content 2</b></p><p><i>Test Content 3</i></p><p><u>Test Content 4</u></p><p><strike>Test Content 5</strike></p>',
+				content: 
+					'<p>' +
+						'<a href="http://www.test.com" target="_blank"><img src="../../build/aui-editor/assets/skins/sam/blankimage.png" align="left" style="border: 1px solid; padding: 5px;" alt="test" /></a>' +
+					'</p>' +
+					'<p>Test Content 1</p>' +
+					'<p><b>Test Content 2</b>' +
+					'</p>' +
+					'<p><i>Test Content 3</i>' +
+					'</p>' +
+					'<p><u>Test Content 4</u>' +
+					'</p>' +
+					'<p><span style="text-decoration: line-through;">Test Content 5</span>' +
+					'</p>',
 				toolbarConfig: {
 					append: [
 						{
@@ -76,15 +88,13 @@ AUI().ready('aui-editor', function(A) {
 							config: {
 								styles: {
 									items: fonts,
-									width: 200,
-									height: 300
+									width: 200
 								}
 							}
 						},
 						{
 							index: 2,
-							type: 'text',
-							include: ['bold', 'italic', 'underline']
+							type: 'text'
 						}
 					]
 				}
