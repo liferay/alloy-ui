@@ -1,5 +1,6 @@
 AUI.add('aui-editor-toolbar-plugin', function(A) {
 var Lang = A.Lang,
+	AArray = A.Array,
 	isArray = Lang.isArray,
 	isFunction = Lang.isFunction,
 
@@ -8,11 +9,11 @@ var Lang = A.Lang,
 	NAME = 'editortoolbar',
 	TOOLBAR_PLUGIN = 'toolbar',
 
-	ALIGNMENT = 'alignment',
-	ALIGN_LEFT = 'align-left',
-	ALIGN_INLINE = 'align-inline',
 	ALIGN_BLOCK = 'align-block',
+	ALIGN_INLINE = 'align-inline',
+	ALIGN_LEFT = 'align-left',
 	ALIGN_RIGHT = 'align-right',
+	ALIGNMENT = 'alignment',
 	COLOR = 'color',
 	CONTENT = 'content',
 	FONT = 'font',
@@ -21,9 +22,12 @@ var Lang = A.Lang,
 	INSERT = 'insert',
 	INSERTIMAGE = 'insertimage',
 	INSERTLINK = 'insertlink',
+	LEFT = 'left',
 	LIST = 'list',
+	RIGHT = 'right',
 	SELECT = 'select',
 	SOURCE = 'source',
+	START = 'start',
 	STYLES = 'styles',
 	SUBSCRIPT = 'subscript',
 	TEXT = 'text',
@@ -177,7 +181,7 @@ var EditorToolbar = A.Component.create(
 
 				var toolbars = [];
 
-				if (append != null && isArray(append)) {
+				if (isArray(append)) {
 					var appendLength = append.length;
 
 					for (var i = 0; i < appendLength; i++) {
@@ -235,10 +239,10 @@ var EditorToolbar = A.Component.create(
 						var node = A.Widget.getByNode(event.currentTarget);
 
 						if (node) {
-							var cmds = node.get('icon').split('-');
+							var commands = node.get('icon').split('-');
 
-							if (!CMD_IGNORE[cmds[0]]) {
-								instance.execCommand(cmds[0], (cmds[1] ? cmds[1] : ''));
+							if (!CMD_IGNORE[commands[0]]) {
+								instance.execCommand(commands[0], (commands[1] ? commands[1] : ''));
 								instance.focus();
 							}
 						}
@@ -311,6 +315,10 @@ var EditorToolbar = A.Component.create(
 						generate.init.call(instance, host, attrs);
 					}
 
+					if (groupType.radio) {
+						toolbar.after('buttonitem:click', instance._deactivateItems, instance, toolbar);
+					}
+
 					children = (children.length ? children : buttons);
 
 					for (i = 0; i < children.length; i++) {
@@ -342,6 +350,89 @@ var EditorToolbar = A.Component.create(
 				return null;
 			},
 
+			_deactivateItems: function(event, toolbar) {
+				var button = event.target;
+
+				toolbar.each(
+					function(item, index, collection) {
+						if (item != button) {
+							item.StateInteraction.set('active', false);
+						}
+					}
+				);
+			},
+
+			_handleAlign: function(event, attrs) {
+				var changedNode = event.changedNode;
+
+				var commands = event.commands;
+
+				var align = changedNode.getStyle('textAlign') || START;
+
+				if (align && align.toLowerCase() === 'start') {
+					align = LEFT;
+
+					if (changedNode.getStyle('direction') === 'rtl') {
+						align = RIGHT;
+					}
+				}
+
+				if (align) {
+					commands['justify' + align] = 1;
+				}
+			},
+
+			_handleFontName: function(event, attrs) {
+				var changedNode = event.changedNode;
+
+				var commands = event.commands;
+
+				var fontNameOptions = attrs._fontNameOptions;
+
+				if (fontNameOptions) {
+					var fontName = event.fontFamily;
+
+					fontNameOptions.item(0).set('selected', true);
+
+					fontNameOptions.each(
+						function(item, index, collection) {
+							var val = item.get('value').toLowerCase();
+
+							if (val === fontName.toLowerCase()) {
+								item.set('selected', true);
+							}
+						}
+					);
+				}
+			},
+
+			_handleFontSize: function(event, attrs) {
+				var changedNode = event.changedNode;
+
+				var commands = event.commands;
+
+				var fontSize = event.fontSize;
+
+				var fontSizeOptions = attrs._fontSizeOptions;
+
+				if (fontSizeOptions) {
+					fontSize = fontSize.replace('px', '');
+
+					fontSizeOptions.item(0).set('selected', true);
+
+					fontSizeOptions.each(
+						function(item, index, collection) {
+							var val = item.get('value').toLowerCase();
+							var txt = item.get('text');
+
+							if (txt === fontSize) {
+								item.set('selected', true);
+							}
+						}
+					);
+				}
+			},
+			
 			_isGroupIncluded: function(name, children, type) {
 				var instance = this;
 
@@ -352,6 +443,22 @@ var EditorToolbar = A.Component.create(
 				}
 
 				return -1;
+			},
+
+			_onNodeChange: function(event, attrs) {
+				var instance = this;
+
+				var commands = event.commands;
+
+				var toolbars = instance._toolbars;
+
+				instance._handleAlign(event, attrs);
+
+				instance._handleFontSize(event, attrs);
+
+				instance._handleFontName(event, attrs);
+
+				instance._updateToolbar(commands);
 			},
 
 			_openOverlayToAlignNode: function(overlay, iframe, iframeNode) {
@@ -383,61 +490,21 @@ var EditorToolbar = A.Component.create(
 				overlay.show();
 			},
 
-			_updateToolbar: function(event, attrs) {
+			_updateToolbar: function(commands) {
 				var instance = this;
 
-				if (event.changedNode) {
-					var cmds = event.commands;
-					var toolbars = instance.toolbars;
-
-					var toolbarIterator = function(item, index, collection) {
-						var state = !!(cmds[item.get('icon')]);
-
-						item.StateInteraction.set('active', state);
-					};
-
-					if (toolbars) {
-						for (var i = 0; i < toolbars.length; i++) {
-							toolbars[i].each(toolbarIterator);
-						}
-					}
-
-					var fontName = event.fontFamily;
-					var fontNameOptions = attrs._fontNameOptions;
-					var fontSize = event.fontSize;
-					var fontSizeOptions = attrs._fontSizeOptions;
-
-					if (fontNameOptions) {
-						fontNameOptions.item(0).set('selected', true);
-
-						fontNameOptions.each(
+				AArray.each(
+					instance._toolbars,
+					function(item, index, collection) {
+						item.each(
 							function(item, index, collection) {
-								var val = item.get('value').toLowerCase();
+								var state = !!(commands[item.get('icon')]);
 
-								if (val === fontName.toLowerCase()) {
-									item.set('selected', true);
-								}
+								item.StateInteraction.set('active', state);
 							}
 						);
 					}
-
-					if (fontSizeOptions) {
-						fontSize = fontSize.replace('px', '');
-
-						fontSizeOptions.item(0).set('selected', true);
-
-						fontSizeOptions.each(
-							function(item, index, collection) {
-								var val = item.get('value').toLowerCase();
-								var txt = item.get('text');
-
-								if (txt === fontSize) {
-									item.set('selected', true);
-								}
-							}
-						);
-					}
-				}
+				);
 			}
 		}
 	}
@@ -515,8 +582,8 @@ EditorToolbar.generateColorPicker = function(editor, attrs, config, cmd) {
 var EditorToolbarStrings = {
 	ALIGN: 'Align',
 	ALIGN_BLOCK: 'Block',
-	ALIGN_LEFT: 'Left',
 	ALIGN_INLINE: 'Inline',
+	ALIGN_LEFT: 'Left',
 	ALIGN_RIGHT: 'Right',
 	BACKCOLOR: 'Background Color',
 	BOLD: 'Bold',
@@ -533,8 +600,8 @@ var EditorToolbarStrings = {
 	INSERT_ORDERED_LIST: 'Insert Numbered List',
 	INSERT_UNORDERED_LIST: 'Insert Bulleted List',
 	ITALIC: 'Italic',
-	JUSTIFY_LEFT: 'Justify Left',
 	JUSTIFY_CENTER: 'Justify Center',
+	JUSTIFY_LEFT: 'Justify Left',
 	JUSTIFY_RIGHT: 'Justify Right',
 	LINE_THROUGH: 'Line Through',
 	LINK_URL: 'Link URL',
@@ -545,9 +612,9 @@ var EditorToolbarStrings = {
 	SAVE: 'Save',
 	SIZE: 'Size',
 	SOURCE: 'Source',
+	STYLES: 'Styles',
 	SUBSCRIPT: 'Subscript',
 	SUPERSCRIPT: 'Superscript',
-	STYLES: 'Styles',
 	UNDERLINE: 'Underline'
 };
 
@@ -564,18 +631,22 @@ var GROUPS = {};
 GROUPS[ALIGNMENT] = {
 	children: [
 		{
+			activeState: true,
 			icon: 'justifyleft',
 			_titleKey: 'JUSTIFY_LEFT'
 		},
 		{
+			activeState: true,
 			icon: 'justifycenter',
 			_titleKey: 'JUSTIFY_CENTER'
 		},
 		{
+			activeState: true,
 			icon: 'justifyright',
 			_titleKey: 'JUSTIFY_RIGHT'
 		}
-	]
+	],
+	radio: true
 };
 
 GROUPS[COLOR] = {
@@ -630,7 +701,7 @@ GROUPS[FONT] = {
 					switch (event.changedType) {
 						case 'keyup':
 						case 'mousedown':
-							instance._updateToolbar(event, attrs);
+							instance._onNodeChange(event, attrs);
 						break;
 					}
 				},
@@ -701,7 +772,7 @@ GROUPS[FONT] = {
 GROUPS[INDENT] = {
 	children: [
 		{
-			icon: 'indent',
+			icon: INDENT,
 			_titleKey: 'INDENT'
 		},
 		{
@@ -761,7 +832,7 @@ GROUPS[INSERT] = {
 				var imageForm = new A.Form(
 					{
 						cssClass: CSS_INSERTIMAGE,
-						labelAlign: 'left'
+						labelAlign: LEFT
 					}
 				).render(contextBox);
 
@@ -912,7 +983,7 @@ GROUPS[INSERT] = {
 
 									switch(index) {
 										case 0:
-											imgAttrs.align = 'left';
+											imgAttrs.align = LEFT;
 										break;
 
 										case 1:
@@ -925,7 +996,7 @@ GROUPS[INSERT] = {
 										break;
 
 										case 3:
-											imgAttrs.align = 'right';
+											imgAttrs.align = RIGHT;
 										break;
 									}
 
@@ -1006,40 +1077,28 @@ GROUPS[INSERT] = {
 
 				var toolbarAlign = new A.Toolbar(
 					{
-						activeState: true,
 						children: [
 							{
+								activeState: true,
 								icon: ALIGN_LEFT,
 								title: YUI.AUI.defaults.EditorToolbar.STRINGS.ALIGN_LEFT
 							},
 							{
+								activeState: true,
 								icon: ALIGN_INLINE,
 								title: YUI.AUI.defaults.EditorToolbar.STRINGS.ALIGN_INLINE
 							},
 							{
+								activeState: true,
 								icon: ALIGN_BLOCK,
 								title: YUI.AUI.defaults.EditorToolbar.STRINGS.ALIGN_BLOCK
 							},
 							{
+								activeState: true,
 								icon: ALIGN_RIGHT,
 								title: YUI.AUI.defaults.EditorToolbar.STRINGS.ALIGN_RIGHT
 							}
 						]
-					}
-				);
-
-				toolbarAlign.after(
-					'buttonitem:click',
-					function(event) {
-						var button = event.target;
-
-						toolbarAlign.each(
-							function(item, index, collection) {
-								if (item != button) {
-									item.StateInteraction.set('active', false);
-								}
-							}
-						);
 					}
 				);
 
@@ -1123,20 +1182,20 @@ GROUPS[INSERT] = {
 											imageURL: img.get('src'),
 											linkURL: (linkTag ? parent.get('href') : ''),
 											width: img.get('width'),
-											padding: (padding ? parseInt(padding) : '')
+											padding: (padding ? parseInt(padding, 10) : '')
 										}
 									);
 
 									var index = 1;
 
 									switch (img.getAttribute('align')) {
-										case 'left':
+										case LEFT:
 											index = 0;
 										break;
 										case 'center':
 											index = 2;
 										break;
-										case 'right':
+										case RIGHT:
 											index = 3;
 										break;
 									}
@@ -1194,7 +1253,7 @@ GROUPS[INSERT] = {
 			var linkForm = new A.Form(
 				{
 					cssClass: CSS_INSERTLINK,
-					labelAlign: 'left'
+					labelAlign: LEFT
 				}
 			).render(contextBox);
 
@@ -1327,10 +1386,12 @@ GROUPS[INSERT] = {
 GROUPS[LIST] = {
 	children: [
 		{
+			activeState: true,
 			icon: 'insertunorderedlist',
 			_titleKey: 'INSERT_UNORDERED_LIST'
 		},
 		{
+			activeState: true,
 			icon: 'insertorderedlist',
 			_titleKey: 'INSERT_ORDERED_LIST'
 		}
@@ -1341,7 +1402,8 @@ GROUPS[LIST] = {
 
 			editor.plug(A.Plugin.EditorLists);
 		}
-	}
+	},
+	radio: true
 };
 
 GROUPS[SOURCE] = {
@@ -1523,18 +1585,22 @@ GROUPS[SUBSCRIPT] = {
 GROUPS[TEXT] = {
 	children: [
 		{
+			activeState: true,
 			icon: 'bold',
 			_titleKey: 'BOLD'
 		},
 		{
+			activeState: true,
 			icon: 'italic',
 			_titleKey: 'ITALIC'
 		},
 		{
+			activeState: true,
 			icon: 'underline',
 			_titleKey: 'UNDERLINE'
 		},
 		{
+			activeState: true,
 			icon: 'strikethrough',
 			_titleKey: 'LINE_THROUGH'
 		}
@@ -1543,4 +1609,4 @@ GROUPS[TEXT] = {
 
 A.namespace('Plugin').EditorToolbar = EditorToolbar;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-button-item','aui-color-picker','aui-editor-menu-plugin','aui-editor-tools-plugin','aui-form-select','aui-overlay-context-panel','aui-panel','aui-toolbar','createlink-base','editor-lists','editor-base','plugin']});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-button-item','aui-color-picker','aui-editor-menu-plugin','aui-editor-tools-plugin','aui-form-select','aui-overlay-context-panel','aui-panel','aui-toolbar','createlink-base','editor-lists','editor-base','plugin']});
