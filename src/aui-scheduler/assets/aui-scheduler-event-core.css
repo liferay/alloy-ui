@@ -242,8 +242,22 @@
     left: -22px;
     line-height: 0;
     position: absolute;
-    top: 24px;
-    width: 0;
+    width: 0
+}
+
+.aui-scheduler-event-recorder-overlay-arrow.aui-scheduler-event-recorder-overlay-arrow-right {
+    right: -22px;
+    border-color: transparent transparent transparent #F7F7F7;
+    left: auto
+}
+
+.aui-scheduler-event-recorder-overlay-arrow.aui-scheduler-event-recorder-overlay-arrow-bottom {
+    top: auto;
+}
+
+.aui-scheduler-event-recorder-overlay-arrow.aui-scheduler-event-recorder-overlay-arrow-shadow.aui-scheduler-event-recorder-overlay-arrow-right {
+    border-color: transparent transparent transparent #CCC;
+    right: -24px;
 }
 
 .aui-scheduler-event-recorder-overlay-arrow-shadow {
