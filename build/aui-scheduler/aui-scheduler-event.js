@@ -699,6 +699,7 @@ var L = A.Lang,
 	BOUNDING_BOX = 'boundingBox',
 	CANCEL = 'cancel',
 	CLICK = 'click',
+	CONSTRAIN = 'constrain',
 	DATE = 'date',
 	DATE_FORMAT = 'dateFormat',
 	DELETE = 'delete',
@@ -712,6 +713,7 @@ var L = A.Lang,
 	OVERLAY_OFFSET = 'overlayOffset',
 	REPEATED = 'repeated',
 	RENDERED = 'rendered',
+	RIGHT = 'right',
 	SAVE = 'save',
 	SCHEDULER_CHANGE = 'schedulerChange',
 	SHADOW = 'shadow',
@@ -721,6 +723,7 @@ var L = A.Lang,
 	SUBMIT = 'submit',
 	VALUE = 'value',
 	VISIBLE_CHANGE = 'visibleChange',
+	WIDTH = 'width',
 
 	EV_SCHEDULER_EVENT_RECORDER_CANCEL = 'cancel',
 	EV_SCHEDULER_EVENT_RECORDER_DELETE = 'delete',
@@ -732,6 +735,7 @@ var L = A.Lang,
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, ARROW),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_SHADOW = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, ARROW, SHADOW),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_RIGHT = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, ARROW, RIGHT),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_BODY = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, BODY),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_CONTENT = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, CONTENT),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_DATE = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, DATE),
@@ -805,9 +809,7 @@ var SchedulerEventRecorder = A.Component.create({
 		overlay: {
 			validator: isObject,
 			value: {
-				align: {
-					points: [ TL, TL ]
-				},
+				constrain: null,
 				visible: false,
 				width: 300,
 				zIndex: 500
@@ -886,6 +888,8 @@ var SchedulerEventRecorder = A.Component.create({
 			var instance = this;
 			var scheduler = event.newVal;
 			var schedulerBB = scheduler.get(BOUNDING_BOX);
+
+			instance[OVERLAY].set(CONSTRAIN, schedulerBB);
 
 			schedulerBB.delegate(CLICK, A.bind(instance._onClickSchedulerEvent, instance), _DOT + CSS_SCHEDULER_EVENT);
 		},
@@ -1093,8 +1097,13 @@ var SchedulerEventRecorder = A.Component.create({
 		},
 
 		showOverlay: function(xy, offset) {
-			var instance = this;
-			var defaultOffset = instance.get(OVERLAY_OFFSET);
+			var instance = this,
+				constrain = instance[OVERLAY].get(CONSTRAIN),
+				defaultOffset = instance.get(OVERLAY_OFFSET),
+				defaultXY = [xy[0], xy[1]],
+				overlayBB = instance[OVERLAY].get(BOUNDING_BOX),
+				overlayBBOffsetHeight = overlayBB.get(OFFSET_HEIGHT),
+				overlayBBOffsetWidth = overlayBB.get(OFFSET_WIDTH);
 
 			if (!instance[OVERLAY].get(RENDERED)) {
 				instance._renderOverlay();
@@ -1111,15 +1120,34 @@ var SchedulerEventRecorder = A.Component.create({
 				xy = titleNode.getXY();
 			}
 
-			// Since #2530972 is not yet done, manually putting an offset to the alignment
 			offset = offset || defaultOffset;
 
 			xy[0] += offset[0];
 			xy[1] += offset[1];
 
-			instance[OVERLAY].set('xy', xy);
-		}
+			var arrows = overlayBB.all(_DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW),
+				arrowY = 0,
+				firstArrow = arrows.item(0),
+				arrowHalfHeight = (firstArrow.get(OFFSET_HEIGHT)/2);
 
+			if ((xy[0] + overlayBBOffsetWidth) >= constrain.get(OFFSET_WIDTH)) {
+				arrows.addClass(CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_RIGHT);
+
+				xy[0] -= overlayBBOffsetWidth + firstArrow.get(OFFSET_WIDTH);
+			}
+
+			instance[OVERLAY].set('xy', xy);
+
+			A.NodeList.importMethod(A.Node.prototype, 'setY');
+			var reachMaxHeight = (defaultXY[1] >= ((constrain.get(OFFSET_HEIGHT) + constrain.getY()) - arrowHalfHeight)) ? true : false;
+
+			if (reachMaxHeight) {
+				arrows.setY((overlayBB.getY() + overlayBB.get(OFFSET_HEIGHT)) - firstArrow.get(OFFSET_HEIGHT));
+			}
+			else {
+				arrows.setY(defaultXY[1] - arrowHalfHeight);
+			}
+		}
 	}
 });
 
