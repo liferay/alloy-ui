@@ -422,7 +422,6 @@ var EditorToolbar = A.Component.create(
 
 					fontSizeOptions.each(
 						function(item, index, collection) {
-							var val = item.get('value').toLowerCase();
 							var txt = item.get('text');
 
 							if (txt === fontSize) {
@@ -432,7 +431,7 @@ var EditorToolbar = A.Component.create(
 					);
 				}
 			},
-			
+
 			_isGroupIncluded: function(name, children, type) {
 				var instance = this;
 
@@ -448,17 +447,13 @@ var EditorToolbar = A.Component.create(
 			_onNodeChange: function(event, attrs) {
 				var instance = this;
 
-				var commands = event.commands;
-
 				var toolbars = instance._toolbars;
 
 				instance._handleAlign(event, attrs);
-
 				instance._handleFontSize(event, attrs);
-
 				instance._handleFontName(event, attrs);
 
-				instance._updateToolbar(commands);
+				instance._updateToolbar(event.commands);
 			},
 
 			_openOverlayToAlignNode: function(overlay, iframe, iframeNode) {
@@ -469,15 +464,25 @@ var EditorToolbar = A.Component.create(
 				var xy = iframe.getXY();
 				var xyNode = iframeNode.getXY();
 
-				xy = [xy[0] + xyNode[0] - docScrollX, xy[1] + xyNode[1] - docScrollY];
+				xy = [
+					xy[0] + xyNode[0] - docScrollX,
+					xy[1] + xyNode[1] - docScrollY
+				];
 
 				var alignNode = instance._alignNode;
 
-				alignNode.setStyle('width', iframeNode.get('offsetWidth'));
-				alignNode.setStyle('height', iframeNode.get('offsetHeight'));
-				alignNode.setXY(xy);
+				alignNode.setStyles(
+					{
+						height: iframeNode.get('offsetHeight'),
+						width: iframeNode.get('offsetWidth')
+					}
+				);
 
 				alignNode.show();
+
+				alignNode.setXY(xy);
+
+				overlay.show();
 
 				overlay.set(
 					'align',
@@ -486,8 +491,6 @@ var EditorToolbar = A.Component.create(
 						points: [ 'tl', 'bc' ]
 					}
 				);
-
-				overlay.show();
 			},
 
 			_updateToolbar: function(commands) {
