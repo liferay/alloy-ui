@@ -422,4 +422,4 @@ A.DataTable.prototype._setColumns = function (val) {
 	return val && process(val);
 };
 
-}, '@VERSION@' ,{skinnable:true, requires:['datatable-base']});
+}, '@VERSION@' ,{requires:['datatable-base'], skinnable:true});

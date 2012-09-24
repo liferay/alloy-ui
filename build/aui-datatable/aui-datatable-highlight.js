@@ -296,4 +296,4 @@ var DataTableHighlight = A.Base.create(
 
 A.namespace('Plugin').DataTableHighlight = DataTableHighlight;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-datatable-selection']});
+}, '@VERSION@' ,{requires:['aui-datatable-selection'], skinnable:true});

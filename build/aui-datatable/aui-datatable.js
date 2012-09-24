@@ -6,6 +6,7 @@ var Lang = A.Lang,
 	isFunction = Lang.isFunction,
 	isObject = Lang.isObject,
 	isString = Lang.isString,
+	isValue = Lang.isValue,
 	LString = Lang.String,
 	DataType = A.DataType,
 
@@ -301,7 +302,6 @@ var BaseCellEditor = A.Component.create({
 
 		inputFormatter: {
 			value: function(val) {
-
 				if (isString(val)) {
 					val = val.replace(REGEX_NL, TPL_BR);
 				}
@@ -1078,8 +1078,8 @@ var BaseOptionsCellEditor = A.Component.create({
 		_uiSetOptions: function(val) {
 			var instance = this;
 
-			instance._uiSetValue(instance.get(VALUE));
 			instance._createOptions(val);
+			instance._uiSetValue(instance.get(VALUE));
 			instance._syncElementsName();
 		},
 
@@ -1090,7 +1090,7 @@ var BaseOptionsCellEditor = A.Component.create({
 			if (options && options.size()) {
 				options.set(instance.get(SELECTED_ATTR_NAME), false);
 
-				if (val) {
+				if (isValue(val)) {
 					if (!isArray(val)) {
 						val = String(val).split(_COMMA);
 					}
@@ -1342,7 +1342,7 @@ var DateCellEditor = A.Component.create({
 				var instance = this,
 					values = [];
 
-				AArray.each(val, function (date, index) {
+				AArray.each(val, function(date, index) {
 					values.push(instance.formatDate(date).toString());
 				});
 
@@ -1355,7 +1355,7 @@ var DateCellEditor = A.Component.create({
 				var instance = this,
 					values = [];
 
-				AArray.each(val, function (date, index) {
+				AArray.each(val, function(date, index) {
 					values.push(DataType.Date.parse(date));
 				});
 
@@ -1379,7 +1379,7 @@ var DateCellEditor = A.Component.create({
 			return instance.calendar.get('selectedDates');
 		},
 
-		formatDate: function (date) {
+		formatDate: function(date) {
 			var instance = this,
 				mask = instance.get('dateFormat'),
 				locale = instance.get('locale');
@@ -1422,14 +1422,13 @@ var DateCellEditor = A.Component.create({
 				formatedValue;
 
 			if (calendar) {
-
 				if (!isArray(val)) {
 					val = [val];
 				}
 
-				formatedValue = instance.formatValue(instance.get(OUTPUT_FORMATTER), val)
+				formatedValue = instance.formatValue(instance.get(OUTPUT_FORMATTER), val);
 
-				calendar._clearSelection(); // Should be a public method
+				calendar._clearSelection();
 				calendar.set('date', formatedValue[0]);
 				calendar.selectDates(formatedValue);
 			}
@@ -1439,7 +1438,7 @@ var DateCellEditor = A.Component.create({
 
 A.DateCellEditor = DateCellEditor;
 
-}, '@VERSION@' ,{skinnable:true, requires:['datatable-base','calendar','aui-datatype','aui-toolbar','aui-form-validator','overlay','sortable']});
+}, '@VERSION@' ,{requires:['datatable-base','calendar','aui-datatype','aui-toolbar','aui-form-validator','overlay','sortable'], skinnable:true});
 AUI.add('aui-datatable-selection', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -1864,7 +1863,7 @@ A.DataTable.prototype._setColumns = function (val) {
 	return val && process(val);
 };
 
-}, '@VERSION@' ,{skinnable:true, requires:['datatable-base']});
+}, '@VERSION@' ,{requires:['datatable-base'], skinnable:true});
 AUI.add('aui-datatable-highlight', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -2163,7 +2162,7 @@ var DataTableHighlight = A.Base.create(
 
 A.namespace('Plugin').DataTableHighlight = DataTableHighlight;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-datatable-selection']});
+}, '@VERSION@' ,{requires:['aui-datatable-selection'], skinnable:true});
 
 
 AUI.add('aui-datatable', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-datatable-edit','aui-datatable-selection','aui-datatable-highlight']});
