@@ -4624,10 +4624,9 @@ var SchedulerEventRecorder = A.Component.create({
 		showOverlay: function(xy, offset) {
 			var instance = this,
 				constrain = instance[OVERLAY].get(CONSTRAIN),
-				defaultOffset = instance.get(OVERLAY_OFFSET),
-				defaultXY = [xy[0], xy[1]],
+				overlayOffset = instance.get(OVERLAY_OFFSET),
+				defaultXY = xy.concat([]),
 				overlayBB = instance[OVERLAY].get(BOUNDING_BOX),
-				overlayBBOffsetHeight = overlayBB.get(OFFSET_HEIGHT),
 				overlayBBOffsetWidth = overlayBB.get(OFFSET_WIDTH);
 
 			if (!instance[OVERLAY].get(RENDERED)) {
@@ -4640,12 +4639,12 @@ var SchedulerEventRecorder = A.Component.create({
 				var eventNode = (instance.get(EVENT) || instance).get(NODE);
 				var titleNode = eventNode.one(_DOT + CSS_SCHEDULER_EVENT_TITLE);
 
-				offset = [defaultOffset[0] + titleNode.get(OFFSET_WIDTH), defaultOffset[1] + titleNode.get(OFFSET_HEIGHT) / 2];
+				offset = [overlayOffset[0] + titleNode.get(OFFSET_WIDTH), overlayOffset[1] + titleNode.get(OFFSET_HEIGHT) / 2];
 
 				xy = titleNode.getXY();
 			}
 
-			offset = offset || defaultOffset;
+			offset = offset || overlayOffset;
 
 			xy[0] += offset[0];
 			xy[1] += offset[1];
@@ -4663,7 +4662,6 @@ var SchedulerEventRecorder = A.Component.create({
 
 			instance[OVERLAY].set('xy', xy);
 
-			A.NodeList.importMethod(A.Node.prototype, 'setY');
 			var reachMaxHeight = (defaultXY[1] >= ((constrain.get(OFFSET_HEIGHT) + constrain.getY()) - arrowHalfHeight)) ? true : false;
 
 			if (reachMaxHeight) {
