@@ -711,7 +711,6 @@ var L = A.Lang,
 	OFFSET_HEIGHT = 'offsetHeight',
 	OFFSET_WIDTH = 'offsetWidth',
 	OVERLAY_OFFSET = 'overlayOffset',
-	REPEATED = 'repeated',
 	RENDERED = 'rendered',
 	RIGHT = 'right',
 	SAVE = 'save',
@@ -1102,7 +1101,8 @@ var SchedulerEventRecorder = A.Component.create({
 				overlayOffset = instance.get(OVERLAY_OFFSET),
 				defaultXY = xy.concat([]),
 				overlayBB = instance[OVERLAY].get(BOUNDING_BOX),
-				overlayBBOffsetWidth = overlayBB.get(OFFSET_WIDTH);
+				overlayHeight = overlayBB.get(OFFSET_HEIGHT),
+				overlayWidth = overlayBB.get(OFFSET_WIDTH);
 
 			if (!instance[OVERLAY].get(RENDERED)) {
 				instance._renderOverlay();
@@ -1124,27 +1124,30 @@ var SchedulerEventRecorder = A.Component.create({
 			xy[0] += offset[0];
 			xy[1] += offset[1];
 
-			var arrows = overlayBB.all(_DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW),
-				arrowY = 0,
+			var arrows = overlayBB.all(_DOT+CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW),
+				arrowY,
 				firstArrow = arrows.item(0),
-				arrowHalfHeight = (firstArrow.get(OFFSET_HEIGHT)/2);
+				arrowHeight = firstArrow.get(OFFSET_HEIGHT),
+				constrainWidth = constrain.get(OFFSET_WIDTH),
+				constrainHeight = constrain.get(OFFSET_HEIGHT),
+				constrainBottom = constrain.getY() + constrainHeight;
 
-			if ((xy[0] + overlayBBOffsetWidth) >= constrain.get(OFFSET_WIDTH)) {
+			if ((xy[0] + overlayWidth) >= constrainWidth) {
 				arrows.addClass(CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_RIGHT);
 
-				xy[0] -= overlayBBOffsetWidth + firstArrow.get(OFFSET_WIDTH);
+				xy[0] -= overlayWidth + firstArrow.get(OFFSET_WIDTH);
 			}
 
 			instance[OVERLAY].set('xy', xy);
 
-			var reachMaxHeight = (defaultXY[1] >= ((constrain.get(OFFSET_HEIGHT) + constrain.getY()) - arrowHalfHeight)) ? true : false;
-
-			if (reachMaxHeight) {
-				arrows.setY((overlayBB.getY() + overlayBB.get(OFFSET_HEIGHT)) - firstArrow.get(OFFSET_HEIGHT));
+			if (defaultXY[1] >= (constrainBottom - arrowHeight/2)) {
+				arrowY = overlayBB.getY() + overlayHeight - arrowHeight;
 			}
 			else {
-				arrows.setY(defaultXY[1] - arrowHalfHeight);
+				arrowY = defaultXY[1] - arrowHeight/2;
 			}
+
+			arrows.setY(arrowY);
 		}
 	}
 });
