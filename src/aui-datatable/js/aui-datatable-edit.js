@@ -5,6 +5,7 @@ var Lang = A.Lang,
 	isFunction = Lang.isFunction,
 	isObject = Lang.isObject,
 	isString = Lang.isString,
+	isValue = Lang.isValue,
 	LString = Lang.String,
 	DataType = A.DataType,
 
@@ -1076,8 +1077,8 @@ var BaseOptionsCellEditor = A.Component.create({
 		_uiSetOptions: function(val) {
 			var instance = this;
 
-			instance._uiSetValue(instance.get(VALUE));
 			instance._createOptions(val);
+			instance._uiSetValue(instance.get(VALUE));
 			instance._syncElementsName();
 		},
 
@@ -1088,7 +1089,7 @@ var BaseOptionsCellEditor = A.Component.create({
 			if (options && options.size()) {
 				options.set(instance.get(SELECTED_ATTR_NAME), false);
 
-				if (val) {
+				if (isValue(val)) {
 					if (!isArray(val)) {
 						val = String(val).split(_COMMA);
 					}
