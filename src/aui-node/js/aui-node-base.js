@@ -1371,6 +1371,12 @@ NodeList.importMethod(
 
 		'empty',
 
+		'getX',
+
+		'getXY',
+
+		'getY',
+
 		'hover',
 
 		'html',
@@ -1394,6 +1400,12 @@ NodeList.importMethod(
 		'selectText',
 
 		'selectable',
+
+		'setX',
+
+		'setXY',
+
+		'setY',
 
 		'text',
 
