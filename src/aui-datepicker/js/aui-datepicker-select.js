@@ -947,6 +947,8 @@ var DatePickerSelect = A.Component.create(
 				instance.get(MONTH_NODE).val(
 					String(currentDate.getMonth())
 				);
+
+				instance._uiSetCurrentMonth();
 			},
 
 			/**
@@ -975,8 +977,8 @@ var DatePickerSelect = A.Component.create(
 
 				date = date || (selectedDates.length ? selectedDates[0] : new Date());
 
-				instance._selectCurrentDay(date);
 				instance._selectCurrentMonth(date);
+				instance._selectCurrentDay(date);
 				instance._selectCurrentYear(date);
 			},
 
