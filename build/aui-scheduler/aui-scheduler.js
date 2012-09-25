@@ -4221,6 +4221,7 @@ var L = A.Lang,
 	ARROW = 'arrow',
 	BODY = 'body',
 	BODY_CONTENT = 'bodyContent',
+	BOTTOM = 'bottom',
 	BOUNDING_BOX = 'boundingBox',
 	CANCEL = 'cancel',
 	CLICK = 'click',
@@ -4258,8 +4259,9 @@ var L = A.Lang,
 
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, ARROW),
-	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_SHADOW = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, ARROW, SHADOW),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_BOTTOM = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, ARROW, BOTTOM),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_RIGHT = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, ARROW, RIGHT),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_SHADOW = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, ARROW, SHADOW),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_BODY = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, BODY),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_CONTENT = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, CONTENT),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_DATE = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, DATE),
@@ -4624,10 +4626,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var instance = this,
 				constrain = instance[OVERLAY].get(CONSTRAIN),
 				overlayOffset = instance.get(OVERLAY_OFFSET),
-				defaultXY = xy.concat([]),
-				overlayBB = instance[OVERLAY].get(BOUNDING_BOX),
-				overlayHeight = overlayBB.get(OFFSET_HEIGHT),
-				overlayWidth = overlayBB.get(OFFSET_WIDTH);
+				defaultXY = xy.concat([]);
 
 			if (!instance[OVERLAY].get(RENDERED)) {
 				instance._renderOverlay();
@@ -4649,30 +4648,25 @@ var SchedulerEventRecorder = A.Component.create({
 			xy[0] += offset[0];
 			xy[1] += offset[1];
 
-			var arrows = overlayBB.all(_DOT+CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW),
-				arrowY,
-				firstArrow = arrows.item(0),
-				arrowHeight = firstArrow.get(OFFSET_HEIGHT),
-				constrainWidth = constrain.get(OFFSET_WIDTH),
-				constrainHeight = constrain.get(OFFSET_HEIGHT),
-				constrainBottom = constrain.getY() + constrainHeight;
+			var overlayBB = instance[OVERLAY].get(BOUNDING_BOX),
+				overlayWidth = overlayBB.get(OFFSET_WIDTH),
+				overlayHeader = overlayBB.one(_DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_HEADER),
+				arrows = overlayBB.all(_DOT+CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW);
 
-			if ((xy[0] + overlayWidth) >= constrainWidth) {
+			if ((xy[0] + overlayWidth) >= constrain.get(OFFSET_WIDTH)) {
 				arrows.addClass(CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_RIGHT);
 
-				xy[0] -= overlayWidth + firstArrow.get(OFFSET_WIDTH);
+				xy[0] -= overlayWidth + arrows.item(0).get(OFFSET_WIDTH);
 			}
 
 			instance[OVERLAY].set('xy', xy);
 
-			if (defaultXY[1] >= (constrainBottom - arrowHeight/2)) {
-				arrowY = overlayBB.getY() + overlayHeight - arrowHeight;
+			if (defaultXY[1] >= (overlayHeader.get(OFFSET_HEIGHT) + overlayHeader.getY())) {
+				arrows.addClass(CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_BOTTOM);
 			}
 			else {
-				arrowY = defaultXY[1] - arrowHeight/2;
+				arrows.removeClass(CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_BOTTOM);
 			}
-
-			arrows.setY(arrowY);
 		}
 	}
 });
