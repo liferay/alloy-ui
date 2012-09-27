@@ -48,7 +48,7 @@
 }
 
 .aui-tree-label {
-	cursor: default;
+	cursor: pointer;
 	line-height: 19px;
 	margin-left: 2px;
 }
@@ -70,6 +70,7 @@
 .aui-tree-file .aui-tree-icon {
 	height: 18px;
 	width: 18px;
+	cursor: move;
 }
 
 .aui-tree-node-leaf .aui-tree-icon {
