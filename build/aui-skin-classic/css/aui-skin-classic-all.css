@@ -1824,6 +1824,11 @@ input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focu
 	border-color: #555;
 }
 
+.aui-state-active:hover {
+	background: #f2faff url(../images/common/state_selected_hover.png) repeat-x 0 0;
+	border-color: #627782;
+}
+
 /* ---------- Extras ---------- */
 
 /* ---------- Drop shadows ---------- */
