@@ -7,6 +7,3 @@
 [submodule "lib/builder"]
 	path = lib/builder
 	url = git@github.com:eduardolundgren/builder.git
-[submodule "lib/yuidocjs"]
-	path = lib/yuidocjs
-	url = https://github.com/yui/yuidoc.git
