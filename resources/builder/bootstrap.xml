@@ -31,8 +31,9 @@
 
 	<import file="${builddir}/3.x/bootstrap.xml" description="Default Build Properties and Targets"/>
 	<import file="macrolib.xml" description="Alloy Macrodef Utilities"/>
+	<import file="sass.xml" description="Alloy Sass Compiler"/>
 
-	<target name="all" depends="YuiSharedTargets.all, postclean" />
+	<target name="all" depends="build-ruby-gems, sass-parse, YuiSharedTargets.all, postclean, sass-rename-assets" />
 
 	<!-- if we try to pass clean at the very end of the depends,
 		it will be ignored because local calls it first -->

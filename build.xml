@@ -255,6 +255,9 @@
 					</then>
 				</if>
 
+				<!-- Parse sass files -->
+
+				<sass-parse-files folder.sass="@{dir}/css" folder.sass.backup="false" />
 			</sequential>
 		</for>
 	</target>

@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<project name="AlloySass" default="local" xmlns:antelope="antlib:ise.antelope.tasks">
+
+	<basename property="ant.file.basename" file="${ant.file}" />
+
+	<target name="build-ruby-gems">
+		<if>
+			<not>
+				<available file="${project.dir}/lib/ruby-gems.jar" />
+			</not>
+			<then>
+				<tstamp>
+					<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
+				</tstamp>
+
+				<get
+					dest="${project.dir}/lib/jruby.jar"
+					src="http://jruby.org.s3.amazonaws.com/downloads/1.6.7.2/jruby-complete-1.6.7.2.jar"
+				/>
+
+				<mkdir dir="${tstamp.value}/compass" />
+
+				<get
+					dest="${tstamp.value}/compass/compass-0.12.2.gem"
+					src="http://rubygems.org/downloads/compass-0.12.2.gem"
+				/>
+
+				<java
+					fork="true"
+					jar="${project.dir}/lib/jruby.jar"
+				>
+					<arg line="-S gem install -i ./${tstamp.value}/output ${tstamp.value}/compass/compass-0.12.2.gem --no-rdoc --no-ri" />
+				</java>
+
+				<jar
+					basedir="${tstamp.value}/output"
+					jarfile="${project.dir}/lib/ruby-gems.jar"
+				/>
+
+				<delete dir="${tstamp.value}" />
+			</then>
+		</if>
+	</target>
+
+	<target name="sass-parse">
+		<sass-parse-files />
+	</target>
+
+	<macrodef name="sass-parse-files">
+		<attribute name="folder.sass" default="${component.assets.base}" />
+		<attribute name="folder.sass.backup" default="${component.basedir}/_assets" />
+
+		<sequential>
+			<if>
+				<and>
+					<available file="@{folder.sass}" type="dir" />
+					<equals arg1="${ant.file.basename}" arg2="build.xml" />
+				</and>
+
+				<then>
+					<echo message="Parsing SASS" />
+
+					<if>
+						<not>
+							<equals arg1="@{folder.sass.backup}" arg2="false" />
+						</not>
+						<then>
+							<copy todir="@{folder.sass.backup}" overwrite="true">
+								<fileset dir="@{folder.sass}" />
+							</copy>
+						</then>
+					</if>
+
+					<property name="file.path.pattern" value="@{folder.sass}/**.css" />
+
+					<path id="JRuby">
+						<fileset file="${project.dir}/lib/jruby.jar"/>
+					</path>
+
+					<script language="ruby" classpathref="JRuby">
+					<![CDATA[
+						require 'rubygems'
+						require 'compass'
+
+						filePath = $project.getProperty('file.path.pattern')
+						files = Dir.glob(filePath)
+
+						files.each do | file |
+							fileContent = File.read(file)
+
+							engine = Sass::Engine.new(
+								fileContent,
+								{
+									:syntax => :scss,
+									:style => :expanded,
+									:ugly => true
+								}
+							)
+
+							File.open(file, 'w') { |f| f.write(engine.render) }
+						end
+					]]>
+					</script>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<target name="sass-rename-assets">
+		<if>
+			<and>
+				<available file="${component.assets.base}" type="dir"/>
+				<equals arg1="${ant.file.basename}" arg2="build.xml" />
+			</and>
+
+			<then>
+				<delete dir="${component.assets.base}" />
+				<copy todir="${component.assets.base}" overwrite="true">
+					<fileset dir="${component.basedir}/_assets" />
+				</copy>
+				<delete dir="${component.basedir}/_assets" />
+			</then>
+		</if>
+	</target>
+</project>
