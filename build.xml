@@ -452,11 +452,11 @@
 	-->
 
 	<target name="build-doc">
-		<var name="yuidocjs.dir" value="${project.dir}/lib/yuidocjs"/>
+		<var name="yuidoc.dir" value="${project.dir}/lib/yuidoc"/>
 
 		<if>
 			<not>
-				<available file="${yuidocjs.dir}" />
+				<available file="${yuidoc.dir}" />
 			</not>
 			<then>
 				<exec executable="git" dir="${project.dir}">
@@ -469,12 +469,12 @@
 
 		<if>
 			<not>
-				<available file="${yuidocjs.dir}/node_modules" />
+				<available file="${yuidoc.dir}/node_modules" />
 			</not>
 			<then>
 				<trycatch>
 				  <try>
-				    <exec executable="npm" dir="${yuidocjs.dir}">
+				    <exec executable="npm" dir="${yuidoc.dir}">
 				    	<arg value="install" />
 				    	<arg value="." />
 				    </exec>
@@ -482,13 +482,13 @@
 
 				  <catch>
 				  	<echo>Please install NPM and Node.js</echo>
-				    <fail>YUIDocJS Requires NPM and Node.js to be installed</fail>
+				    <fail>YUIDoc Requires NPM and Node.js to be installed</fail>
 				  </catch>
 				</trycatch>
 			</then>
 		</if>
 
-		<exec executable="${yuidocjs.dir}/lib/cli.js" dir="${project.dir}">
+		<exec executable="${yuidoc.dir}/lib/cli.js" dir="${project.dir}">
 			<arg value="-c" />
 			<arg value="${project.dir}/resources/docs/config.json" />
 		</exec>
