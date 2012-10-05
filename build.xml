@@ -57,7 +57,7 @@
 	</target>
 
 	<target name="build-gallery-modules">
-		<create-module-list prependdefaults="false"/>
+		<create-module-list prependdefaults=""/>
 	</target>
 
 	<target name="build-gallery-skins">
@@ -162,12 +162,14 @@
 
 	<target name="build-skins">
 		<antcall target="build-ruby-gems"/>
-		<sass-parse-files folder.sass="${project.dir}/src/${build.aui.prefix}aui-skin-base/css" folder.sass.backup="${project.dir}/src/${build.aui.prefix}aui-skin-base/_css" />
+
+		<sass-parse folder.sass="${project.dir}/src/${build.aui.prefix}aui-skin-base/css" />
 
 		<antcall target="build-skins-core"/>
+
 		<create-module-list/>
 
-		<sass-rename-to-original folder.sass="${project.dir}/src/${build.aui.prefix}aui-skin-base/css" folder.sass.backup="${project.dir}/src/${build.aui.prefix}aui-skin-base/_css" />
+		<sass-postclean folder.sass="${project.dir}/src/${build.aui.prefix}aui-skin-base/css" />
 	</target>
 
 	<target name="clean-skin-src">
@@ -260,7 +262,7 @@
 				</if>
 
 				<!-- Parse sass files -->
-				<sass-parse-files folder.sass="@{dir}/css" folder.sass.backup="" />
+				<sass-parse folder.sass="@{dir}/css" folder.sass.backup="" />
 			</sequential>
 		</for>
 	</target>

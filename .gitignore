@@ -1120,6 +1120,8 @@ build_rollup_tmp/
 /lib/builder/componentbuild/templates/yui3/rollup/build_tmp
 /lib/builder/componentbuild/templates/yui3/rollup/build_rollup_tmp
 /lib/builder/componentbuild/templates/yui3/rollup/__MACOSX
+/lib/jruby.jar
+/lib/ruby-gems.jar
 # /resources/
 /resources/.git
 /resources/build_tmp

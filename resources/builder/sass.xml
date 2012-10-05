@@ -43,18 +43,18 @@
 	</target>
 
 	<target name="sass-parse">
-		<sass-parse-files />
+		<sass-parse />
 	</target>
 
-	<macrodef name="sass-parse-files">
+	<macrodef name="sass-parse">
 		<attribute name="folder.sass" default="${component.assets.base}" />
-		<attribute name="folder.sass.backup" default="${component.basedir}/_assets" />
+		<attribute name="folder.sass.backup" default="${component.basedir}/.sass-tmp" />
 
 		<sequential>
 			<if>
 				<and>
-					<available file="@{folder.sass}" type="dir" />
 					<equals arg1="${ant.file.basename}" arg2="build.xml" />
+					<available file="@{folder.sass}" type="dir" />
 				</and>
 
 				<then>
@@ -71,19 +71,20 @@
 						</then>
 					</if>
 
-					<property name="file.path.pattern" value="@{folder.sass}/**.css" />
+					<property name="file.path.pattern" value="@{folder.sass}/**/**.css" />
 
-					<path id="JRuby">
+					<path id="jruby">
 						<fileset file="${project.dir}/lib/jruby.jar"/>
+						<fileset file="${project.dir}/lib/ruby-gems.jar"/>
 					</path>
 
-					<script language="ruby" classpathref="JRuby">
+					<script language="ruby" classpathref="jruby">
 					<![CDATA[
 						require 'rubygems'
 						require 'compass'
 
-						filePath = $project.getProperty('file.path.pattern')
-						files = Dir.glob(filePath)
+						filePathPattern = $project.getProperty('file.path.pattern')
+						files = Dir.glob(filePathPattern)
 
 						files.each do | file |
 							fileContent = File.read(file)
@@ -106,13 +107,13 @@
 		</sequential>
 	</macrodef>
 
-	<target name="sass-rename-assets">
-		<sass-rename-to-original />
+	<target name="sass-postclean">
+		<sass-postclean />
 	</target>
 
-	<macrodef name="sass-rename-to-original">
+	<macrodef name="sass-postclean">
 		<attribute name="folder.sass" default="${component.assets.base}" />
-		<attribute name="folder.sass.backup" default="${component.basedir}/_assets" />
+		<attribute name="folder.sass.backup" default="${component.basedir}/.sass-tmp" />
 
 		<sequential>
 			<if>
