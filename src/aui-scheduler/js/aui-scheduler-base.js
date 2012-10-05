@@ -137,9 +137,62 @@ A.mix(SchedulerEventSupport.prototype, {
 
 	eachEvent: function(fn) {
 		var instance = this;
-		var events = instance.get(EVENTS);
+		var events = instance.getEvents(function() {
+			return true;
+		});
 
 		A.Array.each(events, fn, instance);
+	},
+
+	flushEvents: function() {
+		var instance = this;
+
+		A.Array.each(instance.get(EVENTS), function(evt) {
+			delete evt._filtered;
+		});
+	},
+
+	getEventsByDay: function(date, includeOverlap) {
+		var instance = this;
+
+		date = DateMath.safeClearTime(date);
+
+		return instance.getEvents(function(evt) {
+			return DateMath.compare(evt.getClearStartDate(), date) ||
+					(includeOverlap && DateMath.compare(evt.getClearEndDate(), date));
+		});
+	},
+
+	getEvents: function(filterFn) {
+		var instance = this;
+		var events = instance.get(EVENTS);
+		var results = [];
+
+		A.Array.each(events, function(evt) {
+			if (filterFn.call(instance, evt)) {
+				results.push(evt);
+			}
+		});
+
+		instance.sortEventsByDateAsc(results);
+
+		return results;
+	},
+
+	getIntersectEvents: function(date) {
+		var instance = this;
+
+		date = DateMath.safeClearTime(date);
+
+		return instance.getEvents(function(evt) {
+			var startDate = evt.getClearStartDate();
+			var endDate = evt.getClearEndDate();
+
+			return (evt.get(VISIBLE) &&
+					(DateMath.compare(date, startDate) ||
+					DateMath.compare(date, endDate) ||
+					DateMath.between(date, startDate, endDate)));
+		});
 	},
 
 	removeEvent: function(evt) {
@@ -160,6 +213,27 @@ A.mix(SchedulerEventSupport.prototype, {
 			instance._normalizeEvents(events),
 			A.bind(instance.removeEvent, instance)
 		);
+	},
+
+	sortEventsByDateAsc: function(events) {
+		var instance = this;
+
+		// sort events by start date and duration
+		events.sort(function(evt1, evt2) {
+			var endDate1 = evt1.get(END_DATE);
+			var endDate2 = evt2.get(END_DATE);
+			var startDate1 = evt1.get(START_DATE);
+			var startDate2 = evt2.get(START_DATE);
+
+			if (DateMath.after(startDate1, startDate2) ||
+				(DateMath.compare(startDate1, startDate2) && DateMath.before(endDate1, endDate2))) {
+
+				return 1;
+			}
+			else {
+				return -1;
+			}
+		});
 	},
 
 	_normalizeEvents: function(events) {
@@ -381,62 +455,6 @@ var SchedulerBase = A.Component.create({
 			instance.syncStdContent();
 		},
 
-		flushEvents: function() {
-			var instance = this;
-
-			A.Array.each(instance.get(EVENTS), function(evt) {
-				delete evt._filtered;
-			});
-		},
-
-		getEventsByDay: function(date, includeOverlap) {
-			var instance = this;
-
-			date = DateMath.safeClearTime(date);
-
-			return instance._getEvents(date, function(evt) {
-				return DateMath.compare(evt.getClearStartDate(), date) ||
-						(includeOverlap && DateMath.compare(evt.getClearEndDate(), date));
-			});
-		},
-
-		getIntersectEvents: function(date) {
-			var instance = this;
-
-			date = DateMath.safeClearTime(date);
-
-			return instance._getEvents(date, function(evt) {
-				var startDate = evt.getClearStartDate();
-				var endDate = evt.getClearEndDate();
-
-				return (evt.get(VISIBLE) &&
-						(DateMath.compare(date, startDate) ||
-						DateMath.compare(date, endDate) ||
-						DateMath.between(date, startDate, endDate)));
-			});
-		},
-
-		sortEventsByDateAsc: function(events) {
-			var instance = this;
-
-			// sort events by start date and duration
-			events.sort(function(evt1, evt2) {
-				var endDate1 = evt1.get(END_DATE);
-				var endDate2 = evt2.get(END_DATE);
-				var startDate1 = evt1.get(START_DATE);
-				var startDate2 = evt2.get(START_DATE);
-
-				if (DateMath.after(startDate1, startDate2) ||
-					(DateMath.compare(startDate1, startDate2) && DateMath.before(endDate1, endDate2))) {
-
-					return 1;
-				}
-				else {
-					return -1;
-				}
-			});
-		},
-
 		getViewByName: function(name) {
 			var instance = this;
 
@@ -586,22 +604,6 @@ var SchedulerBase = A.Component.create({
 			}
 
 			return view.get(TRIGGER_NODE);
-		},
-
-		_getEvents: function(date, filterFn) {
-			var instance = this;
-			var events = instance.get(EVENTS);
-			var results = [];
-
-			A.Array.each(events, function(evt) {
-				if (filterFn.apply(instance, [evt])) {
-					results.push(evt);
-				}
-			});
-
-			instance.sortEventsByDateAsc(results);
-
-			return results;
 		},
 
 		_getViewDate: function() {
