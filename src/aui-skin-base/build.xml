@@ -4,4 +4,8 @@
 	<property file="build.properties" />
 
 	<import file="../../resources/builder/bootstrap.xml" />
+
+	<target name="all">
+		<echo message="Please, run ant build-skins from root folder" />
+	</target>
 </project>

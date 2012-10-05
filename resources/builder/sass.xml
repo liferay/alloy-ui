@@ -62,7 +62,7 @@
 
 					<if>
 						<not>
-							<equals arg1="@{folder.sass.backup}" arg2="false" />
+							<equals arg1="@{folder.sass.backup}" arg2="" />
 						</not>
 						<then>
 							<copy todir="@{folder.sass.backup}" overwrite="true">
@@ -107,19 +107,28 @@
 	</macrodef>
 
 	<target name="sass-rename-assets">
-		<if>
-			<and>
-				<available file="${component.assets.base}" type="dir"/>
-				<equals arg1="${ant.file.basename}" arg2="build.xml" />
-			</and>
-
-			<then>
-				<delete dir="${component.assets.base}" />
-				<copy todir="${component.assets.base}" overwrite="true">
-					<fileset dir="${component.basedir}/_assets" />
-				</copy>
-				<delete dir="${component.basedir}/_assets" />
-			</then>
-		</if>
+		<sass-rename-to-original />
 	</target>
+
+	<macrodef name="sass-rename-to-original">
+		<attribute name="folder.sass" default="${component.assets.base}" />
+		<attribute name="folder.sass.backup" default="${component.basedir}/_assets" />
+
+		<sequential>
+			<if>
+				<and>
+					<available file="@{folder.sass}" type="dir" />
+					<equals arg1="${ant.file.basename}" arg2="build.xml" />
+				</and>
+
+				<then>
+					<delete dir="@{folder.sass}" />
+					<copy todir="@{folder.sass}" overwrite="true">
+						<fileset dir="@{folder.sass.backup}" />
+					</copy>
+					<delete dir="@{folder.sass.backup}" />
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
 </project>
