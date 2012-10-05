@@ -240,7 +240,10 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		var draggingEvent = instance[DRAGGING_EVENT];
 
 		if (draggingEvent) {
-			draggingEvent.move(instance._getPositionDate(instance.lassoLastPosition));
+			var positionDate = instance._getPositionDate(instance.lassoLastPosition);
+
+			DateMath.copyHours(positionDate, draggingEvent.get(START_DATE));
+			draggingEvent.move(positionDate);
 			draggingEvent.set(VISIBLE, true);
 
 			instance[ROWS_CONTAINER_NODE].removeClass(CSS_SVT_DRAGGING).unselectable();
