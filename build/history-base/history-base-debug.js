@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('history-base', function(Y) {
+YUI.add('history-base', function (Y, NAME) {
 
 /**
  * Provides browser history management functionality using a simple
@@ -644,4 +644,4 @@ Y.mix(HistoryBase.prototype, {
 Y.HistoryBase = HistoryBase;
 
 
-}, '3.7.1pr1' ,{requires:['event-custom-complex']});
+}, '3.7.2', {"requires": ["event-custom-complex"]});

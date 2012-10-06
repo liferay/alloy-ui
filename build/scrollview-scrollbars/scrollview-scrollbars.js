@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
 YUI.add('scrollview-scrollbars', function (Y, NAME) {
 
@@ -172,10 +172,17 @@ Y.namespace("Plugin").ScrollViewScrollbars = Y.extend(ScrollbarsPlugin, Y.Plugin
      */    
     _hostDimensionsChange: function() {
         var host = this._host,
-            axis = host.axis;
+            axis = host._cAxis;
 
-        this._renderBar(this.get(VERTICAL_NODE), axis.y, 'vert');
-        this._renderBar(this.get(HORIZONTAL_NODE), axis.x, 'horiz');
+        this._dims = host._getScrollDims();
+
+        if (axis && axis.y) {
+            this._renderBar(this.get(VERTICAL_NODE), true, 'vert');
+        }
+
+        if (axis && axis.x) {
+            this._renderBar(this.get(HORIZONTAL_NODE), true, 'horiz');
+        }
 
         this._update();
 
@@ -299,8 +306,8 @@ Y.namespace("Plugin").ScrollViewScrollbars = Y.extend(ScrollbarsPlugin, Y.Plugin
             dim = WIDTH;
             dimOffset = LEFT;
             dimCache = HORIZ_CACHE;
-            widgetSize = host.get('width');
-            contentSize = host._scrollWidth;
+            widgetSize = this._dims.offsetWidth;
+            contentSize = this._dims.scrollWidth;
             translate = TRANSLATE_X;
             scale = SCALE_X;
             current = (current !== undefined) ? current : host.get(SCROLL_X);
@@ -308,8 +315,8 @@ Y.namespace("Plugin").ScrollViewScrollbars = Y.extend(ScrollbarsPlugin, Y.Plugin
             dim = HEIGHT;
             dimOffset = TOP;
             dimCache = VERT_CACHE;
-            widgetSize = host.get('height');
-            contentSize = host._scrollHeight;
+            widgetSize = this._dims.offsetHeight;
+            contentSize = this._dims.scrollHeight;
             translate = TRANSLATE_Y;
             scale = SCALE_Y;
             current = (current !== undefined) ? current : host.get(SCROLL_Y);
@@ -317,7 +324,6 @@ Y.namespace("Plugin").ScrollViewScrollbars = Y.extend(ScrollbarsPlugin, Y.Plugin
 
         scrollbarSize = Math.floor(widgetSize * (widgetSize/contentSize));
         scrollbarPos = Math.floor((current/(contentSize - widgetSize)) * (widgetSize - scrollbarSize));
-
         if (scrollbarSize > widgetSize) {
             scrollbarSize = 1;
         }
@@ -432,7 +438,7 @@ Y.namespace("Plugin").ScrollViewScrollbars = Y.extend(ScrollbarsPlugin, Y.Plugin
         var vNode = this.get(VERTICAL_NODE),
             hNode = this.get(HORIZONTAL_NODE),
             host = this._host,
-            axis = host.axis;
+            axis = host._cAxis;
 
         duration = (duration || 0)/1000;
 
@@ -440,11 +446,11 @@ Y.namespace("Plugin").ScrollViewScrollbars = Y.extend(ScrollbarsPlugin, Y.Plugin
             this.show();
         }
 
-        if (axis.y && vNode) {
+        if (axis && axis.y && vNode) {
             this._updateBar(vNode, y, duration, false);
         }
 
-        if (axis.x && hNode) {
+        if (axis && axis.x && hNode) {
             this._updateBar(hNode, x, duration, true);
         }
     },
@@ -559,4 +565,4 @@ Y.namespace("Plugin").ScrollViewScrollbars = Y.extend(ScrollbarsPlugin, Y.Plugin
 });
 
 
-}, '3.7.1pr1', {"requires": ["classnamemanager", "transition", "plugin"], "skinnable": true});
+}, '3.7.2', {"requires": ["classnamemanager", "transition", "plugin"], "skinnable": true});

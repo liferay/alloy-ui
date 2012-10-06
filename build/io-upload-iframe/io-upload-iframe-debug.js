@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('io-upload-iframe', function(Y) {
+YUI.add('io-upload-iframe', function (Y, NAME) {
 
 /**
 Extends the IO  to enable file uploads, with HTML forms 
@@ -295,4 +295,4 @@ Y.mix(Y.IO.prototype, {
 });
 
 
-}, '3.7.1pr1' ,{requires:['io-base','node-base']});
+}, '3.7.2', {"requires": ["io-base", "node-base"]});

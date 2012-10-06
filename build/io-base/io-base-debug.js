@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('io-base', function(Y) {
+YUI.add('io-base', function (Y, NAME) {
 
 /**
 Base IO functionality. Provides basic XHR transport support.
@@ -125,6 +125,11 @@ IO.prototype = {
             // Non-IE  can use XHR level 2 and not rely on an
             // external transport.
             alt = Y.UA.ie ? 'xdr' : null;
+
+            // Prevent "pre-flight" OPTIONS request by removing the
+            // `X-Requested-With` HTTP header from CORS requests. This header
+            // can be added back on a per-request basis, if desired.
+            io.setHeader('X-Requested-With');
         }
 
         use = alt || form;
@@ -1000,4 +1005,4 @@ Y.mix(Y.IO.prototype, {
 
 
 
-}, '3.7.1pr1' ,{requires:['event-custom-base', 'querystring-stringify-simple']});
+}, '3.7.2', {"requires": ["event-custom-base", "querystring-stringify-simple"]});

@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('autocomplete-list', function(Y) {
+YUI.add('autocomplete-list', function (Y, NAME) {
 
 /**
 Traditional autocomplete dropdown list widget, just like Mom used to make.
@@ -898,4 +898,4 @@ for API docs.
 Y.AutoComplete = List;
 
 
-}, '3.7.1pr1' ,{lang:['en'], after:['autocomplete-sources'], requires:['autocomplete-base', 'event-resize', 'node-screen', 'selector-css3', 'shim-plugin', 'widget', 'widget-position', 'widget-position-align'], skinnable:true});
+}, '3.7.2', {"lang": ["en"], "requires": ["autocomplete-base", "event-resize", "node-screen", "selector-css3", "shim-plugin", "widget", "widget-position", "widget-position-align"], "skinnable": true});

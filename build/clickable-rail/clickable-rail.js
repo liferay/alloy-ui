@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('clickable-rail', function(Y) {
+YUI.add('clickable-rail', function (Y, NAME) {
 
 /**
  * Adds support for mouse interaction with the Slider rail triggering thumb
@@ -216,4 +216,4 @@ Y.ClickableRail = Y.mix(ClickableRail, {
 }, true);
 
 
-}, '3.7.1pr1' ,{requires:['slider-base']});
+}, '3.7.2', {"requires": ["slider-base"]});

@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('widget-modality', function(Y) {
+YUI.add('widget-modality', function (Y, NAME) {
 
 /**
  * Provides modality support for Widgets, though an extension
@@ -570,4 +570,4 @@ var WIDGET       = 'widget',
 
 
 
-}, '3.7.1pr1' ,{requires:['base-build', 'event-outside', 'widget'], skinnable:true});
+}, '3.7.2', {"requires": ["base-build", "event-outside", "widget"], "skinnable": true});

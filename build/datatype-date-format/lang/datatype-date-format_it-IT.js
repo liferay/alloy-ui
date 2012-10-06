@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add("lang/datatype-date-format_it-IT",function(a){a.Intl.add("datatype-date-format","it-IT",{"a":["dom","lun","mar","mer","gio","ven","sab"],"A":["domenica","lunedì","martedì","mercoledì","giovedì","venerdì","sabato"],"b":["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic"],"B":["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"],"c":"%a %d %b %Y %H.%M.%S %Z","p":["M.","P."],"P":["m.","p."],"x":"%d/%m/%y","X":"%H.%M.%S"});},"3.7.1pr1");
+YUI.add("lang/datatype-date-format_it-IT",function(e){e.Intl.add("datatype-date-format","it-IT",{a:["dom","lun","mar","mer","gio","ven","sab"],A:["domenica","luned\u00ec","marted\u00ec","mercoled\u00ec","gioved\u00ec","venerd\u00ec","sabato"],b:["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic"],B:["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"],c:"%a %d %b %Y %H.%M.%S %Z",p:["M.","P."],P:["m.","p."],x:"%d/%m/%y",X:"%H.%M.%S"})},"3.7.2");

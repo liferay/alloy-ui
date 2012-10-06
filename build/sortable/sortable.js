@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
 YUI.add('sortable', function (Y, NAME) {
 
@@ -76,7 +76,7 @@ YUI.add('sortable', function (Y, NAME) {
                 bubbleTarget: del,
                 groups: del.dd.get('groups')
             });
-            this.drop.on('drop:over', Y.bind(this._onDropOver, this));
+            this.drop.on('drop:enter', Y.bind(this._onDropEnter, this));
             
             del.on({
                 'drag:start': Y.bind(this._onDragStart, this),
@@ -86,7 +86,7 @@ YUI.add('sortable', function (Y, NAME) {
             });
 
             this.delegate = del;
-            Sortable.reg(this);
+            Sortable.reg(this, id);
         },
         _up: null,
         _y: null,
@@ -101,13 +101,17 @@ YUI.add('sortable', function (Y, NAME) {
         },
         /**
         * @private
-        * @method _onDropOver
+        * @method _onDropEnter
         * @param Event e The Event Object
-        * @description Handles the DropOver event to append a drop node to an empty target
+        * @description Handles the DropEnter event to append a new node to a target.
         */
-        _onDropOver: function(e) {
-            if (!e.drop.get(NODE).test(this.get(NODES))) {
-                e.drop.get(NODE).append(e.drag.get(NODE));
+        _onDropEnter: function(e) {
+            var dropNode = e.drop.get(NODE),
+                dragNode = e.drag.get(NODE);
+
+            if (!dropNode.test(this.get(NODES)) &&
+                !dragNode.get(PARENT_NODE).compareTo(dropNode)) {
+                dropNode.append(dragNode);
             }
         },
         /**
@@ -241,7 +245,7 @@ YUI.add('sortable', function (Y, NAME) {
         destructor: function() {
             this.drop.destroy();
             this.delegate.destroy();
-            Sortable.unreg(this);
+            Sortable.unreg(this, this.get(ID));
         },
         /**
         * @method join
@@ -403,10 +407,10 @@ YUI.add('sortable', function (Y, NAME) {
         * @static
         * @property _sortables
         * @private
-        * @type Array
+        * @type Object
         * @description Hash map of all Sortables on the page.
         */
-        _sortables: [],
+        _sortables: {},
         /**
         * @static
         * @method _test
@@ -430,9 +434,14 @@ YUI.add('sortable', function (Y, NAME) {
         * @description Get a Sortable instance back from a node reference or a selector string.
         */
         getSortable: function(node) {
-            var s = null;
+            var s = null,
+                id = null;
             node = Y.one(node);
-            Y.each(Y.Sortable._sortables, function(v) {
+            id = node.get(ID);
+            if(id && Y.Sortable._sortables[id]) {
+                return Y.Sortable._sortables[id];
+            }
+            Y.Object.each(Y.Sortable._sortables, function(v) {
                 if (Y.Sortable._test(node, v.get(CONT))) {
                     s = v;
                 }
@@ -443,21 +452,32 @@ YUI.add('sortable', function (Y, NAME) {
         * @static
         * @method reg
         * @param Sortable s A Sortable instance.
+        * @param String id (optional) The id of the sortable instance.
         * @description Register a Sortable instance with the singleton to allow lookups later.
         */
-        reg: function(s) {
-            Y.Sortable._sortables.push(s);
+        reg: function(s, id) {
+            if (!id) {
+                id = s.get(ID);
+            }
+            Y.Sortable._sortables[id] = s;
         },
         /**
         * @static
         * @method unreg
         * @param Sortable s A Sortable instance.
+        * @param String id (optional) The id of the sortable instance.
         * @description Unregister a Sortable instance with the singleton.
         */
-        unreg: function(s) {
-            Y.each(Y.Sortable._sortables, function(v, k) {
+        unreg: function(s, id) {
+            if (!id) {
+                id = s.get(ID);
+            }
+            if (id && Y.Sortable._sortables[id]) {
+                delete Y.Sortable._sortables[id];
+                return;
+            }
+            Y.Object.each(Y.Sortable._sortables, function(v, k) {
                 if (v === s) {
-                    Y.Sortable._sortables[k] = null;
                     delete Sortable._sortables[k];
                 }
             });
@@ -514,4 +534,4 @@ YUI.add('sortable', function (Y, NAME) {
 
 
 
-}, '3.7.1pr1', {"requires": ["dd-delegate", "dd-drop-plugin", "dd-proxy"]});
+}, '3.7.2', {"requires": ["dd-delegate", "dd-drop-plugin", "dd-proxy"]});

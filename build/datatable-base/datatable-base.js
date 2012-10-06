@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('datatable-base', function(Y) {
+YUI.add('datatable-base', function (Y, NAME) {
 
 /**
 A Widget for displaying tabular data.  The base implementation of DataTable
@@ -687,4 +687,4 @@ Y.DataTable = Y.mix(
     Y.DataTable); // Migrate static and namespaced classes
 
 
-}, '3.7.1pr1' ,{requires:['datatable-core', 'base-build', 'widget', 'datatable-head', 'datatable-body']});
+}, '3.7.2', {"requires": ["datatable-core", "datatable-table", "datatable-head", "datatable-body", "base-build", "widget"], "skinnable": true});

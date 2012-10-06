@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
 YUI.add('lazy-model-list', function (Y, NAME) {
 
@@ -487,4 +487,4 @@ Y.LazyModelList = Y.Base.create('lazyModelList', Y.ModelList, [], {
 });
 
 
-}, '3.7.1pr1', {"requires": ["model-list"]});
+}, '3.7.2', {"requires": ["model-list"]});

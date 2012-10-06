@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
 YUI.add('exec-command', function (Y, NAME) {
 
@@ -722,4 +722,4 @@ YUI.add('exec-command', function (Y, NAME) {
 
 
 
-}, '3.7.1pr1', {"requires": ["frame"]});
+}, '3.7.2', {"requires": ["frame"]});

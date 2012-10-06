@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('array-extras', function(Y) {
+YUI.add('array-extras', function (Y, NAME) {
 
 /**
 Adds additional utility methods to the `Y.Array` class.
@@ -378,7 +378,7 @@ array.
 @param {Array} a Array with nested arrays to flatten.
 @return {Array} An array whose nested arrays have been flattened.
 @static
-@since 3.6.1
+@since 3.7.0
 **/
 A.flatten = function(a) {
     var result = [],
@@ -404,4 +404,4 @@ A.flatten = function(a) {
 };
 
 
-}, '3.7.1pr1' ,{requires:['yui-base']});
+}, '3.7.2', {"requires": ["yui-base"]});

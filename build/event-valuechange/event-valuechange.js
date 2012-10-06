@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('event-valuechange', function(Y) {
+YUI.add('event-valuechange', function (Y, NAME) {
 
 /**
 Adds a synthetic `valuechange` event that fires when the `value` property of an
@@ -465,4 +465,4 @@ Y.Event.define('valueChange', config); // deprecated, but supported for backcomp
 Y.ValueChange = VC;
 
 
-}, '3.7.1pr1' ,{requires:['event-focus', 'event-synthetic']});
+}, '3.7.2', {"requires": ["event-focus", "event-synthetic"]});

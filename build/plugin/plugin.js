@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('plugin', function(Y) {
+YUI.add('plugin', function (Y, NAME) {
 
     /**
      * Provides the base Plugin class, which plugin developers should extend, when creating custom plugins
@@ -231,4 +231,4 @@ YUI.add('plugin', function(Y) {
     Y.namespace("Plugin").Base = Plugin;
 
 
-}, '3.7.1pr1' ,{requires:['base-base']});
+}, '3.7.2', {"requires": ["base-base"]});

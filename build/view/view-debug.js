@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
 YUI.add('view', function (Y, NAME) {
 
@@ -220,8 +220,15 @@ Y.View = Y.extend(View, Y.Base, {
 
                 handler = handlers[name];
 
+                // TODO: Make this more robust by using lazy-binding:
+                // `handler = Y.bind(handler, this);`
                 if (typeof handler === 'string') {
                     handler = this[handler];
+                }
+
+                if (!handler) {
+                    Y.log('Missing handler for ' + selector + ' ' + name + ' event.', 'warn', 'View');
+                    continue;
                 }
 
                 this._attachedViewEvents.push(
@@ -262,7 +269,9 @@ Y.View = Y.extend(View, Y.Base, {
     **/
     detachEvents: function () {
         Y.Array.each(this._attachedViewEvents, function (handle) {
-            handle.detach();
+            if (handle) {
+                handle.detach();
+            }
         });
 
         this._attachedViewEvents = [];
@@ -384,14 +393,14 @@ Y.View = Y.extend(View, Y.Base, {
         The default container is a `<div>` Node, but you can override this in
         a subclass, or by passing in a custom `container` config value at
         instantiation time. If you override the default container in a subclass
-        using `ATTRS`, you must use the `valueFn` property. The view's constructor 
+        using `ATTRS`, you must use the `valueFn` property. The view's constructor
         will ignore any assignments using `value`.
 
         When `container` is overridden by a subclass or passed as a config
         option at instantiation time, you can provide it as a selector string, a
         DOM element, a `Y.Node` instance, or (if you are subclassing and modifying
-        the attribute), a `valueFn` function that returns a `Y.Node` instance. 
-        The value will be converted into a `Y.Node` instance if it isn't one 
+        the attribute), a `valueFn` function that returns a `Y.Node` instance.
+        The value will be converted into a `Y.Node` instance if it isn't one
         already.
 
         The container is not added to the page automatically. This allows you to
@@ -429,4 +438,4 @@ Y.View = Y.extend(View, Y.Base, {
 
 
 
-}, '3.7.1pr1', {"requires": ["base-build", "node-event-delegate"]});
+}, '3.7.2', {"requires": ["base-build", "node-event-delegate"]});

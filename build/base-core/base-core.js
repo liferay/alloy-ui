@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('base-core', function(Y) {
+YUI.add('base-core', function (Y, NAME) {
 
     /**
      * The base module provides the Base class, which objects requiring attribute and custom event support can extend. 
@@ -618,4 +618,4 @@ YUI.add('base-core', function(Y) {
     Y.BaseCore = BaseCore;
 
 
-}, '3.7.1pr1' ,{requires:['attribute-core']});
+}, '3.7.2', {"requires": ["attribute-core"]});

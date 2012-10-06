@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('dataschema-xml', function(Y) {
+YUI.add('dataschema-xml', function (Y, NAME) {
 
 /**
 Provides a DataSchema implementation which can be used to work with XML data.
@@ -385,4 +385,4 @@ SchemaXML = {
 Y.DataSchema.XML = Y.mix(SchemaXML, Y.DataSchema.Base);
 
 
-}, '3.7.1pr1' ,{requires:['dataschema-base']});
+}, '3.7.2', {"requires": ["dataschema-base"]});

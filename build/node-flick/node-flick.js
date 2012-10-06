@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('node-flick', function(Y) {
+YUI.add('node-flick', function (Y, NAME) {
 
 /**
  * Provide a simple Flick plugin, which can be used along with the "flick" gesture event, to 
@@ -527,4 +527,4 @@ YUI.add('node-flick', function(Y) {
     Y.Plugin.Flick = Flick;
 
 
-}, '3.7.1pr1' ,{requires:['classnamemanager', 'transition', 'event-flick', 'plugin']});
+}, '3.7.2', {"requires": ["classnamemanager", "transition", "event-flick", "plugin"], "skinnable": true});

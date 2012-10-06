@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('datatable-table', function(Y) {
+YUI.add('datatable-table', function (Y, NAME) {
 
 /**
 View class responsible for rendering a `<table>` from provided data.  Used as
@@ -758,4 +758,4 @@ Y.namespace('DataTable').TableView = Y.Base.create('table', Y.View, [], {
 
 
 
-}, '3.7.1pr1' ,{requires:['datatable-core', 'datatable-head', 'datatable-body', 'view', 'classnamemanager']});
+}, '3.7.2', {"requires": ["datatable-core", "datatable-head", "datatable-body", "view", "classnamemanager"]});

@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('async-queue', function(Y) {
+YUI.add('async-queue', function (Y, NAME) {
 
 /**
  * <p>AsyncQueue allows you create a chain of function callbacks executed
@@ -526,4 +526,4 @@ Y.extend(Queue, Y.EventTarget, {
 
 
 
-}, '3.7.1pr1' ,{requires:['event-custom']});
+}, '3.7.2', {"requires": ["event-custom"]});

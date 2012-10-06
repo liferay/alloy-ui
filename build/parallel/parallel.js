@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
 YUI.add('parallel', function (Y, NAME) {
 
@@ -72,13 +72,16 @@ Y.Parallel.prototype = {
     * @param {Function} fn The function callback we are waiting for
     */
     add: function (fn) {
-        var self = this;
+        var self = this,
+            index = self.total;
+
         self.total += 1;
-        return function (a) {
+
+        return function () {
             self.finished++;
-            self.results.push(
-                (fn && fn.apply(self.context, arguments)) ||
-                (arguments.length === 1 ? a : Y.Array(arguments)));
+            self.results[index] = (fn && fn.apply(self.context, arguments)) ||
+                (arguments.length === 1 ? arguments[0] : Y.Array(arguments));
+
             self.test();
         };
     },
@@ -108,4 +111,4 @@ Y.Parallel.prototype = {
 };
 
 
-}, '3.7.1pr1', {"requires": ["yui-base"]});
+}, '3.7.2', {"requires": ["yui-base"]});

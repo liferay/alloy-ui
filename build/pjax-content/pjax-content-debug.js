@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
 YUI.add('pjax-content', function (Y, NAME) {
 
@@ -285,4 +285,4 @@ PjaxContent.ATTRS = {
 Y.PjaxContent = PjaxContent;
 
 
-}, '3.7.1pr1', {"requires": ["io-base", "node-base", "router"]});
+}, '3.7.2', {"requires": ["io-base", "node-base", "router"]});

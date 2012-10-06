@@ -2,34 +2,28 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('datatype-xml-format', function(Y) {
+YUI.add('datatype-xml-format', function (Y, NAME) {
 
 /**
- * Format XML submodule.
+ * The Number Utility provides type-conversion and string-formatting
+ * convenience methods for Numbers.
  *
- * @module datatype
+ * @module datatype-xml
  * @submodule datatype-xml-format
  */
 
 /**
- * XML submodule.
+ * XML provides a set of utility functions to operate against XML documents.
  *
- * @module datatype
- * @submodule datatype-xml
- */
-
-/**
- * DataType.XML provides a set of utility functions to operate against XML documents.
- *
- * @class DataType.XML
+ * @class XML
  * @static
  */
 var LANG = Y.Lang;
 
-Y.mix(Y.namespace("DataType.XML"), {
+Y.mix(Y.namespace("XML"), {
     /**
      * Converts data to type XMLDocument.
      *
@@ -48,13 +42,15 @@ Y.mix(Y.namespace("DataType.XML"), {
                 return data.xml;
             }
             else {
-                Y.log("Could not format data from type XML", "warn", "datatype-xml");
+                Y.log("Could not format data from type XML", "warn", "xml");
                 return (LANG.isValue(data) && data.toString) ? data.toString() : "";
             }
         }
     }
 });
 
+Y.namespace("DataType");
+Y.DataType.XML = Y.XML;
 
 
-}, '3.7.1pr1' );
+}, '3.7.2');

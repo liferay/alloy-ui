@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('pluginhost-base', function(Y) {
+YUI.add('pluginhost-base', function (Y, NAME) {
 
     /**
      * Provides the augmentable PluginHost interface, which can be added to any class.
@@ -185,4 +185,4 @@ YUI.add('pluginhost-base', function(Y) {
     Y.namespace("Plugin").Host = PluginHost;
 
 
-}, '3.7.1pr1' ,{requires:['yui-base']});
+}, '3.7.2', {"requires": ["yui-base"]});

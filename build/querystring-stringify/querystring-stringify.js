@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('querystring-stringify', function(Y) {
+YUI.add('querystring-stringify', function (Y, NAME) {
 
 /**
  * Provides Y.QueryString.stringify method for converting objects to Query Strings.
@@ -111,4 +111,4 @@ QueryString.stringify = function (obj, c, name) {
 };
 
 
-}, '3.7.1pr1' ,{supersedes:['querystring-stringify-simple'], requires:['yui-base']});
+}, '3.7.2', {"requires": ["yui-base"]});

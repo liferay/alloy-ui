@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('console-filters', function(Y) {
+YUI.add('console-filters', function (Y, NAME) {
 
 /**
  * <p>Provides Plugin.ConsoleFilters plugin class.</p>
@@ -146,13 +146,13 @@ Y.namespace('Plugin').ConsoleFilters = Y.extend(ConsoleFilters, Y.Plugin.Base,
             html;
 
         if (foot) {
-            html = Y.substitute(
+            html = Y.Lang.sub(
                         ConsoleFilters.CATEGORIES_TEMPLATE,
                         ConsoleFilters.CHROME_CLASSES);
 
             this._categories = foot.appendChild(Y.Node.create(html));
 
-            html = Y.substitute(
+            html = Y.Lang.sub(
                         ConsoleFilters.SOURCES_TEMPLATE,
                         ConsoleFilters.CHROME_CLASSES);
 
@@ -523,7 +523,7 @@ Y.namespace('Plugin').ConsoleFilters = Y.extend(ConsoleFilters, Y.Plugin.Base,
                         filter_class : getCN(CONSOLE, FILTER, name)
                    }),
             node = Y.Node.create(
-                        Y.substitute(ConsoleFilters.FILTER_TEMPLATE, info));
+                        Y.Lang.sub(ConsoleFilters.FILTER_TEMPLATE, info));
 
         container.appendChild(node);
     },
@@ -727,4 +727,4 @@ Y.namespace('Plugin').ConsoleFilters = Y.extend(ConsoleFilters, Y.Plugin.Base,
 });
 
 
-}, '3.7.1pr1' ,{requires:['console','plugin']});
+}, '3.7.2', {"requires": ["plugin", "console"], "skinnable": true});

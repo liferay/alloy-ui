@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('selector-css2', function(Y) {
+YUI.add('selector-css2', function (Y, NAME) {
 
 /**
  * The selector module provides helper methods allowing CSS2 Selectors to be used with DOM elements.
@@ -449,4 +449,4 @@ if (Y.Selector.useNative && Y.config.doc.querySelector) {
 
 
 
-}, '3.7.1pr1' ,{requires:['selector-native']});
+}, '3.7.2', {"requires": ["selector-native"]});

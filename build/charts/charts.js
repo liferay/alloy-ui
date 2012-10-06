@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('charts', function(Y) {
+YUI.add('charts', function (Y, NAME) {
 
 /**
  * The Chart class is the basic application used to create a chart.
@@ -28,4 +28,4 @@ function Chart(cfg)
 Y.Chart = Chart;
 
 
-}, '3.7.1pr1' ,{requires:['charts-base']});
+}, '3.7.2', {"requires": ["charts-base"]});

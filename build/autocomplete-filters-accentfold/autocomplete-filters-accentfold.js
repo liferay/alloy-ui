@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('autocomplete-filters-accentfold', function(Y) {
+YUI.add('autocomplete-filters-accentfold', function (Y, NAME) {
 
 /**
 Provides pre-built accent-folding result matching filters for AutoComplete.
@@ -140,4 +140,4 @@ Y.mix(Y.namespace('AutoCompleteFilters'), {
 });
 
 
-}, '3.7.1pr1' ,{requires:['array-extras', 'text-accentfold', 'text-wordbreak']});
+}, '3.7.2', {"requires": ["array-extras", "text-accentfold", "text-wordbreak"]});

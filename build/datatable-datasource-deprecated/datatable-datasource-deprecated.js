@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
 YUI.add('datatable-datasource-deprecated', function(Y) {
 
@@ -202,4 +202,4 @@ Y.namespace("Plugin").DataTableDataSource = DataTableDataSource;
 
 
 
-}, '3.7.1pr1' ,{requires:['datatable-base-deprecated','plugin','datasource-local']});
+}, '3.7.2' ,{requires:['datatable-base-deprecated','plugin','datasource-local']});

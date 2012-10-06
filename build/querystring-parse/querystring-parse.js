@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('querystring-parse', function(Y) {
+YUI.add('querystring-parse', function (Y, NAME) {
 
 /**
  * The QueryString module adds support for serializing JavaScript objects into
@@ -163,4 +163,4 @@ QueryString.unescape = function (s) {
 
 
 
-}, '3.7.1pr1' ,{supersedes:['querystring-parse-simple'], requires:['array-extras', 'yui-base']});
+}, '3.7.2', {"requires": ["yui-base", "array-extras"]});

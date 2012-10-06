@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('attribute-core', function(Y) {
+YUI.add('attribute-core', function (Y, NAME) {
 
     /**
      * The State class maintains state for a collection of named items, with
@@ -841,25 +841,25 @@ YUI.add('attribute-core', function(Y) {
          * @return {Object} An object with attribute name/value pairs.
          */
         _getAttrs : function(attrs) {
-            var host = this,
-                o = {}, 
-                i, l, attr, val,
+            var obj = {},
+                attr, i, len,
                 modifiedOnly = (attrs === true);
 
             // TODO - figure out how to get all "added"
-            attrs = (attrs && !modifiedOnly) ? attrs : O.keys(host._state.data);
+            if (!attrs || modifiedOnly) {
+                attrs = O.keys(this._state.data);
+            }
 
-            for (i = 0, l = attrs.length; i < l; i++) {
-                // Go through get, to honor cloning/normalization
+            for (i = 0, len = attrs.length; i < len; i++) {
                 attr = attrs[i];
-                val = host.get(attr);
 
-                if (!modifiedOnly || host._getStateVal(attr) != host._state.get(attr, INIT_VALUE)) {
-                    o[attr] = host.get(attr); 
+                if (!modifiedOnly || this._getStateVal(attr) != this._state.get(attr, INIT_VALUE)) {
+                    // Go through get, to honor cloning/normalization
+                    obj[attr] = this.get(attr);
                 }
             }
 
-            return o;
+            return obj;
         },
 
         /**
@@ -1043,4 +1043,4 @@ YUI.add('attribute-core', function(Y) {
     Y.AttributeCore = AttributeCore;
 
 
-}, '3.7.1pr1' ,{requires:['oop']});
+}, '3.7.2', {"requires": ["oop"]});

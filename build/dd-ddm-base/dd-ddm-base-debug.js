@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
 YUI.add('dd-ddm-base', function (Y, NAME) {
 
@@ -170,7 +170,7 @@ YUI.add('dd-ddm-base', function (Y, NAME) {
             this._active = true;
 
             var doc = Y.one(Y.config.doc);
-            doc.on('mousemove', Y.throttle(Y.bind(this._move, this), this.get('throttleTime')));
+            doc.on('mousemove', Y.throttle(Y.bind(this._docMove, this), this.get('throttleTime')));
             doc.on('mouseup', Y.bind(this._end, this));
         },
         /**
@@ -206,6 +206,7 @@ YUI.add('dd-ddm-base', function (Y, NAME) {
         */
         _end: function() {
             if (this.activeDrag) {
+                this._shimming = false;
                 this._endDrag();
                 this.fire('ddm:end');
                 this.activeDrag.end.call(this.activeDrag);
@@ -223,6 +224,25 @@ YUI.add('dd-ddm-base', function (Y, NAME) {
                 this._end();
             }
             return this;
+        },
+        /**
+        * @private
+        * @property _shimming
+        * @description Set to true when drag starts and useShim is true. Used in pairing with _docMove
+        * @see _docMove
+        * @type {Boolean}
+        */
+        _shimming: false,
+        /**
+        * @private
+        * @method _docMove
+        * @description Internal listener for the mousemove on Document. Checks if the shim is in place to only call _move once per mouse move
+        * @param {Event.Facade} ev The Dom mousemove Event
+        */
+        _docMove: function(ev) {
+            if (!this._shimming) {
+                this._move(ev);
+            }
         },
         /**
         * @private
@@ -358,4 +378,4 @@ YUI.add('dd-ddm-base', function (Y, NAME) {
 
 
 
-}, '3.7.1pr1', {"requires": ["node", "base", "yui-throttle", "classnamemanager"]});
+}, '3.7.2', {"requires": ["node", "base", "yui-throttle", "classnamemanager"]});

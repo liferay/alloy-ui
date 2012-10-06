@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('event-key', function(Y) {
+YUI.add('event-key', function (Y, NAME) {
 
 /**
  * Functionality to listen for one or more specific key combinations.
@@ -175,4 +175,4 @@ eventDef.detachDelegate = eventDef.detach;
 Y.Event.define('key', eventDef, true);
 
 
-}, '3.7.1pr1' ,{requires:['event-synthetic']});
+}, '3.7.2', {"requires": ["event-synthetic"]});

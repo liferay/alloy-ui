@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('jsonp-url', function(Y) {
+YUI.add('jsonp-url', function (Y, NAME) {
 
 var JSONPRequest = Y.JSONPRequest,
     getByPath    = Y.Object.getValue,
@@ -130,4 +130,4 @@ Y.mix(JSONPRequest.prototype, {
 }, true);
 
 
-}, '3.7.1pr1' ,{requires:['jsonp']});
+}, '3.7.2', {"requires": ["jsonp"]});

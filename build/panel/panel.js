@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('panel', function(Y) {
+YUI.add('panel', function (Y, NAME) {
 
 // TODO: Change this description!
 /**
@@ -103,4 +103,4 @@ Y.Panel = Y.Base.create('panel', Y.Widget, [
 });
 
 
-}, '3.7.1pr1' ,{requires:['widget', 'widget-autohide', 'widget-buttons',  'widget-modality', 'widget-position', 'widget-position-align', 'widget-position-constrain', 'widget-stack', 'widget-stdmod'], skinnable:true});
+}, '3.7.2', {"requires": ["widget", "widget-autohide", "widget-buttons", "widget-modality", "widget-position", "widget-position-align", "widget-position-constrain", "widget-stack", "widget-stdmod"], "skinnable": true});

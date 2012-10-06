@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('node-load', function(Y) {
+YUI.add('node-load', function (Y, NAME) {
 
 /**
  * Extended Node interface with a basic IO API.
@@ -66,7 +66,7 @@ Y.Node.prototype.load = function(url, selector, callback) {
 
     Y.io(url, config);
     return this;
-}
+};
 
 
-}, '3.7.1pr1' ,{requires:['node-base', 'io-base']});
+}, '3.7.2', {"requires": ["node-base", "io-base"]});

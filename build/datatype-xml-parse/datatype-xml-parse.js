@@ -2,22 +2,22 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('datatype-xml-parse', function(Y) {
+YUI.add('datatype-xml-parse', function (Y, NAME) {
 
 /**
  * Parse XML submodule.
  *
- * @module datatype
+ * @module datatype-xml
  * @submodule datatype-xml-parse
- * @for DataType.XML
+ * @for XML
  */
 
 var LANG = Y.Lang;
 
-Y.mix(Y.namespace("DataType.XML"), {
+Y.mix(Y.namespace("XML"), {
     /**
      * Converts data to type XMLDocument.
      *
@@ -54,8 +54,10 @@ Y.mix(Y.namespace("DataType.XML"), {
 });
 
 // Add Parsers shortcut
-Y.namespace("Parsers").xml = Y.DataType.XML.parse;
+Y.namespace("Parsers").xml = Y.XML.parse;
+
+Y.namespace("DataType");
+Y.DataType.XML = Y.XML;
 
 
-
-}, '3.7.1pr1' );
+}, '3.7.2');

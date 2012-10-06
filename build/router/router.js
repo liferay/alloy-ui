@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
 YUI.add('router', function (Y, NAME) {
 
@@ -1411,4 +1411,4 @@ version of YUI.
 Y.Controller = Y.Router;
 
 
-}, '3.7.1pr1', {"optional": ["querystring-parse"], "requires": ["array-extras", "base-build", "history"]});
+}, '3.7.2', {"optional": ["querystring-parse"], "requires": ["array-extras", "base-build", "history"]});

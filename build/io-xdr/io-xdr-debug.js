@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('io-xdr', function(Y) {
+YUI.add('io-xdr', function (Y, NAME) {
 
 /**
 Extends IO to provide an alternate, Flash transport, for making
@@ -315,4 +315,4 @@ event is fired, this value will be set to 0.
 Y.io.xdr = { delay : 100 };
 
 
-}, '3.7.1pr1' ,{requires:['io-base','datatype-xml-parse']});
+}, '3.7.2', {"requires": ["io-base", "datatype-xml-parse"]});

@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('attribute-base', function(Y) {
+YUI.add('attribute-base', function (Y, NAME) {
 
     /**
      * The attribute module provides an augmentable Attribute implementation, which 
@@ -108,5 +108,4 @@ YUI.add('attribute-base', function(Y) {
 
     Y.Attribute = Attribute;
 
-
-}, '3.7.1pr1' ,{requires:['attribute-core', 'attribute-events', 'attribute-extras']});
+}, '3.7.2', {"requires": ["attribute-core", "attribute-events", "attribute-extras"]});

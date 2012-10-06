@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('autocomplete-highlighters-accentfold', function(Y) {
+YUI.add('autocomplete-highlighters-accentfold', function (Y, NAME) {
 
 /**
 Provides pre-built accent-folding result highlighters for AutoComplete.
@@ -111,4 +111,4 @@ Y.mix(Y.namespace('AutoCompleteHighlighters'), {
 });
 
 
-}, '3.7.1pr1' ,{requires:['array-extras', 'highlight-accentfold']});
+}, '3.7.2', {"requires": ["array-extras", "highlight-accentfold"]});

@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
 YUI.add('model', function (Y, NAME) {
 
@@ -878,7 +878,7 @@ Y.Model = Y.extend(Model, Y.Base, {
     @return {Object} Attribute hash.
     @protected
     @see Model.parse()
-    @since 3.6.1
+    @since 3.7.0
     **/
     _parse: function (response) {
         return this.parse(response);
@@ -991,4 +991,4 @@ Y.Model = Y.extend(Model, Y.Base, {
 });
 
 
-}, '3.7.1pr1', {"requires": ["base-build", "escape", "json-parse"]});
+}, '3.7.2', {"requires": ["base-build", "escape", "json-parse"]});

@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('console', function(Y) {
+YUI.add('console', function (Y, NAME) {
 
 /**
  * Console creates a visualization for messages logged through calls to a YUI
@@ -95,7 +95,7 @@ var getCN = Y.ClassNameManager.getClassName,
     isNumber   = L.isNumber,
     isString   = L.isString,
     merge      = Y.merge,
-    substitute = Y.substitute;
+    substitute = Y.Lang.sub;
     
 
 function Console() {
@@ -1200,7 +1200,7 @@ Y.Console = Y.extend(Console, Y.Widget,
     /**
      * Default markup template used to create the DOM structure for Console
      * entries. The markup contains {placeholder}s for content and classes
-     * that are replaced via Y.substitute.  The default template contains
+     * that are replaced via Y.Lang.sub.  The default template contains
      * the {placeholder}s identified in Console.ENTRY_CLASSES as well as the
      * following placeholders that will be populated by the log entry data:
      *
@@ -1521,4 +1521,4 @@ Y.Console = Y.extend(Console, Y.Widget,
 });
 
 
-}, '3.7.1pr1' ,{requires:['substitute','widget','yui-log'], lang:['en', 'es', 'ja']});
+}, '3.7.2', {"requires": ["yui-log", "widget"], "skinnable": true, "lang": ["en", "es", "ja"]});

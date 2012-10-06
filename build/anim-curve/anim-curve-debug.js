@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('anim-curve', function(Y) {
+YUI.add('anim-curve', function (Y, NAME) {
 
 /**
  * Adds support for the <code>curve</code> property for the <code>to</code> 
@@ -61,4 +61,4 @@ Y.Anim.getBezier = function(points, t) {
 };
 
 
-}, '3.7.1pr1' ,{requires:['anim-xy']});
+}, '3.7.2', {"requires": ["anim-xy"]});

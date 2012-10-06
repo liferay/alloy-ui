@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('io-queue', function(Y) {
+YUI.add('io-queue', function (Y, NAME) {
 
 /**
 Extends IO to implement Queue for synchronous
@@ -163,4 +163,4 @@ _queue.size = function () { io.qSize(); };
 Y.io.queue = _queue;
 
 
-}, '3.7.1pr1' ,{requires:['io-base','queue-promote']});
+}, '3.7.2', {"requires": ["io-base", "queue-promote"]});

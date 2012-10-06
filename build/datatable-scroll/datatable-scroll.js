@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('datatable-scroll', function(Y) {
+YUI.add('datatable-scroll', function (Y, NAME) {
 
 /**
 Adds the ability to make the table rows scrollable while preserving the header
@@ -1387,4 +1387,4 @@ Y.mix(Scrollable.prototype, {
 Y.Base.mix(Y.DataTable, [Scrollable]);
 
 
-}, '3.7.1pr1' ,{skinnable:true, requires:['datatable-base', 'dom-screen']});
+}, '3.7.2', {"requires": ["datatable-base", "datatable-column-widths", "dom-screen"], "skinnable": true});

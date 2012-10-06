@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('datatable-column-widths', function(Y) {
+YUI.add('datatable-column-widths', function (Y, NAME) {
 
 /**
 Adds basic, programmatic column width support to DataTable via column
@@ -303,4 +303,4 @@ Y.DataTable.ColumnWidths = ColumnWidths;
 Y.Base.mix(Y.DataTable, [ColumnWidths]);
 
 
-}, '3.7.1pr1' ,{requires:['datatable-base']});
+}, '3.7.2', {"requires": ["datatable-base"]});

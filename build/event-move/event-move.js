@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('event-move', function(Y) {
+YUI.add('event-move', function (Y, NAME) {
 
 /**
  * Adds lower level support for "gesturemovestart", "gesturemove" and "gesturemoveend" events, which can be used to create drag/drop
@@ -16,16 +16,12 @@ YUI.add('event-move', function(Y) {
  * @submodule event-move
  */
 
-var EVENT = ((Y.config.win && ("ontouchstart" in Y.config.win)) && !(Y.UA.chrome && Y.UA.chrome < 6)) ? {
-        start: "touchstart",
-        move: "touchmove",
-        end: "touchend"
-    } : {
-        start: "mousedown",
-        move: "mousemove",
-        end: "mouseup"
-    },
-
+ var GESTURE_MAP = Y.Event._GESTURE_MAP,
+     EVENT = {
+         start: GESTURE_MAP.start,
+         end: GESTURE_MAP.end,
+         move: GESTURE_MAP.move
+     },
     START = "start",
     MOVE = "move",
     END = "end",
@@ -510,5 +506,4 @@ define(GESTURE_MOVE_END, {
     PREVENT_DEFAULT : false
 });
 
-
-}, '3.7.1pr1' ,{requires:['node-base','event-touch','event-synthetic']});
+}, '3.7.2', {"requires": ["node-base", "event-touch", "event-synthetic"]});

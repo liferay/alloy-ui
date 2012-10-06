@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('event-hover', function(Y) {
+YUI.add('event-hover', function (Y, NAME) {
 
 /**
  * Adds support for a "hover" event.  The event provides a convenience wrapper
@@ -74,4 +74,4 @@ conf.detachDelegate = conf.detach;
 Y.Event.define("hover", conf);
 
 
-}, '3.7.1pr1' ,{requires:['event-mouseenter']});
+}, '3.7.2', {"requires": ["event-mouseenter"]});

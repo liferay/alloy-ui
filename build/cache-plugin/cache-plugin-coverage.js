@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
 if (typeof _yuitest_coverage == "undefined"){
     _yuitest_coverage = {};
@@ -33,7 +33,7 @@ _yuitest_coverage["build/cache-plugin/cache-plugin.js"] = {
     path: "build/cache-plugin/cache-plugin.js",
     code: []
 };
-_yuitest_coverage["build/cache-plugin/cache-plugin.js"].code=["YUI.add('cache-plugin', function (Y, NAME) {","","/**"," * Provides support to use Cache as a Plugin to a Base-based class."," *"," * @module cache"," * @submodule cache-plugin"," */","","/**"," * Plugin.Cache adds pluginizability to Cache."," * @class Plugin.Cache"," * @extends Cache"," * @uses Plugin.Base"," */","function CachePlugin(config) {","    var cache = config && config.cache ? config.cache : Y.Cache,","        tmpclass = Y.Base.create(\"dataSourceCache\", cache, [Y.Plugin.Base]),","        tmpinstance = new tmpclass(config);","    tmpclass.NS = \"tmpClass\";","    return tmpinstance;","}","","Y.mix(CachePlugin, {","    /**","     * The namespace for the plugin. This will be the property on the host which","     * references the plugin instance.","     *","     * @property NS","     * @type String","     * @static","     * @final","     * @value \"cache\"","     */","    NS: \"cache\",","","    /**","     * Class name.","     *","     * @property NAME","     * @type String","     * @static","     * @final","     * @value \"dataSourceCache\"","     */","    NAME: \"cachePlugin\"","});","","","Y.namespace(\"Plugin\").Cache = CachePlugin;","","","}, '3.7.1pr1', {\"requires\": [\"plugin\", \"cache-base\"]});"];
+_yuitest_coverage["build/cache-plugin/cache-plugin.js"].code=["YUI.add('cache-plugin', function (Y, NAME) {","","/**"," * Provides support to use Cache as a Plugin to a Base-based class."," *"," * @module cache"," * @submodule cache-plugin"," */","","/**"," * Plugin.Cache adds pluginizability to Cache."," * @class Plugin.Cache"," * @extends Cache"," * @uses Plugin.Base"," */","function CachePlugin(config) {","    var cache = config && config.cache ? config.cache : Y.Cache,","        tmpclass = Y.Base.create(\"dataSourceCache\", cache, [Y.Plugin.Base]),","        tmpinstance = new tmpclass(config);","    tmpclass.NS = \"tmpClass\";","    return tmpinstance;","}","","Y.mix(CachePlugin, {","    /**","     * The namespace for the plugin. This will be the property on the host which","     * references the plugin instance.","     *","     * @property NS","     * @type String","     * @static","     * @final","     * @value \"cache\"","     */","    NS: \"cache\",","","    /**","     * Class name.","     *","     * @property NAME","     * @type String","     * @static","     * @final","     * @value \"dataSourceCache\"","     */","    NAME: \"cachePlugin\"","});","","","Y.namespace(\"Plugin\").Cache = CachePlugin;","","","}, '3.7.2', {\"requires\": [\"plugin\", \"cache-base\"]});"];
 _yuitest_coverage["build/cache-plugin/cache-plugin.js"].lines = {"1":0,"16":0,"17":0,"20":0,"21":0,"24":0,"50":0};
 _yuitest_coverage["build/cache-plugin/cache-plugin.js"].functions = {"CachePlugin:16":0,"(anonymous 1):1":0};
 _yuitest_coverage["build/cache-plugin/cache-plugin.js"].coveredLines = 7;
@@ -99,4 +99,4 @@ _yuitest_coverline("build/cache-plugin/cache-plugin.js", 50);
 Y.namespace("Plugin").Cache = CachePlugin;
 
 
-}, '3.7.1pr1', {"requires": ["plugin", "cache-base"]});
+}, '3.7.2', {"requires": ["plugin", "cache-base"]});

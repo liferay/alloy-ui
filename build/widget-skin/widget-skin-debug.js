@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('widget-skin', function(Y) {
+YUI.add('widget-skin', function (Y, NAME) {
 
 /**
  * Provides skin related utlility methods.
@@ -47,4 +47,4 @@ Y.Widget.prototype.getSkinName = function () {
 };
 
 
-}, '3.7.1pr1' ,{requires:['widget-base']});
+}, '3.7.2', {"requires": ["widget-base"]});

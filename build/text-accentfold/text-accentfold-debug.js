@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('text-accentfold', function(Y) {
+YUI.add('text-accentfold', function (Y, NAME) {
 
 /**
  * Text utilities.
@@ -166,4 +166,4 @@ AccentFold = {
 Text.AccentFold = AccentFold;
 
 
-}, '3.7.1pr1' ,{requires:['array-extras', 'text-data-accentfold']});
+}, '3.7.2', {"requires": ["array-extras", "text-data-accentfold"]});

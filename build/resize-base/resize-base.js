@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
 YUI.add('resize-base', function (Y, NAME) {
 
@@ -901,7 +901,7 @@ Y.Resize = Y.extend(
 			var instance = this;
 
 			return Y.Node.create(
-				Y.substitute(instance.HANDLE_TEMPLATE, {
+				Y.Lang.sub(instance.HANDLE_TEMPLATE, {
 					handle: handle
 				})
 			);
@@ -1651,4 +1651,4 @@ Y.each(Y.Resize.prototype.ALL_HANDLES, function(handle, i) {
 });
 
 
-}, '3.7.1pr1', {"requires": ["base", "widget", "substitute", "event", "oop", "dd-drag", "dd-delegate", "dd-drop"], "skinnable": true});
+}, '3.7.2', {"requires": ["base", "widget", "event", "oop", "dd-drag", "dd-delegate", "dd-drop"], "skinnable": true});

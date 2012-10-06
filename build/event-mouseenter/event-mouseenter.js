@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('event-mouseenter', function(Y) {
+YUI.add('event-mouseenter', function (Y, NAME) {
 
 /**
  * <p>Adds subscription and delegation support for mouseenter and mouseleave
@@ -133,4 +133,4 @@ Y.Event.define("mouseleave", Y.merge(config, {
 }), true);
 
 
-}, '3.7.1pr1' ,{requires:['event-synthetic']});
+}, '3.7.2', {"requires": ["event-synthetic"]});

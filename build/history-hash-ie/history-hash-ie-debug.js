@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('history-hash-ie', function(Y) {
+YUI.add('history-hash-ie', function (Y, NAME) {
 
 /**
  * Improves IE6/7 support in history-hash by using a hidden iframe to create
@@ -142,4 +142,4 @@ if (Y.UA.ie && !Y.HistoryBase.nativeHashChange) {
 }
 
 
-}, '3.7.1pr1' ,{requires:['history-hash', 'node-base']});
+}, '3.7.2', {"requires": ["history-hash", "node-base"]});

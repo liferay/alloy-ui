@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('anim-node-plugin', function(Y) {
+YUI.add('anim-node-plugin', function (Y, NAME) {
 
 /**
  *  Binds an Anim instance to a Node instance
@@ -30,4 +30,4 @@ Y.namespace('Plugin');
 Y.Plugin.NodeFX = NodeFX;
 
 
-}, '3.7.1pr1' ,{requires:['node-pluginhost', 'anim-base']});
+}, '3.7.2', {"requires": ["node-pluginhost", "anim-base"]});

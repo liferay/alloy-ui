@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('highlight-accentfold', function(Y) {
+YUI.add('highlight-accentfold', function (Y, NAME) {
 
 /**
 Adds accent-folding highlighters to `Y.Highlight`.
@@ -148,4 +148,4 @@ Highlight = Y.mix(Y.Highlight, {
 });
 
 
-}, '3.7.1pr1' ,{requires:['highlight-base', 'text-accentfold']});
+}, '3.7.2', {"requires": ["highlight-base", "text-accentfold"]});

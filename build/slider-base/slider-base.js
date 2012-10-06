@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('slider-base', function(Y) {
+YUI.add('slider-base', function (Y, NAME) {
 
 /**
  * Create a sliding value range input visualized as a draggable thumb on a
@@ -148,7 +148,7 @@ Y.SliderBase = Y.extend( SliderBase, Y.Widget, {
             maxCapClass = this.getClassName( 'rail', 'cap', this._key.maxEdge );
 
         return Y.Node.create(
-            Y.substitute( this.RAIL_TEMPLATE, {
+            Y.Lang.sub( this.RAIL_TEMPLATE, {
                 railClass      : this.getClassName( 'rail' ),
                 railMinCapClass: minCapClass,
                 railMaxCapClass: maxCapClass
@@ -180,7 +180,7 @@ Y.SliderBase = Y.extend( SliderBase, Y.Widget, {
         var imageUrl = this.get( 'thumbUrl' );
 
         return Y.Node.create(
-            Y.substitute( this.THUMB_TEMPLATE, {
+            Y.Lang.sub( this.THUMB_TEMPLATE, {
                 thumbClass      : this.getClassName( 'thumb' ),
                 thumbShadowClass: this.getClassName( 'thumb', 'shadow' ),
                 thumbImageClass : this.getClassName( 'thumb', 'image' ),
@@ -764,4 +764,4 @@ Y.SliderBase = Y.extend( SliderBase, Y.Widget, {
 });
 
 
-}, '3.7.1pr1' ,{requires:['widget', 'substitute', 'dd-constrain', 'event-key']});
+}, '3.7.2', {"requires": ["widget", "dd-constrain", "event-key"], "skinnable": true});

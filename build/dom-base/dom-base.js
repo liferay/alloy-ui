@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('dom-base', function(Y) {
+YUI.add('dom-base', function (Y, NAME) {
 
 /**
 * @for DOM
@@ -167,7 +167,7 @@ if (!testFeature('value-set', 'select')) {
                 break;
             }
         }
-    }
+    };
 }
 
 Y.mix(Y_DOM.VALUE_GETTERS, {
@@ -605,7 +605,7 @@ if (!testFeature('innerhtml-div', 'script')) {
         frag.innerHTML = '-' + html;
         frag.removeChild(frag.firstChild);
         return frag;
-    }
+    };
 
     creators.link = creators.style = creators.script;
 }
@@ -688,4 +688,4 @@ Y.mix(Y.DOM, {
 });
 
 
-}, '3.7.1pr1' ,{requires:['dom-core']});
+}, '3.7.2', {"requires": ["dom-core"]});

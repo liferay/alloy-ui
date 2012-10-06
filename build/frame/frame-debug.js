@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
 YUI.add('frame', function (Y, NAME) {
 
@@ -75,7 +75,7 @@ YUI.add('frame', function (Y, NAME) {
 
             if (create) {
                 Y.log('Creating the document from javascript', 'info', 'frame');
-                html = Y.substitute(Frame.PAGE_HTML, {
+                html = Y.Lang.sub(Frame.PAGE_HTML, {
                     DIR: this.get('dir'),
                     LANG: this.get('lang'),
                     TITLE: this.get('title'),
@@ -952,7 +952,7 @@ YUI.add('frame', function (Y, NAME) {
             */
             use: {
                 writeOnce: true,
-                value: ['substitute', 'node', 'node-style', 'selector-css3']
+                value: ['node', 'node-style', 'selector-css3']
             },
             /**
             * @attribute container
@@ -1035,4 +1035,4 @@ YUI.add('frame', function (Y, NAME) {
 
 
 
-}, '3.7.1pr1', {"requires": ["base", "node", "selector-css3", "substitute", "yui-throttle"]});
+}, '3.7.2', {"requires": ["base", "node", "selector-css3", "yui-throttle"]});

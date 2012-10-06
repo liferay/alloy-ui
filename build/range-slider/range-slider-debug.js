@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('range-slider', function(Y) {
+YUI.add('range-slider', function (Y, NAME) {
 
 /**
  * Create a sliding value range input visualized as a draggable thumb on a
@@ -32,4 +32,4 @@ Y.Slider = Y.Base.build( 'slider', Y.SliderBase,
     [ Y.SliderValueRange, Y.ClickableRail ] );
 
 
-}, '3.7.1pr1' ,{requires:['slider-base', 'clickable-rail', 'slider-value-range']});
+}, '3.7.2', {"requires": ["slider-base", "slider-value-range", "clickable-rail"]});

@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
 if (typeof _yuitest_coverage == "undefined"){
     _yuitest_coverage = {};
@@ -23,25 +23,24 @@ if (typeof _yuitest_coverage == "undefined"){
         coverage.functions[funcId]++;
     };
 }
-_yuitest_coverage["/build/selector/selector.js"] = {
+_yuitest_coverage["build/selector/selector.js"] = {
     lines: {},
     functions: {},
     coveredLines: 0,
     calledLines: 0,
     coveredFunctions: 0,
     calledFunctions: 0,
-    path: "/build/selector/selector.js",
+    path: "build/selector/selector.js",
     code: []
 };
-_yuitest_coverage["/build/selector/selector.js"].code=["YUI.add('selector', function(Y) {","","","","","}, '3.7.1pr1' ,{requires:['selector-native']});"];
-_yuitest_coverage["/build/selector/selector.js"].lines = {"1":0};
-_yuitest_coverage["/build/selector/selector.js"].functions = {};
-_yuitest_coverage["/build/selector/selector.js"].coveredLines = 1;
-_yuitest_coverage["/build/selector/selector.js"].coveredFunctions = 0;
-_yuitest_coverline("/build/selector/selector.js", 1);
-YUI.add('selector', function(Y) {
+_yuitest_coverage["build/selector/selector.js"].code=["YUI.add('selector', function (Y, NAME) {","","","","}, '3.7.2', {\"requires\": [\"selector-native\"]});"];
+_yuitest_coverage["build/selector/selector.js"].lines = {"1":0};
+_yuitest_coverage["build/selector/selector.js"].functions = {};
+_yuitest_coverage["build/selector/selector.js"].coveredLines = 1;
+_yuitest_coverage["build/selector/selector.js"].coveredFunctions = 0;
+_yuitest_coverline("build/selector/selector.js", 1);
+YUI.add('selector', function (Y, NAME) {
 
 
 
-
-}, '3.7.1pr1' ,{requires:['selector-native']});
+}, '3.7.2', {"requires": ["selector-native"]});

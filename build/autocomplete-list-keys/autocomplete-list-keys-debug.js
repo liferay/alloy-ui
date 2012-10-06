@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('autocomplete-list-keys', function(Y) {
+YUI.add('autocomplete-list-keys', function (Y, NAME) {
 
 /**
 Mixes keyboard support into AutoCompleteList. By default, this module is not
@@ -190,4 +190,4 @@ ListKeys.prototype = {
 Y.Base.mix(Y.AutoCompleteList, [ListKeys]);
 
 
-}, '3.7.1pr1' ,{requires:['autocomplete-list', 'base-build']});
+}, '3.7.2', {"requires": ["autocomplete-list", "base-build"]});

@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('uploader', function(Y) {
+YUI.add('uploader', function (Y, NAME) {
 
 /**
  * Provides UI for selecting multiple files and functionality for 
@@ -56,5 +56,4 @@ YUI.add('uploader', function(Y) {
     Y.Uploader.TYPE = "none";
  }
 
-
-}, '3.7.1pr1' ,{requires:['uploader-flash', 'uploader-html5']});
+}, '3.7.2', {"requires": ["uploader-html5", "uploader-flash"]});

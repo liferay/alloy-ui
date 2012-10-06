@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('widget-position', function(Y) {
+YUI.add('widget-position', function (Y, NAME) {
 
 /**
  * Provides basic XY positioning support for Widgets, though an extension
@@ -279,4 +279,4 @@ YUI.add('widget-position', function(Y) {
     Y.WidgetPosition = Position;
 
 
-}, '3.7.1pr1' ,{requires:['base-build', 'node-screen', 'widget']});
+}, '3.7.2', {"requires": ["base-build", "node-screen", "widget"]});

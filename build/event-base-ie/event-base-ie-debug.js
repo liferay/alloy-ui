@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
 (function() {
 
@@ -45,7 +45,7 @@ if (docElement.doScroll && !GLOBAL_ENV._ieready) {
 }
 
 })();
-YUI.add('event-base-ie', function(Y) {
+YUI.add('event-base-ie', function (Y, NAME) {
 
 /*
  * Custom event engine, DOM event listener abstraction layer, synthetic DOM
@@ -307,4 +307,4 @@ if (imp && (!imp.hasFeature('Events', '2.0'))) {
 }
 
 
-}, '3.7.1pr1' ,{after:['event-base'], requires:['node-base']});
+}, '3.7.2', {"requires": ["node-base"]});

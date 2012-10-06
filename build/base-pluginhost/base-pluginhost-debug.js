@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('base-pluginhost', function(Y) {
+YUI.add('base-pluginhost', function (Y, NAME) {
 
     /**
      * The base-pluginhost submodule adds Plugin support to Base, by augmenting Base with 
@@ -40,4 +40,4 @@ YUI.add('base-pluginhost', function(Y) {
     Base.unplug = PluginHost.unplug;
 
 
-}, '3.7.1pr1' ,{requires:['base-base', 'pluginhost']});
+}, '3.7.2', {"requires": ["base-base", "pluginhost"]});

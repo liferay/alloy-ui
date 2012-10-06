@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add("anim-node-plugin",function(b){var a=function(c){c=(c)?b.merge(c):{};c.node=c.host;a.superclass.constructor.apply(this,arguments);};a.NAME="nodefx";a.NS="fx";b.extend(a,b.Anim);b.namespace("Plugin");b.Plugin.NodeFX=a;},"3.7.1pr1",{requires:["node-pluginhost","anim-base"]});
+YUI.add("anim-node-plugin",function(e,t){var n=function(t){t=t?e.merge(t):{},t.node=t.host,n.superclass.constructor.apply(this,arguments)};n.NAME="nodefx",n.NS="fx",e.extend(n,e.Anim),e.namespace("Plugin"),e.Plugin.NodeFX=n},"3.7.2",{requires:["node-pluginhost","anim-base"]});

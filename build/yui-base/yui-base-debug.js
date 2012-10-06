@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
 /**
  * The YUI module contains the components required for building the YUI seed
@@ -160,7 +160,7 @@ properties.
 (function() {
 
     var proto, prop,
-        VERSION = '3.7.1pr1',
+        VERSION = '3.7.2',
         PERIOD = '.',
         BASE = 'http://yui.yahooapis.com/',
         /*
@@ -334,7 +334,7 @@ proto = {
 
         if (!Env) {
             Y.Env = {
-                core: ['get','features','intl-base','yui-log','yui-later'],
+                core: ['get', 'features', 'intl-base', 'yui-log', 'yui-later'],
                 loaderExtras: ['loader-rollup', 'loader-yui3'],
                 mods: {}, // flat module map
                 versions: {}, // version module map
@@ -397,7 +397,7 @@ proto = {
                         path = {
                             filter: filter,
                             path: path
-                        }
+                        };
                     }
                     return path;
                 },
@@ -554,12 +554,12 @@ proto = {
 
 /**
 Registers a module with the YUI global.  The easiest way to create a
-first-class YUI module is to use the YUI component build tool.
+first-class YUI module is to use the YUI component 
+build tool <a href="http://yui.github.com/shifter/">Shifter</a>.
 
-http://yuilibrary.com/projects/builder
-
-The build system will produce the `YUI.add` wrapper for you module, along
+The build system will produce the `YUI.add` wrapper for your module, along
 with any configuration info required for the module.
+
 @method add
 @param name {String} module name.
 @param fn {Function} entry point into the module that is used to bind module to the YUI instance.
@@ -1973,7 +1973,7 @@ Or you can delay until a node is available (with `available` or `contentready`):
     
 
 */
-YUI.add('yui-base', function(Y) {
+YUI.add('yui-base', function (Y, NAME) {
 
 /*
  * YUI stub
@@ -2774,13 +2774,20 @@ use `clone()`.
 @return {Object} A new merged object.
 **/
 Y.merge = function () {
-    var args   = arguments,
-        i      = 0,
-        len    = args.length,
-        result = {};
+    var i      = 0,
+        len    = arguments.length,
+        result = {},
+        key,
+        obj;
 
     for (; i < len; ++i) {
-        Y.mix(result, args[i], true);
+        obj = arguments[i];
+
+        for (key in obj) {
+            if (hasOwn.call(obj, key)) {
+                result[key] = obj[key];
+            }
+        }
     }
 
     return result;
@@ -3837,8 +3844,8 @@ YUI.Env.aliases = {
 };
 
 
-}, '3.7.1pr1' );
-YUI.add('get', function(Y) {
+}, '3.7.2', {"use": ["get", "features", "intl-base", "yui-log", "yui-later"]});
+YUI.add('get', function (Y, NAME) {
 
 /*jslint boss:true, expr:true, laxbreak: true */
 
@@ -5105,8 +5112,8 @@ Transaction.prototype = {
 };
 
 
-}, '3.7.1pr1' ,{requires:['yui-base']});
-YUI.add('features', function(Y) {
+}, '3.7.2', {"requires": ["yui-base"]});
+YUI.add('features', function (Y, NAME) {
 
 var feature_tests = {};
 
@@ -5439,9 +5446,8 @@ add('load', '17', {
     "ua": "ie"
 });
 
-
-}, '3.7.1pr1' ,{requires:['yui-base']});
-YUI.add('intl-base', function(Y) {
+}, '3.7.2', {"requires": ["yui-base"]});
+YUI.add('intl-base', function (Y, NAME) {
 
 /**
  * The Intl utility provides a central location for managing sets of
@@ -5528,8 +5534,8 @@ Y.mix(Y.namespace('Intl'), {
 });
 
 
-}, '3.7.1pr1' ,{requires:['yui-base']});
-YUI.add('yui-log', function(Y) {
+}, '3.7.2', {"requires": ["yui-base"]});
+YUI.add('yui-log', function (Y, NAME) {
 
 /**
  * Provides console log capability and exposes a custom event for
@@ -5638,8 +5644,8 @@ INSTANCE.message = function() {
 };
 
 
-}, '3.7.1pr1' ,{requires:['yui-base']});
-YUI.add('yui-later', function(Y) {
+}, '3.7.2', {"requires": ["yui-base"]});
+YUI.add('yui-later', function (Y, NAME) {
 
 /**
  * Provides a setTimeout/setInterval wrapper. This module is a `core` YUI module, <a href="../classes/YUI.html#method_later">it's documentation is located under the YUI class</a>.
@@ -5715,8 +5721,5 @@ Y.Lang.later = Y.later;
 
 
 
-}, '3.7.1pr1' ,{requires:['yui-base']});
-
-
-YUI.add('yui', function(Y){}, '3.7.1pr1' ,{use:['yui-base','get','features','intl-base','yui-log','yui-later']});
-
+}, '3.7.2', {"requires": ["yui-base"]});
+YUI.add('yui', function (Y, NAME) {}, '3.7.2', {"use": ["get", "features", "intl-base", "yui-log", "yui-later"]});

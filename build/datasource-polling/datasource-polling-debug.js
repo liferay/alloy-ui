@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('datasource-polling', function(Y) {
+YUI.add('datasource-polling', function (Y, NAME) {
 
 /**
  * Extends DataSource with polling functionality.
@@ -97,4 +97,4 @@ Pollable.prototype = {
 Y.augment(Y.DataSource.Local, Pollable);
 
 
-}, '3.7.1pr1' ,{requires:['datasource-local']});
+}, '3.7.2', {"requires": ["datasource-local"]});

@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('widget-autohide', function(Y) {
+YUI.add('widget-autohide', function (Y, NAME) {
 
 /**
  * A widget-level extension that provides ability to hide widget when
@@ -240,4 +240,4 @@ WidgetAutohide.prototype = {
 Y.WidgetAutohide = WidgetAutohide;
 
 
-}, '3.7.1pr1' ,{requires:['base-build','widget','event-outside','event-key']});
+}, '3.7.2', {"requires": ["base-build", "event-key", "event-outside", "widget"]});

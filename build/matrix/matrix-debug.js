@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('matrix', function(Y) {
+YUI.add('matrix', function (Y, NAME) {
 
 var MatrixUtil = {
         /**
@@ -681,29 +681,13 @@ Matrix.prototype = {
      */
     toCSSText: function() {
         var matrix = this,
-            dx = matrix.dx,
-            dy = matrix.dy,
-            text = 'matrix(';
-
-
-        if (Y.UA.gecko) { // requires unit
-            if (!isNaN(dx)) {
-                dx += 'px';
-            }
-            if (!isNaN(dy)) {
-                dy += 'px';
-            }
-        }
-
-        text +=     matrix.a + ',' + 
+            text = 'matrix(' +
+                    matrix.a + ',' + 
                     matrix.b + ',' + 
                     matrix.c + ',' + 
                     matrix.d + ',' + 
-                    dx + ',' +
-                    dy;
-
-        text += ')';
-
+                    matrix.dx + ',' +
+                    matrix.dy + ')';
         return text;
     },
 
@@ -945,4 +929,4 @@ Matrix.prototype = {
 Y.Matrix = Matrix;
 
 
-}, '3.7.1pr1' ,{requires:['yui-base']});
+}, '3.7.2', {"requires": ["yui-base"]});

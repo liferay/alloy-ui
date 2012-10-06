@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add("scrollview-list",function(a,k){var b=a.ClassNameManager.getClassName,d="scrollview",c=b(d,"list"),g=b(d,"item"),h="contentBox",e="rendered",i="renderUI",j="host";function f(){f.superclass.constructor.apply(this,arguments);}f.NAME="pluginList";f.NS="list";f.ATTRS={isAttached:{value:false,validator:a.Lang.isBoolean}};a.namespace("Plugin").ScrollViewList=a.extend(f,a.Plugin.Base,{initializer:function(){this._host=this.get(j);this.afterHostEvent("render",this._addClassesToList);},_addClassesToList:function(){if(!this.get("isAttached")){var m=this._host.get(h),n,l;if(m.hasChildNodes()){n=m.all("> ul");l=m.all("> ul > li");n.each(function(o){o.addClass(c);});l.each(function(o){o.addClass(g);});this.set("isAttached",true);this._host.syncUI();}}}});},"3.7.1pr1",{"requires":["plugin","classnamemanager"],"skinnable":true});
+YUI.add("scrollview-list",function(e,t){function l(){l.superclass.constructor.apply(this,arguments)}var n=e.ClassNameManager.getClassName,r="scrollview",i=n(r,"list"),s=n(r,"item"),o="contentBox",u="rendered",a="renderUI",f="host";l.NAME="pluginList",l.NS="list",l.ATTRS={isAttached:{value:!1,validator:e.Lang.isBoolean}},e.namespace("Plugin").ScrollViewList=e.extend(l,e.Plugin.Base,{initializer:function(){this._host=this.get(f),this.afterHostEvent("render",this._addClassesToList)},_addClassesToList:function(){if(!this.get("isAttached")){var e=this._host.get(o),t,n;e.hasChildNodes()&&(t=e.all("> ul"),n=e.all("> ul > li"),t.each(function(e){e.addClass(i)}),n.each(function(e){e.addClass(s)}),this.set("isAttached",!0),this._host.syncUI())}}})},"3.7.2",{requires:["plugin","classnamemanager"],skinnable:!0});

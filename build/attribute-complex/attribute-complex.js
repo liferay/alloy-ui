@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('attribute-complex', function(Y) {
+YUI.add('attribute-complex', function (Y, NAME) {
 
     /**
      * Adds support for attribute providers to handle complex attributes in the constructor
@@ -137,4 +137,4 @@ YUI.add('attribute-complex', function(Y) {
     Y.AttributeComplex = Y.Attribute.Complex;
 
 
-}, '3.7.1pr1' ,{requires:['attribute-base']});
+}, '3.7.2', {"requires": ["attribute-base"]});

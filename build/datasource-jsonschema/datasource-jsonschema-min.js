@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add("datasource-jsonschema",function(b){var a=function(){a.superclass.constructor.apply(this,arguments);};b.mix(a,{NS:"schema",NAME:"dataSourceJSONSchema",ATTRS:{schema:{}}});b.extend(a,b.Plugin.Base,{initializer:function(c){this.doBefore("_defDataFn",this._beforeDefDataFn);},_beforeDefDataFn:function(g){var d=g.data&&(g.data.responseText||g.data),c=this.get("schema"),f=g.details[0];f.response=b.DataSchema.JSON.apply.call(this,c,d)||{meta:{},results:d};this.get("host").fire("response",f);return new b.Do.Halt("DataSourceJSONSchema plugin halted _defDataFn");}});b.namespace("Plugin").DataSourceJSONSchema=a;},"3.7.1pr1",{requires:["datasource-local","plugin","dataschema-json"]});
+YUI.add("datasource-jsonschema",function(e,t){var n=function(){n.superclass.constructor.apply(this,arguments)};e.mix(n,{NS:"schema",NAME:"dataSourceJSONSchema",ATTRS:{schema:{}}}),e.extend(n,e.Plugin.Base,{initializer:function(e){this.doBefore("_defDataFn",this._beforeDefDataFn)},_beforeDefDataFn:function(t){var n=t.data&&(t.data.responseText||t.data),r=this.get("schema"),i=t.details[0];return i.response=e.DataSchema.JSON.apply.call(this,r,n)||{meta:{},results:n},this.get("host").fire("response",i),new e.Do.Halt("DataSourceJSONSchema plugin halted _defDataFn")}}),e.namespace("Plugin").DataSourceJSONSchema=n},"3.7.2",{requires:["datasource-local","plugin","dataschema-json"]});

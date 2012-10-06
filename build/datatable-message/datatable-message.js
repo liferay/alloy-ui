@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('datatable-message', function(Y) {
+YUI.add('datatable-message', function (Y, NAME) {
 
 /**
 Adds support for a message container to appear in the table.  This can be used
@@ -294,4 +294,4 @@ if (Y.Lang.isFunction(Y.DataTable)) {
 }
 
 
-}, '3.7.1pr1' ,{lang:['en'], requires:['datatable-base'], skinnable:true});
+}, '3.7.2', {"requires": ["datatable-base"], "lang": ["en"], "skinnable": true});

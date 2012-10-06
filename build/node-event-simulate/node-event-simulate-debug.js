@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('node-event-simulate', function(Y) {
+YUI.add('node-event-simulate', function (Y, NAME) {
 
 /**
  * Adds functionality to simulate events.
@@ -193,4 +193,4 @@ Y.Node.prototype.simulateGesture = function (name, options, cb) {
 };
 
 
-}, '3.7.1pr1' ,{requires:['node-base', 'event-simulate']});
+}, '3.7.2', {"requires": ["node-base", "event-simulate", "gesture-simulate"]});

@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('dataschema-base', function(Y) {
+YUI.add('dataschema-base', function (Y, NAME) {
 
 /**
  * The DataSchema utility provides a common configurable interface for widgets to
@@ -70,4 +70,4 @@ Y.namespace("DataSchema").Base = SchemaBase;
 Y.namespace("Parsers");
 
 
-}, '3.7.1pr1' ,{requires:['base']});
+}, '3.7.2', {"requires": ["base"]});

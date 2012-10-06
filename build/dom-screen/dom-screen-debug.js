@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
-YUI.add('dom-screen', function(Y) {
+YUI.add('dom-screen', function (Y, NAME) {
 
 (function(Y) {
 
@@ -615,4 +615,4 @@ Y.mix(DOM, {
 })(Y);
 
 
-}, '3.7.1pr1' ,{requires:['dom-base', 'dom-style']});
+}, '3.7.2', {"requires": ["dom-base", "dom-style"]});

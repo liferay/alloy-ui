@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
 YUI.add('test', function (Y, NAME) {
 
@@ -26,7 +26,7 @@ if (YUI.YUITest) {
 
     //Make this global for back compat
     YUITest = {
-        version: "3.7.1pr1",
+        version: "3.7.2",
         guid: function(pre) {
             return Y.guid(pre);
         }
@@ -3400,7 +3400,7 @@ YUITest.Results = function(name){
      * @property duration
      */
     this.duration = 0;
-}
+};
 
 /**
  * Includes results from another results object into this one.
@@ -3414,7 +3414,8 @@ YUITest.Results.prototype.include = function(results){
     this.ignored += results.ignored;
     this.total += results.total;
     this.errors += results.errors;
-};/**
+};
+/**
  * ShouldError is subclass of Error that is thrown whenever
  * a test is expected to throw an error but doesn't.
  *
@@ -3690,7 +3691,7 @@ if (!YUI.YUITest) {
                 break;
                 
             case this.COMPLETE_EVENT:
-                message = Y.substitute("Testing completed at " +
+                message = Y.Lang.sub("Testing completed at " +
                     (new Date()).toString() + ".\n" +
                     "Passed:{passed} Failed:{failed} " +
                     "Total:{total} ({ignored} ignored)",
@@ -3719,7 +3720,7 @@ if (!YUI.YUITest) {
                 break;
                 
             case this.TEST_SUITE_COMPLETE_EVENT:
-                message = Y.substitute("Test suite \"" +
+                message = Y.Lang.sub("Test suite \"" +
                     event.testSuite.name + "\" completed" + ".\n" +
                     "Passed:{passed} Failed:{failed} " +
                     "Total:{total} ({ignored} ignored)",
@@ -3733,7 +3734,7 @@ if (!YUI.YUITest) {
                 break;
                 
             case this.TEST_CASE_COMPLETE_EVENT:
-                message = Y.substitute("Test case \"" +
+                message = Y.Lang.sub("Test case \"" +
                     event.testCase.name + "\" completed.\n" +
                     "Passed:{passed} Failed:{failed} " +
                     "Total:{total} ({ignored} ignored)",
@@ -3748,7 +3749,7 @@ if (!YUI.YUITest) {
         if (Y.Test.Runner._log) {
             Y.log(message, messageType, "TestRunner");
         }
-    }
+    };
 
     var i, name;
 
@@ -3762,4 +3763,4 @@ if (!YUI.YUITest) {
 } //End if for YUI.YUITest
 
 
-}, '3.7.1pr1', {"requires": ["event-simulate", "event-custom", "substitute", "json-stringify"]});
+}, '3.7.2', {"requires": ["event-simulate", "event-custom", "json-stringify"]});

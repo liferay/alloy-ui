@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.1pr1
-build: 3.7.1pr1
+version: 3.7.2
+build: 3.7.2
 */
 YUI.add('resize-constrain', function (Y, NAME) {
 
@@ -459,4 +459,4 @@ Y.namespace('Plugin');
 Y.Plugin.ResizeConstrained = ResizeConstrained;
 
 
-}, '3.7.1pr1', {"requires": ["plugin", "resize-base"]});
+}, '3.7.2', {"requires": ["plugin", "resize-base"]});
