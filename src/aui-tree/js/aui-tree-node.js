@@ -71,13 +71,13 @@ var Lang = A.Lang,
 	CSS_TREE_NODE_OVER = getCN(TREE, NODE, OVER),
 	CSS_TREE_NODE_SELECTED = getCN(TREE, NODE, SELECTED),
 
-	HIT_AREA_TPL = '<div class="'+CSS_TREE_HITAREA+'"></div>',
-	ICON_TPL = '<div class="'+CSS_TREE_ICON+'"></div>',
-	LABEL_TPL = '<div class="'+CSS_TREE_LABEL+'"></div>',
+	HIT_AREA_TPL = '<div class="' + CSS_TREE_HITAREA + '"></div>',
+	ICON_TPL = '<div class="' + CSS_TREE_ICON + '"></div>',
+	LABEL_TPL = '<div class="' + CSS_TREE_LABEL + '"></div>',
 	NODE_CONTAINER_TPL = '<ul></ul>',
 
-	NODE_BOUNDING_TEMPLATE = '<li class="'+CSS_TREE_NODE+'"></li>',
-	NODE_CONTENT_TEMPLATE = '<div class="'+concat(CSS_HELPER_CLEARFIX, CSS_TREE_NODE_CONTENT)+'"></div>';
+	NODE_BOUNDING_TEMPLATE = '<li class="' + CSS_TREE_NODE + '"></li>',
+	NODE_CONTENT_TEMPLATE = '<div class="' + concat(CSS_HELPER_CLEARFIX, CSS_TREE_NODE_CONTENT) + '"></div>';
 
 /**
  * A base class for TreeNode, providing:
@@ -1107,8 +1107,8 @@ var	CHECKBOX = 'checkbox',
 	CSS_TREE_NODE_CHECKBOX_CONTAINER = getCN(TREE, NODE, CHECKBOX, CONTAINER),
 	CSS_TREE_NODE_CHECKED = getCN(TREE, NODE, CHECKED),
 
-	CHECKBOX_CONTAINER_TPL = '<div class="'+CSS_TREE_NODE_CHECKBOX_CONTAINER+'"></div>',
-	CHECKBOX_TPL = '<input class="'+CSS_TREE_NODE_CHECKBOX+'" type="checkbox" />';
+	CHECKBOX_CONTAINER_TPL = '<div class="' + CSS_TREE_NODE_CHECKBOX_CONTAINER + '"></div>',
+	CHECKBOX_TPL = '<input class="' + CSS_TREE_NODE_CHECKBOX + '" type="checkbox" />';
 
 /**
  * <p><img src="assets/images/aui-tree-nod-check/main.png"/></p>
@@ -1196,9 +1196,19 @@ var TreeNodeCheck = A.Component.create(
 			checkEl: {
 				setter: A.one,
 				valueFn: function() {
-					var checkName = this.get(CHECK_NAME);
+					var instance = this;
 
-					return A.Node.create(CHECKBOX_TPL).attr(NAME, checkName);
+					var checkName = instance.get(CHECK_NAME);
+					var id = instance.get(ID);
+
+					var checkBoxId = id + 'Checkbox';
+
+					var attributes = {
+						ID: checkBoxId,
+						NAME: checkName
+					};
+
+					return A.Node.create(CHECKBOX_TPL).attr(attributes);
 				}
 			}
 		},
@@ -1246,8 +1256,8 @@ var TreeNodeCheck = A.Component.create(
 
 				instance.after('checkedChange', A.bind(instance._afterCheckedChange, instance));
 
-				contentBox.delegate('click', A.bind(instance.toggleCheck, instance), DOT+CSS_TREE_NODE_CHECKBOX_CONTAINER);
-				contentBox.delegate('click', A.bind(instance.toggleCheck, instance), DOT+CSS_TREE_LABEL);
+				contentBox.delegate('click', A.bind(instance.toggleCheck, instance), DOT + CSS_TREE_NODE_CHECKBOX_CONTAINER);
+				contentBox.delegate('click', A.bind(instance.toggleCheck, instance), DOT + CSS_TREE_LABEL);
 
 				// cancel dblclick because of the check
 				labelEl.swallowEvent('dblclick');
