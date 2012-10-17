@@ -75,7 +75,6 @@ var SchedulerEventRecorder = A.Component.create({
 		},
 
 		content: {
-			value: _EMPTY_STR
 		},
 
 		duration: {
@@ -261,14 +260,28 @@ var SchedulerEventRecorder = A.Component.create({
 		},
 
 		_handleSaveEvent: function(event) {
-			var instance = this;
+			var instance = this,
+				schedulerEvent = instance.get(EVENT),
+				eventName = schedulerEvent ? EV_SCHEDULER_EVENT_RECORDER_EDIT : EV_SCHEDULER_EVENT_RECORDER_SAVE,
+				options = {
+					silent: !schedulerEvent
+				},
+				values = instance.serializeForm();
 
-			instance.fire(
-				instance.get(EVENT) ? EV_SCHEDULER_EVENT_RECORDER_EDIT : EV_SCHEDULER_EVENT_RECORDER_SAVE,
-				{
-					newSchedulerEvent: instance.getEventCopy()
-				}
-			);
+			if (!schedulerEvent) {
+				schedulerEvent = instance.clone();
+			}
+
+			schedulerEvent.set(SCHEDULER, instance.get(SCHEDULER), { silent: true });
+
+			schedulerEvent.setAttrs({
+				content: values[CONTENT]
+			},
+			options);
+
+			instance.fire(eventName, {
+				newSchedulerEvent: schedulerEvent
+			});
 
 			event.preventDefault();
 		},
@@ -278,7 +291,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var evt = event.currentTarget.getData(SCHEDULER_EVENT);
 
 			if (evt) {
-				instance.set(EVENT, evt);
+				instance.set(EVENT, evt, { silent: true });
 				instance.showOverlay([event.pageX, event.pageY]);
 
 				instance.get(NODE).remove();
@@ -301,7 +314,7 @@ var SchedulerEventRecorder = A.Component.create({
 				}
 			}
 			else {
-				instance.set(EVENT, null);
+				instance.set(EVENT, null, { silent: true });
 
 				instance.get(NODE).remove();
 			}
@@ -333,30 +346,6 @@ var SchedulerEventRecorder = A.Component.create({
 			instance.formNode.on(SUBMIT, A.bind(instance._onSubmitForm, instance));
 		},
 
-		getEventCopy: function() {
-			var instance = this;
-			var newEvt = instance.get(EVENT);
-
-			if (!newEvt) {
-				newEvt = new (instance.get(EVENT_CLASS))({
-					allDay: instance.get(ALL_DAY),
-					endDate: instance.get(END_DATE),
-					scheduler: instance.get(SCHEDULER),
-					startDate: instance.get(START_DATE)
-				});
-
-				// copying propagatable attrs
-				newEvt.copyPropagateAttrValues(instance, { content: true });
-			}
-
-			var values = instance.serializeForm();
-
-			newEvt.set(CONTENT, values[CONTENT]);
-			newEvt.set(REPEATED, values[REPEATED]);
-
-			return newEvt;
-		},
-
 		getFormattedDate: function() {
 			var instance = this;
 			var dateFormat = instance.get(DATE_FORMAT);
@@ -371,16 +360,19 @@ var SchedulerEventRecorder = A.Component.create({
 		},
 
 		getTemplateData: function() {
-			var instance = this;
+			var instance = this,
+				strings = instance.get(STRINGS),
+				evt = instance.get(EVENT) || instance,
+				content = evt.get(CONTENT);
 
-			var strings = instance.get(STRINGS);
-			var evt = (instance.get(EVENT) || instance);
+			if (isUndefined(content)) {
+				content = strings['description-hint'];
+			}
 
 			return {
-				content: evt.get(CONTENT) || strings['description-hint'],
+				content: content,
 				date: instance.getFormattedDate(),
 				endDate: evt.get(END_DATE).getTime(),
-				repeated: evt.get(REPEATED),
 				startDate: evt.get(START_DATE).getTime()
 			};
 		},

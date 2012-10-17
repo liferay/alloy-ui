@@ -244,7 +244,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 			DateMath.copyHours(positionDate, draggingEvent.get(START_DATE));
 			draggingEvent.move(positionDate);
-			draggingEvent.set(VISIBLE, true);
+			draggingEvent.set(VISIBLE, true, { silent: true });
 
 			instance[ROWS_CONTAINER_NODE].removeClass(CSS_SVT_DRAGGING).unselectable();
 
@@ -278,7 +278,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 			instance.renderLasso(startPosition, instance._getDatePosition(endPositionDate));
 
-			draggingEvent.set(VISIBLE, false);
+			draggingEvent.set(VISIBLE, false, { silent: true });
 
 			instance._syncProxyNodeUI(draggingEvent);
 
@@ -342,9 +342,12 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 			var endDate = new Date(Math.max(startPositionDate, endPositionDate));
 			endDate.setHours(23, 59, 59);
 
-			recorder.set(ALL_DAY, true);
-			recorder.set(END_DATE, endDate);
-			recorder.set(START_DATE, startDate);
+			recorder.setAttrs({
+				allDay: true,
+				endDate: endDate,
+				startDate: startDate
+			},
+			{ silent: true });
 
 			recorder.showOverlay([event.pageX, event.pageY]);
 
