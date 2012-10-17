@@ -248,10 +248,6 @@ A.mix(SchedulerEventSupport.prototype, {
 				output.push(evt);
 			}
 			else if (isSchedulerCalendar(evt)) {
-				if (isScheduler(instance)) {
-					evt.set(SCHEDULER, instance);
-				}
-
 				// get events from the calendar
 				output = output.concat(
 					instance._normalizeEvents(evt.get(EVENTS))
@@ -264,8 +260,11 @@ A.mix(SchedulerEventSupport.prototype, {
 			}
 
 			if (isScheduler(instance)) {
-				evt.set(SCHEDULER, instance);
-				evt.set(EVENT_CLASS, instance.get(EVENT_CLASS));
+				evt.setAttrs({
+					eventClass: instance.get(EVENT_CLASS),
+					scheduler: instance
+				},
+				{ silent: true });
 			}
 		});
 
@@ -671,8 +670,11 @@ var SchedulerBase = A.Component.create({
 			var instance = this;
 
 			if (val) {
-				val.set(SCHEDULER, instance);
-				val.set(EVENT_CLASS, instance.get(EVENT_CLASS));
+				val.setAttrs({
+					scheduler: instance,
+					eventClass: instance.get(EVENT_CLASS)
+				},
+				{ silent: true });
 			}
 		},
 
@@ -682,8 +684,10 @@ var SchedulerBase = A.Component.create({
 
 			A.Array.each(val, function(view) {
 				if (isSchedulerView(view) && !view.get(RENDERED)) {
-					view.set(SCHEDULER, instance);
-					view.set(EVENT_CLASS, instance.get(EVENT_CLASS));
+					view.setAttrs({
+						scheduler: instance,
+						eventClass: instance.get(EVENT_CLASS)
+					});
 
 					views.push(view);
 

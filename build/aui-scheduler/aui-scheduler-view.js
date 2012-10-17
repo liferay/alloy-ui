@@ -96,7 +96,6 @@ var Lang = A.Lang,
 	HOST = 'host',
 	HOUR_HEIGHT = 'hourHeight',
 	ICON = 'icon',
-	ICON = 'icon',
 	ISO_TIME = 'isoTime',
 	LABEL = 'label',
 	LASSO = 'lasso',
@@ -1063,7 +1062,7 @@ var SchedulerDayView = A.Component.create({
 
 				DateMath.copyHours(startDate, placeholder.get(START_DATE));
 
-				placeholder.move(startDate);
+				placeholder.move(startDate, { silent: true });
 
 				instance.plotEvent(placeholder);
 			}
@@ -1088,10 +1087,10 @@ var SchedulerDayView = A.Component.create({
 						return;
 					}
 
-					placeholder.set(END_DATE, endDate);
+					placeholder.set(END_DATE, endDate, { silent: true });
 				}
 				else {
-					placeholder.move(DateMath.add(instance.draggingEventStartDate, DateMath.MINUTES, delta));
+					placeholder.move(DateMath.add(instance.draggingEventStartDate, DateMath.MINUTES, delta), { silent: true });
 				}
 
 				instance.plotEvent(placeholder);
@@ -1099,18 +1098,20 @@ var SchedulerDayView = A.Component.create({
 		},
 
 		_setupDragDrop: function() {
-			var instance = this;
+			var instance = this,
+				placeholder = instance[EVENT_PLACEHOLDER];
 
-			if (!instance[EVENT_PLACEHOLDER]) {
+			if (!placeholder) {
 				var scheduler = instance.get(SCHEDULER);
 
-				instance[EVENT_PLACEHOLDER] = new (instance.get(EVENT_CLASS))({
+				placeholder = new (instance.get(EVENT_CLASS))({
 					scheduler: scheduler
 				});
 
-				instance[EVENT_PLACEHOLDER].removeTarget(scheduler);
-				instance[EVENT_PLACEHOLDER].get(NODE).addClass(
-					CSS_SCHEDULER_EVENT_PROXY).hide();
+				placeholder.removeTarget(scheduler);
+				placeholder.get(NODE).addClass(CSS_SCHEDULER_EVENT_PROXY);
+				placeholder.set(VISIBLE, false, { silent: true });
+				instance[EVENT_PLACEHOLDER] = placeholder;
 			}
 
 			if (!instance.delegate) {
@@ -1175,8 +1176,8 @@ var SchedulerDayView = A.Component.create({
 			if (draggingEvent) {
 				var placeholder = instance[EVENT_PLACEHOLDER];
 
-				placeholder.set(VISIBLE, false);
-				draggingEvent.set(VISIBLE, true);
+				placeholder.set(VISIBLE, false, { silent: true });
+				draggingEvent.set(VISIBLE, true, { silent: true });
 				draggingEvent.copyDates(placeholder);
 
 				instance.get(SCHEDULER).syncEventsUI();
@@ -1193,11 +1194,11 @@ var SchedulerDayView = A.Component.create({
 			if (draggingEvent) {
 				var placeholder = instance[EVENT_PLACEHOLDER];
 
-				placeholder.copyPropagateAttrValues(draggingEvent);
+				placeholder.copyPropagateAttrValues(draggingEvent, null, { silent: true });
 
 				instance.plotEvent(placeholder);
 
-				draggingEvent.set(VISIBLE, false);
+				draggingEvent.set(VISIBLE, false, { silent: true });
 
 				instance.draggingEventStartDate = DateMath.clone(draggingEvent.get(START_DATE));
 				instance.draggingEventEndDate = DateMath.clone(draggingEvent.get(END_DATE));
@@ -1229,9 +1230,13 @@ var SchedulerDayView = A.Component.create({
 
 					var endDate = DateMath.add(startDate, DateMath.MINUTES, recorder.get(DURATION));
 
-					recorder.move(startDate);
-					recorder.set(ALL_DAY, false);
-					recorder.set(END_DATE, endDate);
+					recorder.move(startDate, { silent: true });
+
+					recorder.setAttrs({
+						allDay: false,
+						endDate: endDate
+					},
+					{ silent: true });
 
 					instance[CREATION_START_DATE] = startDate;
 
@@ -1290,10 +1295,10 @@ var SchedulerDayView = A.Component.create({
 					if (delta > 0) {
 						var newDelta = down ? Math.max(delta, recorder.get(DURATION)) : delta;
 
-						recorder.set(END_DATE, DateMath.add(creationStartDate, DateMath.MINUTES, newDelta));
+						recorder.set(END_DATE, DateMath.add(creationStartDate, DateMath.MINUTES, newDelta), { silent: true });
 					}
 					else {
-						recorder.set(START_DATE, DateMath.add(creationStartDate, DateMath.MINUTES, delta));
+						recorder.set(START_DATE, DateMath.add(creationStartDate, DateMath.MINUTES, delta), { silent: true });
 					}
 
 					instance.plotEvent(recorder);
@@ -1512,8 +1517,7 @@ var SchedulerWeekView = A.Component.create({
 });
 
 A.SchedulerWeekView = SchedulerWeekView;
-var CSS_ICON = getCN(ICON),
-	CSS_ICON_ARROWSTOP_LEFT = getCN(ICON, 'arrowstop-1-l'),
+var CSS_ICON_ARROWSTOP_LEFT = getCN(ICON, 'arrowstop-1-l'),
 	CSS_ICON_ARROWSTOP_RIGHT = getCN(ICON, 'arrowstop-1-r'),
 	CSS_SVT_COLGRID = getCN(SCHEDULER_VIEW, TABLE, COLGRID),
 	CSS_SVT_COLGRID_FIRST = getCN(SCHEDULER_VIEW, TABLE, COLGRID, FIRST),
@@ -2619,7 +2623,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 			DateMath.copyHours(positionDate, draggingEvent.get(START_DATE));
 			draggingEvent.move(positionDate);
-			draggingEvent.set(VISIBLE, true);
+			draggingEvent.set(VISIBLE, true, { silent: true });
 
 			instance[ROWS_CONTAINER_NODE].removeClass(CSS_SVT_DRAGGING).unselectable();
 
@@ -2653,7 +2657,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 			instance.renderLasso(startPosition, instance._getDatePosition(endPositionDate));
 
-			draggingEvent.set(VISIBLE, false);
+			draggingEvent.set(VISIBLE, false, { silent: true });
 
 			instance._syncProxyNodeUI(draggingEvent);
 
@@ -2717,9 +2721,12 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 			var endDate = new Date(Math.max(startPositionDate, endPositionDate));
 			endDate.setHours(23, 59, 59);
 
-			recorder.set(ALL_DAY, true);
-			recorder.set(END_DATE, endDate);
-			recorder.set(START_DATE, startDate);
+			recorder.setAttrs({
+				allDay: true,
+				endDate: endDate,
+				startDate: startDate
+			},
+			{ silent: true });
 
 			recorder.showOverlay([event.pageX, event.pageY]);
 

@@ -4,15 +4,15 @@
 .aui-scheduler-base-icon-next.yui3-button:hover,
 .aui-scheduler-base-icon-prev.yui3-button,
 .aui-scheduler-base-icon-prev.yui3-button:hover {
-	background-image: url(scheduler-arrows.png);
-	background-repeat:no-repeat;
-	background-position: 0 4px;
-	min-width: 30px;
-	height: 24px;
+  background-image: url(scheduler-arrows.png);
+  background-repeat: no-repeat;
+  background-position: 0 4px;
+  min-width: 30px;
+  height: 24px;
 }
 
 .aui-scheduler-base-icon-prev,
 .aui-scheduler-base-icon-prev.yui3-button,
 .aui-scheduler-base-icon-prev.yui3-button:hover {
-	background-position: 0 -13px;
+  background-position: 0 -13px;
 }

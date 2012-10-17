@@ -248,10 +248,6 @@ A.mix(SchedulerEventSupport.prototype, {
 				output.push(evt);
 			}
 			else if (isSchedulerCalendar(evt)) {
-				if (isScheduler(instance)) {
-					evt.set(SCHEDULER, instance);
-				}
-
 				// get events from the calendar
 				output = output.concat(
 					instance._normalizeEvents(evt.get(EVENTS))
@@ -264,8 +260,11 @@ A.mix(SchedulerEventSupport.prototype, {
 			}
 
 			if (isScheduler(instance)) {
-				evt.set(SCHEDULER, instance);
-				evt.set(EVENT_CLASS, instance.get(EVENT_CLASS));
+				evt.setAttrs({
+					eventClass: instance.get(EVENT_CLASS),
+					scheduler: instance
+				},
+				{ silent: true });
 			}
 		});
 
@@ -671,8 +670,11 @@ var SchedulerBase = A.Component.create({
 			var instance = this;
 
 			if (val) {
-				val.set(SCHEDULER, instance);
-				val.set(EVENT_CLASS, instance.get(EVENT_CLASS));
+				val.setAttrs({
+					scheduler: instance,
+					eventClass: instance.get(EVENT_CLASS)
+				},
+				{ silent: true });
 			}
 		},
 
@@ -682,8 +684,10 @@ var SchedulerBase = A.Component.create({
 
 			A.Array.each(val, function(view) {
 				if (isSchedulerView(view) && !view.get(RENDERED)) {
-					view.set(SCHEDULER, instance);
-					view.set(EVENT_CLASS, instance.get(EVENT_CLASS));
+					view.setAttrs({
+						scheduler: instance,
+						eventClass: instance.get(EVENT_CLASS)
+					});
 
 					views.push(view);
 
@@ -836,7 +840,6 @@ var Lang = A.Lang,
 	HORIZONTAL = 'horizontal',
 	HOST = 'host',
 	HOUR_HEIGHT = 'hourHeight',
-	ICON = 'icon',
 	ICON = 'icon',
 	ISO_TIME = 'isoTime',
 	LABEL = 'label',
@@ -1804,7 +1807,7 @@ var SchedulerDayView = A.Component.create({
 
 				DateMath.copyHours(startDate, placeholder.get(START_DATE));
 
-				placeholder.move(startDate);
+				placeholder.move(startDate, { silent: true });
 
 				instance.plotEvent(placeholder);
 			}
@@ -1829,10 +1832,10 @@ var SchedulerDayView = A.Component.create({
 						return;
 					}
 
-					placeholder.set(END_DATE, endDate);
+					placeholder.set(END_DATE, endDate, { silent: true });
 				}
 				else {
-					placeholder.move(DateMath.add(instance.draggingEventStartDate, DateMath.MINUTES, delta));
+					placeholder.move(DateMath.add(instance.draggingEventStartDate, DateMath.MINUTES, delta), { silent: true });
 				}
 
 				instance.plotEvent(placeholder);
@@ -1840,18 +1843,20 @@ var SchedulerDayView = A.Component.create({
 		},
 
 		_setupDragDrop: function() {
-			var instance = this;
+			var instance = this,
+				placeholder = instance[EVENT_PLACEHOLDER];
 
-			if (!instance[EVENT_PLACEHOLDER]) {
+			if (!placeholder) {
 				var scheduler = instance.get(SCHEDULER);
 
-				instance[EVENT_PLACEHOLDER] = new (instance.get(EVENT_CLASS))({
+				placeholder = new (instance.get(EVENT_CLASS))({
 					scheduler: scheduler
 				});
 
-				instance[EVENT_PLACEHOLDER].removeTarget(scheduler);
-				instance[EVENT_PLACEHOLDER].get(NODE).addClass(
-					CSS_SCHEDULER_EVENT_PROXY).hide();
+				placeholder.removeTarget(scheduler);
+				placeholder.get(NODE).addClass(CSS_SCHEDULER_EVENT_PROXY);
+				placeholder.set(VISIBLE, false, { silent: true });
+				instance[EVENT_PLACEHOLDER] = placeholder;
 			}
 
 			if (!instance.delegate) {
@@ -1916,8 +1921,8 @@ var SchedulerDayView = A.Component.create({
 			if (draggingEvent) {
 				var placeholder = instance[EVENT_PLACEHOLDER];
 
-				placeholder.set(VISIBLE, false);
-				draggingEvent.set(VISIBLE, true);
+				placeholder.set(VISIBLE, false, { silent: true });
+				draggingEvent.set(VISIBLE, true, { silent: true });
 				draggingEvent.copyDates(placeholder);
 
 				instance.get(SCHEDULER).syncEventsUI();
@@ -1934,11 +1939,11 @@ var SchedulerDayView = A.Component.create({
 			if (draggingEvent) {
 				var placeholder = instance[EVENT_PLACEHOLDER];
 
-				placeholder.copyPropagateAttrValues(draggingEvent);
+				placeholder.copyPropagateAttrValues(draggingEvent, null, { silent: true });
 
 				instance.plotEvent(placeholder);
 
-				draggingEvent.set(VISIBLE, false);
+				draggingEvent.set(VISIBLE, false, { silent: true });
 
 				instance.draggingEventStartDate = DateMath.clone(draggingEvent.get(START_DATE));
 				instance.draggingEventEndDate = DateMath.clone(draggingEvent.get(END_DATE));
@@ -1970,9 +1975,13 @@ var SchedulerDayView = A.Component.create({
 
 					var endDate = DateMath.add(startDate, DateMath.MINUTES, recorder.get(DURATION));
 
-					recorder.move(startDate);
-					recorder.set(ALL_DAY, false);
-					recorder.set(END_DATE, endDate);
+					recorder.move(startDate, { silent: true });
+
+					recorder.setAttrs({
+						allDay: false,
+						endDate: endDate
+					},
+					{ silent: true });
 
 					instance[CREATION_START_DATE] = startDate;
 
@@ -2031,10 +2040,10 @@ var SchedulerDayView = A.Component.create({
 					if (delta > 0) {
 						var newDelta = down ? Math.max(delta, recorder.get(DURATION)) : delta;
 
-						recorder.set(END_DATE, DateMath.add(creationStartDate, DateMath.MINUTES, newDelta));
+						recorder.set(END_DATE, DateMath.add(creationStartDate, DateMath.MINUTES, newDelta), { silent: true });
 					}
 					else {
-						recorder.set(START_DATE, DateMath.add(creationStartDate, DateMath.MINUTES, delta));
+						recorder.set(START_DATE, DateMath.add(creationStartDate, DateMath.MINUTES, delta), { silent: true });
 					}
 
 					instance.plotEvent(recorder);
@@ -2253,8 +2262,7 @@ var SchedulerWeekView = A.Component.create({
 });
 
 A.SchedulerWeekView = SchedulerWeekView;
-var CSS_ICON = getCN(ICON),
-	CSS_ICON_ARROWSTOP_LEFT = getCN(ICON, 'arrowstop-1-l'),
+var CSS_ICON_ARROWSTOP_LEFT = getCN(ICON, 'arrowstop-1-l'),
 	CSS_ICON_ARROWSTOP_RIGHT = getCN(ICON, 'arrowstop-1-r'),
 	CSS_SVT_COLGRID = getCN(SCHEDULER_VIEW, TABLE, COLGRID),
 	CSS_SVT_COLGRID_FIRST = getCN(SCHEDULER_VIEW, TABLE, COLGRID, FIRST),
@@ -3360,7 +3368,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 			DateMath.copyHours(positionDate, draggingEvent.get(START_DATE));
 			draggingEvent.move(positionDate);
-			draggingEvent.set(VISIBLE, true);
+			draggingEvent.set(VISIBLE, true, { silent: true });
 
 			instance[ROWS_CONTAINER_NODE].removeClass(CSS_SVT_DRAGGING).unselectable();
 
@@ -3394,7 +3402,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 			instance.renderLasso(startPosition, instance._getDatePosition(endPositionDate));
 
-			draggingEvent.set(VISIBLE, false);
+			draggingEvent.set(VISIBLE, false, { silent: true });
 
 			instance._syncProxyNodeUI(draggingEvent);
 
@@ -3458,9 +3466,12 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 			var endDate = new Date(Math.max(startPositionDate, endPositionDate));
 			endDate.setHours(23, 59, 59);
 
-			recorder.set(ALL_DAY, true);
-			recorder.set(END_DATE, endDate);
-			recorder.set(START_DATE, startDate);
+			recorder.setAttrs({
+				allDay: true,
+				endDate: endDate,
+				startDate: startDate
+			},
+			{ silent: true });
 
 			recorder.showOverlay([event.pageX, event.pageY]);
 
@@ -3536,6 +3547,7 @@ var Lang = A.Lang,
 	isObject = Lang.isObject,
 	isBoolean = Lang.isBoolean,
 	isNumber = Lang.isNumber,
+	isUndefined = Lang.isUndefined,
 
 	ColorUtil = A.ColorUtil,
 	DateMath = A.DataType.DateMath,
@@ -3662,7 +3674,6 @@ var SchedulerEvent = A.Component.create({
 		},
 
 		content: {
-			value: '(no title)',
 			validator: isString
 		},
 
@@ -3762,9 +3773,9 @@ var SchedulerEvent = A.Component.create({
 		}
 	},
 
-	EXTENDS: A.Base,
+	EXTENDS: A.Model,
 
-	PROPAGATE_ATTRS: [START_DATE, END_DATE, CONTENT, COLOR, COLOR_BRIGHTNESS_FACTOR, COLOR_SATURATION_FACTOR, BORDER_STYLE, BORDER_WIDTH, TITLE_DATE_FORMAT, VISIBLE, DISABLED],
+	PROPAGATE_ATTRS: [ALL_DAY, START_DATE, END_DATE, CONTENT, COLOR, COLOR_BRIGHTNESS_FACTOR, COLOR_SATURATION_FACTOR, BORDER_STYLE, BORDER_WIDTH, TITLE_DATE_FORMAT, VISIBLE, DISABLED],
 
 	prototype: {
 		EVENT_NODE_TEMPLATE: '<div class="' + CSS_SCHEDULER_EVENT + '">' +
@@ -3847,27 +3858,42 @@ var SchedulerEvent = A.Component.create({
 			instance.syncUI();
 		},
 
-		copyDates: function(evt) {
-			var instance = this;
+		clone: function() {
+			var instance = this,
+				cloned = new (instance.get(EVENT_CLASS))();
 
-			instance.set(END_DATE, DateMath.clone(evt.get(END_DATE)));
-			instance.set(START_DATE, DateMath.clone(evt.get(START_DATE)));
+			cloned.copyPropagateAttrValues(instance, null, { silent: true });
+
+			return cloned;
 		},
 
-		copyPropagateAttrValues: function(evt, dontCopyMap) {
+		copyDates: function(evt, options) {
 			var instance = this;
 
-			instance.copyDates(evt);
+			instance.setAttrs({
+				endDate: DateMath.clone(evt.get(END_DATE)),
+				startDate: DateMath.clone(evt.get(START_DATE))
+			},
+			options);
+		},
+
+		copyPropagateAttrValues: function(evt, dontCopyMap, options) {
+			var instance = this,
+				attrMap = {};
+
+			instance.copyDates(evt, options);
 
 			A.Array.each(instance.get(EVENT_CLASS).PROPAGATE_ATTRS, function(attrName) {
 				if ( !((dontCopyMap || {}).hasOwnProperty(attrName)) ) {
 					var value = evt.get(attrName);
 
 					if (!isObject(value)) {
-						instance.set(attrName, value);
+						attrMap[attrName] = value;
 					}
 				}
 			});
+
+			instance.setAttrs(attrMap, options);
 		},
 
 		getBorderColor: function() {
@@ -3981,12 +4007,15 @@ var SchedulerEvent = A.Component.create({
 			return DateMath.safeClearTime(instance.get(START_DATE));
 		},
 
-		move: function(date) {
+		move: function(date, options) {
 			var instance = this;
 			var duration = instance.getMinutesDuration();
 
-			instance.set(START_DATE, date);
-			instance.set(END_DATE, DateMath.add(DateMath.clone(date), DateMath.MINUTES, duration));
+			instance.setAttrs({
+				endDate: DateMath.add(DateMath.clone(date), DateMath.MINUTES, duration),
+				startDate: date
+			},
+			options);
 		},
 
 		setContent: function(content) {
@@ -4297,7 +4326,6 @@ var SchedulerEventRecorder = A.Component.create({
 		},
 
 		content: {
-			value: _EMPTY_STR
 		},
 
 		duration: {
@@ -4483,14 +4511,28 @@ var SchedulerEventRecorder = A.Component.create({
 		},
 
 		_handleSaveEvent: function(event) {
-			var instance = this;
+			var instance = this,
+				schedulerEvent = instance.get(EVENT),
+				eventName = schedulerEvent ? EV_SCHEDULER_EVENT_RECORDER_EDIT : EV_SCHEDULER_EVENT_RECORDER_SAVE,
+				options = {
+					silent: !schedulerEvent
+				},
+				values = instance.serializeForm();
 
-			instance.fire(
-				instance.get(EVENT) ? EV_SCHEDULER_EVENT_RECORDER_EDIT : EV_SCHEDULER_EVENT_RECORDER_SAVE,
-				{
-					newSchedulerEvent: instance.getEventCopy()
-				}
-			);
+			if (!schedulerEvent) {
+				schedulerEvent = instance.clone();
+			}
+
+			schedulerEvent.set(SCHEDULER, instance.get(SCHEDULER), { silent: true });
+
+			schedulerEvent.setAttrs({
+				content: values[CONTENT]
+			},
+			options);
+
+			instance.fire(eventName, {
+				newSchedulerEvent: schedulerEvent
+			});
 
 			event.preventDefault();
 		},
@@ -4500,7 +4542,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var evt = event.currentTarget.getData(SCHEDULER_EVENT);
 
 			if (evt) {
-				instance.set(EVENT, evt);
+				instance.set(EVENT, evt, { silent: true });
 				instance.showOverlay([event.pageX, event.pageY]);
 
 				instance.get(NODE).remove();
@@ -4523,7 +4565,7 @@ var SchedulerEventRecorder = A.Component.create({
 				}
 			}
 			else {
-				instance.set(EVENT, null);
+				instance.set(EVENT, null, { silent: true });
 
 				instance.get(NODE).remove();
 			}
@@ -4555,30 +4597,6 @@ var SchedulerEventRecorder = A.Component.create({
 			instance.formNode.on(SUBMIT, A.bind(instance._onSubmitForm, instance));
 		},
 
-		getEventCopy: function() {
-			var instance = this;
-			var newEvt = instance.get(EVENT);
-
-			if (!newEvt) {
-				newEvt = new (instance.get(EVENT_CLASS))({
-					allDay: instance.get(ALL_DAY),
-					endDate: instance.get(END_DATE),
-					scheduler: instance.get(SCHEDULER),
-					startDate: instance.get(START_DATE)
-				});
-
-				// copying propagatable attrs
-				newEvt.copyPropagateAttrValues(instance, { content: true });
-			}
-
-			var values = instance.serializeForm();
-
-			newEvt.set(CONTENT, values[CONTENT]);
-			newEvt.set(REPEATED, values[REPEATED]);
-
-			return newEvt;
-		},
-
 		getFormattedDate: function() {
 			var instance = this;
 			var dateFormat = instance.get(DATE_FORMAT);
@@ -4593,16 +4611,19 @@ var SchedulerEventRecorder = A.Component.create({
 		},
 
 		getTemplateData: function() {
-			var instance = this;
+			var instance = this,
+				strings = instance.get(STRINGS),
+				evt = instance.get(EVENT) || instance,
+				content = evt.get(CONTENT);
 
-			var strings = instance.get(STRINGS);
-			var evt = (instance.get(EVENT) || instance);
+			if (isUndefined(content)) {
+				content = strings['description-hint'];
+			}
 
 			return {
-				content: evt.get(CONTENT) || strings['description-hint'],
+				content: content,
 				date: instance.getFormattedDate(),
 				endDate: evt.get(END_DATE).getTime(),
-				repeated: evt.get(REPEATED),
 				startDate: evt.get(START_DATE).getTime()
 			};
 		},
@@ -4678,7 +4699,7 @@ var SchedulerEventRecorder = A.Component.create({
 
 A.SchedulerEventRecorder = SchedulerEventRecorder;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-color-util','aui-datatype','aui-template','aui-toolbar','io-form','querystring','overlay']});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-color-util','aui-datatype','aui-template','aui-toolbar','io-form','model','querystring','overlay']});
 AUI.add('aui-scheduler-calendar', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -4748,16 +4769,16 @@ var SchedulerCalendar = A.Component.create({
 			instance.after('visibleChange', instance._afterVisibleChange);
 			instance.on('eventsChange', instance._onEventsChange);
 
+			instance._uiSetEvents(
+				instance.get(EVENTS)
+			);
+
 			instance._uiSetColor(
 				instance.get(COLOR)
 			);
 
 			instance._uiSetDisabled(
 				instance.get(DISABLED)
-			);
-
-			instance._uiSetEvents(
-				instance.get(EVENTS)
 			);
 
 			instance._uiSetVisible(
@@ -4798,11 +4819,11 @@ var SchedulerCalendar = A.Component.create({
 			}
 		},
 
-		_propagateAttr: function(attrName, attrValue) {
+		_propagateAttrs: function(attrMap, options) {
 			var instance = this;
 
 			instance.eachEvent(function(evt) {
-				evt.set(attrName, attrValue);
+				evt.setAttrs(attrMap, options);
 			});
 		},
 
@@ -4822,22 +4843,28 @@ var SchedulerCalendar = A.Component.create({
 		_uiSetColor: function(val) {
 			var instance = this;
 
-			instance._propagateAttr(COLOR, instance.get(COLOR));
+			instance._propagateAttrs({
+				color: instance.get(COLOR)
+			});
 		},
 
 		_uiSetDisabled: function(val) {
 			var instance = this;
 
-			instance._propagateAttr(DISABLED, val);
+			instance._propagateAttrs({
+				disabled: val
+			});
 		},
 
 		_uiSetEvents: function(val) {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
 
-			instance._propagateAttr(COLOR, instance.get(COLOR));
-			instance._propagateAttr(DISABLED, instance.get(DISABLED));
-			instance._propagateAttr(VISIBLE, instance.get(VISIBLE));
+			instance._propagateAttrs({
+				color: instance.get(COLOR),
+				disabled: instance.get(DISABLED),
+				visible: instance.get(VISIBLE)
+			}, { silent: true });
 
 			if (scheduler) {
 				scheduler.addEvents(val);
@@ -4848,15 +4875,17 @@ var SchedulerCalendar = A.Component.create({
 		_uiSetVisible: function(val) {
 			var instance = this;
 
-			instance._propagateAttr(VISIBLE, val);
+			instance._propagateAttrs({
+				visible: val
+			});
 		}
 	}
 });
 
 A.SchedulerCalendar = SchedulerCalendar;
 
-}, '@VERSION@' ,{requires:['aui-scheduler-event'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-scheduler-event']});
 
 
-AUI.add('aui-scheduler', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-scheduler-base','aui-scheduler-view','aui-scheduler-event','aui-scheduler-calendar']});
+AUI.add('aui-scheduler', function(A){}, '@VERSION@' ,{use:['aui-scheduler-base','aui-scheduler-view','aui-scheduler-event','aui-scheduler-calendar'], skinnable:true});
 

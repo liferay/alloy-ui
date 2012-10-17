@@ -1,74 +1,90 @@
 .aui-scheduler-base-content {
-    border-color: #ddd;
-    border-style: solid;
-    border-width: 0 1px 1px;
-    overflow: hidden;
+  border-color: #ddd;
+  border-style: solid;
+  border-width: 0 1px 1px;
+  overflow: hidden;
 }
 
 .aui-scheduler-base-nav {
-    width: 70px;
+  width: 70px;
 }
 
 .aui-scheduler-base-nav .aui-scheduler-base-icon-next,
-.aui-scheduler-base-nav .aui-scheduler-base-icon-prev { float: left }
-
-.aui-scheduler-base-nav .aui-scheduler-base-icon-next { margin-left: 6px }
-
-.aui-scheduler-base-hd {
-    border-color: #DDD;
-    border-width: 1px 0 1px 0;
-    border-style: solid;
-    color: #1D1D1D;
-    padding: 6px 0 3px 0;
+.aui-scheduler-base-nav .aui-scheduler-base-icon-prev {
+  float: left;
 }
 
-.aui-scheduler-base-controls { float: left }
+.aui-scheduler-base-nav .aui-scheduler-base-icon-next {
+  margin-left: 6px;
+}
 
-.aui-scheduler-base-views { float: right }
+.aui-scheduler-base-hd {
+  border-color: #DDD;
+  border-width: 1px 0 1px 0;
+  border-style: solid;
+  color: #1D1D1D;
+  padding: 6px 0 3px 0;
+}
 
 .aui-scheduler-base-controls {
-    line-height: 27px;
-    width: 350px;
+  float: left;
 }
 
 .aui-scheduler-base-views {
-    line-height: 27px;
-    width: 300px;
-    text-align: right;
+  float: right;
 }
 
-.aui-scheduler-base-controls .aui-scheduler-base-view-date { margin-left: 4px }
+.aui-scheduler-base-controls {
+  line-height: 27px;
+  width: 350px;
+}
+
+.aui-scheduler-base-views {
+  line-height: 27px;
+  width: 300px;
+  text-align: right;
+}
+
+.aui-scheduler-base-controls .aui-scheduler-base-view-date {
+  margin-left: 4px;
+}
 
 .aui-scheduler-base-controls .aui-scheduler-base-view-date,
 .aui-scheduler-base-controls .aui-scheduler-base-nav,
-.aui-scheduler-base-controls .aui-scheduler-base-today { float: left }
-
 .aui-scheduler-base-controls .aui-scheduler-base-today {
-    color: #1D1D1D;
-    margin: 0 6px 0 10px;
+  float: left;
 }
 
-.aui-scheduler-base-controls .aui-scheduler-base-current-date { font-weight: bold }
+.aui-scheduler-base-controls .aui-scheduler-base-today {
+  color: #1D1D1D;
+  margin: 0 6px 0 10px;
+}
+
+.aui-scheduler-base-controls .aui-scheduler-base-current-date {
+  font-weight: bold;
+}
 
 .yui3-button-selected {
-    background: #f8f8f8
+  background: #f8f8f8;
 }
 
 .aui-scheduler-base .yui3-widget-hd .yui3-button {
-    padding: 5px 10px 5px 10px;
+  padding: 5px 10px 5px 10px;
 }
+
 .aui-scheduler-base-views .yui3-button {
-    margin: 0 6px 0 0;
+  margin: 0 6px 0 0;
 }
 
 .yui3-skin-sam .yui3-button-primary, .yui3-skin-sam .yui3-button-selected {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-
-    -webkit-text-shadow: none;
-    -moz-text-shadow: none;
-    text-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-text-shadow: none;
+  -moz-text-shadow: none;
+  text-shadow: none;
 }
 
-.aui-scheduler-base-controls .aui-scheduler-base-view-date { font-weight: bold }
+.aui-scheduler-base-controls .aui-scheduler-base-view-date {
+  font-weight: bold;
+}

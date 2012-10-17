@@ -6,6 +6,7 @@ var Lang = A.Lang,
 	isObject = Lang.isObject,
 	isBoolean = Lang.isBoolean,
 	isNumber = Lang.isNumber,
+	isUndefined = Lang.isUndefined,
 
 	ColorUtil = A.ColorUtil,
 	DateMath = A.DataType.DateMath,
@@ -132,7 +133,6 @@ var SchedulerEvent = A.Component.create({
 		},
 
 		content: {
-			value: '(no title)',
 			validator: isString
 		},
 
@@ -232,9 +232,9 @@ var SchedulerEvent = A.Component.create({
 		}
 	},
 
-	EXTENDS: A.Base,
+	EXTENDS: A.Model,
 
-	PROPAGATE_ATTRS: [START_DATE, END_DATE, CONTENT, COLOR, COLOR_BRIGHTNESS_FACTOR, COLOR_SATURATION_FACTOR, BORDER_STYLE, BORDER_WIDTH, TITLE_DATE_FORMAT, VISIBLE, DISABLED],
+	PROPAGATE_ATTRS: [ALL_DAY, START_DATE, END_DATE, CONTENT, COLOR, COLOR_BRIGHTNESS_FACTOR, COLOR_SATURATION_FACTOR, BORDER_STYLE, BORDER_WIDTH, TITLE_DATE_FORMAT, VISIBLE, DISABLED],
 
 	prototype: {
 		EVENT_NODE_TEMPLATE: '<div class="' + CSS_SCHEDULER_EVENT + '">' +
@@ -317,27 +317,42 @@ var SchedulerEvent = A.Component.create({
 			instance.syncUI();
 		},
 
-		copyDates: function(evt) {
-			var instance = this;
+		clone: function() {
+			var instance = this,
+				cloned = new (instance.get(EVENT_CLASS))();
 
-			instance.set(END_DATE, DateMath.clone(evt.get(END_DATE)));
-			instance.set(START_DATE, DateMath.clone(evt.get(START_DATE)));
+			cloned.copyPropagateAttrValues(instance, null, { silent: true });
+
+			return cloned;
 		},
 
-		copyPropagateAttrValues: function(evt, dontCopyMap) {
+		copyDates: function(evt, options) {
 			var instance = this;
 
-			instance.copyDates(evt);
+			instance.setAttrs({
+				endDate: DateMath.clone(evt.get(END_DATE)),
+				startDate: DateMath.clone(evt.get(START_DATE))
+			},
+			options);
+		},
+
+		copyPropagateAttrValues: function(evt, dontCopyMap, options) {
+			var instance = this,
+				attrMap = {};
+
+			instance.copyDates(evt, options);
 
 			A.Array.each(instance.get(EVENT_CLASS).PROPAGATE_ATTRS, function(attrName) {
 				if ( !((dontCopyMap || {}).hasOwnProperty(attrName)) ) {
 					var value = evt.get(attrName);
 
 					if (!isObject(value)) {
-						instance.set(attrName, value);
+						attrMap[attrName] = value;
 					}
 				}
 			});
+
+			instance.setAttrs(attrMap, options);
 		},
 
 		getBorderColor: function() {
@@ -451,12 +466,15 @@ var SchedulerEvent = A.Component.create({
 			return DateMath.safeClearTime(instance.get(START_DATE));
 		},
 
-		move: function(date) {
+		move: function(date, options) {
 			var instance = this;
 			var duration = instance.getMinutesDuration();
 
-			instance.set(START_DATE, date);
-			instance.set(END_DATE, DateMath.add(DateMath.clone(date), DateMath.MINUTES, duration));
+			instance.setAttrs({
+				endDate: DateMath.add(DateMath.clone(date), DateMath.MINUTES, duration),
+				startDate: date
+			},
+			options);
 		},
 
 		setContent: function(content) {
@@ -767,7 +785,6 @@ var SchedulerEventRecorder = A.Component.create({
 		},
 
 		content: {
-			value: _EMPTY_STR
 		},
 
 		duration: {
@@ -953,14 +970,28 @@ var SchedulerEventRecorder = A.Component.create({
 		},
 
 		_handleSaveEvent: function(event) {
-			var instance = this;
+			var instance = this,
+				schedulerEvent = instance.get(EVENT),
+				eventName = schedulerEvent ? EV_SCHEDULER_EVENT_RECORDER_EDIT : EV_SCHEDULER_EVENT_RECORDER_SAVE,
+				options = {
+					silent: !schedulerEvent
+				},
+				values = instance.serializeForm();
 
-			instance.fire(
-				instance.get(EVENT) ? EV_SCHEDULER_EVENT_RECORDER_EDIT : EV_SCHEDULER_EVENT_RECORDER_SAVE,
-				{
-					newSchedulerEvent: instance.getEventCopy()
-				}
-			);
+			if (!schedulerEvent) {
+				schedulerEvent = instance.clone();
+			}
+
+			schedulerEvent.set(SCHEDULER, instance.get(SCHEDULER), { silent: true });
+
+			schedulerEvent.setAttrs({
+				content: values[CONTENT]
+			},
+			options);
+
+			instance.fire(eventName, {
+				newSchedulerEvent: schedulerEvent
+			});
 
 			event.preventDefault();
 		},
@@ -970,7 +1001,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var evt = event.currentTarget.getData(SCHEDULER_EVENT);
 
 			if (evt) {
-				instance.set(EVENT, evt);
+				instance.set(EVENT, evt, { silent: true });
 				instance.showOverlay([event.pageX, event.pageY]);
 
 				instance.get(NODE).remove();
@@ -993,7 +1024,7 @@ var SchedulerEventRecorder = A.Component.create({
 				}
 			}
 			else {
-				instance.set(EVENT, null);
+				instance.set(EVENT, null, { silent: true });
 
 				instance.get(NODE).remove();
 			}
@@ -1025,30 +1056,6 @@ var SchedulerEventRecorder = A.Component.create({
 			instance.formNode.on(SUBMIT, A.bind(instance._onSubmitForm, instance));
 		},
 
-		getEventCopy: function() {
-			var instance = this;
-			var newEvt = instance.get(EVENT);
-
-			if (!newEvt) {
-				newEvt = new (instance.get(EVENT_CLASS))({
-					allDay: instance.get(ALL_DAY),
-					endDate: instance.get(END_DATE),
-					scheduler: instance.get(SCHEDULER),
-					startDate: instance.get(START_DATE)
-				});
-
-				// copying propagatable attrs
-				newEvt.copyPropagateAttrValues(instance, { content: true });
-			}
-
-			var values = instance.serializeForm();
-
-			newEvt.set(CONTENT, values[CONTENT]);
-			newEvt.set(REPEATED, values[REPEATED]);
-
-			return newEvt;
-		},
-
 		getFormattedDate: function() {
 			var instance = this;
 			var dateFormat = instance.get(DATE_FORMAT);
@@ -1063,16 +1070,19 @@ var SchedulerEventRecorder = A.Component.create({
 		},
 
 		getTemplateData: function() {
-			var instance = this;
+			var instance = this,
+				strings = instance.get(STRINGS),
+				evt = instance.get(EVENT) || instance,
+				content = evt.get(CONTENT);
 
-			var strings = instance.get(STRINGS);
-			var evt = (instance.get(EVENT) || instance);
+			if (isUndefined(content)) {
+				content = strings['description-hint'];
+			}
 
 			return {
-				content: evt.get(CONTENT) || strings['description-hint'],
+				content: content,
 				date: instance.getFormattedDate(),
 				endDate: evt.get(END_DATE).getTime(),
-				repeated: evt.get(REPEATED),
 				startDate: evt.get(START_DATE).getTime()
 			};
 		},
@@ -1148,4 +1158,4 @@ var SchedulerEventRecorder = A.Component.create({
 
 A.SchedulerEventRecorder = SchedulerEventRecorder;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-color-util','aui-datatype','aui-template','aui-toolbar','io-form','querystring','overlay']});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-color-util','aui-datatype','aui-template','aui-toolbar','io-form','model','querystring','overlay']});
