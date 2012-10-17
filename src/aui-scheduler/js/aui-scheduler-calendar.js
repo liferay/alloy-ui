@@ -66,16 +66,16 @@ var SchedulerCalendar = A.Component.create({
 			instance.after('visibleChange', instance._afterVisibleChange);
 			instance.on('eventsChange', instance._onEventsChange);
 
+			instance._uiSetEvents(
+				instance.get(EVENTS)
+			);
+
 			instance._uiSetColor(
 				instance.get(COLOR)
 			);
 
 			instance._uiSetDisabled(
 				instance.get(DISABLED)
-			);
-
-			instance._uiSetEvents(
-				instance.get(EVENTS)
 			);
 
 			instance._uiSetVisible(
@@ -116,11 +116,11 @@ var SchedulerCalendar = A.Component.create({
 			}
 		},
 
-		_propagateAttr: function(attrName, attrValue) {
+		_propagateAttrs: function(attrMap, options) {
 			var instance = this;
 
 			instance.eachEvent(function(evt) {
-				evt.set(attrName, attrValue);
+				evt.setAttrs(attrMap, options);
 			});
 		},
 
@@ -140,22 +140,28 @@ var SchedulerCalendar = A.Component.create({
 		_uiSetColor: function(val) {
 			var instance = this;
 
-			instance._propagateAttr(COLOR, instance.get(COLOR));
+			instance._propagateAttrs({
+				color: instance.get(COLOR)
+			});
 		},
 
 		_uiSetDisabled: function(val) {
 			var instance = this;
 
-			instance._propagateAttr(DISABLED, val);
+			instance._propagateAttrs({
+				disabled: val
+			});
 		},
 
 		_uiSetEvents: function(val) {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
 
-			instance._propagateAttr(COLOR, instance.get(COLOR));
-			instance._propagateAttr(DISABLED, instance.get(DISABLED));
-			instance._propagateAttr(VISIBLE, instance.get(VISIBLE));
+			instance._propagateAttrs({
+				color: instance.get(COLOR),
+				disabled: instance.get(DISABLED),
+				visible: instance.get(VISIBLE)
+			}, { silent: true });
 
 			if (scheduler) {
 				scheduler.addEvents(val);
@@ -166,7 +172,9 @@ var SchedulerCalendar = A.Component.create({
 		_uiSetVisible: function(val) {
 			var instance = this;
 
-			instance._propagateAttr(VISIBLE, val);
+			instance._propagateAttrs({
+				visible: val
+			});
 		}
 	}
 });
