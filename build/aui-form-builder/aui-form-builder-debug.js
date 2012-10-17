@@ -342,7 +342,7 @@ var FormBuilder = A.Component.create({
 
 		_afterUniqueFieldsAdd: function(event) {
 			var instance = this;
-			var availableField = event.attrName;
+			var availableField = getAvailableFieldById(event.attrName);
 
 			if (isAvailableField(availableField)) {
 				var node = availableField.get(NODE);
@@ -354,7 +354,7 @@ var FormBuilder = A.Component.create({
 
 		_afterUniqueFieldsRemove: function(event) {
 			var instance = this;
-			var availableField = event.attrName;
+			var availableField = getAvailableFieldById(event.attrName);
 
 			if (isAvailableField(availableField)) {
 				var node = availableField.get(NODE);
@@ -647,13 +647,12 @@ var FormBuilder = A.Component.create({
 			var uniqueFields = instance.uniqueFields;
 
 			// Get the corresponding availableField to the given field
-			var availableField = getAvailableFieldById(
-				instance._getFieldId(field)
-			);
+			var fieldId = instance._getFieldId(field);
+			var availableField = getAvailableFieldById(fieldId);
 
 			if (isAvailableField(availableField)) {
 				if (availableField.get(UNIQUE) || field.get(UNIQUE)) {
-					uniqueFields.add(availableField, field);
+					uniqueFields.add(fieldId, field);
 				}
 			}
 		},
@@ -2658,5 +2657,5 @@ A.FormBuilder.types.textarea = A.FormBuilderTextAreaField;
 }, '@VERSION@' ,{skinnable:true, requires:['aui-datatype','aui-panel','aui-tooltip']});
 
 
-AUI.add('aui-form-builder', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-form-builder-base','aui-form-builder-field']});
+AUI.add('aui-form-builder', function(A){}, '@VERSION@' ,{use:['aui-form-builder-base','aui-form-builder-field'], skinnable:true});
 
