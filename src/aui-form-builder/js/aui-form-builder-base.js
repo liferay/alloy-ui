@@ -341,7 +341,7 @@ var FormBuilder = A.Component.create({
 
 		_afterUniqueFieldsAdd: function(event) {
 			var instance = this;
-			var availableField = event.attrName;
+			var availableField = getAvailableFieldById(event.attrName);
 
 			if (isAvailableField(availableField)) {
 				var node = availableField.get(NODE);
@@ -353,7 +353,7 @@ var FormBuilder = A.Component.create({
 
 		_afterUniqueFieldsRemove: function(event) {
 			var instance = this;
-			var availableField = event.attrName;
+			var availableField = getAvailableFieldById(event.attrName);
 
 			if (isAvailableField(availableField)) {
 				var node = availableField.get(NODE);
@@ -646,13 +646,12 @@ var FormBuilder = A.Component.create({
 			var uniqueFields = instance.uniqueFields;
 
 			// Get the corresponding availableField to the given field
-			var availableField = getAvailableFieldById(
-				instance._getFieldId(field)
-			);
+			var fieldId = instance._getFieldId(field);
+			var availableField = getAvailableFieldById(fieldId);
 
 			if (isAvailableField(availableField)) {
 				if (availableField.get(UNIQUE) || field.get(UNIQUE)) {
-					uniqueFields.add(availableField, field);
+					uniqueFields.add(fieldId, field);
 				}
 			}
 		},
