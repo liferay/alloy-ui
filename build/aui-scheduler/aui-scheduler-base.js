@@ -117,23 +117,28 @@ SchedulerEventSupport.ATTRS = {
 };
 
 A.mix(SchedulerEventSupport.prototype, {
-	addEvent: function(evt) {
+	addEvent: function(value) {
 		var instance = this;
-		var events = [].concat(instance.get(EVENTS));
 
-		if (A.Array.indexOf(events, evt) === -1) {
-			events.push(evt);
-			instance.set(EVENTS, events);
-		}
+		instance.addEvents([value]);
 	},
 
-	addEvents: function(events) {
-		var instance = this;
+	addEvents: function(values) {
+		var instance = this,
+			events = instance.get(EVENTS),
+			results = events.concat();
 
-		A.Array.each(
-			instance._normalizeEvents(events),
-			A.bind(instance.addEvent, instance)
-		);
+		values = instance._normalizeEvents(values);
+
+		A.Array.each(values, function(evt) {
+			if (A.Array.indexOf(results, evt) === -1) {
+				results.push(evt);
+			}
+		});
+
+		if (results.length !== events.length) {
+			instance.set(EVENTS, results);
+		}
 	},
 
 	eachEvent: function(fn) {
@@ -196,25 +201,51 @@ A.mix(SchedulerEventSupport.prototype, {
 		});
 	},
 
-	removeEvent: function(evt) {
+	removeEvent: function(val) {
 		var instance = this;
-		var events = [].concat(instance.get(EVENTS));
 
-		if (events.length) {
-			A.Array.removeItem(events, evt);
+		instance.removeEvents([val]);
+	},
 
-			instance.set(EVENTS, events);
+	removeEvents: function(values) {
+		var instance = this,
+			events = instance.get(EVENTS),
+			results = events.concat();
+
+		if (!events.length) {
+			return;
+		}
+
+		values = instance._normalizeEvents(values);
+
+		A.Array.each(values, function(evt) {
+			A.Array.removeItem(results, evt);
+		});
+
+		if (results.length !== events.length) {
+			instance.set(EVENTS, results);
 		}
 	},
 
-	removeEvents: function(events) {
-		var instance = this;
+	// removeEvent: function(evt) {
+	// 	var instance = this;
+	// 	var events = [].concat(instance.get(EVENTS));
 
-		A.Array.each(
-			instance._normalizeEvents(events),
-			A.bind(instance.removeEvent, instance)
-		);
-	},
+	// 	if (events.length) {
+	// 		A.Array.removeItem(events, evt);
+
+	// 		instance.set(EVENTS, events);
+	// 	}
+	// },
+
+	// removeEvents: function(events) {
+	// 	var instance = this;
+
+	// 	A.Array.each(
+	// 		instance._normalizeEvents(events),
+	// 		A.bind(instance.removeEvent, instance)
+	// 	);
+	// },
 
 	sortEventsByDateAsc: function(events) {
 		var instance = this;
@@ -259,10 +290,16 @@ A.mix(SchedulerEventSupport.prototype, {
 				output.push(evt);
 			}
 
-			if (isScheduler(instance)) {
+			var scheduler = instance;
+
+			if (!isScheduler(scheduler)) {
+				scheduler = instance.get(SCHEDULER);
+			}
+
+			if (scheduler) {
 				evt.setAttrs({
 					eventClass: instance.get(EVENT_CLASS),
-					scheduler: instance
+					scheduler: scheduler
 				},
 				{ silent: true });
 			}

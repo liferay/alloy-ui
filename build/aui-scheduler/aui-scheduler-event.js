@@ -902,6 +902,31 @@ var SchedulerEventRecorder = A.Component.create({
 			instance[TOOLBAR] = new A.Toolbar(instance.get(TOOLBAR));
 		},
 
+		getOverlayContentNode: function() {
+			var instance = this;
+			var overlayBB = instance[OVERLAY].get(BOUNDING_BOX);
+
+			return overlayBB.one(_DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_CONTENT);
+		},
+
+		getUpdatedSchedulerEvent: function(optAttrMap) {
+			var instance = this,
+				schedulerEvent = instance.get(EVENT),
+				options = {
+					silent: !schedulerEvent
+				},
+				formValues = instance.serializeForm();
+
+			if (!schedulerEvent) {
+				schedulerEvent = instance.clone();
+			}
+
+			schedulerEvent.set(SCHEDULER, instance.get(SCHEDULER), { silent: true });
+			schedulerEvent.setAttrs(A.merge(formValues, optAttrMap), options);
+
+			return schedulerEvent;
+		},
+
 		_afterSchedulerChange: function(event) {
 			var instance = this;
 			var scheduler = event.newVal;
@@ -971,26 +996,12 @@ var SchedulerEventRecorder = A.Component.create({
 
 		_handleSaveEvent: function(event) {
 			var instance = this,
-				schedulerEvent = instance.get(EVENT),
-				eventName = schedulerEvent ? EV_SCHEDULER_EVENT_RECORDER_EDIT : EV_SCHEDULER_EVENT_RECORDER_SAVE,
-				options = {
-					silent: !schedulerEvent
-				},
-				values = instance.serializeForm();
-
-			if (!schedulerEvent) {
-				schedulerEvent = instance.clone();
-			}
-
-			schedulerEvent.set(SCHEDULER, instance.get(SCHEDULER), { silent: true });
-
-			schedulerEvent.setAttrs({
-				content: values[CONTENT]
-			},
-			options);
+				eventName = instance.get(EVENT) ?
+								EV_SCHEDULER_EVENT_RECORDER_EDIT :
+								EV_SCHEDULER_EVENT_RECORDER_SAVE;
 
 			instance.fire(eventName, {
-				newSchedulerEvent: schedulerEvent
+				newSchedulerEvent: instance.getUpdatedSchedulerEvent()
 			});
 
 			event.preventDefault();
@@ -1015,12 +1026,13 @@ var SchedulerEventRecorder = A.Component.create({
 				instance.populateForm();
 
 				if (!instance.get(EVENT)) {
-					var overlayBB = instance[OVERLAY].get(BOUNDING_BOX);
-					var contentNode = overlayBB.one(_DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_CONTENT);
+					var overlayContentNode = instance.getOverlayContentNode();
 
-					setTimeout(function() {
-						contentNode.selectText();
-					}, 0);
+					if (overlayContentNode) {
+						setTimeout(function() {
+							overlayContentNode.selectText();
+						}, 0);
+					}
 				}
 			}
 			else {
