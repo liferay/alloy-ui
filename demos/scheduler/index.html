@@ -180,6 +180,10 @@ AUI().ready('aui-scheduler', 'aui-scheduler-calendar', function(A) {
 		console.log('startDateChange', event);
 	});
 
+	scheduler.on('eventsChange', function(event) {
+		console.log('eventsChange', event);
+	});
+
 	scheduler.on('scheduler-event-recorder:save', function(event) {
 		console.log('scheduler-event-recorder:save', event);
 	});
