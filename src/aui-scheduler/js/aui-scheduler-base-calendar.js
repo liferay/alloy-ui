@@ -1,16 +1,3 @@
-var Lang = A.Lang,
-	isArray = Lang.isArray,
-	isBoolean = Lang.isBoolean,
-	isString = Lang.isString,
-
-	COLOR = 'color',
-	DISABLED = 'disabled',
-	EVENTS = 'events',
-	PALLETE = 'pallete',
-	SCHEDULER = 'scheduler',
-	SCHEDULER_CALENDAR = 'scheduler-calendar',
-	VISIBLE = 'visible';
-
 var SchedulerCalendar = A.Component.create({
 	NAME: SCHEDULER_CALENDAR,
 

@@ -1,41 +1,80 @@
 var Lang = A.Lang,
 	isArray = Lang.isArray,
+	isBoolean = Lang.isBoolean,
 	isDate = Lang.isDate,
 	isFunction = Lang.isFunction,
 	isNumber = Lang.isNumber,
+	isObject = Lang.isObject,
+	isString = Lang.isString,
+
+	ColorUtil = A.ColorUtil,
+	DateMath = A.DataType.DateMath,
+	WidgetStdMod = A.WidgetStdMod,
+
+	COLON = ':',
+	DOT = '.',
+	EMPTY_STR = '',
+	NDASH = '&ndash;',
+	SPACE = ' ',
 
 	isScheduler = function(val) {
 		return (val instanceof A.Scheduler);
-	},
-
-	isSchedulerView = function(val) {
-		return (val instanceof A.SchedulerView);
 	},
 
 	isSchedulerEvent = function(val) {
 		return (val instanceof A.SchedulerEvent);
 	},
 
+	isSchedulerView = function(val) {
+		return (val instanceof A.SchedulerView);
+	},
+
 	isSchedulerCalendar = function(val) {
 		return (A.SchedulerCalendar && (val instanceof A.SchedulerCalendar));
 	},
 
-	DateMath = A.DataType.DateMath,
-	WidgetStdMod = A.WidgetStdMod,
+	TITLE_DT_FORMAT_ISO = '%H:%M',
+	TITLE_DT_FORMAT_US_HOURS = '%l',
+	TITLE_DT_FORMAT_US_MINUTES = '%M',
 
-	DOT = '.',
-	EMPTY_STR = '',
-	SPACE = ' ',
+	getUSDateFormat = function(date) {
+		var format = [TITLE_DT_FORMAT_US_HOURS];
 
-	SCHEDULER_BASE = 'scheduler-base',
+		if (date.getMinutes() > 0) {
+			format.push(COLON);
+			format.push(TITLE_DT_FORMAT_US_MINUTES);
+		}
+
+		if (date.getHours() >= 12) {
+			format.push('p');
+		}
+
+		return format.join(EMPTY_STR);
+	},
+
 	DATA_VIEW_NAME = 'data-view-name',
+	SCHEDULER_BASE = 'scheduler-base',
+	SCHEDULER_CALENDAR = 'scheduler-calendar',
+	SCHEDULER_VIEW = 'scheduler-view',
 
 	ACTIVE_VIEW = 'activeView',
+	ALL = 'all',
+	ALL_DAY = 'allDay',
+	BORDER_COLOR = 'borderColor',
+	BORDER_COLOR_RGB = 'borderColorRGB',
+	BORDER_STYLE = 'borderStyle',
+	BORDER_WIDTH = 'borderWidth',
 	BUTTON = 'button',
 	CLEARFIX = 'clearfix',
+	COLOR = 'color',
+	COLOR_BRIGHTNESS_FACTOR = 'colorBrightnessFactor',
+	COLOR_SATURATION_FACTOR = 'colorSaturationFactor',
+	CONTENT = 'content',
 	CONTROLS = 'controls',
 	CONTROLS_NODE = 'controlsNode',
 	DATE = 'date',
+	DAY = 'day',
+	DISABLED = 'disabled',
 	END_DATE = 'endDate',
 	EVENT_CLASS = 'eventClass',
 	EVENT_RECORDER = 'eventRecorder',
@@ -44,28 +83,43 @@ var Lang = A.Lang,
 	HEADER = 'header',
 	HEADER_NODE = 'headerNode',
 	HELPER = 'helper',
+	HIDDEN = 'hidden',
+	HSB_COLOR = 'hsbColor',
 	ICON = 'icon',
 	ICON_NEXT_NODE = 'iconNextNode',
 	ICON_PREV_NODE = 'iconPrevNode',
+	ICONS = 'icons',
+	INHERIT = 'inherit',
+	ISO_TIME = 'isoTime',
 	LOCALE = 'locale',
+	MEETING = 'meeting',
 	NAME = 'name',
 	NAV = 'nav',
 	NAV_NODE = 'navNode',
 	NAVIGATION_DATE_FORMATTER = 'navigationDateFormatter',
 	NEXT = 'next',
 	NEXT_DATE = 'nextDate',
+	NODE = 'node',
+	NOSCROLL = 'noscroll',
+	PALLETE = 'pallete',
 	PREV = 'prev',
 	PREV_DATE = 'prevDate',
 	RADIO = 'radio',
+	REMINDER = 'reminder',
 	RENDERED = 'rendered',
+	REPEATED = 'repeated',
 	SCHEDULER = 'scheduler',
+	SCHEDULER_EVENT = 'scheduler-event',
+	SCROLLABLE = 'scrollable',
+	SHORT = 'short',
 	START_DATE = 'startDate',
 	STRINGS = 'strings',
+	TITLE = 'title',
+	TITLE_DATE_FORMAT = 'titleDateFormat',
 	TODAY = 'today',
 	TODAY_NODE = 'todayNode',
 	TRIGGER_NODE = 'triggerNode',
 	VIEW = 'view',
-	VIEW_DATE = 'viewDate',
 	VIEW_DATE_NODE = 'viewDateNode',
 	VIEW_STACK = 'viewStack',
 	VIEWS = 'views',
@@ -77,7 +131,7 @@ var Lang = A.Lang,
 	CSS_HELPER_CLEARFIX = getCN(HELPER, CLEARFIX),
 	CSS_ICON = getCN(ICON),
 	CSS_SCHEDULER_CONTROLS = getCN(SCHEDULER_BASE, CONTROLS),
-	CSS_SCHEDULER_VIEW_DATE = getCN(SCHEDULER_BASE, VIEW, DATE),
+
 	CSS_SCHEDULER_HD = getCN(SCHEDULER_BASE, HD),
 	CSS_SCHEDULER_ICON_NEXT = getCN(SCHEDULER_BASE, ICON, NEXT),
 	CSS_SCHEDULER_ICON_PREV = getCN(SCHEDULER_BASE, ICON, PREV),
@@ -85,19 +139,38 @@ var Lang = A.Lang,
 	CSS_SCHEDULER_TODAY = getCN(SCHEDULER_BASE, TODAY),
 	CSS_SCHEDULER_VIEW = getCN(SCHEDULER_BASE, VIEW),
 	CSS_SCHEDULER_VIEW_ = getCN(SCHEDULER_BASE, VIEW, EMPTY_STR),
+	CSS_SCHEDULER_VIEW_DATE = getCN(SCHEDULER_BASE, VIEW, DATE),
+	CSS_SCHEDULER_VIEW_NOSCROLL = getCN(SCHEDULER_VIEW, NOSCROLL),
+	CSS_SCHEDULER_VIEW_SCROLLABLE = getCN(SCHEDULER_VIEW, SCROLLABLE),
+	CSS_SCHEDULER_VIEW_SELECTED = 'yui3-button-selected',
 	CSS_SCHEDULER_VIEWS = getCN(SCHEDULER_BASE, VIEWS),
 
-	CSS_SCHEDULER_VIEW_SELECTED = 'yui3-button-selected',
+	CSS_SCHEDULER_EVENT = getCN(SCHEDULER_EVENT),
+	CSS_SCHEDULER_EVENT_ALL_DAY = getCN(SCHEDULER_EVENT, ALL, DAY),
+	CSS_SCHEDULER_EVENT_CONTENT = getCN(SCHEDULER_EVENT, CONTENT),
+	CSS_SCHEDULER_EVENT_DISABLED = getCN(SCHEDULER_EVENT, DISABLED),
+	CSS_SCHEDULER_EVENT_HIDDEN = getCN(SCHEDULER_EVENT, HIDDEN),
+	CSS_SCHEDULER_EVENT_ICON_DISABLED = getCN(SCHEDULER_EVENT, ICON, DISABLED),
+	CSS_SCHEDULER_EVENT_ICON_MEETING = getCN(SCHEDULER_EVENT, ICON, MEETING),
+	CSS_SCHEDULER_EVENT_ICON_REMINDER = getCN(SCHEDULER_EVENT, ICON, REMINDER),
+	CSS_SCHEDULER_EVENT_ICON_REPEATED = getCN(SCHEDULER_EVENT, ICON, REPEATED),
+	CSS_SCHEDULER_EVENT_ICONS = getCN(SCHEDULER_EVENT, ICONS),
+	CSS_SCHEDULER_EVENT_MEETING = getCN(SCHEDULER_EVENT, MEETING),
+	CSS_SCHEDULER_EVENT_REMINDER = getCN(SCHEDULER_EVENT, REMINDER),
+	CSS_SCHEDULER_EVENT_REPEATED = getCN(SCHEDULER_EVENT, REPEATED),
+	CSS_SCHEDULER_EVENT_SHORT = getCN(SCHEDULER_EVENT, SHORT),
+	CSS_SCHEDULER_EVENT_TITLE = getCN(SCHEDULER_EVENT, TITLE),
 
 	TPL_SCHEDULER_CONTROLS = '<div class="'+CSS_SCHEDULER_CONTROLS+'"></div>',
-	TPL_SCHEDULER_VIEW_DATE = '<div class="'+CSS_SCHEDULER_VIEW_DATE+'"></div>',
 	TPL_SCHEDULER_HD = '<div class="'+CSS_SCHEDULER_HD+'"></div>',
 	TPL_SCHEDULER_ICON_NEXT = '<button type="button" class="'+[ CSS_ICON, CSS_SCHEDULER_ICON_NEXT ].join(SPACE)+' yui3-button">Next</button>',
 	TPL_SCHEDULER_ICON_PREV = '<button type="button" class="'+[ CSS_ICON, CSS_SCHEDULER_ICON_PREV ].join(SPACE)+' yui3-button">Prev</button>',
 	TPL_SCHEDULER_NAV = '<div class="'+CSS_SCHEDULER_NAV+'"></div>',
 	TPL_SCHEDULER_TODAY = '<button type="button" class="'+CSS_SCHEDULER_TODAY+' yui3-button">{today}</button>',
 	TPL_SCHEDULER_VIEW = '<button type="button" class="'+[ CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_ ].join(SPACE)+'{name}" data-view-name="{name}">{label}</button>',
+	TPL_SCHEDULER_VIEW_DATE = '<div class="'+CSS_SCHEDULER_VIEW_DATE+'"></div>',
 	TPL_SCHEDULER_VIEWS = '<div class="'+CSS_SCHEDULER_VIEWS+'"></div>';
+
 
 var SchedulerEventSupport = function() {};
 
@@ -514,9 +587,12 @@ var SchedulerBase = A.Component.create({
 		},
 
 		syncEventsUI: function() {
-			var instance = this;
+			var instance = this,
+				activeView = instance.get(ACTIVE_VIEW);
 
-			instance.plotViewEvents(instance.get(ACTIVE_VIEW));
+			if (activeView) {
+				instance.plotViewEvents(activeView);
+			}
 		},
 
 		renderButtonGroup: function() {
@@ -635,34 +711,34 @@ var SchedulerBase = A.Component.create({
 		},
 
 		_onClickToday: function(event) {
-			var instance = this;
+			var instance = this,
+				activeView = instance.get(ACTIVE_VIEW);
 
-			instance.set(
-				DATE,
-				instance.get(ACTIVE_VIEW).getToday()
-			);
+			if (activeView) {
+				instance.set(DATE, activeView.getToday());
+			}
 
 			event.preventDefault();
 		},
 
 		_onClickNextIcon: function(event) {
-			var instance = this;
+			var instance = this,
+				activeView = instance.get(ACTIVE_VIEW);
 
-			instance.set(
-				DATE,
-				instance.get(ACTIVE_VIEW).get(NEXT_DATE)
-			);
+			if (activeView) {
+				instance.set(DATE, activeView.get(NEXT_DATE));
+			}
 
 			event.preventDefault();
 		},
 
 		_onClickPrevIcon: function(event) {
-			var instance = this;
+			var instance = this,
+				activeView = instance.get(ACTIVE_VIEW);
 
-			instance.set(
-				DATE,
-				instance.get(ACTIVE_VIEW).get(PREV_DATE)
-			);
+			if (activeView) {
+				instance.set(DATE, activeView.get(PREV_DATE));
+			}
 
 			event.preventDefault();
 		},

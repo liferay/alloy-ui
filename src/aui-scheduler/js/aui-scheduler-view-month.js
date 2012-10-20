@@ -1,4 +1,30 @@
-var CSS_SVM_TABLE_DATA_COL_NOMONTH = getCN(SCHEDULER_VIEW_MONTH, TABLE, DATA, COL, NOMONTH);
+var Lang = A.Lang,
+	isFunction = Lang.isFunction,
+
+	DateMath = A.DataType.DateMath,
+
+	DOT = '.',
+
+	COL = 'col',
+	DATA = 'data',
+	DATE = 'date',
+	FIRST_DAY_OF_WEEK = 'firstDayOfWeek',
+	LOCALE = 'locale',
+	MONTH = 'month',
+	NOMONTH = 'nomonth',
+	SCHEDULER = 'scheduler',
+	TABLE = 'table',
+	TABLE_ROW_CONTAINER = 'tableRowContainer',
+	TITLE = 'title',
+	VIEW_DATE = 'viewDate',
+
+	SCHEDULER_VIEW = 'scheduler-view',
+	SCHEDULER_VIEW_MONTH = 'scheduler-view-month',
+
+	getCN = A.getClassName,
+
+	CSS_SVM_TABLE_DATA_COL_NOMONTH = getCN(SCHEDULER_VIEW_MONTH, TABLE, DATA, COL, NOMONTH),
+	CSS_SVT_TABLE_DATA_COL_TITLE = getCN(SCHEDULER_VIEW, TABLE, DATA, COL, TITLE);
 
 var SchedulerMonthView = A.Component.create({
 	NAME: SCHEDULER_VIEW_MONTH,

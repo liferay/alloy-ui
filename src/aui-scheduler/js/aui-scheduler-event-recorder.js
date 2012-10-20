@@ -1,6 +1,21 @@
-var L = A.Lang,
-	isArray = L.isArray,
+var Lang = A.Lang,
+	isArray = Lang.isArray,
+	isObject = Lang.isObject,
+	isString = Lang.isString,
+	isUndefined = Lang.isUndefined,
 
+	_serialize = A.IO.prototype._serialize,
+
+	DateMath = A.DataType.DateMath,
+
+	DASH = '-',
+	DOT = '.',
+	SPACE = ' ',
+
+	SCHEDULER_EVENT = 'scheduler-event',
+	SCHEDULER_EVENT_RECORDER = 'scheduler-event-recorder',
+
+	ACTIVE_VIEW = 'activeView',
 	ARROW = 'arrow',
 	BODY = 'body',
 	BODY_CONTENT = 'bodyContent',
@@ -9,37 +24,42 @@ var L = A.Lang,
 	CANCEL = 'cancel',
 	CLICK = 'click',
 	CONSTRAIN = 'constrain',
+	CONTENT = 'content',
 	DATE = 'date',
 	DATE_FORMAT = 'dateFormat',
 	DELETE = 'delete',
-	DESCRIPTION = 'description',
+	END_DATE = 'endDate',
 	EVENT = 'event',
 	FOOTER_CONTENT = 'footerContent',
 	FORM = 'form',
 	HEADER = 'header',
+	ISO_TIME = 'isoTime',
+	NODE = 'node',
 	OFFSET_HEIGHT = 'offsetHeight',
 	OFFSET_WIDTH = 'offsetWidth',
+	OVERLAY = 'overlay',
 	OVERLAY_OFFSET = 'overlayOffset',
+	RECORDER = 'recorder',
 	RENDERED = 'rendered',
 	RIGHT = 'right',
 	SAVE = 'save',
+	SCHEDULER = 'scheduler',
 	SCHEDULER_CHANGE = 'schedulerChange',
 	SHADOW = 'shadow',
+	START_DATE = 'startDate',
 	STRINGS = 'strings',
-	TL = 'tl',
-	TOOLBAR = 'toolbar',
 	SUBMIT = 'submit',
-	VALUE = 'value',
+	TEMPLATE = 'template',
+	TITLE = 'title',
+	TOOLBAR = 'toolbar',
 	VISIBLE_CHANGE = 'visibleChange',
-	WIDTH = 'width',
 
-	EV_SCHEDULER_EVENT_RECORDER_CANCEL = 'cancel',
-	EV_SCHEDULER_EVENT_RECORDER_DELETE = 'delete',
-	EV_SCHEDULER_EVENT_RECORDER_EDIT = 'edit',
-	EV_SCHEDULER_EVENT_RECORDER_SAVE = 'save',
+	getCN = A.getClassName,
 
-	_serialize = A.IO.prototype._serialize,
+	CSS_SCHEDULER_EVENT = getCN(SCHEDULER_EVENT),
+	CSS_SCHEDULER_EVENT_TITLE = getCN(SCHEDULER_EVENT, TITLE),
 
+	CSS_SCHEDULER_EVENT_RECORDER = getCN(SCHEDULER_EVENT, RECORDER),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, ARROW),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_BOTTOM = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, ARROW, BOTTOM),
@@ -170,19 +190,19 @@ var SchedulerEventRecorder = A.Component.create({
 
 			instance.get(NODE).addClass(CSS_SCHEDULER_EVENT_RECORDER);
 
-			instance.publish(EV_SCHEDULER_EVENT_RECORDER_CANCEL, {
+			instance.publish('cancel', {
 				defaultFn: instance._defCancelEventFn
 			});
 
-			instance.publish(EV_SCHEDULER_EVENT_RECORDER_DELETE, {
+			instance.publish('delete', {
 				defaultFn: instance._defDeleteEventFn
 			});
 
-			instance.publish(EV_SCHEDULER_EVENT_RECORDER_EDIT, {
+			instance.publish('edit', {
 				defaultFn: instance._defEditEventFn
 			});
 
-			instance.publish(EV_SCHEDULER_EVENT_RECORDER_SAVE, {
+			instance.publish('save', {
 				defaultFn: instance._defSaveEventFn
 			});
 
@@ -196,7 +216,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var instance = this;
 			var overlayBB = instance[OVERLAY].get(BOUNDING_BOX);
 
-			return overlayBB.one(_DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_CONTENT);
+			return overlayBB.one(DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_CONTENT);
 		},
 
 		getUpdatedSchedulerEvent: function(optAttrMap) {
@@ -224,7 +244,7 @@ var SchedulerEventRecorder = A.Component.create({
 
 			instance[OVERLAY].set(CONSTRAIN, schedulerBB);
 
-			schedulerBB.delegate(CLICK, A.bind(instance._onClickSchedulerEvent, instance), _DOT + CSS_SCHEDULER_EVENT);
+			schedulerBB.delegate(CLICK, A.bind(instance._onClickSchedulerEvent, instance), DOT + CSS_SCHEDULER_EVENT);
 		},
 
 		_defCancelEventFn: function(event) {
@@ -269,7 +289,7 @@ var SchedulerEventRecorder = A.Component.create({
 		_handleCancelEvent: function(event) {
 			var instance = this;
 
-			instance.fire(EV_SCHEDULER_EVENT_RECORDER_CANCEL);
+			instance.fire('cancel');
 
 			event.preventDefault();
 		},
@@ -277,7 +297,7 @@ var SchedulerEventRecorder = A.Component.create({
 		_handleDeleteEvent: function(event) {
 			var instance = this;
 
-			instance.fire(EV_SCHEDULER_EVENT_RECORDER_DELETE, {
+			instance.fire('delete', {
 				schedulerEvent: instance.get(EVENT)
 			});
 
@@ -286,9 +306,7 @@ var SchedulerEventRecorder = A.Component.create({
 
 		_handleSaveEvent: function(event) {
 			var instance = this,
-				eventName = instance.get(EVENT) ?
-								EV_SCHEDULER_EVENT_RECORDER_EDIT :
-								EV_SCHEDULER_EVENT_RECORDER_SAVE;
+				eventName = instance.get(EVENT) ? 'edit' : 'save';
 
 			instance.fire(eventName, {
 				newSchedulerEvent: instance.getUpdatedSchedulerEvent()
@@ -368,7 +386,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var startDate = evt.get(START_DATE);
 			var fmtHourFn = (scheduler.get(ACTIVE_VIEW).get(ISO_TIME) ? DateMath.toIsoTimeString : DateMath.toUsTimeString);
 
-			return [ evt._formatDate(startDate, dateFormat), fmtHourFn(startDate), _DASH, fmtHourFn(endDate) ].join(_SPACE);
+			return [ evt._formatDate(startDate, dateFormat), fmtHourFn(startDate), DASH, fmtHourFn(endDate) ].join(SPACE);
 		},
 
 		getTemplateData: function() {
@@ -423,7 +441,7 @@ var SchedulerEventRecorder = A.Component.create({
 
 			if (!xy) {
 				var eventNode = (instance.get(EVENT) || instance).get(NODE);
-				var titleNode = eventNode.one(_DOT + CSS_SCHEDULER_EVENT_TITLE);
+				var titleNode = eventNode.one(DOT + CSS_SCHEDULER_EVENT_TITLE);
 
 				offset = [overlayOffset[0] + titleNode.get(OFFSET_WIDTH), overlayOffset[1] + titleNode.get(OFFSET_HEIGHT) / 2];
 
@@ -437,8 +455,8 @@ var SchedulerEventRecorder = A.Component.create({
 
 			var overlayBB = instance[OVERLAY].get(BOUNDING_BOX),
 				overlayWidth = overlayBB.get(OFFSET_WIDTH),
-				overlayHeader = overlayBB.one(_DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_HEADER),
-				arrows = overlayBB.all(_DOT+CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW);
+				overlayHeader = overlayBB.one(DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_HEADER),
+				arrows = overlayBB.all(DOT+CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW);
 
 			if ((xy[0] + overlayWidth) >= constrain.get(OFFSET_WIDTH)) {
 				arrows.addClass(CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_RIGHT);

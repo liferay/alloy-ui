@@ -1,6 +1,52 @@
-var CSS_SVT_DRAGGING = getCN(SCHEDULER_VIEW, TABLE, DRAGGING),
+var Lang = A.Lang,
+	isObject = Lang.isObject,
+
+	DateMath = A.DataType.DateMath,
+
+	WEEK_LENGTH = DateMath.WEEK_LENGTH,
+
+	DOT = '.',
+
+	SCHEDULER_EVENT = 'scheduler-event',
+	SCHEDULER_VIEW = 'scheduler-view',
+
+	BOUNDING_BOX = 'boundingBox',
+	COL = 'col',
+	COLGRID = 'colgrid',
+	CONTENT = 'content',
+	DATA = 'data',
+	DD = 'dd',
+	DELEGATE = 'delegate',
+	DELEGATE_CONFIG = 'delegateConfig',
+	DISABLED = 'disabled',
+	DISPLAY_DAYS_INTERVAL = 'displayDaysInterval',
+	DRAG_NODE = 'dragNode',
+	DRAGGING = 'dragging',
+	DRAGGING_EVENT = 'draggingEvent',
+	EVENT_RECORDER = 'eventRecorder',
+	LASSO = 'lasso',
+	NODE = 'node',
+	OFFSET_HEIGHT = 'offsetHeight',
+	OFFSET_WIDTH = 'offsetWidth',
+	PROXY = 'proxy',
+	PROXY_NODE = 'proxyNode',
+	REGION = 'region',
+	ROWS_CONTAINER_NODE = 'rowsContainerNode',
+	SCHEDULER = 'scheduler',
+	START_DATE = 'startDate',
+	TABLE = 'table',
+	VISIBLE = 'visible',
+
+	getCN = A.getClassName,
+
+	CSS_SCHEDULER_EVENT = getCN(SCHEDULER_EVENT),
+	CSS_SCHEDULER_EVENT_DISABLED = getCN(SCHEDULER_EVENT, DISABLED),
+
+	CSS_SVT_COLGRID = getCN(SCHEDULER_VIEW, TABLE, COLGRID),
+	CSS_SVT_DRAGGING = getCN(SCHEDULER_VIEW, TABLE, DRAGGING),
 	CSS_SVT_LASSO = getCN(SCHEDULER_VIEW, TABLE, LASSO),
 	CSS_SVT_PROXY_NODE = getCN(SCHEDULER_VIEW, TABLE, PROXY, NODE),
+	CSS_SVT_TABLE_DATA_COL = getCN(SCHEDULER_VIEW, TABLE, DATA, COL),
 
 	TPL_SVT_LASSO = '<div class="' + CSS_SVT_LASSO + '"></div>',
 	TPL_SVT_PROXY_NODE = '<div class="' + CSS_SVT_PROXY_NODE + '"></div>';
@@ -106,13 +152,14 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		}
 
 		var imin = minPos[0], jmin = minPos[1],
-			imax = maxPos[0], jmax = maxPos[1];
+			imax = maxPos[0], jmax = maxPos[1],
+			j;
 
 		instance.removeLasso();
 
 		instance.lasso = A.NodeList.create();
 
-		for (var j = jmin; j <= jmax; j++) {
+		for (j = jmin; j <= jmax; j++) {
 			var h = instance.gridCellHeight,
 				w = instance.gridCellWidth,
 				x = 0,
@@ -186,12 +233,6 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		var j = Math.floor(xy[1] / instance.gridCellHeight);
 
 		return [i, j];
-	},
-
-	_getCellIndex: function(position) {
-		var instance = this;
-
-		return position[1] * WEEK_LENGTH + position[0];
 	},
 
 	_getDatePosition: function(date) {
@@ -298,7 +339,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		var recorder = scheduler.get(EVENT_RECORDER);
 		var target = event.target;
 
-		if (recorder && target.test([DOT+CSS_SVT_COLGRID, DOT+CSS_SVT_TABLE_DATA_COL].join(COMMA))) {
+		if (recorder && target.test([DOT+CSS_SVT_COLGRID, DOT+CSS_SVT_TABLE_DATA_COL].join())) {
 			instance._recording = true;
 
 			instance._syncCellDimensions();

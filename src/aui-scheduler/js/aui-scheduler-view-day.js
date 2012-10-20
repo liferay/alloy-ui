@@ -1,57 +1,177 @@
-var sub = Lang.sub;
+var Lang = A.Lang,
+	isBoolean = Lang.isBoolean,
+	isFunction = Lang.isFunction,
+	isNumber = Lang.isNumber,
+	isObject = Lang.isObject,
+	isString = Lang.isString,
 
-var getScrollbarWidth = A.cached(function () {
-    var doc      = A.config.doc,
-        testNode = doc.createElement('div'),
-        body     = doc.getElementsByTagName('body')[0],
-        // 0.1 because cached doesn't support falsy refetch values
-        width    = 0.1;
+	DateMath = A.DataType.DateMath,
+	WidgetStdMod = A.WidgetStdMod,
 
-    if (body) {
-        testNode.style.cssText = "position:absolute;visibility:hidden;overflow:scroll;width:20px;";
-        testNode.appendChild(doc.createElement('p')).style.height = '1px';
-        body.insertBefore(testNode, body.firstChild);
-        width = testNode.offsetWidth - testNode.clientWidth;
+	ANCHOR = 'a',
+	COMMA = ',',
+	DOT = '.',
+	EMPTY_STR = '',
+	PERCENT = '%',
+	SPACE = ' ',
 
-        body.removeChild(testNode);
-    }
+	DATA_COLNUMBER = 'data-colnumber',
+	SCHEDULER_VIEW = 'scheduler-view',
+	SCHEDULER_VIEW_DAY = 'scheduler-view-day',
 
-    return width;
-}, null, 0.1);
+	getScrollbarWidth = A.cached(function () {
+		var doc      = A.config.doc,
+			testNode = doc.createElement('div'),
+			body     = doc.getElementsByTagName('body')[0],
+			// 0.1 because cached doesn't support falsy refetch values
+			width    = 0.1;
 
-var getNodeListHTMLParser = function(selector, sizeCondition) {
+		if (body) {
+			testNode.style.cssText = "position:absolute;visibility:hidden;overflow:scroll;width:20px;";
+			testNode.appendChild(doc.createElement('p')).style.height = '1px';
+			body.insertBefore(testNode, body.firstChild);
+			width = testNode.offsetWidth - testNode.clientWidth;
+
+			body.removeChild(testNode);
+		}
+
+		return width;
+	}, null, 0.1),
+
+	getNodeListHTMLParser = function(selector, sizeCondition) {
 		return function(srcNode) {
 			var nodes = srcNode.all(selector);
 			return (nodes.size() >= sizeCondition) ? nodes : null;
 		};
 	},
 
+	roundToNearestMultiple = function(n, multiple) {
+		return Math.round(n/multiple)*multiple;
+	},
+
+	toNumber = function(v) {
+		return parseFloat(v) || 0;
+	},
+
+	ACTIVE_COLUMN = 'activeColumn',
+	ACTIVE_VIEW = 'activeView',
+	ALL_DAY = 'allDay',
+	BOUNDING_BOX = 'boundingBox',
+	COL = 'col',
+	COL_DAYS_NODE = 'colDaysNode',
+	COL_HEADER_DAYS_NODE = 'colHeaderDaysNode',
+	COLBLANK = 'colblank',
+	COLDATA = 'coldata',
+	COLDAY = 'colday',
+	COLGRID = 'colgrid',
+	COLSPAN = 'colspan',
+	COLTIME = 'coltime',
+	COLUMN_DATA = 'columnData',
+	COLUMN_DAY_HEADER = 'columnDayHeader',
+	COLUMN_SHIMS = 'columnShims',
+	COLUMN_TIME = 'columnTime',
+	CONTAINER = 'container',
+	CREATION_START_DATE = 'creationStartDate',
+	DATE = 'date',
+	VIEW_DATE = 'viewDate',
+	DAY = 'day',
+	DAYS = 'days',
+	DELEGATE_CONFIG = 'delegateConfig',
+	DISABLED = 'disabled',
+	DIVISION = 'division',
+	DOTTED = 'dotted',
+	DRAGGING_EVENT = 'draggingEvent',
+	DURATION = 'duration',
+	END_DATE = 'endDate',
+	EVENT_CLASS = 'eventClass',
+	EVENT_PLACEHOLDER = 'eventPlaceholder',
+	EVENT_RECORDER = 'eventRecorder',
+	EVENT_WIDTH = 'eventWidth',
+	FILTER_FN = 'filterFn',
+	FIRST = 'first',
+	GRID = 'grid',
+	GRID_CONTAINER = 'gridContainer',
+	GRIP = 'grip',
+	HD = 'hd',
+	HEADER = 'header',
+	HEADER_DATE_FORMATTER = 'headerDateFormatter',
+	HEADER_TABLE_NODE = 'headerTableNode',
+	HEADER_VIEW = 'headerView',
+	HEADER_VIEW_CONFIG = 'headerViewConfig',
+	HEADER_VIEW_LABEL_NODE = 'headerViewLabelNode',
+	HEIGHT = 'height',
+	HORIZONTAL = 'horizontal',
+	HOST = 'host',
+	HOUR_HEIGHT = 'hourHeight',
+	ICON = 'icon',
+	ISO_TIME = 'isoTime',
+	LABEL = 'label',
+	LEFT = 'left',
+	LOCALE = 'locale',
+	MARGIN_RIGHT = 'marginRight',
+	MARKER = 'marker',
+	MARKERCELL = 'markercell',
+	MARKERCELLS_NODE = 'markercellsNode',
+	MARKERS = 'markers',
+	MARKERS_NODE = 'markersNode',
+	NODE = 'node',
+	OFFSET_HEIGHT = 'offsetHeight',
+	PAD = 'pad',
+	PARENT_NODE = 'parentNode',
+	PROXY = 'proxy',
+	PX = 'px',
+	REGION = 'region',
+	RESIZER = 'resizer',
+	RESIZER_NODE = 'resizerNode',
+	RESIZING = 'resizing',
+	RIGHT = 'right',
+	SCHEDULER = 'scheduler',
+	SCHEDULER_EVENT = 'scheduler-event',
+	SHIM = 'shim',
+	START_DATE = 'startDate',
+	START_XY = 'startXY',
+	STRINGS = 'strings',
+	TABLE = 'table',
+	TABLE_NODE = 'tableNode',
+	TIME = 'time',
+	TIMES_NODE = 'timesNode',
+	TODAY = 'today',
+	TOP = 'top',
+	VIEW = 'view',
+	VISIBLE = 'visible',
+	WIDTH = 'width',
+	DATA = 'data',
+
+	getCN = A.getClassName,
+
 	CSS_ICON = getCN(ICON),
 	CSS_ICON_GRIP_DOTTED_HORIZONTAL = getCN(ICON, GRIP, DOTTED, HORIZONTAL),
+
+	CSS_SVT_TABLE_DATA = getCN(SCHEDULER_VIEW, TABLE, DATA),
 
 	CSS_SCHEDULER_EVENT = getCN(SCHEDULER_EVENT),
 	CSS_SCHEDULER_EVENT_DISABLED = getCN(SCHEDULER_EVENT, DISABLED),
 	CSS_SCHEDULER_EVENT_PROXY = getCN(SCHEDULER_EVENT, PROXY),
+
 	CSS_SCHEDULER_TODAY = getCN(SCHEDULER, TODAY),
 	CSS_SCHEDULER_TODAY_HD = getCN(SCHEDULER, TODAY, HD),
+
 	CSS_SCHEDULER_VIEW_DAY_COLDATA = getCN(SCHEDULER_VIEW, COLDATA),
 	CSS_SCHEDULER_VIEW_DAY_COLGRID = getCN(SCHEDULER_VIEW, COLGRID),
 	CSS_SCHEDULER_VIEW_DAY_GRID = getCN(SCHEDULER_VIEW, GRID),
 	CSS_SCHEDULER_VIEW_DAY_GRID_CONTAINER = getCN(SCHEDULER_VIEW, GRID, CONTAINER),
-	CSS_SCHEDULER_VIEW_DAY_RESIZER_ICON = getCN(SCHEDULER_VIEW, DAY, RESIZER, ICON),
-	CSS_SCHEDULER_VIEW_DAY_RESIZER = getCN(SCHEDULER_VIEW, DAY, RESIZER),
+	CSS_SCHEDULER_VIEW_DAY_HEADER_COL = getCN(SCHEDULER_VIEW, DAY, HEADER, COL),
+	CSS_SCHEDULER_VIEW_DAY_HEADER_DAY = getCN(SCHEDULER_VIEW, DAY, HEADER, DAY),
+	CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_FIRST = getCN(SCHEDULER_VIEW, DAY, HEADER, DAY, FIRST),
+	CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_PAD_RIGHT = getCN(SCHEDULER_VIEW, DAY, HEADER, DAY, PAD, RIGHT),
+	CSS_SCHEDULER_VIEW_DAY_HEADER_TABLE = getCN(SCHEDULER_VIEW, DAY, HEADER, TABLE),
+	CSS_SCHEDULER_VIEW_DAY_HEADER_VIEW_LABEL = getCN(SCHEDULER_VIEW, DAY, HEADER, VIEW, LABEL),
 	CSS_SCHEDULER_VIEW_DAY_MARKER_DIVISION = getCN(SCHEDULER_VIEW, MARKER, DIVISION),
 	CSS_SCHEDULER_VIEW_DAY_MARKERCELL = getCN(SCHEDULER_VIEW, MARKERCELL),
 	CSS_SCHEDULER_VIEW_DAY_MARKERS = getCN(SCHEDULER_VIEW, MARKERS),
+	CSS_SCHEDULER_VIEW_DAY_RESIZER = getCN(SCHEDULER_VIEW, DAY, RESIZER),
+	CSS_SCHEDULER_VIEW_DAY_RESIZER_ICON = getCN(SCHEDULER_VIEW, DAY, RESIZER, ICON),
 	CSS_SCHEDULER_VIEW_DAY_TABLE = getCN(SCHEDULER_VIEW, DAY, TABLE),
-
-	CSS_SCHEDULER_VIEW_DAY_HEADER_TABLE = getCN(SCHEDULER_VIEW, DAY, HEADER, TABLE),
-	CSS_SCHEDULER_VIEW_DAY_HEADER_DAY = getCN(SCHEDULER_VIEW, DAY, HEADER, DAY),
-	CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_PAD_RIGHT = getCN(SCHEDULER_VIEW, DAY, HEADER, DAY, PAD, RIGHT),
-	CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_FIRST = getCN(SCHEDULER_VIEW, DAY, HEADER, DAY, FIRST),
-	CSS_SCHEDULER_VIEW_DAY_HEADER_COL = getCN(SCHEDULER_VIEW, DAY, HEADER, COL),
-	CSS_SCHEDULER_VIEW_DAY_HEADER_VIEW_LABEL = getCN(SCHEDULER_VIEW, DAY, HEADER, VIEW, LABEL),
-
 	CSS_SCHEDULER_VIEW_DAY_TABLE_COL = getCN(SCHEDULER_VIEW, DAY, TABLE, COL),
 	CSS_SCHEDULER_VIEW_DAY_TABLE_COL_SHIM = getCN(SCHEDULER_VIEW, DAY, TABLE, COL, SHIM),
 	CSS_SCHEDULER_VIEW_DAY_TABLE_COLBLANK = getCN(SCHEDULER_VIEW, DAY, TABLE, COLBLANK),
@@ -234,7 +354,7 @@ var SchedulerDayView = A.Component.create({
 				var strings = instance.get(STRINGS);
 
 				return A.Node.create(
-					sub(TPL_SCHEDULER_VIEW_DAY_HEADER_VIEW_LABEL, {
+					Lang.sub(TPL_SCHEDULER_VIEW_DAY_HEADER_VIEW_LABEL, {
 						label: strings[ALL_DAY]
 					})
 				);
@@ -1035,7 +1155,7 @@ var SchedulerDayView = A.Component.create({
 
 			for (hour = 0; hour <= 23; hour++) {
 				buffer.push(
-					sub(
+					Lang.sub(
 						TPL_SCHEDULER_VIEW_DAY_TABLE_TIME,
 						{
 							hour: isoTime ? DateMath.toIsoTimeString(hour) : DateMath.toUsTimeString(hour, false, true)
