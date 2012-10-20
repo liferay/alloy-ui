@@ -1,3 +1,23 @@
+var Lang = A.Lang,
+	isFunction = Lang.isFunction,
+
+	EMPTY_STR = '',
+	MDASH = '&mdash;',
+	SPACE = ' ',
+
+	DateMath = A.DataType.DateMath,
+
+	WEEK_LENGTH = DateMath.WEEK_LENGTH,
+
+	SCHEDULER_VIEW_WEEK = 'scheduler-view-week',
+
+	DATE = 'date',
+	DAYS = 'days',
+	FIRST_DAY_OF_WEEK = 'firstDayOfWeek',
+	LOCALE = 'locale',
+	SCHEDULER = 'scheduler',
+	WEEK = 'week';
+
 var SchedulerWeekView = A.Component.create({
 	NAME: SCHEDULER_VIEW_WEEK,
 
