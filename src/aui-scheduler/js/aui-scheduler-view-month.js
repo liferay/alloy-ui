@@ -3,7 +3,7 @@ var Lang = A.Lang,
 
 	DateMath = A.DataType.DateMath,
 
-	DOT = '.',
+	_DOT = '.',
 
 	COL = 'col',
 	DATA = 'data',
@@ -96,7 +96,7 @@ var SchedulerMonthView = A.Component.create({
 
 			var currentIntervalStart = instance._findCurrentIntervalStart();
 
-			var colTitleNodes = instance[TABLE_ROW_CONTAINER].all(DOT+CSS_SVT_TABLE_DATA_COL_TITLE);
+			var colTitleNodes = instance[TABLE_ROW_CONTAINER].all(_DOT+CSS_SVT_TABLE_DATA_COL_TITLE);
 
 			colTitleNodes.each(function(colTitleNode, index) {
 				var celDate = DateMath.add(currentIntervalStart, DateMath.DAY, index);

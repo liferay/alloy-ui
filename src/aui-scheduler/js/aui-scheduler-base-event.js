@@ -46,12 +46,12 @@ var SchedulerEvent = A.Component.create({
 					isoTime = scheduler && scheduler.get(ACTIVE_VIEW).get(ISO_TIME),
 
 					format = {
-						endDate: NDASH+SPACE+TITLE_DT_FORMAT_ISO,
+						endDate: _N_DASH+_SPACE+TITLE_DT_FORMAT_ISO,
 						startDate: TITLE_DT_FORMAT_ISO
 					};
 
 				if (!isoTime) {
-					format.endDate = NDASH+SPACE+getUSDateFormat(instance.get(END_DATE));
+					format.endDate = _N_DASH+_SPACE+getUSDateFormat(instance.get(END_DATE));
 					format.startDate = getUSDateFormat(instance.get(START_DATE));
 				}
 
@@ -136,10 +136,10 @@ var SchedulerEvent = A.Component.create({
 									'<div class="' + CSS_SCHEDULER_EVENT_TITLE + '"></div>' +
 									'<div class="' + CSS_SCHEDULER_EVENT_CONTENT + '"></div>' +
 									'<div class="' + CSS_SCHEDULER_EVENT_ICONS + '">' +
-										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_DISABLED].join(SPACE) + '"></span>' +
-										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_MEETING].join(SPACE) + '"></span>' +
-										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_REMINDER].join(SPACE) + '"></span>' +
-										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_REPEATED].join(SPACE) + '"></span>' +
+										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_DISABLED].join(_SPACE) + '"></span>' +
+										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_MEETING].join(_SPACE) + '"></span>' +
+										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_REMINDER].join(_SPACE) + '"></span>' +
+										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_REPEATED].join(_SPACE) + '"></span>' +
 									'</div>' +
 								'</div>',
 
@@ -376,7 +376,7 @@ var SchedulerEvent = A.Component.create({
 			var instance = this;
 
 			instance.get(NODE).each(function(node) {
-				var contentNode = node.one(DOT+CSS_SCHEDULER_EVENT_CONTENT);
+				var contentNode = node.one(_DOT+CSS_SCHEDULER_EVENT_CONTENT);
 
 				contentNode.setContent(content);
 			});
@@ -386,7 +386,7 @@ var SchedulerEvent = A.Component.create({
 			var instance = this;
 
 			instance.get(NODE).each(function(node) {
-				var titleNode = node.one(DOT+CSS_SCHEDULER_EVENT_TITLE);
+				var titleNode = node.one(_DOT+CSS_SCHEDULER_EVENT_TITLE);
 
 				titleNode.setContent(content);
 			});
@@ -413,7 +413,7 @@ var SchedulerEvent = A.Component.create({
 				title.push(instance._formatDate(endDate, format.endDate));
 			}
 
-			instance.setTitle(title.join(SPACE));
+			instance.setTitle(title.join(_SPACE));
 		},
 
 		split: function() {
