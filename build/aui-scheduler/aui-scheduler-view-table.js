@@ -8,10 +8,10 @@ var Lang = A.Lang,
 
 	WEEK_LENGTH = DateMath.WEEK_LENGTH,
 
-	DASH = '-',
-	DOT = '.',
-	EMPTY_STR = '',
-	SPACE = ' ',
+	_DASH = '-',
+	_DOT = '.',
+	_EMPTY_STR = '',
+	_SPACE = ' ',
 
 	SCHEDULER_VIEW = 'scheduler-view',
 	SCHEDULER_VIEW_TABLE = 'scheduler-view-table',
@@ -142,8 +142,8 @@ var Lang = A.Lang,
 							'</tbody>' +
 						'</table>',
 
-	TPL_SVT_EV_ICON_LEFT = '<span class="' + [ CSS_ICON, CSS_ICON_ARROWSTOP_LEFT ].join(SPACE) + '"></span>',
-	TPL_SVT_EV_ICON_RIGHT = '<span class="' + [ CSS_ICON, CSS_ICON_ARROWSTOP_RIGHT ].join(SPACE) + '"></span>',
+	TPL_SVT_EV_ICON_LEFT = '<span class="' + [ CSS_ICON, CSS_ICON_ARROWSTOP_LEFT ].join(_SPACE) + '"></span>',
+	TPL_SVT_EV_ICON_RIGHT = '<span class="' + [ CSS_ICON, CSS_ICON_ARROWSTOP_RIGHT ].join(_SPACE) + '"></span>',
 
 	TPL_SVT_TABLE_DATA_COL = '<td class="' + CSS_SVT_TABLE_DATA_COL + '"><div></div></td>',
 	TPL_SVT_TABLE_DATA_ROW = '<tr></tr>';
@@ -153,7 +153,7 @@ var SchedulerTableView = A.Component.create({
 
 	ATTRS: {
 		bodyContent: {
-			value: EMPTY_STR
+			value: _EMPTY_STR
 		},
 
 		displayDaysInterval: {
@@ -240,10 +240,10 @@ var SchedulerTableView = A.Component.create({
 	},
 
 	HTML_PARSER: {
-		colHeaderDaysNode: getNodeListHTMLParser(DOT+CSS_SVT_HEADER_DAY, 7),
-		headerTableNode: DOT+CSS_SVT_HEADER_TABLE,
-		rowsContainerNode: DOT+CSS_SVT_CONTAINER,
-		tableGridNode: getNodeListHTMLParser(DOT+CSS_SVT_TABLE_GRID, 7)
+		colHeaderDaysNode: getNodeListHTMLParser(_DOT+CSS_SVT_HEADER_DAY, 7),
+		headerTableNode: _DOT+CSS_SVT_HEADER_TABLE,
+		rowsContainerNode: _DOT+CSS_SVT_CONTAINER,
+		tableGridNode: getNodeListHTMLParser(_DOT+CSS_SVT_TABLE_GRID, 7)
 	},
 
 	EXTENDS: A.SchedulerView,
@@ -264,16 +264,16 @@ var SchedulerTableView = A.Component.create({
 			instance[HEADER_TABLE_NODE] = instance.get(HEADER_TABLE_NODE);
 			instance[ROWS_CONTAINER_NODE] = instance.get(ROWS_CONTAINER_NODE);
 			instance[TABLE_GRID_NODE] = instance.get(TABLE_GRID_NODE);
-			instance[COLUMN_DAY_HEADER] = instance.headerTableNode.one(DOT+CSS_SVT_HEADER_COL);
+			instance[COLUMN_DAY_HEADER] = instance.headerTableNode.one(_DOT+CSS_SVT_HEADER_COL);
 			instance[COLUMN_TABLE_GRID] = A.NodeList.create();
-			instance[TABLE_ROW_CONTAINER] = instance[ROWS_CONTAINER_NODE].one(DOT+CSS_SVT_ROW_CONTAINER);
+			instance[TABLE_ROW_CONTAINER] = instance[ROWS_CONTAINER_NODE].one(_DOT+CSS_SVT_ROW_CONTAINER);
 			instance[TABLE_ROWS] = A.NodeList.create();
 		},
 
 		bindUI: function() {
 			var instance = this;
 
-			instance[ROWS_CONTAINER_NODE].delegate('click', A.bind(instance._onClickMore, instance), DOT+CSS_SVT_MORE);
+			instance[ROWS_CONTAINER_NODE].delegate('click', A.bind(instance._onClickMore, instance), _DOT+CSS_SVT_MORE);
 		},
 
 		renderUI: function() {
@@ -509,7 +509,7 @@ var SchedulerTableView = A.Component.create({
 
 			instance.hideEventsOverlay();
 
-			instance.bodyNode.all(DOT+CSS_SVT_TABLE_DATA).remove();
+			instance.bodyNode.all(_DOT+CSS_SVT_TABLE_DATA).remove();
 
 			var displayDaysInterval = instance.get(DISPLAY_DAYS_INTERVAL);
 			var weekDaysCount = Math.min(displayDaysInterval, WEEK_LENGTH);
@@ -630,7 +630,7 @@ var SchedulerTableView = A.Component.create({
 			var endDate = evt.get(END_DATE);
 			var startDate = evt.get(START_DATE);
 
-			return [ startDate.getHours(), DASH, endDate.getHours(), SPACE, evt.get(CONTENT) ].join(EMPTY_STR);
+			return [ startDate.getHours(), _DASH, endDate.getHours(), _SPACE, evt.get(CONTENT) ].join(_EMPTY_STR);
 		},
 
 		_getEvtSplitInfo: function(evt, celDate, rowStartDate, rowEndDate) {
@@ -721,7 +721,7 @@ var SchedulerTableView = A.Component.create({
 				eventsNodeList.push(evtNode);
 			});
 
-			instance[EVENTS_OVERLAY].bodyNode.one(DOT+CSS_SVT_EVENTS_OVERLAY_NODE_BODY).setContent(eventsNodeList);
+			instance[EVENTS_OVERLAY].bodyNode.one(_DOT+CSS_SVT_EVENTS_OVERLAY_NODE_BODY).setContent(eventsNodeList);
 
 			instance[EVENTS_OVERLAY].setAttrs({
 				visible: true,
@@ -749,7 +749,7 @@ var SchedulerTableView = A.Component.create({
 				zIndex: 450
 			});
 
-			instance[EVENTS_OVERLAY].bodyNode.delegate('click', A.bind(instance.hideEventsOverlay, instance), DOT+CSS_SVT_EVENTS_OVERLAY_NODE_CLOSE);
+			instance[EVENTS_OVERLAY].bodyNode.delegate('click', A.bind(instance.hideEventsOverlay, instance), _DOT+CSS_SVT_EVENTS_OVERLAY_NODE_CLOSE);
 		},
 
 		_syncEventNodeContainerUI: function(evt, node, evtSplitInfo) {
@@ -829,7 +829,7 @@ var SchedulerTableView = A.Component.create({
 				buffer.push(tpl);
 			}
 
-			return A.NodeList.create(buffer.join(EMPTY_STR));
+			return A.NodeList.create(buffer.join(_EMPTY_STR));
 		}
 	}
 });

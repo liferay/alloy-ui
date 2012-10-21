@@ -9,9 +9,9 @@ var Lang = A.Lang,
 
 	DateMath = A.DataType.DateMath,
 
-	DASH = '-',
-	DOT = '.',
-	SPACE = ' ',
+	_DASH = '-',
+	_DOT = '.',
+	_SPACE = ' ',
 
 	SCHEDULER_EVENT = 'scheduler-event',
 	SCHEDULER_EVENT_RECORDER = 'scheduler-event-recorder',
@@ -217,7 +217,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var instance = this;
 			var overlayBB = instance[OVERLAY].get(BOUNDING_BOX);
 
-			return overlayBB.one(DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_CONTENT);
+			return overlayBB.one(_DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_CONTENT);
 		},
 
 		getUpdatedSchedulerEvent: function(optAttrMap) {
@@ -245,7 +245,7 @@ var SchedulerEventRecorder = A.Component.create({
 
 			instance[OVERLAY].set(CONSTRAIN, schedulerBB);
 
-			schedulerBB.delegate(CLICK, A.bind(instance._onClickSchedulerEvent, instance), DOT + CSS_SCHEDULER_EVENT);
+			schedulerBB.delegate(CLICK, A.bind(instance._onClickSchedulerEvent, instance), _DOT + CSS_SCHEDULER_EVENT);
 		},
 
 		_defCancelEventFn: function(event) {
@@ -387,7 +387,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var startDate = evt.get(START_DATE);
 			var fmtHourFn = (scheduler.get(ACTIVE_VIEW).get(ISO_TIME) ? DateMath.toIsoTimeString : DateMath.toUsTimeString);
 
-			return [ evt._formatDate(startDate, dateFormat), fmtHourFn(startDate), DASH, fmtHourFn(endDate) ].join(SPACE);
+			return [ evt._formatDate(startDate, dateFormat), fmtHourFn(startDate), _DASH, fmtHourFn(endDate) ].join(_SPACE);
 		},
 
 		getTemplateData: function() {
@@ -442,7 +442,7 @@ var SchedulerEventRecorder = A.Component.create({
 
 			if (!xy) {
 				var eventNode = (instance.get(EVENT) || instance).get(NODE);
-				var titleNode = eventNode.one(DOT + CSS_SCHEDULER_EVENT_TITLE);
+				var titleNode = eventNode.one(_DOT + CSS_SCHEDULER_EVENT_TITLE);
 
 				offset = [overlayOffset[0] + titleNode.get(OFFSET_WIDTH), overlayOffset[1] + titleNode.get(OFFSET_HEIGHT) / 2];
 
@@ -456,8 +456,8 @@ var SchedulerEventRecorder = A.Component.create({
 
 			var overlayBB = instance[OVERLAY].get(BOUNDING_BOX),
 				overlayWidth = overlayBB.get(OFFSET_WIDTH),
-				overlayHeader = overlayBB.one(DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_HEADER),
-				arrows = overlayBB.all(DOT+CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW);
+				overlayHeader = overlayBB.one(_DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_HEADER),
+				arrows = overlayBB.all(_DOT+CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW);
 
 			if ((xy[0] + overlayWidth) >= constrain.get(OFFSET_WIDTH)) {
 				arrows.addClass(CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_RIGHT);

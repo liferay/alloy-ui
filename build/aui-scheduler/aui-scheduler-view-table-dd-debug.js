@@ -6,7 +6,7 @@ var Lang = A.Lang,
 
 	WEEK_LENGTH = DateMath.WEEK_LENGTH,
 
-	DOT = '.',
+	_DOT = '.',
 
 	SCHEDULER_EVENT = 'scheduler-event',
 	SCHEDULER_VIEW = 'scheduler-view',
@@ -69,8 +69,8 @@ A.SchedulerTableViewDD.ATTRS = {
 					},
 					bubbleTargets: instance,
 					container: instance.get(BOUNDING_BOX),
-					nodes: DOT+CSS_SCHEDULER_EVENT,
-					invalid: 'input, select, button, a, textarea, ' + DOT+CSS_SCHEDULER_EVENT_DISABLED
+					nodes: _DOT+CSS_SCHEDULER_EVENT,
+					invalid: 'input, select, button, a, textarea, ' + _DOT+CSS_SCHEDULER_EVENT_DISABLED
 				},
 				val || {}
 			);
@@ -340,7 +340,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		var recorder = scheduler.get(EVENT_RECORDER);
 		var target = event.target;
 
-		if (recorder && target.test([DOT+CSS_SVT_COLGRID, DOT+CSS_SVT_TABLE_DATA_COL].join())) {
+		if (recorder && target.test([_DOT+CSS_SVT_COLGRID, _DOT+CSS_SVT_TABLE_DATA_COL].join())) {
 			instance._recording = true;
 
 			instance._syncCellDimensions();

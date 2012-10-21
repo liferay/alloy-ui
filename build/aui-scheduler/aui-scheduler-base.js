@@ -12,11 +12,11 @@ var Lang = A.Lang,
 	DateMath = A.DataType.DateMath,
 	WidgetStdMod = A.WidgetStdMod,
 
-	COLON = ':',
-	DOT = '.',
-	EMPTY_STR = '',
-	NDASH = '&ndash;',
-	SPACE = ' ',
+	_COLON = ':',
+	_DOT = '.',
+	_EMPTY_STR = '',
+	_N_DASH = '&ndash;',
+	_SPACE = ' ',
 
 	isScheduler = function(val) {
 		return (val instanceof A.Scheduler);
@@ -42,7 +42,7 @@ var Lang = A.Lang,
 		var format = [TITLE_DT_FORMAT_US_HOURS];
 
 		if (date.getMinutes() > 0) {
-			format.push(COLON);
+			format.push(_COLON);
 			format.push(TITLE_DT_FORMAT_US_MINUTES);
 		}
 
@@ -50,7 +50,7 @@ var Lang = A.Lang,
 			format.push('p');
 		}
 
-		return format.join(EMPTY_STR);
+		return format.join(_EMPTY_STR);
 	},
 
 	DATA_VIEW_NAME = 'data-view-name',
@@ -139,7 +139,7 @@ var Lang = A.Lang,
 	CSS_SCHEDULER_NAV = getCN(SCHEDULER_BASE, NAV),
 	CSS_SCHEDULER_TODAY = getCN(SCHEDULER_BASE, TODAY),
 	CSS_SCHEDULER_VIEW = getCN(SCHEDULER_BASE, VIEW),
-	CSS_SCHEDULER_VIEW_ = getCN(SCHEDULER_BASE, VIEW, EMPTY_STR),
+	CSS_SCHEDULER_VIEW_ = getCN(SCHEDULER_BASE, VIEW, _EMPTY_STR),
 	CSS_SCHEDULER_VIEW_DATE = getCN(SCHEDULER_BASE, VIEW, DATE),
 	CSS_SCHEDULER_VIEW_NOSCROLL = getCN(SCHEDULER_VIEW, NOSCROLL),
 	CSS_SCHEDULER_VIEW_SCROLLABLE = getCN(SCHEDULER_VIEW, SCROLLABLE),
@@ -164,11 +164,11 @@ var Lang = A.Lang,
 
 	TPL_SCHEDULER_CONTROLS = '<div class="'+CSS_SCHEDULER_CONTROLS+'"></div>',
 	TPL_SCHEDULER_HD = '<div class="'+CSS_SCHEDULER_HD+'"></div>',
-	TPL_SCHEDULER_ICON_NEXT = '<button type="button" class="'+[ CSS_ICON, CSS_SCHEDULER_ICON_NEXT ].join(SPACE)+' yui3-button">Next</button>',
-	TPL_SCHEDULER_ICON_PREV = '<button type="button" class="'+[ CSS_ICON, CSS_SCHEDULER_ICON_PREV ].join(SPACE)+' yui3-button">Prev</button>',
+	TPL_SCHEDULER_ICON_NEXT = '<button type="button" class="'+[ CSS_ICON, CSS_SCHEDULER_ICON_NEXT ].join(_SPACE)+' yui3-button">Next</button>',
+	TPL_SCHEDULER_ICON_PREV = '<button type="button" class="'+[ CSS_ICON, CSS_SCHEDULER_ICON_PREV ].join(_SPACE)+' yui3-button">Prev</button>',
 	TPL_SCHEDULER_NAV = '<div class="'+CSS_SCHEDULER_NAV+'"></div>',
 	TPL_SCHEDULER_TODAY = '<button type="button" class="'+CSS_SCHEDULER_TODAY+' yui3-button">{today}</button>',
-	TPL_SCHEDULER_VIEW = '<button type="button" class="'+[ CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_ ].join(SPACE)+'{name}" data-view-name="{name}">{label}</button>',
+	TPL_SCHEDULER_VIEW = '<button type="button" class="'+[ CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_ ].join(_SPACE)+'{name}" data-view-name="{name}">{label}</button>',
 	TPL_SCHEDULER_VIEW_DATE = '<div class="'+CSS_SCHEDULER_VIEW_DATE+'"></div>',
 	TPL_SCHEDULER_VIEWS = '<div class="'+CSS_SCHEDULER_VIEWS+'"></div>';
 
@@ -496,14 +496,14 @@ var SchedulerBase = A.Component.create({
 	},
 
 	HTML_PARSER: {
-		controlsNode: DOT+CSS_SCHEDULER_CONTROLS,
-		viewDateNode: DOT+CSS_SCHEDULER_VIEW_DATE,
-		headerNode: DOT+CSS_SCHEDULER_HD,
-		iconNextNode: DOT+CSS_SCHEDULER_ICON_NEXT,
-		iconPrevNode: DOT+CSS_SCHEDULER_ICON_PREV,
-		navNode: DOT+CSS_SCHEDULER_NAV,
-		todayNode: DOT+CSS_SCHEDULER_TODAY,
-		viewsNode: DOT+CSS_SCHEDULER_VIEWS
+		controlsNode: _DOT+CSS_SCHEDULER_CONTROLS,
+		viewDateNode: _DOT+CSS_SCHEDULER_VIEW_DATE,
+		headerNode: _DOT+CSS_SCHEDULER_HD,
+		iconNextNode: _DOT+CSS_SCHEDULER_ICON_NEXT,
+		iconPrevNode: _DOT+CSS_SCHEDULER_ICON_PREV,
+		navNode: _DOT+CSS_SCHEDULER_NAV,
+		todayNode: _DOT+CSS_SCHEDULER_TODAY,
+		viewsNode: _DOT+CSS_SCHEDULER_VIEWS
 	},
 
 	UI_ATTRS: [DATE, ACTIVE_VIEW],
@@ -571,7 +571,7 @@ var SchedulerBase = A.Component.create({
 
 				if (!view.get(RENDERED)) {
 					if (!instance.bodyNode) {
-						instance.setStdModContent(WidgetStdMod.BODY, EMPTY_STR);
+						instance.setStdModContent(WidgetStdMod.BODY, _EMPTY_STR);
 					}
 
 					view.render(instance.bodyNode);
@@ -674,9 +674,9 @@ var SchedulerBase = A.Component.create({
 		_bindDelegate: function() {
 			var instance = this;
 
-			instance[CONTROLS_NODE].delegate('click', instance._onClickPrevIcon, DOT+CSS_SCHEDULER_ICON_PREV, instance);
-			instance[CONTROLS_NODE].delegate('click', instance._onClickNextIcon, DOT+CSS_SCHEDULER_ICON_NEXT, instance);
-			instance[CONTROLS_NODE].delegate('click', instance._onClickToday, DOT+CSS_SCHEDULER_TODAY, instance);
+			instance[CONTROLS_NODE].delegate('click', instance._onClickPrevIcon, _DOT+CSS_SCHEDULER_ICON_PREV, instance);
+			instance[CONTROLS_NODE].delegate('click', instance._onClickNextIcon, _DOT+CSS_SCHEDULER_ICON_NEXT, instance);
+			instance[CONTROLS_NODE].delegate('click', instance._onClickToday, _DOT+CSS_SCHEDULER_TODAY, instance);
 		},
 
 		_createViewTriggerNode: function(view) {
@@ -800,7 +800,7 @@ var SchedulerBase = A.Component.create({
 
 			if (val) {
 				var activeView = val.get(NAME),
-					activeNav = instance[VIEWS_NODE].one(DOT+CSS_SCHEDULER_VIEW_+activeView);
+					activeNav = instance[VIEWS_NODE].one(_DOT+CSS_SCHEDULER_VIEW_+activeView);
 
 				if (activeNav) {
 					instance[VIEWS_NODE].all(BUTTON).removeClass(CSS_SCHEDULER_VIEW_SELECTED);
@@ -1051,12 +1051,12 @@ var SchedulerEvent = A.Component.create({
 					isoTime = scheduler && scheduler.get(ACTIVE_VIEW).get(ISO_TIME),
 
 					format = {
-						endDate: NDASH+SPACE+TITLE_DT_FORMAT_ISO,
+						endDate: _N_DASH+_SPACE+TITLE_DT_FORMAT_ISO,
 						startDate: TITLE_DT_FORMAT_ISO
 					};
 
 				if (!isoTime) {
-					format.endDate = NDASH+SPACE+getUSDateFormat(instance.get(END_DATE));
+					format.endDate = _N_DASH+_SPACE+getUSDateFormat(instance.get(END_DATE));
 					format.startDate = getUSDateFormat(instance.get(START_DATE));
 				}
 
@@ -1141,10 +1141,10 @@ var SchedulerEvent = A.Component.create({
 									'<div class="' + CSS_SCHEDULER_EVENT_TITLE + '"></div>' +
 									'<div class="' + CSS_SCHEDULER_EVENT_CONTENT + '"></div>' +
 									'<div class="' + CSS_SCHEDULER_EVENT_ICONS + '">' +
-										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_DISABLED].join(SPACE) + '"></span>' +
-										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_MEETING].join(SPACE) + '"></span>' +
-										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_REMINDER].join(SPACE) + '"></span>' +
-										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_REPEATED].join(SPACE) + '"></span>' +
+										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_DISABLED].join(_SPACE) + '"></span>' +
+										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_MEETING].join(_SPACE) + '"></span>' +
+										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_REMINDER].join(_SPACE) + '"></span>' +
+										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_REPEATED].join(_SPACE) + '"></span>' +
 									'</div>' +
 								'</div>',
 
@@ -1381,7 +1381,7 @@ var SchedulerEvent = A.Component.create({
 			var instance = this;
 
 			instance.get(NODE).each(function(node) {
-				var contentNode = node.one(DOT+CSS_SCHEDULER_EVENT_CONTENT);
+				var contentNode = node.one(_DOT+CSS_SCHEDULER_EVENT_CONTENT);
 
 				contentNode.setContent(content);
 			});
@@ -1391,7 +1391,7 @@ var SchedulerEvent = A.Component.create({
 			var instance = this;
 
 			instance.get(NODE).each(function(node) {
-				var titleNode = node.one(DOT+CSS_SCHEDULER_EVENT_TITLE);
+				var titleNode = node.one(_DOT+CSS_SCHEDULER_EVENT_TITLE);
 
 				titleNode.setContent(content);
 			});
@@ -1418,7 +1418,7 @@ var SchedulerEvent = A.Component.create({
 				title.push(instance._formatDate(endDate, format.endDate));
 			}
 
-			instance.setTitle(title.join(SPACE));
+			instance.setTitle(title.join(_SPACE));
 		},
 
 		split: function() {
@@ -1615,7 +1615,7 @@ var SchedulerView = A.Component.create({
 
 	ATTRS: {
 		bodyContent: {
-			value: EMPTY_STR
+			value: _EMPTY_STR
 		},
 
 		eventClass: {
@@ -1639,7 +1639,7 @@ var SchedulerView = A.Component.create({
 		},
 
 		name: {
-			value: EMPTY_STR,
+			value: _EMPTY_STR,
 			validator: isString
 		},
 

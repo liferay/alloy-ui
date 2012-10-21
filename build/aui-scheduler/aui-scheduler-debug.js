@@ -12,11 +12,11 @@ var Lang = A.Lang,
 	DateMath = A.DataType.DateMath,
 	WidgetStdMod = A.WidgetStdMod,
 
-	COLON = ':',
-	DOT = '.',
-	EMPTY_STR = '',
-	NDASH = '&ndash;',
-	SPACE = ' ',
+	_COLON = ':',
+	_DOT = '.',
+	_EMPTY_STR = '',
+	_N_DASH = '&ndash;',
+	_SPACE = ' ',
 
 	isScheduler = function(val) {
 		return (val instanceof A.Scheduler);
@@ -42,7 +42,7 @@ var Lang = A.Lang,
 		var format = [TITLE_DT_FORMAT_US_HOURS];
 
 		if (date.getMinutes() > 0) {
-			format.push(COLON);
+			format.push(_COLON);
 			format.push(TITLE_DT_FORMAT_US_MINUTES);
 		}
 
@@ -50,7 +50,7 @@ var Lang = A.Lang,
 			format.push('p');
 		}
 
-		return format.join(EMPTY_STR);
+		return format.join(_EMPTY_STR);
 	},
 
 	DATA_VIEW_NAME = 'data-view-name',
@@ -139,7 +139,7 @@ var Lang = A.Lang,
 	CSS_SCHEDULER_NAV = getCN(SCHEDULER_BASE, NAV),
 	CSS_SCHEDULER_TODAY = getCN(SCHEDULER_BASE, TODAY),
 	CSS_SCHEDULER_VIEW = getCN(SCHEDULER_BASE, VIEW),
-	CSS_SCHEDULER_VIEW_ = getCN(SCHEDULER_BASE, VIEW, EMPTY_STR),
+	CSS_SCHEDULER_VIEW_ = getCN(SCHEDULER_BASE, VIEW, _EMPTY_STR),
 	CSS_SCHEDULER_VIEW_DATE = getCN(SCHEDULER_BASE, VIEW, DATE),
 	CSS_SCHEDULER_VIEW_NOSCROLL = getCN(SCHEDULER_VIEW, NOSCROLL),
 	CSS_SCHEDULER_VIEW_SCROLLABLE = getCN(SCHEDULER_VIEW, SCROLLABLE),
@@ -164,11 +164,11 @@ var Lang = A.Lang,
 
 	TPL_SCHEDULER_CONTROLS = '<div class="'+CSS_SCHEDULER_CONTROLS+'"></div>',
 	TPL_SCHEDULER_HD = '<div class="'+CSS_SCHEDULER_HD+'"></div>',
-	TPL_SCHEDULER_ICON_NEXT = '<button type="button" class="'+[ CSS_ICON, CSS_SCHEDULER_ICON_NEXT ].join(SPACE)+' yui3-button">Next</button>',
-	TPL_SCHEDULER_ICON_PREV = '<button type="button" class="'+[ CSS_ICON, CSS_SCHEDULER_ICON_PREV ].join(SPACE)+' yui3-button">Prev</button>',
+	TPL_SCHEDULER_ICON_NEXT = '<button type="button" class="'+[ CSS_ICON, CSS_SCHEDULER_ICON_NEXT ].join(_SPACE)+' yui3-button">Next</button>',
+	TPL_SCHEDULER_ICON_PREV = '<button type="button" class="'+[ CSS_ICON, CSS_SCHEDULER_ICON_PREV ].join(_SPACE)+' yui3-button">Prev</button>',
 	TPL_SCHEDULER_NAV = '<div class="'+CSS_SCHEDULER_NAV+'"></div>',
 	TPL_SCHEDULER_TODAY = '<button type="button" class="'+CSS_SCHEDULER_TODAY+' yui3-button">{today}</button>',
-	TPL_SCHEDULER_VIEW = '<button type="button" class="'+[ CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_ ].join(SPACE)+'{name}" data-view-name="{name}">{label}</button>',
+	TPL_SCHEDULER_VIEW = '<button type="button" class="'+[ CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_ ].join(_SPACE)+'{name}" data-view-name="{name}">{label}</button>',
 	TPL_SCHEDULER_VIEW_DATE = '<div class="'+CSS_SCHEDULER_VIEW_DATE+'"></div>',
 	TPL_SCHEDULER_VIEWS = '<div class="'+CSS_SCHEDULER_VIEWS+'"></div>';
 
@@ -496,14 +496,14 @@ var SchedulerBase = A.Component.create({
 	},
 
 	HTML_PARSER: {
-		controlsNode: DOT+CSS_SCHEDULER_CONTROLS,
-		viewDateNode: DOT+CSS_SCHEDULER_VIEW_DATE,
-		headerNode: DOT+CSS_SCHEDULER_HD,
-		iconNextNode: DOT+CSS_SCHEDULER_ICON_NEXT,
-		iconPrevNode: DOT+CSS_SCHEDULER_ICON_PREV,
-		navNode: DOT+CSS_SCHEDULER_NAV,
-		todayNode: DOT+CSS_SCHEDULER_TODAY,
-		viewsNode: DOT+CSS_SCHEDULER_VIEWS
+		controlsNode: _DOT+CSS_SCHEDULER_CONTROLS,
+		viewDateNode: _DOT+CSS_SCHEDULER_VIEW_DATE,
+		headerNode: _DOT+CSS_SCHEDULER_HD,
+		iconNextNode: _DOT+CSS_SCHEDULER_ICON_NEXT,
+		iconPrevNode: _DOT+CSS_SCHEDULER_ICON_PREV,
+		navNode: _DOT+CSS_SCHEDULER_NAV,
+		todayNode: _DOT+CSS_SCHEDULER_TODAY,
+		viewsNode: _DOT+CSS_SCHEDULER_VIEWS
 	},
 
 	UI_ATTRS: [DATE, ACTIVE_VIEW],
@@ -571,7 +571,7 @@ var SchedulerBase = A.Component.create({
 
 				if (!view.get(RENDERED)) {
 					if (!instance.bodyNode) {
-						instance.setStdModContent(WidgetStdMod.BODY, EMPTY_STR);
+						instance.setStdModContent(WidgetStdMod.BODY, _EMPTY_STR);
 					}
 
 					view.render(instance.bodyNode);
@@ -674,9 +674,9 @@ var SchedulerBase = A.Component.create({
 		_bindDelegate: function() {
 			var instance = this;
 
-			instance[CONTROLS_NODE].delegate('click', instance._onClickPrevIcon, DOT+CSS_SCHEDULER_ICON_PREV, instance);
-			instance[CONTROLS_NODE].delegate('click', instance._onClickNextIcon, DOT+CSS_SCHEDULER_ICON_NEXT, instance);
-			instance[CONTROLS_NODE].delegate('click', instance._onClickToday, DOT+CSS_SCHEDULER_TODAY, instance);
+			instance[CONTROLS_NODE].delegate('click', instance._onClickPrevIcon, _DOT+CSS_SCHEDULER_ICON_PREV, instance);
+			instance[CONTROLS_NODE].delegate('click', instance._onClickNextIcon, _DOT+CSS_SCHEDULER_ICON_NEXT, instance);
+			instance[CONTROLS_NODE].delegate('click', instance._onClickToday, _DOT+CSS_SCHEDULER_TODAY, instance);
 		},
 
 		_createViewTriggerNode: function(view) {
@@ -800,7 +800,7 @@ var SchedulerBase = A.Component.create({
 
 			if (val) {
 				var activeView = val.get(NAME),
-					activeNav = instance[VIEWS_NODE].one(DOT+CSS_SCHEDULER_VIEW_+activeView);
+					activeNav = instance[VIEWS_NODE].one(_DOT+CSS_SCHEDULER_VIEW_+activeView);
 
 				if (activeNav) {
 					instance[VIEWS_NODE].all(BUTTON).removeClass(CSS_SCHEDULER_VIEW_SELECTED);
@@ -1051,12 +1051,12 @@ var SchedulerEvent = A.Component.create({
 					isoTime = scheduler && scheduler.get(ACTIVE_VIEW).get(ISO_TIME),
 
 					format = {
-						endDate: NDASH+SPACE+TITLE_DT_FORMAT_ISO,
+						endDate: _N_DASH+_SPACE+TITLE_DT_FORMAT_ISO,
 						startDate: TITLE_DT_FORMAT_ISO
 					};
 
 				if (!isoTime) {
-					format.endDate = NDASH+SPACE+getUSDateFormat(instance.get(END_DATE));
+					format.endDate = _N_DASH+_SPACE+getUSDateFormat(instance.get(END_DATE));
 					format.startDate = getUSDateFormat(instance.get(START_DATE));
 				}
 
@@ -1141,10 +1141,10 @@ var SchedulerEvent = A.Component.create({
 									'<div class="' + CSS_SCHEDULER_EVENT_TITLE + '"></div>' +
 									'<div class="' + CSS_SCHEDULER_EVENT_CONTENT + '"></div>' +
 									'<div class="' + CSS_SCHEDULER_EVENT_ICONS + '">' +
-										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_DISABLED].join(SPACE) + '"></span>' +
-										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_MEETING].join(SPACE) + '"></span>' +
-										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_REMINDER].join(SPACE) + '"></span>' +
-										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_REPEATED].join(SPACE) + '"></span>' +
+										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_DISABLED].join(_SPACE) + '"></span>' +
+										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_MEETING].join(_SPACE) + '"></span>' +
+										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_REMINDER].join(_SPACE) + '"></span>' +
+										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_REPEATED].join(_SPACE) + '"></span>' +
 									'</div>' +
 								'</div>',
 
@@ -1381,7 +1381,7 @@ var SchedulerEvent = A.Component.create({
 			var instance = this;
 
 			instance.get(NODE).each(function(node) {
-				var contentNode = node.one(DOT+CSS_SCHEDULER_EVENT_CONTENT);
+				var contentNode = node.one(_DOT+CSS_SCHEDULER_EVENT_CONTENT);
 
 				contentNode.setContent(content);
 			});
@@ -1391,7 +1391,7 @@ var SchedulerEvent = A.Component.create({
 			var instance = this;
 
 			instance.get(NODE).each(function(node) {
-				var titleNode = node.one(DOT+CSS_SCHEDULER_EVENT_TITLE);
+				var titleNode = node.one(_DOT+CSS_SCHEDULER_EVENT_TITLE);
 
 				titleNode.setContent(content);
 			});
@@ -1418,7 +1418,7 @@ var SchedulerEvent = A.Component.create({
 				title.push(instance._formatDate(endDate, format.endDate));
 			}
 
-			instance.setTitle(title.join(SPACE));
+			instance.setTitle(title.join(_SPACE));
 		},
 
 		split: function() {
@@ -1615,7 +1615,7 @@ var SchedulerView = A.Component.create({
 
 	ATTRS: {
 		bodyContent: {
-			value: EMPTY_STR
+			value: _EMPTY_STR
 		},
 
 		eventClass: {
@@ -1639,7 +1639,7 @@ var SchedulerView = A.Component.create({
 		},
 
 		name: {
-			value: EMPTY_STR,
+			value: _EMPTY_STR,
 			validator: isString
 		},
 
@@ -1800,12 +1800,12 @@ var Lang = A.Lang,
 	DateMath = A.DataType.DateMath,
 	WidgetStdMod = A.WidgetStdMod,
 
-	ANCHOR = 'a',
-	COMMA = ',',
-	DOT = '.',
-	EMPTY_STR = '',
-	PERCENT = '%',
-	SPACE = ' ',
+	_ANCHOR = 'a',
+	_COMMA = ',',
+	_DOT = '.',
+	_EMPTY_STR = '',
+	_PERCENT = '%',
+	_SPACE = ' ',
 
 	DATA_COLNUMBER = 'data-colnumber',
 	SCHEDULER_VIEW = 'scheduler-view',
@@ -1871,7 +1871,7 @@ var Lang = A.Lang,
 	DELEGATE_CONFIG = 'delegateConfig',
 	DISABLED = 'disabled',
 	DIVISION = 'division',
-	DOTTED = 'dotted',
+	_DOTTED = 'dotted',
 	DRAGGING_EVENT = 'draggingEvent',
 	DURATION = 'duration',
 	END_DATE = 'endDate',
@@ -1937,7 +1937,7 @@ var Lang = A.Lang,
 	getCN = A.getClassName,
 
 	CSS_ICON = getCN(ICON),
-	CSS_ICON_GRIP_DOTTED_HORIZONTAL = getCN(ICON, GRIP, DOTTED, HORIZONTAL),
+	CSS_ICON_GRIP__DOTTED_HORIZONTAL = getCN(ICON, GRIP, _DOTTED, HORIZONTAL),
 
 	CSS_SVT_TABLE_DATA = getCN(SCHEDULER_VIEW, TABLE, DATA),
 
@@ -1972,7 +1972,7 @@ var Lang = A.Lang,
 	CSS_SCHEDULER_VIEW_DAY_TABLE_TIME = getCN(SCHEDULER_VIEW, DAY, TABLE, TIME),
 
 	TPL_SCHEDULER_VIEW_DAY_RESIZER = '<div class="' + CSS_SCHEDULER_VIEW_DAY_RESIZER + '">' +
-										'<div class="' + [CSS_ICON, CSS_ICON_GRIP_DOTTED_HORIZONTAL, CSS_SCHEDULER_VIEW_DAY_RESIZER_ICON].join(SPACE) + '"></div>' +
+										'<div class="' + [CSS_ICON, CSS_ICON_GRIP__DOTTED_HORIZONTAL, CSS_SCHEDULER_VIEW_DAY_RESIZER_ICON].join(_SPACE) + '"></div>' +
 									'</div>',
 
 	TPL_SCHEDULER_VIEW_DAY_MARKERCELL = '<div class="' + CSS_SCHEDULER_VIEW_DAY_MARKERCELL + '">' +
@@ -1984,7 +1984,7 @@ var Lang = A.Lang,
 	TPL_SCHEDULER_VIEW_DAY_TABLE = '<table cellspacing="0" cellpadding="0" class="' + CSS_SCHEDULER_VIEW_DAY_TABLE + '">' +
 										'<tbody>' +
 											'<tr class="' + CSS_SCHEDULER_VIEW_DAY_COLGRID + '" height="1">' +
-												'<td height="0" class="' + [ CSS_SCHEDULER_VIEW_DAY_TABLE_COL, CSS_SCHEDULER_VIEW_DAY_TABLE_COLBLANK ].join(SPACE) + '"></td>' +
+												'<td height="0" class="' + [ CSS_SCHEDULER_VIEW_DAY_TABLE_COL, CSS_SCHEDULER_VIEW_DAY_TABLE_COLBLANK ].join(_SPACE) + '"></td>' +
 												'<td class="' + CSS_SCHEDULER_VIEW_DAY_GRID_CONTAINER + '" colspan="1">' +
 													'<div class="' + CSS_SCHEDULER_VIEW_DAY_GRID + '">' +
 														'<div class="' + CSS_SCHEDULER_VIEW_DAY_MARKERS + '"></div>' +
@@ -1992,12 +1992,12 @@ var Lang = A.Lang,
 												'</td>' +
 											'</tr>' +
 											'<tr class="' + CSS_SCHEDULER_VIEW_DAY_COLDATA + '">' +
-												'<td class="' + [ CSS_SCHEDULER_VIEW_DAY_TABLE_COL, CSS_SCHEDULER_VIEW_DAY_TABLE_COLTIME ].join(SPACE) + '"></td>' +
+												'<td class="' + [ CSS_SCHEDULER_VIEW_DAY_TABLE_COL, CSS_SCHEDULER_VIEW_DAY_TABLE_COLTIME ].join(_SPACE) + '"></td>' +
 											'</tr>' +
 										'</tbody>' +
 									'</table>',
 
-	TPL_SCHEDULER_VIEW_DAY_TABLE_COLDAY = '<td class="' + [ CSS_SCHEDULER_VIEW_DAY_TABLE_COL, CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY ].join(SPACE) + '" data-colnumber="{colNumber}">' +
+	TPL_SCHEDULER_VIEW_DAY_TABLE_COLDAY = '<td class="' + [ CSS_SCHEDULER_VIEW_DAY_TABLE_COL, CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY ].join(_SPACE) + '" data-colnumber="{colNumber}">' +
 												'<div class="' + CSS_SCHEDULER_VIEW_DAY_TABLE_COL_SHIM + '"></div>' +
 											'</td>',
 
@@ -2010,15 +2010,15 @@ var Lang = A.Lang,
 										'</table>',
 
 	TPL_SCHEDULER_VIEW_DAY_HEADER_DAY = '<th class="' + CSS_SCHEDULER_VIEW_DAY_HEADER_DAY + '" data-colnumber="{colNumber}"><a href="#">&nbsp;</a></th>',
-	TPL_SCHEDULER_VIEW_DAY_HEADER_DAY_FIRST = '<td class="' + [ CSS_SCHEDULER_VIEW_DAY_HEADER_DAY, CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_FIRST ].join(SPACE) + '"></td>',
-	TPL_SCHEDULER_VIEW_DAY_HEADER_DAY_PAD_RIGHT = '<th class="' + [ CSS_SCHEDULER_VIEW_DAY_HEADER_DAY, CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_PAD_RIGHT ].join(SPACE) + '">&nbsp;</th>';
+	TPL_SCHEDULER_VIEW_DAY_HEADER_DAY_FIRST = '<td class="' + [ CSS_SCHEDULER_VIEW_DAY_HEADER_DAY, CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_FIRST ].join(_SPACE) + '"></td>',
+	TPL_SCHEDULER_VIEW_DAY_HEADER_DAY_PAD_RIGHT = '<th class="' + [ CSS_SCHEDULER_VIEW_DAY_HEADER_DAY, CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_PAD_RIGHT ].join(_SPACE) + '">&nbsp;</th>';
 
 var SchedulerDayView = A.Component.create({
 	NAME: SCHEDULER_VIEW_DAY,
 
 	ATTRS: {
 		bodyContent: {
-			value: EMPTY_STR
+			value: _EMPTY_STR
 		},
 
 		days: {
@@ -2038,8 +2038,8 @@ var SchedulerDayView = A.Component.create({
 						},
 						bubbleTargets: instance,
 						container: instance.get(BOUNDING_BOX),
-						nodes: DOT+CSS_SCHEDULER_EVENT,
-						invalid: 'input, select, button, a, textarea, ' + DOT+CSS_SCHEDULER_EVENT_DISABLED
+						nodes: _DOT+CSS_SCHEDULER_EVENT,
+						invalid: 'input, select, button, a, textarea, ' + _DOT+CSS_SCHEDULER_EVENT_DISABLED
 					},
 					val || {}
 				);
@@ -2183,14 +2183,14 @@ var SchedulerDayView = A.Component.create({
 	},
 
 	HTML_PARSER: {
-		colDaysNode: getNodeListHTMLParser(DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY, 1),
-		colHeaderDaysNode: getNodeListHTMLParser(DOT+CSS_SCHEDULER_VIEW_DAY_HEADER_DAY, 2),
-		headerTableNode: DOT+CSS_SCHEDULER_VIEW_DAY_HEADER_TABLE,
-		headerViewLabelNode: DOT+CSS_SCHEDULER_VIEW_DAY_HEADER_VIEW_LABEL,
-		markercellsNode: getNodeListHTMLParser(DOT+CSS_SCHEDULER_VIEW_DAY_MARKERCELL, 24),
-		resizerNode: DOT+CSS_SCHEDULER_VIEW_DAY_RESIZER,
-		tableNode: DOT+CSS_SCHEDULER_VIEW_DAY_TABLE,
-		timesNode: getNodeListHTMLParser(DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_TIME, 24)
+		colDaysNode: getNodeListHTMLParser(_DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY, 1),
+		colHeaderDaysNode: getNodeListHTMLParser(_DOT+CSS_SCHEDULER_VIEW_DAY_HEADER_DAY, 2),
+		headerTableNode: _DOT+CSS_SCHEDULER_VIEW_DAY_HEADER_TABLE,
+		headerViewLabelNode: _DOT+CSS_SCHEDULER_VIEW_DAY_HEADER_VIEW_LABEL,
+		markercellsNode: getNodeListHTMLParser(_DOT+CSS_SCHEDULER_VIEW_DAY_MARKERCELL, 24),
+		resizerNode: _DOT+CSS_SCHEDULER_VIEW_DAY_RESIZER,
+		tableNode: _DOT+CSS_SCHEDULER_VIEW_DAY_TABLE,
+		timesNode: getNodeListHTMLParser(_DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_TIME, 24)
 	},
 
 	EXTENDS: A.SchedulerView,
@@ -2208,12 +2208,12 @@ var SchedulerDayView = A.Component.create({
 			instance[TIMES_NODE] = instance.get(TIMES_NODE);
 
 			instance[ACTIVE_COLUMN] = null;
-			instance[COLUMN_DATA] = instance[TABLE_NODE].one(DOT+CSS_SCHEDULER_VIEW_DAY_COLDATA);
-			instance[COLUMN_DAY_HEADER] = instance.headerTableNode.one(DOT+CSS_SCHEDULER_VIEW_DAY_HEADER_COL);
-			instance[COLUMN_SHIMS] = instance[COL_DAYS_NODE].all(DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_COL_SHIM);
-			instance[COLUMN_TIME] = instance[TABLE_NODE].one(DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_COLTIME);
-			instance[GRID_CONTAINER] = instance[TABLE_NODE].one(DOT+CSS_SCHEDULER_VIEW_DAY_GRID_CONTAINER);
-			instance[MARKERS_NODE] = instance[TABLE_NODE].one(DOT+CSS_SCHEDULER_VIEW_DAY_MARKERS);
+			instance[COLUMN_DATA] = instance[TABLE_NODE].one(_DOT+CSS_SCHEDULER_VIEW_DAY_COLDATA);
+			instance[COLUMN_DAY_HEADER] = instance.headerTableNode.one(_DOT+CSS_SCHEDULER_VIEW_DAY_HEADER_COL);
+			instance[COLUMN_SHIMS] = instance[COL_DAYS_NODE].all(_DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_COL_SHIM);
+			instance[COLUMN_TIME] = instance[TABLE_NODE].one(_DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_COLTIME);
+			instance[GRID_CONTAINER] = instance[TABLE_NODE].one(_DOT+CSS_SCHEDULER_VIEW_DAY_GRID_CONTAINER);
+			instance[MARKERS_NODE] = instance[TABLE_NODE].one(_DOT+CSS_SCHEDULER_VIEW_DAY_MARKERS);
 
 			if (instance.get(HEADER_VIEW)) {
 				instance[HEADER_VIEW] = new A.SchedulerTableView(
@@ -2240,12 +2240,12 @@ var SchedulerDayView = A.Component.create({
 		bindUI: function() {
 			var instance = this;
 
-			instance[HEADER_TABLE_NODE].delegate('click', A.bind(instance._onClickDaysHeader, instance), DOT+CSS_SCHEDULER_VIEW_DAY_HEADER_DAY);
-			instance[COLUMN_DATA].delegate('mousedown', A.bind(instance._onMouseDownTableCol, instance), DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
-			instance[COLUMN_DATA].delegate('mouseenter', A.bind(instance._onMouseEnterEvent, instance), DOT+CSS_SCHEDULER_EVENT);
-			instance[COLUMN_DATA].delegate('mouseleave', A.bind(instance._onMouseLeaveEvent, instance), DOT+CSS_SCHEDULER_EVENT);
-			instance[COLUMN_DATA].delegate('mousemove', A.bind(instance._onMouseMoveTableCol, instance), DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY);
-			instance[COLUMN_DATA].delegate('mouseup', A.bind(instance._onMouseUpTableCol, instance), DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
+			instance[HEADER_TABLE_NODE].delegate('click', A.bind(instance._onClickDaysHeader, instance), _DOT+CSS_SCHEDULER_VIEW_DAY_HEADER_DAY);
+			instance[COLUMN_DATA].delegate('mousedown', A.bind(instance._onMouseDownTableCol, instance), _DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
+			instance[COLUMN_DATA].delegate('mouseenter', A.bind(instance._onMouseEnterEvent, instance), _DOT+CSS_SCHEDULER_EVENT);
+			instance[COLUMN_DATA].delegate('mouseleave', A.bind(instance._onMouseLeaveEvent, instance), _DOT+CSS_SCHEDULER_EVENT);
+			instance[COLUMN_DATA].delegate('mousemove', A.bind(instance._onMouseMoveTableCol, instance), _DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY);
+			instance[COLUMN_DATA].delegate('mouseup', A.bind(instance._onMouseUpTableCol, instance), _DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
 
 			instance.on('drag:end', instance._onEventDragEnd);
 			instance.on('drag:start', instance._onEventDragStart);
@@ -2441,7 +2441,7 @@ var SchedulerDayView = A.Component.create({
 			var formatter = instance.get(HEADER_DATE_FORMATTER);
 			var locale = instance.get(LOCALE);
 
-			instance[COL_HEADER_DAYS_NODE].all(ANCHOR).each(
+			instance[COL_HEADER_DAYS_NODE].all(_ANCHOR).each(
 				function(columnNode, i) {
 					var columnDate = DateMath.add(viewDate, DateMath.DAY, i);
 
@@ -2476,8 +2476,8 @@ var SchedulerDayView = A.Component.create({
 						width = eventWidth - left;
 					}
 
-					evtNode.setStyle(WIDTH, width+PERCENT);
-					evtNode.setStyle(LEFT, left+PERCENT);
+					evtNode.setStyle(WIDTH, width+_PERCENT);
+					evtNode.setStyle(LEFT, left+_PERCENT);
 
 					var evtParentNode = evtNode.get(PARENT_NODE);
 
@@ -2533,7 +2533,7 @@ var SchedulerDayView = A.Component.create({
 
 				headerViewBB.setStyle(MARGIN_RIGHT, getScrollbarWidth());
 
-				var headerViewData = headerViewBB.one(DOT+CSS_SVT_TABLE_DATA);
+				var headerViewData = headerViewBB.one(_DOT+CSS_SVT_TABLE_DATA);
 				var height = Math.max(headerViewData.get(OFFSET_HEIGHT), 40);
 
 				headerView.set(HEIGHT, height);
@@ -2703,7 +2703,7 @@ var SchedulerDayView = A.Component.create({
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
 
-			if (event.target.test(ANCHOR)) {
+			if (event.target.test(_ANCHOR)) {
 				var dayView = scheduler.getViewByName(DAY);
 
 				if (dayView) {
@@ -2768,7 +2768,7 @@ var SchedulerDayView = A.Component.create({
 			if (recorder && !scheduler.get(DISABLED)) {
 				recorder.hideOverlay();
 
-				if (target.test(DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_COL_SHIM)) {
+				if (target.test(_DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_COL_SHIM)) {
 					instance[START_XY] = [ event.pageX, event.pageY ];
 
 					var colNumber = toNumber(event.currentTarget.attr(DATA_COLNUMBER));
@@ -2793,8 +2793,8 @@ var SchedulerDayView = A.Component.create({
 					event.halt();
 				}
 				else if (target.test(
-							[ DOT+CSS_SCHEDULER_VIEW_DAY_RESIZER,
-								DOT+CSS_SCHEDULER_VIEW_DAY_RESIZER_ICON ].join(COMMA))) {
+							[ _DOT+CSS_SCHEDULER_VIEW_DAY_RESIZER,
+								_DOT+CSS_SCHEDULER_VIEW_DAY_RESIZER_ICON ].join(_COMMA))) {
 
 					instance[RESIZING] = true;
 				}
@@ -2906,7 +2906,7 @@ var SchedulerDayView = A.Component.create({
 				);
 			}
 
-			return A.NodeList.create(buffer.join(EMPTY_STR));
+			return A.NodeList.create(buffer.join(_EMPTY_STR));
 		},
 
 		_valueColHeaderDaysNode: function() {
@@ -2926,7 +2926,7 @@ var SchedulerDayView = A.Component.create({
 
 			buffer.push(TPL_SCHEDULER_VIEW_DAY_HEADER_DAY_PAD_RIGHT);
 
-			return A.NodeList.create(buffer.join(EMPTY_STR));
+			return A.NodeList.create(buffer.join(_EMPTY_STR));
 		},
 
 		_valueMarkercellsNode: function() {
@@ -2937,7 +2937,7 @@ var SchedulerDayView = A.Component.create({
 				buffer.push(TPL_SCHEDULER_VIEW_DAY_MARKERCELL);
 			}
 
-			return A.NodeList.create(buffer.join(EMPTY_STR));
+			return A.NodeList.create(buffer.join(_EMPTY_STR));
 		},
 
 		_valueTimesNode: function() {
@@ -2956,7 +2956,7 @@ var SchedulerDayView = A.Component.create({
 				);
 			}
 
-			return A.NodeList.create(buffer.join(EMPTY_STR));
+			return A.NodeList.create(buffer.join(_EMPTY_STR));
 		}
 	}
 });
@@ -2968,9 +2968,9 @@ AUI.add('aui-scheduler-view-week', function(A) {
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
 
-	EMPTY_STR = '',
-	MDASH = '&mdash;',
-	SPACE = ' ',
+	_EMPTY_STR = '',
+	M_DASH = '&mdash;',
+	_SPACE = ' ',
 
 	DateMath = A.DataType.DateMath,
 
@@ -2990,7 +2990,7 @@ var SchedulerWeekView = A.Component.create({
 
 	ATTRS: {
 		bodyContent: {
-			value: EMPTY_STR
+			value: _EMPTY_STR
 		},
 
 		days: {
@@ -3084,7 +3084,7 @@ var SchedulerWeekView = A.Component.create({
 				}
 			);
 
-			return [startDateLabel, MDASH, endDateLabel].join(SPACE);
+			return [startDateLabel, M_DASH, endDateLabel].join(_SPACE);
 		}
 	}
 });
@@ -3102,10 +3102,10 @@ var Lang = A.Lang,
 
 	WEEK_LENGTH = DateMath.WEEK_LENGTH,
 
-	DASH = '-',
-	DOT = '.',
-	EMPTY_STR = '',
-	SPACE = ' ',
+	_DASH = '-',
+	_DOT = '.',
+	_EMPTY_STR = '',
+	_SPACE = ' ',
 
 	SCHEDULER_VIEW = 'scheduler-view',
 	SCHEDULER_VIEW_TABLE = 'scheduler-view-table',
@@ -3236,8 +3236,8 @@ var Lang = A.Lang,
 							'</tbody>' +
 						'</table>',
 
-	TPL_SVT_EV_ICON_LEFT = '<span class="' + [ CSS_ICON, CSS_ICON_ARROWSTOP_LEFT ].join(SPACE) + '"></span>',
-	TPL_SVT_EV_ICON_RIGHT = '<span class="' + [ CSS_ICON, CSS_ICON_ARROWSTOP_RIGHT ].join(SPACE) + '"></span>',
+	TPL_SVT_EV_ICON_LEFT = '<span class="' + [ CSS_ICON, CSS_ICON_ARROWSTOP_LEFT ].join(_SPACE) + '"></span>',
+	TPL_SVT_EV_ICON_RIGHT = '<span class="' + [ CSS_ICON, CSS_ICON_ARROWSTOP_RIGHT ].join(_SPACE) + '"></span>',
 
 	TPL_SVT_TABLE_DATA_COL = '<td class="' + CSS_SVT_TABLE_DATA_COL + '"><div></div></td>',
 	TPL_SVT_TABLE_DATA_ROW = '<tr></tr>';
@@ -3247,7 +3247,7 @@ var SchedulerTableView = A.Component.create({
 
 	ATTRS: {
 		bodyContent: {
-			value: EMPTY_STR
+			value: _EMPTY_STR
 		},
 
 		displayDaysInterval: {
@@ -3334,10 +3334,10 @@ var SchedulerTableView = A.Component.create({
 	},
 
 	HTML_PARSER: {
-		colHeaderDaysNode: getNodeListHTMLParser(DOT+CSS_SVT_HEADER_DAY, 7),
-		headerTableNode: DOT+CSS_SVT_HEADER_TABLE,
-		rowsContainerNode: DOT+CSS_SVT_CONTAINER,
-		tableGridNode: getNodeListHTMLParser(DOT+CSS_SVT_TABLE_GRID, 7)
+		colHeaderDaysNode: getNodeListHTMLParser(_DOT+CSS_SVT_HEADER_DAY, 7),
+		headerTableNode: _DOT+CSS_SVT_HEADER_TABLE,
+		rowsContainerNode: _DOT+CSS_SVT_CONTAINER,
+		tableGridNode: getNodeListHTMLParser(_DOT+CSS_SVT_TABLE_GRID, 7)
 	},
 
 	EXTENDS: A.SchedulerView,
@@ -3358,16 +3358,16 @@ var SchedulerTableView = A.Component.create({
 			instance[HEADER_TABLE_NODE] = instance.get(HEADER_TABLE_NODE);
 			instance[ROWS_CONTAINER_NODE] = instance.get(ROWS_CONTAINER_NODE);
 			instance[TABLE_GRID_NODE] = instance.get(TABLE_GRID_NODE);
-			instance[COLUMN_DAY_HEADER] = instance.headerTableNode.one(DOT+CSS_SVT_HEADER_COL);
+			instance[COLUMN_DAY_HEADER] = instance.headerTableNode.one(_DOT+CSS_SVT_HEADER_COL);
 			instance[COLUMN_TABLE_GRID] = A.NodeList.create();
-			instance[TABLE_ROW_CONTAINER] = instance[ROWS_CONTAINER_NODE].one(DOT+CSS_SVT_ROW_CONTAINER);
+			instance[TABLE_ROW_CONTAINER] = instance[ROWS_CONTAINER_NODE].one(_DOT+CSS_SVT_ROW_CONTAINER);
 			instance[TABLE_ROWS] = A.NodeList.create();
 		},
 
 		bindUI: function() {
 			var instance = this;
 
-			instance[ROWS_CONTAINER_NODE].delegate('click', A.bind(instance._onClickMore, instance), DOT+CSS_SVT_MORE);
+			instance[ROWS_CONTAINER_NODE].delegate('click', A.bind(instance._onClickMore, instance), _DOT+CSS_SVT_MORE);
 		},
 
 		renderUI: function() {
@@ -3603,7 +3603,7 @@ var SchedulerTableView = A.Component.create({
 
 			instance.hideEventsOverlay();
 
-			instance.bodyNode.all(DOT+CSS_SVT_TABLE_DATA).remove();
+			instance.bodyNode.all(_DOT+CSS_SVT_TABLE_DATA).remove();
 
 			var displayDaysInterval = instance.get(DISPLAY_DAYS_INTERVAL);
 			var weekDaysCount = Math.min(displayDaysInterval, WEEK_LENGTH);
@@ -3724,7 +3724,7 @@ var SchedulerTableView = A.Component.create({
 			var endDate = evt.get(END_DATE);
 			var startDate = evt.get(START_DATE);
 
-			return [ startDate.getHours(), DASH, endDate.getHours(), SPACE, evt.get(CONTENT) ].join(EMPTY_STR);
+			return [ startDate.getHours(), _DASH, endDate.getHours(), _SPACE, evt.get(CONTENT) ].join(_EMPTY_STR);
 		},
 
 		_getEvtSplitInfo: function(evt, celDate, rowStartDate, rowEndDate) {
@@ -3815,7 +3815,7 @@ var SchedulerTableView = A.Component.create({
 				eventsNodeList.push(evtNode);
 			});
 
-			instance[EVENTS_OVERLAY].bodyNode.one(DOT+CSS_SVT_EVENTS_OVERLAY_NODE_BODY).setContent(eventsNodeList);
+			instance[EVENTS_OVERLAY].bodyNode.one(_DOT+CSS_SVT_EVENTS_OVERLAY_NODE_BODY).setContent(eventsNodeList);
 
 			instance[EVENTS_OVERLAY].setAttrs({
 				visible: true,
@@ -3843,7 +3843,7 @@ var SchedulerTableView = A.Component.create({
 				zIndex: 450
 			});
 
-			instance[EVENTS_OVERLAY].bodyNode.delegate('click', A.bind(instance.hideEventsOverlay, instance), DOT+CSS_SVT_EVENTS_OVERLAY_NODE_CLOSE);
+			instance[EVENTS_OVERLAY].bodyNode.delegate('click', A.bind(instance.hideEventsOverlay, instance), _DOT+CSS_SVT_EVENTS_OVERLAY_NODE_CLOSE);
 		},
 
 		_syncEventNodeContainerUI: function(evt, node, evtSplitInfo) {
@@ -3923,7 +3923,7 @@ var SchedulerTableView = A.Component.create({
 				buffer.push(tpl);
 			}
 
-			return A.NodeList.create(buffer.join(EMPTY_STR));
+			return A.NodeList.create(buffer.join(_EMPTY_STR));
 		}
 	}
 });
@@ -3939,7 +3939,7 @@ var Lang = A.Lang,
 
 	WEEK_LENGTH = DateMath.WEEK_LENGTH,
 
-	DOT = '.',
+	_DOT = '.',
 
 	SCHEDULER_EVENT = 'scheduler-event',
 	SCHEDULER_VIEW = 'scheduler-view',
@@ -4002,8 +4002,8 @@ A.SchedulerTableViewDD.ATTRS = {
 					},
 					bubbleTargets: instance,
 					container: instance.get(BOUNDING_BOX),
-					nodes: DOT+CSS_SCHEDULER_EVENT,
-					invalid: 'input, select, button, a, textarea, ' + DOT+CSS_SCHEDULER_EVENT_DISABLED
+					nodes: _DOT+CSS_SCHEDULER_EVENT,
+					invalid: 'input, select, button, a, textarea, ' + _DOT+CSS_SCHEDULER_EVENT_DISABLED
 				},
 				val || {}
 			);
@@ -4273,7 +4273,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		var recorder = scheduler.get(EVENT_RECORDER);
 		var target = event.target;
 
-		if (recorder && target.test([DOT+CSS_SVT_COLGRID, DOT+CSS_SVT_TABLE_DATA_COL].join())) {
+		if (recorder && target.test([_DOT+CSS_SVT_COLGRID, _DOT+CSS_SVT_TABLE_DATA_COL].join())) {
 			instance._recording = true;
 
 			instance._syncCellDimensions();
@@ -4396,7 +4396,7 @@ var Lang = A.Lang,
 
 	DateMath = A.DataType.DateMath,
 
-	DOT = '.',
+	_DOT = '.',
 
 	COL = 'col',
 	DATA = 'data',
@@ -4489,7 +4489,7 @@ var SchedulerMonthView = A.Component.create({
 
 			var currentIntervalStart = instance._findCurrentIntervalStart();
 
-			var colTitleNodes = instance[TABLE_ROW_CONTAINER].all(DOT+CSS_SVT_TABLE_DATA_COL_TITLE);
+			var colTitleNodes = instance[TABLE_ROW_CONTAINER].all(_DOT+CSS_SVT_TABLE_DATA_COL_TITLE);
 
 			colTitleNodes.each(function(colTitleNode, index) {
 				var celDate = DateMath.add(currentIntervalStart, DateMath.DAY, index);
@@ -4534,9 +4534,9 @@ var Lang = A.Lang,
 
 	DateMath = A.DataType.DateMath,
 
-	DASH = '-',
-	DOT = '.',
-	SPACE = ' ',
+	_DASH = '-',
+	_DOT = '.',
+	_SPACE = ' ',
 
 	SCHEDULER_EVENT = 'scheduler-event',
 	SCHEDULER_EVENT_RECORDER = 'scheduler-event-recorder',
@@ -4742,7 +4742,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var instance = this;
 			var overlayBB = instance[OVERLAY].get(BOUNDING_BOX);
 
-			return overlayBB.one(DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_CONTENT);
+			return overlayBB.one(_DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_CONTENT);
 		},
 
 		getUpdatedSchedulerEvent: function(optAttrMap) {
@@ -4770,7 +4770,7 @@ var SchedulerEventRecorder = A.Component.create({
 
 			instance[OVERLAY].set(CONSTRAIN, schedulerBB);
 
-			schedulerBB.delegate(CLICK, A.bind(instance._onClickSchedulerEvent, instance), DOT + CSS_SCHEDULER_EVENT);
+			schedulerBB.delegate(CLICK, A.bind(instance._onClickSchedulerEvent, instance), _DOT + CSS_SCHEDULER_EVENT);
 		},
 
 		_defCancelEventFn: function(event) {
@@ -4912,7 +4912,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var startDate = evt.get(START_DATE);
 			var fmtHourFn = (scheduler.get(ACTIVE_VIEW).get(ISO_TIME) ? DateMath.toIsoTimeString : DateMath.toUsTimeString);
 
-			return [ evt._formatDate(startDate, dateFormat), fmtHourFn(startDate), DASH, fmtHourFn(endDate) ].join(SPACE);
+			return [ evt._formatDate(startDate, dateFormat), fmtHourFn(startDate), _DASH, fmtHourFn(endDate) ].join(_SPACE);
 		},
 
 		getTemplateData: function() {
@@ -4967,7 +4967,7 @@ var SchedulerEventRecorder = A.Component.create({
 
 			if (!xy) {
 				var eventNode = (instance.get(EVENT) || instance).get(NODE);
-				var titleNode = eventNode.one(DOT + CSS_SCHEDULER_EVENT_TITLE);
+				var titleNode = eventNode.one(_DOT + CSS_SCHEDULER_EVENT_TITLE);
 
 				offset = [overlayOffset[0] + titleNode.get(OFFSET_WIDTH), overlayOffset[1] + titleNode.get(OFFSET_HEIGHT) / 2];
 
@@ -4981,8 +4981,8 @@ var SchedulerEventRecorder = A.Component.create({
 
 			var overlayBB = instance[OVERLAY].get(BOUNDING_BOX),
 				overlayWidth = overlayBB.get(OFFSET_WIDTH),
-				overlayHeader = overlayBB.one(DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_HEADER),
-				arrows = overlayBB.all(DOT+CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW);
+				overlayHeader = overlayBB.one(_DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_HEADER),
+				arrows = overlayBB.all(_DOT+CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW);
 
 			if ((xy[0] + overlayWidth) >= constrain.get(OFFSET_WIDTH)) {
 				arrows.addClass(CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_RIGHT);
