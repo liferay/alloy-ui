@@ -1,9 +1,9 @@
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
 
-	EMPTY_STR = '',
-	MDASH = '&mdash;',
-	SPACE = ' ',
+	_EMPTY_STR = '',
+	M_DASH = '&mdash;',
+	_SPACE = ' ',
 
 	DateMath = A.DataType.DateMath,
 
@@ -23,7 +23,7 @@ var SchedulerWeekView = A.Component.create({
 
 	ATTRS: {
 		bodyContent: {
-			value: EMPTY_STR
+			value: _EMPTY_STR
 		},
 
 		days: {
@@ -117,7 +117,7 @@ var SchedulerWeekView = A.Component.create({
 				}
 			);
 
-			return [startDateLabel, MDASH, endDateLabel].join(SPACE);
+			return [startDateLabel, M_DASH, endDateLabel].join(_SPACE);
 		}
 	}
 });

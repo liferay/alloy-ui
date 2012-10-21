@@ -5,7 +5,7 @@ var SchedulerView = A.Component.create({
 
 	ATTRS: {
 		bodyContent: {
-			value: EMPTY_STR
+			value: _EMPTY_STR
 		},
 
 		eventClass: {
@@ -29,7 +29,7 @@ var SchedulerView = A.Component.create({
 		},
 
 		name: {
-			value: EMPTY_STR,
+			value: _EMPTY_STR,
 			validator: isString
 		},
 
