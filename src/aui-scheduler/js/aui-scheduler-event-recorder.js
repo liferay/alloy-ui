@@ -259,7 +259,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
 
-			scheduler.removeEvent(instance.get(EVENT));
+			scheduler.removeEvents(instance.get(EVENT));
 
 			instance.hideOverlay();
 
@@ -279,7 +279,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
 
-			scheduler.addEvent(event.newSchedulerEvent);
+			scheduler.addEvents(event.newSchedulerEvent);
 
 			instance.hideOverlay();
 
