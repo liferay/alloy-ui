@@ -13,46 +13,35 @@
 }
 
 .aui-scheduler-event-recorder-overlay-arrow {
-  border-color: transparent #F7F7F7 transparent transparent;
+  border-color: #FFFFFF transparent transparent transparent;
   border-style: solid;
   border-width: 12px;
   font-size: 0;
-  left: -22px;
+  bottom: -24px;
+  left: auto;
   line-height: 0;
   position: absolute;
-  top: 25px;
   width: 0;
 }
 
-.aui-scheduler-event-recorder-overlay-arrow.aui-scheduler-event-recorder-overlay-arrow-right {
-  border-color: transparent transparent transparent #F7F7F7;
-  left: auto;
-  right: -22px;
-}
-
-.aui-scheduler-event-recorder-overlay-arrow.aui-scheduler-event-recorder-overlay-arrow-bottom, .aui-scheduler-event-recorder-overlay-arrow.aui-scheduler-event-recorder-overlay-arrow-right.aui-scheduler-event-recorder-overlay-arrow-bottom, .aui-scheduler-event-recorder-overlay-arrow-shadow.aui-scheduler-event-recorder-overlay-arrow-bottom, .aui-scheduler-event-recorder-overlay-arrow-shadow.aui-scheduler-event-recorder-overlay-arrow-right.aui-scheduler-event-recorder-overlay-arrow-bottom {
-  top: 96px;
-}
-
-.aui-scheduler-event-recorder-overlay-arrow.aui-scheduler-event-recorder-overlay-arrow-bottom {
-  border-color: transparent white transparent transparent;
-}
-
-.aui-scheduler-event-recorder-overlay-arrow.aui-scheduler-event-recorder-overlay-arrow-right.aui-scheduler-event-recorder-overlay-arrow-bottom {
-  border-color: transparent transparent transparent white;
-}
-
-.aui-scheduler-event-recorder-overlay-arrow-shadow, .aui-scheduler-event-recorder-overlay-arrow-shadow.aui-scheduler-event-recorder-overlay-arrow-bottom, .aui-scheduler-event-recorder-overlay-arrow-shadow.aui-scheduler-event-recorder-overlay-arrow-right.aui-scheduler-event-recorder-overlay-arrow-bottom {
-  border-color: transparent #cccccc transparent transparent;
-}
-
-.aui-scheduler-event-recorder-overlay-arrow.aui-scheduler-event-recorder-overlay-arrow-shadow.aui-scheduler-event-recorder-overlay-arrow-right {
-  border-color: transparent transparent transparent #CCC;
-  right: -24px;
+.aui-scheduler-event-recorder-overlay-arrow {
+  border-color: #FFFFFF transparent transparent transparent;
 }
 
 .aui-scheduler-event-recorder-overlay-arrow-shadow {
-  left: -24px;
+  border-color: #ccc transparent transparent transparent;
+  bottom: -25px;
+}
+
+.aui-scheduler-event-recorder-overlay-arrow.aui-scheduler-event-recorder-overlay-arrow-top {
+  border-color: transparent transparent #F7F7F7 transparent;
+  bottom: auto;
+  top: -24px;
+}
+
+.aui-scheduler-event-recorder-overlay-arrow-shadow.aui-scheduler-event-recorder-overlay-arrow-top {
+  border-color: transparent transparent #CCC transparent;
+  top: -25px;
 }
 
 .aui-scheduler-event-recorder-overlay-header {
