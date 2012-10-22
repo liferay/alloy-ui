@@ -1,3 +1,166 @@
+var Lang = A.Lang,
+	isArray = Lang.isArray,
+	isBoolean = Lang.isBoolean,
+	isDate = Lang.isDate,
+	isFunction = Lang.isFunction,
+	isNumber = Lang.isNumber,
+	isObject = Lang.isObject,
+	isString = Lang.isString,
+
+	ColorUtil = A.ColorUtil,
+	DateMath = A.DataType.DateMath,
+	WidgetStdMod = A.WidgetStdMod,
+
+	_COLON = ':',
+	_DOT = '.',
+	_EMPTY_STR = '',
+	_N_DASH = '&ndash;',
+	_SPACE = ' ',
+
+	isModelList = function(val) {
+		return val instanceof A.ModelList;
+	},
+
+	isSchedulerView = function(val) {
+		return val instanceof A.SchedulerView;
+	},
+
+	TITLE_DT_FORMAT_ISO = '%H:%M',
+	TITLE_DT_FORMAT_US_HOURS = '%l',
+	TITLE_DT_FORMAT_US_MINUTES = '%M',
+
+	getUSDateFormat = function(date) {
+		var format = [TITLE_DT_FORMAT_US_HOURS];
+
+		if (date.getMinutes() > 0) {
+			format.push(_COLON);
+			format.push(TITLE_DT_FORMAT_US_MINUTES);
+		}
+
+		if (date.getHours() >= 12) {
+			format.push('p');
+		}
+
+		return format.join(_EMPTY_STR);
+	},
+
+	DATA_VIEW_NAME = 'data-view-name',
+	SCHEDULER_BASE = 'scheduler-base',
+	SCHEDULER_CALENDAR = 'scheduler-calendar',
+	SCHEDULER_VIEW = 'scheduler-view',
+
+	ACTIVE_VIEW = 'activeView',
+	ALL = 'all',
+	ALL_DAY = 'allDay',
+	BORDER_COLOR = 'borderColor',
+	BORDER_COLOR_RGB = 'borderColorRGB',
+	BORDER_STYLE = 'borderStyle',
+	BORDER_WIDTH = 'borderWidth',
+	BUTTON = 'button',
+	CLEARFIX = 'clearfix',
+	COLOR = 'color',
+	COLOR_BRIGHTNESS_FACTOR = 'colorBrightnessFactor',
+	COLOR_SATURATION_FACTOR = 'colorSaturationFactor',
+	CONTENT = 'content',
+	CONTROLS = 'controls',
+	CONTROLS_NODE = 'controlsNode',
+	DATE = 'date',
+	DAY = 'day',
+	DISABLED = 'disabled',
+	END_DATE = 'endDate',
+	EVENT_RECORDER = 'eventRecorder',
+	HD = 'hd',
+	HEADER = 'header',
+	HEADER_NODE = 'headerNode',
+	HELPER = 'helper',
+	HIDDEN = 'hidden',
+	HSB_COLOR = 'hsbColor',
+	ICON = 'icon',
+	ICON_NEXT_NODE = 'iconNextNode',
+	ICON_PREV_NODE = 'iconPrevNode',
+	ICONS = 'icons',
+	INHERIT = 'inherit',
+	ISO_TIME = 'isoTime',
+	LOCALE = 'locale',
+	MEETING = 'meeting',
+	NAME = 'name',
+	NAV = 'nav',
+	NAV_NODE = 'navNode',
+	NAVIGATION_DATE_FORMATTER = 'navigationDateFormatter',
+	NEXT = 'next',
+	NEXT_DATE = 'nextDate',
+	NODE = 'node',
+	NOSCROLL = 'noscroll',
+	PALLETE = 'pallete',
+	PREV = 'prev',
+	PREV_DATE = 'prevDate',
+	RADIO = 'radio',
+	REMINDER = 'reminder',
+	RENDERED = 'rendered',
+	REPEATED = 'repeated',
+	SCHEDULER = 'scheduler',
+	SCHEDULER_EVENT = 'scheduler-event',
+	SCROLLABLE = 'scrollable',
+	SHORT = 'short',
+	START_DATE = 'startDate',
+	STRINGS = 'strings',
+	TITLE = 'title',
+	TITLE_DATE_FORMAT = 'titleDateFormat',
+	TODAY = 'today',
+	TODAY_NODE = 'todayNode',
+	TRIGGER_NODE = 'triggerNode',
+	VIEW = 'view',
+	VIEW_DATE_NODE = 'viewDateNode',
+	VIEW_STACK = 'viewStack',
+	VIEWS = 'views',
+	VIEWS_NODE = 'viewsNode',
+	VISIBLE = 'visible',
+
+	getCN = A.getClassName,
+
+	CSS_HELPER_CLEARFIX = getCN(HELPER, CLEARFIX),
+	CSS_ICON = getCN(ICON),
+	CSS_SCHEDULER_CONTROLS = getCN(SCHEDULER_BASE, CONTROLS),
+
+	CSS_SCHEDULER_HD = getCN(SCHEDULER_BASE, HD),
+	CSS_SCHEDULER_ICON_NEXT = getCN(SCHEDULER_BASE, ICON, NEXT),
+	CSS_SCHEDULER_ICON_PREV = getCN(SCHEDULER_BASE, ICON, PREV),
+	CSS_SCHEDULER_NAV = getCN(SCHEDULER_BASE, NAV),
+	CSS_SCHEDULER_TODAY = getCN(SCHEDULER_BASE, TODAY),
+	CSS_SCHEDULER_VIEW = getCN(SCHEDULER_BASE, VIEW),
+	CSS_SCHEDULER_VIEW_ = getCN(SCHEDULER_BASE, VIEW, _EMPTY_STR),
+	CSS_SCHEDULER_VIEW_DATE = getCN(SCHEDULER_BASE, VIEW, DATE),
+	CSS_SCHEDULER_VIEW_NOSCROLL = getCN(SCHEDULER_VIEW, NOSCROLL),
+	CSS_SCHEDULER_VIEW_SCROLLABLE = getCN(SCHEDULER_VIEW, SCROLLABLE),
+	CSS_SCHEDULER_VIEW_SELECTED = 'yui3-button-selected',
+	CSS_SCHEDULER_VIEWS = getCN(SCHEDULER_BASE, VIEWS),
+
+	CSS_SCHEDULER_EVENT = getCN(SCHEDULER_EVENT),
+	CSS_SCHEDULER_EVENT_ALL_DAY = getCN(SCHEDULER_EVENT, ALL, DAY),
+	CSS_SCHEDULER_EVENT_CONTENT = getCN(SCHEDULER_EVENT, CONTENT),
+	CSS_SCHEDULER_EVENT_DISABLED = getCN(SCHEDULER_EVENT, DISABLED),
+	CSS_SCHEDULER_EVENT_HIDDEN = getCN(SCHEDULER_EVENT, HIDDEN),
+	CSS_SCHEDULER_EVENT_ICON_DISABLED = getCN(SCHEDULER_EVENT, ICON, DISABLED),
+	CSS_SCHEDULER_EVENT_ICON_MEETING = getCN(SCHEDULER_EVENT, ICON, MEETING),
+	CSS_SCHEDULER_EVENT_ICON_REMINDER = getCN(SCHEDULER_EVENT, ICON, REMINDER),
+	CSS_SCHEDULER_EVENT_ICON_REPEATED = getCN(SCHEDULER_EVENT, ICON, REPEATED),
+	CSS_SCHEDULER_EVENT_ICONS = getCN(SCHEDULER_EVENT, ICONS),
+	CSS_SCHEDULER_EVENT_MEETING = getCN(SCHEDULER_EVENT, MEETING),
+	CSS_SCHEDULER_EVENT_REMINDER = getCN(SCHEDULER_EVENT, REMINDER),
+	CSS_SCHEDULER_EVENT_REPEATED = getCN(SCHEDULER_EVENT, REPEATED),
+	CSS_SCHEDULER_EVENT_SHORT = getCN(SCHEDULER_EVENT, SHORT),
+	CSS_SCHEDULER_EVENT_TITLE = getCN(SCHEDULER_EVENT, TITLE),
+
+	TPL_SCHEDULER_CONTROLS = '<div class="'+CSS_SCHEDULER_CONTROLS+'"></div>',
+	TPL_SCHEDULER_HD = '<div class="'+CSS_SCHEDULER_HD+'"></div>',
+	TPL_SCHEDULER_ICON_NEXT = '<button type="button" class="'+[ CSS_ICON, CSS_SCHEDULER_ICON_NEXT ].join(_SPACE)+' yui3-button">Next</button>',
+	TPL_SCHEDULER_ICON_PREV = '<button type="button" class="'+[ CSS_ICON, CSS_SCHEDULER_ICON_PREV ].join(_SPACE)+' yui3-button">Prev</button>',
+	TPL_SCHEDULER_NAV = '<div class="'+CSS_SCHEDULER_NAV+'"></div>',
+	TPL_SCHEDULER_TODAY = '<button type="button" class="'+CSS_SCHEDULER_TODAY+' yui3-button">{today}</button>',
+	TPL_SCHEDULER_VIEW = '<button type="button" class="'+[ CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_ ].join(_SPACE)+'{name}" data-view-name="{name}">{label}</button>',
+	TPL_SCHEDULER_VIEW_DATE = '<div class="'+CSS_SCHEDULER_VIEW_DATE+'"></div>',
+	TPL_SCHEDULER_VIEWS = '<div class="'+CSS_SCHEDULER_VIEWS+'"></div>';
+
 var SchedulerEvent = A.Component.create({
 	NAME: SCHEDULER_EVENT,
 
@@ -145,7 +308,6 @@ var SchedulerEvent = A.Component.create({
 
 		initializer: function() {
 			var instance = this;
-			var node = instance.get(NODE);
 
 			instance.bindUI();
 			instance.syncUI();
@@ -214,9 +376,13 @@ var SchedulerEvent = A.Component.create({
 
 		clone: function() {
 			var instance = this,
-				cloned = new (instance.get(EVENT_CLASS))();
+				cloned = null,
+				scheduler = instance.get(SCHEDULER);
 
-			cloned.copyPropagateAttrValues(instance, null, { silent: true });
+			if (scheduler) {
+				cloned = new scheduler.eventModel();
+				cloned.copyPropagateAttrValues(instance, null, { silent: true });
+			}
 
 			return cloned;
 		},
@@ -237,7 +403,7 @@ var SchedulerEvent = A.Component.create({
 
 			instance.copyDates(evt, options);
 
-			A.Array.each(instance.get(EVENT_CLASS).PROPAGATE_ATTRS, function(attrName) {
+			A.Array.each(instance.constructor.PROPAGATE_ATTRS, function(attrName) {
 				if ( !((dontCopyMap || {}).hasOwnProperty(attrName)) ) {
 					var value = evt.get(attrName);
 

@@ -38,9 +38,14 @@
 					startDate: new Date(2010, 9, 2, 7)
 				});
 
-				var calendar1 = new A.SchedulerCalendar({
+				var schedulerEvent3 = new A.SchedulerEvent({
+					content: 'Testing event 3',
+					startDate: new Date()
+				});
+
+				calendar1 = new A.SchedulerCalendar({
 					color: 'green',
-					events: [ schedulerEvent1, schedulerEvent2 ]
+					items: [ schedulerEvent1, schedulerEvent2, schedulerEvent3 ]
 				});
 
 				var calendar2 = new A.SchedulerCalendar({
@@ -56,7 +61,7 @@
 					]
 				});
 
-				calendar2.addEvents([
+				calendar2.add([
 					{
 						content: 'eduardo added via addEvents',
 						startDate: new Date(2010, 9, 17, 12)
@@ -143,14 +148,14 @@
 					boundingBox: '#scheduler',
 					date: new Date(2010, 9, 12),
 					eventRecorder: eventRecorder,
-					events: events1,
+					items: events1,
 					firstDayOfWeek: 1,
 					render: true,
 					views: [weekView, dayView, monthView]
 				});
 
 				scheduler.on({
-					eventsChange: function(event) {
+					'*:change': function(event) {
 						console.log(event.type, event);
 					},
 

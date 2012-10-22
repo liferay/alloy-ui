@@ -158,7 +158,7 @@ var SchedulerView = A.Component.create({
 			if (val) {
 				instance.addTarget(val);
 
-				val.after('eventsChange', A.bind(instance.flushViewCache, instance));
+				val.after(['*:add', '*:remove', '*:reset'], A.bind(instance.flushViewCache, instance));
 			}
 
 			return val;
