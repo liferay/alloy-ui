@@ -18,20 +18,12 @@ var Lang = A.Lang,
 	_N_DASH = '&ndash;',
 	_SPACE = ' ',
 
-	isScheduler = function(val) {
-		return (val instanceof A.Scheduler);
-	},
-
-	isSchedulerEvent = function(val) {
-		return (val instanceof A.SchedulerEvent);
+	isModelList = function(val) {
+		return val instanceof A.ModelList;
 	},
 
 	isSchedulerView = function(val) {
-		return (val instanceof A.SchedulerView);
-	},
-
-	isSchedulerCalendar = function(val) {
-		return (A.SchedulerCalendar && (val instanceof A.SchedulerCalendar));
+		return val instanceof A.SchedulerView;
 	},
 
 	TITLE_DT_FORMAT_ISO = '%H:%M',
@@ -77,9 +69,7 @@ var Lang = A.Lang,
 	DAY = 'day',
 	DISABLED = 'disabled',
 	END_DATE = 'endDate',
-	EVENT_CLASS = 'eventClass',
 	EVENT_RECORDER = 'eventRecorder',
-	EVENTS = 'events',
 	HD = 'hd',
 	HEADER = 'header',
 	HEADER_NODE = 'headerNode',
@@ -172,837 +162,6 @@ var Lang = A.Lang,
 	TPL_SCHEDULER_VIEW_DATE = '<div class="'+CSS_SCHEDULER_VIEW_DATE+'"></div>',
 	TPL_SCHEDULER_VIEWS = '<div class="'+CSS_SCHEDULER_VIEWS+'"></div>';
 
-
-var SchedulerEventSupport = function() {};
-
-SchedulerEventSupport.ATTRS = {
-	eventClass: {
-		valueFn: function() {
-			return A.SchedulerEvent;
-		}
-	},
-
-	events: {
-		value: [],
-		setter: '_setEvents',
-		validator: isArray
-	}
-};
-
-A.mix(SchedulerEventSupport.prototype, {
-	addEvent: function(value) {
-		var instance = this;
-
-		instance.addEvents([value]);
-	},
-
-	addEvents: function(values) {
-		var instance = this,
-			events = instance.get(EVENTS),
-			results = events.concat();
-
-		values = instance._normalizeEvents(values);
-
-		A.Array.each(values, function(evt) {
-			if (A.Array.indexOf(results, evt) === -1) {
-				results.push(evt);
-			}
-		});
-
-		if (results.length !== events.length) {
-			instance.set(EVENTS, results);
-		}
-	},
-
-	eachEvent: function(fn) {
-		var instance = this;
-		var events = instance.getEvents(function() {
-			return true;
-		});
-
-		A.Array.each(events, fn, instance);
-	},
-
-	flushEvents: function() {
-		var instance = this;
-
-		A.Array.each(instance.get(EVENTS), function(evt) {
-			delete evt._filtered;
-		});
-	},
-
-	getEventsByDay: function(date, includeOverlap) {
-		var instance = this;
-
-		date = DateMath.safeClearTime(date);
-
-		return instance.getEvents(function(evt) {
-			return DateMath.compare(evt.getClearStartDate(), date) ||
-					(includeOverlap && DateMath.compare(evt.getClearEndDate(), date));
-		});
-	},
-
-	getEvents: function(filterFn) {
-		var instance = this;
-		var events = instance.get(EVENTS);
-		var results = [];
-
-		A.Array.each(events, function(evt) {
-			if (filterFn.call(instance, evt)) {
-				results.push(evt);
-			}
-		});
-
-		instance.sortEventsByDateAsc(results);
-
-		return results;
-	},
-
-	getIntersectEvents: function(date) {
-		var instance = this;
-
-		date = DateMath.safeClearTime(date);
-
-		return instance.getEvents(function(evt) {
-			var startDate = evt.getClearStartDate();
-			var endDate = evt.getClearEndDate();
-
-			return (evt.get(VISIBLE) &&
-					(DateMath.compare(date, startDate) ||
-					DateMath.compare(date, endDate) ||
-					DateMath.between(date, startDate, endDate)));
-		});
-	},
-
-	removeEvent: function(val) {
-		var instance = this;
-
-		instance.removeEvents([val]);
-	},
-
-	removeEvents: function(values) {
-		var instance = this,
-			events = instance.get(EVENTS),
-			results = events.concat();
-
-		if (!events.length) {
-			return;
-		}
-
-		values = instance._normalizeEvents(values);
-
-		A.Array.each(values, function(evt) {
-			A.Array.removeItem(results, evt);
-		});
-
-		if (results.length !== events.length) {
-			instance.set(EVENTS, results);
-		}
-	},
-
-	sortEventsByDateAsc: function(events) {
-		var instance = this;
-
-		// sort events by start date and duration
-		events.sort(function(evt1, evt2) {
-			var endDate1 = evt1.get(END_DATE);
-			var endDate2 = evt2.get(END_DATE);
-			var startDate1 = evt1.get(START_DATE);
-			var startDate2 = evt2.get(START_DATE);
-
-			if (DateMath.after(startDate1, startDate2) ||
-				(DateMath.compare(startDate1, startDate2) && DateMath.before(endDate1, endDate2))) {
-
-				return 1;
-			}
-			else {
-				return -1;
-			}
-		});
-	},
-
-	_normalizeEvents: function(events) {
-		var instance = this;
-		var output = [];
-
-		events = A.Array(events);
-
-		A.Array.each(events, function(evt) {
-			if (isSchedulerEvent(evt)) {
-				output.push(evt);
-			}
-			else if (isSchedulerCalendar(evt)) {
-				// get events from the calendar
-				output = output.concat(
-					instance._normalizeEvents(evt.get(EVENTS))
-				);
-			}
-			else {
-				evt = new (instance.get(EVENT_CLASS))(evt);
-
-				output.push(evt);
-			}
-
-			var scheduler = instance;
-
-			if (!isScheduler(scheduler)) {
-				scheduler = instance.get(SCHEDULER);
-			}
-
-			if (scheduler) {
-				evt.setAttrs({
-					eventClass: instance.get(EVENT_CLASS),
-					scheduler: scheduler
-				},
-				{ silent: true });
-			}
-		});
-
-		return output;
-	},
-
-	_setEvents: function(val) {
-		var instance = this;
-
-		return instance._normalizeEvents(val);
-	}
-});
-
-A.SchedulerEventSupport = SchedulerEventSupport;
-
-var SchedulerBase = A.Component.create({
-	NAME: SCHEDULER_BASE,
-
-	ATTRS: {
-		activeView: {
-			validator: isSchedulerView
-		},
-
-		date: {
-			value: new Date(),
-			validator: isDate
-		},
-
-		eventRecorder: {
-			setter: '_setEventRecorder'
-		},
-
-		strings: {
-			value: {
-				day: 'Day',
-				month: 'Month',
-				today: 'Today',
-				week: 'Week',
-				year: 'Year'
-			}
-		},
-
-		/**
-		 * The function to format the navigation header date.
-		 *
-		 * @attribute navigationDateFormatter
-		 * @default %A - %d %b %Y
-		 * @type Function
-		 */
-		navigationDateFormatter: {
-			value: function(date) {
-				var instance = this;
-
-				return A.DataType.Date.format(
-					date,
-					{
-						format: '%B %d, %Y',
-						locale: instance.get(LOCALE)
-					}
-				);
-			},
-			validator: isFunction
-		},
-
-		views: {
-			setter: '_setViews',
-			value: []
-		},
-
-		viewDate: {
-			getter: '_getViewDate',
-			readOnly: true
-		},
-
-		/**
-		 * First day of the week: Sunday is 0, Monday is 1.
-		 *
-		 * @attribute firstDayOfWeek
-		 * @default 0
-		 * @type Number
-		 */
-		firstDayOfWeek: {
-			value: 0,
-			validator: isNumber
-		},
-
-		/*
-		* HTML_PARSER attributes
-		*/
-		controlsNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_SCHEDULER_CONTROLS);
-			}
-		},
-
-		viewDateNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_SCHEDULER_VIEW_DATE);
-			}
-		},
-
-		headerNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_SCHEDULER_HD);
-			}
-		},
-
-		iconNextNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_SCHEDULER_ICON_NEXT);
-			}
-		},
-
-		iconPrevNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_SCHEDULER_ICON_PREV);
-			}
-		},
-
-		navNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_SCHEDULER_NAV);
-			}
-		},
-
-		todayNode: {
-			valueFn: function() {
-				return A.Node.create(
-					this._processTemplate(TPL_SCHEDULER_TODAY)
-				);
-			}
-		},
-
-		viewsNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_SCHEDULER_VIEWS);
-			}
-		}
-	},
-
-	HTML_PARSER: {
-		controlsNode: _DOT+CSS_SCHEDULER_CONTROLS,
-		viewDateNode: _DOT+CSS_SCHEDULER_VIEW_DATE,
-		headerNode: _DOT+CSS_SCHEDULER_HD,
-		iconNextNode: _DOT+CSS_SCHEDULER_ICON_NEXT,
-		iconPrevNode: _DOT+CSS_SCHEDULER_ICON_PREV,
-		navNode: _DOT+CSS_SCHEDULER_NAV,
-		todayNode: _DOT+CSS_SCHEDULER_TODAY,
-		viewsNode: _DOT+CSS_SCHEDULER_VIEWS
-	},
-
-	UI_ATTRS: [DATE, ACTIVE_VIEW],
-
-	AUGMENTS: [A.SchedulerEventSupport, A.WidgetStdMod],
-
-	prototype: {
-		viewStack: null,
-
-		initializer: function() {
-			var instance = this;
-
-			instance[VIEW_STACK] = {};
-
-			instance[CONTROLS_NODE] = instance.get(CONTROLS_NODE);
-			instance[VIEW_DATE_NODE] = instance.get(VIEW_DATE_NODE);
-			instance[HEADER] = instance.get(HEADER_NODE);
-			instance[ICON_NEXT_NODE] = instance.get(ICON_NEXT_NODE);
-			instance[ICON_PREV_NODE] = instance.get(ICON_PREV_NODE);
-			instance[NAV_NODE] = instance.get(NAV_NODE);
-			instance[TODAY_NODE] = instance.get(TODAY_NODE);
-			instance[VIEWS_NODE] = instance.get(VIEWS_NODE);
-
-			instance.after({
-				activeViewChange: instance._afterActiveViewChange,
-				render: instance._afterRender
-			});
-		},
-
-		bindUI: function() {
-			var instance = this;
-
-			instance._bindDelegate();
-		},
-
-		syncUI: function() {
-			var instance = this;
-
-			instance.syncStdContent();
-		},
-
-		getViewByName: function(name) {
-			var instance = this;
-
-			return instance[VIEW_STACK][name];
-		},
-
-		getStrings: function() {
-			var instance = this;
-
-			return instance.get(STRINGS);
-		},
-
-		getString: function(key) {
-			var instance = this;
-
-			return instance.getStrings()[key];
-		},
-
-		renderView: function(view) {
-			var instance = this;
-
-			if (view) {
-				view.show();
-
-				if (!view.get(RENDERED)) {
-					if (!instance.bodyNode) {
-						instance.setStdModContent(WidgetStdMod.BODY, _EMPTY_STR);
-					}
-
-					view.render(instance.bodyNode);
-				}
-			}
-		},
-
-		plotViewEvents: function(view) {
-			var instance = this;
-
-			view.plotEvents(
-				instance.get(EVENTS)
-			);
-		},
-
-		syncEventsUI: function() {
-			var instance = this,
-				activeView = instance.get(ACTIVE_VIEW);
-
-			if (activeView) {
-				instance.plotViewEvents(activeView);
-			}
-		},
-
-		renderButtonGroup: function() {
-			var instance = this;
-
-			instance.buttonGroup = new A.ButtonGroup({
-				srcNode: instance[VIEWS_NODE],
-				type: RADIO,
-				on: {
-					selectionChange: A.bind(instance._onButtonGroupSelectionChange, instance)
-				}
-			}).render();
-		},
-
-		/**
-		 * Sync SchedulerBase StdContent.
-		 *
-		 * @method syncStdContent
-		 * @protected
-		 */
-		syncStdContent: function() {
-			var instance = this;
-			var views = instance.get(VIEWS);
-
-			instance[NAV_NODE].append(instance[ICON_PREV_NODE]);
-			instance[NAV_NODE].append(instance[ICON_NEXT_NODE]);
-
-			instance[CONTROLS_NODE].append(instance[TODAY_NODE]);
-			instance[CONTROLS_NODE].append(instance[NAV_NODE]);
-			instance[CONTROLS_NODE].append(instance[VIEW_DATE_NODE]);
-
-			A.Array.each(views, function(view) {
-				instance[VIEWS_NODE].append( instance._createViewTriggerNode(view) );
-			});
-
-			instance[HEADER].append(instance[CONTROLS_NODE]);
-			instance[HEADER].append(instance[VIEWS_NODE]);
-			instance[HEADER].addClass(CSS_HELPER_CLEARFIX);
-
-			instance.setStdModContent(WidgetStdMod.HEADER, instance[HEADER].getDOM());
-		},
-
-
-		_afterActiveViewChange: function(event) {
-			var instance = this;
-
-			if (instance.get(RENDERED)) {
-				var activeView = event.newVal;
-				var lastActiveView = event.prevVal;
-
-				if (lastActiveView) {
-					lastActiveView.hide();
-				}
-
-				instance.renderView(activeView);
-
-				var eventRecorder = instance.get(EVENT_RECORDER);
-
-				if (eventRecorder) {
-					eventRecorder.hideOverlay();
-				}
-
-				instance._uiSetDate(instance.get(DATE));
-			}
-		},
-
-		_afterRender: function(event) {
-			var instance = this,
-				activeView = instance.get(ACTIVE_VIEW);
-
-			instance.renderView(activeView);
-			instance.renderButtonGroup();
-
-			instance._uiSetDate(instance.get(DATE));
-			instance._uiSetActiveView(activeView);
-		},
-
-		_bindDelegate: function() {
-			var instance = this;
-
-			instance[CONTROLS_NODE].delegate('click', instance._onClickPrevIcon, _DOT+CSS_SCHEDULER_ICON_PREV, instance);
-			instance[CONTROLS_NODE].delegate('click', instance._onClickNextIcon, _DOT+CSS_SCHEDULER_ICON_NEXT, instance);
-			instance[CONTROLS_NODE].delegate('click', instance._onClickToday, _DOT+CSS_SCHEDULER_TODAY, instance);
-		},
-
-		_createViewTriggerNode: function(view) {
-			var instance = this;
-
-			if (!view.get(TRIGGER_NODE)) {
-				var name = view.get(NAME);
-
-				view.set(
-					TRIGGER_NODE,
-					A.Node.create(
-						Lang.sub(TPL_SCHEDULER_VIEW, {
-							name: name,
-							label: (instance.getString(name) || name)
-						})
-					)
-				);
-			}
-
-			return view.get(TRIGGER_NODE);
-		},
-
-		_getViewDate: function() {
-			var instance = this,
-				date = instance.get(DATE),
-				activeView = instance.get(ACTIVE_VIEW);
-
-			if (activeView) {
-				date = activeView.getAdjustedViewDate(date);
-			}
-
-			return date;
-		},
-
-		_onClickToday: function(event) {
-			var instance = this,
-				activeView = instance.get(ACTIVE_VIEW);
-
-			if (activeView) {
-				instance.set(DATE, activeView.getToday());
-			}
-
-			event.preventDefault();
-		},
-
-		_onClickNextIcon: function(event) {
-			var instance = this,
-				activeView = instance.get(ACTIVE_VIEW);
-
-			if (activeView) {
-				instance.set(DATE, activeView.get(NEXT_DATE));
-			}
-
-			event.preventDefault();
-		},
-
-		_onClickPrevIcon: function(event) {
-			var instance = this,
-				activeView = instance.get(ACTIVE_VIEW);
-
-			if (activeView) {
-				instance.set(DATE, activeView.get(PREV_DATE));
-			}
-
-			event.preventDefault();
-		},
-
-		_onButtonGroupSelectionChange: function(event) {
-			var instance = this,
-				viewName = event.originEvent.target.attr(DATA_VIEW_NAME);
-
-			instance.set(ACTIVE_VIEW, instance.getViewByName(viewName));
-
-			event.preventDefault();
-		},
-
-		_processTemplate: function(tpl) {
-			var instance = this;
-
-			return Lang.sub(tpl, instance.getStrings());
-		},
-
-		_setEventRecorder: function(val) {
-			var instance = this;
-
-			if (val) {
-				val.setAttrs({
-					scheduler: instance,
-					eventClass: instance.get(EVENT_CLASS)
-				},
-				{ silent: true });
-			}
-		},
-
-		_setViews: function(val) {
-			var instance = this;
-			var views = [];
-
-			A.Array.each(val, function(view) {
-				if (isSchedulerView(view) && !view.get(RENDERED)) {
-					view.setAttrs({
-						scheduler: instance,
-						eventClass: instance.get(EVENT_CLASS)
-					});
-
-					views.push(view);
-
-					instance[VIEW_STACK][view.get(NAME)] = view;
-				}
-			});
-
-			if (!instance.get(ACTIVE_VIEW)) {
-				instance.set(ACTIVE_VIEW, val[0]);
-			}
-
-			return views;
-		},
-
-		_uiSetActiveView: function(val) {
-			var instance = this;
-
-			if (val) {
-				var activeView = val.get(NAME),
-					activeNav = instance[VIEWS_NODE].one(_DOT+CSS_SCHEDULER_VIEW_+activeView);
-
-				if (activeNav) {
-					instance[VIEWS_NODE].all(BUTTON).removeClass(CSS_SCHEDULER_VIEW_SELECTED);
-					activeNav.addClass(CSS_SCHEDULER_VIEW_SELECTED);
-				}
-			}
-		},
-
-		_uiSetDate: function(val) {
-			var instance = this;
-
-			var formatter = instance.get(NAVIGATION_DATE_FORMATTER);
-			var navigationTitle = formatter.call(instance, val);
-
-			if (instance.get(RENDERED)) {
-				var activeView = instance.get(ACTIVE_VIEW);
-
-				if (activeView) {
-					activeView._uiSetDate(val);
-
-					formatter = activeView.get(NAVIGATION_DATE_FORMATTER);
-					navigationTitle = formatter.call(activeView, val);
-				}
-
-				instance[VIEW_DATE_NODE].html(navigationTitle);
-
-				instance.syncEventsUI();
-			}
-		}
-	}
-});
-
-A.Scheduler = SchedulerBase;
-var SchedulerCalendar = A.Component.create({
-	NAME: SCHEDULER_CALENDAR,
-
-	ATTRS: {
-		color: {
-			valueFn: function() {
-				var instance = this;
-				var pallete = instance.get(PALLETE);
-				var randomIndex = Math.ceil(Math.random() * pallete.length) - 1;
-
-				return pallete[randomIndex];
-			},
-			validator: isString
-		},
-
-		disabled: {
-			value: false,
-			validator: isBoolean
-		},
-
-		name: {
-			value: '(no name)',
-			validator: isString
-		},
-
-		pallete: {
-			value: ['#d96666', '#e67399', '#b373b3', '#8c66d9', '#668cb3', '#668cd9', '#59bfb3', '#65ad89', '#4cb052', '#8cbf40', '#bfbf4d', '#e0c240', '#f2a640', '#e6804d', '#be9494', '#a992a9', '#8997a5', '#94a2be', '#85aaa5', '#a7a77d', '#c4a883', '#c7561e', '#b5515d', '#c244ab', '#603f99', '#536ca6', '#3640ad', '#3c995b', '#5ca632', '#7ec225', '#a7b828', '#cf9911', '#d47f1e', '#b56414', '#914d14', '#ab2671', '#9643a5', '#4585a3', '#737373', '#41a587', '#d1bc36', '#ad2d2d'],
-			validator: isArray
-		},
-
-		scheduler: {
-			lazyAdd: false,
-			setter: '_setScheduler'
-		},
-
-		visible: {
-			value: true,
-			validator: isBoolean
-		}
-	},
-
-	EXTENDS: A.Base,
-
-	AUGMENTS: A.SchedulerEventSupport,
-
-	prototype: {
-		initializer: function() {
-			var instance = this;
-
-			instance.after('colorChange', instance._afterColorChange);
-			instance.after('disabledChange', instance._afterDisabledChange);
-			instance.after('eventsChange', instance._afterEventsChange);
-			instance.after('visibleChange', instance._afterVisibleChange);
-			instance.on('eventsChange', instance._onEventsChange);
-
-			instance._uiSetEvents(
-				instance.get(EVENTS)
-			);
-
-			instance._uiSetColor(
-				instance.get(COLOR)
-			);
-
-			instance._uiSetDisabled(
-				instance.get(DISABLED)
-			);
-
-			instance._uiSetVisible(
-				instance.get(VISIBLE)
-			);
-		},
-
-		_afterColorChange: function(event) {
-			var instance = this;
-
-			instance._uiSetColor(event.newVal);
-		},
-
-		_afterDisabledChange: function(event) {
-			var instance = this;
-
-			instance._uiSetDisabled(event.newVal);
-		},
-
-		_afterEventsChange: function(event) {
-			var instance = this;
-
-			instance._uiSetEvents(event.newVal);
-		},
-
-		_afterVisibleChange: function(event) {
-			var instance = this;
-
-			instance._uiSetVisible(event.newVal);
-		},
-
-		_onEventsChange: function(event) {
-			var instance = this;
-			var scheduler = instance.get(SCHEDULER);
-
-			if (scheduler) {
-				scheduler.removeEvents(instance);
-			}
-		},
-
-		_propagateAttrs: function(attrMap, options) {
-			var instance = this;
-
-			instance.eachEvent(function(evt) {
-				evt.setAttrs(attrMap, options);
-			});
-		},
-
-		_setScheduler: function(val) {
-			var instance = this;
-			var scheduler = instance.get(SCHEDULER);
-
-			if (scheduler) {
-				instance.removeTarget(scheduler);
-			}
-
-			instance.addTarget(val);
-
-			return val;
-		},
-
-		_uiSetColor: function(val) {
-			var instance = this;
-
-			instance._propagateAttrs({
-				color: instance.get(COLOR)
-			});
-		},
-
-		_uiSetDisabled: function(val) {
-			var instance = this;
-
-			instance._propagateAttrs({
-				disabled: val
-			});
-		},
-
-		_uiSetEvents: function(val) {
-			var instance = this;
-			var scheduler = instance.get(SCHEDULER);
-
-			instance._propagateAttrs({
-				color: instance.get(COLOR),
-				disabled: instance.get(DISABLED),
-				visible: instance.get(VISIBLE)
-			}, { silent: true });
-
-			if (scheduler) {
-				scheduler.addEvents(val);
-				scheduler.syncEventsUI();
-			}
-		},
-
-		_uiSetVisible: function(val) {
-			var instance = this;
-
-			instance._propagateAttrs({
-				visible: val
-			});
-		}
-	}
-});
-
-A.SchedulerCalendar = SchedulerCalendar;
 var SchedulerEvent = A.Component.create({
 	NAME: SCHEDULER_EVENT,
 
@@ -1150,7 +309,6 @@ var SchedulerEvent = A.Component.create({
 
 		initializer: function() {
 			var instance = this;
-			var node = instance.get(NODE);
 
 			instance.bindUI();
 			instance.syncUI();
@@ -1219,9 +377,13 @@ var SchedulerEvent = A.Component.create({
 
 		clone: function() {
 			var instance = this,
-				cloned = new (instance.get(EVENT_CLASS))();
+				cloned = null,
+				scheduler = instance.get(SCHEDULER);
 
-			cloned.copyPropagateAttrValues(instance, null, { silent: true });
+			if (scheduler) {
+				cloned = new scheduler.eventModel();
+				cloned.copyPropagateAttrValues(instance, null, { silent: true });
+			}
 
 			return cloned;
 		},
@@ -1242,7 +404,7 @@ var SchedulerEvent = A.Component.create({
 
 			instance.copyDates(evt, options);
 
-			A.Array.each(instance.get(EVENT_CLASS).PROPAGATE_ATTRS, function(attrName) {
+			A.Array.each(instance.constructor.PROPAGATE_ATTRS, function(attrName) {
 				if ( !((dontCopyMap || {}).hasOwnProperty(attrName)) ) {
 					var value = evt.get(attrName);
 
@@ -1608,6 +770,746 @@ var SchedulerEvent = A.Component.create({
 });
 
 A.SchedulerEvent = SchedulerEvent;
+var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
+	model: A.SchedulerEvent,
+
+	initializer: function() {
+		var instance = this;
+
+		instance.after('colorChange', instance._afterColorChange);
+		instance.after('disabledChange', instance._afterDisabledChange);
+		instance.after('visibleChange', instance._afterVisibleChange);
+		instance.after([ 'add', 'remove', 'reset' ], instance._afterEventsChange);
+		instance.on([ 'remove', 'reset' ], instance._onRemoveEvents);
+
+		instance._uiSetEvents(
+			instance.toArray()
+		);
+
+		instance._uiSetColor(
+			instance.get(COLOR)
+		);
+
+		instance._uiSetDisabled(
+			instance.get(DISABLED)
+		);
+
+		instance._uiSetVisible(
+			instance.get(VISIBLE)
+		);
+	},
+
+	_afterColorChange: function(event) {
+		var instance = this;
+
+		instance._uiSetColor(event.newVal);
+	},
+
+	_afterDisabledChange: function(event) {
+		var instance = this;
+
+		instance._uiSetDisabled(event.newVal);
+	},
+
+	_afterEventsChange: function(event) {
+		var instance = this;
+
+		instance._uiSetEvents(instance.toArray());
+	},
+
+	_afterVisibleChange: function(event) {
+		var instance = this;
+
+		instance._uiSetVisible(event.newVal);
+	},
+
+	_onRemoveEvents: function(event) {
+		var instance = this;
+		var scheduler = instance.get(SCHEDULER);
+
+		if (scheduler) {
+			scheduler.removeEvents(instance);
+		}
+	},
+
+	_propagateAttrs: function(attrMap, options) {
+		var instance = this;
+
+		instance.each(function(schedulerEvent) {
+			schedulerEvent.setAttrs(attrMap, options);
+		});
+	},
+
+	_uiSetColor: function(val) {
+		var instance = this;
+
+		instance._propagateAttrs({
+			color: instance.get(COLOR)
+		});
+	},
+
+	_uiSetDisabled: function(val) {
+		var instance = this;
+
+		instance._propagateAttrs({
+			disabled: val
+		});
+	},
+
+	_uiSetEvents: function(val) {
+		var instance = this;
+		var scheduler = instance.get(SCHEDULER);
+
+		instance._propagateAttrs({
+			color: instance.get(COLOR),
+			disabled: instance.get(DISABLED),
+			visible: instance.get(VISIBLE)
+		}, { silent: true });
+
+		if (scheduler) {
+			scheduler.addEvents(val);
+			scheduler.syncEventsUI();
+		}
+	},
+
+	_uiSetVisible: function(val) {
+		var instance = this;
+
+		instance._propagateAttrs({
+			visible: val
+		});
+	}
+}, {
+	ATTRS: {
+		color: {
+			valueFn: function() {
+				var instance = this;
+				var pallete = instance.get(PALLETE);
+				var randomIndex = Math.ceil(Math.random() * pallete.length) - 1;
+
+				return pallete[randomIndex];
+			},
+			validator: isString
+		},
+
+		disabled: {
+			value: false,
+			validator: isBoolean
+		},
+
+		name: {
+			value: '(no name)',
+			validator: isString
+		},
+
+		pallete: {
+			value: ['#d96666', '#e67399', '#b373b3', '#8c66d9', '#668cb3', '#668cd9', '#59bfb3', '#65ad89', '#4cb052', '#8cbf40', '#bfbf4d', '#e0c240', '#f2a640', '#e6804d', '#be9494', '#a992a9', '#8997a5', '#94a2be', '#85aaa5', '#a7a77d', '#c4a883', '#c7561e', '#b5515d', '#c244ab', '#603f99', '#536ca6', '#3640ad', '#3c995b', '#5ca632', '#7ec225', '#a7b828', '#cf9911', '#d47f1e', '#b56414', '#914d14', '#ab2671', '#9643a5', '#4585a3', '#737373', '#41a587', '#d1bc36', '#ad2d2d'],
+			validator: isArray
+		},
+
+		scheduler: {
+		},
+
+		visible: {
+			value: true,
+			validator: isBoolean
+		}
+	}
+});
+
+A.SchedulerCalendar = SchedulerCalendar;
+A.SchedulerEvents = A.Base.create('scheduler-events', A.ModelList, [], {
+	comparator: function(model) {
+		var startDateTime = model.get(START_DATE),
+			endDateTime = model.get(END_DATE);
+
+		return startDateTime + 1/(endDateTime - startDateTime);
+	},
+	model: A.SchedulerEvent
+}, {});
+
+var SchedulerEventSupport = function() {};
+
+SchedulerEventSupport.ATTRS = {};
+
+A.mix(SchedulerEventSupport.prototype, {
+	calendarModel: A.SchedulerCalendar,
+
+	eventModel: A.SchedulerEvent,
+
+	initializer: function(config) {
+		var instance = this;
+
+		instance._events = new A.SchedulerEvents({
+			after: {
+				add: A.bind(instance._afterAddEvent, instance)
+			}
+		});
+
+		instance.addEvents(config.items || config.events);
+	},
+
+	addEvents: function(models) {
+		var instance = this,
+			events = instance._toSchedulerEvents(models);
+
+		return instance._events.add(events);
+	},
+
+	flushEvents: function() {
+		var instance = this;
+
+		instance._events.each(function(evt) {
+			delete evt._filtered;
+		});
+	},
+
+	getEvents: function(filterFn) {
+		var instance = this,
+			events = instance._events;
+
+		// TODO: Check why the items are not being sorted on add
+		events.sort();
+
+		if (filterFn) {
+			events = events.filter(filterFn);
+		}
+		else {
+			events = events.toArray();
+		}
+
+		return events;
+	},
+
+	getEventsByDay: function(date, includeOverlap) {
+		var instance = this;
+
+		date = DateMath.safeClearTime(date);
+
+		return instance.getEvents(function(evt) {
+			return DateMath.compare(evt.getClearStartDate(), date) ||
+					(includeOverlap && DateMath.compare(evt.getClearEndDate(), date));
+		});
+	},
+
+	getIntersectEvents: function(date) {
+		var instance = this;
+
+		date = DateMath.safeClearTime(date);
+
+		return instance.getEvents(function(evt) {
+			var startDate = evt.getClearStartDate();
+			var endDate = evt.getClearEndDate();
+
+			return (evt.get(VISIBLE) &&
+					(DateMath.compare(date, startDate) ||
+					DateMath.compare(date, endDate) ||
+					DateMath.between(date, startDate, endDate)));
+		});
+	},
+
+	removeEvents: function(models) {
+		var instance = this,
+			events = instance._toSchedulerEvents(models);
+
+		return instance._events.remove(events);
+	},
+
+	_afterAddEvent: function(event) {
+		var instance = this;
+
+		event.model.set(SCHEDULER, instance);
+	},
+
+	_toSchedulerEvents: function(values) {
+		var instance = this,
+			events = [];
+
+		if (isModelList(values)) {
+			events = values.toArray();
+		}
+		else if (isArray(values)) {
+			A.Array.each(values, function(value) {
+				if (isModelList(value)) {
+					events = events.concat(value.toArray());
+				}
+				else {
+					events.push(value);
+				}
+			});
+		}
+		else {
+			events = values;
+		}
+
+		return events;
+	}
+});
+
+A.SchedulerEventSupport = SchedulerEventSupport;
+
+var SchedulerBase = A.Component.create({
+	NAME: SCHEDULER_BASE,
+
+	ATTRS: {
+		activeView: {
+			validator: isSchedulerView
+		},
+
+		date: {
+			value: new Date(),
+			validator: isDate
+		},
+
+		eventRecorder: {
+			setter: '_setEventRecorder'
+		},
+
+		strings: {
+			value: {
+				day: 'Day',
+				month: 'Month',
+				today: 'Today',
+				week: 'Week',
+				year: 'Year'
+			}
+		},
+
+		/**
+		 * The function to format the navigation header date.
+		 *
+		 * @attribute navigationDateFormatter
+		 * @default %A - %d %b %Y
+		 * @type Function
+		 */
+		navigationDateFormatter: {
+			value: function(date) {
+				var instance = this;
+
+				return A.DataType.Date.format(
+					date,
+					{
+						format: '%B %d, %Y',
+						locale: instance.get(LOCALE)
+					}
+				);
+			},
+			validator: isFunction
+		},
+
+		views: {
+			setter: '_setViews',
+			value: []
+		},
+
+		viewDate: {
+			getter: '_getViewDate',
+			readOnly: true
+		},
+
+		/**
+		 * First day of the week: Sunday is 0, Monday is 1.
+		 *
+		 * @attribute firstDayOfWeek
+		 * @default 0
+		 * @type Number
+		 */
+		firstDayOfWeek: {
+			value: 0,
+			validator: isNumber
+		},
+
+		/*
+		* HTML_PARSER attributes
+		*/
+		controlsNode: {
+			valueFn: function() {
+				return A.Node.create(TPL_SCHEDULER_CONTROLS);
+			}
+		},
+
+		viewDateNode: {
+			valueFn: function() {
+				return A.Node.create(TPL_SCHEDULER_VIEW_DATE);
+			}
+		},
+
+		headerNode: {
+			valueFn: function() {
+				return A.Node.create(TPL_SCHEDULER_HD);
+			}
+		},
+
+		iconNextNode: {
+			valueFn: function() {
+				return A.Node.create(TPL_SCHEDULER_ICON_NEXT);
+			}
+		},
+
+		iconPrevNode: {
+			valueFn: function() {
+				return A.Node.create(TPL_SCHEDULER_ICON_PREV);
+			}
+		},
+
+		navNode: {
+			valueFn: function() {
+				return A.Node.create(TPL_SCHEDULER_NAV);
+			}
+		},
+
+		todayNode: {
+			valueFn: function() {
+				return A.Node.create(
+					this._processTemplate(TPL_SCHEDULER_TODAY)
+				);
+			}
+		},
+
+		viewsNode: {
+			valueFn: function() {
+				return A.Node.create(TPL_SCHEDULER_VIEWS);
+			}
+		}
+	},
+
+	HTML_PARSER: {
+		controlsNode: _DOT+CSS_SCHEDULER_CONTROLS,
+		viewDateNode: _DOT+CSS_SCHEDULER_VIEW_DATE,
+		headerNode: _DOT+CSS_SCHEDULER_HD,
+		iconNextNode: _DOT+CSS_SCHEDULER_ICON_NEXT,
+		iconPrevNode: _DOT+CSS_SCHEDULER_ICON_PREV,
+		navNode: _DOT+CSS_SCHEDULER_NAV,
+		todayNode: _DOT+CSS_SCHEDULER_TODAY,
+		viewsNode: _DOT+CSS_SCHEDULER_VIEWS
+	},
+
+	UI_ATTRS: [DATE, ACTIVE_VIEW],
+
+	AUGMENTS: [A.SchedulerEventSupport, A.WidgetStdMod],
+
+	prototype: {
+		viewStack: null,
+
+		initializer: function() {
+			var instance = this;
+
+			instance[VIEW_STACK] = {};
+
+			instance[CONTROLS_NODE] = instance.get(CONTROLS_NODE);
+			instance[VIEW_DATE_NODE] = instance.get(VIEW_DATE_NODE);
+			instance[HEADER] = instance.get(HEADER_NODE);
+			instance[ICON_NEXT_NODE] = instance.get(ICON_NEXT_NODE);
+			instance[ICON_PREV_NODE] = instance.get(ICON_PREV_NODE);
+			instance[NAV_NODE] = instance.get(NAV_NODE);
+			instance[TODAY_NODE] = instance.get(TODAY_NODE);
+			instance[VIEWS_NODE] = instance.get(VIEWS_NODE);
+
+			instance.after({
+				activeViewChange: instance._afterActiveViewChange,
+				render: instance._afterRender
+			});
+		},
+
+		bindUI: function() {
+			var instance = this;
+
+			instance._bindDelegate();
+		},
+
+		syncUI: function() {
+			var instance = this;
+
+			instance.syncStdContent();
+		},
+
+		getViewByName: function(name) {
+			var instance = this;
+
+			return instance[VIEW_STACK][name];
+		},
+
+		getStrings: function() {
+			var instance = this;
+
+			return instance.get(STRINGS);
+		},
+
+		getString: function(key) {
+			var instance = this;
+
+			return instance.getStrings()[key];
+		},
+
+		renderView: function(view) {
+			var instance = this;
+
+			if (view) {
+				view.show();
+
+				if (!view.get(RENDERED)) {
+					if (!instance.bodyNode) {
+						instance.setStdModContent(WidgetStdMod.BODY, _EMPTY_STR);
+					}
+
+					view.render(instance.bodyNode);
+				}
+			}
+		},
+
+		plotViewEvents: function(view) {
+			var instance = this;
+
+			view.plotEvents(
+				instance.getEvents()
+			);
+		},
+
+		syncEventsUI: function() {
+			var instance = this,
+				activeView = instance.get(ACTIVE_VIEW);
+
+			if (activeView) {
+				instance.plotViewEvents(activeView);
+			}
+		},
+
+		renderButtonGroup: function() {
+			var instance = this;
+
+			instance.buttonGroup = new A.ButtonGroup({
+				srcNode: instance[VIEWS_NODE],
+				type: RADIO,
+				on: {
+					selectionChange: A.bind(instance._onButtonGroupSelectionChange, instance)
+				}
+			}).render();
+		},
+
+		/**
+		 * Sync SchedulerBase StdContent.
+		 *
+		 * @method syncStdContent
+		 * @protected
+		 */
+		syncStdContent: function() {
+			var instance = this;
+			var views = instance.get(VIEWS);
+
+			instance[NAV_NODE].append(instance[ICON_PREV_NODE]);
+			instance[NAV_NODE].append(instance[ICON_NEXT_NODE]);
+
+			instance[CONTROLS_NODE].append(instance[TODAY_NODE]);
+			instance[CONTROLS_NODE].append(instance[NAV_NODE]);
+			instance[CONTROLS_NODE].append(instance[VIEW_DATE_NODE]);
+
+			A.Array.each(views, function(view) {
+				instance[VIEWS_NODE].append( instance._createViewTriggerNode(view) );
+			});
+
+			instance[HEADER].append(instance[CONTROLS_NODE]);
+			instance[HEADER].append(instance[VIEWS_NODE]);
+			instance[HEADER].addClass(CSS_HELPER_CLEARFIX);
+
+			instance.setStdModContent(WidgetStdMod.HEADER, instance[HEADER].getDOM());
+		},
+
+
+		_afterActiveViewChange: function(event) {
+			var instance = this;
+
+			if (instance.get(RENDERED)) {
+				var activeView = event.newVal;
+				var lastActiveView = event.prevVal;
+
+				if (lastActiveView) {
+					lastActiveView.hide();
+				}
+
+				instance.renderView(activeView);
+
+				var eventRecorder = instance.get(EVENT_RECORDER);
+
+				if (eventRecorder) {
+					eventRecorder.hideOverlay();
+				}
+
+				instance._uiSetDate(instance.get(DATE));
+			}
+		},
+
+		_afterRender: function(event) {
+			var instance = this,
+				activeView = instance.get(ACTIVE_VIEW);
+
+			instance.renderView(activeView);
+			instance.renderButtonGroup();
+
+			instance._uiSetDate(instance.get(DATE));
+			instance._uiSetActiveView(activeView);
+		},
+
+		_bindDelegate: function() {
+			var instance = this;
+
+			instance[CONTROLS_NODE].delegate('click', instance._onClickPrevIcon, _DOT+CSS_SCHEDULER_ICON_PREV, instance);
+			instance[CONTROLS_NODE].delegate('click', instance._onClickNextIcon, _DOT+CSS_SCHEDULER_ICON_NEXT, instance);
+			instance[CONTROLS_NODE].delegate('click', instance._onClickToday, _DOT+CSS_SCHEDULER_TODAY, instance);
+		},
+
+		_createViewTriggerNode: function(view) {
+			var instance = this;
+
+			if (!view.get(TRIGGER_NODE)) {
+				var name = view.get(NAME);
+
+				view.set(
+					TRIGGER_NODE,
+					A.Node.create(
+						Lang.sub(TPL_SCHEDULER_VIEW, {
+							name: name,
+							label: (instance.getString(name) || name)
+						})
+					)
+				);
+			}
+
+			return view.get(TRIGGER_NODE);
+		},
+
+		_getViewDate: function() {
+			var instance = this,
+				date = instance.get(DATE),
+				activeView = instance.get(ACTIVE_VIEW);
+
+			if (activeView) {
+				date = activeView.getAdjustedViewDate(date);
+			}
+
+			return date;
+		},
+
+		_onClickToday: function(event) {
+			var instance = this,
+				activeView = instance.get(ACTIVE_VIEW);
+
+			if (activeView) {
+				instance.set(DATE, activeView.getToday());
+			}
+
+			event.preventDefault();
+		},
+
+		_onClickNextIcon: function(event) {
+			var instance = this,
+				activeView = instance.get(ACTIVE_VIEW);
+
+			if (activeView) {
+				instance.set(DATE, activeView.get(NEXT_DATE));
+			}
+
+			event.preventDefault();
+		},
+
+		_onClickPrevIcon: function(event) {
+			var instance = this,
+				activeView = instance.get(ACTIVE_VIEW);
+
+			if (activeView) {
+				instance.set(DATE, activeView.get(PREV_DATE));
+			}
+
+			event.preventDefault();
+		},
+
+		_onButtonGroupSelectionChange: function(event) {
+			var instance = this,
+				viewName = event.originEvent.target.attr(DATA_VIEW_NAME);
+
+			instance.set(ACTIVE_VIEW, instance.getViewByName(viewName));
+
+			event.preventDefault();
+		},
+
+		_processTemplate: function(tpl) {
+			var instance = this;
+
+			return Lang.sub(tpl, instance.getStrings());
+		},
+
+		_setEventRecorder: function(val) {
+			var instance = this;
+
+			if (val) {
+				val.setAttrs({
+					scheduler: instance
+				},
+				{ silent: true });
+			}
+		},
+
+		_setViews: function(val) {
+			var instance = this;
+			var views = [];
+
+			A.Array.each(val, function(view) {
+				if (isSchedulerView(view) && !view.get(RENDERED)) {
+					view.setAttrs({
+						scheduler: instance
+					});
+
+					views.push(view);
+
+					instance[VIEW_STACK][view.get(NAME)] = view;
+				}
+			});
+
+			if (!instance.get(ACTIVE_VIEW)) {
+				instance.set(ACTIVE_VIEW, val[0]);
+			}
+
+			return views;
+		},
+
+		_uiSetActiveView: function(val) {
+			var instance = this;
+
+			if (val) {
+				var activeView = val.get(NAME),
+					activeNav = instance[VIEWS_NODE].one(_DOT+CSS_SCHEDULER_VIEW_+activeView);
+
+				if (activeNav) {
+					instance[VIEWS_NODE].all(BUTTON).removeClass(CSS_SCHEDULER_VIEW_SELECTED);
+					activeNav.addClass(CSS_SCHEDULER_VIEW_SELECTED);
+				}
+			}
+		},
+
+		_uiSetDate: function(val) {
+			var instance = this;
+
+			var formatter = instance.get(NAVIGATION_DATE_FORMATTER);
+			var navigationTitle = formatter.call(instance, val);
+
+			if (instance.get(RENDERED)) {
+				var activeView = instance.get(ACTIVE_VIEW);
+
+				if (activeView) {
+					activeView._uiSetDate(val);
+
+					formatter = activeView.get(NAVIGATION_DATE_FORMATTER);
+					navigationTitle = formatter.call(activeView, val);
+				}
+
+				instance[VIEW_DATE_NODE].html(navigationTitle);
+
+				instance.syncEventsUI();
+			}
+		}
+	}
+});
+
+A.Scheduler = SchedulerBase;
 var SchedulerView = A.Component.create({
 	NAME: SCHEDULER_VIEW,
 
@@ -1768,7 +1670,7 @@ var SchedulerView = A.Component.create({
 			if (val) {
 				instance.addTarget(val);
 
-				val.after('eventsChange', A.bind(instance.flushViewCache, instance));
+				val.after(['*:add', '*:remove', '*:reset'], A.bind(instance.flushViewCache, instance));
 			}
 
 			return val;
@@ -2654,7 +2556,7 @@ var SchedulerDayView = A.Component.create({
 			if (!placeholder) {
 				var scheduler = instance.get(SCHEDULER);
 
-				placeholder = new (instance.get(EVENT_CLASS))({
+				placeholder = new scheduler.eventModel({
 					scheduler: scheduler
 				});
 
@@ -2709,9 +2611,7 @@ var SchedulerDayView = A.Component.create({
 				if (dayView) {
 					var colNumber = toNumber(event.currentTarget.attr(DATA_COLNUMBER));
 
-					scheduler.set(
-						VIEW_DATE, instance.getDateByColumn(colNumber));
-
+					scheduler.set(VIEW_DATE, instance.getDateByColumn(colNumber));
 					scheduler.set(ACTIVE_VIEW, dayView);
 				}
 			}
@@ -4785,7 +4685,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
 
-			scheduler.removeEvent(instance.get(EVENT));
+			scheduler.removeEvents(instance.get(EVENT));
 
 			instance.hideOverlay();
 
@@ -4805,7 +4705,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
 
-			scheduler.addEvent(event.newSchedulerEvent);
+			scheduler.addEvents(event.newSchedulerEvent);
 
 			instance.hideOverlay();
 
