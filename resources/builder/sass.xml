@@ -81,10 +81,17 @@
 					<script language="ruby" classpathref="jruby">
 					<![CDATA[
 						require 'rubygems'
+						require 'java'
 						require 'compass'
 
 						filePathPattern = $project.getProperty('file.path.pattern')
 						files = Dir.glob(filePathPattern)
+
+						Compass.add_project_configuration
+
+						load_paths = []
+
+						load_paths += Compass.configuration.sass_load_paths
 
 						files.each do | file |
 							fileContent = File.read(file)
@@ -92,9 +99,11 @@
 							engine = Sass::Engine.new(
 								fileContent,
 								{
+									:filename => file,
 									:syntax => :scss,
-									:style => :expanded,
-									:ugly => true
+									:load_paths => load_paths,
+									:ugly => true,
+									:style => :expanded
 								}
 							)
 
