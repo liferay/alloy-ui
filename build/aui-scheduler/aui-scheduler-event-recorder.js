@@ -7,6 +7,12 @@ var Lang = A.Lang,
 
 	_serialize = A.IO.prototype._serialize,
 
+	toInt = Lang.toInt,
+
+	clamp = function(value, min, max) {
+		return Math.min(Math.max(value, min), max);
+	},
+
 	DateMath = A.DataType.DateMath,
 
 	_DASH = '-',
@@ -430,7 +436,7 @@ var SchedulerEventRecorder = A.Component.create({
 
 		showOverlay: function(xy, offset) {
 			var instance = this,
-				mouseOffset = xy.concat([]),
+				originalXY = xy.concat([]),
 				overlay = instance[OVERLAY],
 				overlayBB = overlay.get(BOUNDING_BOX);
 
@@ -441,48 +447,30 @@ var SchedulerEventRecorder = A.Component.create({
 			overlay.show();
 
 			var arrows = overlayBB.all(_DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW),
-				arrow = arrows.item(0),
-				arrowOffsetWidth = arrow.get(OFFSET_WIDTH),
-				arrowOffsetHeight = arrow.get(OFFSET_HEIGHT);
+				firstArrow = arrows.item(0),
+				firstArrowHeight = firstArrow.get(OFFSET_HEIGHT),
+				firstArrowWidth = firstArrow.get(OFFSET_WIDTH);
 
-			arrows.removeClass(CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_TOP);
-			arrows.show();
+			arrows.removeClass(CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_TOP).show();
 
-			xy[0] -= overlayBB.get(OFFSET_WIDTH) / 2;
-			xy[1] -= (overlayBB.get(OFFSET_HEIGHT) + (arrowOffsetHeight/2));
+			xy[0] -= overlayBB.get(OFFSET_WIDTH)*0.5;
+			xy[1] -= overlayBB.get(OFFSET_HEIGHT) + firstArrowHeight*0.5;
 
 			var constrainedXY = overlay.getConstrainedXY(xy);
 
 			if (constrainedXY[1] !== xy[1]) {
-				xy[1] = (mouseOffset[1] + (arrowOffsetHeight/2));
+				xy[1] = originalXY[1] + firstArrowHeight*0.5;
+
 				arrows.addClass(CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_TOP);
 			}
 
+			xy = overlay.getConstrainedXY(xy);
+
 			overlay.set('xy', xy);
 
-			xy = overlay.get('xy');
+			var arrowX = clamp(originalXY[0] - firstArrowWidth*0.5, xy[0], xy[0] + overlayBB.get(OFFSET_WIDTH));
 
-			var mouseRegion = {
-					left: mouseOffset[0],
-					right: mouseOffset[0],
-					top: mouseOffset[1],
-					bottom: mouseOffset[1]
-				},
-				overlayBorderWidth = overlayBB.getStyle(BORDER_RADIUS).replace(PX, '');
-
-			if (!A.DOM.inRegion(null, overlayBB.get(REGION), true, mouseRegion)) {
-				var arrowAdjustedOffset = (arrowOffsetWidth/2) - overlayBorderWidth,
-				 	arrowMinPosition = Math.max(xy[0], mouseOffset[0]),
-					arrowMaxPosition = xy[0] + overlayBB.get(OFFSET_WIDTH) - arrowOffsetWidth,
-					arrowX = Math.min(arrowMinPosition, arrowMaxPosition);
-
-				arrowX -= arrowAdjustedOffset;
-
-				arrows.setX(arrowX);
-			}
-			else {
-				arrows.hide();
-			}
+			arrows.setX(arrowX);
 		}
 	}
 });
