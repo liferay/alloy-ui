@@ -6,7 +6,11 @@ A.SchedulerEvents = A.Base.create('scheduler-events', A.ModelList, [], {
 		return startDateTime + 1/(endDateTime - startDateTime);
 	},
 	model: A.SchedulerEvent
-}, {});
+}, {
+	ATTRS: {
+		scheduler: {}
+	}
+});
 
 var SchedulerEventSupport = function() {};
 
@@ -17,14 +21,17 @@ A.mix(SchedulerEventSupport.prototype, {
 
 	eventModel: A.SchedulerEvent,
 
+	eventsModel: A.SchedulerEvents,
+
 	initializer: function(config) {
 		var instance = this;
 
-		instance._events = new A.SchedulerEvents({
+		instance._events = new instance.eventsModel({
 			after: {
 				add: A.bind(instance._afterAddEvent, instance)
 			},
-			bubbleTargets: instance
+			bubbleTargets: instance,
+			scheduler: instance
 		});
 
 		instance.addEvents(config.items || config.events);

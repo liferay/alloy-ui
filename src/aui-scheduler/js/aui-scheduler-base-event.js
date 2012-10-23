@@ -6,6 +6,7 @@ var Lang = A.Lang,
 	isNumber = Lang.isNumber,
 	isObject = Lang.isObject,
 	isString = Lang.isString,
+	isValue = Lang.isValue,
 
 	ColorUtil = A.ColorUtil,
 	DateMath = A.DataType.DateMath,
@@ -191,7 +192,8 @@ var SchedulerEvent = A.Component.create({
 		},
 
 		content: {
-			validator: isString
+			setter: String,
+			validator: isValue
 		},
 
 		color: {
