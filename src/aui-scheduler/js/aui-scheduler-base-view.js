@@ -8,12 +8,6 @@ var SchedulerView = A.Component.create({
 			value: _EMPTY_STR
 		},
 
-		eventClass: {
-			valueFn: function() {
-				return A.SchedulerEvent;
-			}
-		},
-
 		filterFn: {
 			validator: isFunction,
 			value: function(evt) { return true; }

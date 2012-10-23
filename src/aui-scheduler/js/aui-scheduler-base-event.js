@@ -240,12 +240,6 @@ var SchedulerEvent = A.Component.create({
 			}
 		},
 
-		eventClass: {
-			valueFn: function() {
-				return A.SchedulerEvent;
-			}
-		},
-
 		disabled: {
 			value: false,
 			validator: isBoolean
@@ -273,8 +267,6 @@ var SchedulerEvent = A.Component.create({
 		},
 
 		scheduler: {
-			lazyAdd: false,
-			setter: '_setScheduler'
 		},
 
 		startDate: {
@@ -663,19 +655,6 @@ var SchedulerEvent = A.Component.create({
 			if (isNumber(val)) {
 				val = new Date(val);
 			}
-
-			return val;
-		},
-
-		_setScheduler: function(val) {
-			var instance = this;
-			var scheduler = instance.get(SCHEDULER);
-
-			if (scheduler) {
-				instance.removeTarget(scheduler);
-			}
-
-			instance.addTarget(val);
 
 			return val;
 		},

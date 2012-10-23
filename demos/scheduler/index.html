@@ -159,11 +159,27 @@
 						console.log(event.type, event);
 					},
 
+					'*:add': function(event) {
+						console.log(event.type, event);
+					},
+
+					'*:remove': function(event) {
+						console.log(event.type, event);
+					},
+
 					'scheduler-event:startDateChange': function(event) {
 						console.log(event.type, event);
 					},
 
+					'scheduler-event:endDateChange': function(event) {
+						console.log(event.type, event);
+					},
+
 					'scheduler-event-recorder:save': function(event) {
+						console.log(event.type, event);
+					},
+
+					'scheduler-event-recorder:delete': function(event) {
 						console.log(event.type, event);
 					},
 
