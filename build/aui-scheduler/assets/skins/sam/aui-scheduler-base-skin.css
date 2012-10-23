@@ -1,14 +1,14 @@
 /* scheduler-base */
-.aui-scheduler-base-icon-prev, .aui-scheduler-base-icon-prev.yui3-button, .aui-scheduler-base-icon-prev.yui3-button:hover {
-  background-position: 0 -13px;
-}
-
 .aui-scheduler-base-icon-next, .aui-scheduler-base-icon-prev, .aui-scheduler-base-icon-next.yui3-button, .aui-scheduler-base-icon-next.yui3-button:hover, .aui-scheduler-base-icon-prev.yui3-button, .aui-scheduler-base-icon-prev.yui3-button:hover {
   background-image: url(scheduler-arrows.png);
   background-position: 0 4px;
   background-repeat: no-repeat;
   height: 24px;
   min-width: 30px;
+}
+
+.aui-scheduler-base-icon-prev, .aui-scheduler-base-icon-prev.yui3-button, .aui-scheduler-base-icon-prev.yui3-button:hover {
+  background-position: 0 -13px;
 }
 
 /* scheduler-base-event */

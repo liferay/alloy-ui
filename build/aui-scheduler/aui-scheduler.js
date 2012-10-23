@@ -241,12 +241,6 @@ var SchedulerEvent = A.Component.create({
 			}
 		},
 
-		eventClass: {
-			valueFn: function() {
-				return A.SchedulerEvent;
-			}
-		},
-
 		disabled: {
 			value: false,
 			validator: isBoolean
@@ -274,8 +268,6 @@ var SchedulerEvent = A.Component.create({
 		},
 
 		scheduler: {
-			lazyAdd: false,
-			setter: '_setScheduler'
 		},
 
 		startDate: {
@@ -668,19 +660,6 @@ var SchedulerEvent = A.Component.create({
 			return val;
 		},
 
-		_setScheduler: function(val) {
-			var instance = this;
-			var scheduler = instance.get(SCHEDULER);
-
-			if (scheduler) {
-				instance.removeTarget(scheduler);
-			}
-
-			instance.addTarget(val);
-
-			return val;
-		},
-
 		_formatDate: function(date, format) {
 			var instance = this;
 			var locale = instance.get(LOCALE);
@@ -786,33 +765,39 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
 			instance.toArray()
 		);
 
-		instance._uiSetColor(
-			instance.get(COLOR)
-		);
-
-		instance._uiSetDisabled(
-			instance.get(DISABLED)
-		);
-
-		instance._uiSetVisible(
-			instance.get(VISIBLE)
-		);
+		instance._setModelsAttrs({
+			color: instance.get(COLOR),
+			disabled: instance.get(DISABLED),
+			visible: instance.get(VISIBLE)
+		});
 	},
 
 	_afterColorChange: function(event) {
 		var instance = this;
 
-		instance._uiSetColor(event.newVal);
+		instance._setModelsAttrs({
+			color: instance.get(COLOR)
+		},
+		{ silent: event.silent });
 	},
 
 	_afterDisabledChange: function(event) {
 		var instance = this;
 
-		instance._uiSetDisabled(event.newVal);
+		instance._setModelsAttrs({
+			disabled: instance.get(DISABLED)
+		},
+		{ silent: event.silent });
 	},
 
 	_afterEventsChange: function(event) {
 		var instance = this;
+
+		instance._setModelsAttrs({
+			color: instance.get(COLOR),
+			disabled: instance.get(DISABLED),
+			visible: instance.get(VISIBLE)
+		}, { silent: true });
 
 		instance._uiSetEvents(instance.toArray());
 	},
@@ -820,7 +805,10 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
 	_afterVisibleChange: function(event) {
 		var instance = this;
 
-		instance._uiSetVisible(event.newVal);
+		instance._setModelsAttrs({
+			visible: instance.get(VISIBLE)
+		},
+		{ silent: event.silent });
 	},
 
 	_onRemoveEvents: function(event) {
@@ -832,7 +820,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
 		}
 	},
 
-	_propagateAttrs: function(attrMap, options) {
+	_setModelsAttrs: function(attrMap, options) {
 		var instance = this;
 
 		instance.each(function(schedulerEvent) {
@@ -840,44 +828,14 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
 		});
 	},
 
-	_uiSetColor: function(val) {
-		var instance = this;
-
-		instance._propagateAttrs({
-			color: instance.get(COLOR)
-		});
-	},
-
-	_uiSetDisabled: function(val) {
-		var instance = this;
-
-		instance._propagateAttrs({
-			disabled: val
-		});
-	},
-
 	_uiSetEvents: function(val) {
 		var instance = this;
 		var scheduler = instance.get(SCHEDULER);
-
-		instance._propagateAttrs({
-			color: instance.get(COLOR),
-			disabled: instance.get(DISABLED),
-			visible: instance.get(VISIBLE)
-		}, { silent: true });
 
 		if (scheduler) {
 			scheduler.addEvents(val);
 			scheduler.syncEventsUI();
 		}
-	},
-
-	_uiSetVisible: function(val) {
-		var instance = this;
-
-		instance._propagateAttrs({
-			visible: val
-		});
 	}
 }, {
 	ATTRS: {
@@ -943,7 +901,8 @@ A.mix(SchedulerEventSupport.prototype, {
 		instance._events = new A.SchedulerEvents({
 			after: {
 				add: A.bind(instance._afterAddEvent, instance)
-			}
+			},
+			bubbleTargets: instance
 		});
 
 		instance.addEvents(config.items || config.events);
@@ -954,6 +913,12 @@ A.mix(SchedulerEventSupport.prototype, {
 			events = instance._toSchedulerEvents(models);
 
 		return instance._events.add(events);
+	},
+
+	eachEvent: function(fn) {
+		var instance = this;
+
+		return instance._events.each(fn);
 	},
 
 	flushEvents: function() {
@@ -969,7 +934,7 @@ A.mix(SchedulerEventSupport.prototype, {
 			events = instance._events;
 
 		// TODO: Check why the items are not being sorted on add
-		events.sort();
+		events.sort({ silent: true });
 
 		if (filterFn) {
 			events = events.filter(filterFn);
@@ -1015,6 +980,13 @@ A.mix(SchedulerEventSupport.prototype, {
 		return instance._events.remove(events);
 	},
 
+	resetEvents: function(models) {
+		var instance = this,
+			events = instance._toSchedulerEvents(models);
+
+		return instance._events.reset(events);
+	},
+
 	_afterAddEvent: function(event) {
 		var instance = this;
 
@@ -1027,11 +999,13 @@ A.mix(SchedulerEventSupport.prototype, {
 
 		if (isModelList(values)) {
 			events = values.toArray();
+			values.set(SCHEDULER, instance);
 		}
 		else if (isArray(values)) {
 			A.Array.each(values, function(value) {
 				if (isModelList(value)) {
 					events = events.concat(value.toArray());
+					value.set(SCHEDULER, instance);
 				}
 				else {
 					events.push(value);
@@ -1445,6 +1419,8 @@ var SchedulerBase = A.Component.create({
 					scheduler: instance
 				},
 				{ silent: true });
+
+				val.addTarget(instance);
 			}
 		},
 
@@ -1518,12 +1494,6 @@ var SchedulerView = A.Component.create({
 	ATTRS: {
 		bodyContent: {
 			value: _EMPTY_STR
-		},
-
-		eventClass: {
-			valueFn: function() {
-				return A.SchedulerEvent;
-			}
 		},
 
 		filterFn: {
