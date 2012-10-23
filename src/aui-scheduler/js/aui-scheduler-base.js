@@ -23,7 +23,8 @@ A.mix(SchedulerEventSupport.prototype, {
 		instance._events = new A.SchedulerEvents({
 			after: {
 				add: A.bind(instance._afterAddEvent, instance)
-			}
+			},
+			bubbleTargets: instance
 		});
 
 		instance.addEvents(config.items || config.events);
@@ -34,6 +35,12 @@ A.mix(SchedulerEventSupport.prototype, {
 			events = instance._toSchedulerEvents(models);
 
 		return instance._events.add(events);
+	},
+
+	eachEvent: function(fn) {
+		var instance = this;
+
+		return instance._events.each(fn);
 	},
 
 	flushEvents: function() {
@@ -49,7 +56,7 @@ A.mix(SchedulerEventSupport.prototype, {
 			events = instance._events;
 
 		// TODO: Check why the items are not being sorted on add
-		events.sort();
+		events.sort({ silent: true });
 
 		if (filterFn) {
 			events = events.filter(filterFn);
@@ -95,6 +102,13 @@ A.mix(SchedulerEventSupport.prototype, {
 		return instance._events.remove(events);
 	},
 
+	resetEvents: function(models) {
+		var instance = this,
+			events = instance._toSchedulerEvents(models);
+
+		return instance._events.reset(events);
+	},
+
 	_afterAddEvent: function(event) {
 		var instance = this;
 
@@ -107,11 +121,13 @@ A.mix(SchedulerEventSupport.prototype, {
 
 		if (isModelList(values)) {
 			events = values.toArray();
+			values.set(SCHEDULER, instance);
 		}
 		else if (isArray(values)) {
 			A.Array.each(values, function(value) {
 				if (isModelList(value)) {
 					events = events.concat(value.toArray());
+					value.set(SCHEDULER, instance);
 				}
 				else {
 					events.push(value);
@@ -525,6 +541,8 @@ var SchedulerBase = A.Component.create({
 					scheduler: instance
 				},
 				{ silent: true });
+
+				val.addTarget(instance);
 			}
 		},
 
