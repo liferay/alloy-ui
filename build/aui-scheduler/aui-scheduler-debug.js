@@ -4829,7 +4829,7 @@ var SchedulerEventRecorder = A.Component.create({
 			return A.QueryString.parse(_serialize(instance.formNode.getDOM()));
 		},
 
-		showOverlay: function(xy, offset) {
+		showOverlay: function(xy) {
 			var instance = this,
 				originalXY = xy.concat([]),
 				overlay = instance[OVERLAY],
