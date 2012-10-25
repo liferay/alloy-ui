@@ -834,6 +834,7 @@ var DatePickerSelect = A.Component.create(
 			_syncSelectsUI: function() {
 				var instance = this;
 
+				instance._populateSelects();
 				instance._selectCurrentDay();
 				instance._selectCurrentMonth();
 				instance._selectCurrentYear();
