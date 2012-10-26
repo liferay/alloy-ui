@@ -13,10 +13,17 @@ var Lang = A.Lang,
 	CURRENT_NODE = 'currentNode',
 	DATE_FORMAT = 'dateFormat',
 	DATEPICKER = 'date-picker',
+	ESCAPE_KEY = 27,
+	FOCUS = 'focus',
 	FORMATTER = 'formatter',
 	LOCALE = 'locale',
+	KEY_PRESS = 'keypress',
+	KEY_DOWN = 'keydown',
 	SELECT_MODE = 'selectionMode',
-	SET_VALUE = 'setValue';
+	SET_VALUE = 'setValue',
+	TEXT = 'text',
+	TYPE = 'type',
+	TRIGGER = 'trigger';
 
 
 var DatePicker = A.Component.create({
@@ -115,9 +122,10 @@ var DatePicker = A.Component.create({
 
 			instance.calendar = calendar;
 
-			// TODO
-
 			instance.after('calendar:selectionChange', instance._afterSelectionChange);
+			instance.after(instance._afterShow, instance, 'show');
+
+			instance._hideOnEscapeEvent();
 
 			if (calendarConfig.hasOwnProperty('selectedDates')) {
 				calendar.set('selectedDates', calendarConfig.selectedDates);
@@ -136,6 +144,8 @@ var DatePicker = A.Component.create({
 			DatePicker.superclass.bindUI.apply(this, arguments);
 
 			instance.on('show', instance._onShowOverlay);
+
+			instance._bindTriggerEvents();
 		},
 
 		/**
@@ -165,8 +175,52 @@ var DatePicker = A.Component.create({
 		},
 
 		/**
-		* Fires before the DatePicker overlay show. Responsible to invoke the
-		* render phase of the Calendar.
+		 * Fires after show method executes
+		 *
+		 * @method _afterShow
+		 * @param {Event} event
+		 * @protected
+		 */
+		_afterShow: function (event) {
+			var instance = this;
+
+			instance.calendar.focus();
+		},
+
+		/**
+		 * Bind some eventos on datepicker trigger
+		 *
+		 * @method _bindTriggerEvents
+		 * @protected
+		 */
+		_bindTriggerEvents: function () {
+			var instance = this,
+				trigger = instance.get(TRIGGER);
+
+			trigger.after(FOCUS, function () {
+				if (trigger.get(TYPE) == TEXT) {
+					instance.show();
+				}
+			});
+
+			trigger.after(KEY_PRESS, function () {
+				instance.show();
+			});
+		},
+
+		_hideOnEscapeEvent: function () {
+			var instance = this;
+
+			A.on(KEY_DOWN, function (event) {
+				if (event.keyCode == ESCAPE_KEY) {
+					instance.destructor();
+				}
+			});
+		},
+
+		/**
+		 * Fires before the DatePicker overlay show. Responsible to invoke the
+		 * render phase of the Calendar.
 		 *
 		 * @method _onShowOverlay
 		 * @param {Event} event
