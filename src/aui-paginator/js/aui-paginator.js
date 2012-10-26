@@ -778,32 +778,19 @@ var Paginator = A.Component.create(
 
 				var configTpl = instance.configTpl;
 
-				var firstPageLinkLabel = instance.get(FIRST_PAGE_LINK_LABEL);
-				var lastPageLinkLabel = instance.get(LAST_PAGE_LINK_LABEL);
 				var maxPageLinks = instance.get(MAX_PAGE_LINKS);
-				var nextPageLinkLabel = instance.get(NEXT_PAGE_LINK_LABEL);
-				var prevPageLinkLabel = instance.get(PREV_PAGE_LINK_LABEL);
-				var totalLabel = instance.get(TOTAL_LABEL);
 
-				var firstPageLinkEl = configTpl.firstLink;
-				var lastPageLinkEl = configTpl.lastLink;
-				var nextPageLinkEl = configTpl.nextLink;
-				var pageContainerEl = configTpl.pageContainer;
 				var pageLinkEl = configTpl.pageLink;
-				var pageReportEl = configTpl.pageReport;
-				var prevPageLinkEl = configTpl.prevLink;
-				var totalEl = configTpl.total;
 
-				var pageReportLinkLabel = instance._pageReportLabel;
 				var rowsPerPageEl = instance._rowsPerPageEl;
 
-				var firstPageLink = instance._createNode(firstPageLinkEl, firstPageLinkLabel);
-				var lastPageLink = instance._createNode(lastPageLinkEl, lastPageLinkLabel);
-				var nextPageLink = instance._createNode(nextPageLinkEl, nextPageLinkLabel);
-				var pageContainer = instance._createNode(pageContainerEl);
-				var pageReportLink = instance._createNode(pageReportEl, pageReportLinkLabel);
-				var prevPageLink = instance._createNode(prevPageLinkEl, prevPageLinkLabel);
-				var totalLink = instance._createNode(totalEl, totalLabel);
+				var firstPageLink = instance._createNode(configTpl.firstLink, instance.get(FIRST_PAGE_LINK_LABEL));
+				var lastPageLink = instance._createNode(configTpl.lastLink, instance.get(LAST_PAGE_LINK_LABEL));
+				var nextPageLink = instance._createNode(configTpl.nextLink, instance.get(NEXT_PAGE_LINK_LABEL));
+				var pageContainer = instance._createNode(configTpl.pageContainer);
+				var pageReportLink = instance._createNode(configTpl.pageReport, instance._pageReportLabel);
+				var prevPageLink = instance._createNode(configTpl.prevLink, instance.get(PREV_PAGE_LINK_LABEL));
+				var totalLink = instance._createNode(configTpl.total, instance.get(TOTAL_LABEL));
 
 				pageContainer.addClass(CSS_PAGINATOR_PAGE_CONTAINER);
 
@@ -815,16 +802,8 @@ var Paginator = A.Component.create(
 					pageContainer.append(pageLink);
 				}
 
-				var outer = function(key) {
-					if (isString(key)) {
-						key = instance.get(key);
-					}
-
-					return key.outerHTML();
-				};
-
 				if (rowsPerPageEl) {
-					var rowsPerPageSelect = outer(rowsPerPageEl);
+					var rowsPerPageSelect = rowsPerPageEl.outerHTML();
 
 					if (IE >= 9) {
 						rowsPerPageSelect = rowsPerPageSelect.replace(/selected=""/gi, '');
@@ -834,14 +813,14 @@ var Paginator = A.Component.create(
 				instance.templates = L.sub(
 					value,
 					{
-						CurrentPageReport: outer(pageReportLink),
-						FirstPageLink: outer(firstPageLink),
-						LastPageLink: outer(lastPageLink),
-						NextPageLink: outer(nextPageLink),
+						CurrentPageReport: pageReportLink.outerHTML(),
+						FirstPageLink: firstPageLink.outerHTML(),
+						LastPageLink: lastPageLink.outerHTML(),
+						NextPageLink: nextPageLink.outerHTML(),
 						PageLinks: pageContainer.outerHTML(),
-						PrevPageLink: outer(prevPageLink),
+						PrevPageLink: prevPageLink.outerHTML(),
 						RowsPerPageSelect: rowsPerPageSelect,
-						Total: outer(totalLink)
+						Total: totalLink.outerHTML()
 					}
 				);
 
