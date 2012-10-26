@@ -767,8 +767,16 @@ var Calendar = A.Component.create(
 				var instance = this;
 
 				var date = instance._normalizeYearMonth();
+				var newDay = date.day + toInt(offsetDay);
+				var newMonth = date.month + toInt(offsetMonth);
+				var newYear = date.year + toInt(offsetYear);
+				var totalMonthDays = instance.getDaysInMonth(date.year, newMonth);
 
-				return DateMath.getDate(date.year + toInt(offsetYear), date.month + toInt(offsetMonth), date.day + toInt(offsetDay));
+				if (newDay > totalMonthDays) {
+					newDay = totalMonthDays;
+				}
+
+				return DateMath.getDate(newYear, newMonth, newDay);
 			},
 
 			/**

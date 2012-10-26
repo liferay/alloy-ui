@@ -1101,6 +1101,7 @@ var DatePickerSelect = A.Component.create(
 			_syncSelectsUI: function() {
 				var instance = this;
 
+				instance._populateSelects();
 				instance._selectCurrentDay();
 				instance._selectCurrentMonth();
 				instance._selectCurrentYear();
@@ -1146,5 +1147,5 @@ A.DatePickerSelect = DatePickerSelect;
 }, '@VERSION@' ,{skinnable:true, requires:['aui-datepicker-base','aui-button-item']});
 
 
-AUI.add('aui-datepicker', function(A){}, '@VERSION@' ,{use:['aui-datepicker-base','aui-datepicker-select'], skinnable:true});
+AUI.add('aui-datepicker', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-datepicker-base','aui-datepicker-select']});
 
