@@ -158,6 +158,7 @@ var DatePicker = A.Component.create({
 			var instance = this;
 
 			instance.calendar.destroy();
+			instance.escapeEventHandler.detach();
 		},
 
 		/**
@@ -210,9 +211,9 @@ var DatePicker = A.Component.create({
 		_hideOnEscapeEvent: function () {
 			var instance = this;
 
-			A.on(KEY_DOWN, function (event) {
+			instance.escapeEventHandler = A.on(KEY_DOWN, function (event) {
 				if (event.keyCode == ESCAPE_KEY) {
-					instance.destructor();
+					instance.hide();
 				}
 			});
 		},
