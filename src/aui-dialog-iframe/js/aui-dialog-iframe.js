@@ -9,12 +9,25 @@ var Lang = A.Lang,
 
 	BUFFER_CSS_CLASS = [CSS_IFRAME_NODE],
 
-	TPL_EMPTY_NODE = '<div></div>',
-	TPL_IFRAME = '<iframe class="{cssClass}" frameborder="0" id="{id}" name="{id}" src="{uri}"></iframe>';
+	TPL_IFRAME = '<iframe class="{cssClass}" frameborder="0" id="{id}" name="{id}" src="{uri}"></iframe>',
+
+	UI = A.Widget.UI_SRC,
+	UI_SRC = {
+		src: UI
+	};
 
 var DialogIframePlugin = A.Component.create(
 	{
 		ATTRS: {
+			bindLoadHandler: {
+				validator: Lang.isFunction,
+				value: function() {
+					var instance = this;
+
+					instance.node.on('load', A.bind(instance.fire, instance, 'load'));
+				}
+			},
+
 			closeOnEscape: {
 				value: true
 			},
@@ -26,7 +39,9 @@ var DialogIframePlugin = A.Component.create(
 
 			iframeId: {
 				valueFn: function() {
-					return A.guid();
+					var instance = this;
+
+					return instance.get('id') || A.guid();
 				}
 			},
 
@@ -43,6 +58,8 @@ var DialogIframePlugin = A.Component.create(
 
 				instance._host = instance.get('host');
 
+				instance._eventHandles = [];
+
 				instance.publish(
 					'load',
 					{
@@ -50,18 +67,130 @@ var DialogIframePlugin = A.Component.create(
 					}
 				);
 
-				instance.afterHostMethod('renderUI', instance.renderUI);
-				instance.afterHostMethod('bindUI', instance.bindUI);
-
-				instance.afterHostMethod('render', instance._afterRender);
+				instance.afterHostMethod(
+					'renderUI',
+					A.debounce(instance._afterRenderUI, 50, instance),
+					instance
+				);
 			},
 
-			renderUI: function() {
+			destructor: function() {
+				var instance = this;
+
+				instance._detachEventHandles();
+
+				instance._host.set('bodyContent', instance._previousBodyContent);
+
+				instance.node.remove(true);
+			},
+
+			_afterDialogVisibleChange: function(event) {
+				var instance = this;
+
+				instance._uiSetMonitor(event.newVal);
+			},
+
+			_afterMaskVisibleChange: function(event) {
+				var instance = this;
+
+				instance._uiSetMonitor(!event.newVal);
+			},
+
+			_afterRenderUI: function() {
+				var instance = this;
+
+				instance._plugIframe();
+
+				instance._bindEvents();
+
+				var bodyNode = instance._bodyNode;
+
+				bodyNode.plug(A.LoadingMask);
+
+				var loadingMask = bodyNode.loadingmask;
+
+				loadingMask.overlayMask.after('visibleChange', instance._afterMaskVisibleChange, instance);
+
+				loadingMask.show();
+			},
+
+			_afterUriChange: function(event) {
+				var instance = this;
+
+				if (event.src != UI) {
+					instance._uiSetUri(event.newVal);
+				}
+			},
+
+			_bindEvents: function() {
+				var instance = this;
+
+				instance.afterHostEvent('heightChange', instance._updateIframeSize, instance);
+				instance.afterHostEvent('widthChange', instance._updateIframeSize, instance);
+
+				instance.afterHostEvent('visibleChange', instance._afterDialogVisibleChange);
+
+				instance.after('uriChange', instance._afterUriChange);
+
+				var bindLoadHandler = instance.get('bindLoadHandler');
+
+				bindLoadHandler.call(instance);
+			},
+
+			_detachEventHandles: function() {
+				var instance = this;
+
+				A.each(
+					instance._eventHandles,
+					function(item, index) {
+						item.detach();
+					}
+				);
+
+				instance._eventHandles.length = 0;
+			},
+
+			_defaultLoadIframeFn: function(event) {
+				var instance = this;
+
+				var node = instance.node;
+
+				try {
+					var iframeWindow = node.get('contentWindow');
+
+					iframeWindow.once('unload', instance._detachEventHandles, instance);
+
+					var iframeDoc = iframeWindow.get('document');
+
+					iframeDoc.get('documentElement').addClass(CSS_IFRAME_ROOT_NODE);
+
+					instance.set('uri', iframeDoc.get('location.href'), UI_SRC);
+
+					if (instance.get('closeOnEscape')) {
+						instance._eventHandles.push(
+							A.on(
+								'key',
+								function(event) {
+									instance._host.close();
+								},
+								[iframeDoc],
+								'down:27'
+							)
+						);
+					}
+				}
+				catch (e) {
+				}
+
+				instance._bodyNode.loadingmask.hide();
+
+				instance._host._syncUIPosAlign();
+			},
+
+			_plugIframe: function() {
 				var instance = this;
 
 				instance._previousBodyContent = instance._host.get('bodyContent');
-
-				var bodyContent = A.Node.create(TPL_EMPTY_NODE);
 
 				var iframeTpl = Lang.sub(
 					TPL_IFRAME,
@@ -74,86 +203,37 @@ var DialogIframePlugin = A.Component.create(
 
 				var node = A.Node.create(iframeTpl);
 
-				bodyContent.append(node);
+				node.plug(A.Plugin.ResizeIframe);
 
-				instance._host.set('bodyContent', bodyContent);
+				node.resizeiframe.addTarget(instance);
 
-				instance._bodyNode = instance._host.bodyNode;
+				instance._host.set('bodyContent', node);
+
+				var bodyNode = instance._host.bodyNode;
+
+				bodyNode.addClass(CSS_IFRAME_BD);
+
+				instance._bodyNode = bodyNode;
 				instance.node = node;
-			},
-
-			bindUI: function() {
-				var instance = this;
-
-				instance.afterHostEvent('heightChange', instance._updateIframeSize, instance);
-				instance.afterHostEvent('widthChange', instance._updateIframeSize, instance);
-
-				instance.after('uriChange', instance._afterUriChange);
-
-				instance.node.on('load', A.bind(instance.fire, instance, 'load'));
-			},
-
-			destructor: function() {
-				var instance = this;
-
-				instance._host.set('bodyContent', instance._previousBodyContent);
-
-				instance.node.remove(true);
-			},
-
-			_adjustSize: A.cached(
-				function(number) {
-					return ((parseInt(number, 10) || 0) - 5);
-				}
-			),
-
-			_afterRender: function() {
-				var instance = this;
-
-				instance._bodyNode.plug(A.LoadingMask).loadingmask.show();
-			},
-
-			_afterUriChange: function(event) {
-				var instance = this;
-
-				instance._uiSetUri(event.newVal);
-			},
-
-			_defaultLoadIframeFn: function(event) {
-				var instance = this;
-
-				var node = instance.node;
-
-				try {
-					var iframeDoc = node.get('contentWindow.document');
-
-					iframeDoc.get('documentElement').addClass(CSS_IFRAME_ROOT_NODE);
-
-					var iframeBody = iframeDoc.get('body');
-
-					node.set('height', iframeBody.get('scrollHeight') + 5);
-
-					if (instance.get('closeOnEscape')) {
-						A.on(
-							'key',
-							function(event) {
-								instance._host.close();
-							},
-							[iframeDoc],
-							'down:27'
-						);
-					}
-				}
-				catch (e) {
-				}
-
-				instance._bodyNode.loadingmask.hide();
 			},
 
 			_setIframeCssClass: function(value) {
 				BUFFER_CSS_CLASS[1] = value;
 
 				return BUFFER_CSS_CLASS.join(' ');
+			},
+
+			_uiSetMonitor: function(value) {
+				var instance = this;
+
+				var resizeIframe = instance.node.resizeiframe;
+
+				if (value) {
+					resizeIframe.restartMonitor();
+				}
+				else {
+					resizeIframe.pauseMonitor();
+				}
 			},
 
 			_uiSetUri: function(value) {
@@ -169,8 +249,6 @@ var DialogIframePlugin = A.Component.create(
 			_updateIframeSize: function(event) {
 				var instance = this;
 
-				var adjustSize = instance._adjustSize;
-
 				var bodyNode = instance._bodyNode;
 				var node = instance.node;
 
@@ -180,7 +258,7 @@ var DialogIframePlugin = A.Component.create(
 					updateIframeSizeUI = function() {
 						var bodyHeight = bodyNode.getStyle('height');
 
-						node.setStyle('height', adjustSize(bodyHeight));
+						node.resizeiframe.set('height', bodyHeight);
 
 						bodyNode.loadingmask.refreshMask();
 					};
@@ -188,7 +266,7 @@ var DialogIframePlugin = A.Component.create(
 					instance._updateIframeSizeUI = updateIframeSizeUI;
 				}
 
-				setTimeout(updateIframeSizeUI, 50);
+				A.setTimeout(updateIframeSizeUI, 50);
 			}
 		}
 	}
