@@ -67,10 +67,13 @@ var DialogIframePlugin = A.Component.create(
 					}
 				);
 
+				var afterRenderUITask = new A.DelayedTask(instance._afterRenderUI, instance);
+
 				instance.afterHostMethod(
 					'renderUI',
-					A.debounce(instance._afterRenderUI, 50, instance),
-					instance
+					function(event) {
+						afterRenderUITask.delay(50);
+					}
 				);
 			},
 
