@@ -140,14 +140,11 @@ var DialogIframePlugin = A.Component.create(
 			_detachEventHandles: function() {
 				var instance = this;
 
-				A.each(
-					instance._eventHandles,
-					function(item, index) {
-						item.detach();
-					}
-				);
+				var eventHandles = instance._eventHandles;
 
-				instance._eventHandles.length = 0;
+				A.Array.invoke(eventHandles, 'detach');
+
+				eventHandles.length = 0;
 			},
 
 			_defaultLoadIframeFn: function(event) {
