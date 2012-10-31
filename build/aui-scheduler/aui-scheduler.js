@@ -4623,6 +4623,8 @@ var SchedulerEventRecorder = A.Component.create({
 
 			instance[OVERLAY] = new A.Overlay(instance.get(OVERLAY));
 			instance[TOOLBAR] = new A.Toolbar(instance.get(TOOLBAR));
+
+			instance[OVERLAY].on(VISIBLE_CHANGE, A.bind(instance._onOverlayVisibleChange, instance));
 		},
 
 		getOverlayContentNode: function() {
@@ -4778,7 +4780,6 @@ var SchedulerEventRecorder = A.Component.create({
 			overlayBB.addClass(CSS_SCHEDULER_EVENT_RECORDER_OVERLAY);
 
 			instance[OVERLAY].set(FOOTER_CONTENT, instance[TOOLBAR].get(BOUNDING_BOX));
-			instance[OVERLAY].on(VISIBLE_CHANGE, A.bind(instance._onOverlayVisibleChange, instance));
 
 			instance.formNode = A.Node.create(TPL_OVERLAY_FORM);
 
