@@ -3,41 +3,16 @@
 
 	<basename property="ant.file.basename" file="${ant.file}" />
 
-	<target name="build-ruby-gems">
+	<target name="build-jazz">
 		<if>
 			<not>
-				<available file="${project.dir}/lib/ruby-gems.jar" />
+				<available file="${project.dir}/lib/jazz.jar" />
 			</not>
 			<then>
-				<tstamp>
-					<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
-				</tstamp>
-
 				<get
-					dest="${project.dir}/lib/jruby.jar"
-					src="http://jruby.org.s3.amazonaws.com/downloads/1.6.7.2/jruby-complete-1.6.7.2.jar"
+					dest="${project.dir}/lib"
+					src="http://cloud.github.com/downloads/eduardolundgren/jazz/jazz.jar"
 				/>
-
-				<mkdir dir="${tstamp.value}/compass" />
-
-				<get
-					dest="${tstamp.value}/compass/compass-0.12.2.gem"
-					src="http://rubygems.org/downloads/compass-0.12.2.gem"
-				/>
-
-				<java
-					fork="true"
-					jar="${project.dir}/lib/jruby.jar"
-				>
-					<arg line="-S gem install -i ./${tstamp.value}/output ${tstamp.value}/compass/compass-0.12.2.gem --no-rdoc --no-ri" />
-				</java>
-
-				<jar
-					basedir="${tstamp.value}/output"
-					jarfile="${project.dir}/lib/ruby-gems.jar"
-				/>
-
-				<delete dir="${tstamp.value}" />
 			</then>
 		</if>
 	</target>
@@ -71,46 +46,14 @@
 						</then>
 					</if>
 
-					<property name="file.path.pattern" value="@{folder.sass}/**/**.css" />
+					<property name="file.path.pattern" value='"@{folder.sass}/**/**.css"' />
 
-					<path id="jruby">
-						<fileset file="${project.dir}/lib/jruby.jar"/>
-						<fileset file="${project.dir}/lib/ruby-gems.jar"/>
-					</path>
-
-					<script language="ruby" classpathref="jruby">
-					<![CDATA[
-						require 'rubygems'
-						require 'java'
-						require 'compass'
-
-						filePathPattern = $project.getProperty('file.path.pattern')
-						files = Dir.glob(filePathPattern)
-
-						Compass.add_project_configuration
-
-						load_paths = []
-
-						load_paths += Compass.configuration.sass_load_paths
-
-						files.each do | file |
-							fileContent = File.read(file)
-
-							engine = Sass::Engine.new(
-								fileContent,
-								{
-									:filename => file,
-									:syntax => :scss,
-									:load_paths => load_paths,
-									:ugly => true,
-									:style => :expanded
-								}
-							)
-
-							File.open(file, 'w') { |f| f.write(engine.render) }
-						end
-					]]>
-					</script>
+					<java
+						fork="true"
+						jar="${project.dir}/lib/jazz.jar"
+					>
+						<arg line="${file.path.pattern}" />
+					</java>
 				</then>
 			</if>
 		</sequential>
