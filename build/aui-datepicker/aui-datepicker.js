@@ -16,15 +16,13 @@ var Lang = A.Lang,
 	ESCAPE_KEY = 27,
 	FOCUS = 'focus',
 	FORMATTER = 'formatter',
-	LOCALE = 'locale',
-	KEY_PRESS = 'keypress',
 	KEY_DOWN = 'keydown',
+	KEY_PRESS = 'keypress',
+	LOCALE = 'locale',
 	SELECT_MODE = 'selectionMode',
 	SET_VALUE = 'setValue',
-	TEXT = 'text',
-	TYPE = 'type',
-	TRIGGER = 'trigger';
-
+	TRIGGER = 'trigger',
+	TYPE = 'type';
 
 var DatePicker = A.Component.create({
 	NAME: DATEPICKER,
@@ -123,6 +121,7 @@ var DatePicker = A.Component.create({
 			instance.calendar = calendar;
 
 			instance.after('calendar:selectionChange', instance._afterSelectionChange);
+
 			instance.after(instance._afterShow, instance, 'show');
 
 			instance._hideOnEscapeEvent();
@@ -159,6 +158,7 @@ var DatePicker = A.Component.create({
 			var instance = this;
 
 			instance.calendar.destroy();
+
 			instance.escapeEventHandler.detach();
 		},
 
@@ -189,17 +189,18 @@ var DatePicker = A.Component.create({
 		},
 
 		/**
-		 * Bind some eventos on datepicker trigger
+		 * Bind some events on datepicker trigger
 		 *
 		 * @method _bindTriggerEvents
 		 * @protected
 		 */
 		_bindTriggerEvents: function () {
 			var instance = this,
-				trigger = instance.get(TRIGGER);
+				trigger = instance.get(TRIGGER),
+				type = trigger.get(TYPE);
 
 			trigger.after(FOCUS, function () {
-				if (trigger.get(TYPE) == TEXT) {
+				if (/^(text|textarea)$/i.test(type)) {
 					instance.show();
 				}
 			});
@@ -213,7 +214,7 @@ var DatePicker = A.Component.create({
 			var instance = this;
 
 			instance.escapeEventHandler = A.on(KEY_DOWN, function (event) {
-				if (event.keyCode == ESCAPE_KEY) {
+				if (event.keyCode === ESCAPE_KEY) {
 					instance.hide();
 				}
 			});
