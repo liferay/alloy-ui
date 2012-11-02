@@ -121,7 +121,7 @@ var DialogIframePlugin = A.Component.create(
 				var instance = this;
 
 				if (event.src != UI) {
-					instance._uiSetUri(event.newVal);
+					instance._uiSetUri(event.newVal, event.prevVal);
 				}
 			},
 
@@ -236,14 +236,17 @@ var DialogIframePlugin = A.Component.create(
 				}
 			},
 
-			_uiSetUri: function(value) {
+			_uiSetUri: function(newVal, prevVal) {
 				var instance = this;
 
-				if (instance._bodyNode.loadingmask) {
+				var oldUrl = prevVal.split('#');
+				var newUrl = newVal.split('#');
+
+				if (newUrl[0] != oldUrl[0] && instance._bodyNode.loadingmask) {
 					instance._bodyNode.loadingmask.show();
 				}
 
-				instance.node.attr('src', value);
+				instance.node.attr('src', newVal);
 			},
 
 			_updateIframeSize: function(event) {
