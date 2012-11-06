@@ -917,7 +917,7 @@ var SchedulerDayView = A.Component.create({
 				if (dayView) {
 					var colNumber = toNumber(event.currentTarget.attr(DATA_COLNUMBER));
 
-					scheduler.set(VIEW_DATE, instance.getDateByColumn(colNumber));
+					scheduler.set(DATE, instance.getDateByColumn(colNumber));
 					scheduler.set(ACTIVE_VIEW, dayView);
 				}
 			}

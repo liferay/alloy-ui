@@ -129,6 +129,8 @@
 					}
 				];
 
+				var agendaView = new A.SchedulerAgendaView();
+
 				var dayView = new A.SchedulerDayView({
 					headerView: true
 				});
@@ -151,7 +153,8 @@
 					items: events1,
 					firstDayOfWeek: 1,
 					render: true,
-					views: [weekView, dayView, monthView]
+					activeView: weekView,
+					views: [dayView, weekView, monthView, agendaView]
 				});
 
 				scheduler.on({
