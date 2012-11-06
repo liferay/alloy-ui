@@ -33,7 +33,7 @@
 	<import file="macrolib.xml" description="Alloy Macrodef Utilities"/>
 	<import file="sass.xml" description="Alloy Sass Compiler"/>
 
-	<target name="all" depends="build-ruby-gems, sass-parse, YuiSharedTargets.all, sass-postclean, postclean" />
+	<target name="all" depends="build-jazz, sass-parse, YuiSharedTargets.all, sass-postclean, postclean" />
 
 	<!-- if we try to pass clean at the very end of the depends,
 		it will be ignored because local calls it first -->

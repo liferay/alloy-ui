@@ -13,11 +13,16 @@ var Lang = A.Lang,
 	CURRENT_NODE = 'currentNode',
 	DATE_FORMAT = 'dateFormat',
 	DATEPICKER = 'date-picker',
+	ESCAPE_KEY = 27,
+	FOCUS = 'focus',
 	FORMATTER = 'formatter',
+	KEY_DOWN = 'keydown',
+	KEY_PRESS = 'keypress',
 	LOCALE = 'locale',
 	SELECT_MODE = 'selectionMode',
-	SET_VALUE = 'setValue';
-
+	SET_VALUE = 'setValue',
+	TRIGGER = 'trigger',
+	TYPE = 'type';
 
 var DatePicker = A.Component.create({
 	NAME: DATEPICKER,
@@ -115,9 +120,11 @@ var DatePicker = A.Component.create({
 
 			instance.calendar = calendar;
 
-			// TODO
-
 			instance.after('calendar:selectionChange', instance._afterSelectionChange);
+
+			instance.after(instance._afterShow, instance, 'show');
+
+			instance._hideOnEscapeEvent();
 
 			if (calendarConfig.hasOwnProperty('selectedDates')) {
 				calendar.set('selectedDates', calendarConfig.selectedDates);
@@ -136,6 +143,8 @@ var DatePicker = A.Component.create({
 			DatePicker.superclass.bindUI.apply(this, arguments);
 
 			instance.on('show', instance._onShowOverlay);
+
+			instance._bindTriggerEvents();
 		},
 
 		/**
@@ -149,6 +158,8 @@ var DatePicker = A.Component.create({
 			var instance = this;
 
 			instance.calendar.destroy();
+
+			instance.escapeEventHandler.detach();
 		},
 
 		/**
@@ -165,8 +176,53 @@ var DatePicker = A.Component.create({
 		},
 
 		/**
-		* Fires before the DatePicker overlay show. Responsible to invoke the
-		* render phase of the Calendar.
+		 * Fires after show method executes
+		 *
+		 * @method _afterShow
+		 * @param {Event} event
+		 * @protected
+		 */
+		_afterShow: function (event) {
+			var instance = this;
+
+			instance.calendar.focus();
+		},
+
+		/**
+		 * Bind some events on datepicker trigger
+		 *
+		 * @method _bindTriggerEvents
+		 * @protected
+		 */
+		_bindTriggerEvents: function () {
+			var instance = this,
+				trigger = instance.get(TRIGGER),
+				type = trigger.get(TYPE);
+
+			trigger.after(FOCUS, function () {
+				if (/^(text|textarea)$/i.test(type)) {
+					instance.show();
+				}
+			});
+
+			trigger.after(KEY_PRESS, function () {
+				instance.show();
+			});
+		},
+
+		_hideOnEscapeEvent: function () {
+			var instance = this;
+
+			instance.escapeEventHandler = A.on(KEY_DOWN, function (event) {
+				if (event.keyCode === ESCAPE_KEY) {
+					instance.hide();
+				}
+			});
+		},
+
+		/**
+		 * Fires before the DatePicker overlay show. Responsible to invoke the
+		 * render phase of the Calendar.
 		 *
 		 * @method _onShowOverlay
 		 * @param {Event} event
@@ -369,6 +425,7 @@ var Lang = A.Lang,
 	BUTTONITEM = 'buttonitem',
 	BUTTON_NODE = 'buttonNode',
 	CALENDAR = 'calendar',
+	CHANGE = 'change',
 	CLEARFIX = 'clearfix',
 	CONTENT_BOX = 'contentBox',
 	CONTENT = 'content',
@@ -383,6 +440,7 @@ var Lang = A.Lang,
 	DISPLAY = 'display',
 	DOT = '.',
 	HELPER = 'helper',
+	KEY_PRESS = 'keypress',
 	MAX_DATE = 'maxDate',
 	MIN_DATE = 'minDate',
 	LOCALE = 'locale',
@@ -931,8 +989,8 @@ var DatePickerSelect = A.Component.create(
 				var instance = this,
 					selects = instance.get(SELECT_WRAPPER_NODE).all(SELECT);
 
-				selects.on('change', instance._onSelectChange, instance);
-				selects.on('keypress', instance._onSelectChange, instance);
+				selects.on(CHANGE, instance._onSelectChange, instance);
+				selects.on(KEY_PRESS, instance._onSelectChange, instance);
 			},
 
 			/**
@@ -1282,6 +1340,8 @@ var DatePickerSelect = A.Component.create(
 				instance.get(MONTH_NODE).val(
 					String(currentDate.getMonth())
 				);
+
+				instance._uiSetCurrentMonth();
 			},
 
 			/**
@@ -1310,8 +1370,8 @@ var DatePickerSelect = A.Component.create(
 
 				date = date || (selectedDates.length ? selectedDates[0] : new Date());
 
-				instance._selectCurrentDay(date);
 				instance._selectCurrentMonth(date);
+				instance._selectCurrentDay(date);
 				instance._selectCurrentYear(date);
 			},
 
@@ -1355,5 +1415,5 @@ A.DatePickerSelect = DatePickerSelect;
 }, '@VERSION@' ,{skinnable:true, requires:['aui-datepicker-base','aui-button-item']});
 
 
-AUI.add('aui-datepicker', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-datepicker-base','aui-datepicker-select']});
+AUI.add('aui-datepicker', function(A){}, '@VERSION@' ,{use:['aui-datepicker-base','aui-datepicker-select'], skinnable:true});
 
