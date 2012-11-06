@@ -938,6 +938,12 @@ A.mix(SchedulerEventSupport.prototype, {
 		});
 	},
 
+	getEventByClientId: function(clientId) {
+		var instance = this;
+
+		return instance._events.getByClientId(clientId);
+	},
+
 	getEvents: function(filterFn) {
 		var instance = this,
 			events = instance._events;
@@ -1050,6 +1056,7 @@ var SchedulerBase = A.Component.create({
 
 		strings: {
 			value: {
+				agenda: 'Agenda',
 				day: 'Day',
 				month: 'Month',
 				today: 'Today',
