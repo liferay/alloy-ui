@@ -34,6 +34,7 @@ var Lang = A.Lang,
 	BUTTONITEM = 'buttonitem',
 	BUTTON_NODE = 'buttonNode',
 	CALENDAR = 'calendar',
+	CHANGE = 'change',
 	CLEARFIX = 'clearfix',
 	CONTENT_BOX = 'contentBox',
 	CONTENT = 'content',
@@ -48,6 +49,7 @@ var Lang = A.Lang,
 	DISPLAY = 'display',
 	DOT = '.',
 	HELPER = 'helper',
+	KEY_PRESS = 'keypress',
 	MAX_DATE = 'maxDate',
 	MIN_DATE = 'minDate',
 	LOCALE = 'locale',
@@ -596,8 +598,8 @@ var DatePickerSelect = A.Component.create(
 				var instance = this,
 					selects = instance.get(SELECT_WRAPPER_NODE).all(SELECT);
 
-				selects.on('change', instance._onSelectChange, instance);
-				selects.on('keypress', instance._onSelectChange, instance);
+				selects.on(CHANGE, instance._onSelectChange, instance);
+				selects.on(KEY_PRESS, instance._onSelectChange, instance);
 			},
 
 			/**
