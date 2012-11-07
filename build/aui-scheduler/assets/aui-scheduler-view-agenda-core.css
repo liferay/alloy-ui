@@ -66,7 +66,13 @@
   padding: 12px 10px;
   position: relative;
 }
-.aui-scheduler-view-agenda-container .aui-scheduler-view-agenda-events .aui-scheduler-view-agenda-event-past {
+.aui-scheduler-view-agenda-container .aui-scheduler-view-agenda-events .aui-scheduler-view-agenda-event .aui-scheduler-view-agenda-event-content {
+  float: left;
+}
+.aui-scheduler-view-agenda-container .aui-scheduler-view-agenda-events .aui-scheduler-view-agenda-event .aui-scheduler-view-agenda-event-dates {
+  float: right;
+}
+.aui-scheduler-view-agenda-container .aui-scheduler-view-agenda-events .aui-scheduler-view-agenda-event-past .aui-scheduler-view-agenda-event-content {
   color: #999;
   text-decoration: line-through;
 }
