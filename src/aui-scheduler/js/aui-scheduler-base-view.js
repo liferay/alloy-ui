@@ -94,7 +94,7 @@ var SchedulerView = A.Component.create({
 		getAdjustedViewDate: function(val) {
 			var instance = this;
 
-			return val;
+			return DateMath.toMidnight(val);
 		},
 
 		flushViewCache: function() {
