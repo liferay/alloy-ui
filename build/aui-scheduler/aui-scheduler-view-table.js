@@ -469,7 +469,7 @@ var SchedulerTableView = A.Component.create({
 			var viewDate = scheduler.get(VIEW_DATE);
 			var displayDaysInterval = instance.get(DISPLAY_DAYS_INTERVAL);
 
-			return DateMath.add(viewDate, DateMath.DAY, displayDaysInterval);
+			return DateMath.toLastHour(DateMath.add(viewDate, DateMath.DAY, displayDaysInterval));
 		},
 
 		getPrevDate: function() {
@@ -478,7 +478,7 @@ var SchedulerTableView = A.Component.create({
 			var viewDate = scheduler.get(VIEW_DATE);
 			var displayDaysInterval = instance.get(DISPLAY_DAYS_INTERVAL);
 
-			return DateMath.subtract(viewDate, DateMath.DAY, displayDaysInterval);
+			return DateMath.toMidnight(DateMath.subtract(viewDate, DateMath.DAY, displayDaysInterval));
 		},
 
 		hideEventsOverlay: function() {

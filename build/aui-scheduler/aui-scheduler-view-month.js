@@ -63,7 +63,7 @@ var SchedulerMonthView = A.Component.create({
 		getAdjustedViewDate: function(val) {
 			var instance = this;
 
-			return DateMath.findMonthStart(val);
+			return DateMath.toMidnight(DateMath.findMonthStart(val));
 		},
 
 		getNextDate: function() {
@@ -72,7 +72,7 @@ var SchedulerMonthView = A.Component.create({
 			var scheduler = instance.get(SCHEDULER);
 			var viewDate = scheduler.get(VIEW_DATE);
 
-			return DateMath.add(viewDate, DateMath.MONTH, 1);
+			return DateMath.toLastHour(DateMath.add(viewDate, DateMath.MONTH, 1));
 		},
 
 		getPrevDate: function() {
@@ -81,7 +81,7 @@ var SchedulerMonthView = A.Component.create({
 			var scheduler = instance.get(SCHEDULER);
 			var viewDate = scheduler.get(VIEW_DATE);
 
-			return DateMath.subtract(viewDate, DateMath.MONTH, 1);
+			return DateMath.toMidnight(DateMath.subtract(viewDate, DateMath.MONTH, 1));
 		},
 
 		plotEvents: function() {

@@ -258,17 +258,17 @@ var SchedulerAgendaView = A.Component.create({
 		getNextDate: function() {
 			var instance = this,
 
-				date = instance.get(SCHEDULER).get(DATE);
+				viewDate = instance.get(SCHEDULER).get(VIEW_DATE);
 
-			return DateMath.add(date, DateMath.DAY, 1);
+			return DateMath.toMidnight(DateMath.add(viewDate, DateMath.DAY, 1));
 		},
 
 		getPrevDate: function() {
 			var instance = this,
 
-				date = instance.get(SCHEDULER).get(DATE);
+				viewDate = instance.get(SCHEDULER).get(VIEW_DATE);
 
-			return DateMath.subtract(date, DateMath.DAY, 1);
+			return DateMath.toLastHour(DateMath.subtract(viewDate, DateMath.DAY, 1));
 		},
 
 		plotEvents: function() {

@@ -17,6 +17,7 @@ var Lang = A.Lang,
 	FIRST_DAY_OF_WEEK = 'firstDayOfWeek',
 	LOCALE = 'locale',
 	SCHEDULER = 'scheduler',
+	VIEW_DATE = 'viewDate',
 	WEEK = 'week';
 
 var SchedulerWeekView = A.Component.create({
@@ -57,25 +58,23 @@ var SchedulerWeekView = A.Component.create({
 			var scheduler = instance.get(SCHEDULER);
 			var firstDayOfWeek = scheduler.get(FIRST_DAY_OF_WEEK);
 
-			return DateMath.getFirstDayOfWeek(val, firstDayOfWeek);
+			return DateMath.toMidnight(DateMath.getFirstDayOfWeek(val, firstDayOfWeek));
 		},
 
 		getNextDate: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
-			var date = scheduler.get(DATE);
-			var firstDayOfWeekDate = instance._firstDayOfWeek(date);
+			var viewDate = scheduler.get(VIEW_DATE);
 
-			return DateMath.add(firstDayOfWeekDate, DateMath.WEEK, 1);
+			return DateMath.toLastHour(DateMath.add(viewDate, DateMath.WEEK, 1));
 		},
 
 		getPrevDate: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
-			var date = scheduler.get(DATE);
-			var firstDayOfWeekDate = instance._firstDayOfWeek(date);
+			var viewDate = scheduler.get(VIEW_DATE);
 
-			return DateMath.subtract(firstDayOfWeekDate, DateMath.WEEK, 1);
+			return DateMath.toMidnight(DateMath.subtract(viewDate, DateMath.WEEK, 1));
 		},
 
 		getToday: function() {

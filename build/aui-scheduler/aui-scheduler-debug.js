@@ -1598,7 +1598,7 @@ var SchedulerView = A.Component.create({
 		getAdjustedViewDate: function(val) {
 			var instance = this;
 
-			return val;
+			return DateMath.toMidnight(val);
 		},
 
 		flushViewCache: function() {
@@ -2184,16 +2184,16 @@ var SchedulerDayView = A.Component.create({
 
 		getNextDate: function() {
 			var instance = this;
-			var date = instance.get(SCHEDULER).get(DATE);
+			var viewDate = instance.get(SCHEDULER).get(VIEW_DATE);
 
-			return DateMath.add(date, DateMath.DAY, 1);
+			return DateMath.toLastHour(DateMath.add(viewDate, DateMath.DAY, 1));
 		},
 
 		getPrevDate: function() {
 			var instance = this;
-			var date = instance.get(SCHEDULER).get(DATE);
+			var viewDate = instance.get(SCHEDULER).get(VIEW_DATE);
 
-			return DateMath.subtract(date, DateMath.DAY, 1);
+			return DateMath.toMidnight(DateMath.subtract(viewDate, DateMath.DAY, 1));
 		},
 
 		getColumnByDate: function(date) {
@@ -2869,6 +2869,7 @@ var Lang = A.Lang,
 	FIRST_DAY_OF_WEEK = 'firstDayOfWeek',
 	LOCALE = 'locale',
 	SCHEDULER = 'scheduler',
+	VIEW_DATE = 'viewDate',
 	WEEK = 'week';
 
 var SchedulerWeekView = A.Component.create({
@@ -2909,25 +2910,23 @@ var SchedulerWeekView = A.Component.create({
 			var scheduler = instance.get(SCHEDULER);
 			var firstDayOfWeek = scheduler.get(FIRST_DAY_OF_WEEK);
 
-			return DateMath.getFirstDayOfWeek(val, firstDayOfWeek);
+			return DateMath.toMidnight(DateMath.getFirstDayOfWeek(val, firstDayOfWeek));
 		},
 
 		getNextDate: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
-			var date = scheduler.get(DATE);
-			var firstDayOfWeekDate = instance._firstDayOfWeek(date);
+			var viewDate = scheduler.get(VIEW_DATE);
 
-			return DateMath.add(firstDayOfWeekDate, DateMath.WEEK, 1);
+			return DateMath.toLastHour(DateMath.add(viewDate, DateMath.WEEK, 1));
 		},
 
 		getPrevDate: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
-			var date = scheduler.get(DATE);
-			var firstDayOfWeekDate = instance._firstDayOfWeek(date);
+			var viewDate = scheduler.get(VIEW_DATE);
 
-			return DateMath.subtract(firstDayOfWeekDate, DateMath.WEEK, 1);
+			return DateMath.toMidnight(DateMath.subtract(viewDate, DateMath.WEEK, 1));
 		},
 
 		getToday: function() {
@@ -3449,7 +3448,7 @@ var SchedulerTableView = A.Component.create({
 			var viewDate = scheduler.get(VIEW_DATE);
 			var displayDaysInterval = instance.get(DISPLAY_DAYS_INTERVAL);
 
-			return DateMath.add(viewDate, DateMath.DAY, displayDaysInterval);
+			return DateMath.toLastHour(DateMath.add(viewDate, DateMath.DAY, displayDaysInterval));
 		},
 
 		getPrevDate: function() {
@@ -3458,7 +3457,7 @@ var SchedulerTableView = A.Component.create({
 			var viewDate = scheduler.get(VIEW_DATE);
 			var displayDaysInterval = instance.get(DISPLAY_DAYS_INTERVAL);
 
-			return DateMath.subtract(viewDate, DateMath.DAY, displayDaysInterval);
+			return DateMath.toMidnight(DateMath.subtract(viewDate, DateMath.DAY, displayDaysInterval));
 		},
 
 		hideEventsOverlay: function() {
@@ -4341,7 +4340,7 @@ var SchedulerMonthView = A.Component.create({
 		getAdjustedViewDate: function(val) {
 			var instance = this;
 
-			return DateMath.findMonthStart(val);
+			return DateMath.toMidnight(DateMath.findMonthStart(val));
 		},
 
 		getNextDate: function() {
@@ -4350,7 +4349,7 @@ var SchedulerMonthView = A.Component.create({
 			var scheduler = instance.get(SCHEDULER);
 			var viewDate = scheduler.get(VIEW_DATE);
 
-			return DateMath.add(viewDate, DateMath.MONTH, 1);
+			return DateMath.toLastHour(DateMath.add(viewDate, DateMath.MONTH, 1));
 		},
 
 		getPrevDate: function() {
@@ -4359,7 +4358,7 @@ var SchedulerMonthView = A.Component.create({
 			var scheduler = instance.get(SCHEDULER);
 			var viewDate = scheduler.get(VIEW_DATE);
 
-			return DateMath.subtract(viewDate, DateMath.MONTH, 1);
+			return DateMath.toMidnight(DateMath.subtract(viewDate, DateMath.MONTH, 1));
 		},
 
 		plotEvents: function() {
@@ -4669,17 +4668,17 @@ var SchedulerAgendaView = A.Component.create({
 		getNextDate: function() {
 			var instance = this,
 
-				date = instance.get(SCHEDULER).get(DATE);
+				viewDate = instance.get(SCHEDULER).get(VIEW_DATE);
 
-			return DateMath.add(date, DateMath.DAY, 1);
+			return DateMath.toMidnight(DateMath.add(viewDate, DateMath.DAY, 1));
 		},
 
 		getPrevDate: function() {
 			var instance = this,
 
-				date = instance.get(SCHEDULER).get(DATE);
+				viewDate = instance.get(SCHEDULER).get(VIEW_DATE);
 
-			return DateMath.subtract(date, DateMath.DAY, 1);
+			return DateMath.toLastHour(DateMath.subtract(viewDate, DateMath.DAY, 1));
 		},
 
 		plotEvents: function() {
