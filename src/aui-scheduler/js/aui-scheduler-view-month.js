@@ -69,18 +69,18 @@ var SchedulerMonthView = A.Component.create({
 			var instance = this;
 
 			var scheduler = instance.get(SCHEDULER);
-			var date = scheduler.get(DATE);
+			var viewDate = scheduler.get(VIEW_DATE);
 
-			return DateMath.add(date, DateMath.MONTH, 1);
+			return DateMath.add(viewDate, DateMath.MONTH, 1);
 		},
 
 		getPrevDate: function() {
 			var instance = this;
 
 			var scheduler = instance.get(SCHEDULER);
-			var date = scheduler.get(DATE);
+			var viewDate = scheduler.get(VIEW_DATE);
 
-			return DateMath.subtract(date, DateMath.MONTH, 1);
+			return DateMath.subtract(viewDate, DateMath.MONTH, 1);
 		},
 
 		plotEvents: function() {
