@@ -62,9 +62,17 @@
 			border-bottom: 1px solid #e4e4e4;
 			padding: 12px 10px;
 			position: relative;
+
+			.aui-scheduler-view-agenda-event-content {
+				float: left;
+			}
+
+			.aui-scheduler-view-agenda-event-dates {
+				float: right;
+			}
 		}
 
-		.aui-scheduler-view-agenda-event-past {
+		.aui-scheduler-view-agenda-event-past .aui-scheduler-view-agenda-event-content {
 			color: #999;
 			text-decoration: line-through;
 		}

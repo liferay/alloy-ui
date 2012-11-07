@@ -4,8 +4,12 @@ var Lang = A.Lang,
 	AArray = A.Array,
 	DateMath = A.DataType.DateMath,
 
+	FORMAT_HOUR_ISO = '%H:%M',
+	FORMAT_HOUR_US = '%l:%M',
+
 	_DOT = '.',
 	_EMPTY_STR = '',
+	_MDASH = '&mdash;',
 	_SPACE = ' ',
 
 	ACTIVE_VIEW = 'activeView',
@@ -20,11 +24,14 @@ var Lang = A.Lang,
 	CONTAINER = 'container',
 	CONTENT = 'content',
 	DATE = 'date',
+	DATES = 'dates',
 	DAY = 'day',
 	DISABLED = 'disabled',
+	END_DATE = 'endDate',
 	EVENT = 'event',
 	EVENT_RECORDER = 'eventRecorder',
 	EVENTS = 'events',
+	EVENTS_DATE_FORMATTER = 'eventsDateFormatter',
 	EXTRA = 'extra',
 	FIRST = 'first',
 	HEADER = 'header',
@@ -36,18 +43,21 @@ var Lang = A.Lang,
 	INFO_DAY_DATE_FORMATTER = 'infoDayDateFormatter',
 	INFO_LABEL_BIG_DATE_FORMATTER = 'infoLabelBigDateFormatter',
 	INFO_LABEL_SMALL_DATE_FORMATTER = 'infoLabelSmallDateFormatter',
+	ISO_TIME = 'isoTime',
 	LABEL = 'label',
 	LAST = 'last',
 	LOCALE = 'locale',
 	METAL = 'metal',
 	NO = 'no',
-	NO_FUTURE_EVENTS = 'noFutureEvents',
+	NO_EVENTS = 'noEvents',
 	PAST = 'past',
+	PM = 'pm',
 	SCHEDULER = 'scheduler',
 	SCHEDULER_EVENT = 'schedulerEvent',
 	SMALL = 'small',
 	START_DATE = 'startDate',
 	STRINGS = 'strings',
+	TIMESTAMP = 'timestamp',
 	TODAY = 'today',
 	VIEW_DATE = 'viewDate',
 	VISIBLE = 'visible',
@@ -85,6 +95,7 @@ var Lang = A.Lang,
 	CSS_EVENT = getCN(SCHEDULER_VIEW_AGENDA, EVENT),
 	CSS_EVENT_COLOR = getCN(SCHEDULER_VIEW_AGENDA, EVENT, COLOR),
 	CSS_EVENT_CONTENT = getCN(SCHEDULER_VIEW_AGENDA, EVENT, CONTENT),
+	CSS_EVENT_DATES = getCN(SCHEDULER_VIEW_AGENDA, EVENT, DATES),
 	CSS_EVENT_FIRST = getCN(SCHEDULER_VIEW_AGENDA, EVENT, FIRST),
 	CSS_EVENT_INFO = getCN(SCHEDULER_VIEW_AGENDA, INFO),
 	CSS_EVENT_INFO_BIGGIE = getCN(SCHEDULER_VIEW_AGENDA, INFO, BIGGIE),
@@ -113,9 +124,10 @@ var Lang = A.Lang,
 
 	TPL_EVENTS_CONTAINER = '<div class="' + CSS_EVENTS + '">{content}</div>',
 
-	TPL_EVENT = '<div class="' + CSS_EVENT + ' {firstClassName} {lastClassName} {eventClassName}" data-clientId="{clientId}">' +
+	TPL_EVENT = '<div class="' + [ CSS_EVENT, CSS_HELPER_CLEAR_FIX ].join(_SPACE) + ' {firstClassName} {lastClassName} {eventClassName}" data-clientId="{clientId}">' +
 					'<div class="' + CSS_EVENT_COLOR + '" style="background-color: {color};"></div>' +
 					'<div class="' + CSS_EVENT_CONTENT + '">{content}</div>' +
+					'<div class="' + CSS_EVENT_DATES + '">{dates}</div>' +
 				'</div>',
 
 	TPL_NO_EVENTS = '<div class="' + CSS_EVENT_NO_EVENTS + '">{content}</div>',
@@ -136,6 +148,47 @@ var SchedulerAgendaView = A.Component.create({
 	ATTRS: {
 		bodyContent: {
 			value: _EMPTY_STR
+		},
+
+		eventsDateFormatter: {
+			value: function(startDate, endDate) {
+				var instance = this,
+					scheduler = instance.get(SCHEDULER),
+					isoTime = scheduler.get(ACTIVE_VIEW).get(ISO_TIME),
+					startDateMask = FORMAT_HOUR_ISO,
+					endDateMask = FORMAT_HOUR_ISO,
+					startDateFormatter,
+					endDateFormatter;
+
+				if (!isoTime) {
+					startDateMask = FORMAT_HOUR_US;
+					endDateMask = FORMAT_HOUR_US;
+
+					if (startDate.getHours() >= 12) {
+						startDateMask += PM;
+					}
+
+					if (endDate.getHours() >= 12) {
+						endDateMask += PM;
+					}
+				}
+
+				if (DateMath.isDayOverlap(startDate, endDate)) {
+					startDateMask += ', %b %e';
+					endDateMask += ', %b %e';
+				}
+
+				startDateFormatter = _formatter.call(instance, startDateMask);
+				endDateFormatter = _formatter.call(instance, endDateMask);
+
+				return [
+					startDateFormatter.call(instance, startDate),
+					_MDASH,
+					endDateFormatter.call(instance, endDate)
+				]
+				.join(_SPACE);
+			},
+			validator: isFunction
 		},
 
 		headerDayDateFormatter: {
@@ -160,7 +213,7 @@ var SchedulerAgendaView = A.Component.create({
 
 		headerExtraDateFormatter: {
 			validator: isFunction,
-			value: _formatter('%e %B')
+			value: _formatter('%B %e')
 		},
 
 		infoDayDateFormatter: {
@@ -184,7 +237,7 @@ var SchedulerAgendaView = A.Component.create({
 
 		strings: {
 			value: {
-				noFutureEvents: 'No future events.'
+				noEvents: 'No future events.'
 			}
 		}
 	},
@@ -225,6 +278,8 @@ var SchedulerAgendaView = A.Component.create({
 				scheduler = instance.get(SCHEDULER),
 
 				viewDate = scheduler.get(VIEW_DATE),
+
+				eventsDateFormatter = instance.get(EVENTS_DATE_FORMATTER),
 
 				headerDayDateFormatter = instance.get(HEADER_DAY_DATE_FORMATTER),
 
@@ -278,6 +333,7 @@ var SchedulerAgendaView = A.Component.create({
 							schedulerEvents,
 							function(schedulerEvent, seIndex) {
 								var today = DateMath.toMidnight(new Date()),
+									endDate = schedulerEvent.get(END_DATE),
 									startDate = schedulerEvent.get(START_DATE);
 
 								events.push(
@@ -285,6 +341,7 @@ var SchedulerAgendaView = A.Component.create({
 										clientId: schedulerEvent.get(CLIENT_ID),
 										color: schedulerEvent.get(COLOR),
 										content: schedulerEvent.get(CONTENT),
+										dates: eventsDateFormatter.call(instance, startDate, endDate),
 										eventClassName: (startDate.getTime() < today.getTime()) ? CSS_EVENT_PAST : _EMPTY_STR,
 										firstClassName: (seIndex === 0) ? CSS_EVENT_FIRST : _EMPTY_STR,
 										lastClassName: (seIndex === schedulerEventsLength-1) ? CSS_EVENT_LAST : _EMPTY_STR
@@ -298,7 +355,7 @@ var SchedulerAgendaView = A.Component.create({
 			else {
 				events.push(
 					A.Lang.sub(TPL_NO_EVENTS, {
-						content: strings[NO_FUTURE_EVENTS]
+						content: strings[NO_EVENTS]
 					})
 				);
 			}
@@ -353,7 +410,7 @@ var SchedulerAgendaView = A.Component.create({
 
 				currentTarget = event.currentTarget,
 
-				timestamp = A.Lang.toInt(currentTarget.getData('timestamp')) || Date.now(),
+				timestamp = A.Lang.toInt(currentTarget.getData(TIMESTAMP)) || Date.now(),
 
 				date = new Date(timestamp),
 
