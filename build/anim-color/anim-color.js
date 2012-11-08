@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('anim-color', function (Y, NAME) {
 
@@ -57,4 +57,4 @@ Y.each(['backgroundColor',
 );
 
 
-}, '3.7.2', {"requires": ["anim-base"]});
+}, '3.7.3', {"requires": ["anim-base"]});

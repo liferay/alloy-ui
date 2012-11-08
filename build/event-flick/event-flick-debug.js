@@ -2,25 +2,38 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('event-flick', function (Y, NAME) {
 
 /**
  * The gestures module provides gesture events such as "flick", which normalize user interactions
  * across touch and mouse or pointer based input devices. This layer can be used by application developers
- * to build input device agnostic components which behave the same in response to either touch or mouse based  
+ * to build input device agnostic components which behave the same in response to either touch or mouse based
  * interaction.
  *
- * <p>Documentation for events added by this module can be found in the event document for the <a href="YUI.html#events">YUI</a> global.</p>
+ * <p>Documentation for events added by this module can be found in the event document for the <a href="../classes/YUI.html#events">YUI</a> global.</p>
+ *
+ *
+ @example
+
+     YUI().use('event-flick', function (Y) {
+         Y.one('#myNode').on('flick', function (e) {
+             Y.log('flick event fired. The event payload has goodies.');
+         });
+     });
+
  *
  * @module event-gestures
  */
 
 /**
- * Adds support for a "flick" event, which is fired at the end of a touch or mouse based flick gesture, and provides 
+ * Adds support for a "flick" event, which is fired at the end of a touch or mouse based flick gesture, and provides
  * velocity of the flick, along with distance and time information.
+ *
+ * <p>Documentation for the flick event can be found on the <a href="../classes/YUI.html#event_flick">YUI</a> global,
+ * along with the other supported events.</p>
  *
  * @module event-gestures
  * @submodule event-flick
@@ -55,7 +68,7 @@ var GESTURE_MAP = Y.Event._GESTURE_MAP,
  * covered is used.
  *
  * <p>It is recommended that you use Y.bind to set up context and additional arguments for your event handler,
- * however if you want to pass the context and arguments as additional signature arguments to "on", 
+ * however if you want to pass the context and arguments as additional signature arguments to "on",
  * you need to provide a null value for the configuration object, e.g: <code>node.on("flick", fn, null, context, arg1, arg2, arg3)</code></p>
  *
  * @event flick
@@ -69,7 +82,7 @@ var GESTURE_MAP = Y.Event._GESTURE_MAP,
  * <dt>minVelocity (in pixels/ms, defaults to 0)</dt>
  * <dd>The minimum velocity which would qualify the gesture as a flick.</dd>
  * <dt>preventDefault (defaults to false)</dt>
- * <dd>Can be set to true/false to prevent default behavior as soon as the touchstart/touchend or mousedown/mouseup is received so that things like scrolling or text selection can be 
+ * <dd>Can be set to true/false to prevent default behavior as soon as the touchstart/touchend or mousedown/mouseup is received so that things like scrolling or text selection can be
  * prevented. This property can also be set to a function, which returns true or false, based on the event facade passed to it.</dd>
  * <dt>axis (no default)</dt>
  * <dd>Can be set to "x" or "y" if you want to constrain the flick velocity and distance to a single axis. If not
@@ -86,9 +99,9 @@ Y.Event.define('flick', {
             this._onStart,
             this,
             node,
-            subscriber, 
+            subscriber,
             ce);
- 
+
         subscriber[_FLICK_START_HANDLE] = startHandle;
     },
 
@@ -133,7 +146,7 @@ Y.Event.define('flick', {
             moveHandle,
             doc,
             preventDefault = subscriber._extra.preventDefault,
-            origE = e; 
+            origE = e;
 
         if (e.touches) {
             start = (e.touches.length === 1);
@@ -186,7 +199,7 @@ Y.Event.define('flick', {
             time,
             preventDefault,
             params,
-            xyDistance, 
+            xyDistance,
             distance,
             velocity,
             axis,
@@ -263,4 +276,4 @@ Y.Event.define('flick', {
 });
 
 
-}, '3.7.2', {"requires": ["node-base", "event-touch", "event-synthetic"]});
+}, '3.7.3', {"requires": ["node-base", "event-touch", "event-synthetic"]});

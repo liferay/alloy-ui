@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 if (typeof _yuitest_coverage == "undefined"){
     _yuitest_coverage = {};
@@ -33,7 +33,7 @@ _yuitest_coverage["build/arraysort/arraysort.js"] = {
     path: "build/arraysort/arraysort.js",
     code: []
 };
-_yuitest_coverage["build/arraysort/arraysort.js"].code=["YUI.add('arraysort', function (Y, NAME) {","","/**","Provides a case-insenstive comparator which can be used for array sorting.","","@module arraysort","*/","","var LANG = Y.Lang,","    ISVALUE = LANG.isValue,","    ISSTRING = LANG.isString;","","/**","Provides a case-insenstive comparator which can be used for array sorting.","","@class ArraySort","*/","","Y.ArraySort = {","","    /**","    Comparator function for simple case-insensitive sorting of an array of","    strings.","","    @method compare","    @param a {Object} First sort argument.","    @param b {Object} Second sort argument.","    @param desc {Boolean} `true` if sort direction is descending, `false` if","        sort direction is ascending.","    @return {Boolean} -1 when a < b. 0 when a == b. 1 when a > b.","    */","    compare: function(a, b, desc) {","        if(!ISVALUE(a)) {","            if(!ISVALUE(b)) {","                return 0;","            }","            else {","                return 1;","            }","        }","        else if(!ISVALUE(b)) {","            return -1;","        }","","        if(ISSTRING(a)) {","            a = a.toLowerCase();","        }","        if(ISSTRING(b)) {","            b = b.toLowerCase();","        }","        if(a < b) {","            return (desc) ? 1 : -1;","        }","        else if (a > b) {","            return (desc) ? -1 : 1;","        }","        else {","            return 0;","        }","    }","","};","","","}, '3.7.2', {\"requires\": [\"yui-base\"]});"];
+_yuitest_coverage["build/arraysort/arraysort.js"].code=["YUI.add('arraysort', function (Y, NAME) {","","/**","Provides a case-insenstive comparator which can be used for array sorting.","","@module arraysort","*/","","var LANG = Y.Lang,","    ISVALUE = LANG.isValue,","    ISSTRING = LANG.isString;","","/**","Provides a case-insenstive comparator which can be used for array sorting.","","@class ArraySort","*/","","Y.ArraySort = {","","    /**","    Comparator function for simple case-insensitive sorting of an array of","    strings.","","    @method compare","    @param a {Object} First sort argument.","    @param b {Object} Second sort argument.","    @param desc {Boolean} `true` if sort direction is descending, `false` if","        sort direction is ascending.","    @return {Boolean} -1 when a < b. 0 when a == b. 1 when a > b.","    */","    compare: function(a, b, desc) {","        if(!ISVALUE(a)) {","            if(!ISVALUE(b)) {","                return 0;","            }","            else {","                return 1;","            }","        }","        else if(!ISVALUE(b)) {","            return -1;","        }","","        if(ISSTRING(a)) {","            a = a.toLowerCase();","        }","        if(ISSTRING(b)) {","            b = b.toLowerCase();","        }","        if(a < b) {","            return (desc) ? 1 : -1;","        }","        else if (a > b) {","            return (desc) ? -1 : 1;","        }","        else {","            return 0;","        }","    }","","};","","","}, '3.7.3', {\"requires\": [\"yui-base\"]});"];
 _yuitest_coverage["build/arraysort/arraysort.js"].lines = {"1":0,"9":0,"19":0,"33":0,"34":0,"35":0,"38":0,"41":0,"42":0,"45":0,"46":0,"48":0,"49":0,"51":0,"52":0,"54":0,"55":0,"58":0};
 _yuitest_coverage["build/arraysort/arraysort.js"].functions = {"compare:32":0,"(anonymous 1):1":0};
 _yuitest_coverage["build/arraysort/arraysort.js"].coveredLines = 18;
@@ -122,4 +122,4 @@ return 0;
 };
 
 
-}, '3.7.2', {"requires": ["yui-base"]});
+}, '3.7.3', {"requires": ["yui-base"]});

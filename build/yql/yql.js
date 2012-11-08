@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('yql', function (Y, NAME) {
 
@@ -115,10 +115,20 @@ YQLRequest.prototype = {
 
         o.on.success = Y.bind(this._internal, this);
 
+        this._send(url, o);
+        return this;
+    },
+    /**
+    * Private method to send the request, overwritten in plugins
+    * @method _send
+    * @private
+    * @param {String} url The URL to request
+    * @param {Object} o The config object
+    */
+    _send: function(url, o) {
         if (o.allowCache !== false) {
             o.allowCache = true;
         }
-
         if (!this._jsonp) {
             this._jsonp = Y.jsonp(url, o);
         } else {
@@ -128,7 +138,6 @@ YQLRequest.prototype = {
             }
             this._jsonp.send();
         }
-        return this;
     }
 };
 
@@ -173,4 +182,4 @@ Y.YQL = function (sql, callback, params, opts) {
 };
 
 
-}, '3.7.2', {"requires": ["jsonp", "jsonp-url"]});
+}, '3.7.3', {"requires": ["jsonp", "jsonp-url"]});

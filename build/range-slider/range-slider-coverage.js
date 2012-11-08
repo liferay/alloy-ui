@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 if (typeof _yuitest_coverage == "undefined"){
     _yuitest_coverage = {};
@@ -33,7 +33,7 @@ _yuitest_coverage["build/range-slider/range-slider.js"] = {
     path: "build/range-slider/range-slider.js",
     code: []
 };
-_yuitest_coverage["build/range-slider/range-slider.js"].code=["YUI.add('range-slider', function (Y, NAME) {","","/**"," * Create a sliding value range input visualized as a draggable thumb on a"," * background rail element."," * "," * @module slider"," * @main slider"," * @submodule range-slider"," */","","/**"," * Create a slider to represent an integer value between a given minimum and"," * maximum.  Sliders may be aligned vertically or horizontally, based on the"," * <code>axis</code> configuration."," *"," * @class Slider"," * @constructor"," * @extends SliderBase"," * @uses SliderValueRange"," * @uses ClickableRail"," * @param config {Object} Configuration object"," */","Y.Slider = Y.Base.build( 'slider', Y.SliderBase,","    [ Y.SliderValueRange, Y.ClickableRail ] );","","","}, '3.7.2', {\"requires\": [\"slider-base\", \"slider-value-range\", \"clickable-rail\"]});"];
+_yuitest_coverage["build/range-slider/range-slider.js"].code=["YUI.add('range-slider', function (Y, NAME) {","","/**"," * Create a sliding value range input visualized as a draggable thumb on a"," * background rail element."," * "," * @module slider"," * @main slider"," * @submodule range-slider"," */","","/**"," * Create a slider to represent an integer value between a given minimum and"," * maximum.  Sliders may be aligned vertically or horizontally, based on the"," * <code>axis</code> configuration."," *"," * @class Slider"," * @constructor"," * @extends SliderBase"," * @uses SliderValueRange"," * @uses ClickableRail"," * @param config {Object} Configuration object"," */","Y.Slider = Y.Base.build( 'slider', Y.SliderBase,","    [ Y.SliderValueRange, Y.ClickableRail ] );","","","}, '3.7.3', {\"requires\": [\"slider-base\", \"slider-value-range\", \"clickable-rail\"]});"];
 _yuitest_coverage["build/range-slider/range-slider.js"].lines = {"1":0,"24":0};
 _yuitest_coverage["build/range-slider/range-slider.js"].functions = {"(anonymous 1):1":0};
 _yuitest_coverage["build/range-slider/range-slider.js"].coveredLines = 2;
@@ -68,4 +68,4 @@ Y.Slider = Y.Base.build( 'slider', Y.SliderBase,
     [ Y.SliderValueRange, Y.ClickableRail ] );
 
 
-}, '3.7.2', {"requires": ["slider-base", "slider-value-range", "clickable-rail"]});
+}, '3.7.3', {"requires": ["slider-base", "slider-value-range", "clickable-rail"]});

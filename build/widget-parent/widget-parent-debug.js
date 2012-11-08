@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('widget-parent', function (Y, NAME) {
 
@@ -874,4 +874,4 @@ Y.augment(Parent, Y.ArrayList);
 Y.WidgetParent = Parent;
 
 
-}, '3.7.2', {"requires": ["arraylist", "base-build", "widget"]});
+}, '3.7.3', {"requires": ["arraylist", "base-build", "widget"]});

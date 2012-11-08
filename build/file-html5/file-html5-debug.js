@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('file-html5', function (Y, NAME) {
 
@@ -499,4 +499,4 @@ YUI.add('file-html5', function (Y, NAME) {
 
     Y.FileHTML5 = FileHTML5;
 
-}, '3.7.2', {"requires": ["base"]});
+}, '3.7.3', {"requires": ["base"]});

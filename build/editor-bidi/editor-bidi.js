@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('editor-bidi', function (Y, NAME) {
 
@@ -21,7 +21,7 @@ YUI.add('editor-bidi', function (Y, NAME) {
     var EditorBidi = function() {
         EditorBidi.superclass.constructor.apply(this, arguments);
     }, HOST = 'host', DIR = 'dir', BODY = 'BODY', NODE_CHANGE = 'nodeChange',
-    B_C_CHANGE = 'bidiContextChange', FIRST_P = BODY + ' > p', STYLE = 'style';
+    B_C_CHANGE = 'bidiContextChange', STYLE = 'style';
 
     Y.extend(EditorBidi, Y.Base, {
         /**
@@ -47,7 +47,7 @@ YUI.add('editor-bidi', function (Y, NAME) {
                 inst = host.getInstance(),
                 sel = new inst.EditorSelection(),
                 node, direction;
-            
+
             if (sel.isCollapsed) {
                 node = EditorBidi.blockParent(sel.focusNode);
                 if (node) {
@@ -68,7 +68,7 @@ YUI.add('editor-bidi', function (Y, NAME) {
         * @private
         * @method _afterNodeChange
         */
-        _afterNodeChange: function(e) { 
+        _afterNodeChange: function(e) {
             // If this is the first event ever, or an event that can result in a context change
             if (this.firstEvent || EditorBidi.EVENTS[e.changedType]) {
                 this._checkForChange();
@@ -81,7 +81,7 @@ YUI.add('editor-bidi', function (Y, NAME) {
         * @private
         * @method _afterMouseUp
         */
-        _afterMouseUp: function(e) {
+        _afterMouseUp: function() {
             this._checkForChange();
             this.firstEvent = false;
         },
@@ -89,7 +89,7 @@ YUI.add('editor-bidi', function (Y, NAME) {
             var host = this.get(HOST);
 
             this.firstEvent = true;
-            
+
             host.after(NODE_CHANGE, Y.bind(this._afterNodeChange, this));
             host.after('dom:mouseup', Y.bind(this._afterMouseUp, this));
         }
@@ -114,7 +114,7 @@ YUI.add('editor-bidi', function (Y, NAME) {
 
         /**
         * More elements may be needed. BODY *must* be in the list to take care of the special case.
-        * 
+        *
         * blockParent could be changed to use inst.EditorSelection.BLOCKS
         * instead, but that would make Y.Plugin.EditorBidi.blockParent
         * unusable in non-RTE contexts (it being usable is a nice
@@ -137,11 +137,11 @@ YUI.add('editor-bidi', function (Y, NAME) {
         */
         blockParent: function(node, wrap) {
             var parent = node, divNode, firstChild;
-            
+
             if (!parent) {
                 parent = Y.one(BODY);
             }
-            
+
             if (!parent.test(EditorBidi.BLOCKS)) {
                 parent = parent.ancestor(EditorBidi.BLOCKS);
             }
@@ -150,7 +150,7 @@ YUI.add('editor-bidi', function (Y, NAME) {
                 // according to spec: we should get to a P before BODY. But
                 // we don't want to set the direction of BODY even if that
                 // happens, so we wrap everything in a DIV.
-                
+
                 // The code is based on YUI3's Y.EditorSelection._wrapBlock function.
                 divNode = Y.Node.create(EditorBidi.DIV_WRAPPER);
                 parent.get('children').each(function(node, index) {
@@ -179,6 +179,12 @@ YUI.add('editor-bidi', function (Y, NAME) {
         */
         addParents: function(nodeArray) {
             var i, parent, addParent;
+                tester = function(sibling) {
+                    if (!sibling.getData(EditorBidi._NODE_SELECTED)) {
+                        addParent = false;
+                        return true; // stop more processing
+                    }
+                };
 
             for (i = 0; i < nodeArray.length; i += 1) {
                 nodeArray[i].setData(EditorBidi._NODE_SELECTED, true);
@@ -197,18 +203,13 @@ YUI.add('editor-bidi', function (Y, NAME) {
                 // do it if the parent is already in the list.
                 if (!parent.test(BODY) && !parent.getData(EditorBidi._NODE_SELECTED)) {
                     addParent = true;
-                    parent.get('children').some(function(sibling) {
-                        if (!sibling.getData(EditorBidi._NODE_SELECTED)) {
-                            addParent = false;
-                            return true; // stop more processing
-                        }
-                    });
+                    parent.get('children').some(tester);
                     if (addParent) {
                         nodeArray.push(parent);
                         parent.setData(EditorBidi._NODE_SELECTED, true);
                     }
                 }
-            }   
+            }
 
             for (i = 0; i < nodeArray.length; i += 1) {
                 nodeArray[i].clearData(EditorBidi._NODE_SELECTED);
@@ -258,9 +259,9 @@ YUI.add('editor-bidi', function (Y, NAME) {
             return n;
         }
     });
-    
+
     Y.namespace('Plugin');
-    
+
     Y.Plugin.EditorBidi = EditorBidi;
 
     /**
@@ -276,7 +277,7 @@ YUI.add('editor-bidi', function (Y, NAME) {
         var inst = this.getInstance(),
             sel = new inst.EditorSelection(),
             ns = this.get(HOST).get(HOST).editorBidi,
-            returnValue, block,
+            returnValue, block, b,
             selected, selectedBlocks, dir;
 
         if (!ns) {
@@ -296,7 +297,7 @@ YUI.add('editor-bidi', function (Y, NAME) {
             if (!direction) {
                 //If no direction is set, auto-detect the proper setting to make it "toggle"
                 dir = block.getAttribute(DIR);
-                if (!dir || dir == 'ltr') {
+                if (!dir || dir === 'ltr') {
                     direction = 'rtl';
                 } else {
                     direction = 'ltr';
@@ -304,8 +305,8 @@ YUI.add('editor-bidi', function (Y, NAME) {
             }
             block.setAttribute(DIR, direction);
             if (Y.UA.ie) {
-                var b = block.all('br.yui-cursor');
-                if (b.size() === 1 && block.get('childNodes').size() == 1) {
+                b = block.all('br.yui-cursor');
+                if (b.size() === 1 && block.get('childNodes').size() === 1) {
                     b.remove();
                 }
             }
@@ -323,7 +324,7 @@ YUI.add('editor-bidi', function (Y, NAME) {
                 n = EditorBidi.removeTextAlign(n);
                 if (!d) {
                     dir = n.getAttribute(DIR);
-                    if (!dir || dir == 'ltr') {
+                    if (!dir || dir === 'ltr') {
                         d = 'rtl';
                     } else {
                         d = 'ltr';
@@ -340,4 +341,4 @@ YUI.add('editor-bidi', function (Y, NAME) {
 
 
 
-}, '3.7.2', {"requires": ["editor-base"]});
+}, '3.7.3', {"requires": ["editor-base"]});

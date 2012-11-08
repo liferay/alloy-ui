@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 if (typeof _yuitest_coverage == "undefined"){
     _yuitest_coverage = {};
@@ -33,7 +33,7 @@ _yuitest_coverage["build/selector/selector.js"] = {
     path: "build/selector/selector.js",
     code: []
 };
-_yuitest_coverage["build/selector/selector.js"].code=["YUI.add('selector', function (Y, NAME) {","","","","}, '3.7.2', {\"requires\": [\"selector-native\"]});"];
+_yuitest_coverage["build/selector/selector.js"].code=["YUI.add('selector', function (Y, NAME) {","","","","}, '3.7.3', {\"requires\": [\"selector-native\"]});"];
 _yuitest_coverage["build/selector/selector.js"].lines = {"1":0};
 _yuitest_coverage["build/selector/selector.js"].functions = {};
 _yuitest_coverage["build/selector/selector.js"].coveredLines = 1;
@@ -43,4 +43,4 @@ YUI.add('selector', function (Y, NAME) {
 
 
 
-}, '3.7.2', {"requires": ["selector-native"]});
+}, '3.7.3', {"requires": ["selector-native"]});

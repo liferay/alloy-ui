@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 /**
  * The YUI module contains the components required for building the YUI seed
@@ -160,7 +160,7 @@ properties.
 (function() {
 
     var proto, prop,
-        VERSION = '3.7.2',
+        VERSION = '3.7.3',
         PERIOD = '.',
         BASE = 'http://yui.yahooapis.com/',
         /*
@@ -2561,10 +2561,10 @@ YArray.test = function (obj) {
         result = 1;
     } else if (Lang.isObject(obj)) {
         try {
-            // indexed, but no tagName (element) or alert (window),
+            // indexed, but no tagName (element) or scrollTo/document (window. From DOM.isWindow test which we can't use here),
             // or functions without apply/call (Safari
             // HTMLElementCollection bug).
-            if ('length' in obj && !obj.tagName && !obj.alert && !obj.apply) {
+            if ('length' in obj && !obj.tagName && !(obj.scrollTo && obj.document) && !obj.apply) {
                 result = 2;
             }
         } catch (ex) {}
@@ -3333,7 +3333,7 @@ YUI.Env.parseUA = function(subUA) {
     var numberify = function(s) {
             var c = 0;
             return parseFloat(s.replace(/\./g, function() {
-                return (c++ == 1) ? '' : '.';
+                return (c++ === 1) ? '' : '.';
             }));
         },
 
@@ -3448,13 +3448,6 @@ YUI.Env.parseUA = function(subUA) {
          */
         phantomjs: 0,
         /**
-         * Adobe AIR version number or 0.  Only populated if webkit is detected.
-         * Example: 1.0
-         * @property air
-         * @type float
-         */
-        air: 0,
-        /**
          * Detects Apple iPad's OS version
          * @property ipad
          * @type float
@@ -3543,7 +3536,21 @@ YUI.Env.parseUA = function(subUA) {
          * @default 0
          * @static
          */
-        nodejs: 0
+        nodejs: 0,
+        /*
+        * Window8/IE10 Application host environment
+        * @property winjs
+        * @type Boolean
+        * @static
+        */
+        winjs: !!((typeof Windows !== "undefined") && Windows.System),
+        /**
+        * Are touch/msPointer events available on this device
+        * @property touchEnabled
+        * @type Boolean
+        * @static
+        */
+        touchEnabled: false
     },
 
     ua = subUA || nav && nav.userAgent,
@@ -3596,7 +3603,7 @@ YUI.Env.parseUA = function(subUA) {
         if (m && m[1]) {
             o.webkit = numberify(m[1]);
             o.safari = o.webkit;
-            
+
             if (/PhantomJS/.test(ua)) {
                 m = ua.match(/PhantomJS\/([^\s]*)/);
                 if (m && m[1]) {
@@ -3715,10 +3722,16 @@ YUI.Env.parseUA = function(subUA) {
         }
     }
 
+    //Check for known properties to tell if touch events are enabled on this device or if
+    //the number of MSPointer touchpoints on this device is greater than 0.
+    if (win && nav && !(o.chrome && o.chrome < 6)) {
+        o.touchEnabled = (("ontouchstart" in win) || (("msMaxTouchPoints" in nav) && (nav.msMaxTouchPoints > 0)));
+    }
+
     //It was a parsed UA, do not assign the global value.
     if (!subUA) {
 
-        if (typeof process == 'object') {
+        if (typeof process === 'object') {
 
             if (process.versions && process.versions.node) {
                 //NodeJS
@@ -3787,6 +3800,7 @@ Y.UA.compareVersions = function (a, b) {
 };
 YUI.Env.aliases = {
     "anim": ["anim-base","anim-color","anim-curve","anim-easing","anim-node-plugin","anim-scroll","anim-xy"],
+    "anim-shape-transform": ["anim-shape"],
     "app": ["app-base","app-content","app-transitions","lazy-model-list","model","model-list","model-sync-rest","router","view","view-node-map"],
     "attribute": ["attribute-base","attribute-complex"],
     "autocomplete": ["autocomplete-base","autocomplete-sources","autocomplete-list","autocomplete-plugin"],
@@ -3798,14 +3812,14 @@ YUI.Env.aliases = {
     "datasource": ["datasource-local","datasource-io","datasource-get","datasource-function","datasource-cache","datasource-jsonschema","datasource-xmlschema","datasource-arrayschema","datasource-textschema","datasource-polling"],
     "datatable": ["datatable-core","datatable-table","datatable-head","datatable-body","datatable-base","datatable-column-widths","datatable-message","datatable-mutable","datatable-sort","datatable-datasource"],
     "datatable-deprecated": ["datatable-base-deprecated","datatable-datasource-deprecated","datatable-sort-deprecated","datatable-scroll-deprecated"],
-    "datatype": ["datatype-number","datatype-date","datatype-xml"],
-    "datatype-date": ["datatype-date-parse","datatype-date-format"],
+    "datatype": ["datatype-date","datatype-number","datatype-xml"],
+    "datatype-date": ["datatype-date-parse","datatype-date-format","datatype-date-math"],
     "datatype-number": ["datatype-number-parse","datatype-number-format"],
     "datatype-xml": ["datatype-xml-parse","datatype-xml-format"],
     "dd": ["dd-ddm-base","dd-ddm","dd-ddm-drop","dd-drag","dd-proxy","dd-constrain","dd-drop","dd-scroll","dd-delegate"],
     "dom": ["dom-base","dom-screen","dom-style","selector-native","selector"],
     "editor": ["frame","editor-selection","exec-command","editor-base","editor-para","editor-br","editor-bidi","editor-tab","createlink-base"],
-    "event": ["event-base","event-delegate","event-synthetic","event-mousewheel","event-mouseenter","event-key","event-focus","event-resize","event-hover","event-outside","event-touch","event-move","event-flick","event-valuechange"],
+    "event": ["event-base","event-delegate","event-synthetic","event-mousewheel","event-mouseenter","event-key","event-focus","event-resize","event-hover","event-outside","event-touch","event-move","event-flick","event-valuechange","event-tap"],
     "event-custom": ["event-custom-base","event-custom-complex"],
     "event-gestures": ["event-flick","event-move"],
     "handlebars": ["handlebars-compiler"],
@@ -3825,7 +3839,7 @@ YUI.Env.aliases = {
 };
 
 
-}, '3.7.2', {"use": ["get", "features", "intl-base", "yui-log", "yui-later"]});
+}, '3.7.3', {"use": ["get", "features", "intl-base", "yui-log", "yui-later"]});
 YUI.add('get', function (Y, NAME) {
 
 /*jslint boss:true, expr:true, laxbreak: true */
@@ -4339,14 +4353,18 @@ Y.Get = Get = {
         // feasible to load test files on every pageview just to perform a
         // feature test. I'm sorry if this makes you sad.
         return (this._env = {
+
             // True if this is a browser that supports disabling async mode on
             // dynamically created script nodes. See
             // https://developer.mozilla.org/En/HTML/Element/Script#Attributes
-            async: doc && doc.createElement('script').async === true,
+
+            // IE10 doesn't return true for the MDN feature test, so setting it explicitly,
+            // because it is async by default, and allows you to disable async by setting it to false
+            async: (doc && doc.createElement('script').async === true) || (ua.ie >= 10),
 
             // True if this browser fires an event when a dynamically injected
             // link node fails to load. This is currently true for Firefox 9+
-            // and WebKit 535.24+.
+            // and WebKit 535.24+
             cssFail: ua.gecko >= 9 || ua.compareVersions(ua.webkit, 535.24) >= 0,
 
             // True if this browser fires an event when a dynamically injected
@@ -4363,7 +4381,7 @@ Y.Get = Get = {
             // True if this browser preserves script execution order while
             // loading scripts in parallel as long as the script node's `async`
             // attribute is set to false to explicitly disable async execution.
-            preservesScriptOrder: !!(ua.gecko || ua.opera)
+            preservesScriptOrder: !!(ua.gecko || ua.opera || (ua.ie && ua.ie >= 10))
         });
     },
 
@@ -4453,6 +4471,8 @@ Y.Get = Get = {
         options || (options = {});
         options.type = type;
 
+        options._onFinish = Get._onTransactionFinish;
+
         if (!this._env) {
             this._getEnv();
         }
@@ -4469,6 +4489,11 @@ Y.Get = Get = {
         return transaction;
     },
 
+    _onTransactionFinish : function() {
+        Get._pending = null;
+        Get._next();
+    },
+
     _next: function () {
         var item;
 
@@ -4480,13 +4505,7 @@ Y.Get = Get = {
 
         if (item) {
             this._pending = item;
-
-            item.transaction.execute(function () {
-                item.callback && item.callback.apply(this, arguments);
-
-                Get._pending = null;
-                Get._next();
-            });
+            item.transaction.execute(item.callback);
         }
     },
 
@@ -4552,7 +4571,7 @@ Get.Transaction = Transaction = function (requests, options) {
 
     self._callbacks = []; // callbacks to call after execution finishes
     self._queue     = [];
-    self._waiting   = 0;
+    self._reqsWaiting   = 0;
 
     // Deprecated pre-3.5.0 properties.
     self.tId = self.id; // Use `id` instead.
@@ -4650,7 +4669,7 @@ Transaction.prototype = {
         this._pendingCSS = null;
         this._pollTimer  = clearTimeout(this._pollTimer);
         this._queue      = [];
-        this._waiting    = 0;
+        this._reqsWaiting    = 0;
 
         this.errors.push({error: msg || 'Aborted'});
         this._finish();
@@ -4700,8 +4719,10 @@ Transaction.prototype = {
             }, self.options.timeout);
         }
 
+        self._reqsWaiting = requests.length;
+
         for (i = 0, len = requests.length; i < len; ++i) {
-            req = self.requests[i];
+            req = requests[i];
 
             if (req.async || req.type === 'css') {
                 // No need to queue CSS or fully async JS.
@@ -4787,6 +4808,10 @@ Transaction.prototype = {
 
         if (options.onEnd) {
             options.onEnd.call(thisObj, data);
+        }
+
+        if (options._onFinish) {
+            options._onFinish();
         }
     },
 
@@ -4878,7 +4903,6 @@ Transaction.prototype = {
             self._progress(null, req);
         }
 
-
         // Deal with script asynchronicity.
         if (isScript) {
             node.setAttribute('src', req.url);
@@ -4936,8 +4960,21 @@ Transaction.prototype = {
         } else {
             // Script or CSS on everything else. Using DOM 0 events because that
             // evens the playing field with older IEs.
-            node.onerror = onError;
-            node.onload  = onLoad;
+
+            if (ua.ie >= 10) {
+
+                // We currently need to introduce a timeout for IE10, since it 
+                // calls onerror/onload synchronously for 304s - messing up existing
+                // program flow. 
+
+                // Remove this block if the following bug gets fixed by GA
+                // https://connect.microsoft.com/IE/feedback/details/763871/dynamically-loaded-scripts-with-304s-responses-interrupt-the-currently-executing-js-thread-onload
+                node.onerror = function() { setTimeout(onError, 0); };
+                node.onload  = function() { setTimeout(onLoad, 0); };
+            } else {
+                node.onerror = onError;
+                node.onload  = onLoad;
+            }
 
             // If this browser doesn't fire an event when CSS fails to load,
             // fail after a timeout to avoid blocking the transaction queue.
@@ -4945,8 +4982,6 @@ Transaction.prototype = {
                 cssTimeout = setTimeout(onError, req.timeout || 3000);
             }
         }
-
-        this._waiting += 1;
 
         this.nodes.push(node);
         insertBefore.parentNode.insertBefore(node, insertBefore);
@@ -4963,7 +4998,7 @@ Transaction.prototype = {
         // for anything to load, then we're done!
         if (this._queue.length) {
             this._insert(this._queue.shift());
-        } else if (!this._waiting) {
+        } else if (!this._reqsWaiting) {
             this._finish();
         }
     },
@@ -5070,13 +5105,14 @@ Transaction.prototype = {
             this._pending = null;
         }
 
-        this._waiting -= 1;
+        this._reqsWaiting -= 1;
+
         this._next();
     }
 };
 
 
-}, '3.7.2', {"requires": ["yui-base"]});
+}, '3.7.3', {"requires": ["yui-base"]});
 YUI.add('features', function (Y, NAME) {
 
 var feature_tests = {};
@@ -5201,7 +5237,7 @@ add('load', '0', {
         node = doc ? doc.documentElement : null;
 
     if (node && node.style) {
-        return ('MozTransition' in node.style || 'WebkitTransition' in node.style);
+        return ('MozTransition' in node.style || 'WebkitTransition' in node.style || 'transition' in node.style);
     }
 
     return false;
@@ -5230,10 +5266,8 @@ add('load', '1', {
 // dd-gestures
 add('load', '2', {
     "name": "dd-gestures",
-    "test": function(Y) {
-    return ((Y.config.win && ("ontouchstart" in Y.config.win)) && !(Y.UA.chrome && Y.UA.chrome < 6));
-},
-    "trigger": "dd-drag"
+    "trigger": "dd-drag",
+    "ua": "touchEnabled"
 });
 // dom-style-ie
 add('load', '3', {
@@ -5395,8 +5429,8 @@ add('load', '16', {
         ret = true;
 
     if (node && node.style) {
-        ret = !('MozTransition' in node.style || 'WebkitTransition' in node.style);
-    } 
+        ret = !('MozTransition' in node.style || 'WebkitTransition' in node.style || 'transition' in node.style);
+    }
 
     return ret;
 },
@@ -5408,8 +5442,22 @@ add('load', '17', {
     "trigger": "widget-base",
     "ua": "ie"
 });
+// yql-nodejs
+add('load', '18', {
+    "name": "yql-nodejs",
+    "trigger": "yql",
+    "ua": "nodejs",
+    "when": "after"
+});
+// yql-winjs
+add('load', '19', {
+    "name": "yql-winjs",
+    "trigger": "yql",
+    "ua": "winjs",
+    "when": "after"
+});
 
-}, '3.7.2', {"requires": ["yui-base"]});
+}, '3.7.3', {"requires": ["yui-base"]});
 YUI.add('intl-base', function (Y, NAME) {
 
 /**
@@ -5497,7 +5545,7 @@ Y.mix(Y.namespace('Intl'), {
 });
 
 
-}, '3.7.2', {"requires": ["yui-base"]});
+}, '3.7.3', {"requires": ["yui-base"]});
 YUI.add('yui-log', function (Y, NAME) {
 
 /**
@@ -5607,7 +5655,7 @@ INSTANCE.message = function() {
 };
 
 
-}, '3.7.2', {"requires": ["yui-base"]});
+}, '3.7.3', {"requires": ["yui-base"]});
 YUI.add('yui-later', function (Y, NAME) {
 
 /**
@@ -5684,8 +5732,8 @@ Y.Lang.later = Y.later;
 
 
 
-}, '3.7.2', {"requires": ["yui-base"]});
-YUI.add('yui', function (Y, NAME) {}, '3.7.2', {"use": ["get", "features", "intl-base", "yui-log", "yui-later"]});
+}, '3.7.3', {"requires": ["yui-base"]});
+YUI.add('yui', function (Y, NAME) {}, '3.7.3', {"use": ["get", "features", "intl-base", "yui-log", "yui-later"]});
 YUI.add('oop', function (Y, NAME) {
 
 /**
@@ -6086,7 +6134,7 @@ Y.rbind = function(f, c) {
 };
 
 
-}, '3.7.2', {"requires": ["yui-base"]});
+}, '3.7.3', {"requires": ["yui-base"]});
 YUI.add('features', function (Y, NAME) {
 
 var feature_tests = {};
@@ -6211,7 +6259,7 @@ add('load', '0', {
         node = doc ? doc.documentElement : null;
 
     if (node && node.style) {
-        return ('MozTransition' in node.style || 'WebkitTransition' in node.style);
+        return ('MozTransition' in node.style || 'WebkitTransition' in node.style || 'transition' in node.style);
     }
 
     return false;
@@ -6240,10 +6288,8 @@ add('load', '1', {
 // dd-gestures
 add('load', '2', {
     "name": "dd-gestures",
-    "test": function(Y) {
-    return ((Y.config.win && ("ontouchstart" in Y.config.win)) && !(Y.UA.chrome && Y.UA.chrome < 6));
-},
-    "trigger": "dd-drag"
+    "trigger": "dd-drag",
+    "ua": "touchEnabled"
 });
 // dom-style-ie
 add('load', '3', {
@@ -6405,8 +6451,8 @@ add('load', '16', {
         ret = true;
 
     if (node && node.style) {
-        ret = !('MozTransition' in node.style || 'WebkitTransition' in node.style);
-    } 
+        ret = !('MozTransition' in node.style || 'WebkitTransition' in node.style || 'transition' in node.style);
+    }
 
     return ret;
 },
@@ -6418,8 +6464,22 @@ add('load', '17', {
     "trigger": "widget-base",
     "ua": "ie"
 });
+// yql-nodejs
+add('load', '18', {
+    "name": "yql-nodejs",
+    "trigger": "yql",
+    "ua": "nodejs",
+    "when": "after"
+});
+// yql-winjs
+add('load', '19', {
+    "name": "yql-winjs",
+    "trigger": "yql",
+    "ua": "winjs",
+    "when": "after"
+});
 
-}, '3.7.2', {"requires": ["yui-base"]});
+}, '3.7.3', {"requires": ["yui-base"]});
 YUI.add('dom-core', function (Y, NAME) {
 
 var NODE_TYPE = 'nodeType',
@@ -6674,7 +6734,7 @@ Y_DOM = {
 
 
     isWindow: function(obj) {
-        return !!(obj && obj.alert && obj.document);
+        return !!(obj && obj.scrollTo && obj.document);
     },
 
     _removeChildNodes: function(node) {
@@ -6808,7 +6868,7 @@ Y_DOM = {
 Y.DOM = Y_DOM;
 
 
-}, '3.7.2', {"requires": ["oop", "features"]});
+}, '3.7.3', {"requires": ["oop", "features"]});
 YUI.add('dom-base', function (Y, NAME) {
 
 /**
@@ -7492,7 +7552,7 @@ Y.mix(Y.DOM, {
 });
 
 
-}, '3.7.2', {"requires": ["dom-core"]});
+}, '3.7.3', {"requires": ["dom-core"]});
 YUI.add('dom-style', function (Y, NAME) {
 
 (function(Y) {
@@ -7832,7 +7892,7 @@ Y.Color = {
 
 
 
-}, '3.7.2', {"requires": ["dom-base"]});
+}, '3.7.3', {"requires": ["dom-base"]});
 YUI.add('dom-style-ie', function (Y, NAME) {
 
 (function(Y) {
@@ -8135,7 +8195,7 @@ if (!testFeature('style', 'computedStyle')) {
 })(Y);
 
 
-}, '3.7.2', {"requires": ["dom-style"]});
+}, '3.7.3', {"requires": ["dom-style"]});
 YUI.add('dom-screen', function (Y, NAME) {
 
 (function(Y) {
@@ -8740,7 +8800,7 @@ Y.mix(DOM, {
 })(Y);
 
 
-}, '3.7.2', {"requires": ["dom-base", "dom-style"]});
+}, '3.7.3', {"requires": ["dom-base", "dom-style"]});
 YUI.add('selector-native', function (Y, NAME) {
 
 (function(Y) {
@@ -9110,12 +9170,12 @@ Y.mix(Y.Selector, Selector, true);
 })(Y);
 
 
-}, '3.7.2', {"requires": ["dom-base"]});
+}, '3.7.3', {"requires": ["dom-base"]});
 YUI.add('selector', function (Y, NAME) {
 
 
 
-}, '3.7.2', {"requires": ["selector-native"]});
+}, '3.7.3', {"requires": ["selector-native"]});
 YUI.add('event-custom-base', function (Y, NAME) {
 
 /**
@@ -11416,7 +11476,7 @@ for that signature.
 **/
 
 
-}, '3.7.2', {"requires": ["oop"]});
+}, '3.7.3', {"requires": ["oop"]});
 YUI.add('event-custom-complex', function (Y, NAME) {
 
 
@@ -11921,7 +11981,7 @@ for (key in FACADE) {
     FACADE_KEYS[key] = true;
 }
 
-}, '3.7.2', {"requires": ["event-custom-base"]});
+}, '3.7.3', {"requires": ["event-custom-base"]});
 YUI.add('node-core', function (Y, NAME) {
 
 /**
@@ -12631,7 +12691,9 @@ Y.mix(Y_Node.prototype, {
     },
 
     /**
-     * Nulls internal node references, removes any plugins and event listeners
+     * Nulls internal node references, removes any plugins and event listeners.
+     * Note that destroy() will not remove the node from its parent or from the DOM. For that
+     * functionality, call remove(true).
      * @method destroy
      * @param {Boolean} recursivePurge (optional) Whether or not to remove listeners from the
      * node's subtree (default is false)
@@ -13514,7 +13576,7 @@ Y.NodeList.importMethod(Y.Node.prototype, [
 ]);
 
 
-}, '3.7.2', {"requires": ["dom-core", "selector"]});
+}, '3.7.3', {"requires": ["dom-core", "selector"]});
 YUI.add('node-base', function (Y, NAME) {
 
 /**
@@ -14670,7 +14732,7 @@ Y.mix(Y.NodeList.prototype, {
 });
 
 
-}, '3.7.2', {"requires": ["event-base", "node-core", "dom-base"]});
+}, '3.7.3', {"requires": ["event-base", "node-core", "dom-base"]});
 (function () {
 var GLOBAL_ENV = YUI.Env;
 
@@ -15070,7 +15132,8 @@ Y.DOMEventFacade = DOMEventFacade;
 Y.Env.evt.dom_wrappers = {};
 Y.Env.evt.dom_map = {};
 
-var _eventenv = Y.Env.evt,
+var YDOM = Y.DOM,
+    _eventenv = Y.Env.evt,
     config = Y.config,
     win = config.win,
     add = YUI.Env.add,
@@ -15092,12 +15155,11 @@ var _eventenv = Y.Env.evt,
 
     shouldIterate = function(o) {
         try {
-            return (o && typeof o !== "string" && Y.Lang.isNumber(o.length) &&
-                    !o.tagName && !o.alert);
+            // TODO: See if there's a more performant way to return true early on this, for the common case
+            return (o && typeof o !== "string" && Y.Lang.isNumber(o.length) && !o.tagName && !YDOM.isWindow(o));
         } catch(ex) {
             return false;
         }
-
     },
 
     // aliases to support DOM event subscription clean up when the last
@@ -15461,7 +15523,7 @@ Event._interval = setInterval(Event._poll, Event.POLL_INTERVAL);
                 // oEl = (compat) ? Y.DOM.byId(el) : Y.Selector.query(el);
 
                 if (compat) {
-                    oEl = Y.DOM.byId(el);
+                    oEl = YDOM.byId(el);
                 } else {
 
                     oEl = Y.Selector.query(el);
@@ -15575,7 +15637,7 @@ Event._interval = setInterval(Event._poll, Event.POLL_INTERVAL);
 
                 // el = (compat) ? Y.DOM.byId(el) : Y.all(el);
                 if (compat) {
-                    el = Y.DOM.byId(el);
+                    el = YDOM.byId(el);
                 } else {
                     el = Y.Selector.query(el);
                     l = el.length;
@@ -15649,7 +15711,7 @@ Event._interval = setInterval(Event._poll, Event.POLL_INTERVAL);
          * @static
          */
         generateId: function(el) {
-            return Y.DOM.generateID(el);
+            return YDOM.generateID(el);
         },
 
         /**
@@ -15756,7 +15818,7 @@ Event._interval = setInterval(Event._poll, Event.POLL_INTERVAL);
                 if (item && !item.checkReady) {
 
                     // el = (item.compat) ? Y.DOM.byId(item.id) : Y.one(item.id);
-                    el = (item.compat) ? Y.DOM.byId(item.id) : Y.Selector.query(item.id, null, true);
+                    el = (item.compat) ? YDOM.byId(item.id) : Y.Selector.query(item.id, null, true);
 
                     if (el) {
                         executeItem(el, item);
@@ -15773,7 +15835,7 @@ Event._interval = setInterval(Event._poll, Event.POLL_INTERVAL);
                 if (item && item.checkReady) {
 
                     // el = (item.compat) ? Y.DOM.byId(item.id) : Y.one(item.id);
-                    el = (item.compat) ? Y.DOM.byId(item.id) : Y.Selector.query(item.id, null, true);
+                    el = (item.compat) ? YDOM.byId(item.id) : Y.Selector.query(item.id, null, true);
 
                     if (el) {
                         // The element is available, but not necessarily ready
@@ -15824,9 +15886,8 @@ Event._interval = setInterval(Event._poll, Event.POLL_INTERVAL);
             if (recurse && oEl) {
                 lis = lis || [];
                 children = Y.Selector.query('*', oEl);
-                i = 0;
                 len = children.length;
-                for (; i < len; ++i) {
+                for (i = 0; i < len; ++i) {
                     child = Event.getListeners(children[i], type);
                     if (child) {
                         lis = lis.concat(child);
@@ -15984,7 +16045,7 @@ Event.Facade = Y.EventFacade;
 
 Event._poll();
 
-})();
+}());
 
 /**
  * DOM event listener abstraction layer
@@ -16039,7 +16100,7 @@ Y.Env.evt.plugins.contentready = {
 };
 
 
-}, '3.7.2', {"requires": ["event-custom-base"]});
+}, '3.7.3', {"requires": ["event-custom-base"]});
 YUI.add('pluginhost-base', function (Y, NAME) {
 
     /**
@@ -16220,7 +16281,7 @@ YUI.add('pluginhost-base', function (Y, NAME) {
     Y.namespace("Plugin").Host = PluginHost;
 
 
-}, '3.7.2', {"requires": ["yui-base"]});
+}, '3.7.3', {"requires": ["yui-base"]});
 YUI.add('pluginhost-config', function (Y, NAME) {
 
     /**
@@ -16350,7 +16411,7 @@ YUI.add('pluginhost-config', function (Y, NAME) {
     };
 
 
-}, '3.7.2', {"requires": ["pluginhost-base"]});
+}, '3.7.3', {"requires": ["pluginhost-base"]});
 YUI.add('event-delegate', function (Y, NAME) {
 
 /**
@@ -16672,7 +16733,7 @@ delegate._applyFilter = function (filter, args, ce) {
 Y.delegate = Y.Event.delegate = delegate;
 
 
-}, '3.7.2', {"requires": ["node-base"]});
+}, '3.7.3', {"requires": ["node-base"]});
 YUI.add('node-event-delegate', function (Y, NAME) {
 
 /**
@@ -16726,7 +16787,7 @@ Y.Node.prototype.delegate = function(type) {
 };
 
 
-}, '3.7.2', {"requires": ["node-base", "event-delegate"]});
+}, '3.7.3', {"requires": ["node-base", "event-delegate"]});
 YUI.add('node-pluginhost', function (Y, NAME) {
 
 /**
@@ -16812,7 +16873,7 @@ Y.NodeList.prototype.unplug = function() {
 };
 
 
-}, '3.7.2', {"requires": ["node-base", "pluginhost"]});
+}, '3.7.3', {"requires": ["node-base", "pluginhost"]});
 YUI.add('node-screen', function (Y, NAME) {
 
 /**
@@ -17050,7 +17111,7 @@ Y.Node.prototype.inRegion = function(node2, all, altRegion) {
 };
 
 
-}, '3.7.2', {"requires": ["dom-screen", "node-base"]});
+}, '3.7.3', {"requires": ["dom-screen", "node-base"]});
 YUI.add('node-style', function (Y, NAME) {
 
 (function(Y) {
@@ -17156,7 +17217,7 @@ Y.NodeList.importMethod(Y.Node.prototype, ['getStyle', 'getComputedStyle', 'setS
 })(Y);
 
 
-}, '3.7.2', {"requires": ["dom-style", "node-base"]});
+}, '3.7.3', {"requires": ["dom-style", "node-base"]});
 YUI.add('querystring-stringify-simple', function (Y, NAME) {
 
 /*global Y */
@@ -17217,7 +17278,7 @@ QueryString.stringify = function (obj, c) {
 };
 
 
-}, '3.7.2', {"requires": ["yui-base"]});
+}, '3.7.3', {"requires": ["yui-base"]});
 YUI.add('io-base', function (Y, NAME) {
 
 /**
@@ -17335,9 +17396,9 @@ IO.prototype = {
             use;
 
         if (alt === 'native') {
-            // Non-IE  can use XHR level 2 and not rely on an
+            // Non-IE and IE >= 10  can use XHR level 2 and not rely on an
             // external transport.
-            alt = Y.UA.ie ? 'xdr' : null;
+            alt = Y.UA.ie && !SUPPORTS_CORS ? 'xdr' : null;
 
             // Prevent "pre-flight" OPTIONS request by removing the
             // `X-Requested-With` HTTP header from CORS requests. This header
@@ -17926,10 +17987,8 @@ IO.prototype = {
 
             // Will work only in browsers that implement the
             // Cross-Origin Resource Sharing draft.
-            if (config.xdr && config.xdr.credentials) {
-                if (!Y.UA.ie) {
-                    transaction.c.withCredentials = true;
-                }
+            if (config.xdr && config.xdr.credentials && SUPPORTS_CORS) {
+                transaction.c.withCredentials = true;
             }
 
             // Using "null" with HTTP POST will result in a request
@@ -18126,7 +18185,11 @@ Y.IO = IO;
 Y.io._map = {};
 var XHR = win && win.XMLHttpRequest,
     XDR = win && win.XDomainRequest,
-    AX = win && win.ActiveXObject;
+    AX = win && win.ActiveXObject,
+
+    // Checks for the presence of the `withCredentials` in an XHR instance
+    // object, which will be present if the environment supports CORS.
+    SUPPORTS_CORS = XHR && 'withCredentials' in (new XMLHttpRequest());
 
 
 Y.mix(Y.IO, {
@@ -18214,7 +18277,7 @@ Y.mix(Y.IO.prototype, {
 
 
 
-}, '3.7.2', {"requires": ["event-custom-base", "querystring-stringify-simple"]});
+}, '3.7.3', {"requires": ["event-custom-base", "querystring-stringify-simple"]});
 YUI.add('json-parse', function (Y, NAME) {
 
 /**
@@ -18230,7 +18293,7 @@ YUI.add('json-parse', function (Y, NAME) {
  *
  * <p>The <code>json</code> module is a rollup of <code>json-parse</code> and
  * <code>json-stringify</code>.</p>
- * 
+ *
  * <p>As their names suggest, <code>json-parse</code> adds support for parsing
  * JSON data (Y.JSON.parse) and <code>json-stringify</code> for serializing
  * JavaScript data into JSON strings (Y.JSON.stringify).  You may choose to
@@ -18256,7 +18319,8 @@ YUI.add('json-parse', function (Y, NAME) {
 
 // All internals kept private for security reasons
 function fromGlobal(ref) {
-    return (Y.config.win || this || {})[ref];
+    var g = ((typeof global === 'object') ? global : undefined);
+    return ((Y.UA.nodejs && g) ? g : (Y.config.win || {}))[ref];
 }
 
 
@@ -18326,7 +18390,7 @@ var _JSON  = fromGlobal('JSON'),
      * @private
      */
     _UNSAFE = /[^\],:{}\s]/,
-    
+
     /**
      * Replaces specific unicode characters with their appropriate \unnnn
      * format. Some browsers ignore certain characters during eval.
@@ -18392,7 +18456,7 @@ var _JSON  = fromGlobal('JSON'),
         // incorrectly by some browser implementations.
         // NOTE: This modifies the input if such characters are found!
         s = s.replace(_UNICODE_EXCEPTIONS, _escapeException);
-        
+
         // Test for any remaining invalid characters
         if (!_UNSAFE.test(s.replace(_ESCAPES,'@').
                             replace(_VALUES,']').
@@ -18405,7 +18469,7 @@ var _JSON  = fromGlobal('JSON'),
 
         throw new SyntaxError('JSON.parse');
     };
-    
+
 Y.namespace('JSON').parse = function (s,reviver) {
         if (typeof s !== 'string') {
             s += '';
@@ -18444,7 +18508,7 @@ if ( Native ) {
 Y.JSON.useNativeParse = useNative;
 
 
-}, '3.7.2', {"requires": ["yui-base"]});
+}, '3.7.3', {"requires": ["yui-base"]});
 YUI.add('transition', function (Y, NAME) {
 
 /**
@@ -18460,15 +18524,15 @@ var CAMEL_VENDOR_PREFIX = '',
     DOCUMENT = Y.config.doc,
     DOCUMENT_ELEMENT = 'documentElement',
     TRANSITION = 'transition',
-    TRANSITION_CAMEL = 'Transition',
-    TRANSITION_PROPERTY_CAMEL,
+    TRANSITION_CAMEL = 'transition',
+    TRANSITION_PROPERTY_CAMEL = 'transitionProperty',
+    TRANSFORM_CAMEL = 'transform',
     TRANSITION_PROPERTY,
     TRANSITION_DURATION,
     TRANSITION_TIMING_FUNCTION,
     TRANSITION_DELAY,
     TRANSITION_END,
     ON_TRANSITION_END,
-    TRANSFORM_CAMEL,
 
     EMPTY_OBJ = {},
 
@@ -18503,13 +18567,13 @@ Transition._toCamel = function(property) {
 Transition._toHyphen = function(property) {
     property = property.replace(/([A-Z]?)([a-z]+)([A-Z]?)/g, function(m0, m1, m2, m3) {
         var str = ((m1) ? '-' + m1.toLowerCase() : '') + m2;
-        
+
         if (m3) {
             str += '-' + m3.toLowerCase();
         }
 
         return str;
-    }); 
+    });
 
     return property;
 };
@@ -18519,30 +18583,37 @@ Transition.HIDE_TRANSITION = 'fadeOut';
 
 Transition.useNative = false;
 
-Y.Array.each(VENDORS, function(val) { // then vendor specific
-    var property = val + TRANSITION_CAMEL;
-    if (property in DOCUMENT[DOCUMENT_ELEMENT].style) {
-        CAMEL_VENDOR_PREFIX = val;
-        VENDOR_PREFIX = Transition._toHyphen(val) + '-';
+if ('transition' in DOCUMENT[DOCUMENT_ELEMENT].style) {
+    Transition.useNative = true;
+    Transition.supported = true; // TODO: remove
+} else {
+    Y.Array.each(VENDORS, function(val) { // then vendor specific
+        var property = val + 'Transition';
+        if (property in DOCUMENT[DOCUMENT_ELEMENT].style) {
+            CAMEL_VENDOR_PREFIX = val;
+            VENDOR_PREFIX       = Transition._toHyphen(val) + '-';
 
-        Transition.useNative = true;
-        Transition.supported = true; // TODO: remove
-        Transition._VENDOR_PREFIX = val;
-    }
-});
+            Transition.useNative = true;
+            Transition.supported = true; // TODO: remove
+            Transition._VENDOR_PREFIX = val;
+        }
+    });
+}
 
-TRANSITION_CAMEL = CAMEL_VENDOR_PREFIX + TRANSITION_CAMEL;
-TRANSITION_PROPERTY_CAMEL = CAMEL_VENDOR_PREFIX + 'TransitionProperty';
-TRANSITION_PROPERTY = VENDOR_PREFIX + 'transition-property';
-TRANSITION_DURATION = VENDOR_PREFIX + 'transition-duration';
+if (CAMEL_VENDOR_PREFIX) {
+    TRANSITION_CAMEL          = CAMEL_VENDOR_PREFIX + 'Transition';
+    TRANSITION_PROPERTY_CAMEL = CAMEL_VENDOR_PREFIX + 'TransitionProperty';
+    TRANSFORM_CAMEL           = CAMEL_VENDOR_PREFIX + 'Transform';
+}
+
+TRANSITION_PROPERTY        = VENDOR_PREFIX + 'transition-property';
+TRANSITION_DURATION        = VENDOR_PREFIX + 'transition-duration';
 TRANSITION_TIMING_FUNCTION = VENDOR_PREFIX + 'transition-timing-function';
-TRANSITION_DELAY = VENDOR_PREFIX + 'transition-delay';
-TRANSITION_END = 'transitionend';
+TRANSITION_DELAY           = VENDOR_PREFIX + 'transition-delay';
+
+TRANSITION_END    = 'transitionend';
 ON_TRANSITION_END = 'on' + CAMEL_VENDOR_PREFIX.toLowerCase() + 'transitionend';
-
-TRANSITION_END = VENDOR_TRANSITION_END[CAMEL_VENDOR_PREFIX] || TRANSITION_END;
-
-TRANSFORM_CAMEL = CAMEL_VENDOR_PREFIX + 'Transform';
+TRANSITION_END    = VENDOR_TRANSITION_END[CAMEL_VENDOR_PREFIX] || TRANSITION_END;
 
 Transition.fx = {};
 Transition.toggles = {};
@@ -18551,7 +18622,7 @@ Transition._hasEnd = {};
 
 Transition._reKeywords = /^(?:node|duration|iterations|easing|delay|on|onstart|onend)$/i;
 
-Y.Node.DOM_EVENTS[TRANSITION_END] = 1; 
+Y.Node.DOM_EVENTS[TRANSITION_END] = 1;
 
 Transition.NAME = 'transition';
 
@@ -18607,7 +18678,7 @@ Transition.prototype = {
         if (config && config.value !== undefined) {
             val = config.value;
         } else if (config !== undefined) {
-            val = config; 
+            val = config;
             config = EMPTY_OBJ;
         }
 
@@ -18620,7 +18691,7 @@ Transition.prototype = {
             if (attr.transition !== anim) {
                 attr.transition._count--; // remapping attr to this transition
             }
-        } 
+        }
 
         anim._count++; // properties per transition
 
@@ -18679,7 +18750,7 @@ Transition.prototype = {
             if (config.hasOwnProperty(attr) && !Transition._reKeywords.test(attr)) {
                 this.addProperty(attr, config[attr]);
 
-                // when size is auto or % webkit starts from zero instead of computed 
+                // when size is auto or % webkit starts from zero instead of computed
                 // (https://bugs.webkit.org/show_bug.cgi?id=16020)
                 // TODO: selective set
                 if (node.style[attr] === '') {
@@ -18694,7 +18765,7 @@ Transition.prototype = {
      * @method run
      * @chainable
      * @private
-     */    
+     */
     run: function(callback) {
         var anim = this,
             node = anim._node,
@@ -18788,7 +18859,7 @@ Transition.prototype = {
             Transition._hasEnd[uid] = true;
 
         }
-        
+
         style.cssText += transitionText + duration + easing + delay + cssText;
 
     },
@@ -18801,10 +18872,10 @@ Transition.prototype = {
             data = {
                 type: 'transition:end',
                 config: config,
-                elapsedTime: elapsed 
+                elapsedTime: elapsed
             },
 
-            nodeInstance = Y.one(node); 
+            nodeInstance = Y.one(node);
 
         anim._running = false;
         anim._callback = null;
@@ -18890,7 +18961,7 @@ Transition.prototype = {
 Y.Transition = Transition;
 Y.TransitionNative = Transition; // TODO: remove
 
-/** 
+/**
  *   Animate one or more css properties to a given value. Requires the "transition" module.
  *   <pre>example usage:
  *       Y.one('#demo').transition({
@@ -18912,16 +18983,16 @@ Y.TransitionNative = Transition; // TODO: remove
  *   @for Node
  *   @method transition
  *   @param {Object} config An object containing one or more style properties, a duration and an easing.
- *   @param {Function} callback A function to run after the transition has completed. 
+ *   @param {Function} callback A function to run after the transition has completed.
  *   @chainable
 */
 Y.Node.prototype.transition = function(name, config, callback) {
-    var 
+    var
         transitionAttrs = Transition._nodeAttrs[Y.stamp(this._node)],
         anim = (transitionAttrs) ? transitionAttrs.transition || null : null,
         fxConfig,
         prop;
-    
+
     if (typeof name === 'string') { // named effect, pull config from registry
         if (typeof config === 'function') {
             callback = config;
@@ -18936,7 +19007,7 @@ Y.Node.prototype.transition = function(name, config, callback) {
             for (prop in fxConfig) {
                 if (fxConfig.hasOwnProperty(prop)) {
                     if (! (prop in config)) {
-                        config[prop] = fxConfig[prop]; 
+                        config[prop] = fxConfig[prop];
                     }
                 }
             }
@@ -18967,10 +19038,10 @@ Y.Node.prototype.show = function(name, config, callback) {
                 callback = config;
                 config = name;
             }
-            name = Transition.SHOW_TRANSITION; 
-        }    
+            name = Transition.SHOW_TRANSITION;
+        }
         this.transition(name, config, callback);
-    }    
+    }
     return this;
 };
 
@@ -18998,16 +19069,16 @@ Y.Node.prototype.hide = function(name, config, callback) {
                 callback = config;
                 config = name;
             }
-            name = Transition.HIDE_TRANSITION; 
-        }    
+            name = Transition.HIDE_TRANSITION;
+        }
         this.transition(name, config, callback);
     } else {
         this._hide();
-    }    
+    }
     return this;
-}; 
+};
 
-/** 
+/**
  *   Animate one or more css properties to a given value. Requires the "transition" module.
  *   <pre>example usage:
  *       Y.all('.demo').transition({
@@ -19114,7 +19185,7 @@ Y.mix(Transition.fx, {
         },
         duration: 0.5,
         easing: 'ease-in',
-        
+
         on: {
             start: function() {
                 var overflow = this.getStyle('overflow');
@@ -19130,7 +19201,7 @@ Y.mix(Transition.fx, {
                     delete this._transitionOverflow;
                 }
             }
-        } 
+        }
     }
 });
 
@@ -19143,7 +19214,7 @@ Transition.DEFAULT_TOGGLE = 'fade';
 
 
 
-}, '3.7.2', {"requires": ["node-style"]});
+}, '3.7.3', {"requires": ["node-style"]});
 YUI.add('selector-css2', function (Y, NAME) {
 
 /**
@@ -19587,7 +19658,7 @@ if (Y.Selector.useNative && Y.config.doc.querySelector) {
 
 
 
-}, '3.7.2', {"requires": ["selector-native"]});
+}, '3.7.3', {"requires": ["selector-native"]});
 YUI.add('selector-css3', function (Y, NAME) {
 
 /**
@@ -19739,7 +19810,7 @@ Y.Selector.combinators['~'] = {
 };
 
 
-}, '3.7.2', {"requires": ["selector-native", "selector-css2"]});
+}, '3.7.3', {"requires": ["selector-native", "selector-css2"]});
 YUI.add('yui-log', function (Y, NAME) {
 
 /**
@@ -19849,7 +19920,7 @@ INSTANCE.message = function() {
 };
 
 
-}, '3.7.2', {"requires": ["yui-base"]});
+}, '3.7.3', {"requires": ["yui-base"]});
 YUI.add('dump', function (Y, NAME) {
 
 /**
@@ -19954,7 +20025,7 @@ YUI.add('dump', function (Y, NAME) {
 
 
 
-}, '3.7.2', {"requires": ["yui-base"]});
+}, '3.7.3', {"requires": ["yui-base"]});
 YUI.add('transition-timer', function (Y, NAME) {
 
 /**
@@ -20288,12 +20359,12 @@ Transition.behaviors.top = Transition.behaviors.bottom = Transition.behaviors.ri
 Y.Transition = Transition;
 
 
-}, '3.7.2', {"requires": ["transition"]});
+}, '3.7.3', {"requires": ["transition"]});
 YUI.add('yui', function (Y, NAME) {
 
 // empty
 
 
 
-}, '3.7.2', {"use": ["yui", "oop", "dom", "event-custom-base", "event-base", "pluginhost", "node", "event-delegate", "io-base", "json-parse", "transition", "selector-css3", "dom-style-ie", "querystring-stringify-simple"]});
+}, '3.7.3', {"use": ["yui", "oop", "dom", "event-custom-base", "event-base", "pluginhost", "node", "event-delegate", "io-base", "json-parse", "transition", "selector-css3", "dom-style-ie", "querystring-stringify-simple"]});
 var Y = YUI().use('*');

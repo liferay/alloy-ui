@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 if (typeof _yuitest_coverage == "undefined"){
     _yuitest_coverage = {};
@@ -33,7 +33,7 @@ _yuitest_coverage["build/anim-node-plugin/anim-node-plugin.js"] = {
     path: "build/anim-node-plugin/anim-node-plugin.js",
     code: []
 };
-_yuitest_coverage["build/anim-node-plugin/anim-node-plugin.js"].code=["YUI.add('anim-node-plugin', function (Y, NAME) {","","/**"," *  Binds an Anim instance to a Node instance"," * @module anim"," * @class Plugin.NodeFX"," * @extends Anim"," * @submodule anim-node-plugin"," */","","var NodeFX = function(config) {","    config = (config) ? Y.merge(config) : {};","    config.node = config.host;","    NodeFX.superclass.constructor.apply(this, arguments);","};","","NodeFX.NAME = \"nodefx\";","NodeFX.NS = \"fx\";","","Y.extend(NodeFX, Y.Anim);","","Y.namespace('Plugin');","Y.Plugin.NodeFX = NodeFX;","","","}, '3.7.2', {\"requires\": [\"node-pluginhost\", \"anim-base\"]});"];
+_yuitest_coverage["build/anim-node-plugin/anim-node-plugin.js"].code=["YUI.add('anim-node-plugin', function (Y, NAME) {","","/**"," *  Binds an Anim instance to a Node instance"," * @module anim"," * @class Plugin.NodeFX"," * @extends Anim"," * @submodule anim-node-plugin"," */","","var NodeFX = function(config) {","    config = (config) ? Y.merge(config) : {};","    config.node = config.host;","    NodeFX.superclass.constructor.apply(this, arguments);","};","","NodeFX.NAME = \"nodefx\";","NodeFX.NS = \"fx\";","","Y.extend(NodeFX, Y.Anim);","","Y.namespace('Plugin');","Y.Plugin.NodeFX = NodeFX;","","","}, '3.7.3', {\"requires\": [\"node-pluginhost\", \"anim-base\"]});"];
 _yuitest_coverage["build/anim-node-plugin/anim-node-plugin.js"].lines = {"1":0,"11":0,"12":0,"13":0,"14":0,"17":0,"18":0,"20":0,"22":0,"23":0};
 _yuitest_coverage["build/anim-node-plugin/anim-node-plugin.js"].functions = {"NodeFX:11":0,"(anonymous 1):1":0};
 _yuitest_coverage["build/anim-node-plugin/anim-node-plugin.js"].coveredLines = 10;
@@ -75,4 +75,4 @@ _yuitest_coverline("build/anim-node-plugin/anim-node-plugin.js", 23);
 Y.Plugin.NodeFX = NodeFX;
 
 
-}, '3.7.2', {"requires": ["node-pluginhost", "anim-base"]});
+}, '3.7.3', {"requires": ["node-pluginhost", "anim-base"]});

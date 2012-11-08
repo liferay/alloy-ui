@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add("dom-deprecated",function(e,t){e.mix(e.DOM,{children:function(t,n){var r=[];return t&&(n=n||"*",r=e.Selector.query("> "+n,t)),r},firstByTag:function(t,n){var r;return n=n||e.config.doc,t&&n.getElementsByTagName&&(r=n.getElementsByTagName(t)[0]),r||null},previous:function(t,n,r){return e.DOM.elementByAxis(t,"previousSibling",n,r)},next:function(t,n,r){return e.DOM.elementByAxis(t,"nextSibling",n,r)}})},"3.7.2",{requires:["dom-base"]});
+YUI.add("dom-deprecated",function(e,t){e.mix(e.DOM,{children:function(t,n){var r=[];return t&&(n=n||"*",r=e.Selector.query("> "+n,t)),r},firstByTag:function(t,n){var r;return n=n||e.config.doc,t&&n.getElementsByTagName&&(r=n.getElementsByTagName(t)[0]),r||null},previous:function(t,n,r){return e.DOM.elementByAxis(t,"previousSibling",n,r)},next:function(t,n,r){return e.DOM.elementByAxis(t,"nextSibling",n,r)}})},"3.7.3",{requires:["dom-base"]});

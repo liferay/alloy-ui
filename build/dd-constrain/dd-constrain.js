@@ -2,20 +2,25 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('dd-constrain', function (Y, NAME) {
 
 
     /**
-     * The Drag & Drop Utility allows you to create a draggable interface efficiently, buffering you from browser-level abnormalities and enabling you to focus on the interesting logic surrounding your particular implementation. This component enables you to create a variety of standard draggable objects with just a few lines of code and then, using its extensive API, add your own specific implementation logic.
+     * The Drag & Drop Utility allows you to create a draggable interface efficiently,
+     * buffering you from browser-level abnormalities and enabling you to focus on the interesting
+     * logic surrounding your particular implementation. This component enables you to create a
+     * variety of standard draggable objects with just a few lines of code and then,
+     * using its extensive API, add your own specific implementation logic.
      * @module dd
      * @main dd
      * @submodule dd-constrain
      */
     /**
-     * Plugin for the dd-drag module to add the constraining methods to it. It supports constraining to a node or viewport. It supports tick based moves and XY axis constraints.
+     * Plugin for the dd-drag module to add the constraining methods to it.
+     * It supports constraining to a node or viewport. It supports tick based moves and XY axis constraints.
      * @class DDConstrained
      * @extends Base
      * @constructor
@@ -52,7 +57,7 @@ YUI.add('dd-constrain', function (Y, NAME) {
         */
         EV_TICK_ALIGN_Y = 'drag:tickAlignY',
 
-        C = function(config) {
+        C = function() {
             this._lazyAddAttrs = false;
             C.superclass.constructor.apply(this, arguments);
         };
@@ -121,8 +126,9 @@ YUI.add('dd-constrain', function (Y, NAME) {
             value: false
         },
         /**
+        * CSS style string for the gutter of a region (supports negative values): '5 0'
+        * (sets top and bottom to 5px, left and right to 0px), '1 2 3 4' (top 1px, right 2px, bottom 3px, left 4px)
         * @attribute gutter
-        * @description CSS style string for the gutter of a region (supports negative values): '5 0' (sets top and bottom to 5px, left and right to 0px), '1 2 3 4' (top 1px, right 2px, bottom 3px, left 4px)
         * @type String
         */
         gutter: {
@@ -178,7 +184,7 @@ YUI.add('dd-constrain', function (Y, NAME) {
         * @type Object
         */
         constrain2view: {
-            setter: function(n) {
+            setter: function() {
                 return this.set('constrain', VIEW);
             }
         },
@@ -209,7 +215,7 @@ YUI.add('dd-constrain', function (Y, NAME) {
         destructor: function() {
             Y.each(
                 this._eventHandles,
-                function(handle, index) {
+                function(handle) {
                     handle.detach();
                 }
             );
@@ -227,7 +233,7 @@ YUI.add('dd-constrain', function (Y, NAME) {
                 EV_TICK_ALIGN_Y
             ];
 
-            Y.each(ev, function(v, k) {
+            Y.each(ev, function(v) {
                 this.publish(v, {
                     type: v,
                     emitFacade: true,
@@ -308,7 +314,7 @@ YUI.add('dd-constrain', function (Y, NAME) {
             }
 
             Y.each(g, function(i, n) {
-                if ((n == RIGHT) || (n == BOTTOM)) {
+                if ((n === RIGHT) || (n === BOTTOM)) {
                     region[n] -= i;
                 } else {
                     region[n] += i;
@@ -341,7 +347,8 @@ YUI.add('dd-constrain', function (Y, NAME) {
         * @private
         * @method _checkRegion
         * @description Check if xy is inside a given region, if not change to it be inside.
-        * @param {Array} _xy The XY to check if it's in the current region, if it isn't inside the region, it will reset the xy array to be inside the region.
+        * @param {Array} _xy The XY to check if it's in the current region, if it isn't
+        * inside the region, it will reset the xy array to be inside the region.
         * @return {Array} The new XY that is inside the region
         */
         _checkRegion: function(_xy) {
@@ -411,7 +418,7 @@ YUI.add('dd-constrain', function (Y, NAME) {
         * @method drag
         * @description Fires after drag:drag. Handle the tickX and tickX align events.
         */
-        drag: function(event) {
+        drag: function() {
             var host = this.get(HOST),
                 xt = this.get('tickX'),
                 yt = this.get('tickY'),
@@ -559,4 +566,4 @@ YUI.add('dd-constrain', function (Y, NAME) {
 
 
 
-}, '3.7.2', {"requires": ["dd-drag"]});
+}, '3.7.3', {"requires": ["dd-drag"]});

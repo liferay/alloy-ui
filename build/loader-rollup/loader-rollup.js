@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('loader-rollup', function (Y, NAME) {
 
@@ -74,7 +74,7 @@ Y.Loader.prototype._rollup = function() {
                         // increment the counter if this module is required.
                         // if we are beyond the rollup threshold, we will
                         // use the rollup module
-                        } else if (r[s[j]] && m.type == smod.type) {
+                        } else if (r[s[j]] && m.type === smod.type) {
                             c++;
                             roll = (c >= m.rollup);
                             if (roll) {
@@ -103,4 +103,4 @@ Y.Loader.prototype._rollup = function() {
 };
 
 
-}, '3.7.2', {"requires": ["loader-base"]});
+}, '3.7.3', {"requires": ["loader-base"]});

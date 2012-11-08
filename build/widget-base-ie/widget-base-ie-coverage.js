@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 if (typeof _yuitest_coverage == "undefined"){
     _yuitest_coverage = {};
@@ -33,7 +33,7 @@ _yuitest_coverage["build/widget-base-ie/widget-base-ie.js"] = {
     path: "build/widget-base-ie/widget-base-ie.js",
     code: []
 };
-_yuitest_coverage["build/widget-base-ie/widget-base-ie.js"].code=["YUI.add('widget-base-ie', function (Y, NAME) {","","/**"," * IE specific support for the widget-base module."," *"," * @module widget-base-ie"," */","var BOUNDING_BOX = \"boundingBox\",","    CONTENT_BOX = \"contentBox\",","    HEIGHT = \"height\",","    OFFSET_HEIGHT = \"offsetHeight\",","    EMPTY_STR = \"\",","    IE = Y.UA.ie,","    heightReallyMinHeight = IE < 7,","    bbTempExpanding = Y.Widget.getClassName(\"tmp\", \"forcesize\"),","    contentExpanded = Y.Widget.getClassName(\"content\", \"expanded\");","","// TODO: Ideally we want to re-use the base _uiSizeCB impl","Y.Widget.prototype._uiSizeCB = function(expand) {","","    var bb = this.get(BOUNDING_BOX),","        cb = this.get(CONTENT_BOX),","        borderBoxSupported = this._bbs;","","    if (borderBoxSupported === undefined) {","        this._bbs = borderBoxSupported = !(IE && IE < 8 && bb.get(\"ownerDocument\").get(\"compatMode\") != \"BackCompat\"); ","    }","","    if (borderBoxSupported) {","        cb.toggleClass(contentExpanded, expand);","    } else {","        if (expand) {","            if (heightReallyMinHeight) {","                bb.addClass(bbTempExpanding);","            }","","            cb.set(OFFSET_HEIGHT, bb.get(OFFSET_HEIGHT));","","            if (heightReallyMinHeight) {","                bb.removeClass(bbTempExpanding);","            }","        } else {","            cb.setStyle(HEIGHT, EMPTY_STR);","        }","    }","};","","","}, '3.7.2', {\"requires\": [\"widget-base\"]});"];
+_yuitest_coverage["build/widget-base-ie/widget-base-ie.js"].code=["YUI.add('widget-base-ie', function (Y, NAME) {","","/**"," * IE specific support for the widget-base module."," *"," * @module widget-base-ie"," */","var BOUNDING_BOX = \"boundingBox\",","    CONTENT_BOX = \"contentBox\",","    HEIGHT = \"height\",","    OFFSET_HEIGHT = \"offsetHeight\",","    EMPTY_STR = \"\",","    IE = Y.UA.ie,","    heightReallyMinHeight = IE < 7,","    bbTempExpanding = Y.Widget.getClassName(\"tmp\", \"forcesize\"),","    contentExpanded = Y.Widget.getClassName(\"content\", \"expanded\");","","// TODO: Ideally we want to re-use the base _uiSizeCB impl","Y.Widget.prototype._uiSizeCB = function(expand) {","","    var bb = this.get(BOUNDING_BOX),","        cb = this.get(CONTENT_BOX),","        borderBoxSupported = this._bbs;","","    if (borderBoxSupported === undefined) {","        this._bbs = borderBoxSupported = !(IE && IE < 8 && bb.get(\"ownerDocument\").get(\"compatMode\") != \"BackCompat\"); ","    }","","    if (borderBoxSupported) {","        cb.toggleClass(contentExpanded, expand);","    } else {","        if (expand) {","            if (heightReallyMinHeight) {","                bb.addClass(bbTempExpanding);","            }","","            cb.set(OFFSET_HEIGHT, bb.get(OFFSET_HEIGHT));","","            if (heightReallyMinHeight) {","                bb.removeClass(bbTempExpanding);","            }","        } else {","            cb.setStyle(HEIGHT, EMPTY_STR);","        }","    }","};","","","}, '3.7.3', {\"requires\": [\"widget-base\"]});"];
 _yuitest_coverage["build/widget-base-ie/widget-base-ie.js"].lines = {"1":0,"8":0,"19":0,"21":0,"25":0,"26":0,"29":0,"30":0,"32":0,"33":0,"34":0,"37":0,"39":0,"40":0,"43":0};
 _yuitest_coverage["build/widget-base-ie/widget-base-ie.js"].functions = {"_uiSizeCB:19":0,"(anonymous 1):1":0};
 _yuitest_coverage["build/widget-base-ie/widget-base-ie.js"].coveredLines = 15;
@@ -103,4 +103,4 @@ cb.setStyle(HEIGHT, EMPTY_STR);
 };
 
 
-}, '3.7.2', {"requires": ["widget-base"]});
+}, '3.7.3', {"requires": ["widget-base"]});

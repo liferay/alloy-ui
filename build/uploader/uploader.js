@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('uploader', function (Y, NAME) {
 
@@ -56,4 +56,4 @@ YUI.add('uploader', function (Y, NAME) {
     Y.Uploader.TYPE = "none";
  }
 
-}, '3.7.2', {"requires": ["uploader-html5", "uploader-flash"]});
+}, '3.7.3', {"requires": ["uploader-html5", "uploader-flash"]});

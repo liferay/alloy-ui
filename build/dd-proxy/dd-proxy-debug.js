@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('dd-proxy', function (Y, NAME) {
 
@@ -18,17 +18,17 @@ YUI.add('dd-proxy', function (Y, NAME) {
      * @class DDProxy
      * @extends Base
      * @constructor
-     * @namespace Plugin     
+     * @namespace Plugin
      */
     var DDM = Y.DD.DDM,
         NODE = 'node',
         DRAG_NODE = 'dragNode',
         HOST = 'host',
         TRUE = true, proto,
-        P = function(config) {
+        P = function() {
             P.superclass.constructor.apply(this, arguments);
         };
-    
+
     P.NAME = 'DDProxy';
     /**
     * @property NS
@@ -168,7 +168,7 @@ YUI.add('dd-proxy', function (Y, NAME) {
             return c;
         }
     };
-    
+
     Y.namespace('Plugin');
     Y.extend(P, Y.Base, proto);
     Y.Plugin.DDProxy = P;
@@ -213,12 +213,12 @@ YUI.add('dd-proxy', function (Y, NAME) {
         */
         _setFrame: function(drag) {
             var n = drag.get(NODE), d = drag.get(DRAG_NODE), ah, cur = 'auto';
-            
+
             ah = DDM.activeDrag.get('activeHandle');
             if (ah) {
                 cur = ah.getStyle('cursor');
             }
-            if (cur == 'auto') {
+            if (cur === 'auto') {
                 cur = DDM.get('dragCursor');
             }
 
@@ -253,4 +253,4 @@ YUI.add('dd-proxy', function (Y, NAME) {
 
 
 
-}, '3.7.2', {"requires": ["dd-drag"]});
+}, '3.7.3', {"requires": ["dd-drag"]});

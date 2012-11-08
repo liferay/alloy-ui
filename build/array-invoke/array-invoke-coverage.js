@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 if (typeof _yuitest_coverage == "undefined"){
     _yuitest_coverage = {};
@@ -33,7 +33,7 @@ _yuitest_coverage["build/array-invoke/array-invoke.js"] = {
     path: "build/array-invoke/array-invoke.js",
     code: []
 };
-_yuitest_coverage["build/array-invoke/array-invoke.js"].code=["YUI.add('array-invoke', function (Y, NAME) {","","/**","@module collection","@submodule array-invoke","*/","","/**","Executes a named method on each item in an array of objects. Items in the array","that do not have a function by that name will be skipped.","","@example","","    Y.Array.invoke(arrayOfDrags, 'plug', Y.Plugin.DDProxy);","","@method invoke","@param {Array} items Array of objects supporting the named method.","@param {String} name the name of the method to execute on each item.","@param {Any} [args*] Any number of additional args are passed as parameters to","  the execution of the named method.","@return {Array} All return values, indexed according to the item index.","@static","@for Array","**/","Y.Array.invoke = function(items, name) {","    var args = Y.Array(arguments, 2, true),","        isFunction = Y.Lang.isFunction,","        ret = [];","","    Y.Array.each(Y.Array(items), function(item, i) {","        if (item && isFunction(item[name])) {","            ret[i] = item[name].apply(item, args);","        }","    });","","    return ret;","};","","","}, '3.7.2', {\"requires\": [\"yui-base\"]});"];
+_yuitest_coverage["build/array-invoke/array-invoke.js"].code=["YUI.add('array-invoke', function (Y, NAME) {","","/**","@module collection","@submodule array-invoke","*/","","/**","Executes a named method on each item in an array of objects. Items in the array","that do not have a function by that name will be skipped.","","@example","","    Y.Array.invoke(arrayOfDrags, 'plug', Y.Plugin.DDProxy);","","@method invoke","@param {Array} items Array of objects supporting the named method.","@param {String} name the name of the method to execute on each item.","@param {Any} [args*] Any number of additional args are passed as parameters to","  the execution of the named method.","@return {Array} All return values, indexed according to the item index.","@static","@for Array","**/","Y.Array.invoke = function(items, name) {","    var args = Y.Array(arguments, 2, true),","        isFunction = Y.Lang.isFunction,","        ret = [];","","    Y.Array.each(Y.Array(items), function(item, i) {","        if (item && isFunction(item[name])) {","            ret[i] = item[name].apply(item, args);","        }","    });","","    return ret;","};","","","}, '3.7.3', {\"requires\": [\"yui-base\"]});"];
 _yuitest_coverage["build/array-invoke/array-invoke.js"].lines = {"1":0,"25":0,"26":0,"30":0,"31":0,"32":0,"36":0};
 _yuitest_coverage["build/array-invoke/array-invoke.js"].functions = {"(anonymous 2):30":0,"invoke:25":0,"(anonymous 1):1":0};
 _yuitest_coverage["build/array-invoke/array-invoke.js"].coveredLines = 7;
@@ -87,4 +87,4 @@ return ret;
 };
 
 
-}, '3.7.2', {"requires": ["yui-base"]});
+}, '3.7.3', {"requires": ["yui-base"]});
