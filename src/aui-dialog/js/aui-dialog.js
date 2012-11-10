@@ -105,7 +105,11 @@ var Lang = A.Lang,
  */
 var Dialog = function(config) {
 	if (!A.DialogMask) {
-		A.DialogMask = new A.OverlayMask().render();
+		A.DialogMask = new A.OverlayMask(
+			{
+				visible: true
+			}
+		).render();
 	}
 };
 
@@ -143,8 +147,8 @@ A.mix(
 
 			/**
 			 * <p>Array of object literals, each containing a set of properties
-             * defining a button to be appended into the Dialog's footer. Each
-             * button object in the buttons array can have two properties:</p>
+			 * defining a button to be appended into the Dialog's footer. Each
+			 * button object in the buttons array can have two properties:</p>
 			 *
 			 * <dl>
 			 *    <dt>text:</dt>
@@ -155,7 +159,7 @@ A.mix(
 			 *    <dt>handler:</dt>
 			 *    <dd>
 			 *        A reference to a function that should fire when the button is clicked.
-	         *        (In this case scope of this function is always its Dialog instance.)
+			 *        (In this case scope of this function is always its Dialog instance.)
 			 *    </dd>
 			 * </dl>
 			 *
@@ -170,7 +174,7 @@ A.mix(
 
 			/**
 			 * If <code>true</code> the close icon will be displayed on the
-             * Dialog header.
+			 * Dialog header.
 			 *
 			 * @attribute close
 			 * @default true
@@ -181,12 +185,12 @@ A.mix(
 			},
 
 			/**
-	         * Will attempt to constrain the dialog to the boundaries of the
-	         * viewport region.
-	         *
-	         * @attribute constrain2view
-	         * @type Object
-	         */
+			 * Will attempt to constrain the dialog to the boundaries of the
+			 * viewport region.
+			 *
+			 * @attribute constrain2view
+			 * @type Object
+			 */
 			constrain2view: {
 				setter: '_setConstrain2view',
 				value: false,
@@ -195,8 +199,8 @@ A.mix(
 
 			/**
 			 * Invoke the <a href="Dialog.html#method_destroy">destroy</a>
-             * method when the dialog is closed (i.e., remove the Dialog
-             * <code>boundingBox</code> from the body, purge events etc).
+			 * method when the dialog is closed (i.e., remove the Dialog
+			 * <code>boundingBox</code> from the body, purge events etc).
 			 *
 			 * @attribute destroyOnClose
 			 * @default false
@@ -244,7 +248,7 @@ A.mix(
 
 			/**
 			 * Stores the Drag instance for the <code>A.DD.Drag</code> used by
-             * this Dialog.
+			 * this Dialog.
 			 *
 			 * @attribute dragInstance
 			 * @default null
@@ -257,9 +261,9 @@ A.mix(
 
 			/**
 			 * True if the Panel should be displayed in a modal fashion,
-             * automatically creating a transparent mask over the document that
-             * will not be removed until the Dialog is dismissed. Uses
-             * <a href="OverlayMask.html">OverlayMask</a>.
+			 * automatically creating a transparent mask over the document that
+			 * will not be removed until the Dialog is dismissed. Uses
+			 * <a href="OverlayMask.html">OverlayMask</a>.
 			 *
 			 * @attribute modal
 			 * @default false
@@ -305,7 +309,7 @@ A.mix(
 
 			/**
 			 * Stores the Resize instance for the <code>A.Resize</code> used by
-             * this Dialog.
+			 * this Dialog.
 			 *
 			 * @attribute resizableInstance
 			 * @default null
@@ -428,12 +432,12 @@ Dialog.prototype = {
 	},
 
 	/**
-     * Refreshes the rendered UI, based on Widget State
-     *
-     * @method syncUI
-     * @protected
-     *
-     */
+	 * Refreshes the rendered UI, based on Widget State
+	 *
+	 * @method syncUI
+	 * @protected
+	 *
+	 */
 	syncUI: function() {
 		var instance = this;
 
@@ -467,13 +471,13 @@ Dialog.prototype = {
 		A.DialogManager.remove(instance);
 	},
 
-    /**
-     * Aligns the Dialog to the viewport.
-     *
-     * @method alignToViewport
-     * @param int offsetLeft An offset number to be added to the left coordinate value.
-     * @param int offsetTop An offset number to be added to the top coordinate value.
-     */
+	/**
+	 * Aligns the Dialog to the viewport.
+	 *
+	 * @method alignToViewport
+	 * @param int offsetLeft An offset number to be added to the left coordinate value.
+	 * @param int offsetTop An offset number to be added to the top coordinate value.
+	 */
 	alignToViewport: function(offsetLeft, offsetTop) {
 		var instance = this;
 
@@ -484,9 +488,9 @@ Dialog.prototype = {
 
 	/**
 	 * Bind a <code>mouseenter</code> listener to the <code>boundingBox</code>
-     * to invoke the
-     * <a href="Dialog.html#config__initLazyComponents">_initLazyComponents</a>.
-     * Performance reasons.
+	 * to invoke the
+	 * <a href="Dialog.html#config__initLazyComponents">_initLazyComponents</a>.
+	 * Performance reasons.
 	 *
 	 * @method _bindLazyComponents
 	 * @private
@@ -512,7 +516,7 @@ Dialog.prototype = {
 
 	/**
 	 * Fires after the render phase. Invoke
-     * <a href="Dialog.html#method__initButtons">_initButtons</a>.
+	 * <a href="Dialog.html#method__initButtons">_initButtons</a>.
 	 *
 	 * @method _afterRenderer
 	 * @param {EventFacade} event
@@ -657,7 +661,7 @@ Dialog.prototype = {
 
 	/**
 	 * Setter for the <a href="Dialog.html#config_stack">stack</a>
-     * attribute.
+	 * attribute.
 	 *
 	 * @method _setStack
 	 * @param {boolean} value
@@ -717,7 +721,7 @@ Dialog.prototype = {
 
 	/**
 	 * Fires after the value of the
-     * <a href="Overlay.html#config_constrain2view">constrain2view</a> attribute change.
+	 * <a href="Overlay.html#config_constrain2view">constrain2view</a> attribute change.
 	 *
 	 * @method _afterConstrain2viewChange
 	 * @param {EventFacade} event
@@ -733,7 +737,7 @@ Dialog.prototype = {
 
 	/**
 	 * Fires after the value of the
-     * <a href="Overlay.html#config_draggable">draggable</a> attribute change.
+	 * <a href="Overlay.html#config_draggable">draggable</a> attribute change.
 	 *
 	 * @method _afterDraggableChange
 	 * @param {EventFacade} event
@@ -747,7 +751,7 @@ Dialog.prototype = {
 
 	/**
 	 * Fires after the value of the
-     * <a href="Overlay.html#config_dragInstance">dragInstance</a> attribute change.
+	 * <a href="Overlay.html#config_dragInstance">dragInstance</a> attribute change.
 	 *
 	 * @method _afterDragInstanceChange
 	 * @param {EventFacade} event
@@ -893,7 +897,7 @@ A.mix(
 	{
 		/**
 		 * Find the <a href="Widget.html">Widget</a> instance based on a child
-         * element.
+		 * element.
 		 *
 		 * @method findByChild
 		 * @for DialogManager
@@ -908,7 +912,7 @@ A.mix(
 
 		/**
 		 * <p>Invoke the <a href="Dialog.html#method_close">close</a> method from
-         * the Dialog which contains the <code>child</code> element.</p>
+		 * the Dialog which contains the <code>child</code> element.</p>
 		 *
 		 * Example:
 		 *
@@ -925,9 +929,9 @@ A.mix(
 
 		/**
 		 * <p>Invoke the <a href="IOPlugin.html#method_start">start</a> method
-         * from the <a href="IOPlugin.html">IOPlugin</a> plugged on this Dialog
-         * instance. If there is no IOPlugin plugged it does nothing.</p>
-         *
+		 * from the <a href="IOPlugin.html">IOPlugin</a> plugged on this Dialog
+		 * instance. If there is no IOPlugin plugged it does nothing.</p>
+		 *
 		 * Example:
 		 *
 		 * <pre><code>A.DialogManager.refreshByChild('#dialogContent1');</code></pre>
