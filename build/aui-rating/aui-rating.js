@@ -720,7 +720,7 @@ var Rating = A.Component.create(
 			_renderLabel: function() {
 				var instance = this;
 
-				instance.get(CONTENT_BOX).append(
+				instance.get(CONTENT_BOX).setContent(
 					instance.get(LABEL_NODE)
 				);
 			},
@@ -1011,4 +1011,4 @@ A.Rating = Rating;
 A.StarRating = Rating;
 A.ThumbRating = ThumbRating;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base']});
+}, '@VERSION@' ,{requires:['aui-base'], skinnable:true});
