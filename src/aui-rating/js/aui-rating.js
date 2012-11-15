@@ -719,7 +719,7 @@ var Rating = A.Component.create(
 			_renderLabel: function() {
 				var instance = this;
 
-				instance.get(CONTENT_BOX).append(
+				instance.get(CONTENT_BOX).setContent(
 					instance.get(LABEL_NODE)
 				);
 			},
