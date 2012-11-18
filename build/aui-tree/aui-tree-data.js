@@ -851,4 +851,4 @@ A.mix(TreeData.prototype, {
 
 A.TreeData = TreeData;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-task-manager'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-base','aui-task-manager']});
