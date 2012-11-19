@@ -304,7 +304,7 @@ var Carousel = A.Component.create(
 			 * Fires after activeIndex attribute changes
 			 *
 			 * @method _afterActiveIndexChange
-			 * @param {Object}
+			 * @param event
 			 * @protected
 			 */
 			_afterActiveIndexChange: function(event) {
@@ -324,7 +324,7 @@ var Carousel = A.Component.create(
 			 * Fires after animationTime attribute changes
 			 *
 			 * @method _afterAnimationTimeChange
-			 * @param {Object}
+			 * @param event
 			 */
 			_afterAnimationTimeChange: function(event) {
 				var instance = this;
@@ -336,7 +336,7 @@ var Carousel = A.Component.create(
 			 * Fires after itemSelector attribute changes
 			 *
 			 * @method _afterItemSelectorChange
-			 * @param {Object}
+			 * @param event
 			 * @protected
 			 */
 			_afterItemSelectorChange: function(event) {
@@ -349,7 +349,7 @@ var Carousel = A.Component.create(
 			 * Fires after nodeMenuItemSelector attribute changes
 			 *
 			 * @method _afterNodeMenuItemSelectorChange
-			 * @param {Object}
+			 * @param event
 			 * @protected
 			 */
 			_afterNodeMenuItemSelectorChange: function(event) {
@@ -364,7 +364,7 @@ var Carousel = A.Component.create(
 			 * Fires after intervalTime attribute changes
 			 *
 			 * @method _afterIntervalTimeChange
-			 * @param {Object}
+			 * @param event
 			 * @protected
 			 */
 			_afterIntervalTimeChange: function(event) {
@@ -378,7 +378,7 @@ var Carousel = A.Component.create(
 			 * Fires after playing attribute changes
 			 *
 			 * @method _afterPlayingChange
-			 * @param {Object}
+			 * @param event
 			 * @protected
 			 */
 			_afterPlayingChange: function(event) {
