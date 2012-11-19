@@ -9,21 +9,21 @@ YUI.add("yuidoc-meta", function(Y) {
         "A.io",
         "AUI~event~input",
         "Anim",
+        "App",
+        "App.Base",
+        "App.Content",
+        "App.Transitions",
+        "App.TransitionsNative",
         "AreaSeries",
         "AreaSplineSeries",
         "Array",
-        "ArrayAssert",
         "ArrayList",
         "ArraySort",
-        "Assert",
-        "Assert.ComparisonFailure",
-        "Assert.Error",
-        "Assert.ShouldError",
-        "Assert.ShouldFail",
-        "Assert.UnexpectedError",
-        "Assert.UnexpectedValue",
         "AsyncQueue",
         "Attribute",
+        "AttributeCore",
+        "AttributeEvents",
+        "AttributeExtras",
         "AttributeLite",
         "AutoComplete",
         "AutoCompleteBase",
@@ -35,10 +35,14 @@ YUI.add("yuidoc-meta", function(Y) {
         "BarSeries",
         "Base",
         "BaseCellEditor",
-        "BaseGraphic",
+        "BaseCore",
         "BaseOptionsCellEditor",
         "BottomAxisLayout",
+        "Button",
+        "ButtonCore",
+        "ButtonGroup",
         "ButtonItem",
+        "ButtonPlugin",
         "Cache",
         "CacheOffline",
         "Calendar",
@@ -51,6 +55,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "CanvasPieSlice",
         "CanvasRect",
         "CanvasShape",
+        "Carousel",
         "CartesianChart",
         "CartesianSeries",
         "CategoryAxis",
@@ -58,21 +63,20 @@ YUI.add("yuidoc-meta", function(Y) {
         "CharCounter",
         "Chart",
         "ChartBase",
+        "ChartLegend",
         "CheckboxCellEditor",
         "Circle",
+        "CircleGroup",
         "ClassNameManager",
         "ClickableRail",
         "ColorPicker",
-        "Column",
         "ColumnSeries",
-        "Columnset",
         "ComboSeries",
         "ComboSplineSeries",
         "Component",
         "Console",
         "Controller",
         "Cookie",
-        "Coverage.Format",
         "CurveUtil",
         "CustomEvent",
         "DD.DDM",
@@ -97,17 +101,21 @@ YUI.add("yuidoc-meta", function(Y) {
         "DataSourceJSONSchema",
         "DataSourceTextSchema",
         "DataSourceXMLSchema",
+        "DataTable",
         "DataTable.Base",
-        "DataTableDataSource",
-        "DataTableScroll",
-        "DataTableSort",
+        "DataTable.BodyView",
+        "DataTable.ColumnWidths",
+        "DataTable.Core",
+        "DataTable.HeaderView",
+        "DataTable.Message",
+        "DataTable.Mutable",
+        "DataTable.Scrollable",
+        "DataTable.Sortable",
+        "DataTable.TableView",
         "DataType.Boolean",
-        "DataType.Date",
         "DataType.Date.Locale",
-        "DataType.Number",
         "DataType.String",
-        "DataType.XML",
-        "DateAssert",
+        "Date",
         "DateCellEditor",
         "DatePickerSelect",
         "DatepickerManager",
@@ -128,7 +136,9 @@ YUI.add("yuidoc-meta", function(Y) {
         "Easing",
         "Editable",
         "EditorBase",
+        "EditorSelection",
         "Ellipse",
+        "EllipseGroup",
         "Escape",
         "Event",
         "EventFacade",
@@ -136,17 +146,27 @@ YUI.add("yuidoc-meta", function(Y) {
         "EventTarget",
         "ExecCommand",
         "Features",
+        "File",
+        "FileFlash",
+        "FileHTML5",
         "Fills",
         "Frame",
         "Get",
+        "Get.Transaction",
+        "GetNodeJS",
         "Graph",
         "Graphic",
+        "GraphicBase",
         "Gridlines",
+        "GroupDiamond",
+        "GroupRect",
+        "Handlebars",
         "Highlight",
         "Histogram",
         "HistoryBase",
         "HistoryHTML5",
         "HistoryHash",
+        "HorizontalLegendLayout",
         "IO",
         "IORequest",
         "ImageGallery",
@@ -155,8 +175,10 @@ YUI.add("yuidoc-meta", function(Y) {
         "ImgLoadGroup",
         "ImgLoadImgObj",
         "Intl",
+        "JSON",
         "JSONPRequest",
         "Lang",
+        "LazyModelList",
         "LeftAxisLayout",
         "LineSeries",
         "Lines",
@@ -165,16 +187,16 @@ YUI.add("yuidoc-meta", function(Y) {
         "LoadingMask",
         "MarkerSeries",
         "Matrix",
-        "Mock",
-        "Mock.Value",
+        "MatrixUtil",
         "Model",
         "ModelList",
+        "ModelSync.REST",
         "NestedList",
         "Node",
         "NodeList",
+        "Number",
         "NumericAxis",
         "Object",
-        "ObjectAssert",
         "Overlay",
         "OverlayBase",
         "OverlayContext",
@@ -185,10 +207,14 @@ YUI.add("yuidoc-meta", function(Y) {
         "OverlayMask",
         "Paginator",
         "Panel",
+        "Parallel",
         "ParseContent",
         "Path",
         "PieChart",
         "PieSeries",
+        "Pjax",
+        "PjaxBase",
+        "PjaxContent",
         "Plots",
         "Plugin.Align",
         "Plugin.AutoComplete",
@@ -201,20 +227,25 @@ YUI.add("yuidoc-meta", function(Y) {
         "Plugin.DDNodeScroll",
         "Plugin.DDProxy",
         "Plugin.DDWindowScroll",
+        "Plugin.DataTableDataSource",
         "Plugin.Drag",
         "Plugin.Drop",
         "Plugin.EditorBR",
         "Plugin.EditorBidi",
         "Plugin.EditorLists",
         "Plugin.EditorPara",
+        "Plugin.EditorParaBase",
+        "Plugin.EditorParaIE",
         "Plugin.EditorTab",
         "Plugin.ExecCommand",
         "Plugin.Flick",
         "Plugin.Host",
         "Plugin.NodeFX",
+        "Plugin.Pjax",
         "Plugin.Resize",
         "Plugin.ResizeConstrained",
         "Plugin.ResizeProxy",
+        "Plugin.ScrollInfo",
         "Plugin.ScrollViewList",
         "Plugin.ScrollViewPaginator",
         "Plugin.ScrollViewScrollbars",
@@ -225,6 +256,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "PortalLayout",
         "Profiler",
         "ProgressBar",
+        "QueryString",
         "Queue",
         "RadioCellEditor",
         "Rating",
@@ -237,6 +269,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "Renderer",
         "Resize",
         "RightAxisLayout",
+        "Router",
         "SVGCircle",
         "SVGDrawing",
         "SVGEllipse",
@@ -246,10 +279,11 @@ YUI.add("yuidoc-meta", function(Y) {
         "SVGRect",
         "SVGShape",
         "SWF",
+        "SWFDetect",
         "ScrollView",
-        "Selection",
         "Selector",
         "Shape",
+        "ShapeGroup",
         "Slider",
         "SliderBase",
         "SliderValueRange",
@@ -274,12 +308,29 @@ YUI.add("yuidoc-meta", function(Y) {
         "SyntheticEvent.Notifier",
         "Tab",
         "TabView",
-        "Test.Case",
-        "Test.Format",
-        "Test.Manager",
+        "Test.ArrayAssert",
+        "Test.Assert",
+        "Test.AssertionError",
+        "Test.ComparisonFailure",
+        "Test.Console",
+        "Test.CoverageFormat",
+        "Test.DateAssert",
+        "Test.EventTarget",
+        "Test.Mock",
+        "Test.Mock.Value",
+        "Test.ObjectAssert",
         "Test.Reporter",
+        "Test.Results",
         "Test.Runner",
-        "Test.Suite",
+        "Test.ShouldError",
+        "Test.ShouldFail",
+        "Test.TestCase",
+        "Test.TestFormat",
+        "Test.TestNode",
+        "Test.TestRunner",
+        "Test.TestSuite",
+        "Test.UnexpectedError",
+        "Test.UnexpectedValue",
         "Test.Wait",
         "Text.AccentFold",
         "Text.WordBreak",
@@ -288,6 +339,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "Textboxlist",
         "ThumbRating",
         "TimeAxis",
+        "ToggleButton",
         "Toolbar",
         "Tooltip",
         "TopAxisLayout",
@@ -302,6 +354,9 @@ YUI.add("yuidoc-meta", function(Y) {
         "TreeViewDD",
         "UA",
         "Uploader",
+        "Uploader.Queue",
+        "UploaderFlash",
+        "UploaderHTML5",
         "VMLCircle",
         "VMLDrawing",
         "VMLEllipse",
@@ -311,7 +366,9 @@ YUI.add("yuidoc-meta", function(Y) {
         "VMLRect",
         "VMLShape",
         "ValueChange",
+        "VerticalLegendLayout",
         "View",
+        "View.NodeMap",
         "Widget",
         "WidgetAutohide",
         "WidgetButtons",
@@ -323,16 +380,14 @@ YUI.add("yuidoc-meta", function(Y) {
         "WidgetPositionConstrain",
         "WidgetStack",
         "WidgetStdMod",
+        "XML",
         "YQL",
         "YQLRequest",
         "YUI",
         "YUI~substitute",
         "config",
-        "json",
         "plugin.NodeFocusManager",
-        "plugin.NodeMenuNav",
-        "querystring",
-        "rls"
+        "plugin.NodeMenuNav"
     ],
     "modules": [
         "align-plugin",
@@ -343,8 +398,14 @@ YUI.add("yuidoc-meta", function(Y) {
         "anim-easing",
         "anim-node-plugin",
         "anim-scroll",
+        "anim-shape",
+        "anim-shape-transform",
         "anim-xy",
         "app",
+        "app-base",
+        "app-content",
+        "app-transitions",
+        "app-transitions-native",
         "array-extras",
         "array-invoke",
         "arraylist",
@@ -355,11 +416,15 @@ YUI.add("yuidoc-meta", function(Y) {
         "attribute",
         "attribute-base",
         "attribute-complex",
+        "attribute-core",
+        "attribute-events",
+        "attribute-extras",
         "aui-autocomplete",
         "aui-button-item",
         "aui-calendar",
         "aui-calendar-base",
         "aui-calendar-datepicker-select",
+        "aui-carousel",
         "aui-char-counter",
         "aui-color-picker",
         "aui-component",
@@ -416,7 +481,12 @@ YUI.add("yuidoc-meta", function(Y) {
         "base",
         "base-base",
         "base-build",
+        "base-core",
         "base-pluginhost",
+        "button",
+        "button-core",
+        "button-group",
+        "button-plugin",
         "cache",
         "cache-base",
         "cache-offline",
@@ -425,12 +495,13 @@ YUI.add("yuidoc-meta", function(Y) {
         "calendar-base",
         "calendarnavigator",
         "charts",
+        "charts-base",
+        "charts-legend",
         "classnamemanager",
         "clickable-rail",
         "collection",
         "console",
         "console-filters",
-        "controller",
         "cookie",
         "createlink-base",
         "dataschema",
@@ -452,9 +523,21 @@ YUI.add("yuidoc-meta", function(Y) {
         "datasource-xmlschema",
         "datatable",
         "datatable-base",
+        "datatable-base-deprecated",
+        "datatable-body",
+        "datatable-column-widths",
+        "datatable-core",
         "datatable-datasource",
+        "datatable-datasource-deprecated",
+        "datatable-deprecated",
+        "datatable-head",
+        "datatable-message",
+        "datatable-mutable",
         "datatable-scroll",
+        "datatable-scroll-deprecated",
         "datatable-sort",
+        "datatable-sort-deprecated",
+        "datatable-table",
         "datatype",
         "datatype-date",
         "datatype-date-format",
@@ -475,6 +558,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "dd-drag",
         "dd-drop",
         "dd-drop-plugin",
+        "dd-gestures",
         "dd-plugin",
         "dd-proxy",
         "dd-scroll",
@@ -490,10 +574,13 @@ YUI.add("yuidoc-meta", function(Y) {
         "editor-br",
         "editor-lists",
         "editor-para",
+        "editor-para-base",
+        "editor-para-ie",
         "editor-tab",
         "escape",
         "event",
         "event-base",
+        "event-contextmenu",
         "event-custom",
         "event-custom-base",
         "event-custom-base",
@@ -510,13 +597,23 @@ YUI.add("yuidoc-meta", function(Y) {
         "event-outside",
         "event-resize",
         "event-simulate",
+        "event-synthetic",
+        "event-tap",
         "event-touch",
         "event-valuechange",
         "exec-command",
         "features",
+        "file",
+        "file-flash",
+        "file-html5",
         "frame",
+        "gesture-simulate",
         "get",
+        "get-nodejs",
         "graphics",
+        "handlebars",
+        "handlebars-base",
+        "handlebars-compiler",
         "highlight",
         "highlight-accentfold",
         "highlight-base",
@@ -529,8 +626,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "intl",
         "io",
         "io-base",
-        "io-base",
         "io-form",
+        "io-nodejs",
         "io-queue",
         "io-upload-iframe",
         "io-xdr",
@@ -539,15 +636,20 @@ YUI.add("yuidoc-meta", function(Y) {
         "json-stringify",
         "jsonp",
         "jsonp-url",
+        "lazy-model-list",
         "loader",
         "loader-base",
+        "matrix",
         "model",
         "model-list",
+        "model-sync-rest",
         "node",
         "node-base",
         "node-core",
+        "node-data",
         "node-deprecated",
         "node-event-delegate",
+        "node-event-html5",
         "node-event-simulate",
         "node-flick",
         "node-focusmanager",
@@ -555,10 +657,16 @@ YUI.add("yuidoc-meta", function(Y) {
         "node-menunav",
         "node-pluginhost",
         "node-screen",
+        "node-scroll-info",
         "node-style",
         "oop",
         "overlay",
         "panel",
+        "parallel",
+        "pjax",
+        "pjax-base",
+        "pjax-content",
+        "pjax-plugin",
         "plugin",
         "pluginhost",
         "pluginhost-base",
@@ -568,6 +676,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "querystring-parse",
         "querystring-parse-simple",
         "querystring-stringify",
+        "querystring-stringify-simple",
         "querystring-stringify-simple",
         "queue-promote",
         "range-slider",
@@ -580,8 +689,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "resize-contrain",
         "resize-plugin",
         "resize-proxy",
-        "rls",
         "rollup",
+        "router",
         "scrollview",
         "scrollview-base",
         "scrollview-base-ie",
@@ -604,12 +713,19 @@ YUI.add("yuidoc-meta", function(Y) {
         "swfdetect",
         "tabview",
         "test",
+        "test-console",
         "text",
         "text-accentfold",
         "text-wordbreak",
         "transition",
+        "transition-timer",
         "uploader",
+        "uploader-deprecated",
+        "uploader-flash",
+        "uploader-html5",
+        "uploader-queue",
         "view",
+        "view-node-map",
         "widget",
         "widget-anim",
         "widget-autohide",
@@ -629,7 +745,10 @@ YUI.add("yuidoc-meta", function(Y) {
         "widget-stdmod",
         "widget-uievents",
         "yql",
+        "yql-nodejs",
+        "yql-winjs",
         "yui",
+        "yui-base",
         "yui-base",
         "yui-later",
         "yui-later",
@@ -646,7 +765,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "anim",
             "name": "anim",
-            "description": "Provides the base Anim class, for animating numeric properties."
+            "description": "The Animation Utility provides an API for creating advanced transitions."
         },
         {
             "displayName": "anim-base",
@@ -679,6 +798,16 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "Adds support for the <code>scroll</code> property in <code>to</code>\nand <code>from</code> attributes."
         },
         {
+            "displayName": "anim-shape",
+            "name": "anim-shape",
+            "description": "Adds support for the <code>transform</code>, <code>fill</code>, and <code> attributes of <code>Graphic</code>\n<code>Shape</code> instances. The <code>anim-shape</code> submodule can be used for all animations involving\n<code>Graphic</code> <code>Shape</code> attributes."
+        },
+        {
+            "displayName": "anim-shape-transform",
+            "name": "anim-shape-transform",
+            "description": "Adds support for the <code>transform</code> attribute of <code>Graphic</code>\n<code>Shape</code> instances."
+        },
+        {
             "displayName": "anim-xy",
             "name": "anim-xy",
             "description": "Adds support for the <code>xy</code> property in <code>from</code> and \n<code>to</code> attributes."
@@ -686,7 +815,27 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "app",
             "name": "app",
-            "description": "The app framework provides simple MVC-like building blocks (models, model lists,\nviews, and controllers) for writing single-page JavaScript applications."
+            "description": "The App Framework provides simple MVC-like building blocks (models, model lists,\nviews, and URL-based routing) for writing single-page JavaScript applications."
+        },
+        {
+            "displayName": "app-base",
+            "name": "app-base",
+            "description": "Provides a top-level application component which manages navigation and views."
+        },
+        {
+            "displayName": "app-content",
+            "name": "app-content",
+            "description": "`Y.App` extension that provides pjax-style content fetching and handling."
+        },
+        {
+            "displayName": "app-transitions",
+            "name": "app-transitions",
+            "description": "`Y.App` extension that provides view transitions in browsers which support\nnative CSS3 transitions."
+        },
+        {
+            "displayName": "app-transitions-native",
+            "name": "app-transitions-native",
+            "description": "Provides the implementation of view transitions for `Y.App.Transitions` in\nbrowsers which support native CSS3 transitions."
         },
         {
             "displayName": "array-extras",
@@ -725,7 +874,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "attribute",
             "name": "attribute",
-            "description": "Adds support for attribute providers to handle complex attributes in the constructor"
+            "description": "The attribute module provides an augmentable Attribute implementation, which \nadds configurable attributes and attribute change events to the class being \naugmented. It also provides a State class, which is used internally by Attribute,\nbut can also be used independently to provide a name/property/value data structure to\nstore state."
         },
         {
             "displayName": "attribute-base",
@@ -736,6 +885,21 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "attribute-complex",
             "name": "attribute-complex",
             "description": "Adds support for attribute providers to handle complex attributes in the constructor"
+        },
+        {
+            "displayName": "attribute-core",
+            "name": "attribute-core",
+            "description": "The attribute-core submodule provides the lightest level of attribute handling support \nwithout Attribute change events, or lesser used methods such as reset(), modifyAttrs(),\nand removeAttr()."
+        },
+        {
+            "displayName": "attribute-events",
+            "name": "attribute-events",
+            "description": "The attribute-events submodule provides augmentable attribute change event support \nfor AttributeCore based implementations."
+        },
+        {
+            "displayName": "attribute-extras",
+            "name": "attribute-extras",
+            "description": "The attribute-extras submodule provides less commonly used attribute methods, and can \nbe augmented/mixed into an implemention which used attribute-core."
         },
         {
             "displayName": "aui-autocomplete",
@@ -749,8 +913,7 @@ YUI.add("yuidoc-meta", function(Y) {
         },
         {
             "displayName": "aui-calendar",
-            "name": "aui-calendar",
-            "description": "The DatePickerSelect Utility"
+            "name": "aui-calendar"
         },
         {
             "displayName": "aui-calendar-base",
@@ -761,6 +924,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "aui-calendar-datepicker-select",
             "name": "aui-calendar-datepicker-select",
             "description": "The DatePickerSelect Utility"
+        },
+        {
+            "displayName": "aui-carousel",
+            "name": "aui-carousel",
+            "description": "The Carousel Component"
         },
         {
             "displayName": "aui-char-counter",
@@ -799,8 +967,7 @@ YUI.add("yuidoc-meta", function(Y) {
         },
         {
             "displayName": "aui-event",
-            "name": "aui-event",
-            "description": "An object that encapsulates text changed events for textareas and input\nelement of type text and password. This event only occurs when the element\nis focused."
+            "name": "aui-event"
         },
         {
             "displayName": "aui-event-input",
@@ -809,8 +976,7 @@ YUI.add("yuidoc-meta", function(Y) {
         },
         {
             "displayName": "aui-image-viewer",
-            "name": "aui-image-viewer",
-            "description": "The ImageGallery Utility"
+            "name": "aui-image-viewer"
         },
         {
             "displayName": "aui-image-viewer-base",
@@ -824,8 +990,7 @@ YUI.add("yuidoc-meta", function(Y) {
         },
         {
             "displayName": "aui-io",
-            "name": "aui-io",
-            "description": "The IORequest Utility - Provides response data normalization for XML, JSON,\nJavaScript and cache option."
+            "name": "aui-io"
         },
         {
             "displayName": "aui-io-plugin",
@@ -859,8 +1024,7 @@ YUI.add("yuidoc-meta", function(Y) {
         },
         {
             "displayName": "aui-node",
-            "name": "aui-node",
-            "description": "aui-node-html5 provides support for HTML shiv natively on the Alloy dom\nmethods. The HTML5 shiv just affects IE."
+            "name": "aui-node"
         },
         {
             "displayName": "aui-node-base",
@@ -874,8 +1038,7 @@ YUI.add("yuidoc-meta", function(Y) {
         },
         {
             "displayName": "aui-overlay",
-            "name": "aui-overlay",
-            "description": "The OverlayMask Utility"
+            "name": "aui-overlay"
         },
         {
             "displayName": "aui-overlay-base",
@@ -915,7 +1078,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "aui-parse-content",
             "name": "aui-parse-content",
-            "description": "The ParseContent Utility - Parse the content of a Node so that all of the \njavascript contained in that Node will be executed according to the order\nthat it appears."
+            "description": "The ParseContent Utility - Parse the content of a Node so that all of the\njavascript contained in that Node will be executed according to the order\nthat it appears."
         },
         {
             "displayName": "aui-portal-layout",
@@ -959,8 +1122,7 @@ YUI.add("yuidoc-meta", function(Y) {
         },
         {
             "displayName": "aui-tree",
-            "name": "aui-tree",
-            "description": "The TreeView Utility"
+            "name": "aui-tree"
         },
         {
             "displayName": "aui-tree-data",
@@ -985,7 +1147,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "autocomplete-base",
             "name": "autocomplete-base",
-            "description": "<code>Y.Base</code> extension that provides core autocomplete logic (but no\nUI implementation) for a text input field or textarea. Must be mixed into a\n<code>Y.Base</code>-derived class to be useful."
+            "description": "`Y.Base` extension that provides core autocomplete logic (but no UI\nimplementation) for a text input field or textarea. Must be mixed into a\n`Y.Base`-derived class to be useful."
         },
         {
             "displayName": "autocomplete-filters",
@@ -995,7 +1157,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "autocomplete-filters-accentfold",
             "name": "autocomplete-filters-accentfold",
-            "description": "<p>\nProvides pre-built accent-folding result matching filters for AutoComplete.\n</p>\n\n<p>\nThese filters are similar to the ones provided by the\n<code>autocomplete-filters</code> module, but use accent-aware comparisons.\nFor example, \"resume\" and \"résumé\" will be considered equal when using the\naccent-folding filters.\n</p>"
+            "description": "Provides pre-built accent-folding result matching filters for AutoComplete.\n\nThese filters are similar to the ones provided by the `autocomplete-filters`\nmodule, but use accent-aware comparisons. For example, \"resume\" and \"résumé\"\nwill be considered equal when using the accent-folding filters."
         },
         {
             "displayName": "autocomplete-highlighters",
@@ -1005,7 +1167,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "autocomplete-highlighters-accentfold",
             "name": "autocomplete-highlighters-accentfold",
-            "description": "<p>\nProvides pre-built accent-folding result highlighters for AutoComplete.\n</p>\n\n<p>\nThese highlighters are similar to the ones provided by the\n<code>autocomplete-highlighters</code> module, but use accent-aware\ncomparisons. For example, \"resume\" and \"résumé\" will be considered equal when\nusing the accent-folding highlighters.\n</p>"
+            "description": "Provides pre-built accent-folding result highlighters for AutoComplete.\n\nThese highlighters are similar to the ones provided by the `autocomplete-\nhighlighters` module, but use accent-aware comparisons. For example, \"resume\"\nand \"résumé\" will be considered equal when using the accent-folding\nhighlighters."
         },
         {
             "displayName": "autocomplete-list",
@@ -1030,12 +1192,12 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "base",
             "name": "base",
-            "description": "The base-pluginhost submodule adds Plugin support to Base, by augmenting Base with \nPlugin.Host and setting up static (class level) Base.plug and Base.unplug methods."
+            "description": "The base module provides the Base class, which objects requiring attribute and custom event support can extend. \nThe module also provides two ways to reuse code - It augments Base with the Plugin.Host interface which provides \nplugin support and also provides the BaseCore.build method which provides a way to build custom classes using extensions."
         },
         {
             "displayName": "base-base",
             "name": "base-base",
-            "description": "The base-base submodule provides the Base class without the Plugin support, provided by Plugin.Host, \nand without the extension support provided by Base.build."
+            "description": "The base-base submodule provides the Base class without the Plugin support, provided by Plugin.Host, \nand without the extension support provided by BaseCore.build."
         },
         {
             "displayName": "base-build",
@@ -1043,14 +1205,39 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "The base-build submodule provides Base.build functionality, which\ncan be used to create custom classes, by aggregating extensions onto \na main class."
         },
         {
+            "displayName": "base-core",
+            "name": "base-core",
+            "description": "<p>The base-core module provides the BaseCore class, the lightest version of Base, \nwhich provides Base's basic lifecycle management and ATTRS construction support, \nbut doesn't fire init/destroy or attribute change events.</p> \n\n<p>It mixes in AttributeCore, which is the lightest version of Attribute</p>"
+        },
+        {
             "displayName": "base-pluginhost",
             "name": "base-pluginhost",
             "description": "The base-pluginhost submodule adds Plugin support to Base, by augmenting Base with \nPlugin.Host and setting up static (class level) Base.plug and Base.unplug methods."
         },
         {
+            "displayName": "button",
+            "name": "button",
+            "description": "A Button Widget"
+        },
+        {
+            "displayName": "button-core",
+            "name": "button-core",
+            "description": "Provides an interface for working with button-like DOM nodes"
+        },
+        {
+            "displayName": "button-group",
+            "name": "button-group",
+            "description": "A Widget to create groups of buttons"
+        },
+        {
+            "displayName": "button-plugin",
+            "name": "button-plugin",
+            "description": "A Button Plugin"
+        },
+        {
             "displayName": "cache",
             "name": "cache",
-            "description": "Provides support to use Cache as a Plugin to a Base-based class."
+            "description": "The Cache utility provides a common configurable interface for components to\ncache and retrieve data from a local JavaScript struct."
         },
         {
             "displayName": "cache-base",
@@ -1088,6 +1275,16 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "The Charts widget provides an api for displaying data\ngraphically."
         },
         {
+            "displayName": "charts-base",
+            "name": "charts-base",
+            "description": "The AreaSeries class renders quantitative data on a graph by creating a fill between 0\nand the relevant data points."
+        },
+        {
+            "displayName": "charts-legend",
+            "name": "charts-legend",
+            "description": "Adds legend functionality to charts."
+        },
+        {
             "displayName": "classnamemanager",
             "name": "classnamemanager",
             "description": "Contains a singleton (ClassNameManager) that enables easy creation and caching of \nprefixed class names."
@@ -1099,8 +1296,7 @@ YUI.add("yuidoc-meta", function(Y) {
         },
         {
             "displayName": "collection",
-            "name": "collection",
-            "description": "Collection utilities beyond what is provided in the YUI core"
+            "name": "collection"
         },
         {
             "displayName": "console",
@@ -1113,11 +1309,6 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "<p>Provides Plugin.ConsoleFilters plugin class.</p>\n\n<p>This plugin adds the ability to control which Console entries display by filtering on category and source. Two groups of checkboxes are added to the Console footer, one for categories and the other for sources.  Only those messages that match a checked category or source are displayed.</p>"
         },
         {
-            "displayName": "controller",
-            "name": "controller",
-            "description": "Provides URL-based routing using HTML5 `pushState()` or the location hash."
-        },
-        {
             "displayName": "cookie",
             "name": "cookie",
             "description": "Utilities for cookie management"
@@ -1125,7 +1316,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "createlink-base",
             "name": "createlink-base",
-            "description": "Adds prompt style link creation. Adds an override for the <a href=\"Plugin.ExecCommand.html#method_COMMANDS.createlink\">createlink execCommand</a>."
+            "description": "Adds prompt style link creation. Adds an override for the\n<a href=\"Plugin.ExecCommand.html#method_COMMANDS.createlink\">createlink execCommand</a>."
         },
         {
             "displayName": "dataschema",
@@ -1175,7 +1366,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "datasource-function",
             "name": "datasource-function",
-            "description": "Provides a DataSource implementation which can be used to retrieve data from a custom function."
+            "description": "Provides a DataSource implementation which can be used to retrieve data from\na custom function."
         },
         {
             "displayName": "datasource-get",
@@ -1215,12 +1406,32 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "datatable",
             "name": "datatable",
-            "description": "The DataTable widget provides a progressively enhanced DHTML control for\ndisplaying tabular data across A-grade browsers."
+            "description": "A Widget for displaying tabular data.  The base implementation of DataTable\nprovides the ability to dynamically generate an HTML table from a set of column\nconfigurations and row data.\n\nTwo classes are included in the `datatable-base` module: `Y.DataTable` and\n`Y.DataTable.Base`."
         },
         {
             "displayName": "datatable-base",
             "name": "datatable-base",
-            "description": "Provides the base DataTable implementation, which can be extended to add\nadditional functionality, such as sorting or scrolling."
+            "description": "A Widget for displaying tabular data.  The base implementation of DataTable\nprovides the ability to dynamically generate an HTML table from a set of column\nconfigurations and row data.\n\nTwo classes are included in the `datatable-base` module: `Y.DataTable` and\n`Y.DataTable.Base`."
+        },
+        {
+            "displayName": "datatable-base-deprecated",
+            "name": "datatable-base-deprecated",
+            "description": "Provides the base DataTable implementation, which can be extended to add\nadditional functionality, such as sorting or scrolling.\n\nDEPRECATED. As of YUI 3.5.0, DataTable has been rebuilt.  This module\ncorresponds to the 3.4.1 version of DataTable and will be removed from the\nlibrary in a future version.\n\nSee http://yuilibrary.com/yui/docs/migration.html for help upgrading to the\nlatest version.\n\nFor complete API docs for the classes in this and other deprecated\nDataTable-related modules, refer to the static API doc files in the 3.4.1\ndownload at http://yui.zenfs.com/releases/yui3/yui_3.4.1.zip"
+        },
+        {
+            "displayName": "datatable-body",
+            "name": "datatable-body",
+            "description": "View class responsible for rendering the `<tbody>` section of a table. Used as\nthe default `bodyView` for `Y.DataTable.Base` and `Y.DataTable` classes."
+        },
+        {
+            "displayName": "datatable-column-widths",
+            "name": "datatable-column-widths",
+            "description": "Adds basic, programmatic column width support to DataTable via column\nconfiguration property `width` and method `table.setColumnWidth(id, width);`."
+        },
+        {
+            "displayName": "datatable-core",
+            "name": "datatable-core",
+            "description": "The core implementation of the `DataTable` and `DataTable.Base` Widgets."
         },
         {
             "displayName": "datatable-datasource",
@@ -1228,34 +1439,74 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "Plugs DataTable with DataSource integration."
         },
         {
+            "displayName": "datatable-datasource-deprecated",
+            "name": "datatable-datasource-deprecated",
+            "description": "Plugs DataTable with DataSource integration.\n\nDEPRECATED. As of YUI 3.5.0, DataTable has been rebuilt.  This module\nis designed to work with `datatable-base-deprecated` (effectively the 3.4.1\nversion of DataTable) and will be removed from the library in a future version.\n\nSee http://yuilibrary.com/yui/docs/migration.html for help upgrading to the\nlatest version.\n\nFor complete API docs for the classes in this and other deprecated\nDataTable-related modules, refer to the static API doc files in the 3.4.1\ndownload at http://yui.zenfs.com/releases/yui3/yui_3.4.1.zip"
+        },
+        {
+            "displayName": "datatable-deprecated",
+            "name": "datatable-deprecated",
+            "description": "The DataTable widget provides a progressively enhanced DHTML control for\ndisplaying tabular data across A-grade browsers.\n\nDEPRECATED. As of YUI 3.5.0, DataTable has been rebuilt.  This module\ncorresponds to the 3.4.1 version of DataTable and will be removed from the\nlibrary in a future version.\n\nSee http://yuilibrary.com/yui/docs/migration.html for help upgrading to the\nlatest version.\n\nFor complete API docs for the classes in this and other deprecated\nDataTable-related modules, refer to the static API doc files in the 3.4.1\ndownload at http://yui.zenfs.com/releases/yui3/yui_3.4.1.zip"
+        },
+        {
+            "displayName": "datatable-head",
+            "name": "datatable-head",
+            "description": "View class responsible for rendering the `<thead>` section of a table. Used as\nthe default `headerView` for `Y.DataTable.Base` and `Y.DataTable` classes."
+        },
+        {
+            "displayName": "datatable-message",
+            "name": "datatable-message",
+            "description": "Adds support for a message container to appear in the table.  This can be used\nto indicate loading progress, lack of records, or any other communication\nneeded."
+        },
+        {
+            "displayName": "datatable-mutable",
+            "name": "datatable-mutable",
+            "description": "Adds mutation convenience methods such as `table.addRow(data)` to `Y.DataTable`. (or other built class)."
+        },
+        {
             "displayName": "datatable-scroll",
             "name": "datatable-scroll",
-            "description": "Extends DataTable base to enable x,y, and xy scrolling."
+            "description": "Adds the ability to make the table rows scrollable while preserving the header\nplacement."
+        },
+        {
+            "displayName": "datatable-scroll-deprecated",
+            "name": "datatable-scroll-deprecated",
+            "description": "Extends DataTable base to enable x,y, and xy scrolling.\n\nDEPRECATED. As of YUI 3.5.0, DataTable has been rebuilt.  This module\nis designed to work with `datatable-base-deprecated` (effectively the 3.4.1\nversion of DataTable) and will be removed from the library in a future version.\n\nSee http://yuilibrary.com/yui/docs/migration.html for help upgrading to the\nlatest version.\n\nFor complete API docs for the classes in this and other deprecated\nDataTable-related modules, refer to the static API doc files in the 3.4.1\ndownload at http://yui.zenfs.com/releases/yui3/yui_3.4.1.zip"
         },
         {
             "displayName": "datatable-sort",
             "name": "datatable-sort",
-            "description": "Plugs DataTable with sorting functionality."
+            "description": "Adds support for sorting the table data by API methods `table.sort(...)` or\n`table.toggleSort(...)` or by clicking on column headers in the rendered UI."
+        },
+        {
+            "displayName": "datatable-sort-deprecated",
+            "name": "datatable-sort-deprecated",
+            "description": "Plugs DataTable with sorting functionality.\n\nDEPRECATED. As of YUI 3.5.0, DataTable has been rebuilt.  This module\nis designed to work with `datatable-base-deprecated` (effectively the 3.4.1\nversion of DataTable) and will be removed from the library in a future version.\n\nSee http://yuilibrary.com/yui/docs/migration.html for help upgrading to the\nlatest version.\n\nFor complete API docs for the classes in this and other deprecated\nDataTable-related modules, refer to the static API doc files in the 3.4.1\ndownload at http://yui.zenfs.com/releases/yui3/yui_3.4.1.zip"
+        },
+        {
+            "displayName": "datatable-table",
+            "name": "datatable-table",
+            "description": "View class responsible for rendering a `<table>` from provided data.  Used as\nthe default `view` for `Y.DataTable.Base` and `Y.DataTable` classes."
         },
         {
             "displayName": "datatype",
             "name": "datatype",
-            "description": "The DataType Utility provides type-conversion and string-formatting\nconvenience methods for various JavaScript object types."
+            "description": "The `datatype` module is an alias for three utilities, Y.Date, \nY.Number and Y.XML, that provide type-conversion and string-formatting\nconvenience methods for various JavaScript object types."
         },
         {
             "displayName": "datatype-date",
             "name": "datatype-date",
-            "description": "Date submodule."
+            "description": "The Date Utility provides type-conversion and string-formatting\nconvenience methods for Dates."
         },
         {
             "displayName": "datatype-date-format",
             "name": "datatype-date-format",
-            "description": "Format date submodule implements strftime formatters for javascript based on the\nOpen Group specification defined at\nhttp://www.opengroup.org/onlinepubs/007908799/xsh/strftime.html\nThis implementation does not include modified conversion specifiers (i.e., Ex and Ox)"
+            "description": "Format date module implements strftime formatters for javascript based on the\nOpen Group specification defined at\nhttp://www.opengroup.org/onlinepubs/007908799/xsh/strftime.html\nThis implementation does not include modified conversion specifiers (i.e., Ex and Ox)"
         },
         {
             "displayName": "datatype-date-math",
             "name": "datatype-date-math",
-            "description": "Datatype Date Math submodule."
+            "description": "Date Math submodule."
         },
         {
             "displayName": "datatype-date-parse",
@@ -1265,7 +1516,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "datatype-number",
             "name": "datatype-number",
-            "description": "Number submodule."
+            "description": "The Number Utility provides type-conversion and string-formatting\nconvenience methods for Numbers."
         },
         {
             "displayName": "datatype-number-format",
@@ -1279,13 +1530,12 @@ YUI.add("yuidoc-meta", function(Y) {
         },
         {
             "displayName": "datatype-xml",
-            "name": "datatype-xml",
-            "description": "XML submodule."
+            "name": "datatype-xml"
         },
         {
             "displayName": "datatype-xml-format",
             "name": "datatype-xml-format",
-            "description": "Format XML submodule."
+            "description": "The Number Utility provides type-conversion and string-formatting\nconvenience methods for Numbers."
         },
         {
             "displayName": "datatype-xml-parse",
@@ -1295,17 +1545,17 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "dd",
             "name": "dd",
-            "description": "The Drag & Drop Utility allows you to create a draggable interface efficiently, buffering you from browser-level abnormalities and enabling you to focus on the interesting logic surrounding your particular implementation. This component enables you to create a variety of standard draggable objects with just a few lines of code and then, using its extensive API, add your own specific implementation logic."
+            "description": "The Drag & Drop Utility allows you to create a draggable interface efficiently,\nbuffering you from browser-level abnormalities and enabling you to focus on the interesting\nlogic surrounding your particular implementation. This component enables you to create a\nvariety of standard draggable objects with just a few lines of code and then,\nusing its extensive API, add your own specific implementation logic."
         },
         {
             "displayName": "dd-constrain",
             "name": "dd-constrain",
-            "description": "The Drag & Drop Utility allows you to create a draggable interface efficiently, buffering you from browser-level abnormalities and enabling you to focus on the interesting logic surrounding your particular implementation. This component enables you to create a variety of standard draggable objects with just a few lines of code and then, using its extensive API, add your own specific implementation logic."
+            "description": "The Drag & Drop Utility allows you to create a draggable interface efficiently,\nbuffering you from browser-level abnormalities and enabling you to focus on the interesting\nlogic surrounding your particular implementation. This component enables you to create a\nvariety of standard draggable objects with just a few lines of code and then,\nusing its extensive API, add your own specific implementation logic."
         },
         {
             "displayName": "dd-ddm",
             "name": "dd-ddm",
-            "description": "Extends the dd-ddm-base Class to add support for the viewport shim to allow a draggable node to drag to be dragged over an iframe or any other node that traps mousemove events.\nIt is also required to have Drop Targets enabled, as the viewport shim will contain the shims for the Drop Targets."
+            "description": "Extends the dd-ddm-base Class to add support for the viewport shim to allow a draggable\nanode to drag to be dragged over an iframe or any other node that traps mousemove events.\nIt is also required to have Drop Targets enabled, as the viewport shim will contain the shims for the Drop Targets."
         },
         {
             "displayName": "dd-ddm-base",
@@ -1315,7 +1565,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "dd-ddm-drop",
             "name": "dd-ddm-drop",
-            "description": "Extends the dd-ddm Class to add support for the placement of Drop Target shims inside the viewport shim. It also handles all Drop Target related events and interactions."
+            "description": "Extends the dd-ddm Class to add support for the placement of Drop Target\nshims inside the viewport shim. It also handles all Drop Target related events and interactions."
         },
         {
             "displayName": "dd-delegate",
@@ -1336,6 +1586,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "dd-drop-plugin",
             "name": "dd-drop-plugin",
             "description": "Simple Drop plugin that can be attached to a Node via the plug method."
+        },
+        {
+            "displayName": "dd-gestures",
+            "name": "dd-gestures",
+            "description": "This module is the conditional loaded `dd` module to support gesture events\nin the event that `dd` is loaded onto a device that support touch based events.\n\nThis module is loaded and over rides 2 key methods on `DD.Drag` and `DD.DDM` to\nattach the gesture events. Overrides `DD.Drag._prep` and `DD.DDM._setupListeners`\nmethods as well as set's the property `DD.Drag.START_EVENT` to `gesturemovestart`\nto enable gesture movement instead of mouse based movement."
         },
         {
             "displayName": "dd-plugin",
@@ -1405,12 +1660,22 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "editor-lists",
             "name": "editor-lists",
-            "description": "Handles list manipulation inside the Editor. Adds keyboard manipulation and execCommand support. Adds overrides for the <a href=\"Plugin.ExecCommand.html#method_COMMANDS.insertorderedlist\">insertorderedlist</a> and <a href=\"Plugin.ExecCommand.html#method_COMMANDS.insertunorderedlist\">insertunorderedlist</a> execCommands."
+            "description": "Handles list manipulation inside the Editor. Adds keyboard manipulation and execCommand support.\nAdds overrides for the <a href=\"Plugin.ExecCommand.html#method_COMMANDS.insertorderedlist\">insertorderedlist</a>\nand <a href=\"Plugin.ExecCommand.html#method_COMMANDS.insertunorderedlist\">insertunorderedlist</a> execCommands."
         },
         {
             "displayName": "editor-para",
             "name": "editor-para",
             "description": "Plugin for Editor to paragraph auto wrapping and correction."
+        },
+        {
+            "displayName": "editor-para-base",
+            "name": "editor-para-base",
+            "description": "Base Plugin for Editor to paragraph auto wrapping and correction."
+        },
+        {
+            "displayName": "editor-para-ie",
+            "name": "editor-para-ie",
+            "description": "Extends EditorParaBase with IE support"
         },
         {
             "displayName": "editor-tab",
@@ -1433,9 +1698,14 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "DOM event listener abstraction layer"
         },
         {
+            "displayName": "event-contextmenu",
+            "name": "event-contextmenu",
+            "description": "Provides extended keyboard support for the \"contextmenu\" event such that:\n<ul>\n<li>The browser's default context menu is suppressed regardless of how the event is triggered.</li>\n<li>On Windows the \"contextmenu\" event is fired consistently regardless of whether the user pressed the Menu key or Shift + F10.</li>\n<li>When the \"contextmenu\" event is fired via the keyboard, the pageX, pageY, clientX and clientY properties reference the center of the event target. This makes it easy for \"contextmenu\" event listeners to position an overlay in response to the event by not having to worry about special handling of the x and y coordinates based on the device that fired the event.</li>\n<li>For Webkit and Gecko on the Mac it enables the use of the Shift + Control + Option + M keyboard shortcut to fire the \"contextmenu\" event, which (by default) is only available when VoiceOver (the screen reader on the Mac) is enabled.</li>\n<li>For Opera on the Mac it ensures the \"contextmenu\" event is fired when the user presses Shift + Command + M (Opera's context menu keyboard shortcut).</li>\n</ul>"
+        },
+        {
             "displayName": "event-custom",
             "name": "event-custom",
-            "description": "Adds event facades, preventable default behavior, and bubbling.\nevents."
+            "description": "Custom event engine, DOM event listener abstraction layer, synthetic DOM\nevents."
         },
         {
             "displayName": "event-custom-base",
@@ -1455,7 +1725,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "event-flick",
             "name": "event-flick",
-            "description": "Adds support for a \"flick\" event, which is fired at the end of a touch or mouse based flick gesture, and provides \nvelocity of the flick, along with distance and time information."
+            "description": "Adds support for a \"flick\" event, which is fired at the end of a touch or mouse based flick gesture, and provides\nvelocity of the flick, along with distance and time information.\n\n<p>Documentation for the flick event can be found on the <a href=\"../classes/YUI.html#event_flick\">YUI</a> global,\nalong with the other supported events.</p>"
         },
         {
             "displayName": "event-focus",
@@ -1465,7 +1735,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "event-gestures",
             "name": "event-gestures",
-            "description": "Adds lower level support for \"gesturemovestart\", \"gesturemove\" and \"gesturemoveend\" events, which can be used to create drag/drop\ninteractions which work across touch and mouse input devices. They correspond to \"touchstart\", \"touchmove\" and \"touchend\" on a touch input\ndevice, and \"mousedown\", \"mousemove\", \"mouseup\" on a mouse based input device."
+            "description": "The gestures module provides gesture events such as \"flick\", which normalize user interactions\nacross touch and mouse or pointer based input devices. This layer can be used by application developers\nto build input device agnostic components which behave the same in response to either touch or mouse based\ninteraction.\n\n<p>Documentation for events added by this module can be found in the event document for the <a href=\"../classes/YUI.html#events\">YUI</a> global.</p>"
         },
         {
             "displayName": "event-hover",
@@ -1490,7 +1760,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "event-move",
             "name": "event-move",
-            "description": "Adds lower level support for \"gesturemovestart\", \"gesturemove\" and \"gesturemoveend\" events, which can be used to create drag/drop\ninteractions which work across touch and mouse input devices. They correspond to \"touchstart\", \"touchmove\" and \"touchend\" on a touch input\ndevice, and \"mousedown\", \"mousemove\", \"mouseup\" on a mouse based input device."
+            "description": "Adds lower level support for \"gesturemovestart\", \"gesturemove\" and \"gesturemoveend\" events, which can be used to create drag/drop\ninteractions which work across touch and mouse input devices. They correspond to \"touchstart\", \"touchmove\" and \"touchend\" on a touch input\ndevice, and \"mousedown\", \"mousemove\", \"mouseup\" on a mouse based input device.\n\n<p>Documentation for the gesturemove triplet of events can be found on the <a href=\"../classes/YUI.html#event_gesturemove\">YUI</a> global,\nalong with the other supported events.</p>"
         },
         {
             "displayName": "event-outside",
@@ -1508,14 +1778,24 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "Simulate user interaction by generating native DOM events."
         },
         {
+            "displayName": "event-synthetic",
+            "name": "event-synthetic",
+            "description": "Define new DOM events that can be subscribed to from Nodes."
+        },
+        {
+            "displayName": "event-tap",
+            "name": "event-tap",
+            "description": "The tap module provides a gesture events, \"tap\", which normalizes user interactions\nacross touch and mouse or pointer based input devices.  This can be used by application developers\nto build input device agnostic components which behave the same in response to either touch or mouse based\ninteraction.\n\n'tap' is like a touchscreen 'click', only it requires much less finger-down time since it listens to touch events,\nbut reverts to mouse events if touch is not supported."
+        },
+        {
             "displayName": "event-touch",
             "name": "event-touch",
-            "description": "Adds touch event facade normalization properties (touches, changedTouches, targetTouches etc.) to the DOM event facade"
+            "description": "Adds touch event facade normalization properties (touches, changedTouches, targetTouches etc.) to the DOM event facade. Adds\ntouch events to the DOM events whitelist."
         },
         {
             "displayName": "event-valuechange",
             "name": "event-valuechange",
-            "description": "Adds a synthetic <code>valueChange</code> event that fires when the\n<code>value</code> property of an input field or textarea changes as a result\nof a keystroke, mouse operation, or input method editor (IME) input event."
+            "description": "Adds a synthetic `valuechange` event that fires when the `value` property of an\n`<input>` or `<textarea>` node changes as a result of a keystroke, mouse\noperation, or input method editor (IME) input event.\n\nUsage:\n\n    YUI().use('event-valuechange', function (Y) {\n        Y.one('#my-input').on('valuechange', function (e) {\n            Y.log('previous value: ' + e.prevVal);\n            Y.log('new value: ' + e.newVal);\n        });\n    });"
         },
         {
             "displayName": "exec-command",
@@ -1528,14 +1808,39 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "Contains the core of YUI's feature test architecture."
         },
         {
+            "displayName": "file",
+            "name": "file",
+            "description": "The File class provides a wrapper for a file pointer, either through an HTML5 \nimplementation or as a reference to a file pointer stored in Flash. The File wrapper \nalso implements the mechanics for uploading a file and tracking its progress."
+        },
+        {
+            "displayName": "file-flash",
+            "name": "file-flash",
+            "description": "The FileFlash class provides a wrapper for a file pointer stored in Flash. The File wrapper \nalso implements the mechanics for uploading a file and tracking its progress."
+        },
+        {
+            "displayName": "file-html5",
+            "name": "file-html5",
+            "description": "The FileHTML5 class provides a wrapper for a file pointer in an HTML5 The File wrapper \nalso implements the mechanics for uploading a file and tracking its progress."
+        },
+        {
             "displayName": "frame",
             "name": "frame",
             "description": "Creates a wrapper around an iframe. It loads the content either from a local\nfile or from script and creates a local YUI instance bound to that new window and document."
         },
         {
+            "displayName": "gesture-simulate",
+            "name": "gesture-simulate",
+            "description": "Simulate high-level user gestures by generating a set of native DOM events."
+        },
+        {
             "displayName": "get",
             "name": "get",
-            "description": "Provides a mechanism to fetch remote resources and\ninsert them into a document."
+            "description": "Provides dynamic loading of remote JavaScript and CSS resources."
+        },
+        {
+            "displayName": "get-nodejs",
+            "name": "get-nodejs",
+            "description": "NodeJS specific Get module used to load remote resources. It contains the same signature as the default Get module so there is no code change needed."
         },
         {
             "displayName": "graphics",
@@ -1543,9 +1848,23 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "<p>The `Graphics` module provides a JavaScript API for creating shapes in a variety of formats across \n a <a href=\"http://developer.yahoo.com/yui/articles/gbs\">browser test baseline</a>. \n Based on device and browser capabilities, `Graphics` leverages <a href=\"http://www.w3.org/TR/SVG/\">SVG</a>, \n <a href=\"http://www.w3.org/TR/html5/the-canvas-element.html\">Canvas</a> and <a href=\"http://www.w3.org/TR/NOTE-VML\">VML</a> \n to render its graphical elements.</p>\n\n <p>The `Graphics` module features a <a href=\"../classes/Graphic.html\">`Graphic`</a> class that allows you to easily create and manage shapes. \n Currently, a <a href=\"../classes/Graphic.html\">`Graphic`</a> instance can be used to create predifined shapes and free-form polygons with fill \n and stroke properties.</p>  \n\n <p>The `Graphics` module normalizes an API through the use of alias and implementation classes that share\n interfaces. Each alias class points to an appropriate implementation class dependent on the browser's \n capabilities. There should rarely, if ever, be a need to interact directly with an implementation class.</p>\n\n <p>Below is a list of available classes. \n     <ul>\n         <li><a href=\"../classes/Graphic.html\">`Graphic`</a>\n         <li><a href=\"../classes/Shape.html\">`Shape`</a>\n         <li><a href=\"../classes/Circle.html\">`Circle`</a>\n         <li><a href=\"../classes/Ellipse.html\">`Ellipse`</a>\n         <li><a href=\"../classes/Rect.html\">`Rect`</a>\n         <li><a href=\"../classes/Path.html\">`Path`</a>\n     </ul>\n You can also extend the `Shape` class to create your own custom shape classes.</p>"
         },
         {
+            "displayName": "handlebars",
+            "name": "handlebars",
+            "description": "Handlebars is a simple template language inspired by Mustache.\n\nThis is a YUI port of the original Handlebars project, which can be found at\n<https://github.com/wycats/handlebars.js>."
+        },
+        {
+            "displayName": "handlebars-base",
+            "name": "handlebars-base",
+            "description": "Provides basic Handlebars template rendering functionality. Use this module when\nyou only need to render pre-compiled templates."
+        },
+        {
+            "displayName": "handlebars-compiler",
+            "name": "handlebars-compiler",
+            "description": "Handlebars parser and compiler. Use this module when you need to compile\nHandlebars templates."
+        },
+        {
             "displayName": "highlight",
-            "name": "highlight",
-            "description": "Provides methods for highlighting strings within other strings by wrapping\nthem in HTML."
+            "name": "highlight"
         },
         {
             "displayName": "highlight-accentfold",
@@ -1595,7 +1914,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "io",
             "name": "io",
-            "description": "Base IO functionality. Provides basic XHR transport support."
+            "description": "The IO class is a utility that brokers HTTP requests through a simplified\ninterface.  Specifically, it allows JavaScript to make HTTP requests to\na resource without a page reload.  The underlying transport for making\nsame-domain requests is the XMLHttpRequest object.  IO can also use\nFlash, if specified as a transport, for cross-domain requests.\n\n    Y.io('/some/url', {\n        on: {\n            success: function(id, e) {\n                Y.log(e.responseText);\n            }\n        }\n    });"
         },
         {
             "displayName": "io-base",
@@ -1608,6 +1927,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "Extends IO to enable HTML form data serialization, when specified\nin the transaction's configuration object."
         },
         {
+            "displayName": "io-nodejs",
+            "name": "io-nodejs",
+            "description": "Node.js override for IO, methods are mixed into `Y.IO`"
+        },
+        {
             "displayName": "io-queue",
             "name": "io-queue",
             "description": "Extends IO to implement Queue for synchronous\ntransaction processing."
@@ -1615,7 +1939,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "io-upload-iframe",
             "name": "io-upload-iframe",
-            "description": "Extends the IO  to enable file uploads, with HTML forms \nusing an iframe as the transport medium."
+            "description": "Extends the IO  to enable file uploads, with HTML forms\nusing an iframe as the transport medium."
         },
         {
             "displayName": "io-xdr",
@@ -1648,14 +1972,24 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "Adds support for parsing complex callback identifiers from the jsonp url.\nThis includes callback=foo[1]bar.baz[\"goo\"] as well as referencing methods\nin the YUI instance."
         },
         {
+            "displayName": "lazy-model-list",
+            "name": "lazy-model-list",
+            "description": "Provides the LazyModelList class, which is a ModelList subclass that manages\nplain objects instead of fully instantiated model instances."
+        },
+        {
             "displayName": "loader",
             "name": "loader",
-            "description": "Loader dynamically loads script and css files.  It includes the dependency\ninfo for the version of the library in use, and will automatically pull in\ndependencies for the modules requested.  It supports rollup files and will\nautomatically use these when appropriate in order to minimize the number of\nhttp connections required to load all of the dependencies.  It can load the\nfiles from the Yahoo! CDN, and it can utilize the combo service provided on\nthis network to reduce the number of http connections required to download\nYUI files."
+            "description": "Loader dynamically loads script and css files.  It includes the dependency\ninformation for the version of the library in use, and will automatically pull in\ndependencies for the modules requested. It can also load the\nfiles from the Yahoo! CDN, and it can utilize the combo service provided on\nthis network to reduce the number of http connections required to download\nYUI files."
         },
         {
             "displayName": "loader-base",
             "name": "loader-base",
-            "description": "Loader dynamically loads script and css files.  It includes the dependency\ninfo for the version of the library in use, and will automatically pull in\ndependencies for the modules requested.  It supports rollup files and will\nautomatically use these when appropriate in order to minimize the number of\nhttp connections required to load all of the dependencies.  It can load the\nfiles from the Yahoo! CDN, and it can utilize the combo service provided on\nthis network to reduce the number of http connections required to download\nYUI files."
+            "description": "Loader dynamically loads script and css files.  It includes the dependency\ninformation for the version of the library in use, and will automatically pull in\ndependencies for the modules requested. It can also load the\nfiles from the Yahoo! CDN, and it can utilize the combo service provided on\nthis network to reduce the number of http connections required to download\nYUI files."
+        },
+        {
+            "displayName": "matrix",
+            "name": "matrix",
+            "description": "Matrix is a class that allows for the manipulation of a transform matrix.\nThis class is a work in progress."
         },
         {
             "displayName": "model",
@@ -1666,6 +2000,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "model-list",
             "name": "model-list",
             "description": "Provides an API for managing an ordered list of Model instances."
+        },
+        {
+            "displayName": "model-sync-rest",
+            "name": "model-sync-rest",
+            "description": "An extension which provides a RESTful XHR sync implementation that can be mixed\ninto a Model or ModelList subclass."
         },
         {
             "displayName": "node",
@@ -1682,6 +2021,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "The Node Utility provides a DOM-like interface for interacting with DOM nodes."
         },
         {
+            "displayName": "node-data",
+            "name": "node-data",
+            "description": "Provides methods for managing custom Node data."
+        },
+        {
             "displayName": "node-deprecated",
             "name": "node-deprecated"
         },
@@ -1689,6 +2033,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "node-event-delegate",
             "name": "node-event-delegate",
             "description": "Functionality to make the node a delegated event container"
+        },
+        {
+            "displayName": "node-event-html5",
+            "name": "node-event-html5",
+            "description": "Adds HTML5 event support to Node."
         },
         {
             "displayName": "node-event-simulate",
@@ -1725,6 +2074,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "Extended Node interface for managing regions and screen positioning.\nAdds support for positioning elements and normalizes window size and scroll detection."
         },
         {
+            "displayName": "node-scroll-info",
+            "name": "node-scroll-info",
+            "description": "Provides the ScrollInfo Node plugin, which exposes convenient events and methods\nrelated to scrolling."
+        },
+        {
             "displayName": "node-style",
             "name": "node-style",
             "description": "Extended Node interface for managing node styles."
@@ -1742,7 +2096,32 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "panel",
             "name": "panel",
-            "description": "Provides a Panel widget, a widget that mimics the functionality of a regular OS window.\nComes with Standard Module support, XY Positioning, Alignment Support, Stack (z-index) support,\nmodality, auto-focus and auto-hide functionality, and header/footer button support."
+            "description": "Provides a Panel widget, a widget that mimics the functionality of a regular OS\nwindow. Comes with Standard Module support, XY Positioning, Alignment Support,\nStack (z-index) support, modality, auto-focus and auto-hide functionality, and\nheader/footer button support."
+        },
+        {
+            "displayName": "parallel",
+            "name": "parallel",
+            "description": "A concurrent parallel processor to help in running several async functions."
+        },
+        {
+            "displayName": "pjax",
+            "name": "pjax",
+            "description": "Provides seamless, gracefully degrading Pjax (pushState + Ajax) functionality,\nwhich makes it easy to progressively enhance standard links on the page so that\nthey can be loaded normally in old browsers, or via Ajax (with HTML5 history\nsupport) in newer browsers."
+        },
+        {
+            "displayName": "pjax-base",
+            "name": "pjax-base",
+            "description": "`Y.Router` extension that provides the core plumbing for enhanced navigation\nimplemented using the pjax technique (HTML5 pushState + Ajax)."
+        },
+        {
+            "displayName": "pjax-content",
+            "name": "pjax-content",
+            "description": "`Y.Router` extension that provides the content fetching and handling needed to\nimplement the standard pjax (HTMP5 pushState + Ajax) functionality."
+        },
+        {
+            "displayName": "pjax-plugin",
+            "name": "pjax-plugin",
+            "description": "Node plugin that provides seamless, gracefully degrading pjax functionality."
         },
         {
             "displayName": "plugin",
@@ -1772,7 +2151,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "querystring",
             "name": "querystring",
-            "description": "<p>The QueryString module adds support for serializing JavaScript objects into\nquery strings and parsing JavaScript objects from query strings format.</p>\n\n<p>The QueryString namespace is added to your YUI instance including static methods\nY.QueryString.parse(..) and Y.QueryString.stringify(..).</p>\n\n<p>The <code>querystring</code> module is a rollup of <code>querystring-parse</code> and\n<code>querystring-stringify</code>.</p>\n\n<p>As their names suggest, <code>querystring-parse</code> adds support for parsing\nQuery String data (Y.QueryString.parse) and <code>querystring-stringify</code> for serializing\nJavaScript data into Query Strings (Y.QueryString.stringify).  You may choose to\ninclude either of the submodules individually if you don't need the\ncomplementary functionality, or include the rollup for both.</p>"
+            "description": "The QueryString module adds support for serializing JavaScript objects into\nquery strings and parsing JavaScript objects from query strings format.\n\nThe QueryString namespace is added to your YUI instance including static methods\n`Y.QueryString.parse(..)` and `Y.QueryString.stringify(..)`.\n\nThe `querystring` module is a alias for `querystring-parse` and\n`querystring-stringify`.\n\nAs their names suggest, `querystring-parse` adds support for parsing\nQuery String data (`Y.QueryString.parse`) and `querystring-stringify` for serializing\nJavaScript data into Query Strings (`Y.QueryString.stringify`).  You may choose to\ninclude either of the submodules individually if you don't need the\ncomplementary functionality, or include the rollup for both."
         },
         {
             "displayName": "querystring-parse",
@@ -1850,14 +2229,14 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "Adds a `proxyNode` attribute and resizes it instead of the actual node. __very similar to DDProxy__\n\n    var resize = new Y.Resize({\n        //Selector of the node to resize\n        node: '#demo'\n    });\n    resize.plug(Y.Plugin.ResizeProxy);"
         },
         {
-            "displayName": "rls",
-            "name": "rls",
-            "description": "RLS (Remote Loader Service) Support"
-        },
-        {
             "displayName": "rollup",
             "name": "rollup",
             "description": "Optional automatic rollup logic for reducing http connections\nwhen not using a combo service."
+        },
+        {
+            "displayName": "router",
+            "name": "router",
+            "description": "Provides URL-based routing using HTML5 `pushState()` or the location hash."
         },
         {
             "displayName": "scrollview",
@@ -1882,7 +2261,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "scrollview-paginator",
             "name": "scrollview-paginator",
-            "description": "Provides a plugin, which adds pagination support to ScrollView instances"
+            "description": "Provides a plugin that adds pagination support to ScrollView instances"
         },
         {
             "displayName": "scrollview-scrollbars",
@@ -1952,7 +2331,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "swf",
             "name": "swf",
-            "description": "The SWF utility is a tool for embedding Flash applications in HTML pages."
+            "description": "Embed a Flash applications in a standard manner and communicate with it\nvia External Interface."
         },
         {
             "displayName": "swfdetect",
@@ -1967,12 +2346,17 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "test",
             "name": "test",
-            "description": "YUI JavaScript Testing Framework"
+            "description": "YUI Test Framework"
+        },
+        {
+            "displayName": "test-console",
+            "name": "test-console",
+            "description": "Provides a specialized log console widget that's pre-configured to display YUI\nTest output with no extra configuration."
         },
         {
             "displayName": "text",
             "name": "text",
-            "description": "Provides utility methods for splitting strings on word breaks and determining\nwhether a character index represents a word boundary."
+            "description": "Text utilities."
         },
         {
             "displayName": "text-accentfold",
@@ -1990,14 +2374,44 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "Provides the transition method for Node.\nTransition has no API of its own, but adds the transition method to Node."
         },
         {
+            "displayName": "transition-timer",
+            "name": "transition-timer",
+            "description": "Provides the base Transition class, for animating numeric properties."
+        },
+        {
             "displayName": "uploader",
             "name": "uploader",
-            "description": "The Uploader widget is a tool for uploading files to the server."
+            "description": "Provides UI for selecting multiple files and functionality for \nuploading multiple files to the server with support for either\nhtml5 or Flash transport mechanisms, automatic queue management,\nupload progress monitoring, and error events."
+        },
+        {
+            "displayName": "uploader-deprecated",
+            "name": "uploader-deprecated",
+            "description": "Attention: this is the 3.4.1 `uploader` module has been deprecated in favor of a new \nuploader with an HTML5 layer. Please refer to the new Uploader User Guide for migration \ninformation.\n\nThis module uses Flash player transport to upload files to the server, with support for \nfile filtering, multiple file uploads and progress monitoring."
+        },
+        {
+            "displayName": "uploader-flash",
+            "name": "uploader-flash",
+            "description": "This module provides a UI for file selection and multiple file upload capability using\nFlash as a transport engine.\nThe supported features include: automatic upload queue management, upload progress\ntracking, file filtering, server response retrieval and error reporting."
+        },
+        {
+            "displayName": "uploader-html5",
+            "name": "uploader-html5",
+            "description": "This module provides a UI for file selection and multiple file upload capability using\nHTML5 XMLHTTPRequest Level 2 as a transport engine.\nThe supported features include: automatic upload queue management, upload progress\ntracking, drag-and-drop support, server response retrieval and error reporting."
+        },
+        {
+            "displayName": "uploader-queue",
+            "name": "uploader-queue",
+            "description": "The class manages a queue of files that should be uploaded to the server.\nIt initializes the required number of uploads, tracks them as they progress,\nand automatically advances to the next upload when a preceding one has completed."
         },
         {
             "displayName": "view",
             "name": "view",
             "description": "Represents a logical piece of an application's user interface, and provides a\nlightweight, overridable API for rendering content and handling delegated DOM\nevents on a container element."
+        },
+        {
+            "displayName": "view-node-map",
+            "name": "view-node-map",
+            "description": "View extension that adds a static `getByNode()` method that returns the nearest\nView instance associated with the given Node (similar to Widget's `getByNode()`\nmethod)."
         },
         {
             "displayName": "widget",
@@ -2012,7 +2426,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "widget-autohide",
             "name": "widget-autohide",
-            "description": "A widget-level extension that provides ability to hide widget when \ncertain events occur."
+            "description": "A widget-level extension that provides ability to hide widget when\ncertain events occur."
         },
         {
             "displayName": "widget-base",
@@ -2027,7 +2441,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "widget-buttons",
             "name": "widget-buttons",
-            "description": "Provides header/footer button support for Widgets that implement the WidgetStdMod extension"
+            "description": "Provides header/body/footer button support for Widgets that use the\n`WidgetStdMod` extension."
         },
         {
             "displayName": "widget-child",
@@ -2095,9 +2509,19 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "This class adds a sugar class to allow access to YQL (http://developer.yahoo.com/yql/)."
         },
         {
+            "displayName": "yql-nodejs",
+            "name": "yql-nodejs",
+            "description": "NodeJS plugin for YQL to use native request to make requests instead of JSONP.\nNot required by the user, it's conditionally loaded and should \"just work\"."
+        },
+        {
+            "displayName": "yql-winjs",
+            "name": "yql-winjs",
+            "description": "WinJS plugin for YQL to use native XHR to make requests instead of JSONP.\nNot required by the user, it's conditionally loaded and should \"just work\"."
+        },
+        {
             "displayName": "yui",
             "name": "yui",
-            "description": "Throttles a call to a method based on the time between calls. This method is attached\nto the `Y` object and is <a href=\"../classes/YUI.html#method_throttle\">documented there</a>."
+            "description": "The YUI module contains the components required for building the YUI seed\nfile.  This includes the script loading mechanism, a simple queue, and\nthe core utilities for the library."
         },
         {
             "displayName": "yui-base",
@@ -2117,7 +2541,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "yui-throttle",
             "name": "yui-throttle",
-            "description": "Throttles a call to a method based on the time between calls. This method is attached\nto the `Y` object and is <a href=\"../classes/YUI.html#method_throttle\">documented there</a>."
+            "description": "Throttles a call to a method based on the time between calls. This method is attached\nto the `Y` object and is <a href=\"../classes/YUI.html#method_throttle\">documented there</a>.\n\n    var fn = Y.throttle(function() {\n        counter++;\n    });\n\n    for (i; i< 35000; i++) {\n        out++;\n        fn();\n    }"
         },
         {
             "displayName": "yui3",
