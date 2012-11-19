@@ -135,7 +135,7 @@ var Rating = A.Component.create(
 		ATTRS: {
 			/**
 			 * Whether the Rating is disabled or not. Disabled Ratings don't allow
-	         * hover or click, just display selected stars.
+			 * hover or click, just display selected stars.
 			 *
 			 * @attribute disabled
 			 * @default false
@@ -148,7 +148,7 @@ var Rating = A.Component.create(
 
 			/**
 			 * If <code>true</code> could be reseted (i.e., have no values
-	         * selected).
+			 * selected).
 			 *
 			 * @attribute canReset
 			 * @default true
@@ -175,7 +175,7 @@ var Rating = A.Component.create(
 
 			/**
 			 * <a href="NodeList.html">NodeList</a> of elements used on the
-	         * Rating. Each element is one Star.
+			 * Rating. Each element is one Star.
 			 *
 			 * @attribute elements
 			 * @writeOnce
@@ -188,7 +188,7 @@ var Rating = A.Component.create(
 
 			/**
 			 * Hidden input to handle the selected value. This hidden input
-	         * replace the radio elements and keep the same name.
+			 * replace the radio elements and keep the same name.
 			 *
 			 * @attribute hiddenInput
 			 * @type Node
@@ -199,8 +199,8 @@ var Rating = A.Component.create(
 
 			/**
 			 * Name of the <a
-	         * href="Rating.html#config_hiddenInput">hiddenInput</a> element. If
-	         * not specified will use the name of the replaced radio.
+			 * href="Rating.html#config_hiddenInput">hiddenInput</a> element. If
+			 * not specified will use the name of the replaced radio.
 			 *
 			 * @attribute inputName
 			 * @default ''
@@ -225,8 +225,8 @@ var Rating = A.Component.create(
 
 			/**
 			 * DOM Node to display the text of the StarRating. If not
-             * specified try to query using HTML_PARSER an element inside
-             * boundingBox which matches <code>aui-rating-label-element</code>.
+			 * specified try to query using HTML_PARSER an element inside
+			 * boundingBox which matches <code>aui-rating-label-element</code>.
 			 *
 			 * @attribute labelNode
 			 * @default Generated div element.
@@ -253,8 +253,8 @@ var Rating = A.Component.create(
 
 			/**
 			 * If <code>true</code> will extract the value of the
-	         * <code>title</code> attribute on the radio, and use it on the
-	         * generated Rating elements.
+			 * <code>title</code> attribute on the radio, and use it on the
+			 * generated Rating elements.
 			 *
 			 * @attribute showTitle
 			 * @default true
@@ -281,7 +281,7 @@ var Rating = A.Component.create(
 
 			/**
 			 * If set, will be used when there is no DOM <code>title</code> on the
-	         * radio elements.
+			 * radio elements.
 			 *
 			 * @attribute title
 			 * @default null
@@ -435,7 +435,7 @@ var Rating = A.Component.create(
 
 			/**
 			 * Add the <code>className</code> on the the <code>index</code> element
-		     * and all the previous Rating elements.
+			 * and all the previous Rating elements.
 			 *
 			 * @method fillTo
 			 * @param {Number} index Index to be selected
@@ -471,7 +471,7 @@ var Rating = A.Component.create(
 
 			/**
 			 * Check if the Rating element can fire the custom events. Disabled
-		     * elements won't fire nothing.
+			 * elements won't fire nothing.
 			 *
 			 * @method _canFireCustomEvent
 			 * @param {EventFacade} event
@@ -489,8 +489,8 @@ var Rating = A.Component.create(
 
 			/**
 			 * Create rating elements based on the <code>size</code>
-             * attribute. It's only invoked when the HTML_PARSER does not find
-             * nothing.
+			 * attribute. It's only invoked when the HTML_PARSER does not find
+			 * nothing.
 			 *
 			 * @method _createElements
 			 * @protected
@@ -525,11 +525,11 @@ var Rating = A.Component.create(
 				// create publish function for kweight optimization
 				var publish = function(name, fn) {
 					instance.publish(name, {
-			            defaultFn: fn,
-			            queuable: false,
-			            emitFacade: true,
-			            bubbles: true
-			        });
+						defaultFn: fn,
+						queuable: false,
+						emitFacade: true,
+						bubbles: true
+					});
 				};
 
 				/**
@@ -713,7 +713,7 @@ var Rating = A.Component.create(
 			_renderLabel: function() {
 				var instance = this;
 
-				instance.get(CONTENT_BOX).append(
+				instance.get(CONTENT_BOX).setContent(
 					instance.get(LABEL_NODE)
 				);
 			},
@@ -796,7 +796,7 @@ var Rating = A.Component.create(
 
 			/**
 			 * Get the <code>index</code> element input data stored on <a
-		     * href="Rating.html#property_inputElementsData">inputElementsData</a>.
+			 * href="Rating.html#property_inputElementsData">inputElementsData</a>.
 			 *
 			 * @method _getInputData
 			 * @protected
@@ -972,7 +972,7 @@ var ThumbRating = A.Component.create(
 
 			/**
 			 * Add the <code>className</code> on the the <code>index</code> element
-		     * and all the previous Rating elements.
+			 * and all the previous Rating elements.
 			 *
 			 * @method fillTo
 			 * @param {Number} index Index to be selected
@@ -1001,4 +1001,4 @@ A.Rating = Rating;
 A.StarRating = Rating;
 A.ThumbRating = ThumbRating;
 
-}, '@VERSION@' ,{requires:['aui-base'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base']});
