@@ -170,17 +170,19 @@ var ImageGallery = A.Component.create(
 					return A.merge(
 						{
 							containers: paginatorEl,
-							pageContainerTemplate: TPL_LINK_CONTAINER,
 							pageLinkContent: A.bind(instance._setThumbContent, instance),
-							pageLinkTemplate: TPL_LINK,
-							template: TEMPLATE_PAGINATOR,
-							total: totalLinks,
 							on: {
 								changeRequest: function(event) {
 									// fire changeRequest from ImageGallery passing the "state" object from Paginator
 									instance.fire('changeRequest', { state: event.state })
 								}
-							}
+							},
+							TPL: {
+								defaultOutput: TEMPLATE_PAGINATOR,
+								pageContainer: TPL_LINK_CONTAINER,
+								pageLink: TPL_LINK,
+								total: totalLinks
+							},
 						},
 						value
 					);
