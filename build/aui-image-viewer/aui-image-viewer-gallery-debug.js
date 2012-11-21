@@ -67,13 +67,13 @@ var L = A.Lang,
 	CSS_OVERLAY_HIDDEN = getCN(OVERLAY, HIDDEN),
 
 	TEMPLATE_PLAYING_LABEL = '(playing)',
-	TEMPLATE_PAGINATOR = '<div class="'+CSS_IMAGE_GALLERY_PAGINATOR_CONTENT+'">{PageLinks}</div>',
+	TEMPLATE_PAGINATOR = '<div class="' + CSS_IMAGE_GALLERY_PAGINATOR_CONTENT + '">{PageLinks}</div>',
 
 	TPL_LINK = '<span class="' + CSS_IMAGE_GALLERY_PAGINATOR_ENTRY + '"><span class="' + CSS_IMAGE_GALLERY_PAGINATOR_THUMB+'"></span></span>',
 	TPL_LINK_CONTAINER = '<div class="' + CSS_IMAGE_GALLERY_PAGINATOR_LINKS + '"></div>',
-	TPL_PAGINATOR_CONTAINER = '<div class="'+concat(CSS_OVERLAY_HIDDEN, CSS_IMAGE_GALLERY_PAGINATOR)+'"></div>',
-	TPL_PLAYER_CONTAINER = '<div class="'+CSS_IMAGE_GALLERY_PLAYER+'"></div>',
-	TPL_PLAYER_CONTENT = '<span class="'+CSS_IMAGE_GALLERY_PLAYER_CONTENT+'"></span>';
+	TPL_PAGINATOR_CONTAINER = '<div class="' + concat(CSS_OVERLAY_HIDDEN, CSS_IMAGE_GALLERY_PAGINATOR) + '"></div>',
+	TPL_PLAYER_CONTAINER = '<div class="' + CSS_IMAGE_GALLERY_PLAYER + '"></div>',
+	TPL_PLAYER_CONTENT = '<span class="' + CSS_IMAGE_GALLERY_PLAYER_CONTENT + '"></span>';
 
 /**
  * <p><img src="assets/images/aui-image-viewer-gallery/main.png"/></p>
@@ -130,7 +130,7 @@ var ImageGallery = A.Component.create(
 		ATTRS: {
 			/**
 			 * If <code>true</code> the slide show will be played when the
-	         * ImageGallery is displayed.
+			 * ImageGallery is displayed.
 			 *
 			 * @attribute autoPlay
 			 * @default false
@@ -155,7 +155,7 @@ var ImageGallery = A.Component.create(
 
 			/**
 			 * <a href="Paginator.html">Paginator</a> configuration Object. The
-	         * <code>Paginator</code> handles the thumbnails control.
+			 * <code>Paginator</code> handles the thumbnails control.
 			 *
 			 * @attribute paginator
 			 * @default <a href="Paginator.html">Paginator</a> configuration Object.
@@ -165,25 +165,28 @@ var ImageGallery = A.Component.create(
 				value: {},
 				setter: function(value) {
 					var instance = this;
-					var paginatorEl = instance.get(PAGINATOR_EL);
-					var totalLinks = instance.get(TOTAL_LINKS);
 
 					return A.merge(
 						{
-							containers: paginatorEl,
-							pageLinkContent: A.bind(instance._setThumbContent, instance),
-							on: {
-								changeRequest: function(event) {
-									// fire changeRequest from ImageGallery passing the "state" object from Paginator
-									instance.fire('changeRequest', { state: event.state })
-								}
-							},
 							TPL: {
 								defaultOutput: TEMPLATE_PAGINATOR,
 								pageContainer: TPL_LINK_CONTAINER,
 								pageLink: TPL_LINK,
-								total: totalLinks
+								total: instance.get(TOTAL_LINKS)
 							},
+							containers: instance.get(PAGINATOR_EL),
+							on: {
+								changeRequest: function(event) {
+									// fire changeRequest from ImageGallery passing the "state" object from Paginator
+									instance.fire(
+										'changeRequest',
+										{
+											state: event.state
+										}
+									)
+								}
+							},
+							pageLinkContent: A.bind(instance._setThumbContent, instance)
 						},
 						value
 					);
@@ -193,7 +196,7 @@ var ImageGallery = A.Component.create(
 
 			/**
 			 * Element which contains the <a href="Paginator.html">Paginator</a>
-	         * with the thumbnails.
+			 * with the thumbnails.
 			 *
 			 * @attribute paginatorEl
 			 * @default Generated HTML div.
@@ -409,7 +412,7 @@ var ImageGallery = A.Component.create(
 
 			/**
 			 * Hide the <a href="Paginator.html">Paginator</a> with the thumbnails
-		     * list.
+			 * list.
 			 *
 			 * @method hidePaginator
 			 */
@@ -451,10 +454,10 @@ var ImageGallery = A.Component.create(
 			 * <p>Show the ImageGallery.</p>
 			 *
 			 * <p><strong>NOTE:</strong>Overloads the <a
-		     * href="ImageViewer.html">ImageViewer</a> show method to not loadImage, the
-		     * changeRequest now is responsible to do that if we invoke the superclass
-		     * show method its loading the image, and the changeRequest loads again,
-		     * avoiding double request.</p>
+			 * href="ImageViewer.html">ImageViewer</a> show method to not loadImage, the
+			 * changeRequest now is responsible to do that if we invoke the superclass
+			 * show method its loading the image, and the changeRequest loads again,
+			 * avoiding double request.</p>
 			 *
 			 * @method show
 			 */
@@ -484,7 +487,7 @@ var ImageGallery = A.Component.create(
 
 			/**
 			 * Show the <a href="Paginator.html">Paginator</a> with the thumbnails
-		     * list.
+			 * list.
 			 *
 			 * @method showPaginator
 			 */
