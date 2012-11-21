@@ -56,16 +56,15 @@ var Lang = A.Lang,
  *
  * Quick Example:<br/>
  *
- * <pre><code>
- * var component = new A.Carousel(
- *		{
- *			intervalTime: 1,
- *			contentBox: '#demo',
- *			activeIndex: 0,
- *			height: 254,
- *			width: 940
- *		}
- *	).render();
+ * <pre><code>var component = new A.Carousel(
+ * 	{
+ *		contentBox: '#demo',
+ *		intervalTime: 1,
+ *		activeIndex: 0,
+ *		height: 254,
+ *		width: 940
+ * 	}
+ * ).render();
  * </code></pre>
  *
  * Check the list of <a href="Carousel.html#configattributes">Configuration Attributes</a> available for
@@ -96,6 +95,13 @@ var Carousel = A.Component.create(
 		 * @static
 		 */
 		ATTRS: {
+			/**
+			 * Index of the first visible item of the carousel
+			 *
+			 * @attribute activeIndex
+			 * @default 0
+			 * @type {Integer}
+			 */
 			activeIndex: {
 				value: 0,
 				setter: '_setActiveIndex'
@@ -135,10 +141,26 @@ var Carousel = A.Component.create(
 			itemSelector: {
 				value: '>*'
 			},
+
+			/**
+			 * Node container of the navigation items
+			 *
+			 * @attribute nodeMenu
+			 * @default null
+			 * @type {Node | String}
+			 */
 			nodeMenu: {
 				value: null,
 				setter: '_setNodeMenu'
 			},
+
+			/**
+			 * CSS selector to match the navigation items
+			 *
+			 * @attribute nodeMenuItemSelector
+			 * @default .aui-carousel-menu-item
+			 * @type {String}
+			 */
 			nodeMenuItemSelector: {
 				value: DOT + CSS_MENU_ITEM
 			},
