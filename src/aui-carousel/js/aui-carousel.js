@@ -1,5 +1,17 @@
 var Lang = A.Lang,
 
+	ACTIVE_INDEX = 'activeIndex',
+	ANIMATION_TIME = 'animationTime',
+	CONTENT_BOX = 'contentBox',
+	DOT = '.',
+	DURATION = 'duration',
+	INTERVAL_TIME = 'intervalTime',
+	ITEM_SELECTOR = 'itemSelector',
+	NODE = 'node',
+	NODE_MENU = 'nodeMenu',
+	NODE_MENU_ITEM_SELECTOR = 'nodeMenuItemSelector',
+	OPACITY = 'opacity',
+	PLAYING = 'playing',
 	STR_BLANK = ' ',
 
 	CAROUSEL = 'carousel',
@@ -18,8 +30,6 @@ var Lang = A.Lang,
 	CSS_MENU_PREV = getCN(CAROUSEL, 'menu', 'prev'),
 	CSS_MENU_ITEM_DEFAULT = [CSS_MENU_ITEM, CSS_MENU_INDEX].join(STR_BLANK),
 	CSS_MENU_ITEM_ACTIVE = [CSS_MENU_ITEM, CSS_MENU_INDEX, CSS_MENU_ACTIVE].join(STR_BLANK),
-
-	DOT = '.',
 
 	GESTURE_FLICK_FILTER_DISTANCE = 75,
 	GESTURE_FLICK_FILTER_VELOCITY = 0.5,
@@ -88,7 +98,7 @@ var Carousel = A.Component.create(
 
 				instance.animation = new A.Anim(
 					{
-						duration: instance.get('animationTime'),
+						duration: instance.get(ANIMATION_TIME),
 						to: {
 							opacity: 1
 						}
@@ -100,7 +110,7 @@ var Carousel = A.Component.create(
 				var instance = this;
 
 				instance._updateNodeSelection();
-				instance.nodeMenu = instance.get('nodeMenu');
+				instance.nodeMenu = instance.get(NODE_MENU);
 
 				instance._updateMenuNodes();
 			},
@@ -120,10 +130,9 @@ var Carousel = A.Component.create(
 				);
 
 				instance._bindMenu();
-
 				instance._bindItemGestures();
 
-				if (instance.get('playing') === true) {
+				if (instance.get(PLAYING) === true) {
 					instance._afterPlayingChange(
 						{
 							prevVal: false,
@@ -136,13 +145,13 @@ var Carousel = A.Component.create(
 			syncUI: function() {
 				var instance = this;
 
-				instance._uiSetActiveIndex(instance.get('activeIndex'));
+				instance._uiSetActiveIndex(instance.get(ACTIVE_INDEX));
 			},
 
 			item: function(val) {
 				var instance = this;
 
-				instance.set('activeIndex', val);
+				instance.set(ACTIVE_INDEX, val);
 			},
 
 			next: function() {
@@ -154,13 +163,13 @@ var Carousel = A.Component.create(
 			pause: function() {
 				var instance = this;
 
-				instance.set('playing', false);
+				instance.set(PLAYING, false);
 			},
 
 			play: function() {
 				var instance = this;
 
-				instance.set('playing', true);
+				instance.set(PLAYING, true);
 			},
 
 			prev: function() {
@@ -176,7 +185,7 @@ var Carousel = A.Component.create(
 					event.newVal,
 					{
 						prevVal: event.prevVal,
-						animate: instance.get('playing'),
+						animate: instance.get(PLAYING),
 						src: event.src
 					}
 				);
@@ -185,7 +194,7 @@ var Carousel = A.Component.create(
 			_afterAnimationTimeChange: function(event) {
 				var instance = this;
 
-				instance.animation.set('duration', event.newVal);
+				instance.animation.set(DURATION, event.newVal);
 			},
 
 			_afterItemSelectorChange: function(event) {
@@ -213,6 +222,7 @@ var Carousel = A.Component.create(
 				var instance = this;
 
 				var menuPlayItem = instance.nodeMenu.one(SELECTOR_MENU_PLAY_OR_PAUSE);
+
 				var playing = event.newVal;
 
 				var fromClass = CSS_MENU_PAUSE;
@@ -239,7 +249,7 @@ var Carousel = A.Component.create(
 
 				var menu = instance.nodeMenu;
 
-				var nodeMenuItemSelector = instance.get('nodeMenuItemSelector');
+				var nodeMenuItemSelector = instance.get(NODE_MENU_ITEM_SELECTOR);
 
 				menu.delegate('click', instance._onClickDelegate, nodeMenuItemSelector, instance);
 
@@ -249,7 +259,7 @@ var Carousel = A.Component.create(
 			_bindItemGestures: function() {
 				var instance = this;
 
-				var contentBox = instance.get('contentBox');
+				var contentBox = instance.get(CONTENT_BOX);
 
 				var nodeSelection = contentBox.all(DOT + CSS_ITEM);
 
@@ -279,7 +289,9 @@ var Carousel = A.Component.create(
 			_createIndexRandom: function() {
 				var instance = this;
 
-				return Math.ceil(Math.random() * instance.nodeSelection.size()) - 1;
+				var randomIndex = Math.random() * instance.nodeSelection.size();
+
+				return Math.ceil(randomIndex) - 1;
 			},
 
 			_createIntervalRotationTask: function() {
@@ -295,7 +307,7 @@ var Carousel = A.Component.create(
 							}
 						);
 					},
-					instance.get('intervalTime') * 1000
+					instance.get(INTERVAL_TIME) * 1000
 				);
 			},
 
@@ -306,7 +318,7 @@ var Carousel = A.Component.create(
 					oldImage.removeClass(CSS_ITEM_TRANSITION);
 				}
 
-				newImage.setStyle('opacity', '1');
+				newImage.setStyle(OPACITY, 1);
 			},
 
 			_onAnimationStart: function(event, newImage, oldImage, newMenuItem, oldMenuItem) {
@@ -330,11 +342,11 @@ var Carousel = A.Component.create(
 			_onClickDelegate: function(event) {
 				var instance = this;
 
-				event.preventDefault();
+				var handler;
 
 				var currentTarget = event.currentTarget;
 
-				var handler;
+				event.preventDefault();
 
 				if (currentTarget.hasClass(CSS_MENU_INDEX)) {
 					handler = instance._onMenuItemClick;
@@ -383,13 +395,13 @@ var Carousel = A.Component.create(
 
 				var newIndex = instance.menuNodes.indexOf(event.currentTarget);
 
-				instance.set('activeIndex', newIndex, MAP_EVENT_INFO);
+				instance.set(ACTIVE_INDEX, newIndex, MAP_EVENT_INFO);
 			},
 
 			_onMenuPlayClick: function(event) {
 				var instance = this;
 
-				this.set('playing', !this.get('playing'));
+				this.set(PLAYING, !this.get(PLAYING));
 			},
 
 			_renderMenu: function() {
@@ -397,12 +409,12 @@ var Carousel = A.Component.create(
 
 				var menu = TPL_MENU.render(
 					{
-						items: instance.nodeSelection.getDOM(),
-						activeIndex: instance.get('activeIndex')
+						activeIndex: instance.get(ACTIVE_INDEX),
+						items: instance.nodeSelection.getDOM()
 					}
 				);
 
-				instance.get('contentBox').appendChild(menu);
+				instance.get(CONTENT_BOX).appendChild(menu);
 
 				return menu;
 			},
@@ -414,7 +426,9 @@ var Carousel = A.Component.create(
 					val = instance._createIndexRandom();
 				}
 				else {
-					val = Math.max(Math.min(val, instance.nodeSelection.size()), -1);
+					var minVal = Math.min(val, instance.nodeSelection.size());
+
+					val = Math.max(minVal, -1);
 				}
 
 				return val;
@@ -435,29 +449,25 @@ var Carousel = A.Component.create(
 				var onEnd = null;
 
 				var newImage = instance.nodeSelection.item(newVal);
-
 				var menuNodes = instance.menuNodes;
 
 				var newMenuItem = menuNodes.item(newVal);
 
-				instance.animation.set('node', newImage);
+				instance.animation.set(NODE, newImage);
+
+				newImage.addClass(CSS_ITEM_ACTIVE);
+				newImage.setStyle(OPACITY, 1);
 
 				if (objOptions && !Lang.isUndefined(objOptions.prevVal)) {
 					var prevVal = objOptions.prevVal;
-
-					newImage.setStyle('opacity', '0');
 
 					oldMenuItem = menuNodes.item(prevVal);
 					oldImage = instance.nodeSelection.item(prevVal);
 
 					oldImage.replaceClass(CSS_ITEM_ACTIVE, CSS_ITEM_TRANSITION);
+					oldImage.setStyle(OPACITY, 0);
 
 					instance.animation.stop();
-				}
-				else {
-					newImage.addClass(CSS_ITEM_ACTIVE);
-
-					newImage.setStyle('opacity', '1');
 				}
 
 				onStart = instance.animation.on(
@@ -479,7 +489,9 @@ var Carousel = A.Component.create(
 				);
 
 				if (objOptions) {
-					if (objOptions.animate) {
+					var animate = objOptions.animate;
+
+					if (animate) {
 						instance.animation.run();
 					}
 					else {
@@ -487,7 +499,7 @@ var Carousel = A.Component.create(
 						instance.animation.fire('end');
 					}
 
-					if (objOptions.src == UI_SRC && objOptions.animate) {
+					if (objOptions.src == UI_SRC && animate) {
 						instance._createIntervalRotationTask();
 					}
 				}
@@ -496,12 +508,11 @@ var Carousel = A.Component.create(
 			_updateIndexNext: function(options) {
 				var instance = this;
 
-				var currentIndex = instance.get('activeIndex');
-				var nodeSelectionSize = instance.nodeSelection.size();
+				var nodeSelectionSize = instance.nodeSelection.size() - 1;
 
-				var newIndex = currentIndex + 1;
+				var newIndex = instance.get(ACTIVE_INDEX) + 1;
 
-				if (newIndex > (nodeSelectionSize - 1)) {
+				if (newIndex > (nodeSelectionSize)) {
 					newIndex = 0;
 				}
 
@@ -509,15 +520,13 @@ var Carousel = A.Component.create(
 					options.src = UI_SRC;
 				}
 
-				instance.set('activeIndex', newIndex, options);
+				instance.set(ACTIVE_INDEX, newIndex, options);
 			},
 
 			_updateIndexPrev: function(options) {
 				var instance = this;
 
-				var currentIndex = instance.get('activeIndex');
-
-				var newIndex = currentIndex - 1;
+				var newIndex = instance.get(ACTIVE_INDEX) - 1;
 
 				if (newIndex < 0) {
 					newIndex = instance.nodeSelection.size() - 1;
@@ -527,7 +536,7 @@ var Carousel = A.Component.create(
 					options.src = UI_SRC;
 				}
 
-				instance.set('activeIndex', newIndex, options);
+				instance.set(ACTIVE_INDEX, newIndex, options);
 			},
 
 			_updateMenuNodes: function() {
@@ -539,9 +548,9 @@ var Carousel = A.Component.create(
 			_updateNodeSelection: function() {
 				var instance = this;
 
-				var itemSelector = instance.get('itemSelector');
+				var itemSelector = instance.get(ITEM_SELECTOR);
 
-				var nodeSelection = instance.get('contentBox').all(itemSelector);
+				var nodeSelection = instance.get(CONTENT_BOX).all(itemSelector);
 
 				nodeSelection.addClass(CSS_ITEM);
 
