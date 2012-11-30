@@ -396,42 +396,6 @@ var DatePickerSelect = A.Component.create(
 				value: 'en',
 				validator: 'isString'
 			},
-
-			/**
-			 * Current day number.
-			 *
-			 * @attribute currentDay
-			 * @default Current day
-			 * @type Number
-			 */
-			currentDay: {
-				setter: 'toInt',
-				value: (new Date()).getDate()
-			},
-
-			/**
-			 * Current month number.
-			 *
-			 * @attribute currentMonth
-			 * @default Current month
-			 * @type Number
-			 */
-			currentMonth: {
-				setter: 'toInt',
-				value: (new Date()).getMonth()
-			},
-
-			/**
-			 * Current year number.
-			 *
-			 * @attribute currentYear
-			 * @default Current year
-			 * @type Number
-			 */
-			currentYear: {
-				setter: 'toInt',
-				value: (new Date()).getFullYear()
-			}
 		},
 
 		/**
@@ -553,9 +517,11 @@ var DatePickerSelect = A.Component.create(
 			 * @return {Object}
 			 */
 			_normalizeYearMonth: function(year, month, day) {
-				var instance = this,
-					selectedDates = instance.calendar.get('selectedDates'),
-					date = selectedDates.length ? selectedDates[0] : new Date();
+				var instance = this;
+
+				var selectedDates = instance.calendar.get('selectedDates');
+
+				var date = selectedDates.length ? selectedDates[0] : new Date();
 
 				if (!isValue(day)) {
 					day = date.getDate();
@@ -656,20 +622,29 @@ var DatePickerSelect = A.Component.create(
 			 * @protected
 			 */
 			_onSelectChange: function(event) {
-				var instance = this,
-					target = event.currentTarget || event.target,
-					monthChanged = target.test(DOT+CSS_DATEPICKER_MONTH),
+				var instance = this;
 
-					currentDay = instance.get(DAY_NODE).val(),
-					currentMonth = instance.get(MONTH_NODE).val(),
-					currentYear = instance.get(YEAR_NODE).val(),
+				var target = event.currentTarget || event.target;
 
-					validDay = (currentDay > -1),
-					validMonth = (currentMonth > -1),
-					validYear = (currentYear > -1),
+				var monthChanged = target.test(DOT + CSS_DATEPICKER_MONTH);
 
-					date = new Date(currentYear, currentMonth, currentDay);
+				var currentDay = instance.get(DAY_NODE).val();
+				var currentMonth = instance.get(MONTH_NODE).val();
+				var currentYear = instance.get(YEAR_NODE).val();
 
+				var validDay = (currentDay > -1);
+				var validMonth = (currentMonth > -1);
+				var validYear = (currentYear > -1);
+
+				if (validMonth && validYear) {
+					var totalMonthDays = instance._getDaysInMonth(currentYear, currentMonth);
+
+					if (currentDay > totalMonthDays) {
+						currentDay = totalMonthDays;
+					}
+				}
+
+				var date = new Date(currentYear, currentMonth, currentDay);
 
 				if (!validDay || !validMonth || !validYear) {
 					instance.calendar._clearSelection();
@@ -704,10 +679,21 @@ var DatePickerSelect = A.Component.create(
 			 * @return {Date}
 			 */
 			getCurrentDate: function(offsetYear, offsetMonth, offsetDay) {
-				var instance = this,
-					date = instance._normalizeYearMonth();
+				var instance = this;
 
-				return DateMath.getDate(date.year + toInt(offsetYear), date.month + toInt(offsetMonth), date.day + toInt(offsetDay));
+				var date = instance._normalizeYearMonth();
+
+				var newDay = date.day + toInt(offsetDay);
+				var newMonth = date.month + toInt(offsetMonth);
+				var newYear = date.year + toInt(offsetYear);
+
+				var totalMonthDays = instance.getDaysInMonth(date.year, newMonth);
+
+				if (newDay > totalMonthDays) {
+					newDay = totalMonthDays;
+				}
+
+				return DateMath.getDate(newYear, newMonth, newDay);
 			},
 
 			/**
