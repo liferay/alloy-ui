@@ -6,10 +6,9 @@ var Lang = A.Lang,
 	ACTIVE = 'active',
 	ACTIVE_BORDER_WIDTH = 'activeBorderWidth',
 	ACTIVE_CELL = 'activeCell',
+	ACTIVE_COORD_CHANGE = 'activeCoordChange',
 	ACTIVE_ROW = 'activeRow',
-	ACTIVE_ROW_CHANGE = 'activeRowChange',
 	BORDER = 'border',
-	CELL = 'cell',
 	CELLS = 'cells',
 	CHILDREN = 'children',
 	HIGHLIGHT = 'highlight',
@@ -58,6 +57,7 @@ var DataTableHighlight = A.Base.create(
 						'<div class="{border}"></div>' +
 					'</div>',
 
+		_lastActiveRow: null,
 		_nodes: null,
 
 		initializer: function() {
@@ -72,7 +72,7 @@ var DataTableHighlight = A.Base.create(
 				overlayActive: host.getClassName(HIGHLIGHT, OVERLAY, ACTIVE)
 			};
 
-			instance.afterHostEvent(ACTIVE_ROW_CHANGE, instance._afterActiveRowChange);
+			instance.afterHostEvent(ACTIVE_COORD_CHANGE, instance._afterActiveCoordChange);
 			instance.afterHostEvent(SELECTION_CHANGE, instance._afterSelectionChange);
 		},
 
@@ -128,11 +128,14 @@ var DataTableHighlight = A.Base.create(
 			};
 		},
 
-		_afterActiveRowChange: function(event) {
+		_afterActiveCoordChange: function(event) {
 			var instance = this,
+				host = instance.get(HOST),
 				activeBorderWidth = instance.get(ACTIVE_BORDER_WIDTH),
 				overlayActiveNode = instance.get(OVERLAY_ACTIVE_NODE),
-				classNames = instance.CLASS_NAMES;
+				classNames = instance.CLASS_NAMES,
+				activeRow = host.get(ACTIVE_ROW),
+				lastActiveRow = instance._lastActiveRow;
 
 			if (!instance.get(TYPE)) {
 				return;
@@ -140,17 +143,19 @@ var DataTableHighlight = A.Base.create(
 
 			instance.clear();
 
-			if (event.prevVal) {
-				event.prevVal.removeClass(classNames.active);
+			if (lastActiveRow) {
+				lastActiveRow.removeClass(classNames.active);
 			}
 
-			if (event.newVal) {
+			if (activeRow) {
 				instance._alignBorder(
 					overlayActiveNode, instance.getActiveRegion(),
 					activeBorderWidth);
 
-				event.newVal.addClass(classNames.active);
+				activeRow.addClass(classNames.active);
 			}
+
+			instance._lastActiveRow = activeRow;
 		},
 
 		_afterSelectionChange: function(event) {
