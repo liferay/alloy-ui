@@ -770,6 +770,7 @@ var Calendar = A.Component.create(
 				var newDay = date.day + toInt(offsetDay);
 				var newMonth = date.month + toInt(offsetMonth);
 				var newYear = date.year + toInt(offsetYear);
+
 				var totalMonthDays = instance.getDaysInMonth(date.year, newMonth);
 
 				if (newDay > totalMonthDays) {
