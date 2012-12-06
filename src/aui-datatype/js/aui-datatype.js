@@ -729,6 +729,17 @@ A.mix(A.DataType.DateMath, {
 	},
 
 	/**
+	* Set the time fields from a given date to the last possible hour.
+	* @method toLastHour
+	* @param {Date}	date	The JavaScript Date for which the time fields will be set to the last possible hour
+	* @return {Date}		The JavaScript Date set to the last possible hour
+	*/
+	toLastHour: function(date) {
+		date.setHours(23,59,59,999);
+		return date;
+	},
+
+	/**
 	* Set the time fields from a given date to midnight.
 	* @method toMidnight
 	* @param {Date}	date	The JavaScript Date for which the time fields will be set to midnight

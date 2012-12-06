@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('console', function (Y, NAME) {
 
@@ -1187,10 +1187,7 @@ Y.Console = Y.extend(Console, Y.Widget,
     FOOTER_TEMPLATE :
         '<div class="{console_ft_class}">'+
             '<div class="{console_controls_class}">'+
-                '<label for="{id_guid}" class="{console_pause_label_class}">'+
-                    '<input type="checkbox" class="{console_checkbox_class} '+
-                        '{console_pause_class}" value="1" id="{id_guid}"> '+
-                    '{str_pause}</label>' +
+                '<label class="{console_pause_label_class}"><input type="checkbox" class="{console_checkbox_class} {console_pause_class}" value="1" id="{id_guid}"> {str_pause}</label>' +
                 '<button type="button" class="'+
                     '{console_button_class} {console_clear_class}">{str_clear}'+
                 '</button>'+
@@ -1521,4 +1518,4 @@ Y.Console = Y.extend(Console, Y.Widget,
 });
 
 
-}, '3.7.2', {"requires": ["yui-log", "widget"], "skinnable": true, "lang": ["en", "es", "ja"]});
+}, '3.7.3', {"requires": ["yui-log", "widget"], "skinnable": true, "lang": ["en", "es", "ja"]});

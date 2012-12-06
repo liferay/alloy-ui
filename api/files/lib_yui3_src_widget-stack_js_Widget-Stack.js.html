@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>lib&#x2F;yui3&#x2F;src&#x2F;widget-stack&#x2F;js&#x2F;Widget-Stack.js - AlloyUI</title>
-    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -17,9 +17,9 @@
         </div>
         <div class="yui3-u-1-4 version">
             <div class="version-details">
-                <span class="version-lib">AlloyUI 1.5.0</span>
+                <span class="version-lib">AlloyUI 1.7.0pr3</span>
                 <div class="yui-version">
-                    <span class="version-lib version-lib-yui">YUI 3.4.0</span>
+                    <span class="version-lib version-lib-yui">YUI 3.7.3</span>
                 </div>
             </div>
         </div>
@@ -144,6 +144,8 @@
                 <li><a href="..&#x2F;classes/CanvasRect.html">CanvasRect</a></li>
             
                 <li><a href="..&#x2F;classes/CanvasShape.html">CanvasShape</a></li>
+            
+                <li><a href="..&#x2F;classes/Carousel.html">Carousel</a></li>
             
                 <li><a href="..&#x2F;classes/CartesianChart.html">CartesianChart</a></li>
             
@@ -355,7 +357,7 @@
             
                 <li><a href="..&#x2F;classes/IORequest.html">IORequest</a></li>
             
-                <li><a href="..&#x2F;classes/json.html">json</a></li>
+                <li><a href="..&#x2F;classes/JSON.html">JSON</a></li>
             
                 <li><a href="..&#x2F;classes/JSONPRequest.html">JSONPRequest</a></li>
             
@@ -501,7 +503,7 @@
             
                 <li><a href="..&#x2F;classes/ProgressBar.html">ProgressBar</a></li>
             
-                <li><a href="..&#x2F;classes/querystring.html">querystring</a></li>
+                <li><a href="..&#x2F;classes/QueryString.html">QueryString</a></li>
             
                 <li><a href="..&#x2F;classes/Queue.html">Queue</a></li>
             
@@ -761,6 +763,8 @@
                 <li><a href="..&#x2F;modules/aui-calendar-base.html">aui-calendar-base</a></li>
             
                 <li><a href="..&#x2F;modules/aui-calendar-datepicker-select.html">aui-calendar-datepicker-select</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-carousel.html">aui-carousel</a></li>
             
                 <li><a href="..&#x2F;modules/aui-char-counter.html">aui-char-counter</a></li>
             
@@ -1438,10 +1442,8 @@
          * zIndex will be converted to 0
          *&#x2F;
         zIndex: {
-            value:1,
-            setter: function(val) {
-                return this._setZIndex(val);
-            }
+            value : 0,
+            setter: &#x27;_setZIndex&#x27;
         }
     };
 
@@ -1453,8 +1455,8 @@
      * @type Object
      *&#x2F;
     Stack.HTML_PARSER = {
-        zIndex: function(contentBox) {
-            return contentBox.getStyle(ZINDEX);
+        zIndex: function (srcNode) {
+            return this._parseZIndex(srcNode);
         }
     };
 
@@ -1527,6 +1529,41 @@
          *&#x2F;
         _renderUIStack: function() {
             this._stackNode.addClass(Stack.STACKED_CLASS_NAME);
+        },
+
+        &#x2F;**
+        Parses a &#x60;zIndex&#x60; attribute value from this widget&#x27;s &#x60;srcNode&#x60;.
+
+        @method _parseZIndex
+        @param {Node} srcNode The node to parse a &#x60;zIndex&#x60; value from.
+        @return {Mixed} The parsed &#x60;zIndex&#x60; value.
+        @protected
+        **&#x2F;
+        _parseZIndex: function (srcNode) {
+            var zIndex;
+
+            &#x2F;&#x2F; Prefers how WebKit handles &#x60;z-index&#x60; which better matches the
+            &#x2F;&#x2F; spec:
+            &#x2F;&#x2F;
+            &#x2F;&#x2F; * http:&#x2F;&#x2F;www.w3.org&#x2F;TR&#x2F;CSS2&#x2F;visuren.html#z-index
+            &#x2F;&#x2F; * https:&#x2F;&#x2F;bugs.webkit.org&#x2F;show_bug.cgi?id=15562
+            &#x2F;&#x2F;
+            &#x2F;&#x2F; When a node isn&#x27;t rendered in the document, and&#x2F;or when a
+            &#x2F;&#x2F; node is not positioned, then it doesn&#x27;t have a context to derive
+            &#x2F;&#x2F; a valid &#x60;z-index&#x60; value from.
+            if (!srcNode.inDoc() || srcNode.getStyle(&#x27;position&#x27;) === &#x27;static&#x27;) {
+                zIndex = &#x27;auto&#x27;;
+            } else {
+                &#x2F;&#x2F; Uses &#x60;getComputedStyle()&#x60; because it has greater accuracy in
+                &#x2F;&#x2F; more browsers than &#x60;getStyle()&#x60; does for &#x60;z-index&#x60;.
+                zIndex = srcNode.getComputedStyle(&#x27;zIndex&#x27;);
+            }
+
+            &#x2F;&#x2F; This extension adds a stacking context to widgets, therefore a
+            &#x2F;&#x2F; &#x60;srcNode&#x60; witout a stacking context (i.e. &quot;auto&quot;) will return
+            &#x2F;&#x2F; &#x60;null&#x60; from this DOM parser. This way the widget&#x27;s default or
+            &#x2F;&#x2F; user provided value for &#x60;zIndex&#x60; will be used.
+            return zIndex === &#x27;auto&#x27; ? null : zIndex;
         },
 
         &#x2F;**

@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 if (typeof _yuitest_coverage == "undefined"){
     _yuitest_coverage = {};
@@ -33,7 +33,7 @@ _yuitest_coverage["build/file/file.js"] = {
     path: "build/file/file.js",
     code: []
 };
-_yuitest_coverage["build/file/file.js"].code=["YUI.add('file', function (Y, NAME) {","","    /**","     * The File class provides a wrapper for a file pointer, either through an HTML5 ","     * implementation or as a reference to a file pointer stored in Flash. The File wrapper ","     * also implements the mechanics for uploading a file and tracking its progress.","     * @module file","     * @main file","     * @since 3.5.0","     */     ","","    /**","     * `Y.File` serves as an alias for either <a href=\"FileFlash.html\">`Y.FileFlash`</a>","     * or <a href=\"FileHTML5.html\">`Y.FileHTML5`</a>, depending on the feature set available","     * in a specific browser.","     *","     * @class File","     */",""," var Win = Y.config.win;",""," if (Win && Win.File && Win.FormData && Win.XMLHttpRequest) {","    Y.File = Y.FileHTML5;"," }",""," else {","    Y.File = Y.FileFlash;"," }","","}, '3.7.2', {\"requires\": [\"file-flash\", \"file-html5\"]});"];
+_yuitest_coverage["build/file/file.js"].code=["YUI.add('file', function (Y, NAME) {","","    /**","     * The File class provides a wrapper for a file pointer, either through an HTML5 ","     * implementation or as a reference to a file pointer stored in Flash. The File wrapper ","     * also implements the mechanics for uploading a file and tracking its progress.","     * @module file","     * @main file","     * @since 3.5.0","     */     ","","    /**","     * `Y.File` serves as an alias for either <a href=\"FileFlash.html\">`Y.FileFlash`</a>","     * or <a href=\"FileHTML5.html\">`Y.FileHTML5`</a>, depending on the feature set available","     * in a specific browser.","     *","     * @class File","     */",""," var Win = Y.config.win;",""," if (Win && Win.File && Win.FormData && Win.XMLHttpRequest) {","    Y.File = Y.FileHTML5;"," }",""," else {","    Y.File = Y.FileFlash;"," }","","}, '3.7.3', {\"requires\": [\"file-flash\", \"file-html5\"]});"];
 _yuitest_coverage["build/file/file.js"].lines = {"1":0,"20":0,"22":0,"23":0,"27":0};
 _yuitest_coverage["build/file/file.js"].functions = {"(anonymous 1):1":0};
 _yuitest_coverage["build/file/file.js"].coveredLines = 5;
@@ -73,4 +73,4 @@ Y.File = Y.FileHTML5;
 Y.File = Y.FileFlash;
  }
 
-}, '3.7.2', {"requires": ["file-flash", "file-html5"]});
+}, '3.7.3', {"requires": ["file-flash", "file-html5"]});

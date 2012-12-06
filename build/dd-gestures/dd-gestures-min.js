@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add("dd-gestures",function(e,t){e.DD.Drag.START_EVENT="gesturemovestart",e.DD.Drag.prototype._prep=function(){this._dragThreshMet=!1;var t=this.get("node"),n=e.DD.DDM;t.addClass(n.CSS_PREFIX+"-draggable"),t.on(e.DD.Drag.START_EVENT,e.bind(this._handleMouseDownEvent,this),{minDistance:0,minTime:0}),t.on("gesturemoveend",e.bind(this._handleMouseUp,this),{standAlone:!0}),t.on("dragstart",e.bind(this._fixDragStart,this))},e.DD.DDM._setupListeners=function(){var t=e.DD.DDM;this._createPG(),this._active=!0,e.one(e.config.doc).on("gesturemove",e.throttle(e.bind(t._move,t),t.get("throttleTime")),{standAlone:!0})}},"3.7.2",{requires:["dd-drag","event-synthetic","event-gestures"]});
+YUI.add("dd-gestures",function(e,t){e.DD.Drag.START_EVENT="gesturemovestart",e.DD.Drag.prototype._prep=function(){this._dragThreshMet=!1;var t=this.get("node"),n=e.DD.DDM;t.addClass(n.CSS_PREFIX+"-draggable"),t.on(e.DD.Drag.START_EVENT,e.bind(this._handleMouseDownEvent,this),{minDistance:this.get("clickPixelThresh"),minTime:this.get("clickTimeThresh")}),t.on("gesturemoveend",e.bind(this._handleMouseUp,this),{standAlone:!0}),t.on("dragstart",e.bind(this._fixDragStart,this))};var n=e.DD.Drag.prototype._unprep;e.DD.Drag.prototype._unprep=function(){var e=this.get("node");n.call(this),e.detachAll("gesturemoveend")},e.DD.DDM._setupListeners=function(){var t=e.DD.DDM;this._createPG(),this._active=!0,e.one(e.config.doc).on("gesturemove",e.throttle(e.bind(t._move,t),t.get("throttleTime")),{standAlone:!0})}},"3.7.3",{requires:["dd-drag","event-synthetic","event-gestures"]});

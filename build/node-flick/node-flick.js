@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('node-flick', function (Y, NAME) {
 
@@ -121,11 +121,11 @@ YUI.add('node-flick', function (Y, NAME) {
         },
 
         /**
-         * The constraining box relative to which the flick animation and bounds should be calculated.
+         * Time between flick animation frames.
          *
-         * @attribute boundingBox
-         * @type Node
-         * @default parentNode
+         * @attribute step
+         * @type Number
+         * @default 10
          */
         step : {
             value:10
@@ -527,4 +527,4 @@ YUI.add('node-flick', function (Y, NAME) {
     Y.Plugin.Flick = Flick;
 
 
-}, '3.7.2', {"requires": ["classnamemanager", "transition", "event-flick", "plugin"], "skinnable": true});
+}, '3.7.3', {"requires": ["classnamemanager", "transition", "event-flick", "plugin"], "skinnable": true});

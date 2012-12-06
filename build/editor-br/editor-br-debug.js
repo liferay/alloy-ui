@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('editor-br', function (Y, NAME) {
 
@@ -35,15 +35,13 @@ YUI.add('editor-br', function (Y, NAME) {
                 e.halt();
                 return;
             }
-            if (e.keyCode == 13) {
+            if (e.keyCode === 13) {
                 var host = this.get(HOST), inst = host.getInstance(),
-                    sel = new inst.EditorSelection(),
-                    last = '';
+                    sel = new inst.EditorSelection();
 
                 if (sel) {
                     if (Y.UA.ie) {
                         if (!sel.anchorNode || (!sel.anchorNode.test(LI) && !sel.anchorNode.ancestor(LI))) {
-                            var host = this.get(HOST);
                             host.execCommand('inserthtml', inst.EditorSelection.CURSOR);
                             e.halt();
                         }
@@ -90,9 +88,9 @@ YUI.add('editor-br', function (Y, NAME) {
                     * Dropping in the empty textnode and then removing it causes FF to redraw and
                     * remove the "ghost cursors"
                     */
-                    var inst = this.get(HOST).getInstance();
-                    var d = e.changedNode;
-                    var t = inst.config.doc.createTextNode(' ');
+                    var inst = this.get(HOST).getInstance(),
+                        d = e.changedNode,
+                        t = inst.config.doc.createTextNode(' ');
                     d.appendChild(t);
                     d.removeChild(t);
                     break;
@@ -128,11 +126,11 @@ YUI.add('editor-br', function (Y, NAME) {
             }
         }
     });
-    
+
     Y.namespace('Plugin');
-    
+
     Y.Plugin.EditorBR = EditorBR;
 
 
 
-}, '3.7.2', {"requires": ["editor-base"]});
+}, '3.7.3', {"requires": ["editor-base"]});

@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 if (typeof _yuitest_coverage == "undefined"){
     _yuitest_coverage = {};
@@ -33,7 +33,7 @@ _yuitest_coverage["build/tabview-plugin/tabview-plugin.js"] = {
     path: "build/tabview-plugin/tabview-plugin.js",
     code: []
 };
-_yuitest_coverage["build/tabview-plugin/tabview-plugin.js"].code=["YUI.add('tabview-plugin', function (Y, NAME) {","","function TabviewPlugin() {","    TabviewPlugin.superclass.constructor.apply(this, arguments);","};","","TabviewPlugin.NAME = 'tabviewPlugin';","TabviewPlugin.NS = 'tabs';","","Y.extend(TabviewPlugin, Y.TabviewBase);","","Y.namespace('Plugin');","Y.Plugin.Tabview = TabviewPlugin;","","","}, '3.7.2', {\"requires\": [\"tabview-base\"]});"];
+_yuitest_coverage["build/tabview-plugin/tabview-plugin.js"].code=["YUI.add('tabview-plugin', function (Y, NAME) {","","function TabviewPlugin() {","    TabviewPlugin.superclass.constructor.apply(this, arguments);","};","","TabviewPlugin.NAME = 'tabviewPlugin';","TabviewPlugin.NS = 'tabs';","","Y.extend(TabviewPlugin, Y.TabviewBase);","","Y.namespace('Plugin');","Y.Plugin.Tabview = TabviewPlugin;","","","}, '3.7.3', {\"requires\": [\"tabview-base\"]});"];
 _yuitest_coverage["build/tabview-plugin/tabview-plugin.js"].lines = {"1":0,"3":0,"4":0,"5":0,"7":0,"8":0,"10":0,"12":0,"13":0};
 _yuitest_coverage["build/tabview-plugin/tabview-plugin.js"].functions = {"TabviewPlugin:3":0,"(anonymous 1):1":0};
 _yuitest_coverage["build/tabview-plugin/tabview-plugin.js"].coveredLines = 9;
@@ -64,4 +64,4 @@ _yuitest_coverline("build/tabview-plugin/tabview-plugin.js", 13);
 Y.Plugin.Tabview = TabviewPlugin;
 
 
-}, '3.7.2', {"requires": ["tabview-base"]});
+}, '3.7.3', {"requires": ["tabview-base"]});

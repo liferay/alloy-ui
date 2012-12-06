@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('scrollview-base', function (Y, NAME) {
 
@@ -18,6 +18,7 @@ var getClassName = Y.ClassNameManager.getClassName,
     WINDOW = Y.config.win,
     IE = Y.UA.ie,
     NATIVE_TRANSITIONS = Y.Transition.useNative,
+    vendorPrefix = Y.Transition._VENDOR_PREFIX, // Todo: This is a private property, and alternative approaches should be investigated
     SCROLLVIEW = 'scrollview',
     CLASS_NAMES = {
         vertical: getClassName(SCROLLVIEW, 'vert'),
@@ -1333,8 +1334,8 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
      * @private
      */
     _TRANSITION: {
-        DURATION: Y.Transition._VENDOR_PREFIX + 'TransitionDuration',
-        PROPERTY: Y.Transition._VENDOR_PREFIX + 'TransitionProperty'
+        DURATION: (vendorPrefix ? vendorPrefix + 'TransitionDuration' : 'transitionDuration'),
+        PROPERTY: (vendorPrefix ? vendorPrefix + 'TransitionProperty' : 'transitionProperty')
     },
 
     /**
@@ -1396,4 +1397,4 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
 
 });
 
-}, '3.7.2', {"requires": ["widget", "event-gestures", "event-mousewheel", "transition"], "skinnable": true});
+}, '3.7.3', {"requires": ["widget", "event-gestures", "event-mousewheel", "transition"], "skinnable": true});

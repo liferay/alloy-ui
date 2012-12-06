@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('io-xdr', function (Y, NAME) {
 
@@ -315,4 +315,4 @@ event is fired, this value will be set to 0.
 Y.io.xdr = { delay : 100 };
 
 
-}, '3.7.2', {"requires": ["io-base", "datatype-xml-parse"]});
+}, '3.7.3', {"requires": ["io-base", "datatype-xml-parse"]});

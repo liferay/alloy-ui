@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>src&#x2F;aui-dialog&#x2F;js&#x2F;aui-dialog.js - AlloyUI</title>
-    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -17,9 +17,9 @@
         </div>
         <div class="yui3-u-1-4 version">
             <div class="version-details">
-                <span class="version-lib">AlloyUI 1.5.0</span>
+                <span class="version-lib">AlloyUI 1.7.0pr3</span>
                 <div class="yui-version">
-                    <span class="version-lib version-lib-yui">YUI 3.4.0</span>
+                    <span class="version-lib version-lib-yui">YUI 3.7.3</span>
                 </div>
             </div>
         </div>
@@ -144,6 +144,8 @@
                 <li><a href="..&#x2F;classes/CanvasRect.html">CanvasRect</a></li>
             
                 <li><a href="..&#x2F;classes/CanvasShape.html">CanvasShape</a></li>
+            
+                <li><a href="..&#x2F;classes/Carousel.html">Carousel</a></li>
             
                 <li><a href="..&#x2F;classes/CartesianChart.html">CartesianChart</a></li>
             
@@ -355,7 +357,7 @@
             
                 <li><a href="..&#x2F;classes/IORequest.html">IORequest</a></li>
             
-                <li><a href="..&#x2F;classes/json.html">json</a></li>
+                <li><a href="..&#x2F;classes/JSON.html">JSON</a></li>
             
                 <li><a href="..&#x2F;classes/JSONPRequest.html">JSONPRequest</a></li>
             
@@ -501,7 +503,7 @@
             
                 <li><a href="..&#x2F;classes/ProgressBar.html">ProgressBar</a></li>
             
-                <li><a href="..&#x2F;classes/querystring.html">querystring</a></li>
+                <li><a href="..&#x2F;classes/QueryString.html">QueryString</a></li>
             
                 <li><a href="..&#x2F;classes/Queue.html">Queue</a></li>
             
@@ -761,6 +763,8 @@
                 <li><a href="..&#x2F;modules/aui-calendar-base.html">aui-calendar-base</a></li>
             
                 <li><a href="..&#x2F;modules/aui-calendar-datepicker-select.html">aui-calendar-datepicker-select</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-carousel.html">aui-carousel</a></li>
             
                 <li><a href="..&#x2F;modules/aui-char-counter.html">aui-char-counter</a></li>
             
@@ -1359,11 +1363,9 @@ var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isObject = Lang.isObject,
 
-	WidgetStdMod = A.WidgetStdMod,
+	toInt = Lang.toInt,
 
-	toNumber = function(val) {
-		return parseInt(val, 10) || 0;
-	},
+	WidgetStdMod = A.WidgetStdMod,
 
 	DOC = A.config.doc,
 
@@ -1379,9 +1381,10 @@ var Lang = A.Lang,
 	DESTROY_ON_CLOSE = &#x27;destroyOnClose&#x27;,
 	DIALOG = &#x27;dialog&#x27;,
 	DOT = &#x27;.&#x27;,
-	DRAGGABLE = &#x27;draggable&#x27;,
 	DRAG_CONFIG = &#x27;dragConfig&#x27;,
+	DRAG_GUTTER = 5,
 	DRAG_INSTANCE = &#x27;dragInstance&#x27;,
+	DRAGGABLE = &#x27;draggable&#x27;,
 	FOOTER_CONTENT = &#x27;footerContent&#x27;,
 	HD = &#x27;hd&#x27;,
 	HEIGHT = &#x27;height&#x27;,
@@ -1453,7 +1456,11 @@ var Lang = A.Lang,
  *&#x2F;
 var Dialog = function(config) {
 	if (!A.DialogMask) {
-		A.DialogMask = new A.OverlayMask().render();
+		A.DialogMask = new A.OverlayMask(
+			{
+				visible: true
+			}
+		).render();
 	}
 };
 
@@ -1491,8 +1498,8 @@ A.mix(
 
 			&#x2F;**
 			 * &lt;p&gt;Array of object literals, each containing a set of properties
-             * defining a button to be appended into the Dialog&#x27;s footer. Each
-             * button object in the buttons array can have two properties:&lt;&#x2F;p&gt;
+			 * defining a button to be appended into the Dialog&#x27;s footer. Each
+			 * button object in the buttons array can have two properties:&lt;&#x2F;p&gt;
 			 *
 			 * &lt;dl&gt;
 			 *    &lt;dt&gt;text:&lt;&#x2F;dt&gt;
@@ -1503,7 +1510,7 @@ A.mix(
 			 *    &lt;dt&gt;handler:&lt;&#x2F;dt&gt;
 			 *    &lt;dd&gt;
 			 *        A reference to a function that should fire when the button is clicked.
-	         *        (In this case scope of this function is always its Dialog instance.)
+			 *        (In this case scope of this function is always its Dialog instance.)
 			 *    &lt;&#x2F;dd&gt;
 			 * &lt;&#x2F;dl&gt;
 			 *
@@ -1518,7 +1525,7 @@ A.mix(
 
 			&#x2F;**
 			 * If &lt;code&gt;true&lt;&#x2F;code&gt; the close icon will be displayed on the
-             * Dialog header.
+			 * Dialog header.
 			 *
 			 * @attribute close
 			 * @default true
@@ -1529,12 +1536,12 @@ A.mix(
 			},
 
 			&#x2F;**
-	         * Will attempt to constrain the dialog to the boundaries of the
-	         * viewport region.
-	         *
-	         * @attribute constrain2view
-	         * @type Object
-	         *&#x2F;
+			 * Will attempt to constrain the dialog to the boundaries of the
+			 * viewport region.
+			 *
+			 * @attribute constrain2view
+			 * @type Object
+			 *&#x2F;
 			constrain2view: {
 				setter: &#x27;_setConstrain2view&#x27;,
 				value: false,
@@ -1543,8 +1550,8 @@ A.mix(
 
 			&#x2F;**
 			 * Invoke the &lt;a href=&quot;Dialog.html#method_destroy&quot;&gt;destroy&lt;&#x2F;a&gt;
-             * method when the dialog is closed (i.e., remove the Dialog
-             * &lt;code&gt;boundingBox&lt;&#x2F;code&gt; from the body, purge events etc).
+			 * method when the dialog is closed (i.e., remove the Dialog
+			 * &lt;code&gt;boundingBox&lt;&#x2F;code&gt; from the body, purge events etc).
 			 *
 			 * @attribute destroyOnClose
 			 * @default false
@@ -1592,7 +1599,7 @@ A.mix(
 
 			&#x2F;**
 			 * Stores the Drag instance for the &lt;code&gt;A.DD.Drag&lt;&#x2F;code&gt; used by
-             * this Dialog.
+			 * this Dialog.
 			 *
 			 * @attribute dragInstance
 			 * @default null
@@ -1605,9 +1612,9 @@ A.mix(
 
 			&#x2F;**
 			 * True if the Panel should be displayed in a modal fashion,
-             * automatically creating a transparent mask over the document that
-             * will not be removed until the Dialog is dismissed. Uses
-             * &lt;a href=&quot;OverlayMask.html&quot;&gt;OverlayMask&lt;&#x2F;a&gt;.
+			 * automatically creating a transparent mask over the document that
+			 * will not be removed until the Dialog is dismissed. Uses
+			 * &lt;a href=&quot;OverlayMask.html&quot;&gt;OverlayMask&lt;&#x2F;a&gt;.
 			 *
 			 * @attribute modal
 			 * @default false
@@ -1653,7 +1660,7 @@ A.mix(
 
 			&#x2F;**
 			 * Stores the Resize instance for the &lt;code&gt;A.Resize&lt;&#x2F;code&gt; used by
-             * this Dialog.
+			 * this Dialog.
 			 *
 			 * @attribute resizableInstance
 			 * @default null
@@ -1714,6 +1721,7 @@ Dialog.prototype = {
 	 *&#x2F;
 	initializer: function(config) {
 		var instance = this;
+
 		var icons = instance.get(ICONS);
 		var close = instance.get(CLOSE);
 		var buttons = instance.get(BUTTONS);
@@ -1723,9 +1731,11 @@ Dialog.prototype = {
 		}
 
 		if (close) {
+			var closeId = A.guid();
+
 			var closeConfig = {
 				icon: CLOSETHICK,
-				id: CLOSETHICK,
+				id: closeId,
 				handler: {
 					fn: instance.close,
 					context: instance
@@ -1738,6 +1748,8 @@ Dialog.prototype = {
 			}
 
 			instance.set(ICONS, icons);
+
+			instance._closeId = closeId;
 		}
 
 		instance.publish(
@@ -1750,6 +1762,7 @@ Dialog.prototype = {
 		instance.addTarget(A.DialogManager);
 
 		instance.after(&#x27;constrain2viewChange&#x27;, instance._afterConstrain2viewChange);
+		instance.after(&#x27;drag:start&#x27;, instance._afterDragStart);
 		instance.after(&#x27;draggableChange&#x27;, instance._afterDraggableChange);
 		instance.after(&#x27;dragInstanceChange&#x27;, instance._afterDragInstanceChange);
 		instance.after(&#x27;render&#x27;, instance._afterRenderer);
@@ -1770,12 +1783,12 @@ Dialog.prototype = {
 	},
 
 	&#x2F;**
-     * Refreshes the rendered UI, based on Widget State
-     *
-     * @method syncUI
-     * @protected
-     *
-     *&#x2F;
+	 * Refreshes the rendered UI, based on Widget State
+	 *
+	 * @method syncUI
+	 * @protected
+	 *
+	 *&#x2F;
 	syncUI: function() {
 		var instance = this;
 
@@ -1802,37 +1815,40 @@ Dialog.prototype = {
 	 *&#x2F;
 	destructor: function() {
 		var instance = this;
+
 		var boundingBox = instance.get(BOUNDING_BOX);
 
 		A.Event.purgeElement(boundingBox, true);
 		A.DialogManager.remove(instance);
 	},
 
-    &#x2F;**
-     * Aligns the Dialog to the viewport.
-     *
-     * @method alignToViewport
-     * @param int offsetLeft An offset number to be added to the left coordinate value.
-     * @param int offsetTop An offset number to be added to the top coordinate value.
-     *&#x2F;
+	&#x2F;**
+	 * Aligns the Dialog to the viewport.
+	 *
+	 * @method alignToViewport
+	 * @param int offsetLeft An offset number to be added to the left coordinate value.
+	 * @param int offsetTop An offset number to be added to the top coordinate value.
+	 *&#x2F;
 	alignToViewport: function(offsetLeft, offsetTop) {
 		var instance = this;
+
 		var viewportRegion = A.getDoc().get(VIEWPORT_REGION);
 
-		instance.move([ viewportRegion.left + toNumber(offsetLeft), viewportRegion.top + toNumber(offsetTop) ]);
+		instance.move([ viewportRegion.left + toInt(offsetLeft), viewportRegion.top + toInt(offsetTop) ]);
 	},
 
 	&#x2F;**
 	 * Bind a &lt;code&gt;mouseenter&lt;&#x2F;code&gt; listener to the &lt;code&gt;boundingBox&lt;&#x2F;code&gt;
-     * to invoke the
-     * &lt;a href=&quot;Dialog.html#config__initLazyComponents&quot;&gt;_initLazyComponents&lt;&#x2F;a&gt;.
-     * Performance reasons.
+	 * to invoke the
+	 * &lt;a href=&quot;Dialog.html#config__initLazyComponents&quot;&gt;_initLazyComponents&lt;&#x2F;a&gt;.
+	 * Performance reasons.
 	 *
 	 * @method _bindLazyComponents
 	 * @private
 	 *&#x2F;
 	_bindLazyComponents: function() {
 		var instance = this;
+
 		var boundingBox = instance.get(BOUNDING_BOX);
 
 		boundingBox.on(&#x27;mouseenter&#x27;, A.bind(instance._initLazyComponents, instance));
@@ -1851,7 +1867,7 @@ Dialog.prototype = {
 
 	&#x2F;**
 	 * Fires after the render phase. Invoke
-     * &lt;a href=&quot;Dialog.html#method__initButtons&quot;&gt;_initButtons&lt;&#x2F;a&gt;.
+	 * &lt;a href=&quot;Dialog.html#method__initButtons&quot;&gt;_initButtons&lt;&#x2F;a&gt;.
 	 *
 	 * @method _afterRenderer
 	 * @param {EventFacade} event
@@ -1935,14 +1951,16 @@ Dialog.prototype = {
 	_setDefaultARIAValues: function() {
 		var instance = this;
 
+		var icons = instance.icons;
+
 		if (!instance.get(USE_ARIA)) {
 			return;
 		}
 
 		instance.aria.setRole(&#x27;dialog&#x27;, instance.get(BOUNDING_BOX));
 
-		if (instance.icons) {
-			var closeThick = instance.icons.item(CLOSETHICK);
+		if (icons) {
+			var closeThick = icons.item(instance._closeId) || null;
 
 			if (closeThick){
 				instance.aria.setAttribute(&#x27;controls&#x27;, instance.get(&#x27;id&#x27;), closeThick.get(BOUNDING_BOX));
@@ -1994,7 +2012,7 @@ Dialog.prototype = {
 
 	&#x2F;**
 	 * Setter for the &lt;a href=&quot;Dialog.html#config_stack&quot;&gt;stack&lt;&#x2F;a&gt;
-     * attribute.
+	 * attribute.
 	 *
 	 * @method _setStack
 	 * @param {boolean} value
@@ -2035,32 +2053,26 @@ Dialog.prototype = {
 	},
 
 	&#x2F;**
-	 * Plug and Unplug A.Plugin.DDConstrained to the dragInstance depending on
-	 * the value of constrain2view attribute.
+	 * Set A.Plugin.DDConstrained constrain2view property to false or true
+	 * depending on the value of constrain2view attribute.
 	 *
 	 * @param {A.DD.Drag} dragInstance
 	 * @protected
 	 *&#x2F;
 	_updateDDConstrain2view: function(dragInstance) {
 		var instance = this;
-		var constrain2view = instance.get(CONSTRAIN_TO_VIEWPORT);
 
-		if (constrain2view) {
-			dragInstance.plug(
-				A.Plugin.DDConstrained,
-				{
-					constrain2view: constrain2view
-				}
-			);
-		}
-		else {
-			dragInstance.unplug(A.Plugin.DDConstrained);
-		}
+		dragInstance.plug(
+			A.Plugin.DDConstrained,
+			{
+				constrain2view: instance.get(CONSTRAIN_TO_VIEWPORT)
+			}
+		);
 	},
 
 	&#x2F;**
 	 * Fires after the value of the
-     * &lt;a href=&quot;Overlay.html#config_constrain2view&quot;&gt;constrain2view&lt;&#x2F;a&gt; attribute change.
+	 * &lt;a href=&quot;Overlay.html#config_constrain2view&quot;&gt;constrain2view&lt;&#x2F;a&gt; attribute change.
 	 *
 	 * @method _afterConstrain2viewChange
 	 * @param {EventFacade} event
@@ -2076,7 +2088,7 @@ Dialog.prototype = {
 
 	&#x2F;**
 	 * Fires after the value of the
-     * &lt;a href=&quot;Overlay.html#config_draggable&quot;&gt;draggable&lt;&#x2F;a&gt; attribute change.
+	 * &lt;a href=&quot;Overlay.html#config_draggable&quot;&gt;draggable&lt;&#x2F;a&gt; attribute change.
 	 *
 	 * @method _afterDraggableChange
 	 * @param {EventFacade} event
@@ -2090,7 +2102,7 @@ Dialog.prototype = {
 
 	&#x2F;**
 	 * Fires after the value of the
-     * &lt;a href=&quot;Overlay.html#config_dragInstance&quot;&gt;dragInstance&lt;&#x2F;a&gt; attribute change.
+	 * &lt;a href=&quot;Overlay.html#config_dragInstance&quot;&gt;dragInstance&lt;&#x2F;a&gt; attribute change.
 	 *
 	 * @method _afterDragInstanceChange
 	 * @param {EventFacade} event
@@ -2101,6 +2113,49 @@ Dialog.prototype = {
 
 		if (event.prevVal) {
 			event.prevVal.destroy();
+		}
+	},
+
+	&#x2F;**
+	 * Handles the drag start event
+	 * If &quot;constrain2view&quot; property is set to false this function will constrain the dialog to a region
+	 * in order to prevent moving it to unreachable position
+	 *
+	 * @method _afterDragStart
+	 * @param {EventFacade} event
+	 * @protected
+	 *&#x2F;
+	_afterDragStart: function(event) {
+		var instance = this;
+
+		var constrain2view = instance.get(CONSTRAIN_TO_VIEWPORT);
+
+		if (!constrain2view) {
+			var dragInstance = instance.get(DRAG_INSTANCE);
+
+			var dragNode = dragInstance.get(&#x27;dragNode&#x27;);
+
+			var viewportRegion = dragNode.get(&#x27;viewportRegion&#x27;);
+
+			var dragNodeRegion = dragNode.get(&#x27;region&#x27;);
+
+			var defaultOffset = [0, 0];
+
+			var deltaXY = dragInstance.deltaXY || defaultOffset;
+
+			var mouseXY = dragInstance.mouseXY || defaultOffset;
+
+			dragInstance.plug(
+				A.Plugin.DDConstrained,
+				{
+					constrain: {
+						bottom: viewportRegion.bottom + (dragNodeRegion.height - deltaXY[1]) - DRAG_GUTTER,
+						left: viewportRegion.left - deltaXY[0] + DRAG_GUTTER,
+						right: viewportRegion.right + (dragNodeRegion.right - mouseXY[0]) + DRAG_GUTTER,
+						top: viewportRegion.top - deltaXY[1] + DRAG_GUTTER
+					}
+				}
+			);
 		}
 	},
 
@@ -2193,7 +2248,7 @@ A.mix(
 	{
 		&#x2F;**
 		 * Find the &lt;a href=&quot;Widget.html&quot;&gt;Widget&lt;&#x2F;a&gt; instance based on a child
-         * element.
+		 * element.
 		 *
 		 * @method findByChild
 		 * @for DialogManager
@@ -2208,7 +2263,7 @@ A.mix(
 
 		&#x2F;**
 		 * &lt;p&gt;Invoke the &lt;a href=&quot;Dialog.html#method_close&quot;&gt;close&lt;&#x2F;a&gt; method from
-         * the Dialog which contains the &lt;code&gt;child&lt;&#x2F;code&gt; element.&lt;&#x2F;p&gt;
+		 * the Dialog which contains the &lt;code&gt;child&lt;&#x2F;code&gt; element.&lt;&#x2F;p&gt;
 		 *
 		 * Example:
 		 *
@@ -2225,9 +2280,9 @@ A.mix(
 
 		&#x2F;**
 		 * &lt;p&gt;Invoke the &lt;a href=&quot;IOPlugin.html#method_start&quot;&gt;start&lt;&#x2F;a&gt; method
-         * from the &lt;a href=&quot;IOPlugin.html&quot;&gt;IOPlugin&lt;&#x2F;a&gt; plugged on this Dialog
-         * instance. If there is no IOPlugin plugged it does nothing.&lt;&#x2F;p&gt;
-         *
+		 * from the &lt;a href=&quot;IOPlugin.html&quot;&gt;IOPlugin&lt;&#x2F;a&gt; plugged on this Dialog
+		 * instance. If there is no IOPlugin plugged it does nothing.&lt;&#x2F;p&gt;
+		 *
 		 * Example:
 		 *
 		 * &lt;pre&gt;&lt;code&gt;A.DialogManager.refreshByChild(&#x27;#dialogContent1&#x27;);&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;

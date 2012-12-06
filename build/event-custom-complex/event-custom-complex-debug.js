@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('event-custom-complex', function (Y, NAME) {
 
@@ -510,4 +510,4 @@ for (key in FACADE) {
     FACADE_KEYS[key] = true;
 }
 
-}, '3.7.2', {"requires": ["event-custom-base"]});
+}, '3.7.3', {"requires": ["event-custom-base"]});

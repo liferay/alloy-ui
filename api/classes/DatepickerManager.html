@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>DatepickerManager - AlloyUI</title>
-    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -17,9 +17,9 @@
         </div>
         <div class="yui3-u-1-4 version">
             <div class="version-details">
-                <span class="version-lib">AlloyUI 1.5.0</span>
+                <span class="version-lib">AlloyUI 1.7.0pr3</span>
                 <div class="yui-version">
-                    <span class="version-lib version-lib-yui">YUI 3.4.0</span>
+                    <span class="version-lib version-lib-yui">YUI 3.7.3</span>
                 </div>
             </div>
         </div>
@@ -144,6 +144,8 @@
                 <li><a href="..&#x2F;classes/CanvasRect.html">CanvasRect</a></li>
             
                 <li><a href="..&#x2F;classes/CanvasShape.html">CanvasShape</a></li>
+            
+                <li><a href="..&#x2F;classes/Carousel.html">Carousel</a></li>
             
                 <li><a href="..&#x2F;classes/CartesianChart.html">CartesianChart</a></li>
             
@@ -355,7 +357,7 @@
             
                 <li><a href="..&#x2F;classes/IORequest.html">IORequest</a></li>
             
-                <li><a href="..&#x2F;classes/json.html">json</a></li>
+                <li><a href="..&#x2F;classes/JSON.html">JSON</a></li>
             
                 <li><a href="..&#x2F;classes/JSONPRequest.html">JSONPRequest</a></li>
             
@@ -501,7 +503,7 @@
             
                 <li><a href="..&#x2F;classes/ProgressBar.html">ProgressBar</a></li>
             
-                <li><a href="..&#x2F;classes/querystring.html">querystring</a></li>
+                <li><a href="..&#x2F;classes/QueryString.html">QueryString</a></li>
             
                 <li><a href="..&#x2F;classes/Queue.html">Queue</a></li>
             
@@ -761,6 +763,8 @@
                 <li><a href="..&#x2F;modules/aui-calendar-base.html">aui-calendar-base</a></li>
             
                 <li><a href="..&#x2F;modules/aui-calendar-datepicker-select.html">aui-calendar-datepicker-select</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-carousel.html">aui-carousel</a></li>
             
                 <li><a href="..&#x2F;modules/aui-char-counter.html">aui-char-counter</a></li>
             
@@ -1353,7 +1357,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l240"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:240</code></a>
+            Defined in: <a href="../..&#x2F;files&#x2F;src_aui-datepicker-deprecated_js_aui-datepicker-base.js.html#l240"><code>src&#x2F;aui-datepicker-deprecated&#x2F;js&#x2F;aui-datepicker-base.js:240</code></a>
         </div>
     
 
@@ -1411,7 +1415,7 @@
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l240"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:240</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker-deprecated_js_aui-datepicker-base.js.html#l240"><code>src&#x2F;aui-datepicker-deprecated&#x2F;js&#x2F;aui-datepicker-base.js:240</code></a>
         
         </p>
 
@@ -1504,8 +1508,26 @@
                                 
                             </li>
                         
+                            <li class="index-item method protected">
+                                <a href="#method__afterSelectionChange">_afterSelectionChange</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
+                                <a href="#method__afterShow">_afterShow</a>
+
+                                
+                            </li>
+                        
                             <li class="index-item method private inherited">
                                 <a href="#method__aggregateAttrs">_aggregateAttrs</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
+                                <a href="#method__bindTriggerEvents">_bindTriggerEvents</a>
 
                                 
                             </li>
@@ -1654,6 +1676,12 @@
                                 
                             </li>
                         
+                            <li class="index-item method protected">
+                                <a href="#method__onShowOverlay">_onShowOverlay</a>
+
+                                
+                            </li>
+                        
                             <li class="index-item method private inherited">
                                 <a href="#method__preInitEventCfg">_preInitEventCfg</a>
 
@@ -1668,6 +1696,12 @@
                         
                             <li class="index-item method protected inherited">
                                 <a href="#method__registered">_registered</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
+                                <a href="#method__renderCalendar">_renderCalendar</a>
 
                                 
                             </li>
@@ -1709,6 +1743,18 @@
                             </li>
                         
                             <li class="index-item method protected">
+                                <a href="#method__setCalendar">_setCalendar</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
+                                <a href="#method__setStack">_setStack</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
                                 <a href="#method__setStack">_setStack</a>
 
                                 
@@ -1716,6 +1762,12 @@
                         
                             <li class="index-item method private inherited">
                                 <a href="#method__setStateVal">_setStateVal</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
+                                <a href="#method__setTriggerValue">_setTriggerValue</a>
 
                                 
                             </li>
@@ -1750,6 +1802,12 @@
                                 
                             </li>
                         
+                            <li class="index-item method protected">
+                                <a href="#method_bindUI">bindUI</a>
+
+                                
+                            </li>
+                        
                             <li class="index-item method inherited">
                                 <a href="#method_bringToTop">bringToTop</a>
 
@@ -1758,6 +1816,12 @@
                         
                             <li class="index-item method inherited">
                                 <a href="#method_destroy">destroy</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
+                                <a href="#method_destructor">destructor</a>
 
                                 
                             </li>
@@ -1800,6 +1864,12 @@
                         
                             <li class="index-item method inherited">
                                 <a href="#method_init">init</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
+                                <a href="#method_initializer">initializer</a>
 
                                 
                             </li>
@@ -1912,8 +1982,20 @@
                                 <a href="#attr_calendar">calendar</a>
                             </li>
                         
+                            <li class="index-item attr">
+                                <a href="#attr_calendar">calendar</a>
+                            </li>
+                        
+                            <li class="index-item attr">
+                                <a href="#attr_dateFormat">dateFormat</a>
+                            </li>
+                        
                             <li class="index-item attr inherited">
                                 <a href="#attr_destroyed">destroyed</a>
+                            </li>
+                        
+                            <li class="index-item attr">
+                                <a href="#attr_formatter">formatter</a>
                             </li>
                         
                             <li class="index-item attr">
@@ -1929,10 +2011,22 @@
                             </li>
                         
                             <li class="index-item attr">
+                                <a href="#attr_setValue">setValue</a>
+                            </li>
+                        
+                            <li class="index-item attr">
+                                <a href="#attr_stack">stack</a>
+                            </li>
+                        
+                            <li class="index-item attr">
                                 <a href="#attr_stack">stack</a>
                             </li>
                         
                             <li class="index-item attr inherited">
+                                <a href="#attr_zIndexBase">zIndexBase</a>
+                            </li>
+                        
+                            <li class="index-item attr">
                                 <a href="#attr_zIndexBase">zIndexBase</a>
                             </li>
                         
@@ -2228,7 +2322,7 @@ See <a href="#method_addAttr">addAttr</a>.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l134"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:134</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker-deprecated_js_aui-datepicker-base.js.html#l134"><code>src&#x2F;aui-datepicker-deprecated&#x2F;js&#x2F;aui-datepicker-base.js:134</code></a>
         
         </p>
 
@@ -2240,6 +2334,184 @@ See <a href="#method_addAttr">addAttr</a>.</p>
 
     <div class="description">
         <p>Fires when a date is selected on the Calendar.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">event</code>
+                        <span class="type"><a href="../classes/Event.html" class="crosslink">Event</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__afterSelectionChange" class="method item protected">
+    <h3 class="name"><code>_afterSelectionChange</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>event</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                    <p>Provided by the <a href="../modules/datatype.html">datatype</a> module.</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l164"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:164</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Fires when a date is selected on the Calendar.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">event</code>
+                        <span class="type"><a href="../classes/Event.html" class="crosslink">Event</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__afterShow" class="method item protected">
+    <h3 class="name"><code>_afterShow</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>event</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                    <p>Provided by the <a href="../modules/datatype.html">datatype</a> module.</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l177"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:177</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Fires after show method executes</p>
     </div>
 
     
@@ -2374,6 +2646,62 @@ attribute configuration has cloneDefaultValue set to shallow or deep).</p>
                 
             </div>
         </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method__bindTriggerEvents" class="method item protected">
+    <h3 class="name"><code>_bindTriggerEvents</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                    <p>Provided by the <a href="../modules/datatype.html">datatype</a> module.</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l190"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:190</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Bind some events on datepicker trigger</p>
+    </div>
+
+    
+
     
 
     
@@ -4428,7 +4756,7 @@ simply merges the hash to protect the original.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-overlay_js_aui-overlay-manager.js.html#l304"><code>src&#x2F;aui-overlay&#x2F;js&#x2F;aui-overlay-manager.js:304</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-overlay_js_aui-overlay-manager.js.html#l302"><code>src&#x2F;aui-overlay&#x2F;js&#x2F;aui-overlay-manager.js:302</code></a>
         
         </p>
 
@@ -4514,7 +4842,7 @@ attribute change. Used to invoke
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-overlay_js_aui-overlay-manager.js.html#l286"><code>src&#x2F;aui-overlay&#x2F;js&#x2F;aui-overlay-manager.js:286</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-overlay_js_aui-overlay-manager.js.html#l284"><code>src&#x2F;aui-overlay&#x2F;js&#x2F;aui-overlay-manager.js:284</code></a>
         
         </p>
 
@@ -4595,6 +4923,8 @@ attribute change. Used to invoke
         
             
                 
+                    <p>Provided by the <a href="../modules/datatype.html">datatype</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -4602,7 +4932,95 @@ attribute change. Used to invoke
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l153"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:153</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l222"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:222</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Fires before the DatePicker overlay show. Responsible to invoke the
+render phase of the Calendar.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">event</code>
+                        <span class="type"><a href="../classes/Event.html" class="crosslink">Event</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__onShowOverlay" class="method item protected">
+    <h3 class="name"><code>_onShowOverlay</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>event</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker-deprecated_js_aui-datepicker-base.js.html#l153"><code>src&#x2F;aui-datepicker-deprecated&#x2F;js&#x2F;aui-datepicker-base.js:153</code></a>
         
         </p>
 
@@ -4880,7 +5298,7 @@ attr config objects.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-overlay_js_aui-overlay-manager.js.html#l272"><code>src&#x2F;aui-overlay&#x2F;js&#x2F;aui-overlay-manager.js:272</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-overlay_js_aui-overlay-manager.js.html#l270"><code>src&#x2F;aui-overlay&#x2F;js&#x2F;aui-overlay-manager.js:270</code></a>
         
         </p>
 
@@ -4962,6 +5380,8 @@ attr config objects.</p>
         
             
                 
+                    <p>Provided by the <a href="../modules/datatype.html">datatype</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -4969,7 +5389,61 @@ attr config objects.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l167"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:167</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l236"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:236</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Render the Calendar used inside the DatePicker.</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__renderCalendar" class="method item protected">
+    <h3 class="name"><code>_renderCalendar</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker-deprecated_js_aui-datepicker-base.js.html#l167"><code>src&#x2F;aui-datepicker-deprecated&#x2F;js&#x2F;aui-datepicker-base.js:167</code></a>
         
         </p>
 
@@ -5614,6 +6088,8 @@ if validation and setter passes.</p>
         
             
                 
+                    <p>Provided by the <a href="../modules/datatype.html">datatype</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -5621,7 +6097,109 @@ if validation and setter passes.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l181"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:181</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l250"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:250</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Setter for the <a href="DatePicker.html#calendar">calendar</a>
+attribute.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">eventType</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Event type</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method__setCalendar" class="method item protected">
+    <h3 class="name"><code>_setCalendar</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>eventType</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker-deprecated_js_aui-datepicker-base.js.html#l181"><code>src&#x2F;aui-datepicker-deprecated&#x2F;js&#x2F;aui-datepicker-base.js:181</code></a>
         
         </p>
 
@@ -5723,7 +6301,112 @@ attribute.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l200"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:200</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker-deprecated_js_aui-datepicker-base.js.html#l200"><code>src&#x2F;aui-datepicker-deprecated&#x2F;js&#x2F;aui-datepicker-base.js:200</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Setter for the <a href="Calendar.html#config_stack">stack</a> attribute.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method__setStack" class="method item protected">
+    <h3 class="name"><code>_setStack</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>value</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                    <p>Provided by the <a href="../modules/datatype.html">datatype</a> module.</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l269"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:269</code></a>
         
         </p>
 
@@ -5921,6 +6604,8 @@ internal state object, or the state proxy if it exits</p>
         
             
                 
+                    <p>Provided by the <a href="../modules/datatype.html">datatype</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -5928,7 +6613,94 @@ internal state object, or the state proxy if it exits</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l221"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:221</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l290"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:290</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Set the value of the trigger input with the date information.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">dateObj</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Object containing date information</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__setTriggerValue" class="method item protected">
+    <h3 class="name"><code>_setTriggerValue</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>dateObj</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker-deprecated_js_aui-datepicker-base.js.html#l221"><code>src&#x2F;aui-datepicker-deprecated&#x2F;js&#x2F;aui-datepicker-base.js:221</code></a>
         
         </p>
 
@@ -6478,6 +7250,8 @@ See <a href="#method_addAttr">addAttr</a>.</p>
         
             
                 
+                    <p>Provided by the <a href="../modules/datatype.html">datatype</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -6485,7 +7259,61 @@ See <a href="#method_addAttr">addAttr</a>.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l99"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:99</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l133"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:133</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Bind the events on the Datepicker UI. Lifecycle.</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_bindUI" class="method item protected">
+    <h3 class="name"><code>bindUI</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker-deprecated_js_aui-datepicker-base.js.html#l99"><code>src&#x2F;aui-datepicker-deprecated&#x2F;js&#x2F;aui-datepicker-base.js:99</code></a>
         
         </p>
 
@@ -6544,7 +7372,7 @@ See <a href="#method_addAttr">addAttr</a>.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-overlay_js_aui-overlay-manager.js.html#l100"><code>src&#x2F;aui-overlay&#x2F;js&#x2F;aui-overlay-manager.js:100</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-overlay_js_aui-overlay-manager.js.html#l98"><code>src&#x2F;aui-overlay&#x2F;js&#x2F;aui-overlay-manager.js:98</code></a>
         
         </p>
 
@@ -6691,6 +7519,61 @@ from proceeding.
 
     <div class="meta">
         
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker-deprecated_js_aui-datepicker-base.js.html#l121"><code>src&#x2F;aui-datepicker-deprecated&#x2F;js&#x2F;aui-datepicker-base.js:121</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Descructor lifecycle implementation for the Datepicker class.
+Purges events attached to the node (and all child nodes).</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_destructor" class="method item protected">
+    <h3 class="name"><code>destructor</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
             <p>Inherited from
             <a href="OverlayManager.html#method_destructor">
                 OverlayManager
@@ -6700,7 +7583,7 @@ from proceeding.
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l121"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:121</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l149"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:149</code></a>
         
         </p>
 
@@ -6764,7 +7647,7 @@ Purges events attached to the node (and all child nodes).</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-overlay_js_aui-overlay-manager.js.html#l201"><code>src&#x2F;aui-overlay&#x2F;js&#x2F;aui-overlay-manager.js:201</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-overlay_js_aui-overlay-manager.js.html#l199"><code>src&#x2F;aui-overlay&#x2F;js&#x2F;aui-overlay-manager.js:199</code></a>
         
         </p>
 
@@ -7154,7 +8037,7 @@ returned. If set to true, all attributes modified from their initial values are 
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-overlay_js_aui-overlay-manager.js.html#l232"><code>src&#x2F;aui-overlay&#x2F;js&#x2F;aui-overlay-manager.js:232</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-overlay_js_aui-overlay-manager.js.html#l230"><code>src&#x2F;aui-overlay&#x2F;js&#x2F;aui-overlay-manager.js:230</code></a>
         
         </p>
 
@@ -7303,6 +8186,60 @@ invoking initializers for the class hierarchy.</p>
 
     <div class="meta">
         
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker-deprecated_js_aui-datepicker-base.js.html#l85"><code>src&#x2F;aui-datepicker-deprecated&#x2F;js&#x2F;aui-datepicker-base.js:85</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Construction logic executed during Datepicker instantiation. Lifecycle.</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_initializer" class="method item protected">
+    <h3 class="name"><code>initializer</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
             <p>Inherited from
             <a href="OverlayManager.html#method_initializer">
                 OverlayManager
@@ -7312,7 +8249,7 @@ invoking initializers for the class hierarchy.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l85"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:85</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l109"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:109</code></a>
         
         </p>
 
@@ -7619,7 +8556,7 @@ can be the configuration for the plugin.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-overlay_js_aui-overlay-manager.js.html#l137"><code>src&#x2F;aui-overlay&#x2F;js&#x2F;aui-overlay-manager.js:137</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-overlay_js_aui-overlay-manager.js.html#l135"><code>src&#x2F;aui-overlay&#x2F;js&#x2F;aui-overlay-manager.js:135</code></a>
         
         </p>
 
@@ -7719,7 +8656,7 @@ OverlayManager.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-overlay_js_aui-overlay-manager.js.html#l181"><code>src&#x2F;aui-overlay&#x2F;js&#x2F;aui-overlay-manager.js:181</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-overlay_js_aui-overlay-manager.js.html#l179"><code>src&#x2F;aui-overlay&#x2F;js&#x2F;aui-overlay-manager.js:179</code></a>
         
         </p>
 
@@ -8238,7 +9175,7 @@ set called externally by the application developer.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-overlay_js_aui-overlay-manager.js.html#l218"><code>src&#x2F;aui-overlay&#x2F;js&#x2F;aui-overlay-manager.js:218</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-overlay_js_aui-overlay-manager.js.html#l216"><code>src&#x2F;aui-overlay&#x2F;js&#x2F;aui-overlay-manager.js:216</code></a>
         
         </p>
 
@@ -8308,7 +9245,7 @@ all registered Overlays.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-overlay_js_aui-overlay-manager.js.html#l246"><code>src&#x2F;aui-overlay&#x2F;js&#x2F;aui-overlay-manager.js:246</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-overlay_js_aui-overlay-manager.js.html#l244"><code>src&#x2F;aui-overlay&#x2F;js&#x2F;aui-overlay-manager.js:244</code></a>
         
         </p>
 
@@ -8638,7 +9575,7 @@ all registered plugins are unplugged.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l18"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:18</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker-deprecated_js_aui-datepicker-base.js.html#l18"><code>src&#x2F;aui-datepicker-deprecated&#x2F;js&#x2F;aui-datepicker-base.js:18</code></a>
         
         </p>
 
@@ -8661,6 +9598,208 @@ all registered plugins are unplugged.</p>
 
             <p>
             Fires when the value for the configuration attribute <code>calendar</code> is
+            changed. You can listen for the event using the <code>on</code> method if you
+            wish to be notified before the attribute's value has changed, or
+            using the <code>after</code> method if you wish to be notified after the
+            attribute's value has changed.
+            </p>
+
+            <div class="params">
+                <h4>Parameters:</h4>
+
+                <ul class="params-list">
+                    <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
+
+                        <div class="param-description">
+                            An Event Facade object with the following
+                            attribute-specific properties added:
+                        </div>
+
+                        <ul class="params-list">
+                            <li class="param">
+                                <code class="param-name">prevVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value of the attribute, prior to it being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">newVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value the attribute is to be set to.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">attrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">The name of the attribute being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">subAttrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="attr_calendar" class="attr item">
+    <a name="config_calendar"></a> 
+    <h3 class="name"><code>calendar</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                    <p>Provided by the <a href="../modules/datatype.html">datatype</a> module.</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l30"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:30</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p><a href="Calendar.html">Calendar</a> configuration Object.</a></p>
+    </div>
+
+    
+        <p><strong>Default:</strong> {}</p>
+    
+
+    
+        <div class="emits box">
+            <h4>Fires event <code>calendarChange</code></h4>
+
+            <p>
+            Fires when the value for the configuration attribute <code>calendar</code> is
+            changed. You can listen for the event using the <code>on</code> method if you
+            wish to be notified before the attribute's value has changed, or
+            using the <code>after</code> method if you wish to be notified after the
+            attribute's value has changed.
+            </p>
+
+            <div class="params">
+                <h4>Parameters:</h4>
+
+                <ul class="params-list">
+                    <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
+
+                        <div class="param-description">
+                            An Event Facade object with the following
+                            attribute-specific properties added:
+                        </div>
+
+                        <ul class="params-list">
+                            <li class="param">
+                                <code class="param-name">prevVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value of the attribute, prior to it being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">newVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value the attribute is to be set to.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">attrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">The name of the attribute being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">subAttrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="attr_dateFormat" class="attr item">
+    <a name="config_dateFormat"></a> 
+    <h3 class="name"><code>dateFormat</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                    <p>Provided by the <a href="../modules/datatype.html">datatype</a> module.</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l351"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:351</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>The default date format string which can be overriden for
+localization support. The format must be valid according to
+<a href="DataType.Date.html">A.DataType.Date.format</a>.</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> %m&#x2F;%d&#x2F;%Y</p>
+    
+
+    
+        <div class="emits box">
+            <h4>Fires event <code>dateFormatChange</code></h4>
+
+            <p>
+            Fires when the value for the configuration attribute <code>dateFormat</code> is
             changed. You can listen for the event using the <code>on</code> method if you
             wish to be notified before the attribute's value has changed, or
             using the <code>after</code> method if you wish to be notified after the
@@ -8825,6 +9964,8 @@ has been through the destroy lifecycle phase.</p>
         
             
                 
+                    <p>Provided by the <a href="../modules/datatype.html">datatype</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -8832,7 +9973,106 @@ has been through the destroy lifecycle phase.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l30"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:30</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l42"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:42</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Function to format the array of the selected dates before set the
+value of the input.</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> function(dates) { return dates.formatted.join(&#x27;,&#x27;); }</p>
+    
+
+    
+        <div class="emits box">
+            <h4>Fires event <code>formatterChange</code></h4>
+
+            <p>
+            Fires when the value for the configuration attribute <code>formatter</code> is
+            changed. You can listen for the event using the <code>on</code> method if you
+            wish to be notified before the attribute's value has changed, or
+            using the <code>after</code> method if you wish to be notified after the
+            attribute's value has changed.
+            </p>
+
+            <div class="params">
+                <h4>Parameters:</h4>
+
+                <ul class="params-list">
+                    <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
+
+                        <div class="param-description">
+                            An Event Facade object with the following
+                            attribute-specific properties added:
+                        </div>
+
+                        <ul class="params-list">
+                            <li class="param">
+                                <code class="param-name">prevVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value of the attribute, prior to it being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">newVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value the attribute is to be set to.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">attrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">The name of the attribute being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">subAttrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="attr_formatter" class="attr item">
+    <a name="config_formatter"></a> 
+    <h3 class="name"><code>formatter</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker-deprecated_js_aui-datepicker-base.js.html#l30"><code>src&#x2F;aui-datepicker-deprecated&#x2F;js&#x2F;aui-datepicker-base.js:30</code></a>
         
         </p>
 
@@ -9027,7 +10267,7 @@ has been through the init lifecycle phase.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l45"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:45</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker-deprecated_js_aui-datepicker-base.js.html#l45"><code>src&#x2F;aui-datepicker-deprecated&#x2F;js&#x2F;aui-datepicker-base.js:45</code></a>
         
         </p>
 
@@ -9040,6 +10280,108 @@ has been through the init lifecycle phase.</p>
         <p>If true set the selected date with the correct
 <a href="Calendar.html#config_dateFormat">dateFormat</a> to the
 value of the input field which is hosting the Calendar.</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> true</p>
+    
+
+    
+        <div class="emits box">
+            <h4>Fires event <code>setValueChange</code></h4>
+
+            <p>
+            Fires when the value for the configuration attribute <code>setValue</code> is
+            changed. You can listen for the event using the <code>on</code> method if you
+            wish to be notified before the attribute's value has changed, or
+            using the <code>after</code> method if you wish to be notified after the
+            attribute's value has changed.
+            </p>
+
+            <div class="params">
+                <h4>Parameters:</h4>
+
+                <ul class="params-list">
+                    <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
+
+                        <div class="param-description">
+                            An Event Facade object with the following
+                            attribute-specific properties added:
+                        </div>
+
+                        <ul class="params-list">
+                            <li class="param">
+                                <code class="param-name">prevVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value of the attribute, prior to it being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">newVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value the attribute is to be set to.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">attrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">The name of the attribute being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">subAttrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="attr_setValue" class="attr item">
+    <a name="config_setValue"></a> 
+    <h3 class="name"><code>setValue</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                    <p>Provided by the <a href="../modules/datatype.html">datatype</a> module.</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l69"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:69</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>If true set the selected date with the correct
+dateFormat to the value of the input field
+which is hosting the Calendar.</p>
     </div>
 
     
@@ -9120,6 +10462,8 @@ value of the input field which is hosting the Calendar.</p>
         
             
                 
+                    <p>Provided by the <a href="../modules/datatype.html">datatype</a> module.</p>
+                
                 <p>
                 
                 Defined in
@@ -9127,7 +10471,105 @@ value of the input field which is hosting the Calendar.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l59"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:59</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l83"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:83</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>If true is able to do stacking with another overlays.</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> true</p>
+    
+
+    
+        <div class="emits box">
+            <h4>Fires event <code>stackChange</code></h4>
+
+            <p>
+            Fires when the value for the configuration attribute <code>stack</code> is
+            changed. You can listen for the event using the <code>on</code> method if you
+            wish to be notified before the attribute's value has changed, or
+            using the <code>after</code> method if you wish to be notified after the
+            attribute's value has changed.
+            </p>
+
+            <div class="params">
+                <h4>Parameters:</h4>
+
+                <ul class="params-list">
+                    <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
+
+                        <div class="param-description">
+                            An Event Facade object with the following
+                            attribute-specific properties added:
+                        </div>
+
+                        <ul class="params-list">
+                            <li class="param">
+                                <code class="param-name">prevVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value of the attribute, prior to it being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">newVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value the attribute is to be set to.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">attrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">The name of the attribute being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">subAttrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="attr_stack" class="attr item">
+    <a name="config_stack"></a> 
+    <h3 class="name"><code>stack</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker-deprecated_js_aui-datepicker-base.js.html#l59"><code>src&#x2F;aui-datepicker-deprecated&#x2F;js&#x2F;aui-datepicker-base.js:59</code></a>
         
         </p>
 
@@ -9225,7 +10667,107 @@ value of the input field which is hosting the Calendar.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l251"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:251</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker_js_aui-datepicker-base.js.html#l336"><code>src&#x2F;aui-datepicker&#x2F;js&#x2F;aui-datepicker-base.js:336</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>ZIndex default value passed to the
+<a href="OverlayManager.html#config_zIndexBase">zIndexBase</a> of
+<a href="OverlayManager.html">OverlayManager</a>.</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> 1000</p>
+    
+
+    
+        <div class="emits box">
+            <h4>Fires event <code>zIndexBaseChange</code></h4>
+
+            <p>
+            Fires when the value for the configuration attribute <code>zIndexBase</code> is
+            changed. You can listen for the event using the <code>on</code> method if you
+            wish to be notified before the attribute's value has changed, or
+            using the <code>after</code> method if you wish to be notified after the
+            attribute's value has changed.
+            </p>
+
+            <div class="params">
+                <h4>Parameters:</h4>
+
+                <ul class="params-list">
+                    <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
+
+                        <div class="param-description">
+                            An Event Facade object with the following
+                            attribute-specific properties added:
+                        </div>
+
+                        <ul class="params-list">
+                            <li class="param">
+                                <code class="param-name">prevVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value of the attribute, prior to it being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">newVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value the attribute is to be set to.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">attrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">The name of the attribute being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">subAttrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="attr_zIndexBase" class="attr item">
+    <a name="config_zIndexBase"></a> 
+    <h3 class="name"><code>zIndexBase</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-datepicker-deprecated_js_aui-datepicker-base.js.html#l251"><code>src&#x2F;aui-datepicker-deprecated&#x2F;js&#x2F;aui-datepicker-base.js:251</code></a>
         
         </p>
 

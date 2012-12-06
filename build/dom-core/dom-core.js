@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('dom-core', function (Y, NAME) {
 
@@ -259,7 +259,7 @@ Y_DOM = {
 
 
     isWindow: function(obj) {
-        return !!(obj && obj.alert && obj.document);
+        return !!(obj && obj.scrollTo && obj.document);
     },
 
     _removeChildNodes: function(node) {
@@ -393,4 +393,4 @@ Y_DOM = {
 Y.DOM = Y_DOM;
 
 
-}, '3.7.2', {"requires": ["oop", "features"]});
+}, '3.7.3', {"requires": ["oop", "features"]});

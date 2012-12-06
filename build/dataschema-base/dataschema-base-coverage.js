@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 if (typeof _yuitest_coverage == "undefined"){
     _yuitest_coverage = {};
@@ -33,7 +33,7 @@ _yuitest_coverage["build/dataschema-base/dataschema-base.js"] = {
     path: "build/dataschema-base/dataschema-base.js",
     code: []
 };
-_yuitest_coverage["build/dataschema-base/dataschema-base.js"].code=["YUI.add('dataschema-base', function (Y, NAME) {","","/**"," * The DataSchema utility provides a common configurable interface for widgets to"," * apply a given schema to a variety of data."," *"," * @module dataschema"," * @main dataschema"," */","","/**"," * Provides the base DataSchema implementation, which can be extended to "," * create DataSchemas for specific data formats, such XML, JSON, text and"," * arrays."," *"," * @module dataschema"," * @submodule dataschema-base"," */","","var LANG = Y.Lang,","/**"," * Base class for the YUI DataSchema Utility."," * @class DataSchema.Base"," * @static"," */","    SchemaBase = {","    /**","     * Overridable method returns data as-is.","     *","     * @method apply","     * @param schema {Object} Schema to apply.","     * @param data {Object} Data.","     * @return {Object} Schema-parsed data.","     * @static","     */","    apply: function(schema, data) {","        return data;","    },","    ","    /**","     * Applies field parser, if defined","     *","     * @method parse","     * @param value {Object} Original value.","     * @param field {Object} Field.","     * @return {Object} Type-converted value.","     */","    parse: function(value, field) {","        if(field.parser) {","            var parser = (LANG.isFunction(field.parser)) ?","            field.parser : Y.Parsers[field.parser+''];","            if(parser) {","                value = parser.call(this, value);","            }","            else {","            }","        }","        return value;","    }","};","","Y.namespace(\"DataSchema\").Base = SchemaBase;","Y.namespace(\"Parsers\");","","","}, '3.7.2', {\"requires\": [\"base\"]});"];
+_yuitest_coverage["build/dataschema-base/dataschema-base.js"].code=["YUI.add('dataschema-base', function (Y, NAME) {","","/**"," * The DataSchema utility provides a common configurable interface for widgets to"," * apply a given schema to a variety of data."," *"," * @module dataschema"," * @main dataschema"," */","","/**"," * Provides the base DataSchema implementation, which can be extended to "," * create DataSchemas for specific data formats, such XML, JSON, text and"," * arrays."," *"," * @module dataschema"," * @submodule dataschema-base"," */","","var LANG = Y.Lang,","/**"," * Base class for the YUI DataSchema Utility."," * @class DataSchema.Base"," * @static"," */","    SchemaBase = {","    /**","     * Overridable method returns data as-is.","     *","     * @method apply","     * @param schema {Object} Schema to apply.","     * @param data {Object} Data.","     * @return {Object} Schema-parsed data.","     * @static","     */","    apply: function(schema, data) {","        return data;","    },","    ","    /**","     * Applies field parser, if defined","     *","     * @method parse","     * @param value {Object} Original value.","     * @param field {Object} Field.","     * @return {Object} Type-converted value.","     */","    parse: function(value, field) {","        if(field.parser) {","            var parser = (LANG.isFunction(field.parser)) ?","            field.parser : Y.Parsers[field.parser+''];","            if(parser) {","                value = parser.call(this, value);","            }","            else {","            }","        }","        return value;","    }","};","","Y.namespace(\"DataSchema\").Base = SchemaBase;","Y.namespace(\"Parsers\");","","","}, '3.7.3', {\"requires\": [\"base\"]});"];
 _yuitest_coverage["build/dataschema-base/dataschema-base.js"].lines = {"1":0,"20":0,"37":0,"49":0,"50":0,"52":0,"53":0,"58":0,"62":0,"63":0};
 _yuitest_coverage["build/dataschema-base/dataschema-base.js"].functions = {"apply:36":0,"parse:48":0,"(anonymous 1):1":0};
 _yuitest_coverage["build/dataschema-base/dataschema-base.js"].coveredLines = 10;
@@ -116,4 +116,4 @@ _yuitest_coverline("build/dataschema-base/dataschema-base.js", 63);
 Y.namespace("Parsers");
 
 
-}, '3.7.2', {"requires": ["base"]});
+}, '3.7.3', {"requires": ["base"]});

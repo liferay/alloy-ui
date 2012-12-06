@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('node-scroll-info', function (Y, NAME) {
 
@@ -584,4 +584,4 @@ Y.Plugin.ScrollInfo = Y.Base.create('scrollInfoPlugin', Y.Plugin.Base, [], {
 });
 
 
-}, '3.7.2', {"requires": ["base-build", "dom-screen", "event-resize", "node-pluginhost", "plugin"]});
+}, '3.7.3', {"requires": ["base-build", "dom-screen", "event-resize", "node-pluginhost", "plugin"]});

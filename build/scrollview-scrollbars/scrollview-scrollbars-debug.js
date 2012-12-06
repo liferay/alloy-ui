@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('scrollview-scrollbars', function (Y, NAME) {
 
@@ -18,7 +18,7 @@ var getClassName = Y.ClassNameManager.getClassName,
     _classNames,
 
     Transition = Y.Transition,
-    NATIVE_TRANSITIONS = Transition.useNative,    
+    NATIVE_TRANSITIONS = Transition.useNative,
     SCROLLBAR = 'scrollbar',
     SCROLLVIEW = 'scrollview',
 
@@ -37,7 +37,7 @@ var getClassName = Y.ClassNameManager.getClassName,
     HORIZ_CACHE = "_sbh",
     VERT_CACHE = "_sbv",
 
-    TRANSITION_PROPERTY = Transition._VENDOR_PREFIX + "TransitionProperty",
+    TRANSITION_PROPERTY = Y.ScrollView._TRANSITION.PROPERTY,
     TRANSFORM = "transform",
 
     TRANSLATE_X = "translateX(",
@@ -565,4 +565,4 @@ Y.namespace("Plugin").ScrollViewScrollbars = Y.extend(ScrollbarsPlugin, Y.Plugin
 });
 
 
-}, '3.7.2', {"requires": ["classnamemanager", "transition", "plugin"], "skinnable": true});
+}, '3.7.3', {"requires": ["classnamemanager", "transition", "plugin"], "skinnable": true});

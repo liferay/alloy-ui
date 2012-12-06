@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('datatype-xml-parse', function (Y, NAME) {
 
@@ -37,8 +37,12 @@ Y.mix(Y.namespace("XML"), {
             }
             catch(ee) {
                 try {
-                    if(!LANG.isUndefined(DOMParser)) {
+                    if (!LANG.isUndefined(DOMParser)) {
                         xmlDoc = new DOMParser().parseFromString(data, "text/xml");
+                    }
+                    if (!LANG.isUndefined(Windows.Data.Xml.Dom)) {
+                        xmlDoc = new Windows.Data.Xml.Dom.XmlDocument();
+                        xmlDoc.loadXml(data);
                     }
                 }
                 catch(e) {
@@ -60,4 +64,4 @@ Y.namespace("DataType");
 Y.DataType.XML = Y.XML;
 
 
-}, '3.7.2');
+}, '3.7.3');

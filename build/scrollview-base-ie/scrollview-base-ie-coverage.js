@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 if (typeof _yuitest_coverage == "undefined"){
     _yuitest_coverage = {};
@@ -33,7 +33,7 @@ _yuitest_coverage["build/scrollview-base-ie/scrollview-base-ie.js"] = {
     path: "build/scrollview-base-ie/scrollview-base-ie.js",
     code: []
 };
-_yuitest_coverage["build/scrollview-base-ie/scrollview-base-ie.js"].code=["YUI.add('scrollview-base-ie', function (Y, NAME) {","","/**"," * IE specific support for the scrollview-base module."," *"," * @module scrollview-base-ie"," */","","Y.mix(Y.ScrollView.prototype, {","","    /**","     * Internal method to fix text selection in IE","     * ","     * @method _fixIESelect","     * @for ScrollView","     * @private","     * @param {Node} bb The bounding box","     * @param {Node} cb The content box","     */","    _fixIESelect : function(bb, cb) {","        this._cbDoc = cb.get(\"ownerDocument\");","        this._nativeBody = Y.Node.getDOMNode(Y.one(\"body\", this._cbDoc));","","        cb.on(\"mousedown\", function() {","            this._selectstart = this._nativeBody.onselectstart;","            this._nativeBody.onselectstart = this._iePreventSelect;","            this._cbDoc.once(\"mouseup\", this._ieRestoreSelect, this);","        }, this);","    },","","    /**","     * Native onselectstart handle to prevent selection in IE","     *","     * @method _iePreventSelect","     * @for ScrollView","     * @private","     */","    _iePreventSelect : function() {","        return false;","    },","","    /**","     * Restores native onselectstart handle, backed up to prevent selection in IE","     *","     * @method _ieRestoreSelect","     * @for ScrollView","     * @private","     */","    _ieRestoreSelect : function() {","        this._nativeBody.onselectstart = this._selectstart;","    }","}, true);","","}, '3.7.2', {\"requires\": [\"scrollview-base\"]});"];
+_yuitest_coverage["build/scrollview-base-ie/scrollview-base-ie.js"].code=["YUI.add('scrollview-base-ie', function (Y, NAME) {","","/**"," * IE specific support for the scrollview-base module."," *"," * @module scrollview-base-ie"," */","","Y.mix(Y.ScrollView.prototype, {","","    /**","     * Internal method to fix text selection in IE","     * ","     * @method _fixIESelect","     * @for ScrollView","     * @private","     * @param {Node} bb The bounding box","     * @param {Node} cb The content box","     */","    _fixIESelect : function(bb, cb) {","        this._cbDoc = cb.get(\"ownerDocument\");","        this._nativeBody = Y.Node.getDOMNode(Y.one(\"body\", this._cbDoc));","","        cb.on(\"mousedown\", function() {","            this._selectstart = this._nativeBody.onselectstart;","            this._nativeBody.onselectstart = this._iePreventSelect;","            this._cbDoc.once(\"mouseup\", this._ieRestoreSelect, this);","        }, this);","    },","","    /**","     * Native onselectstart handle to prevent selection in IE","     *","     * @method _iePreventSelect","     * @for ScrollView","     * @private","     */","    _iePreventSelect : function() {","        return false;","    },","","    /**","     * Restores native onselectstart handle, backed up to prevent selection in IE","     *","     * @method _ieRestoreSelect","     * @for ScrollView","     * @private","     */","    _ieRestoreSelect : function() {","        this._nativeBody.onselectstart = this._selectstart;","    }","}, true);","","}, '3.7.3', {\"requires\": [\"scrollview-base\"]});"];
 _yuitest_coverage["build/scrollview-base-ie/scrollview-base-ie.js"].lines = {"1":0,"9":0,"21":0,"22":0,"24":0,"25":0,"26":0,"27":0,"39":0,"50":0};
 _yuitest_coverage["build/scrollview-base-ie/scrollview-base-ie.js"].functions = {"(anonymous 2):24":0,"_fixIESelect:20":0,"_iePreventSelect:38":0,"_ieRestoreSelect:49":0,"(anonymous 1):1":0};
 _yuitest_coverage["build/scrollview-base-ie/scrollview-base-ie.js"].coveredLines = 10;
@@ -106,4 +106,4 @@ this._nativeBody.onselectstart = this._selectstart;
     }
 }, true);
 
-}, '3.7.2', {"requires": ["scrollview-base"]});
+}, '3.7.3', {"requires": ["scrollview-base"]});

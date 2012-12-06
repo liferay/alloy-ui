@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('calendarnavigator', function (Y, NAME) {
 
@@ -299,4 +299,4 @@ Y.extend(CalendarNavigator, Y.Plugin.Base, {
 
 Y.namespace("Plugin").CalendarNavigator = CalendarNavigator;
 
-}, '3.7.2', {"requires": ["plugin", "classnamemanager", "datatype-date", "node", "substitute"], "skinnable": true});
+}, '3.7.3', {"requires": ["plugin", "classnamemanager", "datatype-date", "node", "substitute"], "skinnable": true});

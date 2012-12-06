@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 if (typeof _yuitest_coverage == "undefined"){
     _yuitest_coverage = {};
@@ -33,7 +33,7 @@ _yuitest_coverage["build/graphics-canvas-default/graphics-canvas-default.js"] = 
     path: "build/graphics-canvas-default/graphics-canvas-default.js",
     code: []
 };
-_yuitest_coverage["build/graphics-canvas-default/graphics-canvas-default.js"].code=["YUI.add('graphics-canvas-default', function (Y, NAME) {","","Y.Graphic = Y.CanvasGraphic;","Y.Shape = Y.CanvasShape;","Y.Circle = Y.CanvasCircle;","Y.Rect = Y.CanvasRect;","Y.Ellipse = Y.CanvasEllipse;","Y.Path = Y.CanvasPath;","Y.Drawing = Y.CanvasDrawing;","","","}, '3.7.2');"];
+_yuitest_coverage["build/graphics-canvas-default/graphics-canvas-default.js"].code=["YUI.add('graphics-canvas-default', function (Y, NAME) {","","Y.Graphic = Y.CanvasGraphic;","Y.Shape = Y.CanvasShape;","Y.Circle = Y.CanvasCircle;","Y.Rect = Y.CanvasRect;","Y.Ellipse = Y.CanvasEllipse;","Y.Path = Y.CanvasPath;","Y.Drawing = Y.CanvasDrawing;","","","}, '3.7.3');"];
 _yuitest_coverage["build/graphics-canvas-default/graphics-canvas-default.js"].lines = {"1":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0};
 _yuitest_coverage["build/graphics-canvas-default/graphics-canvas-default.js"].functions = {"(anonymous 1):1":0};
 _yuitest_coverage["build/graphics-canvas-default/graphics-canvas-default.js"].coveredLines = 8;
@@ -58,4 +58,4 @@ _yuitest_coverline("build/graphics-canvas-default/graphics-canvas-default.js", 9
 Y.Drawing = Y.CanvasDrawing;
 
 
-}, '3.7.2');
+}, '3.7.3');

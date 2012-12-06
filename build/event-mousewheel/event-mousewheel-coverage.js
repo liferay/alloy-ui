@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 if (typeof _yuitest_coverage == "undefined"){
     _yuitest_coverage = {};
@@ -33,7 +33,7 @@ _yuitest_coverage["build/event-mousewheel/event-mousewheel.js"] = {
     path: "build/event-mousewheel/event-mousewheel.js",
     code: []
 };
-_yuitest_coverage["build/event-mousewheel/event-mousewheel.js"].code=["YUI.add('event-mousewheel', function (Y, NAME) {","","/**"," * Adds mousewheel event support"," * @module event"," * @submodule event-mousewheel"," */","var DOM_MOUSE_SCROLL = 'DOMMouseScroll',","    fixArgs = function(args) {","        var a = Y.Array(args, 0, true), target;","        if (Y.UA.gecko) {","            a[0] = DOM_MOUSE_SCROLL;","            target = Y.config.win;","        } else {","            target = Y.config.doc;","        }","","        if (a.length < 3) {","            a[2] = target;","        } else {","            a.splice(2, 0, target);","        }","","        return a;","    };","","/**"," * Mousewheel event.  This listener is automatically attached to the"," * correct target, so one should not be supplied.  Mouse wheel "," * direction and velocity is stored in the 'wheelDelta' field."," * @event mousewheel"," * @param type {string} 'mousewheel'"," * @param fn {function} the callback to execute"," * @param context optional context object"," * @param args 0..n additional arguments to provide to the listener."," * @return {EventHandle} the detach handle"," * @for YUI"," */","Y.Env.evt.plugins.mousewheel = {","    on: function() {","        return Y.Event._attach(fixArgs(arguments));","    },","","    detach: function() {","        return Y.Event.detach.apply(Y.Event, fixArgs(arguments));","    }","};","","","}, '3.7.2', {\"requires\": [\"node-base\"]});"];
+_yuitest_coverage["build/event-mousewheel/event-mousewheel.js"].code=["YUI.add('event-mousewheel', function (Y, NAME) {","","/**"," * Adds mousewheel event support"," * @module event"," * @submodule event-mousewheel"," */","var DOM_MOUSE_SCROLL = 'DOMMouseScroll',","    fixArgs = function(args) {","        var a = Y.Array(args, 0, true), target;","        if (Y.UA.gecko) {","            a[0] = DOM_MOUSE_SCROLL;","            target = Y.config.win;","        } else {","            target = Y.config.doc;","        }","","        if (a.length < 3) {","            a[2] = target;","        } else {","            a.splice(2, 0, target);","        }","","        return a;","    };","","/**"," * Mousewheel event.  This listener is automatically attached to the"," * correct target, so one should not be supplied.  Mouse wheel "," * direction and velocity is stored in the 'wheelDelta' field."," * @event mousewheel"," * @param type {string} 'mousewheel'"," * @param fn {function} the callback to execute"," * @param context optional context object"," * @param args 0..n additional arguments to provide to the listener."," * @return {EventHandle} the detach handle"," * @for YUI"," */","Y.Env.evt.plugins.mousewheel = {","    on: function() {","        return Y.Event._attach(fixArgs(arguments));","    },","","    detach: function() {","        return Y.Event.detach.apply(Y.Event, fixArgs(arguments));","    }","};","","","}, '3.7.3', {\"requires\": [\"node-base\"]});"];
 _yuitest_coverage["build/event-mousewheel/event-mousewheel.js"].lines = {"1":0,"8":0,"10":0,"11":0,"12":0,"13":0,"15":0,"18":0,"19":0,"21":0,"24":0,"39":0,"41":0,"45":0};
 _yuitest_coverage["build/event-mousewheel/event-mousewheel.js"].functions = {"fixArgs:9":0,"on:40":0,"detach:44":0,"(anonymous 1):1":0};
 _yuitest_coverage["build/event-mousewheel/event-mousewheel.js"].coveredLines = 14;
@@ -105,4 +105,4 @@ return Y.Event.detach.apply(Y.Event, fixArgs(arguments));
 };
 
 
-}, '3.7.2', {"requires": ["node-base"]});
+}, '3.7.3', {"requires": ["node-base"]});

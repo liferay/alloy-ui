@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('uploader-html5', function (Y, NAME) {
 
@@ -987,4 +987,4 @@ Y.UploaderHTML5.Queue = UploaderQueue;
 
 
 
-}, '3.7.2', {"requires": ["widget", "node-event-simulate", "substitute", "file-html5", "uploader-queue"]});
+}, '3.7.3', {"requires": ["widget", "node-event-simulate", "substitute", "file-html5", "uploader-queue"]});

@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 if (typeof _yuitest_coverage == "undefined"){
     _yuitest_coverage = {};
@@ -33,7 +33,7 @@ _yuitest_coverage["build/anim-xy/anim-xy.js"] = {
     path: "build/anim-xy/anim-xy.js",
     code: []
 };
-_yuitest_coverage["build/anim-xy/anim-xy.js"].code=["YUI.add('anim-xy', function (Y, NAME) {","","/**"," * Adds support for the <code>xy</code> property in <code>from</code> and "," * <code>to</code> attributes."," * @module anim"," * @submodule anim-xy"," */","","var NUM = Number;","","Y.Anim.behaviors.xy = {","    set: function(anim, att, from, to, elapsed, duration, fn) {","        anim._node.setXY([","            fn(elapsed, NUM(from[0]), NUM(to[0]) - NUM(from[0]), duration),","            fn(elapsed, NUM(from[1]), NUM(to[1]) - NUM(from[1]), duration)","        ]);","    },","    get: function(anim) {","        return anim._node.getXY();","    }","};","","","","}, '3.7.2', {\"requires\": [\"anim-base\", \"node-screen\"]});"];
+_yuitest_coverage["build/anim-xy/anim-xy.js"].code=["YUI.add('anim-xy', function (Y, NAME) {","","/**"," * Adds support for the <code>xy</code> property in <code>from</code> and "," * <code>to</code> attributes."," * @module anim"," * @submodule anim-xy"," */","","var NUM = Number;","","Y.Anim.behaviors.xy = {","    set: function(anim, att, from, to, elapsed, duration, fn) {","        anim._node.setXY([","            fn(elapsed, NUM(from[0]), NUM(to[0]) - NUM(from[0]), duration),","            fn(elapsed, NUM(from[1]), NUM(to[1]) - NUM(from[1]), duration)","        ]);","    },","    get: function(anim) {","        return anim._node.getXY();","    }","};","","","","}, '3.7.3', {\"requires\": [\"anim-base\", \"node-screen\"]});"];
 _yuitest_coverage["build/anim-xy/anim-xy.js"].lines = {"1":0,"10":0,"12":0,"14":0,"20":0};
 _yuitest_coverage["build/anim-xy/anim-xy.js"].functions = {"set:13":0,"get:19":0,"(anonymous 1):1":0};
 _yuitest_coverage["build/anim-xy/anim-xy.js"].coveredLines = 5;
@@ -71,4 +71,4 @@ return anim._node.getXY();
 
 
 
-}, '3.7.2', {"requires": ["anim-base", "node-screen"]});
+}, '3.7.3', {"requires": ["anim-base", "node-screen"]});

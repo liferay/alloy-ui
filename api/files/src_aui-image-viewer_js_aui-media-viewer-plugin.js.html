@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>src&#x2F;aui-image-viewer&#x2F;js&#x2F;aui-media-viewer-plugin.js - AlloyUI</title>
-    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -17,9 +17,9 @@
         </div>
         <div class="yui3-u-1-4 version">
             <div class="version-details">
-                <span class="version-lib">AlloyUI 1.5.0</span>
+                <span class="version-lib">AlloyUI 1.7.0pr3</span>
                 <div class="yui-version">
-                    <span class="version-lib version-lib-yui">YUI 3.4.0</span>
+                    <span class="version-lib version-lib-yui">YUI 3.7.3</span>
                 </div>
             </div>
         </div>
@@ -144,6 +144,8 @@
                 <li><a href="..&#x2F;classes/CanvasRect.html">CanvasRect</a></li>
             
                 <li><a href="..&#x2F;classes/CanvasShape.html">CanvasShape</a></li>
+            
+                <li><a href="..&#x2F;classes/Carousel.html">Carousel</a></li>
             
                 <li><a href="..&#x2F;classes/CartesianChart.html">CartesianChart</a></li>
             
@@ -355,7 +357,7 @@
             
                 <li><a href="..&#x2F;classes/IORequest.html">IORequest</a></li>
             
-                <li><a href="..&#x2F;classes/json.html">json</a></li>
+                <li><a href="..&#x2F;classes/JSON.html">JSON</a></li>
             
                 <li><a href="..&#x2F;classes/JSONPRequest.html">JSONPRequest</a></li>
             
@@ -501,7 +503,7 @@
             
                 <li><a href="..&#x2F;classes/ProgressBar.html">ProgressBar</a></li>
             
-                <li><a href="..&#x2F;classes/querystring.html">querystring</a></li>
+                <li><a href="..&#x2F;classes/QueryString.html">QueryString</a></li>
             
                 <li><a href="..&#x2F;classes/Queue.html">Queue</a></li>
             
@@ -761,6 +763,8 @@
                 <li><a href="..&#x2F;modules/aui-calendar-base.html">aui-calendar-base</a></li>
             
                 <li><a href="..&#x2F;modules/aui-calendar-datepicker-select.html">aui-calendar-datepicker-select</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-carousel.html">aui-carousel</a></li>
             
                 <li><a href="..&#x2F;modules/aui-char-counter.html">aui-char-counter</a></li>
             
@@ -1354,11 +1358,14 @@
 var Lang = A.Lang,
 	Do = A.Do,
 
+	STR_ABOUT_BLANK = &#x27;about:blank&#x27;,
 	STR_BODY = &#x27;body&#x27;,
 	STR_HREF = &#x27;href&#x27;,
+	STR_IFRAME = &#x27;iframe&#x27;,
 	STR_IMAGE = &#x27;image&#x27;,
 	STR_LOADING = &#x27;loading&#x27;,
 	STR_PROVIDERS = &#x27;providers&#x27;,
+	STR_SRC = &#x27;src&#x27;,
 
 	NAME = &#x27;mediaViewerPlugin&#x27;,
 
@@ -1445,6 +1452,8 @@ var MediaViewerPlugin = A.Component.create(
 				var mediaType = instance._getMediaType(source.attr(&#x27;href&#x27;));
 
 				if (mediaType != STR_IMAGE) {
+					instance._redirectIframe(STR_ABOUT_BLANK);
+
 					host.setStdModContent(STR_BODY, &#x27;&#x27;);
 				}
 			},
@@ -1457,6 +1466,8 @@ var MediaViewerPlugin = A.Component.create(
 				var mediaType = instance._getMediaType(linkHref);
 
 				var result = true;
+
+				instance._redirectIframe(STR_ABOUT_BLANK);
 
 				if (mediaType != STR_IMAGE) {
 					var providers = instance.get(STR_PROVIDERS)[mediaType];
@@ -1546,6 +1557,20 @@ var MediaViewerPlugin = A.Component.create(
 				);
 
 				return mediaType;
+			},
+
+			_redirectIframe: function(source) {
+				var instance = this;
+
+				var bodyNode = instance.get(&#x27;host.bodyNode&#x27;);
+
+				if (bodyNode) {
+					var iframe = bodyNode.one(STR_IFRAME);
+
+					if (iframe) {
+						iframe.attr(STR_SRC, source);
+					}
+				}
 			},
 
 			_restoreMedia: function(event) {

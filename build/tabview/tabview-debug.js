@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('tabview', function (Y, NAME) {
 
@@ -405,4 +405,4 @@ Y.Tab = Y.Base.create('tab', Y.Widget, [Y.WidgetChild], {
 });
 
 
-}, '3.7.2', {"requires": ["widget", "widget-parent", "widget-child", "tabview-base", "node-pluginhost", "node-focusmanager"], "skinnable": true});
+}, '3.7.3', {"requires": ["widget", "widget-parent", "widget-child", "tabview-base", "node-pluginhost", "node-focusmanager"], "skinnable": true});

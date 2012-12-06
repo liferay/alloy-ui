@@ -161,7 +161,7 @@
 	</target>
 
 	<target name="build-skins">
-		<antcall target="build-ruby-gems"/>
+		<antcall target="build-jazz"/>
 
 		<sass-parse folder.sass="${project.dir}/src/${build.aui.prefix}aui-skin-base/css" />
 

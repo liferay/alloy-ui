@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('dd-ddm-base', function (Y, NAME) {
 
@@ -12,7 +12,7 @@ YUI.add('dd-ddm-base', function (Y, NAME) {
      * Provides the base Drag Drop Manger required for making a Node draggable.
      * @module dd
      * @submodule dd-ddm-base
-     */     
+     */
      /**
      * Provides the base Drag Drop Manger required for making a Node draggable.
      * @class DDM
@@ -20,7 +20,7 @@ YUI.add('dd-ddm-base', function (Y, NAME) {
      * @constructor
      * @namespace DD
      */
-    
+
     var DDMBase = function() {
         DDMBase.superclass.constructor.apply(this, arguments);
     };
@@ -48,7 +48,7 @@ YUI.add('dd-ddm-base', function (Y, NAME) {
         * @attribute clickTimeThresh
         * @description The number of milliseconds a mousedown has to pass to start a drag operation, default is 1000.
         * @type Number
-        */        
+        */
         clickTimeThresh: {
             value: 1000
         },
@@ -56,22 +56,22 @@ YUI.add('dd-ddm-base', function (Y, NAME) {
         * @attribute throttleTime
         * @description The number of milliseconds to throttle the mousemove event. Default: 150
         * @type Number
-        */        
+        */
         throttleTime: {
             //value: 150
             value: -1
         },
         /**
+        * This attribute only works if the dd-drop module is active. It will set the dragMode (point, intersect, strict) of all future Drag instances.
         * @attribute dragMode
-        * @description This attribute only works if the dd-drop module is active. It will set the dragMode (point, intersect, strict) of all future Drag instances. 
         * @type String
-        */        
+        */
         dragMode: {
             value: 'point',
             setter: function(mode) {
                 this._setDragMode(mode);
                 return mode;
-            }           
+            }
         }
 
     };
@@ -106,7 +106,7 @@ YUI.add('dd-ddm-base', function (Y, NAME) {
                 case 'point':
                     return 0;
             }
-            return 0;       
+            return 0;
         },
         /**
         * @property CSS_PREFIX
@@ -114,7 +114,7 @@ YUI.add('dd-ddm-base', function (Y, NAME) {
         * @type {String}
         */
         CSS_PREFIX: Y.ClassNameManager.getClassName('dd'),
-        _activateTargets: function() {},        
+        _activateTargets: function() {},
         /**
         * @private
         * @property _drags
@@ -138,7 +138,7 @@ YUI.add('dd-ddm-base', function (Y, NAME) {
             if (this.getDrag(d.get('node'))) {
                 return false;
             }
-            
+
             if (!this._active) {
                 this._setupListeners();
             }
@@ -153,7 +153,7 @@ YUI.add('dd-ddm-base', function (Y, NAME) {
         */
         _unregDrag: function(d) {
             var tmp = [];
-            Y.each(this._drags, function(n, i) {
+            Y.each(this._drags, function(n) {
                 if (n !== d) {
                     tmp[tmp.length] = n;
                 }
@@ -218,7 +218,7 @@ YUI.add('dd-ddm-base', function (Y, NAME) {
         * @description Method will forcefully stop a drag operation. For example calling this from inside an ESC keypress handler will stop this drag.
         * @return {Self}
         * @chainable
-        */       
+        */
         stopDrag: function() {
             if (this.activeDrag) {
                 this._end();
@@ -258,15 +258,16 @@ YUI.add('dd-ddm-base', function (Y, NAME) {
         },
         /**
         * //TODO Private, rename??...
+        * Helper method to use to set the gutter from the attribute setter.
+        * CSS style string for gutter: '5 0' (sets top and bottom to 5px, left and right to 0px), '1 2 3 4' (top 1px, right 2px, bottom 3px, left 4px)
         * @private
         * @method cssSizestoObject
-        * @description Helper method to use to set the gutter from the attribute setter.
-        * @param {String} gutter CSS style string for gutter: '5 0' (sets top and bottom to 5px, left and right to 0px), '1 2 3 4' (top 1px, right 2px, bottom 3px, left 4px)
+        * @param {String} gutter CSS style string for gutter
         * @return {Object} The gutter Object Literal.
         */
         cssSizestoObject: function(gutter) {
             var x = gutter.split(' ');
-                
+
             switch (x.length) {
                 case 1: x[1] = x[2] = x[3] = x[0]; break;
                 case 2: x[2] = x[0]; x[3] = x[1]; break;
@@ -290,7 +291,7 @@ YUI.add('dd-ddm-base', function (Y, NAME) {
             var drag = false,
                 n = Y.one(node);
             if (n instanceof Y.Node) {
-                Y.each(this._drags, function(v, k) {
+                Y.each(this._drags, function(v) {
                     if (n.compareTo(v.get('node'))) {
                         drag = v;
                     }
@@ -349,9 +350,9 @@ YUI.add('dd-ddm-base', function (Y, NAME) {
             var p = n2.get('parentNode'),
                 s = n2.get('nextSibling');
 
-            if (s == n1) {
+            if (s === n1) {
                 p.insertBefore(n1, n2);
-            } else if (n2 == n1.get('nextSibling')) {
+            } else if (n2 === n1.get('nextSibling')) {
                 p.insertBefore(n2, n1);
             } else {
                 n1.get('parentNode').replaceChild(n2, n1);
@@ -378,4 +379,4 @@ YUI.add('dd-ddm-base', function (Y, NAME) {
 
 
 
-}, '3.7.2', {"requires": ["node", "base", "yui-throttle", "classnamemanager"]});
+}, '3.7.3', {"requires": ["node", "base", "yui-throttle", "classnamemanager"]});

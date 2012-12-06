@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.7.2
-build: 3.7.2
+version: 3.7.3
+build: 3.7.3
 */
 YUI.add('dd-drop-plugin', function (Y, NAME) {
 
@@ -26,7 +26,7 @@ YUI.add('dd-drop-plugin', function (Y, NAME) {
             config.node = config.host;
             Drop.superclass.constructor.apply(this, arguments);
         };
-        
+
         /**
         * @property NAME
         * @description dd-drop-plugin
@@ -48,4 +48,4 @@ YUI.add('dd-drop-plugin', function (Y, NAME) {
 
 
 
-}, '3.7.2', {"requires": ["dd-drop"]});
+}, '3.7.3', {"requires": ["dd-drop"]});
