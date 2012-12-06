@@ -1,3 +1,9 @@
+/**
+ * The Carousel Component
+ *
+ * @module aui-carousel
+ */
+
 var Lang = A.Lang,
 
 	ACTIVE_INDEX = 'activeIndex',
@@ -58,31 +64,128 @@ var Lang = A.Lang,
 		src: UI_SRC
 	};
 
+/**
+ * A base class for Carousel
+ *
+ * Quick Example:<br/>
+ *
+ * <pre><code>var component = new A.Carousel(
+ * 	{
+ *		contentBox: '#demo',
+ *		intervalTime: 1,
+ *		activeIndex: 0,
+ *		height: 254,
+ *		width: 940
+ * 	}
+ * ).render();
+ * </code></pre>
+ *
+ * Check the list of <a href="Carousel.html#configattributes">Configuration Attributes</a> available for
+ * Carousel.
+ *
+ * @class Carousel
+ * @uses AUI-base,AUI-template,anim
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+  */
 var Carousel = A.Component.create(
 	{
+		/**
+		 * Static property provides a string to identify the class.
+		 *
+		 * @property Carousel.NAME
+		 * @type String
+		 * @static
+		 */
 		NAME: CAROUSEL,
 
+		/**
+		 * Static property used to define the default attribute
+		 * configuration for the Carousel.
+		 *
+		 * @property Carousel.ATTRS
+		 * @type Object
+		 * @static
+		 */
 		ATTRS: {
+			/**
+			 * Index of the first visible item of the carousel
+			 *
+			 * @attribute activeIndex
+			 * @default 0
+			 * @type {Integer}
+			 */
 			activeIndex: {
 				value: 0,
 				setter: '_setActiveIndex'
 			},
+
+			/**
+			 * Duration of the animation in seconds when change index on
+			 * Carousel
+			 *
+			 * @attribute animationTime
+			 * @default 0.5
+			 * @type {Integer | Float}
+			 */
 			animationTime: {
 				value: 0.5
 			},
+
+			/**
+			 * Interval time in seconds between an item transition
+			 *
+			 * @attribute intervalTime
+			 * @default 0.75
+			 * @type {Integer | Float}
+			 */
 			intervalTime: {
 				value: 0.75
 			},
+
+			/**
+			 * CSS Selector whitch determines the items to be loaded to the
+			 * Carousel.
+			 *
+			 * @attribute itemSelector
+			 * @default >* (All first childs)
+			 * @type {String}
+			 */
 			itemSelector: {
 				value: '>*'
 			},
+
+			/**
+			 * Node container of the navigation items
+			 *
+			 * @attribute nodeMenu
+			 * @default null
+			 * @type {Node | String}
+			 */
 			nodeMenu: {
 				value: null,
 				setter: '_setNodeMenu'
 			},
+
+			/**
+			 * CSS selector to match the navigation items
+			 *
+			 * @attribute nodeMenuItemSelector
+			 * @default .aui-carousel-menu-item
+			 * @type {String}
+			 */
 			nodeMenuItemSelector: {
 				value: DOT + CSS_MENU_ITEM
 			},
+
+			/**
+			 * Attributes that determines the status of transitions between
+			 * items
+			 *
+			 * @attribute playing
+			 * @default true
+			 * @type {Boolean}
+			 */
 			playing: {
 				value: true
 			}
@@ -93,6 +196,12 @@ var Carousel = A.Component.create(
 			nodeSelection: null,
 			nodeMenu: null,
 
+			/**
+			 * Construction logic executed during Carousel instantiation. Lifecycle.
+			 *
+			 * @method initializer
+			 * @protected
+			 */
 			initializer: function() {
 				var instance = this;
 
@@ -106,6 +215,12 @@ var Carousel = A.Component.create(
 				);
 			},
 
+			/**
+			 * Render de Carousel component instance. Lifecycle.
+			 *
+			 * @method renderUI
+			 * @protected
+			 */
 			renderUI: function() {
 				var instance = this;
 
@@ -115,6 +230,12 @@ var Carousel = A.Component.create(
 				instance._updateMenuNodes();
 			},
 
+			/**
+			 * Bind the events on the Carousel UI. Lifecycle.
+			 *
+			 * @method bindUI
+			 * @protected
+			 */
 			bindUI: function() {
 				var instance = this;
 
@@ -142,42 +263,86 @@ var Carousel = A.Component.create(
 				}
 			},
 
+			/**
+			 * Sync the Carousel UI. Lifecycle.
+			 *
+			 * @method syncUI
+			 * @protected
+			 */
 			syncUI: function() {
 				var instance = this;
 
 				instance._uiSetActiveIndex(instance.get(ACTIVE_INDEX));
 			},
 
+			/**
+			 * Sync the Carousel UI. Lifecycle.
+			 *
+			 * @method syncUI
+			 * @param {Integer}
+			 * @protected
+			 */
 			item: function(val) {
 				var instance = this;
 
 				instance.set(ACTIVE_INDEX, val);
 			},
 
+			/**
+			 * Go to the next index.
+			 *
+			 * @method next
+			 */
 			next: function() {
 				var instance = this;
 
 				instance._updateIndexNext();
 			},
 
+			/**
+			 * Sets the <a
+		     * href="Carousel.html#config_play">playing</a> attribute
+		     * to false which pauses the animation
+			 *
+			 * @method pause
+			 */
 			pause: function() {
 				var instance = this;
 
 				instance.set(PLAYING, false);
 			},
 
+			/**
+			 * Sets the <a
+		     * href="Carousel.html#config_play">playing</a> attribute
+		     * to true which starts the animation
+			 *
+			 * @method play
+			 */
 			play: function() {
 				var instance = this;
 
 				instance.set(PLAYING, true);
 			},
 
+			/**
+			 * Go to previous index.
+			 *
+			 * @method prev
+			 */
 			prev: function() {
 				var instance = this;
 
 				instance._updateIndexPrev();
 			},
 
+			/**
+			 * Fires after activeIndex attribute changes
+			 *
+			 * @method _afterActiveIndexChange
+			 * @param event
+			 * @protected
+			 */
 			_afterActiveIndexChange: function(event) {
 				var instance = this;
 
@@ -191,18 +356,38 @@ var Carousel = A.Component.create(
 				);
 			},
 
+			/**
+			 * Fires after animationTime attribute changes
+			 *
+			 * @method _afterAnimationTimeChange
+			 * @param event
+			 */
 			_afterAnimationTimeChange: function(event) {
 				var instance = this;
 
 				instance.animation.set(DURATION, event.newVal);
 			},
 
+			/**
+			 * Fires after itemSelector attribute changes
+			 *
+			 * @method _afterItemSelectorChange
+			 * @param event
+			 * @protected
+			 */
 			_afterItemSelectorChange: function(event) {
 				var instance = this;
 
 				instance._updateNodeSelection();
 			},
 
+			/**
+			 * Fires after nodeMenuItemSelector attribute changes
+			 *
+			 * @method _afterNodeMenuItemSelectorChange
+			 * @param event
+			 * @protected
+			 */
 			_afterNodeMenuItemSelectorChange: function(event) {
 				var instance = this;
 
@@ -211,6 +396,13 @@ var Carousel = A.Component.create(
 				instance._updateMenuNodes();
 			},
 
+			/**
+			 * Fires after intervalTime attribute changes
+			 *
+			 * @method _afterIntervalTimeChange
+			 * @param event
+			 * @protected
+			 */
 			_afterIntervalTimeChange: function(event) {
 				var instance = this;
 
@@ -218,6 +410,13 @@ var Carousel = A.Component.create(
 				instance._createIntervalRotationTask();
 			},
 
+			/**
+			 * Fires after playing attribute changes
+			 *
+			 * @method _afterPlayingChange
+			 * @param event
+			 * @protected
+			 */
 			_afterPlayingChange: function(event) {
 				var instance = this;
 
@@ -244,6 +443,12 @@ var Carousel = A.Component.create(
 				}
 			},
 
+			/**
+			 * Attach delegate to the carousel menu
+			 *
+			 * @method _bindMenu
+			 * @protected
+			 */
 			_bindMenu: function() {
 				var instance = this;
 
@@ -280,12 +485,25 @@ var Carousel = A.Component.create(
 				);
 			},
 
+			/**
+			 * Clear the rotation task interval
+			 *
+			 * @method _clearIntervalRotationTask
+			 * @protected
+			 */
+
 			_clearIntervalRotationTask: function() {
 				var instance = this;
 
 				clearInterval(instance._intervalRotationTask);
 			},
 
+			/**
+			 * Creates an random number to be current index
+			 *
+			 * @method _createIndexRandom
+			 * @protected
+			 */
 			_createIndexRandom: function() {
 				var instance = this;
 
@@ -294,6 +512,12 @@ var Carousel = A.Component.create(
 				return Math.ceil(randomIndex) - 1;
 			},
 
+			/**
+			 * Creates an timer for the rotation task
+			 *
+			 * @method _createIntervalRotationTask
+			 * @protected
+			 */
 			_createIntervalRotationTask: function() {
 				var instance = this;
 
@@ -311,6 +535,13 @@ var Carousel = A.Component.create(
 				);
 			},
 
+			/**
+			 * Fires when animation ends
+			 *
+			 * @method _onAnimationEnd
+			 * @param event, newImage, oldImage, newMenuItem, oldMenuItem
+			 * @protected
+			 */
 			_onAnimationEnd: function(event, newImage, oldImage, newMenuItem, oldMenuItem) {
 				var instance = this;
 
@@ -321,6 +552,13 @@ var Carousel = A.Component.create(
 				newImage.setStyle(OPACITY, 1);
 			},
 
+			/**
+			 * Fires when animation starts
+			 *
+			 * @method _onAnimationStart
+			 * @param event, newImage, oldImage, newMenuItem, oldMenuItem
+			 * @protected
+			 */
 			_onAnimationStart: function(event, newImage, oldImage, newMenuItem, oldMenuItem) {
 				var instance = this;
 
@@ -339,6 +577,13 @@ var Carousel = A.Component.create(
 				}
 			},
 
+			/**
+			 * Fires when a click is fired on menu
+			 *
+			 * @method _onClickDelegate
+			 * @param event
+			 * @protected
+			 */
 			_onClickDelegate: function(event) {
 				var instance = this;
 
@@ -388,6 +633,14 @@ var Carousel = A.Component.create(
 				}
 			},
 
+
+			/**
+			 * Executed when delegates handle menuItem click
+			 *
+			 * @method _onMenuItemClick
+			 * @param event
+			 * @protected
+			 */
 			_onMenuItemClick: function(event) {
 				var instance = this;
 
@@ -398,12 +651,25 @@ var Carousel = A.Component.create(
 				instance.set(ACTIVE_INDEX, newIndex, MAP_EVENT_INFO);
 			},
 
+			/**
+			 * Executed when delegates handle play click
+			 *
+			 * @method _onMenuPlayClick
+			 * @param event
+			 * @protected
+			 */
 			_onMenuPlayClick: function(event) {
 				var instance = this;
 
 				this.set(PLAYING, !this.get(PLAYING));
 			},
 
+			/**
+			 * Render the menu in DOM
+			 *
+			 * @method _renderMenu
+			 * @protected
+			 */
 			_renderMenu: function() {
 				var instance = this;
 
@@ -419,6 +685,13 @@ var Carousel = A.Component.create(
 				return menu;
 			},
 
+			/**
+			 * Set the activeIndex attribute
+			 *
+			 * @method _setActiveIndex
+			 * @param val
+			 * @protected
+			 */
 			_setActiveIndex: function(val) {
 				var instance = this;
 
@@ -434,12 +707,26 @@ var Carousel = A.Component.create(
 				return val;
 			},
 
+			/**
+			 * Set the nodeMenu attribute
+			 *
+			 * @method _setNodeMenu
+			 * @param val
+			 * @protected
+			 */
 			_setNodeMenu: function(val) {
 				var instance = this;
 
 				return A.one(val) || instance._renderMenu();
 			},
 
+			/**
+			 * Set the activeIndex on the UI
+			 *
+			 * @method _uiSetActiveIndex
+			 * @param newVal, objOptions
+			 * @protected
+			 */
 			_uiSetActiveIndex: function(newVal, objOptions) {
 				var instance = this;
 
@@ -505,6 +792,13 @@ var Carousel = A.Component.create(
 				}
 			},
 
+			/**
+			 * Set the activeIndex to the next index
+			 *
+			 * @method _updateIndexNext
+			 * @param options
+			 * @protected
+			 */
 			_updateIndexNext: function(options) {
 				var instance = this;
 
@@ -523,6 +817,13 @@ var Carousel = A.Component.create(
 				instance.set(ACTIVE_INDEX, newIndex, options);
 			},
 
+			/**
+			 * Set the activeIndex to the previous index
+			 *
+			 * @method _updateIndexPrev
+			 * @param options
+			 * @protected
+			 */
 			_updateIndexPrev: function(options) {
 				var instance = this;
 
@@ -539,12 +840,26 @@ var Carousel = A.Component.create(
 				instance.set(ACTIVE_INDEX, newIndex, options);
 			},
 
+			/**
+			 * Set the menuNodes attribute based on the selector menu index
+			 *
+			 * @method _updateMenuNodes
+			 * @param options
+			 * @protected
+			 */
 			_updateMenuNodes: function() {
 				var instance = this;
 
 				instance.menuNodes = instance.nodeMenu.all(SELECTOR_MENU_INDEX);
 			},
 
+			/**
+			 * Upates the nodeSelecton by adding the CSS_ITEM class
+			 *
+			 * @method _updateMenuNodes
+			 * @param options
+			 * @protected
+			 */
 			_updateNodeSelection: function() {
 				var instance = this;
 

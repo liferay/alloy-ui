@@ -51,6 +51,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "CanvasPieSlice",
         "CanvasRect",
         "CanvasShape",
+        "Carousel",
         "CartesianChart",
         "CartesianSeries",
         "CategoryAxis",
@@ -155,6 +156,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "ImgLoadGroup",
         "ImgLoadImgObj",
         "Intl",
+        "JSON",
         "JSONPRequest",
         "Lang",
         "LeftAxisLayout",
@@ -225,6 +227,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "PortalLayout",
         "Profiler",
         "ProgressBar",
+        "QueryString",
         "Queue",
         "RadioCellEditor",
         "Rating",
@@ -328,10 +331,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "YUI",
         "YUI~substitute",
         "config",
-        "json",
         "plugin.NodeFocusManager",
         "plugin.NodeMenuNav",
-        "querystring",
         "rls"
     ],
     "modules": [
@@ -360,6 +361,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "aui-calendar",
         "aui-calendar-base",
         "aui-calendar-datepicker-select",
+        "aui-carousel",
         "aui-char-counter",
         "aui-color-picker",
         "aui-component",
@@ -646,7 +648,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "anim",
             "name": "anim",
-            "description": "Provides the base Anim class, for animating numeric properties."
+            "description": "The Animation Utility provides an API for creating advanced transitions."
         },
         {
             "displayName": "anim-base",
@@ -725,7 +727,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "attribute",
             "name": "attribute",
-            "description": "Adds support for attribute providers to handle complex attributes in the constructor"
+            "description": "The attribute module provides an augmentable Attribute implementation, which \nadds configurable attributes and attribute change events to the class being \naugmented. It also provides a State class, which is used internally by Attribute,\nbut can also be used independently to provide a name/property/value data structure to\nstore state."
         },
         {
             "displayName": "attribute-base",
@@ -749,8 +751,7 @@ YUI.add("yuidoc-meta", function(Y) {
         },
         {
             "displayName": "aui-calendar",
-            "name": "aui-calendar",
-            "description": "The DatePickerSelect Utility"
+            "name": "aui-calendar"
         },
         {
             "displayName": "aui-calendar-base",
@@ -761,6 +762,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "aui-calendar-datepicker-select",
             "name": "aui-calendar-datepicker-select",
             "description": "The DatePickerSelect Utility"
+        },
+        {
+            "displayName": "aui-carousel",
+            "name": "aui-carousel",
+            "description": "The Carousel Component"
         },
         {
             "displayName": "aui-char-counter",
@@ -799,8 +805,7 @@ YUI.add("yuidoc-meta", function(Y) {
         },
         {
             "displayName": "aui-event",
-            "name": "aui-event",
-            "description": "An object that encapsulates text changed events for textareas and input\nelement of type text and password. This event only occurs when the element\nis focused."
+            "name": "aui-event"
         },
         {
             "displayName": "aui-event-input",
@@ -809,8 +814,7 @@ YUI.add("yuidoc-meta", function(Y) {
         },
         {
             "displayName": "aui-image-viewer",
-            "name": "aui-image-viewer",
-            "description": "The ImageGallery Utility"
+            "name": "aui-image-viewer"
         },
         {
             "displayName": "aui-image-viewer-base",
@@ -824,8 +828,7 @@ YUI.add("yuidoc-meta", function(Y) {
         },
         {
             "displayName": "aui-io",
-            "name": "aui-io",
-            "description": "The IORequest Utility - Provides response data normalization for XML, JSON,\nJavaScript and cache option."
+            "name": "aui-io"
         },
         {
             "displayName": "aui-io-plugin",
@@ -859,8 +862,7 @@ YUI.add("yuidoc-meta", function(Y) {
         },
         {
             "displayName": "aui-node",
-            "name": "aui-node",
-            "description": "aui-node-html5 provides support for HTML shiv natively on the Alloy dom\nmethods. The HTML5 shiv just affects IE."
+            "name": "aui-node"
         },
         {
             "displayName": "aui-node-base",
@@ -874,8 +876,7 @@ YUI.add("yuidoc-meta", function(Y) {
         },
         {
             "displayName": "aui-overlay",
-            "name": "aui-overlay",
-            "description": "The OverlayMask Utility"
+            "name": "aui-overlay"
         },
         {
             "displayName": "aui-overlay-base",
@@ -915,7 +916,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "aui-parse-content",
             "name": "aui-parse-content",
-            "description": "The ParseContent Utility - Parse the content of a Node so that all of the \njavascript contained in that Node will be executed according to the order\nthat it appears."
+            "description": "The ParseContent Utility - Parse the content of a Node so that all of the\njavascript contained in that Node will be executed according to the order\nthat it appears."
         },
         {
             "displayName": "aui-portal-layout",
@@ -959,8 +960,7 @@ YUI.add("yuidoc-meta", function(Y) {
         },
         {
             "displayName": "aui-tree",
-            "name": "aui-tree",
-            "description": "The TreeView Utility"
+            "name": "aui-tree"
         },
         {
             "displayName": "aui-tree-data",
@@ -1030,7 +1030,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "base",
             "name": "base",
-            "description": "The base-pluginhost submodule adds Plugin support to Base, by augmenting Base with \nPlugin.Host and setting up static (class level) Base.plug and Base.unplug methods."
+            "description": "The base module provides the Base class, which objects requiring attribute and custom event support can extend. \nThe module also provides two ways to reuse code - It augments Base with the Plugin.Host interface which provides \nplugin support and also provides the Base.build method which provides a way to build custom classes using extensions."
         },
         {
             "displayName": "base-base",
@@ -1050,7 +1050,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "cache",
             "name": "cache",
-            "description": "Provides support to use Cache as a Plugin to a Base-based class."
+            "description": "The Cache utility provides a common configurable interface for components to\ncache and retrieve data from a local JavaScript struct."
         },
         {
             "displayName": "cache-base",
@@ -1435,7 +1435,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "event-custom",
             "name": "event-custom",
-            "description": "Adds event facades, preventable default behavior, and bubbling.\nevents."
+            "description": "Custom event engine, DOM event listener abstraction layer, synthetic DOM\nevents."
         },
         {
             "displayName": "event-custom-base",
@@ -1465,7 +1465,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "event-gestures",
             "name": "event-gestures",
-            "description": "Adds lower level support for \"gesturemovestart\", \"gesturemove\" and \"gesturemoveend\" events, which can be used to create drag/drop\ninteractions which work across touch and mouse input devices. They correspond to \"touchstart\", \"touchmove\" and \"touchend\" on a touch input\ndevice, and \"mousedown\", \"mousemove\", \"mouseup\" on a mouse based input device."
+            "description": "The gestures module provides gesture events such as \"flick\", which normalize user interactions\nacross touch and mouse or pointer based input devices. This layer can be used by application developers\nto build input device agnostic components which behave the same in response to either touch or mouse based  \ninteraction.\n\n<p>Documentation for events added by this module can be found in the event document for the <a href=\"YUI.html#events\">YUI</a> global.</p>"
         },
         {
             "displayName": "event-hover",
@@ -1544,8 +1544,7 @@ YUI.add("yuidoc-meta", function(Y) {
         },
         {
             "displayName": "highlight",
-            "name": "highlight",
-            "description": "Provides methods for highlighting strings within other strings by wrapping\nthem in HTML."
+            "name": "highlight"
         },
         {
             "displayName": "highlight-accentfold",
@@ -1594,8 +1593,7 @@ YUI.add("yuidoc-meta", function(Y) {
         },
         {
             "displayName": "io",
-            "name": "io",
-            "description": "Base IO functionality. Provides basic XHR transport support."
+            "name": "io"
         },
         {
             "displayName": "io-base",
@@ -1952,7 +1950,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "swf",
             "name": "swf",
-            "description": "The SWF utility is a tool for embedding Flash applications in HTML pages."
+            "description": "Embed a Flash applications in a standard manner and communicate with it\nvia External Interface."
         },
         {
             "displayName": "swfdetect",
@@ -1966,13 +1964,12 @@ YUI.add("yuidoc-meta", function(Y) {
         },
         {
             "displayName": "test",
-            "name": "test",
-            "description": "YUI JavaScript Testing Framework"
+            "name": "test"
         },
         {
             "displayName": "text",
             "name": "text",
-            "description": "Provides utility methods for splitting strings on word breaks and determining\nwhether a character index represents a word boundary."
+            "description": "Text utilities."
         },
         {
             "displayName": "text-accentfold",
@@ -1992,7 +1989,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "uploader",
             "name": "uploader",
-            "description": "The Uploader widget is a tool for uploading files to the server."
+            "description": "Upload files to the server with support for file filtering, multiple file uploads\nand progress monitoring."
         },
         {
             "displayName": "view",
@@ -2096,8 +2093,7 @@ YUI.add("yuidoc-meta", function(Y) {
         },
         {
             "displayName": "yui",
-            "name": "yui",
-            "description": "Throttles a call to a method based on the time between calls. This method is attached\nto the `Y` object and is <a href=\"../classes/YUI.html#method_throttle\">documented there</a>."
+            "name": "yui"
         },
         {
             "displayName": "yui-base",

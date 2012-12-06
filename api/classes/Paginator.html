@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Paginator - AlloyUI</title>
-    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -17,9 +17,9 @@
         </div>
         <div class="yui3-u-1-4 version">
             <div class="version-details">
-                <span class="version-lib">AlloyUI 1.5.0</span>
+                <span class="version-lib">AlloyUI 1.7.0pr3</span>
                 <div class="yui-version">
-                    <span class="version-lib version-lib-yui">YUI 3.4.0</span>
+                    <span class="version-lib version-lib-yui">YUI 3.7.3</span>
                 </div>
             </div>
         </div>
@@ -144,6 +144,8 @@
                 <li><a href="..&#x2F;classes/CanvasRect.html">CanvasRect</a></li>
             
                 <li><a href="..&#x2F;classes/CanvasShape.html">CanvasShape</a></li>
+            
+                <li><a href="..&#x2F;classes/Carousel.html">Carousel</a></li>
             
                 <li><a href="..&#x2F;classes/CartesianChart.html">CartesianChart</a></li>
             
@@ -355,7 +357,7 @@
             
                 <li><a href="..&#x2F;classes/IORequest.html">IORequest</a></li>
             
-                <li><a href="..&#x2F;classes/json.html">json</a></li>
+                <li><a href="..&#x2F;classes/JSON.html">JSON</a></li>
             
                 <li><a href="..&#x2F;classes/JSONPRequest.html">JSONPRequest</a></li>
             
@@ -501,7 +503,7 @@
             
                 <li><a href="..&#x2F;classes/ProgressBar.html">ProgressBar</a></li>
             
-                <li><a href="..&#x2F;classes/querystring.html">querystring</a></li>
+                <li><a href="..&#x2F;classes/QueryString.html">QueryString</a></li>
             
                 <li><a href="..&#x2F;classes/Queue.html">Queue</a></li>
             
@@ -761,6 +763,8 @@
                 <li><a href="..&#x2F;modules/aui-calendar-base.html">aui-calendar-base</a></li>
             
                 <li><a href="..&#x2F;modules/aui-calendar-datepicker-select.html">aui-calendar-datepicker-select</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-carousel.html">aui-carousel</a></li>
             
                 <li><a href="..&#x2F;modules/aui-char-counter.html">aui-char-counter</a></li>
             
@@ -1353,7 +1357,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l108"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:108</code></a>
+            Defined in: <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l94"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:94</code></a>
         </div>
     
 
@@ -1430,7 +1434,7 @@ Paginator.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l108"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:108</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l94"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:94</code></a>
         
         </p>
 
@@ -1537,6 +1541,12 @@ Paginator.</p>
                         
                             <li class="index-item method protected">
                                 <a href="#method__bindDOMEvents">_bindDOMEvents</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
+                                <a href="#method__createNode">_createNode</a>
 
                                 
                             </li>
@@ -2022,19 +2032,11 @@ Paginator.</p>
                             </li>
                         
                             <li class="index-item attr">
-                                <a href="#attr_firstPageLink">firstPageLink</a>
-                            </li>
-                        
-                            <li class="index-item attr">
                                 <a href="#attr_firstPageLinkLabel">firstPageLinkLabel</a>
                             </li>
                         
                             <li class="index-item attr inherited">
                                 <a href="#attr_initialized">initialized</a>
-                            </li>
-                        
-                            <li class="index-item attr">
-                                <a href="#attr_lastPageLink">lastPageLink</a>
                             </li>
                         
                             <li class="index-item attr">
@@ -2046,10 +2048,6 @@ Paginator.</p>
                             </li>
                         
                             <li class="index-item attr">
-                                <a href="#attr_nextPageLink">nextPageLink</a>
-                            </li>
-                        
-                            <li class="index-item attr">
                                 <a href="#attr_nextPageLinkLabel">nextPageLinkLabel</a>
                             </li>
                         
@@ -2058,27 +2056,7 @@ Paginator.</p>
                             </li>
                         
                             <li class="index-item attr">
-                                <a href="#attr_pageContainerTemplate">pageContainerTemplate</a>
-                            </li>
-                        
-                            <li class="index-item attr">
                                 <a href="#attr_pageLinkContent">pageLinkContent</a>
-                            </li>
-                        
-                            <li class="index-item attr">
-                                <a href="#attr_pageLinkTemplate">pageLinkTemplate</a>
-                            </li>
-                        
-                            <li class="index-item attr">
-                                <a href="#attr_pageReportEl">pageReportEl</a>
-                            </li>
-                        
-                            <li class="index-item attr">
-                                <a href="#attr_pageReportLabelTemplate">pageReportLabelTemplate</a>
-                            </li>
-                        
-                            <li class="index-item attr">
-                                <a href="#attr_prevPageLink">prevPageLink</a>
                             </li>
                         
                             <li class="index-item attr">
@@ -2090,10 +2068,6 @@ Paginator.</p>
                             </li>
                         
                             <li class="index-item attr">
-                                <a href="#attr_rowsPerPageEl">rowsPerPageEl</a>
-                            </li>
-                        
-                            <li class="index-item attr">
                                 <a href="#attr_rowsPerPageOptions">rowsPerPageOptions</a>
                             </li>
                         
@@ -2102,15 +2076,7 @@ Paginator.</p>
                             </li>
                         
                             <li class="index-item attr">
-                                <a href="#attr_template">template</a>
-                            </li>
-                        
-                            <li class="index-item attr">
                                 <a href="#attr_total">total</a>
-                            </li>
-                        
-                            <li class="index-item attr">
-                                <a href="#attr_totalEl">totalEl</a>
                             </li>
                         
                             <li class="index-item attr">
@@ -2413,7 +2379,7 @@ See <a href="#method_addAttr">addAttr</a>.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l1055"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:1055</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l635"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:635</code></a>
         
         </p>
 
@@ -2608,7 +2574,7 @@ attribute configuration has cloneDefaultValue set to shallow or deep).</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l1070"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:1070</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l650"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:650</code></a>
         
         </p>
 
@@ -2686,7 +2652,7 @@ attribute configuration has cloneDefaultValue set to shallow or deep).</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l1180"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:1180</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l664"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:664</code></a>
         
         </p>
 
@@ -2698,6 +2664,60 @@ attribute configuration has cloneDefaultValue set to shallow or deep).</p>
 
     <div class="description">
         <p>Bind DOM events on the Paginator UI.</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__createNode" class="method item protected">
+    <h3 class="name"><code>_createNode</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l705"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:705</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Create nodes and labels</p>
     </div>
 
     
@@ -2993,7 +3013,7 @@ refers to the configuration object passed to the constructor.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l1225"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:1225</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l723"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:723</code></a>
         
         </p>
 
@@ -4063,7 +4083,7 @@ cached value.
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l940"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:940</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l743"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:743</code></a>
         
         </p>
 
@@ -4269,7 +4289,7 @@ internal state object, or the state proxy if it exits</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l961"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:961</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l764"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:764</code></a>
         
         </p>
 
@@ -5021,7 +5041,7 @@ simply merges the hash to protect the original.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l1084"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:1084</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l830"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:830</code></a>
         
         </p>
 
@@ -5109,7 +5129,7 @@ simply merges the hash to protect the original.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l1161"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:1161</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l848"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:848</code></a>
         
         </p>
 
@@ -5197,7 +5217,7 @@ simply merges the hash to protect the original.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l1141"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:1141</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l868"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:868</code></a>
         
         </p>
 
@@ -5285,7 +5305,7 @@ simply merges the hash to protect the original.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l1122"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:1122</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l890"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:890</code></a>
         
         </p>
 
@@ -5373,7 +5393,7 @@ simply merges the hash to protect the original.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l1102"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:1102</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l910"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:910</code></a>
         
         </p>
 
@@ -5640,7 +5660,7 @@ attr config objects.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l883"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:883</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l932"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:932</code></a>
         
         </p>
 
@@ -5694,7 +5714,7 @@ attr config objects.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l900"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:900</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l972"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:972</code></a>
         
         </p>
 
@@ -6347,7 +6367,7 @@ if validation and setter passes.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l1015"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:1015</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l993"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:993</code></a>
         
         </p>
 
@@ -6556,7 +6576,7 @@ internal state object, or the state proxy if it exits</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l1033"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:1033</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l1014"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:1014</code></a>
         
         </p>
 
@@ -6645,7 +6665,7 @@ internal state object, or the state proxy if it exits</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l735"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:735</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l1035"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:1035</code></a>
         
         </p>
 
@@ -6656,7 +6676,7 @@ internal state object, or the state proxy if it exits</p>
     </div>
 
     <div class="description">
-        <p>Sync the Paginator page report UI.</p>
+        <p>Sync the Paginator links UI.</p>
     </div>
 
     
@@ -6699,7 +6719,7 @@ internal state object, or the state proxy if it exits</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l688"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:688</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l1079"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:1079</code></a>
         
         </p>
 
@@ -6710,7 +6730,7 @@ internal state object, or the state proxy if it exits</p>
     </div>
 
     <div class="description">
-        <p>Sync the Paginator links UI.</p>
+        <p>Sync the Paginator page report UI.</p>
     </div>
 
     
@@ -7233,7 +7253,7 @@ See <a href="#method_addAttr">addAttr</a>.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l641"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:641</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l446"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:446</code></a>
         
         </p>
 
@@ -7299,7 +7319,7 @@ See <a href="#method_addAttr">addAttr</a>.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l758"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:758</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l491"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:491</code></a>
         
         </p>
 
@@ -7388,7 +7408,7 @@ center.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l792"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:792</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l523"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:523</code></a>
         
         </p>
 
@@ -7523,7 +7543,7 @@ from proceeding.
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l675"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:675</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l478"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:478</code></a>
         
         </p>
 
@@ -7586,7 +7606,7 @@ Purges events attached to the node (and all child nodes).</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l823"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:823</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l560"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:560</code></a>
         
         </p>
 
@@ -7869,7 +7889,7 @@ returned. If set to true, all attributes modified from their initial values are 
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l841"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:841</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l580"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:580</code></a>
         
         </p>
 
@@ -7947,7 +7967,7 @@ returned. If set to true, all attributes modified from their initial values are 
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l855"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:855</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l594"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:594</code></a>
         
         </p>
 
@@ -8140,7 +8160,7 @@ returned. If set to true, all attributes modified from their initial values are 
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l869"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:869</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l609"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:609</code></a>
         
         </p>
 
@@ -8635,7 +8655,7 @@ can be the configuration for the plugin.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l622"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:622</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l426"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:426</code></a>
         
         </p>
 
@@ -9049,7 +9069,7 @@ set called externally by the application developer.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l928"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:928</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l623"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:623</code></a>
         
         </p>
 
@@ -9126,7 +9146,7 @@ set called externally by the application developer.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l662"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:662</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l466"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:466</code></a>
         
         </p>
 
@@ -9354,7 +9374,7 @@ all registered plugins are unplugged.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l603"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:603</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l407"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:407</code></a>
         
         </p>
 
@@ -9445,7 +9465,7 @@ all registered plugins are unplugged.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l148"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:148</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l136"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:136</code></a>
         
         </p>
 
@@ -9492,7 +9512,7 @@ configuration for the Paginator.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l139"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:139</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l125"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:125</code></a>
         
         </p>
 
@@ -9538,7 +9558,7 @@ configuration for the Paginator.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l612"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:612</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l416"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:416</code></a>
         
         </p>
 
@@ -9592,7 +9612,7 @@ substitute</a> were applied.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l157"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:157</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l145"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:145</code></a>
         
         </p>
 
@@ -9692,7 +9712,7 @@ there is no pages to display use <code>false</code>.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l176"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:176</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l164"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:164</code></a>
         
         </p>
 
@@ -9865,105 +9885,6 @@ has been through the destroy lifecycle phase.</p>
 </div>
 
                 
-                    <div id="attr_firstPageLink" class="attr item">
-    <a name="config_firstPageLink"></a> 
-    <h3 class="name"><code>firstPageLink</code></h3>
-    <span class="type"><a href="../classes/Node.html" class="crosslink">Node</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l202"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:202</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>The <a href="Node.html">Node</a> or template to be used as the
-first link element.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> Generated anchor element.</p>
-    
-
-    
-        <div class="emits box">
-            <h4>Fires event <code>firstPageLinkChange</code></h4>
-
-            <p>
-            Fires when the value for the configuration attribute <code>firstPageLink</code> is
-            changed. You can listen for the event using the <code>on</code> method if you
-            wish to be notified before the attribute's value has changed, or
-            using the <code>after</code> method if you wish to be notified after the
-            attribute's value has changed.
-            </p>
-
-            <div class="params">
-                <h4>Parameters:</h4>
-
-                <ul class="params-list">
-                    <li class="param">
-                        <code class="param-name">e</code>
-                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
-
-                        <div class="param-description">
-                            An Event Facade object with the following
-                            attribute-specific properties added:
-                        </div>
-
-                        <ul class="params-list">
-                            <li class="param">
-                                <code class="param-name">prevVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value of the attribute, prior to it being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">newVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value the attribute is to be set to.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">attrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">The name of the attribute being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">subAttrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
                     <div id="attr_firstPageLinkLabel" class="attr item">
     <a name="config_firstPageLinkLabel"></a> 
     <h3 class="name"><code>firstPageLinkLabel</code></h3>
@@ -9988,7 +9909,7 @@ first link element.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l219"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:219</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l190"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:190</code></a>
         
         </p>
 
@@ -10159,105 +10080,6 @@ has been through the init lifecycle phase.</p>
 </div>
 
                 
-                    <div id="attr_lastPageLink" class="attr item">
-    <a name="config_lastPageLink"></a> 
-    <h3 class="name"><code>lastPageLink</code></h3>
-    <span class="type"><a href="../classes/Node.html" class="crosslink">Node</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l232"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:232</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>The <a href="Node.html">Node</a> or template to be used as the
-last link element.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> Generated anchor element.</p>
-    
-
-    
-        <div class="emits box">
-            <h4>Fires event <code>lastPageLinkChange</code></h4>
-
-            <p>
-            Fires when the value for the configuration attribute <code>lastPageLink</code> is
-            changed. You can listen for the event using the <code>on</code> method if you
-            wish to be notified before the attribute's value has changed, or
-            using the <code>after</code> method if you wish to be notified after the
-            attribute's value has changed.
-            </p>
-
-            <div class="params">
-                <h4>Parameters:</h4>
-
-                <ul class="params-list">
-                    <li class="param">
-                        <code class="param-name">e</code>
-                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
-
-                        <div class="param-description">
-                            An Event Facade object with the following
-                            attribute-specific properties added:
-                        </div>
-
-                        <ul class="params-list">
-                            <li class="param">
-                                <code class="param-name">prevVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value of the attribute, prior to it being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">newVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value the attribute is to be set to.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">attrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">The name of the attribute being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">subAttrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
                     <div id="attr_lastPageLinkLabel" class="attr item">
     <a name="config_lastPageLinkLabel"></a> 
     <h3 class="name"><code>lastPageLinkLabel</code></h3>
@@ -10282,7 +10104,7 @@ last link element.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l249"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:249</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l203"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:203</code></a>
         
         </p>
 
@@ -10381,7 +10203,7 @@ last link element.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l262"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:262</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l216"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:216</code></a>
         
         </p>
 
@@ -10457,105 +10279,6 @@ links.</p>
 </div>
 
                 
-                    <div id="attr_nextPageLink" class="attr item">
-    <a name="config_nextPageLink"></a> 
-    <h3 class="name"><code>nextPageLink</code></h3>
-    <span class="type"><a href="../classes/Node.html" class="crosslink">Node</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l282"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:282</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>The <a href="Node.html">Node</a> or template to be used as the
-next link element.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> Generated anchor element.</p>
-    
-
-    
-        <div class="emits box">
-            <h4>Fires event <code>nextPageLinkChange</code></h4>
-
-            <p>
-            Fires when the value for the configuration attribute <code>nextPageLink</code> is
-            changed. You can listen for the event using the <code>on</code> method if you
-            wish to be notified before the attribute's value has changed, or
-            using the <code>after</code> method if you wish to be notified after the
-            attribute's value has changed.
-            </p>
-
-            <div class="params">
-                <h4>Parameters:</h4>
-
-                <ul class="params-list">
-                    <li class="param">
-                        <code class="param-name">e</code>
-                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
-
-                        <div class="param-description">
-                            An Event Facade object with the following
-                            attribute-specific properties added:
-                        </div>
-
-                        <ul class="params-list">
-                            <li class="param">
-                                <code class="param-name">prevVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value of the attribute, prior to it being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">newVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value the attribute is to be set to.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">attrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">The name of the attribute being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">subAttrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
                     <div id="attr_nextPageLinkLabel" class="attr item">
     <a name="config_nextPageLinkLabel"></a> 
     <h3 class="name"><code>nextPageLinkLabel</code></h3>
@@ -10580,7 +10303,7 @@ next link element.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l299"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:299</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l236"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:236</code></a>
         
         </p>
 
@@ -10679,7 +10402,7 @@ next link element.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l312"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:312</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l249"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:249</code></a>
         
         </p>
 
@@ -10702,104 +10425,6 @@ next link element.</p>
 
             <p>
             Fires when the value for the configuration attribute <code>page</code> is
-            changed. You can listen for the event using the <code>on</code> method if you
-            wish to be notified before the attribute's value has changed, or
-            using the <code>after</code> method if you wish to be notified after the
-            attribute's value has changed.
-            </p>
-
-            <div class="params">
-                <h4>Parameters:</h4>
-
-                <ul class="params-list">
-                    <li class="param">
-                        <code class="param-name">e</code>
-                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
-
-                        <div class="param-description">
-                            An Event Facade object with the following
-                            attribute-specific properties added:
-                        </div>
-
-                        <ul class="params-list">
-                            <li class="param">
-                                <code class="param-name">prevVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value of the attribute, prior to it being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">newVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value the attribute is to be set to.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">attrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">The name of the attribute being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">subAttrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="attr_pageContainerTemplate" class="attr item">
-    <a name="config_pageContainerTemplate"></a> 
-    <h3 class="name"><code>pageContainerTemplate</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l324"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:324</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>HTML Template for the page links container.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> Generated span HTML element.</p>
-    
-
-    
-        <div class="emits box">
-            <h4>Fires event <code>pageContainerTemplateChange</code></h4>
-
-            <p>
-            Fires when the value for the configuration attribute <code>pageContainerTemplate</code> is
             changed. You can listen for the event using the <code>on</code> method if you
             wish to be notified before the attribute's value has changed, or
             using the <code>after</code> method if you wish to be notified after the
@@ -10875,7 +10500,7 @@ next link element.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l339"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:339</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l261"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:261</code></a>
         
         </p>
 
@@ -10957,402 +10582,6 @@ node, the page number and the index of the page element.</p>
 </div>
 
                 
-                    <div id="attr_pageLinkTemplate" class="attr item">
-    <a name="config_pageLinkTemplate"></a> 
-    <h3 class="name"><code>pageLinkTemplate</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l361"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:361</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>HTML Template for the link elements.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> Generated anchor HTML element.</p>
-    
-
-    
-        <div class="emits box">
-            <h4>Fires event <code>pageLinkTemplateChange</code></h4>
-
-            <p>
-            Fires when the value for the configuration attribute <code>pageLinkTemplate</code> is
-            changed. You can listen for the event using the <code>on</code> method if you
-            wish to be notified before the attribute's value has changed, or
-            using the <code>after</code> method if you wish to be notified after the
-            attribute's value has changed.
-            </p>
-
-            <div class="params">
-                <h4>Parameters:</h4>
-
-                <ul class="params-list">
-                    <li class="param">
-                        <code class="param-name">e</code>
-                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
-
-                        <div class="param-description">
-                            An Event Facade object with the following
-                            attribute-specific properties added:
-                        </div>
-
-                        <ul class="params-list">
-                            <li class="param">
-                                <code class="param-name">prevVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value of the attribute, prior to it being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">newVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value the attribute is to be set to.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">attrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">The name of the attribute being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">subAttrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="attr_pageReportEl" class="attr item">
-    <a name="config_pageReportEl"></a> 
-    <h3 class="name"><code>pageReportEl</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l380"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:380</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Node element to display the page report (i.e., (1 of 100)).</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> Generated span HTML element.</p>
-    
-
-    
-        <div class="emits box">
-            <h4>Fires event <code>pageReportElChange</code></h4>
-
-            <p>
-            Fires when the value for the configuration attribute <code>pageReportEl</code> is
-            changed. You can listen for the event using the <code>on</code> method if you
-            wish to be notified before the attribute's value has changed, or
-            using the <code>after</code> method if you wish to be notified after the
-            attribute's value has changed.
-            </p>
-
-            <div class="params">
-                <h4>Parameters:</h4>
-
-                <ul class="params-list">
-                    <li class="param">
-                        <code class="param-name">e</code>
-                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
-
-                        <div class="param-description">
-                            An Event Facade object with the following
-                            attribute-specific properties added:
-                        </div>
-
-                        <ul class="params-list">
-                            <li class="param">
-                                <code class="param-name">prevVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value of the attribute, prior to it being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">newVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value the attribute is to be set to.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">attrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">The name of the attribute being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">subAttrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="attr_pageReportLabelTemplate" class="attr item">
-    <a name="config_pageReportLabelTemplate"></a> 
-    <h3 class="name"><code>pageReportLabelTemplate</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l396"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:396</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Template for the
-<a href="Paginator.html#config_pageReportEl">pageReportEl</a> content.
-Note the placeholders for the page {page} and the total pages
-{totalPages}.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> &#x27;({page} of {totalPages})&#x27;</p>
-    
-
-    
-        <div class="emits box">
-            <h4>Fires event <code>pageReportLabelTemplateChange</code></h4>
-
-            <p>
-            Fires when the value for the configuration attribute <code>pageReportLabelTemplate</code> is
-            changed. You can listen for the event using the <code>on</code> method if you
-            wish to be notified before the attribute's value has changed, or
-            using the <code>after</code> method if you wish to be notified after the
-            attribute's value has changed.
-            </p>
-
-            <div class="params">
-                <h4>Parameters:</h4>
-
-                <ul class="params-list">
-                    <li class="param">
-                        <code class="param-name">e</code>
-                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
-
-                        <div class="param-description">
-                            An Event Facade object with the following
-                            attribute-specific properties added:
-                        </div>
-
-                        <ul class="params-list">
-                            <li class="param">
-                                <code class="param-name">prevVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value of the attribute, prior to it being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">newVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value the attribute is to be set to.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">attrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">The name of the attribute being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">subAttrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="attr_prevPageLink" class="attr item">
-    <a name="config_prevPageLink"></a> 
-    <h3 class="name"><code>prevPageLink</code></h3>
-    <span class="type"><a href="../classes/Node.html" class="crosslink">Node</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l418"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:418</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>The <a href="Node.html">Node</a> or template to be used as the
-prev link element.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> Generated anchor element.</p>
-    
-
-    
-        <div class="emits box">
-            <h4>Fires event <code>prevPageLinkChange</code></h4>
-
-            <p>
-            Fires when the value for the configuration attribute <code>prevPageLink</code> is
-            changed. You can listen for the event using the <code>on</code> method if you
-            wish to be notified before the attribute's value has changed, or
-            using the <code>after</code> method if you wish to be notified after the
-            attribute's value has changed.
-            </p>
-
-            <div class="params">
-                <h4>Parameters:</h4>
-
-                <ul class="params-list">
-                    <li class="param">
-                        <code class="param-name">e</code>
-                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
-
-                        <div class="param-description">
-                            An Event Facade object with the following
-                            attribute-specific properties added:
-                        </div>
-
-                        <ul class="params-list">
-                            <li class="param">
-                                <code class="param-name">prevVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value of the attribute, prior to it being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">newVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value the attribute is to be set to.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">attrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">The name of the attribute being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">subAttrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
                     <div id="attr_prevPageLinkLabel" class="attr item">
     <a name="config_prevPageLinkLabel"></a> 
     <h3 class="name"><code>prevPageLinkLabel</code></h3>
@@ -11377,7 +10606,7 @@ prev link element.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l435"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:435</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l283"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:283</code></a>
         
         </p>
 
@@ -11476,7 +10705,7 @@ prev link element.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l463"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:463</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l296"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:296</code></a>
         
         </p>
 
@@ -11499,105 +10728,6 @@ prev link element.</p>
 
             <p>
             Fires when the value for the configuration attribute <code>rowsPerPage</code> is
-            changed. You can listen for the event using the <code>on</code> method if you
-            wish to be notified before the attribute's value has changed, or
-            using the <code>after</code> method if you wish to be notified after the
-            attribute's value has changed.
-            </p>
-
-            <div class="params">
-                <h4>Parameters:</h4>
-
-                <ul class="params-list">
-                    <li class="param">
-                        <code class="param-name">e</code>
-                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
-
-                        <div class="param-description">
-                            An Event Facade object with the following
-                            attribute-specific properties added:
-                        </div>
-
-                        <ul class="params-list">
-                            <li class="param">
-                                <code class="param-name">prevVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value of the attribute, prior to it being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">newVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value the attribute is to be set to.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">attrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">The name of the attribute being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">subAttrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="attr_rowsPerPageEl" class="attr item">
-    <a name="config_rowsPerPageEl"></a> 
-    <h3 class="name"><code>rowsPerPageEl</code></h3>
-    <span class="type"><a href="../classes/Node.html" class="crosslink">Node</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l475"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:475</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Node element to display the
-<a href="Paginator.html#config_rowsPerPage">rowsPerPage</a>.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> Generated select HTML element.</p>
-    
-
-    
-        <div class="emits box">
-            <h4>Fires event <code>rowsPerPageElChange</code></h4>
-
-            <p>
-            Fires when the value for the configuration attribute <code>rowsPerPageEl</code> is
             changed. You can listen for the event using the <code>on</code> method if you
             wish to be notified before the attribute's value has changed, or
             using the <code>after</code> method if you wish to be notified after the
@@ -11673,7 +10803,7 @@ prev link element.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l448"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:448</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l308"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:308</code></a>
         
         </p>
 
@@ -11774,7 +10904,7 @@ select)</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l504"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:504</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l323"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:323</code></a>
         
         </p>
 
@@ -11798,107 +10928,6 @@ select)</p>
 
             <p>
             Fires when the value for the configuration attribute <code>state</code> is
-            changed. You can listen for the event using the <code>on</code> method if you
-            wish to be notified before the attribute's value has changed, or
-            using the <code>after</code> method if you wish to be notified after the
-            attribute's value has changed.
-            </p>
-
-            <div class="params">
-                <h4>Parameters:</h4>
-
-                <ul class="params-list">
-                    <li class="param">
-                        <code class="param-name">e</code>
-                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
-
-                        <div class="param-description">
-                            An Event Facade object with the following
-                            attribute-specific properties added:
-                        </div>
-
-                        <ul class="params-list">
-                            <li class="param">
-                                <code class="param-name">prevVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value of the attribute, prior to it being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">newVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value the attribute is to be set to.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">attrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">The name of the attribute being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">subAttrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="attr_template" class="attr item">
-    <a name="config_template"></a> 
-    <h3 class="name"><code>template</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l519"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:519</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Template used to render controls. The string will be used as
-innerHTML on all specified container nodes. Bracketed keys (e.g.
-{pageLinks}) in the string will be replaced with an instance of the
-so named ui component.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> &#x27;{FirstPageLink} {PrevPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport} {Total} {RowsPerPageSelect}&#x27;</p>
-    
-
-    
-        <div class="emits box">
-            <h4>Fires event <code>templateChange</code></h4>
-
-            <p>
-            Fires when the value for the configuration attribute <code>template</code> is
             changed. You can listen for the event using the <code>on</code> method if you
             wish to be notified before the attribute's value has changed, or
             using the <code>after</code> method if you wish to be notified after the
@@ -11974,7 +11003,7 @@ so named ui component.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l536"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:536</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l338"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:338</code></a>
         
         </p>
 
@@ -11997,104 +11026,6 @@ so named ui component.</p>
 
             <p>
             Fires when the value for the configuration attribute <code>total</code> is
-            changed. You can listen for the event using the <code>on</code> method if you
-            wish to be notified before the attribute's value has changed, or
-            using the <code>after</code> method if you wish to be notified after the
-            attribute's value has changed.
-            </p>
-
-            <div class="params">
-                <h4>Parameters:</h4>
-
-                <ul class="params-list">
-                    <li class="param">
-                        <code class="param-name">e</code>
-                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
-
-                        <div class="param-description">
-                            An Event Facade object with the following
-                            attribute-specific properties added:
-                        </div>
-
-                        <ul class="params-list">
-                            <li class="param">
-                                <code class="param-name">prevVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value of the attribute, prior to it being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">newVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value the attribute is to be set to.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">attrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">The name of the attribute being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">subAttrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="attr_totalEl" class="attr item">
-    <a name="config_totalEl"></a> 
-    <h3 class="name"><code>totalEl</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l549"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:549</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Node element to display the total information.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> Generated span HTML element.</p>
-    
-
-    
-        <div class="emits box">
-            <h4>Fires event <code>totalElChange</code></h4>
-
-            <p>
-            Fires when the value for the configuration attribute <code>totalEl</code> is
             changed. You can listen for the event using the <code>on</code> method if you
             wish to be notified before the attribute's value has changed, or
             using the <code>after</code> method if you wish to be notified after the
@@ -12170,7 +11101,7 @@ so named ui component.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l565"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:565</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l351"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:351</code></a>
         
         </p>
 
@@ -12268,7 +11199,7 @@ so named ui component.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l583"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:583</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-paginator_js_aui-paginator.js.html#l372"><code>src&#x2F;aui-paginator&#x2F;js&#x2F;aui-paginator.js:372</code></a>
         
         </p>
 

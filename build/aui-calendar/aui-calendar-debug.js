@@ -769,7 +769,17 @@ var Calendar = A.Component.create(
 
 				var date = instance._normalizeYearMonth();
 
-				return DateMath.getDate(date.year + toInt(offsetYear), date.month + toInt(offsetMonth), date.day + toInt(offsetDay));
+				var newDay = date.day + toInt(offsetDay);
+				var newMonth = date.month + toInt(offsetMonth);
+				var newYear = date.year + toInt(offsetYear);
+
+				var totalMonthDays = instance.getDaysInMonth(date.year, newMonth);
+
+				if (newDay > totalMonthDays) {
+					newDay = totalMonthDays;
+				}
+
+				return DateMath.getDate(newYear, newMonth, newDay);
 			},
 
 			/**
@@ -1955,4 +1965,4 @@ Calendar.EMPTY_DATES = EMPTY_DATES;
 
 A.Calendar = A.Base.create(CALENDAR, Calendar, [A.WidgetStdMod]);
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-datatype','widget-stdmod','datatype-date','widget-locale']});
+}, '@VERSION@' ,{requires:['aui-base','aui-datatype','widget-stdmod','datatype-date','widget-locale'], skinnable:true});

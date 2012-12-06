@@ -239,3 +239,7 @@
 .aui-overlaycontextpanel-arrow-rt, .aui-overlaycontextpanel-arrow-rc, .aui-overlaycontextpanel-arrow-rb {
 	margin-right: 12px;
 }
+
+.ie6 .aui-overlaycontextpanel-arrow-br .aui-overlaycontextpanel-pointer, .ie6 .aui-overlaycontextpanel-arrow-bc .aui-overlaycontextpanel-pointer, .ie6 .aui-overlaycontextpanel-arrow-bl .aui-overlaycontextpanel-pointer {
+	bottom: 0;
+}

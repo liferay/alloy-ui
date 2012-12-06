@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src&#x2F;aui-scheduler&#x2F;js&#x2F;aui-scheduler-view.js - AlloyUI</title>
-    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <title>lib&#x2F;yui3&#x2F;src&#x2F;dom&#x2F;build_tmp_css3&#x2F;selector-css3-debug.js - AlloyUI</title>
+    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -17,9 +17,9 @@
         </div>
         <div class="yui3-u-1-4 version">
             <div class="version-details">
-                <span class="version-lib">AlloyUI 1.5.0</span>
+                <span class="version-lib">AlloyUI 1.7.0pr3</span>
                 <div class="yui-version">
-                    <span class="version-lib version-lib-yui">YUI 3.4.0</span>
+                    <span class="version-lib version-lib-yui">YUI 3.7.3</span>
                 </div>
             </div>
         </div>
@@ -144,6 +144,8 @@
                 <li><a href="..&#x2F;classes/CanvasRect.html">CanvasRect</a></li>
             
                 <li><a href="..&#x2F;classes/CanvasShape.html">CanvasShape</a></li>
+            
+                <li><a href="..&#x2F;classes/Carousel.html">Carousel</a></li>
             
                 <li><a href="..&#x2F;classes/CartesianChart.html">CartesianChart</a></li>
             
@@ -355,7 +357,7 @@
             
                 <li><a href="..&#x2F;classes/IORequest.html">IORequest</a></li>
             
-                <li><a href="..&#x2F;classes/json.html">json</a></li>
+                <li><a href="..&#x2F;classes/JSON.html">JSON</a></li>
             
                 <li><a href="..&#x2F;classes/JSONPRequest.html">JSONPRequest</a></li>
             
@@ -501,7 +503,7 @@
             
                 <li><a href="..&#x2F;classes/ProgressBar.html">ProgressBar</a></li>
             
-                <li><a href="..&#x2F;classes/querystring.html">querystring</a></li>
+                <li><a href="..&#x2F;classes/QueryString.html">QueryString</a></li>
             
                 <li><a href="..&#x2F;classes/Queue.html">Queue</a></li>
             
@@ -761,6 +763,8 @@
                 <li><a href="..&#x2F;modules/aui-calendar-base.html">aui-calendar-base</a></li>
             
                 <li><a href="..&#x2F;modules/aui-calendar-datepicker-select.html">aui-calendar-datepicker-select</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-carousel.html">aui-carousel</a></li>
             
                 <li><a href="..&#x2F;modules/aui-char-counter.html">aui-char-counter</a></li>
             
@@ -1341,318 +1345,163 @@
 
             <div class="apidocs">
                 <div id="docs-main" class="content">
-                    <h1 class="file-heading">File: src&#x2F;aui-scheduler&#x2F;js&#x2F;aui-scheduler-view.js</h1>
+                    <h1 class="file-heading">File: lib&#x2F;yui3&#x2F;src&#x2F;dom&#x2F;build_tmp_css3&#x2F;selector-css3-debug.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
-var Lang = A.Lang,
-	isObject = Lang.isObject,
-	isString = Lang.isString,
-	isBoolean = Lang.isBoolean,
-	isNumber = Lang.isNumber,
+YUI.add(&#x27;selector-css3&#x27;, function(Y) {
 
-	toNumber = function(v) {
-		return parseFloat(v) || 0;
-	},
+&#x2F;**
+ * The selector css3 module provides support for css3 selectors.
+ * @module dom
+ * @submodule selector-css3
+ * @for Selector
+ *&#x2F;
 
-	roundToNearestMultiple = function(n, multiple) {
-		return Math.round(n&#x2F;multiple)*multiple;
-	},
+&#x2F;*
+    an+b = get every _a_th node starting at the _b_th
+    0n+b = no repeat (&quot;0&quot; and &quot;n&quot; may both be omitted (together) , e.g. &quot;0n+1&quot; or &quot;1&quot;, not &quot;0+1&quot;), return only the _b_th element
+    1n+b =  get every element starting from b (&quot;1&quot; may may be omitted, e.g. &quot;1n+0&quot; or &quot;n+0&quot; or &quot;n&quot;)
+    an+0 = get every _a_th element, &quot;0&quot; may be omitted 
+*&#x2F;
 
-	DateMath = A.DataType.DateMath,
-	WidgetStdMod = A.WidgetStdMod,
+Y.Selector._reNth = &#x2F;^(?:([\-]?\d*)(n){1}|(odd|even)$)*([\-+]?\d*)$&#x2F;;
 
-	WEEK_LENGTH = DateMath.WEEK_LENGTH,
+Y.Selector._getNth = function(node, expr, tag, reverse) {
+    Y.Selector._reNth.test(expr);
+    var a = parseInt(RegExp.$1, 10), &#x2F;&#x2F; include every _a_ elements (zero means no repeat, just first _a_)
+        n = RegExp.$2, &#x2F;&#x2F; &quot;n&quot;
+        oddeven = RegExp.$3, &#x2F;&#x2F; &quot;odd&quot; or &quot;even&quot;
+        b = parseInt(RegExp.$4, 10) || 0, &#x2F;&#x2F; start scan from element _b_
+        result = [],
+        siblings = Y.Selector._children(node.parentNode, tag),
+        op;
 
-	SCHEDULER_VIEW = &#x27;scheduler-view&#x27;,
-	SCHEDULER_VIEW_DAY = &#x27;scheduler-view-day&#x27;,
-	SCHEDULER_VIEW_WEEK = &#x27;scheduler-view-week&#x27;,
-	SCHEDULER_VIEW_MONTH = &#x27;scheduler-view-month&#x27;,
+    if (oddeven) {
+        a = 2; &#x2F;&#x2F; always every other
+        op = &#x27;+&#x27;;
+        n = &#x27;n&#x27;;
+        b = (oddeven === &#x27;odd&#x27;) ? 1 : 0;
+    } else if ( isNaN(a) ) {
+        a = (n) ? 1 : 0; &#x2F;&#x2F; start from the first or no repeat
+    }
 
-	ACTIVE_COLUMN = &#x27;activeColumn&#x27;,
-	ACTIVE_VIEW = &#x27;activeView&#x27;,
-	BOUNDING_BOX = &#x27;boundingBox&#x27;,
-	COL = &#x27;col&#x27;,
-	COL_DAYS_NODE = &#x27;colDaysNode&#x27;,
-	COL_HEADER_DAYS_NODE = &#x27;colHeaderDaysNode&#x27;,
-	COLBLANK = &#x27;colblank&#x27;,
-	COLDATA = &#x27;coldata&#x27;,
-	COLDAY = &#x27;colday&#x27;,
-	COLGRID = &#x27;colgrid&#x27;,
-	COLSPAN = &#x27;colspan&#x27;,
-	COLTIME = &#x27;coltime&#x27;,
-	COLUMN_DATA = &#x27;columnData&#x27;,
-	COLUMN_DAY_HEADER = &#x27;columnDayHeader&#x27;,
-	COLUMN_SHIMS = &#x27;columnShims&#x27;,
-	COLUMN_TABLE_GRID = &#x27;columnTableGrid&#x27;,
-	COLUMN_TIME = &#x27;columnTime&#x27;,
-	CONTAINER = &#x27;container&#x27;,
-	CONTENT = &#x27;content&#x27;,
-	CREATION_END_DATE = &#x27;creationEndDate&#x27;,
-	CREATION_START_DATE = &#x27;creationStartDate&#x27;,
-	CURRENT_DATE = &#x27;currentDate&#x27;,
-	DATA = &#x27;data&#x27;,
-	DAY = &#x27;day&#x27;,
-	DAYS = &#x27;days&#x27;,
-	DELEGATE_CONFIG = &#x27;delegateConfig&#x27;,
-	DISABLED = &#x27;disabled&#x27;,
-	DIV = &#x27;div&#x27;,
-	DIVISION = &#x27;division&#x27;,
-	DOWN = &#x27;down&#x27;,
-	DRAGGING_EVENT = &#x27;draggingEvent&#x27;,
-	DURATION = &#x27;duration&#x27;,
-	END_DATE = &#x27;endDate&#x27;,
-	EVENT = &#x27;event&#x27;,
-	EVENT_PLACEHOLDER = &#x27;eventPlaceholder&#x27;,
-	EVENT_RECORDER = &#x27;eventRecorder&#x27;,
-	EVENT_WIDTH = &#x27;eventWidth&#x27;,
-	FIRST = &#x27;first&#x27;,
-	FIRST_DAY_OF_WEEK = &#x27;firstDayOfWeek&#x27;,
-	GRID = &#x27;grid&#x27;,
-	GRID_CONTAINER = &#x27;gridContainer&#x27;,
-	HD = &#x27;hd&#x27;,
-	HEADER = &#x27;header&#x27;,
-	HEADER_DATE_FORMAT = &#x27;headerDateFormat&#x27;,
-	HEADER_TABLE_NODE = &#x27;headerTableNode&#x27;,
-	HOST = &#x27;host&#x27;,
-	HOUR_HEIGHT = &#x27;hourHeight&#x27;,
-	ICON = &#x27;icon&#x27;,
-	ISO_TIME = &#x27;isoTime&#x27;,
-	LEFT = &#x27;left&#x27;,
-	LOCALE = &#x27;locale&#x27;,
-	MARKER = &#x27;marker&#x27;,
-	MARKERCELL = &#x27;markercell&#x27;,
-	MARKERCELLS_NODE = &#x27;markercellsNode&#x27;,
-	MARKERS = &#x27;markers&#x27;,
-	MARKERS_NODE = &#x27;markersNode&#x27;,
-	MONTH = &#x27;month&#x27;,
-	MONTH_CONTAINER_NODE = &#x27;monthContainerNode&#x27;,
-	MONTH_ROWS = &#x27;monthRows&#x27;,
-	NEXT = &#x27;next&#x27;,
-	NODE = &#x27;node&#x27;,
-	NOMONTH = &#x27;nomonth&#x27;,
-	NOSCROLL = &#x27;noscroll&#x27;,
-	OFFSET_HEIGHT = &#x27;offsetHeight&#x27;,
-	PAD = &#x27;pad&#x27;,
-	PADDING_NODE = &#x27;paddingNode&#x27;,
-	PARENT_EVENT = &#x27;parentEvent&#x27;,
-	PARENT_NODE = &#x27;parentNode&#x27;,
-	PROXY = &#x27;proxy&#x27;,
-	PX = &#x27;px&#x27;,
-	REGION = &#x27;region&#x27;,
-	RENDERED = &#x27;rendered&#x27;,
-	REPEATED = &#x27;repeated&#x27;,
-	RIGHT = &#x27;right&#x27;,
-	ROW = &#x27;row&#x27;,
-	SCHEDULER = &#x27;scheduler&#x27;,
-	SCHEDULER_EVENT = &#x27;scheduler-event&#x27;,
-	SCROLLABLE = &#x27;scrollable&#x27;,
-	SHIM = &#x27;shim&#x27;,
-	START_DATE = &#x27;startDate&#x27;,
-	START_XY = &#x27;startXY&#x27;,
-	TABLE = &#x27;table&#x27;,
-	TABLE_GRID_NODE = &#x27;tableGridNode&#x27;,
-	TABLE_NODE = &#x27;tableNode&#x27;,
-	TBODY = &#x27;tbody&#x27;,
-	TD = &#x27;td&#x27;,
-	TIME = &#x27;time&#x27;,
-	TIMES_NODE = &#x27;timesNode&#x27;,
-	TITLE = &#x27;title&#x27;,
-	TODAY = &#x27;today&#x27;,
-	TOP = &#x27;top&#x27;,
-	VISIBLE = &#x27;visible&#x27;,
-	WEEK = &#x27;week&#x27;,
-	WIDTH = &#x27;width&#x27;,
+    if (a === 0) { &#x2F;&#x2F; just the first
+        if (reverse) {
+            b = siblings.length - b + 1; 
+        }
 
-	DATA_COLNUMBER = &#x27;data-colnumber&#x27;,
+        if (siblings[b - 1] === node) {
+            return true;
+        } else {
+            return false;
+        }
 
-	ANCHOR = &#x27;a&#x27;,
-	DASH = &#x27;-&#x27;,
-	DOT = &#x27;.&#x27;,
-	EMPTY_STR = &#x27;&#x27;,
-	PERCENT = &#x27;%&#x27;,
-	SPACE = &#x27; &#x27;,
+    } else if (a &lt; 0) {
+        reverse = !!reverse;
+        a = Math.abs(a);
+    }
 
-	getCN = A.getClassName,
+    if (!reverse) {
+        for (var i = b - 1, len = siblings.length; i &lt; len; i += a) {
+            if ( i &gt;= 0 &amp;&amp; siblings[i] === node ) {
+                return true;
+            }
+        }
+    } else {
+        for (var i = siblings.length - b, len = siblings.length; i &gt;= 0; i -= a) {
+            if ( i &lt; len &amp;&amp; siblings[i] === node ) {
+                return true;
+            }
+        }
+    }
+    return false;
+};
 
-	CSS_SCHEDULER_VIEW_NOSCROLL = getCN(SCHEDULER_VIEW, NOSCROLL),
-	CSS_SCHEDULER_VIEW_SCROLLABLE = getCN(SCHEDULER_VIEW, SCROLLABLE);
+Y.mix(Y.Selector.pseudos, {
+    &#x27;root&#x27;: function(node) {
+        return node === node.ownerDocument.documentElement;
+    },
 
-var SchedulerView = A.Component.create({
-	NAME: SCHEDULER_VIEW,
+    &#x27;nth-child&#x27;: function(node, expr) {
+        return Y.Selector._getNth(node, expr);
+    },
 
-	AUGMENTS: [A.WidgetStdMod],
+    &#x27;nth-last-child&#x27;: function(node, expr) {
+        return Y.Selector._getNth(node, expr, null, true);
+    },
 
-	ATTRS: {
-		bodyContent: {
-			value: EMPTY_STR
-		},
+    &#x27;nth-of-type&#x27;: function(node, expr) {
+        return Y.Selector._getNth(node, expr, node.tagName);
+    },
+     
+    &#x27;nth-last-of-type&#x27;: function(node, expr) {
+        return Y.Selector._getNth(node, expr, node.tagName, true);
+    },
+     
+    &#x27;last-child&#x27;: function(node) {
+        var children = Y.Selector._children(node.parentNode);
+        return children[children.length - 1] === node;
+    },
 
-		height: {
-			value: 600
-		},
+    &#x27;first-of-type&#x27;: function(node) {
+        return Y.Selector._children(node.parentNode, node.tagName)[0] === node;
+    },
+     
+    &#x27;last-of-type&#x27;: function(node) {
+        var children = Y.Selector._children(node.parentNode, node.tagName);
+        return children[children.length - 1] === node;
+    },
+     
+    &#x27;only-child&#x27;: function(node) {
+        var children = Y.Selector._children(node.parentNode);
+        return children.length === 1 &amp;&amp; children[0] === node;
+    },
 
-		isoTime: {
-			value: false,
-			validator: isBoolean
-		},
+    &#x27;only-of-type&#x27;: function(node) {
+        var children = Y.Selector._children(node.parentNode, node.tagName);
+        return children.length === 1 &amp;&amp; children[0] === node;
+    },
 
-		name: {
-			value: EMPTY_STR,
-			validator: isString
-		},
+    &#x27;empty&#x27;: function(node) {
+        return node.childNodes.length === 0;
+    },
 
-		&#x2F;**
-		 * The default date format string which can be overriden for
-         * localization support. The format must be valid according to
-         * &lt;a href=&quot;DataType.Date.html&quot;&gt;A.DataType.Date.format&lt;&#x2F;a&gt;.
-		 *
-		 * @attribute dateFormat
-		 * @default %A - %d %b %Y
-		 * @type String
-		 *&#x2F;
-		navigationDateFormat: {
-			value: &#x27;%A - %d %B, %Y&#x27;,
-			validator: isString
-		},
+    &#x27;not&#x27;: function(node, expr) {
+        return !Y.Selector.test(node, expr);
+    },
 
-		nextDate: {
-			getter: &#x27;getNextDate&#x27;,
-			readOnly: true
-		},
+    &#x27;contains&#x27;: function(node, expr) {
+        var text = node.innerText || node.textContent || &#x27;&#x27;;
+        return text.indexOf(expr) &gt; -1;
+    },
 
-		prevDate: {
-			getter: &#x27;getPrevDate&#x27;,
-			readOnly: true
-		},
+    &#x27;checked&#x27;: function(node) {
+        return (node.checked === true || node.selected === true);
+    },
 
-		scheduler: {
-			lazyAdd: false,
-			setter: &#x27;_setScheduler&#x27;
-		},
+    enabled: function(node) {
+        return (node.disabled !== undefined &amp;&amp; !node.disabled);
+    },
 
-		scrollable: {
-			value: true,
-			validator: isBoolean
-		},
-
-		triggerNode: {
-			setter: A.one
-		},
-
-		visible: {
-			value: false
-		}
-	},
-
-	BIND_UI_ATTRS: [SCROLLABLE],
-
-	prototype: {
-		initializer: function() {
-			var instance = this;
-
-			instance.after(&#x27;render&#x27;, instance._afterRender);
-		},
-
-		syncUI: function() {
-			var instance = this;
-
-			instance.syncStdContent();
-		},
-
-		adjustCurrentDate: function() {
-			var instance = this;
-			var scheduler = instance.get(SCHEDULER);
-			var currentDate = scheduler.get(CURRENT_DATE);
-
-			scheduler.set(CURRENT_DATE, currentDate);
-		},
-
-		flushViewCache: function() {
-		},
-
-		getNextDate: function() {
-		},
-
-		getPrevDate: function() {
-		},
-
-		getToday: function() {
-			return DateMath.clearTime(new Date());
-		},
-
-		limitDate: function(date, maxDate) {
-			var instance = this;
-
-			if (DateMath.after(date, maxDate)) {
-				date = DateMath.clone(maxDate);
-			}
-
-			return date;
-		},
-
-		plotEvents: function() {
-		},
-
-		syncStdContent: function() {
-		},
-
-		syncEventUI: function(evt) {
-		},
-
-		_uiSetCurrentDate: function(val) {
-		},
-
-		_afterRender: function(event) {
-			var instance = this;
-
-			instance.adjustCurrentDate();
-
-			instance._uiSetScrollable(
-				instance.get(SCROLLABLE)
-			);
-		},
-
-		_setScheduler: function(val) {
-			var instance = this;
-			var scheduler = instance.get(SCHEDULER);
-
-			if (scheduler) {
-				instance.removeTarget(scheduler);
-			}
-
-			if (val) {
-				instance.addTarget(val);
-
-				val.after(&#x27;eventsChange&#x27;, A.bind(instance.flushViewCache, instance));
-			}
-
-			return val;
-		},
-
-		_uiSetScrollable: function(val) {
-			var instance = this;
-			var bodyNode = instance.bodyNode;
-
-			if (bodyNode) {
-				bodyNode.toggleClass(CSS_SCHEDULER_VIEW_SCROLLABLE, val);
-				bodyNode.toggleClass(CSS_SCHEDULER_VIEW_NOSCROLL, !val);
-			}
-		},
-
-		_uiSetVisible: function(val) {
-			var instance = this;
-
-			SchedulerView.superclass._uiSetVisible.apply(this, arguments);
-
-			if (val &amp;&amp; instance.get(RENDERED)) {
-				instance.adjustCurrentDate();
-			}
-		}
-	}
+    disabled: function(node) {
+        return (node.disabled);
+    }
 });
 
-A.SchedulerView = SchedulerView;
+Y.mix(Y.Selector.operators, {
+    &#x27;^=&#x27;: &#x27;^{val}&#x27;, &#x2F;&#x2F; Match starts with value
+    &#x27;$=&#x27;: &#x27;{val}$&#x27;, &#x2F;&#x2F; Match ends with value
+    &#x27;*=&#x27;: &#x27;{val}&#x27; &#x2F;&#x2F; Match contains value as substring 
+});
+
+Y.Selector.combinators[&#x27;~&#x27;] = {
+    axis: &#x27;previousSibling&#x27;
+};
+
+
+}, &#x27;@VERSION@&#x27; ,{requires:[&#x27;selector-native&#x27;, &#x27;selector-css2&#x27;]});
+
     </pre>
 </div>
 

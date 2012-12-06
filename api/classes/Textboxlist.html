@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Textboxlist - AlloyUI</title>
-    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -17,9 +17,9 @@
         </div>
         <div class="yui3-u-1-4 version">
             <div class="version-details">
-                <span class="version-lib">AlloyUI 1.5.0</span>
+                <span class="version-lib">AlloyUI 1.7.0pr3</span>
                 <div class="yui-version">
-                    <span class="version-lib version-lib-yui">YUI 3.4.0</span>
+                    <span class="version-lib version-lib-yui">YUI 3.7.3</span>
                 </div>
             </div>
         </div>
@@ -144,6 +144,8 @@
                 <li><a href="..&#x2F;classes/CanvasRect.html">CanvasRect</a></li>
             
                 <li><a href="..&#x2F;classes/CanvasShape.html">CanvasShape</a></li>
+            
+                <li><a href="..&#x2F;classes/Carousel.html">Carousel</a></li>
             
                 <li><a href="..&#x2F;classes/CartesianChart.html">CartesianChart</a></li>
             
@@ -355,7 +357,7 @@
             
                 <li><a href="..&#x2F;classes/IORequest.html">IORequest</a></li>
             
-                <li><a href="..&#x2F;classes/json.html">json</a></li>
+                <li><a href="..&#x2F;classes/JSON.html">JSON</a></li>
             
                 <li><a href="..&#x2F;classes/JSONPRequest.html">JSONPRequest</a></li>
             
@@ -501,7 +503,7 @@
             
                 <li><a href="..&#x2F;classes/ProgressBar.html">ProgressBar</a></li>
             
-                <li><a href="..&#x2F;classes/querystring.html">querystring</a></li>
+                <li><a href="..&#x2F;classes/QueryString.html">QueryString</a></li>
             
                 <li><a href="..&#x2F;classes/Queue.html">Queue</a></li>
             
@@ -761,6 +763,8 @@
                 <li><a href="..&#x2F;modules/aui-calendar-base.html">aui-calendar-base</a></li>
             
                 <li><a href="..&#x2F;modules/aui-calendar-datepicker-select.html">aui-calendar-datepicker-select</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-carousel.html">aui-carousel</a></li>
             
                 <li><a href="..&#x2F;modules/aui-char-counter.html">aui-char-counter</a></li>
             
@@ -2648,14 +2652,6 @@ Textboxlist.</p>
                                 <a href="#attr_dataSourceType">dataSourceType</a>
                             </li>
                         
-                            <li class="index-item attr">
-                                <a href="#attr_dateFormat">dateFormat</a>
-                            </li>
-                        
-                            <li class="index-item attr">
-                                <a href="#attr_dateFormat">dateFormat</a>
-                            </li>
-                        
                             <li class="index-item attr inherited">
                                 <a href="#attr_delimChar">delimChar</a>
                             </li>
@@ -2730,6 +2726,14 @@ Textboxlist.</p>
                         
                             <li class="index-item attr">
                                 <a href="#attr_minWidth">minWidth</a>
+                            </li>
+                        
+                            <li class="index-item attr">
+                                <a href="#attr_navigationDateFormatter">navigationDateFormatter</a>
+                            </li>
+                        
+                            <li class="index-item attr">
+                                <a href="#attr_navigationDateFormatter">navigationDateFormatter</a>
                             </li>
                         
                             <li class="index-item attr">
@@ -9574,7 +9578,7 @@ the contentBox are not currently in the document, the widget will be rendered to
     </div>
 
     <div class="description">
-        <p>Pre-populates the container with the 
+        <p>Pre-populates the container with the
 <a href="Autocomplete.html#config_maxResultsDisplayed">maxResultsDisplayed</a>
 number of list items.</p>
     </div>
@@ -17330,7 +17334,7 @@ set called externally by the application developer.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-scheduler_js_aui-scheduler-base.js.html#l623"><code>src&#x2F;aui-scheduler&#x2F;js&#x2F;aui-scheduler-base.js:623</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-scheduler_js_aui-scheduler-base.js.html#l399"><code>src&#x2F;aui-scheduler&#x2F;js&#x2F;aui-scheduler-base.js:399</code></a>
         
         </p>
 
@@ -18228,7 +18232,7 @@ configuration for the Textboxlist.</p>
     </div>
 
     <div class="description">
-        <p>Map of DOM events that should be fired as Custom Events by the 
+        <p>Map of DOM events that should be fired as Custom Events by the <br />
 Widget instance.</p>
     </div>
 
@@ -18279,7 +18283,7 @@ Widget instance.</p>
     </div>
 
     <div class="description">
-        <p>Always show the results container, instead of only showing when the 
+        <p>Always show the results container, instead of only showing when the
 user is requesting them.</p>
     </div>
 
@@ -18375,7 +18379,7 @@ user is requesting them.</p>
     </div>
 
     <div class="description">
-        <p>If set to true, the <a href="AutoComplete.html#method_filterResults">filterResults</a> 
+        <p>If set to true, the <a href="AutoComplete.html#method_filterResults">filterResults</a>
 method will be run on the response from the data source.</p>
     </div>
 
@@ -18764,9 +18768,9 @@ for skinning.</p>
     </div>
 
     <div class="description">
-        <p>Will attempt to constrain the resize node to the boundaries. Arguments:
-'view': Contrain to Viewport
-'#selector_string': Constrain to this node
+        <p>Will attempt to constrain the resize node to the boundaries. Arguments:<br>
+'view': Contrain to Viewport<br>
+'#selector_string': Constrain to this node<br>
 '{Region Object}': An Object Literal containing a valid region (top, right, bottom, left) of page positions</p>
     </div>
 
@@ -19212,210 +19216,6 @@ be created.</p>
 </div>
 
                 
-                    <div id="attr_dateFormat" class="attr item">
-    <a name="config_dateFormat"></a> 
-    <h3 class="name"><code>dateFormat</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/aui-resize.html">aui-resize</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;src_aui-scheduler_js_aui-scheduler-base.js.html#l214"><code>src&#x2F;aui-scheduler&#x2F;js&#x2F;aui-scheduler-base.js:214</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>The default date format string which can be overriden for
-localization support. The format must be valid according to
-<a href="DataType.Date.html">A.DataType.Date.format</a>.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> %A - %d %b %Y</p>
-    
-
-    
-        <div class="emits box">
-            <h4>Fires event <code>dateFormatChange</code></h4>
-
-            <p>
-            Fires when the value for the configuration attribute <code>dateFormat</code> is
-            changed. You can listen for the event using the <code>on</code> method if you
-            wish to be notified before the attribute's value has changed, or
-            using the <code>after</code> method if you wish to be notified after the
-            attribute's value has changed.
-            </p>
-
-            <div class="params">
-                <h4>Parameters:</h4>
-
-                <ul class="params-list">
-                    <li class="param">
-                        <code class="param-name">e</code>
-                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
-
-                        <div class="param-description">
-                            An Event Facade object with the following
-                            attribute-specific properties added:
-                        </div>
-
-                        <ul class="params-list">
-                            <li class="param">
-                                <code class="param-name">prevVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value of the attribute, prior to it being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">newVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value the attribute is to be set to.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">attrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">The name of the attribute being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">subAttrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="attr_dateFormat" class="attr item">
-    <a name="config_dateFormat"></a> 
-    <h3 class="name"><code>dateFormat</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/aui-resize.html">aui-resize</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;src_aui-scheduler_js_aui-scheduler-view.js.html#l158"><code>src&#x2F;aui-scheduler&#x2F;js&#x2F;aui-scheduler-view.js:158</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>The default date format string which can be overriden for
-localization support. The format must be valid according to
-<a href="DataType.Date.html">A.DataType.Date.format</a>.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> %A - %d %b %Y</p>
-    
-
-    
-        <div class="emits box">
-            <h4>Fires event <code>dateFormatChange</code></h4>
-
-            <p>
-            Fires when the value for the configuration attribute <code>dateFormat</code> is
-            changed. You can listen for the event using the <code>on</code> method if you
-            wish to be notified before the attribute's value has changed, or
-            using the <code>after</code> method if you wish to be notified after the
-            attribute's value has changed.
-            </p>
-
-            <div class="params">
-                <h4>Parameters:</h4>
-
-                <ul class="params-list">
-                    <li class="param">
-                        <code class="param-name">e</code>
-                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
-
-                        <div class="param-description">
-                            An Event Facade object with the following
-                            attribute-specific properties added:
-                        </div>
-
-                        <ul class="params-list">
-                            <li class="param">
-                                <code class="param-name">prevVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value of the attribute, prior to it being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">newVal</code>
-                                <span class="type">Any</span>
-                                <div class="param-description">The value the attribute is to be set to.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">attrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">The name of the attribute being set.</div>
-                            </li>
-                            <li class="param">
-                                <code class="param-name">subAttrName</code>
-                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
                     <div id="attr_delimChar" class="attr item inherited">
     <a name="config_delimChar"></a> 
     <h3 class="name"><code>delimChar</code></h3>
@@ -19730,7 +19530,7 @@ is left to the specific classes extending widget.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-scheduler_js_aui-scheduler-base.js.html#l250"><code>src&#x2F;aui-scheduler&#x2F;js&#x2F;aui-scheduler-base.js:250</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-scheduler_js_aui-scheduler-base.js.html#l220"><code>src&#x2F;aui-scheduler&#x2F;js&#x2F;aui-scheduler-base.js:220</code></a>
         
         </p>
 
@@ -21260,6 +21060,206 @@ return/set strings for this locale.</p>
 </div>
 
                 
+                    <div id="attr_navigationDateFormatter" class="attr item">
+    <a name="config_navigationDateFormatter"></a> 
+    <h3 class="name"><code>navigationDateFormatter</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                    <p>Provided by the <a href="../modules/aui-resize.html">aui-resize</a> module.</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-scheduler_js_aui-scheduler-base-view.js.html#l30"><code>src&#x2F;aui-scheduler&#x2F;js&#x2F;aui-scheduler-base-view.js:30</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>The function to format the navigation header date.</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> %A - %d %b %Y</p>
+    
+
+    
+        <div class="emits box">
+            <h4>Fires event <code>navigationDateFormatterChange</code></h4>
+
+            <p>
+            Fires when the value for the configuration attribute <code>navigationDateFormatter</code> is
+            changed. You can listen for the event using the <code>on</code> method if you
+            wish to be notified before the attribute's value has changed, or
+            using the <code>after</code> method if you wish to be notified after the
+            attribute's value has changed.
+            </p>
+
+            <div class="params">
+                <h4>Parameters:</h4>
+
+                <ul class="params-list">
+                    <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
+
+                        <div class="param-description">
+                            An Event Facade object with the following
+                            attribute-specific properties added:
+                        </div>
+
+                        <ul class="params-list">
+                            <li class="param">
+                                <code class="param-name">prevVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value of the attribute, prior to it being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">newVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value the attribute is to be set to.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">attrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">The name of the attribute being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">subAttrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="attr_navigationDateFormatter" class="attr item">
+    <a name="config_navigationDateFormatter"></a> 
+    <h3 class="name"><code>navigationDateFormatter</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                    <p>Provided by the <a href="../modules/aui-resize.html">aui-resize</a> module.</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-scheduler_js_aui-scheduler-base.js.html#l188"><code>src&#x2F;aui-scheduler&#x2F;js&#x2F;aui-scheduler-base.js:188</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>The function to format the navigation header date.</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> %A - %d %b %Y</p>
+    
+
+    
+        <div class="emits box">
+            <h4>Fires event <code>navigationDateFormatterChange</code></h4>
+
+            <p>
+            Fires when the value for the configuration attribute <code>navigationDateFormatter</code> is
+            changed. You can listen for the event using the <code>on</code> method if you
+            wish to be notified before the attribute's value has changed, or
+            using the <code>after</code> method if you wish to be notified after the
+            attribute's value has changed.
+            </p>
+
+            <div class="params">
+                <h4>Parameters:</h4>
+
+                <ul class="params-list">
+                    <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
+
+                        <div class="param-description">
+                            An Event Facade object with the following
+                            attribute-specific properties added:
+                        </div>
+
+                        <ul class="params-list">
+                            <li class="param">
+                                <code class="param-name">prevVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value of the attribute, prior to it being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">newVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value the attribute is to be set to.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">attrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">The name of the attribute being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">subAttrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
                     <div id="attr_preserveRatio" class="attr item">
     <a name="config_preserveRatio"></a> 
     <h3 class="name"><code>preserveRatio</code></h3>
@@ -21776,7 +21776,7 @@ instead of just matching just items that start with the query.</p>
     </div>
 
     <div class="description">
-        <p>For IO DataSources, AutoComplete will automatically insert a "?" between the server URI and 
+        <p>For IO DataSources, AutoComplete will automatically insert a "?" between the server URI and
 the encoded query string. To prevent this behavior, you can
 set this value to false. If you need to customize this even further, you
 can override the <a href="AutoComplete.html#method_generateRequest">generateRequest</a> method.</p>
@@ -22842,8 +22842,8 @@ null removes the "tabIndex" attribute from the widget's bounding box.</p>
     </div>
 
     <div class="description">
-        <p>If <a href="AutoComplete.html#config_autoHighlight">autoHighlight</a> is enabled, whether or not the 
-input field should be automatically updated with the first result as the user types, 
+        <p>If <a href="AutoComplete.html#config_autoHighlight">autoHighlight</a> is enabled, whether or not the
+input field should be automatically updated with the first result as the user types,
 automatically selecting the portion of the text the user has not typed yet.</p>
     </div>
 
@@ -22939,7 +22939,7 @@ automatically selecting the portion of the text the user has not typed yet.</p>
     </div>
 
     <div class="description">
-        <p>If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, number of seconds 
+        <p>If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, number of seconds
 to delay before updating the input. In order to prevent certain race conditions, this value must
 always be greater than the <a href="AutoComplete.html#config_queryDelay">queryDelay</a>.</p>
     </div>

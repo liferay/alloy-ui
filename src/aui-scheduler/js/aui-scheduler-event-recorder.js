@@ -40,6 +40,7 @@ var Lang = A.Lang,
 	FORM = 'form',
 	HEADER = 'header',
 	ISO_TIME = 'isoTime',
+	KEY_DOWN = 'keydown',
 	NODE = 'node',
 	OFFSET_HEIGHT = 'offsetHeight',
 	OFFSET_WIDTH = 'offsetWidth',
@@ -302,6 +303,12 @@ var SchedulerEventRecorder = A.Component.create({
 			event.preventDefault();
 		},
 
+		_handleClickOutSide: function(event) {
+			var instance = this;
+
+			instance.fire('cancel');
+		},
+
 		_handleDeleteEvent: function(event) {
 			var instance = this;
 
@@ -310,6 +317,16 @@ var SchedulerEventRecorder = A.Component.create({
 			});
 
 			event.preventDefault();
+		},
+
+		_handleEscapeEvent: function(event) {
+			var instance = this;
+
+			if (instance[OVERLAY].get(RENDERED) && (event.keyCode == A.Event.KeyMap.ESC)) {
+				instance.fire('cancel');
+
+				event.preventDefault();
+			}
 		},
 
 		_handleSaveEvent: function(event) {
@@ -366,10 +383,12 @@ var SchedulerEventRecorder = A.Component.create({
 
 		_renderOverlay: function() {
 			var instance = this;
+			var scheduler = instance.get(SCHEDULER);
+			var schedulerBB = scheduler.get(BOUNDING_BOX);
 			var strings = instance.get(STRINGS);
 
-			instance[OVERLAY].render();
-			instance[TOOLBAR].render();
+			instance[OVERLAY].render(schedulerBB);
+			instance[TOOLBAR].render(schedulerBB);
 
 			var overlayBB = instance[OVERLAY].get(BOUNDING_BOX);
 			overlayBB.addClass(CSS_SCHEDULER_EVENT_RECORDER_OVERLAY);
@@ -381,6 +400,8 @@ var SchedulerEventRecorder = A.Component.create({
 			instance[OVERLAY].set(BODY_CONTENT, instance.formNode);
 
 			instance.formNode.on(SUBMIT, A.bind(instance._onSubmitForm, instance));
+
+			scheduler.get(BOUNDING_BOX).on('clickoutside', A.bind(instance._handleClickOutSide, instance));
 		},
 
 		getFormattedDate: function() {
@@ -445,6 +466,8 @@ var SchedulerEventRecorder = A.Component.create({
 			}
 
 			overlay.show();
+
+			instance.handleEscapeEvent = A.on(KEY_DOWN, A.bind(instance._handleEscapeEvent, instance));
 
 			var arrows = overlayBB.all(_DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW),
 				firstArrow = arrows.item(0),

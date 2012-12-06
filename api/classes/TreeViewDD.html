@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>TreeViewDD - AlloyUI</title>
-    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -17,9 +17,9 @@
         </div>
         <div class="yui3-u-1-4 version">
             <div class="version-details">
-                <span class="version-lib">AlloyUI 1.5.0</span>
+                <span class="version-lib">AlloyUI 1.7.0pr3</span>
                 <div class="yui-version">
-                    <span class="version-lib version-lib-yui">YUI 3.4.0</span>
+                    <span class="version-lib version-lib-yui">YUI 3.7.3</span>
                 </div>
             </div>
         </div>
@@ -144,6 +144,8 @@
                 <li><a href="..&#x2F;classes/CanvasRect.html">CanvasRect</a></li>
             
                 <li><a href="..&#x2F;classes/CanvasShape.html">CanvasShape</a></li>
+            
+                <li><a href="..&#x2F;classes/Carousel.html">Carousel</a></li>
             
                 <li><a href="..&#x2F;classes/CartesianChart.html">CartesianChart</a></li>
             
@@ -355,7 +357,7 @@
             
                 <li><a href="..&#x2F;classes/IORequest.html">IORequest</a></li>
             
-                <li><a href="..&#x2F;classes/json.html">json</a></li>
+                <li><a href="..&#x2F;classes/JSON.html">JSON</a></li>
             
                 <li><a href="..&#x2F;classes/JSONPRequest.html">JSONPRequest</a></li>
             
@@ -501,7 +503,7 @@
             
                 <li><a href="..&#x2F;classes/ProgressBar.html">ProgressBar</a></li>
             
-                <li><a href="..&#x2F;classes/querystring.html">querystring</a></li>
+                <li><a href="..&#x2F;classes/QueryString.html">QueryString</a></li>
             
                 <li><a href="..&#x2F;classes/Queue.html">Queue</a></li>
             
@@ -761,6 +763,8 @@
                 <li><a href="..&#x2F;modules/aui-calendar-base.html">aui-calendar-base</a></li>
             
                 <li><a href="..&#x2F;modules/aui-calendar-datepicker-select.html">aui-calendar-datepicker-select</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-carousel.html">aui-carousel</a></li>
             
                 <li><a href="..&#x2F;modules/aui-char-counter.html">aui-char-counter</a></li>
             
@@ -1353,7 +1357,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l416"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:416</code></a>
+            Defined in: <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l429"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:429</code></a>
         </div>
     
 
@@ -1419,7 +1423,7 @@ TreeViewDD.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l416"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:416</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l429"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:429</code></a>
         
         </p>
 
@@ -1536,12 +1540,6 @@ TreeViewDD.</p>
                                 
                             </li>
                         
-                            <li class="index-item method protected">
-                                <a href="#method__createDrag">_createDrag</a>
-
-                                
-                            </li>
-                        
                             <li class="index-item method protected inherited">
                                 <a href="#method__createFromHTMLMarkup">_createFromHTMLMarkup</a>
 
@@ -1646,12 +1644,6 @@ TreeViewDD.</p>
                         
                             <li class="index-item method protected">
                                 <a href="#method__goingUpState">_goingUpState</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method protected">
-                                <a href="#method__handleEvent">_handleEvent</a>
 
                                 
                             </li>
@@ -2060,12 +2052,6 @@ TreeViewDD.</p>
                         
                             <li class="index-item method inherited">
                                 <a href="#method_setAttrs">setAttrs</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method protected inherited">
-                                <a href="#method_syncUI">syncUI</a>
 
                                 
                             </li>
@@ -2492,7 +2478,7 @@ See <a href="#method_addAttr">addAttr</a>.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l824"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:824</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l780"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:780</code></a>
         
         </p>
 
@@ -2689,7 +2675,7 @@ attribute configuration has cloneDefaultValue set to shallow or deep).</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l469"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:469</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l462"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:462</code></a>
         
         </p>
 
@@ -2791,7 +2777,7 @@ attribute configuration has cloneDefaultValue set to shallow or deep).</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l676"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:676</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l648"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:648</code></a>
         
         </p>
 
@@ -2868,7 +2854,7 @@ attribute configuration has cloneDefaultValue set to shallow or deep).</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l636"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:636</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l589"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:589</code></a>
         
         </p>
 
@@ -2882,93 +2868,6 @@ attribute configuration has cloneDefaultValue set to shallow or deep).</p>
         <p>Bind DragDrop events.</p>
     </div>
 
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method__createDrag" class="method item protected">
-    <h3 class="name"><code>_createDrag</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>node</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-        <span class="flag protected">protected</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l585"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:585</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Setup DragDrop on the TreeNodes.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">node</code>
-                        <span class="type"><a href="../classes/Node.html" class="crosslink">Node</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
     
 
     
@@ -3016,7 +2915,7 @@ attribute configuration has cloneDefaultValue set to shallow or deep).</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l192"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:192</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l193"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:193</code></a>
         
         </p>
 
@@ -3343,7 +3242,7 @@ refers to the configuration object passed to the constructor.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l271"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:271</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l275"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:275</code></a>
         
         </p>
 
@@ -4511,7 +4410,7 @@ internal state object, or the state proxy if it exits</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l693"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:693</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l665"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:665</code></a>
         
         </p>
 
@@ -4598,7 +4497,7 @@ internal state object, or the state proxy if it exits</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l710"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:710</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l682"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:682</code></a>
         
         </p>
 
@@ -4628,93 +4527,6 @@ internal state object, or the state proxy if it exits</p>
 
                     <div class="param-description">
                          
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method__handleEvent" class="method item protected">
-    <h3 class="name"><code>_handleEvent</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>event</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-        <span class="flag protected">protected</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l808"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:808</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Fires after the append event.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">event</code>
-                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>append event facade</p>
                     </div>
 
                     
@@ -5421,7 +5233,7 @@ simply merges the hash to protect the original.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l346"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:346</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l359"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:359</code></a>
         
         </p>
 
@@ -5505,7 +5317,7 @@ simply merges the hash to protect the original.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l291"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:291</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l294"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:294</code></a>
         
         </p>
 
@@ -5592,7 +5404,7 @@ simply merges the hash to protect the original.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l876"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:876</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l832"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:832</code></a>
         
         </p>
 
@@ -5679,7 +5491,7 @@ simply merges the hash to protect the original.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l897"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:897</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l853"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:853</code></a>
         
         </p>
 
@@ -5766,7 +5578,7 @@ simply merges the hash to protect the original.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l961"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:961</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l917"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:917</code></a>
         
         </p>
 
@@ -5853,7 +5665,7 @@ simply merges the hash to protect the original.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l945"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:945</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l901"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:901</code></a>
         
         </p>
 
@@ -5940,7 +5752,7 @@ simply merges the hash to protect the original.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l932"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:932</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l888"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:888</code></a>
         
         </p>
 
@@ -6024,7 +5836,7 @@ simply merges the hash to protect the original.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l314"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:314</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l327"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:327</code></a>
         
         </p>
 
@@ -6108,7 +5920,7 @@ simply merges the hash to protect the original.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l330"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:330</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l343"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:343</code></a>
         
         </p>
 
@@ -6379,7 +6191,7 @@ attr config objects.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l601"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:601</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l598"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:598</code></a>
         
         </p>
 
@@ -6453,7 +6265,7 @@ attr config objects.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l238"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:238</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l250"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:250</code></a>
         
         </p>
 
@@ -6517,7 +6329,7 @@ attr config objects.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l727"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:727</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l699"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:699</code></a>
         
         </p>
 
@@ -7189,7 +7001,7 @@ if validation and setter passes.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l767"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:767</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l768"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:768</code></a>
         
         </p>
 
@@ -7394,7 +7206,7 @@ internal state object, or the state proxy if it exits</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l749"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:749</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l721"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:721</code></a>
         
         </p>
 
@@ -7863,7 +7675,7 @@ See <a href="#method_addAttr">addAttr</a>.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l455"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:455</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l448"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:448</code></a>
         
         </p>
 
@@ -8054,7 +7866,7 @@ See <a href="#method_addAttr">addAttr</a>.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l548"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:548</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l552"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:552</code></a>
         
         </p>
 
@@ -8131,7 +7943,7 @@ See <a href="#method_addAttr">addAttr</a>.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l403"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:403</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l396"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:396</code></a>
         
         </p>
 
@@ -8248,7 +8060,7 @@ See <a href="#method_addAttr">addAttr</a>.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l315"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:315</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l308"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:308</code></a>
         
         </p>
 
@@ -8311,7 +8123,7 @@ See <a href="#method_addAttr">addAttr</a>.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l439"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:439</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l432"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:432</code></a>
         
         </p>
 
@@ -8478,7 +8290,7 @@ from proceeding.
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l519"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:519</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l532"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:532</code></a>
         
         </p>
 
@@ -8547,7 +8359,7 @@ Purges events attached to the node (and all child nodes).</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l367"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:367</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l360"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:360</code></a>
         
         </p>
 
@@ -8634,7 +8446,7 @@ Purges events attached to the node (and all child nodes).</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l642"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:642</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l639"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:639</code></a>
         
         </p>
 
@@ -8683,7 +8495,7 @@ Purges events attached to the node (and all child nodes).</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l328"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:328</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l321"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:321</code></a>
         
         </p>
 
@@ -8948,7 +8760,7 @@ returned. If set to true, all attributes modified from their initial values are 
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l547"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:547</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l538"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:538</code></a>
         
         </p>
 
@@ -9046,7 +8858,7 @@ returned. If set to true, all attributes modified from their initial values are 
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l570"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:570</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l567"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:567</code></a>
         
         </p>
 
@@ -9144,7 +8956,7 @@ returned. If set to true, all attributes modified from their initial values are 
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l747"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:747</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l748"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:748</code></a>
         
         </p>
 
@@ -9242,7 +9054,7 @@ returned. If set to true, all attributes modified from their initial values are 
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l145"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:145</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l135"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:135</code></a>
         
         </p>
 
@@ -9330,7 +9142,7 @@ returned. If set to true, all attributes modified from their initial values are 
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l537"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:537</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l526"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:526</code></a>
         
         </p>
 
@@ -9507,7 +9319,7 @@ returned. If set to true, all attributes modified from their initial values are 
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l523"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:523</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l512"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:512</code></a>
         
         </p>
 
@@ -9518,7 +9330,8 @@ returned. If set to true, all attributes modified from their initial values are 
     </div>
 
     <div class="description">
-        <p>Index of the passed TreeNode on the <a href="TreeData.html#config_children">children</a> attribute.</p>
+        <p>Index of the passed TreeNode on the <a
+href="TreeData.html#config_children">children</a> attribute.</p>
     </div>
 
     
@@ -9696,7 +9509,7 @@ invoking initializers for the class hierarchy.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l115"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:115</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l105"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:105</code></a>
         
         </p>
 
@@ -9767,7 +9580,7 @@ invoking initializers for the class hierarchy.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l659"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:659</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l656"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:656</code></a>
         
         </p>
 
@@ -9885,7 +9698,7 @@ invoking initializers for the class hierarchy.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l725"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:725</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l722"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:722</code></a>
         
         </p>
 
@@ -9988,7 +9801,7 @@ invoking initializers for the class hierarchy.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l736"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:736</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l735"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:735</code></a>
         
         </p>
 
@@ -10089,7 +9902,7 @@ invoking initializers for the class hierarchy.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l158"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:158</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l148"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:148</code></a>
         
         </p>
 
@@ -10187,7 +10000,7 @@ invoking initializers for the class hierarchy.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l510"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:510</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l499"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:499</code></a>
         
         </p>
 
@@ -10515,7 +10328,7 @@ can be the configuration for the plugin.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l241"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:241</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l231"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:231</code></a>
         
         </p>
 
@@ -10574,7 +10387,7 @@ can be the configuration for the plugin.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l258"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:258</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l248"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:248</code></a>
         
         </p>
 
@@ -10738,7 +10551,7 @@ can be the configuration for the plugin.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l588"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:588</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l585"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:585</code></a>
         
         </p>
 
@@ -10815,7 +10628,7 @@ can be the configuration for the plugin.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l562"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:562</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l566"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:566</code></a>
         
         </p>
 
@@ -10969,7 +10782,7 @@ the attribute is not readOnly, or writeOnce.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l341"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:341</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l334"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:334</code></a>
         
         </p>
 
@@ -11241,57 +11054,6 @@ set called externally by the application developer.</p>
 </div>
 
                 
-                    <div id="method_syncUI" class="method item protected inherited">
-    <h3 class="name"><code>syncUI</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-        <span class="flag protected">protected</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                <p>Inherited from
-                <a href="TreeView.html#method_syncUI">TreeView</a>:
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l171"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:171</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Sync the TreeView UI. Lifecycle.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
                     <div id="method_toString" class="method item inherited">
     <h3 class="name"><code>toString</code></h3>
 
@@ -11502,7 +11264,7 @@ all registered plugins are unplugged.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l296"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:296</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l289"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:289</code></a>
         
         </p>
 
@@ -11584,7 +11346,7 @@ all registered plugins are unplugged.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l282"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:282</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l275"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:275</code></a>
         
         </p>
 
@@ -11678,7 +11440,7 @@ all registered plugins are unplugged.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l171"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:171</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l161"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:161</code></a>
         
         </p>
 
@@ -11786,7 +11548,7 @@ all registered plugins are unplugged.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l481"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:481</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l494"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:494</code></a>
         
         </p>
 
@@ -11877,7 +11639,7 @@ all registered plugins are unplugged.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l445"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:445</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l458"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:458</code></a>
         
         </p>
 
@@ -11924,7 +11686,7 @@ configuration for the TreeViewDD.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l436"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:436</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l449"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:449</code></a>
         
         </p>
 
@@ -11974,7 +11736,7 @@ configuration for the TreeViewDD.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l89"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:89</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l77"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:77</code></a>
         
         </p>
 
@@ -12069,7 +11831,7 @@ configuration for the TreeViewDD.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l78"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:78</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l66"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:66</code></a>
         
         </p>
 
@@ -12263,7 +12025,7 @@ has been through the destroy lifecycle phase.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l490"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:490</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l503"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:503</code></a>
         
         </p>
 
@@ -12361,7 +12123,7 @@ has been through the destroy lifecycle phase.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l454"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:454</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l467"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:467</code></a>
         
         </p>
 
@@ -12456,7 +12218,7 @@ has been through the destroy lifecycle phase.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l102"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:102</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-data.js.html#l90"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-data.js:90</code></a>
         
         </p>
 
@@ -12647,7 +12409,7 @@ has been through the init lifecycle phase.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l126"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:126</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l136"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:136</code></a>
         
         </p>
 
@@ -12742,7 +12504,7 @@ has been through the init lifecycle phase.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l114"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:114</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l119"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:119</code></a>
         
         </p>
 
@@ -12840,7 +12602,7 @@ has been through the init lifecycle phase.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l499"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:499</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l512"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:512</code></a>
         
         </p>
 
@@ -12938,7 +12700,7 @@ has been through the init lifecycle phase.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l510"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:510</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l523"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:523</code></a>
         
         </p>
 
@@ -13036,7 +12798,7 @@ has been through the init lifecycle phase.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l465"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:465</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l478"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:478</code></a>
         
         </p>
 
@@ -13131,7 +12893,7 @@ has been through the init lifecycle phase.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l102"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:102</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-view.js.html#l107"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-view.js:107</code></a>
         
         </p>
 

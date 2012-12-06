@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>HistoryHTML5 - AlloyUI</title>
-    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -17,9 +17,9 @@
         </div>
         <div class="yui3-u-1-4 version">
             <div class="version-details">
-                <span class="version-lib">AlloyUI 1.5.0</span>
+                <span class="version-lib">AlloyUI 1.7.0pr3</span>
                 <div class="yui-version">
-                    <span class="version-lib version-lib-yui">YUI 3.4.0</span>
+                    <span class="version-lib version-lib-yui">YUI 3.7.3</span>
                 </div>
             </div>
         </div>
@@ -144,6 +144,8 @@
                 <li><a href="..&#x2F;classes/CanvasRect.html">CanvasRect</a></li>
             
                 <li><a href="..&#x2F;classes/CanvasShape.html">CanvasShape</a></li>
+            
+                <li><a href="..&#x2F;classes/Carousel.html">Carousel</a></li>
             
                 <li><a href="..&#x2F;classes/CartesianChart.html">CartesianChart</a></li>
             
@@ -355,7 +357,7 @@
             
                 <li><a href="..&#x2F;classes/IORequest.html">IORequest</a></li>
             
-                <li><a href="..&#x2F;classes/json.html">json</a></li>
+                <li><a href="..&#x2F;classes/JSON.html">JSON</a></li>
             
                 <li><a href="..&#x2F;classes/JSONPRequest.html">JSONPRequest</a></li>
             
@@ -501,7 +503,7 @@
             
                 <li><a href="..&#x2F;classes/ProgressBar.html">ProgressBar</a></li>
             
-                <li><a href="..&#x2F;classes/querystring.html">querystring</a></li>
+                <li><a href="..&#x2F;classes/QueryString.html">QueryString</a></li>
             
                 <li><a href="..&#x2F;classes/Queue.html">Queue</a></li>
             
@@ -761,6 +763,8 @@
                 <li><a href="..&#x2F;modules/aui-calendar-base.html">aui-calendar-base</a></li>
             
                 <li><a href="..&#x2F;modules/aui-calendar-datepicker-select.html">aui-calendar-datepicker-select</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-carousel.html">aui-carousel</a></li>
             
                 <li><a href="..&#x2F;modules/aui-char-counter.html">aui-char-counter</a></li>
             
@@ -1565,12 +1569,6 @@ When calling the <code>add()</code>, <code>addValue()</code>,
                                 
                             </li>
                         
-                            <li class="index-item method protected">
-                                <a href="#method__storeState">_storeState</a>
-
-                                
-                            </li>
-                        
                             <li class="index-item method protected inherited">
                                 <a href="#method__storeState">_storeState</a>
 
@@ -2009,8 +2007,8 @@ the public methods for changing state.</p>
                     
 
                     <div class="param-description">
-                        <p>object hash containing newVal and
-  prevVal properties for the changed item</p>
+                        <p>object hash containing <i>newVal</i> and
+  <i>prevVal</i> properties for the changed item</p>
                     </div>
 
                     
@@ -2421,7 +2419,7 @@ constructor.</p>
     </div>
 
     <div class="description">
-        <p>Returns <code>true</code> if value is a simple object and not a
+        <p>Returns <code>true</code> if <i>value</i> is a simple object and not a
 function or an array.</p>
     </div>
 
@@ -2617,7 +2615,7 @@ function or an array.</p>
     </div>
 
     <div class="description">
-        <p>Resolves the changes (if any) between newState and the current
+        <p>Resolves the changes (if any) between <i>newState</i> and the current
 state and fires appropriate events if things have changed.</p>
     </div>
 
@@ -2730,12 +2728,12 @@ state and fires appropriate events if things have changed.</p>
 
     <div class="meta">
         
+            <p>Inherited from
+            <a href="HistoryBase.html#method__storeState">
+                HistoryBase
+            </a>
             
-                
-                <p>
-                
-                Defined in
-                
+            but overwritten in
             
         
         
@@ -2800,135 +2798,6 @@ a history entry using the HTML5 history API when necessary.</p>
 
                     <div class="param-description">
                         <p>Zero or more options.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method__storeState" class="method item protected inherited">
-    <h3 class="name"><code>_storeState</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>src</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>newState</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>options</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-        <span class="flag protected">protected</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                <p>Inherited from
-                <a href="HistoryBase.html#method__storeState">HistoryBase</a>:
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_history_js_history-base.js.html#l602"><code>lib&#x2F;yui3&#x2F;src&#x2F;history&#x2F;js&#x2F;history-base.js:602</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Stores the specified state. Don't call this method directly; go through
-_resolveChanges() to ensure that changes are resolved and all events are
-fired properly.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">src</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>source of the changes</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">newState</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>new state to store</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">options</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Zero or more options. See <code>add()</code> for
-  a list of supported options.</p>
                     </div>
 
                     
@@ -3254,7 +3123,7 @@ be removed from the new state entry.</p>
     </div>
 
     <div class="description">
-        <p>Returns the current value of the state parameter specified by key,
+        <p>Returns the current value of the state parameter specified by <i>key</i>,
 or an object hash of key/value pairs for all current state parameters if
 no key is specified.</p>
     </div>
