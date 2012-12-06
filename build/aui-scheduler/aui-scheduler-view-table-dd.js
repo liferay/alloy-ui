@@ -445,8 +445,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 		instance[PROXY_NODE].setStyles({
 			backgroundColor: eventNode.getStyle('backgroundColor'),
-			display: 'block',
-			width: '200px'
+			display: 'block'
 		});
 
 		instance[PROXY_NODE].appendTo(instance[ROWS_CONTAINER_NODE]);
@@ -456,4 +455,4 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 A.Base.mix(A.SchedulerTableView, [ A.SchedulerTableViewDD ]);
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-scheduler-view-table','dd-drag','dd-delegate','dd-drop','dd-constrain']});
+}, '@VERSION@' ,{requires:['aui-scheduler-view-table','dd-drag','dd-delegate','dd-drop','dd-constrain'], skinnable:false});
