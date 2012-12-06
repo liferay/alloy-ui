@@ -1,16 +1,16 @@
 .aui-combobox-content .aui-field-content {
-	float: none;
+  float: none;
 }
 
 .aui-combobox-content {
-	white-space: nowrap;
-	vertical-align: middle;
+  white-space: nowrap;
+  vertical-align: middle;
 }
 
 .aui-combobox-content .aui-field-content {
-	display: inline-block;
+  display: inline-block;
 }
 
 .aui-combobox-content .aui-field-input {
-	display: block;
+  display: block;
 }
