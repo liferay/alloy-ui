@@ -48,8 +48,13 @@
 
 .aui-scheduler-view-table-proxy-node {
   border: 1px solid;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
   font-size: 11px;
+  overflow: hidden;
   padding: 0 2px;
+  width: 13%;
 }
 
 .aui-scheduler-view-table-header-day {
