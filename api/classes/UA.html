@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>UA - AlloyUI</title>
-    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -17,9 +17,9 @@
         </div>
         <div class="yui3-u-1-4 version">
             <div class="version-details">
-                <span class="version-lib">AlloyUI 1.5.0</span>
+                <span class="version-lib">AlloyUI 1.7.0pr3</span>
                 <div class="yui-version">
-                    <span class="version-lib version-lib-yui">YUI 3.4.0</span>
+                    <span class="version-lib version-lib-yui">YUI 3.7.3</span>
                 </div>
             </div>
         </div>
@@ -144,6 +144,8 @@
                 <li><a href="..&#x2F;classes/CanvasRect.html">CanvasRect</a></li>
             
                 <li><a href="..&#x2F;classes/CanvasShape.html">CanvasShape</a></li>
+            
+                <li><a href="..&#x2F;classes/Carousel.html">Carousel</a></li>
             
                 <li><a href="..&#x2F;classes/CartesianChart.html">CartesianChart</a></li>
             
@@ -355,7 +357,7 @@
             
                 <li><a href="..&#x2F;classes/IORequest.html">IORequest</a></li>
             
-                <li><a href="..&#x2F;classes/json.html">json</a></li>
+                <li><a href="..&#x2F;classes/JSON.html">JSON</a></li>
             
                 <li><a href="..&#x2F;classes/JSONPRequest.html">JSONPRequest</a></li>
             
@@ -501,7 +503,7 @@
             
                 <li><a href="..&#x2F;classes/ProgressBar.html">ProgressBar</a></li>
             
-                <li><a href="..&#x2F;classes/querystring.html">querystring</a></li>
+                <li><a href="..&#x2F;classes/QueryString.html">QueryString</a></li>
             
                 <li><a href="..&#x2F;classes/Queue.html">Queue</a></li>
             
@@ -761,6 +763,8 @@
                 <li><a href="..&#x2F;modules/aui-calendar-base.html">aui-calendar-base</a></li>
             
                 <li><a href="..&#x2F;modules/aui-calendar-datepicker-select.html">aui-calendar-datepicker-select</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-carousel.html">aui-carousel</a></li>
             
                 <li><a href="..&#x2F;modules/aui-char-counter.html">aui-char-counter</a></li>
             
@@ -2332,7 +2336,12 @@ is detected but the revision could not be found. Other browsers
 will be 0.  Example: 1.8</p>
 
 <pre>
-Firefox 1.0.0.4: 1.7.8   
+Firefox 1.0.0.4: 1.7.8   <-- Reports 1.7
+Firefox 1.5.0.9: 1.8.0.9 <-- 1.8
+Firefox 2.0.0.3: 1.8.1.3 <-- 1.81
+Firefox 3.0   <-- 1.9
+Firefox 3.5   <-- 1.91
+</pre>
     </div>
 
     
@@ -2383,7 +2392,12 @@ is detected but the revision could not be found. Other browsers
 will be 0.  Example: 1.8</p>
 
 <pre>
-Firefox 1.0.0.4: 1.7.8   
+Firefox 1.0.0.4: 1.7.8   <-- Reports 1.7
+Firefox 1.5.0.9: 1.8.0.9 <-- 1.8
+Firefox 2.0.0.3: 1.8.1.3 <-- 1.81
+Firefox 3.0   <-- 1.9
+Firefox 3.5   <-- 1.91
+</pre>
     </div>
 
     
@@ -3419,7 +3433,22 @@ be populated with the Safari version number</p>
 will evaluate to 1, other browsers 0.  Example: 418.9</p>
 
 <pre>
-Safari 1.3.2 (312.6): 312.8.1 
+Safari 1.3.2 (312.6): 312.8.1 <-- Reports 312.8 -- currently the
+                                  latest available for Mac OSX 10.3.
+Safari 2.0.2:         416     <-- hasOwnProperty introduced
+Safari 2.0.4:         418     <-- preventDefault fixed
+Safari 2.0.4 (419.3): 418.9.1 <-- One version of Safari may run
+                                  different versions of webkit
+Safari 2.0.4 (419.3): 419     <-- Tiger installations that have been
+                                  updated, but not updated
+                                  to the latest patch.
+Webkit 212 nightly:   522+    <-- Safari 3.0 precursor (with native
+SVG and many major issues fixed).
+Safari 3.0.4 (523.12) 523.12  <-- First Tiger release - automatic
+update from 2.x via the 10.4.11 OS patch.
+Webkit nightly 1/2008:525+    <-- Supports DOMContentLoaded event.
+                                  yahoo.com user agent hack removed.
+</pre>
 
 <p>http://en.wikipedia.org/wiki/Safari<em>version</em>history</p>
     </div>
@@ -3471,7 +3500,22 @@ Safari 1.3.2 (312.6): 312.8.1
 will evaluate to 1, other browsers 0.  Example: 418.9</p>
 
 <pre>
-Safari 1.3.2 (312.6): 312.8.1 
+Safari 1.3.2 (312.6): 312.8.1 <-- Reports 312.8 -- currently the
+                                  latest available for Mac OSX 10.3.
+Safari 2.0.2:         416     <-- hasOwnProperty introduced
+Safari 2.0.4:         418     <-- preventDefault fixed
+Safari 2.0.4 (419.3): 418.9.1 <-- One version of Safari may run
+                                  different versions of webkit
+Safari 2.0.4 (419.3): 419     <-- Tiger installations that have been
+                                  updated, but not updated
+                                  to the latest patch.
+Webkit 212 nightly:   522+    <-- Safari 3.0 precursor (with native
+SVG and many major issues fixed).
+Safari 3.0.4 (523.12) 523.12  <-- First Tiger release - automatic
+update from 2.x via the 10.4.11 OS patch.
+Webkit nightly 1/2008:525+    <-- Supports DOMContentLoaded event.
+                                  yahoo.com user agent hack removed.
+</pre>
 
 <p>http://en.wikipedia.org/wiki/Safari<em>version</em>history</p>
     </div>

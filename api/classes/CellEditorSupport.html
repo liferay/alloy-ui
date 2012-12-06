@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>CellEditorSupport - AlloyUI</title>
-    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -17,9 +17,9 @@
         </div>
         <div class="yui3-u-1-4 version">
             <div class="version-details">
-                <span class="version-lib">AlloyUI 1.5.0</span>
+                <span class="version-lib">AlloyUI 1.7.0pr3</span>
                 <div class="yui-version">
-                    <span class="version-lib version-lib-yui">YUI 3.4.0</span>
+                    <span class="version-lib version-lib-yui">YUI 3.7.3</span>
                 </div>
             </div>
         </div>
@@ -144,6 +144,8 @@
                 <li><a href="..&#x2F;classes/CanvasRect.html">CanvasRect</a></li>
             
                 <li><a href="..&#x2F;classes/CanvasShape.html">CanvasShape</a></li>
+            
+                <li><a href="..&#x2F;classes/Carousel.html">Carousel</a></li>
             
                 <li><a href="..&#x2F;classes/CartesianChart.html">CartesianChart</a></li>
             
@@ -355,7 +357,7 @@
             
                 <li><a href="..&#x2F;classes/IORequest.html">IORequest</a></li>
             
-                <li><a href="..&#x2F;classes/json.html">json</a></li>
+                <li><a href="..&#x2F;classes/JSON.html">JSON</a></li>
             
                 <li><a href="..&#x2F;classes/JSONPRequest.html">JSONPRequest</a></li>
             
@@ -501,7 +503,7 @@
             
                 <li><a href="..&#x2F;classes/ProgressBar.html">ProgressBar</a></li>
             
-                <li><a href="..&#x2F;classes/querystring.html">querystring</a></li>
+                <li><a href="..&#x2F;classes/QueryString.html">QueryString</a></li>
             
                 <li><a href="..&#x2F;classes/Queue.html">Queue</a></li>
             
@@ -761,6 +763,8 @@
                 <li><a href="..&#x2F;modules/aui-calendar-base.html">aui-calendar-base</a></li>
             
                 <li><a href="..&#x2F;modules/aui-calendar-datepicker-select.html">aui-calendar-datepicker-select</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-carousel.html">aui-carousel</a></li>
             
                 <li><a href="..&#x2F;modules/aui-char-counter.html">aui-char-counter</a></li>
             
@@ -1353,7 +1357,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../..&#x2F;files&#x2F;src_aui-datatable_js_aui-datatable-edit.js.html#l124"><code>src&#x2F;aui-datatable&#x2F;js&#x2F;aui-datatable-edit.js:124</code></a>
+            Defined in: <a href="../..&#x2F;files&#x2F;src_aui-datatable_js_aui-datatable-edit.js.html#l122"><code>src&#x2F;aui-datatable&#x2F;js&#x2F;aui-datatable-edit.js:122</code></a>
         </div>
     
 
@@ -1363,7 +1367,7 @@
 
 
 <div class="box intro">
-    <p>An extension for A.DataTable.Base to support Cell Editing:</p>
+    <p>An extension for A.DataTable to support Cell Editing:</p>
 
 <p>Check the list of <a href="CellEditorSupport.html#configattributes">Configuration Attributes</a> available for
 CellEditorSupport.</p>
@@ -1412,7 +1416,7 @@ CellEditorSupport.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-datatable_js_aui-datatable-edit.js.html#l124"><code>src&#x2F;aui-datatable&#x2F;js&#x2F;aui-datatable-edit.js:124</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-datatable_js_aui-datatable-edit.js.html#l122"><code>src&#x2F;aui-datatable&#x2F;js&#x2F;aui-datatable-edit.js:122</code></a>
         
         </p>
 
@@ -10754,7 +10758,7 @@ instead of just matching just items that start with the query.</p>
     </div>
 
     <div class="description">
-        <p>For IO DataSources, AutoComplete will automatically insert a "?" between the server URI and 
+        <p>For IO DataSources, AutoComplete will automatically insert a "?" between the server URI and
 the encoded query string. To prevent this behavior, you can
 set this value to false. If you need to customize this even further, you
 can override the <a href="AutoComplete.html#method_generateRequest">generateRequest</a> method.</p>
@@ -11149,8 +11153,8 @@ can override the <a href="AutoComplete.html#method_generateRequest">generateRequ
     </div>
 
     <div class="description">
-        <p>If <a href="AutoComplete.html#config_autoHighlight">autoHighlight</a> is enabled, whether or not the 
-input field should be automatically updated with the first result as the user types, 
+        <p>If <a href="AutoComplete.html#config_autoHighlight">autoHighlight</a> is enabled, whether or not the
+input field should be automatically updated with the first result as the user types,
 automatically selecting the portion of the text the user has not typed yet.</p>
     </div>
 
@@ -11249,7 +11253,7 @@ automatically selecting the portion of the text the user has not typed yet.</p>
     </div>
 
     <div class="description">
-        <p>If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, number of seconds 
+        <p>If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, number of seconds
 to delay before updating the input. In order to prevent certain race conditions, this value must
 always be greater than the <a href="AutoComplete.html#config_queryDelay">queryDelay</a>.</p>
     </div>

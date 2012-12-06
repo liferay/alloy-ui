@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>src&#x2F;aui-datatable&#x2F;js&#x2F;aui-datatable-edit.js - AlloyUI</title>
-    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -17,9 +17,9 @@
         </div>
         <div class="yui3-u-1-4 version">
             <div class="version-details">
-                <span class="version-lib">AlloyUI 1.5.0</span>
+                <span class="version-lib">AlloyUI 1.7.0pr3</span>
                 <div class="yui-version">
-                    <span class="version-lib version-lib-yui">YUI 3.4.0</span>
+                    <span class="version-lib version-lib-yui">YUI 3.7.3</span>
                 </div>
             </div>
         </div>
@@ -144,6 +144,8 @@
                 <li><a href="..&#x2F;classes/CanvasRect.html">CanvasRect</a></li>
             
                 <li><a href="..&#x2F;classes/CanvasShape.html">CanvasShape</a></li>
+            
+                <li><a href="..&#x2F;classes/Carousel.html">Carousel</a></li>
             
                 <li><a href="..&#x2F;classes/CartesianChart.html">CartesianChart</a></li>
             
@@ -355,7 +357,7 @@
             
                 <li><a href="..&#x2F;classes/IORequest.html">IORequest</a></li>
             
-                <li><a href="..&#x2F;classes/json.html">json</a></li>
+                <li><a href="..&#x2F;classes/JSON.html">JSON</a></li>
             
                 <li><a href="..&#x2F;classes/JSONPRequest.html">JSONPRequest</a></li>
             
@@ -501,7 +503,7 @@
             
                 <li><a href="..&#x2F;classes/ProgressBar.html">ProgressBar</a></li>
             
-                <li><a href="..&#x2F;classes/querystring.html">querystring</a></li>
+                <li><a href="..&#x2F;classes/QueryString.html">QueryString</a></li>
             
                 <li><a href="..&#x2F;classes/Queue.html">Queue</a></li>
             
@@ -761,6 +763,8 @@
                 <li><a href="..&#x2F;modules/aui-calendar-base.html">aui-calendar-base</a></li>
             
                 <li><a href="..&#x2F;modules/aui-calendar-datepicker-select.html">aui-calendar-datepicker-select</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-carousel.html">aui-carousel</a></li>
             
                 <li><a href="..&#x2F;modules/aui-char-counter.html">aui-char-counter</a></li>
             
@@ -1352,11 +1356,9 @@ var Lang = A.Lang,
 	isFunction = Lang.isFunction,
 	isObject = Lang.isObject,
 	isString = Lang.isString,
+	isValue = Lang.isValue,
 	LString = Lang.String,
-
-	_toInitialCap = A.cached(function(str) {
-		return str.substring(0, 1).toUpperCase() + str.substring(1);
-	}),
+	DataType = A.DataType,
 
 	isBaseEditor = function(val) {
 		return (val instanceof A.BaseCellEditor);
@@ -1365,6 +1367,7 @@ var Lang = A.Lang,
 	WidgetStdMod = A.WidgetStdMod,
 	AgetClassName = A.getClassName,
 
+	ACTIVE_CELL = &#x27;activeCell&#x27;,
 	ADD = &#x27;add&#x27;,
 	ADD_OPTION = &#x27;addOption&#x27;,
 	BASE_CELL_EDITOR = &#x27;baseCellEditor&#x27;,
@@ -1376,7 +1379,6 @@ var Lang = A.Lang,
 	CHECKBOX_CELL_EDITOR = &#x27;checkboxCellEditor&#x27;,
 	CHECKED = &#x27;checked&#x27;,
 	CLICK = &#x27;click&#x27;,
-	COLUMNSET = &#x27;columnset&#x27;,
 	CONTENT_BOX = &#x27;contentBox&#x27;,
 	DATA = &#x27;data&#x27;,
 	DATATABLE = &#x27;datatable&#x27;,
@@ -1387,19 +1389,17 @@ var Lang = A.Lang,
 	DOTTED = &#x27;dotted&#x27;,
 	DROP_DOWN_CELL_EDITOR = &#x27;dropDownCellEditor&#x27;,
 	EDIT = &#x27;edit&#x27;,
-	EDITABLE = &#x27;editable&#x27;,
-	EDITOR = &#x27;editor&#x27;,
 	EDIT_EVENT = &#x27;editEvent&#x27;,
 	EDIT_OPTIONS = &#x27;editOptions&#x27;,
+	EDITABLE = &#x27;editable&#x27;,
+	EDITOR = &#x27;editor&#x27;,
 	ELEMENT = &#x27;element&#x27;,
 	ELEMENT_NAME = &#x27;elementName&#x27;,
-	FIELD = &#x27;field&#x27;,
 	GRIP = &#x27;grip&#x27;,
 	HANDLE = &#x27;handle&#x27;,
 	HIDE = &#x27;hide&#x27;,
 	HIDE_ON_SAVE = &#x27;hideOnSave&#x27;,
 	ICON = &#x27;icon&#x27;,
-	ID = &#x27;id&#x27;,
 	INIT_EDIT = &#x27;initEdit&#x27;,
 	INIT_TOOLBAR = &#x27;initToolbar&#x27;,
 	INIT_VALIDATOR = &#x27;initValidator&#x27;,
@@ -1411,15 +1411,17 @@ var Lang = A.Lang,
 	MOUSEDOWN = &#x27;mousedown&#x27;,
 	MULTIPLE = &#x27;multiple&#x27;,
 	NAME = &#x27;name&#x27;,
+	ONLY = &#x27;only&#x27;,
 	OPTION = &#x27;option&#x27;,
 	OPTIONS = &#x27;options&#x27;,
 	OPTIONS_CELL_EDITOR = &#x27;optionsCellEditor&#x27;,
 	OUTPUT_FORMATTER = &#x27;outputFormatter&#x27;,
 	PENCIL = &#x27;pencil&#x27;,
 	RADIO_CELL_EDITOR = &#x27;radioCellEditor&#x27;,
-	RECORDS = &#x27;records&#x27;,
-	RECORDSET = &#x27;recordset&#x27;,
+	READ = &#x27;read&#x27;,
+	READ_ONLY = &#x27;readOnly&#x27;,
 	REMOVE = &#x27;remove&#x27;,
+	RENDER = &#x27;render&#x27;,
 	RENDERED = &#x27;rendered&#x27;,
 	RETURN = &#x27;return&#x27;,
 	ROW = &#x27;row&#x27;,
@@ -1437,11 +1439,11 @@ var Lang = A.Lang,
 	VERTICAL = &#x27;vertical&#x27;,
 	VISIBLE = &#x27;visible&#x27;,
 	WRAPPER = &#x27;wrapper&#x27;,
+	Z_INDEX = &#x27;zIndex&#x27;,
 
 	_COMMA = &#x27;,&#x27;,
 	_DOT = &#x27;.&#x27;,
 	_EMPTY_STR = &#x27;&#x27;,
-	_HASH = &#x27;#&#x27;,
 	_NL = &#x27;\n&#x27;,
 	_SPACE = &#x27; &#x27;,
 
@@ -1469,7 +1471,7 @@ var Lang = A.Lang,
 	TPL_BR = &#x27;&lt;br&#x2F;&gt;&#x27;;
 
 &#x2F;**
- * An extension for A.DataTable.Base to support Cell Editing:
+ * An extension for A.DataTable to support Cell Editing:
  *
  * Check the list of &lt;a href=&quot;CellEditorSupport.html#configattributes&quot;&gt;Configuration Attributes&lt;&#x2F;a&gt; available for
  * CellEditorSupport.
@@ -1484,6 +1486,8 @@ var CellEditorSupport = function() {};
 
 CellEditorSupport.NAME = &#x27;dataTableCellEditorSupport&#x27;;
 
+CellEditorSupport.EDITOR_ZINDEX = 9999;
+
 CellEditorSupport.ATTRS = {
 	editEvent: {
 		setter: &#x27;_setEditEvent&#x27;,
@@ -1494,21 +1498,23 @@ CellEditorSupport.ATTRS = {
 
 A.mix(CellEditorSupport.prototype, {
 	initializer: function() {
-		var instance = this;
+		var instance = this,
+			editEvent = instance.get(EDIT_EVENT);
 
-		instance.after({
-			render: instance._afterRenderEditor
-		});
+		instance.CLASS_NAMES_CELL_EDITOR_SUPPORT = {
+			cell: instance.getClassName(CELL),
+			readOnly: instance.getClassName(READ, ONLY)
+		};
 
-		instance.on(instance.get(EDIT_EVENT), instance._onCellEdit);
+		instance.after(RENDER, instance._afterCellEditorSupportRender);
 
-		instance.after(instance._afterUiSetRecordset, instance, &#x27;_uiSetRecordset&#x27;);
+		instance.delegate(editEvent, instance._onEditCell, _DOT+instance.CLASS_NAMES_CELL_EDITOR_SUPPORT.cell, instance);
 	},
 
-	getCellEditor: function(record, column) {
-		var instance = this;
-		var columnEditor = column.get(EDITOR);
-		var recordEditor = record.get(DATA).editor;
+	getEditor: function(record, column) {
+		var instance = this,
+			columnEditor = column.editor,
+			recordEditor = record.get(EDITOR);
 
 		if (columnEditor === false || recordEditor === false) {
 			return null;
@@ -1517,139 +1523,97 @@ A.mix(CellEditorSupport.prototype, {
 		return recordEditor || columnEditor;
 	},
 
-	getRecordColumnValue: function(record, column) {
-		return record.getValue(column.get(FIELD));
-	},
-
-	syncEditableColumnsUI: function() {
-		var instance = this;
-		var columnset = instance.get(COLUMNSET);
-		var recordset = instance.get(RECORDSET);
-
-		A.each(columnset.idHash, function(column) {
-			var editor = column.get(EDITOR);
-
-			if (isBaseEditor(editor)) {
-				A.all(&#x27;[headers=&#x27;+column.get(ID)+&#x27;]&#x27;).addClass(CSS_DATATABLE_EDITABLE);
-			}
-		});
-
-		A.each(recordset.get(RECORDS), function(record) {
-			var editor = record.get(DATA).editor;
-			var isBaseEditorInstance = isBaseEditor(editor);
-
-			A.all(_HASH + record.get(&quot;id&quot;) + &#x27;&gt;td&#x27;).each(function(td, index) {
-				var column = columnset.getColumn(index);
-
-				if (editor === false) {
-					td.removeClass(CSS_DATATABLE_EDITABLE);
-				}
-				else if (isBaseEditorInstance || (column.get(EDITOR) !== false)) {
-					td.addClass(CSS_DATATABLE_EDITABLE);
-				}
-			});
-		});
-	},
-
-	_afterUiSetRecordset: function(event) {
+	_afterCellEditorSupportRender: function() {
 		var instance = this;
 
-		instance.syncEditableColumnsUI();
+		instance._syncModelsReadOnlyUI();
+
+		instance.body.after(A.bind(instance._syncModelsReadOnlyUI, instance), instance.body, RENDER);
 	},
 
-	_afterRenderEditor: function(event) {
-		var instance = this;
+	_onEditCell: function(event) {
+		var instance = this,
+			activeCell = instance.get(ACTIVE_CELL),
+			alignNode = event.alignNode || activeCell,
+			column = instance.getColumn(alignNode),
+			record = instance.getRecord(alignNode),
+			editor = instance.getEditor(record, column);
 
-		if (!instance.events) {
-			instance.plug(A.Plugin.DataTableEvents);
-		}
-	},
-
-	_editCell: function(event) {
-		var instance = this;
-		var columnset = instance.get(COLUMNSET);
-		var recordset = instance.get(RECORDSET);
-		var column = event.column;
-		var record = event.record;
-
-		instance.activeColumnIndex = columnset.getColumnIndex(column);
-		instance.activeRecordIndex = recordset.getRecordIndex(record);
-
-		var alignNode = event.alignNode || event.cell;
-		var editor = instance.getCellEditor(record, column);
-
-		if (isBaseEditor(editor)) {
+		if (isBaseEditor(editor) &amp;&amp; !record.get(READ_ONLY)) {
 			if (!editor.get(RENDERED)) {
 				editor.on({
 					visibleChange: A.bind(instance._onEditorVisibleChange, instance),
 					save: A.bind(instance._onEditorSave, instance)
 				});
 
+				editor.set(Z_INDEX, CellEditorSupport.EDITOR_ZINDEX);
 				editor.render();
 			}
 
-			editor.set(
-				VALUE,
-				instance.getRecordColumnValue(record, column)
-			);
+			editor.set(VALUE, record.get(column.key));
 
 			editor.show().move(alignNode.getXY());
 		}
 	},
 
-	_onCellEdit: function(event) {
-		var instance = this;
-
-		instance._editCell(event);
-	},
-
-	_onEditorVisibleChange: function(event) {
-		var instance = this;
-		var editor = event.currentTarget;
-		var selection = instance.selection;
-
-		if (selection) {
-			var activeRecord = selection.getActiveRecord();
-			var activeColumn = selection.getActiveColumn();
-			var cell = instance.getCellNode(activeRecord, activeColumn);
-			var row = instance.getRowNode(activeRecord);
-
-			if (event.newVal) {
-				editor._syncFocus();
-			}
-			else {
-				selection.select(cell, row);
-			}
-		}
-	},
-
 	_onEditorSave: function(event) {
-		var instance = this;
-		var editor = event.currentTarget;
-		var recordset = instance.get(RECORDSET);
+		var instance = this,
+			editor = event.currentTarget,
+			column = instance.getActiveColumn(),
+			record = instance.getActiveRecord();
 
 		editor.set(VALUE, event.newVal);
 
-		var selection = instance.selection;
+		&#x2F;&#x2F; TODO: Memorize the activeCell coordinates to set the focus on it instead
+		instance.set(ACTIVE_CELL, instance.get(ACTIVE_CELL));
 
-		if (selection) {
-			recordset.updateRecordDataByKey(
-				selection.getActiveRecord(),
-				selection.getActiveColumn().get(KEY),
-				event.newVal
-			);
+		record.set(column.key, event.newVal);
+
+		&#x2F;&#x2F; TODO: Sync highlight frames UI instead?
+		if (instance.highlight) {
+			instance.highlight.clear();
 		}
 	},
 
-	_setEditEvent: function(val) {
-		return CELL + _toInitialCap(val);
+	_onEditorVisibleChange: function(event) {
+		var instance = this,
+			editor = event.currentTarget;
+
+		if (event.newVal) {
+			editor._syncFocus();
+		}
+	},
+
+	_syncModelReadOnlyUI: function(model) {
+		var instance = this,
+			row = instance.getRow(model);
+
+		row.toggleClass(instance.CLASS_NAMES_CELL_EDITOR_SUPPORT[READ_ONLY], model.get(READ_ONLY) === true);
+	},
+
+	_syncModelsReadOnlyUI: function() {
+		var instance = this;
+
+		instance.get(DATA).each(function(model) {
+			instance._syncModelReadOnlyUI(model);
+		});
+	},
+
+	&#x2F;&#x2F; Deprecated methods
+
+	&#x2F;&#x2F; Use getEditor
+	getCellEditor: function() {
+		return this.getEditor.apply(this, arguments);
+	},
+
+	getRecordColumnValue: function(record, column) {
+		return record.get(column.key);
 	}
 });
 
 A.DataTable.CellEditorSupport = CellEditorSupport;
 
-&#x2F;&#x2F; Augment A.DataTable.Base with A.DataTable.CellEditorSupport
-A.DataTable.Base = A.Base.create(&#x27;dataTable&#x27;, A.DataTable.Base, [A.DataTable.CellEditorSupport]);
+A.Base.mix(A.DataTable, [ CellEditorSupport ]);
 
 &#x2F;**
  * Abstract class BaseCellEditor.
@@ -2464,8 +2428,8 @@ var BaseOptionsCellEditor = A.Component.create({
 		_uiSetOptions: function(val) {
 			var instance = this;
 
-			instance._uiSetValue(instance.get(VALUE));
 			instance._createOptions(val);
+			instance._uiSetValue(instance.get(VALUE));
 			instance._syncElementsName();
 		},
 
@@ -2476,9 +2440,9 @@ var BaseOptionsCellEditor = A.Component.create({
 			if (options &amp;&amp; options.size()) {
 				options.set(instance.get(SELECTED_ATTR_NAME), false);
 
-				if (val) {
+				if (isValue(val)) {
 					if (!isArray(val)) {
-						val = val.split(_COMMA);
+						val = String(val).split(_COMMA);
 					}
 
 					AArray.each(val, function(value) {
@@ -2716,6 +2680,37 @@ var DateCellEditor = A.Component.create({
 			setter: &#x27;_setCalendar&#x27;,
 			validator: isObject,
 			value: null
+		},
+
+		dateFormat: {
+			value: &#x27;%D&#x27;,
+			validator: isString
+		},
+
+		inputFormatter: {
+			value: function(val) {
+				var instance = this,
+					values = [];
+
+				AArray.each(val, function(date, index) {
+					values.push(instance.formatDate(date).toString());
+				});
+
+				return values;
+			}
+		},
+
+		outputFormatter: {
+			value: function(val) {
+				var instance = this,
+					values = [];
+
+				AArray.each(val, function(date, index) {
+					values.push(DataType.Date.parse(date));
+				});
+
+				return values;
+			}
 		}
 	},
 
@@ -2725,13 +2720,28 @@ var DateCellEditor = A.Component.create({
 		initializer: function() {
 			var instance = this;
 
-			instance.on(&#x27;calendar:select&#x27;, A.bind(instance._onDateSelect, instance));
+			instance.after(&#x27;calendar:dateClick&#x27;, A.bind(instance._afterDateSelect, instance));
 		},
 
 		getElementsValue: function() {
 			var instance = this;
 
-			return instance.calendar.getFormattedSelectedDates().join(_COMMA);
+			return instance.calendar.get(&#x27;selectedDates&#x27;);
+		},
+
+		formatDate: function(date) {
+			var instance = this,
+				mask = instance.get(&#x27;dateFormat&#x27;),
+				locale = instance.get(&#x27;locale&#x27;);
+
+			return DataType.Date.format(date, { format: mask, locale: locale });
+		},
+
+		_afterDateSelect: function(event) {
+			var instance = this,
+				selectedDates = instance.calendar.get(&#x27;selectedDates&#x27;);
+
+			instance.elements.val(AArray.invoke(selectedDates, &#x27;getTime&#x27;).join(_COMMA));
 		},
 
 		_afterRender: function() {
@@ -2743,14 +2753,6 @@ var DateCellEditor = A.Component.create({
 				instance.get(CALENDAR)
 			)
 			.render(instance.bodyNode);
-		},
-
-		_onDateSelect: function(event) {
-			var instance = this;
-
-			instance.elements.val(
-				event.date.formatted.join(_COMMA)
-			);
 		},
 
 		_setCalendar: function(val) {
@@ -2765,15 +2767,20 @@ var DateCellEditor = A.Component.create({
 		},
 
 		_uiSetValue: function(val) {
-			var instance = this;
-			var calendar = instance.calendar;
+			var instance = this,
+				calendar = instance.calendar,
+				formatedValue;
 
 			if (calendar) {
-				if (val &amp;&amp; isString(val)) {
-					val = val.split(_COMMA);
+				if (!isArray(val)) {
+					val = [val];
 				}
 
-				instance.calendar.set(&#x27;dates&#x27;, val);
+				formatedValue = instance.formatValue(instance.get(OUTPUT_FORMATTER), val);
+
+				calendar._clearSelection();
+				calendar.set(&#x27;date&#x27;, formatedValue[0]);
+				calendar.selectDates(formatedValue);
 			}
 		}
 	}

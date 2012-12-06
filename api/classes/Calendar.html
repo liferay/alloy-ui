@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Calendar - AlloyUI</title>
-    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -17,9 +17,9 @@
         </div>
         <div class="yui3-u-1-4 version">
             <div class="version-details">
-                <span class="version-lib">AlloyUI 1.5.0</span>
+                <span class="version-lib">AlloyUI 1.7.0pr3</span>
                 <div class="yui-version">
-                    <span class="version-lib version-lib-yui">YUI 3.4.0</span>
+                    <span class="version-lib version-lib-yui">YUI 3.7.3</span>
                 </div>
             </div>
         </div>
@@ -144,6 +144,8 @@
                 <li><a href="..&#x2F;classes/CanvasRect.html">CanvasRect</a></li>
             
                 <li><a href="..&#x2F;classes/CanvasShape.html">CanvasShape</a></li>
+            
+                <li><a href="..&#x2F;classes/Carousel.html">Carousel</a></li>
             
                 <li><a href="..&#x2F;classes/CartesianChart.html">CartesianChart</a></li>
             
@@ -355,7 +357,7 @@
             
                 <li><a href="..&#x2F;classes/IORequest.html">IORequest</a></li>
             
-                <li><a href="..&#x2F;classes/json.html">json</a></li>
+                <li><a href="..&#x2F;classes/JSON.html">JSON</a></li>
             
                 <li><a href="..&#x2F;classes/JSONPRequest.html">JSONPRequest</a></li>
             
@@ -501,7 +503,7 @@
             
                 <li><a href="..&#x2F;classes/ProgressBar.html">ProgressBar</a></li>
             
-                <li><a href="..&#x2F;classes/querystring.html">querystring</a></li>
+                <li><a href="..&#x2F;classes/QueryString.html">QueryString</a></li>
             
                 <li><a href="..&#x2F;classes/Queue.html">Queue</a></li>
             
@@ -761,6 +763,8 @@
                 <li><a href="..&#x2F;modules/aui-calendar-base.html">aui-calendar-base</a></li>
             
                 <li><a href="..&#x2F;modules/aui-calendar-datepicker-select.html">aui-calendar-datepicker-select</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-carousel.html">aui-carousel</a></li>
             
                 <li><a href="..&#x2F;modules/aui-char-counter.html">aui-char-counter</a></li>
             
@@ -1368,11 +1372,11 @@
 <p>A base class for Calendar, providing:</p>
 
 <ul>
-   <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
-   <li>Setting Configuration Options</li>
-   <li>Obtaining Selected Dates</li>
-   <li>Creating International Calendars</li>
-   <li>Customizing the Calendar</li>
+    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+    <li>Setting Configuration Options</li>
+    <li>Obtaining Selected Dates</li>
+    <li>Creating International Calendars</li>
+    <li>Customizing the Calendar</li>
 </ul>
 
 <p>Quick Example:</p>
@@ -3204,7 +3208,7 @@ Calendar.</p>
                                 <a href="#attr_srcNode">srcNode</a>
                             </li>
                         
-                            <li class="index-item attr protected inherited inherited">
+                            <li class="index-item attr inherited">
                                 <a href="#attr_strings">strings</a>
                             </li>
                         
@@ -4589,7 +4593,7 @@ and binds calendar events during bindUI stage.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1001"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1001</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1073"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1073</code></a>
         
         </p>
 
@@ -5183,7 +5187,7 @@ event should be fired.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1039"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1039</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1112"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1112</code></a>
         
         </p>
 
@@ -5287,7 +5291,7 @@ event should be fired.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1063"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1063</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1136"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1136</code></a>
         
         </p>
 
@@ -7347,7 +7351,7 @@ rendering mask.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1099"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1099</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1172"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1172</code></a>
         
         </p>
 
@@ -7450,7 +7454,7 @@ rendering mask.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1129"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1129</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1204"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1204</code></a>
         
         </p>
 
@@ -7553,7 +7557,7 @@ rendering mask.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1114"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1114</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1188"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1188</code></a>
         
         </p>
 
@@ -7715,7 +7719,7 @@ definitions across the class hierarchy.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1144"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1144</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1220"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1220</code></a>
         
         </p>
 
@@ -7811,7 +7815,7 @@ definitions across the class hierarchy.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1173"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1173</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1249"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1249</code></a>
         
         </p>
 
@@ -7914,7 +7918,7 @@ definitions across the class hierarchy.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1188"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1188</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1265"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1265</code></a>
         
         </p>
 
@@ -8007,7 +8011,7 @@ definitions across the class hierarchy.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1203"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1203</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1281"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1281</code></a>
         
         </p>
 
@@ -8350,7 +8354,7 @@ from the hash storage.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1216"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1216</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1294"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1294</code></a>
         
         </p>
 
@@ -8783,7 +8787,7 @@ internal state object, or the state proxy if it exits</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1235"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1235</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1313"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1313</code></a>
         
         </p>
 
@@ -10385,7 +10389,7 @@ set to noon.
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1248"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1248</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1326"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1326</code></a>
         
         </p>
 
@@ -10618,7 +10622,7 @@ simply merges the hash to protect the original.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1276"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1276</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1354"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1354</code></a>
         
         </p>
 
@@ -10874,7 +10878,7 @@ widget's bounding box.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1314"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1314</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1393"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1393</code></a>
         
         </p>
 
@@ -10961,7 +10965,7 @@ widget's bounding box.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1328"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1328</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1408"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1408</code></a>
         
         </p>
 
@@ -11576,7 +11580,7 @@ the boundingBox.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1346"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1346</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1427"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1427</code></a>
         
         </p>
 
@@ -11823,7 +11827,7 @@ rules, as well as the enabledDatesRule and disabledDatesRule.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1361"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1361</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1442"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1442</code></a>
         
         </p>
 
@@ -11877,7 +11881,7 @@ rules, as well as the enabledDatesRule and disabledDatesRule.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1379"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1379</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1460"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1460</code></a>
         
         </p>
 
@@ -11931,7 +11935,7 @@ rules, as well as the enabledDatesRule and disabledDatesRule.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1393"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1393</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1474"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1474</code></a>
         
         </p>
 
@@ -11985,7 +11989,7 @@ rules, as well as the enabledDatesRule and disabledDatesRule.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1407"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1407</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1488"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1488</code></a>
         
         </p>
 
@@ -12175,7 +12179,7 @@ selected CSS class if the date cell is visible.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1421"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1421</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1502"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1502</code></a>
         
         </p>
 
@@ -12365,7 +12369,7 @@ selected CSS class if the date cell is visible.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1435"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1435</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1516"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1516</code></a>
         
         </p>
 
@@ -13601,7 +13605,7 @@ the provided template if not found.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1460"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1460</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1542"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1542</code></a>
         
         </p>
 
@@ -13704,7 +13708,7 @@ the provided template if not found.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1485"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1485</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1567"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1567</code></a>
         
         </p>
 
@@ -13806,7 +13810,7 @@ the provided template if not found.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1499"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1499</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1581"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1581</code></a>
         
         </p>
 
@@ -13910,7 +13914,7 @@ the provided template if not found.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1518"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1518</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1600"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1600</code></a>
         
         </p>
 
@@ -14224,7 +14228,7 @@ strings which may already be defined for the locale.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1532"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1532</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1614"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1614</code></a>
         
         </p>
 
@@ -14498,7 +14502,7 @@ into the full string set, to allow users to partial sets of strings</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1546"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1546</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1628"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1628</code></a>
         
         </p>
 
@@ -14552,7 +14556,7 @@ into the full string set, to allow users to partial sets of strings</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1562"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1562</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1645"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1645</code></a>
         
         </p>
 
@@ -14606,7 +14610,7 @@ into the full string set, to allow users to partial sets of strings</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1584"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1584</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1668"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1668</code></a>
         
         </p>
 
@@ -14660,7 +14664,7 @@ into the full string set, to allow users to partial sets of strings</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1612"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1612</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1695"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1695</code></a>
         
         </p>
 
@@ -14714,7 +14718,7 @@ into the full string set, to allow users to partial sets of strings</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1646"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1646</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1730"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1730</code></a>
         
         </p>
 
@@ -14768,7 +14772,7 @@ into the full string set, to allow users to partial sets of strings</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1681"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1681</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1766"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1766</code></a>
         
         </p>
 
@@ -14929,7 +14933,7 @@ using YUI's aop infrastructure.
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1703"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1703</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1789"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1789</code></a>
         
         </p>
 
@@ -15411,7 +15415,7 @@ modified.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1733"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1733</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1819"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1819</code></a>
         
         </p>
 
@@ -15844,7 +15848,7 @@ the UI.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1745"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1745</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1831"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1831</code></a>
         
         </p>
 
@@ -15898,7 +15902,7 @@ the UI.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1766"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1766</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1852"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1852</code></a>
         
         </p>
 
@@ -15952,7 +15956,7 @@ the UI.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1721"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1721</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1807"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1807</code></a>
         
         </p>
 
@@ -16616,7 +16620,7 @@ on a given date and potentially the provided headerRenderer.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1778"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1778</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1864"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1864</code></a>
         
         </p>
 
@@ -16670,7 +16674,7 @@ on a given date and potentially the provided headerRenderer.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1788"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1788</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1874"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1874</code></a>
         
         </p>
 
@@ -16724,7 +16728,7 @@ on a given date and potentially the provided headerRenderer.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1809"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1809</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1895"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1895</code></a>
         
         </p>
 
@@ -16778,7 +16782,7 @@ on a given date and potentially the provided headerRenderer.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1829"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1829</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1916"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1916</code></a>
         
         </p>
 
@@ -16832,7 +16836,7 @@ on a given date and potentially the provided headerRenderer.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1839"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1839</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1926"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1926</code></a>
         
         </p>
 
@@ -17573,7 +17577,7 @@ See <a href="#method_addAttr">addAttr</a>.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l627"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:627</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l687"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:687</code></a>
         
         </p>
 
@@ -17677,7 +17681,7 @@ to "false"</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l640"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:640</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l701"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:701</code></a>
         
         </p>
 
@@ -18050,7 +18054,7 @@ list of registered widgets.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l651"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:651</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l712"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:712</code></a>
         
         </p>
 
@@ -18213,7 +18217,7 @@ the <a href="Calendar.html#config_dates">dates</a>.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l666"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:666</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l727"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:727</code></a>
         
         </p>
 
@@ -18387,7 +18391,7 @@ attribute to "true".</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l681"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:681</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l743"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:743</code></a>
         
         </p>
 
@@ -18792,7 +18796,7 @@ need to use a constant class name across different types instances.
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l697"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:697</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l760"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:760</code></a>
         
         </p>
 
@@ -18876,7 +18880,7 @@ need to use a constant class name across different types instances.
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l710"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:710</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l774"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:774</code></a>
         
         </p>
 
@@ -19049,7 +19053,7 @@ widget class, or provided by the user during construction).</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l725"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:725</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l790"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:790</code></a>
         
         </p>
 
@@ -19063,9 +19067,9 @@ widget class, or provided by the user during construction).</p>
         <p>Get an Array with selected dates with detailed information (day, month, year).</p>
 
 <pre class="code"><code class="prettyprint">[{
-   year: date.getFullYear(),
-   month: date.getMonth(),
-   day: date.getDate()
+    year: date.getFullYear(),
+    month: date.getMonth(),
+    day: date.getDate()
 }]</code></pre>
     </div>
 
@@ -19139,7 +19143,7 @@ widget class, or provided by the user during construction).</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l751"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:751</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l817"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:817</code></a>
         
         </p>
 
@@ -19245,7 +19249,7 @@ widget class, or provided by the user during construction).</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l766"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:766</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l833"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:833</code></a>
         
         </p>
 
@@ -19314,7 +19318,7 @@ widget class, or provided by the user during construction).</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l784"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:784</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l852"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:852</code></a>
         
         </p>
 
@@ -19970,7 +19974,7 @@ invoking initializers for the class hierarchy.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l615"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:615</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l675"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:675</code></a>
         
         </p>
 
@@ -20036,7 +20040,7 @@ invoking initializers for the class hierarchy.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l796"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:796</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l864"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:864</code></a>
         
         </p>
 
@@ -20133,7 +20137,7 @@ invoking initializers for the class hierarchy.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l816"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:816</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l885"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:885</code></a>
         
         </p>
 
@@ -20398,7 +20402,7 @@ broadcast and getter.
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l839"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:839</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l909"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:909</code></a>
         
         </p>
 
@@ -20900,7 +20904,7 @@ should be returned if the child has no previous sibling.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l857"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:857</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l928"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:928</code></a>
         
         </p>
 
@@ -21139,7 +21143,7 @@ so it should be chained manually for subclasses if required.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l880"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:880</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l951"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:951</code></a>
         
         </p>
 
@@ -21295,7 +21299,7 @@ the attribute is not readOnly, or writeOnce.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l913"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:913</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l984"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:984</code></a>
         
         </p>
 
@@ -21430,7 +21434,7 @@ the attribute is not readOnly, or writeOnce.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l937"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:937</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1009"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1009</code></a>
         
         </p>
 
@@ -21483,7 +21487,7 @@ header.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l949"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:949</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1021"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1021</code></a>
         
         </p>
 
@@ -21536,7 +21540,7 @@ Calendar header.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l961"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:961</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1033"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1033</code></a>
         
         </p>
 
@@ -21848,7 +21852,7 @@ set called externally by the application developer.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l972"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:972</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1044"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1044</code></a>
         
         </p>
 
@@ -22084,7 +22088,7 @@ set called externally by the application developer.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l989"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:989</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l1061"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:1061</code></a>
         
         </p>
 
@@ -23181,7 +23185,7 @@ will default to the current document body.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l554"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:554</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l614"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:614</code></a>
         
         </p>
 
@@ -23233,7 +23237,7 @@ markup contained in the widget's content box.</p>
     </div>
 
     <div class="description">
-        <p>Map of DOM events that should be fired as Custom Events by the 
+        <p>Map of DOM events that should be fired as Custom Events by the <br />
 Widget instance.</p>
     </div>
 
@@ -25424,7 +25428,7 @@ contentBox which matches <code>aui-calendar-prev</code>.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l349"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:349</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l360"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:360</code></a>
         
         </p>
 
@@ -25815,7 +25819,7 @@ return/set strings for this locale.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l364"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:364</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l386"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:386</code></a>
         
         </p>
 
@@ -26016,7 +26020,7 @@ this date. Should be <code>null</code> if no maximum date is needed.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l377"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:377</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l399"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:399</code></a>
         
         </p>
 
@@ -26217,7 +26221,7 @@ this date. Should be <code>null</code> if no minimum date is needed.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l390"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:390</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l412"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:412</code></a>
         
         </p>
 
@@ -26317,7 +26321,7 @@ contentBox which matches <code>aui-calendar-day</code>.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l403"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:403</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l425"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:425</code></a>
         
         </p>
 
@@ -26417,7 +26421,7 @@ contentBox which matches <code>aui-calendar-monthdays</code>.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l418"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:418</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l440"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:440</code></a>
         
         </p>
 
@@ -26517,7 +26521,7 @@ contentBox which matches <code>aui-calendar-title</code>.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l433"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:433</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l466"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:466</code></a>
         
         </p>
 
@@ -26618,7 +26622,7 @@ an element inside contentBox which matches
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l447"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:447</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l480"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:480</code></a>
         
         </p>
 
@@ -27107,7 +27111,7 @@ Possible values include:
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l461"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:461</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l494"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:494</code></a>
         
         </p>
 
@@ -27205,7 +27209,7 @@ Possible values include:
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l472"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:472</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l505"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:505</code></a>
         
         </p>
 
@@ -27402,7 +27406,7 @@ cells available at the end.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l486"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:486</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l519"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:519</code></a>
         
         </p>
 
@@ -27597,7 +27601,7 @@ cells available.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l498"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:498</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l531"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:531</code></a>
         
         </p>
 
@@ -27764,15 +27768,13 @@ cells available.</p>
 </div>
 
                 
-                    <div id="attr_strings" class="attr item protected inherited">
+                    <div id="attr_strings" class="attr item">
     <a name="config_strings"></a> 
     <h3 class="name"><code>strings</code></h3>
     <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
 
     
 
-    
-        <span class="flag protected">protected</span>
     
 
     
@@ -27790,7 +27792,7 @@ cells available.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_calendar_js_calendar-base.js.html#l1558"><code>lib&#x2F;yui3&#x2F;src&#x2F;calendar&#x2F;js&#x2F;calendar-base.js:1558</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l543"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:543</code></a>
         
         </p>
 
@@ -27800,10 +27802,11 @@ cells available.</p>
     </div>
 
     <div class="description">
-        <p>Strings and properties derived from the internationalization packages
-for the calendar.</p>
+        <p>Strings for localization.</p>
     </div>
 
+    
+        <p><strong>Default:</strong> Localization object</p>
     
 
     
@@ -27987,7 +27990,7 @@ null removes the "tabIndex" attribute from the widget's bounding box.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l510"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:510</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l559"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:559</code></a>
         
         </p>
 
@@ -28182,7 +28185,7 @@ contentBox which matches <code>aui-calendar-title</code>.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l525"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:525</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l585"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:585</code></a>
         
         </p>
 
@@ -28282,7 +28285,7 @@ contentBox which matches <code>aui-calendar-week</code>.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l538"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:538</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-calendar_js_aui-calendar.js.html#l598"><code>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js:598</code></a>
         
         </p>
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>ParseContent - AlloyUI</title>
-    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -17,9 +17,9 @@
         </div>
         <div class="yui3-u-1-4 version">
             <div class="version-details">
-                <span class="version-lib">AlloyUI 1.5.0</span>
+                <span class="version-lib">AlloyUI 1.7.0pr3</span>
                 <div class="yui-version">
-                    <span class="version-lib version-lib-yui">YUI 3.4.0</span>
+                    <span class="version-lib version-lib-yui">YUI 3.7.3</span>
                 </div>
             </div>
         </div>
@@ -144,6 +144,8 @@
                 <li><a href="..&#x2F;classes/CanvasRect.html">CanvasRect</a></li>
             
                 <li><a href="..&#x2F;classes/CanvasShape.html">CanvasShape</a></li>
+            
+                <li><a href="..&#x2F;classes/Carousel.html">Carousel</a></li>
             
                 <li><a href="..&#x2F;classes/CartesianChart.html">CartesianChart</a></li>
             
@@ -355,7 +357,7 @@
             
                 <li><a href="..&#x2F;classes/IORequest.html">IORequest</a></li>
             
-                <li><a href="..&#x2F;classes/json.html">json</a></li>
+                <li><a href="..&#x2F;classes/JSON.html">JSON</a></li>
             
                 <li><a href="..&#x2F;classes/JSONPRequest.html">JSONPRequest</a></li>
             
@@ -501,7 +503,7 @@
             
                 <li><a href="..&#x2F;classes/ProgressBar.html">ProgressBar</a></li>
             
-                <li><a href="..&#x2F;classes/querystring.html">querystring</a></li>
+                <li><a href="..&#x2F;classes/QueryString.html">QueryString</a></li>
             
                 <li><a href="..&#x2F;classes/Queue.html">Queue</a></li>
             
@@ -761,6 +763,8 @@
                 <li><a href="..&#x2F;modules/aui-calendar-base.html">aui-calendar-base</a></li>
             
                 <li><a href="..&#x2F;modules/aui-calendar-datepicker-select.html">aui-calendar-datepicker-select</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-carousel.html">aui-carousel</a></li>
             
                 <li><a href="..&#x2F;modules/aui-char-counter.html">aui-char-counter</a></li>
             
@@ -1353,7 +1357,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../..&#x2F;files&#x2F;src_aui-parse-content_js_aui-parse-content.js.html#l30"><code>src&#x2F;aui-parse-content&#x2F;js&#x2F;aui-parse-content.js:30</code></a>
+            Defined in: <a href="../..&#x2F;files&#x2F;src_aui-parse-content_js_aui-parse-content.js.html#l36"><code>src&#x2F;aui-parse-content&#x2F;js&#x2F;aui-parse-content.js:36</code></a>
         </div>
     
 
@@ -1427,7 +1431,7 @@ ParseContent.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-parse-content_js_aui-parse-content.js.html#l30"><code>src&#x2F;aui-parse-content&#x2F;js&#x2F;aui-parse-content.js:30</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-parse-content_js_aui-parse-content.js.html#l36"><code>src&#x2F;aui-parse-content&#x2F;js&#x2F;aui-parse-content.js:36</code></a>
         
         </p>
 
@@ -1504,6 +1508,12 @@ ParseContent.</p>
                         
                             <li class="index-item method private inherited">
                                 <a href="#method__addAttrs">_addAttrs</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
+                                <a href="#method__addInlineScript">_addInlineScript</a>
 
                                 
                             </li>
@@ -2096,6 +2106,93 @@ See <a href="#method_addAttr">addAttr</a>.</p>
 </div>
 
                 
+                    <div id="method__addInlineScript" class="method item protected">
+    <h3 class="name"><code>_addInlineScript</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>data</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-parse-content_js_aui-parse-content.js.html#l159"><code>src&#x2F;aui-parse-content&#x2F;js&#x2F;aui-parse-content.js:159</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Add inline script data to the queue.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">data</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The script content which should be added to the queue</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="method__addLazyAttr" class="method item private inherited">
     <h3 class="name"><code>_addLazyAttr</code></h3>
 
@@ -2319,7 +2416,7 @@ attribute configuration has cloneDefaultValue set to shallow or deep).</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-parse-content_js_aui-parse-content.js.html#l152"><code>src&#x2F;aui-parse-content&#x2F;js&#x2F;aui-parse-content.js:152</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-parse-content_js_aui-parse-content.js.html#l179"><code>src&#x2F;aui-parse-content&#x2F;js&#x2F;aui-parse-content.js:179</code></a>
         
         </p>
 
@@ -2749,7 +2846,7 @@ the destructor method on the prototype of each class in the hierarchy.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-parse-content_js_aui-parse-content.js.html#l227"><code>src&#x2F;aui-parse-content&#x2F;js&#x2F;aui-parse-content.js:227</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-parse-content_js_aui-parse-content.js.html#l258"><code>src&#x2F;aui-parse-content&#x2F;js&#x2F;aui-parse-content.js:258</code></a>
         
         </p>
 
@@ -6290,7 +6387,7 @@ See <a href="#method_addAttr">addAttr</a>.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-parse-content_js_aui-parse-content.js.html#l187"><code>src&#x2F;aui-parse-content&#x2F;js&#x2F;aui-parse-content.js:187</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-parse-content_js_aui-parse-content.js.html#l214"><code>src&#x2F;aui-parse-content&#x2F;js&#x2F;aui-parse-content.js:214</code></a>
         
         </p>
 
@@ -7004,7 +7101,7 @@ returned. If set to true, all attributes modified from their initial values are 
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-parse-content_js_aui-parse-content.js.html#l112"><code>src&#x2F;aui-parse-content&#x2F;js&#x2F;aui-parse-content.js:112</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-parse-content_js_aui-parse-content.js.html#l118"><code>src&#x2F;aui-parse-content&#x2F;js&#x2F;aui-parse-content.js:118</code></a>
         
         </p>
 
@@ -7015,7 +7112,7 @@ returned. If set to true, all attributes modified from their initial values are 
     </div>
 
     <div class="description">
-        <p>Global eval the data passed.</p>
+        <p>Global eval the <data>data</data> passed.</p>
     </div>
 
     
@@ -7286,7 +7383,7 @@ invoking initializers for the class hierarchy.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-parse-content_js_aui-parse-content.js.html#l93"><code>src&#x2F;aui-parse-content&#x2F;js&#x2F;aui-parse-content.js:93</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-parse-content_js_aui-parse-content.js.html#l99"><code>src&#x2F;aui-parse-content&#x2F;js&#x2F;aui-parse-content.js:99</code></a>
         
         </p>
 
@@ -7605,7 +7702,7 @@ broadcast and getter.
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-parse-content_js_aui-parse-content.js.html#l135"><code>src&#x2F;aui-parse-content&#x2F;js&#x2F;aui-parse-content.js:135</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-parse-content_js_aui-parse-content.js.html#l141"><code>src&#x2F;aui-parse-content&#x2F;js&#x2F;aui-parse-content.js:141</code></a>
         
         </p>
 
@@ -8526,7 +8623,7 @@ applied by the plugin to the host object.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-parse-content_js_aui-parse-content.js.html#l76"><code>src&#x2F;aui-parse-content&#x2F;js&#x2F;aui-parse-content.js:76</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-parse-content_js_aui-parse-content.js.html#l82"><code>src&#x2F;aui-parse-content&#x2F;js&#x2F;aui-parse-content.js:82</code></a>
         
         </p>
 
@@ -8573,7 +8670,7 @@ configuration for the ParseContent.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-parse-content_js_aui-parse-content.js.html#l58"><code>src&#x2F;aui-parse-content&#x2F;js&#x2F;aui-parse-content.js:58</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-parse-content_js_aui-parse-content.js.html#l64"><code>src&#x2F;aui-parse-content&#x2F;js&#x2F;aui-parse-content.js:64</code></a>
         
         </p>
 
@@ -8619,7 +8716,7 @@ configuration for the ParseContent.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-parse-content_js_aui-parse-content.js.html#l67"><code>src&#x2F;aui-parse-content&#x2F;js&#x2F;aui-parse-content.js:67</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-parse-content_js_aui-parse-content.js.html#l73"><code>src&#x2F;aui-parse-content&#x2F;js&#x2F;aui-parse-content.js:73</code></a>
         
         </p>
 

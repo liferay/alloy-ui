@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>ScrollView - AlloyUI</title>
-    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -17,9 +17,9 @@
         </div>
         <div class="yui3-u-1-4 version">
             <div class="version-details">
-                <span class="version-lib">AlloyUI 1.5.0</span>
+                <span class="version-lib">AlloyUI 1.7.0pr3</span>
                 <div class="yui-version">
-                    <span class="version-lib version-lib-yui">YUI 3.4.0</span>
+                    <span class="version-lib version-lib-yui">YUI 3.7.3</span>
                 </div>
             </div>
         </div>
@@ -144,6 +144,8 @@
                 <li><a href="..&#x2F;classes/CanvasRect.html">CanvasRect</a></li>
             
                 <li><a href="..&#x2F;classes/CanvasShape.html">CanvasShape</a></li>
+            
+                <li><a href="..&#x2F;classes/Carousel.html">Carousel</a></li>
             
                 <li><a href="..&#x2F;classes/CartesianChart.html">CartesianChart</a></li>
             
@@ -355,7 +357,7 @@
             
                 <li><a href="..&#x2F;classes/IORequest.html">IORequest</a></li>
             
-                <li><a href="..&#x2F;classes/json.html">json</a></li>
+                <li><a href="..&#x2F;classes/JSON.html">JSON</a></li>
             
                 <li><a href="..&#x2F;classes/JSONPRequest.html">JSONPRequest</a></li>
             
@@ -501,7 +503,7 @@
             
                 <li><a href="..&#x2F;classes/ProgressBar.html">ProgressBar</a></li>
             
-                <li><a href="..&#x2F;classes/querystring.html">querystring</a></li>
+                <li><a href="..&#x2F;classes/QueryString.html">QueryString</a></li>
             
                 <li><a href="..&#x2F;classes/Queue.html">Queue</a></li>
             
@@ -761,6 +763,8 @@
                 <li><a href="..&#x2F;modules/aui-calendar-base.html">aui-calendar-base</a></li>
             
                 <li><a href="..&#x2F;modules/aui-calendar-datepicker-select.html">aui-calendar-datepicker-select</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-carousel.html">aui-carousel</a></li>
             
                 <li><a href="..&#x2F;modules/aui-char-counter.html">aui-char-counter</a></li>
             
@@ -2234,13 +2238,7 @@
                                 
                             </li>
                         
-                            <li class="index-item method protected inherited">
-                                <a href="#method_initializer">initializer</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
+                            <li class="index-item method inherited">
                                 <a href="#method_initializer">initializer</a>
 
                                 
@@ -13843,91 +13841,6 @@ invoking initializers for the class hierarchy.</p>
 </div>
 
                 
-                    <div id="method_initializer" class="method item protected inherited">
-    <h3 class="name"><code>initializer</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>config</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-        <span class="flag protected">protected</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                <p>Inherited from
-                <a href="Widget.html#method_initializer">Widget</a>:
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_widget_js_Widget.js.html#l377"><code>lib&#x2F;yui3&#x2F;src&#x2F;widget&#x2F;js&#x2F;Widget.js:377</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Initializer lifecycle implementation for the Widget class. Registers the 
-widget instance, and runs through the Widget's HTML_PARSER definition.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">config</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Configuration object literal for the widget</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
                     <div id="method_initializer" class="method item">
     <h3 class="name"><code>initializer</code></h3>
 
@@ -13949,12 +13862,12 @@ widget instance, and runs through the Widget's HTML_PARSER definition.</p>
 
     <div class="meta">
         
+            <p>Inherited from
+            <a href="Widget.html#method_initializer">
+                Widget
+            </a>
             
-                
-                <p>
-                
-                Defined in
-                
+            but overwritten in
             
         
         
@@ -16366,7 +16279,7 @@ the ScrollView to be notified as expected.</p>
 
     <div class="description">
         <p>Object map of style property names used to set transition properties.
-Defaults to the vendor prefix established by the Transition module. 
+Defaults to the vendor prefix established by the Transition module. <br />
 The configured property names are <code>_TRANSITION.DURATION</code> (e.g. "WebkitTransitionDuration") and
 `_TRANSITION.PROPERTY (e.g. "WebkitTransitionProperty").</p>
     </div>
@@ -17052,7 +16965,7 @@ if working in a purely touch based environment</p>
     </div>
 
     <div class="description">
-        <p>Map of DOM events that should be fired as Custom Events by the 
+        <p>Map of DOM events that should be fired as Custom Events by the <br />
 Widget instance.</p>
     </div>
 

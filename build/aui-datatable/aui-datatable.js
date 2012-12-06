@@ -1438,7 +1438,7 @@ var DateCellEditor = A.Component.create({
 
 A.DateCellEditor = DateCellEditor;
 
-}, '@VERSION@' ,{requires:['datatable-base','calendar','aui-datatype','aui-toolbar','aui-form-validator','overlay','sortable'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['datatable-base','calendar','aui-datatype','aui-toolbar','aui-form-validator','overlay','sortable']});
 AUI.add('aui-datatable-selection', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -1448,8 +1448,9 @@ var Lang = A.Lang,
 	CLASS_NAMES_SELECTION = 'CLASS_NAMES_SELECTION',
 
 	ACTIVE_CELL = 'activeCell',
-	ACTIVE_CELL_CHANGE = 'activeCellChange',
+	ACTIVE_COORD = 'activeCoord',
 	ACTIVE_ROW = 'activeRow',
+	ACTIVE_COORD_CHANGE = 'activeCoordChange',
 	BOUNDING_BOX = 'boundingBox',
 	CELL = 'cell',
 	CELL_INDEX = 'cellIndex',
@@ -1459,7 +1460,6 @@ var Lang = A.Lang,
 	MOUSEDOWN = 'mousedown',
 	MOUSEENTER = 'mouseenter',
 	MOUSEUP = 'mouseup',
-	RENDER = 'render',
 	SELECTION = 'selection',
 	TABINDEX = 'tabindex',
 
@@ -1473,11 +1473,15 @@ var DataTableSelection = function () {};
 
 DataTableSelection.ATTRS = {
 	activeCell: {
-		setter: 'getCell'
+		getter: '_getActiveCell'
+	},
+
+	activeCoord: {
+		value: [-1, -1]
 	},
 
 	activeRow: {
-		setter: 'getRow'
+		getter: '_getActiveRow'
 	},
 
 	selection: {
@@ -1559,7 +1563,7 @@ A.mix(DataTableSelection.prototype, {
 	getActiveRecord: function() {
 		var instance = this;
 
-		return instance.getRecord(instance.get(ACTIVE_CELL));
+		return instance.getRecord(instance.get(ACTIVE_ROW));
 	},
 
 	getCoord: function(seed) {
@@ -1571,21 +1575,13 @@ A.mix(DataTableSelection.prototype, {
 		return [ cell.get('parentNode.rowIndex') - rowIndexOffset, cell.get(CELL_INDEX) ];
 	},
 
-	_afterActiveCellChange: function(event) {
+	_afterActiveCoordChange: function(event) {
 		var instance = this,
-			activeCell = event.newVal;
-
-		instance.set(ACTIVE_ROW, activeCell);
+			activeCell = instance.getCell(event.newVal);
 
 		if (activeCell) {
 			activeCell.setAttribute(TABINDEX, 0).focus();
 		}
-	},
-
-	_afterRender: function(event) {
-		var instance = this;
-
-		instance.set(ACTIVE_ROW, instance.get(ACTIVE_CELL));
 	},
 
 	_bindSelectionUI: function() {
@@ -1594,17 +1590,42 @@ A.mix(DataTableSelection.prototype, {
 
 		instance._selectionKeyHandler = A.getDoc().on(KEY, A.bind(instance._onSelectionKey, instance), 'down:enter,37,38,39,40');
 
-		instance.after(RENDER, instance._afterRender);
-		instance.after(ACTIVE_CELL_CHANGE, instance._afterActiveCellChange);
+		instance.after(ACTIVE_COORD_CHANGE, instance._afterActiveCellIndexChange);
 		instance.delegate(MOUSEUP, A.bind(instance._onSelectionMouseUp, instance), _DOT+classNames.cell);
 		instance.delegate(MOUSEDOWN, A.bind(instance._onSelectionMouseDown, instance), _DOT+classNames.cell);
 		instance.delegate(MOUSEENTER, A.bind(instance._onSelectionMouseEnter, instance), _DOT+classNames.cell);
 	},
 
+	_getActiveCell: function() {
+		var instance = this,
+			activeCoord = instance.get(ACTIVE_COORD),
+			activeRowIndex = activeCoord[0],
+			activeCellIndex = activeCoord[1];
+
+		if (activeRowIndex > -1 && activeCellIndex > -1) {
+			return instance.getCell([activeRowIndex, activeCellIndex]);
+		}
+
+		return null;
+	},
+
+	_getActiveRow: function() {
+		var instance = this,
+			activeCoord = instance.get(ACTIVE_COORD),
+			activeRowIndex = activeCoord[0];
+
+		if (activeRowIndex > -1) {
+			return instance.getRow(activeRowIndex);
+		}
+
+		return null;
+	},
+
 	_onSelectionMouseDown: function(event) {
 		var instance = this,
 			seed = event.currentTarget,
-			boundingBox = instance.get(BOUNDING_BOX);
+			boundingBox = instance.get(BOUNDING_BOX),
+			coords = instance.getCoord(seed);
 
 		boundingBox.unselectable();
 
@@ -1612,7 +1633,7 @@ A.mix(DataTableSelection.prototype, {
 		instance._selectionSeed = seed;
 		instance._selectionStart = instance._selectionEnd = instance.getCoord(seed);
 
-		instance.set(ACTIVE_CELL, seed);
+		instance.set(ACTIVE_COORD, coords);
 	},
 
 	_onSelectionMouseEnter: function(event) {
@@ -1684,7 +1705,7 @@ A.mix(DataTableSelection.prototype, {
 			i = clamp(i, 0, imax-1);
 			j = clamp(j, 0, jmax-1);
 
-			instance.set(ACTIVE_CELL, [i, j]);
+			instance.set(ACTIVE_COORD, [i, j]);
 
 			instance.set(SELECTION, [i, j]);
 
@@ -1863,7 +1884,7 @@ A.DataTable.prototype._setColumns = function (val) {
 	return val && process(val);
 };
 
-}, '@VERSION@' ,{requires:['datatable-base'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['datatable-base']});
 AUI.add('aui-datatable-highlight', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -1873,10 +1894,9 @@ var Lang = A.Lang,
 	ACTIVE = 'active',
 	ACTIVE_BORDER_WIDTH = 'activeBorderWidth',
 	ACTIVE_CELL = 'activeCell',
+	ACTIVE_COORD_CHANGE = 'activeCoordChange',
 	ACTIVE_ROW = 'activeRow',
-	ACTIVE_ROW_CHANGE = 'activeRowChange',
 	BORDER = 'border',
-	CELL = 'cell',
 	CELLS = 'cells',
 	CHILDREN = 'children',
 	HIGHLIGHT = 'highlight',
@@ -1925,6 +1945,7 @@ var DataTableHighlight = A.Base.create(
 						'<div class="{border}"></div>' +
 					'</div>',
 
+		_lastActiveRow: null,
 		_nodes: null,
 
 		initializer: function() {
@@ -1939,7 +1960,7 @@ var DataTableHighlight = A.Base.create(
 				overlayActive: host.getClassName(HIGHLIGHT, OVERLAY, ACTIVE)
 			};
 
-			instance.afterHostEvent(ACTIVE_ROW_CHANGE, instance._afterActiveRowChange);
+			instance.afterHostEvent(ACTIVE_COORD_CHANGE, instance._afterActiveCoordChange);
 			instance.afterHostEvent(SELECTION_CHANGE, instance._afterSelectionChange);
 		},
 
@@ -1995,11 +2016,14 @@ var DataTableHighlight = A.Base.create(
 			};
 		},
 
-		_afterActiveRowChange: function(event) {
+		_afterActiveCoordChange: function(event) {
 			var instance = this,
+				host = instance.get(HOST),
 				activeBorderWidth = instance.get(ACTIVE_BORDER_WIDTH),
 				overlayActiveNode = instance.get(OVERLAY_ACTIVE_NODE),
-				classNames = instance.CLASS_NAMES;
+				classNames = instance.CLASS_NAMES,
+				activeRow = host.get(ACTIVE_ROW),
+				lastActiveRow = instance._lastActiveRow;
 
 			if (!instance.get(TYPE)) {
 				return;
@@ -2007,17 +2031,19 @@ var DataTableHighlight = A.Base.create(
 
 			instance.clear();
 
-			if (event.prevVal) {
-				event.prevVal.removeClass(classNames.active);
+			if (lastActiveRow) {
+				lastActiveRow.removeClass(classNames.active);
 			}
 
-			if (event.newVal) {
+			if (activeRow) {
 				instance._alignBorder(
 					overlayActiveNode, instance.getActiveRegion(),
 					activeBorderWidth);
 
-				event.newVal.addClass(classNames.active);
+				activeRow.addClass(classNames.active);
 			}
+
+			instance._lastActiveRow = activeRow;
 		},
 
 		_afterSelectionChange: function(event) {
@@ -2162,8 +2188,8 @@ var DataTableHighlight = A.Base.create(
 
 A.namespace('Plugin').DataTableHighlight = DataTableHighlight;
 
-}, '@VERSION@' ,{requires:['aui-datatable-selection'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-datatable-selection']});
 
 
-AUI.add('aui-datatable', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-datatable-edit','aui-datatable-selection','aui-datatable-highlight']});
+AUI.add('aui-datatable', function(A){}, '@VERSION@' ,{use:['aui-datatable-edit','aui-datatable-selection','aui-datatable-highlight'], skinnable:true});
 

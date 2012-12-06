@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>src&#x2F;aui-calendar&#x2F;js&#x2F;aui-calendar.js - AlloyUI</title>
-    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -17,9 +17,9 @@
         </div>
         <div class="yui3-u-1-4 version">
             <div class="version-details">
-                <span class="version-lib">AlloyUI 1.5.0</span>
+                <span class="version-lib">AlloyUI 1.7.0pr3</span>
                 <div class="yui-version">
-                    <span class="version-lib version-lib-yui">YUI 3.4.0</span>
+                    <span class="version-lib version-lib-yui">YUI 3.7.3</span>
                 </div>
             </div>
         </div>
@@ -144,6 +144,8 @@
                 <li><a href="..&#x2F;classes/CanvasRect.html">CanvasRect</a></li>
             
                 <li><a href="..&#x2F;classes/CanvasShape.html">CanvasShape</a></li>
+            
+                <li><a href="..&#x2F;classes/Carousel.html">Carousel</a></li>
             
                 <li><a href="..&#x2F;classes/CartesianChart.html">CartesianChart</a></li>
             
@@ -355,7 +357,7 @@
             
                 <li><a href="..&#x2F;classes/IORequest.html">IORequest</a></li>
             
-                <li><a href="..&#x2F;classes/json.html">json</a></li>
+                <li><a href="..&#x2F;classes/JSON.html">JSON</a></li>
             
                 <li><a href="..&#x2F;classes/JSONPRequest.html">JSONPRequest</a></li>
             
@@ -501,7 +503,7 @@
             
                 <li><a href="..&#x2F;classes/ProgressBar.html">ProgressBar</a></li>
             
-                <li><a href="..&#x2F;classes/querystring.html">querystring</a></li>
+                <li><a href="..&#x2F;classes/QueryString.html">QueryString</a></li>
             
                 <li><a href="..&#x2F;classes/Queue.html">Queue</a></li>
             
@@ -761,6 +763,8 @@
                 <li><a href="..&#x2F;modules/aui-calendar-base.html">aui-calendar-base</a></li>
             
                 <li><a href="..&#x2F;modules/aui-calendar-datepicker-select.html">aui-calendar-datepicker-select</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-carousel.html">aui-carousel</a></li>
             
                 <li><a href="..&#x2F;modules/aui-char-counter.html">aui-char-counter</a></li>
             
@@ -1363,9 +1367,7 @@ var L = A.Lang,
 	isValue = L.isValue,
 	isNumber = L.isNumber,
 
-	toNumber = function(val) {
-		return parseInt(val, 10) || 0;
-	},
+	toInt = L.toInt,
 
 	DateMath = A.DataType.DateMath,
 	WidgetStdMod = A.WidgetStdMod,
@@ -1421,11 +1423,13 @@ var L = A.Lang,
 	PADDING_DAYS_END = &#x27;paddingDaysEnd&#x27;,
 	PADDING_DAYS_START = &#x27;paddingDaysStart&#x27;,
 	PREV = &#x27;prev&#x27;,
+	PREVIOUS = &#x27;previous&#x27;,
 	SELECT_MULTIPLE_DATES = &#x27;selectMultipleDates&#x27;,
 	SHOW_OTHER_MONTH = &#x27;showOtherMonth&#x27;,
 	SHOW_TODAY = &#x27;showToday&#x27;,
 	START = &#x27;start&#x27;,
 	STATE = &#x27;state&#x27;,
+	STRINGS = &#x27;strings&#x27;,
 	TITLE = &#x27;title&#x27;,
 	TODAY = &#x27;today&#x27;,
 	TODAY_LINK_NODE = &#x27;todayLinkNode&#x27;,
@@ -1469,42 +1473,42 @@ var L = A.Lang,
 	INT_MATRIX_DAYS_LENGTH = 42,
 	INT_MAX_PADDING_END = 14,
 
-	TPL_CALENDAR_NONE_LINK = &#x27;&lt;a href=&quot;#&quot; class=&quot;&#x27;+[ CSS_CALENDAR_LINK, CSS_CALENDAR_LINK_NONE ].join(SPACE)+&#x27;&quot;&gt;None&lt;&#x2F;a&gt;&#x27;,
+	TPL_CALENDAR_NONE_LINK = &#x27;&lt;a href=&quot;#&quot; class=&quot;&#x27; + [ CSS_CALENDAR_LINK, CSS_CALENDAR_LINK_NONE ].join(SPACE) + &#x27;&quot;&gt;{none}&lt;&#x2F;a&gt;&#x27;,
 
-	TPL_CALENDAR_TODAY_LINK = &#x27;&lt;a href=&quot;#&quot; class=&quot;&#x27;+[ CSS_CALENDAR_LINK, CSS_CALENDAR_LINK_TODAY ].join(SPACE)+&#x27;&quot;&gt;Today&lt;&#x2F;a&gt;&#x27;,
+	TPL_CALENDAR_TODAY_LINK = &#x27;&lt;a href=&quot;#&quot; class=&quot;&#x27; + [ CSS_CALENDAR_LINK, CSS_CALENDAR_LINK_TODAY ].join(SPACE) + &#x27;&quot;&gt;{today}&lt;&#x2F;a&gt;&#x27;,
 
-	TPL_CALENDAR_HEADER = &#x27;&lt;div class=&quot;&#x27;+[ CSS_HEADER, CSS_STATE_DEFAULT, CSS_HELPER_CLEARFIX ].join(SPACE)+&#x27;&quot;&gt;&lt;&#x2F;div&gt;&#x27;,
+	TPL_CALENDAR_HEADER = &#x27;&lt;div class=&quot;&#x27; + [ CSS_HEADER, CSS_STATE_DEFAULT, CSS_HELPER_CLEARFIX ].join(SPACE) + &#x27;&quot;&gt;&lt;&#x2F;div&gt;&#x27;,
 
-	TPL_CALENDAR_PREV = &#x27;&lt;a href=&quot;&quot; class=&quot;&#x27;+[ CSS_ICON, CSS_ICON_CIRCLE_TRIANGLE_L, CSS_PREV ].join(SPACE)+&#x27;&quot;&gt;Back&lt;&#x2F;a&gt;&#x27;,
+	TPL_CALENDAR_PREV = &#x27;&lt;a href=&quot;&quot; class=&quot;&#x27; + [ CSS_ICON, CSS_ICON_CIRCLE_TRIANGLE_L, CSS_PREV ].join(SPACE) + &#x27;&quot;&gt;{previous}&lt;&#x2F;a&gt;&#x27;,
 
-	TPL_CALENDAR_NEXT = &#x27;&lt;a href=&quot;&quot; class=&quot;&#x27;+[ CSS_ICON, CSS_ICON_CIRCLE_TRIANGLE_R, CSS_NEXT ].join(SPACE)+&#x27;&quot;&gt;Prev&lt;&#x2F;a&gt;&#x27;,
+	TPL_CALENDAR_NEXT = &#x27;&lt;a href=&quot;&quot; class=&quot;&#x27; + [ CSS_ICON, CSS_ICON_CIRCLE_TRIANGLE_R, CSS_NEXT ].join(SPACE) + &#x27;&quot;&gt;{next}&lt;&#x2F;a&gt;&#x27;,
 
-	TPL_CALENDAR_DAY_BLANK = &#x27;&lt;div class=&quot;&#x27;+[ CSS_DAY_BLANK, CSS_HELPER_HIDDEN ].join(SPACE)+&#x27;&quot;&gt;&lt;&#x2F;div&gt;&#x27;,
+	TPL_CALENDAR_DAY_BLANK = &#x27;&lt;div class=&quot;&#x27; + [ CSS_DAY_BLANK, CSS_HELPER_HIDDEN ].join(SPACE) + &#x27;&quot;&gt;&lt;&#x2F;div&gt;&#x27;,
 
-	TPL_CALENDAR_DAY_PADDING_START = &#x27;&lt;div class=&quot;&#x27;+[ CSS_DAY, CSS_STATE_DEFAULT, CSS_DAY_PADDING_START, CSS_HELPER_HIDDEN ].join(SPACE)+&#x27;&quot;&gt;&lt;&#x2F;div&gt;&#x27;,
+	TPL_CALENDAR_DAY_PADDING_START = &#x27;&lt;div class=&quot;&#x27; + [ CSS_DAY, CSS_STATE_DEFAULT, CSS_DAY_PADDING_START, CSS_HELPER_HIDDEN ].join(SPACE) + &#x27;&quot;&gt;&lt;&#x2F;div&gt;&#x27;,
 
-	TPL_CALENDAR_DAY_PADDING_END = [&#x27;&lt;div class=&quot;&#x27;+[ CSS_DAY, CSS_STATE_DEFAULT, CSS_DAY_PADDING_END, CSS_HELPER_HIDDEN ].join(SPACE)+&#x27;&quot;&gt;&#x27;, 0, &#x27;&lt;&#x2F;div&gt;&#x27;],
+	TPL_CALENDAR_DAY_PADDING_END = [&#x27;&lt;div class=&quot;&#x27; + [ CSS_DAY, CSS_STATE_DEFAULT, CSS_DAY_PADDING_END, CSS_HELPER_HIDDEN ].join(SPACE) + &#x27;&quot;&gt;&#x27;, 0, &#x27;&lt;&#x2F;div&gt;&#x27;],
 
-	TPL_CALENDAR_HEADER_TITLE = &#x27;&lt;div class=&quot;&#x27;+CSS_TITLE+&#x27;&quot;&gt;&lt;&#x2F;div&gt;&#x27;,
+	TPL_CALENDAR_HEADER_TITLE = &#x27;&lt;div class=&quot;&#x27; + CSS_TITLE + &#x27;&quot;&gt;&lt;&#x2F;div&gt;&#x27;,
 
-	TPL_CALENDAR_MONTHDAYS = &#x27;&lt;div class=&quot;&#x27;+[ CSS_MONTHDAYS, CSS_HELPER_CLEARFIX ].join(SPACE)+&#x27;&quot;&gt;&lt;&#x2F;div&gt;&#x27;,
+	TPL_CALENDAR_MONTHDAYS = &#x27;&lt;div class=&quot;&#x27; + [ CSS_MONTHDAYS, CSS_HELPER_CLEARFIX ].join(SPACE) + &#x27;&quot;&gt;&lt;&#x2F;div&gt;&#x27;,
 
-	TPL_CALENDAR_WEEKDAYS = &#x27;&lt;div class=&quot;&#x27;+[ CSS_WEEKDAYS, CSS_HELPER_CLEARFIX ].join(SPACE)+&#x27;&quot;&gt;&lt;&#x2F;div&gt;&#x27;,
+	TPL_CALENDAR_WEEKDAYS = &#x27;&lt;div class=&quot;&#x27; + [ CSS_WEEKDAYS, CSS_HELPER_CLEARFIX ].join(SPACE) + &#x27;&quot;&gt;&lt;&#x2F;div&gt;&#x27;,
 
-	TPL_BUFFER_WEEKDAYS = [&#x27;&lt;div class=&quot;&#x27;+CSS_WEEK+&#x27;&quot;&gt;&#x27;, 0, &#x27;&lt;&#x2F;div&gt;&#x27;],
+	TPL_BUFFER_WEEKDAYS = [&#x27;&lt;div class=&quot;&#x27; + CSS_WEEK + &#x27;&quot;&gt;&#x27;, 0, &#x27;&lt;&#x2F;div&gt;&#x27;],
 
-	TPL_BUFFER_MONTH_DAYS = [&#x27;&lt;a href=&quot;#&quot; class=&quot;&#x27;+[ CSS_DAY, CSS_DAY_MONTH, CSS_STATE_DEFAULT ].join(SPACE)+&#x27;&quot;&gt;&#x27;, 0, &#x27;&lt;&#x2F;a&gt;&#x27;];
+	TPL_BUFFER_MONTH_DAYS = [&#x27;&lt;a href=&quot;#&quot; class=&quot;&#x27; + [ CSS_DAY, CSS_DAY_MONTH, CSS_STATE_DEFAULT ].join(SPACE) + &#x27;&quot;&gt;&#x27;, 0, &#x27;&lt;&#x2F;a&gt;&#x27;];
 
 &#x2F;**
  * &lt;p&gt;&lt;img src=&quot;assets&#x2F;images&#x2F;aui-calendar&#x2F;main.png&quot;&#x2F;&gt;&lt;&#x2F;p&gt;
  *
  * A base class for Calendar, providing:
  * &lt;ul&gt;
- *    &lt;li&gt;Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)&lt;&#x2F;li&gt;
- *    &lt;li&gt;Setting Configuration Options&lt;&#x2F;li&gt;
- *    &lt;li&gt;Obtaining Selected Dates&lt;&#x2F;li&gt;
- *    &lt;li&gt;Creating International Calendars&lt;&#x2F;li&gt;
- *    &lt;li&gt;Customizing the Calendar&lt;&#x2F;li&gt;
+ *	&lt;li&gt;Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)&lt;&#x2F;li&gt;
+ *	&lt;li&gt;Setting Configuration Options&lt;&#x2F;li&gt;
+ *	&lt;li&gt;Obtaining Selected Dates&lt;&#x2F;li&gt;
+ *	&lt;li&gt;Creating International Calendars&lt;&#x2F;li&gt;
+ *	&lt;li&gt;Customizing the Calendar&lt;&#x2F;li&gt;
  * &lt;&#x2F;ul&gt;
  *
  * Quick Example:
@@ -1689,7 +1693,18 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			iconNextNode: {
 				valueFn: function() {
-					return A.Node.create(TPL_CALENDAR_NEXT);
+					var instance = this;
+
+					var strings = instance.get(STRINGS);
+
+					return A.Node.create(
+						L.sub(
+							TPL_CALENDAR_NEXT,
+							{
+								next: strings[NEXT]
+							}
+						)
+					);
 				}
 			},
 
@@ -1704,7 +1719,18 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			iconPrevNode: {
 				valueFn: function() {
-					return A.Node.create(TPL_CALENDAR_PREV);
+					var instance = this;
+
+					var strings = instance.get(STRINGS);
+
+					return A.Node.create(
+						L.sub(
+							TPL_CALENDAR_PREV,
+							{
+								previous: strings[PREVIOUS]
+							}
+						)
+					);
 				}
 			},
 
@@ -1773,7 +1799,18 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			noneLinkNode: {
 				valueFn: function() {
-					return A.Node.create(TPL_CALENDAR_NONE_LINK);
+					var instance = this;
+
+					var strings = instance.get(STRINGS);
+
+					return A.Node.create(
+						L.sub(
+							TPL_CALENDAR_NONE_LINK,
+							{
+								none: strings[NONE]
+							}
+						)
+					);
 				}
 			},
 
@@ -1855,6 +1892,22 @@ var Calendar = A.Component.create(
 			},
 
 			&#x2F;**
+			 * Strings for localization.
+			 *
+			 * @attribute strings
+			 * @default Localization object
+			 * @type Object
+			 *&#x2F;
+			strings: {
+				value: {
+					next: &#x27;Next&#x27;,
+					none: &#x27;None&#x27;,
+					prev: &#x27;Prev&#x27;,
+					today: &#x27;Today&#x27;
+				}
+			},
+
+			&#x2F;**
 			 * DOM node reference to be the &quot;today&quot; link of the Calendar. If not
 			 * specified try to query using HTML_PARSER an element inside
 			 * contentBox which matches &lt;code&gt;aui-calendar-title&lt;&#x2F;code&gt;.
@@ -1865,7 +1918,18 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			todayLinkNode: {
 				valueFn: function() {
-					return A.Node.create(TPL_CALENDAR_TODAY_LINK);
+					var instance = this;
+
+					var strings = instance.get(STRINGS);
+
+					return A.Node.create(
+						L.sub(
+							TPL_CALENDAR_TODAY_LINK,
+							{
+								today: strings[TODAY]
+							}
+						)
+					);
 				}
 			},
 
@@ -1908,50 +1972,50 @@ var Calendar = A.Component.create(
 		 *&#x2F;
 		HTML_PARSER: {
 			blankDays: function(srcNode) {
-				var nodes = srcNode.all(DOT+CSS_DAY_BLANK);
+				var nodes = srcNode.all(DOT + CSS_DAY_BLANK);
 
 				return nodes.size() ? nodes : null;
 			},
 
 			monthDays: function(srcNode) {
-				var nodes = srcNode.all(DOT+CSS_DAY_MONTH);
+				var nodes = srcNode.all(DOT + CSS_DAY_MONTH);
 
 				return nodes.size() ? nodes : null;
 			},
 
 			paddingDaysEnd: function(srcNode) {
-				var nodes = srcNode.all(DOT+CSS_DAY_PADDING_END);
+				var nodes = srcNode.all(DOT + CSS_DAY_PADDING_END);
 
 				return nodes.size() ? nodes : null;
 			},
 
 			paddingDaysStart: function(srcNode) {
-				var nodes = srcNode.all(DOT+CSS_DAY_PADDING_START);
+				var nodes = srcNode.all(DOT + CSS_DAY_PADDING_START);
 
 				return nodes.size() ? nodes : null;
 			},
 
 			weekDays: function(srcNode) {
-				var nodes = srcNode.all(DOT+CSS_WEEK);
+				var nodes = srcNode.all(DOT + CSS_WEEK);
 
 				return nodes.size() ? nodes : null;
 			},
 
-			headerTitleNode: DOT+CSS_TITLE,
+			headerTitleNode: DOT + CSS_TITLE,
 
-			headerContentNode: DOT+CSS_HEADER,
+			headerContentNode: DOT + CSS_HEADER,
 
-			iconNextNode: DOT+CSS_NEXT,
+			iconNextNode: DOT + CSS_NEXT,
 
-			iconPrevNode: DOT+CSS_PREV,
+			iconPrevNode: DOT + CSS_PREV,
 
-			monthDaysNode: DOT+CSS_MONTHDAYS,
+			monthDaysNode: DOT + CSS_MONTHDAYS,
 
-			noneLinkNode: DOT+CSS_CALENDAR_LINK_NONE,
+			noneLinkNode: DOT + CSS_CALENDAR_LINK_NONE,
 
-			todayLinkNode: DOT+CSS_CALENDAR_LINK_TODAY,
+			todayLinkNode: DOT + CSS_CALENDAR_LINK_TODAY,
 
-			weekDaysNode: DOT+CSS_WEEKDAYS
+			weekDaysNode: DOT + CSS_WEEKDAYS
 		},
 
 		UI_ATTRS: [DATES, SHOW_TODAY, ALLOW_NONE],
@@ -1979,6 +2043,7 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			bindUI: function() {
 				var instance = this;
+
 				var boundingBox = instance.get(BOUNDING_BOX);
 
 				boundingBox.once(&#x27;mousemove&#x27;, A.bind(instance._bindDelegate, instance));
@@ -1997,7 +2062,7 @@ var Calendar = A.Component.create(
 
 			&#x2F;**
 			 * Loop each date from &lt;a href=&quot;Calendar.html#config_dates&quot;&gt;dates&lt;&#x2F;a&gt; and
-		     * executes a callback.
+			 * executes a callback.
 			 *
 			 * @method eachSelectedDate
 			 * @param {function} fn Callback to be executed for each date.
@@ -2020,6 +2085,7 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			findMonthStart: function(year, month) {
 				var instance = this;
+
 				var date = instance._normalizeYearMonth(year, month);
 
 				return DateMath.findMonthStart(DateMath.getDate(date.year, date.month));
@@ -2027,7 +2093,7 @@ var Calendar = A.Component.create(
 
 			&#x2F;**
 			 * Format a date with the passed mask. Used on
-		     * &lt;a href=&quot;Calendar.html#config_dateFormat&quot;&gt;dateFormat&lt;&#x2F;a&gt;.
+			 * &lt;a href=&quot;Calendar.html#config_dateFormat&quot;&gt;dateFormat&lt;&#x2F;a&gt;.
 			 *
 			 * @method formatDate
 			 * @param {Date} date
@@ -2036,6 +2102,7 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			formatDate: function (date, mask) {
 				var instance = this;
+
 				var locale = instance.get(LOCALE);
 
 				return A.DataType.Date.format(date, { format: mask, locale: locale });
@@ -2049,9 +2116,10 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			getCurrentDate: function(offsetYear, offsetMonth, offsetDay) {
 				var instance = this;
+
 				var date = instance._normalizeYearMonth();
 
-				return DateMath.getDate(date.year + toNumber(offsetYear), date.month + toNumber(offsetMonth), date.day + toNumber(offsetDay));
+				return DateMath.getDate(date.year + toInt(offsetYear), date.month + toInt(offsetMonth), date.day + toInt(offsetDay));
 			},
 
 			&#x2F;**
@@ -2064,17 +2132,18 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			getDaysInMonth: function(year, month) {
 				var instance = this;
+
 				var date = instance._normalizeYearMonth(year, month);
 
-		        return DateMath.getDaysInMonth(date.year, date.month);
-		    },
+				return DateMath.getDaysInMonth(date.year, date.month);
+			},
 
 			&#x2F;**
 			 * Get an Array with selected dates with detailed information (day, month, year).
 			 *&lt;pre&gt;&lt;code&gt;[{
-			 *    year: date.getFullYear(),
-			 *    month: date.getMonth(),
-			 *    day: date.getDate()
+			 *	year: date.getFullYear(),
+			 *	month: date.getMonth(),
+			 *	day: date.getDate()
 			 * }]&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 			 *
 			 * @method getDetailedSelectedDates
@@ -2082,6 +2151,7 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			getDetailedSelectedDates: function() {
 				var instance = this;
+
 				var dates = [];
 
 				instance.eachSelectedDate(function(date) {
@@ -2105,6 +2175,7 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			getFirstDayOfWeek: function() {
 				var instance = this;
+
 				var firstDayOfWeek = instance.get(FIRST_DAY_OF_WEEK);
 
 				return DateMath.getFirstDayOfWeek(instance.findMonthStart(), firstDayOfWeek);
@@ -2112,17 +2183,18 @@ var Calendar = A.Component.create(
 
 			&#x2F;**
 			 * Get the selected dates formatted by the
-		     * &lt;a href=&quot;Calendar.html#config_dateFormat&quot;&gt;dateFormat&lt;&#x2F;a&gt;.
+			 * &lt;a href=&quot;Calendar.html#config_dateFormat&quot;&gt;dateFormat&lt;&#x2F;a&gt;.
 			 *
 			 * @method getFormattedSelectedDates
 			 * @return {Array}
 			 *&#x2F;
 			getFormattedSelectedDates: function() {
 				var instance = this;
+
 				var dates = [];
 
 				instance.eachSelectedDate(function(date) {
-					dates.push( instance.formatDate( date, instance.get(DATE_FORMAT) ) );
+					dates.push( instance.formatDate(date, instance.get(DATE_FORMAT)));
 				});
 
 				return dates;
@@ -2149,6 +2221,7 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			isAlreadySelected: function(date) {
 				var instance = this;
+
 				var isAlreadySelected = false;
 
 				instance.eachSelectedDate(function(d, index) {
@@ -2162,14 +2235,15 @@ var Calendar = A.Component.create(
 
 			&#x2F;**
 			 * Check if the passed date is out of range. Compared with the
-		     * &lt;a href=&quot;Calendar.html#config_minDate&quot;&gt;minDate&lt;&#x2F;a&gt; and
-		     * &lt;a href=&quot;Calendar.html#config_maxDate&quot;&gt;maxDate&lt;&#x2F;a&gt;.
+			 * &lt;a href=&quot;Calendar.html#config_minDate&quot;&gt;minDate&lt;&#x2F;a&gt; and
+			 * &lt;a href=&quot;Calendar.html#config_maxDate&quot;&gt;maxDate&lt;&#x2F;a&gt;.
 			 *
 			 * @method isOutOfRangeDate
 			 * @param {Date} date Date to be checked.
 			 *&#x2F;
 			isOutOfRangeDate: function(date) {
 				var instance = this;
+
 				var maxDate = instance.get(MAX_DATE);
 				var minDate = instance.get(MIN_DATE);
 
@@ -2188,10 +2262,11 @@ var Calendar = A.Component.create(
 			 *
 			 * @method navigateMonth
 			 * @param {Number} offset Offset of the number of months to navigate.
-		     * Could be a positive or a negative offset.
+			 * Could be a positive or a negative offset.
 			 *&#x2F;
 			navigateMonth: function(offset) {
 				var instance = this;
+
 				var date = instance.getCurrentDate(0, offset);
 
 				&#x2F;&#x2F; when navigate by month update the year also
@@ -2203,13 +2278,14 @@ var Calendar = A.Component.create(
 
 			&#x2F;**
 			 * Remove the passed date from
-		     * &lt;a href=&quot;Calendar.html#config_dates&quot;&gt;dates&lt;&#x2F;a&gt;.
+			 * &lt;a href=&quot;Calendar.html#config_dates&quot;&gt;dates&lt;&#x2F;a&gt;.
 			 *
 			 * @method removeDate
 			 * @param {Date} date Date to remove
 			 *&#x2F;
 			removeDate: function(date) {
 				var instance = this;
+
 				var dates = [];
 
 				instance.eachSelectedDate(
@@ -2222,7 +2298,6 @@ var Calendar = A.Component.create(
 
 				instance.set(DATES, dates);
 			},
-
 
 			&#x2F;**
 			 * Create the DOM structure for the Calendar. Lifecycle.
@@ -2259,13 +2334,14 @@ var Calendar = A.Component.create(
 
 			&#x2F;**
 			 * Select the current date returned by
-		     * &lt;a href=&quot;Calendar.html#method_getCurrentDate&quot;&gt;getCurrentDate&lt;&#x2F;a&gt;.
+			 * &lt;a href=&quot;Calendar.html#method_getCurrentDate&quot;&gt;getCurrentDate&lt;&#x2F;a&gt;.
 			 *
 			 * @method selectCurrentDate
 			 * @protected
 			 *&#x2F;
 			selectCurrentDate: function() {
 				var instance = this;
+
 				var currentDate = instance.getCurrentDate();
 
 				if (!instance.isAlreadySelected(currentDate)) {
@@ -2283,7 +2359,7 @@ var Calendar = A.Component.create(
 
 			&#x2F;**
 			 * Navigate to the next month. Fired from the next icon on the Calendar
-		     * header.
+			 * header.
 			 *
 			 * @method selectNextMonth
 			 *&#x2F;
@@ -2316,12 +2392,12 @@ var Calendar = A.Component.create(
 				instance.set(DATES, [ new Date() ]);
 			},
 
-		    &#x2F;**
-		     * Update the currentDay, currentMonth and currentYear values.
-		     *
-		     * @method setCurrentDate
-		     * @param {Date} date
-		     *&#x2F;
+			&#x2F;**
+			 * Update the currentDay, currentMonth and currentYear values.
+			 *
+			 * @method setCurrentDate
+			 * @param {Date} date
+			 *&#x2F;
 			setCurrentDate: function(date) {
 				var instance = this;
 
@@ -2353,18 +2429,19 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			_bindDelegate: function() {
 				var instance = this;
+
 				var boundingBox = instance.get(BOUNDING_BOX);
 				var headerContentNode = instance.headerContentNode;
 
-				headerContentNode.delegate(&#x27;click&#x27;, instance.selectNextMonth, DOT+CSS_ICON_CIRCLE_TRIANGLE_R, instance);
-				headerContentNode.delegate(&#x27;click&#x27;, instance.selectPrevMonth, DOT+CSS_ICON_CIRCLE_TRIANGLE_L, instance);
+				headerContentNode.delegate(&#x27;click&#x27;, instance.selectNextMonth, DOT + CSS_ICON_CIRCLE_TRIANGLE_R, instance);
+				headerContentNode.delegate(&#x27;click&#x27;, instance.selectPrevMonth, DOT + CSS_ICON_CIRCLE_TRIANGLE_L, instance);
 
 				boundingBox.delegate(&#x27;click&#x27;, instance._preventDefaultFn, ANCHOR);
-				boundingBox.delegate(&#x27;click&#x27;, A.bind(instance.selectToday, instance), DOT+CSS_CALENDAR_LINK_TODAY);
-				boundingBox.delegate(&#x27;click&#x27;, A.bind(instance.clear, instance), DOT+CSS_CALENDAR_LINK_NONE);
-				boundingBox.delegate(&#x27;click&#x27;, A.bind(instance._onClickDays, instance), DOT+CSS_DAY);
-				boundingBox.delegate(&#x27;mouseenter&#x27;, A.bind(instance._onMouseEnterDays, instance), DOT+CSS_DAY);
-				boundingBox.delegate(&#x27;mouseleave&#x27;, A.bind(instance._onMouseLeaveDays, instance), DOT+CSS_DAY);
+				boundingBox.delegate(&#x27;click&#x27;, A.bind(instance.selectToday, instance), DOT + CSS_CALENDAR_LINK_TODAY);
+				boundingBox.delegate(&#x27;click&#x27;, A.bind(instance.clear, instance), DOT + CSS_CALENDAR_LINK_NONE);
+				boundingBox.delegate(&#x27;click&#x27;, A.bind(instance._onClickDays, instance), DOT + CSS_DAY);
+				boundingBox.delegate(&#x27;mouseenter&#x27;, A.bind(instance._onMouseEnterDays, instance), DOT + CSS_DAY);
+				boundingBox.delegate(&#x27;mouseleave&#x27;, A.bind(instance._onMouseLeaveDays, instance), DOT + CSS_DAY);
 
 				instance.after(&#x27;datesChange&#x27;, instance._handleSelectEvent);
 			},
@@ -2393,7 +2470,7 @@ var Calendar = A.Component.create(
 			 * @return {boolean}
 			 *&#x2F;
 			_compareDates: function(d1, d2) {
-				return ( d1 &amp;&amp; d2 &amp;&amp; (d1.getTime() == d2.getTime()) );
+				return (d1 &amp;&amp; d2 &amp;&amp; (d1.getTime() == d2.getTime()));
 			},
 
 			_conditionalToggle: function(node, show) {
@@ -2407,24 +2484,24 @@ var Calendar = A.Component.create(
 				}
 			},
 
-		    &#x2F;**
-		     * Create the custom events used on the Calendar.
-		     *
-		     * @method _createEvents
-		     * @private
-		     *&#x2F;
+			&#x2F;**
+			 * Create the custom events used on the Calendar.
+			 *
+			 * @method _createEvents
+			 * @private
+			 *&#x2F;
 			_createEvents: function() {
 				var instance = this;
 
 				&#x2F;&#x2F; create publish function for kweight optimization
 				var publish = function(name, fn) {
 					instance.publish(name, {
-			            defaultFn: fn,
-			            queuable: false,
-			            emitFacade: true,
-			            bubbles: true,
-			            prefix: CALENDAR
-			        });
+						defaultFn: fn,
+						queuable: false,
+						emitFacade: true,
+						bubbles: true,
+						prefix: CALENDAR
+					});
 				};
 
 				publish(EV_CALENDAR_SELECT);
@@ -2437,7 +2514,7 @@ var Calendar = A.Component.create(
 					value = A.Attribute.INVALID_VALUE;
 				}
 				else {
-					value = toNumber(value);
+					value = toInt(value);
 				}
 
 				return value;
@@ -2453,6 +2530,7 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			_getDayName: function(weekDay) {
 				var instance = this;
+
 				var localeMap = instance._getLocaleMap();
 
 				return localeMap.A[weekDay];
@@ -2468,6 +2546,7 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			_getDayNameShort: function(weekDay) {
 				var instance = this;
+
 				var localeMap = instance._getLocaleMap();
 
 				return localeMap.a[weekDay];
@@ -2483,38 +2562,39 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			_getDayNameMin: function(weekDay) {
 				var instance = this;
+
 				var name = instance._getDayNameShort(weekDay);
 
-				return name.slice(0, name.length-1);
+				return name.slice(0, name.length - 1);
 			},
 
-			 &#x2F;**
-			  * Get the locale map containing the respective values for the
-		      * &lt;a href=&quot;Widget.html#config_locale&quot;&gt;locale&lt;&#x2F;a&gt; used.
-			  *
-			  * &lt;pre&gt;&lt;code&gt;A.DataType.Date.Locale[&#x27;pt-br&#x27;] = A.merge(
-			  *	A.DataType.Date.Locale[&#x27;en&#x27;], {
-			  *		a: [&#x27;Dom&#x27;, &#x27;Seg&#x27;, &#x27;Ter&#x27;, &#x27;Qua&#x27;, &#x27;Qui&#x27;, &#x27;Fri&#x27;, &#x27;Sat&#x27;],
-			  *		A: [&#x27;Domingo&#x27;,&#x27;Segunda-feira&#x27;,&#x27;Ter&amp;ccedil;a-feira&#x27;,&#x27;Quarta-feira&#x27;,&#x27;Quinta-feira&#x27;,&#x27;Sexta-feira&#x27;,&#x27;Sabado&#x27;],
-			  *		b: [&#x27;Jan&#x27;,&#x27;Fev&#x27;,&#x27;Mar&#x27;,&#x27;Abr&#x27;,&#x27;Mai&#x27;,&#x27;Jun&#x27;, &#x27;Jul&#x27;,&#x27;Ago&#x27;,&#x27;Set&#x27;,&#x27;Out&#x27;,&#x27;Nov&#x27;,&#x27;Dez&#x27;],
-			  *		B: [&#x27;Janeiro&#x27;,&#x27;Fevereiro&#x27;,&#x27;Mar&amp;ccedil;o&#x27;,&#x27;Abril&#x27;,&#x27;Maio&#x27;,&#x27;Junho&#x27;, &#x27;Julho&#x27;,&#x27;Agosto&#x27;,&#x27;Setembro&#x27;,&#x27;Outubro&#x27;,&#x27;Novembro&#x27;,&#x27;Dezembro&#x27;],
-			  *		c: &#x27;%a %d %b %Y %T %Z&#x27;,
-			  *		p: [&#x27;AM&#x27;, &#x27;PM&#x27;],
-			  *		P: [&#x27;am&#x27;, &#x27;pm&#x27;],
-			  *		r: &#x27;%I:%M:%S %p&#x27;,
-			  *		x: &#x27;%d&#x2F;%m&#x2F;%y&#x27;,
-			  *		X: &#x27;%T&#x27;
-			  *	}
-			  *);&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-			  *
-			  * @method _getLocaleMap
-			  * @protected
-			  * @return {Object}
-			  *&#x2F;
+			&#x2F;**
+			 * Get the locale map containing the respective values for the
+			 * &lt;a href=&quot;Widget.html#config_locale&quot;&gt;locale&lt;&#x2F;a&gt; used.
+			 *
+			 * &lt;pre&gt;&lt;code&gt;A.DataType.Date.Locale[&#x27;pt-br&#x27;] = A.merge(
+			 *	A.DataType.Date.Locale[&#x27;en&#x27;], {
+			 *		a: [&#x27;Dom&#x27;, &#x27;Seg&#x27;, &#x27;Ter&#x27;, &#x27;Qua&#x27;, &#x27;Qui&#x27;, &#x27;Fri&#x27;, &#x27;Sat&#x27;],
+			 *		A: [&#x27;Domingo&#x27;,&#x27;Segunda-feira&#x27;,&#x27;Ter&amp;ccedil;a-feira&#x27;,&#x27;Quarta-feira&#x27;,&#x27;Quinta-feira&#x27;,&#x27;Sexta-feira&#x27;,&#x27;Sabado&#x27;],
+			 *		b: [&#x27;Jan&#x27;,&#x27;Fev&#x27;,&#x27;Mar&#x27;,&#x27;Abr&#x27;,&#x27;Mai&#x27;,&#x27;Jun&#x27;, &#x27;Jul&#x27;,&#x27;Ago&#x27;,&#x27;Set&#x27;,&#x27;Out&#x27;,&#x27;Nov&#x27;,&#x27;Dez&#x27;],
+			 *		B: [&#x27;Janeiro&#x27;,&#x27;Fevereiro&#x27;,&#x27;Mar&amp;ccedil;o&#x27;,&#x27;Abril&#x27;,&#x27;Maio&#x27;,&#x27;Junho&#x27;, &#x27;Julho&#x27;,&#x27;Agosto&#x27;,&#x27;Setembro&#x27;,&#x27;Outubro&#x27;,&#x27;Novembro&#x27;,&#x27;Dezembro&#x27;],
+			 *		c: &#x27;%a %d %b %Y %T %Z&#x27;,
+			 *		p: [&#x27;AM&#x27;, &#x27;PM&#x27;],
+			 *		P: [&#x27;am&#x27;, &#x27;pm&#x27;],
+			 *		r: &#x27;%I:%M:%S %p&#x27;,
+			 *		x: &#x27;%d&#x2F;%m&#x2F;%y&#x27;,
+			 *		X: &#x27;%T&#x27;
+			 *	}
+			 *);&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+			 *
+			 * @method _getLocaleMap
+			 * @protected
+			 * @return {Object}
+			 *&#x2F;
 			_getLocaleMap: function() {
 				var instance = this;
 
-				return A.DataType.Date.Locale[ instance.get(LOCALE) ];
+				return A.DataType.Date.Locale[instance.get(LOCALE)];
 			},
 
 			&#x2F;**
@@ -2527,6 +2607,7 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			_getMonthName: function(month) {
 				var instance = this;
+
 				var localeMap = instance._getLocaleMap();
 
 				return localeMap.B[month];
@@ -2542,6 +2623,7 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			_getMonthNameShort: function(month) {
 				var instance = this;
+
 				var localeMap = instance._getLocaleMap();
 
 				return localeMap.b[month];
@@ -2579,13 +2661,13 @@ var Calendar = A.Component.create(
 				};
 			},
 
-		    &#x2F;**
-		     * Fires the calendar:select event.
-		     *
-		     * @method _handleSelectEvent
-		     * @param {EventFacade} event calendar:select event facade
-		     * @protected
-		     *&#x2F;
+			&#x2F;**
+			 * Fires the calendar:select event.
+			 *
+			 * @method _handleSelectEvent
+			 * @param {EventFacade} event calendar:select event facade
+			 * @protected
+			 *&#x2F;
 			_handleSelectEvent: function(event) {
 				var instance = this;
 
@@ -2620,17 +2702,18 @@ var Calendar = A.Component.create(
 				return { year: year, month: month, day: day };
 			},
 
-		    &#x2F;**
-		     * Fires on click days elements.
-		     *
-		     * @method _onClickDays
-		     * @param {EventFacade} event
-		     * @protected
-		     *&#x2F;
+			&#x2F;**
+			 * Fires on click days elements.
+			 *
+			 * @method _onClickDays
+			 * @param {EventFacade} event
+			 * @protected
+			 *&#x2F;
 			_onClickDays: function(event) {
 				var instance = this;
-				var target  = event.currentTarget || event.target;
-				var disabled = target.test(DOT+CSS_CALENDAR_DISABLED);
+
+				var target = event.currentTarget || event.target;
+				var disabled = target.test(DOT + CSS_CALENDAR_DISABLED);
 
 				if (!disabled) {
 					var day = target.attr(DATA_DAY) || target.text();
@@ -2658,30 +2741,32 @@ var Calendar = A.Component.create(
 				}
 			},
 
-		    &#x2F;**
-		     * Fires on mouseenter days elements.
-		     *
-		     * @method _onMouseEnterDays
-		     * @param {EventFacade} event
-		     * @protected
-		     *&#x2F;
+			&#x2F;**
+			 * Fires on mouseenter days elements.
+			 *
+			 * @method _onMouseEnterDays
+			 * @param {EventFacade} event
+			 * @protected
+			 *&#x2F;
 			_onMouseEnterDays: function(event) {
 				var instance = this;
-				var target  = event.currentTarget || event.target;
+
+				var target = event.currentTarget || event.target;
 
 				target.replaceClass(CSS_STATE_DEFAULT, CSS_STATE_HOVER);
 			},
 
-		    &#x2F;**
-		     * Fires on mouseleave days elements.
-		     *
-		     * @method _onMouseLeaveDays
-		     * @param {EventFacade} event
-		     * @protected
-		     *&#x2F;
+			&#x2F;**
+			 * Fires on mouseleave days elements.
+			 *
+			 * @method _onMouseLeaveDays
+			 * @param {EventFacade} event
+			 * @protected
+			 *&#x2F;
 			_onMouseLeaveDays: function(event) {
 				var instance = this;
-				var target  = event.currentTarget || event.target;
+
+				var target = event.currentTarget || event.target;
 
 				target.replaceClass(CSS_STATE_HOVER, CSS_STATE_DEFAULT);
 			},
@@ -2692,7 +2777,7 @@ var Calendar = A.Component.create(
 
 			&#x2F;**
 			 * Render Calendar DOM blank days elements. Blank days are used to align
-		     * with the week day column.
+			 * with the week day column.
 			 *
 			 * @method _renderBlankDays
 			 * @protected
@@ -2795,6 +2880,7 @@ var Calendar = A.Component.create(
 
 			_repeateTemplate: function(template, times) {
 				var instance = this;
+
 				var buffer = [];
 
 				while (times--) {
@@ -2817,7 +2903,7 @@ var Calendar = A.Component.create(
 
 				A.Array.each(value, function(date, index) {
 					if (isString(date)) {
-						value[index] = A.DataType.Date.parse( date );
+						value[index] = A.DataType.Date.parse(date);
 					}
 				});
 
@@ -2845,7 +2931,7 @@ var Calendar = A.Component.create(
 
 			&#x2F;**
 			 * Setter for the &lt;a href=&quot;Calendar.html#config_maxDates&quot;&gt;maxDates&lt;&#x2F;a&gt; or
-		     * &lt;a href=&quot;Calendar.html#config_mainDates&quot;&gt;minDates&lt;&#x2F;a&gt; attributes.
+			 * &lt;a href=&quot;Calendar.html#config_mainDates&quot;&gt;minDates&lt;&#x2F;a&gt; attributes.
 			 *
 			 * @method _setMinMaxDate
 			 * @param {Date} value
@@ -2856,7 +2942,7 @@ var Calendar = A.Component.create(
 				var instance = this;
 
 				if (isString(value)) {
-					value = A.DataType.Date.parse( value );
+					value = A.DataType.Date.parse(value);
 				}
 
 				return value;
@@ -2898,10 +2984,11 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			_syncHeader: function() {
 				var instance = this;
+
 				var currentMonth = instance.get(CURRENT_MONTH);
 				var currentYear = instance.get(CURRENT_YEAR);
 
-				var title = [ instance._getMonthName(currentMonth), currentYear ].join(SPACE);
+				var title = [instance._getMonthName(currentMonth), currentYear].join(SPACE);
 
 				instance.headerTitleNode.html(title);
 			},
@@ -2914,6 +3001,7 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			_syncMonthDays: function() {
 				var instance = this;
+
 				var daysInMonth = instance.getDaysInMonth();
 				var rangeDate = instance.getCurrentDate();
 
@@ -2942,7 +3030,6 @@ var Calendar = A.Component.create(
 					var nextMonthDate = instance.getCurrentDate(0, +1);
 					var totalVisiblePaddingEnd = (INT_MATRIX_DAYS_LENGTH - (instance._getMonthOverlapDaysOffset() + instance.getDaysInMonth()));
 
-
 					&#x2F;&#x2F; Sync blank or padding start nodes
 					instance.paddingDaysEnd.each(
 						function(node, index) {
@@ -2964,6 +3051,7 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			_syncPaddingStart: function() {
 				var instance = this;
+
 				var showOtherMonth = instance.get(SHOW_OTHER_MONTH);
 				var prevMonthDate = instance.getCurrentDate(0, -1);
 				var totalPrevMonthDays = instance.getDaysInMonth(null, prevMonthDate.getMonth());
@@ -2998,6 +3086,7 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			_syncSelectedDays: function(dates) {
 				var instance = this;
+
 				var currentMonth = instance.get(CURRENT_MONTH);
 				var currentYear = instance.get(CURRENT_YEAR);
 
@@ -3009,7 +3098,7 @@ var Calendar = A.Component.create(
 						var canSelectDays = (currentMonth == date.getMonth()) &amp;&amp; (currentYear == date.getFullYear());
 
 						if (canSelectDays) {
-							var dayNode = instance.monthDays.item( date.getDate() - 1 );
+							var dayNode = instance.monthDays.item(date.getDate() - 1);
 
 							dayNode.addClass(CSS_STATE_ACTIVE);
 
@@ -3033,6 +3122,7 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			_syncStdContent: function() {
 				var instance = this;
+
 				var bodyContent = A.Node.create(&#x27;&lt;div&gt;&lt;&#x2F;div&gt;&#x27;);
 				var footContent = A.Node.create(&#x27;&lt;div class=&quot;&#x27; + CSS_HELPER_CLEARFIX + &#x27;&quot;&gt;&lt;&#x2F;div&gt;&#x27;);
 
@@ -3161,6 +3251,7 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			_valuePaddingDaysEnd: function() {
 				var instance = this;
+
 				var buffer = [];
 				var day = 0;
 
@@ -3191,11 +3282,12 @@ var Calendar = A.Component.create(
 			 *&#x2F;
 			_valueWeekDays: function() {
 				var instance = this;
+
 				var day = 0;
 				var buffer = [];
 				var firstWeekDay = instance.get(FIRST_DAY_OF_WEEK);
 
-				while(day &lt; DateMath.WEEK_LENGTH) {
+				while (day &lt; DateMath.WEEK_LENGTH) {
 					var fixedDay = (day++ + firstWeekDay) % DateMath.WEEK_LENGTH;
 
 					TPL_BUFFER_WEEKDAYS[1] = instance._getDayNameMin(fixedDay);
