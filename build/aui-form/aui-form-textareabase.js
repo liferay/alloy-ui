@@ -238,4 +238,4 @@ var Lang = A.Lang,
 
 	A.TextareaBase = TextareaBase;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base']});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-base','aui-event-input']});
