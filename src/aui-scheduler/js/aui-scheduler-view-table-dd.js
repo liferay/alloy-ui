@@ -319,9 +319,9 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 			instance.renderLasso(startPosition, instance._getDatePosition(endPositionDate));
 
-			draggingEvent.set(VISIBLE, false, { silent: true });
-
 			instance._syncProxyNodeUI(draggingEvent);
+
+			draggingEvent.set(VISIBLE, false, { silent: true });
 
 			instance.lassoStartPosition = instance.lassoLastPosition = startPosition;
 
@@ -406,14 +406,8 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 		var dd = instance[DELEGATE][DD];
 
-		dd.unplug(A.Plugin.DDConstrained);
 		dd.unplug(A.Plugin.DDNodeScroll);
 		dd.unplug(A.Plugin.DDProxy);
-
-		dd.plug(A.Plugin.DDConstrained, {
-			bubbleTargets: instance,
-			constrain: instance.bodyNode
-		});
 
 		dd.plug(A.Plugin.DDNodeScroll, {
 			node: instance.bodyNode,
@@ -441,11 +435,18 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		var instance = this;
 
 		var eventNode = evt.get(NODE).item(0);
+		var eventNodePadding = evt.get(NODE).item(1);
 
 		instance[PROXY_NODE].setStyles({
 			backgroundColor: eventNode.getStyle('backgroundColor'),
 			display: 'block'
 		});
+
+		if (!eventNodePadding || !eventNodePadding.test(':visible')) {
+			var offsetWidth = eventNode.get(OFFSET_WIDTH);
+
+			instance[PROXY_NODE].set(OFFSET_WIDTH, offsetWidth);
+		}
 
 		instance[PROXY_NODE].appendTo(instance[ROWS_CONTAINER_NODE]);
 		instance[PROXY_NODE].setContent(evt.get(CONTENT));
