@@ -285,21 +285,20 @@ var evt = {
 	 * @event input
 	 * @param type {String} 'input'
 	 * @param fn {Function} the callback function
-	 * @param el {String|Node|etc} the element to bind (typically document)
+	 * @param element {String|Node|etc} the element to bind (typically document)
 	 * @param o {Object} optional context object
 	 * @param args 0..n additional arguments that should be provided
 	 * to the listener.
 	 * @return {Event.Handle} the detach handle
 	 */
-	on: function(type, fn, el) {
+	on: function(type, fn, element, context, args) {
 		// priorize input event that supports copy & paste
 		var etype = 'input';
 
 		// WebKit before version 531 (3.0.182.2) did not support input events for textareas.
 		// http://dev.chromium.org/developers/webkit-version-table
 		// All Chrome versions supports input event
-		// TODO: use UA.chrome when YUI 3 detects it
-		if (!/chrome/i.test(UA.agent) && UA.webkit && UA.version.major <= 2) {
+		if (!UA.chrome && UA.webkit && UA.version.major <= 2) {
 			etype = 'keypress';
 		}
 		else if (UA.ie && SUPPORTS_EVENTS) {
@@ -309,7 +308,9 @@ var evt = {
 
 		var handler = function(event) {
 			var instance = this;
+
 			var input = event.target;
+
 			var originalEvent = event._event;
 
 			// only trigger checkLength() on IE when propertychange happens on the value attribute
@@ -322,11 +323,11 @@ var evt = {
 			var focused = (input.get(OWNER_DOCUMENT).get(ACTIVE_ELEMENT) == input);
 
 			if (focused && isFunction(fn)) {
-				fn.apply(instance, arguments);
+				fn.apply(context || instance, arguments);
 			}
 		};
 
-		return A.Event.attach(etype, handler, el);
+		return A.Event.attach(etype, handler, element, context, args);
 	}
 };
 
