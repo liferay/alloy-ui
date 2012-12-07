@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSON - AlloyUI</title>
+    <title>lib&#x2F;yui3&#x2F;src&#x2F;get&#x2F;js&#x2F;get.js - AlloyUI</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.4.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
@@ -1577,2518 +1577,1297 @@
 
             <div class="apidocs">
                 <div id="docs-main" class="content">
-                    <h1>JSON Class</h1>
-<div class="box meta">
-    
-
-    
-
-    
-        <div class="foundat">
-            Defined in: <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18372"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18372</code></a>
-        </div>
-    
-
-    
-</div>
-
-
-
-<div class="box intro">
-    <p>The JSON module adds support for serializing JavaScript objects into
-JSON strings and parsing JavaScript objects from strings in JSON format.</p>
-
-<p>The JSON namespace is added to your YUI instance including static methods
-Y.JSON.parse(..) and Y.JSON.stringify(..).</p>
-
-<p>The functionality and method signatures follow the ECMAScript 5
-specification.  In browsers with native JSON support, the native
-implementation is used.</p>
-
-<p>The <code>json</code> module is a rollup of <code>json-parse</code> and
-<code>json-stringify</code>.</p>
-
-<p>As their names suggest, <code>json-parse</code> adds support for parsing
-JSON data (Y.JSON.parse) and <code>json-stringify</code> for serializing
-JavaScript data into JSON strings (Y.JSON.stringify).  You may choose to
-include either of the submodules individually if you don't need the
-complementary functionality, or include the rollup for both.</p>
-</div>
-
-
-
-<div id="classdocs" class="tabview">
-    <ul class="aui-tabview-list aui-widget-hd api-class-tabs tabs" id="api-class-tabview-list">
-        <li class="yui3-tab api-class-tab index"><a class="aui-tab-label" href="#index">Index</a></li>
-
-        
-            <li class="aui-tab api-class-tab methods"><a class="aui-tab-label" href="#methods">Methods</a></li>
-        
-        
-            <li class="aui-tab api-class-tab properties"><a class="aui-tab-label" href="#properties">Properties</a></li>
-        
-        
-        
-    </ul>
-
-    <div class="aui-tabview-content aui-widget-bd" id="api-class-tabview-panel">
-        <div id="index" class="aui-tabview-content-item api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
-            
-                <div class="index-section methods">
-                    <h3>Methods</h3>
-
-                    <ul class="index-list methods">
-                        
-                            <li class="index-item method private">
-                                <a href="#method__revive">_revive</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method__revive">_revive</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_customTransport">customTransport</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method deprecated">
-                                <a href="#method_dateToString">dateToString</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_defaultTransport">defaultTransport</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_escapeException">escapeException</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_escapeException">escapeException</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_notify">notify</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_parse">parse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_parse">parse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_stringify">stringify</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-                <div class="index-section properties">
-                    <h3>Properties</h3>
-
-                    <ul class="index-list properties">
-                        
-                            <li class="index-item property private">
-                                <a href="#property__BRACKETS">_BRACKETS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__BRACKETS">_BRACKETS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property__default">_default</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__ESCAPES">_ESCAPES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__ESCAPES">_ESCAPES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNICODE_EXCEPTIONS">_UNICODE_EXCEPTIONS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNICODE_EXCEPTIONS">_UNICODE_EXCEPTIONS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNSAFE">_UNSAFE</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNSAFE">_UNSAFE</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__VALUES">_VALUES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__VALUES">_VALUES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_charCacheThreshold">charCacheThreshold</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property_Native">Native</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property_Native">Native</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_transports">transports</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeParse">useNativeParse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeParse">useNativeParse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeStringify">useNativeStringify</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-
-            
-        </div>
-
-        
-            <div id="methods" class="aui-tabview-content-item api-class-tabpanel">
-                <h2 class="off-left">Methods</h2>
-
-                
-                    <div id="method__revive" class="method item private">
-    <h3 class="name"><code>_revive</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>data</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l125"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:125</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Traverses nested objects, applying a reviver function to each (key,value)
-from the scope if the key:value's containing object.  The value returned
-from the function will replace the original value in the key:value pair.
-If the value returned is undefined, the key will be omitted from the
-returned object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">data</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Any JavaScript data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>filter or mutation function</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    The results of the filtered data
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method__revive" class="method item private">
-    <h3 class="name"><code>_revive</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>data</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18496"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18496</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Traverses nested objects, applying a reviver function to each (key,value)
-from the scope if the key:value's containing object.  The value returned
-from the function will replace the original value in the key:value pair.
-If the value returned is undefined, the key will be omitted from the
-returned object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">data</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Any JavaScript data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>filter or mutation function</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    The results of the filtered data
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_customTransport" class="method item">
-    <h3 class="name"><code>customTransport</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>id</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l56"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:56</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Create a custom transport of type and return it's object</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">id</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The id of the transport to create.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_dateToString" class="method item deprecated">
-    <h3 class="name"><code>dateToString</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>d</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-        <span class="flag deprecated" title="Use a replacer function">deprecated</span>
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l266"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:266</code></a>
-        
-        </p>
-
-
-        
-            <p>Deprecated: Use a replacer function</p>
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Serializes a Date instance as a UTC date string.  Used internally by
-stringify.  Override this method if you need Dates serialized in a
-different format.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">d</code>
-                        <span class="type"><a href="../classes/Date.html" class="crosslink">Date</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The Date to serialize</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    stringified Date in UTC format YYYY-MM-DDTHH:mm:SSZ
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_defaultTransport" class="method item">
-    <h3 class="name"><code>defaultTransport</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[id]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l18"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:18</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[id]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The transport to set as the default, if empty a new transport is created.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
-                    
-                    The transport object with a <code>send</code> method
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_escapeException" class="method item private">
-    <h3 class="name"><code>escapeException</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>c</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l112"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:112</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replaces specific unicode characters with their appropriate \unnnn
-format. Some browsers ignore certain characters during eval.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">c</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Unicode character</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    the \unnnn escapement of the character
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_escapeException" class="method item private">
-    <h3 class="name"><code>escapeException</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>c</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18483"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18483</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replaces specific unicode characters with their appropriate \unnnn
-format. Some browsers ignore certain characters during eval.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">c</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Unicode character</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    the \unnnn escapement of the character
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_notify" class="method item">
-    <h3 class="name"><code>notify</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>event</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>transaction</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>config</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l71"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:71</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Fired from the notify method of the transport which in turn fires
-the event on the IO object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">event</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The name of the event</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">transaction</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The transaction object</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">config</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The configuration object for this transaction</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>s</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18530"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18530</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Parse a JSON string, returning the native JavaScript representation.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">s</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JSON string data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) function(k,v) passed each key value
-         pair of object literals, allowing pruning or altering values</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    the native JavaScript representation of the JSON string
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>s</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l159"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:159</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Parse a JSON string, returning the native JavaScript representation.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">s</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JSON string data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) function(k,v) passed each key value
-         pair of object literals, allowing pruning or altering values</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    the native JavaScript representation of the JSON string
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_stringify" class="method item">
-    <h3 class="name"><code>stringify</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>o</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>w</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>ind</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l290"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:290</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Converts an arbitrary value to a JSON string representation.</p>
-
-<p>Objects with cyclical references will trigger an exception.</p>
-
-<p>If a whitelist is provided, only matching object keys will be
-included.  Alternately, a replacer function may be passed as the
-second parameter.  This function is executed on every value in the
-input, and its return value will be used in place of the original value.
-This is useful to serialize specialized objects or class instances.</p>
-
-<p>If a positive integer or non-empty string is passed as the third
-parameter, the output will be formatted with carriage returns and
-indentation for readability.  If a String is passed (such as "\t") it
-will be used once for each indentation level.  If a number is passed,
-that number of spaces will be used.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">o</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>any arbitrary value to convert to JSON string</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">w</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) whitelist of acceptable object
-                 keys to include, or a replacer function to modify the
-                 raw value before serialization</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">ind</code>
-                        <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) indentation character or depth of
-                 spaces to format the output.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    JSON string representation of the input
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-            <div id="properties" class="aui-tabview-content-item api-class-tabpanel">
-                <h2 class="off-left">Properties</h2>
-
-                
-                    <div id="property__BRACKETS" class="property item private">
-    <h3 class="name"><code>_BRACKETS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18462"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18462</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Third step in the safety evaluation.  Regex used to remove all open
-square brackets following a colon, comma, or at the beginning of the
-string.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__BRACKETS" class="property item private">
-    <h3 class="name"><code>_BRACKETS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l91"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:91</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Third step in the safety evaluation.  Regex used to remove all open
-square brackets following a colon, comma, or at the beginning of the
-string.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__default" class="property item">
-    <h3 class="name"><code>_default</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l11"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:11</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>The ID of the default IO transport, defaults to <code>xhr</code></p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__ESCAPES" class="property item private">
-    <h3 class="name"><code>_ESCAPES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l71"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:71</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>First step in the safety evaluation.  Regex used to replace all escape
-sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__ESCAPES" class="property item private">
-    <h3 class="name"><code>_ESCAPES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18442"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18442</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>First step in the safety evaluation.  Regex used to replace all escape
-sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNICODE_EXCEPTIONS" class="property item private">
-    <h3 class="name"><code>_UNICODE_EXCEPTIONS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l57"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:57</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replace certain Unicode characters that JavaScript may handle incorrectly
-during eval--either by deleting them or treating them as line
-endings--with escape sequences.
-IMPORTANT NOTE: This regex will be used to modify the input if a match is
-found.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNICODE_EXCEPTIONS" class="property item private">
-    <h3 class="name"><code>_UNICODE_EXCEPTIONS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18428"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18428</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replace certain Unicode characters that JavaScript may handle incorrectly
-during eval--either by deleting them or treating them as line
-endings--with escape sequences.
-IMPORTANT NOTE: This regex will be used to modify the input if a match is
-found.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNSAFE" class="property item private">
-    <h3 class="name"><code>_UNSAFE</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18473"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18473</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Final step in the safety evaluation.  Regex used to test the string left
-after all previous replacements for invalid characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNSAFE" class="property item private">
-    <h3 class="name"><code>_UNSAFE</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l102"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:102</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Final step in the safety evaluation.  Regex used to test the string left
-after all previous replacements for invalid characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__VALUES" class="property item private">
-    <h3 class="name"><code>_VALUES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18452"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18452</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Second step in the safety evaluation.  Regex used to replace all simple
-values with ']' characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__VALUES" class="property item private">
-    <h3 class="name"><code>_VALUES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l81"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:81</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Second step in the safety evaluation.  Regex used to replace all simple
-values with ']' characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_charCacheThreshold" class="property item">
-    <h3 class="name"><code>charCacheThreshold</code></h3>
-    <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l322"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:322</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Number of occurrences of a special character within a single call to
-stringify that should trigger promotion of that character to a dedicated
-preprocess step for future calls.  This is only used in environments
-that don't support native JSON, or when useNativeStringify is set to
-false.</p>
-
-<p>So, if set to 50 and an object is passed to stringify that includes
-strings containing the special character \x07 more than 50 times,
-subsequent calls to stringify will process object strings through a
-faster serialization path for \x07 before using the generic, slower,
-replacement process for all special characters.</p>
-
-<p>To prime the preprocessor cache, set this value to 1, then call
-<code>Y.JSON.stringify("<em>(all special characters to
-cache)</em>");</code>, then return this setting to a more conservative
-value.</p>
-
-<p>Special characters \ " \b \t \n \f \r are already cached.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> 100</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_Native" class="property item private">
-    <h3 class="name"><code>Native</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18416"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18416</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Alias to native browser implementation of the JSON object if available.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_Native" class="property item private">
-    <h3 class="name"><code>Native</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l45"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:45</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Alias to native browser implementation of the JSON object if available.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_transports" class="property item">
-    <h3 class="name"><code>transports</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l38"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:38</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>An object hash of custom transports available to IO</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeParse" class="property item">
-    <h3 class="name"><code>useNativeParse</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18586"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18586</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON parse if the browser has a native implementation.
-In general, this is a good idea.  See the Known Issues section in the
-JSON user guide for caveats.  The default value is true for browsers with
-native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeParse" class="property item">
-    <h3 class="name"><code>useNativeParse</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l215"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:215</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON parse if the browser has a native implementation.
-In general, this is a good idea.  See the Known Issues section in the
-JSON user guide for caveats.  The default value is true for browsers with
-native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeStringify" class="property item">
-    <h3 class="name"><code>useNativeStringify</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l253"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:253</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON stringify if the browser has a native
-implementation.  In general, this is a good idea.  See the Known Issues
-section in the JSON user guide for caveats.  The default value is true
-for browsers with native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-
-        
-    </div>
+                    <h1 class="file-heading">File: lib&#x2F;yui3&#x2F;src&#x2F;get&#x2F;js&#x2F;get.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;*jslint boss:true, expr:true, laxbreak: true *&#x2F;
+
+&#x2F;**
+Provides dynamic loading of remote JavaScript and CSS resources.
+
+@module get
+@class Get
+@static
+**&#x2F;
+
+var Lang = Y.Lang,
+
+    CUSTOM_ATTRS, &#x2F;&#x2F; defined lazily in Y.Get.Transaction._createNode()
+
+    Get, Transaction;
+
+Y.Get = Get = {
+    &#x2F;&#x2F; -- Public Properties ----------------------------------------------------
+
+    &#x2F;**
+    Default options for CSS requests. Options specified here will override
+    global defaults for CSS requests.
+
+    See the &#x60;options&#x60; property for all available options.
+
+    @property cssOptions
+    @type Object
+    @static
+    @since 3.5.0
+    **&#x2F;
+    cssOptions: {
+        attributes: {
+            rel: &#x27;stylesheet&#x27;
+        },
+
+        doc         : Y.config.linkDoc || Y.config.doc,
+        pollInterval: 50
+    },
+
+    &#x2F;**
+    Default options for JS requests. Options specified here will override global
+    defaults for JS requests.
+
+    See the &#x60;options&#x60; property for all available options.
+
+    @property jsOptions
+    @type Object
+    @static
+    @since 3.5.0
+    **&#x2F;
+    jsOptions: {
+        autopurge: true,
+        doc      : Y.config.scriptDoc || Y.config.doc
+    },
+
+    &#x2F;**
+    Default options to use for all requests.
+
+    Note that while all available options are documented here for ease of
+    discovery, some options (like callback functions) only make sense at the
+    transaction level.
+
+    Callback functions specified via the options object or the &#x60;options&#x60;
+    parameter of the &#x60;css()&#x60;, &#x60;js()&#x60;, or &#x60;load()&#x60; methods will receive the
+    transaction object as a parameter. See &#x60;Y.Get.Transaction&#x60; for details on
+    the properties and methods available on transactions.
+
+    @static
+    @since 3.5.0
+    @property {Object} options
+
+    @property {Boolean} [options.async=false] Whether or not to load scripts
+        asynchronously, meaning they&#x27;re requested in parallel and execution
+        order is not guaranteed. Has no effect on CSS, since CSS is always
+        loaded asynchronously.
+
+    @property {Object} [options.attributes] HTML attribute name&#x2F;value pairs that
+        should be added to inserted nodes. By default, the &#x60;charset&#x60; attribute
+        will be set to &quot;utf-8&quot; and nodes will be given an auto-generated &#x60;id&#x60;
+        attribute, but you can override these with your own values if desired.
+
+    @property {Boolean} [options.autopurge] Whether or not to automatically
+        purge inserted nodes after the purge threshold is reached. This is
+        &#x60;true&#x60; by default for JavaScript, but &#x60;false&#x60; for CSS since purging a
+        CSS node will also remove any styling applied by the referenced file.
+
+    @property {Object} [options.context] &#x60;this&#x60; object to use when calling
+        callback functions. Defaults to the transaction object.
+
+    @property {Mixed} [options.data] Arbitrary data object to pass to &quot;on*&quot;
+        callbacks.
+
+    @property {Document} [options.doc] Document into which nodes should be
+        inserted. By default, the current document is used.
+
+    @property {HTMLElement|String} [options.insertBefore] HTML element or id
+        string of an element before which all generated nodes should be
+        inserted. If not specified, Get will automatically determine the best
+        place to insert nodes for maximum compatibility.
+
+    @property {Function} [options.onEnd] Callback to execute after a transaction
+        is complete, regardless of whether it succeeded or failed.
+
+    @property {Function} [options.onFailure] Callback to execute after a
+        transaction fails, times out, or is aborted.
+
+    @property {Function} [options.onProgress] Callback to execute after each
+        individual request in a transaction either succeeds or fails.
+
+    @property {Function} [options.onSuccess] Callback to execute after a
+        transaction completes successfully with no errors. Note that in browsers
+        that don&#x27;t support the &#x60;error&#x60; event on CSS &#x60;&lt;link&gt;&#x60; nodes, a failed CSS
+        request may still be reported as a success because in these browsers
+        it can be difficult or impossible to distinguish between success and
+        failure for CSS resources.
+
+    @property {Function} [options.onTimeout] Callback to execute after a
+        transaction times out.
+
+    @property {Number} [options.pollInterval=50] Polling interval (in
+        milliseconds) for detecting CSS load completion in browsers that don&#x27;t
+        support the &#x60;load&#x60; event on &#x60;&lt;link&gt;&#x60; nodes. This isn&#x27;t used for
+        JavaScript.
+
+    @property {Number} [options.purgethreshold=20] Number of nodes to insert
+        before triggering an automatic purge when &#x60;autopurge&#x60; is &#x60;true&#x60;.
+
+    @property {Number} [options.timeout] Number of milliseconds to wait before
+        aborting a transaction. When a timeout occurs, the &#x60;onTimeout&#x60; callback
+        is called, followed by &#x60;onFailure&#x60; and finally &#x60;onEnd&#x60;. By default,
+        there is no timeout.
+
+    @property {String} [options.type] Resource type (&quot;css&quot; or &quot;js&quot;). This option
+        is set automatically by the &#x60;css()&#x60; and &#x60;js()&#x60; functions and will be
+        ignored there, but may be useful when using the &#x60;load()&#x60; function. If
+        not specified, the type will be inferred from the URL, defaulting to
+        &quot;js&quot; if the URL doesn&#x27;t contain a recognizable file extension.
+    **&#x2F;
+    options: {
+        attributes: {
+            charset: &#x27;utf-8&#x27;
+        },
+
+        purgethreshold: 20
+    },
+
+    &#x2F;&#x2F; -- Protected Properties -------------------------------------------------
+
+    &#x2F;**
+    Regex that matches a CSS URL. Used to guess the file type when it&#x27;s not
+    specified.
+
+    @property REGEX_CSS
+    @type RegExp
+    @final
+    @protected
+    @static
+    @since 3.5.0
+    **&#x2F;
+    REGEX_CSS: &#x2F;\.css(?:[?;].*)?$&#x2F;i,
+
+    &#x2F;**
+    Regex that matches a JS URL. Used to guess the file type when it&#x27;s not
+    specified.
+
+    @property REGEX_JS
+    @type RegExp
+    @final
+    @protected
+    @static
+    @since 3.5.0
+    **&#x2F;
+    REGEX_JS : &#x2F;\.js(?:[?;].*)?$&#x2F;i,
+
+    &#x2F;**
+    Contains information about the current environment, such as what script and
+    link injection features it supports.
+
+    This object is created and populated the first time the &#x60;_getEnv()&#x60; method
+    is called.
+
+    @property _env
+    @type Object
+    @protected
+    @static
+    @since 3.5.0
+    **&#x2F;
+
+    &#x2F;**
+    Mapping of document _yuid strings to &lt;head&gt; or &lt;base&gt; node references so we
+    don&#x27;t have to look the node up each time we want to insert a request node.
+
+    @property _insertCache
+    @type Object
+    @protected
+    @static
+    @since 3.5.0
+    **&#x2F;
+    _insertCache: {},
+
+    &#x2F;**
+    Information about the currently pending transaction, if any.
+
+    This is actually an object with two properties: &#x60;callback&#x60;, containing the
+    optional callback passed to &#x60;css()&#x60;, &#x60;load()&#x60;, or &#x60;js()&#x60;; and &#x60;transaction&#x60;,
+    containing the actual transaction instance.
+
+    @property _pending
+    @type Object
+    @protected
+    @static
+    @since 3.5.0
+    **&#x2F;
+    _pending: null,
+
+    &#x2F;**
+    HTML nodes eligible to be purged next time autopurge is triggered.
+
+    @property _purgeNodes
+    @type HTMLElement[]
+    @protected
+    @static
+    @since 3.5.0
+    **&#x2F;
+    _purgeNodes: [],
+
+    &#x2F;**
+    Queued transactions and associated callbacks.
+
+    @property _queue
+    @type Object[]
+    @protected
+    @static
+    @since 3.5.0
+    **&#x2F;
+    _queue: [],
+
+    &#x2F;&#x2F; -- Public Methods -------------------------------------------------------
+
+    &#x2F;**
+    Aborts the specified transaction.
+
+    This will cause the transaction&#x27;s &#x60;onFailure&#x60; callback to be called and
+    will prevent any new script and link nodes from being added to the document,
+    but any resources that have already been requested will continue loading
+    (there&#x27;s no safe way to prevent this, unfortunately).
+
+    *Note:* This method is deprecated as of 3.5.0, and will be removed in a
+    future version of YUI. Use the transaction-level &#x60;abort()&#x60; method instead.
+
+    @method abort
+    @param {Get.Transaction} transaction Transaction to abort.
+    @deprecated Use the &#x60;abort()&#x60; method on the transaction instead.
+    @static
+    **&#x2F;
+    abort: function (transaction) {
+        var i, id, item, len, pending;
+
+        Y.log(&#x27;&#x60;Y.Get.abort()&#x60; is deprecated as of 3.5.0. Use the &#x60;abort()&#x60; method on the transaction instead.&#x27;, &#x27;warn&#x27;, &#x27;get&#x27;);
+
+        if (!transaction.abort) {
+            id          = transaction;
+            pending     = this._pending;
+            transaction = null;
+
+            if (pending &amp;&amp; pending.transaction.id === id) {
+                transaction   = pending.transaction;
+                this._pending = null;
+            } else {
+                for (i = 0, len = this._queue.length; i &lt; len; ++i) {
+                    item = this._queue[i].transaction;
+
+                    if (item.id === id) {
+                        transaction = item;
+                        this._queue.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+        }
+
+        transaction &amp;&amp; transaction.abort();
+    },
+
+    &#x2F;**
+    Loads one or more CSS files.
+
+    The _urls_ parameter may be provided as a URL string, a request object,
+    or an array of URL strings and&#x2F;or request objects.
+
+    A request object is just an object that contains a &#x60;url&#x60; property and zero
+    or more options that should apply specifically to that request.
+    Request-specific options take priority over transaction-level options and
+    default options.
+
+    URLs may be relative or absolute, and do not have to have the same origin
+    as the current page.
+
+    The &#x60;options&#x60; parameter may be omitted completely and a callback passed in
+    its place, if desired.
+
+    @example
+
+        &#x2F;&#x2F; Load a single CSS file and log a message on completion.
+        Y.Get.css(&#x27;foo.css&#x27;, function (err) {
+            if (err) {
+                Y.log(&#x27;foo.css failed to load!&#x27;);
+            } else {
+                Y.log(&#x27;foo.css was loaded successfully&#x27;);
+            }
+        });
+
+        &#x2F;&#x2F; Load multiple CSS files and log a message when all have finished
+        &#x2F;&#x2F; loading.
+        var urls = [&#x27;foo.css&#x27;, &#x27;http:&#x2F;&#x2F;example.com&#x2F;bar.css&#x27;, &#x27;baz&#x2F;quux.css&#x27;];
+
+        Y.Get.css(urls, function (err) {
+            if (err) {
+                Y.log(&#x27;one or more files failed to load!&#x27;);
+            } else {
+                Y.log(&#x27;all files loaded successfully&#x27;);
+            }
+        });
+
+        &#x2F;&#x2F; Specify transaction-level options, which will apply to all requests
+        &#x2F;&#x2F; within the transaction.
+        Y.Get.css(urls, {
+            attributes: {&#x27;class&#x27;: &#x27;my-css&#x27;},
+            timeout   : 5000
+        });
+
+        &#x2F;&#x2F; Specify per-request options, which override transaction-level and
+        &#x2F;&#x2F; default options.
+        Y.Get.css([
+            {url: &#x27;foo.css&#x27;, attributes: {id: &#x27;foo&#x27;}},
+            {url: &#x27;bar.css&#x27;, attributes: {id: &#x27;bar&#x27;, charset: &#x27;iso-8859-1&#x27;}}
+        ]);
+
+    @method css
+    @param {String|Object|Array} urls URL string, request object, or array
+        of URLs and&#x2F;or request objects to load.
+    @param {Object} [options] Options for this transaction. See the
+        &#x60;Y.Get.options&#x60; property for a complete list of available options.
+    @param {Function} [callback] Callback function to be called on completion.
+        This is a general callback and will be called before any more granular
+        callbacks (&#x60;onSuccess&#x60;, &#x60;onFailure&#x60;, etc.) specified in the &#x60;options&#x60;
+        object.
+
+        @param {Array|null} callback.err Array of errors that occurred during
+            the transaction, or &#x60;null&#x60; on success.
+        @param {Get.Transaction} callback.transaction Transaction object.
+
+    @return {Get.Transaction} Transaction object.
+    @static
+    **&#x2F;
+    css: function (urls, options, callback) {
+        return this._load(&#x27;css&#x27;, urls, options, callback);
+    },
+
+    &#x2F;**
+    Loads one or more JavaScript resources.
+
+    The _urls_ parameter may be provided as a URL string, a request object,
+    or an array of URL strings and&#x2F;or request objects.
+
+    A request object is just an object that contains a &#x60;url&#x60; property and zero
+    or more options that should apply specifically to that request.
+    Request-specific options take priority over transaction-level options and
+    default options.
+
+    URLs may be relative or absolute, and do not have to have the same origin
+    as the current page.
+
+    The &#x60;options&#x60; parameter may be omitted completely and a callback passed in
+    its place, if desired.
+
+    Scripts will be executed in the order they&#x27;re specified unless the &#x60;async&#x60;
+    option is &#x60;true&#x60;, in which case they&#x27;ll be loaded in parallel and executed
+    in whatever order they finish loading.
+
+    @example
+
+        &#x2F;&#x2F; Load a single JS file and log a message on completion.
+        Y.Get.js(&#x27;foo.js&#x27;, function (err) {
+            if (err) {
+                Y.log(&#x27;foo.js failed to load!&#x27;);
+            } else {
+                Y.log(&#x27;foo.js was loaded successfully&#x27;);
+            }
+        });
+
+        &#x2F;&#x2F; Load multiple JS files, execute them in order, and log a message when
+        &#x2F;&#x2F; all have finished loading.
+        var urls = [&#x27;foo.js&#x27;, &#x27;http:&#x2F;&#x2F;example.com&#x2F;bar.js&#x27;, &#x27;baz&#x2F;quux.js&#x27;];
+
+        Y.Get.js(urls, function (err) {
+            if (err) {
+                Y.log(&#x27;one or more files failed to load!&#x27;);
+            } else {
+                Y.log(&#x27;all files loaded successfully&#x27;);
+            }
+        });
+
+        &#x2F;&#x2F; Specify transaction-level options, which will apply to all requests
+        &#x2F;&#x2F; within the transaction.
+        Y.Get.js(urls, {
+            attributes: {&#x27;class&#x27;: &#x27;my-js&#x27;},
+            timeout   : 5000
+        });
+
+        &#x2F;&#x2F; Specify per-request options, which override transaction-level and
+        &#x2F;&#x2F; default options.
+        Y.Get.js([
+            {url: &#x27;foo.js&#x27;, attributes: {id: &#x27;foo&#x27;}},
+            {url: &#x27;bar.js&#x27;, attributes: {id: &#x27;bar&#x27;, charset: &#x27;iso-8859-1&#x27;}}
+        ]);
+
+    @method js
+    @param {String|Object|Array} urls URL string, request object, or array
+        of URLs and&#x2F;or request objects to load.
+    @param {Object} [options] Options for this transaction. See the
+        &#x60;Y.Get.options&#x60; property for a complete list of available options.
+    @param {Function} [callback] Callback function to be called on completion.
+        This is a general callback and will be called before any more granular
+        callbacks (&#x60;onSuccess&#x60;, &#x60;onFailure&#x60;, etc.) specified in the &#x60;options&#x60;
+        object.
+
+        @param {Array|null} callback.err Array of errors that occurred during
+            the transaction, or &#x60;null&#x60; on success.
+        @param {Get.Transaction} callback.transaction Transaction object.
+
+    @return {Get.Transaction} Transaction object.
+    @since 3.5.0
+    @static
+    **&#x2F;
+    js: function (urls, options, callback) {
+        return this._load(&#x27;js&#x27;, urls, options, callback);
+    },
+
+    &#x2F;**
+    Loads one or more CSS and&#x2F;or JavaScript resources in the same transaction.
+
+    Use this method when you want to load both CSS and JavaScript in a single
+    transaction and be notified when all requested URLs have finished loading,
+    regardless of type.
+
+    Behavior and options are the same as for the &#x60;css()&#x60; and &#x60;js()&#x60; methods. If
+    a resource type isn&#x27;t specified in per-request options or transaction-level
+    options, Get will guess the file type based on the URL&#x27;s extension (&#x60;.css&#x60;
+    or &#x60;.js&#x60;, with or without a following query string). If the file type can&#x27;t
+    be guessed from the URL, a warning will be logged and Get will assume the
+    URL is a JavaScript resource.
+
+    @example
+
+        &#x2F;&#x2F; Load both CSS and JS files in a single transaction, and log a message
+        &#x2F;&#x2F; when all files have finished loading.
+        Y.Get.load([&#x27;foo.css&#x27;, &#x27;bar.js&#x27;, &#x27;baz.css&#x27;], function (err) {
+            if (err) {
+                Y.log(&#x27;one or more files failed to load!&#x27;);
+            } else {
+                Y.log(&#x27;all files loaded successfully&#x27;);
+            }
+        });
+
+    @method load
+    @param {String|Object|Array} urls URL string, request object, or array
+        of URLs and&#x2F;or request objects to load.
+    @param {Object} [options] Options for this transaction. See the
+        &#x60;Y.Get.options&#x60; property for a complete list of available options.
+    @param {Function} [callback] Callback function to be called on completion.
+        This is a general callback and will be called before any more granular
+        callbacks (&#x60;onSuccess&#x60;, &#x60;onFailure&#x60;, etc.) specified in the &#x60;options&#x60;
+        object.
+
+        @param {Array|null} err Array of errors that occurred during the
+            transaction, or &#x60;null&#x60; on success.
+        @param {Get.Transaction} Transaction object.
+
+    @return {Get.Transaction} Transaction object.
+    @since 3.5.0
+    @static
+    **&#x2F;
+    load: function (urls, options, callback) {
+        return this._load(null, urls, options, callback);
+    },
+
+    &#x2F;&#x2F; -- Protected Methods ----------------------------------------------------
+
+    &#x2F;**
+    Triggers an automatic purge if the purge threshold has been reached.
+
+    @method _autoPurge
+    @param {Number} threshold Purge threshold to use, in milliseconds.
+    @protected
+    @since 3.5.0
+    @static
+    **&#x2F;
+    _autoPurge: function (threshold) {
+        if (threshold &amp;&amp; this._purgeNodes.length &gt;= threshold) {
+            Y.log(&#x27;autopurge triggered after &#x27; + this._purgeNodes.length + &#x27; nodes&#x27;, &#x27;info&#x27;, &#x27;get&#x27;);
+            this._purge(this._purgeNodes);
+        }
+    },
+
+    &#x2F;**
+    Populates the &#x60;_env&#x60; property with information about the current
+    environment.
+
+    @method _getEnv
+    @return {Object} Environment information.
+    @protected
+    @since 3.5.0
+    @static
+    **&#x2F;
+    _getEnv: function () {
+        var doc = Y.config.doc,
+            ua  = Y.UA;
+
+        &#x2F;&#x2F; Note: some of these checks require browser sniffs since it&#x27;s not
+        &#x2F;&#x2F; feasible to load test files on every pageview just to perform a
+        &#x2F;&#x2F; feature test. I&#x27;m sorry if this makes you sad.
+        return (this._env = {
+
+            &#x2F;&#x2F; True if this is a browser that supports disabling async mode on
+            &#x2F;&#x2F; dynamically created script nodes. See
+            &#x2F;&#x2F; https:&#x2F;&#x2F;developer.mozilla.org&#x2F;En&#x2F;HTML&#x2F;Element&#x2F;Script#Attributes
+
+            &#x2F;&#x2F; IE10 doesn&#x27;t return true for the MDN feature test, so setting it explicitly,
+            &#x2F;&#x2F; because it is async by default, and allows you to disable async by setting it to false
+            async: (doc &amp;&amp; doc.createElement(&#x27;script&#x27;).async === true) || (ua.ie &gt;= 10),
+
+            &#x2F;&#x2F; True if this browser fires an event when a dynamically injected
+            &#x2F;&#x2F; link node fails to load. This is currently true for Firefox 9+
+            &#x2F;&#x2F; and WebKit 535.24+
+            cssFail: ua.gecko &gt;= 9 || ua.compareVersions(ua.webkit, 535.24) &gt;= 0,
+
+            &#x2F;&#x2F; True if this browser fires an event when a dynamically injected
+            &#x2F;&#x2F; link node finishes loading. This is currently true for IE, Opera,
+            &#x2F;&#x2F; Firefox 9+, and WebKit 535.24+. Note that IE versions &lt;9 fire the
+            &#x2F;&#x2F; DOM 0 &quot;onload&quot; event, but not &quot;load&quot;. All versions of IE fire
+            &#x2F;&#x2F; &quot;onload&quot;.
+            &#x2F;&#x2F; davglass: Seems that Chrome on Android needs this to be false.
+            cssLoad: (
+                    (!ua.gecko &amp;&amp; !ua.webkit) || ua.gecko &gt;= 9 ||
+                    ua.compareVersions(ua.webkit, 535.24) &gt;= 0
+                ) &amp;&amp; !(ua.chrome &amp;&amp; ua.chrome &lt;= 18),
+
+            &#x2F;&#x2F; True if this browser preserves script execution order while
+            &#x2F;&#x2F; loading scripts in parallel as long as the script node&#x27;s &#x60;async&#x60;
+            &#x2F;&#x2F; attribute is set to false to explicitly disable async execution.
+            preservesScriptOrder: !!(ua.gecko || ua.opera || (ua.ie &amp;&amp; ua.ie &gt;= 10))
+        });
+    },
+
+    _getTransaction: function (urls, options) {
+        var requests = [],
+            i, len, req, url;
+
+        if (!Lang.isArray(urls)) {
+            urls = [urls];
+        }
+
+        options = Y.merge(this.options, options);
+
+        &#x2F;&#x2F; Clone the attributes object so we don&#x27;t end up modifying it by ref.
+        options.attributes = Y.merge(this.options.attributes,
+                options.attributes);
+
+        for (i = 0, len = urls.length; i &lt; len; ++i) {
+            url = urls[i];
+            req = {attributes: {}};
+
+            &#x2F;&#x2F; If &#x60;url&#x60; is a string, we create a URL object for it, then mix in
+            &#x2F;&#x2F; global options and request-specific options. If it&#x27;s an object
+            &#x2F;&#x2F; with a &quot;url&quot; property, we assume it&#x27;s a request object containing
+            &#x2F;&#x2F; URL-specific options.
+            if (typeof url === &#x27;string&#x27;) {
+                req.url = url;
+            } else if (url.url) {
+                &#x2F;&#x2F; URL-specific options override both global defaults and
+                &#x2F;&#x2F; request-specific options.
+                Y.mix(req, url, false, null, 0, true);
+                url = url.url; &#x2F;&#x2F; Make url a string so we can use it later.
+            } else {
+                Y.log(&#x27;URL must be a string or an object with a &#x60;url&#x60; property.&#x27;, &#x27;error&#x27;, &#x27;get&#x27;);
+                continue;
+            }
+
+            Y.mix(req, options, false, null, 0, true);
+
+            &#x2F;&#x2F; If we didn&#x27;t get an explicit type for this URL either in the
+            &#x2F;&#x2F; request options or the URL-specific options, try to determine
+            &#x2F;&#x2F; one from the file extension.
+            if (!req.type) {
+                if (this.REGEX_CSS.test(url)) {
+                    req.type = &#x27;css&#x27;;
+                } else {
+                    if (!this.REGEX_JS.test(url)) {
+                        Y.log(&quot;Can&#x27;t guess file type from URL. Assuming JS: &quot; + url, &#x27;warn&#x27;, &#x27;get&#x27;);
+                    }
+
+                    req.type = &#x27;js&#x27;;
+                }
+            }
+
+            &#x2F;&#x2F; Mix in type-specific default options, but don&#x27;t overwrite any
+            &#x2F;&#x2F; options that have already been set.
+            Y.mix(req, req.type === &#x27;js&#x27; ? this.jsOptions : this.cssOptions,
+                false, null, 0, true);
+
+            &#x2F;&#x2F; Give the node an id attribute if it doesn&#x27;t already have one.
+            req.attributes.id || (req.attributes.id = Y.guid());
+
+            &#x2F;&#x2F; Backcompat for &lt;3.5.0 behavior.
+            if (req.win) {
+                Y.log(&#x27;The &#x60;win&#x60; option is deprecated as of 3.5.0. Use &#x60;doc&#x60; instead.&#x27;, &#x27;warn&#x27;, &#x27;get&#x27;);
+                req.doc = req.win.document;
+            } else {
+                req.win = req.doc.defaultView || req.doc.parentWindow;
+            }
+
+            if (req.charset) {
+                Y.log(&#x27;The &#x60;charset&#x60; option is deprecated as of 3.5.0. Set &#x60;attributes.charset&#x60; instead.&#x27;, &#x27;warn&#x27;, &#x27;get&#x27;);
+                req.attributes.charset = req.charset;
+            }
+
+            requests.push(req);
+        }
+
+        return new Transaction(requests, options);
+    },
+
+    _load: function (type, urls, options, callback) {
+        var transaction;
+
+        &#x2F;&#x2F; Allow callback as third param.
+        if (typeof options === &#x27;function&#x27;) {
+            callback = options;
+            options  = {};
+        }
+
+        options || (options = {});
+        options.type = type;
+
+        options._onFinish = Get._onTransactionFinish;
+
+        if (!this._env) {
+            this._getEnv();
+        }
+
+        transaction = this._getTransaction(urls, options);
+
+        this._queue.push({
+            callback   : callback,
+            transaction: transaction
+        });
+
+        this._next();
+
+        return transaction;
+    },
+
+    _onTransactionFinish : function() {
+        Get._pending = null;
+        Get._next();
+    },
+
+    _next: function () {
+        var item;
+
+        if (this._pending) {
+            return;
+        }
+
+        item = this._queue.shift();
+
+        if (item) {
+            this._pending = item;
+            item.transaction.execute(item.callback);
+        }
+    },
+
+    _purge: function (nodes) {
+        var purgeNodes    = this._purgeNodes,
+            isTransaction = nodes !== purgeNodes,
+            index, node;
+
+        while (node = nodes.pop()) { &#x2F;&#x2F; assignment
+            &#x2F;&#x2F; Don&#x27;t purge nodes that haven&#x27;t finished loading (or errored out),
+            &#x2F;&#x2F; since this can hang the transaction.
+            if (!node._yuiget_finished) {
+                continue;
+            }
+
+            node.parentNode &amp;&amp; node.parentNode.removeChild(node);
+
+            &#x2F;&#x2F; If this is a transaction-level purge and this node also exists in
+            &#x2F;&#x2F; the Get-level _purgeNodes array, we need to remove it from
+            &#x2F;&#x2F; _purgeNodes to avoid creating a memory leak. The indexOf lookup
+            &#x2F;&#x2F; sucks, but until we get WeakMaps, this is the least troublesome
+            &#x2F;&#x2F; way to do this (we can&#x27;t just hold onto node ids because they may
+            &#x2F;&#x2F; not be in the same document).
+            if (isTransaction) {
+                index = Y.Array.indexOf(purgeNodes, node);
+
+                if (index &gt; -1) {
+                    purgeNodes.splice(index, 1);
+                }
+            }
+        }
+    }
+};
+
+&#x2F;**
+Alias for &#x60;js()&#x60;.
+
+@method script
+@static
+**&#x2F;
+Get.script = Get.js;
+
+&#x2F;**
+Represents a Get transaction, which may contain requests for one or more JS or
+CSS files.
+
+This class should not be instantiated manually. Instances will be created and
+returned as needed by Y.Get&#x27;s &#x60;css()&#x60;, &#x60;js()&#x60;, and &#x60;load()&#x60; methods.
+
+@class Get.Transaction
+@constructor
+@since 3.5.0
+**&#x2F;
+Get.Transaction = Transaction = function (requests, options) {
+    var self = this;
+
+    self.id       = Transaction._lastId += 1;
+    self.data     = options.data;
+    self.errors   = [];
+    self.nodes    = [];
+    self.options  = options;
+    self.requests = requests;
+
+    self._callbacks = []; &#x2F;&#x2F; callbacks to call after execution finishes
+    self._queue     = [];
+    self._reqsWaiting   = 0;
+
+    &#x2F;&#x2F; Deprecated pre-3.5.0 properties.
+    self.tId = self.id; &#x2F;&#x2F; Use &#x60;id&#x60; instead.
+    self.win = options.win || Y.config.win;
+};
+
+&#x2F;**
+Arbitrary data object associated with this transaction.
+
+This object comes from the options passed to &#x60;Get.css()&#x60;, &#x60;Get.js()&#x60;, or
+&#x60;Get.load()&#x60;, and will be &#x60;undefined&#x60; if no data object was specified.
+
+@property {Object} data
+**&#x2F;
+
+&#x2F;**
+Array of errors that have occurred during this transaction, if any.
+
+@since 3.5.0
+@property {Object[]} errors
+@property {String} errors.error Error message.
+@property {Object} errors.request Request object related to the error.
+**&#x2F;
+
+&#x2F;**
+Numeric id for this transaction, unique among all transactions within the same
+YUI sandbox in the current pageview.
+
+@property {Number} id
+@since 3.5.0
+**&#x2F;
+
+&#x2F;**
+HTMLElement nodes (native ones, not YUI Node instances) that have been inserted
+during the current transaction.
+
+@property {HTMLElement[]} nodes
+**&#x2F;
+
+&#x2F;**
+Options associated with this transaction.
+
+See &#x60;Get.options&#x60; for the full list of available options.
+
+@property {Object} options
+@since 3.5.0
+**&#x2F;
+
+&#x2F;**
+Request objects contained in this transaction. Each request object represents
+one CSS or JS URL that will be (or has been) requested and loaded into the page.
+
+@property {Object} requests
+@since 3.5.0
+**&#x2F;
+
+&#x2F;**
+Id of the most recent transaction.
+
+@property _lastId
+@type Number
+@protected
+@static
+**&#x2F;
+Transaction._lastId = 0;
+
+Transaction.prototype = {
+    &#x2F;&#x2F; -- Public Properties ----------------------------------------------------
+
+    &#x2F;**
+    Current state of this transaction. One of &quot;new&quot;, &quot;executing&quot;, or &quot;done&quot;.
+
+    @property _state
+    @type String
+    @protected
+    **&#x2F;
+    _state: &#x27;new&#x27;, &#x2F;&#x2F; &quot;new&quot;, &quot;executing&quot;, or &quot;done&quot;
+
+    &#x2F;&#x2F; -- Public Methods -------------------------------------------------------
+
+    &#x2F;**
+    Aborts this transaction.
+
+    This will cause the transaction&#x27;s &#x60;onFailure&#x60; callback to be called and
+    will prevent any new script and link nodes from being added to the document,
+    but any resources that have already been requested will continue loading
+    (there&#x27;s no safe way to prevent this, unfortunately).
+
+    @method abort
+    @param {String} [msg=&quot;Aborted.&quot;] Optional message to use in the &#x60;errors&#x60;
+        array describing why the transaction was aborted.
+    **&#x2F;
+    abort: function (msg) {
+        this._pending    = null;
+        this._pendingCSS = null;
+        this._pollTimer  = clearTimeout(this._pollTimer);
+        this._queue      = [];
+        this._reqsWaiting    = 0;
+
+        this.errors.push({error: msg || &#x27;Aborted&#x27;});
+        this._finish();
+    },
+
+    &#x2F;**
+    Begins execting the transaction.
+
+    There&#x27;s usually no reason to call this manually, since Get will call it
+    automatically when other pending transactions have finished. If you really
+    want to execute your transaction before Get does, you can, but be aware that
+    this transaction&#x27;s scripts may end up executing before the scripts in other
+    pending transactions.
+
+    If the transaction is already executing, the specified callback (if any)
+    will be queued and called after execution finishes. If the transaction has
+    already finished, the callback will be called immediately (the transaction
+    will not be executed again).
+
+    @method execute
+    @param {Function} callback Callback function to execute after all requests
+        in the transaction are complete, or after the transaction is aborted.
+    **&#x2F;
+    execute: function (callback) {
+        var self     = this,
+            requests = self.requests,
+            state    = self._state,
+            i, len, queue, req;
+
+        if (state === &#x27;done&#x27;) {
+            callback &amp;&amp; callback(self.errors.length ? self.errors : null, self);
+            return;
+        } else {
+            callback &amp;&amp; self._callbacks.push(callback);
+
+            if (state === &#x27;executing&#x27;) {
+                return;
+            }
+        }
+
+        self._state = &#x27;executing&#x27;;
+        self._queue = queue = [];
+
+        if (self.options.timeout) {
+            self._timeout = setTimeout(function () {
+                self.abort(&#x27;Timeout&#x27;);
+            }, self.options.timeout);
+        }
+
+        self._reqsWaiting = requests.length;
+
+        for (i = 0, len = requests.length; i &lt; len; ++i) {
+            req = requests[i];
+
+            if (req.async || req.type === &#x27;css&#x27;) {
+                &#x2F;&#x2F; No need to queue CSS or fully async JS.
+                self._insert(req);
+            } else {
+                queue.push(req);
+            }
+        }
+
+        self._next();
+    },
+
+    &#x2F;**
+    Manually purges any &#x60;&lt;script&gt;&#x60; or &#x60;&lt;link&gt;&#x60; nodes this transaction has
+    created.
+
+    Be careful when purging a transaction that contains CSS requests, since
+    removing &#x60;&lt;link&gt;&#x60; nodes will also remove any styles they applied.
+
+    @method purge
+    **&#x2F;
+    purge: function () {
+        Get._purge(this.nodes);
+    },
+
+    &#x2F;&#x2F; -- Protected Methods ----------------------------------------------------
+    _createNode: function (name, attrs, doc) {
+        var node = doc.createElement(name),
+            attr, testEl;
+
+        if (!CUSTOM_ATTRS) {
+            &#x2F;&#x2F; IE6 and IE7 expect property names rather than attribute names for
+            &#x2F;&#x2F; certain attributes. Rather than sniffing, we do a quick feature
+            &#x2F;&#x2F; test the first time _createNode() runs to determine whether we
+            &#x2F;&#x2F; need to provide a workaround.
+            testEl = doc.createElement(&#x27;div&#x27;);
+            testEl.setAttribute(&#x27;class&#x27;, &#x27;a&#x27;);
+
+            CUSTOM_ATTRS = testEl.className === &#x27;a&#x27; ? {} : {
+                &#x27;for&#x27;  : &#x27;htmlFor&#x27;,
+                &#x27;class&#x27;: &#x27;className&#x27;
+            };
+        }
+
+        for (attr in attrs) {
+            if (attrs.hasOwnProperty(attr)) {
+                node.setAttribute(CUSTOM_ATTRS[attr] || attr, attrs[attr]);
+            }
+        }
+
+        return node;
+    },
+
+    _finish: function () {
+        var errors  = this.errors.length ? this.errors : null,
+            options = this.options,
+            thisObj = options.context || this,
+            data, i, len;
+
+        if (this._state === &#x27;done&#x27;) {
+            return;
+        }
+
+        this._state = &#x27;done&#x27;;
+
+        for (i = 0, len = this._callbacks.length; i &lt; len; ++i) {
+            this._callbacks[i].call(thisObj, errors, this);
+        }
+
+        data = this._getEventData();
+
+        if (errors) {
+            if (options.onTimeout &amp;&amp; errors[errors.length - 1].error === &#x27;Timeout&#x27;) {
+                options.onTimeout.call(thisObj, data);
+            }
+
+            if (options.onFailure) {
+                options.onFailure.call(thisObj, data);
+            }
+        } else if (options.onSuccess) {
+            options.onSuccess.call(thisObj, data);
+        }
+
+        if (options.onEnd) {
+            options.onEnd.call(thisObj, data);
+        }
+
+        if (options._onFinish) {
+            options._onFinish();
+        }
+    },
+
+    _getEventData: function (req) {
+        if (req) {
+            &#x2F;&#x2F; This merge is necessary for backcompat. I hate it.
+            return Y.merge(this, {
+                abort  : this.abort, &#x2F;&#x2F; have to copy these because the prototype isn&#x27;t preserved
+                purge  : this.purge,
+                request: req,
+                url    : req.url,
+                win    : req.win
+            });
+        } else {
+            return this;
+        }
+    },
+
+    _getInsertBefore: function (req) {
+        var doc = req.doc,
+            el  = req.insertBefore,
+            cache, cachedNode, docStamp;
+
+        if (el) {
+            return typeof el === &#x27;string&#x27; ? doc.getElementById(el) : el;
+        }
+
+        cache    = Get._insertCache;
+        docStamp = Y.stamp(doc);
+
+        if ((el = cache[docStamp])) { &#x2F;&#x2F; assignment
+            return el;
+        }
+
+        &#x2F;&#x2F; Inserting before a &lt;base&gt; tag apparently works around an IE bug
+        &#x2F;&#x2F; (according to a comment from pre-3.5.0 Y.Get), but I&#x27;m not sure what
+        &#x2F;&#x2F; bug that is, exactly. Better safe than sorry?
+        if ((el = doc.getElementsByTagName(&#x27;base&#x27;)[0])) { &#x2F;&#x2F; assignment
+            return (cache[docStamp] = el);
+        }
+
+        &#x2F;&#x2F; Look for a &lt;head&gt; element.
+        el = doc.head || doc.getElementsByTagName(&#x27;head&#x27;)[0];
+
+        if (el) {
+            &#x2F;&#x2F; Create a marker node at the end of &lt;head&gt; to use as an insertion
+            &#x2F;&#x2F; point. Inserting before this node will ensure that all our CSS
+            &#x2F;&#x2F; gets inserted in the correct order, to maintain style precedence.
+            el.appendChild(doc.createTextNode(&#x27;&#x27;));
+            return (cache[docStamp] = el.lastChild);
+        }
+
+        &#x2F;&#x2F; If all else fails, just insert before the first script node on the
+        &#x2F;&#x2F; page, which is virtually guaranteed to exist.
+        return (cache[docStamp] = doc.getElementsByTagName(&#x27;script&#x27;)[0]);
+    },
+
+    _insert: function (req) {
+        var env          = Get._env,
+            insertBefore = this._getInsertBefore(req),
+            isScript     = req.type === &#x27;js&#x27;,
+            node         = req.node,
+            self         = this,
+            ua           = Y.UA,
+            cssTimeout, nodeType;
+
+        if (!node) {
+            if (isScript) {
+                nodeType = &#x27;script&#x27;;
+            } else if (!env.cssLoad &amp;&amp; ua.gecko) {
+                nodeType = &#x27;style&#x27;;
+            } else {
+                nodeType = &#x27;link&#x27;;
+            }
+
+            node = req.node = this._createNode(nodeType, req.attributes,
+                req.doc);
+        }
+
+        function onError() {
+            self._progress(&#x27;Failed to load &#x27; + req.url, req);
+        }
+
+        function onLoad() {
+            if (cssTimeout) {
+                clearTimeout(cssTimeout);
+            }
+
+            self._progress(null, req);
+        }
+
+        &#x2F;&#x2F; Deal with script asynchronicity.
+        if (isScript) {
+            node.setAttribute(&#x27;src&#x27;, req.url);
+
+            if (req.async) {
+                &#x2F;&#x2F; Explicitly indicate that we want the browser to execute this
+                &#x2F;&#x2F; script asynchronously. This is necessary for older browsers
+                &#x2F;&#x2F; like Firefox &lt;4.
+                node.async = true;
+            } else {
+                if (env.async) {
+                    &#x2F;&#x2F; This browser treats injected scripts as async by default
+                    &#x2F;&#x2F; (standard HTML5 behavior) but asynchronous loading isn&#x27;t
+                    &#x2F;&#x2F; desired, so tell the browser not to mark this script as
+                    &#x2F;&#x2F; async.
+                    node.async = false;
+                }
+
+                &#x2F;&#x2F; If this browser doesn&#x27;t preserve script execution order based
+                &#x2F;&#x2F; on insertion order, we&#x27;ll need to avoid inserting other
+                &#x2F;&#x2F; scripts until this one finishes loading.
+                if (!env.preservesScriptOrder) {
+                    this._pending = req;
+                }
+            }
+        } else {
+            if (!env.cssLoad &amp;&amp; ua.gecko) {
+                &#x2F;&#x2F; In Firefox &lt;9, we can import the requested URL into a &lt;style&gt;
+                &#x2F;&#x2F; node and poll for the existence of node.sheet.cssRules. This
+                &#x2F;&#x2F; gives us a reliable way to determine CSS load completion that
+                &#x2F;&#x2F; also works for cross-domain stylesheets.
+                &#x2F;&#x2F;
+                &#x2F;&#x2F; Props to Zach Leatherman for calling my attention to this
+                &#x2F;&#x2F; technique.
+                node.innerHTML = (req.attributes.charset ?
+                    &#x27;@charset &quot;&#x27; + req.attributes.charset + &#x27;&quot;;&#x27; : &#x27;&#x27;) +
+                    &#x27;@import &quot;&#x27; + req.url + &#x27;&quot;;&#x27;;
+            } else {
+                node.setAttribute(&#x27;href&#x27;, req.url);
+            }
+        }
+
+        &#x2F;&#x2F; Inject the node.
+        if (isScript &amp;&amp; ua.ie &amp;&amp; (ua.ie &lt; 9 || (document.documentMode &amp;&amp; document.documentMode &lt; 9))) {
+            &#x2F;&#x2F; Script on IE &lt; 9, and IE 9+ when in IE 8 or older modes, including quirks mode.
+            node.onreadystatechange = function () {
+                if (&#x2F;loaded|complete&#x2F;.test(node.readyState)) {
+                    node.onreadystatechange = null;
+                    onLoad();
+                }
+            };
+        } else if (!isScript &amp;&amp; !env.cssLoad) {
+            &#x2F;&#x2F; CSS on Firefox &lt;9 or WebKit.
+            this._poll(req);
+        } else {
+            &#x2F;&#x2F; Script or CSS on everything else. Using DOM 0 events because that
+            &#x2F;&#x2F; evens the playing field with older IEs.
+
+            if (ua.ie &gt;= 10) {
+
+                &#x2F;&#x2F; We currently need to introduce a timeout for IE10, since it 
+                &#x2F;&#x2F; calls onerror&#x2F;onload synchronously for 304s - messing up existing
+                &#x2F;&#x2F; program flow. 
+
+                &#x2F;&#x2F; Remove this block if the following bug gets fixed by GA
+                &#x2F;&#x2F; https:&#x2F;&#x2F;connect.microsoft.com&#x2F;IE&#x2F;feedback&#x2F;details&#x2F;763871&#x2F;dynamically-loaded-scripts-with-304s-responses-interrupt-the-currently-executing-js-thread-onload
+                node.onerror = function() { setTimeout(onError, 0); };
+                node.onload  = function() { setTimeout(onLoad, 0); };
+            } else {
+                node.onerror = onError;
+                node.onload  = onLoad;
+            }
+
+            &#x2F;&#x2F; If this browser doesn&#x27;t fire an event when CSS fails to load,
+            &#x2F;&#x2F; fail after a timeout to avoid blocking the transaction queue.
+            if (!env.cssFail &amp;&amp; !isScript) {
+                cssTimeout = setTimeout(onError, req.timeout || 3000);
+            }
+        }
+
+        this.nodes.push(node);
+        insertBefore.parentNode.insertBefore(node, insertBefore);
+    },
+
+    _next: function () {
+        if (this._pending) {
+            return;
+        }
+
+        &#x2F;&#x2F; If there are requests in the queue, insert the next queued request.
+        &#x2F;&#x2F; Otherwise, if we&#x27;re waiting on already-inserted requests to finish,
+        &#x2F;&#x2F; wait longer. If there are no queued requests and we&#x27;re not waiting
+        &#x2F;&#x2F; for anything to load, then we&#x27;re done!
+        if (this._queue.length) {
+            this._insert(this._queue.shift());
+        } else if (!this._reqsWaiting) {
+            this._finish();
+        }
+    },
+
+    _poll: function (newReq) {
+        var self       = this,
+            pendingCSS = self._pendingCSS,
+            isWebKit   = Y.UA.webkit,
+            i, hasRules, j, nodeHref, req, sheets;
+
+        if (newReq) {
+            pendingCSS || (pendingCSS = self._pendingCSS = []);
+            pendingCSS.push(newReq);
+
+            if (self._pollTimer) {
+                &#x2F;&#x2F; A poll timeout is already pending, so no need to create a
+                &#x2F;&#x2F; new one.
+                return;
+            }
+        }
+
+        self._pollTimer = null;
+
+        &#x2F;&#x2F; Note: in both the WebKit and Gecko hacks below, a CSS URL that 404s
+        &#x2F;&#x2F; will still be treated as a success. There&#x27;s no good workaround for
+        &#x2F;&#x2F; this.
+
+        for (i = 0; i &lt; pendingCSS.length; ++i) {
+            req = pendingCSS[i];
+
+            if (isWebKit) {
+                &#x2F;&#x2F; Look for a stylesheet matching the pending URL.
+                sheets   = req.doc.styleSheets;
+                j        = sheets.length;
+                nodeHref = req.node.href;
+
+                while (--j &gt;= 0) {
+                    if (sheets[j].href === nodeHref) {
+                        pendingCSS.splice(i, 1);
+                        i -= 1;
+                        self._progress(null, req);
+                        break;
+                    }
+                }
+            } else {
+                &#x2F;&#x2F; Many thanks to Zach Leatherman for calling my attention to
+                &#x2F;&#x2F; the @import-based cross-domain technique used here, and to
+                &#x2F;&#x2F; Oleg Slobodskoi for an earlier same-domain implementation.
+                &#x2F;&#x2F;
+                &#x2F;&#x2F; See Zach&#x27;s blog for more details:
+                &#x2F;&#x2F; http:&#x2F;&#x2F;www.zachleat.com&#x2F;web&#x2F;2010&#x2F;07&#x2F;29&#x2F;load-css-dynamically&#x2F;
+                try {
+                    &#x2F;&#x2F; We don&#x27;t really need to store this value since we never
+                    &#x2F;&#x2F; use it again, but if we don&#x27;t store it, Closure Compiler
+                    &#x2F;&#x2F; assumes the code is useless and removes it.
+                    hasRules = !!req.node.sheet.cssRules;
+
+                    &#x2F;&#x2F; If we get here, the stylesheet has loaded.
+                    pendingCSS.splice(i, 1);
+                    i -= 1;
+                    self._progress(null, req);
+                } catch (ex) {
+                    &#x2F;&#x2F; An exception means the stylesheet is still loading.
+                }
+            }
+        }
+
+        if (pendingCSS.length) {
+            self._pollTimer = setTimeout(function () {
+                self._poll.call(self);
+            }, self.options.pollInterval);
+        }
+    },
+
+    _progress: function (err, req) {
+        var options = this.options;
+
+        if (err) {
+            req.error = err;
+
+            this.errors.push({
+                error  : err,
+                request: req
+            });
+
+            Y.log(err, &#x27;error&#x27;, &#x27;get&#x27;);
+        }
+
+        req.node._yuiget_finished = req.finished = true;
+
+        if (options.onProgress) {
+            options.onProgress.call(options.context || this,
+                this._getEventData(req));
+        }
+
+        if (req.autopurge) {
+            &#x2F;&#x2F; Pre-3.5.0 Get always excludes the most recent node from an
+            &#x2F;&#x2F; autopurge. I find this odd, but I&#x27;m keeping that behavior for
+            &#x2F;&#x2F; the sake of backcompat.
+            Get._autoPurge(this.options.purgethreshold);
+            Get._purgeNodes.push(req.node);
+        }
+
+        if (this._pending === req) {
+            this._pending = null;
+        }
+
+        this._reqsWaiting -= 1;
+
+        this._next();
+    }
+};
+
+    </pre>
 </div>
 
                 </div>

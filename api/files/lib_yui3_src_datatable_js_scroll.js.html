@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSON - AlloyUI</title>
+    <title>lib&#x2F;yui3&#x2F;src&#x2F;datatable&#x2F;js&#x2F;scroll.js - AlloyUI</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.4.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
@@ -1577,2518 +1577,1390 @@
 
             <div class="apidocs">
                 <div id="docs-main" class="content">
-                    <h1>JSON Class</h1>
-<div class="box meta">
-    
-
-    
-
-    
-        <div class="foundat">
-            Defined in: <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18372"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18372</code></a>
-        </div>
-    
-
-    
-</div>
-
-
-
-<div class="box intro">
-    <p>The JSON module adds support for serializing JavaScript objects into
-JSON strings and parsing JavaScript objects from strings in JSON format.</p>
-
-<p>The JSON namespace is added to your YUI instance including static methods
-Y.JSON.parse(..) and Y.JSON.stringify(..).</p>
-
-<p>The functionality and method signatures follow the ECMAScript 5
-specification.  In browsers with native JSON support, the native
-implementation is used.</p>
-
-<p>The <code>json</code> module is a rollup of <code>json-parse</code> and
-<code>json-stringify</code>.</p>
-
-<p>As their names suggest, <code>json-parse</code> adds support for parsing
-JSON data (Y.JSON.parse) and <code>json-stringify</code> for serializing
-JavaScript data into JSON strings (Y.JSON.stringify).  You may choose to
-include either of the submodules individually if you don't need the
-complementary functionality, or include the rollup for both.</p>
-</div>
-
-
-
-<div id="classdocs" class="tabview">
-    <ul class="aui-tabview-list aui-widget-hd api-class-tabs tabs" id="api-class-tabview-list">
-        <li class="yui3-tab api-class-tab index"><a class="aui-tab-label" href="#index">Index</a></li>
-
-        
-            <li class="aui-tab api-class-tab methods"><a class="aui-tab-label" href="#methods">Methods</a></li>
-        
-        
-            <li class="aui-tab api-class-tab properties"><a class="aui-tab-label" href="#properties">Properties</a></li>
-        
-        
-        
-    </ul>
-
-    <div class="aui-tabview-content aui-widget-bd" id="api-class-tabview-panel">
-        <div id="index" class="aui-tabview-content-item api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
-            
-                <div class="index-section methods">
-                    <h3>Methods</h3>
-
-                    <ul class="index-list methods">
-                        
-                            <li class="index-item method private">
-                                <a href="#method__revive">_revive</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method__revive">_revive</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_customTransport">customTransport</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method deprecated">
-                                <a href="#method_dateToString">dateToString</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_defaultTransport">defaultTransport</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_escapeException">escapeException</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_escapeException">escapeException</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_notify">notify</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_parse">parse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_parse">parse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_stringify">stringify</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-                <div class="index-section properties">
-                    <h3>Properties</h3>
-
-                    <ul class="index-list properties">
-                        
-                            <li class="index-item property private">
-                                <a href="#property__BRACKETS">_BRACKETS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__BRACKETS">_BRACKETS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property__default">_default</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__ESCAPES">_ESCAPES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__ESCAPES">_ESCAPES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNICODE_EXCEPTIONS">_UNICODE_EXCEPTIONS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNICODE_EXCEPTIONS">_UNICODE_EXCEPTIONS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNSAFE">_UNSAFE</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNSAFE">_UNSAFE</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__VALUES">_VALUES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__VALUES">_VALUES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_charCacheThreshold">charCacheThreshold</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property_Native">Native</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property_Native">Native</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_transports">transports</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeParse">useNativeParse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeParse">useNativeParse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeStringify">useNativeStringify</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-
-            
-        </div>
-
-        
-            <div id="methods" class="aui-tabview-content-item api-class-tabpanel">
-                <h2 class="off-left">Methods</h2>
-
-                
-                    <div id="method__revive" class="method item private">
-    <h3 class="name"><code>_revive</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>data</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l125"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:125</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Traverses nested objects, applying a reviver function to each (key,value)
-from the scope if the key:value's containing object.  The value returned
-from the function will replace the original value in the key:value pair.
-If the value returned is undefined, the key will be omitted from the
-returned object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">data</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Any JavaScript data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>filter or mutation function</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    The results of the filtered data
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method__revive" class="method item private">
-    <h3 class="name"><code>_revive</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>data</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18496"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18496</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Traverses nested objects, applying a reviver function to each (key,value)
-from the scope if the key:value's containing object.  The value returned
-from the function will replace the original value in the key:value pair.
-If the value returned is undefined, the key will be omitted from the
-returned object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">data</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Any JavaScript data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>filter or mutation function</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    The results of the filtered data
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_customTransport" class="method item">
-    <h3 class="name"><code>customTransport</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>id</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l56"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:56</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Create a custom transport of type and return it's object</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">id</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The id of the transport to create.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_dateToString" class="method item deprecated">
-    <h3 class="name"><code>dateToString</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>d</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-        <span class="flag deprecated" title="Use a replacer function">deprecated</span>
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l266"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:266</code></a>
-        
-        </p>
-
-
-        
-            <p>Deprecated: Use a replacer function</p>
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Serializes a Date instance as a UTC date string.  Used internally by
-stringify.  Override this method if you need Dates serialized in a
-different format.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">d</code>
-                        <span class="type"><a href="../classes/Date.html" class="crosslink">Date</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The Date to serialize</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    stringified Date in UTC format YYYY-MM-DDTHH:mm:SSZ
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_defaultTransport" class="method item">
-    <h3 class="name"><code>defaultTransport</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[id]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l18"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:18</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[id]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The transport to set as the default, if empty a new transport is created.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
-                    
-                    The transport object with a <code>send</code> method
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_escapeException" class="method item private">
-    <h3 class="name"><code>escapeException</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>c</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l112"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:112</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replaces specific unicode characters with their appropriate \unnnn
-format. Some browsers ignore certain characters during eval.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">c</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Unicode character</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    the \unnnn escapement of the character
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_escapeException" class="method item private">
-    <h3 class="name"><code>escapeException</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>c</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18483"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18483</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replaces specific unicode characters with their appropriate \unnnn
-format. Some browsers ignore certain characters during eval.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">c</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Unicode character</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    the \unnnn escapement of the character
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_notify" class="method item">
-    <h3 class="name"><code>notify</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>event</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>transaction</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>config</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l71"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:71</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Fired from the notify method of the transport which in turn fires
-the event on the IO object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">event</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The name of the event</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">transaction</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The transaction object</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">config</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The configuration object for this transaction</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>s</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18530"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18530</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Parse a JSON string, returning the native JavaScript representation.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">s</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JSON string data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) function(k,v) passed each key value
-         pair of object literals, allowing pruning or altering values</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    the native JavaScript representation of the JSON string
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>s</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l159"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:159</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Parse a JSON string, returning the native JavaScript representation.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">s</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JSON string data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) function(k,v) passed each key value
-         pair of object literals, allowing pruning or altering values</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    the native JavaScript representation of the JSON string
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_stringify" class="method item">
-    <h3 class="name"><code>stringify</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>o</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>w</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>ind</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l290"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:290</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Converts an arbitrary value to a JSON string representation.</p>
-
-<p>Objects with cyclical references will trigger an exception.</p>
-
-<p>If a whitelist is provided, only matching object keys will be
-included.  Alternately, a replacer function may be passed as the
-second parameter.  This function is executed on every value in the
-input, and its return value will be used in place of the original value.
-This is useful to serialize specialized objects or class instances.</p>
-
-<p>If a positive integer or non-empty string is passed as the third
-parameter, the output will be formatted with carriage returns and
-indentation for readability.  If a String is passed (such as "\t") it
-will be used once for each indentation level.  If a number is passed,
-that number of spaces will be used.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">o</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>any arbitrary value to convert to JSON string</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">w</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) whitelist of acceptable object
-                 keys to include, or a replacer function to modify the
-                 raw value before serialization</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">ind</code>
-                        <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) indentation character or depth of
-                 spaces to format the output.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    JSON string representation of the input
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-            <div id="properties" class="aui-tabview-content-item api-class-tabpanel">
-                <h2 class="off-left">Properties</h2>
-
-                
-                    <div id="property__BRACKETS" class="property item private">
-    <h3 class="name"><code>_BRACKETS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18462"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18462</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Third step in the safety evaluation.  Regex used to remove all open
-square brackets following a colon, comma, or at the beginning of the
-string.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__BRACKETS" class="property item private">
-    <h3 class="name"><code>_BRACKETS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l91"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:91</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Third step in the safety evaluation.  Regex used to remove all open
-square brackets following a colon, comma, or at the beginning of the
-string.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__default" class="property item">
-    <h3 class="name"><code>_default</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l11"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:11</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>The ID of the default IO transport, defaults to <code>xhr</code></p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__ESCAPES" class="property item private">
-    <h3 class="name"><code>_ESCAPES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l71"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:71</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>First step in the safety evaluation.  Regex used to replace all escape
-sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__ESCAPES" class="property item private">
-    <h3 class="name"><code>_ESCAPES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18442"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18442</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>First step in the safety evaluation.  Regex used to replace all escape
-sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNICODE_EXCEPTIONS" class="property item private">
-    <h3 class="name"><code>_UNICODE_EXCEPTIONS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l57"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:57</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replace certain Unicode characters that JavaScript may handle incorrectly
-during eval--either by deleting them or treating them as line
-endings--with escape sequences.
-IMPORTANT NOTE: This regex will be used to modify the input if a match is
-found.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNICODE_EXCEPTIONS" class="property item private">
-    <h3 class="name"><code>_UNICODE_EXCEPTIONS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18428"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18428</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replace certain Unicode characters that JavaScript may handle incorrectly
-during eval--either by deleting them or treating them as line
-endings--with escape sequences.
-IMPORTANT NOTE: This regex will be used to modify the input if a match is
-found.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNSAFE" class="property item private">
-    <h3 class="name"><code>_UNSAFE</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18473"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18473</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Final step in the safety evaluation.  Regex used to test the string left
-after all previous replacements for invalid characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNSAFE" class="property item private">
-    <h3 class="name"><code>_UNSAFE</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l102"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:102</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Final step in the safety evaluation.  Regex used to test the string left
-after all previous replacements for invalid characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__VALUES" class="property item private">
-    <h3 class="name"><code>_VALUES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18452"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18452</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Second step in the safety evaluation.  Regex used to replace all simple
-values with ']' characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__VALUES" class="property item private">
-    <h3 class="name"><code>_VALUES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l81"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:81</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Second step in the safety evaluation.  Regex used to replace all simple
-values with ']' characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_charCacheThreshold" class="property item">
-    <h3 class="name"><code>charCacheThreshold</code></h3>
-    <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l322"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:322</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Number of occurrences of a special character within a single call to
-stringify that should trigger promotion of that character to a dedicated
-preprocess step for future calls.  This is only used in environments
-that don't support native JSON, or when useNativeStringify is set to
-false.</p>
-
-<p>So, if set to 50 and an object is passed to stringify that includes
-strings containing the special character \x07 more than 50 times,
-subsequent calls to stringify will process object strings through a
-faster serialization path for \x07 before using the generic, slower,
-replacement process for all special characters.</p>
-
-<p>To prime the preprocessor cache, set this value to 1, then call
-<code>Y.JSON.stringify("<em>(all special characters to
-cache)</em>");</code>, then return this setting to a more conservative
-value.</p>
-
-<p>Special characters \ " \b \t \n \f \r are already cached.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> 100</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_Native" class="property item private">
-    <h3 class="name"><code>Native</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18416"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18416</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Alias to native browser implementation of the JSON object if available.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_Native" class="property item private">
-    <h3 class="name"><code>Native</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l45"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:45</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Alias to native browser implementation of the JSON object if available.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_transports" class="property item">
-    <h3 class="name"><code>transports</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l38"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:38</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>An object hash of custom transports available to IO</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeParse" class="property item">
-    <h3 class="name"><code>useNativeParse</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18586"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18586</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON parse if the browser has a native implementation.
-In general, this is a good idea.  See the Known Issues section in the
-JSON user guide for caveats.  The default value is true for browsers with
-native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeParse" class="property item">
-    <h3 class="name"><code>useNativeParse</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l215"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:215</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON parse if the browser has a native implementation.
-In general, this is a good idea.  See the Known Issues section in the
-JSON user guide for caveats.  The default value is true for browsers with
-native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeStringify" class="property item">
-    <h3 class="name"><code>useNativeStringify</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l253"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:253</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON stringify if the browser has a native
-implementation.  In general, this is a good idea.  See the Known Issues
-section in the JSON user guide for caveats.  The default value is true
-for browsers with native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-
-        
-    </div>
+                    <h1 class="file-heading">File: lib&#x2F;yui3&#x2F;src&#x2F;datatable&#x2F;js&#x2F;scroll.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;**
+Adds the ability to make the table rows scrollable while preserving the header
+placement.
+
+@module datatable-scroll
+@for DataTable
+@since 3.5.0
+**&#x2F;
+var YLang = Y.Lang,
+    isString = YLang.isString,
+    isNumber = YLang.isNumber,
+    isArray  = YLang.isArray,
+
+    Scrollable;
+
+&#x2F;&#x2F; Returns the numeric value portion of the computed style, defaulting to 0
+function styleDim(node, style) {
+    return parseInt(node.getComputedStyle(style), 10) | 0;
+}
+
+&#x2F;**
+_API docs for this extension are included in the DataTable class._
+
+Adds the ability to make the table rows scrollable while preserving the header
+placement.
+
+There are two types of scrolling, horizontal (x) and vertical (y).  Horizontal
+scrolling is achieved by wrapping the entire table in a scrollable container.
+Vertical scrolling is achieved by splitting the table headers and data into two
+separate tables, the latter of which is wrapped in a vertically scrolling
+container.  In this case, column widths of header cells and data cells are kept
+in sync programmatically.
+
+Since the split table synchronization can be costly at runtime, the split is only done if the data in the table stretches beyond the configured &#x60;height&#x60; value.
+
+To activate or deactivate scrolling, set the &#x60;scrollable&#x60; attribute to one of
+the following values:
+
+ * &#x60;false&#x60; - (default) Scrolling is disabled.
+ * &#x60;true&#x60; or &#x27;xy&#x27; - If &#x60;height&#x60; is set, vertical scrolling will be activated, if
+            &#x60;width&#x60; is set, horizontal scrolling will be activated.
+ * &#x27;x&#x27; - Activate horizontal scrolling only. Requires the &#x60;width&#x60; attribute is
+         also set.
+ * &#x27;y&#x27; - Activate vertical scrolling only. Requires the &#x60;height&#x60; attribute is
+         also set.
+
+@class DataTable.Scrollable
+@for DataTable
+@since 3.5.0
+**&#x2F;
+Y.DataTable.Scrollable = Scrollable = function () {};
+
+Scrollable.ATTRS = {
+    &#x2F;**
+    Activates or deactivates scrolling in the table.  Acceptable values are:
+
+     * &#x60;false&#x60; - (default) Scrolling is disabled.
+     * &#x60;true&#x60; or &#x27;xy&#x27; - If &#x60;height&#x60; is set, vertical scrolling will be
+       activated, if &#x60;width&#x60; is set, horizontal scrolling will be activated.
+     * &#x27;x&#x27; - Activate horizontal scrolling only. Requires the &#x60;width&#x60; attribute
+       is also set.
+     * &#x27;y&#x27; - Activate vertical scrolling only. Requires the &#x60;height&#x60; attribute
+       is also set.
+
+    @attribute scrollable
+    @type {String|Boolean}
+    @value false
+    @since 3.5.0
+    **&#x2F;
+    scrollable: {
+        value: false,
+        setter: &#x27;_setScrollable&#x27;
+    }
+};
+
+Y.mix(Scrollable.prototype, {
+
+    &#x2F;**
+    Scrolls a given row or cell into view if the table is scrolling.  Pass the
+    &#x60;clientId&#x60; of a Model from the DataTable&#x27;s &#x60;data&#x60; ModelList or its row
+    index to scroll to a row or a [row index, column index] array to scroll to
+    a cell.  Alternately, to scroll to any element contained within the table&#x27;s
+    scrolling areas, pass its ID, or the Node itself (though you could just as
+    well call &#x60;node.scrollIntoView()&#x60; yourself, but hey, whatever).
+
+    @method scrollTo
+    @param {String|Number|Number[]|Node} id A row clientId, row index, cell
+            coordinate array, id string, or Node
+    @return {DataTable}
+    @chainable
+    @since 3.5.0
+    **&#x2F;
+    scrollTo: function (id) {
+        var target;
+
+        if (id &amp;&amp; this._tbodyNode &amp;&amp; (this._yScrollNode || this._xScrollNode)) {
+            if (isArray(id)) {
+                target = this.getCell(id);
+            } else if (isNumber(id)) { 
+                target = this.getRow(id);
+            } else if (isString(id)) {
+                target = this._tbodyNode.one(&#x27;#&#x27; + id);
+            } else if (id instanceof Y.Node &amp;&amp;
+                    &#x2F;&#x2F; TODO: ancestor(yScrollNode, xScrollNode)
+                    id.ancestor(&#x27;.yui3-datatable&#x27;) === this.get(&#x27;boundingBox&#x27;)) {
+                target = id;
+            }
+
+            target &amp;&amp; target.scrollIntoView();
+        }
+
+        return this;
+    },
+
+    &#x2F;&#x2F;--------------------------------------------------------------------------
+    &#x2F;&#x2F; Protected properties and methods
+    &#x2F;&#x2F;--------------------------------------------------------------------------
+
+    &#x2F;**
+    Template for the &#x60;&lt;table&gt;&#x60; that is used to fix the caption in place when
+    the table is horizontally scrolling.
+
+    @property _CAPTION_TABLE_TEMPLATE
+    @type {HTML}
+    @value &#x27;&lt;table class=&quot;{className}&quot; role=&quot;presentation&quot;&gt;&lt;&#x2F;table&gt;&#x27;
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _CAPTION_TABLE_TEMPLATE: &#x27;&lt;table class=&quot;{className}&quot; role=&quot;presentation&quot;&gt;&lt;&#x2F;table&gt;&#x27;,
+
+    &#x2F;**
+    Template used to create sizable element liners around header content to
+    synchronize fixed header column widths.
+
+    @property _SCROLL_LINER_TEMPLATE
+    @type {HTML}
+    @value &#x27;&lt;div class=&quot;{className}&quot;&gt;&lt;&#x2F;div&gt;&#x27;
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _SCROLL_LINER_TEMPLATE: &#x27;&lt;div class=&quot;{className}&quot;&gt;&lt;&#x2F;div&gt;&#x27;,
+
+    &#x2F;**
+    Template for the virtual scrollbar needed in &quot;y&quot; and &quot;xy&quot; scrolling setups.
+
+    @property _SCROLLBAR_TEMPLATE
+    @type {HTML}
+    @value &#x27;&lt;div class=&quot;{className}&quot;&gt;&lt;div&gt;&lt;&#x2F;div&gt;&lt;&#x2F;div&gt;&#x27;
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _SCROLLBAR_TEMPLATE: &#x27;&lt;div class=&quot;{className}&quot;&gt;&lt;div&gt;&lt;&#x2F;div&gt;&lt;&#x2F;div&gt;&#x27;,
+
+    &#x2F;**
+    Template for the &#x60;&lt;div&gt;&#x60; that is used to contain the table when the table is
+    horizontally scrolling.
+
+    @property _X_SCROLLER_TEMPLATE
+    @type {HTML}
+    @value &#x27;&lt;div class=&quot;{className}&quot;&gt;&lt;&#x2F;div&gt;&#x27;
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _X_SCROLLER_TEMPLATE: &#x27;&lt;div class=&quot;{className}&quot;&gt;&lt;&#x2F;div&gt;&#x27;,
+
+    &#x2F;**
+    Template for the &#x60;&lt;table&gt;&#x60; used to contain the fixed column headers for
+    vertically scrolling tables.
+
+    @property _Y_SCROLL_HEADER_TEMPLATE
+    @type {HTML}
+    @value &#x27;&lt;table cellspacing=&quot;0&quot; role=&quot;presentation&quot; aria-hidden=&quot;true&quot; class=&quot;{className}&quot;&gt;&lt;&#x2F;table&gt;&#x27;
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _Y_SCROLL_HEADER_TEMPLATE: &#x27;&lt;table cellspacing=&quot;0&quot; aria-hidden=&quot;true&quot; class=&quot;{className}&quot;&gt;&lt;&#x2F;table&gt;&#x27;,
+
+    &#x2F;**
+    Template for the &#x60;&lt;div&gt;&#x60; that is used to contain the rows when the table is
+    vertically scrolling.
+
+    @property _Y_SCROLLER_TEMPLATE
+    @type {HTML}
+    @value &#x27;&lt;div class=&quot;{className}&quot;&gt;&lt;div class=&quot;{scrollerClassName}&quot;&gt;&lt;&#x2F;div&gt;&lt;&#x2F;div&gt;&#x27;
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _Y_SCROLLER_TEMPLATE: &#x27;&lt;div class=&quot;{className}&quot;&gt;&lt;div class=&quot;{scrollerClassName}&quot;&gt;&lt;&#x2F;div&gt;&lt;&#x2F;div&gt;&#x27;,
+
+    &#x2F;**
+    Adds padding to the last cells in the fixed header for vertically scrolling
+    tables.  This padding is equal in width to the scrollbar, so can&#x27;t be
+    relegated to a stylesheet.
+
+    @method _addScrollbarPadding
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _addScrollbarPadding: function () {
+        var fixedHeader = this._yScrollHeader,
+            headerClass = &#x27;.&#x27; + this.getClassName(&#x27;header&#x27;),
+            scrollbarWidth, rows, header, i, len;
+
+        if (fixedHeader) {
+            scrollbarWidth = Y.DOM.getScrollbarWidth() + &#x27;px&#x27;;
+            rows = fixedHeader.all(&#x27;tr&#x27;);
+
+            for (i = 0, len = rows.size(); i &lt; len; i += +header.get(&#x27;rowSpan&#x27;)) {
+                header = rows.item(i).all(headerClass).pop();
+                header.setStyle(&#x27;paddingRight&#x27;, scrollbarWidth);
+            }
+        }
+    },
+
+    &#x2F;**
+    Reacts to changes in the &#x60;scrollable&#x60; attribute by updating the &#x60;_xScroll&#x60;
+    and &#x60;_yScroll&#x60; properties and syncing the scrolling structure accordingly.
+
+    @method _afterScrollableChange
+    @param {EventFacade} e The relevant change event (ignored)
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _afterScrollableChange: function (e) {
+        var scroller = this._xScrollNode;
+
+        if (this._xScroll &amp;&amp; scroller) {
+            if (this._yScroll &amp;&amp; !this._yScrollNode) {
+                scroller.setStyle(&#x27;paddingRight&#x27;,
+                    Y.DOM.getScrollbarWidth() + &#x27;px&#x27;);
+            } else if (!this._yScroll &amp;&amp; this._yScrollNode) {
+                scroller.setStyle(&#x27;paddingRight&#x27;, &#x27;&#x27;);
+            }
+        }
+
+        this._syncScrollUI();
+    },
+
+    &#x2F;**
+    Reacts to changes in the &#x60;caption&#x60; attribute by adding, removing, or
+    syncing the caption table when the table is set to scroll.
+
+    @method _afterScrollCaptionChange
+    @param {EventFacade} e The relevant change event (ignored)
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _afterScrollCaptionChange: function (e) {
+        if (this._xScroll || this._yScroll) {
+            this._syncScrollUI();
+        }
+    },
+
+    &#x2F;**
+    Reacts to changes in the &#x60;columns&#x60; attribute of vertically scrolling tables
+    by refreshing the fixed headers, scroll container, and virtual scrollbar
+    position.
+
+    @method _afterScrollColumnsChange
+    @param {EventFacade} e The relevant change event (ignored)
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _afterScrollColumnsChange: function (e) {
+        if (this._xScroll || this._yScroll) {
+            if (this._yScroll &amp;&amp; this._yScrollHeader) {
+                this._syncScrollHeaders();
+            }
+
+            this._syncScrollUI();
+        }
+    },
+
+    &#x2F;**
+    Reacts to changes in vertically scrolling table&#x27;s &#x60;data&#x60; ModelList by
+    synchronizing the fixed column header widths and virtual scrollbar height.
+
+    @method _afterScrollDataChange
+    @param {EventFacade} e The relevant change event (ignored)
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _afterScrollDataChange: function (e) {
+        if (this._xScroll || this._yScroll) {
+            this._syncScrollUI();
+        }
+    },
+
+    &#x2F;**
+    Reacts to changes in the &#x60;height&#x60; attribute of vertically scrolling tables
+    by updating the height of the &#x60;&lt;div&gt;&#x60; wrapping the data table and the
+    virtual scrollbar.  If &#x60;scrollable&#x60; was set to &quot;y&quot; or &quot;xy&quot; but lacking a
+    declared &#x60;height&#x60; until the received change, &#x60;_syncScrollUI&#x60; is called to
+    create the fixed headers etc.
+
+    @method _afterScrollHeightChange
+    @param {EventFacade} e The relevant change event (ignored)
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _afterScrollHeightChange: function (e) {
+        if (this._yScroll) {
+            this._syncScrollUI();
+        }
+    },
+
+    &#x2F;* (not an API doc comment on purpose)
+    Reacts to the sort event (if the table is also sortable) by updating the
+    fixed header classes to match the data table&#x27;s headers.
+
+    THIS IS A HACK that will be removed immediately after the 3.5.0 release.
+    If you&#x27;re reading this and the current version is greater than 3.5.0, I
+    should be publicly scolded.
+    *&#x2F;
+    _afterScrollSort: function (e) {
+        var headers, headerClass;
+
+        if (this._yScroll &amp;&amp; this._yScrollHeader) {
+            headerClass = &#x27;.&#x27; + this.getClassName(&#x27;header&#x27;);
+            headers = this._theadNode.all(headerClass);
+
+            this._yScrollHeader.all(headerClass).each(function (header, i) {
+                header.set(&#x27;className&#x27;, headers.item(i).get(&#x27;className&#x27;));
+            });
+        }
+    },
+
+    &#x2F;**
+    Reacts to changes in the width of scrolling tables by expanding the width of
+    the &#x60;&lt;div&gt;&#x60; wrapping the data table for horizontally scrolling tables or
+    upding the position of the virtual scrollbar for vertically scrolling
+    tables.
+
+    @method _afterScrollWidthChange
+    @param {EventFacade} e The relevant change event (ignored)
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _afterScrollWidthChange: function (e) {
+        if (this._xScroll || this._yScroll) {
+            this._syncScrollUI();
+        }
+    },
+
+    &#x2F;**
+    Binds virtual scrollbar interaction to the &#x60;_yScrollNode&#x60;&#x27;s &#x60;scrollTop&#x60; and
+    vice versa.
+
+    @method _bindScrollbar
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _bindScrollbar: function () {
+        var scrollbar = this._scrollbarNode,
+            scroller  = this._yScrollNode;
+
+        if (scrollbar &amp;&amp; scroller &amp;&amp; !this._scrollbarEventHandle) {
+            this._scrollbarEventHandle = new Y.Event.Handle([
+                scrollbar.on(&#x27;scroll&#x27;, this._syncScrollPosition, this),
+                scroller.on(&#x27;scroll&#x27;, this._syncScrollPosition, this)
+            ]);
+        }
+    },
+
+    &#x2F;**
+    Binds to the window resize event to update the vertical scrolling table
+    headers and wrapper &#x60;&lt;div&gt;&#x60; dimensions.
+
+    @method _bindScrollResize
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _bindScrollResize: function () {
+        if (!this._scrollResizeHandle) {
+            &#x2F;&#x2F; TODO: sync header widths and scrollbar position.  If the height
+            &#x2F;&#x2F; of the headers has changed, update the scrollbar dims as well.
+            this._scrollResizeHandle = Y.on(&#x27;resize&#x27;,
+                this._syncScrollUI, null, this);
+        }
+    },
+
+    &#x2F;**
+    Attaches internal subscriptions to keep the scrolling structure up to date
+    with changes in the table&#x27;s &#x60;data&#x60;, &#x60;columns&#x60;, &#x60;caption&#x60;, or &#x60;height&#x60;.  The
+    &#x60;width&#x60; is taken care of already.
+
+    This executes after the table&#x27;s native &#x60;bindUI&#x60; method.
+
+    @method _bindScrollUI
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _bindScrollUI: function () {
+        this.after({
+            columnsChange: Y.bind(&#x27;_afterScrollColumnsChange&#x27;, this),
+            heightChange : Y.bind(&#x27;_afterScrollHeightChange&#x27;, this),
+            widthChange  : Y.bind(&#x27;_afterScrollWidthChange&#x27;, this),
+            captionChange: Y.bind(&#x27;_afterScrollCaptionChange&#x27;, this),
+            scrollableChange: Y.bind(&#x27;_afterScrollableChange&#x27;, this),
+            &#x2F;&#x2F; FIXME: this is a last minute hack to work around the fact that
+            &#x2F;&#x2F; DT doesn&#x27;t use a tableView to render table content that can be
+            &#x2F;&#x2F; replaced with a scrolling table view.  This must be removed asap!
+            sort         : Y.bind(&#x27;_afterScrollSort&#x27;, this)
+        });
+
+        this.after([&#x27;dataChange&#x27;, &#x27;*:add&#x27;, &#x27;*:remove&#x27;, &#x27;*:reset&#x27;, &#x27;*:change&#x27;],
+            Y.bind(&#x27;_afterScrollDataChange&#x27;, this));
+    },
+
+    &#x2F;**
+    Clears the lock and timer used to manage synchronizing the scroll position
+    between the vertical scroll container and the virtual scrollbar.
+
+    @method _clearScrollLock
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _clearScrollLock: function () {
+        if (this._scrollLock) {
+            this._scrollLock.cancel();
+            delete this._scrollLock;
+        }
+    },
+
+    &#x2F;**
+    Creates a virtual scrollbar from the &#x60;_SCROLLBAR_TEMPLATE&#x60;, assigning it to
+    the &#x60;_scrollbarNode&#x60; property.
+
+    @method _createScrollbar
+    @return {Node} The created Node
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _createScrollbar: function () {
+        var scrollbar = this._scrollbarNode;
+
+        if (!scrollbar) {
+            scrollbar = this._scrollbarNode = Y.Node.create(
+                Y.Lang.sub(this._SCROLLBAR_TEMPLATE, {
+                    className: this.getClassName(&#x27;scrollbar&#x27;)
+                }));
+
+            &#x2F;&#x2F; IE 6-10 require the scrolled area to be visible (at least 1px)
+            &#x2F;&#x2F; or they don&#x27;t respond to clicking on the scrollbar rail or arrows
+            scrollbar.setStyle(&#x27;width&#x27;, (Y.DOM.getScrollbarWidth() + 1) + &#x27;px&#x27;);
+        }
+
+        return scrollbar;
+    },
+
+    &#x2F;**
+    Creates a separate table to contain the caption when the table is
+    configured to scroll vertically or horizontally.
+
+    @method _createScrollCaptionTable
+    @return {Node} The created Node
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _createScrollCaptionTable: function () {
+        if (!this._captionTable) {
+            this._captionTable = Y.Node.create(
+                Y.Lang.sub(this._CAPTION_TABLE_TEMPLATE, {
+                    className: this.getClassName(&#x27;caption&#x27;, &#x27;table&#x27;)
+                }));
+
+            this._captionTable.empty();
+        }
+
+        return this._captionTable;
+    },
+
+    &#x2F;**
+    Populates the &#x60;_xScrollNode&#x60; property by creating the &#x60;&lt;div&gt;&#x60; Node described
+    by the &#x60;_X_SCROLLER_TEMPLATE&#x60;.
+
+    @method _createXScrollNode
+    @return {Node} The created Node
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _createXScrollNode: function () {
+        if (!this._xScrollNode) {
+            this._xScrollNode = Y.Node.create(
+                Y.Lang.sub(this._X_SCROLLER_TEMPLATE, {
+                    className: this.getClassName(&#x27;x&#x27;,&#x27;scroller&#x27;)
+                }));
+        }
+
+        return this._xScrollNode;
+    },
+
+    &#x2F;**
+    Populates the &#x60;_yScrollHeader&#x60; property by creating the &#x60;&lt;table&gt;&#x60; Node
+    described by the &#x60;_Y_SCROLL_HEADER_TEMPLATE&#x60;.
+
+    @method _createYScrollHeader
+    @return {Node} The created Node
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _createYScrollHeader: function () {
+        var fixedHeader = this._yScrollHeader;
+
+        if (!fixedHeader) {
+            fixedHeader = this._yScrollHeader = Y.Node.create(
+                Y.Lang.sub(this._Y_SCROLL_HEADER_TEMPLATE, {
+                    className: this.getClassName(&#x27;scroll&#x27;,&#x27;columns&#x27;)
+                }));
+        }
+
+        return fixedHeader;
+    },
+
+    &#x2F;**
+    Populates the &#x60;_yScrollNode&#x60; property by creating the &#x60;&lt;div&gt;&#x60; Node described
+    by the &#x60;_Y_SCROLLER_TEMPLATE&#x60;.
+
+    @method _createYScrollNode
+    @return {Node} The created Node
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _createYScrollNode: function () {
+        var scrollerClass;
+
+        if (!this._yScrollNode) {
+            scrollerClass = this.getClassName(&#x27;y&#x27;, &#x27;scroller&#x27;);
+
+            this._yScrollContainer = Y.Node.create(
+                Y.Lang.sub(this._Y_SCROLLER_TEMPLATE, {
+                    className: this.getClassName(&#x27;y&#x27;,&#x27;scroller&#x27;,&#x27;container&#x27;),
+                    scrollerClassName: scrollerClass
+                }));
+
+            this._yScrollNode = this._yScrollContainer
+                .one(&#x27;.&#x27; + scrollerClass);
+        }
+
+        return this._yScrollContainer;
+    },
+
+    &#x2F;**
+    Removes the nodes used to create horizontal and vertical scrolling and
+    rejoins the caption to the main table if needed.
+
+    @method _disableScrolling
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _disableScrolling: function () {
+        this._removeScrollCaptionTable();
+        this._disableXScrolling();
+        this._disableYScrolling();
+        this._unbindScrollResize();
+
+        this._uiSetWidth(this.get(&#x27;width&#x27;));
+    },
+
+    &#x2F;**
+    Removes the nodes used to allow horizontal scrolling.
+
+    @method _disableXScrolling
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _disableXScrolling: function () {
+        this._removeXScrollNode();
+    },
+
+    &#x2F;**
+    Removes the nodes used to allow vertical scrolling.
+
+    @method _disableYScrolling
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _disableYScrolling: function () {
+        this._removeYScrollHeader();
+        this._removeYScrollNode();
+        this._removeYScrollContainer();
+        this._removeScrollbar();
+    },
+
+    &#x2F;**
+    Cleans up external event subscriptions.
+
+    @method destructor
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    destructor: function () {
+        this._unbindScrollbar();
+        this._unbindScrollResize();
+        this._clearScrollLock();
+    },
+
+    &#x2F;**
+    Sets up event handlers and AOP advice methods to bind the DataTable&#x27;s natural
+    behaviors with the scrolling APIs and state.
+
+    @method initializer
+    @param {Object} config The config object passed to the constructor (ignored)
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    initializer: function () {
+        this._setScrollProperties();
+
+        this.after([&#x27;scrollableChange&#x27;, &#x27;heightChange&#x27;, &#x27;widthChange&#x27;],
+            this._setScrollProperties);
+
+        this.after(&#x27;renderView&#x27;, Y.bind(&#x27;_syncScrollUI&#x27;, this));
+
+        Y.Do.after(this._bindScrollUI, this, &#x27;bindUI&#x27;);
+    },
+
+    &#x2F;**
+    Removes the table used to house the caption when the table is scrolling.
+
+    @method _removeScrollCaptionTable
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _removeScrollCaptionTable: function () {
+        if (this._captionTable) {
+            if (this._captionNode) {
+                this._tableNode.prepend(this._captionNode);
+            }
+
+            this._captionTable.remove().destroy(true);
+
+            delete this._captionTable;
+        }
+    },
+
+    &#x2F;**
+    Removes the &#x60;&lt;div&gt;&#x60; wrapper used to contain the data table when the table
+    is horizontally scrolling.
+
+    @method _removeXScrollNode
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _removeXScrollNode: function () {
+        var scroller = this._xScrollNode;
+
+        if (scroller) {
+            scroller.replace(scroller.get(&#x27;childNodes&#x27;).toFrag());
+            scroller.remove().destroy(true);
+
+            delete this._xScrollNode;
+        }
+    },
+
+    &#x2F;**
+    Removes the &#x60;&lt;div&gt;&#x60; wrapper used to contain the data table and fixed header
+    when the table is vertically scrolling.
+
+    @method _removeYScrollContainer
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _removeYScrollContainer: function () {
+        var scroller = this._yScrollContainer;
+
+        if (scroller) {
+            scroller.replace(scroller.get(&#x27;childNodes&#x27;).toFrag());
+            scroller.remove().destroy(true);
+
+            delete this._yScrollContainer;
+        }
+    },
+
+    &#x2F;**
+    Removes the &#x60;&lt;table&gt;&#x60; used to contain the fixed column headers when the
+    table is vertically scrolling.
+
+    @method _removeYScrollHeader
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _removeYScrollHeader: function () {
+        if (this._yScrollHeader) {
+            this._yScrollHeader.remove().destroy(true);
+
+            delete this._yScrollHeader;
+        }
+    },
+
+    &#x2F;**
+    Removes the &#x60;&lt;div&gt;&#x60; wrapper used to contain the data table when the table
+    is vertically scrolling.
+
+    @method _removeYScrollNode
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _removeYScrollNode: function () {
+        var scroller = this._yScrollNode;
+
+        if (scroller) {
+            scroller.replace(scroller.get(&#x27;childNodes&#x27;).toFrag());
+            scroller.remove().destroy(true);
+
+            delete this._yScrollNode;
+        }
+    },
+
+    &#x2F;**
+    Removes the virtual scrollbar used by scrolling tables.
+
+    @method _removeScrollbar
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _removeScrollbar: function () {
+        if (this._scrollbarNode) {
+            this._scrollbarNode.remove().destroy(true);
+
+            delete this._scrollbarNode;
+        }
+        if (this._scrollbarEventHandle) {
+            this._scrollbarEventHandle.detach();
+
+            delete this._scrollbarEventHandle;
+        }
+    },
+
+    &#x2F;**
+    Accepts (case insensitive) values &quot;x&quot;, &quot;y&quot;, &quot;xy&quot;, &#x60;true&#x60;, and &#x60;false&#x60;.
+    &#x60;true&#x60; is translated to &quot;xy&quot; and upper case values are converted to lower
+    case.  All other values are invalid.
+
+    @method _setScrollable
+    @param {String|Boolea} val Incoming value for the &#x60;scrollable&#x60; attribute
+    @return {String}
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _setScrollable: function (val) {
+        if (val === true) {
+            val = &#x27;xy&#x27;;
+        }
+
+        if (isString(val)) {
+            val = val.toLowerCase();
+        }
+
+        return (val === false || val === &#x27;y&#x27; || val === &#x27;x&#x27; || val === &#x27;xy&#x27;) ?
+            val :
+            Y.Attribute.INVALID_VALUE;
+    },
+
+    &#x2F;**
+    Assigns the &#x60;_xScroll&#x60; and &#x60;_yScroll&#x60; properties to true if an
+    appropriate value is set in the &#x60;scrollable&#x60; attribute and the &#x60;height&#x60;
+    and&#x2F;or &#x60;width&#x60; is set.
+
+    @method _setScrollProperties
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _setScrollProperties: function () {
+        var scrollable = this.get(&#x27;scrollable&#x27;) || &#x27;&#x27;,
+            width      = this.get(&#x27;width&#x27;),
+            height     = this.get(&#x27;height&#x27;);
+
+        this._xScroll = width  &amp;&amp; scrollable.indexOf(&#x27;x&#x27;) &gt; -1;
+        this._yScroll = height &amp;&amp; scrollable.indexOf(&#x27;y&#x27;) &gt; -1;
+    },
+
+    &#x2F;**
+    Keeps the virtual scrollbar and the scrolling &#x60;&lt;div&gt;&#x60; wrapper around the
+    data table in vertically scrolling tables in sync.
+
+    @method _syncScrollPosition
+    @param {DOMEventFacade} e The scroll event
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _syncScrollPosition: function (e) {
+        var scrollbar = this._scrollbarNode,
+            scroller  = this._yScrollNode,
+            source    = e.currentTarget,
+            other;
+
+        if (scrollbar &amp;&amp; scroller) {
+            if (this._scrollLock &amp;&amp; this._scrollLock.source !== source) {
+                return;
+            }
+
+            this._clearScrollLock();
+            this._scrollLock = Y.later(300, this, this._clearScrollLock);
+            this._scrollLock.source = source;
+
+            other = (source === scrollbar) ? scroller : scrollbar;
+            other.set(&#x27;scrollTop&#x27;, source.get(&#x27;scrollTop&#x27;));
+        }
+    },
+
+    &#x2F;**
+    Splits the caption from the data &#x60;&lt;table&gt;&#x60; if the table is configured to
+    scroll.  If not, rejoins the caption to the data &#x60;&lt;table&gt;&#x60; if it needs to
+    be.
+
+    @method _syncScrollCaptionUI
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _syncScrollCaptionUI: function () {
+        var caption      = this._captionNode,
+            table        = this._tableNode,
+            captionTable = this._captionTable,
+            id;
+
+        if (caption) {
+            id = caption.getAttribute(&#x27;id&#x27;);
+
+            if (!captionTable) {
+                captionTable = this._createScrollCaptionTable();
+
+                this.get(&#x27;contentBox&#x27;).prepend(captionTable);
+            }
+
+            if (!caption.get(&#x27;parentNode&#x27;).compareTo(captionTable)) {
+                captionTable.empty().insert(caption);
+
+                if (!id) {
+                    id = Y.stamp(caption);
+                    caption.setAttribute(&#x27;id&#x27;, id);
+                }
+
+                table.setAttribute(&#x27;aria-describedby&#x27;, id);
+            }
+        } else if (captionTable) {
+            this._removeScrollCaptionTable();
+        }
+    },
+
+    &#x2F;**
+    Assigns widths to the fixed header columns to match the columns in the data
+    table.
+
+    @method _syncScrollColumnWidths
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _syncScrollColumnWidths: function () {
+        var widths = [];
+
+        if (this._theadNode &amp;&amp; this._yScrollHeader) {
+            &#x2F;&#x2F; Capture dims and assign widths in two passes to avoid reflows for
+            &#x2F;&#x2F; each access of clientWidth&#x2F;getComputedStyle
+            this._theadNode.all(&#x27;.&#x27; + this.getClassName(&#x27;header&#x27;))
+                .each(function (header) {
+                    widths.push(
+                        &#x2F;&#x2F; FIXME: IE returns the col.style.width from
+                        &#x2F;&#x2F; getComputedStyle even if the column has been
+                        &#x2F;&#x2F; compressed below that width, so it must use
+                        &#x2F;&#x2F; clientWidth. FF requires getComputedStyle because it
+                        &#x2F;&#x2F; uses fractional widths that round up to an overall
+                        &#x2F;&#x2F; cell&#x2F;table width 1px greater than the data table&#x27;s
+                        &#x2F;&#x2F; cell&#x2F;table width, resulting in misaligned columns or
+                        &#x2F;&#x2F; fixed header bleed through. I can&#x27;t think of a
+                        &#x2F;&#x2F; *reasonable* way to capture the correct width without
+                        &#x2F;&#x2F; a sniff.  Math.min(cW - p, getCS(w)) was imperfect
+                        &#x2F;&#x2F; and punished all browsers, anyway.
+                        (Y.UA.ie &amp;&amp; Y.UA.ie &lt; 8) ?
+                            (header.get(&#x27;clientWidth&#x27;) -
+                             styleDim(header, &#x27;paddingLeft&#x27;) -
+                             styleDim(header, &#x27;paddingRight&#x27;)) + &#x27;px&#x27; :
+                            header.getComputedStyle(&#x27;width&#x27;));
+            });
+
+            this._yScrollHeader.all(&#x27;.&#x27; + this.getClassName(&#x27;scroll&#x27;, &#x27;liner&#x27;))
+                .each(function (liner, i) {
+                    liner.setStyle(&#x27;width&#x27;, widths[i]);
+                });
+        }
+    },
+
+    &#x2F;**
+    Creates matching headers in the fixed header table for vertically scrolling
+    tables and synchronizes the column widths.
+
+    @method _syncScrollHeaders
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _syncScrollHeaders: function () {
+        var fixedHeader   = this._yScrollHeader,
+            linerTemplate = this._SCROLL_LINER_TEMPLATE,
+            linerClass    = this.getClassName(&#x27;scroll&#x27;, &#x27;liner&#x27;),
+            headerClass   = this.getClassName(&#x27;header&#x27;),
+            headers       = this._theadNode.all(&#x27;.&#x27; + headerClass);
+
+        if (this._theadNode &amp;&amp; fixedHeader) {
+            fixedHeader.empty().appendChild(
+                this._theadNode.cloneNode(true));
+
+            &#x2F;&#x2F; Prevent duplicate IDs and assign ARIA attributes to hide
+            &#x2F;&#x2F; from screen readers
+            fixedHeader.all(&#x27;[id]&#x27;).removeAttribute(&#x27;id&#x27;);
+
+            fixedHeader.all(&#x27;.&#x27; + headerClass).each(function (header, i) {
+                var liner = Y.Node.create(Y.Lang.sub(linerTemplate, {
+                            className: linerClass
+                        })),
+                    refHeader = headers.item(i);
+
+                &#x2F;&#x2F; Can&#x27;t assign via skin css because sort (and potentially
+                &#x2F;&#x2F; others) might override the padding values.
+                liner.setStyle(&#x27;padding&#x27;,
+                    refHeader.getComputedStyle(&#x27;paddingTop&#x27;) + &#x27; &#x27; +
+                    refHeader.getComputedStyle(&#x27;paddingRight&#x27;) + &#x27; &#x27; +
+                    refHeader.getComputedStyle(&#x27;paddingBottom&#x27;) + &#x27; &#x27; +
+                    refHeader.getComputedStyle(&#x27;paddingLeft&#x27;));
+
+                liner.appendChild(header.get(&#x27;childNodes&#x27;).toFrag());
+
+                header.appendChild(liner);
+            }, this);
+
+            this._syncScrollColumnWidths();
+
+            this._addScrollbarPadding();
+        }
+    },
+
+    &#x2F;**
+    Wraps the table for X and Y scrolling, if necessary, if the &#x60;scrollable&#x60;
+    attribute is set.  Synchronizes dimensions and DOM placement of all
+    scrolling related nodes.
+
+    @method _syncScrollUI
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _syncScrollUI: function () {
+        var x = this._xScroll,
+            y = this._yScroll,
+            xScroller  = this._xScrollNode,
+            yScroller  = this._yScrollNode,
+            scrollLeft = xScroller &amp;&amp; xScroller.get(&#x27;scrollLeft&#x27;),
+            scrollTop  = yScroller &amp;&amp; yScroller.get(&#x27;scrollTop&#x27;);
+
+        this._uiSetScrollable();
+
+        &#x2F;&#x2F; TODO: Probably should split this up into syncX, syncY, and syncXY
+        if (x || y) {
+            if ((this.get(&#x27;width&#x27;) || &#x27;&#x27;).slice(-1) === &#x27;%&#x27;) {
+                this._bindScrollResize();
+            } else {
+                this._unbindScrollResize();
+            }
+
+            this._syncScrollCaptionUI();
+        } else {
+            this._disableScrolling();
+        }
+
+        if (this._yScrollHeader) {
+            this._yScrollHeader.setStyle(&#x27;display&#x27;, &#x27;none&#x27;);
+        }
+
+        if (x) {
+            if (!y) {
+                this._disableYScrolling();
+            }
+
+            this._syncXScrollUI(y);
+        }
+
+        if (y) {
+            if (!x) {
+                this._disableXScrolling();
+            }
+
+            this._syncYScrollUI(x);
+        }
+
+        &#x2F;&#x2F; Restore scroll position
+        if (scrollLeft &amp;&amp; this._xScrollNode) {
+            this._xScrollNode.set(&#x27;scrollLeft&#x27;, scrollLeft);
+        }
+        if (scrollTop &amp;&amp; this._yScrollNode) {
+            this._yScrollNode.set(&#x27;scrollTop&#x27;, scrollTop);
+        }
+    },
+
+    &#x2F;**
+    Wraps the table in a scrolling &#x60;&lt;div&gt;&#x60; of the configured width for &quot;x&quot;
+    scrolling.
+
+    @method _syncXScrollUI
+    @param {Boolean} xy True if the table is configured with scrollable =&quot;xy&quot;
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _syncXScrollUI: function (xy) {
+        var scroller     = this._xScrollNode,
+            yScroller    = this._yScrollContainer,
+            table        = this._tableNode,
+            width        = this.get(&#x27;width&#x27;),
+            bbWidth      = this.get(&#x27;boundingBox&#x27;).get(&#x27;offsetWidth&#x27;),
+            scrollbarWidth = Y.DOM.getScrollbarWidth(),
+            borderWidth, tableWidth;
+
+        if (!scroller) {
+            scroller = this._createXScrollNode();
+
+            &#x2F;&#x2F; Not using table.wrap() because IE went all crazy, wrapping the
+            &#x2F;&#x2F; table in the last td in the table itself.
+            (yScroller || table).replace(scroller).appendTo(scroller);
+        }
+
+        &#x2F;&#x2F; Can&#x27;t use offsetHeight - clientHeight because IE6 returns
+        &#x2F;&#x2F; clientHeight of 0 intially.
+        borderWidth = styleDim(scroller, &#x27;borderLeftWidth&#x27;) +
+                      styleDim(scroller, &#x27;borderRightWidth&#x27;);
+
+        scroller.setStyle(&#x27;width&#x27;, &#x27;&#x27;);
+        this._uiSetDim(&#x27;width&#x27;, &#x27;&#x27;);
+        if (xy &amp;&amp; this._yScrollContainer) {
+            this._yScrollContainer.setStyle(&#x27;width&#x27;, &#x27;&#x27;);
+        }
+
+        &#x2F;&#x2F; Lock the table&#x27;s unconstrained width to avoid configured column
+        &#x2F;&#x2F; widths being ignored
+        if (Y.UA.ie &amp;&amp; Y.UA.ie &lt; 8) {
+            &#x2F;&#x2F; Have to assign a style and trigger a reflow to allow the
+            &#x2F;&#x2F; subsequent clearing of width + reflow to expand the table to
+            &#x2F;&#x2F; natural width in IE 6
+            table.setStyle(&#x27;width&#x27;, width);
+            table.get(&#x27;offsetWidth&#x27;);
+        }
+        table.setStyle(&#x27;width&#x27;, &#x27;&#x27;);
+        tableWidth = table.get(&#x27;offsetWidth&#x27;);
+        table.setStyle(&#x27;width&#x27;, tableWidth + &#x27;px&#x27;);
+
+        this._uiSetDim(&#x27;width&#x27;, width);
+
+        &#x2F;&#x2F; Can&#x27;t use 100% width because the borders add additional width
+        &#x2F;&#x2F; TODO: Cache the border widths, though it won&#x27;t prevent a reflow
+        scroller.setStyle(&#x27;width&#x27;, (bbWidth - borderWidth) + &#x27;px&#x27;);
+
+        &#x2F;&#x2F; expand the table to fill the assigned width if it doesn&#x27;t
+        &#x2F;&#x2F; already overflow the configured width
+        if ((scroller.get(&#x27;offsetWidth&#x27;) - borderWidth) &gt; tableWidth) {
+            &#x2F;&#x2F; Assumes the wrapped table doesn&#x27;t have borders
+            if (xy) {
+                table.setStyle(&#x27;width&#x27;, (scroller.get(&#x27;offsetWidth&#x27;) -
+                     borderWidth - scrollbarWidth) + &#x27;px&#x27;);
+            } else {
+                table.setStyle(&#x27;width&#x27;, &#x27;100%&#x27;);
+            }
+        }
+    },
+
+    &#x2F;**
+    Wraps the table in a scrolling &#x60;&lt;div&gt;&#x60; of the configured height (accounting
+    for the caption if there is one) if &quot;y&quot; scrolling is enabled.  Otherwise,
+    unwraps the table if necessary.
+
+    @method _syncYScrollUI
+    @param {Boolean} xy True if the table is configured with scrollable = &quot;xy&quot;
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _syncYScrollUI: function (xy) {
+        var yScroller    = this._yScrollContainer,
+            yScrollNode  = this._yScrollNode,
+            xScroller    = this._xScrollNode,
+            fixedHeader  = this._yScrollHeader,
+            scrollbar    = this._scrollbarNode,
+            table        = this._tableNode,
+            thead        = this._theadNode,
+            captionTable = this._captionTable,
+            boundingBox  = this.get(&#x27;boundingBox&#x27;),
+            contentBox   = this.get(&#x27;contentBox&#x27;),
+            width        = this.get(&#x27;width&#x27;),
+            height       = boundingBox.get(&#x27;offsetHeight&#x27;),
+            scrollbarWidth = Y.DOM.getScrollbarWidth(),
+            outerScroller;
+
+        if (captionTable &amp;&amp; !xy) {
+            captionTable.setStyle(&#x27;width&#x27;, width || &#x27;100%&#x27;);
+        }
+
+        if (!yScroller) {
+            yScroller = this._createYScrollNode();
+
+            yScrollNode = this._yScrollNode;
+
+            table.replace(yScroller).appendTo(yScrollNode);
+        }
+
+        outerScroller = xy ? xScroller : yScroller;
+
+        if (!xy) {
+            table.setStyle(&#x27;width&#x27;, &#x27;&#x27;);
+        }
+
+        &#x2F;&#x2F; Set the scroller height
+        if (xy) {
+            &#x2F;&#x2F; Account for the horizontal scrollbar in the overall height
+            height -= scrollbarWidth;
+        }
+
+        yScrollNode.setStyle(&#x27;height&#x27;,
+            (height - outerScroller.get(&#x27;offsetTop&#x27;) -
+            &#x2F;&#x2F; because IE6 is returning clientHeight 0 initially
+            styleDim(outerScroller, &#x27;borderTopWidth&#x27;) -
+            styleDim(outerScroller, &#x27;borderBottomWidth&#x27;)) + &#x27;px&#x27;);
+
+        &#x2F;&#x2F; Set the scroller width
+        if (xy) {
+            &#x2F;&#x2F; For xy scrolling tables, the table should expand freely within
+            &#x2F;&#x2F; the x scroller
+            yScroller.setStyle(&#x27;width&#x27;,
+                (table.get(&#x27;offsetWidth&#x27;) + scrollbarWidth) + &#x27;px&#x27;);
+        } else {
+            this._uiSetYScrollWidth(width);
+        }
+
+        if (captionTable &amp;&amp; !xy) {
+            captionTable.setStyle(&#x27;width&#x27;, yScroller.get(&#x27;offsetWidth&#x27;) + &#x27;px&#x27;);
+        }
+
+        &#x2F;&#x2F; Allow headerless scrolling
+        if (thead &amp;&amp; !fixedHeader) {
+            fixedHeader = this._createYScrollHeader();
+
+            yScroller.prepend(fixedHeader);
+
+            this._syncScrollHeaders();
+        }
+
+        if (fixedHeader) {
+            this._syncScrollColumnWidths();
+
+            fixedHeader.setStyle(&#x27;display&#x27;, &#x27;&#x27;);
+            &#x2F;&#x2F; This might need to come back if FF has issues
+            &#x2F;&#x2F;fixedHeader.setStyle(&#x27;width&#x27;, &#x27;100%&#x27;);
+                &#x2F;&#x2F;(yScroller.get(&#x27;clientWidth&#x27;) + scrollbarWidth) + &#x27;px&#x27;);
+
+            if (!scrollbar) {
+                scrollbar = this._createScrollbar();
+
+                this._bindScrollbar();
+
+                contentBox.prepend(scrollbar);
+            }
+
+            this._uiSetScrollbarHeight();
+            this._uiSetScrollbarPosition(outerScroller);
+        }
+    },
+
+    &#x2F;**
+    Assigns the appropriate class to the &#x60;boundingBox&#x60; to identify the DataTable
+    as horizontally scrolling, vertically scrolling, or both (adds both classes).
+
+    Classes added are &quot;yui3-datatable-scrollable-x&quot; or &quot;...-y&quot;
+
+    @method _uiSetScrollable
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _uiSetScrollable: function () {
+        this.get(&#x27;boundingBox&#x27;)
+            .toggleClass(this.getClassName(&#x27;scrollable&#x27;,&#x27;x&#x27;), this._xScroll)
+            .toggleClass(this.getClassName(&#x27;scrollable&#x27;,&#x27;y&#x27;), this._yScroll);
+    },
+
+    &#x2F;**
+    Updates the virtual scrollbar&#x27;s height to avoid overlapping with the fixed
+    headers.
+
+    @method _uiSetScrollbarHeight
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _uiSetScrollbarHeight: function () {
+        var scrollbar   = this._scrollbarNode,
+            scroller    = this._yScrollNode,
+            fixedHeader = this._yScrollHeader;
+
+        if (scrollbar &amp;&amp; scroller &amp;&amp; fixedHeader) {
+            scrollbar.get(&#x27;firstChild&#x27;).setStyle(&#x27;height&#x27;,
+                this._tbodyNode.get(&#x27;scrollHeight&#x27;) + &#x27;px&#x27;);
+
+            scrollbar.setStyle(&#x27;height&#x27;, 
+                (parseFloat(scroller.getComputedStyle(&#x27;height&#x27;)) -
+                 parseFloat(fixedHeader.getComputedStyle(&#x27;height&#x27;))) + &#x27;px&#x27;);
+        }
+    },
+
+    &#x2F;**
+    Updates the virtual scrollbar&#x27;s placement to avoid overlapping the fixed
+    headers or the data table.
+
+    @method _uiSetScrollbarPosition
+    @param {Node} scroller Reference node to position the scrollbar over
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _uiSetScrollbarPosition: function (scroller) {
+        var scrollbar     = this._scrollbarNode,
+            fixedHeader   = this._yScrollHeader;
+
+        if (scrollbar &amp;&amp; scroller &amp;&amp; fixedHeader) {
+            scrollbar.setStyles({
+                &#x2F;&#x2F; Using getCS instead of offsetHeight because FF uses
+                &#x2F;&#x2F; fractional values, but reports ints to offsetHeight, so
+                &#x2F;&#x2F; offsetHeight is unreliable.  It is probably fine to use
+                &#x2F;&#x2F; offsetHeight in this case but this was left in place after
+                &#x2F;&#x2F; fixing an off-by-1px issue in FF 10- by fixing the caption
+                &#x2F;&#x2F; font style so FF picked it up.
+                top: (parseFloat(fixedHeader.getComputedStyle(&#x27;height&#x27;)) +
+                      styleDim(scroller, &#x27;borderTopWidth&#x27;) +
+                      scroller.get(&#x27;offsetTop&#x27;)) + &#x27;px&#x27;,
+
+                &#x2F;&#x2F; Minus 1 because IE 6-10 require the scrolled area to be
+                &#x2F;&#x2F; visible by at least 1px or it won&#x27;t respond to clicks on the
+                &#x2F;&#x2F; scrollbar rail or endcap arrows.
+                left: (scroller.get(&#x27;offsetWidth&#x27;) -
+                       Y.DOM.getScrollbarWidth() - 1 -
+                       styleDim(scroller, &#x27;borderRightWidth&#x27;)) + &#x27;px&#x27;
+            });
+        }
+    },
+
+    &#x2F;**
+    Assigns the width of the &#x60;&lt;div&gt;&#x60; wrapping the data table in vertically
+    scrolling tables.
+
+    If the table can&#x27;t compress to the specified width, the container is
+    expanded accordingly.
+
+    @method _uiSetYScrollWidth
+    @param {String} width The CSS width to attempt to set
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _uiSetYScrollWidth: function (width) {
+        var scroller = this._yScrollContainer,
+            table    = this._tableNode,
+            tableWidth, borderWidth, scrollerWidth, scrollbarWidth;
+
+        if (scroller &amp;&amp; table) {
+            scrollbarWidth = Y.DOM.getScrollbarWidth();
+
+            if (width) {
+                &#x2F;&#x2F; Assumes no table border
+                borderWidth = scroller.get(&#x27;offsetWidth&#x27;) -
+                              scroller.get(&#x27;clientWidth&#x27;) +
+                              scrollbarWidth; &#x2F;&#x2F; added back at the end
+
+                &#x2F;&#x2F; The table&#x27;s rendered width might be greater than the
+                &#x2F;&#x2F; configured width
+                scroller.setStyle(&#x27;width&#x27;, width);
+
+                &#x2F;&#x2F; Have to subtract the border width from the configured width
+                &#x2F;&#x2F; because the scroller&#x27;s width will need to be reduced by the
+                &#x2F;&#x2F; border width as well during the width reassignment below.
+                scrollerWidth = scroller.get(&#x27;clientWidth&#x27;) - borderWidth;
+
+                &#x2F;&#x2F; Assumes no table borders
+                table.setStyle(&#x27;width&#x27;, scrollerWidth + &#x27;px&#x27;);
+
+                tableWidth = table.get(&#x27;offsetWidth&#x27;);
+
+                &#x2F;&#x2F; Expand the scroll node width if the table can&#x27;t fit.
+                &#x2F;&#x2F; Otherwise, reassign the scroller a pixel width that
+                &#x2F;&#x2F; accounts for the borders.
+                scroller.setStyle(&#x27;width&#x27;,
+                    (tableWidth + scrollbarWidth) + &#x27;px&#x27;);
+            } else {
+                &#x2F;&#x2F; Allow the table to expand naturally
+                table.setStyle(&#x27;width&#x27;, &#x27;&#x27;);
+                scroller.setStyle(&#x27;width&#x27;, &#x27;&#x27;);
+
+                scroller.setStyle(&#x27;width&#x27;,
+                    (table.get(&#x27;offsetWidth&#x27;) + scrollbarWidth) + &#x27;px&#x27;);
+            }
+        }
+    },
+
+    &#x2F;**
+    Detaches the scroll event subscriptions used to maintain scroll position
+    parity between the scrollable &#x60;&lt;div&gt;&#x60; wrapper around the data table and the
+    virtual scrollbar for vertically scrolling tables.
+
+    @method _unbindScrollbar
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _unbindScrollbar: function () {
+        if (this._scrollbarEventHandle) {
+            this._scrollbarEventHandle.detach();
+        }
+    },
+
+    &#x2F;**
+    Detaches the resize event subscription used to maintain column parity for
+    vertically scrolling tables with percentage widths.
+
+    @method _unbindScrollResize
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _unbindScrollResize: function () {
+        if (this._scrollResizeHandle) {
+            this._scrollResizeHandle.detach();
+            delete this._scrollResizeHandle;
+        }
+    }
+
+    &#x2F;**
+    Indicates horizontal table scrolling is enabled.
+
+    @property _xScroll
+    @type {Boolean}
+    @default undefined (not initially set)
+    @private
+    @since 3.5.0
+    **&#x2F;
+    &#x2F;&#x2F;_xScroll: null,
+
+    &#x2F;**
+    Indicates vertical table scrolling is enabled.
+
+    @property _yScroll
+    @type {Boolean}
+    @default undefined (not initially set)
+    @private
+    @since 3.5.0
+    **&#x2F;
+    &#x2F;&#x2F;_yScroll: null,
+
+    &#x2F;**
+    Fixed column header &#x60;&lt;table&gt;&#x60; Node for vertical scrolling tables.
+
+    @property _yScrollHeader
+    @type {Node}
+    @default undefined (not initially set)
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    &#x2F;&#x2F;_yScrollHeader: null,
+
+    &#x2F;**
+    Overflow Node used to contain the data rows in a vertically scrolling table.
+
+    @property _yScrollNode
+    @type {Node}
+    @default undefined (not initially set)
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    &#x2F;&#x2F;_yScrollNode: null,
+
+    &#x2F;**
+    Overflow Node used to contain the table headers and data in a horizontally
+    scrolling table.
+
+    @property _xScrollNode
+    @type {Node}
+    @default undefined (not initially set)
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    &#x2F;&#x2F;_xScrollNode: null
+}, true);
+
+Y.Base.mix(Y.DataTable, [Scrollable]);
+
+    </pre>
 </div>
 
                 </div>

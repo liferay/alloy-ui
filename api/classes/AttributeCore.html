@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSON - AlloyUI</title>
+    <title>AttributeCore - AlloyUI</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.4.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
@@ -1577,7 +1577,7 @@
 
             <div class="apidocs">
                 <div id="docs-main" class="content">
-                    <h1>JSON Class</h1>
+                    <h1>AttributeCore Class</h1>
 <div class="box meta">
     
 
@@ -1585,7 +1585,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18372"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18372</code></a>
+            Defined in: <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l45"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:45</code></a>
         </div>
     
 
@@ -1595,24 +1595,30 @@
 
 
 <div class="box intro">
-    <p>The JSON module adds support for serializing JavaScript objects into
-JSON strings and parsing JavaScript objects from strings in JSON format.</p>
+    <p>
+AttributeCore provides the lightest level of configurable attribute support. It is designed to be 
+augmented on to a host class, and provides the host with the ability to configure 
+attributes to store and retrieve state, <strong>but without support for attribute change events</strong>.
+</p>
 
-<p>The JSON namespace is added to your YUI instance including static methods
-Y.JSON.parse(..) and Y.JSON.stringify(..).</p>
+<p>For example, attributes added to the host can be configured:</p>
 
-<p>The functionality and method signatures follow the ECMAScript 5
-specification.  In browsers with native JSON support, the native
-implementation is used.</p>
+<ul>
+    <li>As read only.</li>
+    <li>As write once.</li>
+    <li>With a setter function, which can be used to manipulate
+    values passed to Attribute's <a href="#method_set">set</a> method, before they are stored.</li>
+    <li>With a getter function, which can be used to manipulate stored values,
+    before they are returned by Attribute's <a href="#method_get">get</a> method.</li>
+    <li>With a validator function, to validate values before they are stored.</li>
+</ul>
 
-<p>The <code>json</code> module is a rollup of <code>json-parse</code> and
-<code>json-stringify</code>.</p>
+<p>See the <a href="#method_addAttr">addAttr</a> method, for the complete set of configuration
+options available for attributes.</p>
 
-<p>As their names suggest, <code>json-parse</code> adds support for parsing
-JSON data (Y.JSON.parse) and <code>json-stringify</code> for serializing
-JavaScript data into JSON strings (Y.JSON.stringify).  You may choose to
-include either of the submodules individually if you don't need the
-complementary functionality, or include the rollup for both.</p>
+<p>Object/Classes based on AttributeCore can augment <a href="AttributeEvents.html">AttributeEvents</a> 
+(with true for overwrite) and <a href="AttributeExtras.html">AttributeExtras</a> to add attribute event and 
+additional, less commonly used attribute methods, such as <code>modifyAttr</code>, <code>removeAttr</code> and <code>reset</code>.</p>
 </div>
 
 
@@ -1642,80 +1648,140 @@ complementary functionality, or include the rollup for both.</p>
                     <ul class="index-list methods">
                         
                             <li class="index-item method private">
-                                <a href="#method__revive">_revive</a>
+                                <a href="#method__addAttrs">_addAttrs</a>
 
                                 
                             </li>
                         
                             <li class="index-item method private">
-                                <a href="#method__revive">_revive</a>
+                                <a href="#method__addLazyAttr">_addLazyAttr</a>
 
                                 
                             </li>
                         
-                            <li class="index-item method">
-                                <a href="#method_customTransport">customTransport</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method deprecated">
-                                <a href="#method_dateToString">dateToString</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_defaultTransport">defaultTransport</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_escapeException">escapeException</a>
+                            <li class="index-item method protected">
+                                <a href="#method__getAttr">_getAttr</a>
 
                                 
                             </li>
                         
                             <li class="index-item method private">
-                                <a href="#method_escapeException">escapeException</a>
+                                <a href="#method__getAttrInitVal">_getAttrInitVal</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
+                                <a href="#method__getAttrs">_getAttrs</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__getStateVal">_getStateVal</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__initAttrHost">_initAttrHost</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
+                                <a href="#method__initAttrs">_initAttrs</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__isLazyAttr">_isLazyAttr</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__normAttrVals">_normAttrVals</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
+                                <a href="#method__protectAttrs">_protectAttrs</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
+                                <a href="#method__set">_set</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
+                                <a href="#method__setAttr">_setAttr</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
+                                <a href="#method__setAttrs">_setAttrs</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__setAttrVal">_setAttrVal</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method__setStateVal">_setStateVal</a>
 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_notify">notify</a>
+                                <a href="#method_addAttr">addAttr</a>
 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_parse">parse</a>
+                                <a href="#method_addAttrs">addAttrs</a>
 
-                                
-                                    <span class="flag static">static</span>
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_parse">parse</a>
+                                <a href="#method_attrAdded">attrAdded</a>
 
-                                
-                                    <span class="flag static">static</span>
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_stringify">stringify</a>
+                                <a href="#method_get">get</a>
 
                                 
-                                    <span class="flag static">static</span>
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_getAttrs">getAttrs</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_set">set</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_setAttrs">setAttrs</a>
+
                                 
                             </li>
                         
@@ -1729,96 +1795,8 @@ complementary functionality, or include the rollup for both.</p>
 
                     <ul class="index-list properties">
                         
-                            <li class="index-item property private">
-                                <a href="#property__BRACKETS">_BRACKETS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__BRACKETS">_BRACKETS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property__default">_default</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__ESCAPES">_ESCAPES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__ESCAPES">_ESCAPES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNICODE_EXCEPTIONS">_UNICODE_EXCEPTIONS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNICODE_EXCEPTIONS">_UNICODE_EXCEPTIONS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNSAFE">_UNSAFE</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNSAFE">_UNSAFE</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__VALUES">_VALUES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__VALUES">_VALUES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_charCacheThreshold">charCacheThreshold</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property_Native">Native</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property_Native">Native</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_transports">transports</a>
+                            <li class="index-item property protected">
+                                <a href="#property__ATTR_CFG">_ATTR_CFG</a>
 
                                 
                                     <span class="flag static">static</span>
@@ -1826,23 +1804,7 @@ complementary functionality, or include the rollup for both.</p>
                             </li>
                         
                             <li class="index-item property">
-                                <a href="#property_useNativeParse">useNativeParse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeParse">useNativeParse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeStringify">useNativeStringify</a>
+                                <a href="#property_INVALID_VALUE">INVALID_VALUE</a>
 
                                 
                                     <span class="flag static">static</span>
@@ -1863,8 +1825,8 @@ complementary functionality, or include the rollup for both.</p>
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method__revive" class="method item private">
-    <h3 class="name"><code>_revive</code></h3>
+                    <div id="method__addAttrs" class="method item private">
+    <h3 class="name"><code>_addAttrs</code></h3>
 
     
         <div class="args">
@@ -1872,13 +1834,19 @@ complementary functionality, or include the rollup for both.</p>
             
                 <li class="arg">
                     
-                        <code>data</code>
+                        <code>cfgs</code>
                     
                 </li>
             
                 <li class="arg">
                     
-                        <code>reviver</code>
+                        <code>values</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>lazy</code>
                     
                 </li>
             
@@ -1886,10 +1854,6 @@ complementary functionality, or include the rollup for both.</p>
         </div>
     
 
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
     
 
     
@@ -1915,7 +1879,7 @@ complementary functionality, or include the rollup for both.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l125"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:125</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l741"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:741</code></a>
         
         </p>
 
@@ -1926,11 +1890,12 @@ complementary functionality, or include the rollup for both.</p>
     </div>
 
     <div class="description">
-        <p>Traverses nested objects, applying a reviver function to each (key,value)
-from the scope if the key:value's containing object.  The value returned
-from the function will replace the original value in the key:value pair.
-If the value returned is undefined, the key will be omitted from the
-returned object.</p>
+        <p>Implementation behind the public addAttrs method. </p>
+
+<p>This method is invoked directly by get if it encounters a scenario 
+in which an attribute's valueFn attempts to obtain the 
+value an attribute in the same group of attributes, which has not yet 
+been added (on demand initialization).</p>
     </div>
 
     
@@ -1941,14 +1906,14 @@ returned object.</p>
             
                 <li class="param">
                     
-                        <code class="param-name">data</code>
-                        <span class="type">MIXED</span>
+                        <code class="param-name">cfgs</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>Any JavaScript data</p>
+                        <p>An object with attribute name/configuration pairs.</p>
                     </div>
 
                     
@@ -1956,14 +1921,32 @@ returned object.</p>
             
                 <li class="param">
                     
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                        <code class="param-name">values</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>filter or mutation function</p>
+                        <p>An object with attribute name/value pairs, defining the initial values to apply.
+Values defined in the cfgs argument will be over-written by values in this argument unless defined as read only.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">lazy</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Whether or not to delay the intialization of these attributes until the first call to get/set.
+Individual attributes can over-ride this behavior by defining a lazyAdd configuration property in their configuration.
+See <a href="#method_addAttr">addAttr</a>.</p>
                     </div>
 
                     
@@ -1974,26 +1957,13 @@ returned object.</p>
     
 
     
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    The results of the filtered data
-                
-            </div>
-        </div>
-    
 
     
 </div>
 
                 
-                    <div id="method__revive" class="method item private">
-    <h3 class="name"><code>_revive</code></h3>
+                    <div id="method__addLazyAttr" class="method item private">
+    <h3 class="name"><code>_addLazyAttr</code></h3>
 
     
         <div class="args">
@@ -2001,13 +1971,7 @@ returned object.</p>
             
                 <li class="arg">
                     
-                        <code>data</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
+                        <code>name</code>
                     
                 </li>
             
@@ -2015,10 +1979,6 @@ returned object.</p>
         </div>
     
 
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
     
 
     
@@ -2044,7 +2004,7 @@ returned object.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18496"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18496</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l312"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:312</code></a>
         
         </p>
 
@@ -2055,11 +2015,7 @@ returned object.</p>
     </div>
 
     <div class="description">
-        <p>Traverses nested objects, applying a reviver function to each (key,value)
-from the scope if the key:value's containing object.  The value returned
-from the function will replace the original value in the key:value pair.
-If the value returned is undefined, the key will be omitted from the
-returned object.</p>
+        <p>Finishes initializing an attribute which has been lazily added.</p>
     </div>
 
     
@@ -2070,29 +2026,14 @@ returned object.</p>
             
                 <li class="param">
                     
-                        <code class="param-name">data</code>
-                        <span class="type">MIXED</span>
+                        <code class="param-name">name</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>Any JavaScript data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>filter or mutation function</p>
+                        <p>The name of the attribute</p>
                     </div>
 
                     
@@ -2103,26 +2044,13 @@ returned object.</p>
     
 
     
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    The results of the filtered data
-                
-            </div>
-        </div>
-    
 
     
 </div>
 
                 
-                    <div id="method_customTransport" class="method item">
-    <h3 class="name"><code>customTransport</code></h3>
+                    <div id="method__getAttr" class="method item protected">
+    <h3 class="name"><code>_getAttr</code></h3>
 
     
         <div class="args">
@@ -2130,7 +2058,7 @@ returned object.</p>
             
                 <li class="arg">
                     
-                        <code>id</code>
+                        <code>name</code>
                     
                 </li>
             
@@ -2139,7 +2067,15 @@ returned object.</p>
     
 
     
+        <span class="returns-inline">
+            <span class="type">Any</span>
+        </span>
+    
 
+    
+
+    
+        <span class="flag protected">protected</span>
     
 
     
@@ -2147,16 +2083,12 @@ returned object.</p>
     
 
     
-        <span class="flag static">static</span>
-    
-
+        <span class="flag chainable">chainable</span>
     
 
     <div class="meta">
         
             
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
                 
                 <p>
                 
@@ -2165,7 +2097,7 @@ returned object.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l56"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:56</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l468"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:468</code></a>
         
         </p>
 
@@ -2176,7 +2108,10 @@ returned object.</p>
     </div>
 
     <div class="description">
-        <p>Create a custom transport of type and return it's object</p>
+        <p>Provides the common implementation for the public get method,
+allowing Attribute hosts to over-ride either method.</p>
+
+<p>See <a href="#method_get">get</a> for argument details.</p>
     </div>
 
     
@@ -2187,113 +2122,14 @@ returned object.</p>
             
                 <li class="param">
                     
-                        <code class="param-name">id</code>
+                        <code class="param-name">name</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>The id of the transport to create.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_dateToString" class="method item deprecated">
-    <h3 class="name"><code>dateToString</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>d</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-        <span class="flag deprecated" title="Use a replacer function">deprecated</span>
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l266"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:266</code></a>
-        
-        </p>
-
-
-        
-            <p>Deprecated: Use a replacer function</p>
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Serializes a Date instance as a UTC date string.  Used internally by
-stringify.  Override this method if you need Dates serialized in a
-different format.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">d</code>
-                        <span class="type"><a href="../classes/Date.html" class="crosslink">Date</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The Date to serialize</p>
+                        <p>The name of the attribute.</p>
                     </div>
 
                     
@@ -2310,9 +2146,9 @@ different format.</p>
             <div class="returns-description">
                 
                     
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                        <span class="type">Any</span>:
                     
-                    stringified Date in UTC format YYYY-MM-DDTHH:mm:SSZ
+                    The value of the attribute.
                 
             </div>
         </div>
@@ -2322,8 +2158,8 @@ different format.</p>
 </div>
 
                 
-                    <div id="method_defaultTransport" class="method item">
-    <h3 class="name"><code>defaultTransport</code></h3>
+                    <div id="method__getAttrInitVal" class="method item private">
+    <h3 class="name"><code>_getAttrInitVal</code></h3>
 
     
         <div class="args">
@@ -2331,7 +2167,1638 @@ different format.</p>
             
                 <li class="arg">
                     
-                        <code class="optional">[id]</code>
+                        <code>attr</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>cfg</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>initValues</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Any</span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l824"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:824</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Returns the initial value of the given attribute from
+either the default configuration provided, or the 
+over-ridden value if it exists in the set of initValues 
+provided and the attribute is not read-only.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">attr</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The name of the attribute</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">cfg</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The attribute configuration object</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">initValues</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The object with simple and complex attribute name/value pairs returned from _normAttrVals</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Any</span>:
+                    
+                    The initial value of the attribute.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method__getAttrs" class="method item protected">
+    <h3 class="name"><code>_getAttrs</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>attrs</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l678"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:678</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Implementation behind the public getAttrs method, to get multiple attribute values.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">attrs</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | boolean</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Optional. An array of attribute names. If omitted, all attribute values are
+returned. If set to true, all attributes modified from their initial values are returned.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                    
+                    An object with attribute name/value pairs.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method__getStateVal" class="method item private">
+    <h3 class="name"><code>_getStateVal</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>name</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Any</span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l522"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:522</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Gets the stored value for the attribute, from either the 
+internal state object, or the state proxy if it exits</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">name</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The name of the attribute</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Any</span>:
+                    
+                    The stored value of the attribute
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method__initAttrHost" class="method item private">
+    <h3 class="name"><code>_initAttrHost</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>attrs</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>values</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>lazy</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l109"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:109</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Constructor logic for attributes. Initializes the host state, and sets up the inital attributes passed to the 
+constructor.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">attrs</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The attributes to add during construction (passed through to <a href="#method_addAttrs">addAttrs</a>). These can also be defined on the constructor being augmented with Attribute by defining the ATTRS property on the constructor.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">values</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The initial attribute values to apply (passed through to <a href="#method_addAttrs">addAttrs</a>). These are not merged/cloned. The caller is responsible for isolating user provided values if required.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">lazy</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Whether or not to add attributes lazily (passed through to <a href="#method_addAttrs">addAttrs</a>).</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__initAttrs" class="method item protected">
+    <h3 class="name"><code>_initAttrs</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>attrs</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>values</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>lazy</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l863"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:863</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Utility method to set up initial attributes defined during construction, either through the constructor.ATTRS property, or explicitly passed in.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">attrs</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The attributes to add during construction (passed through to <a href="#method_addAttrs">addAttrs</a>). These can also be defined on the constructor being augmented with Attribute by defining the ATTRS property on the constructor.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">values</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The initial attribute values to apply (passed through to <a href="#method_addAttrs">addAttrs</a>). These are not merged/cloned. The caller is responsible for isolating user provided values if required.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">lazy</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Whether or not to add attributes lazily (passed through to <a href="#method_addAttrs">addAttrs</a>).</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__isLazyAttr" class="method item private">
+    <h3 class="name"><code>_isLazyAttr</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>name</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l299"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:299</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Checks whether or not the attribute is one which has been
+added lazily and still requires initialization.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">name</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The name of the attribute</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+                    
+                    true if it's a lazily added attribute, false otherwise.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method__normAttrVals" class="method item private">
+    <h3 class="name"><code>_normAttrVals</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>valueHash</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l809"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:809</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Utility method to normalize attribute values. The base implementation 
+simply merges the hash to protect the original.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">valueHash</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>An object with attribute name/value pairs</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method__protectAttrs" class="method item protected">
+    <h3 class="name"><code>_protectAttrs</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>attrs</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l787"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:787</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Utility method to protect an attribute configuration
+hash, by merging the entire object and the individual 
+attr config objects.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">attrs</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>A hash of attribute to configuration object pairs.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                    
+                    A protected version of the attrs argument.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method__set" class="method item protected">
+    <h3 class="name"><code>_set</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>name</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>val</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l346"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:346</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Allows setting of readOnly/writeOnce attributes. See <a href="#method_set">set</a> for argument details.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">name</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The name of the attribute.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">val</code>
+                        <span class="type">Any</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The value to set the attribute to.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                    
+                    A reference to the host object.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method__setAttr" class="method item protected">
+    <h3 class="name"><code>_setAttr</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>name</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>value</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>opts</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>force</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l361"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:361</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Provides the common implementation for the public set and protected _set methods.</p>
+
+<p>See <a href="#method_set">set</a> for argument details.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">name</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The name of the attribute.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type">Any</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The value to set the attribute to.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">opts</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>(Optional) Optional event data to be mixed into
+the event facade passed to subscribers of the attribute's change event.
+This is currently a hack. There's no real need for the AttributeCore implementation
+to support this parameter, but breaking it out into AttributeEvents, results in
+additional function hops for the critical path.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">force</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>If true, allows the caller to set values for 
+readOnly or writeOnce attributes which have already been set.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                    
+                    A reference to the host object.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method__setAttrs" class="method item protected">
+    <h3 class="name"><code>_setAttrs</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>attrs</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l647"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:647</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Implementation behind the public setAttrs method, to set multiple attribute values.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">attrs</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>An object with attributes name/value pairs.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                    
+                    A reference to the host object.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method__setAttrVal" class="method item private">
+    <h3 class="name"><code>_setAttrVal</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>attrName</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>subAttrName</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>prevVal</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>newVal</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Booolean</span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l554"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:554</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Updates the stored value of the attribute in the privately held State object,
+if validation and setter passes.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">attrName</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The attribute name.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">subAttrName</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The sub-attribute name, if setting a sub-attribute property ("x.y.z").</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">prevVal</code>
+                        <span class="type">Any</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The currently stored value of the attribute.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">newVal</code>
+                        <span class="type">Any</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The value which is going to be stored.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Booolean</span>:
+                    
+                    true if the new attribute value was stored, false if not.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method__setStateVal" class="method item private">
+    <h3 class="name"><code>_setStateVal</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>name</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>value</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l536"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:536</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Sets the stored value for the attribute, in either the 
+internal state object, or the state proxy if it exits</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">name</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The name of the attribute</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type">Any</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The value of the attribute</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_addAttr" class="method item">
+    <h3 class="name"><code>addAttr</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>name</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>config</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>lazy</code>
                     
                 </li>
             
@@ -2352,16 +3819,14 @@ different format.</p>
     
 
     
-        <span class="flag static">static</span>
-    
 
+    
+        <span class="flag chainable">chainable</span>
     
 
     <div class="meta">
         
             
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
                 
                 <p>
                 
@@ -2370,7 +3835,7 @@ different format.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l18"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:18</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l124"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:124</code></a>
         
         </p>
 
@@ -2381,7 +3846,86 @@ different format.</p>
     </div>
 
     <div class="description">
-        
+        <p>
+Adds an attribute with the provided configuration to the host object.
+</p>
+
+<p>
+The config argument object supports the following properties:
+</p>
+
+<dl>
+   <dt>value &#60;Any&#62;</dt>
+   <dd>The initial value to set on the attribute</dd>
+
+   <dt>valueFn &#60;Function | String&#62;</dt>
+   <dd>
+   <p>A function, which will return the initial value to set on the attribute. This is useful
+   for cases where the attribute configuration is defined statically, but needs to 
+   reference the host instance ("this") to obtain an initial value. If both the value and valueFn properties are defined, 
+   the value returned by the valueFn has precedence over the value property, unless it returns undefined, in which 
+   case the value property is used.</p>
+
+   <p>valueFn can also be set to a string, representing the name of the instance method to be used to retrieve the value.</p>
+   </dd>
+
+   <dt>readOnly &#60;boolean&#62;</dt>
+   <dd>Whether or not the attribute is read only. Attributes having readOnly set to true
+       cannot be modified by invoking the set method.</dd>
+
+   <dt>writeOnce &#60;boolean&#62; or &#60;string&#62;</dt>
+   <dd>
+       Whether or not the attribute is "write once". Attributes having writeOnce set to true, 
+       can only have their values set once, be it through the default configuration, 
+       constructor configuration arguments, or by invoking set.
+       <p>The writeOnce attribute can also be set to the string "initOnly", in which case the attribute can only be set during initialization
+       (when used with Base, this means it can only be set during construction)</p>
+   </dd>
+
+   <dt>setter &#60;Function | String&#62;</dt>
+   <dd>
+   <p>The setter function used to massage or normalize the value passed to the set method for the attribute. 
+   The value returned by the setter will be the final stored value. Returning
+   <a href="#property_Attribute.INVALID_VALUE">Attribute.INVALID_VALUE</a>, from the setter will prevent
+   the value from being stored.
+   </p>
+
+   <p>setter can also be set to a string, representing the name of the instance method to be used as the setter function.</p>
+   </dd>
+
+   <dt>getter &#60;Function | String&#62;</dt>
+   <dd>
+   <p>
+   The getter function used to massage or normalize the value returned by the get method for the attribute.
+   The value returned by the getter function is the value which will be returned to the user when they 
+   invoke get.
+   </p>
+
+   <p>getter can also be set to a string, representing the name of the instance method to be used as the getter function.</p>
+   </dd>
+
+   <dt>validator &#60;Function | String&#62;</dt>
+   <dd>
+   <p>
+   The validator function invoked prior to setting the stored value. Returning
+   false from the validator function will prevent the value from being stored.
+   </p>
+
+   <p>validator can also be set to a string, representing the name of the instance method to be used as the validator function.</p>
+   </dd>
+
+   <dt>lazyAdd &#60;boolean&#62;</dt>
+   <dd>Whether or not to delay initialization of the attribute until the first call to get/set it. 
+   This flag can be used to over-ride lazy initialization on a per attribute basis, when adding multiple attributes through 
+   the <a href="#method_addAttrs">addAttrs</a> method.</dd>
+
+</dl>
+
+<p>The setter, getter and validator are invoked with the value and name passed in as the first and second arguments, and with
+the context ("this") set to the host object.</p>
+
+<p>Configuration properties outside of the list mentioned above are considered private properties used internally by attribute, 
+and are not intended for public use.</p>
     </div>
 
     
@@ -2392,15 +3936,49 @@ different format.</p>
             
                 <li class="param">
                     
-                        <code class="param-name optional">[id]</code>
+                        <code class="param-name">name</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>The transport to set as the default, if empty a new transport is created.</p>
+                        <p>The name of the attribute.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">config</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>An object with attribute configuration property/value pairs, specifying the configuration for the attribute.</p>
+
+<p>
+<strong>NOTE:</strong> The configuration object is modified when adding an attribute, so if you need 
+to protect the original values, you will need to merge the object.
+</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">lazy</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>(optional) Whether or not to add this attribute lazily (on the first call to get/set).</p>
                     </div>
 
                     
@@ -2419,7 +3997,7 @@ different format.</p>
                     
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
                     
-                    The transport object with a <code>send</code> method
+                    A reference to the host object.
                 
             </div>
         </div>
@@ -2429,8 +4007,8 @@ different format.</p>
 </div>
 
                 
-                    <div id="method_escapeException" class="method item private">
-    <h3 class="name"><code>escapeException</code></h3>
+                    <div id="method_addAttrs" class="method item">
+    <h3 class="name"><code>addAttrs</code></h3>
 
     
         <div class="args">
@@ -2438,7 +4016,19 @@ different format.</p>
             
                 <li class="arg">
                     
-                        <code>c</code>
+                        <code>cfgs</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>values</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>lazy</code>
                     
                 </li>
             
@@ -2448,125 +4038,20 @@ different format.</p>
 
     
         <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
         </span>
     
 
     
 
     
-        <span class="flag private">private</span>
-    
 
     
 
     
 
     
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l112"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:112</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replaces specific unicode characters with their appropriate \unnnn
-format. Some browsers ignore certain characters during eval.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">c</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Unicode character</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    the \unnnn escapement of the character
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_escapeException" class="method item private">
-    <h3 class="name"><code>escapeException</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>c</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
+        <span class="flag chainable">chainable</span>
     
 
     <div class="meta">
@@ -2580,7 +4065,7 @@ format. Some browsers ignore certain characters during eval.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18483"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18483</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l709"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:709</code></a>
         
         </p>
 
@@ -2591,8 +4076,12 @@ format. Some browsers ignore certain characters during eval.</p>
     </div>
 
     <div class="description">
-        <p>Replaces specific unicode characters with their appropriate \unnnn
-format. Some browsers ignore certain characters during eval.</p>
+        <p>Configures a group of attributes, and sets initial values.</p>
+
+<p>
+<strong>NOTE:</strong> This method does not isolate the configuration object by merging/cloning. 
+The caller is responsible for merging/cloning the configuration object if required.
+</p>
     </div>
 
     
@@ -2603,142 +4092,14 @@ format. Some browsers ignore certain characters during eval.</p>
             
                 <li class="param">
                     
-                        <code class="param-name">c</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Unicode character</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    the \unnnn escapement of the character
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_notify" class="method item">
-    <h3 class="name"><code>notify</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>event</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>transaction</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>config</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l71"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:71</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Fired from the notify method of the transport which in turn fires
-the event on the IO object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">event</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The name of the event</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">transaction</code>
+                        <code class="param-name">cfgs</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>The transaction object</p>
+                        <p>An object with attribute name/configuration pairs.</p>
                     </div>
 
                     
@@ -2746,111 +4107,15 @@ the event on the IO object.</p>
             
                 <li class="param">
                     
-                        <code class="param-name">config</code>
+                        <code class="param-name">values</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>The configuration object for this transaction</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>s</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18530"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18530</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Parse a JSON string, returning the native JavaScript representation.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">s</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JSON string data</p>
+                        <p>An object with attribute name/value pairs, defining the initial values to apply.
+Values defined in the cfgs argument will be over-written by values in this argument unless defined as read only.</p>
                     </div>
 
                     
@@ -2858,15 +4123,16 @@ the event on the IO object.</p>
             
                 <li class="param">
                     
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                        <code class="param-name">lazy</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>(optional) function(k,v) passed each key value
-         pair of object literals, allowing pruning or altering values</p>
+                        <p>Whether or not to delay the intialization of these attributes until the first call to get/set.
+Individual attributes can over-ride this behavior by defining a lazyAdd configuration property in their configuration.
+See <a href="#method_addAttr">addAttr</a>.</p>
                     </div>
 
                     
@@ -2883,9 +4149,9 @@ the event on the IO object.</p>
             <div class="returns-description">
                 
                     
-                        <span class="type">MIXED</span>:
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
                     
-                    the native JavaScript representation of the JSON string
+                    A reference to the host object.
                 
             </div>
         </div>
@@ -2895,8 +4161,8 @@ the event on the IO object.</p>
 </div>
 
                 
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
+                    <div id="method_attrAdded" class="method item">
+    <h3 class="name"><code>attrAdded</code></h3>
 
     
         <div class="args">
@@ -2904,13 +4170,7 @@ the event on the IO object.</p>
             
                 <li class="arg">
                     
-                        <code>s</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
+                        <code>name</code>
                     
                 </li>
             
@@ -2920,7 +4180,7 @@ the event on the IO object.</p>
 
     
         <span class="returns-inline">
-            <span class="type">MIXED</span>
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
         </span>
     
 
@@ -2930,8 +4190,6 @@ the event on the IO object.</p>
 
     
 
-    
-        <span class="flag static">static</span>
     
 
     
@@ -2947,7 +4205,7 @@ the event on the IO object.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l159"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:159</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l272"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:272</code></a>
         
         </p>
 
@@ -2958,7 +4216,7 @@ the event on the IO object.</p>
     </div>
 
     <div class="description">
-        <p>Parse a JSON string, returning the native JavaScript representation.</p>
+        <p>Checks if the given attribute has been added to the host</p>
     </div>
 
     
@@ -2969,30 +4227,14 @@ the event on the IO object.</p>
             
                 <li class="param">
                     
-                        <code class="param-name">s</code>
+                        <code class="param-name">name</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>JSON string data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) function(k,v) passed each key value
-         pair of object literals, allowing pruning or altering values</p>
+                        <p>The name of the attribute to check.</p>
                     </div>
 
                     
@@ -3009,9 +4251,9 @@ the event on the IO object.</p>
             <div class="returns-description">
                 
                     
-                        <span class="type">MIXED</span>:
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
                     
-                    the native JavaScript representation of the JSON string
+                    true if an attribute with the given name has been added, false if it hasn't. This method will return true for lazily added attributes.
                 
             </div>
         </div>
@@ -3021,8 +4263,8 @@ the event on the IO object.</p>
 </div>
 
                 
-                    <div id="method_stringify" class="method item">
-    <h3 class="name"><code>stringify</code></h3>
+                    <div id="method_get" class="method item">
+    <h3 class="name"><code>get</code></h3>
 
     
         <div class="args">
@@ -3030,19 +4272,7 @@ the event on the IO object.</p>
             
                 <li class="arg">
                     
-                        <code>o</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>w</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>ind</code>
+                        <code>name</code>
                     
                 </li>
             
@@ -3052,7 +4282,7 @@ the event on the IO object.</p>
 
     
         <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+            <span class="type">Any</span>
         </span>
     
 
@@ -3063,16 +4293,12 @@ the event on the IO object.</p>
     
 
     
-        <span class="flag static">static</span>
-    
 
     
 
     <div class="meta">
         
             
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
                 
                 <p>
                 
@@ -3081,7 +4307,7 @@ the event on the IO object.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l290"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:290</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l283"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:283</code></a>
         
         </p>
 
@@ -3092,21 +4318,9 @@ the event on the IO object.</p>
     </div>
 
     <div class="description">
-        <p>Converts an arbitrary value to a JSON string representation.</p>
-
-<p>Objects with cyclical references will trigger an exception.</p>
-
-<p>If a whitelist is provided, only matching object keys will be
-included.  Alternately, a replacer function may be passed as the
-second parameter.  This function is executed on every value in the
-input, and its return value will be used in place of the original value.
-This is useful to serialize specialized objects or class instances.</p>
-
-<p>If a positive integer or non-empty string is passed as the third
-parameter, the output will be formatted with carriage returns and
-indentation for readability.  If a String is passed (such as "\t") it
-will be used once for each indentation level.  If a number is passed,
-that number of spaces will be used.</p>
+        <p>Returns the current value of the attribute. If the attribute
+has been configured with a 'getter' function, this method will delegate
+to the 'getter' to obtain the value of the attribute.</p>
     </div>
 
     
@@ -3117,47 +4331,15 @@ that number of spaces will be used.</p>
             
                 <li class="param">
                     
-                        <code class="param-name">o</code>
-                        <span class="type">MIXED</span>
+                        <code class="param-name">name</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>any arbitrary value to convert to JSON string</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">w</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) whitelist of acceptable object
-                 keys to include, or a replacer function to modify the
-                 raw value before serialization</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">ind</code>
-                        <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) indentation character or depth of
-                 spaces to format the output.</p>
+                        <p>The name of the attribute. If the value of the attribute is an Object, 
+dot notation can be used to obtain the value of a property of the object (e.g. <code>get("x.y.z")</code>)</p>
                     </div>
 
                     
@@ -3174,9 +4356,343 @@ that number of spaces will be used.</p>
             <div class="returns-description">
                 
                     
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                        <span class="type">Any</span>:
                     
-                    JSON string representation of the input
+                    The value of the attribute
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_getAttrs" class="method item">
+    <h3 class="name"><code>getAttrs</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>attrs</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l666"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:666</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Gets multiple attribute values.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">attrs</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | boolean</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Optional. An array of attribute names. If omitted, all attribute values are
+returned. If set to true, all attributes modified from their initial values are returned.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                    
+                    An object with attribute name/value pairs.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_set" class="method item">
+    <h3 class="name"><code>set</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>name</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>value</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l328"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:328</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Sets the value of an attribute.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">name</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The name of the attribute. If the 
+current value of the attribute is an Object, dot notation can be used
+to set the value of a property within the object (e.g. <code>set("x.y.z", 5)</code>).</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type">Any</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The value to set the attribute to.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                    
+                    A reference to the host object.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_setAttrs" class="method item">
+    <h3 class="name"><code>setAttrs</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>attrs</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l635"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:635</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Sets multiple attribute values.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">attrs</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>An object with attributes name/value pairs.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                    
+                    A reference to the host object.
                 
             </div>
         </div>
@@ -3194,108 +4710,14 @@ that number of spaces will be used.</p>
                 <h2 class="off-left">Properties</h2>
 
                 
-                    <div id="property__BRACKETS" class="property item private">
-    <h3 class="name"><code>_BRACKETS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
+                    <div id="property__ATTR_CFG" class="property item protected">
+    <h3 class="name"><code>_ATTR_CFG</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
 
     
 
     
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18462"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18462</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Third step in the safety evaluation.  Regex used to remove all open
-square brackets following a colon, comma, or at the beginning of the
-string.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__BRACKETS" class="property item private">
-    <h3 class="name"><code>_BRACKETS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l91"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:91</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Third step in the safety evaluation.  Regex used to remove all open
-square brackets following a colon, comma, or at the beginning of the
-string.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__default" class="property item">
-    <h3 class="name"><code>_default</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
+        <span class="flag protected">protected</span>
     
 
     
@@ -3308,8 +4730,6 @@ string.</p>
         
             
                 
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
                 <p>
                 
                 Defined in
@@ -3317,7 +4737,7 @@ string.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l11"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:11</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l93"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:93</code></a>
         
         </p>
 
@@ -3327,7 +4747,11 @@ string.</p>
     </div>
 
     <div class="description">
-        <p>The ID of the default IO transport, defaults to <code>xhr</code></p>
+        <p>The list of properties which can be configured for 
+each attribute (e.g. setter, getter, writeOnce etc.).</p>
+
+<p>This property is used internally as a whitelist for faster
+Y.mix operations.</p>
     </div>
 
     
@@ -3338,549 +4762,8 @@ string.</p>
 </div>
 
                 
-                    <div id="property__ESCAPES" class="property item private">
-    <h3 class="name"><code>_ESCAPES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l71"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:71</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>First step in the safety evaluation.  Regex used to replace all escape
-sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__ESCAPES" class="property item private">
-    <h3 class="name"><code>_ESCAPES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18442"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18442</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>First step in the safety evaluation.  Regex used to replace all escape
-sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNICODE_EXCEPTIONS" class="property item private">
-    <h3 class="name"><code>_UNICODE_EXCEPTIONS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l57"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:57</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replace certain Unicode characters that JavaScript may handle incorrectly
-during eval--either by deleting them or treating them as line
-endings--with escape sequences.
-IMPORTANT NOTE: This regex will be used to modify the input if a match is
-found.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNICODE_EXCEPTIONS" class="property item private">
-    <h3 class="name"><code>_UNICODE_EXCEPTIONS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18428"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18428</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replace certain Unicode characters that JavaScript may handle incorrectly
-during eval--either by deleting them or treating them as line
-endings--with escape sequences.
-IMPORTANT NOTE: This regex will be used to modify the input if a match is
-found.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNSAFE" class="property item private">
-    <h3 class="name"><code>_UNSAFE</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18473"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18473</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Final step in the safety evaluation.  Regex used to test the string left
-after all previous replacements for invalid characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNSAFE" class="property item private">
-    <h3 class="name"><code>_UNSAFE</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l102"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:102</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Final step in the safety evaluation.  Regex used to test the string left
-after all previous replacements for invalid characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__VALUES" class="property item private">
-    <h3 class="name"><code>_VALUES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18452"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18452</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Second step in the safety evaluation.  Regex used to replace all simple
-values with ']' characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__VALUES" class="property item private">
-    <h3 class="name"><code>_VALUES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l81"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:81</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Second step in the safety evaluation.  Regex used to replace all simple
-values with ']' characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_charCacheThreshold" class="property item">
-    <h3 class="name"><code>charCacheThreshold</code></h3>
-    <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l322"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:322</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Number of occurrences of a special character within a single call to
-stringify that should trigger promotion of that character to a dedicated
-preprocess step for future calls.  This is only used in environments
-that don't support native JSON, or when useNativeStringify is set to
-false.</p>
-
-<p>So, if set to 50 and an object is passed to stringify that includes
-strings containing the special character \x07 more than 50 times,
-subsequent calls to stringify will process object strings through a
-faster serialization path for \x07 before using the generic, slower,
-replacement process for all special characters.</p>
-
-<p>To prime the preprocessor cache, set this value to 1, then call
-<code>Y.JSON.stringify("<em>(all special characters to
-cache)</em>");</code>, then return this setting to a more conservative
-value.</p>
-
-<p>Special characters \ " \b \t \n \f \r are already cached.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> 100</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_Native" class="property item private">
-    <h3 class="name"><code>Native</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18416"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18416</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Alias to native browser implementation of the JSON object if available.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_Native" class="property item private">
-    <h3 class="name"><code>Native</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l45"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:45</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Alias to native browser implementation of the JSON object if available.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_transports" class="property item">
-    <h3 class="name"><code>transports</code></h3>
+                    <div id="property_INVALID_VALUE" class="property item">
+    <h3 class="name"><code>INVALID_VALUE</code></h3>
     <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
 
     
@@ -3888,53 +4771,7 @@ value.</p>
     
 
     
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l38"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:38</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>An object hash of custom transports available to IO</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeParse" class="property item">
-    <h3 class="name"><code>useNativeParse</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
+        <span class="flag final">final</span>
     
 
     
@@ -3952,7 +4789,7 @@ value.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18586"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18586</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_attribute_js_AttributeCore.js.html#l78"><code>lib&#x2F;yui3&#x2F;src&#x2F;attribute&#x2F;js&#x2F;AttributeCore.js:78</code></a>
         
         </p>
 
@@ -3962,118 +4799,13 @@ value.</p>
     </div>
 
     <div class="description">
-        <p>Leverage native JSON parse if the browser has a native implementation.
-In general, this is a good idea.  See the Known Issues section in the
-JSON user guide for caveats.  The default value is true for browsers with
-native JSON support.</p>
+        <p>The value to return from an attribute setter in order to prevent the set from going through.</p>
+
+<p>You can return this value from your setter if you wish to combine validator and setter 
+functionality into a single setter function, which either returns the massaged value to be stored or 
+AttributeCore.INVALID_VALUE to prevent invalid values from being stored.</p>
     </div>
 
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeParse" class="property item">
-    <h3 class="name"><code>useNativeParse</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l215"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:215</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON parse if the browser has a native implementation.
-In general, this is a good idea.  See the Known Issues section in the
-JSON user guide for caveats.  The default value is true for browsers with
-native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeStringify" class="property item">
-    <h3 class="name"><code>useNativeStringify</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l253"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:253</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON stringify if the browser has a native
-implementation.  In general, this is a good idea.  See the Known Issues
-section in the JSON user guide for caveats.  The default value is true
-for browsers with native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
     
 
     

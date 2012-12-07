@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSON - AlloyUI</title>
+    <title>PjaxBase - AlloyUI</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.4.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
@@ -1577,7 +1577,7 @@
 
             <div class="apidocs">
                 <div id="docs-main" class="content">
-                    <h1>JSON Class</h1>
+                    <h1>PjaxBase Class</h1>
 <div class="box meta">
     
 
@@ -1585,34 +1585,34 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18372"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18372</code></a>
+            Defined in: <a href="../..&#x2F;files&#x2F;lib_yui3_src_pjax_js_pjax-base.js.html#l43"><code>lib&#x2F;yui3&#x2F;src&#x2F;pjax&#x2F;js&#x2F;pjax-base.js:43</code></a>
         </div>
     
 
+    
+        <p>Available since 3.5.0</p>
     
 </div>
 
 
 
 <div class="box intro">
-    <p>The JSON module adds support for serializing JavaScript objects into
-JSON strings and parsing JavaScript objects from strings in JSON format.</p>
+    <p><code>Y.Router</code> extension that provides the core plumbing for enhanced navigation
+implemented using the pjax technique (HTML5 <code>pushState</code> + Ajax).</p>
 
-<p>The JSON namespace is added to your YUI instance including static methods
-Y.JSON.parse(..) and Y.JSON.stringify(..).</p>
+<p>This makes it easy to enhance the navigation between the URLs of an application
+in HTML5 history capable browsers by delegating to the router to fulfill the
+"request" and seamlessly falling-back to using standard full-page reloads in
+older, less-capable browsers.</p>
 
-<p>The functionality and method signatures follow the ECMAScript 5
-specification.  In browsers with native JSON support, the native
-implementation is used.</p>
+<p>The <code>PjaxBase</code> class isn't useful on its own, but can be mixed into a
+<code>Router</code>-based class to add Pjax functionality to that Router. For a pre-made
+standalone Pjax router, see the <code>Pjax</code> class.</p>
 
-<p>The <code>json</code> module is a rollup of <code>json-parse</code> and
-<code>json-stringify</code>.</p>
-
-<p>As their names suggest, <code>json-parse</code> adds support for parsing
-JSON data (Y.JSON.parse) and <code>json-stringify</code> for serializing
-JavaScript data into JSON strings (Y.JSON.stringify).  You may choose to
-include either of the submodules individually if you don't need the
-complementary functionality, or include the rollup for both.</p>
+<pre class="code"><code class="prettyprint">var MyRouter = Y.Base.create('myRouter', Y.Router, [Y.PjaxBase], {
+    // ...
+});
+</code></pre>
 </div>
 
 
@@ -1628,6 +1628,10 @@ complementary functionality, or include the rollup for both.</p>
             <li class="aui-tab api-class-tab properties"><a class="aui-tab-label" href="#properties">Properties</a></li>
         
         
+            <li class="aui-tab api-class-tab attrs"><a class="aui-tab-label" href="#attrs">Attributes</a></li>
+        
+        
+            <li class="aui-tab api-class-tab events"><a class="aui-tab-label" href="#events">Events</a></li>
         
     </ul>
 
@@ -1641,81 +1645,39 @@ complementary functionality, or include the rollup for both.</p>
 
                     <ul class="index-list methods">
                         
-                            <li class="index-item method private">
-                                <a href="#method__revive">_revive</a>
+                            <li class="index-item method protected">
+                                <a href="#method__defNavigateFn">_defNavigateFn</a>
 
                                 
                             </li>
                         
-                            <li class="index-item method private">
-                                <a href="#method__revive">_revive</a>
+                            <li class="index-item method protected">
+                                <a href="#method__isLinkSameOrigin">_isLinkSameOrigin</a>
 
                                 
                             </li>
                         
-                            <li class="index-item method">
-                                <a href="#method_customTransport">customTransport</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method deprecated">
-                                <a href="#method_dateToString">dateToString</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_defaultTransport">defaultTransport</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_escapeException">escapeException</a>
+                            <li class="index-item method protected">
+                                <a href="#method__navigate">_navigate</a>
 
                                 
                             </li>
                         
-                            <li class="index-item method private">
-                                <a href="#method_escapeException">escapeException</a>
+                            <li class="index-item method protected">
+                                <a href="#method__onLinkClick">_onLinkClick</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
+                                <a href="#method__pjaxBindUI">_pjaxBindUI</a>
 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_notify">notify</a>
+                                <a href="#method_navigate">navigate</a>
 
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_parse">parse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_parse">parse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_stringify">stringify</a>
-
-                                
-                                    <span class="flag static">static</span>
                                 
                             </li>
                         
@@ -1729,123 +1691,15 @@ complementary functionality, or include the rollup for both.</p>
 
                     <ul class="index-list properties">
                         
-                            <li class="index-item property private">
-                                <a href="#property__BRACKETS">_BRACKETS</a>
+                            <li class="index-item property protected">
+                                <a href="#property__pjaxEvents">_pjaxEvents</a>
 
                                 
                             </li>
                         
-                            <li class="index-item property private">
-                                <a href="#property__BRACKETS">_BRACKETS</a>
+                            <li class="index-item property protected">
+                                <a href="#property__regexURL">_regexURL</a>
 
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property__default">_default</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__ESCAPES">_ESCAPES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__ESCAPES">_ESCAPES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNICODE_EXCEPTIONS">_UNICODE_EXCEPTIONS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNICODE_EXCEPTIONS">_UNICODE_EXCEPTIONS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNSAFE">_UNSAFE</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNSAFE">_UNSAFE</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__VALUES">_VALUES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__VALUES">_VALUES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_charCacheThreshold">charCacheThreshold</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property_Native">Native</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property_Native">Native</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_transports">transports</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeParse">useNativeParse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeParse">useNativeParse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeStringify">useNativeStringify</a>
-
-                                
-                                    <span class="flag static">static</span>
                                 
                             </li>
                         
@@ -1854,7 +1708,41 @@ complementary functionality, or include the rollup for both.</p>
             
 
             
+                <div class="index-section attrs">
+                    <h3>Attributes</h3>
 
+                    <ul class="index-list attrs">
+                        
+                            <li class="index-item attr">
+                                <a href="#attr_linkSelector">linkSelector</a>
+                            </li>
+                        
+                            <li class="index-item attr">
+                                <a href="#attr_navigateOnHash">navigateOnHash</a>
+                            </li>
+                        
+                            <li class="index-item attr">
+                                <a href="#attr_scrollToTop">scrollToTop</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+                <div class="index-section events">
+                    <h3>Events</h3>
+
+                    <ul class="index-list events">
+                        
+                            <li class="index-item event">
+                                <a href="#event_navigate">navigate</a>
+
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
             
         </div>
 
@@ -1863,8 +1751,8 @@ complementary functionality, or include the rollup for both.</p>
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method__revive" class="method item private">
-    <h3 class="name"><code>_revive</code></h3>
+                    <div id="method__defNavigateFn" class="method item protected">
+    <h3 class="name"><code>_defNavigateFn</code></h3>
 
     
         <div class="args">
@@ -1872,13 +1760,7 @@ complementary functionality, or include the rollup for both.</p>
             
                 <li class="arg">
                     
-                        <code>data</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
+                        <code>e</code>
                     
                 </li>
             
@@ -1887,15 +1769,11 @@ complementary functionality, or include the rollup for both.</p>
     
 
     
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
 
     
 
     
-        <span class="flag private">private</span>
+        <span class="flag protected">protected</span>
     
 
     
@@ -1915,7 +1793,7 @@ complementary functionality, or include the rollup for both.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l125"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:125</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_pjax_js_pjax-base.js.html#l298"><code>lib&#x2F;yui3&#x2F;src&#x2F;pjax&#x2F;js&#x2F;pjax-base.js:298</code></a>
         
         </p>
 
@@ -1923,14 +1801,15 @@ complementary functionality, or include the rollup for both.</p>
         
 
         
+            <p>Available since 3.5.0</p>
+        
     </div>
 
     <div class="description">
-        <p>Traverses nested objects, applying a reviver function to each (key,value)
-from the scope if the key:value's containing object.  The value returned
-from the function will replace the original value in the key:value pair.
-If the value returned is undefined, the key will be omitted from the
-returned object.</p>
+        <p>Default handler for the <code>navigate</code> event.</p>
+
+<p>Adds a new history entry or replaces the current entry for the specified URL
+and will scroll the page to the top if configured to do so.</p>
     </div>
 
     
@@ -1941,29 +1820,112 @@ returned object.</p>
             
                 <li class="param">
                     
-                        <code class="param-name">data</code>
-                        <span class="type">MIXED</span>
+                        <code class="param-name">e</code>
+                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>Any JavaScript data</p>
+                         
                     </div>
 
                     
                 </li>
             
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__isLinkSameOrigin" class="method item protected">
+    <h3 class="name"><code>_isLinkSameOrigin</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>link</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_pjax_js_pjax-base.js.html#l159"><code>lib&#x2F;yui3&#x2F;src&#x2F;pjax&#x2F;js&#x2F;pjax-base.js:159</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 3.6.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Utility method to test whether a specified link/anchor node's <code>href</code> is of
+the same origin as the page's current location.</p>
+
+<p>This normalize browser inconsistencies with how the <code>port</code> is reported for
+anchor elements (IE reports a value for the default port, e.g. "80").</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
                 <li class="param">
                     
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                        <code class="param-name">link</code>
+                        <span class="type"><a href="../classes/Node.html" class="crosslink">Node</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>filter or mutation function</p>
+                        <p>The anchor element to test whether its <code>href</code> is of the
+    same origin as the page's current location.</p>
                     </div>
 
                     
@@ -1980,9 +1942,10 @@ returned object.</p>
             <div class="returns-description">
                 
                     
-                        <span class="type">MIXED</span>:
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
                     
-                    The results of the filtered data
+                    Whether or not the link's <code>href</code> is of the same origin as
+    the page's current location.
                 
             </div>
         </div>
@@ -1992,8 +1955,8 @@ returned object.</p>
 </div>
 
                 
-                    <div id="method__revive" class="method item private">
-    <h3 class="name"><code>_revive</code></h3>
+                    <div id="method__navigate" class="method item protected">
+    <h3 class="name"><code>_navigate</code></h3>
 
     
         <div class="args">
@@ -2001,13 +1964,13 @@ returned object.</p>
             
                 <li class="arg">
                     
-                        <code>data</code>
+                        <code>url</code>
                     
                 </li>
             
                 <li class="arg">
                     
-                        <code>reviver</code>
+                        <code class="optional">[options]</code>
                     
                 </li>
             
@@ -2017,14 +1980,14 @@ returned object.</p>
 
     
         <span class="returns-inline">
-            <span class="type">MIXED</span>
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
         </span>
     
 
     
 
     
-        <span class="flag private">private</span>
+        <span class="flag protected">protected</span>
     
 
     
@@ -2044,7 +2007,7 @@ returned object.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18496"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18496</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_pjax_js_pjax-base.js.html#l208"><code>lib&#x2F;yui3&#x2F;src&#x2F;pjax&#x2F;js&#x2F;pjax-base.js:208</code></a>
         
         </p>
 
@@ -2052,14 +2015,12 @@ returned object.</p>
         
 
         
+            <p>Available since 3.5.0</p>
+        
     </div>
 
     <div class="description">
-        <p>Traverses nested objects, applying a reviver function to each (key,value)
-from the scope if the key:value's containing object.  The value returned
-from the function will replace the original value in the key:value pair.
-If the value returned is undefined, the key will be omitted from the
-returned object.</p>
+        <p>Underlying implementation for <code>navigate()</code>.</p>
     </div>
 
     
@@ -2070,339 +2031,70 @@ returned object.</p>
             
                 <li class="param">
                     
-                        <code class="param-name">data</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Any JavaScript data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>filter or mutation function</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    The results of the filtered data
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_customTransport" class="method item">
-    <h3 class="name"><code>customTransport</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>id</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l56"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:56</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Create a custom transport of type and return it's object</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">id</code>
+                        <code class="param-name">url</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>The id of the transport to create.</p>
+                        <p>The fully-resolved URL that the router should dispatch
+  to its route handlers to fulfill the enhanced navigation "request", or use
+  to update <code>window.location</code> in non-HTML5 history capable browsers.</p>
                     </div>
 
                     
                 </li>
             
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_dateToString" class="method item deprecated">
-    <h3 class="name"><code>dateToString</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>d</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-        <span class="flag deprecated" title="Use a replacer function">deprecated</span>
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l266"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:266</code></a>
-        
-        </p>
-
-
-        
-            <p>Deprecated: Use a replacer function</p>
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Serializes a Date instance as a UTC date string.  Used internally by
-stringify.  Override this method if you need Dates serialized in a
-different format.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
                 <li class="param">
                     
-                        <code class="param-name">d</code>
-                        <span class="type"><a href="../classes/Date.html" class="crosslink">Date</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The Date to serialize</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    stringified Date in UTC format YYYY-MM-DDTHH:mm:SSZ
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_defaultTransport" class="method item">
-    <h3 class="name"><code>defaultTransport</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[id]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l18"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:18</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[id]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <code class="param-name optional">[options]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                         <span class="flag optional" title="This parameter is optional.">optional</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>The transport to set as the default, if empty a new transport is created.</p>
+                        <p>Additional options to configure the navigation.
+  These are mixed into the <code>navigate</code> event facade.</p>
                     </div>
 
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[replace]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Whether or not the current history
+      entry will be replaced, or a new entry will be created. Will default
+      to <code>true</code> if the specified <code>url</code> is the same as the current URL.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[force=false]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Whether the enhanced navigation
+      should occur even in browsers without HTML5 history.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
                     
                 </li>
             
@@ -2417,9 +2109,9 @@ different format.</p>
             <div class="returns-description">
                 
                     
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
                     
-                    The transport object with a <code>send</code> method
+                    <code>true</code> if the URL was navigated to, <code>false</code> otherwise.
                 
             </div>
         </div>
@@ -2429,8 +2121,8 @@ different format.</p>
 </div>
 
                 
-                    <div id="method_escapeException" class="method item private">
-    <h3 class="name"><code>escapeException</code></h3>
+                    <div id="method__onLinkClick" class="method item protected">
+    <h3 class="name"><code>_onLinkClick</code></h3>
 
     
         <div class="args">
@@ -2438,7 +2130,172 @@ different format.</p>
             
                 <li class="arg">
                     
-                        <code>c</code>
+                        <code>e</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_pjax_js_pjax-base.js.html#l323"><code>lib&#x2F;yui3&#x2F;src&#x2F;pjax&#x2F;js&#x2F;pjax-base.js:323</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 3.5.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Handler for delegated link-click events which match the <code>linkSelector</code>.</p>
+
+<p>This will attempt to enhance the navigation to the link element's <code>href</code> by
+passing the URL to the <code>_navigate()</code> method. When the navigation is being
+enhanced, the default action is prevented.</p>
+
+<p>If the user clicks a link with the middle/right mouse buttons, or is holding
+down the Ctrl or Command keys, this method's behavior is not applied and
+allows the native behavior to occur. Similarly, if the router is not capable
+or handling the URL because no route-handlers match, the link click will
+behave natively.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">e</code>
+                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__pjaxBindUI" class="method item protected">
+    <h3 class="name"><code>_pjaxBindUI</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_pjax_js_pjax-base.js.html#l277"><code>lib&#x2F;yui3&#x2F;src&#x2F;pjax&#x2F;js&#x2F;pjax-base.js:277</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 3.5.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Binds the delegation of link-click events that match the <code>linkSelector</code> to
+the <code>_onLinkClick()</code> handler.</p>
+
+<p>By default this method will only be called if the browser is capable of
+using HTML5 history.</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_navigate" class="method item">
+    <h3 class="name"><code>navigate</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>url</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[options]</code>
                     
                 </li>
             
@@ -2448,15 +2305,13 @@ different format.</p>
 
     
         <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
         </span>
     
 
     
 
     
-        <span class="flag private">private</span>
-    
 
     
 
@@ -2475,7 +2330,7 @@ different format.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l112"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:112</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_pjax_js_pjax-base.js.html#l112"><code>lib&#x2F;yui3&#x2F;src&#x2F;pjax&#x2F;js&#x2F;pjax-base.js:112</code></a>
         
         </p>
 
@@ -2483,11 +2338,26 @@ different format.</p>
         
 
         
+            <p>Available since 3.5.0</p>
+        
     </div>
 
     <div class="description">
-        <p>Replaces specific unicode characters with their appropriate \unnnn
-format. Some browsers ignore certain characters during eval.</p>
+        <p>Navigates to the specified URL if there is a route handler that matches. In
+browsers capable of using HTML5 history, the navigation will be enhanced by
+firing the <code>navigate</code> event and having the router handle the "request".
+Non-HTML5 browsers will navigate to the new URL via manipulation of
+<code>window.location</code>.</p>
+
+<p>When there is a route handler for the specified URL and it is being
+navigated to, this method will return <code>true</code>, otherwise it will return
+<code>false</code>.</p>
+
+<p><strong>Note:</strong> The specified URL <em>must</em> be of the same origin as the current URL,
+otherwise an error will be logged and navigation will not occur. This is
+intended as both a security constraint and a purposely imposed limitation as
+it does not make sense to tell the router to navigate to a URL on a
+different scheme, host, or port.</p>
     </div>
 
     
@@ -2498,232 +2368,15 @@ format. Some browsers ignore certain characters during eval.</p>
             
                 <li class="param">
                     
-                        <code class="param-name">c</code>
+                        <code class="param-name">url</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>Unicode character</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    the \unnnn escapement of the character
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_escapeException" class="method item private">
-    <h3 class="name"><code>escapeException</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>c</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18483"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18483</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replaces specific unicode characters with their appropriate \unnnn
-format. Some browsers ignore certain characters during eval.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">c</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Unicode character</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    the \unnnn escapement of the character
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_notify" class="method item">
-    <h3 class="name"><code>notify</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>event</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>transaction</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>config</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l71"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:71</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Fired from the notify method of the transport which in turn fires
-the event on the IO object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">event</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The name of the event</p>
+                        <p>The URL to navigate to. This must be of the same origin
+  as the current URL.</p>
                     </div>
 
                     
@@ -2731,144 +2384,53 @@ the event on the IO object.</p>
             
                 <li class="param">
                     
-                        <code class="param-name">transaction</code>
+                        <code class="param-name optional">[options]</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>The transaction object</p>
+                        <p>Additional options to configure the navigation.
+  These are mixed into the <code>navigate</code> event facade.</p>
                     </div>
 
                     
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">config</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[replace]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
 
-                    
+                                <div class="param-description">
+                                    <p>Whether or not the current history
+      entry will be replaced, or a new entry will be created. Will default
+      to <code>true</code> if the specified <code>url</code> is the same as the current URL.</p>
+                                </div>
 
-                    <div class="param-description">
-                        <p>The configuration object for this transaction</p>
-                    </div>
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[force=false]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
 
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
+                                <div class="param-description">
+                                    <p>Whether the enhanced navigation
+      should occur even in browsers without HTML5 history.</p>
+                                </div>
 
-    
-
-    
-</div>
-
-                
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>s</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18530"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18530</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Parse a JSON string, returning the native JavaScript representation.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">s</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JSON string data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) function(k,v) passed each key value
-         pair of object literals, allowing pruning or altering values</p>
-                    </div>
-
+                                
+                            </li>
+                            
+                        </ul>
                     
                 </li>
             
@@ -2883,300 +2445,9 @@ the event on the IO object.</p>
             <div class="returns-description">
                 
                     
-                        <span class="type">MIXED</span>:
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
                     
-                    the native JavaScript representation of the JSON string
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>s</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l159"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:159</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Parse a JSON string, returning the native JavaScript representation.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">s</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JSON string data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) function(k,v) passed each key value
-         pair of object literals, allowing pruning or altering values</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    the native JavaScript representation of the JSON string
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_stringify" class="method item">
-    <h3 class="name"><code>stringify</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>o</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>w</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>ind</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l290"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:290</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Converts an arbitrary value to a JSON string representation.</p>
-
-<p>Objects with cyclical references will trigger an exception.</p>
-
-<p>If a whitelist is provided, only matching object keys will be
-included.  Alternately, a replacer function may be passed as the
-second parameter.  This function is executed on every value in the
-input, and its return value will be used in place of the original value.
-This is useful to serialize specialized objects or class instances.</p>
-
-<p>If a positive integer or non-empty string is passed as the third
-parameter, the output will be formatted with carriage returns and
-indentation for readability.  If a String is passed (such as "\t") it
-will be used once for each indentation level.  If a number is passed,
-that number of spaces will be used.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">o</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>any arbitrary value to convert to JSON string</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">w</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) whitelist of acceptable object
-                 keys to include, or a replacer function to modify the
-                 raw value before serialization</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">ind</code>
-                        <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) indentation character or depth of
-                 spaces to format the output.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    JSON string representation of the input
+                    <code>true</code> if the URL was navigated to, <code>false</code> otherwise.
                 
             </div>
         </div>
@@ -3194,14 +2465,62 @@ that number of spaces will be used.</p>
                 <h2 class="off-left">Properties</h2>
 
                 
-                    <div id="property__BRACKETS" class="property item private">
-    <h3 class="name"><code>_BRACKETS</code></h3>
+                    <div id="property__pjaxEvents" class="property item protected">
+    <h3 class="name"><code>_pjaxEvents</code></h3>
+    <span class="type"><a href="../classes/EventHandle.html" class="crosslink">EventHandle</a></span>
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_pjax_js_pjax-base.js.html#l69"><code>lib&#x2F;yui3&#x2F;src&#x2F;pjax&#x2F;js&#x2F;pjax-base.js:69</code></a>
+        
+        </p>
+
+        
+
+        
+            <p>Available since 3.5.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Holds the delegated pjax-link click handler.</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property__regexURL" class="property item protected">
+    <h3 class="name"><code>_regexURL</code></h3>
     <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
 
     
 
     
-        <span class="flag private">private</span>
+        <span class="flag protected">protected</span>
     
 
     
@@ -3219,861 +2538,29 @@ that number of spaces will be used.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18462"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18462</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_pjax_js_pjax-base.js.html#l78"><code>lib&#x2F;yui3&#x2F;src&#x2F;pjax&#x2F;js&#x2F;pjax-base.js:78</code></a>
         
         </p>
 
         
 
         
-    </div>
-
-    <div class="description">
-        <p>Third step in the safety evaluation.  Regex used to remove all open
-square brackets following a colon, comma, or at the beginning of the
-string.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__BRACKETS" class="property item private">
-    <h3 class="name"><code>_BRACKETS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l91"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:91</code></a>
-        
-        </p>
-
-        
-
+            <p>Available since 3.5.0</p>
         
     </div>
 
     <div class="description">
-        <p>Third step in the safety evaluation.  Regex used to remove all open
-square brackets following a colon, comma, or at the beginning of the
-string.</p>
+        <p>Regex used to break up a URL string around the URL's path.</p>
+
+<p>Subpattern captures:</p>
+
+<ol>
+<li>Origin, everything before the URL's path-part.</li>
+<li>The URL's path-part.</li>
+<li>Suffix, everything after the URL's path-part.</li>
+</ol>
     </div>
 
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__default" class="property item">
-    <h3 class="name"><code>_default</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l11"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:11</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>The ID of the default IO transport, defaults to <code>xhr</code></p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__ESCAPES" class="property item private">
-    <h3 class="name"><code>_ESCAPES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l71"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:71</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>First step in the safety evaluation.  Regex used to replace all escape
-sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__ESCAPES" class="property item private">
-    <h3 class="name"><code>_ESCAPES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18442"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18442</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>First step in the safety evaluation.  Regex used to replace all escape
-sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNICODE_EXCEPTIONS" class="property item private">
-    <h3 class="name"><code>_UNICODE_EXCEPTIONS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l57"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:57</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replace certain Unicode characters that JavaScript may handle incorrectly
-during eval--either by deleting them or treating them as line
-endings--with escape sequences.
-IMPORTANT NOTE: This regex will be used to modify the input if a match is
-found.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNICODE_EXCEPTIONS" class="property item private">
-    <h3 class="name"><code>_UNICODE_EXCEPTIONS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18428"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18428</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replace certain Unicode characters that JavaScript may handle incorrectly
-during eval--either by deleting them or treating them as line
-endings--with escape sequences.
-IMPORTANT NOTE: This regex will be used to modify the input if a match is
-found.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNSAFE" class="property item private">
-    <h3 class="name"><code>_UNSAFE</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18473"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18473</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Final step in the safety evaluation.  Regex used to test the string left
-after all previous replacements for invalid characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNSAFE" class="property item private">
-    <h3 class="name"><code>_UNSAFE</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l102"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:102</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Final step in the safety evaluation.  Regex used to test the string left
-after all previous replacements for invalid characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__VALUES" class="property item private">
-    <h3 class="name"><code>_VALUES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18452"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18452</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Second step in the safety evaluation.  Regex used to replace all simple
-values with ']' characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__VALUES" class="property item private">
-    <h3 class="name"><code>_VALUES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l81"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:81</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Second step in the safety evaluation.  Regex used to replace all simple
-values with ']' characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_charCacheThreshold" class="property item">
-    <h3 class="name"><code>charCacheThreshold</code></h3>
-    <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l322"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:322</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Number of occurrences of a special character within a single call to
-stringify that should trigger promotion of that character to a dedicated
-preprocess step for future calls.  This is only used in environments
-that don't support native JSON, or when useNativeStringify is set to
-false.</p>
-
-<p>So, if set to 50 and an object is passed to stringify that includes
-strings containing the special character \x07 more than 50 times,
-subsequent calls to stringify will process object strings through a
-faster serialization path for \x07 before using the generic, slower,
-replacement process for all special characters.</p>
-
-<p>To prime the preprocessor cache, set this value to 1, then call
-<code>Y.JSON.stringify("<em>(all special characters to
-cache)</em>");</code>, then return this setting to a more conservative
-value.</p>
-
-<p>Special characters \ " \b \t \n \f \r are already cached.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> 100</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_Native" class="property item private">
-    <h3 class="name"><code>Native</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18416"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18416</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Alias to native browser implementation of the JSON object if available.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_Native" class="property item private">
-    <h3 class="name"><code>Native</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l45"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:45</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Alias to native browser implementation of the JSON object if available.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_transports" class="property item">
-    <h3 class="name"><code>transports</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l38"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:38</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>An object hash of custom transports available to IO</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeParse" class="property item">
-    <h3 class="name"><code>useNativeParse</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18586"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18586</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON parse if the browser has a native implementation.
-In general, this is a good idea.  See the Known Issues section in the
-JSON user guide for caveats.  The default value is true for browsers with
-native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeParse" class="property item">
-    <h3 class="name"><code>useNativeParse</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l215"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:215</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON parse if the browser has a native implementation.
-In general, this is a good idea.  See the Known Issues section in the
-JSON user guide for caveats.  The default value is true for browsers with
-native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeStringify" class="property item">
-    <h3 class="name"><code>useNativeStringify</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l253"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:253</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON stringify if the browser has a native
-implementation.  In general, this is a good idea.  See the Known Issues
-section in the JSON user guide for caveats.  The default value is true
-for browsers with native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
     
 
     
@@ -4086,7 +2573,480 @@ for browsers with native JSON support.</p>
         
 
         
+            <div id="attrs" class="aui-tabview-content-item api-class-tabpanel">
+                <h2 class="off-left">Attributes</h2>
 
+                
+                    <div id="attr_linkSelector" class="attr item">
+    <a name="config_linkSelector"></a> 
+    <h3 class="name"><code>linkSelector</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_pjax_js_pjax-base.js.html#l373"><code>lib&#x2F;yui3&#x2F;src&#x2F;pjax&#x2F;js&#x2F;pjax-base.js:373</code></a>
+        
+        </p>
+
+        
+
+        
+            <p>Available since 3.5.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>CSS selector string used to filter link click events so that only the links
+which match it will have the enhanced navigation behavior of Pjax applied.</p>
+
+<p>When a link is clicked and that link matches this selector, Pjax will
+attempt to dispatch to any route handlers matching the link's <code>href</code> URL. If
+HTML5 history is not supported or if no route handlers match, the link click
+will be handled by the browser just like any old link.</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> &quot;a.yui3-pjax&quot;</p>
+    
+
+    
+        <div class="emits box">
+            <h4>Fires event <code>linkSelectorChange</code></h4>
+
+            <p>
+            Fires when the value for the configuration attribute <code>linkSelector</code> is
+            changed. You can listen for the event using the <code>on</code> method if you
+            wish to be notified before the attribute's value has changed, or
+            using the <code>after</code> method if you wish to be notified after the
+            attribute's value has changed.
+            </p>
+
+            <div class="params">
+                <h4>Parameters:</h4>
+
+                <ul class="params-list">
+                    <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
+
+                        <div class="param-description">
+                            An Event Facade object with the following
+                            attribute-specific properties added:
+                        </div>
+
+                        <ul class="params-list">
+                            <li class="param">
+                                <code class="param-name">prevVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value of the attribute, prior to it being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">newVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value the attribute is to be set to.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">attrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">The name of the attribute being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">subAttrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="attr_navigateOnHash" class="attr item">
+    <a name="config_navigateOnHash"></a> 
+    <h3 class="name"><code>navigateOnHash</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_pjax_js_pjax-base.js.html#l393"><code>lib&#x2F;yui3&#x2F;src&#x2F;pjax&#x2F;js&#x2F;pjax-base.js:393</code></a>
+        
+        </p>
+
+        
+
+        
+            <p>Available since 3.5.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Whether navigating to a hash-fragment identifier on the current page should
+be enhanced and cause the <code>navigate</code> event to fire.</p>
+
+<p>By default Pjax allows the browser to perform its default action when a user
+is navigating within a page by clicking in-page links
+(e.g. <code>&lt;a href="#top"&gt;Top of page&lt;/a&gt;</code>) and does not attempt to interfere or
+enhance in-page navigation.</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> false</p>
+    
+
+    
+        <div class="emits box">
+            <h4>Fires event <code>navigateOnHashChange</code></h4>
+
+            <p>
+            Fires when the value for the configuration attribute <code>navigateOnHash</code> is
+            changed. You can listen for the event using the <code>on</code> method if you
+            wish to be notified before the attribute's value has changed, or
+            using the <code>after</code> method if you wish to be notified after the
+            attribute's value has changed.
+            </p>
+
+            <div class="params">
+                <h4>Parameters:</h4>
+
+                <ul class="params-list">
+                    <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
+
+                        <div class="param-description">
+                            An Event Facade object with the following
+                            attribute-specific properties added:
+                        </div>
+
+                        <ul class="params-list">
+                            <li class="param">
+                                <code class="param-name">prevVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value of the attribute, prior to it being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">newVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value the attribute is to be set to.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">attrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">The name of the attribute being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">subAttrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="attr_scrollToTop" class="attr item">
+    <a name="config_scrollToTop"></a> 
+    <h3 class="name"><code>scrollToTop</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_pjax_js_pjax-base.js.html#l411"><code>lib&#x2F;yui3&#x2F;src&#x2F;pjax&#x2F;js&#x2F;pjax-base.js:411</code></a>
+        
+        </p>
+
+        
+
+        
+            <p>Available since 3.5.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Whether the page should be scrolled to the top after navigating to a URL.</p>
+
+<p>When the user clicks the browser's back button, the previous scroll position
+will be maintained.</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> true</p>
+    
+
+    
+        <div class="emits box">
+            <h4>Fires event <code>scrollToTopChange</code></h4>
+
+            <p>
+            Fires when the value for the configuration attribute <code>scrollToTop</code> is
+            changed. You can listen for the event using the <code>on</code> method if you
+            wish to be notified before the attribute's value has changed, or
+            using the <code>after</code> method if you wish to be notified after the
+            attribute's value has changed.
+            </p>
+
+            <div class="params">
+                <h4>Parameters:</h4>
+
+                <ul class="params-list">
+                    <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
+
+                        <div class="param-description">
+                            An Event Facade object with the following
+                            attribute-specific properties added:
+                        </div>
+
+                        <ul class="params-list">
+                            <li class="param">
+                                <code class="param-name">prevVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value of the attribute, prior to it being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">newVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value the attribute is to be set to.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">attrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">The name of the attribute being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">subAttrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+            <div id="events" class="aui-tabview-content-item api-class-tabpanel">
+                <h2 class="off-left">Events</h2>
+
+                
+                    <div id="event_navigate" class="events item">
+    <h3 class="name"><code>navigate</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_pjax_js_pjax-base.js.html#l16"><code>lib&#x2F;yui3&#x2F;src&#x2F;pjax&#x2F;js&#x2F;pjax-base.js:16</code></a>
+        
+        </p>
+
+        
+
+        
+            <p>Available since 3.5.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Fired when navigating to a URL via Pjax.</p>
+
+<p>When the <code>navigate()</code> method is called or a pjax link is clicked, this event
+will be fired if the browser supports HTML5 history <em>and</em> the router has a
+route handler for the specified URL.</p>
+
+<p>This is a useful event to listen to for adding a visual loading indicator
+while the route handlers are busy handling the URL change.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Event Payload:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">url</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The URL that the router will dispatch to its route
+  handlers in order to fulfill the enhanced navigation "request".</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[force=false]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Whether the enhanced navigation should occur
+  even in browsers without HTML5 history.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[hash]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The hash-fragment (including "#") of the <code>url</code>. This
+  will be present when the <code>url</code> differs from the current URL only by its
+  hash and <code>navigateOnHash</code> has been set to <code>true</code>.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[originEvent]</code>
+                        <span class="type"><a href="../classes/Event.html" class="crosslink">Event</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The event that caused the navigation. Usually
+  this would be a click event from a "pjax" anchor element.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[replace]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Whether or not the current history entry will be
+  replaced, or a new entry will be created. Will default to <code>true</code> if the
+  specified <code>url</code> is the same as the current URL.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+
+    
+</div>
+
+                
+            </div>
         
     </div>
 </div>

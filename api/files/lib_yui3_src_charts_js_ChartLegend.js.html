@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSON - AlloyUI</title>
+    <title>lib&#x2F;yui3&#x2F;src&#x2F;charts&#x2F;js&#x2F;ChartLegend.js - AlloyUI</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.4.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
@@ -1577,2518 +1577,813 @@
 
             <div class="apidocs">
                 <div id="docs-main" class="content">
-                    <h1>JSON Class</h1>
-<div class="box meta">
-    
-
-    
-
-    
-        <div class="foundat">
-            Defined in: <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18372"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18372</code></a>
-        </div>
-    
-
-    
-</div>
-
-
-
-<div class="box intro">
-    <p>The JSON module adds support for serializing JavaScript objects into
-JSON strings and parsing JavaScript objects from strings in JSON format.</p>
-
-<p>The JSON namespace is added to your YUI instance including static methods
-Y.JSON.parse(..) and Y.JSON.stringify(..).</p>
-
-<p>The functionality and method signatures follow the ECMAScript 5
-specification.  In browsers with native JSON support, the native
-implementation is used.</p>
-
-<p>The <code>json</code> module is a rollup of <code>json-parse</code> and
-<code>json-stringify</code>.</p>
-
-<p>As their names suggest, <code>json-parse</code> adds support for parsing
-JSON data (Y.JSON.parse) and <code>json-stringify</code> for serializing
-JavaScript data into JSON strings (Y.JSON.stringify).  You may choose to
-include either of the submodules individually if you don't need the
-complementary functionality, or include the rollup for both.</p>
-</div>
-
-
-
-<div id="classdocs" class="tabview">
-    <ul class="aui-tabview-list aui-widget-hd api-class-tabs tabs" id="api-class-tabview-list">
-        <li class="yui3-tab api-class-tab index"><a class="aui-tab-label" href="#index">Index</a></li>
-
-        
-            <li class="aui-tab api-class-tab methods"><a class="aui-tab-label" href="#methods">Methods</a></li>
-        
-        
-            <li class="aui-tab api-class-tab properties"><a class="aui-tab-label" href="#properties">Properties</a></li>
-        
-        
-        
-    </ul>
-
-    <div class="aui-tabview-content aui-widget-bd" id="api-class-tabview-panel">
-        <div id="index" class="aui-tabview-content-item api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
-            
-                <div class="index-section methods">
-                    <h3>Methods</h3>
-
-                    <ul class="index-list methods">
-                        
-                            <li class="index-item method private">
-                                <a href="#method__revive">_revive</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method__revive">_revive</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_customTransport">customTransport</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method deprecated">
-                                <a href="#method_dateToString">dateToString</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_defaultTransport">defaultTransport</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_escapeException">escapeException</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_escapeException">escapeException</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_notify">notify</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_parse">parse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_parse">parse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_stringify">stringify</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-                <div class="index-section properties">
-                    <h3>Properties</h3>
-
-                    <ul class="index-list properties">
-                        
-                            <li class="index-item property private">
-                                <a href="#property__BRACKETS">_BRACKETS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__BRACKETS">_BRACKETS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property__default">_default</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__ESCAPES">_ESCAPES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__ESCAPES">_ESCAPES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNICODE_EXCEPTIONS">_UNICODE_EXCEPTIONS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNICODE_EXCEPTIONS">_UNICODE_EXCEPTIONS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNSAFE">_UNSAFE</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNSAFE">_UNSAFE</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__VALUES">_VALUES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__VALUES">_VALUES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_charCacheThreshold">charCacheThreshold</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property_Native">Native</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property_Native">Native</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_transports">transports</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeParse">useNativeParse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeParse">useNativeParse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeStringify">useNativeStringify</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-
-            
-        </div>
-
-        
-            <div id="methods" class="aui-tabview-content-item api-class-tabpanel">
-                <h2 class="off-left">Methods</h2>
-
-                
-                    <div id="method__revive" class="method item private">
-    <h3 class="name"><code>_revive</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>data</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l125"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:125</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Traverses nested objects, applying a reviver function to each (key,value)
-from the scope if the key:value's containing object.  The value returned
-from the function will replace the original value in the key:value pair.
-If the value returned is undefined, the key will be omitted from the
-returned object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">data</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Any JavaScript data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>filter or mutation function</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    The results of the filtered data
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method__revive" class="method item private">
-    <h3 class="name"><code>_revive</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>data</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18496"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18496</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Traverses nested objects, applying a reviver function to each (key,value)
-from the scope if the key:value's containing object.  The value returned
-from the function will replace the original value in the key:value pair.
-If the value returned is undefined, the key will be omitted from the
-returned object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">data</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Any JavaScript data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>filter or mutation function</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    The results of the filtered data
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_customTransport" class="method item">
-    <h3 class="name"><code>customTransport</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>id</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l56"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:56</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Create a custom transport of type and return it's object</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">id</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The id of the transport to create.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_dateToString" class="method item deprecated">
-    <h3 class="name"><code>dateToString</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>d</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-        <span class="flag deprecated" title="Use a replacer function">deprecated</span>
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l266"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:266</code></a>
-        
-        </p>
-
-
-        
-            <p>Deprecated: Use a replacer function</p>
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Serializes a Date instance as a UTC date string.  Used internally by
-stringify.  Override this method if you need Dates serialized in a
-different format.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">d</code>
-                        <span class="type"><a href="../classes/Date.html" class="crosslink">Date</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The Date to serialize</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    stringified Date in UTC format YYYY-MM-DDTHH:mm:SSZ
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_defaultTransport" class="method item">
-    <h3 class="name"><code>defaultTransport</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[id]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l18"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:18</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[id]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The transport to set as the default, if empty a new transport is created.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
-                    
-                    The transport object with a <code>send</code> method
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_escapeException" class="method item private">
-    <h3 class="name"><code>escapeException</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>c</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l112"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:112</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replaces specific unicode characters with their appropriate \unnnn
-format. Some browsers ignore certain characters during eval.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">c</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Unicode character</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    the \unnnn escapement of the character
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_escapeException" class="method item private">
-    <h3 class="name"><code>escapeException</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>c</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18483"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18483</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replaces specific unicode characters with their appropriate \unnnn
-format. Some browsers ignore certain characters during eval.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">c</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Unicode character</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    the \unnnn escapement of the character
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_notify" class="method item">
-    <h3 class="name"><code>notify</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>event</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>transaction</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>config</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l71"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:71</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Fired from the notify method of the transport which in turn fires
-the event on the IO object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">event</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The name of the event</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">transaction</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The transaction object</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">config</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The configuration object for this transaction</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>s</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18530"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18530</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Parse a JSON string, returning the native JavaScript representation.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">s</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JSON string data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) function(k,v) passed each key value
-         pair of object literals, allowing pruning or altering values</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    the native JavaScript representation of the JSON string
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>s</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l159"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:159</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Parse a JSON string, returning the native JavaScript representation.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">s</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JSON string data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) function(k,v) passed each key value
-         pair of object literals, allowing pruning or altering values</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    the native JavaScript representation of the JSON string
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_stringify" class="method item">
-    <h3 class="name"><code>stringify</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>o</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>w</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>ind</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l290"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:290</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Converts an arbitrary value to a JSON string representation.</p>
-
-<p>Objects with cyclical references will trigger an exception.</p>
-
-<p>If a whitelist is provided, only matching object keys will be
-included.  Alternately, a replacer function may be passed as the
-second parameter.  This function is executed on every value in the
-input, and its return value will be used in place of the original value.
-This is useful to serialize specialized objects or class instances.</p>
-
-<p>If a positive integer or non-empty string is passed as the third
-parameter, the output will be formatted with carriage returns and
-indentation for readability.  If a String is passed (such as "\t") it
-will be used once for each indentation level.  If a number is passed,
-that number of spaces will be used.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">o</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>any arbitrary value to convert to JSON string</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">w</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) whitelist of acceptable object
-                 keys to include, or a replacer function to modify the
-                 raw value before serialization</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">ind</code>
-                        <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) indentation character or depth of
-                 spaces to format the output.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    JSON string representation of the input
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-            <div id="properties" class="aui-tabview-content-item api-class-tabpanel">
-                <h2 class="off-left">Properties</h2>
-
-                
-                    <div id="property__BRACKETS" class="property item private">
-    <h3 class="name"><code>_BRACKETS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18462"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18462</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Third step in the safety evaluation.  Regex used to remove all open
-square brackets following a colon, comma, or at the beginning of the
-string.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__BRACKETS" class="property item private">
-    <h3 class="name"><code>_BRACKETS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l91"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:91</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Third step in the safety evaluation.  Regex used to remove all open
-square brackets following a colon, comma, or at the beginning of the
-string.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__default" class="property item">
-    <h3 class="name"><code>_default</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l11"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:11</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>The ID of the default IO transport, defaults to <code>xhr</code></p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__ESCAPES" class="property item private">
-    <h3 class="name"><code>_ESCAPES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l71"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:71</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>First step in the safety evaluation.  Regex used to replace all escape
-sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__ESCAPES" class="property item private">
-    <h3 class="name"><code>_ESCAPES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18442"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18442</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>First step in the safety evaluation.  Regex used to replace all escape
-sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNICODE_EXCEPTIONS" class="property item private">
-    <h3 class="name"><code>_UNICODE_EXCEPTIONS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l57"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:57</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replace certain Unicode characters that JavaScript may handle incorrectly
-during eval--either by deleting them or treating them as line
-endings--with escape sequences.
-IMPORTANT NOTE: This regex will be used to modify the input if a match is
-found.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNICODE_EXCEPTIONS" class="property item private">
-    <h3 class="name"><code>_UNICODE_EXCEPTIONS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18428"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18428</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replace certain Unicode characters that JavaScript may handle incorrectly
-during eval--either by deleting them or treating them as line
-endings--with escape sequences.
-IMPORTANT NOTE: This regex will be used to modify the input if a match is
-found.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNSAFE" class="property item private">
-    <h3 class="name"><code>_UNSAFE</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18473"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18473</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Final step in the safety evaluation.  Regex used to test the string left
-after all previous replacements for invalid characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNSAFE" class="property item private">
-    <h3 class="name"><code>_UNSAFE</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l102"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:102</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Final step in the safety evaluation.  Regex used to test the string left
-after all previous replacements for invalid characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__VALUES" class="property item private">
-    <h3 class="name"><code>_VALUES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18452"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18452</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Second step in the safety evaluation.  Regex used to replace all simple
-values with ']' characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__VALUES" class="property item private">
-    <h3 class="name"><code>_VALUES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l81"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:81</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Second step in the safety evaluation.  Regex used to replace all simple
-values with ']' characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_charCacheThreshold" class="property item">
-    <h3 class="name"><code>charCacheThreshold</code></h3>
-    <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l322"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:322</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Number of occurrences of a special character within a single call to
-stringify that should trigger promotion of that character to a dedicated
-preprocess step for future calls.  This is only used in environments
-that don't support native JSON, or when useNativeStringify is set to
-false.</p>
-
-<p>So, if set to 50 and an object is passed to stringify that includes
-strings containing the special character \x07 more than 50 times,
-subsequent calls to stringify will process object strings through a
-faster serialization path for \x07 before using the generic, slower,
-replacement process for all special characters.</p>
-
-<p>To prime the preprocessor cache, set this value to 1, then call
-<code>Y.JSON.stringify("<em>(all special characters to
-cache)</em>");</code>, then return this setting to a more conservative
-value.</p>
-
-<p>Special characters \ " \b \t \n \f \r are already cached.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> 100</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_Native" class="property item private">
-    <h3 class="name"><code>Native</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18416"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18416</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Alias to native browser implementation of the JSON object if available.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_Native" class="property item private">
-    <h3 class="name"><code>Native</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l45"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:45</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Alias to native browser implementation of the JSON object if available.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_transports" class="property item">
-    <h3 class="name"><code>transports</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l38"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:38</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>An object hash of custom transports available to IO</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeParse" class="property item">
-    <h3 class="name"><code>useNativeParse</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18586"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18586</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON parse if the browser has a native implementation.
-In general, this is a good idea.  See the Known Issues section in the
-JSON user guide for caveats.  The default value is true for browsers with
-native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeParse" class="property item">
-    <h3 class="name"><code>useNativeParse</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l215"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:215</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON parse if the browser has a native implementation.
-In general, this is a good idea.  See the Known Issues section in the
-JSON user guide for caveats.  The default value is true for browsers with
-native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeStringify" class="property item">
-    <h3 class="name"><code>useNativeStringify</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l253"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:253</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON stringify if the browser has a native
-implementation.  In general, this is a good idea.  See the Known Issues
-section in the JSON user guide for caveats.  The default value is true
-for browsers with native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-
-        
-    </div>
+                    <h1 class="file-heading">File: lib&#x2F;yui3&#x2F;src&#x2F;charts&#x2F;js&#x2F;ChartLegend.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;**
+ * ChartLegend provides a legend for a chart.
+ *
+ * @class ChartLegend
+ * @module charts
+ * @submodule charts-legend
+ * @extends Widget
+ *&#x2F;
+Y.ChartLegend = Y.Base.create(&quot;chartlegend&quot;, Y.Widget, [Y.Renderer], {
+    &#x2F;**
+     * Initializes the chart.
+     *
+     * @method initializer
+     * @private
+     *&#x2F;
+    initializer: function()
+    {
+        this._items = [];
+    },
+
+    &#x2F;**
+     * @method renderUI
+     * @private
+     *&#x2F;
+    renderUI: function()
+    {
+        var bb = this.get(&quot;boundingBox&quot;),
+            cb = this.get(&quot;contentBox&quot;),
+            styles = this.get(&quot;styles&quot;).background,
+            background = new Y.Rect({
+                graphic: cb,
+                fill: styles.fill,
+                stroke: styles.border
+            });
+        bb.setStyle(&quot;display&quot;, &quot;block&quot;);
+        bb.setStyle(&quot;position&quot;, &quot;absolute&quot;);
+        this.set(&quot;background&quot;, background);
+    },
+    
+    &#x2F;**
+     * @method bindUI
+     * @private
+     *&#x2F;
+    bindUI: function()
+    {
+        this.get(&quot;chart&quot;).after(&quot;seriesCollectionChange&quot;, Y.bind(this._updateHandler, this));
+        this.after(&quot;stylesChange&quot;, this._updateHandler);
+        this.after(&quot;positionChange&quot;, this._positionChangeHandler);
+        this.after(&quot;widthChange&quot;, this._handleSizeChange);
+        this.after(&quot;heightChange&quot;, this._handleSizeChange);
+    },
+    
+    &#x2F;**
+     * @method syncUI
+     * @private
+     *&#x2F;
+    syncUI: function()
+    {
+        var w = this.get(&quot;width&quot;),
+            h = this.get(&quot;height&quot;);
+        if(isFinite(w) &amp;&amp; isFinite(h) &amp;&amp; w &gt; 0 &amp;&amp; h &gt; 0)
+        {
+            this._drawLegend();
+        }
+    },
+
+    &#x2F;**
+     * Handles changes to legend.
+     *
+     * @method _updateHandler
+     * @param {Object} e Event object
+     * @private
+     *&#x2F;
+    _updateHandler: function(e)
+    {
+        if(this.get(&quot;rendered&quot;))
+        {
+            this._drawLegend();
+        }
+    },
+
+    &#x2F;** 
+     * Handles position changes.
+     *
+     * @method _positionChangeHandler
+     * @param {Object} e Event object
+     * @private
+     *&#x2F;
+    _positionChangeHandler: function(e)
+    {
+        var chart = this.get(&quot;chart&quot;),
+            parentNode = this._parentNode;
+        if(parentNode &amp;&amp; ((chart &amp;&amp; this.get(&quot;includeInChartLayout&quot;))))
+        {
+            this.fire(&quot;legendRendered&quot;);
+        }
+        else if(this.get(&quot;rendered&quot;))
+        {
+            this._drawLegend();
+        }
+    },
+
+    &#x2F;**
+     * Updates the legend when the size changes.
+     *
+     * @method _handleSizeChange
+     * @param {Object} e Event object.
+     * @private
+     *&#x2F;
+    _handleSizeChange: function(e)
+    {
+        var attrName = e.attrName,
+            pos = this.get(POSITION),
+            vert = pos == LEFT || pos == RIGHT,
+            hor = pos == BOTTOM || pos == TOP;
+        if((hor &amp;&amp; attrName == WIDTH) || (vert &amp;&amp; attrName == HEIGHT))
+        {
+            this._drawLegend();
+        }
+    },
+
+    &#x2F;**
+     * Draws the legend
+     *
+     * @method _drawLegend
+     * @private
+     *&#x2F;
+    _drawLegend: function()
+    {
+        if(this._drawing)
+        {
+            this._callLater = true;
+            return;
+        }
+        this._drawing = true;
+        this._callLater = false;
+        if(this.get(&quot;includeInChartLayout&quot;))
+        {
+            this.get(&quot;chart&quot;)._itemRenderQueue.unshift(this);
+        }
+        var chart = this.get(&quot;chart&quot;),
+            node = this.get(&quot;contentBox&quot;),
+            seriesCollection = chart.get(&quot;seriesCollection&quot;),
+            series,
+            styles = this.get(&quot;styles&quot;),
+            padding = styles.padding,
+            itemStyles = styles.item,
+            seriesStyles,
+            hSpacing = itemStyles.hSpacing,
+            vSpacing = itemStyles.vSpacing,
+            hAlign = styles.hAlign,
+            vAlign = styles.vAlign,
+            marker = styles.marker,
+            labelStyles = itemStyles.label,
+            displayName,
+            layout = this._layout[this.get(&quot;direction&quot;)],
+            i, 
+            len,
+            isArray,
+            shape,
+            shapeClass,
+            item,
+            fill,
+            border,
+            fillColors,
+            borderColors,
+            borderWeight,
+            items = [],
+            markerWidth = marker.width,
+            markerHeight = marker.height,
+            totalWidth = 0 - hSpacing,
+            totalHeight = 0 - vSpacing,
+            maxWidth = 0,
+            maxHeight = 0,
+            itemWidth,
+            itemHeight;
+        if(marker &amp;&amp; marker.shape)
+        {
+            shape = marker.shape;
+        }
+        this._destroyLegendItems();
+        if(chart instanceof Y.PieChart)
+        {
+            series = seriesCollection[0];
+            displayName = series.get(&quot;categoryAxis&quot;).getDataByKey(series.get(&quot;categoryKey&quot;)); 
+            seriesStyles = series.get(&quot;styles&quot;).marker;
+            fillColors = seriesStyles.fill.colors;
+            borderColors = seriesStyles.border.colors;
+            borderWeight = seriesStyles.border.weight;
+            i = 0;
+            len = displayName.length;
+            shape = shape || Y.Circle;
+            isArray = Y.Lang.isArray(shape);
+            for(; i &lt; len; ++i)
+            {
+                shape = isArray ? shape[i] : shape;
+                fill = {
+                    color: fillColors[i]
+                };
+                border = {
+                    colors: borderColors[i],
+                    weight: borderWeight
+                };
+                displayName = chart.getSeriesItems(series, i).category.value;
+                item = this._getLegendItem(node, this._getShapeClass(shape), fill, border, labelStyles, markerWidth, markerHeight, displayName);
+                itemWidth = item.width;
+                itemHeight = item.height;
+                maxWidth = Math.max(maxWidth, itemWidth);
+                maxHeight = Math.max(maxHeight, itemHeight);
+                totalWidth += itemWidth + hSpacing;
+                totalHeight += itemHeight + vSpacing;
+                items.push(item);
+            }
+        }
+        else
+        {
+            i = 0;
+            len = seriesCollection.length;
+            for(; i &lt; len; ++i)
+            {
+                series = seriesCollection[i];
+                seriesStyles = this._getStylesBySeriesType(series, shape);
+                if(!shape)
+                {
+                    shape = seriesStyles.shape;
+                    if(!shape)
+                    {
+                        shape = Y.Circle;
+                    }
+                }
+                shapeClass = Y.Lang.isArray(shape) ? shape[i] : shape;
+                item = this._getLegendItem(node, this._getShapeClass(shape), seriesStyles.fill, seriesStyles.border, labelStyles, markerWidth, markerHeight, series.get(&quot;valueDisplayName&quot;));
+                itemWidth = item.width;
+                itemHeight = item.height;
+                maxWidth = Math.max(maxWidth, itemWidth);
+                maxHeight = Math.max(maxHeight, itemHeight);
+                totalWidth += itemWidth + hSpacing;
+                totalHeight += itemHeight + vSpacing;
+                items.push(item);
+            }
+        }
+        this._drawing = false;
+        if(this._callLater)
+        {
+            this._drawLegend();
+        }
+        else
+        {
+            layout._positionLegendItems.apply(this, [items, maxWidth, maxHeight, totalWidth, totalHeight, padding, hSpacing, vSpacing, hAlign, vAlign]);
+            this._updateBackground(styles);
+            this.fire(&quot;legendRendered&quot;);
+        }
+    },
+
+    &#x2F;**
+     * Updates the background for the legend.
+     *
+     * @method _updateBackground
+     * @param {Object} styles Reference to the legend&#x27;s styles attribute
+     * @private
+     *&#x2F;
+    _updateBackground: function(styles)
+    {
+        var backgroundStyles = styles.background,
+            contentRect = this._contentRect,
+            padding = styles.padding,
+            x = contentRect.left - padding.left,
+            y = contentRect.top - padding.top,
+            w = contentRect.right - x + padding.right,
+            h = contentRect.bottom - y + padding.bottom;
+        this.get(&quot;background&quot;).set({
+            fill: backgroundStyles.fill,
+            stroke: backgroundStyles.border,
+            width: w,
+            height: h,
+            x: x,
+            y: y
+        });
+    },
+
+    &#x2F;**
+     * Retrieves the marker styles based on the type of series. For series that contain a marker, the marker styles are returned.
+     * 
+     * @method _getStylesBySeriesType
+     * @param {CartesianSeries | PieSeries} The series in which the style properties will be received.
+     * @return Object An object containing fill, border and shape information.
+     * @private
+     *&#x2F;
+    _getStylesBySeriesType: function(series)
+    {
+        var styles = series.get(&quot;styles&quot;),
+            color;
+        if(series instanceof Y.LineSeries || series instanceof Y.StackedLineSeries)
+        {
+            styles = series.get(&quot;styles&quot;).line;
+            color = styles.color || series._getDefaultColor(series.get(&quot;graphOrder&quot;), &quot;line&quot;);
+            return {
+                border: {
+                    weight: 1,
+                    color: color
+                },
+                fill: {
+                    color: color
+                }
+            };
+        }
+        else if(series instanceof Y.AreaSeries || series instanceof Y.StackedAreaSeries)
+        {
+            styles = series.get(&quot;styles&quot;).area;
+            color = styles.color || series._getDefaultColor(series.get(&quot;graphOrder&quot;), &quot;slice&quot;);
+            return {
+                border: {
+                    weight: 1,
+                    color: color
+                },
+                fill: {
+                    color: color
+                }
+            };
+        }
+        else 
+        {
+            styles = series.get(&quot;styles&quot;).marker;
+            return {
+                fill: styles.fill,
+
+                border: {
+                    weight: styles.border.weight,
+
+                    color: styles.border.color,
+
+                    shape: styles.shape
+                },
+                shape: styles.shape
+            };
+        }
+    },
+
+    &#x2F;**
+     * Returns a legend item consisting of the following properties:
+     *  &lt;dl&gt;
+     *    &lt;dt&gt;node&lt;&#x2F;dt&gt;&lt;dd&gt;The &#x60;Node&#x60; containing the legend item elements.&lt;&#x2F;dd&gt;
+     *      &lt;dt&gt;shape&lt;&#x2F;dt&gt;&lt;dd&gt;The &#x60;Shape&#x60; element for the legend item.&lt;&#x2F;dd&gt;
+     *      &lt;dt&gt;textNode&lt;&#x2F;dt&gt;&lt;dd&gt;The &#x60;Node&#x60; containing the text&gt;&lt;&#x2F;dd&gt;
+     *      &lt;dt&gt;text&lt;&#x2F;dt&gt;&lt;dd&gt;&lt;&#x2F;dd&gt;
+     *  &lt;&#x2F;dl&gt;
+     *
+     * @method _getLegendItem
+     * @param {Node} shapeProps Reference to the &#x60;node&#x60; attribute.
+     * @param {String | Class} shapeClass The type of shape
+     * @param {Object} fill Properties for the shape&#x27;s fill
+     * @param {Object} border Properties for the shape&#x27;s border
+     * @param {String} text String to be rendered as the legend&#x27;s text
+     * @param {Number} width Total width of the legend item
+     * @param {Number} height Total height of the legend item
+     * @param {HTML | String} text Text for the legendItem
+     * @return Object
+     * @private
+     *&#x2F;
+    _getLegendItem: function(node, shapeClass, fill, border, labelStyles, w, h, text) 
+    {
+        var containerNode = Y.one(DOCUMENT.createElement(&quot;div&quot;)),
+            textField = Y.one(DOCUMENT.createElement(&quot;span&quot;)),
+            shape,
+            dimension,
+            padding,
+            left,
+            item;
+        containerNode.setStyle(POSITION, &quot;absolute&quot;);
+        textField.setStyle(POSITION, &quot;absolute&quot;);
+        textField.setStyles(labelStyles);
+        textField.appendChild(DOCUMENT.createTextNode(text));
+        containerNode.appendChild(textField);
+        node.appendChild(containerNode);
+        dimension = textField.get(&quot;offsetHeight&quot;);
+        padding = dimension - h;
+        left = w + padding + 2;
+        textField.setStyle(&quot;left&quot;, left + PX);
+        containerNode.setStyle(&quot;height&quot;, dimension + PX);
+        containerNode.setStyle(&quot;width&quot;, (left + textField.get(&quot;offsetWidth&quot;)) + PX);
+        shape = new shapeClass({
+            fill: fill,
+            stroke: border,
+            width: w,
+            height: h,
+            x: padding * 0.5,
+            y: padding * 0.5,
+            w: w,
+            h: h,
+            graphic: containerNode
+        });
+        textField.setStyle(&quot;left&quot;, dimension + PX);
+        item = {
+            node: containerNode,
+            width: containerNode.get(&quot;offsetWidth&quot;),
+            height: containerNode.get(&quot;offsetHeight&quot;),
+            shape: shape,
+            textNode: textField,
+            text: text
+        };
+        this._items.push(item);
+        return item;
+    },
+
+    &#x2F;**
+     * Evaluates and returns correct class for drawing a shape.
+     *
+     * @method _getShapeClass
+     * @return Shape
+     * @private
+     *&#x2F;
+    _getShapeClass: function()
+    {   
+        var graphic = this.get(&quot;background&quot;).get(&quot;graphic&quot;);
+        return graphic._getShapeClass.apply(graphic, arguments);
+    },
+    
+    &#x2F;**
+     * Returns the default hash for the &#x60;styles&#x60; attribute.
+     *
+     * @method _getDefaultStyles
+     * @return Object
+     * @protected
+     *&#x2F;
+    _getDefaultStyles: function()
+    {
+        var styles = { 
+            padding: {
+                top: 8,
+                right: 8,
+                bottom: 8,
+                left: 9
+            },
+            gap: 10,
+            hAlign: &quot;center&quot;,
+            vAlign: &quot;top&quot;,
+            marker: this._getPlotDefaults(),
+            item: {
+                hSpacing: 10,
+                vSpacing: 5,
+                label: {
+                    color:&quot;#808080&quot;,
+                    fontSize:&quot;85%&quot;,
+                    whiteSpace: &quot;nowrap&quot;
+                }
+            },
+            background: {
+                shape: &quot;rect&quot;,
+                fill:{
+                    color:&quot;#faf9f2&quot;
+                },
+                border: {
+                    color:&quot;#dad8c9&quot;,
+                    weight: 1
+                }
+            }
+        };
+        return styles;
+    },
+
+    &#x2F;**
+     * Gets the default values for series that use the utility. This method is used by
+     * the class&#x27; &#x60;styles&#x60; attribute&#x27;s getter to get build default values.
+     *
+     * @method _getPlotDefaults
+     * @return Object
+     * @protected
+     *&#x2F;
+    _getPlotDefaults: function()
+    {
+        var defs = {
+            width: 10,
+            height: 10
+        };
+        return defs;
+    },
+
+    &#x2F;**
+     * Destroys legend items.
+     *
+     * @method _destroyLegendItems
+     * @private
+     *&#x2F;
+    _destroyLegendItems: function()
+    {
+        var item;
+        if(this._items)
+        {
+            while(this._items.length &gt; 0)
+            {
+                item = this._items.shift();
+                item.shape.get(&quot;graphic&quot;).destroy();
+                item.node.empty();
+                item.node.destroy(true);
+                item.node = null;
+                item = null;
+            }
+        }
+        this._items = [];
+    },
+
+    &#x2F;**
+     * Maps layout classes.
+     *
+     * @property _layout
+     * @private
+     *&#x2F;
+    _layout: {
+        vertical: VerticalLegendLayout,
+        horizontal: HorizontalLegendLayout
+    },
+
+    &#x2F;**
+     * Destructor implementation ChartLegend class. Removes all items and the Graphic instance from the widget.
+     *
+     * @method destructor
+     * @protected
+     *&#x2F;
+    destructor: function()
+    {
+        var background = this.get(&quot;background&quot;),
+            backgroundGraphic;
+        this._destroyLegendItems();
+        if(background)
+        {
+            backgroundGraphic = background.get(&quot;graphic&quot;);
+            if(backgroundGraphic)
+            {
+                backgroundGraphic.destroy();
+            }
+            else
+            {
+                background.destroy();
+            }
+        }
+
+    }
+}, {
+    ATTRS: {
+        &#x2F;**
+         * Indicates whether the chart&#x27;s contentBox is the parentNode for the legend.
+         *
+         * @attribute includeInChartLayout
+         * @type Boolean
+         * @private
+         *&#x2F;
+        includeInChartLayout: {
+            value: false
+        },
+
+        &#x2F;**
+         * Reference to the &#x60;Chart&#x60; instance.
+         *
+         * @attribute chart
+         * @type Chart
+         *&#x2F;
+        chart: {
+            setter: function(val)
+            {
+                this.after(&quot;legendRendered&quot;, Y.bind(val._itemRendered, val));
+                return val;
+            }
+        },
+
+        &#x2F;**
+         * Indicates the direction in relation of the legend&#x27;s layout. The &#x60;direction&#x60; of the legend is determined by its
+         * &#x60;position&#x60; value.
+         *
+         * @attribute direction
+         * @type String
+         *&#x2F;
+        direction: {
+            value: &quot;vertical&quot;
+        },
+       
+        &#x2F;**
+         * Indicates the position and direction of the legend. Possible values are &#x60;left&#x60;, &#x60;top&#x60;, &#x60;right&#x60; and &#x60;bottom&#x60;. Values of &#x60;left&#x60; and
+         * &#x60;right&#x60; values have a &#x60;direction&#x60; of &#x60;vertical&#x60;. Values of &#x60;top&#x60; and &#x60;bottom&#x60; values have a &#x60;direction&#x60; of &#x60;horizontal&#x60;.
+         *
+         * @attribute position
+         * @type String
+         *&#x2F;
+        position: {
+            lazyAdd: false,
+
+            value: &quot;right&quot;,
+
+            setter: function(val)
+            {
+                if(val == TOP || val == BOTTOM)
+                {
+                    this.set(&quot;direction&quot;, HORIZONTAL);
+                }
+                else if(val == LEFT || val == RIGHT)
+                {
+                    this.set(&quot;direction&quot;, VERTICAL);
+                }
+                return val;
+            }
+        },
+ 
+        &#x2F;**
+         * The width of the legend. Depending on the implementation of the ChartLegend, this value is &#x60;readOnly&#x60;. By default, the legend is included in the layout of the &#x60;Chart&#x60; that 
+         * it references. Under this circumstance, &#x60;width&#x60; is always &#x60;readOnly&#x60;. When the legend is rendered in its own dom element, the &#x60;readOnly&#x60; status is determined by the 
+         * direction of the legend. If the &#x60;position&#x60; is &#x60;left&#x60; or &#x60;right&#x60; or the &#x60;direction&#x60; is &#x60;vertical&#x60;, width is &#x60;readOnly&#x60;. If the position is &#x60;top&#x60; or &#x60;bottom&#x60; or the &#x60;direction&#x60;
+         * is &#x60;horizontal&#x60;, width can be explicitly set. If width is not explicitly set, the width will be determined by the width of the legend&#x27;s parent element.
+         *
+         * @attribute width
+         * @type Number
+         *&#x2F;
+        width: {
+            getter: function()
+            {
+                var chart = this.get(&quot;chart&quot;),
+                    parentNode = this._parentNode;
+                if(parentNode)
+                {
+                    if((chart &amp;&amp; this.get(&quot;includeInChartLayout&quot;)) || this._width)
+                    {
+                        if(!this._width)
+                        {
+                            this._width = 0;
+                        }
+                        return this._width;
+                    }
+                    else
+                    {
+                        return parentNode.get(&quot;offsetWidth&quot;);
+                    }
+                }
+                return &quot;&quot;;
+            },
+
+            setter: function(val)
+            {
+                this._width = val;
+                return val;
+            }
+        },
+
+        &#x2F;**
+         * The height of the legend. Depending on the implementation of the ChartLegend, this value is &#x60;readOnly&#x60;. By default, the legend is included in the layout of the &#x60;Chart&#x60; that 
+         * it references. Under this circumstance, &#x60;height&#x60; is always &#x60;readOnly&#x60;. When the legend is rendered in its own dom element, the &#x60;readOnly&#x60; status is determined by the 
+         * direction of the legend. If the &#x60;position&#x60; is &#x60;top&#x60; or &#x60;bottom&#x60; or the &#x60;direction&#x60; is &#x60;horizontal&#x60;, height is &#x60;readOnly&#x60;. If the position is &#x60;left&#x60; or &#x60;right&#x60; or the &#x60;direction&#x60;
+         * is &#x60;vertical&#x60;, height can be explicitly set. If height is not explicitly set, the height will be determined by the width of the legend&#x27;s parent element.
+         *
+         * @attribute height 
+         * @type Number
+         *&#x2F;
+        height: {
+            valueFn: &quot;_heightGetter&quot;,
+
+            getter: function()
+            {
+                var chart = this.get(&quot;chart&quot;),
+                    parentNode = this._parentNode;
+                if(parentNode) 
+                {
+                    if((chart &amp;&amp; this.get(&quot;includeInChartLayout&quot;)) || this._height)
+                    {
+                        if(!this._height)
+                        {
+                            this._height = 0;
+                        }
+                        return this._height;
+                    }
+                    else
+                    {
+                        return parentNode.get(&quot;offsetHeight&quot;);
+                    }
+                }
+                return &quot;&quot;;
+            },
+
+            setter: function(val)
+            {
+                this._height = val;
+                return val;
+            }
+        },
+
+        &#x2F;**
+         * Indicates the x position of legend.
+         *
+         * @attribute x
+         * @type Number
+         * @readOnly
+         *&#x2F;
+        x: {
+            lazyAdd: false,
+
+            value: 0,
+            
+            setter: function(val)
+            {
+                var node = this.get(&quot;boundingBox&quot;);
+                if(node)
+                {
+                    node.setStyle(LEFT, val + PX);
+                }
+                return val;
+            }
+        },
+
+        &#x2F;**
+         * Indicates the y position of legend.
+         *
+         * @attribute y
+         * @type Number
+         * @readOnly
+         *&#x2F;
+        y: {
+            lazyAdd: false,
+
+            value: 0,
+            
+            setter: function(val)
+            {
+                var node = this.get(&quot;boundingBox&quot;);
+                if(node)
+                {
+                    node.setStyle(TOP, val + PX);
+                }
+                return val;
+            }
+        },
+
+        &#x2F;**
+         * Array of items contained in the legend. Each item is an object containing the following properties:
+         *
+         * &lt;dl&gt;
+         *      &lt;dt&gt;node&lt;&#x2F;dt&gt;&lt;dd&gt;Node containing text for the legend item.&lt;&#x2F;dd&gt;
+         *      &lt;dt&gt;marker&lt;&#x2F;dt&gt;&lt;dd&gt;Shape for the legend item.&lt;&#x2F;dd&gt;
+         * &lt;&#x2F;dl&gt;
+         *
+         * @attribute items
+         * @type Array
+         * @readOnly
+         *&#x2F;
+        items: {
+            getter: function()
+            {
+                return this._items;
+            }
+        },
+
+        &#x2F;**
+         * Background for the legend.
+         *
+         * @attribute background
+         * @type Rect
+         *&#x2F;
+        background: {}
+
+        &#x2F;**
+         * Properties used to display and style the ChartLegend.  This attribute is inherited from &#x60;Renderer&#x60;. Below are the default values:
+         *
+         *  &lt;dl&gt;
+         *      &lt;dt&gt;gap&lt;&#x2F;dt&gt;&lt;dd&gt;Distance, in pixels, between the &#x60;ChartLegend&#x60; instance and the chart&#x27;s content. When &#x60;ChartLegend&#x60; is rendered within a &#x60;Chart&#x60; instance this value is applied.&lt;&#x2F;dd&gt;
+         *      &lt;dt&gt;hAlign&lt;&#x2F;dt&gt;&lt;dd&gt;Defines the horizontal alignment of the &#x60;items&#x60; in a &#x60;ChartLegend&#x60; rendered in a horizontal direction. This value is applied when the instance&#x27;s &#x60;position&#x60; is set to top or bottom. This attribute can be set to left, center or right. The default value is center.&lt;&#x2F;dd&gt;
+         *      &lt;dt&gt;vAlign&lt;&#x2F;dt&gt;&lt;dd&gt;Defines the vertical alignment of the &#x60;items&#x60; in a &#x60;ChartLegend&#x60; rendered in vertical direction. This value is applied when the instance&#x27;s &#x60;position&#x60; is set to left or right. The attribute can be set to top, middle or bottom. The default value is middle.&lt;&#x2F;dd&gt;
+         *      &lt;dt&gt;item&lt;&#x2F;dt&gt;&lt;dd&gt;Set of style properties applied to the &#x60;items&#x60; of the &#x60;ChartLegend&#x60;.
+         *          &lt;dl&gt;
+         *              &lt;dt&gt;hSpacing&lt;&#x2F;dt&gt;&lt;dd&gt;Horizontal distance, in pixels, between legend &#x60;items&#x60;.&lt;&#x2F;dd&gt;
+         *              &lt;dt&gt;vSpacing&lt;&#x2F;dt&gt;&lt;dd&gt;Vertical distance, in pixels, between legend &#x60;items&#x60;.&lt;&#x2F;dd&gt;
+         *              &lt;dt&gt;label&lt;&#x2F;dt&gt;&lt;dd&gt;Properties for the text of an &#x60;item&#x60;.
+         *                  &lt;dl&gt;
+         *                      &lt;dt&gt;color&lt;&#x2F;dt&gt;&lt;dd&gt;Color of the text. The default values is &quot;#808080&quot;.&lt;&#x2F;dd&gt;
+         *                      &lt;dt&gt;fontSize&lt;&#x2F;dt&gt;&lt;dd&gt;Font size for the text. The default value is &quot;85%&quot;.&lt;&#x2F;dd&gt;
+         *                  &lt;&#x2F;dl&gt;
+         *              &lt;&#x2F;dd&gt;
+         *              &lt;dt&gt;marker&lt;&#x2F;dt&gt;&lt;dd&gt;Properties for the &#x60;item&#x60; markers.
+         *                  &lt;dl&gt;
+         *                      &lt;dt&gt;width&lt;&#x2F;dt&gt;&lt;dd&gt;Specifies the width of the markers.&lt;&#x2F;dd&gt;
+         *                      &lt;dt&gt;height&lt;&#x2F;dt&gt;&lt;dd&gt;Specifies the height of the markers.&lt;&#x2F;dd&gt;
+         *                  &lt;&#x2F;dl&gt;
+         *              &lt;&#x2F;dd&gt;
+         *          &lt;&#x2F;dl&gt;
+         *      &lt;&#x2F;dd&gt;
+         *      &lt;dt&gt;background&lt;&#x2F;dt&gt;&lt;dd&gt;Properties for the &#x60;ChartLegend&#x60; background.
+         *          &lt;dl&gt;
+         *              &lt;dt&gt;fill&lt;&#x2F;dt&gt;&lt;dd&gt;Properties for the background fill.
+         *                  &lt;dl&gt;
+         *                      &lt;dt&gt;color&lt;&#x2F;dt&gt;&lt;dd&gt;Color for the fill. The default value is &quot;#faf9f2&quot;.&lt;&#x2F;dd&gt;
+         *                  &lt;&#x2F;dl&gt;
+         *              &lt;&#x2F;dd&gt;
+         *              &lt;dt&gt;border&lt;&#x2F;dt&gt;&lt;dd&gt;Properties for the background border.
+         *                  &lt;dl&gt;
+         *                      &lt;dt&gt;color&lt;&#x2F;dt&gt;&lt;dd&gt;Color for the border. The default value is &quot;#dad8c9&quot;.&lt;&#x2F;dd&gt;
+         *                      &lt;dt&gt;weight&lt;&#x2F;dt&gt;&lt;dd&gt;Weight of the border. The default values is 1.&lt;&#x2F;dd&gt;
+         *                  &lt;&#x2F;dl&gt;
+         *              &lt;&#x2F;dd&gt;
+         *          &lt;&#x2F;dl&gt;
+         *      &lt;&#x2F;dd&gt;
+         * &lt;&#x2F;dl&gt;
+         *
+         * @attribute styles
+         * @type Object
+         *&#x2F;
+    }
+});
+
+    </pre>
 </div>
 
                 </div>

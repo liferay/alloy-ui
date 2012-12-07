@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSON - AlloyUI</title>
+    <title>lib&#x2F;yui3&#x2F;src&#x2F;uploader&#x2F;js&#x2F;uploader-flash.js - AlloyUI</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.4.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
@@ -1577,2518 +1577,1042 @@
 
             <div class="apidocs">
                 <div id="docs-main" class="content">
-                    <h1>JSON Class</h1>
-<div class="box meta">
-    
-
-    
-
-    
-        <div class="foundat">
-            Defined in: <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18372"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18372</code></a>
-        </div>
-    
-
-    
-</div>
-
-
-
-<div class="box intro">
-    <p>The JSON module adds support for serializing JavaScript objects into
-JSON strings and parsing JavaScript objects from strings in JSON format.</p>
-
-<p>The JSON namespace is added to your YUI instance including static methods
-Y.JSON.parse(..) and Y.JSON.stringify(..).</p>
-
-<p>The functionality and method signatures follow the ECMAScript 5
-specification.  In browsers with native JSON support, the native
-implementation is used.</p>
-
-<p>The <code>json</code> module is a rollup of <code>json-parse</code> and
-<code>json-stringify</code>.</p>
-
-<p>As their names suggest, <code>json-parse</code> adds support for parsing
-JSON data (Y.JSON.parse) and <code>json-stringify</code> for serializing
-JavaScript data into JSON strings (Y.JSON.stringify).  You may choose to
-include either of the submodules individually if you don't need the
-complementary functionality, or include the rollup for both.</p>
-</div>
-
-
-
-<div id="classdocs" class="tabview">
-    <ul class="aui-tabview-list aui-widget-hd api-class-tabs tabs" id="api-class-tabview-list">
-        <li class="yui3-tab api-class-tab index"><a class="aui-tab-label" href="#index">Index</a></li>
-
-        
-            <li class="aui-tab api-class-tab methods"><a class="aui-tab-label" href="#methods">Methods</a></li>
-        
-        
-            <li class="aui-tab api-class-tab properties"><a class="aui-tab-label" href="#properties">Properties</a></li>
-        
-        
-        
-    </ul>
-
-    <div class="aui-tabview-content aui-widget-bd" id="api-class-tabview-panel">
-        <div id="index" class="aui-tabview-content-item api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
-            
-                <div class="index-section methods">
-                    <h3>Methods</h3>
-
-                    <ul class="index-list methods">
-                        
-                            <li class="index-item method private">
-                                <a href="#method__revive">_revive</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method__revive">_revive</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_customTransport">customTransport</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method deprecated">
-                                <a href="#method_dateToString">dateToString</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_defaultTransport">defaultTransport</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_escapeException">escapeException</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_escapeException">escapeException</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_notify">notify</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_parse">parse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_parse">parse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_stringify">stringify</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-                <div class="index-section properties">
-                    <h3>Properties</h3>
-
-                    <ul class="index-list properties">
-                        
-                            <li class="index-item property private">
-                                <a href="#property__BRACKETS">_BRACKETS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__BRACKETS">_BRACKETS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property__default">_default</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__ESCAPES">_ESCAPES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__ESCAPES">_ESCAPES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNICODE_EXCEPTIONS">_UNICODE_EXCEPTIONS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNICODE_EXCEPTIONS">_UNICODE_EXCEPTIONS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNSAFE">_UNSAFE</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNSAFE">_UNSAFE</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__VALUES">_VALUES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__VALUES">_VALUES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_charCacheThreshold">charCacheThreshold</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property_Native">Native</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property_Native">Native</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_transports">transports</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeParse">useNativeParse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeParse">useNativeParse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeStringify">useNativeStringify</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-
-            
-        </div>
-
-        
-            <div id="methods" class="aui-tabview-content-item api-class-tabpanel">
-                <h2 class="off-left">Methods</h2>
-
-                
-                    <div id="method__revive" class="method item private">
-    <h3 class="name"><code>_revive</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>data</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l125"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:125</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Traverses nested objects, applying a reviver function to each (key,value)
-from the scope if the key:value's containing object.  The value returned
-from the function will replace the original value in the key:value pair.
-If the value returned is undefined, the key will be omitted from the
-returned object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">data</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Any JavaScript data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>filter or mutation function</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    The results of the filtered data
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method__revive" class="method item private">
-    <h3 class="name"><code>_revive</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>data</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18496"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18496</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Traverses nested objects, applying a reviver function to each (key,value)
-from the scope if the key:value's containing object.  The value returned
-from the function will replace the original value in the key:value pair.
-If the value returned is undefined, the key will be omitted from the
-returned object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">data</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Any JavaScript data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>filter or mutation function</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    The results of the filtered data
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_customTransport" class="method item">
-    <h3 class="name"><code>customTransport</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>id</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l56"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:56</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Create a custom transport of type and return it's object</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">id</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The id of the transport to create.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_dateToString" class="method item deprecated">
-    <h3 class="name"><code>dateToString</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>d</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-        <span class="flag deprecated" title="Use a replacer function">deprecated</span>
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l266"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:266</code></a>
-        
-        </p>
-
-
-        
-            <p>Deprecated: Use a replacer function</p>
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Serializes a Date instance as a UTC date string.  Used internally by
-stringify.  Override this method if you need Dates serialized in a
-different format.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">d</code>
-                        <span class="type"><a href="../classes/Date.html" class="crosslink">Date</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The Date to serialize</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    stringified Date in UTC format YYYY-MM-DDTHH:mm:SSZ
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_defaultTransport" class="method item">
-    <h3 class="name"><code>defaultTransport</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[id]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l18"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:18</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[id]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The transport to set as the default, if empty a new transport is created.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
-                    
-                    The transport object with a <code>send</code> method
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_escapeException" class="method item private">
-    <h3 class="name"><code>escapeException</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>c</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l112"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:112</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replaces specific unicode characters with their appropriate \unnnn
-format. Some browsers ignore certain characters during eval.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">c</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Unicode character</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    the \unnnn escapement of the character
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_escapeException" class="method item private">
-    <h3 class="name"><code>escapeException</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>c</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18483"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18483</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replaces specific unicode characters with their appropriate \unnnn
-format. Some browsers ignore certain characters during eval.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">c</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Unicode character</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    the \unnnn escapement of the character
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_notify" class="method item">
-    <h3 class="name"><code>notify</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>event</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>transaction</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>config</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l71"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:71</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Fired from the notify method of the transport which in turn fires
-the event on the IO object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">event</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The name of the event</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">transaction</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The transaction object</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">config</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The configuration object for this transaction</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>s</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18530"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18530</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Parse a JSON string, returning the native JavaScript representation.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">s</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JSON string data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) function(k,v) passed each key value
-         pair of object literals, allowing pruning or altering values</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    the native JavaScript representation of the JSON string
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>s</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l159"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:159</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Parse a JSON string, returning the native JavaScript representation.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">s</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JSON string data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) function(k,v) passed each key value
-         pair of object literals, allowing pruning or altering values</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    the native JavaScript representation of the JSON string
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_stringify" class="method item">
-    <h3 class="name"><code>stringify</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>o</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>w</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>ind</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l290"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:290</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Converts an arbitrary value to a JSON string representation.</p>
-
-<p>Objects with cyclical references will trigger an exception.</p>
-
-<p>If a whitelist is provided, only matching object keys will be
-included.  Alternately, a replacer function may be passed as the
-second parameter.  This function is executed on every value in the
-input, and its return value will be used in place of the original value.
-This is useful to serialize specialized objects or class instances.</p>
-
-<p>If a positive integer or non-empty string is passed as the third
-parameter, the output will be formatted with carriage returns and
-indentation for readability.  If a String is passed (such as "\t") it
-will be used once for each indentation level.  If a number is passed,
-that number of spaces will be used.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">o</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>any arbitrary value to convert to JSON string</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">w</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) whitelist of acceptable object
-                 keys to include, or a replacer function to modify the
-                 raw value before serialization</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">ind</code>
-                        <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) indentation character or depth of
-                 spaces to format the output.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    JSON string representation of the input
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-            <div id="properties" class="aui-tabview-content-item api-class-tabpanel">
-                <h2 class="off-left">Properties</h2>
-
-                
-                    <div id="property__BRACKETS" class="property item private">
-    <h3 class="name"><code>_BRACKETS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18462"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18462</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Third step in the safety evaluation.  Regex used to remove all open
-square brackets following a colon, comma, or at the beginning of the
-string.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__BRACKETS" class="property item private">
-    <h3 class="name"><code>_BRACKETS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l91"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:91</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Third step in the safety evaluation.  Regex used to remove all open
-square brackets following a colon, comma, or at the beginning of the
-string.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__default" class="property item">
-    <h3 class="name"><code>_default</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l11"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:11</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>The ID of the default IO transport, defaults to <code>xhr</code></p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__ESCAPES" class="property item private">
-    <h3 class="name"><code>_ESCAPES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l71"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:71</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>First step in the safety evaluation.  Regex used to replace all escape
-sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__ESCAPES" class="property item private">
-    <h3 class="name"><code>_ESCAPES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18442"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18442</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>First step in the safety evaluation.  Regex used to replace all escape
-sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNICODE_EXCEPTIONS" class="property item private">
-    <h3 class="name"><code>_UNICODE_EXCEPTIONS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l57"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:57</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replace certain Unicode characters that JavaScript may handle incorrectly
-during eval--either by deleting them or treating them as line
-endings--with escape sequences.
-IMPORTANT NOTE: This regex will be used to modify the input if a match is
-found.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNICODE_EXCEPTIONS" class="property item private">
-    <h3 class="name"><code>_UNICODE_EXCEPTIONS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18428"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18428</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replace certain Unicode characters that JavaScript may handle incorrectly
-during eval--either by deleting them or treating them as line
-endings--with escape sequences.
-IMPORTANT NOTE: This regex will be used to modify the input if a match is
-found.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNSAFE" class="property item private">
-    <h3 class="name"><code>_UNSAFE</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18473"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18473</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Final step in the safety evaluation.  Regex used to test the string left
-after all previous replacements for invalid characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNSAFE" class="property item private">
-    <h3 class="name"><code>_UNSAFE</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l102"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:102</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Final step in the safety evaluation.  Regex used to test the string left
-after all previous replacements for invalid characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__VALUES" class="property item private">
-    <h3 class="name"><code>_VALUES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18452"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18452</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Second step in the safety evaluation.  Regex used to replace all simple
-values with ']' characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__VALUES" class="property item private">
-    <h3 class="name"><code>_VALUES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l81"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:81</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Second step in the safety evaluation.  Regex used to replace all simple
-values with ']' characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_charCacheThreshold" class="property item">
-    <h3 class="name"><code>charCacheThreshold</code></h3>
-    <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l322"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:322</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Number of occurrences of a special character within a single call to
-stringify that should trigger promotion of that character to a dedicated
-preprocess step for future calls.  This is only used in environments
-that don't support native JSON, or when useNativeStringify is set to
-false.</p>
-
-<p>So, if set to 50 and an object is passed to stringify that includes
-strings containing the special character \x07 more than 50 times,
-subsequent calls to stringify will process object strings through a
-faster serialization path for \x07 before using the generic, slower,
-replacement process for all special characters.</p>
-
-<p>To prime the preprocessor cache, set this value to 1, then call
-<code>Y.JSON.stringify("<em>(all special characters to
-cache)</em>");</code>, then return this setting to a more conservative
-value.</p>
-
-<p>Special characters \ " \b \t \n \f \r are already cached.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> 100</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_Native" class="property item private">
-    <h3 class="name"><code>Native</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18416"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18416</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Alias to native browser implementation of the JSON object if available.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_Native" class="property item private">
-    <h3 class="name"><code>Native</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l45"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:45</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Alias to native browser implementation of the JSON object if available.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_transports" class="property item">
-    <h3 class="name"><code>transports</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l38"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:38</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>An object hash of custom transports available to IO</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeParse" class="property item">
-    <h3 class="name"><code>useNativeParse</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18586"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18586</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON parse if the browser has a native implementation.
-In general, this is a good idea.  See the Known Issues section in the
-JSON user guide for caveats.  The default value is true for browsers with
-native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeParse" class="property item">
-    <h3 class="name"><code>useNativeParse</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l215"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:215</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON parse if the browser has a native implementation.
-In general, this is a good idea.  See the Known Issues section in the
-JSON user guide for caveats.  The default value is true for browsers with
-native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeStringify" class="property item">
-    <h3 class="name"><code>useNativeStringify</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l253"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:253</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON stringify if the browser has a native
-implementation.  In general, this is a good idea.  See the Known Issues
-section in the JSON user guide for caveats.  The default value is true
-for browsers with native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-
-        
-    </div>
+                    <h1 class="file-heading">File: lib&#x2F;yui3&#x2F;src&#x2F;uploader&#x2F;js&#x2F;uploader-flash.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+
+    &#x2F;**
+     * This module provides a UI for file selection and multiple file upload capability using
+     * Flash as a transport engine.
+     * The supported features include: automatic upload queue management, upload progress
+     * tracking, file filtering, server response retrieval and error reporting.
+     *
+     * @module uploader-flash
+     *&#x2F;     
+
+&#x2F;&#x2F; Shorthands for external modules
+var  substitute            = Y.substitute,
+     UploaderQueue         = Y.Uploader.Queue,
+     getCN                 = Y.ClassNameManager.getClassName,
+     UPLOADER              = &#x27;uploader&#x27;,
+     SELECT_FILES          = getCN(UPLOADER, &#x27;selectfiles-button&#x27;);
+
+
+    &#x2F;**
+     * This module provides a UI for file selection and multiple file upload capability
+     * using Flash as a transport engine.
+     * @class UploaderFlash
+     * @extends Widget
+     * @constructor
+     * @param {Object} config Configuration object.
+     *&#x2F;
+
+function UploaderFlash(config) {
+  UploaderFlash.superclass.constructor.apply ( this, arguments );
+}
+
+
+
+Y.UploaderFlash = Y.extend(UploaderFlash, Y.Widget, {
+
+  &#x2F;**
+   * Stored value of the current button state (based on 
+   * mouse events dispatched by the Flash player)
+   * @property _buttonState
+   * @type {String}
+   * @protected
+   *&#x2F;
+  _buttonState: &quot;up&quot;,
+
+  &#x2F;**
+   * Stored value of the current button focus state (based 
+   * on keyboard and mouse events).
+   * @property _buttonFocus
+   * @type {Boolean}
+   * @protected
+   *&#x2F;
+  _buttonFocus: false,
+
+  &#x2F;**
+   * Stored value of the unique id for the container that holds the 
+   * Flash uploader.
+   *
+   * @property _swfContainerId
+   * @type {String}
+   * @protected
+   *&#x2F;
+  _swfContainerId: null,
+
+  &#x2F;**
+   * Stored reference to the instance of SWF used to host the
+   * Flash uploader.
+   *
+   * @property _swfReference
+   * @type {SWF}
+   * @protected
+   *&#x2F;
+  _swfReference: null,
+
+  &#x2F;**
+   * Stored reference to the instance of Uploader.Queue used to manage
+   * the upload process. This is a read-only property that only exists
+   * during an active upload process. Only one queue can be active at
+   * a time; if an upload start is attempted while a queue is active,
+   * it will be ignored.
+   *
+   * @property queue
+   * @type {Y.Uploader.Queue}
+   *&#x2F;
+   queue: null,
+
+  &#x2F;**
+   * Stored event bindings for keyboard navigation to and from the uploader.
+   *
+   * @property _tabElementBindings
+   * @type {Object}
+   * @protected
+   *&#x2F;
+  _tabElementBindings: null,
+
+
+&#x2F;**
+ * Construction logic executed during UploaderFlash instantiation.
+ *
+ * @method initializer
+ * @protected
+ *&#x2F;
+  initializer : function () {
+
+    &#x2F;&#x2F; Assign protected variable values
+    this._swfContainerId = Y.guid(&quot;uploader&quot;);
+    this._swfReference = null;
+    this.queue = null;
+    this._buttonState = &quot;up&quot;;
+    this._buttonFocus = null;
+    this._tabElementBindings = null;
+    this._fileList = [];
+
+    &#x2F;&#x2F; Publish available events
+
+   &#x2F;**
+    * Signals that files have been selected. 
+    *
+    * @event fileselect
+    * @param event {Event} The event object for the &#x60;fileselect&#x60; with the
+    *                      following payload:
+    *  &lt;dl&gt;
+    *      &lt;dt&gt;fileList&lt;&#x2F;dt&gt;
+    *          &lt;dd&gt;An &#x60;Array&#x60; of files selected by the user, encapsulated
+    *              in Y.FileFlash objects.&lt;&#x2F;dd&gt;
+    *  &lt;&#x2F;dl&gt;
+    *&#x2F;
+    this.publish(&quot;fileselect&quot;);
+
+   &#x2F;**
+    * Signals that an upload of multiple files has been started. 
+    *
+    * @event uploadstart
+    * @param event {Event} The event object for the &#x60;uploadstart&#x60;.
+    *&#x2F;
+    this.publish(&quot;uploadstart&quot;);
+
+   &#x2F;**
+    * Signals that an upload of a specific file has started. 
+    *
+    * @event fileuploadstart
+    * @param event {Event} The event object for the &#x60;fileuploadstart&#x60; with the
+    *                      following payload:
+    *  &lt;dl&gt;
+    *      &lt;dt&gt;file&lt;&#x2F;dt&gt;
+    *          &lt;dd&gt;A reference to the Y.File that dispatched the event.&lt;&#x2F;dd&gt;
+    *      &lt;dt&gt;originEvent&lt;&#x2F;dt&gt;
+    *          &lt;dd&gt;The original event dispatched by Y.File.&lt;&#x2F;dd&gt;
+    *  &lt;&#x2F;dl&gt;
+    *&#x2F;
+    this.publish(&quot;fileuploadstart&quot;);
+
+   &#x2F;**
+    * Reports on upload progress of a specific file. 
+    *
+    * @event uploadprogress
+    * @param event {Event} The event object for the &#x60;uploadprogress&#x60; with the
+    *                      following payload:
+    *  &lt;dl&gt;
+    *      &lt;dt&gt;bytesLoaded&lt;&#x2F;dt&gt;
+    *          &lt;dd&gt;The number of bytes of the file that has been uploaded&lt;&#x2F;dd&gt;
+    *      &lt;dt&gt;bytesTotal&lt;&#x2F;dt&gt;
+    *          &lt;dd&gt;The total number of bytes in the file&lt;&#x2F;dd&gt;
+    *      &lt;dt&gt;percentLoaded&lt;&#x2F;dt&gt;
+    *          &lt;dd&gt;The fraction of the file that has been uploaded, out of 100&lt;&#x2F;dd&gt;
+    *      &lt;dt&gt;originEvent&lt;&#x2F;dt&gt;
+    *          &lt;dd&gt;The original event dispatched by the SWF uploader&lt;&#x2F;dd&gt;
+    *  &lt;&#x2F;dl&gt;
+    *&#x2F;
+    this.publish(&quot;uploadprogress&quot;);
+
+   &#x2F;**
+    * Reports on the total upload progress of the file list. 
+    *
+    * @event totaluploadprogress
+    * @param event {Event} The event object for the &#x60;totaluploadprogress&#x60; with the
+    *                      following payload:
+    *  &lt;dl&gt;
+    *      &lt;dt&gt;bytesLoaded&lt;&#x2F;dt&gt;
+    *          &lt;dd&gt;The number of bytes of the file list that has been uploaded&lt;&#x2F;dd&gt;
+    *      &lt;dt&gt;bytesTotal&lt;&#x2F;dt&gt;
+    *          &lt;dd&gt;The total number of bytes in the file list&lt;&#x2F;dd&gt;
+    *      &lt;dt&gt;percentLoaded&lt;&#x2F;dt&gt;
+    *          &lt;dd&gt;The fraction of the file list that has been uploaded, out of 100&lt;&#x2F;dd&gt;
+    *  &lt;&#x2F;dl&gt;
+    *&#x2F;
+    this.publish(&quot;totaluploadprogress&quot;);
+
+   &#x2F;**
+    * Signals that a single file upload has been completed. 
+    *
+    * @event uploadcomplete
+    * @param event {Event} The event object for the &#x60;uploadcomplete&#x60; with the
+    *                      following payload:
+    *  &lt;dl&gt;
+    *      &lt;dt&gt;file&lt;&#x2F;dt&gt;
+    *          &lt;dd&gt;The pointer to the instance of &#x60;Y.File&#x60; whose upload has been completed.&lt;&#x2F;dd&gt;
+    *      &lt;dt&gt;originEvent&lt;&#x2F;dt&gt;
+    *          &lt;dd&gt;The original event fired by the SWF Uploader&lt;&#x2F;dd&gt;
+    *      &lt;dt&gt;data&lt;&#x2F;dt&gt;
+    *          &lt;dd&gt;Data returned by the server.&lt;&#x2F;dd&gt;
+    *  &lt;&#x2F;dl&gt;
+    *&#x2F;
+    this.publish(&quot;uploadcomplete&quot;);
+
+   &#x2F;**
+    * Signals that the upload process of the entire file list has been completed. 
+    *
+    * @event alluploadscomplete
+    * @param event {Event} The event object for the &#x60;alluploadscomplete&#x60;.
+    *&#x2F;
+    this.publish(&quot;alluploadscomplete&quot;);
+
+   &#x2F;**
+    * Signals that a error has occurred in a specific file&#x27;s upload process. 
+    *
+    * @event uploaderror
+    * @param event {Event} The event object for the &#x60;uploaderror&#x60; with the
+    *                      following payload:
+    *  &lt;dl&gt;
+    *      &lt;dt&gt;originEvent&lt;&#x2F;dt&gt;
+    *          &lt;dd&gt;The original error event fired by the SWF Uploader. &lt;&#x2F;dd&gt;
+    *      &lt;dt&gt;file&lt;&#x2F;dt&gt;
+    *          &lt;dd&gt;The pointer at the instance of Y.FileFlash that returned the error.&lt;&#x2F;dd&gt;
+    *      &lt;dt&gt;source&lt;&#x2F;dt&gt;
+    *          &lt;dd&gt;The source of the upload error, either &quot;io&quot; or &quot;http&quot;&lt;&#x2F;dd&gt;       
+    *      &lt;dt&gt;message&lt;&#x2F;dt&gt;
+    *          &lt;dd&gt;The message that accompanied the error. Corresponds to the text of
+    *              the error in cases where source is &quot;io&quot;, and to the HTTP status for
+                   cases where source is &quot;http&quot;.&lt;&#x2F;dd&gt;     
+    *  &lt;&#x2F;dl&gt;
+    *&#x2F;
+    this.publish(&quot;uploaderror&quot;);
+
+   &#x2F;**
+    * Signals that a mouse has begun hovering over the &#x60;Select Files&#x60; button. 
+    *
+    * @event mouseenter
+    * @param event {Event} The event object for the &#x60;mouseenter&#x60; event.
+    *&#x2F;
+    this.publish(&quot;mouseenter&quot;);
+
+   &#x2F;**
+    * Signals that a mouse has stopped hovering over the &#x60;Select Files&#x60; button. 
+    *
+    * @event mouseleave
+    * @param event {Event} The event object for the &#x60;mouseleave&#x60; event.
+    *&#x2F;
+    this.publish(&quot;mouseleave&quot;);
+
+   &#x2F;**
+    * Signals that a mouse button has been pressed over the &#x60;Select Files&#x60; button. 
+    *
+    * @event mousedown
+    * @param event {Event} The event object for the &#x60;mousedown&#x60; event.
+    *&#x2F;
+    this.publish(&quot;mousedown&quot;);
+
+   &#x2F;**
+    * Signals that a mouse button has been released over the &#x60;Select Files&#x60; button. 
+    *
+    * @event mouseup
+    * @param event {Event} The event object for the &#x60;mouseup&#x60; event.
+    *&#x2F;
+    this.publish(&quot;mouseup&quot;);
+
+   &#x2F;**
+    * Signals that a mouse has been clicked over the &#x60;Select Files&#x60; button. 
+    *
+    * @event click
+    * @param event {Event} The event object for the &#x60;click&#x60; event.
+    *&#x2F;
+    this.publish(&quot;click&quot;);
+  },
+
+  &#x2F;**
+   * Creates the DOM structure for the UploaderFlash.
+   * UploaderFlash&#x27;s DOM structure consists of two layers: the base &quot;Select Files&quot;
+   * button that can be replaced by the developer&#x27;s widget of choice; and a transparent
+   * Flash overlay positoned above the button that captures all input events.
+   * The &#x60;position&#x60; style attribute of the &#x60;boundingBox&#x60; of the &#x60;Uploader&#x60; widget
+   * is forced to be &#x60;relative&#x60;, in order to accommodate the Flash player overlay
+   * (which is &#x60;position&#x60;ed &#x60;absolute&#x60;ly).
+   *
+   * @method renderUI
+   * @protected
+   *&#x2F;
+  renderUI : function () {
+     var boundingBox = this.get(&quot;boundingBox&quot;),
+         contentBox = this.get(&#x27;contentBox&#x27;),
+         selFilesButton = this.get(&quot;selectFilesButton&quot;);
+ 
+     boundingBox.setStyle(&quot;position&quot;, &quot;relative&quot;);
+     selFilesButton.setStyles({width: &quot;100%&quot;, height: &quot;100%&quot;});
+     contentBox.append(selFilesButton);
+     contentBox.append(Y.Node.create(substitute(UploaderFlash.FLASH_CONTAINER, 
+                                              {swfContainerId: this._swfContainerId})));
+     var flashContainer = Y.one(&quot;#&quot; + this._swfContainerId);
+     var params = {version: &quot;10.0.45&quot;,
+                     fixedAttributes: {wmode: &quot;transparent&quot;, 
+                                       allowScriptAccess:&quot;always&quot;, 
+                                       allowNetworking:&quot;all&quot;, 
+                                       scale: &quot;noscale&quot;
+                                      }
+                    };
+     this._swfReference = new Y.SWF(flashContainer, this.get(&quot;swfURL&quot;), params);
+  },
+
+  &#x2F;**
+   * Binds handlers to the UploaderFlash UI events and propagates attribute
+   * values to the Flash player.
+   * The propagation of initial values is set to occur once the Flash player 
+   * instance is ready (as indicated by the &#x60;swfReady&#x60; event.)
+   *
+   * @method bindUI
+   * @protected
+   *&#x2F;
+  bindUI : function () {
+
+    this._swfReference.on(&quot;swfReady&quot;, function () {
+      this._setMultipleFiles();
+      this._setFileFilters();
+      this._triggerEnabled();
+      this._attachTabElements();
+      this.after(&quot;multipleFilesChange&quot;, this._setMultipleFiles, this);
+      this.after(&quot;fileFiltersChange&quot;, this._setFileFilters, this);
+      this.after(&quot;enabledChange&quot;, this._triggerEnabled, this);
+      this.after(&quot;tabElementsChange&quot;, this._attachTabElements);
+    }, this);
+        
+    this._swfReference.on(&quot;fileselect&quot;, this._updateFileList, this);
+
+
+
+        &#x2F;&#x2F; this._swfReference.on(&quot;trace&quot;, function (ev) {console.log(ev.message);});
+
+        this._swfReference.on(&quot;mouseenter&quot;, function () {
+            this.fire(&quot;mouseenter&quot;);
+            this._setButtonClass(&quot;hover&quot;, true);
+            if (this._buttonState == &quot;down&quot;) {
+                this._setButtonClass(&quot;active&quot;, true);
+            }
+        }, this);
+        this._swfReference.on(&quot;mouseleave&quot;, function () {
+            this.fire(&quot;mouseleave&quot;);
+            this._setButtonClass(&quot;hover&quot;, false);
+            this._setButtonClass(&quot;active&quot;, false);
+            
+        }, this);
+        this._swfReference.on(&quot;mousedown&quot;, function () {
+            this.fire(&quot;mousedown&quot;);
+            this._buttonState = &quot;down&quot;;
+            this._setButtonClass(&quot;active&quot;, true);
+        }, this);
+        this._swfReference.on(&quot;mouseup&quot;, function () {
+            this.fire(&quot;mouseup&quot;);
+            this._buttonState = &quot;up&quot;;
+            this._setButtonClass(&quot;active&quot;, false);
+        }, this);
+        this._swfReference.on(&quot;click&quot;, function () {
+            this.fire(&quot;click&quot;);
+            this._buttonFocus = true;
+            this._setButtonClass(&quot;focus&quot;, true);
+            Y.one(&quot;body&quot;).focus();
+            this._swfReference._swf.focus();
+        }, this);
+  },
+
+  &#x2F;**
+   * Attaches keyboard bindings to enabling tabbing to and from the instance of the Flash
+   * player in the Uploader widget. If the previous and next elements are specified, the
+   * keyboard bindings enable the user to tab from the &#x60;tabElements[&quot;from&quot;]&#x60; node to the 
+   * Flash-powered &quot;Select Files&quot; button, and to the &#x60;tabElements[&quot;to&quot;]&#x60; node. 
+   *
+   * @method _attachTabElements
+   * @protected
+   * @param ev {Event} Optional event payload if called as a &#x60;tabElementsChange&#x60; handler.
+   *&#x2F;
+  _attachTabElements : function (ev) {
+      if (this.get(&quot;tabElements&quot;) !== null &amp;&amp; this.get(&quot;tabElements&quot;).from !== null &amp;&amp; this.get(&quot;tabElements&quot;).to !== null) {
+
+        if (this._tabElementBindings !== null) {
+          this._tabElementBindings.from.detach();
+          this._tabElementBindings.to.detach();
+          this._tabElementBindings.tabback.detach();
+          this._tabElementBindings.tabforward.detach();
+          this._tabElementBindings.focus.detach();
+          this._tabElementBindings.blur.detach();
+        }
+        else {
+          this._tabElementBindings = {};
+        }
+
+          var fromElement = Y.one(this.get(&quot;tabElements&quot;).from);
+          var toElement = Y.one(this.get(&quot;tabElements&quot;).to);
+
+
+          this._tabElementBindings.from = fromElement.on(&quot;keydown&quot;, function (ev) { 
+                                                    if (ev.keyCode == 9 &amp;&amp; !ev.shiftKey) {
+                                                        ev.preventDefault();
+                                                        this._swfReference._swf.setAttribute(&quot;tabindex&quot;, 0); 
+                                                        this._swfReference._swf.setAttribute(&quot;role&quot;, &quot;button&quot;);
+                                                        this._swfReference._swf.setAttribute(&quot;aria-label&quot;, this.get(&quot;selectButtonLabel&quot;));
+                                                        this._swfReference._swf.focus();
+                                                    }
+                                                  }, this);
+          this._tabElementBindings.to = toElement.on(&quot;keydown&quot;, function (ev) { 
+                                                    if (ev.keyCode == 9 &amp;&amp; ev.shiftKey) {
+                                                        ev.preventDefault();
+                                                        this._swfReference._swf.setAttribute(&quot;tabindex&quot;, 0); 
+                                                        this._swfReference._swf.setAttribute(&quot;role&quot;, &quot;button&quot;);
+                                                        this._swfReference._swf.setAttribute(&quot;aria-label&quot;, this.get(&quot;selectButtonLabel&quot;));
+                                                        this._swfReference._swf.focus();
+                                                    }
+                                                  }, this);
+          this._tabElementBindings.tabback = this._swfReference.on(&quot;tabback&quot;, function (ev) {this._swfReference._swf.blur(); setTimeout(function () {fromElement.focus();}, 30);}, this);
+          this._tabElementBindings.tabforward = this._swfReference.on(&quot;tabforward&quot;, function (ev) {this._swfReference._swf.blur(); setTimeout(function () {toElement.focus();}, 30);}, this);
+
+          this._tabElementBindings.focus = this._swfReference._swf.on(&quot;focus&quot;, function (ev) {this._buttonFocus = true; this._setButtonClass(&quot;focus&quot;, true);}, this);
+          this._tabElementBindings.blur = this._swfReference._swf.on(&quot;blur&quot;, function (ev) {this._buttonFocus = false; this._setButtonClass(&quot;focus&quot;, false);}, this);
+      }
+      else if (this._tabElementBindings !== null) {
+          this._tabElementBindings.from.detach();
+          this._tabElementBindings.to.detach();
+          this._tabElementBindings.tabback.detach();
+          this._tabElementBindings.tabforward.detach();
+          this._tabElementBindings.focus.detach();
+          this._tabElementBindings.blur.detach();
+      }
+  },
+
+
+  &#x2F;**
+   * Adds or removes a specified state CSS class to the underlying uploader button. 
+   *
+   * @method _setButtonClass
+   * @protected
+   * @param state {String} The name of the state enumerated in &#x60;buttonClassNames&#x60; attribute
+   * from which to derive the needed class name.
+   * @param add {Boolean} A Boolean indicating whether to add or remove the class.
+   *&#x2F;
+  _setButtonClass : function (state, add) {
+      if (add) {
+          this.get(&quot;selectFilesButton&quot;).addClass(this.get(&quot;buttonClassNames&quot;)[state]);
+      }
+      else {
+          this.get(&quot;selectFilesButton&quot;).removeClass(this.get(&quot;buttonClassNames&quot;)[state]);
+      }
+  },
+
+
+  &#x2F;**
+   * Syncs the state of the &#x60;fileFilters&#x60; attribute between the instance of UploaderFlash
+   * and the Flash player.
+   * 
+   * @method _setFileFilters
+   * @private
+   *&#x2F;
+  _setFileFilters : function () {
+          if (this._swfReference &amp;&amp; this.get(&quot;fileFilters&quot;).length &gt; 0) {
+            this._swfReference.callSWF(&quot;setFileFilters&quot;, [this.get(&quot;fileFilters&quot;)]);
+          } 
+
+  },
+
+
+
+  &#x2F;**
+   * Syncs the state of the &#x60;multipleFiles&#x60; attribute between this class
+   * and the Flash uploader.
+   * 
+   * @method _setMultipleFiles
+   * @private
+   *&#x2F;
+  _setMultipleFiles : function () {
+        if (this._swfReference) {
+      this._swfReference.callSWF(&quot;setAllowMultipleFiles&quot;, [this.get(&quot;multipleFiles&quot;)]);
+    }
+  },
+
+  &#x2F;**
+   * Syncs the state of the &#x60;enabled&#x60; attribute between this class
+   * and the Flash uploader.
+   * 
+   * @method _triggerEnabled
+   * @private
+   *&#x2F;
+  _triggerEnabled : function () {
+      if (this.get(&quot;enabled&quot;)) {
+        this._swfReference.callSWF(&quot;enable&quot;);
+        this._swfReference._swf.setAttribute(&quot;aria-disabled&quot;, &quot;false&quot;);
+        this._setButtonClass(&quot;disabled&quot;, false);
+      }
+      else {
+        this._swfReference.callSWF(&quot;disable&quot;);
+        this._swfReference._swf.setAttribute(&quot;aria-disabled&quot;, &quot;true&quot;);
+        this._setButtonClass(&quot;disabled&quot;, true);
+      }
+  },
+
+  &#x2F;**
+   * Getter for the &#x60;fileList&#x60; attribute
+   * 
+   * @method _getFileList
+   * @private
+   *&#x2F;
+    _getFileList : function (arr) {
+        return this._fileList.concat();
+    },
+
+  &#x2F;**
+   * Setter for the &#x60;fileList&#x60; attribute
+   * 
+   * @method _setFileList
+   * @private
+   *&#x2F;
+    _setFileList : function (val) {
+        this._fileList = val.concat();
+        return this._fileList.concat();
+    },
+
+  &#x2F;**
+   * Adjusts the content of the &#x60;fileList&#x60; based on the results of file selection
+   * and the &#x60;appendNewFiles&#x60; attribute. If the &#x60;appendNewFiles&#x60; attribute is true,
+   * then selected files are appended to the existing list; otherwise, the list is
+   * cleared and populated with the newly selected files.
+   * 
+   * @method _updateFileList
+   * @param ev {Event} The file selection event received from the uploader.
+   * @private
+   *&#x2F;
+  _updateFileList : function (ev) {
+     
+     Y.one(&quot;body&quot;).focus();
+     this._swfReference._swf.focus();
+
+
+     var newfiles = ev.fileList,
+         fileConfObjects = [],
+         parsedFiles = [],
+         swfRef = this._swfReference,
+         filterFunc = this.get(&quot;fileFilterFunction&quot;);
+ 
+     Y.each(newfiles, function (value) {
+       var newFileConf = {};
+       newFileConf.id = value.fileId;
+       newFileConf.name = value.fileReference.name;
+       newFileConf.size = value.fileReference.size;
+       newFileConf.type = value.fileReference.type;
+       newFileConf.dateCreated = value.fileReference.creationDate;
+       newFileConf.dateModified = value.fileReference.modificationDate;
+       newFileConf.uploader = swfRef;
+
+       fileConfObjects.push(newFileConf);
+     });
+
+       if (filterFunc) {
+          Y.each(fileConfObjects, function (value) {
+            var newfile = new Y.FileFlash(value);
+            if (filterFunc(newfile)) {
+                parsedFiles.push(newfile);
+            }
+          });
+       }
+       else {
+          Y.each(fileConfObjects, function (value) {
+            parsedFiles.push(new Y.FileFlash(value));
+          });
+       }
+
+     if (parsedFiles.length &gt; 0) {
+        var oldfiles = this.get(&quot;fileList&quot;);
+
+        this.set(&quot;fileList&quot;, 
+                 this.get(&quot;appendNewFiles&quot;) ? oldfiles.concat(parsedFiles) : parsedFiles );
+
+        this.fire(&quot;fileselect&quot;, {fileList: parsedFiles});
+     }
+
+  },
+
+
+
+  &#x2F;**
+   * Handles and retransmits events fired by &#x60;Y.FileFlash&#x60; and &#x60;Y.Uploader.Queue&#x60;.
+   * 
+   * @method _uploadEventHandler
+   * @param event The event dispatched during the upload process.
+   * @private
+   *&#x2F;
+  _uploadEventHandler : function (event) {
+  
+    switch (event.type) {
+                case &quot;file:uploadstart&quot;:
+                   this.fire(&quot;fileuploadstart&quot;, event);
+                break;
+                case &quot;file:uploadprogress&quot;:
+                   this.fire(&quot;uploadprogress&quot;, event);
+                break;
+                case &quot;uploaderqueue:totaluploadprogress&quot;:
+                   this.fire(&quot;totaluploadprogress&quot;, event);
+                break;
+                case &quot;file:uploadcomplete&quot;:
+                   this.fire(&quot;uploadcomplete&quot;, event);
+                break;
+                case &quot;uploaderqueue:alluploadscomplete&quot;:
+                   this.queue = null;
+                   this.fire(&quot;alluploadscomplete&quot;, event);
+                break;
+                case &quot;file:uploaderror&quot;:
+                case &quot;uploaderqueue:uploaderror&quot;:
+                   this.fire(&quot;uploaderror&quot;, event);
+                break;
+                case &quot;file:uploadcancel&quot;:
+                case &quot;uploaderqueue:uploadcancel&quot;:
+                   this.fire(&quot;uploadcancel&quot;, event);
+                break;
+    }   
+
+  },
+
+
+
+  &#x2F;**
+   * Starts the upload of a specific file.
+   *
+   * @method upload
+   * @param file {Y.FileFlash} Reference to the instance of the file to be uploaded.
+   * @param url {String} The URL to upload the file to.
+   * @param postVars {Object} (optional) A set of key-value pairs to send as variables along with the file upload HTTP request.
+   *                          If not specified, the values from the attribute &#x60;postVarsPerFile&#x60; are used instead. 
+   *&#x2F;
+
+  upload : function (file, url, postvars) {
+        
+        var uploadURL = url || this.get(&quot;uploadURL&quot;),
+            postVars = postvars || this.get(&quot;postVarsPerFile&quot;),
+            fileId = file.get(&quot;id&quot;);
+
+            postVars = postVars.hasOwnProperty(fileId) ? postVars[fileId] : postVars;
+
+        if (file instanceof Y.FileFlash) {
+           
+            file.on(&quot;uploadstart&quot;, this._uploadEventHandler, this);
+            file.on(&quot;uploadprogress&quot;, this._uploadEventHandler, this);
+            file.on(&quot;uploadcomplete&quot;, this._uploadEventHandler, this);
+            file.on(&quot;uploaderror&quot;, this._uploadEventHandler, this);
+            file.on(&quot;uploadcancel&quot;, this._uploadEventHandler, this);
+
+            file.startUpload(uploadURL, postVars, this.get(&quot;fileFieldName&quot;));
+        }
+  },
+
+  &#x2F;**
+   * Starts the upload of all files on the file list, using an automated queue.
+   *
+   * @method uploadAll
+   * @param url {String} The URL to upload the files to.
+   * @param postVars {Object} (optional) A set of key-value pairs to send as variables along with the file upload HTTP request.
+   *                          If not specified, the values from the attribute &#x60;postVarsPerFile&#x60; are used instead. 
+   *&#x2F;
+  uploadAll : function (url, postvars) {
+        this.uploadThese(this.get(&quot;fileList&quot;), url, postvars);
+  },
+
+  &#x2F;**
+   * Starts the upload of the files specified in the first argument, using an automated queue.
+   *
+   * @method uploadThese
+   * @param files {Array} The list of files to upload.
+   * @param url {String} The URL to upload the files to.
+   * @param postVars {Object} (optional) A set of key-value pairs to send as variables along with the file upload HTTP request.
+   *                          If not specified, the values from the attribute &#x60;postVarsPerFile&#x60; are used instead. 
+   *&#x2F;
+  uploadThese : function (files, url, postvars) {
+    if (!this.queue) {
+        var uploadURL = url || this.get(&quot;uploadURL&quot;),
+            postVars = postvars || this.get(&quot;postVarsPerFile&quot;);
+
+           this.queue = new UploaderQueue({simUploads: this.get(&quot;simLimit&quot;), 
+                                           errorAction: this.get(&quot;errorAction&quot;),
+                                           fileFieldName: this.get(&quot;fileFieldName&quot;),
+                                           fileList: files,
+                                           uploadURL: uploadURL,
+                                           perFileParameters: postVars,
+                                           retryCount: this.get(&quot;retryCount&quot;)
+                                               });
+           this.queue.on(&quot;uploadstart&quot;, this._uploadEventHandler, this);
+           this.queue.on(&quot;uploadprogress&quot;, this._uploadEventHandler, this);
+           this.queue.on(&quot;totaluploadprogress&quot;, this._uploadEventHandler, this);
+           this.queue.on(&quot;uploadcomplete&quot;, this._uploadEventHandler, this);
+           this.queue.on(&quot;alluploadscomplete&quot;, this._uploadEventHandler, this);
+           this.queue.on(&quot;alluploadscancelled&quot;, function (ev) {this.queue = null;}, this);
+           this.queue.on(&quot;uploaderror&quot;, this._uploadEventHandler, this);
+           this.queue.startUpload();  
+           
+           this.fire(&quot;uploadstart&quot;); 
+    }
+  }
+},
+
+{
+  &#x2F;**
+   * The template for the Flash player container. Since the Flash player container needs
+   * to completely overlay the &amp;lquot;Select Files&amp;rqot; control, it&#x27;s positioned absolutely,
+   * with width and height set to 100% of the parent.
+   *
+   * @property FLASH_CONTAINER
+   * @type {String}
+   * @static
+   * @default &quot;&lt;div id=&#x27;{swfContainerId}&#x27; style=&#x27;position:absolute; top:0px; left: 0px; margin: 0; padding: 0; border: 0; width:100%; height:100%&#x27;&gt;&lt;&#x2F;div&gt;&quot;
+   *&#x2F;
+  FLASH_CONTAINER: &quot;&lt;div id=&#x27;{swfContainerId}&#x27; style=&#x27;position:absolute; top:0px; left: 0px; margin: 0; padding: 0; border: 0; width:100%; height:100%&#x27;&gt;&lt;&#x2F;div&gt;&quot;,
+
+  &#x2F;**
+   * The template for the &quot;Select Files&quot; button.
+   *
+   * @property SELECT_FILES_BUTTON
+   * @type {String}
+   * @static
+   * @default &quot;&lt;button type=&#x27;button&#x27; class=&#x27;yui3-button&#x27; tabindex=&#x27;-1&#x27;&gt;{selectButtonLabel}&lt;&#x2F;button&gt;&quot;
+   *&#x2F;
+  SELECT_FILES_BUTTON: &quot;&lt;button type=&#x27;button&#x27; class=&#x27;yui3-button&#x27; tabindex=&#x27;-1&#x27;&gt;{selectButtonLabel}&lt;&#x2F;button&gt;&quot;,
+
+   &#x2F;**
+   * The static property reflecting the type of uploader that &#x60;Y.Uploader&#x60;
+   * aliases. The UploaderFlash value is &#x60;&quot;flash&quot;&#x60;.
+   * 
+   * @property TYPE
+   * @type {String}
+   * @static
+   *&#x2F;
+  TYPE: &quot;flash&quot;,
+
+  &#x2F;**
+   * The identity of the widget.
+   *
+   * @property NAME
+   * @type String
+   * @default &#x27;uploader&#x27;
+   * @readOnly
+   * @protected
+   * @static
+   *&#x2F;
+  NAME: &quot;uploader&quot;,
+
+  &#x2F;**
+   * Static property used to define the default attribute configuration of
+   * the Widget.
+   *
+   * @property ATTRS
+   * @type {Object}
+   * @protected
+   * @static
+   *&#x2F;
+  ATTRS: {
+
+        &#x2F;**
+         * A Boolean indicating whether newly selected files should be appended 
+         * to the existing file list, or whether they should replace it.
+         *
+         * @attribute appendNewFiles
+         * @type {Boolean}
+         * @default true
+         *&#x2F;
+         appendNewFiles : {
+            value: true
+         },
+
+        &#x2F;**
+         * The names of CSS classes that correspond to different button states
+         * of the &quot;Select Files&quot; control. These classes are assigned to the 
+         * &quot;Select Files&quot; control based on the mouse states reported by the
+         * Flash player. The keys for the class names are:
+         * &lt;ul&gt;
+         *   &lt;li&gt; &lt;strong&gt;&#x60;hover&#x60;&lt;&#x2F;strong&gt;: the class corresponding to mouse hovering over
+         *      the &quot;Select Files&quot; button.&lt;&#x2F;li&gt;
+         *   &lt;li&gt; &lt;strong&gt;&#x60;active&#x60;&lt;&#x2F;strong&gt;: the class corresponding to mouse down state of
+         *      the &quot;Select Files&quot; button.&lt;&#x2F;li&gt;
+         *   &lt;li&gt; &lt;strong&gt;&#x60;disabled&#x60;&lt;&#x2F;strong&gt;: the class corresponding to the disabled state
+         *      of the &quot;Select Files&quot; button.&lt;&#x2F;li&gt;
+         *   &lt;li&gt; &lt;strong&gt;&#x60;focus&#x60;&lt;&#x2F;strong&gt;: the class corresponding to the focused state of
+         *      the &quot;Select Files&quot; button.&lt;&#x2F;li&gt;
+         * &lt;&#x2F;ul&gt;
+         * @attribute buttonClassNames
+         * @type {Object}
+         * @default { hover: &quot;yui3-button-hover&quot;,
+         *            active: &quot;yui3-button-active&quot;,
+         *            disabled: &quot;yui3-button-disabled&quot;,
+         *            focus: &quot;yui3-button-selected&quot;
+         *          }
+         *&#x2F;
+        buttonClassNames: {
+            value: {
+                &quot;hover&quot;: &quot;yui3-button-hover&quot;,
+                &quot;active&quot;: &quot;yui3-button-active&quot;,
+                &quot;disabled&quot;: &quot;yui3-button-disabled&quot;,
+                &quot;focus&quot;: &quot;yui3-button-selected&quot;
+            }
+        },
+
+        &#x2F;**
+         * A Boolean indicating whether the uploader is enabled or disabled for user input.
+         *
+         * @attribute enabled
+         * @type {Boolean}
+         * @default true
+         *&#x2F;
+        enabled : {
+            value: true
+        },
+
+        &#x2F;**
+         * The action  performed when an upload error occurs for a specific file being uploaded.
+         * The possible values are: 
+         * &lt;ul&gt;
+         *   &lt;li&gt; &lt;strong&gt;&#x60;UploaderQueue.CONTINUE&#x60;&lt;&#x2F;strong&gt;: the error is ignored and the upload process is continued.&lt;&#x2F;li&gt;
+         *   &lt;li&gt; &lt;strong&gt;&#x60;UploaderQueue.STOP&#x60;&lt;&#x2F;strong&gt;: the upload process is stopped as soon as any other parallel file
+         *     uploads are finished.&lt;&#x2F;li&gt;
+         *   &lt;li&gt; &lt;strong&gt;&#x60;UploaderQueue.RESTART_ASAP&#x60;&lt;&#x2F;strong&gt;: the file is added back to the front of the queue.&lt;&#x2F;li&gt;
+         *   &lt;li&gt; &lt;strong&gt;&#x60;UploaderQueue.RESTART_AFTER&#x60;&lt;&#x2F;strong&gt;: the file is added to the back of the queue.&lt;&#x2F;li&gt;
+         * &lt;&#x2F;ul&gt;
+         * @attribute errorAction
+         * @type {String}
+         * @default UploaderQueue.CONTINUE
+         *&#x2F;
+        errorAction: {
+            value: &quot;continue&quot;,
+            validator: function (val, name) {
+                 return (val === UploaderQueue.CONTINUE || val === UploaderQueue.STOP || val === UploaderQueue.RESTART_ASAP || val === UploaderQueue.RESTART_AFTER);           
+             }
+        },
+
+        &#x2F;**
+         * An array indicating what fileFilters should be applied to the file
+         * selection dialog. Each element in the array should be an object with
+         * the following key-value pairs:
+         * {
+         *   description : String           
+             extensions: String of the form &amp;lquot;*.ext1;*.ext2;*.ext3;...&amp;rquot;
+         * }
+         * @attribute fileFilters
+         * @type {Array}
+         * @default []
+         *&#x2F;
+        fileFilters: {
+          value: []
+        },
+
+        &#x2F;**
+         * A filtering function that is applied to every file selected by the user.
+         * The function receives the &#x60;Y.File&#x60; object and must return a Boolean value.
+         * If a &#x60;false&#x60; value is returned, the file in question is not added to the
+         * list of files to be uploaded.
+         * Use this function to put limits on file sizes or check the file names for
+         * correct extension, but make sure that a server-side check is also performed,
+         * since any client-side restrictions are only advisory and can be circumvented.
+         *
+         * @attribute fileFilterFunction
+         * @type {Function}
+         * @default null
+         *&#x2F;
+        fileFilterFunction: {
+          value: null
+        },
+         
+        &#x2F;**
+         * A String specifying what should be the POST field name for the file
+         * content in the upload request.
+         *
+         * @attribute fileFieldName
+         * @type {String}
+         * @default Filedata
+         *&#x2F;
+        fileFieldName: {
+          value: &quot;Filedata&quot;
+        },
+
+        &#x2F;**
+         * The array of files to be uploaded. All elements in the array
+       * must be instances of &#x60;Y.FileFlash&#x60; and be instantiated with a &#x60;fileId&#x60;
+       * retrieved from an instance of the uploader.
+         *
+         * @attribute fileList
+         * @type {Array}
+         * @default []
+         *&#x2F;
+        fileList: {
+          value: [],
+          getter: &quot;_getFileList&quot;,
+          setter: &quot;_setFileList&quot;
+        },
+
+        &#x2F;**
+         * A Boolean indicating whether multiple file selection is enabled.
+         *
+         * @attribute multipleFiles
+         * @type {Boolean}
+         * @default false
+         *&#x2F;
+        multipleFiles: {
+          value: false
+        },
+
+        &#x2F;**
+         * An object, keyed by &#x60;fileId&#x60;, containing sets of key-value pairs
+         * that should be passed as POST variables along with each corresponding
+         * file. This attribute is only used if no POST variables are specifed
+         * in the upload method call.
+         *
+         * @attribute postVarsPerFile
+         * @type {Object}
+         * @default {}
+         *&#x2F;
+        postVarsPerFile: {
+          value: {}
+        },
+
+        &#x2F;**
+         * The label for the &quot;Select Files&quot; widget. This is the value that replaces the
+         * &#x60;{selectButtonLabel}&#x60; token in the &#x60;SELECT_FILES_BUTTON&#x60; template.
+         * 
+         * @attribute selectButtonLabel
+         * @type {String}
+         * @default &quot;Select Files&quot;
+         *&#x2F;
+        selectButtonLabel: {
+            value: &quot;Select Files&quot;
+        },
+
+        &#x2F;**
+         * The widget that serves as the &quot;Select Files&quot; control for the file uploader
+         * 
+         *
+         * @attribute selectFilesButton
+         * @type {Node | Widget}
+         * @default A standard HTML button with YUI CSS Button skin.
+         *&#x2F;
+        selectFilesButton : {
+           valueFn: function () {
+                     return Y.Node.create(substitute(Y.UploaderFlash.SELECT_FILES_BUTTON, {selectButtonLabel: this.get(&quot;selectButtonLabel&quot;)}));
+                 }
+         },
+     
+        &#x2F;**
+         * The number of files that can be uploaded
+         * simultaneously if the automatic queue management
+         * is used. This value can be in the range between 2
+         * and 5.
+         *
+         * @attribute simLimit
+         * @type {Number}
+         * @default 2
+         *&#x2F;
+        simLimit: {
+                value: 2,
+                validator: function (val, name) {
+                    return (val &gt;= 2 &amp;&amp; val &lt;= 5);
+                }
+            },
+
+        &#x2F;**
+         * The URL to the SWF file of the flash uploader. A copy local to
+         * the server that hosts the page on which the uploader appears is
+         * recommended.
+         *
+         * @attribute swfURL
+         * @type {String}
+         * @default &quot;CDN Prefix + uploader&#x2F;assets&#x2F;flashuploader.swf&quot; with a 
+         * random GET parameter for IE (to prevent buggy behavior when the SWF 
+         * is cached).
+         *&#x2F;
+        swfURL: {
+          valueFn: function () {
+            var prefix = Y.Env.cdn + &quot;uploader&#x2F;assets&#x2F;flashuploader.swf&quot;;
+
+            if (Y.UA.ie &gt; 0) {
+              return (prefix + &quot;?t=&quot; + Y.guid(&quot;uploader&quot;));
+            }
+            return prefix;
+          }
+        },
+
+        &#x2F;**
+         * The id&#x27;s or &#x60;Node&#x60; references of the DOM elements that precede
+         * and follow the &#x60;Select Files&#x60; button in the tab order. Specifying
+         * these allows keyboard navigation to and from the Flash player
+         * layer of the uploader.
+         * The two keys corresponding to the DOM elements are:
+           &lt;ul&gt;
+         *   &lt;li&gt; &#x60;from&#x60;: the id or the &#x60;Node&#x60; reference corresponding to the
+         *     DOM element that precedes the &#x60;Select Files&#x60; button in the tab order.&lt;&#x2F;li&gt;
+         *   &lt;li&gt; &#x60;to&#x60;: the id or the &#x60;Node&#x60; reference corresponding to the
+         *     DOM element that follows the &#x60;Select Files&#x60; button in the tab order.&lt;&#x2F;li&gt;
+         * &lt;&#x2F;ul&gt;
+         * @attribute tabElements
+         * @type {Object}
+         * @default null
+         *&#x2F;
+        tabElements: {
+            value: null
+        },
+
+        &#x2F;**
+         * The URL to which file upload requested are POSTed. Only used if a different url is not passed to the upload method call.
+         *
+         * @attribute uploadURL
+         * @type {String}
+         * @default &quot;&quot;
+         *&#x2F;
+        uploadURL: {
+          value: &quot;&quot;
+        },
+
+        &#x2F;**
+         * The number of times to try re-uploading a file that failed to upload before
+         * cancelling its upload.
+         *
+         * @attribute retryCount
+         * @type {Number}
+         * @default 3
+         *&#x2F; 
+         retryCount: {
+           value: 3
+         }
+  }
+});
+
+Y.UploaderFlash.Queue = UploaderQueue;
+
+
+
+    </pre>
 </div>
 
                 </div>

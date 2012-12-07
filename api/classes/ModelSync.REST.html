@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSON - AlloyUI</title>
+    <title>ModelSync.REST - AlloyUI</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.4.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
@@ -1577,7 +1577,7 @@
 
             <div class="apidocs">
                 <div id="docs-main" class="content">
-                    <h1>JSON Class</h1>
+                    <h1>ModelSync.REST Class</h1>
 <div class="box meta">
     
 
@@ -1585,34 +1585,46 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18372"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18372</code></a>
+            Defined in: <a href="../..&#x2F;files&#x2F;lib_yui3_src_app_js_model-extensions_model-sync-rest.js.html#l12"><code>lib&#x2F;yui3&#x2F;src&#x2F;app&#x2F;js&#x2F;model-extensions&#x2F;model-sync-rest.js:12</code></a>
         </div>
     
 
+    
+        <p>Available since 3.6.0</p>
     
 </div>
 
 
 
 <div class="box intro">
-    <p>The JSON module adds support for serializing JavaScript objects into
-JSON strings and parsing JavaScript objects from strings in JSON format.</p>
+    <p>An extension which provides a RESTful XHR sync implementation that can be mixed
+into a Model or ModelList subclass.</p>
 
-<p>The JSON namespace is added to your YUI instance including static methods
-Y.JSON.parse(..) and Y.JSON.stringify(..).</p>
+<p>This makes it trivial for your Model or ModelList subclasses communicate and
+transmit their data via RESTful XHRs. In most cases you'll only need to provide
+a value for <code>root</code> when sub-classing <code>Y.Model</code>.</p>
 
-<p>The functionality and method signatures follow the ECMAScript 5
-specification.  In browsers with native JSON support, the native
-implementation is used.</p>
+<pre class="code"><code class="prettyprint">Y.User = Y.Base.create('user', Y.Model, [Y.ModelSync.REST], {
+    root: '/users'
+});
 
-<p>The <code>json</code> module is a rollup of <code>json-parse</code> and
-<code>json-stringify</code>.</p>
+Y.Users = Y.Base.create('users', Y.ModelList, [Y.ModelSync.REST], {
+    // By convention <code>Y.User</code>'s <code>root</code> will be used for the lists' URL.
+    model: Y.User
+});
 
-<p>As their names suggest, <code>json-parse</code> adds support for parsing
-JSON data (Y.JSON.parse) and <code>json-stringify</code> for serializing
-JavaScript data into JSON strings (Y.JSON.stringify).  You may choose to
-include either of the submodules individually if you don't need the
-complementary functionality, or include the rollup for both.</p>
+var users = new Y.Users();
+
+// GET users list from: "/users"
+users.load(function () {
+    var firstUser = users.item(0);
+
+    firstUser.get('id'); // =&gt; "1"
+
+    // PUT updated user data at: "/users/1"
+    firstUser.set('name', 'Eric').save();
+});
+</code></pre>
 </div>
 
 
@@ -1641,81 +1653,75 @@ complementary functionality, or include the rollup for both.</p>
 
                     <ul class="index-list methods">
                         
-                            <li class="index-item method private">
-                                <a href="#method__revive">_revive</a>
+                            <li class="index-item method protected">
+                                <a href="#method__joinURL">_joinURL</a>
 
                                 
                             </li>
                         
-                            <li class="index-item method private">
-                                <a href="#method__revive">_revive</a>
+                            <li class="index-item method protected">
+                                <a href="#method__onSyncIOEnd">_onSyncIOEnd</a>
 
                                 
                             </li>
                         
-                            <li class="index-item method">
-                                <a href="#method_customTransport">customTransport</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method deprecated">
-                                <a href="#method_dateToString">dateToString</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_defaultTransport">defaultTransport</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_escapeException">escapeException</a>
+                            <li class="index-item method protected">
+                                <a href="#method__onSyncIOFailure">_onSyncIOFailure</a>
 
                                 
                             </li>
                         
-                            <li class="index-item method private">
-                                <a href="#method_escapeException">escapeException</a>
+                            <li class="index-item method protected">
+                                <a href="#method__onSyncIOStart">_onSyncIOStart</a>
 
                                 
                             </li>
                         
-                            <li class="index-item method">
-                                <a href="#method_notify">notify</a>
+                            <li class="index-item method protected">
+                                <a href="#method__onSyncIOSuccess">_onSyncIOSuccess</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
+                                <a href="#method__parse">_parse</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
+                                <a href="#method__sendSyncIORequest">_sendSyncIORequest</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
+                                <a href="#method__substituteURL">_substituteURL</a>
 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_parse">parse</a>
+                                <a href="#method_getURL">getURL</a>
 
-                                
-                                    <span class="flag static">static</span>
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_parse">parse</a>
+                                <a href="#method_parseIOResponse">parseIOResponse</a>
 
-                                
-                                    <span class="flag static">static</span>
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_stringify">stringify</a>
+                                <a href="#method_serialize">serialize</a>
 
                                 
-                                    <span class="flag static">static</span>
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_sync">sync</a>
+
                                 
                             </li>
                         
@@ -1729,96 +1735,8 @@ complementary functionality, or include the rollup for both.</p>
 
                     <ul class="index-list properties">
                         
-                            <li class="index-item property private">
-                                <a href="#property__BRACKETS">_BRACKETS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__BRACKETS">_BRACKETS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property__default">_default</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__ESCAPES">_ESCAPES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__ESCAPES">_ESCAPES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNICODE_EXCEPTIONS">_UNICODE_EXCEPTIONS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNICODE_EXCEPTIONS">_UNICODE_EXCEPTIONS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNSAFE">_UNSAFE</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNSAFE">_UNSAFE</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__VALUES">_VALUES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__VALUES">_VALUES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_charCacheThreshold">charCacheThreshold</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property_Native">Native</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property_Native">Native</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_transports">transports</a>
+                            <li class="index-item property protected">
+                                <a href="#property__NON_ATTRS_CFG">_NON_ATTRS_CFG</a>
 
                                 
                                     <span class="flag static">static</span>
@@ -1826,7 +1744,7 @@ complementary functionality, or include the rollup for both.</p>
                             </li>
                         
                             <li class="index-item property">
-                                <a href="#property_useNativeParse">useNativeParse</a>
+                                <a href="#property_CSRF_TOKEN">CSRF_TOKEN</a>
 
                                 
                                     <span class="flag static">static</span>
@@ -1834,7 +1752,7 @@ complementary functionality, or include the rollup for both.</p>
                             </li>
                         
                             <li class="index-item property">
-                                <a href="#property_useNativeParse">useNativeParse</a>
+                                <a href="#property_EMULATE_HTTP">EMULATE_HTTP</a>
 
                                 
                                     <span class="flag static">static</span>
@@ -1842,10 +1760,38 @@ complementary functionality, or include the rollup for both.</p>
                             </li>
                         
                             <li class="index-item property">
-                                <a href="#property_useNativeStringify">useNativeStringify</a>
+                                <a href="#property_HTTP_HEADERS">HTTP_HEADERS</a>
 
                                 
                                     <span class="flag static">static</span>
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_HTTP_METHODS">HTTP_METHODS</a>
+
+                                
+                                    <span class="flag static">static</span>
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_HTTP_TIMEOUT">HTTP_TIMEOUT</a>
+
+                                
+                                    <span class="flag static">static</span>
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_root">root</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item property">
+                                <a href="#property_url">url</a>
+
                                 
                             </li>
                         
@@ -1863,8 +1809,8 @@ complementary functionality, or include the rollup for both.</p>
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method__revive" class="method item private">
-    <h3 class="name"><code>_revive</code></h3>
+                    <div id="method__joinURL" class="method item protected">
+    <h3 class="name"><code>_joinURL</code></h3>
 
     
         <div class="args">
@@ -1872,354 +1818,7 @@ complementary functionality, or include the rollup for both.</p>
             
                 <li class="arg">
                     
-                        <code>data</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l125"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:125</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Traverses nested objects, applying a reviver function to each (key,value)
-from the scope if the key:value's containing object.  The value returned
-from the function will replace the original value in the key:value pair.
-If the value returned is undefined, the key will be omitted from the
-returned object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">data</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Any JavaScript data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>filter or mutation function</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    The results of the filtered data
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method__revive" class="method item private">
-    <h3 class="name"><code>_revive</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>data</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18496"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18496</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Traverses nested objects, applying a reviver function to each (key,value)
-from the scope if the key:value's containing object.  The value returned
-from the function will replace the original value in the key:value pair.
-If the value returned is undefined, the key will be omitted from the
-returned object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">data</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Any JavaScript data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>filter or mutation function</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    The results of the filtered data
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_customTransport" class="method item">
-    <h3 class="name"><code>customTransport</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>id</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l56"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:56</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Create a custom transport of type and return it's object</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">id</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The id of the transport to create.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_dateToString" class="method item deprecated">
-    <h3 class="name"><code>dateToString</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>d</code>
+                        <code>url</code>
                     
                 </li>
             
@@ -2234,15 +1833,13 @@ returned object.</p>
     
 
     
-        <span class="flag deprecated" title="Use a replacer function">deprecated</span>
+
+    
+        <span class="flag protected">protected</span>
     
 
     
 
-    
-
-    
-        <span class="flag static">static</span>
     
 
     
@@ -2251,8 +1848,6 @@ returned object.</p>
         
             
                 
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
                 <p>
                 
                 Defined in
@@ -2260,22 +1855,21 @@ returned object.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l266"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:266</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_app_js_model-extensions_model-sync-rest.js.html#l496"><code>lib&#x2F;yui3&#x2F;src&#x2F;app&#x2F;js&#x2F;model-extensions&#x2F;model-sync-rest.js:496</code></a>
         
         </p>
 
 
         
-            <p>Deprecated: Use a replacer function</p>
-        
 
+        
+            <p>Available since 3.6.0</p>
         
     </div>
 
     <div class="description">
-        <p>Serializes a Date instance as a UTC date string.  Used internally by
-stringify.  Override this method if you need Dates serialized in a
-different format.</p>
+        <p>Joins the <code>root</code> URL to the specified <code>url</code>, normalizing leading/trailing
+"/" characters.</p>
     </div>
 
     
@@ -2286,14 +1880,14 @@ different format.</p>
             
                 <li class="param">
                     
-                        <code class="param-name">d</code>
-                        <span class="type"><a href="../classes/Date.html" class="crosslink">Date</a></span>
+                        <code class="param-name">url</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>The Date to serialize</p>
+                        <p>URL to append to the <code>root</code> URL.</p>
                     </div>
 
                     
@@ -2312,7 +1906,811 @@ different format.</p>
                     
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
                     
-                    stringified Date in UTC format YYYY-MM-DDTHH:mm:SSZ
+                    Joined URL.
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code"><code class="prettyprint">model.root = '/foo'
+model._joinURL('bar');  // =&gt; '/foo/bar'
+model._joinURL('/bar'); // =&gt; '/foo/bar'
+
+model.root = '/foo/'
+model._joinURL('bar');  // =&gt; '/foo/bar/'
+model._joinURL('/bar'); // =&gt; '/foo/bar/'
+</code></pre>
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method__onSyncIOEnd" class="method item protected">
+    <h3 class="name"><code>_onSyncIOEnd</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>txId</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>details</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_app_js_model-extensions_model-sync-rest.js.html#l641"><code>lib&#x2F;yui3&#x2F;src&#x2F;app&#x2F;js&#x2F;model-extensions&#x2F;model-sync-rest.js:641</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 3.6.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Called when the <code>Y.io</code> request has finished, after "success" or "failure"
+has been determined.</p>
+
+<p>This is a no-op by default, but provides a hook for overriding.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">txId</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The <code>Y.io</code> transaction id.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">details</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Extra details carried through from <code>sync()</code>:</p>
+                    </div>
+
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">action</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                
+
+                                <div class="param-description">
+                                    <p>The sync action performed.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[callback]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>The function to call after syncing.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">url</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                
+
+                                <div class="param-description">
+                                    <p>The URL of the requested resource.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__onSyncIOFailure" class="method item protected">
+    <h3 class="name"><code>_onSyncIOFailure</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>txId</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>res</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>details</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_app_js_model-extensions_model-sync-rest.js.html#l658"><code>lib&#x2F;yui3&#x2F;src&#x2F;app&#x2F;js&#x2F;model-extensions&#x2F;model-sync-rest.js:658</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 3.6.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Called when the <code>Y.io</code> request has finished unsuccessfully.</p>
+
+<p>By default this calls the <code>details.callback</code> function passing it the HTTP
+status code and message as an error object along with the response body.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">txId</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The <code>Y.io</code> transaction id.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">res</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The <code>Y.io</code> response object.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">details</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Extra details carried through from <code>sync()</code>:</p>
+                    </div>
+
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">action</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                
+
+                                <div class="param-description">
+                                    <p>The sync action performed.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[callback]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>The function to call after syncing.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">url</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                
+
+                                <div class="param-description">
+                                    <p>The URL of the requested resource.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__onSyncIOStart" class="method item protected">
+    <h3 class="name"><code>_onSyncIOStart</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>txId</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>details</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>detials.action</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_app_js_model-extensions_model-sync-rest.js.html#l709"><code>lib&#x2F;yui3&#x2F;src&#x2F;app&#x2F;js&#x2F;model-extensions&#x2F;model-sync-rest.js:709</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 3.6.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Called when the <code>Y.io</code> request is made.</p>
+
+<p>This is a no-op by default, but provides a hook for overriding.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">txId</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The <code>Y.io</code> transaction id.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">details</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Extra details carried through from <code>sync()</code>:</p>
+                    </div>
+
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[callback]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>The function to call after syncing.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">url</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                
+
+                                <div class="param-description">
+                                    <p>The URL of the requested resource.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">detials.action</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The sync action performed.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__onSyncIOSuccess" class="method item protected">
+    <h3 class="name"><code>_onSyncIOSuccess</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>txId</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>res</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>details</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_app_js_model-extensions_model-sync-rest.js.html#l685"><code>lib&#x2F;yui3&#x2F;src&#x2F;app&#x2F;js&#x2F;model-extensions&#x2F;model-sync-rest.js:685</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 3.6.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Called when the <code>Y.io</code> request has finished successfully.</p>
+
+<p>By default this calls the <code>details.callback</code> function passing it the
+response body.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">txId</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The <code>Y.io</code> transaction id.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">res</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The <code>Y.io</code> response object.</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">details</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Extra details carried through from <code>sync()</code>:</p>
+                    </div>
+
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">action</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                
+
+                                <div class="param-description">
+                                    <p>The sync action performed.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[callback]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>The function to call after syncing.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">url</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                
+
+                                <div class="param-description">
+                                    <p>The URL of the requested resource.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method__parse" class="method item protected">
+    <h3 class="name"><code>_parse</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>response</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object[]</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_app_js_model-extensions_model-sync-rest.js.html#l534"><code>lib&#x2F;yui3&#x2F;src&#x2F;app&#x2F;js&#x2F;model-extensions&#x2F;model-sync-rest.js:534</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 3.7.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Calls both public, overrideable methods: <code>parseIOResponse()</code>, then <code>parse()</code>
+and returns the result.</p>
+
+<p>This will call into <code>parseIOResponse()</code>, if it's defined as a method,
+passing it the full response object from the XHR and using its return value
+to pass along to the <code>parse()</code>. This enables developers to easily parse data
+out of the response headers which should be used by the <code>parse()</code> method.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">response</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Response object from <code>Y.io()</code>.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object[]</a></span>:
+                    
+                    Attribute hash or Array of model attribute hashes.
                 
             </div>
         </div>
@@ -2322,8 +2720,8 @@ different format.</p>
 </div>
 
                 
-                    <div id="method_defaultTransport" class="method item">
-    <h3 class="name"><code>defaultTransport</code></h3>
+                    <div id="method__sendSyncIORequest" class="method item protected">
+    <h3 class="name"><code>_sendSyncIORequest</code></h3>
 
     
         <div class="args">
@@ -2331,7 +2729,7 @@ different format.</p>
             
                 <li class="arg">
                     
-                        <code class="optional">[id]</code>
+                        <code>config</code>
                     
                 </li>
             
@@ -2348,11 +2746,11 @@ different format.</p>
     
 
     
-
+        <span class="flag protected">protected</span>
     
 
     
-        <span class="flag static">static</span>
+
     
 
     
@@ -2361,8 +2759,6 @@ different format.</p>
         
             
                 
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
                 <p>
                 
                 Defined in
@@ -2370,7 +2766,7 @@ different format.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l18"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:18</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_app_js_model-extensions_model-sync-rest.js.html#l560"><code>lib&#x2F;yui3&#x2F;src&#x2F;app&#x2F;js&#x2F;model-extensions&#x2F;model-sync-rest.js:560</code></a>
         
         </p>
 
@@ -2378,10 +2774,14 @@ different format.</p>
         
 
         
+            <p>Available since 3.6.0</p>
+        
     </div>
 
     <div class="description">
-        
+        <p>Performs the XHR and returns the resulting <code>Y.io()</code> request object.</p>
+
+<p>This method is called by <code>sync()</code>.</p>
     </div>
 
     
@@ -2392,17 +2792,115 @@ different format.</p>
             
                 <li class="param">
                     
-                        <code class="param-name optional">[id]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                        <code class="param-name">config</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>The transport to set as the default, if empty a new transport is created.</p>
+                        <p>An object with the following properties:</p>
                     </div>
 
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">action</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                
+
+                                <div class="param-description">
+                                    <p>The <code>sync()</code> action being performed.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[callback]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Called when the sync operation
+    finishes.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[entity]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>The HTTP request entity body.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">headers</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                
+
+                                <div class="param-description">
+                                    <p>The HTTP request headers.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">method</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                
+
+                                <div class="param-description">
+                                    <p>The HTTP request method.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[timeout]</code>
+                                    <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>Time until the HTTP request is aborted.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">url</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                
+
+                                <div class="param-description">
+                                    <p>The URL of the HTTP resource.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
                     
                 </li>
             
@@ -2419,7 +2917,7 @@ different format.</p>
                     
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
                     
-                    The transport object with a <code>send</code> method
+                    The resulting <code>Y.io()</code> request object.
                 
             </div>
         </div>
@@ -2429,8 +2927,8 @@ different format.</p>
 </div>
 
                 
-                    <div id="method_escapeException" class="method item private">
-    <h3 class="name"><code>escapeException</code></h3>
+                    <div id="method__substituteURL" class="method item protected">
+    <h3 class="name"><code>_substituteURL</code></h3>
 
     
         <div class="args">
@@ -2438,7 +2936,13 @@ different format.</p>
             
                 <li class="arg">
                     
-                        <code>c</code>
+                        <code>url</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>data</code>
                     
                 </li>
             
@@ -2455,7 +2959,7 @@ different format.</p>
     
 
     
-        <span class="flag private">private</span>
+        <span class="flag protected">protected</span>
     
 
     
@@ -2475,7 +2979,7 @@ different format.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l112"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:112</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_app_js_model-extensions_model-sync-rest.js.html#l602"><code>lib&#x2F;yui3&#x2F;src&#x2F;app&#x2F;js&#x2F;model-extensions&#x2F;model-sync-rest.js:602</code></a>
         
         </p>
 
@@ -2483,11 +2987,16 @@ different format.</p>
         
 
         
+            <p>Available since 3.6.0</p>
+        
     </div>
 
     <div class="description">
-        <p>Replaces specific unicode characters with their appropriate \unnnn
-format. Some browsers ignore certain characters during eval.</p>
+        <p>Utility which takes a tokenized <code>url</code> string and substitutes its
+placeholders using a specified <code>data</code> object.</p>
+
+<p>This method will property URL-encode any values before substituting them.
+Also, only expect it to work with String and Number values.</p>
     </div>
 
     
@@ -2498,232 +3007,14 @@ format. Some browsers ignore certain characters during eval.</p>
             
                 <li class="param">
                     
-                        <code class="param-name">c</code>
+                        <code class="param-name">url</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>Unicode character</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    the \unnnn escapement of the character
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_escapeException" class="method item private">
-    <h3 class="name"><code>escapeException</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>c</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18483"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18483</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replaces specific unicode characters with their appropriate \unnnn
-format. Some browsers ignore certain characters during eval.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">c</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Unicode character</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    the \unnnn escapement of the character
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_notify" class="method item">
-    <h3 class="name"><code>notify</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>event</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>transaction</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>config</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l71"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:71</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Fired from the notify method of the transport which in turn fires
-the event on the IO object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">event</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The name of the event</p>
+                        <p>Tokenized URL string to substitute placeholder values.</p>
                     </div>
 
                     
@@ -2731,142 +3022,14 @@ the event on the IO object.</p>
             
                 <li class="param">
                     
-                        <code class="param-name">transaction</code>
+                        <code class="param-name">data</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>The transaction object</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">config</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The configuration object for this transaction</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>s</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18530"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18530</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Parse a JSON string, returning the native JavaScript representation.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">s</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JSON string data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) function(k,v) passed each key value
-         pair of object literals, allowing pruning or altering values</p>
+                        <p>Set of data to fill in the <code>url</code>'s placeholders.</p>
                     </div>
 
                     
@@ -2883,20 +3046,30 @@ the event on the IO object.</p>
             <div class="returns-description">
                 
                     
-                        <span class="type">MIXED</span>:
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
                     
-                    the native JavaScript representation of the JSON string
+                    Substituted URL.
                 
             </div>
         </div>
     
 
     
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code"><code class="prettyprint">var url = this._substituteURL('/users/{name}', {id: 'Eric F'});
+// =&gt; "/users/Eric%20F"
+</code></pre>
+            </div>
+        </div>
+    
 </div>
 
                 
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
+                    <div id="method_getURL" class="method item">
+    <h3 class="name"><code>getURL</code></h3>
 
     
         <div class="args">
@@ -2904,145 +3077,13 @@ the event on the IO object.</p>
             
                 <li class="arg">
                     
-                        <code>s</code>
+                        <code class="optional">[action]</code>
                     
                 </li>
             
                 <li class="arg">
                     
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l159"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:159</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Parse a JSON string, returning the native JavaScript representation.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">s</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JSON string data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) function(k,v) passed each key value
-         pair of object literals, allowing pruning or altering values</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    the native JavaScript representation of the JSON string
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_stringify" class="method item">
-    <h3 class="name"><code>stringify</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>o</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>w</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>ind</code>
+                        <code class="optional">[options]</code>
                     
                 </li>
             
@@ -3063,16 +3104,12 @@ the event on the IO object.</p>
     
 
     
-        <span class="flag static">static</span>
-    
 
     
 
     <div class="meta">
         
             
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
                 
                 <p>
                 
@@ -3081,7 +3118,7 @@ the event on the IO object.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l290"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:290</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_app_js_model-extensions_model-sync-rest.js.html#l310"><code>lib&#x2F;yui3&#x2F;src&#x2F;app&#x2F;js&#x2F;model-extensions&#x2F;model-sync-rest.js:310</code></a>
         
         </p>
 
@@ -3089,24 +3126,20 @@ the event on the IO object.</p>
         
 
         
+            <p>Available since 3.6.0</p>
+        
     </div>
 
     <div class="description">
-        <p>Converts an arbitrary value to a JSON string representation.</p>
+        <p>Returns the URL for this model or model list for the given <code>action</code> and
+<code>options</code>, if specified.</p>
 
-<p>Objects with cyclical references will trigger an exception.</p>
+<p>This method correctly handles the variations of <code>root</code> and <code>url</code> values and
+is called by the <code>sync()</code> method to get the URLs used to make the XHRs.</p>
 
-<p>If a whitelist is provided, only matching object keys will be
-included.  Alternately, a replacer function may be passed as the
-second parameter.  This function is executed on every value in the
-input, and its return value will be used in place of the original value.
-This is useful to serialize specialized objects or class instances.</p>
-
-<p>If a positive integer or non-empty string is passed as the third
-parameter, the output will be formatted with carriage returns and
-indentation for readability.  If a String is passed (such as "\t") it
-will be used once for each indentation level.  If a number is passed,
-that number of spaces will be used.</p>
+<p>You can override this method if you need to provide a specific
+implementation for how the URLs of your Model and ModelList subclasses need
+to be generated.</p>
     </div>
 
     
@@ -3117,14 +3150,16 @@ that number of spaces will be used.</p>
             
                 <li class="param">
                     
-                        <code class="param-name">o</code>
-                        <span class="type">MIXED</span>
+                        <code class="param-name optional">[action]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>any arbitrary value to convert to JSON string</p>
+                        <p>Optional <code>sync()</code> action for which to generate the
+    URL.</p>
                     </div>
 
                     
@@ -3132,32 +3167,16 @@ that number of spaces will be used.</p>
             
                 <li class="param">
                     
-                        <code class="param-name">w</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                        <code class="param-name optional">[options]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>(optional) whitelist of acceptable object
-                 keys to include, or a replacer function to modify the
-                 raw value before serialization</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">ind</code>
-                        <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) indentation character or depth of
-                 spaces to format the output.</p>
+                        <p>Optional options which may be used to help
+    generate the URL.</p>
                     </div>
 
                     
@@ -3176,10 +3195,470 @@ that number of spaces will be used.</p>
                     
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
                     
-                    JSON string representation of the input
+                    this model's or model list's URL for the the given
+    <code>action</code> and <code>options</code>.
                 
             </div>
         </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_parseIOResponse" class="method item">
+    <h3 class="name"><code>parseIOResponse</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>response</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Any</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_app_js_model-extensions_model-sync-rest.js.html#l366"><code>lib&#x2F;yui3&#x2F;src&#x2F;app&#x2F;js&#x2F;model-extensions&#x2F;model-sync-rest.js:366</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 3.7.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Called to parse the response object returned from <code>Y.io()</code>. This method
+receives the full response object and is expected to "prep" a response which
+is suitable to pass to the <code>parse()</code> method.</p>
+
+<p>By default the response body is returned (<code>responseText</code>), because it
+usually represents the entire entity of this model on the server.</p>
+
+<p>If you need to parse data out of the response's headers you should do so by
+overriding this method. If you'd like the entire response object from the
+XHR to be passed to your <code>parse()</code> method, you can simply assign this
+property to <code>false</code>.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">response</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Response object from <code>Y.io()</code>.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Any</span>:
+                    
+                    The modified response to pass along to the <code>parse()</code> method.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_serialize" class="method item">
+    <h3 class="name"><code>serialize</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code class="optional">[action]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_app_js_model-extensions_model-sync-rest.js.html#l388"><code>lib&#x2F;yui3&#x2F;src&#x2F;app&#x2F;js&#x2F;model-extensions&#x2F;model-sync-rest.js:388</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 3.6.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Serializes <code>this</code> model to be used as the HTTP request entity body.</p>
+
+<p>By default this model will be serialized to a JSON string via its <code>toJSON()</code>
+method.</p>
+
+<p>You can override this method when the HTTP server expects a different
+representation of this model's data that is different from the default JSON
+serialization. If you're sending and receive content other than JSON, be
+sure change the <code>Accept</code> and <code>Content-Type</code> <code>HTTP_HEADERS</code> as well.</p>
+
+<p><strong>Note:</strong> A model's <code>toJSON()</code> method can also be overridden. If you only
+need to modify which attributes are serialized to JSON, that's a better
+place to start.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[action]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Optional <code>sync()</code> action for which to generate the
+    the serialized representation of this model.</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                    
+                    serialized HTTP request entity body.
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_sync" class="method item">
+    <h3 class="name"><code>sync</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>action</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[options]</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code class="optional">[callback]</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_app_js_model-extensions_model-sync-rest.js.html#l413"><code>lib&#x2F;yui3&#x2F;src&#x2F;app&#x2F;js&#x2F;model-extensions&#x2F;model-sync-rest.js:413</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Communicates with a RESTful HTTP server by sending and receiving data via
+XHRs. This method is called internally by load(), save(), and destroy().</p>
+
+<p>The URL used for each XHR will be retrieved by calling the <code>getURL()</code> method
+and passing it the specified <code>action</code> and <code>options</code>.</p>
+
+<p>This method relies heavily on standard RESTful HTTP conventions</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">action</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Sync action to perform. May be one of the following:</p>
+
+<ul>
+<li><code>create</code>: Store a newly-created model for the first time.</li>
+<li><code>delete</code>: Delete an existing model.</li>
+<li><code>read</code>  : Load an existing model.</li>
+<li><code>update</code>: Update an existing model.</li>
+</ul>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[options]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Sync options:</p>
+                    </div>
+
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[csrfToken]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>The authenticity token used by the
+    server to verify the validity of this request and protected against CSRF
+    attacks. This overrides the default value provided by the static
+    <code>CSRF_TOKEN</code> property.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[headers]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>The HTTP headers to mix with the default
+    headers specified by the static <code>HTTP_HEADERS</code> property.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[timeout]</code>
+                                    <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>The number of milliseconds before the
+    request will timeout and be aborted. This overrides the default provided
+    by the static <code>HTTP_TIMEOUT</code> property.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name optional">[callback]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Called when the sync operation finishes.</p>
+                    </div>
+
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">err</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error" class="crosslink external" target="_blank">Error</a> | Null</span>
+                                
+
+                                <div class="param-description">
+                                    <p>If an error occurred, this parameter will
+    contain the error. If the sync operation succeeded, <em>err</em> will be
+    falsy.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name optional">[response]</code>
+                                    <span class="type">Any</span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+
+                                <div class="param-description">
+                                    <p>The server's response.</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
     
 
     
@@ -3194,66 +3673,20 @@ that number of spaces will be used.</p>
                 <h2 class="off-left">Properties</h2>
 
                 
-                    <div id="property__BRACKETS" class="property item private">
-    <h3 class="name"><code>_BRACKETS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
+                    <div id="property__NON_ATTRS_CFG" class="property item protected">
+    <h3 class="name"><code>_NON_ATTRS_CFG</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
 
     
 
     
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18462"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18462</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Third step in the safety evaluation.  Regex used to remove all open
-square brackets following a colon, comma, or at the beginning of the
-string.</p>
-    </div>
-
+        <span class="flag protected">protected</span>
     
 
     
 
     
-</div>
-
-                
-                    <div id="property__BRACKETS" class="property item private">
-    <h3 class="name"><code>_BRACKETS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
+        <span class="flag static">static</span>
     
 
     <div class="meta">
@@ -3267,21 +3700,24 @@ string.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l91"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:91</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_app_js_model-extensions_model-sync-rest.js.html#l155"><code>lib&#x2F;yui3&#x2F;src&#x2F;app&#x2F;js&#x2F;model-extensions&#x2F;model-sync-rest.js:155</code></a>
         
         </p>
 
         
 
         
+            <p>Available since 3.6.0</p>
+        
     </div>
 
     <div class="description">
-        <p>Third step in the safety evaluation.  Regex used to remove all open
-square brackets following a colon, comma, or at the beginning of the
-string.</p>
+        <p>Properties that shouldn't be turned into ad-hoc attributes when passed to a
+Model or ModelList constructor.</p>
     </div>
 
+    
+        <p><strong>Default:</strong> [&quot;root&quot;, &quot;url&quot;]</p>
     
 
     
@@ -3290,8 +3726,8 @@ string.</p>
 </div>
 
                 
-                    <div id="property__default" class="property item">
-    <h3 class="name"><code>_default</code></h3>
+                    <div id="property_CSRF_TOKEN" class="property item">
+    <h3 class="name"><code>CSRF_TOKEN</code></h3>
     <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
 
     
@@ -3308,8 +3744,6 @@ string.</p>
         
             
                 
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
                 <p>
                 
                 Defined in
@@ -3317,19 +3751,41 @@ string.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l11"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:11</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_app_js_model-extensions_model-sync-rest.js.html#l48"><code>lib&#x2F;yui3&#x2F;src&#x2F;app&#x2F;js&#x2F;model-extensions&#x2F;model-sync-rest.js:48</code></a>
         
         </p>
 
         
 
         
+            <p>Available since 3.6.0</p>
+        
     </div>
 
     <div class="description">
-        <p>The ID of the default IO transport, defaults to <code>xhr</code></p>
+        <p>A request authenticity token to validate HTTP requests made by this extension
+with the server when the request results in changing persistent state. This
+allows you to protect your server from Cross-Site Request Forgery attacks.</p>
+
+<p>A CSRF token provided by the server can be embedded in the HTML document and
+assigned to <code>YUI.Env.CSRF_TOKEN</code> like this:</p>
+
+<pre class="code"><code class="prettyprint">&lt;script&gt;
+    YUI.Env.CSRF_TOKEN = {{session.authenticityToken}};
+&lt;/script&gt;
+</code></pre>
+
+<p>The above should come after YUI seed file so that <code>YUI.Env</code> will be defined.</p>
+
+<p><strong>Note:</strong> This can be overridden on a per-request basis. See <code>sync()</code> method.</p>
+
+<p>When a value for the CSRF token is provided, either statically or via <code>options</code>
+passed to the <code>save()</code> and <code>destroy()</code> methods, the applicable HTTP requests
+will have a <code>X-CSRF-Token</code> header added with the token value.</p>
     </div>
 
+    
+        <p><strong>Default:</strong> YUI.Env.CSRF_TOKEN</p>
     
 
     
@@ -3338,18 +3794,18 @@ string.</p>
 </div>
 
                 
-                    <div id="property__ESCAPES" class="property item private">
-    <h3 class="name"><code>_ESCAPES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
+                    <div id="property_EMULATE_HTTP" class="property item">
+    <h3 class="name"><code>EMULATE_HTTP</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
 
     
 
     
-        <span class="flag private">private</span>
-    
 
     
 
+    
+        <span class="flag static">static</span>
     
 
     <div class="meta">
@@ -3363,20 +3819,28 @@ string.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l71"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:71</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_app_js_model-extensions_model-sync-rest.js.html#l76"><code>lib&#x2F;yui3&#x2F;src&#x2F;app&#x2F;js&#x2F;model-extensions&#x2F;model-sync-rest.js:76</code></a>
         
         </p>
 
         
 
         
+            <p>Available since 3.6.0</p>
+        
     </div>
 
     <div class="description">
-        <p>First step in the safety evaluation.  Regex used to replace all escape
-sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
+        <p>Static flag to use the HTTP POST method instead of PUT or DELETE.</p>
+
+<p>If the server-side HTTP framework isn't RESTful, setting this flag to <code>true</code>
+will cause all PUT and DELETE requests to instead use the POST HTTP method, and
+add a <code>X-HTTP-Method-Override</code> HTTP header with the value of the method type
+which was overridden.</p>
     </div>
 
+    
+        <p><strong>Default:</strong> false</p>
     
 
     
@@ -3385,18 +3849,18 @@ sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
 </div>
 
                 
-                    <div id="property__ESCAPES" class="property item private">
-    <h3 class="name"><code>_ESCAPES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
+                    <div id="property_HTTP_HEADERS" class="property item">
+    <h3 class="name"><code>HTTP_HEADERS</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
 
     
 
     
-        <span class="flag private">private</span>
-    
 
     
 
+    
+        <span class="flag static">static</span>
     
 
     <div class="meta">
@@ -3410,20 +3874,35 @@ sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18442"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18442</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_app_js_model-extensions_model-sync-rest.js.html#l92"><code>lib&#x2F;yui3&#x2F;src&#x2F;app&#x2F;js&#x2F;model-extensions&#x2F;model-sync-rest.js:92</code></a>
         
         </p>
 
         
 
         
+            <p>Available since 3.6.0</p>
+        
     </div>
 
     <div class="description">
-        <p>First step in the safety evaluation.  Regex used to replace all escape
-sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
+        <p>Default headers used with all XHRs.</p>
+
+<p>By default the <code>Accept</code> and <code>Content-Type</code> headers are set to
+"application/json", this signals to the HTTP server to process the request
+bodies as JSON and send JSON responses. If you're sending and receiving content
+other than JSON, you can override these headers and the <code>parse()</code> and
+<code>serialize()</code> methods.</p>
+
+<p><strong>Note:</strong> These headers will be merged with any request-specific headers, and
+the request-specific headers will take precedence.</p>
     </div>
 
+    
+        <p><strong>Default:</strong> {
+        &quot;Accept&quot;      : &quot;application&#x2F;json&quot;,
+        &quot;Content-Type&quot;: &quot;application&#x2F;json&quot;
+    }</p>
     
 
     
@@ -3432,18 +3911,18 @@ sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
 </div>
 
                 
-                    <div id="property__UNICODE_EXCEPTIONS" class="property item private">
-    <h3 class="name"><code>_UNICODE_EXCEPTIONS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
+                    <div id="property_HTTP_METHODS" class="property item">
+    <h3 class="name"><code>HTTP_METHODS</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
 
     
 
     
-        <span class="flag private">private</span>
-    
 
     
 
+    
+        <span class="flag static">static</span>
     
 
     <div class="meta">
@@ -3457,23 +3936,28 @@ sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l57"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:57</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_app_js_model-extensions_model-sync-rest.js.html#l119"><code>lib&#x2F;yui3&#x2F;src&#x2F;app&#x2F;js&#x2F;model-extensions&#x2F;model-sync-rest.js:119</code></a>
         
         </p>
 
         
 
         
+            <p>Available since 3.6.0</p>
+        
     </div>
 
     <div class="description">
-        <p>Replace certain Unicode characters that JavaScript may handle incorrectly
-during eval--either by deleting them or treating them as line
-endings--with escape sequences.
-IMPORTANT NOTE: This regex will be used to modify the input if a match is
-found.</p>
+        <p>Static mapping of RESTful HTTP methods corresponding to CRUD actions.</p>
     </div>
 
+    
+        <p><strong>Default:</strong> {
+        &quot;create&quot;: &quot;POST&quot;,
+        &quot;read&quot;  : &quot;GET&quot;,
+        &quot;update&quot;: &quot;PUT&quot;,
+        &quot;delete&quot;: &quot;DELETE&quot;
+    }</p>
     
 
     
@@ -3482,246 +3966,8 @@ found.</p>
 </div>
 
                 
-                    <div id="property__UNICODE_EXCEPTIONS" class="property item private">
-    <h3 class="name"><code>_UNICODE_EXCEPTIONS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18428"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18428</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replace certain Unicode characters that JavaScript may handle incorrectly
-during eval--either by deleting them or treating them as line
-endings--with escape sequences.
-IMPORTANT NOTE: This regex will be used to modify the input if a match is
-found.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNSAFE" class="property item private">
-    <h3 class="name"><code>_UNSAFE</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18473"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18473</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Final step in the safety evaluation.  Regex used to test the string left
-after all previous replacements for invalid characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNSAFE" class="property item private">
-    <h3 class="name"><code>_UNSAFE</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l102"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:102</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Final step in the safety evaluation.  Regex used to test the string left
-after all previous replacements for invalid characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__VALUES" class="property item private">
-    <h3 class="name"><code>_VALUES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18452"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18452</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Second step in the safety evaluation.  Regex used to replace all simple
-values with ']' characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__VALUES" class="property item private">
-    <h3 class="name"><code>_VALUES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l81"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:81</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Second step in the safety evaluation.  Regex used to replace all simple
-values with ']' characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_charCacheThreshold" class="property item">
-    <h3 class="name"><code>charCacheThreshold</code></h3>
+                    <div id="property_HTTP_TIMEOUT" class="property item">
+    <h3 class="name"><code>HTTP_TIMEOUT</code></h3>
     <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a></span>
 
     
@@ -3738,8 +3984,6 @@ values with ']' characters.</p>
         
             
                 
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
                 <p>
                 
                 Defined in
@@ -3747,38 +3991,26 @@ values with ']' characters.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l322"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:322</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_app_js_model-extensions_model-sync-rest.js.html#l141"><code>lib&#x2F;yui3&#x2F;src&#x2F;app&#x2F;js&#x2F;model-extensions&#x2F;model-sync-rest.js:141</code></a>
         
         </p>
 
         
 
         
+            <p>Available since 3.6.0</p>
+        
     </div>
 
     <div class="description">
-        <p>Number of occurrences of a special character within a single call to
-stringify that should trigger promotion of that character to a dedicated
-preprocess step for future calls.  This is only used in environments
-that don't support native JSON, or when useNativeStringify is set to
-false.</p>
+        <p>The number of milliseconds before the XHRs will timeout/abort. This defaults to
+30 seconds.</p>
 
-<p>So, if set to 50 and an object is passed to stringify that includes
-strings containing the special character \x07 more than 50 times,
-subsequent calls to stringify will process object strings through a
-faster serialization path for \x07 before using the generic, slower,
-replacement process for all special characters.</p>
-
-<p>To prime the preprocessor cache, set this value to 1, then call
-<code>Y.JSON.stringify("<em>(all special characters to
-cache)</em>");</code>, then return this setting to a more conservative
-value.</p>
-
-<p>Special characters \ " \b \t \n \f \r are already cached.</p>
+<p><strong>Note:</strong> This can be overridden on a per-request basis. See <code>sync()</code> method.</p>
     </div>
 
     
-        <p><strong>Default:</strong> 100</p>
+        <p><strong>Default:</strong> 30000</p>
     
 
     
@@ -3787,14 +4019,12 @@ value.</p>
 </div>
 
                 
-                    <div id="property_Native" class="property item private">
-    <h3 class="name"><code>Native</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    <div id="property_root" class="property item">
+    <h3 class="name"><code>root</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
 
     
 
-    
-        <span class="flag private">private</span>
     
 
     
@@ -3812,35 +4042,67 @@ value.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18416"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18416</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_app_js_model-extensions_model-sync-rest.js.html#l172"><code>lib&#x2F;yui3&#x2F;src&#x2F;app&#x2F;js&#x2F;model-extensions&#x2F;model-sync-rest.js:172</code></a>
         
         </p>
 
         
 
         
+            <p>Available since 3.6.0</p>
+        
     </div>
 
     <div class="description">
-        <p>Alias to native browser implementation of the JSON object if available.</p>
+        <p>A string which represents the root or collection part of the URL which
+relates to a Model or ModelList. Usually this value should be same for all
+instances of a specific Model/ModelList subclass.</p>
+
+<p>When sub-classing <code>Y.Model</code>, usually you'll only need to override this
+property, which lets the URLs for the XHRs be generated by convention. If
+the <code>root</code> string ends with a trailing-slash, XHR URLs will also end with a
+"/", and if the <code>root</code> does not end with a slash, neither will the XHR URLs.</p>
     </div>
 
     
+        <p><strong>Default:</strong> &quot;&quot;</p>
+    
 
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code"><code class="prettyprint">Y.User = Y.Base.create('user', Y.Model, [Y.ModelSync.REST], {
+    root: '/users'
+});
+
+var currentUser, newUser;
+
+// GET the user data from: "/users/123"
+currentUser = new Y.User({id: '123'}).load();
+
+// POST the new user data to: "/users"
+newUser = new Y.User({name: 'Eric Ferraiuolo'}).save();
+</code></pre>
+
+<p>When sub-classing <code>Y.ModelList</code>, usually you'll want to ignore configuring
+the <code>root</code> and simply rely on the build-in convention of the list's
+generated URLs defaulting to the <code>root</code> specified by the list's <code>model</code>.</p>
+            </div>
+        </div>
     
 
     
 </div>
 
                 
-                    <div id="property_Native" class="property item private">
-    <h3 class="name"><code>Native</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    <div id="property_url" class="property item">
+    <h3 class="name"><code>url</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
 
     
 
-    
-        <span class="flag private">private</span>
     
 
     
@@ -3858,224 +4120,101 @@ value.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l45"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:45</code></a>
+        <a href="../..&#x2F;files&#x2F;lib_yui3_src_app_js_model-extensions_model-sync-rest.js.html#l206"><code>lib&#x2F;yui3&#x2F;src&#x2F;app&#x2F;js&#x2F;model-extensions&#x2F;model-sync-rest.js:206</code></a>
         
         </p>
 
         
 
         
-    </div>
-
-    <div class="description">
-        <p>Alias to native browser implementation of the JSON object if available.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_transports" class="property item">
-    <h3 class="name"><code>transports</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l38"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:38</code></a>
-        
-        </p>
-
-        
-
+            <p>Available since 3.6.0</p>
         
     </div>
 
     <div class="description">
-        <p>An object hash of custom transports available to IO</p>
+        <p>A string which specifies the URL to use when making XHRs, if not value is
+provided, the URLs used to make XHRs will be generated by convention.</p>
+
+<p>While a <code>url</code> can be provided for each Model/ModelList instance, usually
+you'll want to either rely on the default convention or provide a tokenized
+string on the prototype which can be used for all instances.</p>
+
+<p>When sub-classing <code>Y.Model</code>, you will probably be able to rely on the
+default convention of generating URLs in conjunction with the <code>root</code>
+property and whether the model is new or not (i.e. has an <code>id</code>). If the
+<code>root</code> property ends with a trailing-slash, the generated URL for the
+specific model will also end with a trailing-slash.</p>
     </div>
 
     
-
+        <p><strong>Default:</strong> &quot;&quot;</p>
     
 
     
-</div>
+        <div class="example">
+            <h4>Example:</h4>
 
-                
-                    <div id="property_useNativeParse" class="property item">
-    <h3 class="name"><code>useNativeParse</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+            <div class="example-content">
+                <pre class="code"><code class="prettyprint">Y.User = Y.Base.create('user', Y.Model, [Y.ModelSync.REST], {
+    root: '/users/'
+});
 
-    
+var currentUser, newUser;
 
-    
+// GET the user data from: "/users/123/"
+currentUser = new Y.User({id: '123'}).load();
 
-    
+// POST the new user data to: "/users/"
+newUser = new Y.User({name: 'Eric Ferraiuolo'}).save();
+</code></pre>
 
-    
-        <span class="flag static">static</span>
-    
+<p>If a <code>url</code> is specified, it will be processed by <code>Y.Lang.sub()</code>, which is
+useful when the URLs for a Model/ModelList subclass match a specific pattern
+and can use simple replacement tokens; e.g.:</p><pre class="code"><code class="prettyprint">Y.User = Y.Base.create('user', Y.Model, [Y.ModelSync.REST], {
+    root: '/users',
+    url : '/users/{username}'
+});
+</code></pre>
 
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18586"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18586</code></a>
-        
-        </p>
+<p><strong>Note:</strong> String subsitituion of the <code>url</code> only use string an number values
+provided by this object's attribute and/or the <code>options</code> passed to the
+<code>getURL()</code> method. Do not expect something fancy to happen with Object,
+Array, or Boolean values, they will simply be ignored.</p>
 
-        
+<p>If your URLs have plural roots or collection URLs, while the specific item
+resources are under a singular name, e.g. "/users" (plural) and "/user/123"
+(singular), you'll probably want to configure the <code>root</code> and <code>url</code>
+properties like this:</p><pre class="code"><code class="prettyprint">Y.User = Y.Base.create('user', Y.Model, [Y.ModelSync.REST], {
+    root: '/users',
+    url : '/user/{id}'
+});
 
-        
-    </div>
+var currentUser, newUser;
 
-    <div class="description">
-        <p>Leverage native JSON parse if the browser has a native implementation.
-In general, this is a good idea.  See the Known Issues section in the
-JSON user guide for caveats.  The default value is true for browsers with
-native JSON support.</p>
-    </div>
+// GET the user data from: "/user/123"
+currentUser = new Y.User({id: '123'}).load();
 
-    
-        <p><strong>Default:</strong> true</p>
-    
+// POST the new user data to: "/users"
+newUser = new Y.User({name: 'Eric Ferraiuolo'}).save();
+</code></pre>
 
-    
+<p>When sub-classing <code>Y.ModelList</code>, usually you'll be able to rely on the
+associated <code>model</code> to supply its <code>root</code> to be used as the model list's URL.
+If this needs to be customized, you can provide a simple string for the
+<code>url</code> property.</p><pre class="code"><code class="prettyprint">Y.Users = Y.Base.create('users', Y.ModelList, [Y.ModelSync.REST], {
+    // Leverages <code>Y.User</code>'s <code>root</code>, which is "/users".
+    model: Y.User
+});
 
-    
-</div>
+// Or specified explicitly...
 
-                
-                    <div id="property_useNativeParse" class="property item">
-    <h3 class="name"><code>useNativeParse</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l215"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:215</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON parse if the browser has a native implementation.
-In general, this is a good idea.  See the Known Issues section in the
-JSON user guide for caveats.  The default value is true for browsers with
-native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeStringify" class="property item">
-    <h3 class="name"><code>useNativeStringify</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l253"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:253</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON stringify if the browser has a native
-implementation.  In general, this is a good idea.  See the Known Issues
-section in the JSON user guide for caveats.  The default value is true
-for browsers with native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
+Y.Users = Y.Base.create('users', Y.ModelList, [Y.ModelSync.REST], {
+    model: Y.User,
+    url  : '/users'
+});
+</code></pre>
+            </div>
+        </div>
     
 
     

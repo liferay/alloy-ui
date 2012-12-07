@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSON - AlloyUI</title>
+    <title>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;tests&#x2F;unit&#x2F;assets&#x2F;json-tests.js - AlloyUI</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.4.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
@@ -1577,2518 +1577,1048 @@
 
             <div class="apidocs">
                 <div id="docs-main" class="content">
-                    <h1>JSON Class</h1>
-<div class="box meta">
-    
-
-    
-
-    
-        <div class="foundat">
-            Defined in: <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18372"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18372</code></a>
-        </div>
-    
-
-    
-</div>
-
-
-
-<div class="box intro">
-    <p>The JSON module adds support for serializing JavaScript objects into
-JSON strings and parsing JavaScript objects from strings in JSON format.</p>
-
-<p>The JSON namespace is added to your YUI instance including static methods
-Y.JSON.parse(..) and Y.JSON.stringify(..).</p>
-
-<p>The functionality and method signatures follow the ECMAScript 5
-specification.  In browsers with native JSON support, the native
-implementation is used.</p>
-
-<p>The <code>json</code> module is a rollup of <code>json-parse</code> and
-<code>json-stringify</code>.</p>
-
-<p>As their names suggest, <code>json-parse</code> adds support for parsing
-JSON data (Y.JSON.parse) and <code>json-stringify</code> for serializing
-JavaScript data into JSON strings (Y.JSON.stringify).  You may choose to
-include either of the submodules individually if you don't need the
-complementary functionality, or include the rollup for both.</p>
-</div>
-
-
-
-<div id="classdocs" class="tabview">
-    <ul class="aui-tabview-list aui-widget-hd api-class-tabs tabs" id="api-class-tabview-list">
-        <li class="yui3-tab api-class-tab index"><a class="aui-tab-label" href="#index">Index</a></li>
-
-        
-            <li class="aui-tab api-class-tab methods"><a class="aui-tab-label" href="#methods">Methods</a></li>
-        
-        
-            <li class="aui-tab api-class-tab properties"><a class="aui-tab-label" href="#properties">Properties</a></li>
-        
-        
-        
-    </ul>
-
-    <div class="aui-tabview-content aui-widget-bd" id="api-class-tabview-panel">
-        <div id="index" class="aui-tabview-content-item api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
-            
-                <div class="index-section methods">
-                    <h3>Methods</h3>
-
-                    <ul class="index-list methods">
-                        
-                            <li class="index-item method private">
-                                <a href="#method__revive">_revive</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method__revive">_revive</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_customTransport">customTransport</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method deprecated">
-                                <a href="#method_dateToString">dateToString</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_defaultTransport">defaultTransport</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_escapeException">escapeException</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_escapeException">escapeException</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_notify">notify</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_parse">parse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_parse">parse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_stringify">stringify</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-                <div class="index-section properties">
-                    <h3>Properties</h3>
-
-                    <ul class="index-list properties">
-                        
-                            <li class="index-item property private">
-                                <a href="#property__BRACKETS">_BRACKETS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__BRACKETS">_BRACKETS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property__default">_default</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__ESCAPES">_ESCAPES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__ESCAPES">_ESCAPES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNICODE_EXCEPTIONS">_UNICODE_EXCEPTIONS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNICODE_EXCEPTIONS">_UNICODE_EXCEPTIONS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNSAFE">_UNSAFE</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNSAFE">_UNSAFE</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__VALUES">_VALUES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__VALUES">_VALUES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_charCacheThreshold">charCacheThreshold</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property_Native">Native</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property_Native">Native</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_transports">transports</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeParse">useNativeParse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeParse">useNativeParse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeStringify">useNativeStringify</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-
-            
-        </div>
-
-        
-            <div id="methods" class="aui-tabview-content-item api-class-tabpanel">
-                <h2 class="off-left">Methods</h2>
-
-                
-                    <div id="method__revive" class="method item private">
-    <h3 class="name"><code>_revive</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>data</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l125"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:125</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Traverses nested objects, applying a reviver function to each (key,value)
-from the scope if the key:value's containing object.  The value returned
-from the function will replace the original value in the key:value pair.
-If the value returned is undefined, the key will be omitted from the
-returned object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">data</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Any JavaScript data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>filter or mutation function</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    The results of the filtered data
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method__revive" class="method item private">
-    <h3 class="name"><code>_revive</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>data</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18496"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18496</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Traverses nested objects, applying a reviver function to each (key,value)
-from the scope if the key:value's containing object.  The value returned
-from the function will replace the original value in the key:value pair.
-If the value returned is undefined, the key will be omitted from the
-returned object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">data</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Any JavaScript data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>filter or mutation function</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    The results of the filtered data
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_customTransport" class="method item">
-    <h3 class="name"><code>customTransport</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>id</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l56"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:56</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Create a custom transport of type and return it's object</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">id</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The id of the transport to create.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_dateToString" class="method item deprecated">
-    <h3 class="name"><code>dateToString</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>d</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-        <span class="flag deprecated" title="Use a replacer function">deprecated</span>
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l266"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:266</code></a>
-        
-        </p>
-
-
-        
-            <p>Deprecated: Use a replacer function</p>
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Serializes a Date instance as a UTC date string.  Used internally by
-stringify.  Override this method if you need Dates serialized in a
-different format.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">d</code>
-                        <span class="type"><a href="../classes/Date.html" class="crosslink">Date</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The Date to serialize</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    stringified Date in UTC format YYYY-MM-DDTHH:mm:SSZ
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_defaultTransport" class="method item">
-    <h3 class="name"><code>defaultTransport</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[id]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l18"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:18</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[id]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The transport to set as the default, if empty a new transport is created.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
-                    
-                    The transport object with a <code>send</code> method
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_escapeException" class="method item private">
-    <h3 class="name"><code>escapeException</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>c</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l112"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:112</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replaces specific unicode characters with their appropriate \unnnn
-format. Some browsers ignore certain characters during eval.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">c</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Unicode character</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    the \unnnn escapement of the character
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_escapeException" class="method item private">
-    <h3 class="name"><code>escapeException</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>c</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18483"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18483</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replaces specific unicode characters with their appropriate \unnnn
-format. Some browsers ignore certain characters during eval.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">c</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Unicode character</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    the \unnnn escapement of the character
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_notify" class="method item">
-    <h3 class="name"><code>notify</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>event</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>transaction</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>config</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l71"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:71</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Fired from the notify method of the transport which in turn fires
-the event on the IO object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">event</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The name of the event</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">transaction</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The transaction object</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">config</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The configuration object for this transaction</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>s</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18530"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18530</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Parse a JSON string, returning the native JavaScript representation.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">s</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JSON string data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) function(k,v) passed each key value
-         pair of object literals, allowing pruning or altering values</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    the native JavaScript representation of the JSON string
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>s</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l159"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:159</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Parse a JSON string, returning the native JavaScript representation.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">s</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JSON string data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) function(k,v) passed each key value
-         pair of object literals, allowing pruning or altering values</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    the native JavaScript representation of the JSON string
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_stringify" class="method item">
-    <h3 class="name"><code>stringify</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>o</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>w</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>ind</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l290"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:290</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Converts an arbitrary value to a JSON string representation.</p>
-
-<p>Objects with cyclical references will trigger an exception.</p>
-
-<p>If a whitelist is provided, only matching object keys will be
-included.  Alternately, a replacer function may be passed as the
-second parameter.  This function is executed on every value in the
-input, and its return value will be used in place of the original value.
-This is useful to serialize specialized objects or class instances.</p>
-
-<p>If a positive integer or non-empty string is passed as the third
-parameter, the output will be formatted with carriage returns and
-indentation for readability.  If a String is passed (such as "\t") it
-will be used once for each indentation level.  If a number is passed,
-that number of spaces will be used.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">o</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>any arbitrary value to convert to JSON string</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">w</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) whitelist of acceptable object
-                 keys to include, or a replacer function to modify the
-                 raw value before serialization</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">ind</code>
-                        <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) indentation character or depth of
-                 spaces to format the output.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    JSON string representation of the input
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-            <div id="properties" class="aui-tabview-content-item api-class-tabpanel">
-                <h2 class="off-left">Properties</h2>
-
-                
-                    <div id="property__BRACKETS" class="property item private">
-    <h3 class="name"><code>_BRACKETS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18462"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18462</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Third step in the safety evaluation.  Regex used to remove all open
-square brackets following a colon, comma, or at the beginning of the
-string.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__BRACKETS" class="property item private">
-    <h3 class="name"><code>_BRACKETS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l91"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:91</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Third step in the safety evaluation.  Regex used to remove all open
-square brackets following a colon, comma, or at the beginning of the
-string.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__default" class="property item">
-    <h3 class="name"><code>_default</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l11"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:11</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>The ID of the default IO transport, defaults to <code>xhr</code></p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__ESCAPES" class="property item private">
-    <h3 class="name"><code>_ESCAPES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l71"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:71</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>First step in the safety evaluation.  Regex used to replace all escape
-sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__ESCAPES" class="property item private">
-    <h3 class="name"><code>_ESCAPES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18442"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18442</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>First step in the safety evaluation.  Regex used to replace all escape
-sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNICODE_EXCEPTIONS" class="property item private">
-    <h3 class="name"><code>_UNICODE_EXCEPTIONS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l57"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:57</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replace certain Unicode characters that JavaScript may handle incorrectly
-during eval--either by deleting them or treating them as line
-endings--with escape sequences.
-IMPORTANT NOTE: This regex will be used to modify the input if a match is
-found.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNICODE_EXCEPTIONS" class="property item private">
-    <h3 class="name"><code>_UNICODE_EXCEPTIONS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18428"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18428</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replace certain Unicode characters that JavaScript may handle incorrectly
-during eval--either by deleting them or treating them as line
-endings--with escape sequences.
-IMPORTANT NOTE: This regex will be used to modify the input if a match is
-found.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNSAFE" class="property item private">
-    <h3 class="name"><code>_UNSAFE</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18473"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18473</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Final step in the safety evaluation.  Regex used to test the string left
-after all previous replacements for invalid characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNSAFE" class="property item private">
-    <h3 class="name"><code>_UNSAFE</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l102"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:102</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Final step in the safety evaluation.  Regex used to test the string left
-after all previous replacements for invalid characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__VALUES" class="property item private">
-    <h3 class="name"><code>_VALUES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18452"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18452</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Second step in the safety evaluation.  Regex used to replace all simple
-values with ']' characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__VALUES" class="property item private">
-    <h3 class="name"><code>_VALUES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l81"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:81</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Second step in the safety evaluation.  Regex used to replace all simple
-values with ']' characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_charCacheThreshold" class="property item">
-    <h3 class="name"><code>charCacheThreshold</code></h3>
-    <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l322"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:322</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Number of occurrences of a special character within a single call to
-stringify that should trigger promotion of that character to a dedicated
-preprocess step for future calls.  This is only used in environments
-that don't support native JSON, or when useNativeStringify is set to
-false.</p>
-
-<p>So, if set to 50 and an object is passed to stringify that includes
-strings containing the special character \x07 more than 50 times,
-subsequent calls to stringify will process object strings through a
-faster serialization path for \x07 before using the generic, slower,
-replacement process for all special characters.</p>
-
-<p>To prime the preprocessor cache, set this value to 1, then call
-<code>Y.JSON.stringify("<em>(all special characters to
-cache)</em>");</code>, then return this setting to a more conservative
-value.</p>
-
-<p>Special characters \ " \b \t \n \f \r are already cached.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> 100</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_Native" class="property item private">
-    <h3 class="name"><code>Native</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18416"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18416</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Alias to native browser implementation of the JSON object if available.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_Native" class="property item private">
-    <h3 class="name"><code>Native</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l45"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:45</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Alias to native browser implementation of the JSON object if available.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_transports" class="property item">
-    <h3 class="name"><code>transports</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l38"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:38</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>An object hash of custom transports available to IO</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeParse" class="property item">
-    <h3 class="name"><code>useNativeParse</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18586"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18586</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON parse if the browser has a native implementation.
-In general, this is a good idea.  See the Known Issues section in the
-JSON user guide for caveats.  The default value is true for browsers with
-native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeParse" class="property item">
-    <h3 class="name"><code>useNativeParse</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l215"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:215</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON parse if the browser has a native implementation.
-In general, this is a good idea.  See the Known Issues section in the
-JSON user guide for caveats.  The default value is true for browsers with
-native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeStringify" class="property item">
-    <h3 class="name"><code>useNativeStringify</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l253"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:253</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON stringify if the browser has a native
-implementation.  In general, this is a good idea.  See the Known Issues
-section in the JSON user guide for caveats.  The default value is true
-for browsers with native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-
-        
-    </div>
+                    <h1 class="file-heading">File: lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;tests&#x2F;unit&#x2F;assets&#x2F;json-tests.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+YUI.add(&#x27;json-parse-tests&#x27;, function(Y) {
+
+&#x2F;&#x2F; Automated tests should only cover js API.  Use a manual test for native API
+Y.JSON.useNativeParse = false;
+
+var suite = new Y.Test.Suite(&quot;Y.JSON.parse (JavaScript implementation)&quot;),
+
+    JSON_STRING = &#x27;[&#x27; +
+    &#x27;&quot;JSON Test Pattern pass1&quot;,&#x27; +
+    &#x27;{&quot;object with 1 member&quot;:[&quot;array with 1 element&quot;]},&#x27; +
+    &#x27;{},&#x27; +
+    &#x27;[],&#x27; +
+    &#x27;-42,&#x27; +
+    &#x27;true,&#x27; +
+    &#x27;false,&#x27; +
+    &#x27;null,&#x27; +
+    &#x27;{&#x27; +
+        &#x27;&quot;integer&quot;: 1234567890,&#x27; +
+        &#x27;&quot;real&quot;: -9876.543210,&#x27; +
+        &#x27;&quot;e&quot;: 0.123456789e-12,&#x27; +
+        &#x27;&quot;E&quot;: 1.234567890E+34,&#x27; +
+        &#x27;&quot;&quot;:  23456789012E66,&#x27; +
+        &#x27;&quot;zero&quot;: 0,&#x27; +
+        &#x27;&quot;one&quot;: 1,&#x27; +
+        &#x27;&quot;space&quot;: &quot; &quot;,&#x27; +
+        &#x27;&quot;quote&quot;: &quot;\\&quot;&quot;,&#x27; +
+        &#x27;&quot;backslash&quot;: &quot;\\\\&quot;,&#x27; +
+        &#x27;&quot;controls&quot;: &quot;\\b\\f\\n\\r\\t&quot;,&#x27; +
+        &#x27;&quot;slash&quot;: &quot;&#x2F; &amp; \\&#x2F;&quot;,&#x27; +
+        &#x27;&quot;alpha&quot;: &quot;abcdefghijklmnopqrstuvwxyz&quot;,&#x27; +
+        &#x27;&quot;ALPHA&quot;: &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;,&#x27; +
+        &#x27;&quot;digit&quot;: &quot;0123456789&quot;,&#x27; +
+        &#x27;&quot;0123456789&quot;: &quot;digit&quot;,&#x27; +
+        &#x27;&quot;special&quot;: &quot;&#x60;1~!@#$%^&amp;*()_+-={\&#x27;:[,]}|;.&lt;&#x2F;&gt;?&quot;,&#x27; +
+        &#x27;&quot;hex&quot;: &quot;\\u0123\\u4567\\u89AB\\uCDEF\\uabcd\\uef4A&quot;,&#x27; +
+        &#x27;&quot;true&quot;: true,&#x27; +
+        &#x27;&quot;false&quot;: false,&#x27; +
+        &#x27;&quot;null&quot;: null,&#x27; +
+        &#x27;&quot;array&quot;:[  ],&#x27; +
+        &#x27;&quot;object&quot;:{  },&#x27; +
+        &#x27;&quot;address&quot;: &quot;50 St. James Street&quot;,&#x27; +
+        &#x27;&quot;url&quot;: &quot;http:&#x2F;&#x2F;www.JSON.org&#x2F;&quot;,&#x27; +
+        &#x27;&quot;comment&quot;: &quot;&#x2F;&#x2F; &#x2F;* &lt;!-- --&quot;,&#x27; +
+        &#x27;&quot;# -- --&gt; *&#x2F;&quot;: &quot; &quot;,&#x27; +
+        &#x27;&quot; s p a c e d &quot; :[1,2 , 3,4 , 5        ,          6           ,7        ],&#x27; +
+        &#x27;&quot;compact&quot;:[1,2,3,4,5,6,7],&#x27; +
+        &#x27;&quot;jsontext&quot;: &quot;{\\\&quot;object with 1 member\\\&quot;:[\\\&quot;array with 1 element\\\&quot;]}&quot;,&#x27; +
+        &#x27;&quot;quotes&quot;: &quot;&amp;#34; \\u0022 %22 0x22 034 &amp;#x22;&quot;,&#x27; +
+        &#x27;&quot;\\&#x2F;\\\\\\&quot;\\uCAFE\\uBABE\\uAB98\\uFCDE\\ubcda\\uef4A\\b\\f\\n\\r\\t&#x60;1~!@#$%^&amp;*()_+-=[]{}|;:\&#x27;,.&#x2F;&lt;&gt;?&quot; : &quot;A key can be any string&quot;&#x27; +
+    &#x27;},&#x27; +
+    &#x27;0.5 ,98.6,&#x27; +
+    &#x27;99.44,&#x27; +
+    &#x27;1066,&#x27; +
+    &#x27;1e1,&#x27; +
+    &#x27;0.1e1,&#x27; +
+    &#x27;1e-1,&#x27; +
+    &#x27;1e00,&#x27; +
+    &#x27;2e+00,&#x27; +
+    &#x27;2e-00,&#x27; +
+    &#x27;&quot;rosebud&quot;]&#x27;;
+
+&#x2F;*****************************&#x2F;
+&#x2F;*     Tests begin here      *&#x2F;
+&#x2F;*****************************&#x2F;
+suite.add(new Y.Test.Case({
+    name : &quot;parse&quot;,
+
+    _should : {
+        error : {
+            test_failOnEmptyString              : true,
+            test_failOnFunction                 : true,
+            test_failOnRegex                    : true,
+            test_failOnNew                      : true,
+            test_failOnUnquotedVal              : true,
+            test_failOnUnquotedKey              : true,
+            test_failOnUnclosedObject           : true,
+            test_failOnUnclosedArray            : true,
+            test_failOnExtraCommaInObject       : true,
+            test_failOnDoubleExtraCommaInObject : true,
+            test_failOnExtraCommaInArray        : true,
+            test_failOnDoubleExtraCommaInArray  : true,
+            test_failOnMissingValue             : true,
+            test_failOnCommaAfterClose          : true,
+            test_failOnValueAfterClose          : true,
+            test_failOnExtraClose               : true,
+            test_failOnExpression               : true,
+            test_failOnZeroPrefixedNumber       : true,
+            test_failOnHex                      : true,
+            test_failOnIllegalBackslashEscape   : true,
+            test_failOnMissingColon             : true,
+            test_failOnDoubleColon              : true,
+            test_failOnCommaInsteadOfColon      : true,
+            test_failOnColonInsteadOfComma      : true,
+            test_failOnSingleQuote              : true,
+            test_failOnTabCharacter             : true,
+            test_failOnLineBreakChar            : true,
+            test_failOnMismatchedClose          : true,
+            test_failOnObjectInput              : true,
+            test_failOnArrayInput               : true,
+            test_failOnDateInput                : true,
+            test_failOnRegExpInput              : true,
+            test_failOnErrorInput               : true,
+            test_failOnFunctionInput            : true,
+            test_failOnNaNInput                 : true,
+            test_failOnInfinityInput            : true,
+            test_failOnUndefinedInput           : true
+        }
+    },
+
+    test_emptyObject : function () {
+        Y.Assert.isObject(Y.JSON.parse(&quot;{}&quot;));
+    },
+    test_emptyArray : function () {
+        Y.Assert.isObject(Y.JSON.parse(&quot;[]&quot;));
+    },
+    test_JSONNatives : function () {
+        &#x2F;&#x2F; Note: backslashes are double escaped to emulate string returned from
+        &#x2F;&#x2F; server.
+        var data = Y.JSON.parse(&#x27;{&quot;obj&quot;:{},&quot;arr&quot;:[],&quot;f&quot;:false,&quot;t&quot;:true,&quot;n&quot;:null,&quot;int&quot;:12345,&quot;fl&quot;:1.2345,&quot;str&quot;:&quot;String\\nwith\\tescapes&quot;}&#x27;);
+        Y.Assert.isObject(data);
+        Y.Assert.isObject(data.obj);
+        Y.Assert.isArray(data.arr);
+        Y.Assert.isNull(data.n);
+        Y.Assert.areSame(false,data.f);
+        Y.Assert.areSame(true,data.t);
+        Y.Assert.areSame(12345,data[&quot;int&quot;]);
+        Y.Assert.areSame(1.2345,data.fl);
+        Y.Assert.areSame(&quot;String\nwith\tescapes&quot;,data.str);
+    },
+    test_basics : function () {
+        var data = Y.JSON.parse(JSON_STRING);
+
+        Y.Assert.isArray(data);
+        Y.Assert.areSame(20,data.length);
+        Y.Assert.isString(data[0]);
+        Y.Assert.isObject(data[1]);
+        Y.Assert.isArray(data[1][&quot;object with 1 member&quot;]);
+        Y.Assert.areSame(1,data[1][&quot;object with 1 member&quot;].length);
+        Y.Assert.isNumber(data[4]);
+        Y.Assert.isBoolean(data[5]);
+        Y.Assert.isBoolean(data[6]);
+        Y.Assert.isNull(data[7]);
+        Y.Assert.areSame(1234567890,data[8].integer);
+        Y.Assert.areSame(-9876.543210,data[8].real);
+        Y.Assert.areSame(0.123456789e-12,data[8].e);
+        Y.Assert.areSame(1.234567890e+34,data[8].E);
+        Y.Assert.areSame(23456789012E66,data[8][&quot;&quot;]);
+        Y.Assert.areSame(0,data[8].zero);
+        Y.Assert.areSame(1,data[8].one);
+        Y.Assert.areSame(&quot; &quot;,data[8].space);
+        Y.Assert.areSame(&#x27;&quot;&#x27;,data[8].quote);
+        Y.Assert.areSame(&quot;\\&quot;,data[8].backslash);
+        Y.Assert.areSame(&quot;\b\f\n\r\t&quot;,data[8].controls);
+        Y.Assert.areSame(&quot;&#x2F; &amp; \&#x2F;&quot;,data[8].slash);
+        Y.Assert.areSame(&quot;abcdefghijklmnopqrstuvwxyz&quot;,data[8].alpha);
+        Y.Assert.areSame(&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;,data[8].ALPHA);
+        Y.Assert.areSame(&quot;0123456789&quot;,data[8].digit);
+        Y.Assert.areSame(&quot;digit&quot;,data[8][&quot;0123456789&quot;]);
+
+        Y.Assert.areSame(1234567890,data[8].integer);
+        Y.Assert.areSame(&quot;&#x60;1~!@#$%^&amp;*()_+-={&#x27;:[,]}|;.&lt;&#x2F;&gt;?&quot;,data[8].special);
+        Y.Assert.areSame(&quot;\u0123\u4567\u89AB\uCDEF\uabcd\uef4A&quot;,data[8].hex);
+        Y.Assert.areSame(true,data[8][&quot;true&quot;]);
+        Y.Assert.areSame(false,data[8][&quot;false&quot;]);
+        Y.Assert.isNull(data[8][&quot;null&quot;]);
+        Y.Assert.isArray(data[8][&quot;array&quot;]);
+        Y.Assert.isObject(data[8][&quot;object&quot;]);
+        Y.Assert.areSame(&quot;http:&#x2F;&#x2F;www.JSON.org&#x2F;&quot;,data[8].url);
+        Y.Assert.areSame(&quot;&#x2F;&#x2F; &#x2F;* &lt;!-- --&quot;,data[8].comment);
+        Y.Assert.areSame(&quot; &quot;,data[8][&quot;# -- --&gt; *&#x2F;&quot;]);
+        Y.ArrayAssert.itemsAreSame([1,2,3,4,5,6,7],data[8][&quot; s p a c e d &quot;]);
+        Y.ArrayAssert.itemsAreSame([1,2,3,4,5,6,7],data[8].compact);
+        Y.Assert.areSame(&quot;{\&quot;object with 1 member\&quot;:[\&quot;array with 1 element\&quot;]}&quot;,data[8].jsontext);
+        Y.Assert.areSame(&quot;&amp;#34; \u0022 %22 0x22 034 &amp;#x22;&quot;,data[8].quotes);
+        Y.Assert.areSame(&quot;A key can be any string&quot;,data[8][&quot;\&#x2F;\\\&quot;\uCAFE\uBABE\uAB98\uFCDE\ubcda\uef4A\b\f\n\r\t&#x60;1~!@#$%^&amp;*()_+-=[]{}|;:&#x27;,.&#x2F;&lt;&gt;?&quot;]);
+
+        Y.Assert.areSame(0.5,data[9]);
+        Y.Assert.areSame(98.6,data[10]);
+        Y.Assert.areSame(99.44,data[11]);
+        Y.Assert.areSame(1066,data[12]);
+        Y.Assert.areSame(1e1,data[13]);
+        Y.Assert.areSame(0.1e1,data[14]);
+        Y.Assert.areSame(1e-1,data[15]);
+        Y.Assert.areSame(1e00,data[16]);
+        Y.Assert.areSame(2e+00,data[17]);
+        Y.Assert.areSame(2e-00,data[18]);
+        Y.Assert.areSame(&quot;rosebud&quot;,data[19]);
+    },
+    test_nonObjectWrapper : function () {
+        &#x2F;&#x2F;Y.Assert.areSame(&#x27;this is a string&#x27;,Y.JSON.parse(&#x27;&quot;this is a string&quot;&#x27;));
+        &#x2F;&#x2F;Y.Assert.areSame(true,Y.JSON.parse(&#x27;true&#x27;));
+        &#x2F;&#x2F;Y.Assert.areSame(12345,Y.JSON.parse(&quot;12345&quot;));
+        &#x2F;&#x2F;Y.Assert.areSame(1.2345,Y.JSON.parse(&quot;1.2345&quot;));
+        Y.Assert.areSame(null,Y.JSON.parse(&quot;null&quot;));
+    },
+    test_failOnEmptyString : function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.Assert.isString(Y.JSON.parse(&quot;&quot;));
+       &#x2F;&#x2F; Y.log(&quot;Parsed empty string, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnFunction : function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse(&#x27;{&quot;fn&quot;:function(){}}&#x27;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed a function, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnRegex : function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse(&#x27;{&quot;re&quot;:&#x2F;abc&#x2F;}&#x27;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed regular expression literal, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnNew : function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse(&#x27;{&quot;dt&quot;:new Date()}&#x27;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed &lt;code&gt;new Date()&lt;&#x2F;code&gt;, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnUnquotedVal : function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse(&#x27;{&quot;foo&quot;:bar}&#x27;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed unquoted non-native value, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnUnquotedKey : function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse(&#x27;{foo:1}&#x27;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed unquoted object key, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnUnclosedObject : function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse(&#x27;{&quot;unclosed&quot;:&quot;object&quot;&#x27;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed unclosed object, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnUnclosedArray : function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse(&#x27;[&quot;unclosed array&quot;&#x27;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed unclosed array, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnExtraCommaInObject : function () {
+        &#x2F;&#x2F; JS validator will allow, FF 3.1b2 native will allow.  IE8 errors.
+        &#x2F;&#x2F; eval will fail in IE6-7, but pass in others
+        &#x2F;&#x2F; Trailing commas are invalid, but not a security risk, so acceptable
+        Y.JSON.parse(&#x27;{&quot;extra&quot;:&quot;comma&quot;,}&#x27;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed object with extra comma, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+        throw new Error(&quot;Parsed object with extra comma, but should have failed.&quot;);
+    },
+    test_failOnDoubleExtraCommaInObject : function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse(&#x27;{&quot;extra&quot;:&quot;commas&quot;,,}&#x27;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed object with two extra commas, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnExtraCommaInArray : function () {
+        &#x2F;&#x2F; Correct failure in IE6-8.  FF accepts trailing commas without error
+        &#x2F;&#x2F; Trailing commas are invalid, but not a security risk, so acceptable
+        Y.JSON.parse(&#x27;[&quot;extra&quot;,&quot;comma&quot;,]&#x27;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed array with extra comma, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+        throw new Error(&quot;Parsed array with extra comma, but should have failed.&quot;);
+    },
+    test_failOnDoubleExtraCommaInArray : function () {
+        &#x2F;&#x2F; Correct failure in IE6-8.  FF accepts trailing commas without error
+        &#x2F;&#x2F; Trailing commas are invalid, but not a security risk, so acceptable
+        Y.JSON.parse(&#x27;[&quot;extra&quot;,&quot;commas&quot;,,]&#x27;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed array with two extra commas, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+        throw new Error(&quot;Parsed array with two extra commas, but should have failed.&quot;);
+    },
+    test_failOnMissingValue : function () {
+        &#x2F;&#x2F; Correct failure in IE6-8.  FF accepts trailing commas without error
+        &#x2F;&#x2F; Trailing commas are invalid, but not a security risk, so acceptable
+        var data = Y.JSON.parse(&#x27;[,&quot;&lt;-- missing value&quot;]&#x27;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed array with missing value (&quot;+data[0]+&quot;), but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+        throw new Error(&quot;Parsed array with missing value (&quot;+data[0]+&quot;), but should have failed.&quot;);
+    },
+    test_failOnCommaAfterClose : function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse(&#x27;[&quot;comma&quot;,&quot;after&quot;,&quot;close&quot;],&#x27;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed comma after array close, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnValueAfterClose : function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse(&#x27;{&quot;misplaced&quot;:&quot;value&quot;}&quot; after close&quot;&#x27;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed string value after object close, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnExtraClose : function () {
+        &#x2F;&#x2F; parse should throw an error 
+        var data = Y.JSON.parse(&#x27;{&quot;foo&quot;:1}}&#x27;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed extra closing curly brace on object, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+        throw new Error(&quot;Parsed extra closing curly brace on object, but should have failed.&quot;);
+    },
+    test_failOnExpression : function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse(&#x27;{&quot;foo&quot;:1+2}&#x27;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed expression, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnZeroPrefixedNumber : function () {
+        &#x2F;&#x2F; Correct failure in IE8.  FF accepts leading zeros without error
+        &#x2F;&#x2F; Leading zeros are invalid, but not a security risk, so acceptable
+        Y.JSON.parse(&#x27;{&quot;foo&quot;:01}&#x27;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed zero prefixed number, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+        throw new Error(&quot;Parsed zero prefixed number, but should have failed.&quot;);
+    },
+    test_failOnHex : function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse(&#x27;{&quot;foo&quot;:0x14}&#x27;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed hex value, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnIllegalBackslashEscape : function () {
+        &#x2F;&#x2F; Correctly fails in all but IE8&#x27;s native parse.
+        &#x2F;&#x2F; The spec does not specify a limitation to the escape characters a
+        &#x2F;&#x2F; decoder supports, so either is acceptable.
+        var data = Y.JSON.parse(&#x27;[&quot;illegal backslash escape: \\x15&quot;]&#x27;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed illegal backslash escape \\x15, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+        throw new Error(&quot;Parsed illegal backslash escape \\x15, but should have failed.&quot;);
+    },
+    test_failOnMissingColon : function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse(&#x27;{&quot;foo&quot; null}&#x27;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed object with missing colon, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnDoubleColon : function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse(&#x27;{&quot;foo&quot;::1}&#x27;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed double colon in object, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnCommaInsteadOfColon : function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse(&#x27;{&quot;foo&quot;,1}&#x27;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed comma in place of colon, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnColonInsteadOfComma : function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse(&#x27;[&quot;colon instead of&quot;:&quot;comma&quot;]&#x27;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed colon in place of comma, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnSingleQuote : function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse(&quot;{&#x27;foo&#x27;:1}&quot;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed single quote, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnLineBreakChar : function () {
+        &#x2F;&#x2F; FF3.1b2 currently allows linebreak chars in native implementation
+        &#x2F;&#x2F; Harmless, so permissable
+        Y.JSON.parse(&quot;[\&quot;line\nbreak\&quot;]&quot;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed unescaped line break character, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+        throw new Error(&quot;Parsed unescaped line break character, but should have failed.&quot;);
+    },
+    test_failOnMismatchedClose : function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse(&#x27;[&quot;mismatched&quot;}&#x27;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed curly brace close for array, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnObjectInput: function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse({&quot;should&quot;: &quot;be treated as [object Object]&quot;});
+        &#x2F;&#x2F;Y.log(&quot;Parsed object input, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_arrayContainingValidJSON: function () {
+        &#x2F;&#x2F; Should be ToString&#x27;ed to &#x27;{&quot;foo&quot;:&quot;bar&quot;}&#x27; which is valid
+        var o = Y.JSON.parse([&#x27;{&quot;foo&quot;:&quot;bar&quot;}&#x27;]);
+
+        Y.Assert.isObject(o);
+        Y.Assert.areSame(&quot;bar&quot;, o.foo);
+    },
+    test_failOnArrayInput: function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse([&#x27;x&#x27;, &#x27;y&#x27;]); &#x2F;&#x2F; should be treated as &quot;x,y&quot;);
+        &#x2F;&#x2F;Y.log(&quot;Parsed array input, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnDateInput: function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse(new Date()); &#x2F;&#x2F; should be treated as date string
+        &#x2F;&#x2F;Y.log(&quot;Parsed Date input, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnRegExpInput: function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse(&#x2F;should fail&#x2F;); &#x2F;&#x2F; should ToString to &#x27;&#x2F;should fail&#x2F;&#x27;
+        Y.JSON.parse(&#x2F;true&#x2F;); &#x2F;&#x2F; should ToString to &#x27;&#x2F;true&#x2F;&#x27;
+        &#x2F;&#x2F;Y.log(&quot;Parsed RegExp input, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnErrorInput: function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse(new Error(&quot;Boom&quot;)); &#x2F;&#x2F; ToString to &#x27;Error: Boom&#x27;
+        Y.JSON.parse(new Error(&quot;true&quot;)); &#x2F;&#x2F; ToString to &#x27;Error: true&#x27;
+        Y.JSON.parse(new SyntaxError(&quot;true&quot;)); &#x2F;&#x2F; ToString to &#x27;Error: true&#x27;
+        &#x2F;&#x2F;Y.log(&quot;Parsed Error input, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnFunctionInput: function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse(function () { return &quot;decompiled!&quot;; }); &#x2F;&#x2F; ToString &#x27;function ...&#x27;
+        &#x2F;&#x2F;Y.log(&quot;Parsed function input, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnNaNInput: function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse(NaN); &#x2F;&#x2F; ToString to &#x27;NaN&#x27;, but not a valid JSON number
+        &#x2F;&#x2F;Y.log(&quot;Parsed NaN input, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnInfinityInput: function () {
+        &#x2F;&#x2F; parse should throw an error 
+        Y.JSON.parse(Infinity); &#x2F;&#x2F; ToString to &#x27;Infinity&#x27;, but not valid JSON
+        &#x2F;&#x2F;Y.log(&quot;Parsed Infinity input, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_failOnUndefinedInput: function () {
+        &#x2F;&#x2F; Should be ToString&#x27;ed to &#x27;undefined&#x27;
+        Y.JSON.parse(undefined);
+        Y.JSON.parse();
+        &#x2F;&#x2F;Y.log(&quot;Parsed undefined input, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+    test_booleanInput: function () {
+        &#x2F;&#x2F; Should be ToString&#x27;ed to &#x27;true&#x27;
+        var bool = Y.JSON.parse(true);
+
+        Y.Assert.isBoolean(bool);
+        Y.Assert.isTrue(bool);
+
+        bool = Y.JSON.parse(false);
+
+        Y.Assert.isBoolean(bool);
+        Y.Assert.isFalse(bool);
+
+        &#x2F;&#x2F; Should be ToString&#x27;ed to &#x27;true&#x27;
+        bool = Y.JSON.parse(new Boolean(true));
+
+        Y.Assert.isBoolean(bool);
+        Y.Assert.isTrue(bool);
+
+        bool = Y.JSON.parse(new Boolean(false));
+
+        Y.Assert.isBoolean(bool);
+        Y.Assert.isFalse(bool);
+    },
+    test_stringObjectInput: function () {
+        &#x2F;&#x2F; Should be ToString&#x27;ed to &#x27;{&quot;foo&quot;:&quot;bar&quot;}&#x27; which is valid
+        var o = Y.JSON.parse(new String(&#x27;{&quot;foo&quot;:&quot;bar&quot;}&#x27;));
+
+        Y.Assert.isObject(o);
+        Y.Assert.areSame(&quot;bar&quot;, o.foo);
+    },
+    test_numberInput: function () {
+        Y.Assert.areSame(0, Y.JSON.parse(0));
+        Y.Assert.areSame(100, Y.JSON.parse(100));
+        Y.Assert.areSame(-100, Y.JSON.parse(-100));
+        Y.Assert.areSame(-1.05e2, Y.JSON.parse(-1.05e2));
+    },
+    test_nullInput: function () {
+        &#x2F;&#x2F; Should be ToString&#x27;ed to &#x27;null&#x27;
+        Y.Assert.isNull(Y.JSON.parse(null));
+    },
+    test_objectWithToStringInput: function () {
+        &#x2F;&#x2F; Should be ToString&#x27;ed to &#x27;{&quot;foo&quot;:&quot;bar&quot;}&#x27; which is valid
+        var o = Y.JSON.parse({
+            toString: function () {
+                return &#x27;{&quot;foo&quot;:&quot;bar&quot;}&#x27;;
+            }
+        });
+
+        Y.Assert.isObject(o);
+        Y.Assert.areSame(&quot;bar&quot;, o.foo);
+    }
+}));
+
+suite.add(new Y.Test.Case({
+    name : &quot;reviver&quot;,
+
+    test_reviver : function () {
+        var data = Y.JSON.parse(JSON_STRING, function (k,v) {
+            switch (k) {
+                case &quot;alpha&quot; : return &quot;LOWER CASE&quot;;
+                case &quot;ALPHA&quot; : return &quot;upper case&quot;;
+                case &quot;true&quot;  :
+                case &quot;false&quot; :
+                case &quot;null&quot;  : return undefined;
+            }
+
+            if (typeof v === &#x27;number&#x27;) {
+                return -(Math.abs(v|0));
+            }
+
+            if (Y.Lang.isArray(v)) {
+                v[99] = &quot;NEW ITEM&quot;;
+            }
+
+            return v;
+        });
+
+        Y.Assert.areSame(&quot;LOWER CASE&quot;, data[8].alpha);
+        Y.Assert.areSame(&quot;upper case&quot;, data[8].ALPHA);
+        Y.Assert.isUndefined(data[8][&quot;true&quot;]);
+        Y.Assert.isUndefined(data[8][&quot;false&quot;]);
+        Y.Assert.isUndefined(data[8][&quot;null&quot;]);
+        Y.Assert.areSame(-42, data[4]);
+        Y.Assert.areSame(-1234567890, data[8].integer);
+        Y.Assert.areSame(-9876, data[8].real);
+        Y.Assert.areSame(-1, data[8].one);
+        Y.Assert.areSame(-3, data[8][&quot; s p a c e d &quot;][2]);
+
+        Y.Assert.areSame(&quot;NEW ITEM&quot;, data[99]);
+        Y.Assert.areSame(&quot;NEW ITEM&quot;, data[8][&quot; s p a c e d &quot;][99]);
+        Y.Assert.areSame(&quot;NEW ITEM&quot;, data[8].compact[99]);
+    }
+}));
+
+Y.Test.Runner.add(suite);
+
+
+}, &#x27;@VERSION@&#x27; ,{requires:[&#x27;json-parse&#x27;, &#x27;test&#x27;]});
+YUI.add(&#x27;json-stringify-tests&#x27;, function(Y) {
+
+&#x2F;&#x2F; Automated tests should only cover js API.  Use a manual test for native API
+Y.JSON.useNativeStringify = false;
+
+var suite = new Y.Test.Suite(&quot;Y.JSON.stringify (JavaScript implementation)&quot;);
+
+suite.add(new Y.Test.Case({
+    name : &quot;stringify&quot;,
+
+    _should : {
+        error : {
+            test_failOnStringifyCyclicalRef1    : true,
+            test_failOnStringifyCyclicalRef2    : true,
+            test_failOnStringifyCyclicalRef3    : true
+        }
+    },
+
+    test_stringifyNatives: function () {
+        Y.Assert.areSame(&#x27;[true,false,null,-0.12345,&quot;string&quot;,{&quot;object with one member&quot;:[&quot;array with one element&quot;]}]&#x27;,
+            Y.JSON.stringify([true,false,null,-0.12345,&quot;string&quot;,{&quot;object with one member&quot;:[&quot;array with one element&quot;]}]));
+    },
+
+    test_stringifyEscapes: function () {
+        Y.Assert.areSame(&#x27;[&quot;\\\\&quot;,&quot;\\\\\&#x27;&quot;,&quot;\\\\\\\&quot;&quot;,&quot;\\\\\\\&quot;&quot;,&quot;\\b&quot;,&quot;\\b&quot;,&quot;\\\\b&quot;,&quot;\\\\\\b&quot;,&quot;\\\\\\b&quot;,&quot;\\b&quot;,&quot;\\\\x08&quot;,&quot;\\\\\\b&quot;,&quot;\\\\\\\\x08&quot;,&quot;\\n&quot;,&quot;\\\\n&quot;,&quot;\\\\\\n&quot;]&#x27;,
+            Y.JSON.stringify([&#x27;\\&#x27;,&#x27;\\\&#x27;&#x27;, &quot;\\\&quot;&quot;, &#x27;\\&quot;&#x27;, &quot;\b&quot;, &#x27;\b&#x27;, &quot;\\b&quot;,&quot;\\\b&quot;, &#x27;\\\b&#x27;, &quot;\x08&quot;, &quot;\\x08&quot;, &quot;\\\x08&quot;,&quot;\\\\x08&quot;, &quot;\n&quot;, &quot;\\n&quot;, &quot;\\\n&quot;]));
+    },
+
+    test_stringifyObject : function () {
+        &#x2F;&#x2F; stringify sorts the keys
+        Y.Assert.areSame(&#x27;{&quot;one&quot;:1,&quot;two&quot;:true,&quot;three&quot;:false,&quot;four&quot;:null,&quot;five&quot;:&quot;String with\\nnewline&quot;,&quot;six&quot;:{&quot;nested&quot;:-0.12345}}&#x27;,
+            Y.JSON.stringify({one:1,two:true,three:false,four:null,five:&quot;String with\nnewline&quot;,six :  {nested:-0.12345}}));
+    },
+
+    test_failOnStringifyCyclicalRef1 : function () {
+        var o = { key: &#x27;value&#x27; };
+        o.recurse = o;
+
+        &#x2F;&#x2F; Should throw an error
+        Y.JSON.stringify(o);
+        Y.log(&quot;Stringified Object with cyclical reference, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+
+    test_failOnStringifyCyclicalRef2 : function () {
+        var o = [1,2,3];
+        o[3] = o;
+
+        &#x2F;&#x2F; Should throw an error
+        Y.JSON.stringify(o);
+        Y.log(&quot;Stringified Array with cyclical reference, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+
+    test_failOnStringifyCyclicalRef3 : function () {
+        var o = [1,2,3,{key:&quot;value&quot;,nest:[4,5,6,{foo:&quot;bar&quot;}]}];
+        o[4] = o[3].x = o[3].nest[4] =
+        o[3].nest[3].y = o[3].nest[3].z = o;
+
+        &#x2F;&#x2F; Should throw an error
+        Y.JSON.stringify(o);
+        Y.log(&quot;Stringified Object with cyclical reference, but should have failed.&quot;,&quot;warn&quot;,&quot;TestRunner&quot;);
+    },
+
+    test_stringifyFunction : function () {
+        Y.Assert.areSame(&#x27;{&quot;arr&quot;:[null]}&#x27;,
+            Y.JSON.stringify({
+                functions : function (are,ignored) {},
+                arr       : [ function () {} ]
+            }));
+    },
+
+    test_stringifyRegex : function () {
+        Y.Assert.areSame(&#x27;{&quot;regex&quot;:{},&quot;arr&quot;:[{}]}&#x27;,
+            Y.JSON.stringify({
+                regex : &#x2F;are treated as objects&#x2F;,
+                arr   : [ new RegExp(&quot;in array&quot;) ]
+            }));
+    },
+
+    test_stringifyUndefined : function () {
+        Y.Assert.areSame(&#x27;{&quot;arr&quot;:[null]}&#x27;,
+            Y.JSON.stringify({
+                undef : undefined,
+                arr   : [ undefined ]
+            }));
+    },
+
+    test_stringifyDate : function () {
+        &#x2F;&#x2F; native toJSON method should be called if available
+        var d = new Date(Date.UTC(1946,6,6)),
+            ref = d.toJSON ? d.toJSON() : &quot;1946-07-06T00:00:00Z&quot;;
+
+        Y.Assert.areSame(&#x27;{&quot;dt&quot;:&quot;&#x27;+ref+&#x27;&quot;}&#x27;, Y.JSON.stringify({dt : d}));
+    }
+}));
+
+&#x2F;&#x2F;Don&#x27;t add the test if win and doc are not available
+if (Y.config.win &amp;&amp; Y.config.doc) {
+    suite.add(new Y.Test.Case({
+        name: &quot;DOM based tests&quot;,
+        setUp: function () {
+            &#x2F;&#x2F; &#x60;action&#x60; is not allowed via innerHTML on Win8 apps.
+            &#x2F;&#x2F; See: http:&#x2F;&#x2F;msdn.microsoft.com&#x2F;en-us&#x2F;library&#x2F;windows&#x2F;apps&#x2F;hh465388.aspx
+
+            var f = Y.Node.one(Y.config.doc.createElement(&quot;form&quot;));
+
+            f.set(&quot;id&quot;, &quot;testbed&quot;);
+            f.setAttribute(&quot;action&quot;, &quot;&quot;);
+
+            Y.one(&quot;body&quot;).append(f);
+
+            f.setHTML(
+                &#x27;&lt;p&gt;&#x27; +
+                &#x27;&lt;input type=&quot;text&quot; id=&quot;empty_text&quot;&gt;&#x27; +
+                &#x27;&lt;input type=&quot;text&quot; id=&quot;text&quot; value=&quot;text&quot;&gt;&#x27; +
+                &#x27;&lt;input type=&quot;radio&quot; id=&quot;unchecked_radio&quot; value=&quot;unchecked&quot;&gt;&#x27; +
+                &#x27;&lt;input type=&quot;radio&quot; id=&quot;checked_radio&quot; value=&quot;radio&quot; checked=&quot;checked&quot;&gt;&#x27; +
+                &#x27;&lt;input type=&quot;checkbox&quot; id=&quot;unchecked_box&quot; value=&quot;unchecked&quot;&gt;&#x27; +
+                &#x27;&lt;input type=&quot;checkbox&quot; id=&quot;checked_box&quot; value=&quot;box&quot; checked=&quot;checked&quot;&gt;&#x27; +
+                &#x27;&lt;textarea id=&quot;empty_textarea&quot;&gt;&lt;&#x2F;textarea&gt;&#x27; +
+                &#x27;&lt;textarea id=&quot;textarea&quot;&gt;textarea&lt;&#x2F;textarea&gt;&#x27; +
+                &#x27;&lt;select id=&quot;select&quot;&gt;&#x27; +
+                    &#x27;&lt;option value=&quot;unselected&quot;&gt;Unselected&lt;&#x2F;option&gt;&#x27; +
+                    &#x27;&lt;option value=&quot;selected&quot; selected=&quot;selected&quot;&gt;Selected&lt;&#x2F;option&gt;&#x27; +
+                &#x27;&lt;&#x2F;select&gt;&#x27; +
+                &#x27;&lt;select id=&quot;multiple_select&quot; multiple=&quot;multiple&quot; size=&quot;3&quot;&gt;&#x27; +
+                    &#x27;&lt;option value=&quot;unselected&quot;&gt;Unselected&lt;&#x2F;option&gt;&#x27; +
+                    &#x27;&lt;option value=&quot;selected&quot; selected=&quot;selected&quot;&gt;Selected&lt;&#x2F;option&gt;&#x27; +
+                    &#x27;&lt;option value=&quot;selected also&quot; selected=&quot;selected&quot;&gt;Selected also&lt;&#x2F;option&gt;&#x27; +
+                &#x27;&lt;&#x2F;select&gt;&#x27; +
+                &#x27;&lt;button id=&quot;button&quot; type=&quot;button&quot;&gt;content; no value&lt;&#x2F;button&gt;&#x27; +
+                &#x27;&lt;button id=&quot;button_with_value&quot; type=&quot;button&quot; value=&quot;button value&quot;&gt;content and value&lt;&#x2F;button&gt;&#x27; +
+                &#x27;&lt;button id=&quot;button_submit&quot; type=&quot;submit&quot;&gt;content; no value&lt;&#x2F;button&gt;&#x27; +
+                &#x27;&lt;button id=&quot;button_submit_with_value&quot; type=&quot;submit&quot; value=&quot;submit button value&quot;&gt;content and value&lt;&#x2F;button&gt;&#x27; +
+                &#x27;&lt;input type=&quot;button&quot; id=&quot;input_button&quot; value=&quot;input button&quot;&gt;&#x27; +
+                &#x27;&lt;input type=&quot;submit&quot; id=&quot;input_submit&quot; value=&quot;input submit&quot;&gt;&#x27; +
+                &#x27;&lt;&#x2F;p&gt;&#x27;);
+
+            &#x2F;&#x2F; For now, setting &#x60;name&#x60; outside of innerHTML so we don&#x27;t fail in Win 8 Apps.
+            &#x2F;&#x2F; TODO: Clean up based on final resolution of this: https:&#x2F;&#x2F;connect.microsoft.com&#x2F;IE&#x2F;feedback&#x2F;details&#x2F;765964&#x2F;win8-app-msapphost-cannot-set-secure-valid-html-using-innerhtml-if-it-contains-form-fields-with-name-set
+
+            Y.one(&quot;#unchecked_radio&quot;).setAttribute(&quot;name&quot;, &quot;radio&quot;);
+            Y.one(&quot;#checked_radio&quot;).setAttribute(&quot;name&quot;, &quot;radio&quot;);
+            Y.one(&quot;#unchecked_box&quot;).setAttribute(&quot;name&quot;, &quot;box&quot;);
+            Y.one(&quot;#checked_box&quot;).setAttribute(&quot;name&quot;, &quot;box&quot;);
+        },
+
+        tearDown: function () {
+            Y.one(&quot;#testbed&quot;).remove(true);
+        },
+
+        test_stringifyFormValue : function () {
+            function $(id) { return document.getElementById(id); }
+
+            var data = {
+                empty_text              : $(&#x27;empty_text&#x27;).value,
+                text                    : $(&#x27;text&#x27;).value,
+                unchecked_radio         : $(&#x27;unchecked_radio&#x27;).value,
+                checked_radio           : $(&#x27;checked_radio&#x27;).value,
+                unchecked_box           : $(&#x27;unchecked_box&#x27;).value,
+                checked_box             : $(&#x27;checked_box&#x27;).value,
+                empty_textarea          : $(&#x27;empty_textarea&#x27;).value,
+                textarea                : $(&#x27;textarea&#x27;).value,
+                select                  : $(&#x27;select&#x27;).value,
+                multiple_select         : $(&#x27;multiple_select&#x27;).value,
+                &#x2F;&#x2F; Buttons commented out for now because IE reports values
+                &#x2F;&#x2F; differently
+                &#x2F;&#x2F;button                  : $(&#x27;button&#x27;).value,
+                &#x2F;&#x2F;button_with_value       : $(&#x27;button_with_value&#x27;).value,
+                &#x2F;&#x2F;button_submit           : $(&#x27;button_submit&#x27;).value,
+                &#x2F;&#x2F;button_submit_with_value: $(&#x27;button_submit_with_value&#x27;).value,
+                input_button            : $(&#x27;input_button&#x27;).value,
+                input_submit            : $(&#x27;input_submit&#x27;).value&#x2F;&#x2F;,
+                &#x2F;&#x2F;input_image             : $(&#x27;input_image&#x27;).value
+            };
+
+            Y.Assert.areSame(&#x27;{&#x27;+
+                &#x27;&quot;empty_text&quot;:&quot;&quot;,&#x27;+
+                &#x27;&quot;text&quot;:&quot;text&quot;,&#x27;+
+                &#x27;&quot;unchecked_radio&quot;:&quot;unchecked&quot;,&#x27;+
+                &#x27;&quot;checked_radio&quot;:&quot;radio&quot;,&#x27;+
+                &#x27;&quot;unchecked_box&quot;:&quot;unchecked&quot;,&#x27;+
+                &#x27;&quot;checked_box&quot;:&quot;box&quot;,&#x27;+
+                &#x27;&quot;empty_textarea&quot;:&quot;&quot;,&#x27;+
+                &#x27;&quot;textarea&quot;:&quot;textarea&quot;,&#x27;+
+                &#x27;&quot;select&quot;:&quot;selected&quot;,&#x27;+
+                &#x27;&quot;multiple_select&quot;:&quot;selected&quot;,&#x27;+
+                &#x2F;&#x2F;&#x27;&quot;button&quot;:&quot;&quot;,&#x27;+
+                &#x2F;&#x2F;&#x27;&quot;button_with_value&quot;:&quot;button value&quot;,&#x27;+
+                &#x2F;&#x2F;&#x27;&quot;button_submit&quot;:&quot;&quot;,&#x27;+
+                &#x2F;&#x2F;&#x27;&quot;button_submit_with_value&quot;:&quot;submit button value&quot;,&#x27;+
+                &#x27;&quot;input_button&quot;:&quot;input button&quot;,&#x27;+
+                &#x27;&quot;input_submit&quot;:&quot;input submit&quot;}&#x27;,
+                &#x2F;&#x2F;&#x27;&quot;input_image&quot;:&quot;input image&quot;}&#x27;,
+                Y.JSON.stringify(data));
+        }
+    }));
+}
+
+suite.add(new Y.Test.Case({
+    name : &quot;whitelist&quot;,
+
+    test_emptyWhitelistArray : function () {
+        Y.Assert.areSame(&#x27;{}&#x27;,
+            Y.JSON.stringify({foo:1,bar:[1,2,3],baz:true},[]));
+
+        Y.Assert.areSame(&#x27;[1,true,null,{},[&quot;string&quot;,null,{}]]&#x27;,
+            Y.JSON.stringify([
+                1,true,null,{
+                    foo : false,
+                    bar : -0.12345
+                },[&quot;string&quot;,undefined,&#x2F;some regex&#x2F;]
+            ],[]));
+    },
+
+    test_whitelistArray : function () {
+        Y.Assert.areSame(&#x27;{&quot;foo&quot;:[1,2,3,{&quot;foo&quot;:&quot;FOO&quot;}]}&#x27;,
+            Y.JSON.stringify({
+                foo : [
+                    1,2,3,{
+                        foo : &quot;FOO&quot;,
+                        baz : true
+                    }
+                ],
+                bar : [1,2,3],
+                baz : true
+            },[&quot;foo&quot;]));
+
+        Y.Assert.areSame(&#x27;{&quot;foo&quot;:[1,2,3,{&quot;foo&quot;:&quot;FOO&quot;,&quot;baz&quot;:true}],&quot;baz&quot;:true}&#x27;,
+            Y.JSON.stringify({
+                foo : [
+                    1,2,3,{
+                        foo : &quot;FOO&quot;,
+                        baz : true
+                    }
+                ],
+                bar : [
+                    1,2,3,{
+                        foo : &quot;FOO&quot;,
+                        baz : true
+                    }
+                ],
+                baz : true},[&quot;foo&quot;,&quot;baz&quot;]));
+
+    }
+
+    &#x2F;*
+    &#x2F;&#x2F; REMOVED for spec compatibility
+    test_whitelistObject : function () {
+        &#x2F;&#x2F; (undocumented) supports an obj literal as well
+        Y.Assert.areSame(&#x27;{&quot;foo&quot;:[1,2,3,{&quot;foo&quot;:&quot;FOO&quot;,&quot;baz&quot;:true}],&quot;baz&quot;:true}&#x27;,
+            Y.JSON.stringify({
+                foo : [
+                    1,2,3,{
+                        foo : &quot;FOO&quot;,
+                        baz : true
+                    }
+                ],
+                bar : [
+                    1,2,3,{
+                        foo : &quot;FOO&quot;,
+                        baz : true
+                    }
+                ],
+                baz : true
+            }, {foo : true, baz : false})); &#x2F;&#x2F; values ignored
+    }
+    *&#x2F;
+
+}));
+
+suite.add(new Y.Test.Case({
+    name : &quot;formatting&quot;,
+
+    test_falseyIndents : function () {
+        Y.Assert.areSame(&#x27;{&quot;foo0&quot;:[2,{&quot;bar&quot;:[4,{&quot;baz&quot;:[6,{&quot;deep enough&quot;:7}]}]}]}&#x27;,
+            Y.JSON.stringify({
+                foo0 : [ 2, {
+                    bar : [ 4, {
+                        baz : [ 6, {
+                            &quot;deep enough&quot; : 7
+                        }]
+                    }]
+                }]
+            },null,0));
+
+        &#x2F;* Commented out because FF3.5 has infinite loop bug for neg indents
+         * Fixed in FF for next version.
+        Y.Assert.areSame(&#x27;{&quot;foo-4&quot;:[2,{&quot;bar&quot;:[4,{&quot;baz&quot;:[6,{&quot;deep enough&quot;:7}]}]}]}&#x27;,
+            Y.JSON.stringify({
+                &quot;foo-4&quot; : [ 2, {
+                    bar : [ 4, {
+                        baz : [ 6, {
+                            &quot;deep enough&quot; : 7
+                        }]
+                    }]
+                }]
+            },null,-4));
+        *&#x2F;
+
+        Y.Assert.areSame(&#x27;{&quot;foo_false&quot;:[2,{&quot;bar&quot;:[4,{&quot;baz&quot;:[6,{&quot;deep enough&quot;:7}]}]}]}&#x27;,
+            Y.JSON.stringify({
+                foo_false : [ 2, {
+                    bar : [ 4, {
+                        baz : [ 6, {
+                            &quot;deep enough&quot; : 7
+                        }]
+                    }]
+                }]
+            },null,false));
+
+        Y.Assert.areSame(&#x27;{&quot;foo_empty&quot;:[2,{&quot;bar&quot;:[4,{&quot;baz&quot;:[6,{&quot;deep enough&quot;:7}]}]}]}&#x27;,
+            Y.JSON.stringify({
+                foo_empty : [ 2, {
+                    bar : [ 4, {
+                        baz : [ 6, {
+                            &quot;deep enough&quot; : 7
+                        }]
+                    }]
+                }]
+            },null,&quot;&quot;));
+
+    },
+
+    test_indentNumber : function () {
+        Y.Assert.areSame(&quot;{\n&quot; +
+&quot;  \&quot;foo\&quot;: [\n&quot; +
+&quot;    2,\n&quot; +
+&quot;    {\n&quot; +
+&quot;      \&quot;bar\&quot;: [\n&quot; +
+&quot;        4,\n&quot; +
+&quot;        {\n&quot; +
+&quot;          \&quot;baz\&quot;: [\n&quot; +
+&quot;            6,\n&quot; +
+&quot;            {\n&quot; +
+&quot;              \&quot;deep enough\&quot;: 7\n&quot; +
+&quot;            }\n&quot; +
+&quot;          ]\n&quot; +
+&quot;        }\n&quot; +
+&quot;      ]\n&quot; +
+&quot;    }\n&quot; +
+&quot;  ]\n&quot; +
+&quot;}&quot;,
+            Y.JSON.stringify({
+                foo : [ 2, {
+                    bar : [ 4, {
+                        baz : [ 6, {
+                            &quot;deep enough&quot; : 7
+                        }]
+                    }]
+                }]
+            },null,2));
+    },
+    test_indentString : function () {
+        Y.Assert.areSame(&quot;{\n&quot; +
+&quot;Xo\&quot;foo\&quot;: [\n&quot; +
+&quot;XoXo2,\n&quot; +
+&quot;XoXo{\n&quot; +
+&quot;XoXoXo\&quot;bar\&quot;: [\n&quot; +
+&quot;XoXoXoXo4,\n&quot; +
+&quot;XoXoXoXo{\n&quot; +
+&quot;XoXoXoXoXo\&quot;baz\&quot;: [\n&quot; +
+&quot;XoXoXoXoXoXo6,\n&quot; +
+&quot;XoXoXoXoXoXo{\n&quot; +
+&quot;XoXoXoXoXoXoXo\&quot;deep enough\&quot;: 7\n&quot; +
+&quot;XoXoXoXoXoXo}\n&quot; +
+&quot;XoXoXoXoXo]\n&quot; +
+&quot;XoXoXoXo}\n&quot; +
+&quot;XoXoXo]\n&quot; +
+&quot;XoXo}\n&quot; +
+&quot;Xo]\n&quot; +
+&quot;}&quot;,
+            Y.JSON.stringify({
+                foo : [ 2, {
+                    bar : [ 4, {
+                        baz : [ 6, {
+                            &quot;deep enough&quot; : 7
+                        }]
+                    }]
+                }]
+            },null,&quot;Xo&quot;));
+    }
+}));
+
+suite.add(new Y.Test.Case({
+    name : &quot;toJSON&quot;,
+
+    test_toJSON_on_object: function () {
+        Y.Assert.areSame(&#x27;&quot;toJSON&quot;&#x27;,
+            Y.JSON.stringify({ toJSON: function () { return &quot;toJSON&quot;; } }));
+
+        &#x2F;&#x2F; TODO: complex object with toJSON
+    },
+
+    test_toJSON_on_proto: function () {
+        function A() {}
+        A.prototype.toJSON = function () { return &quot;A&quot;; };
+        
+        function B() {}
+        B.prototype = new A();
+
+        function C() {
+            this.x = &quot;X&quot;;
+            this.y = &quot;Y&quot;;
+            this.z = &quot;Z&quot;;
+        }
+        C.prototype = new B();
+
+        Y.Assert.areSame(&#x27;&quot;A&quot;&#x27;, Y.JSON.stringify(new C()));
+    }
+}));
+
+suite.add(new Y.Test.Case({
+    name : &quot;replacer&quot;,
+
+    test_replacer : function () {
+        &#x2F;&#x2F; replacer applies to even simple value stringifications
+        Y.Assert.areSame(&quot;20&quot;,
+            Y.JSON.stringify(10,function (k,v) {
+                return typeof(v) === &#x27;number&#x27; ? v * 2 : v;
+            }));
+
+        &#x2F;&#x2F; replacer is applied to every nested property as well.
+        &#x2F;&#x2F; can modify the host object en route
+        &#x2F;&#x2F; executes from the context of the key:value container
+        Y.Assert.areSame(&#x27;{&quot;num&quot;:2,&quot;alpha&quot;:&quot;ABC&quot;,&quot;obj&quot;:{&quot;nested_num&quot;:100,&quot;alpha&quot;:&quot;abc&quot;},&quot;arr&quot;:[2,null,4]}&#x27;,
+            Y.JSON.stringify({
+                    num: 1,
+                    alpha: &quot;abc&quot;,
+                    ignore: &quot;me&quot;,
+                    change: &quot;to a function&quot;,
+                    toUpper: true,
+                    obj: {
+                        nested_num: 50,
+                        undef: undefined,
+                        alpha: &quot;abc&quot;
+                    },
+                    arr: [1, 7, 2]
+                },
+                function (k,v) {
+                    var t = typeof v;
+
+                    if (k === &#x27;change&#x27;) {
+                        &#x2F;&#x2F; this property should then be ignored
+                        return function () {};
+                    } else if (k === &#x27;ignore&#x27;) {
+                        &#x2F;&#x2F; this property should then be ignored
+                        return undefined;
+                    } else if (t === &#x27;number&#x27;) {
+                        &#x2F;&#x2F; undefined returned to arrays should become null
+                        return v % 7 ? v * 2 : undefined;
+
+                    &#x2F;&#x2F; this refers to the object containing the key:value
+                    } else if (t === &#x27;string&#x27; &amp;&amp; (this.toUpper)) {
+                        &#x2F;&#x2F; modify the object during stringification
+                        delete this.toUpper;
+                        return v.toUpperCase();
+                    } else {
+                        return v;
+                    }
+                }));
+
+        &#x2F;&#x2F; replacer works in conjunction with indent
+        Y.Assert.areSame(&quot;{\n_\&quot;num\&quot;: 2,\n_\&quot;alpha\&quot;: \&quot;ABC\&quot;,\n_\&quot;obj\&quot;: {\n__\&quot;nested_num\&quot;: 100,\n__\&quot;alpha\&quot;: \&quot;abc\&quot;\n_},\n_\&quot;arr\&quot;: [\n__2,\n__null,\n__4\n_]\n}&quot;,
+            Y.JSON.stringify({
+                    num: 1,
+                    alpha: &quot;abc&quot;,
+                    ignore: &quot;me&quot;,
+                    change: &quot;to a function&quot;,
+                    toUpper: true,
+                    obj: {
+                        nested_num: 50,
+                        undef: undefined,
+                        alpha: &quot;abc&quot;
+                    },
+                    arr: [1, 7, 2]
+                },
+                function (k,v) {
+                    var t = typeof v;
+
+                    if (k === &#x27;change&#x27;) {
+                        &#x2F;&#x2F; this property should then be ignored
+                        return function () {};
+                    } else if (k === &#x27;ignore&#x27;) {
+                        &#x2F;&#x2F; this property should then be ignored
+                        return undefined;
+                    } else if (t === &#x27;number&#x27;) {
+                        &#x2F;&#x2F; undefined returned to arrays should become null
+                        return v % 7 ? v * 2 : undefined;
+
+                    &#x2F;&#x2F; this refers to the object containing the key:value
+                    } else if (t === &#x27;string&#x27; &amp;&amp; (this.toUpper)) {
+                        &#x2F;&#x2F; modify the object during stringification
+                        delete this.toUpper;
+                        return v.toUpperCase();
+                    } else {
+                        return v;
+                    }
+                },&#x27;_&#x27;));
+    },
+
+    test_replacer_after_toJSON : function () {
+        Y.Assert.areSame(&#x27;{&quot;a&quot;:&quot;ABC&quot;}&#x27;,
+            Y.JSON.stringify({a:{ toJSON: function () { return &quot;abc&quot;; } } },
+                function (k,v) {
+                    return typeof v === &#x27;string&#x27; ? v.toUpperCase() : v;
+                }));
+
+        &#x2F;&#x2F; Date instances in ES5 have toJSON that outputs toISOString, which
+        &#x2F;&#x2F; means the replacer should never receive a Date instance
+        var str = Y.JSON.stringify([new Date()], function (k,v) {
+            return (v instanceof Date) ? &quot;X&quot; : v;
+        });
+        Y.Assert.areSame(-1, str.indexOf(&quot;X&quot;), &quot;Date incorrectly received by replacer&quot;);
+    },
+
+    test_replacer_returning_Date : function () {
+        var d = new Date(),
+            ref = Y.JSON.stringify(d);
+
+        Y.Assert.areSame(&#x27;{&quot;dt&quot;:&#x27;+ref+&#x27;,&quot;date_from_replacer&quot;:{}}&#x27;,
+            Y.JSON.stringify({ dt: d, date_from_replacer: 1 },
+                function (k,v) {
+                    return typeof v === &#x27;number&#x27; ? d : v;
+                }));
+    }
+}));
+
+Y.Test.Runner.add(suite);
+
+
+}, &#x27;@VERSION@&#x27; ,{requires:[&#x27;json-stringify&#x27;, &#x27;test&#x27;]});
+
+
+YUI.add(&#x27;json-tests&#x27;, function(Y){}, &#x27;@VERSION@&#x27; ,{use:[&#x27;json-parse-tests&#x27;, &#x27;json-stringify-tests&#x27;]});
+
+
+    </pre>
 </div>
 
                 </div>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSON - AlloyUI</title>
+    <title>lib&#x2F;yui3&#x2F;src&#x2F;app&#x2F;js&#x2F;app-base.js - AlloyUI</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.4.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
@@ -1577,2518 +1577,1105 @@
 
             <div class="apidocs">
                 <div id="docs-main" class="content">
-                    <h1>JSON Class</h1>
-<div class="box meta">
-    
-
-    
-
-    
-        <div class="foundat">
-            Defined in: <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18372"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18372</code></a>
-        </div>
-    
-
-    
-</div>
-
-
-
-<div class="box intro">
-    <p>The JSON module adds support for serializing JavaScript objects into
-JSON strings and parsing JavaScript objects from strings in JSON format.</p>
-
-<p>The JSON namespace is added to your YUI instance including static methods
-Y.JSON.parse(..) and Y.JSON.stringify(..).</p>
-
-<p>The functionality and method signatures follow the ECMAScript 5
-specification.  In browsers with native JSON support, the native
-implementation is used.</p>
-
-<p>The <code>json</code> module is a rollup of <code>json-parse</code> and
-<code>json-stringify</code>.</p>
-
-<p>As their names suggest, <code>json-parse</code> adds support for parsing
-JSON data (Y.JSON.parse) and <code>json-stringify</code> for serializing
-JavaScript data into JSON strings (Y.JSON.stringify).  You may choose to
-include either of the submodules individually if you don't need the
-complementary functionality, or include the rollup for both.</p>
-</div>
-
-
-
-<div id="classdocs" class="tabview">
-    <ul class="aui-tabview-list aui-widget-hd api-class-tabs tabs" id="api-class-tabview-list">
-        <li class="yui3-tab api-class-tab index"><a class="aui-tab-label" href="#index">Index</a></li>
-
-        
-            <li class="aui-tab api-class-tab methods"><a class="aui-tab-label" href="#methods">Methods</a></li>
-        
-        
-            <li class="aui-tab api-class-tab properties"><a class="aui-tab-label" href="#properties">Properties</a></li>
-        
-        
-        
-    </ul>
-
-    <div class="aui-tabview-content aui-widget-bd" id="api-class-tabview-panel">
-        <div id="index" class="aui-tabview-content-item api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
-            
-                <div class="index-section methods">
-                    <h3>Methods</h3>
-
-                    <ul class="index-list methods">
-                        
-                            <li class="index-item method private">
-                                <a href="#method__revive">_revive</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method__revive">_revive</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_customTransport">customTransport</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method deprecated">
-                                <a href="#method_dateToString">dateToString</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_defaultTransport">defaultTransport</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_escapeException">escapeException</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_escapeException">escapeException</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_notify">notify</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_parse">parse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_parse">parse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_stringify">stringify</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-                <div class="index-section properties">
-                    <h3>Properties</h3>
-
-                    <ul class="index-list properties">
-                        
-                            <li class="index-item property private">
-                                <a href="#property__BRACKETS">_BRACKETS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__BRACKETS">_BRACKETS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property__default">_default</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__ESCAPES">_ESCAPES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__ESCAPES">_ESCAPES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNICODE_EXCEPTIONS">_UNICODE_EXCEPTIONS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNICODE_EXCEPTIONS">_UNICODE_EXCEPTIONS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNSAFE">_UNSAFE</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNSAFE">_UNSAFE</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__VALUES">_VALUES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__VALUES">_VALUES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_charCacheThreshold">charCacheThreshold</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property_Native">Native</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property_Native">Native</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_transports">transports</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeParse">useNativeParse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeParse">useNativeParse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeStringify">useNativeStringify</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-
-            
-        </div>
-
-        
-            <div id="methods" class="aui-tabview-content-item api-class-tabpanel">
-                <h2 class="off-left">Methods</h2>
-
-                
-                    <div id="method__revive" class="method item private">
-    <h3 class="name"><code>_revive</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>data</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l125"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:125</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Traverses nested objects, applying a reviver function to each (key,value)
-from the scope if the key:value's containing object.  The value returned
-from the function will replace the original value in the key:value pair.
-If the value returned is undefined, the key will be omitted from the
-returned object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">data</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Any JavaScript data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>filter or mutation function</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    The results of the filtered data
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method__revive" class="method item private">
-    <h3 class="name"><code>_revive</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>data</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18496"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18496</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Traverses nested objects, applying a reviver function to each (key,value)
-from the scope if the key:value's containing object.  The value returned
-from the function will replace the original value in the key:value pair.
-If the value returned is undefined, the key will be omitted from the
-returned object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">data</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Any JavaScript data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>filter or mutation function</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    The results of the filtered data
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_customTransport" class="method item">
-    <h3 class="name"><code>customTransport</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>id</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l56"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:56</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Create a custom transport of type and return it's object</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">id</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The id of the transport to create.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_dateToString" class="method item deprecated">
-    <h3 class="name"><code>dateToString</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>d</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-        <span class="flag deprecated" title="Use a replacer function">deprecated</span>
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l266"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:266</code></a>
-        
-        </p>
-
-
-        
-            <p>Deprecated: Use a replacer function</p>
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Serializes a Date instance as a UTC date string.  Used internally by
-stringify.  Override this method if you need Dates serialized in a
-different format.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">d</code>
-                        <span class="type"><a href="../classes/Date.html" class="crosslink">Date</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The Date to serialize</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    stringified Date in UTC format YYYY-MM-DDTHH:mm:SSZ
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_defaultTransport" class="method item">
-    <h3 class="name"><code>defaultTransport</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[id]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l18"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:18</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[id]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The transport to set as the default, if empty a new transport is created.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
-                    
-                    The transport object with a <code>send</code> method
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_escapeException" class="method item private">
-    <h3 class="name"><code>escapeException</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>c</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l112"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:112</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replaces specific unicode characters with their appropriate \unnnn
-format. Some browsers ignore certain characters during eval.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">c</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Unicode character</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    the \unnnn escapement of the character
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_escapeException" class="method item private">
-    <h3 class="name"><code>escapeException</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>c</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18483"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18483</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replaces specific unicode characters with their appropriate \unnnn
-format. Some browsers ignore certain characters during eval.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">c</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Unicode character</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    the \unnnn escapement of the character
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_notify" class="method item">
-    <h3 class="name"><code>notify</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>event</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>transaction</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>config</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l71"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:71</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Fired from the notify method of the transport which in turn fires
-the event on the IO object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">event</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The name of the event</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">transaction</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The transaction object</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">config</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The configuration object for this transaction</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>s</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18530"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18530</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Parse a JSON string, returning the native JavaScript representation.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">s</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JSON string data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) function(k,v) passed each key value
-         pair of object literals, allowing pruning or altering values</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    the native JavaScript representation of the JSON string
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>s</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l159"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:159</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Parse a JSON string, returning the native JavaScript representation.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">s</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JSON string data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) function(k,v) passed each key value
-         pair of object literals, allowing pruning or altering values</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    the native JavaScript representation of the JSON string
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_stringify" class="method item">
-    <h3 class="name"><code>stringify</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>o</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>w</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>ind</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l290"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:290</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Converts an arbitrary value to a JSON string representation.</p>
-
-<p>Objects with cyclical references will trigger an exception.</p>
-
-<p>If a whitelist is provided, only matching object keys will be
-included.  Alternately, a replacer function may be passed as the
-second parameter.  This function is executed on every value in the
-input, and its return value will be used in place of the original value.
-This is useful to serialize specialized objects or class instances.</p>
-
-<p>If a positive integer or non-empty string is passed as the third
-parameter, the output will be formatted with carriage returns and
-indentation for readability.  If a String is passed (such as "\t") it
-will be used once for each indentation level.  If a number is passed,
-that number of spaces will be used.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">o</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>any arbitrary value to convert to JSON string</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">w</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) whitelist of acceptable object
-                 keys to include, or a replacer function to modify the
-                 raw value before serialization</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">ind</code>
-                        <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) indentation character or depth of
-                 spaces to format the output.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    JSON string representation of the input
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-            <div id="properties" class="aui-tabview-content-item api-class-tabpanel">
-                <h2 class="off-left">Properties</h2>
-
-                
-                    <div id="property__BRACKETS" class="property item private">
-    <h3 class="name"><code>_BRACKETS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18462"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18462</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Third step in the safety evaluation.  Regex used to remove all open
-square brackets following a colon, comma, or at the beginning of the
-string.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__BRACKETS" class="property item private">
-    <h3 class="name"><code>_BRACKETS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l91"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:91</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Third step in the safety evaluation.  Regex used to remove all open
-square brackets following a colon, comma, or at the beginning of the
-string.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__default" class="property item">
-    <h3 class="name"><code>_default</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l11"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:11</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>The ID of the default IO transport, defaults to <code>xhr</code></p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__ESCAPES" class="property item private">
-    <h3 class="name"><code>_ESCAPES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l71"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:71</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>First step in the safety evaluation.  Regex used to replace all escape
-sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__ESCAPES" class="property item private">
-    <h3 class="name"><code>_ESCAPES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18442"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18442</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>First step in the safety evaluation.  Regex used to replace all escape
-sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNICODE_EXCEPTIONS" class="property item private">
-    <h3 class="name"><code>_UNICODE_EXCEPTIONS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l57"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:57</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replace certain Unicode characters that JavaScript may handle incorrectly
-during eval--either by deleting them or treating them as line
-endings--with escape sequences.
-IMPORTANT NOTE: This regex will be used to modify the input if a match is
-found.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNICODE_EXCEPTIONS" class="property item private">
-    <h3 class="name"><code>_UNICODE_EXCEPTIONS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18428"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18428</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replace certain Unicode characters that JavaScript may handle incorrectly
-during eval--either by deleting them or treating them as line
-endings--with escape sequences.
-IMPORTANT NOTE: This regex will be used to modify the input if a match is
-found.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNSAFE" class="property item private">
-    <h3 class="name"><code>_UNSAFE</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18473"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18473</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Final step in the safety evaluation.  Regex used to test the string left
-after all previous replacements for invalid characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNSAFE" class="property item private">
-    <h3 class="name"><code>_UNSAFE</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l102"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:102</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Final step in the safety evaluation.  Regex used to test the string left
-after all previous replacements for invalid characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__VALUES" class="property item private">
-    <h3 class="name"><code>_VALUES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18452"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18452</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Second step in the safety evaluation.  Regex used to replace all simple
-values with ']' characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__VALUES" class="property item private">
-    <h3 class="name"><code>_VALUES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l81"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:81</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Second step in the safety evaluation.  Regex used to replace all simple
-values with ']' characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_charCacheThreshold" class="property item">
-    <h3 class="name"><code>charCacheThreshold</code></h3>
-    <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l322"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:322</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Number of occurrences of a special character within a single call to
-stringify that should trigger promotion of that character to a dedicated
-preprocess step for future calls.  This is only used in environments
-that don't support native JSON, or when useNativeStringify is set to
-false.</p>
-
-<p>So, if set to 50 and an object is passed to stringify that includes
-strings containing the special character \x07 more than 50 times,
-subsequent calls to stringify will process object strings through a
-faster serialization path for \x07 before using the generic, slower,
-replacement process for all special characters.</p>
-
-<p>To prime the preprocessor cache, set this value to 1, then call
-<code>Y.JSON.stringify("<em>(all special characters to
-cache)</em>");</code>, then return this setting to a more conservative
-value.</p>
-
-<p>Special characters \ " \b \t \n \f \r are already cached.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> 100</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_Native" class="property item private">
-    <h3 class="name"><code>Native</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18416"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18416</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Alias to native browser implementation of the JSON object if available.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_Native" class="property item private">
-    <h3 class="name"><code>Native</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l45"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:45</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Alias to native browser implementation of the JSON object if available.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_transports" class="property item">
-    <h3 class="name"><code>transports</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l38"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:38</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>An object hash of custom transports available to IO</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeParse" class="property item">
-    <h3 class="name"><code>useNativeParse</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18586"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18586</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON parse if the browser has a native implementation.
-In general, this is a good idea.  See the Known Issues section in the
-JSON user guide for caveats.  The default value is true for browsers with
-native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeParse" class="property item">
-    <h3 class="name"><code>useNativeParse</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l215"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:215</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON parse if the browser has a native implementation.
-In general, this is a good idea.  See the Known Issues section in the
-JSON user guide for caveats.  The default value is true for browsers with
-native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeStringify" class="property item">
-    <h3 class="name"><code>useNativeStringify</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l253"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:253</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON stringify if the browser has a native
-implementation.  In general, this is a good idea.  See the Known Issues
-section in the JSON user guide for caveats.  The default value is true
-for browsers with native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-
-        
-    </div>
+                    <h1 class="file-heading">File: lib&#x2F;yui3&#x2F;src&#x2F;app&#x2F;js&#x2F;app-base.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;**
+The App Framework provides simple MVC-like building blocks (models, model lists,
+views, and URL-based routing) for writing single-page JavaScript applications.
+
+@main app
+@module app
+@since 3.4.0
+**&#x2F;
+
+&#x2F;**
+Provides a top-level application component which manages navigation and views.
+
+@module app
+@submodule app-base
+@since 3.5.0
+**&#x2F;
+
+&#x2F;&#x2F; TODO: Better handling of lifecycle for registered views:
+&#x2F;&#x2F;
+&#x2F;&#x2F;   * [!] Just redo basically everything with view management so there are no
+&#x2F;&#x2F;     pre-&#x60;activeViewChange&#x60; side effects and handle the rest of these things:
+&#x2F;&#x2F;
+&#x2F;&#x2F;   * Seems like any view created via &#x60;createView&#x60; should listen for the view&#x27;s
+&#x2F;&#x2F;     &#x60;destroy&#x60; event and use that to remove it from the &#x60;_viewsInfoMap&#x60;. I
+&#x2F;&#x2F;     should look at what ModelList does for Models as a reference.
+&#x2F;&#x2F;
+&#x2F;&#x2F;   * Should we have a companion &#x60;destroyView()&#x60; method? Maybe this wouldn&#x27;t be
+&#x2F;&#x2F;     needed if we have a &#x60;getView(name, create)&#x60; method, and already doing the
+&#x2F;&#x2F;     above? We could do &#x60;app.getView(&#x27;foo&#x27;).destroy()&#x60; and it would be removed
+&#x2F;&#x2F;     from the &#x60;_viewsInfoMap&#x60; as well.
+&#x2F;&#x2F;
+&#x2F;&#x2F;   * Should we wait to call a view&#x27;s &#x60;render()&#x60; method inside of the
+&#x2F;&#x2F;     &#x60;_attachView()&#x60; method?
+&#x2F;&#x2F;
+&#x2F;&#x2F;   * Should named views support a collection of instances instead of just one?
+&#x2F;&#x2F;
+
+var Lang    = Y.Lang,
+    YObject = Y.Object,
+
+    PjaxBase = Y.PjaxBase,
+    Router   = Y.Router,
+    View     = Y.View,
+
+    getClassName = Y.ClassNameManager.getClassName,
+
+    win = Y.config.win,
+
+    AppBase;
+
+&#x2F;**
+Provides a top-level application component which manages navigation and views.
+
+This gives you a foundation and structure on which to build your application; it
+combines robust URL navigation with powerful routing and flexible view
+management.
+
+@class App.Base
+@param {Object} [config] The following are configuration properties that can be
+    specified _in addition_ to default attribute values and the non-attribute
+    properties provided by &#x60;Y.Base&#x60;:
+  @param {Object} [config.views] Hash of view-name to metadata used to
+    declaratively describe an application&#x27;s views and their relationship with
+    the app and other views. The views specified here will override any defaults
+    provided by the &#x60;views&#x60; object on the &#x60;prototype&#x60;.
+@constructor
+@extends Base
+@uses View
+@uses Router
+@uses PjaxBase
+@since 3.5.0
+**&#x2F;
+AppBase = Y.Base.create(&#x27;app&#x27;, Y.Base, [View, Router, PjaxBase], {
+    &#x2F;&#x2F; -- Public Properties ----------------------------------------------------
+
+    &#x2F;**
+    Hash of view-name to metadata used to declaratively describe an
+    application&#x27;s views and their relationship with the app and its other views.
+
+    The view metadata is composed of Objects keyed to a view-name that can have
+    any or all of the following properties:
+
+      * &#x60;type&#x60;: Function or a string representing the view constructor to use to
+        create view instances. If a string is used, the constructor function is
+        assumed to be on the &#x60;Y&#x60; object; e.g. &#x60;&quot;SomeView&quot;&#x60; -&gt; &#x60;Y.SomeView&#x60;.
+
+      * &#x60;preserve&#x60;: Boolean for whether the view instance should be retained. By
+        default, the view instance will be destroyed when it is no longer the
+        &#x60;activeView&#x60;. If &#x60;true&#x60; the view instance will simply be &#x60;removed()&#x60;
+        from the DOM when it is no longer active. This is useful when the view
+        is frequently used and may be expensive to re-create.
+
+      * &#x60;parent&#x60;: String to another named view in this hash that represents the
+        parent view within the application&#x27;s view hierarchy; e.g. a &#x60;&quot;photo&quot;&#x60;
+        view could have &#x60;&quot;album&quot;&#x60; has its &#x60;parent&#x60; view. This parent&#x2F;child
+        relationship is a useful cue for things like transitions.
+
+      * &#x60;instance&#x60;: Used internally to manage the current instance of this named
+        view. This can be used if your view instance is created up-front, or if
+        you would rather manage the View lifecycle, but you probably should just
+        let this be handled for you.
+
+    If &#x60;views&#x60; are specified at instantiation time, the metadata in the &#x60;views&#x60;
+    Object here will be used as defaults when creating the instance&#x27;s &#x60;views&#x60;.
+
+    Every &#x60;Y.App&#x60; instance gets its own copy of a &#x60;views&#x60; object so this Object
+    on the prototype will not be polluted.
+
+    @example
+        &#x2F;&#x2F; Imagine that &#x60;Y.UsersView&#x60; and &#x60;Y.UserView&#x60; have been defined.
+        var app = new Y.App({
+            views: {
+                users: {
+                    type    : Y.UsersView,
+                    preserve: true
+                },
+
+                user: {
+                    type  : Y.UserView,
+                    parent: &#x27;users&#x27;
+                }
+            }
+        });
+
+    @property views
+    @type Object
+    @default {}
+    @since 3.5.0
+    **&#x2F;
+    views: {},
+
+    &#x2F;&#x2F; -- Protected Properties -------------------------------------------------
+
+    &#x2F;**
+    Map of view instance id (via &#x60;Y.stamp()&#x60;) to view-info object in &#x60;views&#x60;.
+
+    This mapping is used to tie a specific view instance back to its metadata by
+    adding a reference to the the related view info on the &#x60;views&#x60; object.
+
+    @property _viewInfoMap
+    @type Object
+    @default {}
+    @protected
+    @since 3.5.0
+    **&#x2F;
+
+    &#x2F;&#x2F; -- Lifecycle Methods ----------------------------------------------------
+    initializer: function (config) {
+        config || (config = {});
+
+        var views = {};
+
+        &#x2F;&#x2F; Merges-in specified view metadata into local &#x60;views&#x60; object.
+        function mergeViewConfig(view, name) {
+            views[name] = Y.merge(views[name], view);
+        }
+
+        &#x2F;&#x2F; First, each view in the &#x60;views&#x60; prototype object gets its metadata
+        &#x2F;&#x2F; merged-in, providing the defaults.
+        YObject.each(this.views, mergeViewConfig);
+
+        &#x2F;&#x2F; Then, each view in the specified &#x60;config.views&#x60; object gets its
+        &#x2F;&#x2F; metadata merged-in.
+        YObject.each(config.views, mergeViewConfig);
+
+        &#x2F;&#x2F; The resulting hodgepodge of metadata is then stored as the instance&#x27;s
+        &#x2F;&#x2F; &#x60;views&#x60; object, and no one&#x27;s objects were harmed in the making.
+        this.views        = views;
+        this._viewInfoMap = {};
+
+        &#x2F;&#x2F; Using &#x60;bind()&#x60; to aid extensibility.
+        this.after(&#x27;activeViewChange&#x27;, Y.bind(&#x27;_afterActiveViewChange&#x27;, this));
+
+        &#x2F;&#x2F; PjaxBase will bind click events when &#x60;html5&#x60; is &#x60;true&#x60;, so this just
+        &#x2F;&#x2F; forces the binding when &#x60;serverRouting&#x60; and &#x60;html5&#x60; are both falsy.
+        if (!this.get(&#x27;serverRouting&#x27;)) {
+            this._pjaxBindUI();
+        }
+    },
+
+    &#x2F;&#x2F; TODO: &#x60;destructor&#x60; to destroy the &#x60;activeView&#x60;?
+
+    &#x2F;&#x2F; -- Public Methods -------------------------------------------------------
+
+    &#x2F;**
+    Creates and returns a new view instance using the provided &#x60;name&#x60; to look up
+    the view info metadata defined in the &#x60;views&#x60; object. The passed-in &#x60;config&#x60;
+    object is passed to the view constructor function.
+
+    This function also maps a view instance back to its view info metadata.
+
+    @method createView
+    @param {String} name The name of a view defined on the &#x60;views&#x60; object.
+    @param {Object} [config] The configuration object passed to the view
+      constructor function when creating the new view instance.
+    @return {View} The new view instance.
+    @since 3.5.0
+    **&#x2F;
+    createView: function (name, config) {
+        var viewInfo = this.getViewInfo(name),
+            type     = (viewInfo &amp;&amp; viewInfo.type) || View,
+            ViewConstructor, view;
+
+        &#x2F;&#x2F; Looks for a namespaced constructor function on &#x60;Y&#x60;.
+        ViewConstructor = Lang.isString(type) ?
+                YObject.getValue(Y, type.split(&#x27;.&#x27;)) : type;
+
+        &#x2F;&#x2F; Create the view instance and map it with its metadata.
+        view = new ViewConstructor(config);
+        this._viewInfoMap[Y.stamp(view, true)] = viewInfo;
+
+        return view;
+    },
+
+    &#x2F;**
+    Returns the metadata associated with a view instance or view name defined on
+    the &#x60;views&#x60; object.
+
+    @method getViewInfo
+    @param {View|String} view View instance, or name of a view defined on the
+      &#x60;views&#x60; object.
+    @return {Object} The metadata for the view, or &#x60;undefined&#x60; if the view is
+      not registered.
+    @since 3.5.0
+    **&#x2F;
+    getViewInfo: function (view) {
+        if (Lang.isString(view)) {
+            return this.views[view];
+        }
+
+        return view &amp;&amp; this._viewInfoMap[Y.stamp(view, true)];
+    },
+
+    &#x2F;**
+    Navigates to the specified URL if there is a route handler that matches. In
+    browsers capable of using HTML5 history or when &#x60;serverRouting&#x60; is falsy,
+    the navigation will be enhanced by firing the &#x60;navigate&#x60; event and having
+    the app handle the &quot;request&quot;. When &#x60;serverRouting&#x60; is &#x60;true&#x60;, non-HTML5
+    browsers will navigate to the new URL via a full page reload.
+
+    When there is a route handler for the specified URL and it is being
+    navigated to, this method will return &#x60;true&#x60;, otherwise it will return
+    &#x60;false&#x60;.
+
+    **Note:** The specified URL _must_ be of the same origin as the current URL,
+    otherwise an error will be logged and navigation will not occur. This is
+    intended as both a security constraint and a purposely imposed limitation as
+    it does not make sense to tell the app to navigate to a URL on a
+    different scheme, host, or port.
+
+    @method navigate
+    @param {String} url The URL to navigate to. This must be of the same origin
+      as the current URL.
+    @param {Object} [options] Additional options to configure the navigation.
+      These are mixed into the &#x60;navigate&#x60; event facade.
+        @param {Boolean} [options.replace] Whether or not the current history
+          entry will be replaced, or a new entry will be created. Will default
+          to &#x60;true&#x60; if the specified &#x60;url&#x60; is the same as the current URL.
+        @param {Boolean} [options.force] Whether the enhanced navigation
+          should occur even in browsers without HTML5 history. Will default to
+          &#x60;true&#x60; when &#x60;serverRouting&#x60; is falsy.
+    @see PjaxBase.navigate()
+    **&#x2F;
+    &#x2F;&#x2F; Does not override &#x60;navigate()&#x60; but does use extra &#x60;options&#x60;.
+
+    &#x2F;**
+    Renders this application by appending the &#x60;viewContainer&#x60; node to the
+    &#x60;container&#x60; node if it isn&#x27;t already a child of the container, and the
+    &#x60;activeView&#x60; will be appended the view container, if it isn&#x27;t already.
+
+    You should call this method at least once, usually after the initialization
+    of your app instance so the proper DOM structure is setup and optionally
+    append the container to the DOM if it&#x27;s not there already.
+
+    You may override this method to customize the app&#x27;s rendering, but you
+    should expect that the &#x60;viewContainer&#x60;&#x27;s contents will be modified by the
+    app for the purpose of rendering the &#x60;activeView&#x60; when it changes.
+
+    @method render
+    @chainable
+    @see View.render()
+    **&#x2F;
+    render: function () {
+        var CLASS_NAMES         = Y.App.CLASS_NAMES,
+            container           = this.get(&#x27;container&#x27;),
+            viewContainer       = this.get(&#x27;viewContainer&#x27;),
+            activeView          = this.get(&#x27;activeView&#x27;),
+            activeViewContainer = activeView &amp;&amp; activeView.get(&#x27;container&#x27;),
+            areSame             = container.compareTo(viewContainer);
+
+        container.addClass(CLASS_NAMES.app);
+        viewContainer.addClass(CLASS_NAMES.views);
+
+        &#x2F;&#x2F; Prevents needless shuffling around of nodes and maintains DOM order.
+        if (activeView &amp;&amp; !viewContainer.contains(activeViewContainer)) {
+            viewContainer.appendChild(activeViewContainer);
+        }
+
+        &#x2F;&#x2F; Prevents needless shuffling around of nodes and maintains DOM order.
+        if (!container.contains(viewContainer) &amp;&amp; !areSame) {
+            container.appendChild(viewContainer);
+        }
+
+        return this;
+    },
+
+    &#x2F;**
+    Sets which view is active&#x2F;visible for the application. This will set the
+    app&#x27;s &#x60;activeView&#x60; attribute to the specified &#x60;view&#x60;.
+
+    The &#x60;view&#x60; will be &quot;attached&quot; to this app, meaning it will be both rendered
+    into this app&#x27;s &#x60;viewContainer&#x60; node and all of its events will bubble to
+    the app. The previous &#x60;activeView&#x60; will be &quot;detached&quot; from this app.
+
+    When a string-name is provided for a view which has been registered on this
+    app&#x27;s &#x60;views&#x60; object, the referenced metadata will be used and the
+    &#x60;activeView&#x60; will be set to either a preserved view instance, or a new
+    instance of the registered view will be created using the specified &#x60;config&#x60;
+    object passed-into this method.
+
+    A callback function can be specified as either the third or fourth argument,
+    and this function will be called after the new &#x60;view&#x60; becomes the
+    &#x60;activeView&#x60;, is rendered to the &#x60;viewContainer&#x60;, and is ready to use.
+
+    @example
+        var app = new Y.App({
+            views: {
+                usersView: {
+                    &#x2F;&#x2F; Imagine that &#x60;Y.UsersView&#x60; has been defined.
+                    type: Y.UsersView
+                }
+            },
+
+            users: new Y.ModelList()
+        });
+
+        app.route(&#x27;&#x2F;users&#x2F;&#x27;, function () {
+            this.showView(&#x27;usersView&#x27;, {users: this.get(&#x27;users&#x27;)});
+        });
+
+        app.render();
+        app.navigate(&#x27;&#x2F;uses&#x2F;&#x27;); &#x2F;&#x2F; =&gt; Creates a new &#x60;Y.UsersView&#x60; and shows it.
+
+    @method showView
+    @param {String|View} view The name of a view defined in the &#x60;views&#x60; object,
+        or a view instance which should become this app&#x27;s &#x60;activeView&#x60;.
+    @param {Object} [config] Optional configuration to use when creating a new
+        view instance. This config object can also be used to update an existing
+        or preserved view&#x27;s attributes when &#x60;options.update&#x60; is &#x60;true&#x60;.
+    @param {Object} [options] Optional object containing any of the following
+        properties:
+      @param {Function} [options.callback] Optional callback function to call
+        after new &#x60;activeView&#x60; is ready to use, the function will be passed:
+          @param {View} options.callback.view A reference to the new
+            &#x60;activeView&#x60;.
+      @param {Boolean} [options.prepend=false] Whether the &#x60;view&#x60; should be
+        prepended instead of appended to the &#x60;viewContainer&#x60;.
+      @param {Boolean} [options.render] Whether the &#x60;view&#x60; should be rendered.
+        **Note:** If no value is specified, a view instance will only be
+        rendered if it&#x27;s newly created by this method.
+      @param {Boolean} [options.update=false] Whether an existing view should
+        have its attributes updated by passing the &#x60;config&#x60; object to its
+        &#x60;setAttrs()&#x60; method. **Note:** This option does not have an effect if
+        the &#x60;view&#x60; instance is created as a result of calling this method.
+    @param {Function} [callback] Optional callback Function to call after the
+        new &#x60;activeView&#x60; is ready to use. **Note:** this will override
+        &#x60;options.callback&#x60; and it can be specified as either the third or fourth
+        argument. The function will be passed the following:
+      @param {View} callback.view A reference to the new &#x60;activeView&#x60;.
+    @chainable
+    @since 3.5.0
+    **&#x2F;
+    showView: function (view, config, options, callback) {
+        var viewInfo, created;
+
+        options || (options = {});
+
+        &#x2F;&#x2F; Support the callback function being either the third or fourth arg.
+        if (callback) {
+            options = Y.merge(options, {callback: callback});
+        } else if (Lang.isFunction(options)) {
+            options = {callback: options};
+        }
+
+        if (Lang.isString(view)) {
+            viewInfo = this.getViewInfo(view);
+
+            &#x2F;&#x2F; Use the preserved view instance, or create a new view.
+            &#x2F;&#x2F; TODO: Maybe we can remove the strict check for &#x60;preserve&#x60; and
+            &#x2F;&#x2F; assume we&#x27;ll use a View instance if it is there, and just check
+            &#x2F;&#x2F; &#x60;preserve&#x60; when detaching?
+            if (viewInfo &amp;&amp; viewInfo.preserve &amp;&amp; viewInfo.instance) {
+                view = viewInfo.instance;
+
+                &#x2F;&#x2F; Make sure there&#x27;s a mapping back to the view metadata.
+                this._viewInfoMap[Y.stamp(view, true)] = viewInfo;
+            } else {
+                &#x2F;&#x2F; TODO: Add the app as a bubble target during construction, but
+                &#x2F;&#x2F; make sure to check that it isn&#x27;t already in &#x60;bubbleTargets&#x60;!
+                &#x2F;&#x2F; This will allow the app to be notified for about _all_ of the
+                &#x2F;&#x2F; view&#x27;s events. **Note:** This should _only_ happen if the
+                &#x2F;&#x2F; view is created _after_ &#x60;activeViewChange&#x60;.
+
+                view    = this.createView(view, config);
+                created = true;
+            }
+        }
+
+        &#x2F;&#x2F; Update the specified or preserved &#x60;view&#x60; when signaled to do so.
+        &#x2F;&#x2F; There&#x27;s no need to updated a view if it was _just_ created.
+        if (options.update &amp;&amp; !created) {
+            view.setAttrs(config);
+        }
+
+        &#x2F;&#x2F; TODO: Hold off on rendering the view until after it has been
+        &#x2F;&#x2F; &quot;attached&quot;, and move the call to render into &#x60;_attachView()&#x60;.
+
+        &#x2F;&#x2F; When a value is specified for &#x60;options.render&#x60;, prefer it because it
+        &#x2F;&#x2F; represents the developer&#x27;s intent. When no value is specified, the
+        &#x2F;&#x2F; &#x60;view&#x60; will only be rendered if it was just created.
+        if (&#x27;render&#x27; in options) {
+            if (options.render) {
+                view.render();
+            }
+        } else if (created) {
+            view.render();
+        }
+
+        return this._set(&#x27;activeView&#x27;, view, {options: options});
+    },
+
+    &#x2F;&#x2F; -- Protected Methods ----------------------------------------------------
+
+    &#x2F;**
+    Helper method to attach the view instance to the application by making the
+    app a bubble target of the view, append the view to the &#x60;viewContainer&#x60;, and
+    assign it to the &#x60;instance&#x60; property of the associated view info metadata.
+
+    @method _attachView
+    @param {View} view View to attach.
+    @param {Boolean} prepend=false Whether the view should be prepended instead
+      of appended to the &#x60;viewContainer&#x60;.
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _attachView: function (view, prepend) {
+        if (!view) {
+            return;
+        }
+
+        var viewInfo      = this.getViewInfo(view),
+            viewContainer = this.get(&#x27;viewContainer&#x27;);
+
+        &#x2F;&#x2F; Bubble the view&#x27;s events to this app.
+        view.addTarget(this);
+
+        &#x2F;&#x2F; Save the view instance in the &#x60;views&#x60; registry.
+        if (viewInfo) {
+            viewInfo.instance = view;
+        }
+
+        &#x2F;&#x2F; TODO: Attach events here for persevered Views?
+        &#x2F;&#x2F; See related TODO in &#x60;_detachView&#x60;.
+
+        &#x2F;&#x2F; TODO: Actually render the view here so that it gets &quot;attached&quot; before
+        &#x2F;&#x2F; it gets rendered?
+
+        &#x2F;&#x2F; Insert view into the DOM.
+        viewContainer[prepend ? &#x27;prepend&#x27; : &#x27;append&#x27;](view.get(&#x27;container&#x27;));
+    },
+
+    &#x2F;**
+    Overrides View&#x27;s container destruction to deal with the &#x60;viewContainer&#x60; and
+    checks to make sure not to remove and purge the &#x60;&lt;body&gt;&#x60;.
+
+    @method _destroyContainer
+    @protected
+    @see View._destroyContainer()
+    **&#x2F;
+    _destroyContainer: function () {
+        var CLASS_NAMES   = Y.App.CLASS_NAMES,
+            container     = this.get(&#x27;container&#x27;),
+            viewContainer = this.get(&#x27;viewContainer&#x27;),
+            areSame       = container.compareTo(viewContainer);
+
+        &#x2F;&#x2F; We do not want to remove or destroy the &#x60;&lt;body&gt;&#x60;.
+        if (Y.one(&#x27;body&#x27;).compareTo(container)) {
+            &#x2F;&#x2F; Just clean-up our events listeners.
+            this.detachEvents();
+
+            &#x2F;&#x2F; Clean-up &#x60;yui3-app&#x60; CSS class on the &#x60;container&#x60;.
+            container.removeClass(CLASS_NAMES.app);
+
+            if (areSame) {
+                &#x2F;&#x2F; Clean-up &#x60;yui3-app-views&#x60; CSS class on the &#x60;container&#x60;.
+                container.removeClass(CLASS_NAMES.views);
+            } else {
+                &#x2F;&#x2F; Destroy and purge the &#x60;viewContainer&#x60;.
+                viewContainer.remove(true);
+            }
+
+            return;
+        }
+
+        &#x2F;&#x2F; Remove and purge events from both containers.
+
+        viewContainer.remove(true);
+
+        if (!areSame) {
+            container.remove(true);
+        }
+    },
+
+    &#x2F;**
+    Helper method to detach the view instance from the application by removing
+    the application as a bubble target of the view, and either just removing the
+    view if it is intended to be preserved, or destroying the instance
+    completely.
+
+    @method _detachView
+    @param {View} view View to detach.
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _detachView: function (view) {
+        if (!view) {
+            return;
+        }
+
+        var viewInfo = this.getViewInfo(view) || {};
+
+        if (viewInfo.preserve) {
+            view.remove();
+            &#x2F;&#x2F; TODO: Detach events here for preserved Views? It is possible that
+            &#x2F;&#x2F; some event subscriptions are made on elements other than the
+            &#x2F;&#x2F; View&#x27;s &#x60;container&#x60;.
+        } else {
+            view.destroy({remove: true});
+
+            &#x2F;&#x2F; TODO: The following should probably happen automagically from
+            &#x2F;&#x2F; &#x60;destroy()&#x60; being called! Possibly &#x60;removeTarget()&#x60; as well.
+
+            &#x2F;&#x2F; Remove from view to view-info map.
+            delete this._viewInfoMap[Y.stamp(view, true)];
+
+            &#x2F;&#x2F; Remove from view-info instance property.
+            if (view === viewInfo.instance) {
+                delete viewInfo.instance;
+            }
+        }
+
+        view.removeTarget(this);
+    },
+
+    &#x2F;**
+    Getter for the &#x60;viewContainer&#x60; attribute.
+
+    @method _getViewContainer
+    @param {Node|null} value Current attribute value.
+    @return {Node} View container node.
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _getViewContainer: function (value) {
+        &#x2F;&#x2F; This wackiness is necessary to enable fully lazy creation of the
+        &#x2F;&#x2F; container node both when no container is specified and when one is
+        &#x2F;&#x2F; specified via a valueFn.
+
+        if (!value &amp;&amp; !this._viewContainer) {
+            &#x2F;&#x2F; Create a default container and set that as the new attribute
+            &#x2F;&#x2F; value. The &#x60;this._viewContainer&#x60; property prevents infinite
+            &#x2F;&#x2F; recursion.
+            value = this._viewContainer = this.create();
+            this._set(&#x27;viewContainer&#x27;, value);
+        }
+
+        return value;
+    },
+
+    &#x2F;**
+    Provides the default value for the &#x60;html5&#x60; attribute.
+
+    The value returned is dependent on the value of the &#x60;serverRouting&#x60;
+    attribute. When &#x60;serverRouting&#x60; is explicit set to &#x60;false&#x60; (not just falsy),
+    the default value for &#x60;html5&#x60; will be set to &#x60;false&#x60; for *all* browsers.
+
+    When &#x60;serverRouting&#x60; is &#x60;true&#x60; or &#x60;undefined&#x60; the returned value will be
+    dependent on the browser&#x27;s capability of using HTML5 history.
+
+    @method _initHtml5
+    @return {Boolean} Whether or not HTML5 history should be used.
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _initHtml5: function () {
+        &#x2F;&#x2F; When &#x60;serverRouting&#x60; is explicitly set to &#x60;false&#x60; (not just falsy),
+        &#x2F;&#x2F; forcing hash-based URLs in all browsers.
+        if (this.get(&#x27;serverRouting&#x27;) === false) {
+            return false;
+        }
+
+        &#x2F;&#x2F; Defaults to whether or not the browser supports HTML5 history.
+        return Router.html5;
+    },
+
+    &#x2F;**
+    Determines if the specified &#x60;view&#x60; is configured as a child of the specified
+    &#x60;parent&#x60; view. This requires both views to be either named-views, or view
+    instances created using configuration data that exists in the &#x60;views&#x60;
+    object, e.g. created by the &#x60;createView()&#x60; or &#x60;showView()&#x60; method.
+
+    @method _isChildView
+    @param {View|String} view The name of a view defined in the &#x60;views&#x60; object,
+      or a view instance.
+    @param {View|String} parent The name of a view defined in the &#x60;views&#x60;
+      object, or a view instance.
+    @return {Boolean} Whether the view is configured as a child of the parent.
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _isChildView: function (view, parent) {
+        var viewInfo   = this.getViewInfo(view),
+            parentInfo = this.getViewInfo(parent);
+
+        if (viewInfo &amp;&amp; parentInfo) {
+            return this.getViewInfo(viewInfo.parent) === parentInfo;
+        }
+
+        return false;
+    },
+
+    &#x2F;**
+    Determines if the specified &#x60;view&#x60; is configured as the parent of the
+    specified &#x60;child&#x60; view. This requires both views to be either named-views,
+    or view instances created using configuration data that exists in the
+    &#x60;views&#x60; object, e.g. created by the &#x60;createView()&#x60; or &#x60;showView()&#x60; method.
+
+    @method _isParentView
+    @param {View|String} view The name of a view defined in the &#x60;views&#x60; object,
+      or a view instance.
+    @param {View|String} parent The name of a view defined in the &#x60;views&#x60;
+      object, or a view instance.
+    @return {Boolean} Whether the view is configured as the parent of the child.
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _isParentView: function (view, child) {
+        var viewInfo  = this.getViewInfo(view),
+            childInfo = this.getViewInfo(child);
+
+        if (viewInfo &amp;&amp; childInfo) {
+            return this.getViewInfo(childInfo.parent) === viewInfo;
+        }
+
+        return false;
+    },
+
+    &#x2F;**
+    Underlying implementation for &#x60;navigate()&#x60;.
+
+    @method _navigate
+    @param {String} url The fully-resolved URL that the app should dispatch to
+      its route handlers to fulfill the enhanced navigation &quot;request&quot;, or use to
+      update &#x60;window.location&#x60; in non-HTML5 history capable browsers when
+      &#x60;serverRouting&#x60; is &#x60;true&#x60;.
+    @param {Object} [options] Additional options to configure the navigation.
+      These are mixed into the &#x60;navigate&#x60; event facade.
+        @param {Boolean} [options.replace] Whether or not the current history
+          entry will be replaced, or a new entry will be created. Will default
+          to &#x60;true&#x60; if the specified &#x60;url&#x60; is the same as the current URL.
+        @param {Boolean} [options.force] Whether the enhanced navigation
+          should occur even in browsers without HTML5 history. Will default to
+          &#x60;true&#x60; when &#x60;serverRouting&#x60; is falsy.
+    @protected
+    @see PjaxBase._navigate()
+    **&#x2F;
+    _navigate: function (url, options) {
+        if (!this.get(&#x27;serverRouting&#x27;)) {
+            &#x2F;&#x2F; Force navigation to be enhanced and handled by the app when
+            &#x2F;&#x2F; &#x60;serverRouting&#x60; is falsy because the server might not be able to
+            &#x2F;&#x2F; properly handle the request.
+            options = Y.merge({force: true}, options);
+        }
+
+        return PjaxBase.prototype._navigate.call(this, url, options);
+    },
+
+    &#x2F;**
+    Will either save a history entry using &#x60;pushState()&#x60; or the location hash,
+    or gracefully-degrade to sending a request to the server causing a full-page
+    reload.
+
+    Overrides Router&#x27;s &#x60;_save()&#x60; method to preform graceful-degradation when the
+    app&#x27;s &#x60;serverRouting&#x60; is &#x60;true&#x60; and &#x60;html5&#x60; is &#x60;false&#x60; by updating the full
+    URL via standard assignment to &#x60;window.location&#x60; or by calling
+    &#x60;window.location.replace()&#x60;; both of which will cause a request to the
+    server resulting in a full-page reload.
+
+    Otherwise this will just delegate off to Router&#x27;s &#x60;_save()&#x60; method allowing
+    the client-side enhanced routing to occur.
+
+    @method _save
+    @param {String} [url] URL for the history entry.
+    @param {Boolean} [replace=false] If &#x60;true&#x60;, the current history entry will
+      be replaced instead of a new one being added.
+    @chainable
+    @protected
+    @see Router._save()
+    **&#x2F;
+    _save: function (url, replace) {
+        var path;
+
+        &#x2F;&#x2F; Forces full-path URLs to always be used by modifying
+        &#x2F;&#x2F; &#x60;window.location&#x60; in non-HTML5 history capable browsers.
+        if (this.get(&#x27;serverRouting&#x27;) &amp;&amp; !this.get(&#x27;html5&#x27;)) {
+            &#x2F;&#x2F; Perform same-origin check on the specified URL.
+            if (!this._hasSameOrigin(url)) {
+                Y.error(&#x27;Security error: The new URL must be of the same origin as the current URL.&#x27;);
+                return this;
+            }
+
+            &#x2F;&#x2F; Either replace the current history entry or create a new one
+            &#x2F;&#x2F; while navigating to the &#x60;url&#x60;.
+            if (win) {
+                &#x2F;&#x2F; Results in the URL&#x27;s full path starting with &#x27;&#x2F;&#x27;.
+                path = this._joinURL(url || &#x27;&#x27;);
+
+                if (replace) {
+                    win.location.replace(path);
+                } else {
+                    win.location = path;
+                }
+            }
+
+            return this;
+        }
+
+        return Router.prototype._save.apply(this, arguments);
+    },
+
+    &#x2F;**
+    Performs the actual change of this app&#x27;s &#x60;activeView&#x60; by attaching the
+    &#x60;newView&#x60; to this app, and detaching the &#x60;oldView&#x60; from this app using any
+    specified &#x60;options&#x60;.
+
+    The &#x60;newView&#x60; is attached to the app by rendering it to the &#x60;viewContainer&#x60;,
+    and making this app a bubble target of its events.
+
+    The &#x60;oldView&#x60; is detached from the app by removing it from the
+    &#x60;viewContainer&#x60;, and removing this app as a bubble target for its events.
+    The &#x60;oldView&#x60; will either be preserved or properly destroyed.
+
+    **Note:** The &#x60;activeView&#x60; attribute is read-only and can be changed by
+    calling the &#x60;showView()&#x60; method.
+
+    @method _uiSetActiveView
+    @param {View} newView The View which is now this app&#x27;s &#x60;activeView&#x60;.
+    @param {View} [oldView] The View which was this app&#x27;s &#x60;activeView&#x60;.
+    @param {Object} [options] Optional object containing any of the following
+        properties:
+      @param {Function} [options.callback] Optional callback function to call
+        after new &#x60;activeView&#x60; is ready to use, the function will be passed:
+          @param {View} options.callback.view A reference to the new
+            &#x60;activeView&#x60;.
+      @param {Boolean} [options.prepend=false] Whether the &#x60;view&#x60; should be
+        prepended instead of appended to the &#x60;viewContainer&#x60;.
+      @param {Boolean} [options.render] Whether the &#x60;view&#x60; should be rendered.
+        **Note:** If no value is specified, a view instance will only be
+        rendered if it&#x27;s newly created by this method.
+      @param {Boolean} [options.update=false] Whether an existing view should
+        have its attributes updated by passing the &#x60;config&#x60; object to its
+        &#x60;setAttrs()&#x60; method. **Note:** This option does not have an effect if
+        the &#x60;view&#x60; instance is created as a result of calling this method.
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _uiSetActiveView: function (newView, oldView, options) {
+        options || (options = {});
+
+        var callback = options.callback,
+            isChild  = this._isChildView(newView, oldView),
+            isParent = !isChild &amp;&amp; this._isParentView(newView, oldView),
+            prepend  = !!options.prepend || isParent;
+
+        &#x2F;&#x2F; Prevent detaching (thus removing) the view we want to show. Also hard
+        &#x2F;&#x2F; to animate out and in, the same view.
+        if (newView === oldView) {
+            return callback &amp;&amp; callback.call(this, newView);
+        }
+
+        this._attachView(newView, prepend);
+        this._detachView(oldView);
+
+        if (callback) {
+            callback.call(this, newView);
+        }
+    },
+
+    &#x2F;&#x2F; -- Protected Event Handlers ---------------------------------------------
+
+    &#x2F;**
+    Handles the application&#x27;s &#x60;activeViewChange&#x60; event (which is fired when the
+    &#x60;activeView&#x60; attribute changes) by detaching the old view, attaching the new
+    view.
+
+    The &#x60;activeView&#x60; attribute is read-only, so the public API to change its
+    value is through the &#x60;showView()&#x60; method.
+
+    @method _afterActiveViewChange
+    @param {EventFacade} e
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _afterActiveViewChange: function (e) {
+        this._uiSetActiveView(e.newVal, e.prevVal, e.options);
+    }
+}, {
+    ATTRS: {
+        &#x2F;**
+        The application&#x27;s active&#x2F;visible view.
+
+        This attribute is read-only, to set the &#x60;activeView&#x60; use the
+        &#x60;showView()&#x60; method.
+
+        @attribute activeView
+        @type View
+        @default null
+        @readOnly
+        @see App.Base.showView()
+        @since 3.5.0
+        **&#x2F;
+        activeView: {
+            value   : null,
+            readOnly: true
+        },
+
+        &#x2F;**
+        Container node which represents the application&#x27;s bounding-box, into
+        which this app&#x27;s content will be rendered.
+
+        The container node serves as the host for all DOM events attached by the
+        app. Delegation is used to handle events on children of the container,
+        allowing the container&#x27;s contents to be re-rendered at any time without
+        losing event subscriptions.
+
+        The default container is the &#x60;&lt;body&gt;&#x60; Node, but you can override this in
+        a subclass, or by passing in a custom &#x60;container&#x60; config value at
+        instantiation time.
+
+        When &#x60;container&#x60; is overridden by a subclass or passed as a config
+        option at instantiation time, it may be provided as a selector string, a
+        DOM element, or a &#x60;Y.Node&#x60; instance. During initialization, this app&#x27;s
+        &#x60;create()&#x60; method will be called to convert the container into a
+        &#x60;Y.Node&#x60; instance if it isn&#x27;t one already and stamp it with the CSS
+        class: &#x60;&quot;yui3-app&quot;&#x60;.
+
+        The container is not added to the page automatically. This allows you to
+        have full control over how and when your app is actually rendered to
+        the page.
+
+        @attribute container
+        @type HTMLElement|Node|String
+        @default Y.one(&#x27;body&#x27;)
+        @initOnly
+        **&#x2F;
+        container: {
+            valueFn: function () {
+                return Y.one(&#x27;body&#x27;);
+            }
+        },
+
+        &#x2F;**
+        Whether or not this browser is capable of using HTML5 history.
+
+        This value is dependent on the value of &#x60;serverRouting&#x60; and will default
+        accordingly.
+
+        Setting this to &#x60;false&#x60; will force the use of hash-based history even on
+        HTML5 browsers, but please don&#x27;t do this unless you understand the
+        consequences.
+
+        @attribute html5
+        @type Boolean
+        @initOnly
+        @see serverRouting
+        **&#x2F;
+        html5: {
+            valueFn: &#x27;_initHtml5&#x27;
+        },
+
+        &#x2F;**
+        CSS selector string used to filter link click events so that only the
+        links which match it will have the enhanced-navigation behavior of pjax
+        applied.
+
+        When a link is clicked and that link matches this selector, navigating
+        to the link&#x27;s &#x60;href&#x60; URL using the enhanced, pjax, behavior will be
+        attempted; and the browser&#x27;s default way to navigate to new pages will
+        be the fallback.
+
+        By default this selector will match _all_ links on the page.
+
+        @attribute linkSelector
+        @type String|Function
+        @default &quot;a&quot;
+        **&#x2F;
+        linkSelector: {
+            value: &#x27;a&#x27;
+        },
+
+        &#x2F;**
+        Whether or not this application&#x27;s server is capable of properly routing
+        all requests and rendering the initial state in the HTML responses.
+
+        This can have three different values, each having particular
+        implications on how the app will handle routing and navigation:
+
+          * &#x60;undefined&#x60;: The best form of URLs will be chosen based on the
+            capabilities of the browser. Given no information about the server
+            environmentm a balanced approach to routing and navigation is
+            chosen.
+
+            The server should be capable of handling full-path requests, since
+            full-URLs will be generated by browsers using HTML5 history. If this
+            is a client-side-only app the server could handle full-URL requests
+            by sending a redirect back to the root with a hash-based URL, e.g:
+
+                Request:     http:&#x2F;&#x2F;example.com&#x2F;users&#x2F;1
+                Redirect to: http:&#x2F;&#x2F;example.com&#x2F;#&#x2F;users&#x2F;1
+
+          * &#x60;true&#x60;: The server is *fully* capable of properly handling requests
+            to all full-path URLs the app can produce.
+
+            This is the best option for progressive-enhancement because it will
+            cause **all URLs to always have full-paths**, which means the server
+            will be able to accurately handle all URLs this app produces. e.g.
+
+                http:&#x2F;&#x2F;example.com&#x2F;users&#x2F;1
+
+            To meet this strict full-URL requirement, browsers which are not
+            capable of using HTML5 history will make requests to the server
+            resulting in full-page reloads.
+
+          * &#x60;false&#x60;: The server is *not* capable of properly handling requests
+            to all full-path URLs the app can produce, therefore all routing
+            will be handled by this App instance.
+
+            Be aware that this will cause **all URLs to always be hash-based**,
+            even in browsers that are capable of using HTML5 history. e.g.
+
+                http:&#x2F;&#x2F;example.com&#x2F;#&#x2F;users&#x2F;1
+
+            A single-page or client-side-only app where the server sends a
+            &quot;shell&quot; page with JavaScript to the client might have this
+            restriction. If you&#x27;re setting this to &#x60;false&#x60;, read the following:
+
+        **Note:** When this is set to &#x60;false&#x60;, the server will *never* receive
+        the full URL because browsers do not send the fragment-part to the
+        server, that is everything after and including the &quot;#&quot;.
+
+        Consider the following example:
+
+            URL shown in browser: http:&#x2F;&#x2F;example.com&#x2F;#&#x2F;users&#x2F;1
+            URL sent to server:   http:&#x2F;&#x2F;example.com&#x2F;
+
+        You should feel bad about hurting our precious web if you forcefully set
+        either &#x60;serverRouting&#x60; or &#x60;html5&#x60; to &#x60;false&#x60;, because you&#x27;re basically
+        punching the web in the face here with your lossy URLs! Please make sure
+        you know what you&#x27;re doing and that you understand the implications.
+
+        Ideally you should always prefer full-path URLs (not &#x2F;#&#x2F;foo&#x2F;), and want
+        full-page reloads when the client&#x27;s browser is not capable of enhancing
+        the experience using the HTML5 history APIs. Setting this to &#x60;true&#x60; is
+        the best option for progressive-enhancement (and graceful-degradation).
+
+        @attribute serverRouting
+        @type Boolean
+        @default undefined
+        @initOnly
+        @since 3.5.0
+        **&#x2F;
+        serverRouting: {
+            valueFn  : function () { return Y.App.serverRouting; },
+            writeOnce: &#x27;initOnly&#x27;
+        },
+
+        &#x2F;**
+        The node into which this app&#x27;s &#x60;views&#x60; will be rendered when they become
+        the &#x60;activeView&#x60;.
+
+        The view container node serves as the container to hold the app&#x27;s
+        &#x60;activeView&#x60;. Each time the &#x60;activeView&#x60; is set via &#x60;showView()&#x60;, the
+        previous view will be removed from this node, and the new active view&#x27;s
+        &#x60;container&#x60; node will be appended.
+
+        The default view container is a &#x60;&lt;div&gt;&#x60; Node, but you can override this
+        in a subclass, or by passing in a custom &#x60;viewContainer&#x60; config value at
+        instantiation time. The &#x60;viewContainer&#x60; may be provided as a selector
+        string, DOM element, or a &#x60;Y.Node&#x60; instance (having the &#x60;viewContainer&#x60;
+        and the &#x60;container&#x60; be the same node is also supported).
+
+        The app&#x27;s &#x60;render()&#x60; method will stamp the view container with the CSS
+        class &#x60;&quot;yui3-app-views&quot;&#x60; and append it to the app&#x27;s &#x60;container&#x60; node if
+        it isn&#x27;t already, and any &#x60;activeView&#x60; will be appended to this node if
+        it isn&#x27;t already.
+
+        @attribute viewContainer
+        @type HTMLElement|Node|String
+        @default Y.Node.create(this.containerTemplate)
+        @initOnly
+        @since 3.5.0
+        **&#x2F;
+        viewContainer: {
+            getter   : &#x27;_getViewContainer&#x27;,
+            setter   : Y.one,
+            writeOnce: true
+        }
+    },
+
+    &#x2F;**
+    Properties that shouldn&#x27;t be turned into ad-hoc attributes when passed to
+    App&#x27;s constructor.
+
+    @property _NON_ATTRS_CFG
+    @type Array
+    @static
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _NON_ATTRS_CFG: [&#x27;views&#x27;]
+});
+
+&#x2F;&#x2F; -- Namespace ----------------------------------------------------------------
+Y.namespace(&#x27;App&#x27;).Base = AppBase;
+
+&#x2F;**
+Provides a top-level application component which manages navigation and views.
+
+This gives you a foundation and structure on which to build your application; it
+combines robust URL navigation with powerful routing and flexible view
+management.
+
+&#x60;Y.App&#x60; is both a namespace and constructor function. The &#x60;Y.App&#x60; class is
+special in that any &#x60;Y.App&#x60; class extensions that are included in the YUI
+instance will be **auto-mixed** on to the &#x60;Y.App&#x60; class. Consider this example:
+
+    YUI().use(&#x27;app-base&#x27;, &#x27;app-transitions&#x27;, function (Y) {
+        &#x2F;&#x2F; This will create two YUI Apps, &#x60;basicApp&#x60; will not have transitions,
+        &#x2F;&#x2F; but &#x60;fancyApp&#x60; will have transitions support included and turn it on.
+        var basicApp = new Y.App.Base(),
+            fancyApp = new Y.App({transitions: true});
+    });
+
+@class App
+@param {Object} [config] The following are configuration properties that can be
+    specified _in addition_ to default attribute values and the non-attribute
+    properties provided by &#x60;Y.Base&#x60;:
+  @param {Object} [config.views] Hash of view-name to metadata used to
+    declaratively describe an application&#x27;s views and their relationship with
+    the app and other views. The views specified here will override any defaults
+    provided by the &#x60;views&#x60; object on the &#x60;prototype&#x60;.
+@constructor
+@extends App.Base
+@uses App.Content
+@uses App.Transitions
+@uses PjaxContent
+@since 3.5.0
+**&#x2F;
+Y.App = Y.mix(Y.Base.create(&#x27;app&#x27;, AppBase, []), Y.App, true);
+
+&#x2F;**
+CSS classes used by &#x60;Y.App&#x60;.
+
+@property CLASS_NAMES
+@type Object
+@default {}
+@static
+@since 3.6.0
+**&#x2F;
+Y.App.CLASS_NAMES = {
+    app  : getClassName(&#x27;app&#x27;),
+    views: getClassName(&#x27;app&#x27;, &#x27;views&#x27;)
+};
+
+&#x2F;**
+Default &#x60;serverRouting&#x60; attribute value for all apps.
+
+@property serverRouting
+@type Boolean
+@default undefined
+@static
+@since 3.6.0
+**&#x2F;
+
+    </pre>
 </div>
 
                 </div>

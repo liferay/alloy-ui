@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSON - AlloyUI</title>
+    <title>lib&#x2F;yui3&#x2F;src&#x2F;graphics&#x2F;js&#x2F;GraphicBase.js - AlloyUI</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.4.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
@@ -1577,2518 +1577,1186 @@
 
             <div class="apidocs">
                 <div id="docs-main" class="content">
-                    <h1>JSON Class</h1>
-<div class="box meta">
-    
-
-    
-
-    
-        <div class="foundat">
-            Defined in: <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18372"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18372</code></a>
-        </div>
-    
-
-    
-</div>
-
-
-
-<div class="box intro">
-    <p>The JSON module adds support for serializing JavaScript objects into
-JSON strings and parsing JavaScript objects from strings in JSON format.</p>
-
-<p>The JSON namespace is added to your YUI instance including static methods
-Y.JSON.parse(..) and Y.JSON.stringify(..).</p>
-
-<p>The functionality and method signatures follow the ECMAScript 5
-specification.  In browsers with native JSON support, the native
-implementation is used.</p>
-
-<p>The <code>json</code> module is a rollup of <code>json-parse</code> and
-<code>json-stringify</code>.</p>
-
-<p>As their names suggest, <code>json-parse</code> adds support for parsing
-JSON data (Y.JSON.parse) and <code>json-stringify</code> for serializing
-JavaScript data into JSON strings (Y.JSON.stringify).  You may choose to
-include either of the submodules individually if you don't need the
-complementary functionality, or include the rollup for both.</p>
-</div>
-
-
-
-<div id="classdocs" class="tabview">
-    <ul class="aui-tabview-list aui-widget-hd api-class-tabs tabs" id="api-class-tabview-list">
-        <li class="yui3-tab api-class-tab index"><a class="aui-tab-label" href="#index">Index</a></li>
-
-        
-            <li class="aui-tab api-class-tab methods"><a class="aui-tab-label" href="#methods">Methods</a></li>
-        
-        
-            <li class="aui-tab api-class-tab properties"><a class="aui-tab-label" href="#properties">Properties</a></li>
-        
-        
-        
-    </ul>
-
-    <div class="aui-tabview-content aui-widget-bd" id="api-class-tabview-panel">
-        <div id="index" class="aui-tabview-content-item api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
-            
-                <div class="index-section methods">
-                    <h3>Methods</h3>
-
-                    <ul class="index-list methods">
-                        
-                            <li class="index-item method private">
-                                <a href="#method__revive">_revive</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method__revive">_revive</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_customTransport">customTransport</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method deprecated">
-                                <a href="#method_dateToString">dateToString</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_defaultTransport">defaultTransport</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_escapeException">escapeException</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_escapeException">escapeException</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_notify">notify</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_parse">parse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_parse">parse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_stringify">stringify</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-                <div class="index-section properties">
-                    <h3>Properties</h3>
-
-                    <ul class="index-list properties">
-                        
-                            <li class="index-item property private">
-                                <a href="#property__BRACKETS">_BRACKETS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__BRACKETS">_BRACKETS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property__default">_default</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__ESCAPES">_ESCAPES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__ESCAPES">_ESCAPES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNICODE_EXCEPTIONS">_UNICODE_EXCEPTIONS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNICODE_EXCEPTIONS">_UNICODE_EXCEPTIONS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNSAFE">_UNSAFE</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNSAFE">_UNSAFE</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__VALUES">_VALUES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__VALUES">_VALUES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_charCacheThreshold">charCacheThreshold</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property_Native">Native</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property_Native">Native</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_transports">transports</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeParse">useNativeParse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeParse">useNativeParse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeStringify">useNativeStringify</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-
-            
-        </div>
-
-        
-            <div id="methods" class="aui-tabview-content-item api-class-tabpanel">
-                <h2 class="off-left">Methods</h2>
-
-                
-                    <div id="method__revive" class="method item private">
-    <h3 class="name"><code>_revive</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>data</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l125"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:125</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Traverses nested objects, applying a reviver function to each (key,value)
-from the scope if the key:value's containing object.  The value returned
-from the function will replace the original value in the key:value pair.
-If the value returned is undefined, the key will be omitted from the
-returned object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">data</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Any JavaScript data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>filter or mutation function</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    The results of the filtered data
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method__revive" class="method item private">
-    <h3 class="name"><code>_revive</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>data</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18496"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18496</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Traverses nested objects, applying a reviver function to each (key,value)
-from the scope if the key:value's containing object.  The value returned
-from the function will replace the original value in the key:value pair.
-If the value returned is undefined, the key will be omitted from the
-returned object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">data</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Any JavaScript data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>filter or mutation function</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    The results of the filtered data
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_customTransport" class="method item">
-    <h3 class="name"><code>customTransport</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>id</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l56"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:56</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Create a custom transport of type and return it's object</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">id</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The id of the transport to create.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_dateToString" class="method item deprecated">
-    <h3 class="name"><code>dateToString</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>d</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-        <span class="flag deprecated" title="Use a replacer function">deprecated</span>
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l266"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:266</code></a>
-        
-        </p>
-
-
-        
-            <p>Deprecated: Use a replacer function</p>
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Serializes a Date instance as a UTC date string.  Used internally by
-stringify.  Override this method if you need Dates serialized in a
-different format.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">d</code>
-                        <span class="type"><a href="../classes/Date.html" class="crosslink">Date</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The Date to serialize</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    stringified Date in UTC format YYYY-MM-DDTHH:mm:SSZ
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_defaultTransport" class="method item">
-    <h3 class="name"><code>defaultTransport</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[id]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l18"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:18</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[id]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The transport to set as the default, if empty a new transport is created.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
-                    
-                    The transport object with a <code>send</code> method
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_escapeException" class="method item private">
-    <h3 class="name"><code>escapeException</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>c</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l112"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:112</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replaces specific unicode characters with their appropriate \unnnn
-format. Some browsers ignore certain characters during eval.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">c</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Unicode character</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    the \unnnn escapement of the character
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_escapeException" class="method item private">
-    <h3 class="name"><code>escapeException</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>c</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18483"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18483</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replaces specific unicode characters with their appropriate \unnnn
-format. Some browsers ignore certain characters during eval.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">c</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Unicode character</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    the \unnnn escapement of the character
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_notify" class="method item">
-    <h3 class="name"><code>notify</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>event</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>transaction</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>config</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l71"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:71</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Fired from the notify method of the transport which in turn fires
-the event on the IO object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">event</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The name of the event</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">transaction</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The transaction object</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">config</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The configuration object for this transaction</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>s</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18530"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18530</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Parse a JSON string, returning the native JavaScript representation.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">s</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JSON string data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) function(k,v) passed each key value
-         pair of object literals, allowing pruning or altering values</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    the native JavaScript representation of the JSON string
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>s</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l159"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:159</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Parse a JSON string, returning the native JavaScript representation.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">s</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JSON string data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) function(k,v) passed each key value
-         pair of object literals, allowing pruning or altering values</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    the native JavaScript representation of the JSON string
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_stringify" class="method item">
-    <h3 class="name"><code>stringify</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>o</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>w</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>ind</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l290"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:290</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Converts an arbitrary value to a JSON string representation.</p>
-
-<p>Objects with cyclical references will trigger an exception.</p>
-
-<p>If a whitelist is provided, only matching object keys will be
-included.  Alternately, a replacer function may be passed as the
-second parameter.  This function is executed on every value in the
-input, and its return value will be used in place of the original value.
-This is useful to serialize specialized objects or class instances.</p>
-
-<p>If a positive integer or non-empty string is passed as the third
-parameter, the output will be formatted with carriage returns and
-indentation for readability.  If a String is passed (such as "\t") it
-will be used once for each indentation level.  If a number is passed,
-that number of spaces will be used.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">o</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>any arbitrary value to convert to JSON string</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">w</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) whitelist of acceptable object
-                 keys to include, or a replacer function to modify the
-                 raw value before serialization</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">ind</code>
-                        <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) indentation character or depth of
-                 spaces to format the output.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    JSON string representation of the input
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-            <div id="properties" class="aui-tabview-content-item api-class-tabpanel">
-                <h2 class="off-left">Properties</h2>
-
-                
-                    <div id="property__BRACKETS" class="property item private">
-    <h3 class="name"><code>_BRACKETS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18462"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18462</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Third step in the safety evaluation.  Regex used to remove all open
-square brackets following a colon, comma, or at the beginning of the
-string.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__BRACKETS" class="property item private">
-    <h3 class="name"><code>_BRACKETS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l91"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:91</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Third step in the safety evaluation.  Regex used to remove all open
-square brackets following a colon, comma, or at the beginning of the
-string.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__default" class="property item">
-    <h3 class="name"><code>_default</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l11"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:11</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>The ID of the default IO transport, defaults to <code>xhr</code></p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__ESCAPES" class="property item private">
-    <h3 class="name"><code>_ESCAPES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l71"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:71</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>First step in the safety evaluation.  Regex used to replace all escape
-sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__ESCAPES" class="property item private">
-    <h3 class="name"><code>_ESCAPES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18442"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18442</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>First step in the safety evaluation.  Regex used to replace all escape
-sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNICODE_EXCEPTIONS" class="property item private">
-    <h3 class="name"><code>_UNICODE_EXCEPTIONS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l57"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:57</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replace certain Unicode characters that JavaScript may handle incorrectly
-during eval--either by deleting them or treating them as line
-endings--with escape sequences.
-IMPORTANT NOTE: This regex will be used to modify the input if a match is
-found.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNICODE_EXCEPTIONS" class="property item private">
-    <h3 class="name"><code>_UNICODE_EXCEPTIONS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18428"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18428</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replace certain Unicode characters that JavaScript may handle incorrectly
-during eval--either by deleting them or treating them as line
-endings--with escape sequences.
-IMPORTANT NOTE: This regex will be used to modify the input if a match is
-found.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNSAFE" class="property item private">
-    <h3 class="name"><code>_UNSAFE</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18473"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18473</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Final step in the safety evaluation.  Regex used to test the string left
-after all previous replacements for invalid characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNSAFE" class="property item private">
-    <h3 class="name"><code>_UNSAFE</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l102"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:102</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Final step in the safety evaluation.  Regex used to test the string left
-after all previous replacements for invalid characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__VALUES" class="property item private">
-    <h3 class="name"><code>_VALUES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18452"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18452</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Second step in the safety evaluation.  Regex used to replace all simple
-values with ']' characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__VALUES" class="property item private">
-    <h3 class="name"><code>_VALUES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l81"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:81</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Second step in the safety evaluation.  Regex used to replace all simple
-values with ']' characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_charCacheThreshold" class="property item">
-    <h3 class="name"><code>charCacheThreshold</code></h3>
-    <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l322"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:322</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Number of occurrences of a special character within a single call to
-stringify that should trigger promotion of that character to a dedicated
-preprocess step for future calls.  This is only used in environments
-that don't support native JSON, or when useNativeStringify is set to
-false.</p>
-
-<p>So, if set to 50 and an object is passed to stringify that includes
-strings containing the special character \x07 more than 50 times,
-subsequent calls to stringify will process object strings through a
-faster serialization path for \x07 before using the generic, slower,
-replacement process for all special characters.</p>
-
-<p>To prime the preprocessor cache, set this value to 1, then call
-<code>Y.JSON.stringify("<em>(all special characters to
-cache)</em>");</code>, then return this setting to a more conservative
-value.</p>
-
-<p>Special characters \ " \b \t \n \f \r are already cached.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> 100</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_Native" class="property item private">
-    <h3 class="name"><code>Native</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18416"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18416</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Alias to native browser implementation of the JSON object if available.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_Native" class="property item private">
-    <h3 class="name"><code>Native</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l45"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:45</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Alias to native browser implementation of the JSON object if available.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_transports" class="property item">
-    <h3 class="name"><code>transports</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l38"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:38</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>An object hash of custom transports available to IO</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeParse" class="property item">
-    <h3 class="name"><code>useNativeParse</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18586"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18586</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON parse if the browser has a native implementation.
-In general, this is a good idea.  See the Known Issues section in the
-JSON user guide for caveats.  The default value is true for browsers with
-native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeParse" class="property item">
-    <h3 class="name"><code>useNativeParse</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l215"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:215</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON parse if the browser has a native implementation.
-In general, this is a good idea.  See the Known Issues section in the
-JSON user guide for caveats.  The default value is true for browsers with
-native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeStringify" class="property item">
-    <h3 class="name"><code>useNativeStringify</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l253"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:253</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON stringify if the browser has a native
-implementation.  In general, this is a good idea.  See the Known Issues
-section in the JSON user guide for caveats.  The default value is true
-for browsers with native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-
-        
-    </div>
+                    <h1 class="file-heading">File: lib&#x2F;yui3&#x2F;src&#x2F;graphics&#x2F;js&#x2F;GraphicBase.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;**
+ * 
+ * &lt;p&gt;The &#x60;Graphics&#x60; module provides a JavaScript API for creating shapes in a variety of formats across 
+ * a &lt;a href=&quot;http:&#x2F;&#x2F;developer.yahoo.com&#x2F;yui&#x2F;articles&#x2F;gbs&quot;&gt;browser test baseline&lt;&#x2F;a&gt;. 
+ * Based on device and browser capabilities, &#x60;Graphics&#x60; leverages &lt;a href=&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;TR&#x2F;SVG&#x2F;&quot;&gt;SVG&lt;&#x2F;a&gt;, 
+ * &lt;a href=&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;TR&#x2F;html5&#x2F;the-canvas-element.html&quot;&gt;Canvas&lt;&#x2F;a&gt; and &lt;a href=&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;TR&#x2F;NOTE-VML&quot;&gt;VML&lt;&#x2F;a&gt; 
+ * to render its graphical elements.&lt;&#x2F;p&gt;
+ *
+ * &lt;p&gt;The &#x60;Graphics&#x60; module features a &lt;a href=&quot;..&#x2F;classes&#x2F;Graphic.html&quot;&gt;&#x60;Graphic&#x60;&lt;&#x2F;a&gt; class that allows you to easily create and manage shapes. 
+ * Currently, a &lt;a href=&quot;..&#x2F;classes&#x2F;Graphic.html&quot;&gt;&#x60;Graphic&#x60;&lt;&#x2F;a&gt; instance can be used to create predifined shapes and free-form polygons with fill 
+ * and stroke properties.&lt;&#x2F;p&gt;  
+ *
+ * &lt;p&gt;The &#x60;Graphics&#x60; module normalizes an API through the use of alias and implementation classes that share
+ * interfaces. Each alias class points to an appropriate implementation class dependent on the browser&#x27;s 
+ * capabilities. There should rarely, if ever, be a need to interact directly with an implementation class.&lt;&#x2F;p&gt;
+ *
+ * &lt;p&gt;Below is a list of available classes. 
+ *     &lt;ul&gt;
+ *         &lt;li&gt;&lt;a href=&quot;..&#x2F;classes&#x2F;Graphic.html&quot;&gt;&#x60;Graphic&#x60;&lt;&#x2F;a&gt;
+ *         &lt;li&gt;&lt;a href=&quot;..&#x2F;classes&#x2F;Shape.html&quot;&gt;&#x60;Shape&#x60;&lt;&#x2F;a&gt;
+ *         &lt;li&gt;&lt;a href=&quot;..&#x2F;classes&#x2F;Circle.html&quot;&gt;&#x60;Circle&#x60;&lt;&#x2F;a&gt;
+ *         &lt;li&gt;&lt;a href=&quot;..&#x2F;classes&#x2F;Ellipse.html&quot;&gt;&#x60;Ellipse&#x60;&lt;&#x2F;a&gt;
+ *         &lt;li&gt;&lt;a href=&quot;..&#x2F;classes&#x2F;Rect.html&quot;&gt;&#x60;Rect&#x60;&lt;&#x2F;a&gt;
+ *         &lt;li&gt;&lt;a href=&quot;..&#x2F;classes&#x2F;Path.html&quot;&gt;&#x60;Path&#x60;&lt;&#x2F;a&gt;
+ *     &lt;&#x2F;ul&gt;
+ * You can also extend the &#x60;Shape&#x60; class to create your own custom shape classes.&lt;&#x2F;p&gt;
+ * @module graphics
+ * @main graphics
+ *&#x2F;
+var SETTER = &quot;setter&quot;,
+	PluginHost = Y.Plugin.Host,
+    VALUE = &quot;value&quot;,
+    VALUEFN = &quot;valueFn&quot;,
+    READONLY = &quot;readOnly&quot;,
+    Y_LANG = Y.Lang,
+    STR = &quot;string&quot;,
+    WRITE_ONCE = &quot;writeOnce&quot;,
+    GraphicBase,
+    AttributeLite;
+    
+    &#x2F;**
+	 * AttributeLite provides Attribute-like getters and setters for shape classes in the Graphics module. It provides a get&#x2F;set API without the event infastructure.
+     * This class is temporary and a work in progress.
+	 *
+	 * @class AttributeLite
+	 * @constructor
+	 *&#x2F;
+    AttributeLite = function()
+    {
+        var host = this; &#x2F;&#x2F; help compression
+        
+        &#x2F;&#x2F; Perf tweak - avoid creating event literals if not required.
+        host._ATTR_E_FACADE = {};
+        
+        Y.EventTarget.call(this, {emitFacade:true});
+        host._state = {};
+        host.prototype = Y.mix(AttributeLite.prototype, host.prototype);
+    };
+
+    AttributeLite.prototype = {
+		&#x2F;**
+		 * Initializes the attributes for a shape. If an attribute config is passed into the constructor of the host, 
+		 * the initial values will be overwritten.
+		 *
+		 * @method addAttrs
+		 * @param {Object} cfg Optional object containing attributes key value pairs to be set.
+		 *&#x2F;
+		addAttrs: function(cfg)
+		{
+			var host = this,
+				attrConfig = this.constructor.ATTRS, 
+				attr,
+				i,
+				fn,
+				state = host._state;
+			for(i in attrConfig)
+			{
+				if(attrConfig.hasOwnProperty(i))
+				{
+					attr = attrConfig[i];
+					if(attr.hasOwnProperty(VALUE))
+					{
+						state[i] = attr.value;
+					}
+					else if(attr.hasOwnProperty(VALUEFN))
+					{
+						fn = attr.valueFn;
+						if(Y_LANG.isString(fn))
+						{
+							state[i] = host[fn].apply(host);
+						}
+						else
+						{
+							state[i] = fn.apply(host);
+						}
+					}
+			    }
+            }
+			host._state = state;
+            for(i in attrConfig)
+			{
+				if(attrConfig.hasOwnProperty(i))
+				{
+					attr = attrConfig[i];
+                    if(attr.hasOwnProperty(READONLY) &amp;&amp; attr.readOnly)
+					{
+						continue;
+					}
+
+					if(attr.hasOwnProperty(WRITE_ONCE) &amp;&amp; attr.writeOnce)
+					{
+						attr.readOnly = true;
+					}
+
+					if(cfg &amp;&amp; cfg.hasOwnProperty(i))
+					{
+						if(attr.hasOwnProperty(SETTER))
+						{
+							host._state[i] = attr.setter.apply(host, [cfg[i]]);
+						}
+						else
+						{
+							host._state[i] = cfg[i];
+						}
+					}
+				}
+			}
+		},
+
+        &#x2F;**
+         * For a given item, returns the value of the property requested, or undefined if not found.
+         *
+         * @method get
+         * @param name {String} The name of the item
+         * @return {Any} The value of the supplied property.
+         *&#x2F;
+        get: function(attr)
+        {
+            var host = this,
+                getter,
+                attrConfig = host.constructor.ATTRS;
+            if(attrConfig &amp;&amp; attrConfig[attr])
+            {
+                getter = attrConfig[attr].getter;
+                if(getter)
+                {
+                    if(typeof getter == STR)
+                    {
+                        return host[getter].apply(host);
+                    }
+                    return attrConfig[attr].getter.apply(host);
+                }
+
+                return host._state[attr];
+            }
+            return null;
+        },
+    
+        &#x2F;**
+         * Sets the value of an attribute.
+         *
+         * @method set
+         * @param {String|Object} name The name of the attribute. Alternatively, an object of key value pairs can 
+         * be passed in to set multiple attributes at once.
+         * @param {Any} value The value to set the attribute to. This value is ignored if an object is received as 
+         * the name param.
+         *&#x2F;
+        set: function(attr, val)
+        {
+            var i;
+            if(Y_LANG.isObject(attr))
+            {
+                for(i in attr)
+                {
+                    if(attr.hasOwnProperty(i))
+                    {
+                        this._set(i, attr[i]);
+                    }
+                }
+            }
+            else
+            {
+                this._set.apply(this, arguments);
+            }
+        },
+
+		&#x2F;**
+         * Provides setter logic. Used by &#x60;set&#x60;.
+         *
+         * @method _set
+         * @param {String|Object} name The name of the attribute. Alternatively, an object of key value pairs can 
+         * be passed in to set multiple attributes at once.
+         * @param {Any} value The value to set the attribute to. This value is ignored if an object is received as 
+         * the name param.
+		 * @protected
+		 *&#x2F;
+		_set: function(attr, val)
+		{
+			var host = this,
+				setter,
+				args,
+				attrConfig = host.constructor.ATTRS;
+			if(attrConfig &amp;&amp; attrConfig.hasOwnProperty(attr))
+			{
+				setter = attrConfig[attr].setter;
+				if(setter)
+				{
+					args = [val];
+					if(typeof setter == STR)
+					{
+						val = host[setter].apply(host, args);
+					}
+					else
+                    {
+					    val = attrConfig[attr].setter.apply(host, args);
+                    }
+				}
+				host._state[attr] = val;
+			}
+		}
+	};
+    Y.mix(AttributeLite, Y.EventTarget, false, null, 1);
+	Y.AttributeLite = AttributeLite;
+
+    &#x2F;**
+     * GraphicBase serves as the base class for the graphic layer. It serves the same purpose as
+     * Base but uses a lightweight getter&#x2F;setter class instead of Attribute.
+     * This class is temporary and a work in progress.
+     *
+     * @class GraphicBase
+     * @constructor
+     * @param {Object} cfg Key value pairs for attributes
+     *&#x2F;
+    GraphicBase = function(cfg)
+    {
+        var host = this,
+            PluginHost = Y.Plugin &amp;&amp; Y.Plugin.Host;  
+        if (host._initPlugins &amp;&amp; PluginHost) {
+            PluginHost.call(host);
+        }
+        
+        host.name = host.constructor.NAME;
+        host._eventPrefix = host.constructor.EVENT_PREFIX || host.constructor.NAME;
+        AttributeLite.call(host);
+        host.addAttrs(cfg);
+        host.init.apply(this, arguments);
+        if (host._initPlugins) {
+            &#x2F;&#x2F; Need to initPlugins manually, to handle constructor parsing, static Plug parsing
+            host._initPlugins(cfg);
+        }
+        host.initialized = true;
+    };
+
+    GraphicBase.NAME = &quot;baseGraphic&quot;;
+
+    GraphicBase.prototype = {
+        &#x2F;**
+         * Init method, invoked during construction.
+         * Fires an init event after calling &#x60;initializer&#x60; on implementers.
+         *
+         * @method init
+         * @protected 
+         *&#x2F;
+        init: function()
+        {
+            this.publish(&quot;init&quot;, {
+                fireOnce:true
+            });
+            this.initializer.apply(this, arguments);
+            this.fire(&quot;init&quot;, {cfg: arguments[0]});
+        },
+
+        &#x2F;**
+         * Camel case concatanates two strings.
+         *
+         * @method _camelCaseConcat
+         * @param {String} prefix The first string
+         * @param {String} name The second string
+         * @return String
+         * @private
+         *&#x2F;
+        _camelCaseConcat: function(prefix, name)
+        {
+            return prefix + name.charAt(0).toUpperCase() + name.slice(1);
+        }
+    };
+&#x2F;&#x2F;Straightup augment, no wrapper functions
+Y.mix(GraphicBase, Y.AttributeLite, false, null, 1);
+Y.mix(GraphicBase, PluginHost, false, null, 1);
+GraphicBase.prototype.constructor = GraphicBase;
+GraphicBase.plug = PluginHost.plug;
+GraphicBase.unplug = PluginHost.unplug;
+Y.GraphicBase = GraphicBase;
+
+
+&#x2F;**
+ * &#x60;Drawing&#x60; provides a set of drawing methods used by &#x60;Path&#x60; and custom shape classes. 
+ * &#x60;Drawing&#x60; has the following implementations based on browser capability.
+ *  &lt;ul&gt;
+ *      &lt;li&gt;&lt;a href=&quot;SVGDrawing.html&quot;&gt;&#x60;SVGDrawing&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;VMLDrawing.html&quot;&gt;&#x60;VMLDrawing&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;CanvasDrawing.html&quot;&gt;&#x60;CanvasDrawing&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *  &lt;&#x2F;ul&gt;
+ *
+ * @class Drawing
+ * @constructor
+ *&#x2F;
+    &#x2F;**
+     * Draws a line segment using the current line style from the current drawing position to the specified x and y coordinates.
+     * 
+     * @method lineTo
+     * @param {Number} point1 x-coordinate for the end point.
+     * @param {Number} point2 y-coordinate for the end point.
+     *&#x2F;
+    &#x2F;**
+     * Moves the current drawing position to specified x and y coordinates.
+     *
+     * @method moveTo
+     * @param {Number} x x-coordinate for the end point.
+     * @param {Number} y y-coordinate for the end point.
+     *&#x2F;
+    &#x2F;**
+     * Draws a bezier curve.
+     *
+     * @method curveTo
+     * @param {Number} cp1x x-coordinate for the first control point.
+     * @param {Number} cp1y y-coordinate for the first control point.
+     * @param {Number} cp2x x-coordinate for the second control point.
+     * @param {Number} cp2y y-coordinate for the second control point.
+     * @param {Number} x x-coordinate for the end point.
+     * @param {Number} y y-coordinate for the end point.
+     *&#x2F;
+    &#x2F;**
+     * Draws a quadratic bezier curve.
+     *
+     * @method quadraticCurveTo
+     * @param {Number} cpx x-coordinate for the control point.
+     * @param {Number} cpy y-coordinate for the control point.
+     * @param {Number} x x-coordinate for the end point.
+     * @param {Number} y y-coordinate for the end point.
+     *&#x2F;
+    &#x2F;**
+     * Draws a rectangle.
+     *
+     * @method drawRect
+     * @param {Number} x x-coordinate
+     * @param {Number} y y-coordinate
+     * @param {Number} w width
+     * @param {Number} h height
+     *&#x2F;
+    &#x2F;**
+     * Draws a rectangle with rounded corners.
+     * 
+     * @method drawRoundRect
+     * @param {Number} x x-coordinate
+     * @param {Number} y y-coordinate
+     * @param {Number} w width
+     * @param {Number} h height
+     * @param {Number} ew width of the ellipse used to draw the rounded corners
+     * @param {Number} eh height of the ellipse used to draw the rounded corners
+     *&#x2F;
+    &#x2F;**
+     * Completes a drawing operation. 
+     *
+     * @method end
+     *&#x2F;
+    &#x2F;**
+     * Clears the path.
+     *
+     * @method clear
+     *&#x2F;
+&#x2F;**
+ *  &lt;p&gt;Base class for creating shapes.&lt;&#x2F;p&gt;
+ *  &lt;p&gt;&#x60;Shape&#x60; is an abstract class and is not meant to be used directly. The following classes extend
+ *  &#x60;Shape&#x60;.
+ *
+ *  &lt;ul&gt;
+ *      &lt;li&gt;&lt;a href=&quot;Circle.html&quot;&gt;&#x60;Circle&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;Ellipse.html&quot;&gt;&#x60;Ellipse&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;Rect.html&quot;&gt;&#x60;Rect&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;Path.html&quot;&gt;&#x60;Path&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *  &lt;&#x2F;ul&gt;
+ *
+ * &#x60;Shape&#x60; can also be extended to create custom shape classes.&lt;&#x2F;p&gt;
+ *
+ * &#x60;Shape&#x60; has the following implementations based on browser capability.
+ *  &lt;ul&gt;
+ *      &lt;li&gt;&lt;a href=&quot;SVGShape.html&quot;&gt;&#x60;SVGShape&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;VMLShape.html&quot;&gt;&#x60;VMLShape&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;CanvasShape.html&quot;&gt;&#x60;CanvasShape&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *  &lt;&#x2F;ul&gt;
+ *
+ * It is not necessary to interact with these classes directly. &#x60;Shape&#x60; will point to the appropriate implemention.&lt;&#x2F;p&gt;
+ *
+ * @class Shape
+ * @constructor
+ * @param {Object} cfg (optional) Attribute configs
+ *&#x2F;
+    &#x2F;**
+     * Init method, invoked during construction.
+     * Calls &#x60;initializer&#x60; method.
+     *
+     * @method init
+     * @protected
+     *&#x2F;
+	&#x2F;**
+	 * Initializes the shape
+	 *
+	 * @private
+	 * @method initializer
+	 *&#x2F;
+	&#x2F;**
+	 * Add a class name to each node.
+	 *
+	 * @method addClass
+	 * @param {String} className the class name to add to the node&#x27;s class attribute 
+	 *&#x2F;
+	&#x2F;**
+	 * Removes a class name from each node.
+	 *
+	 * @method removeClass
+	 * @param {String} className the class name to remove from the node&#x27;s class attribute
+	 *&#x2F;
+	&#x2F;**
+	 * Gets the current position of the node in page coordinates.
+	 *
+	 * @method getXY
+	 * @return Array The XY position of the shape.
+	 *&#x2F;
+	&#x2F;**
+	 * Set the position of the shape in page coordinates, regardless of how the node is positioned.
+	 *
+	 * @method setXY
+	 * @param {Array} Contains x &amp; y values for new position (coordinates are page-based)
+	 *&#x2F;
+	&#x2F;**
+	 * Determines whether the node is an ancestor of another HTML element in the DOM hierarchy. 
+	 *
+	 * @method contains
+	 * @param {Shape | HTMLElement} needle The possible node or descendent
+	 * @return Boolean Whether or not this shape is the needle or its ancestor.
+	 *&#x2F;
+	&#x2F;**
+	 * Compares nodes to determine if they match.
+	 * Node instances can be compared to each other and&#x2F;or HTMLElements.
+	 * @method compareTo
+	 * @param {HTMLElement | Node} refNode The reference node to compare to the node.
+	 * @return {Boolean} True if the nodes match, false if they do not.
+	 *&#x2F;
+	&#x2F;**
+	 * Test if the supplied node matches the supplied selector.
+	 *
+	 * @method test
+	 * @param {String} selector The CSS selector to test against.
+	 * @return Boolean Wheter or not the shape matches the selector.
+	 *&#x2F;
+    &#x2F;**
+     * Sets the value of an attribute.
+     *
+     * @method set
+     * @param {String|Object} name The name of the attribute. Alternatively, an object of key value pairs can 
+     * be passed in to set multiple attributes at once.
+     * @param {Any} value The value to set the attribute to. This value is ignored if an object is received as 
+     * the name param.
+     *&#x2F;
+	&#x2F;**
+	 * Specifies a 2d translation.
+	 *
+	 * @method translate
+	 * @param {Number} x The value to transate on the x-axis.
+	 * @param {Number} y The value to translate on the y-axis.
+	 *&#x2F;
+	&#x2F;**
+	 * Translates the shape along the x-axis. When translating x and y coordinates,
+	 * use the &#x60;translate&#x60; method.
+	 *
+	 * @method translateX
+	 * @param {Number} x The value to translate.
+	 *&#x2F;
+	&#x2F;**
+	 * Translates the shape along the y-axis. When translating x and y coordinates,
+	 * use the &#x60;translate&#x60; method.
+	 *
+	 * @method translateY
+	 * @param {Number} y The value to translate.
+	 *&#x2F;
+    &#x2F;**
+     * Skews the shape around the x-axis and y-axis.
+     *
+     * @method skew
+     * @param {Number} x The value to skew on the x-axis.
+     * @param {Number} y The value to skew on the y-axis.
+     *&#x2F;
+	&#x2F;**
+	 * Skews the shape around the x-axis.
+	 *
+	 * @method skewX
+	 * @param {Number} x x-coordinate
+	 *&#x2F;
+	&#x2F;**
+	 * Skews the shape around the y-axis.
+	 *
+	 * @method skewY
+	 * @param {Number} y y-coordinate
+	 *&#x2F;
+	&#x2F;**
+	 * Rotates the shape clockwise around it transformOrigin.
+	 *
+	 * @method rotate
+	 * @param {Number} deg The degree of the rotation.
+	 *&#x2F;
+	&#x2F;**
+	 * Specifies a 2d scaling operation.
+	 *
+	 * @method scale
+	 * @param {Number} val
+	 *&#x2F;
+	&#x2F;**
+	 * Returns the bounds for a shape.
+	 *
+     * Calculates the a new bounding box from the original corner coordinates (base on size and position) and the transform matrix.
+     * The calculated bounding box is used by the graphic instance to calculate its viewBox. 
+     *
+	 * @method getBounds
+	 * @return Object
+	 *&#x2F;
+    &#x2F;**
+     * Destroys the instance.
+     *
+     * @method destroy
+     *&#x2F;
+	&#x2F;**
+	 * An array of x, y values which indicates the transformOrigin in which to rotate the shape. Valid values range between 0 and 1 representing a 
+	 * fraction of the shape&#x27;s corresponding bounding box dimension. The default value is [0.5, 0.5].
+	 *
+	 * @config transformOrigin
+	 * @type Array
+	 *&#x2F;
+    &#x2F;**
+     * &lt;p&gt;A string containing, in order, transform operations applied to the shape instance. The &#x60;transform&#x60; string can contain the following values:
+     *     
+     *    &lt;dl&gt;
+     *        &lt;dt&gt;rotate&lt;&#x2F;dt&gt;&lt;dd&gt;Rotates the shape clockwise around it transformOrigin.&lt;&#x2F;dd&gt;
+     *        &lt;dt&gt;translate&lt;&#x2F;dt&gt;&lt;dd&gt;Specifies a 2d translation.&lt;&#x2F;dd&gt;
+     *        &lt;dt&gt;skew&lt;&#x2F;dt&gt;&lt;dd&gt;Skews the shape around the x-axis and y-axis.&lt;&#x2F;dd&gt;
+     *        &lt;dt&gt;scale&lt;&#x2F;dt&gt;&lt;dd&gt;Specifies a 2d scaling operation.&lt;&#x2F;dd&gt;
+     *        &lt;dt&gt;translateX&lt;&#x2F;dt&gt;&lt;dd&gt;Translates the shape along the x-axis.&lt;&#x2F;dd&gt;
+     *        &lt;dt&gt;translateY&lt;&#x2F;dt&gt;&lt;dd&gt;Translates the shape along the y-axis.&lt;&#x2F;dd&gt;
+     *        &lt;dt&gt;skewX&lt;&#x2F;dt&gt;&lt;dd&gt;Skews the shape around the x-axis.&lt;&#x2F;dd&gt;
+     *        &lt;dt&gt;skewY&lt;&#x2F;dt&gt;&lt;dd&gt;Skews the shape around the y-axis.&lt;&#x2F;dd&gt;
+     *    &lt;&#x2F;dl&gt;
+     * &lt;&#x2F;p&gt;
+     * &lt;p&gt;Applying transforms through the transform attribute will reset the transform matrix and apply a new transform. The shape class also contains corresponding methods for each transform
+     * that will apply the transform to the current matrix. The below code illustrates how you might use the &#x60;transform&#x60; attribute to instantiate a recangle with a rotation of 45 degrees.&lt;&#x2F;p&gt;
+            var myRect = new Y.Rect({
+                type:&quot;rect&quot;,
+                width: 50,
+                height: 40,
+                transform: &quot;rotate(45)&quot;
+            };
+     * &lt;p&gt;The code below would apply &#x60;translate&#x60; and &#x60;rotate&#x60; to an existing shape.&lt;&#x2F;p&gt;
+    
+        myRect.set(&quot;transform&quot;, &quot;translate(40, 50) rotate(45)&quot;);
+	 * @config transform
+     * @type String  
+	 *&#x2F;
+	&#x2F;**
+	 * Unique id for class instance.
+	 *
+	 * @config id
+	 * @type String
+	 *&#x2F;
+	&#x2F;**
+	 * Indicates the x position of shape.
+	 *
+	 * @config x
+	 * @type Number
+	 *&#x2F;
+	&#x2F;**
+	 * Indicates the y position of shape.
+	 *
+	 * @config y
+	 * @type Number
+	 *&#x2F;
+	&#x2F;**
+	 * Indicates the width of the shape
+	 *
+	 * @config width
+	 * @type Number
+	 *&#x2F;
+	&#x2F;**
+	 * Indicates the height of the shape
+	 * 
+	 * @config height
+	 * @type Number
+	 *&#x2F;
+	&#x2F;**
+	 * Indicates whether the shape is visible.
+	 *
+	 * @config visible
+	 * @type Boolean
+	 *&#x2F;
+	&#x2F;**
+	 * Contains information about the fill of the shape. 
+     *  &lt;dl&gt;
+     *      &lt;dt&gt;color&lt;&#x2F;dt&gt;&lt;dd&gt;The color of the fill.&lt;&#x2F;dd&gt;
+     *      &lt;dt&gt;opacity&lt;&#x2F;dt&gt;&lt;dd&gt;Number between 0 and 1 that indicates the opacity of the fill. The default value is 1.&lt;&#x2F;dd&gt;
+     *      &lt;dt&gt;type&lt;&#x2F;dt&gt;&lt;dd&gt;Type of fill.
+     *          &lt;dl&gt;
+     *              &lt;dt&gt;solid&lt;&#x2F;dt&gt;&lt;dd&gt;Solid single color fill. (default)&lt;&#x2F;dd&gt;
+     *              &lt;dt&gt;linear&lt;&#x2F;dt&gt;&lt;dd&gt;Linear gradient fill.&lt;&#x2F;dd&gt;
+     *              &lt;dt&gt;radial&lt;&#x2F;dt&gt;&lt;dd&gt;Radial gradient fill.&lt;&#x2F;dd&gt;
+     *          &lt;&#x2F;dl&gt;
+     *      &lt;&#x2F;dd&gt;
+     *  &lt;&#x2F;dl&gt;
+     *  &lt;p&gt;If a &#x60;linear&#x60; or &#x60;radial&#x60; is specified as the fill type. The following additional property is used:
+     *  &lt;dl&gt;
+     *      &lt;dt&gt;stops&lt;&#x2F;dt&gt;&lt;dd&gt;An array of objects containing the following properties:
+     *          &lt;dl&gt;
+     *              &lt;dt&gt;color&lt;&#x2F;dt&gt;&lt;dd&gt;The color of the stop.&lt;&#x2F;dd&gt;
+     *              &lt;dt&gt;opacity&lt;&#x2F;dt&gt;&lt;dd&gt;Number between 0 and 1 that indicates the opacity of the stop. The default value is 1. Note: No effect for IE 6 - 8&lt;&#x2F;dd&gt;
+     *              &lt;dt&gt;offset&lt;&#x2F;dt&gt;&lt;dd&gt;Number between 0 and 1 indicating where the color stop is positioned.&lt;&#x2F;dd&gt; 
+     *          &lt;&#x2F;dl&gt;
+     *      &lt;&#x2F;dd&gt;
+     *      &lt;p&gt;Linear gradients also have the following property:&lt;&#x2F;p&gt;
+     *      &lt;dt&gt;rotation&lt;&#x2F;dt&gt;&lt;dd&gt;Linear gradients flow left to right by default. The rotation property allows you to change the flow by rotation. (e.g. A rotation of 180 would make the gradient pain from right to left.)&lt;&#x2F;dd&gt;
+     *      &lt;p&gt;Radial gradients have the following additional properties:&lt;&#x2F;p&gt;
+     *      &lt;dt&gt;r&lt;&#x2F;dt&gt;&lt;dd&gt;Radius of the gradient circle.&lt;&#x2F;dd&gt;
+     *      &lt;dt&gt;fx&lt;&#x2F;dt&gt;&lt;dd&gt;Focal point x-coordinate of the gradient.&lt;&#x2F;dd&gt;
+     *      &lt;dt&gt;fy&lt;&#x2F;dt&gt;&lt;dd&gt;Focal point y-coordinate of the gradient.&lt;&#x2F;dd&gt;
+     *      &lt;dt&gt;cx&lt;&#x2F;dt&gt;&lt;dd&gt;
+     *          &lt;p&gt;The x-coordinate of the center of the gradient circle. Determines where the color stop begins. The default value 0.5.&lt;&#x2F;p&gt;
+     *          &lt;p&gt;&lt;strong&gt;Note: &lt;&#x2F;strong&gt;Currently, this property is not implemented for corresponding &#x60;CanvasShape&#x60; and &#x60;VMLShape&#x60; classes which are used on Android or IE 6 - 8.&lt;&#x2F;p&gt;
+     *      &lt;&#x2F;dd&gt;
+     *      &lt;dt&gt;cy&lt;&#x2F;dt&gt;&lt;dd&gt;
+     *          &lt;p&gt;The y-coordinate of the center of the gradient circle. Determines where the color stop begins. The default value 0.5.&lt;&#x2F;p&gt;
+     *          &lt;p&gt;&lt;strong&gt;Note: &lt;&#x2F;strong&gt;Currently, this property is not implemented for corresponding &#x60;CanvasShape&#x60; and &#x60;VMLShape&#x60; classes which are used on Android or IE 6 - 8.&lt;&#x2F;p&gt;
+     *      &lt;&#x2F;dd&gt;
+     *  &lt;&#x2F;dl&gt;
+	 *
+	 * @config fill
+	 * @type Object 
+	 *&#x2F;
+	&#x2F;**
+	 * Contains information about the stroke of the shape.
+     *  &lt;dl&gt;
+     *      &lt;dt&gt;color&lt;&#x2F;dt&gt;&lt;dd&gt;The color of the stroke.&lt;&#x2F;dd&gt;
+     *      &lt;dt&gt;weight&lt;&#x2F;dt&gt;&lt;dd&gt;Number that indicates the width of the stroke.&lt;&#x2F;dd&gt;
+     *      &lt;dt&gt;opacity&lt;&#x2F;dt&gt;&lt;dd&gt;Number between 0 and 1 that indicates the opacity of the stroke. The default value is 1.&lt;&#x2F;dd&gt;
+     *      &lt;dt&gt;dashstyle&lt;&#x2F;dt&gt;Indicates whether to draw a dashed stroke. When set to &quot;none&quot;, a solid stroke is drawn. When set to an array, the first index indicates the
+     *  length of the dash. The second index indicates the length of gap.
+     *      &lt;dt&gt;linecap&lt;&#x2F;dt&gt;&lt;dd&gt;Specifies the linecap for the stroke. The following values can be specified:
+     *          &lt;dl&gt;
+     *              &lt;dt&gt;butt (default)&lt;&#x2F;dt&gt;&lt;dd&gt;Specifies a butt linecap.&lt;&#x2F;dd&gt;
+     *              &lt;dt&gt;square&lt;&#x2F;dt&gt;&lt;dd&gt;Specifies a sqare linecap.&lt;&#x2F;dd&gt;
+     *              &lt;dt&gt;round&lt;&#x2F;dt&gt;&lt;dd&gt;Specifies a round linecap.&lt;&#x2F;dd&gt;
+     *          &lt;&#x2F;dl&gt;
+     *      &lt;&#x2F;dd&gt;
+     *      &lt;dt&gt;linejoin&lt;&#x2F;dt&gt;&lt;dd&gt;Specifies a linejoin for the stroke. The following values can be specified:
+     *          &lt;dl&gt;
+     *              &lt;dt&gt;round (default)&lt;&#x2F;dt&gt;&lt;dd&gt;Specifies that the linejoin will be round.&lt;&#x2F;dd&gt;
+     *              &lt;dt&gt;bevel&lt;&#x2F;dt&gt;&lt;dd&gt;Specifies a bevel for the linejoin.&lt;&#x2F;dd&gt;
+     *              &lt;dt&gt;miter limit&lt;&#x2F;dt&gt;&lt;dd&gt;An integer specifying the miter limit of a miter linejoin. If you want to specify a linejoin of miter, you simply specify the limit as opposed to having
+     *  separate miter and miter limit values.&lt;&#x2F;dd&gt;
+     *          &lt;&#x2F;dl&gt;
+     *      &lt;&#x2F;dd&gt;
+     *  &lt;&#x2F;dl&gt;
+	 *
+	 * @config stroke
+	 * @type Object
+	 *&#x2F;
+	&#x2F;**
+	 * Dom node for the shape.
+	 *
+	 * @config node
+	 * @type HTMLElement
+	 * @readOnly
+	 *&#x2F;
+    &#x2F;**
+     * Represents an SVG Path string. This will be parsed and added to shape&#x27;s API to represent the SVG data across all implementations. Note that when using VML or SVG 
+     * implementations, part of this content will be added to the DOM using respective VML&#x2F;SVG attributes. If your content comes from an untrusted source, you will need 
+     * to ensure that no malicious code is included in that content. 
+     *
+     * @config data
+     * @type String
+     *&#x2F;
+	&#x2F;**
+	 * Reference to the parent graphic instance
+	 *
+	 * @config graphic
+	 * @type Graphic
+	 * @readOnly
+	 *&#x2F;
+
+&#x2F;**
+ * &lt;p&gt;Creates circle shape with editable attributes.&lt;&#x2F;p&gt; 
+ * &lt;p&gt;&#x60;Circle&#x60; instances can be created using the &lt;a href=&quot;Graphic.html#method_addShape&quot;&gt;&#x60;addShape&#x60;&lt;&#x2F;a&gt; method of the &lt;a href=&quot;Graphic.html&quot;&gt;&#x60;Graphic&#x60;&lt;&#x2F;a&gt; class. 
+ * The method&#x27;s &#x60;cfg&#x60; argument contains a &#x60;type&#x60; attribute. Assigning &quot;circle&quot; or &#x60;Y.Circle&#x60; to this attribute will create a &#x60;Circle&#x60; instance. Required attributes
+ * for instantiating a &#x60;Circle&#x60; are &#x60;type&#x60; and &#x60;radius&#x60;. Optional attributes include:
+ *  &lt;ul&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#attr_fill&quot;&gt;fill&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#attr_id&quot;&gt;id&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#attr_stroke&quot;&gt;stroke&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#attr_transform&quot;&gt;transform&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#attr_transformOrigin&quot;&gt;transformOrigin&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#attr_visible&quot;&gt;visible&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#attr_x&quot;&gt;x&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#attr_y&quot;&gt;y&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *  &lt;&#x2F;ul&gt;
+ * 
+ * The below code creates a circle by defining the &#x60;type&#x60; attribute as &quot;circle&quot;:&lt;&#x2F;p&gt;
+
+        var myCircle = myGraphic.addShape({
+            type: &quot;circle&quot;,
+            radius: 10,
+            fill: {
+                color: &quot;#9aa&quot;
+            },
+            stroke: {
+                weight: 1,
+                color: &quot;#000&quot;
+            }
+        });
+
+ * Below, this same circle is created by defining the &#x60;type&#x60; attribute with a class reference:
+ *
+        var myCircle = myGraphic.addShape({
+            type: Y.Circle,
+            radius: 10,
+            fill: {
+                color: &quot;#9aa&quot;
+            },
+            stroke: {
+                weight: 1,
+                color: &quot;#000&quot;
+            }
+        });
+ * 
+ * &lt;p&gt;&#x60;Circle&#x60; has the following implementations based on browser capability.
+ *  &lt;ul&gt;
+ *      &lt;li&gt;&lt;a href=&quot;SVGCircle.html&quot;&gt;&#x60;SVGCircle&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;VMLCircle.html&quot;&gt;&#x60;VMLCircle&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;CanvasCircle.html&quot;&gt;&#x60;CanvasCircle&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *  &lt;&#x2F;ul&gt;
+ *
+ * It is not necessary to interact with these classes directly. &#x60;Circle&#x60; will point to the appropriate implemention.&lt;&#x2F;p&gt;
+ *
+ * @class Circle
+ * @extends Shape
+ * @constructor
+ *&#x2F;
+    &#x2F;**
+     * Radius of the circle
+     *
+     * @config radius
+     * @type Number
+     *&#x2F;
+&#x2F;**
+ * &lt;p&gt;Creates an ellipse shape with editable attributes.&lt;&#x2F;p&gt;
+ * &lt;p&gt;&#x60;Ellipse&#x60; instances can be created using the &lt;a href=&quot;Graphic.html#method_addShape&quot;&gt;&#x60;addShape&#x60;&lt;&#x2F;a&gt; method of the &lt;a href=&quot;Graphic.html&quot;&gt;&#x60;Graphic&#x60;&lt;&#x2F;a&gt; class. 
+ * The method&#x27;s &#x60;cfg&#x60; argument contains a &#x60;type&#x60; attribute. Assigning &quot;ellipse&quot; or &#x60;Y.Ellipse&#x60; to this attribute will create a &#x60;Ellipse&#x60; instance. Required attributes
+ * for instantiating a &#x60;Ellipse&#x60; are &#x60;type&#x60;, &#x60;width&#x60; and &#x60;height&#x60;. Optional attributes include:
+ *  &lt;ul&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#attr_fill&quot;&gt;fill&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#attr_id&quot;&gt;id&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#attr_stroke&quot;&gt;stroke&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#attr_transform&quot;&gt;transform&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#attr_transformOrigin&quot;&gt;transformOrigin&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#attr_visible&quot;&gt;visible&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#attr_x&quot;&gt;x&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#attr_y&quot;&gt;y&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *  &lt;&#x2F;ul&gt;
+ * 
+ * The below code creates an ellipse by defining the &#x60;type&#x60; attribute as &quot;ellipse&quot;:&lt;&#x2F;p&gt;
+
+        var myEllipse = myGraphic.addShape({
+            type: &quot;ellipse&quot;,
+            width: 20,
+            height: 10,
+            fill: {
+                color: &quot;#9aa&quot;
+            },
+            stroke: {
+                weight: 1,
+                color: &quot;#000&quot;
+            }
+        });
+
+ * Below, the same ellipse is created by defining the &#x60;type&#x60; attribute with a class reference:
+ *
+        var myEllipse = myGraphic.addShape({
+            type: Y.Ellipse,
+            width: 20,
+            height: 10,
+            fill: {
+                color: &quot;#9aa&quot;
+            },
+            stroke: {
+                weight: 1,
+                color: &quot;#000&quot;
+            }
+        });
+ * 
+ * &lt;p&gt;&#x60;Ellipse&#x60; has the following implementations based on browser capability.
+ *  &lt;ul&gt;
+ *      &lt;li&gt;&lt;a href=&quot;SVGEllipse.html&quot;&gt;&#x60;SVGEllipse&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;VMLEllipse.html&quot;&gt;&#x60;VMLEllipse&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;CanvasEllipse.html&quot;&gt;&#x60;CanvasEllipse&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *  &lt;&#x2F;ul&gt;
+ *
+ * It is not necessary to interact with these classes directly. &#x60;Ellipse&#x60; will point to the appropriate implemention.&lt;&#x2F;p&gt;
+ *
+ * @class Ellipse
+ * @extends Shape
+ * @constructor
+ *&#x2F;
+&#x2F;**
+ * &lt;p&gt;Creates an rectangle shape with editable attributes.&lt;&#x2F;p&gt;
+ * &lt;p&gt;&#x60;Rect&#x60; instances can be created using the &lt;a href=&quot;Graphic.html#method_addShape&quot;&gt;&#x60;addShape&#x60;&lt;&#x2F;a&gt; method of the &lt;a href=&quot;Graphic.html&quot;&gt;&#x60;Graphic&#x60;&lt;&#x2F;a&gt; 
+ * class. The method&#x27;s &#x60;cfg&#x60; argument contains a &#x60;type&#x60; attribute. Assigning &quot;rect&quot; or &#x60;Y.Rect&#x60; to this attribute will create a &#x60;Rect&#x60; instance. 
+ * Required attributes for instantiating a &#x60;Rect&#x60; are &#x60;type&#x60;, &#x60;width&#x60; and &#x60;height&#x60;. Optional attributes include:
+ *  &lt;ul&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#attr_fill&quot;&gt;fill&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#attr_id&quot;&gt;id&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#attr_stroke&quot;&gt;stroke&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#attr_transform&quot;&gt;transform&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#attr_transformOrigin&quot;&gt;transformOrigin&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#attr_visible&quot;&gt;visible&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#attr_x&quot;&gt;x&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#attr_y&quot;&gt;y&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *  &lt;&#x2F;ul&gt;
+ *
+ * The below code creates a rectangle by defining the &#x60;type&#x60; attribute as &quot;rect&quot;:&lt;&#x2F;p&gt;
+
+        var myRect = myGraphic.addShape({
+            type: &quot;rect&quot;,
+            width: 20,
+            height: 10,
+            fill: {
+                color: &quot;#9aa&quot;
+            },
+            stroke: {
+                weight: 1,
+                color: &quot;#000&quot;
+            }
+        });
+
+ * Below, the same rectangle is created by defining the &#x60;type&#x60; attribute with a class reference:
+ *
+        var myRect = myGraphic.addShape({
+            type: Y.Rect,
+            width: 20,
+            height: 10,
+            fill: {
+                color: &quot;#9aa&quot;
+            },
+            stroke: {
+                weight: 1,
+                color: &quot;#000&quot;
+            }
+        });
+ *
+ * &lt;p&gt;&#x60;Rect&#x60; has the following implementations based on browser capability.
+ *  &lt;ul&gt;
+ *      &lt;li&gt;&lt;a href=&quot;SVGRect.html&quot;&gt;&#x60;SVGRect&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;VMLRect.html&quot;&gt;&#x60;VMLRect&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;CanvasRect.html&quot;&gt;&#x60;CanvasRect&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *  &lt;&#x2F;ul&gt;
+ *
+ * It is not necessary to interact with these classes directly. &#x60;Rect&#x60; will point to the appropriate implemention.&lt;&#x2F;p&gt;
+ *
+ * @class Rect
+ * @extends Shape
+ * @constructor
+ *&#x2F;
+&#x2F;**
+ * &lt;p&gt;The &#x60;Path&#x60; class creates a shape through the use of drawing methods. The &#x60;Path&#x60; class has the following drawing methods available:&lt;&#x2F;p&gt;
+ *  &lt;ul&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#method_clear&quot;&gt;&#x60;clear&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#method_curveTo&quot;&gt;&#x60;curveTo&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#method_drawRect&quot;&gt;&#x60;drawRect&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#method_drawRoundRect&quot;&gt;&#x60;drawRoundRect&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#method_end&quot;&gt;&#x60;end&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#method_lineTo&quot;&gt;&#x60;lineTo&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#method_moveTo&quot;&gt;&#x60;moveTo&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;#method_quadraticCurveTo&quot;&gt;&#x60;quadraticCurveTo&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *  &lt;&#x2F;ul&gt;
+ *
+ *  &lt;p&gt;Like other shapes, &#x60;Path&#x60; elements are created using the &lt;a href=&quot;Graphic.html#method_addShape&quot;&gt;&#x60;addShape&#x60;&lt;&#x2F;a&gt; method of the &lt;a href=&quot;Graphic.html&quot;&gt;&#x60;Graphic&#x60;&lt;&#x2F;a&gt; 
+ *  class. The method&#x27;s &#x60;cfg&#x60; argument contains a &#x60;type&#x60; attribute. Assigning &quot;path&quot; or &#x60;Y.Path&#x60; to this attribute will create a &#x60;Path&#x60; instance.
+ *  After instantiation, a series of drawing operations must be performed in order to render a shape. The below code instantiates a path element by defining the &#x60;type&#x60; 
+ *  attribute as &quot;path&quot;:&lt;&#x2F;p&gt;
+
+        var myPath = myGraphic.addShape({
+            type: &quot;path&quot;,
+            fill: {
+                color: &quot;#9aa&quot;
+            },
+            stroke: {
+                weight: 1,
+                color: &quot;#000&quot;
+            }
+        });
+
+ * Below a &#x60;Path&#x60; element with the same properties is instantiated by defining the &#x60;type&#x60; attribute with a class reference:
+ *
+        var myPath = myGraphic.addShape({
+            type: Y.Path,
+            fill: {
+                color: &quot;#9aa&quot;
+            },
+            stroke: {
+                weight: 1,
+                color: &quot;#000&quot;
+            }
+        });
+
+ * After instantiation, a shape or segment needs to be drawn for an element to render. After all draw operations are performed, the &lt;a href=&quot;#method_end&quot;&gt;&#x60;end&#x60;&lt;&#x2F;a&gt;
+ * method will render the shape. The code below will draw a triangle:
+ 
+        myPath.moveTo(35, 5);
+        myPath.lineTo(65, 65);
+        myPath.lineTo(5, 65);
+        myPath.lineTo(35, 5);
+        myPath.end();
+ *
+ * &lt;p&gt;&#x60;Path&#x60; has the following implementations based on browser capability.
+ *  &lt;ul&gt;
+ *      &lt;li&gt;&lt;a href=&quot;SVGPath.html&quot;&gt;&#x60;SVGPath&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;VMLPath.html&quot;&gt;&#x60;VMLPath&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;CanvasPath.html&quot;&gt;&#x60;CanvasPath&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *  &lt;&#x2F;ul&gt; 
+ * It is not necessary to interact with these classes directly. &#x60;Path&#x60; will point to the appropriate implemention.&lt;&#x2F;p&gt;
+ *
+ * @class Path
+ * @extends Shape
+ * @uses Drawing
+ * @constructor
+ *&#x2F;
+	&#x2F;**
+	 * Indicates the path used for the node.
+	 *
+	 * @config path
+	 * @type String
+     * @readOnly
+	 *&#x2F;
+&#x2F;**
+ * &#x60;Graphic&#x60; acts a factory and container for shapes. You need at least one &#x60;Graphic&#x60; instance to create shapes for your application. 
+ * &lt;p&gt;The code block below creates a &#x60;Graphic&#x60; instance and appends it to an HTMLElement with the id &#x27;mygraphiccontainer&#x27;.&lt;&#x2F;p&gt;
+    
+        var myGraphic = new Y.Graphic({render:&quot;#mygraphiccontainer&quot;});
+
+ * &lt;p&gt;Alternatively, you can add a &#x60;Graphic&#x60; instance to the DOM using the &lt;a href=&quot;#method_render&quot;&gt;&#x60;render&#x60;&lt;&#x2F;a&gt; method.&lt;&#x2F;p&gt;
+        var myGraphic = new Y.Graphic();
+        myGraphic.render(&quot;#mygraphiccontainer&quot;);
+
+ * &#x60;Graphic&#x60; has the following implementations based on browser capability.
+ *  &lt;ul&gt;
+ *      &lt;li&gt;&lt;a href=&quot;SVGGraphic.html&quot;&gt;&#x60;SVGGraphic&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;VMLGraphic.html&quot;&gt;&#x60;VMLGraphic&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *      &lt;li&gt;&lt;a href=&quot;CanvasGraphic.html&quot;&gt;&#x60;CanvasGraphic&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+ *  &lt;&#x2F;ul&gt;
+ *
+ * It is not necessary to interact with these classes directly. &#x60;Graphic&#x60; will point to the appropriate implemention.&lt;&#x2F;p&gt;
+ *
+ * @class Graphic
+ * @constructor
+ *&#x2F;
+    &#x2F;**
+     * Whether or not to render the &#x60;Graphic&#x60; automatically after to a specified parent node after init. This can be a Node instance or a CSS selector string.
+     * 
+     * @config render
+     * @type Node | String 
+     *&#x2F;
+    &#x2F;**
+	 * Unique id for class instance.
+	 *
+	 * @config id
+	 * @type String
+	 *&#x2F;
+    &#x2F;**
+     * Key value pairs in which a shape instance is associated with its id.
+     *
+     *  @config shapes
+     *  @type Object
+     *  @readOnly
+     *&#x2F;
+    &#x2F;**
+     *  Object containing size and coordinate data for the content of a Graphic in relation to the coordSpace node.
+     *
+     *  @config contentBounds
+     *  @type Object 
+     *  @readOnly
+     *&#x2F;
+    &#x2F;**
+     *  The html element that represents to coordinate system of the Graphic instance.
+     *
+     *  @config node
+     *  @type HTMLElement
+     *  @readOnly
+     *&#x2F;
+	&#x2F;**
+	 * Indicates the width of the &#x60;Graphic&#x60;. 
+	 *
+	 * @config width
+	 * @type Number
+	 *&#x2F;
+	&#x2F;**
+	 * Indicates the height of the &#x60;Graphic&#x60;. 
+	 *
+	 * @config height 
+	 * @type Number
+	 *&#x2F;
+    &#x2F;**
+     *  Determines the sizing of the Graphic. 
+     *
+     *  &lt;dl&gt;
+     *      &lt;dt&gt;sizeContentToGraphic&lt;&#x2F;dt&gt;&lt;dd&gt;The Graphic&#x27;s width and height attributes are, either explicitly set through the &lt;code&gt;width&lt;&#x2F;code&gt; and &lt;code&gt;height&lt;&#x2F;code&gt;
+     *      attributes or are determined by the dimensions of the parent element. The content contained in the Graphic will be sized to fit with in the Graphic instance&#x27;s 
+     *      dimensions. When using this setting, the &lt;code&gt;preserveAspectRatio&lt;&#x2F;code&gt; attribute will determine how the contents are sized.&lt;&#x2F;dd&gt;
+     *      &lt;dt&gt;sizeGraphicToContent&lt;&#x2F;dt&gt;&lt;dd&gt;(Also accepts a value of true) The Graphic&#x27;s width and height are determined by the size and positioning of the content.&lt;&#x2F;dd&gt;
+     *      &lt;dt&gt;false&lt;&#x2F;dt&gt;&lt;dd&gt;The Graphic&#x27;s width and height attributes are, either explicitly set through the &lt;code&gt;width&lt;&#x2F;code&gt; and &lt;code&gt;height&lt;&#x2F;code&gt;
+     *      attributes or are determined by the dimensions of the parent element. The contents of the Graphic instance are not affected by this setting.&lt;&#x2F;dd&gt;
+     *  &lt;&#x2F;dl&gt;
+     *
+     *
+     *  @config autoSize
+     *  @type Boolean | String
+     *  @default false
+     *&#x2F;
+    &#x2F;**
+     * Determines how content is sized when &lt;code&gt;autoSize&lt;&#x2F;code&gt; is set to &lt;code&gt;sizeContentToGraphic&lt;&#x2F;code&gt;.
+     *
+     *  &lt;dl&gt;
+     *      &lt;dt&gt;none&lt;dt&gt;&lt;dd&gt;Do not force uniform scaling. Scale the graphic content of the given element non-uniformly if necessary 
+     *      such that the element&#x27;s bounding box exactly matches the viewport rectangle.&lt;&#x2F;dd&gt;
+     *      &lt;dt&gt;xMinYMin&lt;&#x2F;dt&gt;&lt;dd&gt;Force uniform scaling position along the top left of the Graphic&#x27;s node.&lt;&#x2F;dd&gt;
+     *      &lt;dt&gt;xMidYMin&lt;&#x2F;dt&gt;&lt;dd&gt;Force uniform scaling horizontally centered and positioned at the top of the Graphic&#x27;s node.&lt;dd&gt;
+     *      &lt;dt&gt;xMaxYMin&lt;&#x2F;dt&gt;&lt;dd&gt;Force uniform scaling positioned horizontally from the right and vertically from the top.&lt;&#x2F;dd&gt;
+     *      &lt;dt&gt;xMinYMid&lt;&#x2F;dt&gt;Force uniform scaling positioned horizontally from the left and vertically centered.&lt;&#x2F;dd&gt;
+     *      &lt;dt&gt;xMidYMid (the default)&lt;&#x2F;dt&gt;&lt;dd&gt;Force uniform scaling with the content centered.&lt;&#x2F;dd&gt;
+     *      &lt;dt&gt;xMaxYMid&lt;&#x2F;dt&gt;&lt;dd&gt;Force uniform scaling positioned horizontally from the right and vertically centered.&lt;&#x2F;dd&gt;
+     *      &lt;dt&gt;xMinYMax&lt;&#x2F;dt&gt;&lt;dd&gt;Force uniform scaling positioned horizontally from the left and vertically from the bottom.&lt;&#x2F;dd&gt;
+     *      &lt;dt&gt;xMidYMax&lt;&#x2F;dt&gt;&lt;dd&gt;Force uniform scaling horizontally centered and position vertically from the bottom.&lt;&#x2F;dd&gt;
+     *      &lt;dt&gt;xMaxYMax&lt;&#x2F;dt&gt;&lt;dd&gt;Force uniform scaling positioned horizontally from the right and vertically from the bottom.&lt;&#x2F;dd&gt;
+     *  &lt;&#x2F;dl&gt;
+     * 
+     * @config preserveAspectRatio
+     * @type String
+     * @default xMidYMid
+     *&#x2F;
+    &#x2F;**
+     * The contentBounds will resize to greater values but not to smaller values. (for performance)
+     * When resizing the contentBounds down is desirable, set the resizeDown value to true.
+     *
+     * @config resizeDown 
+     * @type Boolean
+     *&#x2F;
+	&#x2F;**
+	 * Indicates the x-coordinate for the instance.
+	 *
+	 * @config x
+	 * @type Number
+	 *&#x2F;
+	&#x2F;**
+	 * Indicates the y-coordinate for the instance.
+	 *
+	 * @config y
+	 * @type Number
+	 *&#x2F;
+    &#x2F;**
+     * Indicates whether or not the instance will automatically redraw after a change is made to a shape.
+     * This property will get set to false when batching operations.
+     *
+     * @config autoDraw
+     * @type Boolean
+     * @default true
+     * @private
+     *&#x2F;
+	&#x2F;**
+	 * Indicates whether the &#x60;Graphic&#x60; and its children are visible.
+	 *
+	 * @config visible
+	 * @type Boolean
+	 *&#x2F;
+    &#x2F;**
+     * Gets the current position of the graphic instance in page coordinates.
+     *
+     * @method getXY
+     * @return Array The XY position of the shape.
+     *&#x2F;
+    &#x2F;**
+     * Adds the graphics node to the dom.
+     * 
+     * @method render
+     * @param {Node|String} parentNode node in which to render the graphics node into.
+     *&#x2F;
+    &#x2F;**
+     * Removes all nodes.
+     *
+     * @method destroy
+     *&#x2F;
+    &#x2F;**
+     * &lt;p&gt;Generates a shape instance by type. The method accepts an object that contain&#x27;s the shape&#x27;s
+     * type and attributes to be customized. For example, the code below would create a rectangle:&lt;&#x2F;p&gt;
+     *
+            var myRect = myGraphic.addShape({
+                type: &quot;rect&quot;,
+                width: 40,
+                height: 30,
+                fill: {
+                    color: &quot;#9aa&quot;
+                },
+                stroke: {
+                    weight: 1,
+                    color: &quot;#000&quot;
+                }
+            });
+     *
+     * &lt;p&gt;The &#x60;Graphics&#x60; module includes a few basic shapes. More information on their creation 
+     * can be found in each shape&#x27;s documentation:
+     *
+     *  &lt;ul&gt;
+     *      &lt;li&gt;&lt;a href=&quot;Circle.html&quot;&gt;&#x60;Circle&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+     *      &lt;li&gt;&lt;a href=&quot;Ellipse.html&quot;&gt;&#x60;Ellipse&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+     *      &lt;li&gt;&lt;a href=&quot;Rect.html&quot;&gt;&#x60;Rect&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+     *      &lt;li&gt;&lt;a href=&quot;Path.html&quot;&gt;&#x60;Path&#x60;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+     *  &lt;&#x2F;ul&gt;
+     *
+     *  The &#x60;Graphics&#x60; module also allows for the creation of custom shapes. If a custom shape
+     *  has been created, it can be instantiated with the &#x60;addShape&#x60; method as well. The attributes,
+     *  required and optional, would need to be defined in the custom shape.
+     *
+            var myCustomShape = myGraphic.addShape({
+                type: Y.MyCustomShape,
+                width: 50,
+                height: 50,
+                fill: {
+                    color: &quot;#9aa&quot;
+                },
+                stroke: {
+                    weight: 1,
+                    color: &quot;#000&quot;
+                }
+            });
+     *
+     * @method addShape
+     * @param {Object} cfg Object containing the shape&#x27;s type and attributes. 
+     * @return Shape
+     *&#x2F;
+    &#x2F;**
+     * Removes a shape instance from from the graphic instance.
+     *
+     * @method removeShape
+     * @param {Shape|String} shape The instance or id of the shape to be removed.
+     *&#x2F;
+    &#x2F;**
+     * Removes all shape instances from the dom.
+     *
+     * @method removeAllShapes
+     *&#x2F;
+    &#x2F;**
+     * Returns a shape based on the id of its dom node.
+     *
+     * @method getShapeById
+     * @param {String} id Dom id of the shape&#x27;s node attribute.
+     * @return Shape
+     *&#x2F;
+	&#x2F;**
+	 * Allows for creating multiple shapes in order to batch appending and redraw operations.
+	 *
+	 * @method batch
+	 * @param {Function} method Method to execute.
+	 *&#x2F;
+
+    </pre>
 </div>
 
                 </div>

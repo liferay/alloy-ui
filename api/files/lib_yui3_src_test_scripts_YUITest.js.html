@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>QueryString - AlloyUI</title>
+    <title>lib&#x2F;yui3&#x2F;src&#x2F;test&#x2F;scripts&#x2F;YUITest.js - AlloyUI</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.4.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
@@ -1577,229 +1577,36 @@
 
             <div class="apidocs">
                 <div id="docs-main" class="content">
-                    <h1>QueryString Class</h1>
-<div class="box meta">
-    
+                    <h1 class="file-heading">File: lib&#x2F;yui3&#x2F;src&#x2F;test&#x2F;scripts&#x2F;YUITest.js</h1>
 
-    
-
-    
-        <div class="foundat">
-            Defined in: <a href="../..&#x2F;files&#x2F;lib_yui3_src_querystring_js_querystring-parse.js.html#l20"><code>lib&#x2F;yui3&#x2F;src&#x2F;querystring&#x2F;js&#x2F;querystring-parse.js:20</code></a>
-        </div>
-    
-
-    
-</div>
+<div class="file">
+    <pre class="code prettyprint linenums">
 
 
+&#x2F;**
+ * YUI Test Framework
+ * @module test
+ * @main test
+ *&#x2F;
 
-<div class="box intro">
-    <p>The QueryString module adds support for serializing JavaScript objects into
-query strings and parsing JavaScript objects from query strings format.</p>
-</div>
+&#x2F;*
+ * The root namespace for YUI Test.
+ *&#x2F;
 
+&#x2F;&#x2F;So we only ever have one YUITest object that&#x27;s shared
+if (YUI.YUITest) {
+    Y.Test = YUI.YUITest;
+} else { &#x2F;&#x2F;Ends after the YUITest definitions
 
+    &#x2F;&#x2F;Make this global for back compat
+    YUITest = {
+        version: &quot;@VERSION@&quot;,
+        guid: function(pre) {
+            return Y.guid(pre);
+        }
+    };
 
-<div id="classdocs" class="tabview">
-    <ul class="aui-tabview-list aui-widget-hd api-class-tabs tabs" id="api-class-tabview-list">
-        <li class="yui3-tab api-class-tab index"><a class="aui-tab-label" href="#index">Index</a></li>
-
-        
-            <li class="aui-tab api-class-tab methods"><a class="aui-tab-label" href="#methods">Methods</a></li>
-        
-        
-        
-        
-    </ul>
-
-    <div class="aui-tabview-content aui-widget-bd" id="api-class-tabview-panel">
-        <div id="index" class="aui-tabview-content-item api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
-            
-                <div class="index-section methods">
-                    <h3>Methods</h3>
-
-                    <ul class="index-list methods">
-                        
-                            <li class="index-item method public">
-                                <a href="#method_stringify">stringify</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-
-            
-
-            
-        </div>
-
-        
-            <div id="methods" class="aui-tabview-content-item api-class-tabpanel">
-                <h2 class="off-left">Methods</h2>
-
-                
-                    <div id="method_stringify" class="method item public">
-    <h3 class="name"><code>stringify</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>obj</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>cfg</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>name</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-        <span class="flag public">public</span>
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/querystring-stringify.html">querystring-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_querystring_js_querystring-stringify.js.html#l27"><code>lib&#x2F;yui3&#x2F;src&#x2F;querystring&#x2F;js&#x2F;querystring-stringify.js:27</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Converts an arbitrary value to a Query String representation.</p>
-
-<p>Objects with cyclical references will trigger an exception.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">obj</code>
-                        <span class="type">Variant</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>any arbitrary value to convert to query string</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">cfg</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) Configuration object.  The three
-supported configurations are:</p>
-
-<ul><li>sep: When defined, the value will be used as the key-value
-separator.  The default value is "&".</li>
-<li>eq: When defined, the value will be used to join the key to
-the value.  The default value is "=".</li>
-<li>arrayKey: When set to true, the key of an array will have the
-'[]' notation appended to the key.  The default value is false.
-</li></ul>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">name</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) Name of the current key, for handling children recursively.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-
-        
-
-        
-    </div>
+    </pre>
 </div>
 
                 </div>

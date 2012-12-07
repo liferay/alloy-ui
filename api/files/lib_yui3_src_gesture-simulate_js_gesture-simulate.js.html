@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSON - AlloyUI</title>
+    <title>lib&#x2F;yui3&#x2F;src&#x2F;gesture-simulate&#x2F;js&#x2F;gesture-simulate.js - AlloyUI</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.4.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
@@ -1577,2518 +1577,1332 @@
 
             <div class="apidocs">
                 <div id="docs-main" class="content">
-                    <h1>JSON Class</h1>
-<div class="box meta">
-    
-
-    
-
-    
-        <div class="foundat">
-            Defined in: <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18372"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18372</code></a>
-        </div>
-    
-
-    
-</div>
-
-
-
-<div class="box intro">
-    <p>The JSON module adds support for serializing JavaScript objects into
-JSON strings and parsing JavaScript objects from strings in JSON format.</p>
-
-<p>The JSON namespace is added to your YUI instance including static methods
-Y.JSON.parse(..) and Y.JSON.stringify(..).</p>
-
-<p>The functionality and method signatures follow the ECMAScript 5
-specification.  In browsers with native JSON support, the native
-implementation is used.</p>
-
-<p>The <code>json</code> module is a rollup of <code>json-parse</code> and
-<code>json-stringify</code>.</p>
-
-<p>As their names suggest, <code>json-parse</code> adds support for parsing
-JSON data (Y.JSON.parse) and <code>json-stringify</code> for serializing
-JavaScript data into JSON strings (Y.JSON.stringify).  You may choose to
-include either of the submodules individually if you don't need the
-complementary functionality, or include the rollup for both.</p>
-</div>
-
-
-
-<div id="classdocs" class="tabview">
-    <ul class="aui-tabview-list aui-widget-hd api-class-tabs tabs" id="api-class-tabview-list">
-        <li class="yui3-tab api-class-tab index"><a class="aui-tab-label" href="#index">Index</a></li>
-
-        
-            <li class="aui-tab api-class-tab methods"><a class="aui-tab-label" href="#methods">Methods</a></li>
-        
-        
-            <li class="aui-tab api-class-tab properties"><a class="aui-tab-label" href="#properties">Properties</a></li>
-        
-        
-        
-    </ul>
-
-    <div class="aui-tabview-content aui-widget-bd" id="api-class-tabview-panel">
-        <div id="index" class="aui-tabview-content-item api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
-            
-                <div class="index-section methods">
-                    <h3>Methods</h3>
-
-                    <ul class="index-list methods">
-                        
-                            <li class="index-item method private">
-                                <a href="#method__revive">_revive</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method__revive">_revive</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_customTransport">customTransport</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method deprecated">
-                                <a href="#method_dateToString">dateToString</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_defaultTransport">defaultTransport</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_escapeException">escapeException</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_escapeException">escapeException</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_notify">notify</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_parse">parse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_parse">parse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_stringify">stringify</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-                <div class="index-section properties">
-                    <h3>Properties</h3>
-
-                    <ul class="index-list properties">
-                        
-                            <li class="index-item property private">
-                                <a href="#property__BRACKETS">_BRACKETS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__BRACKETS">_BRACKETS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property__default">_default</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__ESCAPES">_ESCAPES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__ESCAPES">_ESCAPES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNICODE_EXCEPTIONS">_UNICODE_EXCEPTIONS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNICODE_EXCEPTIONS">_UNICODE_EXCEPTIONS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNSAFE">_UNSAFE</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNSAFE">_UNSAFE</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__VALUES">_VALUES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__VALUES">_VALUES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_charCacheThreshold">charCacheThreshold</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property_Native">Native</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property_Native">Native</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_transports">transports</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeParse">useNativeParse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeParse">useNativeParse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeStringify">useNativeStringify</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-
-            
-        </div>
-
-        
-            <div id="methods" class="aui-tabview-content-item api-class-tabpanel">
-                <h2 class="off-left">Methods</h2>
-
-                
-                    <div id="method__revive" class="method item private">
-    <h3 class="name"><code>_revive</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>data</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l125"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:125</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Traverses nested objects, applying a reviver function to each (key,value)
-from the scope if the key:value's containing object.  The value returned
-from the function will replace the original value in the key:value pair.
-If the value returned is undefined, the key will be omitted from the
-returned object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">data</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Any JavaScript data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>filter or mutation function</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    The results of the filtered data
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method__revive" class="method item private">
-    <h3 class="name"><code>_revive</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>data</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18496"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18496</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Traverses nested objects, applying a reviver function to each (key,value)
-from the scope if the key:value's containing object.  The value returned
-from the function will replace the original value in the key:value pair.
-If the value returned is undefined, the key will be omitted from the
-returned object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">data</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Any JavaScript data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>filter or mutation function</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    The results of the filtered data
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_customTransport" class="method item">
-    <h3 class="name"><code>customTransport</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>id</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l56"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:56</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Create a custom transport of type and return it's object</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">id</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The id of the transport to create.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_dateToString" class="method item deprecated">
-    <h3 class="name"><code>dateToString</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>d</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-        <span class="flag deprecated" title="Use a replacer function">deprecated</span>
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l266"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:266</code></a>
-        
-        </p>
-
-
-        
-            <p>Deprecated: Use a replacer function</p>
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Serializes a Date instance as a UTC date string.  Used internally by
-stringify.  Override this method if you need Dates serialized in a
-different format.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">d</code>
-                        <span class="type"><a href="../classes/Date.html" class="crosslink">Date</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The Date to serialize</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    stringified Date in UTC format YYYY-MM-DDTHH:mm:SSZ
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_defaultTransport" class="method item">
-    <h3 class="name"><code>defaultTransport</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[id]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l18"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:18</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[id]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The transport to set as the default, if empty a new transport is created.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
-                    
-                    The transport object with a <code>send</code> method
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_escapeException" class="method item private">
-    <h3 class="name"><code>escapeException</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>c</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l112"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:112</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replaces specific unicode characters with their appropriate \unnnn
-format. Some browsers ignore certain characters during eval.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">c</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Unicode character</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    the \unnnn escapement of the character
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_escapeException" class="method item private">
-    <h3 class="name"><code>escapeException</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>c</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18483"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18483</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replaces specific unicode characters with their appropriate \unnnn
-format. Some browsers ignore certain characters during eval.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">c</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Unicode character</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    the \unnnn escapement of the character
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_notify" class="method item">
-    <h3 class="name"><code>notify</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>event</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>transaction</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>config</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l71"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:71</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Fired from the notify method of the transport which in turn fires
-the event on the IO object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">event</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The name of the event</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">transaction</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The transaction object</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">config</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The configuration object for this transaction</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>s</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18530"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18530</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Parse a JSON string, returning the native JavaScript representation.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">s</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JSON string data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) function(k,v) passed each key value
-         pair of object literals, allowing pruning or altering values</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    the native JavaScript representation of the JSON string
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>s</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l159"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:159</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Parse a JSON string, returning the native JavaScript representation.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">s</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JSON string data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) function(k,v) passed each key value
-         pair of object literals, allowing pruning or altering values</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    the native JavaScript representation of the JSON string
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_stringify" class="method item">
-    <h3 class="name"><code>stringify</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>o</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>w</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>ind</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l290"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:290</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Converts an arbitrary value to a JSON string representation.</p>
-
-<p>Objects with cyclical references will trigger an exception.</p>
-
-<p>If a whitelist is provided, only matching object keys will be
-included.  Alternately, a replacer function may be passed as the
-second parameter.  This function is executed on every value in the
-input, and its return value will be used in place of the original value.
-This is useful to serialize specialized objects or class instances.</p>
-
-<p>If a positive integer or non-empty string is passed as the third
-parameter, the output will be formatted with carriage returns and
-indentation for readability.  If a String is passed (such as "\t") it
-will be used once for each indentation level.  If a number is passed,
-that number of spaces will be used.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">o</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>any arbitrary value to convert to JSON string</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">w</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) whitelist of acceptable object
-                 keys to include, or a replacer function to modify the
-                 raw value before serialization</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">ind</code>
-                        <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) indentation character or depth of
-                 spaces to format the output.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    JSON string representation of the input
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-            <div id="properties" class="aui-tabview-content-item api-class-tabpanel">
-                <h2 class="off-left">Properties</h2>
-
-                
-                    <div id="property__BRACKETS" class="property item private">
-    <h3 class="name"><code>_BRACKETS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18462"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18462</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Third step in the safety evaluation.  Regex used to remove all open
-square brackets following a colon, comma, or at the beginning of the
-string.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__BRACKETS" class="property item private">
-    <h3 class="name"><code>_BRACKETS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l91"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:91</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Third step in the safety evaluation.  Regex used to remove all open
-square brackets following a colon, comma, or at the beginning of the
-string.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__default" class="property item">
-    <h3 class="name"><code>_default</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l11"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:11</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>The ID of the default IO transport, defaults to <code>xhr</code></p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__ESCAPES" class="property item private">
-    <h3 class="name"><code>_ESCAPES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l71"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:71</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>First step in the safety evaluation.  Regex used to replace all escape
-sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__ESCAPES" class="property item private">
-    <h3 class="name"><code>_ESCAPES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18442"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18442</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>First step in the safety evaluation.  Regex used to replace all escape
-sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNICODE_EXCEPTIONS" class="property item private">
-    <h3 class="name"><code>_UNICODE_EXCEPTIONS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l57"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:57</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replace certain Unicode characters that JavaScript may handle incorrectly
-during eval--either by deleting them or treating them as line
-endings--with escape sequences.
-IMPORTANT NOTE: This regex will be used to modify the input if a match is
-found.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNICODE_EXCEPTIONS" class="property item private">
-    <h3 class="name"><code>_UNICODE_EXCEPTIONS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18428"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18428</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replace certain Unicode characters that JavaScript may handle incorrectly
-during eval--either by deleting them or treating them as line
-endings--with escape sequences.
-IMPORTANT NOTE: This regex will be used to modify the input if a match is
-found.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNSAFE" class="property item private">
-    <h3 class="name"><code>_UNSAFE</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18473"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18473</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Final step in the safety evaluation.  Regex used to test the string left
-after all previous replacements for invalid characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNSAFE" class="property item private">
-    <h3 class="name"><code>_UNSAFE</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l102"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:102</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Final step in the safety evaluation.  Regex used to test the string left
-after all previous replacements for invalid characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__VALUES" class="property item private">
-    <h3 class="name"><code>_VALUES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18452"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18452</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Second step in the safety evaluation.  Regex used to replace all simple
-values with ']' characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__VALUES" class="property item private">
-    <h3 class="name"><code>_VALUES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l81"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:81</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Second step in the safety evaluation.  Regex used to replace all simple
-values with ']' characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_charCacheThreshold" class="property item">
-    <h3 class="name"><code>charCacheThreshold</code></h3>
-    <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l322"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:322</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Number of occurrences of a special character within a single call to
-stringify that should trigger promotion of that character to a dedicated
-preprocess step for future calls.  This is only used in environments
-that don't support native JSON, or when useNativeStringify is set to
-false.</p>
-
-<p>So, if set to 50 and an object is passed to stringify that includes
-strings containing the special character \x07 more than 50 times,
-subsequent calls to stringify will process object strings through a
-faster serialization path for \x07 before using the generic, slower,
-replacement process for all special characters.</p>
-
-<p>To prime the preprocessor cache, set this value to 1, then call
-<code>Y.JSON.stringify("<em>(all special characters to
-cache)</em>");</code>, then return this setting to a more conservative
-value.</p>
-
-<p>Special characters \ " \b \t \n \f \r are already cached.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> 100</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_Native" class="property item private">
-    <h3 class="name"><code>Native</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18416"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18416</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Alias to native browser implementation of the JSON object if available.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_Native" class="property item private">
-    <h3 class="name"><code>Native</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l45"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:45</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Alias to native browser implementation of the JSON object if available.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_transports" class="property item">
-    <h3 class="name"><code>transports</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l38"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:38</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>An object hash of custom transports available to IO</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeParse" class="property item">
-    <h3 class="name"><code>useNativeParse</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18586"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18586</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON parse if the browser has a native implementation.
-In general, this is a good idea.  See the Known Issues section in the
-JSON user guide for caveats.  The default value is true for browsers with
-native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeParse" class="property item">
-    <h3 class="name"><code>useNativeParse</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l215"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:215</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON parse if the browser has a native implementation.
-In general, this is a good idea.  See the Known Issues section in the
-JSON user guide for caveats.  The default value is true for browsers with
-native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeStringify" class="property item">
-    <h3 class="name"><code>useNativeStringify</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l253"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:253</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON stringify if the browser has a native
-implementation.  In general, this is a good idea.  See the Known Issues
-section in the JSON user guide for caveats.  The default value is true
-for browsers with native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-
-        
-    </div>
+                    <h1 class="file-heading">File: lib&#x2F;yui3&#x2F;src&#x2F;gesture-simulate&#x2F;js&#x2F;gesture-simulate.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;**
+ * Simulate high-level user gestures by generating a set of native DOM events.
+ *
+ * @module gesture-simulate
+ * @requires event-simulate, async-queue, node-screen
+ *&#x2F;
+
+var NAME = &quot;gesture-simulate&quot;,
+
+    &#x2F;&#x2F; phantomjs check may be temporary, until we determine if it really support touch all the way through, like it claims to (http:&#x2F;&#x2F;code.google.com&#x2F;p&#x2F;phantomjs&#x2F;issues&#x2F;detail?id=375)
+    SUPPORTS_TOUCH = ((Y.config.win &amp;&amp; (&quot;ontouchstart&quot; in Y.config.win)) &amp;&amp; !(Y.UA.phantomjs) &amp;&amp; !(Y.UA.chrome &amp;&amp; Y.UA.chrome &lt; 6)),
+
+    gestureNames = {
+        tap: 1,
+        doubletap: 1,
+        press: 1,
+        move: 1,
+        flick: 1,
+        pinch: 1,
+        rotate: 1
+    },
+
+    touchEvents = {
+        touchstart: 1,
+        touchmove: 1,
+        touchend: 1,
+        touchcancel: 1
+    },
+
+    document = Y.config.doc,
+    emptyTouchList,
+
+    EVENT_INTERVAL = 20,        &#x2F;&#x2F; 20ms
+    START_PAGEX,                &#x2F;&#x2F; will be adjusted to the node element center
+    START_PAGEY,                &#x2F;&#x2F; will be adjusted to the node element center
+
+    &#x2F;&#x2F; defaults that user can override.
+    DEFAULTS = {
+        &#x2F;&#x2F; tap gestures
+        HOLD_TAP: 10,           &#x2F;&#x2F; 10ms
+        DELAY_TAP: 10,          &#x2F;&#x2F; 10ms
+
+        &#x2F;&#x2F; press gesture
+        HOLD_PRESS: 3000,       &#x2F;&#x2F; 3sec
+        MIN_HOLD_PRESS: 1000,   &#x2F;&#x2F; 1sec
+        MAX_HOLD_PRESS: 60000,  &#x2F;&#x2F; 1min
+
+        &#x2F;&#x2F; move gesture
+        DISTANCE_MOVE: 200,     &#x2F;&#x2F; 200 pixels
+        DURATION_MOVE: 1000,    &#x2F;&#x2F; 1sec
+        MAX_DURATION_MOVE: 5000,&#x2F;&#x2F; 5sec
+
+        &#x2F;&#x2F; flick gesture
+        MIN_VELOCITY_FLICK: 1.3,
+        DISTANCE_FLICK: 200,     &#x2F;&#x2F; 200 pixels
+        DURATION_FLICK: 1000,    &#x2F;&#x2F; 1sec
+        MAX_DURATION_FLICK: 5000,&#x2F;&#x2F; 5sec
+
+        &#x2F;&#x2F; pinch&#x2F;rotation
+        DURATION_PINCH: 1000     &#x2F;&#x2F; 1sec
+    },
+
+    TOUCH_START = &#x27;touchstart&#x27;,
+    TOUCH_MOVE = &#x27;touchmove&#x27;,
+    TOUCH_END = &#x27;touchend&#x27;,
+
+    GESTURE_START = &#x27;gesturestart&#x27;,
+    GESTURE_CHANGE = &#x27;gesturechange&#x27;,
+    GESTURE_END = &#x27;gestureend&#x27;,
+
+    MOUSE_UP    = &#x27;mouseup&#x27;,
+    MOUSE_MOVE  = &#x27;mousemove&#x27;,
+    MOUSE_DOWN  = &#x27;mousedown&#x27;,
+    MOUSE_CLICK = &#x27;click&#x27;,
+    MOUSE_DBLCLICK = &#x27;dblclick&#x27;,
+
+    X_AXIS = &#x27;x&#x27;,
+    Y_AXIS = &#x27;y&#x27;;
+
+&#x2F;**
+ *
+ *&#x2F;
+function Simulations(node) {
+    if(!node) {
+        Y.error(NAME+&#x27;: invalid target node&#x27;);
+    }
+    this.node = node;
+    this.target = Y.Node.getDOMNode(node);
+
+    var startXY = this.node.getXY(),
+        dims = this._getDims();
+
+    START_PAGEX = startXY[0] + (dims[0])&#x2F;2;
+    START_PAGEY = startXY[1] + (dims[1])&#x2F;2;
+}
+
+Simulations.prototype = {
+
+    &#x2F;**
+     * Helper method to convert a degree to a radian.
+     * 
+     * @method _toRadian
+     * @private
+     * @param {Number} deg A degree to be converted to a radian.
+     * @return {Number} The degree in radian. 
+     *&#x2F;
+    _toRadian: function(deg) {
+        return deg * (Math.PI&#x2F;180);
+    },
+
+    &#x2F;**
+     * Helper method to get height&#x2F;width while accounting for 
+     * rotation&#x2F;scale transforms where possible by using the 
+     * bounding client rectangle height&#x2F;width instead of the 
+     * offsetWidth&#x2F;Height which region uses.
+     * @method _getDims
+     * @private
+     * @return {Array} Array with [height, width]
+     *&#x2F;
+    _getDims : function() {
+        var region,
+            width,
+            height;
+
+        &#x2F;&#x2F; Ideally, this should be in DOM somewhere.
+        if (this.target.getBoundingClientRect) {
+            region = this.target.getBoundingClientRect();
+
+            if (&quot;height&quot; in region) {
+                height = region.height;
+            } else {
+                &#x2F;&#x2F; IE7,8 has getBCR, but no height.
+                height = Math.abs(region.bottom - region.top);
+            }
+
+            if (&quot;width&quot; in region) {
+                width = region.width;
+            } else {
+                &#x2F;&#x2F; IE7,8 has getBCR, but no width.
+                width = Math.abs(region.right - region.left);
+            }
+        } else {
+            region = this.node.get(&quot;region&quot;);
+            width = region.width;
+            height = region.height;
+        }
+
+        return [width, height];
+    },
+
+    &#x2F;**
+     * Helper method to convert a point relative to the node element into 
+     * the point in the page coordination.
+     * 
+     * @method _calculateDefaultPoint
+     * @private
+     * @param {Array} point A point relative to the node element.
+     * @return {Array} The same point in the page coordination. 
+     *&#x2F;
+    _calculateDefaultPoint: function(point) {
+
+        var height;
+
+        if(!Y.Lang.isArray(point) || point.length === 0) {
+            point = [START_PAGEX, START_PAGEY];
+        } else {
+            if(point.length == 1) {
+                height = this._getDims[1];
+                point[1] = height&#x2F;2;
+            }
+            &#x2F;&#x2F; convert to page(viewport) coordination
+            point[0] = this.node.getX() + point[0];
+            point[1] = this.node.getY() + point[1];
+        }
+
+        return point;
+    },
+
+    &#x2F;**
+     * The &quot;rotate&quot; and &quot;pinch&quot; methods are essencially same with the exact same 
+     * arguments. Only difference is the required parameters. The rotate method 
+     * requires &quot;rotation&quot; parameter while the pinch method requires &quot;startRadius&quot; 
+     * and &quot;endRadius&quot; parameters.
+     *
+     * @method rotate
+     * @param {Function} cb The callback to execute when the gesture simulation 
+     *      is completed.
+     * @param {Array} center A center point where the pinch gesture of two fingers
+     *      should happen. It is relative to the top left corner of the target 
+     *      node element.
+     * @param {Number} startRadius A radius of start circle where 2 fingers are 
+     *      on when the gesture starts. This is optional. The default is a fourth of 
+     *      either target node width or height whichever is smaller.
+     * @param {Number} endRadius A radius of end circle where 2 fingers will be on when
+     *      the pinch or spread gestures are completed. This is optional. 
+     *      The default is a fourth of either target node width or height whichever is less.
+     * @param {Number} duration A duration of the gesture in millisecond.
+     * @param {Number} start A start angle(0 degree at 12 o&#x27;clock) where the 
+     *      gesture should start. Default is 0.  
+     * @param {Number} rotation A rotation in degree. It is required.
+     *&#x2F;
+    rotate: function(cb, center, startRadius, endRadius, duration, start, rotation) {
+        var radius,
+            r1 = startRadius,   &#x2F;&#x2F; optional
+            r2 = endRadius;     &#x2F;&#x2F; optional
+
+        if(!Y.Lang.isNumber(r1) || !Y.Lang.isNumber(r2) || r1&lt;0 || r2&lt;0) {
+            radius = (this.target.offsetWidth &lt; this.target.offsetHeight)? 
+                this.target.offsetWidth&#x2F;4 : this.target.offsetHeight&#x2F;4;
+            r1 = radius;
+            r2 = radius;
+        }
+
+        &#x2F;&#x2F; required
+        if(!Y.Lang.isNumber(rotation)) {
+            Y.error(NAME+&#x27;Invalid rotation detected.&#x27;);
+        }
+
+        this.pinch(cb, center, r1, r2, duration, start, rotation);
+    },
+
+    &#x2F;**
+     * The &quot;rotate&quot; and &quot;pinch&quot; methods are essencially same with the exact same 
+     * arguments. Only difference is the required parameters. The rotate method 
+     * requires &quot;rotation&quot; parameter while the pinch method requires &quot;startRadius&quot; 
+     * and &quot;endRadius&quot; parameters.
+     *
+     * The &quot;pinch&quot; gesture can simulate various 2 finger gestures such as pinch, 
+     * spread and&#x2F;or rotation. The &quot;startRadius&quot; and &quot;endRadius&quot; are required.
+     * If endRadius is larger than startRadius, it becomes a spread gesture 
+     * otherwise a pinch gesture. 
+     *
+     * @method pinch
+     * @param {Function} cb The callback to execute when the gesture simulation 
+     *      is completed.
+     * @param {Array} center A center point where the pinch gesture of two fingers
+     *      should happen. It is relative to the top left corner of the target 
+     *      node element.
+     * @param {Number} startRadius A radius of start circle where 2 fingers are 
+     *      on when the gesture starts. This paramenter is required.
+     * @param {Number} endRadius A radius of end circle where 2 fingers will be on when
+     *      the pinch or spread gestures are completed. This parameter is required.
+     * @param {Number} duration A duration of the gesture in millisecond.
+     * @param {Number} start A start angle(0 degree at 12 o&#x27;clock) where the 
+     *      gesture should start. Default is 0.  
+     * @param {Number} rotation If rotation is desired during the pinch or 
+     *      spread gestures, this parameter can be used. Default is 0 degree.  
+     *&#x2F;
+    pinch: function(cb, center, startRadius, endRadius, duration, start, rotation) {
+        var eventQueue,
+            i,
+            interval = EVENT_INTERVAL,
+            touches,
+            id = 0,
+            r1 = startRadius,   &#x2F;&#x2F; required
+            r2 = endRadius,     &#x2F;&#x2F; required
+            radiusPerStep,
+            centerX, centerY,
+            startScale, endScale, scalePerStep,
+            startRot, endRot, rotPerStep,
+            path1 = {start: [], end: []}, &#x2F;&#x2F; paths for 1st and 2nd fingers. 
+            path2 = {start: [], end: []},
+            steps,
+            touchMove;
+
+        center = this._calculateDefaultPoint(center);
+
+        if(!Y.Lang.isNumber(r1) || !Y.Lang.isNumber(r2) || r1&lt;0 || r2&lt;0) {
+            Y.error(NAME+&#x27;Invalid startRadius and endRadius detected.&#x27;);
+        }
+
+        if(!Y.Lang.isNumber(duration) || duration &lt;= 0) {
+            duration = DEFAULTS.DURATION_PINCH;
+        }
+
+        if(!Y.Lang.isNumber(start)) {
+            start = 0.0;
+        } else {
+            start = start%360;
+            while(start &lt; 0) {
+                start += 360;
+            }
+        }
+
+        if(!Y.Lang.isNumber(rotation)) {
+            rotation = 0.0;
+        }
+
+        Y.AsyncQueue.defaults.timeout = interval;
+        eventQueue = new Y.AsyncQueue();
+
+        &#x2F;&#x2F; range determination
+        centerX = center[0];
+        centerY = center[1];
+
+        startRot = start;
+        endRot = start + rotation;
+
+        &#x2F;&#x2F; 1st finger path
+        path1.start = [
+            centerX + r1*Math.sin(this._toRadian(startRot)), 
+            centerY - r1*Math.cos(this._toRadian(startRot))
+        ];
+        path1.end   = [
+            centerX + r2*Math.sin(this._toRadian(endRot)), 
+            centerY - r2*Math.cos(this._toRadian(endRot))
+        ];
+        
+        &#x2F;&#x2F; 2nd finger path
+        path2.start = [
+            centerX - r1*Math.sin(this._toRadian(startRot)), 
+            centerY + r1*Math.cos(this._toRadian(startRot))
+        ];
+        path2.end   = [
+            centerX - r2*Math.sin(this._toRadian(endRot)), 
+            centerY + r2*Math.cos(this._toRadian(endRot))
+        ];
+
+        startScale = 1.0;
+        endScale = endRadius&#x2F;startRadius;
+
+        &#x2F;&#x2F; touch&#x2F;gesture start
+        eventQueue.add({
+            fn: function() {
+                var coord1, coord2, coord, touches;
+
+                &#x2F;&#x2F; coordinate for each touch object.
+                coord1 = {
+                    pageX: path1.start[0], 
+                    pageY: path1.start[1],
+                    clientX: path1.start[0], 
+                    clientY: path1.start[1]
+                };
+                coord2 = {
+                    pageX: path2.start[0], 
+                    pageY: path2.start[1],
+                    clientX: path2.start[0], 
+                    clientY: path2.start[1]
+                };
+                touches = this._createTouchList([Y.merge({
+                    identifier: (id++)   
+                }, coord1), Y.merge({
+                    identifier: (id++)
+                }, coord2)]);
+
+                &#x2F;&#x2F; coordinate for top level event
+                coord = {
+                    pageX: (path1.start[0] + path2.start[0])&#x2F;2,
+                    pageY: (path1.start[0] + path2.start[1])&#x2F;2,
+                    clientX: (path1.start[0] + path2.start[0])&#x2F;2,
+                    clientY: (path1.start[0] + path2.start[1])&#x2F;2
+                };
+
+                this._simulateEvent(this.target, TOUCH_START, Y.merge({
+                    touches: touches,
+                    targetTouches: touches,
+                    changedTouches: touches,
+                    scale: startScale,
+                    rotation: startRot
+                }, coord));
+
+                if(Y.UA.ios &gt;= 2.0) {
+                    &#x2F;* gesture starts when the 2nd finger touch starts.
+                    * The implementation will fire 1 touch start event for both fingers,
+                    * simulating 2 fingers touched on the screen at the same time.
+                    *&#x2F;
+                    this._simulateEvent(this.target, GESTURE_START, Y.merge({
+                        scale: startScale,
+                        rotation: startRot
+                    }, coord));
+                }
+            },
+            timeout: 0,
+            context: this
+        });
+
+        &#x2F;&#x2F; gesture change
+        steps = Math.floor(duration&#x2F;interval);
+        radiusPerStep = (r2 - r1)&#x2F;steps;
+        scalePerStep = (endScale - startScale)&#x2F;steps;
+        rotPerStep = (endRot - startRot)&#x2F;steps;
+        
+        touchMove = function(step) {
+            var radius = r1 + (radiusPerStep)*step,
+                px1 = centerX + radius*Math.sin(this._toRadian(startRot + rotPerStep*step)),
+                py1 = centerY - radius*Math.cos(this._toRadian(startRot + rotPerStep*step)),
+                px2 = centerX - radius*Math.sin(this._toRadian(startRot + rotPerStep*step)),
+                py2 = centerY + radius*Math.cos(this._toRadian(startRot + rotPerStep*step)),
+                px = (px1+px2)&#x2F;2,
+                py = (py1+py2)&#x2F;2,
+                coord1, coord2, coord, touches;
+
+            &#x2F;&#x2F; coordinate for each touch object.    
+            coord1 = {
+                pageX: px1,
+                pageY: py1,
+                clientX: px1,
+                clientY: py1
+            };
+            coord2 = {
+                pageX: px2,
+                pageY: py2,
+                clientX: px2,
+                clientY: py2
+            };
+            touches = this._createTouchList([Y.merge({
+                identifier: (id++)   
+            }, coord1), Y.merge({
+                identifier: (id++)
+            }, coord2)]);
+
+            &#x2F;&#x2F; coordinate for top level event
+            coord = {
+                pageX: px,
+                pageY: py,
+                clientX: px,
+                clientY: py
+            };
+
+            this._simulateEvent(this.target, TOUCH_MOVE, Y.merge({
+                touches: touches,
+                targetTouches: touches,
+                changedTouches: touches,
+                scale: startScale + scalePerStep*step,
+                rotation: startRot + rotPerStep*step
+            }, coord));
+
+            if(Y.UA.ios &gt;= 2.0) {
+                this._simulateEvent(this.target, GESTURE_CHANGE, Y.merge({
+                    scale: startScale + scalePerStep*step,
+                    rotation: startRot + rotPerStep*step
+                }, coord));
+            }
+        };
+
+        for (i=0; i &lt; steps; i++) {
+            eventQueue.add({
+                fn: touchMove,
+                args: [i],
+                context: this
+            });
+        }
+
+        &#x2F;&#x2F; gesture end
+        eventQueue.add({
+            fn: function() {
+                var emptyTouchList = this._getEmptyTouchList(),
+                    coord1, coord2, coord, touches;
+
+                &#x2F;&#x2F; coordinate for each touch object.
+                coord1 = {
+                    pageX: path1.end[0], 
+                    pageY: path1.end[1],
+                    clientX: path1.end[0], 
+                    clientY: path1.end[1]
+                };
+                coord2 = {
+                    pageX: path2.end[0], 
+                    pageY: path2.end[1],
+                    clientX: path2.end[0], 
+                    clientY: path2.end[1]
+                };
+                touches = this._createTouchList([Y.merge({
+                    identifier: (id++)   
+                }, coord1), Y.merge({
+                    identifier: (id++)
+                }, coord2)]);
+
+                &#x2F;&#x2F; coordinate for top level event
+                coord = {
+                    pageX: (path1.end[0] + path2.end[0])&#x2F;2,
+                    pageY: (path1.end[0] + path2.end[1])&#x2F;2,
+                    clientX: (path1.end[0] + path2.end[0])&#x2F;2,
+                    clientY: (path1.end[0] + path2.end[1])&#x2F;2
+                };  
+
+                if(Y.UA.ios &gt;= 2.0) {
+                    this._simulateEvent(this.target, GESTURE_END, Y.merge({
+                        scale: endScale,
+                        rotation: endRot
+                    }, coord));
+                }
+
+                this._simulateEvent(this.target, TOUCH_END, Y.merge({
+                    touches: emptyTouchList,
+                    targetTouches: emptyTouchList,
+                    changedTouches: touches,
+                    scale: endScale,
+                    rotation: endRot
+                }, coord));
+            },
+            context: this
+        });
+
+        if(cb &amp;&amp; Y.Lang.isFunction(cb)) {
+            eventQueue.add({
+                fn: cb,
+
+                &#x2F;&#x2F; by default, the callback runs the node context where 
+                &#x2F;&#x2F; simulateGesture method is called.
+                context: this.node
+
+                &#x2F;&#x2F;TODO: Use args to pass error object as 1st param if there is an error.
+                &#x2F;&#x2F;args: 
+            });
+        }
+
+        eventQueue.run();
+    },
+
+    &#x2F;**
+     * The &quot;tap&quot; gesture can be used for various single touch point gestures 
+     * such as single tap, N number of taps, long press. The default is a single 
+     * tap.
+     * 
+     * @method tap
+     * @param {Function} cb The callback to execute when the gesture simulation 
+     *      is completed.
+     * @param {Array} point A point(relative to the top left corner of the 
+     *      target node element) where the tap gesture should start. The default 
+     *      is the center of the taget node.
+     * @param {Number} times The number of taps. Default is 1.
+     * @param {Number} hold The hold time in milliseconds between &quot;touchstart&quot; and
+     *      &quot;touchend&quot; event generation. Default is 10ms.
+     * @param {Number} delay The time gap in millisecond between taps if this
+     *      gesture has more than 1 tap. Default is 10ms.
+     *&#x2F;
+    tap: function(cb, point, times, hold, delay) {           
+        var eventQueue = new Y.AsyncQueue(),
+            emptyTouchList = this._getEmptyTouchList(),
+            touches,
+            coord,
+            i,
+            touchStart,
+            touchEnd;
+
+        point = this._calculateDefaultPoint(point);
+
+        if(!Y.Lang.isNumber(times) || times &lt; 1) {
+            times = 1;
+        }
+
+        if(!Y.Lang.isNumber(hold)) {
+            hold = DEFAULTS.HOLD_TAP;
+        }
+
+        if(!Y.Lang.isNumber(delay)) {
+            delay = DEFAULTS.DELAY_TAP;
+        }
+
+        coord = {
+            pageX: point[0], 
+            pageY: point[1],
+            clientX: point[0], 
+            clientY: point[1]
+        };
+
+        touches = this._createTouchList([Y.merge({identifier: 0}, coord)]);
+
+        touchStart = function() {
+            this._simulateEvent(this.target, TOUCH_START, Y.merge({
+                touches: touches,
+                targetTouches: touches,
+                changedTouches: touches
+            }, coord));
+        };
+        
+        touchEnd = function() {
+            this._simulateEvent(this.target, TOUCH_END, Y.merge({
+                touches: emptyTouchList,
+                targetTouches: emptyTouchList,
+                changedTouches: touches
+            }, coord));
+        };
+        
+        for (i=0; i &lt; times; i++) {
+            eventQueue.add({
+                fn: touchStart,
+                context: this,
+                timeout: (i === 0)? 0 : delay
+            });
+
+            eventQueue.add({
+                fn: touchEnd,
+                context: this,
+                timeout: hold
+            });
+        }
+
+        if(times &gt; 1 &amp;&amp; !SUPPORTS_TOUCH) {
+            eventQueue.add({
+                fn: function() {
+                    this._simulateEvent(this.target, MOUSE_DBLCLICK, coord);
+                },
+                context: this
+            });
+        }
+
+        if(cb &amp;&amp; Y.Lang.isFunction(cb)) {
+            eventQueue.add({
+                fn: cb,
+
+                &#x2F;&#x2F; by default, the callback runs the node context where 
+                &#x2F;&#x2F; simulateGesture method is called.
+                context: this.node
+
+                &#x2F;&#x2F;TODO: Use args to pass error object as 1st param if there is an error.
+                &#x2F;&#x2F;args: 
+            });
+        }
+
+        eventQueue.run();
+    },
+
+    &#x2F;**
+     * The &quot;flick&quot; gesture is a specialized &quot;move&quot; that has some velocity 
+     * and the movement always runs either x or y axis. The velocity is calculated
+     * with &quot;distance&quot; and &quot;duration&quot; arguments. If the calculated velocity is 
+     * below than the minimum velocity, the given duration will be ignored and 
+     * new duration will be created to make a valid flick gesture.
+     *   
+     * @method flick
+     * @param {Function} cb The callback to execute when the gesture simulation 
+     *      is completed.
+     * @param {Array} point A point(relative to the top left corner of the 
+     *      target node element) where the flick gesture should start. The default 
+     *      is the center of the taget node.
+     * @param {String} axis Either &quot;x&quot; or &quot;y&quot;.
+     * @param {Number} distance A distance in pixels to flick.
+     * @param {Number} duration A duration of the gesture in millisecond.
+     * 
+     *&#x2F;
+    flick: function(cb, point, axis, distance, duration) {
+        var path;
+
+        point = this._calculateDefaultPoint(point);
+
+        if(!Y.Lang.isString(axis)) {
+            axis = X_AXIS;
+        } else {
+            axis = axis.toLowerCase();
+            if(axis !== X_AXIS &amp;&amp; axis !== Y_AXIS) {
+                Y.error(NAME+&#x27;(flick): Only x or y axis allowed&#x27;);
+            }
+        }
+
+        if(!Y.Lang.isNumber(distance)) { 
+            distance = DEFAULTS.DISTANCE_FLICK; 
+        }
+
+        if(!Y.Lang.isNumber(duration)){
+            duration = DEFAULTS.DURATION_FLICK; &#x2F;&#x2F; ms
+        } else {
+            if(duration &gt; DEFAULTS.MAX_DURATION_FLICK) {
+                duration = DEFAULTS.MAX_DURATION_FLICK;
+            }
+        }
+
+        &#x2F;**
+         * Check if too slow for a flick.
+         * Adjust duration if the calculated velocity is less than 
+         * the minimum velcocity to be claimed as a flick.
+         *&#x2F;
+        if(Math.abs(distance)&#x2F;duration &lt; DEFAULTS.MIN_VELOCITY_FLICK) {
+            duration = Math.abs(distance)&#x2F;DEFAULTS.MIN_VELOCITY_FLICK;
+        }
+
+        path = {
+            start: Y.clone(point),
+            end: [
+                (axis === X_AXIS) ? point[0]+distance : point[0],
+                (axis === Y_AXIS) ? point[1]+distance : point[1]
+            ]
+        };
+
+        this._move(cb, path, duration);
+    },
+
+    &#x2F;**
+     * The &quot;move&quot; gesture simulate the movement of any direction between 
+     * the straight line of start and end point for the given duration.
+     * The path argument is an object with &quot;point&quot;, &quot;xdist&quot; and &quot;ydist&quot; properties.
+     * The &quot;point&quot; property is an array with x and y coordinations(relative to the
+     * top left corner of the target node element) while &quot;xdist&quot; and &quot;ydist&quot; 
+     * properties are used for the distance along the x and y axis. A negative 
+     * distance number can be used to drag either left or up direction. 
+     * 
+     * If no arguments are given, it will simulate the default move, which
+     * is moving 200 pixels from the center of the element to the positive X-axis 
+     * direction for 1 sec.
+     * 
+     * @method move
+     * @param {Function} cb The callback to execute when the gesture simulation 
+     *      is completed.
+     * @param {Object} path An object with &quot;point&quot;, &quot;xdist&quot; and &quot;ydist&quot;.
+     * @param {Number} duration A duration of the gesture in millisecond.
+     *&#x2F;
+    move: function(cb, path, duration) {
+        var convertedPath;
+
+        if(!Y.Lang.isObject(path)) {
+            path = {
+                point: this._calculateDefaultPoint([]),
+                xdist: DEFAULTS.DISTANCE_MOVE,
+                ydist: 0
+            };
+        } else {
+            &#x2F;&#x2F; convert to the page coordination
+            if(!Y.Lang.isArray(path.point)) {
+                path.point = this._calculateDefaultPoint([]);
+            } else {
+                path.point = this._calculateDefaultPoint(path.point);
+            }
+
+            if(!Y.Lang.isNumber(path.xdist)) {
+                path.xdist = DEFAULTS.DISTANCE_MOVE;
+            }
+
+            if(!Y.Lang.isNumber(path.ydist)) {
+                path.ydist = 0;
+            }
+        }
+
+        if(!Y.Lang.isNumber(duration)){
+            duration = DEFAULTS.DURATION_MOVE; &#x2F;&#x2F; ms
+        } else {
+            if(duration &gt; DEFAULTS.MAX_DURATION_MOVE) {
+                duration = DEFAULTS.MAX_DURATION_MOVE;
+            }
+        }
+
+        convertedPath = {
+            start: Y.clone(path.point),
+            end: [path.point[0]+path.xdist, path.point[1]+path.ydist]
+        };
+
+        this._move(cb, convertedPath, duration);
+    },
+
+    &#x2F;**
+     * A base method on top of &quot;move&quot; and &quot;flick&quot; methods. The method takes
+     * the path with start&#x2F;end properties and duration to generate a set of 
+     * touch events for the movement gesture. 
+     *
+     * @method _move
+     * @private
+     * @param {Function} cb The callback to execute when the gesture simulation 
+     *      is completed.
+     * @param {Object} path An object with &quot;start&quot; and &quot;end&quot; properties. Each 
+     *      property should be an array with x and y coordination (e.g. start: [100, 50])
+     * @param {Number} duration A duration of the gesture in millisecond. 
+     *&#x2F;
+    _move: function(cb, path, duration) {
+        var eventQueue,
+            i,
+            interval = EVENT_INTERVAL,
+            steps, stepX, stepY,
+            id = 0,
+            touchMove;
+
+        if(!Y.Lang.isNumber(duration)){
+            duration = DEFAULTS.DURATION_MOVE; &#x2F;&#x2F; ms
+        } else {
+            if(duration &gt; DEFAULTS.MAX_DURATION_MOVE) {
+                duration = DEFAULTS.MAX_DURATION_MOVE;
+            }
+        }
+
+        if(!Y.Lang.isObject(path)) {
+            path = {
+                start: [
+                    START_PAGEX, 
+                    START_PAGEY
+                ], 
+                end: [
+                    START_PAGEX + DEFAULTS.DISTANCE_MOVE, 
+                    START_PAGEY
+                ]
+            };
+        } else {
+            if(!Y.Lang.isArray(path.start)) {
+                path.start = [
+                    START_PAGEX, 
+                    START_PAGEY
+                ];
+            }
+            if(!Y.Lang.isArray(path.end)) {
+                path.end = [
+                    START_PAGEX + DEFAULTS.DISTANCE_MOVE, 
+                    START_PAGEY
+                ];
+            }
+        }
+
+        Y.AsyncQueue.defaults.timeout = interval;
+        eventQueue = new Y.AsyncQueue();
+
+        &#x2F;&#x2F; start
+        eventQueue.add({
+            fn: function() {
+                var coord = {
+                        pageX: path.start[0], 
+                        pageY: path.start[1],
+                        clientX: path.start[0], 
+                        clientY: path.start[1]
+                    }, 
+                    touches = this._createTouchList([
+                        Y.merge({identifier: (id++)}, coord)
+                    ]);
+
+                this._simulateEvent(this.target, TOUCH_START, Y.merge({
+                    touches: touches,
+                    targetTouches: touches,
+                    changedTouches: touches
+                }, coord));
+            },
+            timeout: 0,
+            context: this
+        });
+
+        &#x2F;&#x2F; move
+        steps = Math.floor(duration&#x2F;interval);
+        stepX = (path.end[0] - path.start[0])&#x2F;steps;
+        stepY = (path.end[1] - path.start[1])&#x2F;steps;
+
+        touchMove = function(step) {
+            var px = path.start[0]+(stepX * step),
+                py = path.start[1]+(stepY * step), 
+                coord = {
+                    pageX: px, 
+                    pageY: py,
+                    clientX: px,
+                    clientY: py
+                }, 
+                touches = this._createTouchList([
+                    Y.merge({identifier: (id++)}, coord)
+                ]);
+
+            this._simulateEvent(this.target, TOUCH_MOVE, Y.merge({
+                touches: touches,
+                targetTouches: touches,
+                changedTouches: touches
+            }, coord));
+        };
+
+        for (i=0; i &lt; steps; i++) {
+            eventQueue.add({
+                fn: touchMove,
+                args: [i],
+                context: this
+            });
+        }
+
+        &#x2F;&#x2F; last move
+        eventQueue.add({
+            fn: function() {
+                var coord = {
+                        pageX: path.end[0], 
+                        pageY: path.end[1],
+                        clientX: path.end[0], 
+                        clientY: path.end[1]
+                    },
+                    touches = this._createTouchList([
+                        Y.merge({identifier: id}, coord)
+                    ]);
+
+                this._simulateEvent(this.target, TOUCH_MOVE, Y.merge({
+                    touches: touches,
+                    targetTouches: touches,
+                    changedTouches: touches
+                }, coord));
+            },
+            timeout: 0,
+            context: this
+        });
+
+        &#x2F;&#x2F; end
+        eventQueue.add({
+            fn: function() {
+                var coord = {
+                    pageX: path.end[0], 
+                    pageY: path.end[1],
+                    clientX: path.end[0], 
+                    clientY: path.end[1]
+                },
+                emptyTouchList = this._getEmptyTouchList(),
+                touches = this._createTouchList([
+                    Y.merge({identifier: id}, coord)
+                ]);
+
+                this._simulateEvent(this.target, TOUCH_END, Y.merge({
+                    touches: emptyTouchList,
+                    targetTouches: emptyTouchList,
+                    changedTouches: touches
+                }, coord));
+            },
+            context: this
+        });
+        
+        if(cb &amp;&amp; Y.Lang.isFunction(cb)) {
+            eventQueue.add({
+                fn: cb,
+
+                &#x2F;&#x2F; by default, the callback runs the node context where 
+                &#x2F;&#x2F; simulateGesture method is called.
+                context: this.node
+
+                &#x2F;&#x2F;TODO: Use args to pass error object as 1st param if there is an error.
+                &#x2F;&#x2F;args: 
+            });
+        }
+        
+        eventQueue.run();
+    },
+
+    &#x2F;**
+     * Helper method to return a singleton instance of empty touch list.
+     * 
+     * @method _getEmptyTouchList
+     * @private
+     * @return {TouchList | Array} An empty touch list object.
+     *&#x2F;
+    _getEmptyTouchList: function() {
+        if(!emptyTouchList) {
+            emptyTouchList = this._createTouchList([]);
+        }
+
+        return emptyTouchList;
+    },
+
+    &#x2F;**
+     * Helper method to convert an array with touch points to TouchList object as
+     * defined in http:&#x2F;&#x2F;www.w3.org&#x2F;TR&#x2F;touch-events&#x2F;
+     * 
+     * @method _createTouchList
+     * @private
+     * @param {Array} touchPoints 
+     * @return {TouchList | Array} If underlaying platform support creating touch list
+     *      a TouchList object will be returned otherwise a fake Array object 
+     *      will be returned.
+     *&#x2F;
+    _createTouchList: function(touchPoints) {
+        &#x2F;*
+        * Android 4.0.3 emulator:
+        * Native touch api supported starting in version 4.0 (Ice Cream Sandwich).
+        * However the support seems limited. In Android 4.0.3 emulator, I got
+        * &quot;TouchList is not defined&quot;.
+        *&#x2F;
+        var touches = [],
+            touchList,
+            self = this;
+
+        if(!!touchPoints &amp;&amp; Y.Lang.isArray(touchPoints)) {
+            if(Y.UA.android &amp;&amp; Y.UA.android &gt;= 4.0 || Y.UA.ios &amp;&amp; Y.UA.ios &gt;= 2.0) {
+                Y.each(touchPoints, function(point) {
+                    if(!point.identifier) {point.identifier = 0;}
+                    if(!point.pageX) {point.pageX = 0;}
+                    if(!point.pageY) {point.pageY = 0;}
+                    if(!point.screenX) {point.screenX = 0;}
+                    if(!point.screenY) {point.screenY = 0;}
+
+                    touches.push(document.createTouch(Y.config.win, 
+                        self.target,
+                        point.identifier, 
+                        point.pageX, point.pageY, 
+                        point.screenX, point.screenY));
+                });
+
+                touchList = document.createTouchList.apply(document, touches);
+            } else if(Y.UA.ios &amp;&amp; Y.UA.ios &lt; 2.0) { 
+                Y.error(NAME+&#x27;: No touch event simulation framework present.&#x27;);
+            } else {
+                &#x2F;&#x2F; this will inclide android(Y.UA.android &amp;&amp; Y.UA.android &lt; 4.0) 
+                &#x2F;&#x2F; and desktops among all others. 
+
+                &#x2F;**
+                 * Touch APIs are broken in androids older than 4.0. We will use 
+                 * simulated touch apis for these versions. 
+                 *&#x2F;
+                touchList = [];
+                Y.each(touchPoints, function(point) {
+                    if(!point.identifier) {point.identifier = 0;}
+                    if(!point.clientX)  {point.clientX = 0;}
+                    if(!point.clientY)  {point.clientY = 0;}
+                    if(!point.pageX)    {point.pageX = 0;}
+                    if(!point.pageY)    {point.pageY = 0;}
+                    if(!point.screenX)  {point.screenX = 0;}
+                    if(!point.screenY)  {point.screenY = 0;}
+
+                    touchList.push({
+                        target: self.target,
+                        identifier: point.identifier,
+                        clientX: point.clientX,
+                        clientY: point.clientY,
+                        pageX: point.pageX,
+                        pageY: point.pageY,
+                        screenX: point.screenX,
+                        screenY: point.screenY
+                    });
+                });
+
+                touchList.item = function(i) {
+                    return touchList[i];
+                };
+            }
+        } else {
+            Y.error(NAME+&#x27;: Invalid touchPoints passed&#x27;);
+        }
+
+        return touchList;
+    },
+
+    &#x2F;**
+     * @method _simulateEvent
+     * @private
+     * @param {HTMLElement} target The DOM element that&#x27;s the target of the event.
+     * @param {String} type The type of event or name of the supported gesture to simulate 
+     *      (i.e., &quot;click&quot;, &quot;doubletap&quot;, &quot;flick&quot;).
+     * @param {Object} options (Optional) Extra options to copy onto the event object. 
+     *      For gestures, options are used to refine the gesture behavior.
+     * @return {void}
+     *&#x2F;
+    _simulateEvent: function(target, type, options) {
+        var touches;
+
+        if (touchEvents[type]) {
+            if(SUPPORTS_TOUCH) {
+                Y.Event.simulate(target, type, options);
+            } else {
+                &#x2F;&#x2F; simulate using mouse events if touch is not applicable on this platform.
+                &#x2F;&#x2F; but only single touch event can be simulated.
+                if(this._isSingleTouch(options.touches, options.targetTouches, options.changedTouches)) {
+                    type = {
+                        touchstart: MOUSE_DOWN,
+                        touchmove: MOUSE_MOVE,
+                        touchend: MOUSE_UP
+                    }[type];
+
+                    options.button = 0;
+                    options.relatedTarget = null; &#x2F;&#x2F; since we are not using mouseover event.
+
+                    &#x2F;&#x2F; touchend has none in options.touches.
+                    touches = (type === MOUSE_UP)? options.changedTouches : options.touches;
+
+                    options = Y.mix(options, {
+                        screenX: touches.item(0).screenX,
+                        screenY: touches.item(0).screenY,
+                        clientX: touches.item(0).clientX,
+                        clientY: touches.item(0).clientY
+                    }, true);
+
+                    Y.Event.simulate(target, type, options);
+
+                    if(type == MOUSE_UP) {
+                        Y.Event.simulate(target, MOUSE_CLICK, options);
+                    }
+                } else {
+                    Y.error(&quot;_simulateEvent(): Event &#x27;&quot; + type + &quot;&#x27; has multi touch objects that can&#x27;t be simulated in your platform.&quot;);
+                }
+            }
+        } else {
+            &#x2F;&#x2F; pass thru for all non touch events
+            Y.Event.simulate(target, type, options);
+        }
+    },
+
+    &#x2F;**
+     * Helper method to check the single touch.
+     * @method _isSingleTouch
+     * @private
+     * @param {TouchList} touches
+     * @param {TouchList} targetTouches
+     * @param {TouchList} changedTouches
+     *&#x2F;
+    _isSingleTouch: function(touches, targetTouches, changedTouches) {
+        return (touches &amp;&amp; (touches.length &lt;= 1)) &amp;&amp; 
+            (targetTouches &amp;&amp; (targetTouches.length &lt;= 1)) &amp;&amp;
+            (changedTouches &amp;&amp; (changedTouches.length &lt;= 1));
+    }
+};
+
+&#x2F;**
+ * A gesture simulation class.
+ *&#x2F;
+Y.GestureSimulation = Simulations;
+
+&#x2F;**
+ * Various simulation default behavior properties. If user override 
+ * Y.GestureSimulation.defaults, overriden values will be used and this 
+ * should be done before the gesture simulation.  
+ *&#x2F;
+Y.GestureSimulation.defaults = DEFAULTS;
+
+&#x2F;**
+ * The high level gesture names that YUI knows how to simulate.
+ *&#x2F;
+Y.GestureSimulation.GESTURES = gestureNames;
+
+&#x2F;**
+ * Simulates the higher user level gesture of the given name on a target. 
+ * This method generates a set of low level touch events(Apple specific gesture 
+ * events as well for the iOS platforms) asynchronously. Note that gesture  
+ * simulation is relying on &#x60;Y.Event.simulate()&#x60; method to generate 
+ * the touch events under the hood. The &#x60;Y.Event.simulate()&#x60; method
+ * itself is a synchronous method.
+ * 
+ * Users are suggested to use &#x60;Node.simulateGesture()&#x60; method which 
+ * basically calls this method internally. Supported gestures are &#x60;tap&#x60;, 
+ * &#x60;doubletap&#x60;, &#x60;press&#x60;, &#x60;move&#x60;, &#x60;flick&#x60;, &#x60;pinch&#x60; and &#x60;rotate&#x60;.
+ * 
+ * The &#x60;pinch&#x60; gesture is used to simulate the pinching and spreading of two
+ * fingers. During a pinch simulation, rotation is also possible. Essentially
+ * &#x60;pinch&#x60; and &#x60;rotate&#x60; simulations share the same base implementation to allow
+ * both pinching and rotation at the same time. The only difference is &#x60;pinch&#x60;
+ * requires &#x60;start&#x60; and &#x60;end&#x60; option properties while &#x60;rotate&#x60; requires &#x60;rotation&#x60; 
+ * option property.
+ * 
+ * The &#x60;pinch&#x60; and &#x60;rotate&#x60; gestures can be described as placing 2 fingers along a
+ * circle. Pinching and spreading can be described by start and end circles while 
+ * rotation occurs on a single circle. If the radius of the start circle is greater 
+ * than the end circle, the gesture becomes a pinch, otherwise it is a spread spread.
+ * 
+ * @example
+ *
+ *     var node = Y.one(&quot;#target&quot;);
+ *       
+ *     &#x2F;&#x2F; double tap example
+ *     node.simulateGesture(&quot;doubletap&quot;, function() {
+ *         &#x2F;&#x2F; my callback function
+ *     });
+ *     
+ *     &#x2F;&#x2F; flick example from the center of the node, move 50 pixels down for 50ms)
+ *     node.simulateGesture(&quot;flick&quot;, {
+ *         axis: y,
+ *         distance: -100
+ *         duration: 50
+ *     }, function() {
+ *         &#x2F;&#x2F; my callback function
+ *     });
+ *     
+ *     &#x2F;&#x2F; simulate rotating a node 75 degrees counter-clockwise 
+ *     node.simulateGesture(&quot;rotate&quot;, {
+ *         rotation: -75
+ *     });
+ *
+ *     &#x2F;&#x2F; simulate a pinch and a rotation at the same time. 
+ *     &#x2F;&#x2F; fingers start on a circle of radius 100 px, placed at top&#x2F;bottom
+ *     &#x2F;&#x2F; fingers end on a circle of radius 50px, placed at right&#x2F;left 
+ *     node.simulateGesture(&quot;pinch&quot;, {
+ *         r1: 100,
+ *         r2: 50,
+ *         start: 0
+ *         rotation: 90
+ *     });
+ *     
+ * @method simulateGesture
+ * @param {HTMLElement|Node} node The YUI node or HTML element that&#x27;s the target 
+ *      of the event.
+ * @param {String} name The name of the supported gesture to simulate. The 
+ *      supported gesture name is one of &quot;tap&quot;, &quot;doubletap&quot;, &quot;press&quot;, &quot;move&quot;, 
+ *      &quot;flick&quot;, &quot;pinch&quot; and &quot;rotate&quot;. 
+ * @param {Object} [options] Extra options used to define the gesture behavior:
+ * 
+ *      Valid options properties for the &#x60;tap&#x60; gesture:
+ *      
+ *      @param {Array} [options.point] (Optional) Indicates the [x,y] coordinates 
+ *        where the tap should be simulated. Default is the center of the node 
+ *        element.
+ *      @param {Number} [options.hold=10] (Optional) The hold time in milliseconds. 
+ *        This is the time between &#x60;touchstart&#x60; and &#x60;touchend&#x60; event generation.
+ *      @param {Number} [options.times=1] (Optional) Indicates the number of taps.
+ *      @param {Number} [options.delay=10] (Optional) The number of milliseconds 
+ *        before the next tap simulation happens. This is valid only when &#x60;times&#x60; 
+ *        is more than 1. 
+ *        
+ *      Valid options properties for the &#x60;doubletap&#x60; gesture:
+ *      
+ *      @param {Array} [options.point] (Optional) Indicates the [x,y] coordinates 
+ *        where the doubletap should be simulated. Default is the center of the 
+ *        node element.
+ * 
+ *      Valid options properties for the &#x60;press&#x60; gesture:
+ *      
+ *      @param {Array} [options.point] (Optional) Indicates the [x,y] coordinates 
+ *        where the press should be simulated. Default is the center of the node 
+ *        element.
+ *      @param {Number} [options.hold=3000] (Optional) The hold time in milliseconds. 
+ *        This is the time between &#x60;touchstart&#x60; and &#x60;touchend&#x60; event generation. 
+ *        Default is 3000ms (3 seconds).
+ * 
+ *      Valid options properties for the &#x60;move&#x60; gesture:
+ *      
+ *      @param {Object} [options.path] (Optional) Indicates the path of the finger 
+ *        movement. It&#x27;s an object with three optional properties: &#x60;point&#x60;, 
+ *        &#x60;xdist&#x60; and  &#x60;ydist&#x60;.
+ *        @param {Array} [options.path.point] A starting point of the gesture.
+ *          Default is the center of the node element.
+ *        @param {Number} [options.path.xdist=200] A distance to move in pixels  
+ *          along the X axis. A negative distance value indicates moving left.
+ *        @param {Number} [options.path.ydist=0] A distance to move in pixels  
+ *          along the Y axis. A negative distance value indicates moving up.
+ *      @param {Number} [options.duration=1000] (Optional) The duration of the 
+ *        gesture in milliseconds.
+ * 
+ *      Valid options properties for the &#x60;flick&#x60; gesture:
+ *      
+ *      @param {Array} [options.point] (Optional) Indicates the [x, y] coordinates 
+ *        where the flick should be simulated. Default is the center of the 
+ *        node element.
+ *      @param {String} [options.axis=&#x27;x&#x27;] (Optional) Valid values are either 
+ *        &quot;x&quot; or &quot;y&quot;. Indicates axis to move along. The flick can move to one of 
+ *        4 directions(left, right, up and down).
+ *      @param {Number} [options.distance=200] (Optional) Distance to move in pixels
+ *      @param {Number} [options.duration=1000] (Optional) The duration of the 
+ *        gesture in milliseconds. User given value could be automatically 
+ *        adjusted by the framework if it is below the minimum velocity to be 
+ *        a flick gesture.
+ * 
+ *      Valid options properties for the &#x60;pinch&#x60; gesture:
+ *      
+ *      @param {Array} [options.center] (Optional) The center of the circle where 
+ *        two fingers are placed. Default is the center of the node element.
+ *      @param {Number} [options.r1] (Required) Pixel radius of the start circle 
+ *        where 2 fingers will be on when the gesture starts. The circles are 
+ *        centered at the center of the element.
+ *      @param {Number} [options.r2] (Required) Pixel radius of the end circle 
+ *        when this gesture ends.
+ *      @param {Number} [options.duration=1000] (Optional) The duration of the 
+ *        gesture in milliseconds.
+ *      @param {Number} [options.start=0] (Optional) Starting degree of the first 
+ *        finger. The value is relative to the path of the north. Default is 0 
+ *        (i.e., 12:00 on a clock).
+ *      @param {Number} [options.rotation=0] (Optional) Degrees to rotate from 
+ *        the starting degree. A negative value means rotation to the 
+ *        counter-clockwise direction.
+ * 
+ *      Valid options properties for the &#x60;rotate&#x60; gesture:
+ *      
+ *      @param {Array} [options.center] (Optional) The center of the circle where 
+ *        two fingers are placed. Default is the center of the node element.
+ *      @param {Number} [options.r1] (Optional) Pixel radius of the start circle 
+ *        where 2 fingers will be on when the gesture starts. The circles are 
+ *        centered at the center of the element. Default is a fourth of the node 
+ *        element width or height, whichever is smaller.
+ *      @param {Number} [options.r2] (Optional) Pixel radius of the end circle 
+ *        when this gesture ends. Default is a fourth of the node element width or 
+ *        height, whichever is smaller.
+ *      @param {Number} [options.duration=1000] (Optional) The duration of the 
+ *        gesture in milliseconds.
+ *      @param {Number} [options.start=0] (Optional) Starting degree of the first 
+ *        finger. The value is relative to the path of the north. Default is 0 
+ *        (i.e., 12:00 on a clock).
+ *      @param {Number} [options.rotation] (Required) Degrees to rotate from 
+ *        the starting degree. A negative value means rotation to the 
+ *        counter-clockwise direction.
+ * 
+ * @param {Function} [cb] The callback to execute when the asynchronouse gesture  
+ *      simulation is completed. 
+ *      @param {Error} cb.err An error object if the simulation is failed.  
+ * @return {void}
+ * @for Event
+ * @static
+ *&#x2F;
+Y.Event.simulateGesture = function(node, name, options, cb) {
+
+    node = Y.one(node);    
+
+    var sim = new Y.GestureSimulation(node);
+    name = name.toLowerCase();
+
+    if(!cb &amp;&amp; Y.Lang.isFunction(options)) {
+        cb = options;
+        options = {};
+    }
+
+    options = options || {};
+
+    if (gestureNames[name]) {
+        switch(name) {
+            &#x2F;&#x2F; single-touch: point gestures 
+            case &#x27;tap&#x27;:
+                sim.tap(cb, options.point, options.times, options.hold, options.delay);
+                break;
+            case &#x27;doubletap&#x27;:
+                sim.tap(cb, options.point, 2);
+                break;
+            case &#x27;press&#x27;:
+                if(!Y.Lang.isNumber(options.hold)) {
+                    options.hold = DEFAULTS.HOLD_PRESS;
+                } else if(options.hold &lt; DEFAULTS.MIN_HOLD_PRESS) {
+                    options.hold = DEFAULTS.MIN_HOLD_PRESS;
+                } else if(options.hold &gt; DEFAULTS.MAX_HOLD_PRESS) {
+                    options.hold = DEFAULTS.MAX_HOLD_PRESS;
+                }
+                sim.tap(cb, options.point, 1, options.hold);
+                break;
+
+            &#x2F;&#x2F; single-touch: move gestures 
+            case &#x27;move&#x27;:
+                sim.move(cb, options.path, options.duration);
+                break;
+            case &#x27;flick&#x27;:
+                sim.flick(cb, options.point, options.axis, options.distance, 
+                    options.duration);
+                break;
+
+            &#x2F;&#x2F; multi-touch: pinch&#x2F;rotation gestures
+            case &#x27;pinch&#x27;:
+                sim.pinch(cb, options.center, options.r1, options.r2, 
+                    options.duration, options.start, options.rotation);
+                break;    
+            case &#x27;rotate&#x27;:
+                sim.rotate(cb, options.center, options.r1, options.r2, 
+                    options.duration, options.start, options.rotation);
+                break;
+        }
+    } else {
+        Y.error(NAME+&#x27;: Not a supported gesture simulation: &#x27;+name);
+    }
+};
+
+    </pre>
 </div>
 
                 </div>

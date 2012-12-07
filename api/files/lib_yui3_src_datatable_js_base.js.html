@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSON - AlloyUI</title>
+    <title>lib&#x2F;yui3&#x2F;src&#x2F;datatable&#x2F;js&#x2F;base.js - AlloyUI</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.4.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
@@ -1577,2518 +1577,690 @@
 
             <div class="apidocs">
                 <div id="docs-main" class="content">
-                    <h1>JSON Class</h1>
-<div class="box meta">
-    
-
-    
-
-    
-        <div class="foundat">
-            Defined in: <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18372"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18372</code></a>
-        </div>
-    
-
-    
-</div>
-
-
-
-<div class="box intro">
-    <p>The JSON module adds support for serializing JavaScript objects into
-JSON strings and parsing JavaScript objects from strings in JSON format.</p>
-
-<p>The JSON namespace is added to your YUI instance including static methods
-Y.JSON.parse(..) and Y.JSON.stringify(..).</p>
-
-<p>The functionality and method signatures follow the ECMAScript 5
-specification.  In browsers with native JSON support, the native
-implementation is used.</p>
-
-<p>The <code>json</code> module is a rollup of <code>json-parse</code> and
-<code>json-stringify</code>.</p>
-
-<p>As their names suggest, <code>json-parse</code> adds support for parsing
-JSON data (Y.JSON.parse) and <code>json-stringify</code> for serializing
-JavaScript data into JSON strings (Y.JSON.stringify).  You may choose to
-include either of the submodules individually if you don't need the
-complementary functionality, or include the rollup for both.</p>
-</div>
-
-
-
-<div id="classdocs" class="tabview">
-    <ul class="aui-tabview-list aui-widget-hd api-class-tabs tabs" id="api-class-tabview-list">
-        <li class="yui3-tab api-class-tab index"><a class="aui-tab-label" href="#index">Index</a></li>
-
-        
-            <li class="aui-tab api-class-tab methods"><a class="aui-tab-label" href="#methods">Methods</a></li>
-        
-        
-            <li class="aui-tab api-class-tab properties"><a class="aui-tab-label" href="#properties">Properties</a></li>
-        
-        
-        
-    </ul>
-
-    <div class="aui-tabview-content aui-widget-bd" id="api-class-tabview-panel">
-        <div id="index" class="aui-tabview-content-item api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
-            
-                <div class="index-section methods">
-                    <h3>Methods</h3>
-
-                    <ul class="index-list methods">
-                        
-                            <li class="index-item method private">
-                                <a href="#method__revive">_revive</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method__revive">_revive</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_customTransport">customTransport</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method deprecated">
-                                <a href="#method_dateToString">dateToString</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_defaultTransport">defaultTransport</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_escapeException">escapeException</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method private">
-                                <a href="#method_escapeException">escapeException</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_notify">notify</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_parse">parse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_parse">parse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item method">
-                                <a href="#method_stringify">stringify</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-                <div class="index-section properties">
-                    <h3>Properties</h3>
-
-                    <ul class="index-list properties">
-                        
-                            <li class="index-item property private">
-                                <a href="#property__BRACKETS">_BRACKETS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__BRACKETS">_BRACKETS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property__default">_default</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__ESCAPES">_ESCAPES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__ESCAPES">_ESCAPES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNICODE_EXCEPTIONS">_UNICODE_EXCEPTIONS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNICODE_EXCEPTIONS">_UNICODE_EXCEPTIONS</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNSAFE">_UNSAFE</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__UNSAFE">_UNSAFE</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__VALUES">_VALUES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property__VALUES">_VALUES</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_charCacheThreshold">charCacheThreshold</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property_Native">Native</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property private">
-                                <a href="#property_Native">Native</a>
-
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_transports">transports</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeParse">useNativeParse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeParse">useNativeParse</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                            <li class="index-item property">
-                                <a href="#property_useNativeStringify">useNativeStringify</a>
-
-                                
-                                    <span class="flag static">static</span>
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-
-            
-        </div>
-
-        
-            <div id="methods" class="aui-tabview-content-item api-class-tabpanel">
-                <h2 class="off-left">Methods</h2>
-
-                
-                    <div id="method__revive" class="method item private">
-    <h3 class="name"><code>_revive</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>data</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l125"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:125</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Traverses nested objects, applying a reviver function to each (key,value)
-from the scope if the key:value's containing object.  The value returned
-from the function will replace the original value in the key:value pair.
-If the value returned is undefined, the key will be omitted from the
-returned object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">data</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Any JavaScript data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>filter or mutation function</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    The results of the filtered data
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method__revive" class="method item private">
-    <h3 class="name"><code>_revive</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>data</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18496"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18496</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Traverses nested objects, applying a reviver function to each (key,value)
-from the scope if the key:value's containing object.  The value returned
-from the function will replace the original value in the key:value pair.
-If the value returned is undefined, the key will be omitted from the
-returned object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">data</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Any JavaScript data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>filter or mutation function</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    The results of the filtered data
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_customTransport" class="method item">
-    <h3 class="name"><code>customTransport</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>id</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l56"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:56</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Create a custom transport of type and return it's object</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">id</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The id of the transport to create.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_dateToString" class="method item deprecated">
-    <h3 class="name"><code>dateToString</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>d</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-        <span class="flag deprecated" title="Use a replacer function">deprecated</span>
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l266"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:266</code></a>
-        
-        </p>
-
-
-        
-            <p>Deprecated: Use a replacer function</p>
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Serializes a Date instance as a UTC date string.  Used internally by
-stringify.  Override this method if you need Dates serialized in a
-different format.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">d</code>
-                        <span class="type"><a href="../classes/Date.html" class="crosslink">Date</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The Date to serialize</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    stringified Date in UTC format YYYY-MM-DDTHH:mm:SSZ
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_defaultTransport" class="method item">
-    <h3 class="name"><code>defaultTransport</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code class="optional">[id]</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l18"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:18</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name optional">[id]</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                        <span class="flag optional" title="This parameter is optional.">optional</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The transport to set as the default, if empty a new transport is created.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
-                    
-                    The transport object with a <code>send</code> method
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_escapeException" class="method item private">
-    <h3 class="name"><code>escapeException</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>c</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l112"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:112</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replaces specific unicode characters with their appropriate \unnnn
-format. Some browsers ignore certain characters during eval.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">c</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Unicode character</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    the \unnnn escapement of the character
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_escapeException" class="method item private">
-    <h3 class="name"><code>escapeException</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>c</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18483"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18483</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replaces specific unicode characters with their appropriate \unnnn
-format. Some browsers ignore certain characters during eval.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">c</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>Unicode character</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    the \unnnn escapement of the character
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_notify" class="method item">
-    <h3 class="name"><code>notify</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>event</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>transaction</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>config</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l71"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:71</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Fired from the notify method of the transport which in turn fires
-the event on the IO object.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">event</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The name of the event</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">transaction</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The transaction object</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">config</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>The configuration object for this transaction</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>s</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18530"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18530</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Parse a JSON string, returning the native JavaScript representation.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">s</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JSON string data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) function(k,v) passed each key value
-         pair of object literals, allowing pruning or altering values</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    the native JavaScript representation of the JSON string
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_parse" class="method item">
-    <h3 class="name"><code>parse</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>s</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>reviver</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">MIXED</span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l159"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:159</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Parse a JSON string, returning the native JavaScript representation.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">s</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>JSON string data</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">reviver</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) function(k,v) passed each key value
-         pair of object literals, allowing pruning or altering values</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">MIXED</span>:
-                    
-                    the native JavaScript representation of the JSON string
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_stringify" class="method item">
-    <h3 class="name"><code>stringify</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>o</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>w</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>ind</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-        </span>
-    
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l290"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:290</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Converts an arbitrary value to a JSON string representation.</p>
-
-<p>Objects with cyclical references will trigger an exception.</p>
-
-<p>If a whitelist is provided, only matching object keys will be
-included.  Alternately, a replacer function may be passed as the
-second parameter.  This function is executed on every value in the
-input, and its return value will be used in place of the original value.
-This is useful to serialize specialized objects or class instances.</p>
-
-<p>If a positive integer or non-empty string is passed as the third
-parameter, the output will be formatted with carriage returns and
-indentation for readability.  If a String is passed (such as "\t") it
-will be used once for each indentation level.  If a number is passed,
-that number of spaces will be used.</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">o</code>
-                        <span class="type">MIXED</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>any arbitrary value to convert to JSON string</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">w</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) whitelist of acceptable object
-                 keys to include, or a replacer function to modify the
-                 raw value before serialization</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">ind</code>
-                        <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a> | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>(optional) indentation character or depth of
-                 spaces to format the output.</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
-                    
-                    JSON string representation of the input
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-            <div id="properties" class="aui-tabview-content-item api-class-tabpanel">
-                <h2 class="off-left">Properties</h2>
-
-                
-                    <div id="property__BRACKETS" class="property item private">
-    <h3 class="name"><code>_BRACKETS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18462"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18462</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Third step in the safety evaluation.  Regex used to remove all open
-square brackets following a colon, comma, or at the beginning of the
-string.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__BRACKETS" class="property item private">
-    <h3 class="name"><code>_BRACKETS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l91"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:91</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Third step in the safety evaluation.  Regex used to remove all open
-square brackets following a colon, comma, or at the beginning of the
-string.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__default" class="property item">
-    <h3 class="name"><code>_default</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l11"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:11</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>The ID of the default IO transport, defaults to <code>xhr</code></p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__ESCAPES" class="property item private">
-    <h3 class="name"><code>_ESCAPES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l71"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:71</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>First step in the safety evaluation.  Regex used to replace all escape
-sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__ESCAPES" class="property item private">
-    <h3 class="name"><code>_ESCAPES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18442"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18442</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>First step in the safety evaluation.  Regex used to replace all escape
-sequences (i.e. "\", etc) with '@' characters (a non-JSON character).</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNICODE_EXCEPTIONS" class="property item private">
-    <h3 class="name"><code>_UNICODE_EXCEPTIONS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l57"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:57</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replace certain Unicode characters that JavaScript may handle incorrectly
-during eval--either by deleting them or treating them as line
-endings--with escape sequences.
-IMPORTANT NOTE: This regex will be used to modify the input if a match is
-found.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNICODE_EXCEPTIONS" class="property item private">
-    <h3 class="name"><code>_UNICODE_EXCEPTIONS</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18428"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18428</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Replace certain Unicode characters that JavaScript may handle incorrectly
-during eval--either by deleting them or treating them as line
-endings--with escape sequences.
-IMPORTANT NOTE: This regex will be used to modify the input if a match is
-found.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNSAFE" class="property item private">
-    <h3 class="name"><code>_UNSAFE</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18473"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18473</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Final step in the safety evaluation.  Regex used to test the string left
-after all previous replacements for invalid characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__UNSAFE" class="property item private">
-    <h3 class="name"><code>_UNSAFE</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l102"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:102</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Final step in the safety evaluation.  Regex used to test the string left
-after all previous replacements for invalid characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__VALUES" class="property item private">
-    <h3 class="name"><code>_VALUES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18452"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18452</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Second step in the safety evaluation.  Regex used to replace all simple
-values with ']' characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property__VALUES" class="property item private">
-    <h3 class="name"><code>_VALUES</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp" class="crosslink external" target="_blank">RegExp</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l81"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:81</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Second step in the safety evaluation.  Regex used to replace all simple
-values with ']' characters.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_charCacheThreshold" class="property item">
-    <h3 class="name"><code>charCacheThreshold</code></h3>
-    <span class="type"><a href="../classes/Number.html" class="crosslink">Number</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l322"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:322</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Number of occurrences of a special character within a single call to
-stringify that should trigger promotion of that character to a dedicated
-preprocess step for future calls.  This is only used in environments
-that don't support native JSON, or when useNativeStringify is set to
-false.</p>
-
-<p>So, if set to 50 and an object is passed to stringify that includes
-strings containing the special character \x07 more than 50 times,
-subsequent calls to stringify will process object strings through a
-faster serialization path for \x07 before using the generic, slower,
-replacement process for all special characters.</p>
-
-<p>To prime the preprocessor cache, set this value to 1, then call
-<code>Y.JSON.stringify("<em>(all special characters to
-cache)</em>");</code>, then return this setting to a more conservative
-value.</p>
-
-<p>Special characters \ " \b \t \n \f \r are already cached.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> 100</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_Native" class="property item private">
-    <h3 class="name"><code>Native</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18416"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18416</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Alias to native browser implementation of the JSON object if available.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_Native" class="property item private">
-    <h3 class="name"><code>Native</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l45"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:45</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Alias to native browser implementation of the JSON object if available.</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_transports" class="property item">
-    <h3 class="name"><code>transports</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/io.html">io</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_io_js_transports.js.html#l38"><code>lib&#x2F;yui3&#x2F;src&#x2F;io&#x2F;js&#x2F;transports.js:38</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>An object hash of custom transports available to IO</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeParse" class="property item">
-    <h3 class="name"><code>useNativeParse</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_simpleyui_js_concat.js.html#l18586"><code>lib&#x2F;yui3&#x2F;src&#x2F;simpleyui&#x2F;js&#x2F;concat.js:18586</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON parse if the browser has a native implementation.
-In general, this is a good idea.  See the Known Issues section in the
-JSON user guide for caveats.  The default value is true for browsers with
-native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeParse" class="property item">
-    <h3 class="name"><code>useNativeParse</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_parse.js.html#l215"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;parse.js:215</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON parse if the browser has a native implementation.
-In general, this is a good idea.  See the Known Issues section in the
-JSON user guide for caveats.  The default value is true for browsers with
-native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-                    <div id="property_useNativeStringify" class="property item">
-    <h3 class="name"><code>useNativeStringify</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-
-    
-
-    
-
-    
-
-    
-        <span class="flag static">static</span>
-    
-
-    <div class="meta">
-        
-            
-                
-                    <p>Provided by the <a href="../modules/json-stringify.html">json-stringify</a> module.</p>
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="../..&#x2F;files&#x2F;lib_yui3_src_json_js_stringify.js.html#l253"><code>lib&#x2F;yui3&#x2F;src&#x2F;json&#x2F;js&#x2F;stringify.js:253</code></a>
-        
-        </p>
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Leverage native JSON stringify if the browser has a native
-implementation.  In general, this is a good idea.  See the Known Issues
-section in the JSON user guide for caveats.  The default value is true
-for browsers with native JSON support.</p>
-    </div>
-
-    
-        <p><strong>Default:</strong> true</p>
-    
-
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-
-        
-    </div>
+                    <h1 class="file-heading">File: lib&#x2F;yui3&#x2F;src&#x2F;datatable&#x2F;js&#x2F;base.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;**
+A Widget for displaying tabular data.  The base implementation of DataTable
+provides the ability to dynamically generate an HTML table from a set of column
+configurations and row data.
+
+Two classes are included in the &#x60;datatable-base&#x60; module: &#x60;Y.DataTable&#x60; and
+&#x60;Y.DataTable.Base&#x60;.
+
+@module datatable
+@submodule datatable-base
+@main datatable
+@since 3.5.0
+**&#x2F;
+
+&#x2F;&#x2F; DataTable API docs included before DataTable.Base to make yuidoc work
+&#x2F;**
+A Widget for displaying tabular data.  Before feature modules are &#x60;use()&#x60;d,
+this class is functionally equivalent to DataTable.Base.  However, feature
+modules can modify this class in non-destructive ways, expanding the API and
+functionality.
+
+This is the primary DataTable class.  Out of the box, it provides the ability
+to dynamically generate an HTML table from a set of column configurations and
+row data.  But feature module inclusion can add table sorting, pagintaion,
+highlighting, selection, and more.
+
+&lt;pre&gt;&lt;code&gt;
+&#x2F;&#x2F; The functionality of this table would require additional modules be use()d,
+&#x2F;&#x2F; but the feature APIs are aggregated onto Y.DataTable.
+&#x2F;&#x2F; (Snippet is for illustration. Not all features are available today.)
+var table = new Y.DataTable({
+    columns: [
+        { type: &#x27;checkbox&#x27;, defaultChecked: true },
+        { key: &#x27;firstName&#x27;, sortable: true, resizable: true },
+        { key: &#x27;lastName&#x27;, sortable: true },
+        { key: &#x27;role&#x27;, formatter: toRoleName }
+    ],
+    data: {
+        source: &#x27;http:&#x2F;&#x2F;myserver.com&#x2F;service&#x2F;json&#x27;,
+        type: &#x27;json&#x27;,
+        schema: {
+            resultListLocator: &#x27;results.users&#x27;,
+            fields: [
+                &#x27;username&#x27;,
+                &#x27;firstName&#x27;,
+                &#x27;lastName&#x27;,
+                { key: &#x27;role&#x27;, type: &#x27;number&#x27; }
+            ]
+        }
+    },
+    recordType: UserModel,
+    pagedData: {
+        location: &#x27;footer&#x27;,
+        pageSizes: [20, 50, &#x27;all&#x27;],
+        rowsPerPage: 20,
+        pageLinks: 5
+    },
+    editable: true
+});
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+
+### Column Configuration
+
+The column configurations are set in the form of an array of objects, where
+each object corresponds to a column.  For columns populated directly from the
+row data, a &#x27;key&#x27; property is required to bind the column to that property or
+attribute in the row data.
+
+Not all columns need to relate to row data, nor do all properties or attributes
+of the row data need to have a corresponding column.  However, only those
+columns included in the &#x60;columns&#x60; configuration attribute will be rendered.
+
+Other column configuration properties are supported by the configured
+&#x60;view&#x60;, class as well as any features added by plugins or class extensions.
+See the description of DataTable.TableView and its subviews
+DataTable.HeaderView, DataTable.BodyView, and DataTable.FooterView (and other
+DataTable feature classes) to see what column properties they support.
+
+Some examples of column configurations would be:
+
+&lt;pre&gt;&lt;code&gt;
+&#x2F;&#x2F; Basic
+var columns = [{ key: &#x27;firstName&#x27; }, { key: &#x27;lastName&#x27; }, { key: &#x27;age&#x27; }];
+
+&#x2F;&#x2F; For columns without any additional configuration, strings can be used
+var columns = [&#x27;firstName&#x27;, &#x27;lastName&#x27;, &#x27;age&#x27;];
+
+&#x2F;&#x2F; Multi-row column headers (see DataTable.HeaderView for details)
+var columns = [
+    {
+        label: &#x27;Name&#x27;,
+        children: [
+            { key: &#x27;firstName&#x27; },
+            { key: &#x27;lastName&#x27; }
+        ]
+    },
+    &#x27;age&#x27; &#x2F;&#x2F; mixing and matching objects and strings is ok
+];
+
+&#x2F;&#x2F; Including columns that are not related 1:1 to row data fields&#x2F;attributes
+&#x2F;&#x2F; (See DataTable.BodyView for details)
+var columns = [
+    {
+        label: &#x27;Name&#x27;, &#x2F;&#x2F; Needed for the column header
+        formatter: function (o) {
+            &#x2F;&#x2F; Fill the column cells with data from firstName and lastName
+            if (o.data.age &gt; 55) {
+                o.className += &#x27; senior&#x27;;
+            }
+            return o.data.lastName + &#x27;, &#x27; + o.data.firstName;
+        }
+    },
+    &#x27;age&#x27;
+];
+
+&#x2F;&#x2F; Columns that include feature configurations (for illustration; not all
+&#x2F;&#x2F; features are available today).
+var columns = [
+    { type: &#x27;checkbox&#x27;, defaultChecked: true },
+    { key: &#x27;firstName&#x27;, sortable: true, resizable: true, min-width: &#x27;300px&#x27; },
+    { key: &#x27;lastName&#x27;, sortable: true, resizable: true, min-width: &#x27;300px&#x27; },
+    { key: &#x27;age&#x27;, emptyCellValue: &#x27;&lt;em&gt;unknown&lt;&#x2F;em&gt;&#x27; }
+];
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+
+### Row Data Configuration
+
+The &#x60;data&#x60; configuration attribute is responsible for housing the data objects that will be rendered as rows.  You can provide this information in two ways by default:
+
+1. An array of simple objects with key:value pairs
+2. A ModelList of Base-based class instances (presumably Model subclass
+   instances)
+
+If an array of objects is passed, it will be translated into a ModelList filled
+with instances of the class provided to the &#x60;recordType&#x60; attribute.  This
+attribute can also create a custom Model subclass from an array of field names
+or an object of attribute configurations.  If no &#x60;recordType&#x60; is provided, one
+will be created for you from available information (see &#x60;_initRecordType&#x60;).
+Providing either your own ModelList instance for &#x60;data&#x60;, or at least Model
+class for &#x60;recordType&#x60;, is the best way to control client-server
+synchronization when modifying data on the client side.
+
+The ModelList instance that manages the table&#x27;s data is available in the &#x60;data&#x60;
+property on the DataTable instance.
+
+
+### Rendering
+
+Table rendering is a collaborative process between the DataTable and its
+configured &#x60;view&#x60;. The DataTable creates an instance of the configured &#x60;view&#x60;
+(DataTable.TableView by default), and calls its &#x60;render()&#x60; method.
+DataTable.TableView, for instance, then creates the &#x60;&lt;table&gt;&#x60; and &#x60;&lt;caption&gt;&#x60;,
+then delegates the rendering of the specific sections of the table to subviews,
+which can be configured as &#x60;headerView&#x60;, &#x60;bodyView&#x60;, and &#x60;footerView&#x60;.
+DataTable.TableView defaults the &#x60;headerView&#x60; to DataTable.HeaderView and the
+&#x60;bodyView&#x60; to DataTable.BodyView, but leaves the &#x60;footerView&#x60; unassigned.
+Setting any subview to &#x60;null&#x60; will result in that table section not being
+rendered.
+
+@class DataTable
+@extends DataTable.Base
+@since 3.5.0
+**&#x2F;
+
+&#x2F;&#x2F; DataTable API docs included before DataTable.Base to make yuidoc work
+&#x2F;**
+The baseline implementation of a DataTable.  This class should be used
+primarily as a superclass for a custom DataTable with a specific set of
+features.  Because features can be composed onto &#x60;Y.DataTable&#x60;, custom
+subclasses of DataTable.Base will remain unmodified when new feature modules
+are loaded.
+
+Example usage might look like this:
+
+&lt;pre&gt;&lt;code&gt;
+&#x2F;&#x2F; Custom subclass with only sorting and mutability added.  If other datatable
+&#x2F;&#x2F; feature modules are loaded, this class will not be affected.
+var MyTableClass = Y.Base.create(&#x27;table&#x27;, Y.DataTable.Base,
+                       [ Y.DataTable.Sortable, Y.DataTable.Mutable ]);
+
+var table = new MyTableClass({
+    columns: [&#x27;firstName&#x27;, &#x27;lastName&#x27;, &#x27;age&#x27;],
+    data: [
+        { firstName: &#x27;Frank&#x27;, lastName: &#x27;Zappa&#x27;, age: 71 },
+        { firstName: &#x27;Frank&#x27;, lastName: &#x27;Lloyd Wright&#x27;, age: 144 },
+        { firstName: &#x27;Albert&#x27;, lastName: &#x27;Einstein&#x27;, age: 132 },
+        ...
+    ]
+});
+
+table.render(&#x27;#over-there&#x27;);
+
+&#x2F;&#x2F; DataTable.Base can be instantiated if a featureless table is needed.
+var table = new Y.DataTable.Base({
+    columns: [&#x27;firstName&#x27;, &#x27;lastName&#x27;, &#x27;age&#x27;],
+    data: [
+        { firstName: &#x27;Frank&#x27;, lastName: &#x27;Zappa&#x27;, age: 71 },
+        { firstName: &#x27;Frank&#x27;, lastName: &#x27;Lloyd Wright&#x27;, age: 144 },
+        { firstName: &#x27;Albert&#x27;, lastName: &#x27;Einstein&#x27;, age: 132 },
+        ...
+    ]
+});
+
+table.render(&#x27;#in-here&#x27;);
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+
+DataTable.Base is built from DataTable.Core, and sets the default &#x60;view&#x60;
+to &#x60;Y.DataTable.TableView&#x60;.
+
+@class Base
+@extends Widget
+@uses DataTable.Core
+@namespace DataTable
+@since 3.5.0
+**&#x2F;
+Y.DataTable.Base = Y.Base.create(&#x27;datatable&#x27;, Y.Widget, [Y.DataTable.Core], {
+
+    &#x2F;**
+    Pass through to &#x60;delegate()&#x60; called from the &#x60;contentBox&#x60;.
+
+    @method delegate
+    @param type {String} the event type to delegate
+    @param fn {Function} the callback function to execute.  This function
+                 will be provided the event object for the delegated event.
+    @param spec {String|Function} a selector that must match the target of the
+                 event or a function to test target and its parents for a match
+    @param context {Object} optional argument that specifies what &#x27;this&#x27; refers to
+    @param args* {any} 0..n additional arguments to pass on to the callback
+                 function.  These arguments will be added after the event object.
+    @return {EventHandle} the detach handle
+    @since 3.5.0
+    **&#x2F;
+    delegate: function () {
+        var contentBox = this.get(&#x27;contentBox&#x27;);
+
+        return contentBox.delegate.apply(contentBox, arguments);
+    },
+
+    &#x2F;**
+    Destroys the table &#x60;View&#x60; if it&#x27;s been created.
+
+    @method destructor
+    @protected
+    @since 3.6.0
+    **&#x2F;
+    destructor: function () {
+        if (this.view) {
+            this.view.destroy();
+        }
+    },
+
+    &#x2F;**
+    Returns the &#x60;&lt;td&gt;&#x60; Node from the given row and column index.  Alternately,
+    the &#x60;seed&#x60; can be a Node.  If so, the nearest ancestor cell is returned.
+    If the &#x60;seed&#x60; is a cell, it is returned.  If there is no cell at the given
+    coordinates, &#x60;null&#x60; is returned.
+
+    Optionally, include an offset array or string to return a cell near the
+    cell identified by the &#x60;seed&#x60;.  The offset can be an array containing the
+    number of rows to shift followed by the number of columns to shift, or one
+    of &quot;above&quot;, &quot;below&quot;, &quot;next&quot;, or &quot;previous&quot;.
+
+    &lt;pre&gt;&lt;code&gt;&#x2F;&#x2F; Previous cell in the previous row
+    var cell = table.getCell(e.target, [-1, -1]);
+
+    &#x2F;&#x2F; Next cell
+    var cell = table.getCell(e.target, &#x27;next&#x27;);
+    var cell = table.getCell(e.taregt, [0, 1];&lt;&#x2F;pre&gt;&lt;&#x2F;code&gt;
+
+    This is actually just a pass through to the &#x60;view&#x60; instance&#x27;s method
+    by the same name.
+
+    @method getCell
+    @param {Number[]|Node} seed Array of row and column indexes, or a Node that
+        is either the cell itself or a descendant of one.
+    @param {Number[]|String} [shift] Offset by which to identify the returned
+        cell Node
+    @return {Node}
+    @since 3.5.0
+    **&#x2F;
+    getCell: function (seed, shift) {
+        return this.view &amp;&amp; this.view.getCell &amp;&amp;
+            this.view.getCell.apply(this.view, arguments);
+    },
+
+    &#x2F;**
+    Returns the &#x60;&lt;tr&gt;&#x60; Node from the given row index, Model, or Model&#x27;s
+    &#x60;clientId&#x60;.  If the rows haven&#x27;t been rendered yet, or if the row can&#x27;t be
+    found by the input, &#x60;null&#x60; is returned.
+
+    This is actually just a pass through to the &#x60;view&#x60; instance&#x27;s method
+    by the same name.
+
+    @method getRow
+    @param {Number|String|Model} id Row index, Model instance, or clientId
+    @return {Node}
+    @since 3.5.0
+    **&#x2F;
+    getRow: function (id) {
+        return this.view &amp;&amp; this.view.getRow &amp;&amp;
+            this.view.getRow.apply(this.view, arguments);
+    },
+
+    &#x2F;**
+    Updates the &#x60;_displayColumns&#x60; property.
+
+    @method _afterDisplayColumnsChange
+    @param {EventFacade} e The &#x60;columnsChange&#x60; event
+    @protected
+    @since 3.6.0
+    **&#x2F;
+    &#x2F;&#x2F; FIXME: This is a kludge for back compat with features that reference
+    &#x2F;&#x2F; _displayColumns.  They should be updated to TableView plugins.
+    _afterDisplayColumnsChange: function (e) {
+        this._extractDisplayColumns(e.newVal || []);
+    },
+
+    &#x2F;**
+    Attaches subscriptions to relay core change events to the view.
+
+    @method bindUI
+    @protected
+    @since 3.6.0
+    **&#x2F;
+    bindUI: function () {
+        this._eventHandles.relayCoreChanges = this.after(
+            [&#x27;columnsChange&#x27;,
+             &#x27;dataChange&#x27;,
+             &#x27;summaryChange&#x27;,
+             &#x27;captionChange&#x27;,
+             &#x27;widthChange&#x27;],
+            Y.bind(&#x27;_relayCoreAttrChange&#x27;, this));
+    },
+
+    &#x2F;**
+    The default behavior of the &#x60;renderView&#x60; event.  Calls &#x60;render()&#x60; on the
+    &#x60;View&#x60; instance on the event.
+
+    @method _defRenderViewFn
+    @param {EventFacade} e The &#x60;renderView&#x60; event
+    @protected
+    **&#x2F;
+    _defRenderViewFn: function (e) {
+        e.view.render();
+    },
+
+    &#x2F;**
+    Processes the full column array, distilling the columns down to those that
+    correspond to cell data columns.
+
+    @method _extractDisplayColumns
+    @param {Object[]} columns The full set of table columns
+    @protected
+    **&#x2F;
+    &#x2F;&#x2F; FIXME: this is a kludge for back compat, duplicating logic in the
+    &#x2F;&#x2F; tableView
+    _extractDisplayColumns: function (columns) {
+        var displayColumns = [];
+
+        function process(cols) {
+            var i, len, col;
+
+            for (i = 0, len = cols.length; i &lt; len; ++i) {
+                col = cols[i];
+
+                if (Y.Lang.isArray(col.children)) {
+                    process(col.children);
+                } else {
+                    displayColumns.push(col);
+                }
+            }
+        }
+
+        process(columns);
+
+        &#x2F;**
+        Array of the columns that correspond to those with value cells in the
+        data rows. Excludes colspan header columns (configured with &#x60;children&#x60;).
+
+        @property _displayColumns
+        @type {Object[]}
+        @since 3.5.0
+        **&#x2F;
+        this._displayColumns = displayColumns;
+    },
+
+    &#x2F;**
+    Sets up the instance&#x27;s events.
+
+    @method initializer
+    @param {Object} [config] Configuration object passed at construction
+    @protected
+    @since 3.6.0
+    **&#x2F;
+    initializer: function () {
+        this.publish(&#x27;renderView&#x27;, {
+            defaultFn: Y.bind(&#x27;_defRenderViewFn&#x27;, this)
+        });
+
+        &#x2F;&#x2F; Have to use get(&#x27;columns&#x27;), not config.columns because the setter
+        &#x2F;&#x2F; needs to transform string columns to objects.
+        this._extractDisplayColumns(this.get(&#x27;columns&#x27;) || []);
+
+        &#x2F;&#x2F; FIXME: kludge for back compat of features that reference
+        &#x2F;&#x2F; _displayColumns on the instance.  They need to be updated to
+        &#x2F;&#x2F; TableView plugins, most likely.
+        this.after(&#x27;columnsChange&#x27;, Y.bind(&#x27;_afterDisplayColumnsChange&#x27;, this));
+    },
+
+    &#x2F;**
+    Relays attribute changes to the instance&#x27;s &#x60;view&#x60;.
+
+    @method _relayCoreAttrChange
+    @param {EventFacade} e The change event
+    @protected
+    @since 3.6.0
+    **&#x2F;
+    _relayCoreAttrChange: function (e) {
+        var attr = (e.attrName === &#x27;data&#x27;) ? &#x27;modelList&#x27; : e.attrName;
+
+        this.view.set(attr, e.newVal);
+    },
+
+    &#x2F;**
+    Instantiates the configured &#x60;view&#x60; class that will be responsible for
+    setting up the View class.
+
+    @method @renderUI
+    @protected
+    @since 3.6.0
+    **&#x2F;
+    renderUI: function () {
+        var self = this,
+            View = this.get(&#x27;view&#x27;);
+
+        if (View) {
+            this.view = new View(
+                Y.merge(
+                    this.getAttrs(),
+                    {
+                        host     : this,
+                        container: this.get(&#x27;contentBox&#x27;),
+                        modelList: this.data
+                    },
+                    this.get(&#x27;viewConfig&#x27;)));
+
+            &#x2F;&#x2F; For back compat, share the view instances and primary nodes
+            &#x2F;&#x2F; on this instance.
+            &#x2F;&#x2F; TODO: Remove this?
+            if (!this._eventHandles.legacyFeatureProps) {
+                this._eventHandles.legacyFeatureProps = this.view.after({
+                    renderHeader: function (e) {
+                        self.head = e.view;
+                        self._theadNode = e.view.theadNode;
+                        &#x2F;&#x2F; TODO: clean up the repetition.
+                        &#x2F;&#x2F; This is here so that subscribers to renderHeader etc
+                        &#x2F;&#x2F; have access to this._tableNode from the DT instance
+                        self._tableNode = e.view.get(&#x27;container&#x27;);
+                    },
+                    renderFooter: function (e) {
+                        self.foot = e.view;
+                        self._tfootNode = e.view.tfootNode;
+                        self._tableNode = e.view.get(&#x27;container&#x27;);
+                    },
+                    renderBody: function (e) {
+                        self.body = e.view;
+                        self._tbodyNode = e.view.tbodyNode;
+                        self._tableNode = e.view.get(&#x27;container&#x27;);
+                    },
+                    &#x2F;&#x2F; FIXME: guarantee that the properties are available, even
+                    &#x2F;&#x2F; if the configured (or omitted) views don&#x27;t create them
+                    renderTable: function (e) {
+                        var contentBox = this.get(&#x27;container&#x27;);
+
+                        self._tableNode = this.tableNode ||
+                            contentBox.one(&#x27;.&#x27; + this.getClassName(&#x27;table&#x27;) +
+                                           &#x27;, table&#x27;);
+
+                        &#x2F;&#x2F; FIXME: _captionNode isn&#x27;t available until after
+                        &#x2F;&#x2F; renderTable unless in the renderX subs I look for
+                        &#x2F;&#x2F; it under the container&#x27;s parentNode (to account for
+                        &#x2F;&#x2F; scroll breaking out the caption table).
+                        self._captionNode = this.captionNode ||
+                            contentBox.one(&#x27;caption&#x27;);
+
+                        if (!self._theadNode) {
+                            self._theadNode = contentBox.one(
+                                &#x27;.&#x27; + this.getClassName(&#x27;columns&#x27;) + &#x27;, thead&#x27;);
+                        }
+
+                        if (!self._tbodyNode) {
+                            self._tbodyNode = contentBox.one(
+                                &#x27;.&#x27; + this.getClassName(&#x27;data&#x27;) + &#x27;, tbody&#x27;);
+                        }
+
+                        if (!self._tfootNode) {
+                            self._tfootNode = contentBox.one(
+                                &#x27;.&#x27; + this.getClassName(&#x27;footer&#x27;) + &#x27;, tfoot&#x27;);
+                        }
+                    }
+                });
+            }
+
+            &#x2F;&#x2F; To *somewhat* preserve table.on(&#x27;renderHeader&#x27;, fn) in the
+            &#x2F;&#x2F; form of table.on(&#x27;table:renderHeader&#x27;, fn), because I couldn&#x27;t
+            &#x2F;&#x2F; figure out another option.
+            this.view.addTarget(this);
+        }
+    },
+
+    &#x2F;**
+    Fires the &#x60;renderView&#x60; event, delegating UI updates to the configured View.
+
+    @method syncUI
+    @since 3.5.0
+    **&#x2F;
+    syncUI: function () {
+        if (this.view) {
+            this.fire(&#x27;renderView&#x27;, { view: this.view });
+        }
+    },
+
+    &#x2F;**
+    Verifies the input value is a function with a &#x60;render&#x60; method on its
+    prototype.  &#x60;null&#x60; is also accepted to remove the default View.
+
+    @method _validateView
+    @protected
+    @since 3.5.0
+    **&#x2F;
+    _validateView: function (val) {
+        &#x2F;&#x2F; TODO support View instances?
+        return val === null || (Y.Lang.isFunction(val) &amp;&amp; val.prototype.render);
+    }
+}, {
+    ATTRS: {
+        &#x2F;**
+        The View class used to render the &#x60;&lt;table&gt;&#x60; into the Widget&#x27;s
+        &#x60;contentBox&#x60;.  This View can handle the entire table rendering itself
+        or delegate to other Views.
+
+        It is not strictly necessary that the class function assigned here be
+        a View subclass.  It must however have a &#x60;render()&#x60; method.
+
+        When the DataTable is rendered, an instance of this View will be
+        created and its &#x60;render()&#x60; method called.  The View instance will be
+        assigned to the DataTable instance&#x27;s &#x60;view&#x60; property.
+
+        @attribute view
+        @type {Function}
+        @default Y.DataTable.TableView
+        @since 3.6.0
+        **&#x2F;
+        view: {
+            value: Y.DataTable.TableView,
+            validator: &#x27;_validateView&#x27;
+        },
+
+        &#x2F;**
+        Configuration object passed to the class constructor in &#x60;view&#x60;
+        during render.
+
+        @attribute viewConfig
+        @type {Object}
+        @default undefined (initially unset)
+        @protected
+        @since 3.6.0
+        **&#x2F;
+        viewConfig: {}
+
+        &#x2F;**
+        If the View class assigned to the DataTable&#x27;s &#x60;view&#x60; attribute supports
+        it, this class will be used for rendering the contents of the
+        &#x60;&lt;thead&gt;&#x60;&amp;mdash;the column headers for the table.
+        
+        Similar to &#x60;view&#x60;, the instance of this View will be assigned to the
+        DataTable instance&#x27;s &#x60;head&#x60; property.
+
+        It is not strictly necessary that the class function assigned here be
+        a View subclass.  It must however have a &#x60;render()&#x60; method.
+
+        @attribute headerView
+        @type {Function|Object}
+        @default Y.DataTable.HeaderView
+        @since 3.5.0
+        **&#x2F;
+        &#x2F;*
+        headerView: {
+            value: Y.DataTable.HeaderView,
+            validator: &#x27;_validateView&#x27;
+        },
+        *&#x2F;
+
+        &#x2F;**
+        Configuration object passed to the class constructor in &#x60;headerView&#x60;
+        during render.
+
+        @attribute headerConfig
+        @type {Object}
+        @default undefined (initially unset)
+        @protected
+        @since 3.6.0
+        **&#x2F;
+        &#x2F;&#x2F;headConfig: {},
+
+        &#x2F;**
+        If the View class assigned to the DataTable&#x27;s &#x60;view&#x60; attribute supports
+        it, this class will be used for rendering the contents of the &#x60;&lt;tfoot&gt;&#x60;.
+        
+        Similar to &#x60;view&#x60;, the instance of this View will be assigned to the
+        DataTable instance&#x27;s &#x60;foot&#x60; property.
+
+        It is not strictly necessary that the class function assigned here be
+        a View subclass.  It must however have a &#x60;render()&#x60; method.
+
+        @attribute footerView
+        @type {Function|Object}
+        @since 3.5.0
+        **&#x2F;
+        &#x2F;*
+        footerView: {
+            validator: &#x27;_validateView&#x27;
+        },
+        *&#x2F;
+
+        &#x2F;**
+        Configuration object passed to the class constructor in &#x60;footerView&#x60;
+        during render.
+
+        @attribute footerConfig
+        @type {Object}
+        @default undefined (initially unset)
+        @protected
+        @since 3.6.0
+        **&#x2F;
+        &#x2F;&#x2F;footerConfig: {},
+
+        &#x2F;**
+        If the View class assigned to the DataTable&#x27;s &#x60;view&#x60; attribute supports
+        it, this class will be used for rendering the contents of the &#x60;&lt;tbody&gt;&#x60;
+        including all data rows.
+        
+        Similar to &#x60;view&#x60;, the instance of this View will be assigned to the
+        DataTable instance&#x27;s &#x60;body&#x60; property.
+
+        It is not strictly necessary that the class function assigned here be
+        a View subclass.  It must however have a &#x60;render()&#x60; method.
+
+        @attribute bodyView
+        @type {Function}
+        @default Y.DataTable.BodyView
+        @since 3.5.0
+        **&#x2F;
+        &#x2F;*
+        bodyView: {
+            value: Y.DataTable.BodyView,
+            validator: &#x27;_validateView&#x27;
+        },
+        *&#x2F;
+
+        &#x2F;**
+        Configuration object passed to the class constructor in &#x60;bodyView&#x60;
+        during render.
+
+        @attribute bodyConfig
+        @type {Object}
+        @default undefined (initially unset)
+        @protected
+        @since 3.6.0
+        **&#x2F;
+        &#x2F;&#x2F;bodyConfig: {}
+    }
+});
+
+&#x2F;&#x2F; The DataTable API docs are above DataTable.Base docs.
+Y.DataTable = Y.mix(
+    Y.Base.create(&#x27;datatable&#x27;, Y.DataTable.Base, []), &#x2F;&#x2F; Create the class
+    Y.DataTable); &#x2F;&#x2F; Migrate static and namespaced classes
+
+    </pre>
 </div>
 
                 </div>
