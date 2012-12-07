@@ -836,4 +836,4 @@ var SchedulerTableView = A.Component.create({
 
 A.SchedulerTableView = SchedulerTableView;
 
-}, '@VERSION@' ,{requires:['aui-scheduler-base','overlay'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-base','overlay']});

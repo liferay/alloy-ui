@@ -451,4 +451,4 @@ var SchedulerAgendaView = A.Component.create({
 
 A.SchedulerAgendaView = SchedulerAgendaView;
 
-}, '@VERSION@' ,{requires:['aui-scheduler-base'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-base']});

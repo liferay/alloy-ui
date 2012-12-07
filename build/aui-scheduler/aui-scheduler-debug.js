@@ -1676,8 +1676,7 @@ var SchedulerView = A.Component.create({
 
 A.SchedulerView = SchedulerView;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-color-util','aui-datatype','button-group','model','model-list','widget-stdmod'], skinnable:true});
-
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-color-util','aui-datatype','button-group','model','model-list','widget-stdmod']});
 AUI.add('aui-scheduler-view-day', function(A) {
 var Lang = A.Lang,
 	isBoolean = Lang.isBoolean,
@@ -2850,8 +2849,7 @@ var SchedulerDayView = A.Component.create({
 
 A.SchedulerDayView = SchedulerDayView;
 
-}, '@VERSION@' ,{requires:['aui-scheduler-view-table','dd-drag','dd-delegate','dd-drop','dd-constrain'], skinnable:true});
-
+}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-view-table','dd-drag','dd-delegate','dd-drop','dd-constrain']});
 AUI.add('aui-scheduler-view-week', function(A) {
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
@@ -2978,8 +2976,7 @@ var SchedulerWeekView = A.Component.create({
 
 A.SchedulerWeekView = SchedulerWeekView;
 
-}, '@VERSION@' ,{requires:['aui-scheduler-view-day'], skinnable:true});
-
+}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-view-day']});
 AUI.add('aui-scheduler-view-table', function(A) {
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
@@ -3818,8 +3815,7 @@ var SchedulerTableView = A.Component.create({
 
 A.SchedulerTableView = SchedulerTableView;
 
-}, '@VERSION@' ,{requires:['aui-scheduler-base','overlay'], skinnable:true});
-
+}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-base','overlay']});
 AUI.add('aui-scheduler-view-table-dd', function(A) {
 var Lang = A.Lang,
 	isObject = Lang.isObject,
@@ -4142,9 +4138,9 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 			instance.renderLasso(startPosition, instance._getDatePosition(endPositionDate));
 
-			draggingEvent.set(VISIBLE, false, { silent: true });
-
 			instance._syncProxyNodeUI(draggingEvent);
+
+			draggingEvent.set(VISIBLE, false, { silent: true });
 
 			instance.lassoStartPosition = instance.lassoLastPosition = startPosition;
 
@@ -4229,14 +4225,8 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 		var dd = instance[DELEGATE][DD];
 
-		dd.unplug(A.Plugin.DDConstrained);
 		dd.unplug(A.Plugin.DDNodeScroll);
 		dd.unplug(A.Plugin.DDProxy);
-
-		dd.plug(A.Plugin.DDConstrained, {
-			bubbleTargets: instance,
-			constrain: instance.bodyNode
-		});
 
 		dd.plug(A.Plugin.DDNodeScroll, {
 			node: instance.bodyNode,
@@ -4264,11 +4254,18 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		var instance = this;
 
 		var eventNode = evt.get(NODE).item(0);
+		var eventNodePadding = evt.get(NODE).item(1);
 
 		instance[PROXY_NODE].setStyles({
 			backgroundColor: eventNode.getStyle('backgroundColor'),
 			display: 'block'
 		});
+
+		if (!eventNodePadding || !eventNodePadding.test(':visible')) {
+			var offsetWidth = eventNode.get(OFFSET_WIDTH);
+
+			instance[PROXY_NODE].set(OFFSET_WIDTH, offsetWidth);
+		}
 
 		instance[PROXY_NODE].appendTo(instance[ROWS_CONTAINER_NODE]);
 		instance[PROXY_NODE].setContent(evt.get(CONTENT));
@@ -4277,8 +4274,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 A.Base.mix(A.SchedulerTableView, [ A.SchedulerTableViewDD ]);
 
-}, '@VERSION@' ,{requires:['aui-scheduler-view-table','dd-drag','dd-delegate','dd-drop','dd-constrain'], skinnable:false});
-
+}, '@VERSION@' ,{skinnable:false, requires:['aui-scheduler-view-table','dd-drag','dd-delegate','dd-drop']});
 AUI.add('aui-scheduler-view-month', function(A) {
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
@@ -4411,8 +4407,7 @@ var SchedulerMonthView = A.Component.create({
 
 A.SchedulerMonthView = SchedulerMonthView;
 
-}, '@VERSION@' ,{requires:['aui-scheduler-view-table'], skinnable:true});
-
+}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-view-table']});
 AUI.add('aui-scheduler-view-agenda', function(A) {
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
@@ -4866,8 +4861,7 @@ var SchedulerAgendaView = A.Component.create({
 
 A.SchedulerAgendaView = SchedulerAgendaView;
 
-}, '@VERSION@' ,{requires:['aui-scheduler-base'], skinnable:true});
-
+}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-base']});
 AUI.add('aui-scheduler-event-recorder', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -5371,9 +5365,8 @@ var SchedulerEventRecorder = A.Component.create({
 
 A.SchedulerEventRecorder = SchedulerEventRecorder;
 
-}, '@VERSION@' ,{requires:['aui-scheduler-base','aui-template','aui-toolbar','io-form','querystring','overlay'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-base','aui-template','aui-toolbar','io-form','querystring','overlay']});
 
 
-
-AUI.add('aui-scheduler', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-scheduler-base','aui-scheduler-view-day','aui-scheduler-view-week','aui-scheduler-view-table','aui-scheduler-view-table-dd','aui-scheduler-view-month','aui-scheduler-view-agenda','aui-scheduler-event-recorder']});
+AUI.add('aui-scheduler', function(A){}, '@VERSION@' ,{use:['aui-scheduler-base','aui-scheduler-view-day','aui-scheduler-view-week','aui-scheduler-view-table','aui-scheduler-view-table-dd','aui-scheduler-view-month','aui-scheduler-view-agenda','aui-scheduler-event-recorder'], skinnable:false});
 

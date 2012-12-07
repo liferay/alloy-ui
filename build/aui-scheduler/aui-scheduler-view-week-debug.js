@@ -124,4 +124,4 @@ var SchedulerWeekView = A.Component.create({
 
 A.SchedulerWeekView = SchedulerWeekView;
 
-}, '@VERSION@' ,{requires:['aui-scheduler-view-day'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-view-day']});

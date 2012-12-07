@@ -1676,4 +1676,4 @@ var SchedulerView = A.Component.create({
 
 A.SchedulerView = SchedulerView;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-color-util','aui-datatype','button-group','model','model-list','widget-stdmod'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-color-util','aui-datatype','button-group','model','model-list','widget-stdmod']});

@@ -130,4 +130,4 @@ var SchedulerMonthView = A.Component.create({
 
 A.SchedulerMonthView = SchedulerMonthView;
 
-}, '@VERSION@' ,{requires:['aui-scheduler-view-table'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-view-table']});
