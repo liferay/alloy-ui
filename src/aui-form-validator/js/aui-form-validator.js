@@ -79,8 +79,8 @@ YUI.AUI.defaults.FormValidator = {
 	STRINGS: {
 		DEFAULT: 'Please fix this field.',
 		acceptFiles: 'Please enter a value with a valid extension ({0}).',
-		alpha: 'Please enter only apha characters.',
-		alphanum: 'Please enter only aphanumeric characters.',
+		alpha: 'Please enter only alpha characters.',
+		alphanum: 'Please enter only alphanumeric characters.',
 		date: 'Please enter a valid date.',
 		digits: 'Please enter only digits.',
 		email: 'Please enter a valid email address.',
