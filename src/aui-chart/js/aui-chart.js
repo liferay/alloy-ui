@@ -6,7 +6,7 @@ var Lang = A.Lang,
 
 	CSS_CHART = getClassName(NAME),
 
-	DEFAULT_SWF_PATH = A.config.base + 'aui-chart/assets/chart.swf';
+	DEFAULT_SWF_PATH = A.config.base + 'aui-chart/assets/chart.swf?t=' + Lang.now();
 
 YUI.AUI.namespace('_CHART');
 YUI.AUI.namespace('defaults.chart');
