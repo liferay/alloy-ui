@@ -804,10 +804,22 @@ var Paginator = A.Component.create(
 				}
 
 				if (rowsPerPageEl) {
-					var rowsPerPageSelect = rowsPerPageEl.outerHTML();
+					var options = rowsPerPageEl.all(OPTION);
 
-					if (IE >= 9) {
-						rowsPerPageSelect = rowsPerPageSelect.replace(/selected=""/gi, '');
+					var selectedIndex;
+
+					options.some(
+						function(item, index) {
+							if (item.getAttribute('value') == instance.get(ROWS_PER_PAGE)) {
+								selectedIndex = index;
+
+								return true;
+							}
+						}
+					);
+
+					if (selectedIndex) {
+						options.item(selectedIndex).setAttribute(SELECTED, SELECTED);
 					}
 				}
 
@@ -820,7 +832,7 @@ var Paginator = A.Component.create(
 						NextPageLink: nextPageLink.outerHTML(),
 						PageLinks: pageContainer.outerHTML(),
 						PrevPageLink: prevPageLink.outerHTML(),
-						RowsPerPageSelect: rowsPerPageSelect,
+						RowsPerPageSelect: rowsPerPageEl.outerHTML(),
 						Total: totalLink.outerHTML()
 					}
 				);
