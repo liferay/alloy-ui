@@ -2,10 +2,10 @@
 
 Alloy is a UI framework built on top of YUI3 that provides a simple API for building high scalable applications.
 
-* [License](https://github.com/liferay/alloy-ui/blob/master/LICENSE.txt)
 * [Documentation](http://deploy.alloyui.com/api/)
 * [Latest Stable Release](http://www.liferay.com/downloads/liferay-projects/alloy-ui)
 * [Attribution/Third-party licenses](https://github.com/liferay/alloy-ui/blob/master/ATTRIBUTION.txt)
+* [License](https://github.com/liferay/alloy-ui/blob/master/LICENSE.txt)
 
 ## Discussion
 
