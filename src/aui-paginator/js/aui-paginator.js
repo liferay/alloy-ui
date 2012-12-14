@@ -89,7 +89,9 @@ var L = A.Lang,
 		totalLabel: '(Total {total})'
 	},
 	GT_TPL = '&gt;',
-	LT_TPL = '&lt;';
+	LT_TPL = '&lt;',
+
+	REGEX_ATTR_SELECTED = /selected(?:="")*/gi;
 
 /**
  * <p><img src="assets/images/aui-paginator/main.png"/></p>
@@ -802,23 +804,25 @@ var Paginator = A.Component.create(
 					pageContainer.append(pageLink);
 				}
 
+				var rowsPerPageElOuterHTML;
+
 				if (rowsPerPageEl) {
 					var options = rowsPerPageEl.all(OPTION);
 
-					var selectedIndex;
+					rowsPerPageElOuterHTML = rowsPerPageEl.outerHTML();
 
-					options.some(
-						function(item, index) {
-							if (item.getAttribute('value') == instance.get(ROWS_PER_PAGE)) {
-								selectedIndex = index;
+					if (IE) {
+						rowsPerPageElOuterHTML = rowsPerPageElOuterHTML.replace(REGEX_ATTR_SELECTED, '');
 
-								return true;
-							}
+						var rowsPerPage = instance.get(ROWS_PER_PAGE);
+
+						var itemValue = 'value="' + rowsPerPage + '"';
+
+						if (IE < 9) {
+							itemValue = 'value=' + rowsPerPage;
 						}
-					);
 
-					if (selectedIndex) {
-						options.item(selectedIndex).setAttribute(SELECTED, SELECTED);
+						rowsPerPageElOuterHTML = rowsPerPageElOuterHTML.replace(new RegExp(itemValue), itemValue + ' selected');
 					}
 				}
 
@@ -831,7 +835,7 @@ var Paginator = A.Component.create(
 						NextPageLink: nextPageLink.outerHTML(),
 						PageLinks: pageContainer.outerHTML(),
 						PrevPageLink: prevPageLink.outerHTML(),
-						RowsPerPageSelect: rowsPerPageEl.outerHTML(),
+						RowsPerPageSelect: rowsPerPageElOuterHTML,
 						Total: totalLink.outerHTML()
 					}
 				);
