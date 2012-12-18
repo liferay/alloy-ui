@@ -33,8 +33,3 @@
     margin-top: -3px;
     vertical-align: middle;
 }
-
-.ie7 .aui-celleditor-edit-dd-handle {
-	display: block;
-	float: left;
-}
