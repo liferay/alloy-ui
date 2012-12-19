@@ -22,7 +22,11 @@ var Lang = A.Lang,
 
 	DEFAULT_APPEND_CONTENT = '&nbsp;\n&nbsp;',
 
-	TPL_HEIGHT_MONITOR = '<pre class="' + CSS_HEIGHT_MONITOR + '">' + DEFAULT_APPEND_CONTENT + '</pre>';
+	TPL_HEIGHT_MONITOR = '<pre class="' + CSS_HEIGHT_MONITOR + '">' + DEFAULT_APPEND_CONTENT + '</pre>',
+
+	UI_SRC = {
+		src: 'ui'
+	};
 
 Autosize = A.Component.create(
 	{
@@ -63,6 +67,12 @@ Autosize = A.Component.create(
 				instance.after(ADJUSTSIZE, instance._uiAutoSize);
 			},
 
+			_constrain: function(num, min, max) {
+				var instance = this;
+
+				return Math.min(Math.max(num, min), max);
+			},
+
 			_onValueChange: function(event) {
 				var instance = this;
 
@@ -77,6 +87,13 @@ Autosize = A.Component.create(
 				var node = instance.get(HOST);
 
 				A.getBody().append(heightMonitor);
+
+				// Calculating this value gives us the base height that
+				// an empty textarea will have.
+				// We do this because we need to append a new line to match
+				// the height of the textarea, and we don't want the size to shift
+				// the first time the value of the textarea changes
+				instance._defaultMinHeight = heightMonitor.height();
 
 				instance._heightMonitor = heightMonitor;
 
@@ -120,7 +137,7 @@ Autosize = A.Component.create(
 				instance._syncHeight();
 			},
 
-			_syncHeight: function() {
+			_syncHeight: function(event) {
 				var instance = this;
 
 				var node = instance.get(HOST);
@@ -129,20 +146,32 @@ Autosize = A.Component.create(
 
 				var height = heightMonitor.height();
 
+				// This converts non-PX values such as 1em to a PX value
 				var defMaxHeight = heightMonitor.height(instance.get(MAXHEIGHT)).height();
 				var defMinHeight = heightMonitor.height(instance.get(MINHEIGHT)).height();
 
 				heightMonitor.height('');
 
-				var maxHeight = Math.max(defMinHeight, defMaxHeight);
-				var minHeight = Math.min(Math.max(height, defMinHeight), defMaxHeight);
+				var minHeight = Math.max(instance._defaultMinHeight, defMinHeight);
+				var maxHeight = defMaxHeight;
+
+				// We also need to handle if min/max heights are
+				// being set to non-sensical range, like min: 100, max: 50
+				if (minHeight > maxHeight) {
+					if (event && event.attrName == 'maxHeight') {
+						minHeight = maxHeight;
+					}
+					else {
+						maxHeight = minHeight;
+					}
+				}
 
 				instance._setAutoDimension(minHeight, HEIGHT);
-				instance._setAutoDimension(minHeight, MINHEIGHT);
 
-				instance._setAutoDimension(maxHeight, MAXHEIGHT);
+				instance.set(MINHEIGHT, minHeight, UI_SRC);
+				instance.set(MAXHEIGHT, maxHeight, UI_SRC);
 
-				node.height(minHeight);
+				node.height(instance._constrain(height, minHeight, maxHeight));
 			},
 
 			_uiAutoSize: function() {
@@ -166,9 +195,7 @@ Autosize = A.Component.create(
 
 				instance._updateContent(content);
 
-				var height = Math.max(heightMonitor.get('offsetHeight'), minHeight);
-
-				height = Math.min(height, maxHeight);
+				var height = instance._constrain(heightMonitor.height(), minHeight, maxHeight);
 
 				if (height != instance._lastHeight) {
 					instance._lastHeight = height;
