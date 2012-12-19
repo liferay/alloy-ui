@@ -68,12 +68,6 @@ Autosize = A.Component.create(
 				instance.after(ADJUSTSIZE, instance._uiAutoSize);
 			},
 
-			_constrain: function(num, min, max) {
-				var instance = this;
-
-				return Math.min(Math.max(num, min), max);
-			},
-
 			_onValueChange: function(event) {
 				var instance = this;
 
@@ -172,7 +166,7 @@ Autosize = A.Component.create(
 				instance.set(MINHEIGHT, minHeight, UI_SRC);
 				instance.set(MAXHEIGHT, maxHeight, UI_SRC);
 
-				node.height(instance._constrain(height, minHeight, maxHeight));
+				node.height(Lang.constrain(height, minHeight, maxHeight));
 			},
 
 			_uiAutoSize: function() {
@@ -196,7 +190,7 @@ Autosize = A.Component.create(
 
 				instance._updateContent(content);
 
-				var height = instance._constrain(heightMonitor.height(), minHeight, maxHeight);
+				var height = Lang.constrain(heightMonitor.height(), minHeight, maxHeight);
 
 				if (height != instance._lastHeight) {
 					instance._lastHeight = height;
