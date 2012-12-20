@@ -2021,6 +2021,8 @@ var TreeNodeIO = A.Component.create(
 				var instance = this;
 
 				var io = instance.get(IO);
+				var ownerTree = instance.get(OWNER_TREE);
+
 				var args = Array.prototype.slice.call(arguments);
 				var length = args.length;
 
@@ -2046,6 +2048,10 @@ var TreeNodeIO = A.Component.create(
 				instance.createNodes(nodes);
 
 				instance.expand();
+
+				if (ownerTree && ownerTree.ddDelegate) {
+					ownerTree.ddDelegate.syncTargets();
+				}
 			},
 
 			/**
