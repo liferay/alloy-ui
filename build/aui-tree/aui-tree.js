@@ -2021,6 +2021,8 @@ var TreeNodeIO = A.Component.create(
 				var instance = this;
 
 				var io = instance.get(IO);
+				var ownerTree = instance.get(OWNER_TREE);
+
 				var args = Array.prototype.slice.call(arguments);
 				var length = args.length;
 
@@ -2046,6 +2048,10 @@ var TreeNodeIO = A.Component.create(
 				instance.createNodes(nodes);
 
 				instance.expand();
+
+				if (ownerTree && ownerTree.ddDelegate) {
+					ownerTree.ddDelegate.syncTargets();
+				}
 			},
 
 			/**
@@ -3707,8 +3713,8 @@ var TreeViewDD = A.Component.create(
 
 A.TreeViewDD = TreeViewDD;
 
-}, '@VERSION@' ,{requires:['aui-tree-node','dd-delegate','dd-proxy'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-tree-node','dd-delegate','dd-proxy']});
 
 
-AUI.add('aui-tree', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view']});
+AUI.add('aui-tree', function(A){}, '@VERSION@' ,{use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view'], skinnable:true});
 
