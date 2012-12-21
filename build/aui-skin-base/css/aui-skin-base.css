@@ -836,6 +836,15 @@ body {
 	width: 16px;
 }
 
+.ie6, .ie7 {
+	.aui-icon {
+		font-size: 0;
+		line-height: 0;
+		overflow: hidden;
+		text-indent: 0;
+	}
+}
+
 .aui-icon-carat-1-t {
 	background-position: 0 0; 
 }
