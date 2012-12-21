@@ -22,13 +22,14 @@
 
 .aui-checkboxcelleditor .aui-celleditor-wrapper,
 .aui-radiocelleditor .aui-celleditor-wrapper {
-  clear: both;
   display: block;
+  clear: both;
   padding: 2px 0;
 }
 
 .aui-celleditor-edit-dd-handle {
   cursor: move;
-  float: left;
-  margin-top: 3px;
+  display: inline-block;
+  margin-top: -3px;
+  vertical-align: middle;
 }
