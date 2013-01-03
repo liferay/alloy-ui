@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+</head>
+<style type="text/css" media="screen">
+	body {
+		font-size: 12px;
+	}
+
+	#wrapper {
+		padding: 10px;
+	}
+
+	#editor {
+		width: 800px;
+		height: 400px;
+		position: relative;
+	}
+	.controls {
+		margin-bottom: 1em;
+	}
+</style>
+<body>
+
+<div id="wrapper">
+	<h1>Alloy Ace Editor Wrapper</h1>
+	<div class="controls">
+		<label for="mode">Language Mode:</label>
+		<select id="mode">
+			<option>freemarker</option>
+			<option>javascript</option>
+			<option>json</option>
+			<option>xml</option>
+			<option>php</option>
+		</select>
+		<label><input id="updateEditor" type="checkbox" />Update editor value for the selected language</label>
+	</div>
+	<div id="editor"></div>
+</div>
+<script type="text/javascript" charset="utf-8">
+AUI().ready('aui-ace-editor', function(A) {
+	var editor = new A.AceEditor(
+		{
+			boundingBox: '#editor',
+
+			// highlightActiveLine: false,
+			// readOnly: true,
+			// tabSize: 8,
+			// useSoftTabs: true,
+			// useWrapMode: true,
+			// showPrintMargin: false,
+			mode: 'freemarker',
+			value: '<#assign portlet_display = portletDisplay />\n' +
+					'<#assign portlet_id = htmlUtil.escapeAttribute(portlet_display.getId()) />\n' +
+					'<#assign portlet_title = portlet_display.getTitle() />\n' +
+					'<#assign portlet_back_url = htmlUtil.escapeAttribute(portlet_display.getURLBack()) />\n' +
+					'<section class="portlet" id="portlet_${portlet_id}">\n' +
+					'	<header class="portlet-topper">\n' +
+					'		<h1 class="portlet-title">\n' +
+					'			${theme.iconPortlet()} <span class="portlet-title-text">${portlet_title}</span>\n' +
+					'		</h1>\n' +
+					'		<menu class="portlet-topper-toolbar" id="portlet-topper-toolbar_${portlet_id}" type="toolbar">\n' +
+					'			<#if portlet_display.isShowBackIcon()>\n' +
+					'				<a href="${portlet_back_url}" class="portlet-icon-back"><@liferay.language key="return-to-full-page" /></a>\n' +
+					'			<#else>\n' +
+					'				${theme.iconOptions()}' + 
+					'				${theme.iconMinimize()}' + 
+					'				${theme.iconMaximize()}' + 
+					'				${theme.iconClose()}' + 
+					'			</#if>\n' +
+					'		</menu>\n' +
+					'	</header>\n' +
+					'	<div class="portlet-content">\n' +
+					'		${portlet_display.writeContent(writer)}' + 
+					'	</div>\n' +
+					'</section>'
+		}
+	).render();
+
+	// editor.getEditor().setTheme('ace/theme/cobalt');
+
+	//editor.set('mode', 'javascript');
+	// editor.set('mode', 'json');
+	// editor.set('mode', 'xml');
+
+	var mode = A.one('#mode');
+	if (mode) {
+		var updateEditor = A.one('#updateEditor');
+
+		var contents = {
+			freemarker: 'test123',
+			javascript: 'alert("Write something here...");',
+			php: '<?php echo "Write something here..."); ?>',
+			xml: '<value attr="something">Write something here...</value>',
+			json: '{"value": "Write something here..."}'
+		};
+
+		var currentMode = 'javascript';
+
+		var updateValue = function() {
+			if (updateEditor.attr('checked')) {
+				editor.set('value', contents[currentMode]);
+			}
+		};
+
+		updateEditor.on('change', updateValue);
+
+		mode.on('change', function(event) {
+			currentMode = this.val();
+
+			editor.set('mode', currentMode);
+
+			updateValue();
+		});
+	}
+
+	// editor.set('value', 'Change the original content');
+});
+</script>
+
+</body>
+</html>
