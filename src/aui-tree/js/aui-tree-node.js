@@ -18,6 +18,7 @@ var Lang = A.Lang,
 	CONTAINER = 'container',
 	CONTENT = 'content',
 	CONTENT_BOX = 'contentBox',
+	DRAGGABLE = 'draggable',
 	EXPANDED = 'expanded',
 	HELPER = 'helper',
 	HIDDEN = 'hidden',
@@ -25,6 +26,7 @@ var Lang = A.Lang,
 	HITAREA = 'hitarea',
 	ICON = 'icon',
 	ICON_EL = 'iconEl',
+	INVALID = 'invalid',
 	ID = 'id',
 	LABEL = 'label',
 	LABEL_EL = 'labelEl',
@@ -66,6 +68,7 @@ var Lang = A.Lang,
 	CSS_TREE_LABEL = getCN(TREE, LABEL),
 	CSS_TREE_NODE = getCN(TREE, NODE),
 	CSS_TREE_NODE_CONTENT = getCN(TREE, NODE, CONTENT),
+	CSS_TREE_NODE_CONTENT_INVALID = getCN(TREE, NODE, CONTENT, INVALID),
 	CSS_TREE_NODE_HIDDEN_HITAREA = getCN(TREE, NODE, HIDDEN, HITAREA),
 	CSS_TREE_NODE_LEAF = getCN(TREE, NODE, LEAF),
 	CSS_TREE_NODE_OVER = getCN(TREE, NODE, OVER),
@@ -360,6 +363,7 @@ var TreeNode = A.Component.create(
 				// Sync the Widget TreeNode id with the BOUNDING_BOX id
 				instance._syncTreeNodeBBId();
 
+				instance._uiSetDraggable(instance.get(DRAGGABLE));
 				instance._uiSetExpanded(instance.get(EXPANDED));
 				instance._uiSetLeaf(instance.get(LEAF));
 			},
@@ -374,6 +378,7 @@ var TreeNode = A.Component.create(
 				var instance = this;
 
 				instance.after('childrenChange', A.bind(instance._afterSetChildren, instance));
+				instance.after('draggableChange', A.bind(instance._afterDraggableChange, instance));
 				instance.after('expandedChange', A.bind(instance._afterExpandedChange, instance));
 				instance.after('idChange', instance._afterSetId, instance);
 				instance.after('leafChange', A.bind(instance._afterLeafChange, instance));
@@ -418,6 +423,12 @@ var TreeNode = A.Component.create(
 				var instance = this;
 
 				instance._syncHitArea( instance.get( CHILDREN ) );
+			},
+
+			_afterDraggableChange: function(event) {
+				var instance = this;
+
+				instance._uiSetDraggable(event.newVal);
 			},
 
 			_afterExpandedChange: function(event) {
@@ -485,8 +496,6 @@ var TreeNode = A.Component.create(
 
 				var boundingBox = instance.get(BOUNDING_BOX);
 				var contentBox = instance.get(CONTENT_BOX);
-
-				var nodeContainer = null;
 
 				contentBox.append( instance.get(ICON_EL) );
 				contentBox.append( instance.get(LABEL_EL) );
@@ -800,6 +809,13 @@ var TreeNode = A.Component.create(
 				}
 
 				return sibling;
+			},
+
+			_uiSetDraggable: function(val) {
+				var instance = this;
+				var contentBox = instance.get(CONTENT_BOX);
+
+				contentBox.toggleClass(CSS_TREE_NODE_CONTENT_INVALID, !val);
 			},
 
 			_uiSetExpanded: function(val) {
