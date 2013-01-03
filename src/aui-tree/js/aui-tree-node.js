@@ -858,26 +858,15 @@ A.TreeNode = TreeNode;
 * TreeNodeIO
 */
 var isFunction = Lang.isFunction,
-	isObject = Lang.isObject,
-	isValue = Lang.isValue,
 
 	CACHE = 'cache',
-	END = 'end',
 	IO = 'io',
-	LIMIT = 'limit',
 	LOADED = 'loaded',
 	LOADING = 'loading',
-	MORE_RESULTS_LABEL = 'Load more results',
 	PAGINATOR = 'paginator',
-	START = 'start',
 	TREE_NODE_IO = 'tree-node-io',
 
-	EV_TREE_NODE_PAGINATOR_CLICK = 'paginatorClick',
-
-	CSS_TREE_NODE_PAGINATOR = getCN(TREE, NODE, PAGINATOR),
-	CSS_TREE_NODE_IO_LOADING = getCN(TREE, NODE, IO, LOADING),
-
-	TPL_PAGINATOR = '<a class="' + CSS_TREE_NODE_PAGINATOR + '" href="javascript:void(0);">{moreResultsLabel}</a>';
+	CSS_TREE_NODE_IO_LOADING = getCN(TREE, NODE, IO, LOADING);
 
 /**
  * A base class for TreeNodeIO, providing:
@@ -927,21 +916,6 @@ var TreeNodeIO = A.Component.create(
 		 */
 		ATTRS: {
 			/**
-			 * IO options for the current TreeNode load the children.
-			 *
-			 * @attribute io
-			 * @default Default IO Configuration.
-			 * @type Object
-			 */
-			io: {
-				lazyAdd: false,
-				value: null,
-				setter: function(v) {
-					return this._setIO(v);
-				}
-			},
-
-			/**
 			 * Whether the current TreeNode IO transaction is loading.
 			 *
 			 * @attribute loading
@@ -980,37 +954,10 @@ var TreeNodeIO = A.Component.create(
 			leaf: {
 				value: false,
 				validator: isBoolean
-			},
-
-			paginator: {
-				setter: function(val) {
-					var instance = this;
-
-					var paginatorNode = A.Node.create(
-						Lang.sub(
-							TPL_PAGINATOR,
-							{
-								moreResultsLabel: val.moreResultsLabel || MORE_RESULTS_LABEL
-							}
-						)
-					);
-
-					return A.merge(
-						{
-							alwaysVisible: false,
-							autoFocus: true,
-							element: paginatorNode,
-							endParam: END,
-							limitParam: LIMIT,
-							start: 0,
-							startParam: START
-						},
-						val
-					);
-				},
-				validator: isObject
 			}
 		},
+
+		AUGMENTS: [A.TreeViewPaginator, A.TreeViewIO],
 
 		EXTENDS: A.TreeNode,
 
@@ -1026,35 +973,13 @@ var TreeNodeIO = A.Component.create(
 
 				A.TreeNodeIO.superclass.bindUI.apply(this, arguments);
 
-				instance._bindPaginatorUI();
-
-				instance._createEvents();
+				instance.on('ioRequestSuccess', instance._onIOSuccess, instance);
 			},
 
 			syncUI: function() {
 				var instance = this;
 
 				A.TreeNodeIO.superclass.syncUI.apply(this, arguments);
-
-				instance._syncPaginatorUI();
-			},
-
-			/**
-			 * Bind events to the paginator "show more" link.
-			 *
-			 * @method _bindPaginatorUI
-			 * @protected
-			 */
-			_bindPaginatorUI: function() {
-				var instance = this;
-
-				var paginator = instance.get(PAGINATOR);
-
-				if (paginator) {
-					var handlePaginator = A.bind(instance._handlePaginatorClickEvent, instance);
-
-					paginator.element.on('click', handlePaginator);
-				}
 			},
 
 			/*
@@ -1064,7 +989,7 @@ var TreeNodeIO = A.Component.create(
 				var instance = this;
 
 				A.Array.each(A.Array(nodes), function(node) {
-					var newNode = instance.createNode.call(instance, node);
+					var newNode = instance.createNode(node);
 
 					instance.appendChild(newNode);
 				});
@@ -1099,181 +1024,6 @@ var TreeNodeIO = A.Component.create(
 			},
 
 			/**
-			 * Initialize the IO transaction setup on the <a
-			 * href="TreeNode.html#config_io">io</a> attribute.
-			 *
-			 * @method initIO
-			 */
-			initIO: function() {
-				var instance = this;
-
-				var io = instance.get(IO);
-
-				if (isFunction(io.cfg.data)) {
-					io.cfg.data = io.cfg.data.call(instance, instance);
-				}
-
-				instance._syncPaginatorIOData(io);
-
-				if (isFunction(io.loader)) {
-					var loader = A.bind(io.loader, instance);
-
-					// apply loader in the TreeNodeIO scope
-					loader(io.url, io.cfg, instance);
-				}
-				else {
-					A.io.request(io.url, io.cfg);
-				}
-			},
-
-			/**
-			 * IO Start handler.
-			 *
-			 * @method ioStartHandler
-			 */
-			ioStartHandler: function() {
-				var instance = this;
-
-				var contentBox = instance.get(CONTENT_BOX);
-
-				instance.set(LOADING, true);
-
-				contentBox.addClass(CSS_TREE_NODE_IO_LOADING);
-			},
-
-			/**
-			 * IO Complete handler.
-			 *
-			 * @method ioCompleteHandler
-			 */
-			ioCompleteHandler: function() {
-				var instance = this;
-
-				var contentBox = instance.get(CONTENT_BOX);
-
-				instance.set(LOADING, false);
-				instance.set(LOADED, true);
-
-				contentBox.removeClass(CSS_TREE_NODE_IO_LOADING);
-			},
-
-			/**
-			 * IO Success handler.
-			 *
-			 * @method ioSuccessHandler
-			 */
-			ioSuccessHandler: function() {
-				var instance = this;
-
-				var io = instance.get(IO);
-				var ownerTree = instance.get(OWNER_TREE);
-
-				var args = Array.prototype.slice.call(arguments);
-				var length = args.length;
-
-				// if using the first argument as the JSON object
-				var nodes = args[1];
-
-				// if using (event, id, o) yui callback syntax
-				if (length >= 3) {
-					var o = args[2];
-					// try to convert responseText to JSON
-					try {
-						nodes = A.JSON.parse(o.responseText);
-					}
-					catch(e) {}
-				}
-
-				var formatter = io.formatter;
-
-				if (formatter) {
-					nodes = formatter(nodes);
-				}
-
-				instance.createNodes(nodes);
-
-				instance.expand();
-
-				if (ownerTree && ownerTree.ddDelegate) {
-					ownerTree.ddDelegate.syncTargets();
-				}
-			},
-
-			/**
-			 * IO Failure handler.
-			 *
-			 * @method ioFailureHandler
-			 */
-			ioFailureHandler: function() {
-				var instance = this;
-
-				instance.set(LOADING, false);
-				instance.set(LOADED, false);
-			},
-
-			/**
-			 * Create custom events.
-			 *
-			 * @method _createEvents
-			 * @private
-			 */
-			_createEvents: function() {
-				var instance = this;
-
-				instance.publish(
-					EV_TREE_NODE_PAGINATOR_CLICK,
-					{
-						defaultFn: instance._defPaginatorClickFn,
-						prefix: TREE_NODE_IO
-					}
-				);
-			},
-
-			/**
-			 * Default paginatorClick event handler. Increment the
-			 * <code>paginator.start</code> to the next <code>paginator.limit</code>.
-			 *
-			 * @method _defPaginatorClickFn
-			 * @param {EventFacade} event The Event object
-			 * @protected
-			 */
-			_defPaginatorClickFn: function(event) {
-				var instance = this;
-
-				var paginator = instance.get(PAGINATOR);
-
-				if (isValue(paginator.limit)) {
-					paginator.start += paginator.limit;
-				}
-
-				if (instance.get(IO)) {
-					instance.initIO();
-				}
-			},
-
-			/**
-			 * Fires the paginatorClick event.
-			 *
-			 * @method _handlePaginatorClickEvent
-			 * @param {EventFacade} event paginatorClick event facade
-			 * @protected
-			 */
-			_handlePaginatorClickEvent: function(event) {
-				var instance = this;
-
-				var ownerTree = instance.get(OWNER_TREE);
-				var output = instance.getEventOutputMap(instance);
-
-				instance.fire(EV_TREE_NODE_PAGINATOR_CLICK, output);
-
-				if (ownerTree) {
-					ownerTree.fire(EV_TREE_NODE_PAGINATOR_CLICK, output);
-				}
-
-				event.halt();
-			},
-
-			/**
 			 * If not specified on the TreeNode some attributes are inherited from the
 			 * ownerTree by this method.
 			 *
@@ -1303,122 +1053,10 @@ var TreeNodeIO = A.Component.create(
 				}
 			},
 
-			/**
-			 * Setter for <a href="TreeNodeIO.html#config_io">io</a>.
-			 *
-			 * @method _setIO
-			 * @protected
-			 * @param {Object} v
-			 * @return {Object}
-			 */
-			_setIO: function(v) {
+			_onIOSuccess: function(event) {
 				var instance = this;
 
-				if (!v) {
-					return null;
-				}
-				else if (isString(v)) {
-					v = { url: v };
-				}
-
-				v = v || {};
-				v.cfg = v.cfg || {};
-				v.cfg.on = v.cfg.on || {};
-
-				var defCallbacks = {
-					start: A.bind(instance.ioStartHandler, instance),
-					complete: A.bind(instance.ioCompleteHandler, instance),
-					success: A.bind(instance.ioSuccessHandler, instance),
-					failure: A.bind(instance.ioFailureHandler, instance)
-				};
-
-				A.each(defCallbacks, function(fn, name) {
-					var userFn = v.cfg.on[name];
-
-					if (isFunction(userFn)) {
-						// wrapping user callback and default callback, invoking both handlers
-						var wrappedFn = function() {
-							fn.apply(instance, arguments);
-							userFn.apply(instance, arguments);
-						};
-
-						v.cfg.on[name] = A.bind(wrappedFn, instance);
-					}
-					else {
-						// get from defCallbacks map
-						v.cfg.on[name] = fn;
-					}
-
-				});
-
-				return v;
-			},
-
-			/**
-			 * Adds two extra IO data parameter to the request to handle the
-			 * paginator. By default these parameters are <code>limit</code> and
-			 * <code>start</code>.
-			 *
-			 * @method _syncPaginatorIOData
-			 * @protected
-			 */
-			_syncPaginatorIOData: function(io) {
-				var instance = this;
-
-				var paginator = instance.get(PAGINATOR);
-
-				if (paginator && isValue(paginator.limit)) {
-					var data = io.cfg.data || {};
-
-					data[ paginator.limitParam ] = paginator.limit;
-					data[ paginator.startParam ] = paginator.start;
-					data[ paginator.endParam ] = (paginator.start + paginator.limit);
-
-					io.cfg.data = data;
-				}
-			},
-
-			/**
-			 * Sync the paginator link UI.
-			 *
-			 * @method _syncPaginatorUI
-			 * @protected
-			 */
-			_syncPaginatorUI: function(newNodes) {
-				var instance = this;
-
-				var children = instance.get(CHILDREN);
-				var paginator = instance.get(PAGINATOR);
-
-				if (paginator) {
-					var hasMoreData = true;
-
-					if (newNodes) {
-						hasMoreData = (newNodes.length > 0);
-					}
-
-					var childrenLength = instance.getChildrenLength();
-					var start = paginator.start;
-					var total = paginator.total || childrenLength;
-
-					var showPaginator = hasMoreData && (total > childrenLength);
-
-					if (paginator.alwaysVisible || showPaginator) {
-						instance.get(CONTAINER).append(
-							paginator.element.show()
-						);
-
-						if (paginator.autoFocus) {
-							try {
-								paginator.element.focus();
-							}
-							catch(e) {}
-						}
-					}
-					else {
-						paginator.element.hide();
-					}
-				}
+				instance.expand();
 			}
 		}
 	}

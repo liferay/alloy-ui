@@ -154,7 +154,7 @@ var TreeView = A.Component.create(
 			}
 		},
 
-		AUGMENTS: [A.TreeData],
+		AUGMENTS: [A.TreeData, A.TreeViewPaginator, A.TreeViewIO],
 
 		prototype: {
 			CONTENT_TEMPLATE: '<ul></ul>',
@@ -176,6 +176,18 @@ var TreeView = A.Component.create(
 				var instance = this;
 
 				instance._delegateDOM();
+			},
+
+			createNodes: function(nodes) {
+				var instance = this;
+
+				A.Array.each(A.Array(nodes), function(node) {
+					var newNode = instance.createNode(node);
+
+					instance.appendChild(newNode);
+				});
+
+				instance._syncPaginatorUI(nodes);
 			},
 
 			/**
@@ -280,6 +292,7 @@ var TreeView = A.Component.create(
 			 */
 			_delegateDOM: function() {
 				var instance = this;
+
 				var boundingBox = instance.get(BOUNDING_BOX);
 
 				// expand/collapse delegations
@@ -300,6 +313,7 @@ var TreeView = A.Component.create(
 			 */
 			_onClickNodeEl: function(event) {
 				var instance = this;
+
 				var treeNode = instance.getNodeByChild( event.currentTarget );
 
 				if (treeNode) {
