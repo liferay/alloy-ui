@@ -6,8 +6,13 @@ It incorporates three design languages: HTML, CSS, and JavaScript.
 
 * [License](https://github.com/liferay/alloy-ui/blob/master/LICENSE.txt)
 * [Documentation](http://deploy.alloyui.com/api/)
-* [Discuss](http://www.liferay.com/community/forums/-/message_boards/category/8409523)
 * [Attribution/Third-party licenses](https://github.com/liferay/alloy-ui/blob/master/ATTRIBUTION.txt)
+
+## Discussion
+
+* [Liferay Forums](http://www.liferay.com/community/forums/-/message_boards/category/8409523)
+* [Google Groups](https://groups.google.com/forum/?fromgroups#!forum/alloyui)
+* [Stack Overflow](http://stackoverflow.com/questions/tagged/alloy-ui)
 
 ## Folder description
 
