@@ -1,6 +1,6 @@
 # Alloy UI
 
-Alloy is a UI metaframework that provides a consistent and simple API for building web applications across allthree levels of the browser: structure, style and behavior.
+Alloy is a UI framework built on top of YUI3 that provides a simple API for building high scalable applications.
 
 It incorporates three design languages: HTML, CSS, and JavaScript.
 
