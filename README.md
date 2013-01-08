@@ -4,8 +4,8 @@ Alloy is a UI framework built on top of YUI3 that provides a simple API for buil
 
 It incorporates three design languages: HTML, CSS, and JavaScript.
 
-* [License](https://github.com/liferay/alloy-ui/blob/master/LICENSE.txt)
 * [Documentation](http://deploy.alloyui.com/api/)
+* [License](https://github.com/liferay/alloy-ui/blob/master/LICENSE.txt)
 * [Attribution/Third-party licenses](https://github.com/liferay/alloy-ui/blob/master/ATTRIBUTION.txt)
 
 ## Discussion
