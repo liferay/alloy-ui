@@ -765,6 +765,24 @@
 			/>
 		</subant>
 		<!-- /End Patch for AUI-672 -->
+
+		<!-- Patch for AUI-799 -->
+		<replace file="${project.dir}/lib/yui3/src/event/js/event-dom.js">
+			<replacetoken><![CDATA[v.detachAll();]]></replacetoken>
+			<replacevalue><![CDATA[if (v.type == 'unload') {
+                    v.fire(e);
+                }
+                v.detachAll();]]></replacevalue>
+		</replace>
+
+		<subant target="all" failonerror="false">
+			<property name="lint.skip" value="true"/>
+			<fileset
+				dir="${project.dir}/lib/yui3/src/event"
+				includes="build.xml"
+			/>
+		</subant>
+		<!-- /End Patch for AUI-799 -->
 	</target>
 
 	<target name="create-release">
