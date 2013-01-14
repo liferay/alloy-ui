@@ -250,10 +250,6 @@ var DialogIframePlugin = A.Component.create(
 				}
 
 				instance.node.attr('src', newVal);
-
-				if (loadingMask) {
-					loadingMask.hide();
-				}
 			},
 
 			_updateIframeSize: function(event) {
