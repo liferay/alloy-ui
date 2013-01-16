@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>AlloyUI - Event</title>
+
+	<script src="../../build/aui/aui.js"></script>
+</head>
+<body>
+	<h1>Input event (delegate)</h1>
+
+	<form id="fm1">
+		<input type="text" name="input1" />
+		<input type="text" name="input2" />
+		<input type="text" name="input3" />
+
+		<button type="button" id="detach">detach</button>
+		<button type="button" onclick="this.form.input1.value = '.'; this.form.input2.value = '.'; this.form.elements.input3.value = '.';">add some</button>
+	</form>
+
+	<h1>Input event</h1>
+
+	<form id="fm2">
+		<input type="text" name="input1" />
+		<button type="button" onclick="this.form.input1.value = '.';">add some</button>
+	</form>
+
+	<script>
+	AUI().use('aui-event', function(A) {
+		var delegate = A.one('#fm1').delegate('input', function(event) {
+			console.dir(arguments);
+		}, 'input', window, [1,2,3]);
+
+		A.one('#detach').on('click', function() {
+			delegate.detach();
+		});
+
+		A.one('#fm2 [name=input1]').on('input', function(event) {
+			console.dir(arguments);
+		}, window, [1,2,3]);
+	});
+	</script>
+</body>
+</html>
