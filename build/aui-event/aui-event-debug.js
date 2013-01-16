@@ -285,42 +285,38 @@ AUI.add('aui-event-input', function(A) {
  * @class AUI~event~input
  */
 
-var DOM_EVENTS = A.Node.DOM_EVENTS,
-	INPUT_EVENT_TYPE,
-	SKIP_FOCUS_CHECK_MAP,
-	// Input event feature check should ne done on textareas. WebKit before
-	// version 531 (3.0.182.2) did not support input events for textareas.
-	// See http://dev.chromium.org/developers/webkit-version-table
-	SUPPORTS_DOM_EVENT_INPUT = A.Event.supportsDOMEvent(document.createElement('textarea'), 'input');
+var DOM_EVENTS = A.Node.DOM_EVENTS;
 
-if (SUPPORTS_DOM_EVENT_INPUT) {
+// Input event feature check should be done on textareas. WebKit before
+// version 531 (3.0.182.2) did not support input events for textareas.
+// See http://dev.chromium.org/developers/webkit-version-table
+if (A.Event.supportsDOMEvent(document.createElement('textarea'), 'input')) {
 	// http://yuilibrary.com/projects/yui3/ticket/2533063
 	DOM_EVENTS.input = 1;
-	INPUT_EVENT_TYPE = 'input';
 	return;
 }
-else {
-	DOM_EVENTS.cut = 1;
-	DOM_EVENTS.dragend = 1;
-	DOM_EVENTS.paste = 1;
-	INPUT_EVENT_TYPE = ['keydown', 'paste', 'drop', 'cut'];
-	SKIP_FOCUS_CHECK_MAP = {
+
+DOM_EVENTS.cut = 1;
+DOM_EVENTS.dragend = 1;
+DOM_EVENTS.paste = 1;
+
+var ACTIVE_ELEMENT = 'activeElement',
+	OWNER_DOCUMENT = 'ownerDocument',
+
+	_HANDLER_DATA_KEY = '~~aui|input|event~~',
+	_INPUT_EVENT_TYPE = ['keydown', 'paste', 'drop', 'cut'],
+	_SKIP_FOCUS_CHECK_MAP = {
 		cut: 1,
 		drop: 1,
 		paste: 1
 	};
-}
-
-var ACTIVE_ELEMENT = 'activeElement',
-	OWNER_DOCUMENT = 'ownerDocument',
-	_HANDLER_DATA_KEY = '~~aui|input|event~~';
 
 A.Event.define('input', {
 	on: function (node, subscription, notifier) {
 		var instance = this;
 
 		subscription._handler = node.on(
-			INPUT_EVENT_TYPE, A.bind(instance._dispatchEvent, instance, notifier));
+			_INPUT_EVENT_TYPE, A.bind(instance._dispatchEvent, instance, notifier));
 	},
 
 	delegate: function (node, subscription, notifier, filter) {
@@ -333,7 +329,7 @@ A.Event.define('input', {
 
 			if (!handler) {
 				handler = element.on(
-					INPUT_EVENT_TYPE,
+					_INPUT_EVENT_TYPE,
 					A.bind(instance._dispatchEvent, instance, notifier));
 
 				subscription._handles.push(handler);
@@ -362,7 +358,7 @@ A.Event.define('input', {
 			input = event.target;
 
 		if (// Since cut, drop and paste events fires before the element is focused, skip focus checking.
-			SKIP_FOCUS_CHECK_MAP[event.type] ||
+			_SKIP_FOCUS_CHECK_MAP[event.type] ||
 			(input.get(OWNER_DOCUMENT).get(ACTIVE_ELEMENT) === input)) {
 
 			notifier.fire(event);
