@@ -206,14 +206,21 @@ TreeViewIO.prototype = {
 		A.each(defCallbacks, function(fn, name) {
 			var userFn = v.cfg.on[name];
 
+			fn.defaultFn = true;
+
 			if (isFunction(userFn)) {
 				// wrapping user callback and default callback, invoking both handlers
-				var wrappedFn = function() {
-					fn.apply(instance, arguments);
-					userFn.apply(instance, arguments);
-				};
+				var wrappedFn = A.bind(
+					function() {
+						fn.apply(instance, arguments);
+						userFn.apply(instance, arguments);
+					},
+					instance
+				);
 
-				v.cfg.on[name] = A.bind(wrappedFn, instance);
+				wrappedFn.wrappedFn = true;
+
+				v.cfg.on[name] = wrappedFn;
 			}
 			else {
 				// get from defCallbacks map
