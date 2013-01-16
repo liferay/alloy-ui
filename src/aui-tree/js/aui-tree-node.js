@@ -1037,18 +1037,32 @@ var TreeNodeIO = A.Component.create(
 
 				if (ownerTree) {
 					if (!instance.get(IO)) {
-						instance.set(IO, A.clone(ownerTree.get(IO)));
+						var io = A.clone(
+							ownerTree.get(IO),
+							true,
+							function(value, key) {
+								if (isFunction(value) && (value.defaultFn || value.wrappedFn)) {
+									return false;
+								}
+
+								return true;
+							}
+						);
+
+						instance.set(IO, io);
 					}
 
 					if (!instance.get(PAGINATOR)) {
-						var otPaginator = ownerTree.get(PAGINATOR);
+						var ownerTreePaginator = ownerTree.get(PAGINATOR);
+
+						var paginator = A.clone(ownerTreePaginator);
 
 						// make sure we are not using the same element passed to the ownerTree on the TreeNode
-						if (otPaginator && otPaginator.element) {
-							otPaginator.element = otPaginator.element.clone();
+						if (paginator && paginator.element) {
+							paginator.element = ownerTreePaginator.element.clone();
 						}
 
-						instance.set(PAGINATOR, otPaginator);
+						instance.set(PAGINATOR, paginator);
 					}
 				}
 			},
