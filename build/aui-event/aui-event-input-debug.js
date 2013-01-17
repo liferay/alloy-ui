@@ -91,4 +91,4 @@ A.Event.define('input', {
 	}
 });
 
-}, '@VERSION@' ,{requires:['aui-base']});
+}, '@VERSION@' ,{requires:['event-synthetic']});

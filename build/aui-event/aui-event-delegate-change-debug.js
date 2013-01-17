@@ -138,4 +138,4 @@ A.Event.define(
 	true
 );
 
-}, '@VERSION@' ,{requires:['aui-node-base','aui-event-base'], condition: {name: 'aui-event-delegate-change', trigger: 'event-base-ie', ua: 'ie'}});
+}, '@VERSION@' ,{requires:['aui-node-base','aui-event-base','event-synthetic'], condition: {name: 'aui-event-delegate-change', trigger: 'event-base-ie', ua: 'ie'}});

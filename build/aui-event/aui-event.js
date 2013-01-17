@@ -366,7 +366,7 @@ A.Event.define('input', {
 	}
 });
 
-}, '@VERSION@' ,{requires:['aui-base']});
+}, '@VERSION@' ,{requires:['event-synthetic']});
 AUI.add('aui-event-delegate-change', function(A) {
 var AObject = A.Object,
 	Node = A.Node,
@@ -507,19 +507,14 @@ A.Event.define(
 	true
 );
 
-}, '@VERSION@' ,{condition: {name: 'aui-event-delegate-change', trigger: 'event-base-ie', ua: 'ie'}, requires:['aui-node-base','aui-event-base']});
+}, '@VERSION@' ,{requires:['aui-node-base','aui-event-base','event-synthetic'], condition: {name: 'aui-event-delegate-change', trigger: 'event-base-ie', ua: 'ie'}});
 AUI.add('aui-event-delegate-submit', function(A) {
-var AArray = A.Array,
-	AObject = A.Object,
+var AObject = A.Object,
 	Node = A.Node,
 	Selector = A.Selector,
 
 	EVENT_CLICK = 'click',
-	EVENT_SUBMIT = 'submit',
-
-	AFTER = 'after',
-	SUBMIT_DELEGATE = 'submit_delegate',
-	SUBMIT_ON = 'submit_on';
+	EVENT_SUBMIT = 'submit';
 
 A.Event.define(
 	EVENT_SUBMIT,
@@ -595,7 +590,7 @@ A.Event.define(
 						while (result !== false && !event.stopped && tmpEl && tmpEl !== delegateEl);
 
 						result = ((result !== false) && (event.stopped !== 2));
-					}
+					}					
 				}
 				else {
 					result = notifier.fire(event);
@@ -611,7 +606,7 @@ A.Event.define(
 			var handles = instance._prepareHandles(subscription, form);
 
 			if (!AObject.owns(handles, EVENT_SUBMIT)) {
-				handles[EVENT_SUBMIT] = A.Event._attach([EVENT_SUBMIT, fireFn, form, notifier, filter ? SUBMIT_DELEGATE : SUBMIT_ON]);
+				handles[EVENT_SUBMIT] = A.Event._attach([EVENT_SUBMIT, fireFn, form, notifier, filter ? 'submit_delegate' : 'submit_on']);
 			}
 		},
 
@@ -666,95 +661,43 @@ A.Event.define(
 var originalOn = A.CustomEvent.prototype._on;
 
 A.CustomEvent.prototype._on = function(fn, context, args, when) {
- 	var instance = this;
+	var instance = this;
 
 	var eventHandle = originalOn.apply(instance, arguments);
 
-	if (instance._kds) {
-		updateDeprecatedSubscribers.call(instance, eventHandle, fn, context, args, when);
-	}
-	else {
-		updateSubscribers.call(instance, eventHandle, fn, context, args, when);
+	if (args && args[0] === 'submit_on' && instance.subCount > 1) {
+		var subscribers = instance.subscribers;
+
+		var lastSubscriber = subscribers[eventHandle.sub.id];
+
+		var orderedSubscribers = {};
+
+		var replace = false;
+
+		AObject.each(
+			subscribers,
+			function(subscriber, index) {
+				if (!replace && subscriber.args && subscriber.args[0] === 'submit_delegate') {
+					 orderedSubscribers[lastSubscriber.id] = lastSubscriber;
+
+					replace = true;
+				}
+
+				if (subscriber !== lastSubscriber) {
+					 orderedSubscribers[subscriber.id] = subscriber;
+				}
+			}
+		);
+
+		if (replace) {
+			instance.subscribers =  orderedSubscribers;
+		}
 	}
 
 	return eventHandle;
 };
 
-function sortSubscribers(subscribers) {
-	var instance = this;
-
-	var item = AArray.some(
-		subscribers,
-		function(item, index) {
-			if (item.args && item.args[0] === SUBMIT_DELEGATE) {
-				var lastSubscriber = subscribers.splice(subscribers.length - 1, 1)[0];
-
-				subscribers.splice(index, 0, lastSubscriber);
-
-				return true;
-			}
-		}
-	);
-}
-
-function sortDeprecatedSubscribers(eventHandle, subscribers) {
-	var result = subscribers;
-
-	var orderedSubscribers = {};
-
-	var lastSubscriber = subscribers[eventHandle.sub.id];
-
-	var replace = false;
-
-	AObject.each(
-		subscribers,
-		function(subscriber, index) {
-			if (!replace && subscriber.args && subscriber.args[0] === SUBMIT_DELEGATE) {
-				orderedSubscribers[lastSubscriber.id] = lastSubscriber;
-
-				replace = true;
-			}
-
-			if (subscriber !== lastSubscriber) {
-				orderedSubscribers[subscriber.id] = subscriber;
-			}
-		}
-	);
-
-	if (replace) {
-		result = orderedSubscribers;
-	}
-
-	return result;
-}
-
-function updateSubscribers(eventHandle, fn, context, args, when) {
-	var instance = this;
-
-	if (args && args[0] === SUBMIT_ON) {
-		if (when === AFTER && instance._afters.length) {
-			sortSubscribers.call(instance, instance._afters);
-		}
-		else if (instance._subscribers.length) {
-			sortSubscribers.call(instance, instance._subscribers);
-		}
-	}
-}
-
-function updateDeprecatedSubscribers(eventHandle, fn, context, args, when) {
-	var instance = this;
-
-	if (args && args[0] === SUBMIT_ON) {
-		if (when === AFTER && !AObject.isEmpty(instance.afters)) {
-			instance.afters = sortDeprecatedSubscribers.call(instance, eventHandle, instance.afters);
-		}
-		else if (!AObject.isEmpty(instance.subscribers)) {
-			instance.subscribers = sortDeprecatedSubscribers.call(instance, instance.subscribers);
-		}
-	}
-}
-
-}, '@VERSION@' ,{condition: {name: 'aui-event-delegate-submit', trigger: 'event-base-ie', ua: 'ie'}, requires:['aui-node-base','aui-event-base']});
+}, '@VERSION@' ,{requires:['aui-node-base','aui-event-base','event-synthetic'], condition: {name: 'aui-event-delegate-submit', trigger: 'event-base-ie', ua: 'ie'}});
 
 
 AUI.add('aui-event', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-event-base','aui-event-input']});
