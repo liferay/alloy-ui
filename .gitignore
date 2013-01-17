@@ -1,6 +1,8 @@
 
 # /
 /.git
+.sass-cache
+.ruby-gems
 build_tmp/
 build_rollup_tmp/
 /__MACOSX
