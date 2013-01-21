@@ -1642,6 +1642,7 @@ AArray.each(
 );
 
 }, '@VERSION@' ,{requires:['array-extras','aui-base-lang','aui-classnamemanager','node']});
+
 AUI.add('aui-node-html5', function(A) {
 /**
  * aui-node-html5 provides support for HTML shiv natively on the Alloy dom
@@ -1733,6 +1734,7 @@ if (A.UA.ie) {
 }
 
 }, '@VERSION@' ,{requires:['collection','aui-base']});
+
 AUI.add('aui-node-html5-print', function(A) {
 var CONFIG = A.config,
 	DOC = CONFIG.doc,
@@ -1786,6 +1788,7 @@ var BUFFER_CSS_TEXT = [],
 	STR_CHECKBOX = 'checkbox',
 	STR_CHECKED = 'checked',
 	STR_HTTPS = 'https',
+	STR_IFRAME = 'IFRAME',
 	STR_INPUT = 'INPUT',
 	STR_OPTION = 'OPTION',
 	STR_RADIO = 'radio',
@@ -1896,6 +1899,21 @@ A.mix(
 
 			var bodyClone = instance._getBodyClone();
 			var bodyEl = instance._getBodyEl();
+
+			var newNodes = bodyClone.getElementsByTagName(STR_IFRAME);
+			var originalNodes = bodyEl.getElementsByTagName(STR_IFRAME);
+
+			var length = originalNodes.length;
+
+			// Moving IFRAME nodes back to their original position
+			if (length == newNodes.length) {
+				while (length--) {
+					var newNode = newNodes[length];
+					var originalNode = originalNodes[length];
+
+					originalNode.swapNode(newNode);
+				}
+			}
 
 			bodyClone.innerHTML = STR_EMPTY;
 
@@ -2017,6 +2035,23 @@ A.mix(
 			bodyHTML = bodyHTML.replace(REGEX_CLONE_NODE_CLEANUP, TAG_REPLACE_ORIGINAL).replace(REGEX_TAG, TAG_REPLACE_FONT);
 
 			bodyClone.innerHTML = bodyHTML;
+
+			// Post processing the DOM in order to move IFRAME nodes
+
+			newNodes = bodyClone.getElementsByTagName(STR_IFRAME);
+			originalNodes = bodyEl.getElementsByTagName(STR_IFRAME);
+
+			length = originalNodes.length;
+
+			if (length == newNodes.length) {
+				while (length--) {
+					var newNode = newNodes[length];
+					var originalNode = originalNodes[length];
+
+					// According to quirksmode.org, swapNode is supported on all major IE versions
+					originalNode.swapNode(newNode);
+				}
+			}
 		},
 
 		_getAllCSSText: function() {
@@ -2194,5 +2229,6 @@ PrintFix();
 }, '@VERSION@' ,{requires:['aui-node-html5']});
 
 
-AUI.add('aui-node', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-node-base','aui-node-html5','aui-node-html5-print']});
+
+AUI.add('aui-node', function(A){}, '@VERSION@' ,{use:['aui-node-base','aui-node-html5','aui-node-html5-print'], skinnable:false});
 
