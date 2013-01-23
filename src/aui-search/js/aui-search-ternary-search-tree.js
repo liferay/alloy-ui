@@ -36,6 +36,12 @@ var TernarySearchTree = A.Component.create({
 			return !!(Lang.isValue(node) && node.isEndOfWord());
 		},
 
+		empty: function() {
+			var instance = this;
+
+			instance._root = null;
+		},
+
 		patternMatch: function(pattern) {
 			var instance = this;
 
