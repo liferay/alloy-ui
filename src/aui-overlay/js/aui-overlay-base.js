@@ -1,6 +1,6 @@
 /**
  * Provides a basic Overlay widget, with Standard Module content support. The Overlay widget
- * provides Page XY positioning support, alignment and centering support along with basic 
+ * provides Page XY positioning support, alignment and centering support along with basic
  * stackable support (z-index and shimming).
  *
  * @module aui-overlay
@@ -25,6 +25,11 @@
 A.OverlayBase = A.Component.create(
 	{
 		NAME: 'overlay',
+		ATTRS: {
+			hideClass: {
+				value: false
+			}
+		},
 		AUGMENTS: [A.WidgetPosition, A.WidgetStack, A.WidgetPositionAlign, A.WidgetPositionConstrain, A.WidgetStdMod]
 	}
 );
