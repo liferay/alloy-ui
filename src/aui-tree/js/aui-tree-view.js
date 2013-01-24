@@ -133,21 +133,6 @@ var TreeView = A.Component.create(
 				value: true
 			},
 
-			/**
-			 * IO metadata for loading the children using ajax.
-			 *
-			 * @attribute io
-			 * @default null
-			 * @type Object
-			 */
-			io: {
-				value: null
-			},
-
-			paginator: {
-				value: null
-			},
-
 			selectOnToggle: {
 				validator: isBoolean,
 				value: false
