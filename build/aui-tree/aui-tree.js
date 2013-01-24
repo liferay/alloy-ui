@@ -1908,18 +1908,32 @@ var TreeNodeIO = A.Component.create(
 
 				if (ownerTree) {
 					if (!instance.get(IO)) {
-						instance.set(IO, A.clone(ownerTree.get(IO)));
+						var io = A.clone(
+							ownerTree.get(IO),
+							true,
+							function(value, key) {
+								if (isFunction(value) && (value.defaultFn || value.wrappedFn)) {
+									return false;
+								}
+
+								return true;
+							}
+						);
+
+						instance.set(IO, io);
 					}
 
 					if (!instance.get(PAGINATOR)) {
-						var otPaginator = ownerTree.get(PAGINATOR);
+						var ownerTreePaginator = ownerTree.get(PAGINATOR);
+
+						var paginator = A.clone(ownerTreePaginator);
 
 						// make sure we are not using the same element passed to the ownerTree on the TreeNode
-						if (otPaginator && otPaginator.element) {
-							otPaginator.element = otPaginator.element.clone();
+						if (paginator && paginator.element) {
+							paginator.element = ownerTreePaginator.element.clone();
 						}
 
-						instance.set(PAGINATOR, otPaginator);
+						instance.set(PAGINATOR, paginator);
 					}
 				}
 			},
@@ -2434,7 +2448,7 @@ AUI.add('aui-tree-paginator', function(A) {
 var Lang = A.Lang,
 	isObject = Lang.isObject,
 	isValue = Lang.isValue,
-	
+
 	getCN = A.getClassName,
 
 	CHILDREN = 'children',
@@ -2509,9 +2523,7 @@ TreeViewPaginator.prototype = {
 		var paginator = instance.get(PAGINATOR);
 
 		if (paginator) {
-			var handlePaginator = A.bind(instance._handlePaginatorClickEvent, instance);
-
-			paginator.element.on('click', handlePaginator);
+			paginator.element.on('click', A.bind(instance._handlePaginatorClickEvent, instance));
 		}
 
 		instance._createEvents();
@@ -2534,7 +2546,7 @@ TreeViewPaginator.prototype = {
 			}
 		);
 	},
-	
+
 	/**
 	 * Default paginatorClick event handler. Increment the
 	 * <code>paginator.start</code> to the next <code>paginator.limit</code>.
@@ -2567,14 +2579,9 @@ TreeViewPaginator.prototype = {
 	_handlePaginatorClickEvent: function(event) {
 		var instance = this;
 
-		var ownerTree = instance.get(OWNER_TREE);
 		var output = instance.getEventOutputMap(instance);
 
 		instance.fire(EV_TREE_NODE_PAGINATOR_CLICK, output);
-
-		if (ownerTree) {
-			ownerTree.fire(EV_TREE_NODE_PAGINATOR_CLICK, output);
-		}
 
 		event.halt();
 	},
@@ -2612,7 +2619,6 @@ TreeViewPaginator.prototype = {
 	_syncPaginatorUI: function(newNodes) {
 		var instance = this;
 
-		var children = instance.get(CHILDREN);
 		var paginator = instance.get(PAGINATOR);
 
 		if (paginator) {
@@ -2786,21 +2792,6 @@ var TreeView = A.Component.create(
 			lazyLoad: {
 				validator: isBoolean,
 				value: true
-			},
-
-			/**
-			 * IO metadata for loading the children using ajax.
-			 *
-			 * @attribute io
-			 * @default null
-			 * @type Object
-			 */
-			io: {
-				value: null
-			},
-
-			paginator: {
-				value: null
 			},
 
 			selectOnToggle: {
@@ -3604,7 +3595,7 @@ var TreeViewDD = A.Component.create(
 
 A.TreeViewDD = TreeViewDD;
 
-}, '@VERSION@' ,{requires:['aui-tree-node','aui-tree-paginator','aui-tree-io','dd-delegate','dd-proxy'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-tree-node','aui-tree-paginator','aui-tree-io','dd-delegate','dd-proxy']});
 AUI.add('aui-tree-io', function(A) {
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
@@ -3814,14 +3805,21 @@ TreeViewIO.prototype = {
 		A.each(defCallbacks, function(fn, name) {
 			var userFn = v.cfg.on[name];
 
+			fn.defaultFn = true;
+
 			if (isFunction(userFn)) {
 				// wrapping user callback and default callback, invoking both handlers
-				var wrappedFn = function() {
-					fn.apply(instance, arguments);
-					userFn.apply(instance, arguments);
-				};
+				var wrappedFn = A.bind(
+					function() {
+						fn.apply(instance, arguments);
+						userFn.apply(instance, arguments);
+					},
+					instance
+				);
 
-				v.cfg.on[name] = A.bind(wrappedFn, instance);
+				wrappedFn.wrappedFn = true;
+
+				v.cfg.on[name] = wrappedFn;
 			}
 			else {
 				// get from defCallbacks map
@@ -3839,5 +3837,5 @@ A.TreeViewIO = TreeViewIO;
 }, '@VERSION@' ,{skinnable:false, requires:['aui-io','json']});
 
 
-AUI.add('aui-tree', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-io', 'aui-tree-paginator', 'aui-tree-view']});
+AUI.add('aui-tree', function(A){}, '@VERSION@' ,{use:['aui-tree-data', 'aui-tree-node', 'aui-tree-io', 'aui-tree-paginator', 'aui-tree-view'], skinnable:true});
 

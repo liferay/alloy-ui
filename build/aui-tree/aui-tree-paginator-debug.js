@@ -2,7 +2,7 @@ AUI.add('aui-tree-paginator', function(A) {
 var Lang = A.Lang,
 	isObject = Lang.isObject,
 	isValue = Lang.isValue,
-	
+
 	getCN = A.getClassName,
 
 	CHILDREN = 'children',
@@ -77,9 +77,7 @@ TreeViewPaginator.prototype = {
 		var paginator = instance.get(PAGINATOR);
 
 		if (paginator) {
-			var handlePaginator = A.bind(instance._handlePaginatorClickEvent, instance);
-
-			paginator.element.on('click', handlePaginator);
+			paginator.element.on('click', A.bind(instance._handlePaginatorClickEvent, instance));
 		}
 
 		instance._createEvents();
@@ -102,7 +100,7 @@ TreeViewPaginator.prototype = {
 			}
 		);
 	},
-	
+
 	/**
 	 * Default paginatorClick event handler. Increment the
 	 * <code>paginator.start</code> to the next <code>paginator.limit</code>.
@@ -135,14 +133,9 @@ TreeViewPaginator.prototype = {
 	_handlePaginatorClickEvent: function(event) {
 		var instance = this;
 
-		var ownerTree = instance.get(OWNER_TREE);
 		var output = instance.getEventOutputMap(instance);
 
 		instance.fire(EV_TREE_NODE_PAGINATOR_CLICK, output);
-
-		if (ownerTree) {
-			ownerTree.fire(EV_TREE_NODE_PAGINATOR_CLICK, output);
-		}
 
 		event.halt();
 	},
@@ -180,7 +173,6 @@ TreeViewPaginator.prototype = {
 	_syncPaginatorUI: function(newNodes) {
 		var instance = this;
 
-		var children = instance.get(CHILDREN);
 		var paginator = instance.get(PAGINATOR);
 
 		if (paginator) {
