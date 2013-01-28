@@ -270,7 +270,7 @@ A.mix(
 					var newNode = newNodes[length];
 					var newNodeName = newNode.nodeName;
 
-					if (newNodeName == STR_INPUT || newNodeName == STR_OPTION) {
+					if (newNodeName == STR_INPUT || newNodeName == STR_OPTION || newNodeName == STR_IFRAME) {
 						var originalNode = originalNodes[length];
 						var originalNodeName = originalNode.nodeName;
 
@@ -282,6 +282,9 @@ A.mix(
 							}
 							else if (newNodeName == STR_INPUT && (newNode.type == STR_CHECKBOX || newNode.type == STR_RADIO)) {
 								prop = STR_CHECKED;
+							}
+							else if (newNodeName == STR_IFRAME) {
+								newNode.src = STR_EMPTY;
 							}
 
 							if (prop !== null) {
