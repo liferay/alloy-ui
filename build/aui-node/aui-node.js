@@ -1642,7 +1642,6 @@ AArray.each(
 );
 
 }, '@VERSION@' ,{requires:['array-extras','aui-base-lang','aui-classnamemanager','node']});
-
 AUI.add('aui-node-html5', function(A) {
 /**
  * aui-node-html5 provides support for HTML shiv natively on the Alloy dom
@@ -1734,7 +1733,6 @@ if (A.UA.ie) {
 }
 
 }, '@VERSION@' ,{requires:['collection','aui-base']});
-
 AUI.add('aui-node-html5-print', function(A) {
 var CONFIG = A.config,
 	DOC = CONFIG.doc,
@@ -2008,7 +2006,7 @@ A.mix(
 					var newNode = newNodes[length];
 					var newNodeName = newNode.nodeName;
 
-					if (newNodeName == STR_INPUT || newNodeName == STR_OPTION) {
+					if (newNodeName == STR_INPUT || newNodeName == STR_OPTION || newNodeName == STR_IFRAME) {
 						var originalNode = originalNodes[length];
 						var originalNodeName = originalNode.nodeName;
 
@@ -2020,6 +2018,9 @@ A.mix(
 							}
 							else if (newNodeName == STR_INPUT && (newNode.type == STR_CHECKBOX || newNode.type == STR_RADIO)) {
 								prop = STR_CHECKED;
+							}
+							else if (newNodeName == STR_IFRAME) {
+								newNode.src = STR_EMPTY;
 							}
 
 							if (prop !== null) {
@@ -2227,7 +2228,6 @@ A.namespace('HTML5').PrintFix = PrintFix;
 PrintFix();
 
 }, '@VERSION@' ,{requires:['aui-node-html5']});
-
 
 
 AUI.add('aui-node', function(A){}, '@VERSION@' ,{use:['aui-node-base','aui-node-html5','aui-node-html5-print'], skinnable:false});
