@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+</head>
+<body>
+    <h1>AlloyUI - Button</h1>
+    <h2>JavaScript buttons</h2>
+    <button id="basic"></button>
+    <button id="toggle"></button>
+    <h2>JavaScript button group</h2>
+    <p>
+        <div id='checkgroup'>
+            <input type='button' value='2'>
+            <input class="aui-active" type='reset' value='3'>
+            <input class="aui-active" type='submit' value='4'>
+            <input type='button' value='5'>
+            <input type='button' value='6'>
+            <button>7</button>
+        </div>
+    </p>
+    <p>
+        <div id='radiogroup'>
+            <input type='button' value='2'>
+            <input type='reset' value='3'>
+            <input class="aui-active" type='submit' value='4'>
+            <input type='button' value='5'>
+            <input type='button' value='6'>
+            <button>7</button>
+        </div>
+    </p>
+    <h2>CSS3 Buttons</h2>
+    <p>
+        <a class="aui-btn" href="">Link</a>
+        <button class="aui-btn" type="submit">Button</button>
+        <input class="aui-btn" type="button" value="Input">
+        <input class="aui-btn" type="submit" value="Submit">
+    </p>
+    <p>
+        <button class="aui-btn aui-btn-primary">Primary</button>
+        <button class="aui-btn aui-btn-info">Info</button>
+        <button class="aui-btn aui-btn-success">Success</button>
+        <button class="aui-btn aui-btn-warning">Warning</button>
+        <button class="aui-btn aui-btn-danger">Danger</button>
+        <button class="aui-btn aui-btn-inverse">Inverse</button>
+        <button class="aui-btn aui-btn-link">Link</button>
+    </p>
+    <p>
+        <button class="aui-btn aui-btn-large aui-btn-primary" type="button">Large button</button>
+        <button class="aui-btn aui-btn-large" type="button">Large button</button>
+    </p>
+    <p>
+        <button class="aui-btn aui-btn-primary" type="button">Default button</button>
+        <button class="aui-btn " type="button">Default button</button>
+    </p>
+    <p>
+        <button class="aui-btn aui-btn-mini aui-btn-primary" type="button">Mini button</button>
+        <button class="aui-btn aui-btn-mini" type="button">Mini button</button>
+    </p>
+    <p>
+        <a href="#" class="aui-btn aui-btn-large aui-btn-primary aui-disabled">Primary link disabled state</a>
+        <a href="#" class="aui-btn aui-btn-large aui-disabled">Link disabled state</a>
+    </p>
+    <p>
+        <button class="aui-btn aui-btn-large aui-btn-block aui-btn-primary" type="button">Block level button</button>
+        <button class="aui-btn aui-btn-large aui-btn-block" type="button">Block level button</button>
+    </p>
+    <script>
+    YUI({ filter: 'raw' }).use('aui-button', function(A) {
+
+        new A.Button({
+            label: 'Basic',
+            srcNode: '#basic'
+        }).render();
+
+        new A.ToggleButton({
+           label: 'Click to toggle',
+           srcNode: '#toggle'
+       }).render();
+
+        new A.ButtonGroup({
+            srcNode: '#checkgroup',
+            type: 'checkbox'
+        }).render();
+
+        new A.ButtonGroup({
+            srcNode: '#radiogroup',
+            type: 'radio'
+        }).render();
+
+    });
+    </script>
+</body>
+</html>
