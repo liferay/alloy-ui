@@ -1,0 +1,24 @@
+{
+    "name": "alloy",
+    "description": "AlloyUI",
+    "version": "2.0.0pr1",
+    "author": {
+        "name": "Eduardo Lundgren",
+        "email": "eduardo.lundgren@liferay.com",
+        "web": "http://www.eduardolundgren.com",
+        "twitter": "eduardolundgren"
+    },
+    "license": "BSD",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:eduardolundgren/alloy.git"
+    },
+    "keywords": [
+        "alloy", "yui", "external", "commands", "helpers"
+    ],
+    "dependencies": {
+        "fs-extra": "*"
+    },
+    "engines": { "node": "*" },
+    "preferGlobal": "true"
+}
