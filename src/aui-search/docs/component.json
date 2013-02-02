@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-search",
+    "displayName": "Gallery: aui-search",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "eduardo.lundgren" ],
+    "use"        : [ "aui-search" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

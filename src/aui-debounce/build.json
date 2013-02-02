@@ -1,0 +1,10 @@
+{
+    "name": "aui-debounce",
+    "builds": {
+        "aui-debounce": {
+            "jsfiles": [
+                "js/aui-debounce.js"
+            ]
+        }
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "aui-pagination": {
+        "requires": [
+            "node-event-delegate",
+            "aui-node",
+            "aui-component",
+            "widget-htmlparser"
+        ]
+    }
+}

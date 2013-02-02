@@ -1,0 +1,10 @@
+{
+    "name": "aui-image-cropper",
+    "builds": {
+        "aui-image-cropper": {
+            "jsfiles": [
+                "js/aui-image-cropper.js"
+            ]
+        }
+    }
+}

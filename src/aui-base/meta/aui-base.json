@@ -1,0 +1,19 @@
+{
+    "aui-base": {
+        "use": [
+            "oop",
+            "yui-throttle",
+            "aui-classnamemanager",
+            "aui-debounce",
+            "aui-base-core",
+            "aui-base-lang",
+            "aui-node-base"
+        ]
+    },
+
+    "aui-base-core": {
+    },
+
+    "aui-base-lang": {
+    }
+}

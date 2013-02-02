@@ -1,0 +1,16 @@
+{
+    "name": "aui-toggler",
+    "builds": {
+        "aui-toggler-base": {
+            "jsfiles": [
+                "js/aui-toggler-base.js"
+            ]
+        },
+
+        "aui-toggler-delegate": {
+            "jsfiles": [
+                "js/aui-toggler-delegate.js"
+            ]
+        }
+    }
+}

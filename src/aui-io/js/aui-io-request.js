@@ -11,7 +11,7 @@ var L = A.Lang,
 	isFunction = L.isFunction,
 	isString = L.isString,
 
-	defaults = YUI.AUI.namespace('defaults.io'),
+	defaults = YUI.namespace('defaults.io'),
 
 	getDefault = function(attr) {
 		return function() {

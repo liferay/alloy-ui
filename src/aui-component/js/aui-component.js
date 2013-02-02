@@ -14,7 +14,7 @@ var Lang = A.Lang,
 
 	NAME = 'component',
 
-	CSS_HELPER_HIDDEN = getClassName('helper', 'hidden'),
+	CSS_HIDE = getClassName('hide'),
 	CONSTRUCTOR_OBJECT = A.config.win.Object.prototype.constructor;
 
 /**
@@ -99,11 +99,11 @@ Component.ATTRS = {
      * <code>false</code>.
 	 *
 	 * @attribute hideClass
-	 * @default 'aui-helper-hidden'
+	 * @default 'aui-hide'
 	 * @type String
 	 */
 	hideClass: {
-		value: CSS_HELPER_HIDDEN
+		value: CSS_HIDE
 	},
 
 	/**
@@ -192,7 +192,7 @@ A.extend(
 			if (hideClass !== false) {
 				var boundingBox = instance.get('boundingBox');
 
-				boundingBox.toggleClass(hideClass || CSS_HELPER_HIDDEN, !value);
+				boundingBox.toggleClass(hideClass || CSS_HIDE, !value);
 			}
 		},
 

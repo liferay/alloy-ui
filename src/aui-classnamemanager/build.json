@@ -1,0 +1,10 @@
+{
+    "name": "aui-classnamemanager",
+    "builds": {
+        "aui-classnamemanager": {
+            "jsfiles": [
+                "js/aui-classnamemanager.js"
+            ]
+        }
+    }
+}

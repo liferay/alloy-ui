@@ -1,0 +1,29 @@
+{
+    "name": "aui-base",
+    "exec": [
+        "./scripts/build.js"
+    ],
+    "builds": {
+        "aui-base-core": {
+            "jsfiles": [
+                "js/aui-base.js",
+                "js/aui-ready.js"
+            ]
+        },
+
+        "aui-base-lang": {
+            "jsfiles": [
+                "js/aui-lang.js"
+            ]
+        }
+    },
+    "rollups": {
+        "aui": {
+            "basefilename": "aui",
+            "files": [
+                "yui",
+                "aui-base-core"
+            ]
+        }
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "aui-io": {
+        "use": [
+            "aui-io-request"
+        ]
+    },
+
+    "aui-io-request": {
+        "requires": [
+            "io-base",
+            "json",
+            "plugin",
+            "querystring-stringify",
+            "aui-component"
+        ]
+    }
+}

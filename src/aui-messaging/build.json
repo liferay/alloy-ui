@@ -1,0 +1,10 @@
+{
+    "name": "aui-messaging",
+    "builds": {
+        "aui-messaging": {
+            "jsfiles": [
+                "js/aui-messaging.js"
+            ]
+        }
+    }
+}

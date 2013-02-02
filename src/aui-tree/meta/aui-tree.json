@@ -1,0 +1,55 @@
+{
+    "aui-tree": {
+        "use": [
+            "aui-tree-data",
+            "aui-tree-io",
+            "aui-tree-node",
+            "aui-tree-paginator",
+            "aui-tree-view"
+        ]
+    },
+
+    "aui-tree-data": {
+        "requires": [
+            "aui-base-core",
+            "aui-base-lang",
+            "aui-node-base",
+            "aui-timer",
+            "aui-component"
+        ]
+    },
+
+    "aui-tree-io": {
+        "requires": [
+            "aui-component",
+            "aui-io"
+        ]
+    },
+
+    "aui-tree-node": {
+        "requires": [
+            "json",
+            "querystring-stringify",
+            "aui-tree-data",
+            "aui-tree-io",
+            "aui-tree-paginator"
+        ]
+    },
+
+    "aui-tree-paginator": {
+        "requires": [
+            "yui-base"
+        ]
+    },
+
+    "aui-tree-view": {
+        "requires": [
+            "dd-delegate",
+            "dd-proxy",
+            "aui-tree-node",
+            "aui-tree-paginator",
+            "aui-tree-io"
+        ],
+        "skinnable": true
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "aui-toggler": {
+        "use": [
+            "aui-toggler-base",
+            "aui-toggler-delegate"
+        ]
+    },
+
+    "aui-toggler-base": {
+        "requires": [
+            "transition",
+            "aui-node",
+            "aui-component"
+        ],
+        "skinnable": true
+    },
+
+    "aui-toggler-delegate": {
+        "requires": [
+            "node-event-delegate",
+            "aui-toggler-base"
+        ]
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "name": "aui-aria",
+    "builds": {
+        "aui-aria": {
+            "jsfiles": [
+                "js/aui-aria.js",
+                "js/aui-aria-roles.js",
+                "js/aui-aria-attributes.js"
+            ]
+        }
+    }
+}

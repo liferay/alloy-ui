@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-sortable",
+    "displayName": "Gallery: aui-sortable",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "eduardo.lundgren" ],
+    "use"        : [ "aui-sortable" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

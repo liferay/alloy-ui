@@ -14,8 +14,8 @@ var Lang = A.Lang,
 	isValue = Lang.isValue,
 
 	AArray = A.Array,
-	Node = A.Node,
-	NodeList = A.NodeList,
+	ANode = A.Node,
+	ANodeList = A.NodeList,
 
 	getClassName = A.getClassName,
 	getRegExp = A.DOM._getRegExp,
@@ -26,19 +26,18 @@ var Lang = A.Lang,
 	DOC = CONFIG.doc,
 	WIN = CONFIG.win,
 
-	NODE_PROTO = Node.prototype,
-	NODELIST_PROTO = NodeList.prototype,
+	NODE_PROTO = ANode.prototype,
+	NODELIST_PROTO = ANodeList.prototype,
 
 	STR_EMPTY = '',
 
 	ARRAY_EMPTY_STRINGS = [STR_EMPTY, STR_EMPTY],
 
-	HELPER = 'helper',
 	OFFSET = 'offset',
 
-	CSS_HELPER_FORCE_OFFSET = getClassName(HELPER, 'force', OFFSET),
-	CSS_HELPER_HIDDEN = getClassName(HELPER, 'hidden'),
-	CSS_HELPER_UNSELECTABLE = getClassName(HELPER, 'unselectable'),
+	CSS_FORCE_OFFSET = getClassName('force', OFFSET),
+	CSS_HIDE = getClassName('hide'),
+	CSS_UNSELECTABLE = getClassName('unselectable'),
 
 	CHILD_NODES = 'childNodes',
 	CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
@@ -112,9 +111,9 @@ var Lang = A.Lang,
 
 	div = null;
 
-	Node.cssId = prefixSelector;
+	ANode.cssId = prefixSelector;
 
-	Node.formatSelectorNS = formatSelectorNS;
+	ANode.formatSelectorNS = formatSelectorNS;
 
 	var _setUnselectable = function(element, unselectable, noRecurse) {
 		var descendants,
@@ -192,7 +191,7 @@ A.mix(NODE_PROTO, {
 	 * Example:
 	 *
 	 * <pre><code>
-	 * A.one('#nodeId').ancestorsByClassName('aui-helper-hidden');
+	 * A.one('#nodeId').ancestorsByClassName('aui-hide');
 	 * </code></pre>
 	 *
 	 * @method ancestors
@@ -322,7 +321,7 @@ A.mix(NODE_PROTO, {
 
 					outerHTML = outerHTML.replace(REGEX_IE8_ACTION, '="$1">').replace(REGEX_LEADING_WHITE_SPACE, STR_EMPTY);
 
-					clone = Node.create(outerHTML);
+					clone = ANode.create(outerHTML);
 				}
 				else {
 					clone = A.one(el.cloneNode());
@@ -369,7 +368,7 @@ A.mix(NODE_PROTO, {
 		else {
 			var region;
 
-			if (isObject(val) && !A.instanceOf(val, A.Node)) {
+			if (isObject(val) && !A.instanceOf(val, ANode)) {
 				region = val;
 			}
 			else {
@@ -403,7 +402,7 @@ A.mix(NODE_PROTO, {
 
 		instance.all('>*').remove().purge();
 
-		var el = Node.getDOMNode(instance);
+		var el = ANode.getDOMNode(instance);
 
 		while (el.firstChild) {
 			el.removeChild(el.firstChild);
@@ -422,7 +421,7 @@ A.mix(NODE_PROTO, {
 	getDOM: function() {
 		var instance = this;
 
-		return Node.getDOMNode(instance);
+		return ANode.getDOMNode(instance);
 	},
 
 	/**
@@ -597,7 +596,7 @@ A.mix(NODE_PROTO, {
 			return domEl.outerHTML;
 		}
 
-		var temp = Node.create('<div></div>').append(
+		var temp = ANode.create('<div></div>').append(
 			this.clone()
 		);
 
@@ -782,7 +781,7 @@ A.mix(NODE_PROTO, {
 	selectable: function(noRecurse) {
 		var instance = this;
 
-		instance.removeClass(CSS_HELPER_UNSELECTABLE);
+		instance.removeClass(CSS_UNSELECTABLE);
 
 		if (A.UA.ie || A.UA.opera) {
 			_setUnselectable(instance._node, false, noRecurse);
@@ -872,7 +871,7 @@ A.mix(NODE_PROTO, {
 	 * <p>Displays or hide the node instance.</p>
 	 *
 	 * <p><string>NOTE:</string> This method assume that your node were hidden
-	 * because of the 'aui-helper-hidden' css class were being used. This won't
+	 * because of the 'aui-hide' css class were being used. This won't
 	 * manipulate the inline <code>style.display</code> property.</p>
 	 *
 	 * @method toggle
@@ -897,7 +896,7 @@ A.mix(NODE_PROTO, {
 	unselectable: function(noRecurse) {
 		var instance = this;
 
-		instance.addClass(CSS_HELPER_UNSELECTABLE);
+		instance.addClass(CSS_UNSELECTABLE);
 
 		if (A.UA.ie || A.UA.opera) {
 			_setUnselectable(instance._node, true, noRecurse);
@@ -1076,7 +1075,7 @@ A.mix(NODE_PROTO, {
 
 		if (parent) {
 			if (isString(newNode)) {
-				newNode = Node.create(newNode);
+				newNode = ANode.create(newNode);
 			}
 
 			parent.insertBefore(newNode, refNode);
@@ -1102,15 +1101,15 @@ NODE_PROTO.__isHidden = NODE_PROTO._isHidden;
 NODE_PROTO._isHidden = function() {
 	var instance = this;
 
-	return NODE_PROTO.__isHidden.call(instance) || instance.hasClass(instance._hideClass || CSS_HELPER_HIDDEN);
+	return NODE_PROTO.__isHidden.call(instance) || instance.hasClass(instance._hideClass || CSS_HIDE);
 };
 /**
  * <p>Hide the node adding a css class on it. If <code>cssClass</code> is not
- * passed as argument, the className 'aui-helper-hidden' will be used by
+ * passed as argument, the className 'aui-hide' will be used by
  * default.</p>
  *
  * <p><string>NOTE:</string> This method assume that your node were visible
- * because the absence of 'aui-helper-hidden' css class. This won't
+ * because the absence of 'aui-hide' css class. This won't
  * manipulate the inline <code>style.display</code> property.</p>
  *
  * @method hide
@@ -1120,7 +1119,7 @@ NODE_PROTO._isHidden = function() {
 NODE_PROTO._hide = function() {
 	var instance = this;
 
-	instance.addClass(instance._hideClass || CSS_HELPER_HIDDEN);
+	instance.addClass(instance._hideClass || CSS_HIDE);
 
 	return instance;
 };
@@ -1129,10 +1128,10 @@ NODE_PROTO._hide = function() {
  * <p>Show the node removing a css class used to hide it. Use the same
  * className added using the <a href="A.Node.html#method_hide">hide</a>
  * method. If <code>cssClass</code> is not passed as argument, the
- * className 'aui-helper-hidden' will be used by default.</p>
+ * className 'aui-hide' will be used by default.</p>
  *
  * <p><string>NOTE:</string> This method assume that your node were hidden
- * because of the 'aui-helper-hidden' css class were being used. This won't
+ * because of the 'aui-hide' css class were being used. This won't
  * manipulate the inline <code>style.display</code> property.</p>
  *
  * @method show
@@ -1142,7 +1141,7 @@ NODE_PROTO._hide = function() {
 NODE_PROTO._show = function() {
 	var instance = this;
 
-	instance.removeClass(instance._hideClass || CSS_HELPER_HIDDEN);
+	instance.removeClass(instance._hideClass || CSS_HIDE);
 
 	return instance;
 };
@@ -1264,11 +1263,11 @@ A.each(
 						var styleObj = node.style;
 
 						if (!dimension) {
-							instance.addClass(CSS_HELPER_FORCE_OFFSET);
+							instance.addClass(CSS_FORCE_OFFSET);
 
 							dimension = instance.get(OFFSET + item);
 
-							instance.removeClass(CSS_HELPER_FORCE_OFFSET);
+							instance.removeClass(CSS_FORCE_OFFSET);
 						}
 
 						if (dimension) {
@@ -1358,7 +1357,7 @@ if (!SUPPORT_OPTIONAL_TBODY) {
  * @constructor
  * @uses A.Node
  */
-NodeList.importMethod(
+ ANodeList.importMethod(
 	NODE_PROTO,
 	[
 		'after',
@@ -1473,7 +1472,7 @@ A.mix(
 		getDOM: function() {
 			var instance = this;
 
-			return NodeList.getDOMNodes(this);
+			return ANodeList.getDOMNodes(this);
 		},
 
 		/**
@@ -1550,7 +1549,7 @@ NODELIST_PROTO.filter = function(value, context) {
 };
 
 A.mix(
-	NodeList,
+	ANodeList,
 	{
 		create: function(html) {
 			var docFrag = A.getDoc().invoke(CREATE_DOCUMENT_FRAGMENT);
@@ -1618,7 +1617,7 @@ A.oneNS = A.queryNS;
 
 A.allNS = function(ns, selector) {
 	return A.queryNS(ns, selector, 'all');
-}
+};
 
 A.byIdNS = function(ns, id) {
 	return A.one(prefixSelector(ns, id));
@@ -1626,7 +1625,7 @@ A.byIdNS = function(ns, id) {
 
 // Patch for http://yuilibrary.com/projects/yui3/ticket/2531537
 
-var addMethod = NodeList.addMethod;
+var addMethod = ANodeList.addMethod;
 
 AArray.each(
 	['hide', 'show'],

@@ -1,0 +1,10 @@
+{
+    "name": "aui-io",
+    "builds": {
+        "aui-io-request": {
+            "jsfiles": [
+                "js/aui-io-request.js"
+            ]
+        }
+    }
+}

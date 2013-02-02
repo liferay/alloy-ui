@@ -1,0 +1,10 @@
+{
+    "name": "aui-progressbar",
+    "builds": {
+        "aui-progressbar": {
+            "jsfiles": [
+                "js/aui-progressbar.js"
+            ]
+        }
+    }
+}

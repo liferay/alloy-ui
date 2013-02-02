@@ -1,0 +1,17 @@
+{
+    "name": "aui-node",
+    "builds": {
+        "aui-node-base": {
+            "jsfiles": [
+                "js/aui-node-base.js"
+            ]
+        },
+
+        "aui-node-html5": {
+            "jsfiles": [
+                "js/aui-node-html5.js",
+                "js/aui-node-html5-print.js"
+            ]
+        }
+    }
+}

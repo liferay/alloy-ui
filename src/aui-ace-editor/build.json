@@ -1,0 +1,16 @@
+{
+    "name": "aui-ace-editor",
+    "exec": [
+        "./scripts/build.js"
+    ],
+    "postexec": [
+        "./scripts/postbuild.js"
+    ],
+    "builds": {
+        "aui-ace-editor": {
+            "jsfiles": [
+                "js/.aui-ace-editor.js"
+            ]
+        }
+    }
+}

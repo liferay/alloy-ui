@@ -1,0 +1,13 @@
+.aui-rating a {
+    cursor: pointer;
+}
+
+.aui-rating-disabled a {
+    cursor: default;
+}
+
+.aui-rating-off {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=50);
+    opacity: .5;
+}

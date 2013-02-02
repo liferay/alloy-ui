@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-image-cropper",
+    "displayName": "Gallery: aui-image-cropper",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "eduardo.lundgren" ],
+    "use"        : [ "aui-image-cropper" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

@@ -1,0 +1,10 @@
+{
+    "name": "aui-timer",
+    "builds": {
+        "aui-timer": {
+            "jsfiles": [
+                "js/aui-timer.js"
+            ]
+        }
+    }
+}

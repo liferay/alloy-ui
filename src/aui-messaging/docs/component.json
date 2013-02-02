@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-messaging",
+    "displayName": "Gallery: aui-messaging",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "eduardo.lundgren" ],
+    "use"        : [ "aui-messaging" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

@@ -1,0 +1,28 @@
+{
+    "name": "aui-event",
+    "builds": {
+        "aui-event-base": {
+            "jsfiles": [
+                "js/aui-event-base.js"
+            ]
+        },
+
+        "aui-event-delegate-change": {
+            "jsfiles": [
+                "js/aui-event-delegate-change.js"
+            ]
+        },
+
+        "aui-event-delegate-submit": {
+            "jsfiles": [
+                "js/aui-event-delegate-submit.js"
+            ]
+        },
+
+        "aui-event-input": {
+            "jsfiles": [
+                "js/aui-event-input.js"
+            ]
+        }
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "name": "aui-video",
+    "builds": {
+        "aui-video": {
+            "jsfiles": [
+                "js/aui-video.js"
+            ]
+        }
+    }
+}

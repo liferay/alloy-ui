@@ -1,0 +1,16 @@
+{
+    "name": "aui-sortable",
+    "builds": {
+        "aui-sortable-list": {
+            "jsfiles": [
+                "js/aui-sortable-list.js"
+            ]
+        },
+
+        "aui-sortable-layout": {
+            "jsfiles": [
+                "js/aui-sortable-layout.js"
+            ]
+        }
+    }
+}

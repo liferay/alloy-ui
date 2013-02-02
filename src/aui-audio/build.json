@@ -1,0 +1,10 @@
+{
+    "name": "aui-audio",
+    "builds": {
+        "aui-audio": {
+            "jsfiles": [
+                "js/aui-audio.js"
+            ]
+        }
+    }
+}

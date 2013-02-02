@@ -1,0 +1,10 @@
+{
+    "name": "aui-datatype",
+    "builds": {
+        "aui-datatype": {
+            "jsfiles": [
+                "js/aui-datatype.js"
+            ]
+        }
+    }
+}

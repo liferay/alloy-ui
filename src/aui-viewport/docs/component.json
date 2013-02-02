@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-viewport",
+    "displayName": "Gallery: aui-viewport",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "eduardo.lundgren" ],
+    "use"        : [ "aui-viewport" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

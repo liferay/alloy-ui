@@ -1,0 +1,9 @@
+{
+    "aui-progressbar": {
+        "requires": [
+            "aui-node",
+            "aui-component",
+            "aui-aria"
+        ]
+    }
+}

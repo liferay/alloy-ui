@@ -1,0 +1,8 @@
+{
+    "aui-selector": {
+        "requires": [
+            "selector-css3",
+            "aui-classnamemanager"
+        ]
+    }
+}

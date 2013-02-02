@@ -1,0 +1,8 @@
+{
+    "aui-aria": {
+        "requires": [
+            "plugin",
+        	"aui-component"
+        ]
+    }
+}

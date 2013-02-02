@@ -1,0 +1,11 @@
+{
+    "name": "aui-search",
+    "builds": {
+        "aui-search-tst": {
+            "jsfiles": [
+                "js/aui-search-ternary-search-tree.js",
+                "js/aui-search-ternary-search-node.js"
+            ]
+        }
+    }
+}

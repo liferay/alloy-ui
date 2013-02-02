@@ -8,25 +8,30 @@
 var Lang = A.Lang,
 	isString = Lang.isString,
 	isBoolean = Lang.isBoolean,
+	isFunction = Lang.isFunction,
 
+	CACHE = 'cache',
+	IO = 'io',
+	LOADED = 'loaded',
+	LOADING = 'loading',
+	PAGINATOR = 'paginator',
 	ALWAYS_SHOW_HITAREA = 'alwaysShowHitArea',
 	BLANK = '',
 	BOUNDING_BOX = 'boundingBox',
 	CHILDREN = 'children',
-	CLEARFIX = 'clearfix',
 	COLLAPSED = 'collapsed',
 	CONTAINER = 'container',
 	CONTENT = 'content',
 	CONTENT_BOX = 'contentBox',
 	DRAGGABLE = 'draggable',
 	EXPANDED = 'expanded',
-	HELPER = 'helper',
 	HIDDEN = 'hidden',
 	HIT_AREA_EL = 'hitAreaEl',
 	HITAREA = 'hitarea',
 	ICON = 'icon',
 	ICON_EL = 'iconEl',
 	INVALID = 'invalid',
+	HIDE = 'hide',
 	ID = 'id',
 	LABEL = 'label',
 	LABEL_EL = 'labelEl',
@@ -42,10 +47,16 @@ var Lang = A.Lang,
 	SPACE = ' ',
 	TREE = 'tree',
 	TREE_NODE = 'tree-node',
-
-	concat = function() {
-		return Array.prototype.slice.call(arguments).join(SPACE);
-	},
+	OK = 'ok',
+	REFRESH = 'refresh',
+	MINUS = 'minus',
+	PLUS = 'plus',
+	FILE = 'file',
+	CLOSE = 'close',
+	FOLDER = 'folder',
+	SIGN = 'sign',
+	OPEN = 'open',
+	CHECK = 'check',
 
 	isTreeNode = function(v) {
 		return ( v instanceof A.TreeNode );
@@ -57,12 +68,10 @@ var Lang = A.Lang,
 
 	getCN = A.getClassName,
 
-	CSS_HELPER_CLEARFIX = getCN(HELPER, CLEARFIX),
 	CSS_TREE_COLLAPSED = getCN(TREE, COLLAPSED),
 	CSS_TREE_CONTAINER = getCN(TREE, CONTAINER),
-	CSS_TREE_CONTENT_BOX = getCN(TREE, CONTENT_BOX),
 	CSS_TREE_EXPANDED = getCN(TREE, EXPANDED),
-	CSS_TREE_HIDDEN = getCN(TREE, HIDDEN),
+	CSS_HIDE = getCN(HIDE),
 	CSS_TREE_HITAREA = getCN(TREE, HITAREA),
 	CSS_TREE_ICON = getCN(TREE, ICON),
 	CSS_TREE_LABEL = getCN(TREE, LABEL),
@@ -73,14 +82,22 @@ var Lang = A.Lang,
 	CSS_TREE_NODE_LEAF = getCN(TREE, NODE, LEAF),
 	CSS_TREE_NODE_OVER = getCN(TREE, NODE, OVER),
 	CSS_TREE_NODE_SELECTED = getCN(TREE, NODE, SELECTED),
+	CSS_ICON_FOLDER_CLOSE = getCN(ICON, FOLDER, CLOSE),
+	CSS_ICON_FOLDER_OPEN = getCN(ICON, FOLDER, OPEN),
+	CSS_ICON_ICON_PLUS = getCN(ICON, PLUS),
+	CSS_ICON_ICON_MINUS = getCN(ICON, MINUS),
+	CSS_ICON_ICON_FILE = getCN(ICON, FILE),
+	CSS_ICON_ICON_REFRESH = getCN(ICON, REFRESH),
+	CSS_ICON_OK_SIGN = getCN(ICON, OK, SIGN),
+	CSS_ICON_CHECK = getCN(ICON, CHECK),
 
-	HIT_AREA_TPL = '<div class="'+CSS_TREE_HITAREA+'"></div>',
-	ICON_TPL = '<div class="'+CSS_TREE_ICON+'"></div>',
-	LABEL_TPL = '<div class="'+CSS_TREE_LABEL+'"></div>',
+	HIT_AREA_TPL = '<i class="'+CSS_TREE_HITAREA+'"></i>',
+	ICON_TPL = '<i class="'+CSS_TREE_ICON+'"></i>',
+	LABEL_TPL = '<span class="'+CSS_TREE_LABEL+'"></span>',
 	NODE_CONTAINER_TPL = '<ul></ul>',
 
 	NODE_BOUNDING_TEMPLATE = '<li class="'+CSS_TREE_NODE+'"></li>',
-	NODE_CONTENT_TEMPLATE = '<div class="'+concat(CSS_HELPER_CLEARFIX, CSS_TREE_NODE_CONTENT)+'"></div>';
+	NODE_CONTENT_TEMPLATE = '<div class="'+CSS_TREE_NODE_CONTENT+'"></div>';
 
 /**
  * A base class for TreeNode, providing:
@@ -135,6 +152,28 @@ var TreeNode = A.Component.create(
 			contentBox: {
 				valueFn: function() {
 					return A.Node.create(NODE_CONTENT_TEMPLATE);
+				}
+			},
+
+			cssClasses: {
+				value: {
+					file: {
+						iconCheck: CSS_ICON_CHECK,
+						iconCollapsed: CSS_ICON_FOLDER_CLOSE,
+						iconExpanded: CSS_ICON_FOLDER_OPEN,
+						iconHitAreaCollapsed: [ CSS_TREE_HITAREA, CSS_ICON_ICON_PLUS ].join(SPACE),
+						iconHitAreaExpanded: [ CSS_TREE_HITAREA, CSS_ICON_ICON_MINUS ].join(SPACE),
+						iconLeaf: CSS_ICON_ICON_FILE,
+						iconLoading: CSS_ICON_ICON_REFRESH,
+						iconUncheck: CSS_ICON_CHECK
+					},
+					normal: {
+						iconCheck: CSS_ICON_CHECK,
+						iconHitAreaCollapsed: [ CSS_TREE_HITAREA, CSS_ICON_ICON_PLUS ].join(SPACE),
+						iconHitAreaExpanded: [ CSS_TREE_HITAREA, CSS_ICON_ICON_MINUS ].join(SPACE),
+						iconLoading: CSS_ICON_ICON_REFRESH,
+						iconUncheck: CSS_ICON_CHECK
+					}
 				}
 			},
 
@@ -377,11 +416,14 @@ var TreeNode = A.Component.create(
 			bindUI: function() {
 				var instance = this;
 
-				instance.after('childrenChange', A.bind(instance._afterSetChildren, instance));
-				instance.after('draggableChange', A.bind(instance._afterDraggableChange, instance));
-				instance.after('expandedChange', A.bind(instance._afterExpandedChange, instance));
-				instance.after('idChange', instance._afterSetId, instance);
-				instance.after('leafChange', A.bind(instance._afterLeafChange, instance));
+				instance.after({
+					childrenChange: instance._afterSetChildren,
+					draggableChange: instance._afterDraggableChange,
+					expandedChange: instance._afterExpandedChange,
+					idChange: instance._afterSetId,
+					leafChange: instance._afterLeafChange,
+					loadingChange: instance._afterLoadingChange
+				});
 			},
 
 			render: function(container) {
@@ -430,24 +472,34 @@ var TreeNode = A.Component.create(
 				var instance = this;
 
 				instance._syncHitArea( instance.get( CHILDREN ) );
+				instance._syncIconUI();
 			},
 
 			_afterDraggableChange: function(event) {
 				var instance = this;
 
 				instance._uiSetDraggable(event.newVal);
+				instance._syncIconUI();
 			},
 
 			_afterExpandedChange: function(event) {
 				var instance = this;
 
 				instance._uiSetExpanded(event.newVal);
+				instance._syncIconUI();
 			},
 
 			_afterLeafChange: function(event) {
 				var instance = this;
 
 				instance._uiSetLeaf(event.newVal);
+				instance._syncIconUI();
+			},
+
+			_afterLoadingChange: function(event) {
+				var instance = this;
+
+				instance._syncIconUI();
 			},
 
 			/**
@@ -461,6 +513,7 @@ var TreeNode = A.Component.create(
 				var instance = this;
 
 				instance._syncHitArea(event.newVal);
+				instance._syncIconUI();
 			},
 
 			/**
@@ -506,14 +559,13 @@ var TreeNode = A.Component.create(
 
 				contentBox.append( instance.get(ICON_EL) );
 				contentBox.append( instance.get(LABEL_EL) );
-
 				boundingBox.append(contentBox);
 
 				var nodeContainer = instance.get(CONTAINER);
 
 				if (nodeContainer) {
 					if (!instance.get(EXPANDED)) {
-						nodeContainer.addClass(CSS_TREE_HIDDEN);
+						nodeContainer.addClass(CSS_HIDE);
 					}
 
 					boundingBox.append(nodeContainer);
@@ -560,6 +612,44 @@ var TreeNode = A.Component.create(
 					instance.hideHitArea();
 
 					instance.collapse();
+				}
+			},
+
+			/**
+			 * Sync the hitarea UI.
+			 *
+			 * @method _syncIconUI
+			 * @param {Array} children
+			 * @protected
+			 */
+			_syncIconUI: function() {
+				var instance = this,
+					ownerTree = instance.get(OWNER_TREE);
+
+				if (ownerTree) {
+					var type = ownerTree.get('type'),
+						cssClasses = instance.get('cssClasses.' + type);
+
+					if (!cssClasses) {
+						return;
+					}
+
+					var expanded = instance.get(EXPANDED),
+						iconEl = instance.get(ICON_EL),
+						hitAreaEl = instance.get(HIT_AREA_EL),
+						icon = instance.isLeaf() ?
+								cssClasses.iconLeaf :
+								(expanded ? cssClasses.iconExpanded : cssClasses.iconCollapsed),
+						iconHitArea = expanded ?
+										cssClasses.iconHitAreaExpanded :
+										cssClasses.iconHitAreaCollapsed;
+
+					if (instance.get(LOADING)) {
+						icon = cssClasses.iconLoading;
+					}
+
+					iconEl.setAttribute('className', icon || BLANK);
+					hitAreaEl.setAttribute('className', iconHitArea || BLANK);
 				}
 			},
 
@@ -836,14 +926,14 @@ var TreeNode = A.Component.create(
 						contentBox.replaceClass(CSS_TREE_COLLAPSED, CSS_TREE_EXPANDED);
 
 						if (container) {
-							container.removeClass(CSS_TREE_HIDDEN);
+							container.removeClass(CSS_HIDE);
 						}
 					}
 					else {
 						contentBox.replaceClass(CSS_TREE_EXPANDED, CSS_TREE_COLLAPSED);
 
 						if (container) {
-							container.addClass(CSS_TREE_HIDDEN);
+							container.addClass(CSS_HIDE);
 						}
 					}
 				}
@@ -880,16 +970,7 @@ A.TreeNode = TreeNode;
 /*
 * TreeNodeIO
 */
-var isFunction = Lang.isFunction,
-
-	CACHE = 'cache',
-	IO = 'io',
-	LOADED = 'loaded',
-	LOADING = 'loading',
-	PAGINATOR = 'paginator',
-	TREE_NODE_IO = 'tree-node-io',
-
-	CSS_TREE_NODE_IO_LOADING = getCN(TREE, NODE, IO, LOADING);
+var TREE_NODE_IO = 'tree-node-io';
 
 /**
  * A base class for TreeNodeIO, providing:
@@ -901,11 +982,11 @@ var isFunction = Lang.isFunction,
  * Quick Example:<br/>
  *
  * <pre><code>var treeNodeIO = new A.TreeNodeIO({
- *  	label: 'TreeNodeIO',
- *  	cache: false,
- *  	io: {
- *  		url: 'assets/content.html'
- *  	}
+ *		label: 'TreeNodeIO',
+ *		cache: false,
+ *		io: {
+ *			url: 'assets/content.html'
+ *		}
  *  });
  * </code></pre>
  *
@@ -1104,7 +1185,7 @@ A.TreeNodeIO = TreeNodeIO;
 /*
 * TreeNodeCheck
 */
-var	CHECKBOX = 'checkbox',
+var CHECKBOX = 'checkbox',
 	CHECKED = 'checked',
 	CHECK_CONTAINER_EL = 'checkContainerEl',
 	CHECK_EL = 'checkEl',
@@ -1117,7 +1198,7 @@ var	CHECKBOX = 'checkbox',
 	CSS_TREE_NODE_CHECKBOX_CONTAINER = getCN(TREE, NODE, CHECKBOX, CONTAINER),
 	CSS_TREE_NODE_CHECKED = getCN(TREE, NODE, CHECKED),
 
-	CHECKBOX_CONTAINER_TPL = '<div class="'+CSS_TREE_NODE_CHECKBOX_CONTAINER+'"></div>',
+	CHECKBOX_CONTAINER_TPL = '<i class="'+CSS_TREE_NODE_CHECKBOX_CONTAINER+'"></i>',
 	CHECKBOX_TPL = '<input class="'+CSS_TREE_NODE_CHECKBOX+'" type="checkbox" />';
 
 /**
@@ -1320,6 +1401,29 @@ var TreeNodeCheck = A.Component.create(
 				return instance.get(CHECKED);
 			},
 
+			_syncIconCheckUI: function() {
+				var instance = this,
+					ownerTree = instance.get(OWNER_TREE);
+
+				if (ownerTree) {
+					var type = ownerTree.get('type'),
+						cssClasses = instance.get('cssClasses.' + type);
+
+					if (!cssClasses) {
+						return;
+					}
+
+					var checkContainerEl = instance.get(CHECK_CONTAINER_EL),
+						isChecked = instance.isChecked();
+					checkContainerEl.removeClass(
+						isChecked ?
+							cssClasses.iconUncheck : cssClasses.iconCheck);
+					checkContainerEl.addClass(
+						isChecked ?
+							cssClasses.iconCheck : cssClasses.iconUncheck);
+				}
+			},
+
 			_afterCheckedChange: function(event) {
 				var instance = this;
 
@@ -1329,14 +1433,9 @@ var TreeNodeCheck = A.Component.create(
 			_uiSetChecked: function(val) {
 				var instance = this;
 
-				if (val) {
-					instance.get(CONTENT_BOX).addClass(CSS_TREE_NODE_CHECKED);
-					instance.get(CHECK_EL).attr(CHECKED, CHECKED);
-				}
-				else {
-					instance.get(CONTENT_BOX).removeClass(CSS_TREE_NODE_CHECKED);
-					instance.get(CHECK_EL).attr(CHECKED, BLANK);
-				}
+				instance._syncIconCheckUI();
+				instance.get(CHECK_EL).attr(CHECKED, val ? CHECKED : BLANK);
+				instance.get(CONTENT_BOX).toggleClass(CSS_TREE_NODE_CHECKED, val);
 			}
 		}
 	}
@@ -1347,7 +1446,7 @@ A.TreeNodeCheck = TreeNodeCheck;
 /*
 * TreeNodeTask
 */
-var	CHILD = 'child',
+var CHILD = 'child',
 	TREE_NODE_TASK = 'tree-node-task',
 	UNCHECKED = 'unchecked',
 
@@ -1460,14 +1559,13 @@ A.TreeNodeTask = TreeNodeTask;
 * TreeNodeRadio
 */
 
-var	TREE_NODE_RADIO = 'tree-node-radio',
+var TREE_NODE_RADIO = 'tree-node-radio',
 
 	isTreeNodeRadio = function(node) {
 		return node instanceof A.TreeNodeRadio;
 	},
 
-	CSS_NODE_RADIO = getCN(TREE, NODE, RADIO),
-	CSS_NODE_RADIO_CHECKED = getCN(TREE, NODE, RADIO, CHECKED);
+	CSS_NODE_RADIO = getCN(TREE, NODE, RADIO);
 
 /**
  * <p><img src="assets/images/aui-treeNodeRadio/main.png"/></p>
@@ -1499,6 +1597,30 @@ var TreeNodeRadio = A.Component.create(
 		 */
 		NAME: TREE_NODE_RADIO,
 
+		ATTRS: {
+			cssClasses: {
+				value: {
+					file: {
+						iconCheck: CSS_ICON_OK_SIGN,
+						iconCollapsed: CSS_ICON_FOLDER_CLOSE,
+						iconExpanded: CSS_ICON_FOLDER_OPEN,
+						iconHitAreaCollapsed: [ CSS_TREE_HITAREA, CSS_ICON_ICON_PLUS ].join(SPACE),
+						iconHitAreaExpanded: [ CSS_TREE_HITAREA, CSS_ICON_ICON_MINUS ].join(SPACE),
+						iconLeaf: CSS_ICON_ICON_FILE,
+						iconLoading: CSS_ICON_ICON_REFRESH,
+						iconUncheck: CSS_ICON_OK_SIGN
+					},
+					normal: {
+						iconCheck: CSS_ICON_OK_SIGN,
+						iconHitAreaCollapsed: [ CSS_TREE_HITAREA, CSS_ICON_ICON_PLUS ].join(SPACE),
+						iconHitAreaExpanded: [ CSS_TREE_HITAREA, CSS_ICON_ICON_MINUS ].join(SPACE),
+						iconLoading: CSS_ICON_ICON_REFRESH,
+						iconUncheck: CSS_ICON_OK_SIGN
+					}
+				}
+			}
+		},
+
 		EXTENDS: A.TreeNodeTask,
 
 		prototype: {
@@ -1519,19 +1641,6 @@ var TreeNodeRadio = A.Component.create(
 				instance._uncheckNodesRadio();
 
 				A.TreeNodeRadio.superclass.check.apply(this, arguments);
-			},
-
-			_uiSetChecked: function(val) {
-				var instance = this;
-
-				if (val) {
-					instance.get(CONTENT_BOX).addClass(CSS_NODE_RADIO_CHECKED);
-					instance.get(CHECK_EL).attr(CHECKED, CHECKED);
-				}
-				else {
-					instance.get(CONTENT_BOX).removeClass(CSS_NODE_RADIO_CHECKED);
-					instance.get(CHECK_EL).attr(CHECKED, BLANK);
-				}
 			},
 
 			_uncheckNodesRadio: function(node) {

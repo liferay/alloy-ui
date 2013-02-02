@@ -1,0 +1,34 @@
+{
+    "name": "aui-tree",
+    "builds": {
+        "aui-tree-data": {
+            "jsfiles": [
+                "js/aui-tree-data.js"
+            ]
+        },
+
+        "aui-tree-io": {
+            "jsfiles": [
+                "js/aui-tree-io.js"
+            ]
+        },
+
+        "aui-tree-node": {
+            "jsfiles": [
+                "js/aui-tree-node.js"
+            ]
+        },
+
+        "aui-tree-paginator": {
+            "jsfiles": [
+                "js/aui-tree-paginator.js"
+            ]
+        },
+
+        "aui-tree-view": {
+            "jsfiles": [
+                "js/aui-tree-view.js"
+            ]
+        }
+    }
+}

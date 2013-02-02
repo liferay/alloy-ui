@@ -1,0 +1,8 @@
+{
+    "aui-messaging": {
+        "requires": [
+            "querystring",
+            "aui-timer"
+        ]
+    }
+}

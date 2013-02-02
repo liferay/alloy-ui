@@ -1,11 +1,10 @@
-var Lang = A.Lang;
+var Lang = A.Lang,
+	AArray = A.Array,
+	isArray = Lang.isArray,
+	isString = Lang.isString,
+	isUndefined = Lang.isUndefined,
 
-var AArray = A.Array;
-var isArray = Lang.isArray;
-var isString = Lang.isString;
-var isUndefined = Lang.isUndefined;
-
-var DEFAULT_ARGS = [];
+	DEFAULT_ARGS = [];
 
 var toArray = function(arr, fallback, index, arrayLike) {
 	return !isUndefined(arr) ? AArray(arr, index || 0, (arrayLike !== false)) : fallback;
@@ -47,7 +46,7 @@ A.debounce = function(fn, delay, context, args) {
 		fn = newFn || fn;
 		context = newContext || context;
 
-		if (newArgs != args) {
+		if (newArgs !== args) {
 			tempArgs = toArray(newArgs, DEFAULT_ARGS, 0, false).concat(args);
 		}
 

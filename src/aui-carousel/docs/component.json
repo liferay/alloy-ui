@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-carousel",
+    "displayName": "Gallery: aui-carousel",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "eduardo.lundgren" ],
+    "use"        : [ "aui-carousel" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

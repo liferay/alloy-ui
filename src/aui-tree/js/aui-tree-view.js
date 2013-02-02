@@ -408,7 +408,7 @@ var isNumber = L.isNumber,
 
 	DDM = A.DD.DDM,
 
-	CSS_HELPER_CLEARFIX = getCN(HELPER, CLEARFIX),
+	CSS_CLEARFIX = getCN(CLEARFIX),
 	CSS_ICON = getCN(ICON),
 	CSS_TREE_DRAG_HELPER = getCN(TREE, DRAG, HELPER),
 	CSS_TREE_DRAG_HELPER_CONTENT = getCN(TREE, DRAG, HELPER, CONTENT),
@@ -421,7 +421,7 @@ var isNumber = L.isNumber,
 	CSS_TREE_DRAG_STATE_INSERT_BELOW = getCN(TREE, DRAG, STATE, INSERT, BELOW),
 
 	HELPER_TPL = '<div class="'+CSS_TREE_DRAG_HELPER+'">'+
-					'<div class="'+[CSS_TREE_DRAG_HELPER_CONTENT, CSS_HELPER_CLEARFIX].join(SPACE)+'">'+
+					'<div class="'+[CSS_TREE_DRAG_HELPER_CONTENT, CSS_CLEARFIX].join(SPACE)+'">'+
 						'<span class="'+CSS_ICON+'"></span>'+
 						'<span class="'+CSS_TREE_DRAG_HELPER_LABEL+'"></span>'+
 					'</div>'+

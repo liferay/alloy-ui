@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-node",
+    "displayName": "Gallery: aui-node",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "eduardo.lundgren" ],
+    "use"        : [ "aui-node" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

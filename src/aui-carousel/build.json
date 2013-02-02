@@ -1,0 +1,10 @@
+{
+    "name": "aui-carousel",
+    "builds": {
+        "aui-carousel": {
+            "jsfiles": [
+                "js/aui-carousel.js"
+            ]
+        }
+    }
+}

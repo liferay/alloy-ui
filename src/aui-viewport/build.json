@@ -1,0 +1,10 @@
+{
+    "name": "aui-viewport",
+    "builds": {
+        "aui-viewport": {
+            "jsfiles": [
+                "js/aui-viewport.js"
+            ]
+        }
+    }
+}

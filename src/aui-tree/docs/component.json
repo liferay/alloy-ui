@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-tree",
+    "displayName": "Gallery: aui-tree",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "eduardo.lundgren" ],
+    "use"        : [ "aui-tree" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

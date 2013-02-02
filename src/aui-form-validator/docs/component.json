@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-form-validator",
+    "displayName": "Gallery: aui-form-validator",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "eduardo.lundgren" ],
+    "use"        : [ "aui-form-validator" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

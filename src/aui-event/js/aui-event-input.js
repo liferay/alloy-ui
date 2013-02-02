@@ -14,7 +14,7 @@ var DOM_EVENTS = A.Node.DOM_EVENTS;
 // Input event feature check should be done on textareas. WebKit before
 // version 531 (3.0.182.2) did not support input events for textareas.
 // See http://dev.chromium.org/developers/webkit-version-table
-if (A.Event.supportsDOMEvent(document.createElement('textarea'), 'input')) {
+if (A.Features.test('event', 'input')) {
 	// http://yuilibrary.com/projects/yui3/ticket/2533063
 	DOM_EVENTS.input = 1;
 	return;

@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-debounce",
+    "displayName": "Gallery: aui-debounce",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "eduardo.lundgren" ],
+    "use"        : [ "aui-debounce" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

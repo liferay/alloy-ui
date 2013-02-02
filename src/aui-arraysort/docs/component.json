@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-arraysort",
+    "displayName": "Gallery: aui-arraysort",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "eduardo.lundgren" ],
+    "use"        : [ "aui-arraysort" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

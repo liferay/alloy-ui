@@ -1,0 +1,9 @@
+{
+    "aui-component": {
+        "requires": [
+            "aui-classnamemanager",
+            "base-build",
+            "widget-base"
+        ]
+    }
+}

@@ -1,77 +1,33 @@
-var Lang = A.Lang,
-	isNumber = Lang.isNumber,
-	isString = Lang.isString,
+/*
+ * Alloy JavaScript Library
+ * http://alloy.liferay.com/
+ *
+ * Copyright (c) 2010 Liferay Inc.
+ * http://alloy.liferay.com/LICENSE.txt
+ *
+ * Nate Cavanaugh (nathan.cavanaugh@liferay.com)
+ * Eduardo Lundgren (eduardo.lundgren@liferay.com)
+ *
+ * Attribution/Third-party licenses
+ * http://alloy.liferay.com/ATTRIBUTION.txt
+ */
 
-	AArray = A.Array,
-	arrayIndexOf = AArray.indexOf;
+ // Simple version of http://perfectionkills.com/detecting-event-support-without-browser-sniffing/
+A.supportsDOMEvent = function(domNode, eventName) {
+	eventName = 'on' + eventName;
 
-A.mix(
-	AArray,
-	{
-		remove: function(a, from, to) {
-			var rest = a.slice((to || from) + 1 || a.length);
-			a.length = (from < 0) ? (a.length + from) : from;
-
-			return a.push.apply(a, rest);
-		},
-
-		removeItem: function(a, item) {
-			var index = arrayIndexOf(a, item);
-
-			if (index > -1) {
-				return AArray.remove(a, index);
-			}
-
-			return a;
-		}
-	}
-);
-
-A.fn = function(fn, context, args) {
-	var wrappedFn;
-	var dynamicLookup;
-
-	// Explicitly set function arguments
-	if (!isNumber(fn)) {
-		var xargs = arguments;
-
-		if (xargs.length > 2) {
-			xargs = AArray(xargs, 2, true);
+	if (!(eventName in domNode)) {
+		if (!domNode.setAttribute) {
+			domNode = A.config.doc.createElement('div');
 		}
 
-		dynamicLookup = (isString(fn) && context);
-
-		wrappedFn = function() {
-			var method = (!dynamicLookup) ? fn : context[fn];
-
-			return method.apply(context || fn, xargs);
-		};
-	}
-	else {
-		// Set function arity
-		var argLength = fn;
-
-		fn = context;
-		context = args;
-
-		dynamicLookup = (isString(fn) && context);
-
-		wrappedFn = function() {
-			var method = (!dynamicLookup) ? fn : context[fn];
-			context = context || method;
-
-			var returnValue;
-
-			if (argLength > 0) {
-				returnValue = method.apply(context, AArray(arguments, 0, true).slice(0, argLength));
-			}
-			else {
-				returnValue = method.call(context);
-			}
-
-			return returnValue;
-		};
+		if (domNode.setAttribute) {
+			domNode.setAttribute(eventName, '');
+			return (typeof domNode[eventName] === 'function');
+		}
 	}
 
-	return wrappedFn;
+	domNode = null;
+
+	return true;
 };

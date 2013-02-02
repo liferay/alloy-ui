@@ -1,0 +1,16 @@
+{
+    "name": "aui-rating",
+    "builds": {
+        "aui-rating-base": {
+            "jsfiles": [
+                "js/aui-rating-base.js"
+            ]
+        },
+
+        "aui-rating-thumb": {
+            "jsfiles": [
+                "js/aui-rating-thumb.js"
+            ]
+        }
+    }
+}

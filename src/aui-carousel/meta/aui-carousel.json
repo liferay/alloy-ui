@@ -1,0 +1,10 @@
+{
+    "aui-carousel": {
+        "requires": [
+            "anim",
+            "node-event-delegate",
+            "aui-component"
+        ],
+        "skinnable": true
+    }
+}

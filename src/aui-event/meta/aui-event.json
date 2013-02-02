@@ -1,0 +1,45 @@
+{
+    "aui-event": {
+        "use": [
+            "aui-event-base",
+            "aui-event-delegate-change",
+            "aui-event-delegate-submit"
+        ]
+    },
+
+    "aui-event-base": {
+        "requires": [
+            "event-base"
+        ]
+    },
+
+    "aui-event-delegate-change": {
+        "requires": [
+            "aui-event-base",
+            "event-delegate",
+            "event-synthetic"
+        ]
+    },
+
+    "aui-event-delegate-submit": {
+        "requires": [
+            "aui-event-base",
+            "event-delegate",
+            "event-synthetic"
+        ]
+    },
+
+    "aui-event-input": {
+        "condition": {
+            "name": "aui-event-input",
+            "trigger": "aui-event",
+            "test": "aui-event-input-test.js"
+        },
+
+        "requires": [
+            "aui-event-base",
+            "event-delegate",
+            "event-synthetic"
+        ]
+    }
+}

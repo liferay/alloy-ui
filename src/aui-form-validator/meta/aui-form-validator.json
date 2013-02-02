@@ -1,0 +1,12 @@
+{
+    "aui-form-validator": {
+        "requires": [
+            "escape",
+            "selector-css3",
+            "node-event-delegate",
+            "aui-node",
+            "aui-component",
+            "aui-event-input"
+        ]
+    }
+}

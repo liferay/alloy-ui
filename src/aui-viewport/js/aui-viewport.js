@@ -1,7 +1,7 @@
 var Lang = A.Lang,
 	getClassName = A.getClassName,
 
-	defaults = YUI.AUI.namespace('defaults.viewport'),
+	defaults = YUI.namespace('defaults.viewport'),
 
 	NAME = 'view',
 

@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-char-counter",
+    "displayName": "Gallery: aui-char-counter",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "eduardo.lundgren" ],
+    "use"        : [ "aui-char-counter" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

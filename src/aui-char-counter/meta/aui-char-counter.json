@@ -1,0 +1,9 @@
+{
+    "aui-char-counter": {
+        "requires": [
+            "aui-node",
+            "aui-event-input",
+            "aui-component"
+        ]
+    }
+}

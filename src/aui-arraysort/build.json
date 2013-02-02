@@ -1,0 +1,10 @@
+{
+    "name": "aui-arraysort",
+    "builds": {
+        "aui-arraysort": {
+            "jsfiles": [
+                "js/aui-arraysort.js"
+            ]
+        }
+    }
+}

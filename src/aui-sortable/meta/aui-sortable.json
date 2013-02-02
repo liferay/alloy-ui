@@ -1,0 +1,30 @@
+{
+    "aui-sortable": {
+        "use": [
+            "aui-sortable-layout",
+            "aui-sortable-list"
+        ]
+    },
+
+    "aui-sortable-layout": {
+        "requires": [
+            "dd-delegate",
+            "dd-drag",
+            "dd-drop",
+            "dd-proxy",
+            "aui-node",
+            "aui-component"
+        ],
+        "skinnable": true
+    },
+
+    "aui-sortable-list": {
+        "requires": [
+            "dd-drag",
+            "dd-drop",
+            "dd-proxy",
+            "aui-node",
+            "aui-component"
+        ]
+    }
+}

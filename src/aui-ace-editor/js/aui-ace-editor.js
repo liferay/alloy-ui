@@ -1,12 +1,12 @@
 var Lang = A.Lang,
 
-	BOUNDING_BOX = 'boundingBox',
-	CONTENT_BOX = 'contentBox',
-	EMPTY_STR = '',
-	HEIGHT = 'height',
-	WIDTH = 'width',
+    BOUNDING_BOX = 'boundingBox',
+    CONTENT_BOX = 'contentBox',
+    EMPTY_STR = '',
+    HEIGHT = 'height',
+    WIDTH = 'width',
 
-	NAME = 'ace-editor';
+    NAME = 'ace-editor';
 
 var ACE_EDITOR_BASE_PATH = A.config.base + 'aui-ace-editor/ace';
 
@@ -16,234 +16,234 @@ ace.config.set('workerPath', ACE_EDITOR_BASE_PATH);
 ace.config.set('packaged', true);
 
 var AceEditor = A.Component.create(
-	{
-		NAME: NAME,
-
-		EXTENDS: A.Widget,
-
-		ATTRS: {
-
-			height: {
-				value: 400
-			},
-
-			highlightActiveLine: {
-				lazyAdd: false,
-				getter: '_getHighlightActiveLine',
-				setter: '_setHighlightActiveLine',
-				value: true
-			},
-
-			mode: {
-				lazyAdd: false,
-				getter: '_getMode',
-				setter: '_setMode',
-				value: EMPTY_STR
-			},
+    {
+        NAME: NAME,
+
+        EXTENDS: A.Widget,
+
+        ATTRS: {
+
+            height: {
+                value: 400
+            },
+
+            highlightActiveLine: {
+                lazyAdd: false,
+                getter: '_getHighlightActiveLine',
+                setter: '_setHighlightActiveLine',
+                value: true
+            },
+
+            mode: {
+                lazyAdd: false,
+                getter: '_getMode',
+                setter: '_setMode',
+                value: EMPTY_STR
+            },
 
-			readOnly: {
-				lazyAdd: false,
-				getter: '_getReadOnly',
-				setter: '_setReadOnly',
-				value: false
-			},
+            readOnly: {
+                lazyAdd: false,
+                getter: '_getReadOnly',
+                setter: '_setReadOnly',
+                value: false
+            },
 
-			showPrintMargin: {
-				lazyAdd: false,
-				getter: '_getShowPrintMargin',
-				setter: '_setShowPrintMargin',
-				value: true
-			},
+            showPrintMargin: {
+                lazyAdd: false,
+                getter: '_getShowPrintMargin',
+                setter: '_setShowPrintMargin',
+                value: true
+            },
 
-			tabSize: {
-				lazyAdd: false,
-				getter: '_getTabSize',
-				setter: '_setTabSize',
-				value: 4
-			},
+            tabSize: {
+                lazyAdd: false,
+                getter: '_getTabSize',
+                setter: '_setTabSize',
+                value: 4
+            },
 
-			useSoftTabs: {
-				lazyAdd: false,
-				getter: '_getUseSoftTabs',
-				setter: '_setUseSoftTabs',
-				value: true
-			},
+            useSoftTabs: {
+                lazyAdd: false,
+                getter: '_getUseSoftTabs',
+                setter: '_setUseSoftTabs',
+                value: true
+            },
 
-			useWrapMode: {
-				lazyAdd: false,
-				getter: '_getUseWrapMode',
-				setter: '_setUseWrapMode',
-				value: true
-			},
+            useWrapMode: {
+                lazyAdd: false,
+                getter: '_getUseWrapMode',
+                setter: '_setUseWrapMode',
+                value: true
+            },
 
-			value: {
-				lazyAdd: false,
-				getter: '_getValue',
-				setter: '_setValue',
-				value: EMPTY_STR
-			},
+            value: {
+                lazyAdd: false,
+                getter: '_getValue',
+                setter: '_setValue',
+                value: EMPTY_STR
+            },
 
-			width: {
-				value: 800
-			}
+            width: {
+                value: 800
+            }
 
-		},
+        },
 
-		UI_ATTRS: [HEIGHT, WIDTH],
+        UI_ATTRS: [HEIGHT, WIDTH],
 
-		prototype: {
+        prototype: {
 
-			getEditor: function() {
-				var instance = this;
+            getEditor: function() {
+                var instance = this;
 
-				if (!instance.editor) {
-					var boundingBox = instance.get(BOUNDING_BOX);
+                if (!instance.editor) {
+                    var boundingBox = instance.get(BOUNDING_BOX);
 
-					instance.editor = ace.edit(boundingBox.getDOM());
-				}
+                    instance.editor = ace.edit(boundingBox.getDOM());
+                }
 
-				return instance.editor;
-			},
+                return instance.editor;
+            },
 
-			getSelection: function() {
-				var instance = this;
+            getSelection: function() {
+                var instance = this;
 
-				return instance.getSession().doc.getTextRange(instance.getEditor().getSelectionRange());
-			},
+                return instance.getSession().doc.getTextRange(instance.getEditor().getSelectionRange());
+            },
 
-			getSession: function() {
-				var instance = this;
+            getSession: function() {
+                var instance = this;
 
-				return instance.getEditor().getSession();
-			},
+                return instance.getEditor().getSession();
+            },
 
-			gotoLine: function(line) {
-				var instance = this;
+            gotoLine: function(line) {
+                var instance = this;
 
-				instance.getEditor().gotoLine(line);
-			},
+                instance.getEditor().gotoLine(line);
+            },
 
-			insert: function(text) {
-				var instance = this;
+            insert: function(text) {
+                var instance = this;
 
-				instance.getEditor().insert(text);
-			},
+                instance.getEditor().insert(text);
+            },
 
-			_getHighlightActiveLine: function() {
-				var instance = this;
+            _getHighlightActiveLine: function() {
+                var instance = this;
 
-				return instance.getEditor().getHighlightActiveLine();
-			},
+                return instance.getEditor().getHighlightActiveLine();
+            },
 
-			_getMode: function() {
-				var instance = this;
+            _getMode: function() {
+                var instance = this;
 
-				return instance.getSession().getMode();
-			},
+                return instance.getSession().getMode();
+            },
 
-			_getReadOnly: function() {
-				var instance = this;
+            _getReadOnly: function() {
+                var instance = this;
 
-				return instance.getEditor().getReadOnly();
-			},
+                return instance.getEditor().getReadOnly();
+            },
 
-			_getShowPrintMargin: function() {
-				var instance = this;
+            _getShowPrintMargin: function() {
+                var instance = this;
 
-				return instance.getEditor().getShowPrintMargin();
-			},
+                return instance.getEditor().getShowPrintMargin();
+            },
 
-			_getTabSize: function() {
-				var instance = this;
+            _getTabSize: function() {
+                var instance = this;
 
-				return instance.getSession().getTabSize();
-			},
+                return instance.getSession().getTabSize();
+            },
 
-			_getUseSoftTabs: function() {
-				var instance = this;
+            _getUseSoftTabs: function() {
+                var instance = this;
 
-				return instance.getSession().getUseSoftTabs();
-			},
+                return instance.getSession().getUseSoftTabs();
+            },
 
-			_getUseWrapMode: function() {
-				var instance = this;
+            _getUseWrapMode: function() {
+                var instance = this;
 
-				return instance.getSession().getUseWrapMode();
-			},
+                return instance.getSession().getUseWrapMode();
+            },
 
-			_getValue: function() {
-				var instance = this;
+            _getValue: function() {
+                var instance = this;
 
-				return instance.getSession().getValue();
-			},
+                return instance.getSession().getValue();
+            },
 
-			_setHighlightActiveLine: function(value) {
-				var instance = this;
+            _setHighlightActiveLine: function(value) {
+                var instance = this;
 
-				instance.getEditor().setHighlightActiveLine(value);
-			},
+                instance.getEditor().setHighlightActiveLine(value);
+            },
 
-			_setMode: function(value) {
-				var instance = this;
+            _setMode: function(value) {
+                var instance = this;
 
-				if (value) {
-					instance.getSession().setMode('ace/mode/' + value);
-				}
-			},
+                if (value) {
+                    instance.getSession().setMode('ace/mode/' + value);
+                }
+            },
 
-			_setReadOnly: function(value) {
-				var instance = this;
+            _setReadOnly: function(value) {
+                var instance = this;
 
-				instance.getEditor().setReadOnly(value);
-			},
+                instance.getEditor().setReadOnly(value);
+            },
 
-			_setShowPrintMargin: function(value) {
-				var instance = this;
+            _setShowPrintMargin: function(value) {
+                var instance = this;
 
-				instance.getEditor().setShowPrintMargin(value);
-			},
+                instance.getEditor().setShowPrintMargin(value);
+            },
 
-			_setTabSize: function(value) {
-				var instance = this;
+            _setTabSize: function(value) {
+                var instance = this;
 
-				instance.getSession().setTabSize(value);
-			},
+                instance.getSession().setTabSize(value);
+            },
 
-			_setUseSoftTabs: function(value) {
-				var instance = this;
+            _setUseSoftTabs: function(value) {
+                var instance = this;
 
-				instance.getSession().setUseSoftTabs(value);
-			},
+                instance.getSession().setUseSoftTabs(value);
+            },
 
-			_setUseWrapMode: function(value) {
-				var instance = this;
+            _setUseWrapMode: function(value) {
+                var instance = this;
 
-				instance.getSession().setUseWrapMode(value);
-			},
+                instance.getSession().setUseWrapMode(value);
+            },
 
-			_setValue: function(value) {
-				var instance = this;
+            _setValue: function(value) {
+                var instance = this;
 
-				instance.getSession().setValue(value);
-			},
+                instance.getSession().setValue(value);
+            },
 
-			_uiSetHeight: function() {
-				var instance = this;
+            _uiSetHeight: function() {
+                var instance = this;
 
-				A.AceEditor.superclass._uiSetHeight.apply(instance, arguments);
+                A.AceEditor.superclass._uiSetHeight.apply(instance, arguments);
 
-				instance.getEditor().resize();
-			},
+                instance.getEditor().resize();
+            },
 
-			_uiSetWidth: function() {
-				var instance = this;
+            _uiSetWidth: function() {
+                var instance = this;
 
-				A.AceEditor.superclass._uiSetWidth.apply(instance, arguments);
+                A.AceEditor.superclass._uiSetWidth.apply(instance, arguments);
 
-				instance.getEditor().resize();
-			}
-		}
-	}
+                instance.getEditor().resize();
+            }
+        }
+    }
 );
 
 A.AceEditor = AceEditor;

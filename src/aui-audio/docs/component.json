@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-audio",
+    "displayName": "Gallery: aui-audio",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "eduardo.lundgren" ],
+    "use"        : [ "aui-audio" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

@@ -1,0 +1,10 @@
+{
+    "name": "aui-form-validator",
+    "builds": {
+        "aui-form-validator": {
+            "jsfiles": [
+                "js/aui-form-validator.js"
+            ]
+        }
+    }
+}

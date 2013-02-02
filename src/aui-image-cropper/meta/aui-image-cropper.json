@@ -1,0 +1,12 @@
+{
+    "aui-image-cropper": {
+        "requires": [
+            "resize-base",
+            "resize-constrain",
+            "dd-constrain",
+            "aui-node-base",
+            "aui-component"
+        ],
+        "skinnable": true
+    }
+}

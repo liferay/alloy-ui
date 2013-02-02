@@ -236,7 +236,7 @@ A.mix(A.DataType.DateMath, {
 	* @param {Number} amount	The number of units (measured in the field constant) to add to the date.
 	* @return {Date} The resulting Date object
 	*/
-	add : function(date, field, amount) {
+	add: function(date, field, amount) {
 		var d = new Date(date.getTime());
 		switch (field) {
 			case this.MONTH:
@@ -300,7 +300,7 @@ A.mix(A.DataType.DateMath, {
 	 * @param {Number} nDays The number of days to add to the date object (can be negative)
 	 * @private
 	 */
-	_addDays : function(d, nDays) {
+	_addDays: function(d, nDays) {
 		if (A.UA.webkit && A.UA.webkit < 420) {
 			if (nDays < 0) {
 				// Ensure we don't go below -128 (getDate() is always 1 to 31, so we won't go above 127)
@@ -346,7 +346,7 @@ A.mix(A.DataType.DateMath, {
 	* @param {Number} amount	The number of units (measured in the field constant) to subtract from the date.
 	* @return {Date} The resulting Date object
 	*/
-	subtract : function(date, field, amount) {
+	subtract: function(date, field, amount) {
 		return this.add(date, field, (amount*-1));
 	},
 
@@ -357,7 +357,7 @@ A.mix(A.DataType.DateMath, {
 	* @param {Date} compareTo	The Date object to use for the comparison
 	* @return {Boolean} true if the date occurs before the compared date; false if not.
 	*/
-	before : function(date, compareTo) {
+	before: function(date, compareTo) {
 		var ms = compareTo.getTime();
 		if (date.getTime() < ms) {
 			return true;
@@ -373,7 +373,7 @@ A.mix(A.DataType.DateMath, {
 	* @param {Date} compareTo	The Date object to use for the comparison
 	* @return {Boolean} true if the date occurs after the compared date; false if not.
 	*/
-	after : function(date, compareTo) {
+	after: function(date, compareTo) {
 		var ms = compareTo.getTime();
 		if (date.getTime() > ms) {
 			return true;
@@ -390,7 +390,7 @@ A.mix(A.DataType.DateMath, {
 	* @param {Date} dateEnd		The end of the range
 	* @return {Boolean} true if the date occurs between the compared dates; false if not.
 	*/
-	between : function(date, dateBegin, dateEnd) {
+	between: function(date, dateBegin, dateEnd) {
 		if (this.after(date, dateBegin) && this.before(date, dateEnd)) {
 			return true;
 		} else {
@@ -404,7 +404,7 @@ A.mix(A.DataType.DateMath, {
 	* @param {Number} calendarYear		The calendar year for which to retrieve January 1
 	* @return {Date}	January 1 of the calendar year specified.
 	*/
-	getJan1 : function(calendarYear) {
+	getJan1: function(calendarYear) {
 		return this.getDate(calendarYear,0,1);
 	},
 
@@ -416,7 +416,7 @@ A.mix(A.DataType.DateMath, {
 	* @param {Number} calendarYear	The calendar year to use for determining the offset
 	* @return {Number}	The number of days since January 1 of the given year
 	*/
-	getDayOffsetYear : function(date, calendarYear) {
+	getDayOffsetYear: function(date, calendarYear) {
 		var beginYear = this.getJan1(calendarYear); // Find the start of the year. This will be in week 1.
 
 		// Find the number of days the passed in date is away from the calendar year start
@@ -430,7 +430,7 @@ A.mix(A.DataType.DateMath, {
 	* @param {Date}	d2 Date 2
 	* @return {Number}	The number of days
 	*/
-	getDayOffset : function(d1, d2) {
+	getDayOffset: function(d1, d2) {
 		return this._absFloor(this.getOffset(d1, d2, this.ONE_DAY_MS));
 	},
 
@@ -441,7 +441,7 @@ A.mix(A.DataType.DateMath, {
 	* @param {Date}	d2 Date 2
 	* @return {Number}	The number of hours
 	*/
-	getHoursOffset : function(d1, d2) {
+	getHoursOffset: function(d1, d2) {
 		return this._absFloor(this.getOffset(d1, d2, this.ONE_HOUR_MS));
 	},
 
@@ -452,7 +452,7 @@ A.mix(A.DataType.DateMath, {
 	* @param {Date}	d2 Date 2
 	* @return {Number}	The number of minutes
 	*/
-	getMinutesOffset : function(d1, d2) {
+	getMinutesOffset: function(d1, d2) {
 		return this._absFloor(this.getOffset(d1, d2, this.ONE_MINUTE_MS));
 	},
 
@@ -463,7 +463,7 @@ A.mix(A.DataType.DateMath, {
 	* @param {Date}	d2 Date 2
 	* @return {Number}	The number of seconds
 	*/
-	getSecondsOffset : function(d1, d2) {
+	getSecondsOffset: function(d1, d2) {
 		return this._absFloor(this.getOffset(d1, d2, this.ONE_SECOND_MS));
 	},
 
@@ -473,7 +473,7 @@ A.mix(A.DataType.DateMath, {
 		return offset;
 	},
 
-    _absFloor : function(n) {
+    _absFloor: function(n) {
 		var abs = Math.floor(Math.abs(n));
 
 		if (n < 0) {
@@ -498,7 +498,7 @@ A.mix(A.DataType.DateMath, {
 	*
 	* @return {Number} The number of the week containing the given date.
 	*/
-	getWeekNumber : function(date, firstDayOfWeek, janDate) {
+	getWeekNumber: function(date, firstDayOfWeek, janDate) {
 
 		// Setup Defaults
 		firstDayOfWeek = firstDayOfWeek || 0;
@@ -548,7 +548,7 @@ A.mix(A.DataType.DateMath, {
 	 * @param {Number} startOfWeek The index for the first day of the week, 0 = Sun, 1 = Mon ... 6 = Sat (defaults to 0)
 	 * @return {Date} The first day of the week
 	 */
-	getFirstDayOfWeek : function (dt, startOfWeek) {
+	getFirstDayOfWeek: function (dt, startOfWeek) {
 		startOfWeek = startOfWeek || 0;
 		var dayOfWeekIndex = dt.getDay(),
 			dayOfWeek = (dayOfWeekIndex - startOfWeek + 7) % 7;

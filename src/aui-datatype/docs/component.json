@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-datatype",
+    "displayName": "Gallery: aui-datatype",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "eduardo.lundgren" ],
+    "use"        : [ "aui-datatype" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

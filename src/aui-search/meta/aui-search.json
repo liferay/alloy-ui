@@ -1,0 +1,12 @@
+{
+    "aui-search": {
+        "use": [
+            "aui-search-tst"
+        ]
+    },
+    "aui-search-tst": {
+        "requires": [
+            "aui-component"
+        ]
+    }
+}

@@ -5,8 +5,8 @@ var Lang = A.Lang,
 
 	getClassName = A.getClassName,
 
-	CSS_HIDDEN_PREFIX = A.getClassName('helper', 'hidden'),
-	REGEX_HIDDEN_CLASSNAMES = new RegExp(CSS_HIDDEN_PREFIX);
+	CSS_HIDE = A.getClassName('hide'),
+	REGEX_HIDDEN_CLASSNAMES = new RegExp(CSS_HIDE);
 
 	SELECTOR._isNodeHidden = function(node) {
 		var width = node.offsetWidth;

@@ -1,0 +1,8 @@
+{
+    "aui-viewport": {
+        "requires": [
+        	"aui-node",
+            "aui-component"
+        ]
+    }
+}

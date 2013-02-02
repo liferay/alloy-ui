@@ -1,0 +1,2 @@
+aui-classnamemanager
+========

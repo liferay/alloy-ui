@@ -1,0 +1,24 @@
+{
+    "aui-rating": {
+        "use": [
+            "aui-rating-base",
+            "aui-rating-thumb"
+        ]
+    },
+
+    "aui-rating-base": {
+        "requires": [
+            "widget-htmlparser",
+            "widget-uievents",
+            "aui-component",
+            "aui-node-base"
+        ],
+        "skinnable": true
+    },
+
+    "aui-rating-thumb": {
+        "requires": [
+            "aui-rating-base"
+        ]
+    }
+}

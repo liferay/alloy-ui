@@ -1,0 +1,10 @@
+{
+    "name": "aui-pagination",
+    "builds": {
+        "aui-pagination": {
+            "jsfiles": [
+                "js/aui-pagination.js"
+            ]
+        }
+    }
+}
