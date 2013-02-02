@@ -1,0 +1,10 @@
+{
+    "name": "aui-button",
+    "builds": {
+        "aui-button-core": {
+            "jsfiles": [
+                "js/aui-button-core.js"
+            ]
+        }
+    }
+}

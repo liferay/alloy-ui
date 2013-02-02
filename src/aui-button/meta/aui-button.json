@@ -1,0 +1,16 @@
+{
+    "aui-button": {
+        "use": [
+            "button",
+            "button-group",
+            "button-plugin",
+            "aui-button-core"
+        ]
+    },
+
+    "aui-button-core": {
+        "requires": [
+            "aui-classnamemanager"
+        ]
+    }
+}
