@@ -1,0 +1,21 @@
+{
+	"cssnamespace": "aui",
+    "dependencies": {
+        "ace": {
+            "folder": "../ace-builds",
+            "repo": "https://github.com/ajaxorg/ace-builds.git",
+            "version": "master"
+        },
+        "yui3": {
+            "folder": "../yui3",
+            "repo": "https://github.com/yui/yui3.git",
+            "version": "master"
+        },
+        "alloy-twitter-bootstrap": {
+            "folder": "../alloy-twitter-bootstrap",
+            "repo": "https://github.com/eduardolundgren/alloy-twitter-bootstrap.git",
+            "version": "dev"
+        }
+    },
+    "version": "2.0.0"
+}
