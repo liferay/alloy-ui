@@ -36,6 +36,19 @@
     },
     "aui-base-core": {},
     "aui-base-lang": {},
+    "aui-button": {
+        "use": [
+            "button",
+            "button-group",
+            "button-plugin",
+            "aui-button-core"
+        ]
+    },
+    "aui-button-core": {
+        "requires": [
+            "aui-classnamemanager"
+        ]
+    },
     "aui-carousel": {
         "requires": [
             "anim",

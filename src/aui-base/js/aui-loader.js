@@ -45,6 +45,19 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-base-core": {},
     "aui-base-lang": {},
+    "aui-button": {
+        "use": [
+            "button",
+            "button-group",
+            "button-plugin",
+            "aui-button-core"
+        ]
+    },
+    "aui-button-core": {
+        "requires": [
+            "aui-classnamemanager"
+        ]
+    },
     "aui-carousel": {
         "requires": [
             "anim",
@@ -361,6 +374,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'aee5506267327c40f18d5e40d2fab10a';
+YUI.Env[Y.version].md5 = '4645970301124afba98b1f5b3ee65e28';
 
 });
