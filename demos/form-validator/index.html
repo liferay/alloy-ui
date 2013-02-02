@@ -1,274 +1,80 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<script src="../../build/aui/aui.js" type="text/javascript"></script>
-
-	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
-
-	<style>
-	fieldset {
-		border: 1px solid #CCCCCC;
-		margin: 10px;
-		padding: 10px;
-		font-size: 13px;
-	}
-
-	legend {
-		font-size: 20px;
-		font-weight: bold;
-	}
-
-	input[type=text], textarea, select {
-		border: 1px solid #777;
-		padding: 3px;
-	}
-
-	.aui-form-validator-stack-error {
-		color: red;
-		display: block;
-		font-weight: normal;
-		font-style: italic;
-		margin: 3px 0;
-	}
-
-	.aui-form-validator-error {
-		background: lightPink;
-	}
-
-	.aui-form-validator-valid {
-		background: lightGreen;
-	}
-	</style>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
 </head>
-
 <body>
-	<h1>Alloy - FormValidator</h1>
+    <h1>AlloyUI - Form Validator</h1>
+    <h2>Rules extracted from HTML markup</h2>
+    <form action="" id="fm1" name="fm1">
+        <div class="aui-control-group">
+            <label class="aui-control-label" for="digit1">Digit (required)</label>
+            <div class="aui-controls">
+                <input name="digit1" id="digit1" class="aui-field-required aui-field-digits" type="text">
+            </div>
+        </div>
+        <div class="aui-control-group">
+            <label class="aui-control-label" for="email1">E-Mail</label>
+            <div class="aui-controls">
+                <input name="email1" id="email1" class="aui-field-email" type="text">
+            </div>
+        </div>
+    </form>
+    <h2>Rules passed from JavaScript</h2>
+    <form action="" id="fm2" name="fm2">
+        <div class="aui-control-group">
+            <label class="aui-control-label" for="digit2">Digit (required)</label>
+            <div class="aui-controls">
+                <input name="digit2" id="digit2" type="text">
+            </div>
+        </div>
+        <div class="aui-control-group">
+            <label class="aui-control-label" for="email2">E-Mail</label>
+            <div class="aui-controls">
+                <input name="email2" id="email2" type="text">
+            </div>
+        </div>
+        <div class="aui-control-group">
+            <label class="aui-control-label" for="custom">Custom rule (digit >= 50)</label>
+            <div class="aui-controls">
+                <input name="custom" id="custom" type="text">
+            </div>
+        </div>
+    </form>
+    <script>
+    YUI({ filter:'raw' }).use('aui-form-validator', function(A) {
 
-	<form action="" id="fm1" name="fm1">
-		<fieldset>
-			<legend>Example 1 - Rules extracted from CSS classes</legend>
-				<p class="aui-field">
-					<label class="aui-field-label" for="name2">Name:</label>
-					<input class="aui-field-required" type="text" name="name" id="name2" />
-				</p>
-				<p>
-					<label class="aui-field-label" for="email2">Email:</label>
-					<input class="aui-field-required aui-field-email" type="text" name="email" id="email2" />
-				</p>
-				<p>
-					<label class="aui-field-label" for="age2">Age:</label>
-					<input class="aui-field-digits" type="text" name="age" id="age2" />
-				</p>
+        new A.FormValidator({
+            boundingBox: A.one('#fm1'),
+            showAllMessages: true
+        });
 
-				<p>
-					<input class="aui-button-input" type="submit" value="Submit" />
-					<input class="aui-button-input" type="reset" value="Reset" />
-				</p>
-		</fieldset>
-	</form>
+        YUI.defaults.FormValidator.STRINGS.gt50 = 'The digit should be >= 50.';
+        YUI.defaults.FormValidator.RULES.gt50 = function(val, fieldNode, ruleValue) {
+            return (val >= 50);
+        };
+        new A.FormValidator({
+            boundingBox: A.one('#fm2'),
+            showAllMessages: true,
+            rules: {
+                digit2: {
+                    digits: true,
+                    required: true
+                },
+                email2: {
+                    email: true
+                },
+                custom: {
+                    digits: true,
+                    gt50: true
+                }
+            }
+        });
 
-	<form action="" name="fm2">
-		<fieldset id="simpleForm">
-			<legend>Example 2 - Rules passed on the constructor</legend>
-				<p>
-					<label class="aui-field-label" for="types1">
-						<input type="radio" name="type[]" id="types1" value="type1" /> Type 1
-					</label>
-					<label class="aui-field-label" for="types2">
-						<input type="radio" name="type[]" id="types2" value="type2" /> Type 2
-					</label>
-				</p>
-				<p>
-					<label class="aui-field-label" for="name1">Name:</label>
-					<input type="text" name="name" id="name1" />
-				</p>
-				<p>
-					<label class="aui-field-label" for="lastName1">Last Name:</label>
-					<input type="text" name="lastName" id="lastName1" />
-				</p>
-				<p>
-					<label class="aui-field-label" for="age1">Age:</label>
-					<input type="text" name="age" id="age1" />
-				</p>
-				<p>
-					<label class="aui-field-label" for="gender1">Gender:</label>
-					<select name="gender" id="gender1">
-						<option value="">- Select -</option>
-						<option value="male">Male</option>
-						<option value="female">Female</option>
-					</select>
-				</p>
-				<p>
-					<label class="aui-field-label" for="email1">Email:</label>
-					<input type="text" name="email" id="email1" />
-				</p>
-				<p>
-					<label class="aui-field-label" for="emailConfirmation1">Email (confirmation):</label>
-					<input type="text" name="emailConfirmation" id="emailConfirmation1" />
-				</p>
-				<p>
-					<label class="aui-field-label" for="picture1">Picture (upload):</label>
-					<input type="file" name="picture" id="picture1" />
-				</p>
-				<p>
-					<label class="aui-field-label" for="url1">Site URL:</label>
-					<input class="aui-field-url" type="text" name="url" id="url1" />
-				</p>
-				<p>
-					<label class="aui-field-label" for="comment1">Comment:</label>
-						<textarea class="aui-field-required aui-field-email" name="comment" id="comment1" cols="30" rows="5"></textarea>
-				</p>
-				<p>
-					<label class="aui-field-label" for="receiveMessages1">
-						<input class="aui-field-required" type="checkbox" name="receiveMessages" id="receiveMessages1" /> Add your email to our database
-					</label>
-				</p>
-				<p>
-					<input class="aui-button-input" type="submit" value="Submit" />
-					<input class="aui-button-input" type="reset" value="Reset" />
-				</p>
-		</fieldset>
-	</form>
-
-	<script type="text/javascript">
-		AUI().use('aui-form-validator', function(A) {
-			var t = Date.now();
-
-			// Extending Alloy Default values for FormValidator STRINGS and RULES
-			A.mix(
-				YUI.AUI.defaults.FormValidator.STRINGS,
-				{
-					customRule: 'Type the number 55.',
-					anotherRule: 'Message for another rule'
-				},
-				true
-			);
-
-			A.mix(
-				YUI.AUI.defaults.FormValidator.RULES,
-				{
-					customRule: function(val, fieldNode, ruleValue) {
-						return (val == 55);
-					},
-
-					anotherRule: function(val, fieldNode, ruleValue) {
-						return (val == 'another');
-					}
-				},
-				true
-			);
-
-			var validator1 = new A.FormValidator({
-				boundingBox: '#fm1',
-				validateOnInput: true
-				// strings: {
-				// 	required: 'Overwriting default REQUIRED string from YUI.AUI.defaults.FormValidator.STRINGS'
-				// },
-				//
-				// fieldStrings: {
-				// 	email: {
-				// 		required: 'Custom message for a required email field'
-				// 	}
-				// },
-				// errorClass: 'aui-form-validator-error',
-				// validClass: 'aui-form-validator-valid',
-				// fieldContainer: 'p',
-				// containerErrorClass: 'aui-form-validator-error-container',
-				// containerValidClass: 'aui-form-validator-valid-container',
-				// validateOnBlur: false,
-				// showMessages: false,
-				// showAllMessages: true,
-				// selectText: false,
-				// validateOnInput: true,
-				// extractRules: false,
-				// extractCssPrefix: 'aui-field-'
-			});
-
-			var validator2 = new A.FormValidator({
-				boundingBox: document.fm2,
-
-				fieldContainer: 'p',
-				// fieldContainer: null,
-
-				// validateOnBlur: false,
-				validateOnInput: true,
-				// showMessages: false,
-				// showAllMessages: true,
-
-				rules: {
-					picture: {
-						required: true,
-						acceptFiles: 'jpg, gif, png'
-					},
-
-					age: {
-						customRule: true,
-						digits: true,
-						range: [18, 50]
-						// min: 18,
-						// max: 50
-					},
-					email: {
-						required: true,
-						email: true
-					},
-					emailConfirmation: {
-						required: true,
-						email: true,
-						equalTo: '#email1'
-					},
-					url: {
-						url: true
-					},
-					gender: {
-						required: true
-					},
-					'type[]': {
-						required: true
-					},
-					lastName: {
-						required: true,
-						rangeLength: [2,50]
-						// maxLength: 50,
-						// minLength: 2
-					},
-					name: {
-						required: true,
-						rangeLength: [2,50]
-					}
-				},
-
-				fieldStrings: {
-					email: {
-						email: 'Type your email in this field.'
-					},
-					gender: {
-						required: 'The gender is required.'
-					},
-					'type[]': {
-						required: 'Select the type is required.'
-					},
-					name: {
-						required: 'Required field with a custom message.'
-					}
-				},
-
-				on: {
-					errorField: function(event) {},
-					submitError: function(event) {
-						var formEvent = event.validator.formEvent,
-							errors = event.validator.errors;
-					},
-					submit: function(event) {
-						var formEvent = event.validator.formEvent;
-					},
-					validateField: function(event) {},
-					validField: function(event) {}
-				}
-			});
-
-			console.log('initialization time: ', Date.now() - t);
-		});
-	</script>
+    });
+    </script>
 </body>
 </html>

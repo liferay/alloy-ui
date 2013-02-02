@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+</head>
+<body>
+    <h1>AlloyUI - Timer</h1>
+    <form>
+        <p>This test is based on the one done at <a href="http://media.fitzgeraldnick.com/code-samples/chronos-test.html">http://media.fitzgeraldnick.com/code-samples/chronos-test.html</a> and his work on <a href="http://fitzgeraldnick.com/weblog/40/" title="JavaScript Timer Congestion">Timer Congestion</a>.</p>
+        <p>
+            Number of timers: <input type="text" id ="numTimers" value="100" />
+        </p>
+        <p>
+            Each timer should block for <input type="text" id ="taskLength" value="100" />
+            milliseconds.
+        </p>
+        <p>
+            <a href="#" id="withAlloy">Test with Alloy</a>
+        </p>
+        <p>
+            <a href="#" id="withoutAlloy">Test without Alloy</a>
+        </p>
+        <p>
+            <a href="#" id="stop">Stop</a>
+        </p>
+        <p>
+            <strong>
+              Scroll around and watch the counter increment to get a feel for the
+              browser's UI responsiveness. (The smoother the better).
+            </strong>
+        </p>
+        <p>
+            Something for each timer to play with: <span id="counter">0</span>
+        </p>
+        <p>
+            Pellentesque habitant morbi tristique senectus et netus et malesuada
+            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
+            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
+            egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
+            leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum
+            erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
+            fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci,
+            sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar
+            facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
+            neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat
+            volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis
+            luctus, metus
+        </p>
+        <p>
+            Pellentesque habitant morbi tristique senectus et netus et malesuada
+            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
+            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
+            egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
+            leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum
+            erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
+            fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci,
+            sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar
+            facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
+            neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat
+            volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis
+            luctus, metus
+        </p>
+        <p>
+            Pellentesque habitant morbi tristique senectus et netus et malesuada
+            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
+            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
+            egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
+            leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum
+            erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
+            fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci,
+            sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar
+            facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
+            neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat
+            volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis
+            luctus, metus
+        </p>
+        <p>
+            Pellentesque habitant morbi tristique senectus et netus et malesuada
+            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
+            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
+            egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
+            leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum
+            erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
+            fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci,
+            sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar
+            facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
+            neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat
+            volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis
+            luctus, metus
+        </p>
+        <p>
+            Pellentesque habitant morbi tristique senectus et netus et malesuada
+            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
+            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
+            egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
+            leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum
+            erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
+            fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci,
+            sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar
+            facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
+            neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat
+            volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis
+            luctus, metus
+        </p>
+        <p>
+            Pellentesque habitant morbi tristique senectus et netus et malesuada
+            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
+            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
+            egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
+            leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum
+            erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
+            fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci,
+            sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar
+            facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
+            neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat
+            volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis
+            luctus, metus
+        </p>
+        <p>
+            Pellentesque habitant morbi tristique senectus et netus et malesuada
+            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
+            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
+            egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
+            leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum
+            erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
+            fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci,
+            sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar
+            facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
+            neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat
+            volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis
+            luctus, metus
+        </p>
+        <p>
+            Pellentesque habitant morbi tristique senectus et netus et malesuada
+            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
+            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
+            egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
+            leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum
+            erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
+            fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci,
+            sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar
+            facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
+            neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat
+            volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis
+            luctus, metus
+        </p>
+        <p>
+            Pellentesque habitant morbi tristique senectus et netus et malesuada
+            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
+            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
+            egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
+            leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum
+            erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
+            fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci,
+            sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar
+            facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
+            neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat
+            volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis
+            luctus, metus
+        </p>
+        <p>
+            Pellentesque habitant morbi tristique senectus et netus et malesuada
+            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
+            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
+            egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
+            leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum
+            erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
+            fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci,
+            sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar
+            facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
+            neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat
+            volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis
+            luctus, metus
+        </p>
+        <p>
+            Pellentesque habitant morbi tristique senectus et netus et malesuada
+            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
+            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
+            egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
+            leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum
+            erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
+            fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci,
+            sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar
+            facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
+            neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat
+            volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis
+            luctus, metus
+        </p>
+    </form>
+    <script>
+    YUI({ filter:'raw' }).use('aui-timer', 'aui-node', function(A) {
+
+        function getNumTimers () {
+            return Number(A.one("#numTimers").val());
+        }
+
+        function getTaskLength () {
+            return Number(A.one("#taskLength").val());
+        }
+
+        var ids = [];
+
+        function stop () {
+            ids.forEach(function (id) {
+                A.clearInterval(id);
+                window.clearInterval(id);
+            });
+            ids = [];
+        }
+
+        var incrementCounter = (function () {
+            var counter = 0;
+            var counterEl = A.one("#counter");
+            return function () {
+                counterEl.setContent(counter++);
+            };
+        }());
+
+        function makeTest (hostObj) {
+            return function () {
+                var numTimers = getNumTimers();
+                var taskLen = getTaskLength();
+                for ( var i = 0; i < numTimers; i++ ) {
+                    ids.push(hostObj.setInterval(function () {
+                        var start = +new Date();
+                        while ( +new Date() - start < taskLen ) {
+                            incrementCounter();
+                        }
+                    }, 50));
+                }
+            };
+        }
+
+        var withChronos = makeTest(A);
+        var withoutChronos = makeTest(window);
+
+        A.one("#withAlloy").on("click", function (event) {
+            event.preventDefault();
+            stop();
+            withChronos();
+        });
+
+        A.one("#withoutAlloy").on("click", function (event) {
+            event.preventDefault();
+            stop();
+            withoutChronos();
+        });
+
+        A.one("#stop").on("click", function (event) {
+            event.preventDefault();
+            stop();
+        });
+
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../../build/aui/aui.js"></script>
+</head>
+<body>
+    <h1>AlloyUI - Foreign</h1>
+    <h2></h2>
+    <script>
+    YUI({ filter:'raw' }).use('aui-messaging', 'aui-node', function(A) {
+
+        A.receiveMessage(function(message) {
+            A.one('h2').html(message.data);
+        },
+        'http://localhost', 1);
+
+    });
+    </script>
+</body>
+</html>

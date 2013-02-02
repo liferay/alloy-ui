@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+</head>
+<body>
+    <h1>AlloyUI - Tree</h1>
+    <h2>TreeView file with drag and drop</h2>
+    <div id="treefile"></div>
+    <h2>TreeView normal with drag and drop</h2>
+    <div id="treebasic"></div>
+    <script>
+    YUI({ filter: 'raw' }).use('aui-tree', function(A) {
+
+        t=new A.TreeViewDD({
+            boundingBox: '#treefile',
+            children: [
+                {
+                    label: 'Fruits',
+                    expanded: true,
+                    children: [
+                        { label: 'Apricot' },
+                        { label: 'Pineapple' },
+                        { label: 'Kiwi' },
+                        { label: 'Orange' },
+                        { label: 'Pomegranate' },
+                        { label: 'Lime' },
+                    ]
+                },
+                {
+                    label: 'More fruits',
+                    expanded: true,
+                    children: [
+                        { label: 'Watermelon' },
+                        { label: 'Apricot' },
+                        { label: 'Pineapple' },
+                        { label: 'Kiwi' },
+                        { label: 'Orange' },
+                        { label: 'Pomegranate' }
+                    ]
+                },
+                {
+                    label: 'Checkboxes',
+                    expanded: true,
+                    children: [
+                        { label: 'Watermelon', type: 'check', leaf: true },
+                        { label: 'Apricot', type: 'check', leaf: true },
+                        { label: 'Pineapple', type: 'check', leaf: true },
+                        { label: 'Kiwi', type: 'check', leaf: true },
+                        { label: 'Orange', type: 'check', leaf: true },
+                        { label: 'Pomegranate', type: 'check', leaf: true }
+                    ]
+                },
+                {
+                    label: 'Radio',
+                    expanded: true,
+                    children: [
+                        { label: 'Watermelon', type: 'radio', leaf: true },
+                        { label: 'Apricot', type: 'radio', leaf: true },
+                        { label: 'Pineapple', type: 'radio', leaf: true },
+                        { label: 'Kiwi', type: 'radio', leaf: true },
+                        { label: 'Orange', type: 'radio', leaf: true },
+                        { label: 'Pomegranate', type: 'radio', leaf: true }
+                    ]
+                },
+                {
+                    label: 'Task',
+                    type: 'task',
+                    expanded: true,
+                    children: [
+                        { label: 'Watermelon', type: 'task', leaf: true },
+                        { label: 'Apricot', type: 'task', leaf: true },
+                        { label: 'Pineapple', type: 'task', leaf: true },
+                        { label: 'Kiwi', type: 'task', leaf: true },
+                        { label: 'Orange', type: 'task', leaf: true },
+                        { label: 'Pomegranate', type: 'task', leaf: true }
+                    ]
+                }
+            ]
+        }).render();
+
+        new A.TreeViewDD({
+            boundingBox: '#treebasic',
+            children: [
+                {
+                    label: 'Fruits',
+                    expanded: true,
+                    children: [
+                        { label: 'Apricot' },
+                        { label: 'Pineapple' },
+                        { label: 'Kiwi' },
+                        { label: 'Orange' },
+                        { label: 'Pomegranate' },
+                        { label: 'Lime' },
+                    ]
+                },
+                {
+                    label: 'More fruits',
+                    expanded: true,
+                    children: [
+                        { label: 'Watermelon' },
+                        { label: 'Apricot' },
+                        { label: 'Pineapple' },
+                        { label: 'Kiwi' },
+                        { label: 'Orange' },
+                        { label: 'Pomegranate' }
+                    ]
+                }
+            ],
+            type: 'normal'
+        }).render();
+
+    });
+    </script>
+</body>
+</html>

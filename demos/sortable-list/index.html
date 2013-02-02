@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+    <style>
+    .almostpurple {
+        background: rgb(211, 68, 211);
+    }
+    .violet {
+        background: violet;
+    }
+    .purple {
+        background: purple;
+    }
+    .container {
+        width: 400px;
+        color: white;
+        list-style: none;
+        border: 1px dashed purple;
+        margin: 10px;
+        padding: 10px;
+    }
+    .container li {
+        border: 1px solid white;
+        cursor: move;
+        margin: 1px;
+        padding: 3px;
+    }
+    .placeholder {
+        background: white;
+        border: 1px dashed gray;
+        opacity: .5;
+    }
+    .helper {
+        background: black;
+        opacity: .5;
+    }
+    #log {
+        color: black;
+    }
+    .aui-helper-hidden {
+        display: none;
+    }
+    </style>
+</head>
+<body>
+    <h1>AlloyUI - SortableList</h1>
+
+    <ul class="container">
+        <li class="violet">Fig</li>
+        <li class="violet">Date</li>
+        <li class="violet">
+            Drop node here!
+            <ul class="container droppable">
+                <li class="purple">Papaya</li>
+                <li class="purple">Pear</li>
+                <li class="purple">Raspberry</li>
+                <ul class="container">
+                    <li class="almostpurple">
+                        Drop node here!
+                        <ul class="container droppable"></ul>
+                    </li>
+                    <li class="almostpurple">Cantaloupe</li>
+                </ul>
+            </ul>
+        </li>
+        <li class="violet">Apricot</li>
+        <li class="violet">Pineapple</li>
+        <li class="violet">Kiwi</li>
+        <li class="violet">Orange</li>
+        <li class="violet">Pomegranate</li>
+        <li class="violet">Lime</li>
+        <li class="violet">Watermelon</li>
+        <li class="violet">Apricot</li>
+        <li class="violet">Pineapple</li>
+        <li class="violet">Kiwi</li>
+        <li class="violet">Orange</li>
+        <li class="violet">Pomegranate</li>
+        <li class="violet">Lime</li>
+        <li class="violet">Watermelon</li>
+        <li class="violet">Apricot</li>
+
+        <button id="placeholder">Remove placeholder</button>
+        <button id="helper">Remove helper</button>
+        <div id="log"></div>
+    </ul>
+    <script>
+    YUI({ filter:'raw' }).use('aui-sortable-list', function(A) {
+
+        var list = new A.SortableList({
+            nodes: '.container li',
+            dropOn: 'ul.droppable',
+            // dropContainer: '.custom-node-inside-droppable',
+            dropCondition: function(event) {
+                return true;
+            },
+            helper: A.Node.create('<div class="helper"></div>'),
+            placeholder: A.Node.create('<div class="placeholder"></div>')
+        });
+
+        A.one('#placeholder').on('click', function() {
+            list.set('placeholder', null);
+            A.one('#log').html('placeholder removed, drag the nodes again.');
+        });
+        A.one('#helper').on('click', function() {
+            list.set('helper', null);
+            A.one('#log').html('helper removed, drag the nodes again.');
+        });
+
+    });
+    </script>
+</body>
+</html>

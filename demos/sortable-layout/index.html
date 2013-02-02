@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+    <style>
+    .almostpurple {
+        background: rgb(211, 68, 211);
+    }
+    .violet {
+        background: violet;
+    }
+    .purple {
+        background: purple;
+    }
+    .layout {
+        border: 1px solid;
+        width: 100%;
+    }
+    .layout .column {
+        border: 1px solid;
+        padding: 5px;
+    }
+    .helper {
+        background: black;
+        opacity: .5;
+    }
+    .section {
+        margin: 5px;
+    }
+    .aui-helper-hidden {
+        display: none;
+    }
+    </style>
+</head>
+<body>
+    <h1>AlloyUI - SortableLayout</h1>
+
+    <table class="layout">
+        <tr>
+            <td class="column">
+                <div class="section almostpurple">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero deserunt illo rem est unde ratione atque laudantium quasi ullam harum rerum quas ad quos exercitationem aliquid asperiores mollitia assumenda maxime.
+                </div>
+                <div class="section purple">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae dolorem neque eius deleniti non aspernatur optio quidem autem aliquid perspiciatis expedita ab porro doloremque sint alias repellat eum odio quaerat.
+                </div>
+            </td>
+            <td class="column">
+                <div class="section purple">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae dolorem neque eius deleniti non aspernatur optio quidem autem aliquid perspiciatis expedita ab porro doloremque sint alias repellat eum odio quaerat.
+                </div>
+                <div class="section almostpurple">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero deserunt illo rem est unde ratione atque laudantium quasi ullam harum rerum quas ad quos exercitationem aliquid asperiores mollitia assumenda maxime.
+                </div>
+            </td>
+            <td class="column">
+                <div class="section violet">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum impedit fugiat quae quidem non autem commodi enim doloremque rem nostrum quasi est blanditiis explicabo. Dolore dolorem culpa distinctio nam voluptatibus!
+                </div>
+                <div class="section purple">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae dolorem neque eius deleniti non aspernatur optio quidem autem aliquid perspiciatis expedita ab porro doloremque sint alias repellat eum odio quaerat.
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+    YUI({ filter:'raw' }).use('aui-sortable-layout', function(A) {
+
+        new A.SortableLayout({
+            dragNodes: '.section',
+            dropNodes: '.column',
+            lazyStart: true,
+            // placeholder: '<div class="placeholder"></div>',
+            proxyNode: A.Node.create('<div class="helper"></div>'),
+            on: {
+                placeholderAlign: function(event) {},
+                quadrantOver: function(event) {},
+                quadrantEnter: function(event) {},
+                quadrantExit: function(event) {}
+            }
+        });
+
+    });
+    </script>
+</body>
+</html>

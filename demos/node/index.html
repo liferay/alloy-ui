@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+</head>
+<body>
+    <h1>AlloyUI - Node demo</h1>
+    <h2 id="toggleColor" style="cursor: pointer;">Click me!</h2>
+    <script>
+    YUI({ filter:'raw' }).use('aui-node', function(A) {
+
+      var node = A.one('#toggleColor');
+
+      node.on('click', function() {
+        var randomColor = Math.floor(Math.random() * 16777215).toString(16);
+        node.setStyle('background', '#' + randomColor);
+      });
+
+    });
+    </script>
+</body>
+</html>
+
+
+
+

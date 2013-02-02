@@ -1,230 +1,88 @@
-<!DOCTYPE html>
-
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<script src="../../build/aui/aui.js" type="text/javascript"></script>
-
-	<link rel="stylesheet" href="http://yui.yahooapis.com/3.5.0pr2/build/cssbutton/cssbutton.css" />
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
 </head>
-
-<style type="text/css" media="screen">
-
-	#wrapper {
-		font: small/normal Arial,sans-serif;
-		overflow: hidden;
-		padding: 10px;
-	}
-
-	#container1, #container2 {
-		width: 200px;
-	}
-
-	h2.header {
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		color: #222;
-		cursor: pointer;
-		display: block;
-		font-size: 13px;
-		font-weight: normal;
-		line-height: 30px;
-		margin: 0;
-		padding: 2px 0;
-	}
-
-	.content {
-		margin-left: 8px;
-	}
-
-	.text {
-		vertical-align: middle;
-	}
-
-	.arrow {
-		background: url(../../build/aui-skin-classic/images/icon_sprite.png) -34px -18px;
-		display: inline-block;
-		height: 12px;
-		vertical-align: middle;
-		width: 12px;
-	}
-
-	.aui-toggler-header-expanded .arrow {
-		background-position: -66px -18px;
-	}
-
-	.header:hover {
-		background-color: #EEE;
-	}
-
-	.img-border {
-		background: url(http://s.ytimg.com/yt/imgbin/www-refreshbg-vflC3wnbM.png);
-		border-radius: 3px;
-		padding: 10px;
-		width: 240px;
-	}
-
-	.img-border img {
-		display: block;
-		margin-bottom: 10px;
-	}
-
-	.img-border p {
-		margin: 0;
-	}
-
-	.img-border .content {
-		-moz-border-radius: 3px;
-		-moz-box-shadow: 0 1px 1px #ccc;
-		-ms-box-shadow: 0 1px 1px #ccc;
-		-webkit-border-radius: 3px;
-		-webkit-box-shadow: 0 1px 1px #ccc;
-		background: white;
-		border-radius: 3px;
-		border: 1px solid #CCC;
-		box-shadow: 0 1px 1px #ccc;
-		margin-top: 10px;
-		margin-left: 0px;
-		padding: 10px;
-		text-align: justify;
-	}
-
-	.img-border .aui-loadingmask-message-content {
-		background-color: transparent;
-		border: none;
-	}
-
-</style>
-
 <body>
+    <h1>AlloyUI - Toggler</h1>
+    <h2>Toggler</h2>
+    <button class="aui-btn">Read more &raquo</button>
+    <div class="content aui-toggler-content-collapse">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea qui sint distinctio recusandae quo ut eaque provident eius eos commodi natus labore culpa modi soluta quia repudiandae nulla ex. Reiciendis cupiditate quis voluptatum atque veniam assumenda itaque perferendis eos voluptatem dolores aut eum. Ut voluptatum amet earum delectus totam unde!
+    </div>
+    <h2>Toggler Delegate</h2>
+    <div class="aui-accordion" id="accordion">
+        <div class="aui-accordion-group">
+            <div class="aui-accordion-heading">
+                <a class="aui-accordion-toggle" href="#collapseOne">
+                Collapsible Group Item #1
+                </a>
+            </div>
+            <div id="collapseOne" class="aui-toggler-content aui-toggler-content-collapsed">
+                <div class="aui-accordion-inner">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+            </div>
+        </div>
+        <div class="aui-accordion-group">
+            <div class="aui-accordion-heading">
+                <a class="aui-accordion-toggle" href="#collapseTwo">
+                Collapsible Group Item #2
+                </a>
+            </div>
+            <div id="collapseTwo" class="aui-toggler-content aui-toggler-content-collapsed">
+                <div class="aui-accordion-inner">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+            </div>
+        </div>
+        <div class="aui-accordion-group">
+            <div class="aui-accordion-heading">
+                <a class="aui-accordion-toggle" href="#collapseThree">
+                Collapsible Group Item #3
+                </a>
+            </div>
+            <div id="collapseThree" class="aui-toggler-content aui-toggler-content-collapsed">
+                <div class="aui-accordion-inner">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    YUI({ filter:'raw' }).use('aui-toggler', function(A) {
 
-<div id="wrapper">
-	<h1>Alloy - Toggler</h1>
+        new A.Toggler({
+            animated: true,
+            content: '.content',
+            header: '.aui-btn',
+            expanded: false,
+            transition: {
+                duration: .6,
+                easing: 'cubic-bezier',
+                on: {
+                    end: function() {
+                    }
+                }
+            }
+        });
 
-	<h2>- Toggler</h2>
+        new A.TogglerDelegate({
+            animated: true,
+            container: '#accordion',
+            content: '.aui-toggler-content',
+            header: '.aui-accordion-heading',
+            expanded: false,
+            transition: {
+                duration: .4,
+                easing: 'cubic-bezier'
+            }
+        });
 
-	<div class="img-border">
-		<img src="http://farm7.staticflickr.com/6212/6236693303_c3e0409dae_m.jpg" />
-		<button class="header yui3-button yui3-button-active yui3-button-selected">Read more</button>
-		<div class="content aui-toggler-content-collapsed">Loading...</div>
-	</div>
-
-	<h2>- Toggler Delegate</h2>
-
-	<div id="container1">
-		<h2 class="header aui-toggler-header-collapsed">
-			<span class="arrow"></span>
-			<span class="text">Mini calendar</span>
-		</h2>
-		<div class="content aui-toggler-content-collapsed">
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		</div>
-
-		<h2 class="header aui-toggler-header-collapsed">
-			<span class="arrow"></span>
-			<span class="text">My calendars</span>
-		</h2>
-		<div class="content aui-toggler-content-collapsed">
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		</div>
-
-		<h2 class="header aui-toggler-header-collapsed">
-			<span class="arrow"></span>
-			<span class="text">Other calendars</span>
-		</h2>
-		<div class="content aui-toggler-content-collapsed">
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		</div>
-	</div>
-
-	<h2>- Animated Toggler Delegate</h2>
-
-	<div id="container2">
-		<h2 class="header aui-toggler-header-collapsed">
-			<span class="arrow"></span>
-			<span class="text">Header</span>
-		</h2>
-		<div class="content aui-toggler-content-collapsed">
-			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-		</div>
-
-		<h2 class="header aui-toggler-header-collapsed">
-			<span class="arrow"></span>
-			<span class="text">Header</span>
-		</h2>
-		<div class="content aui-toggler-content-collapsed">
-			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-		</div>
-
-		<h2 class="header aui-toggler-header-collapsed">
-			<span class="arrow"></span>
-			<span class="text">Header</span>
-		</h2>
-		<div class="content aui-toggler-content-collapsed">
-			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-		</div>
-
-		<h2 class="header aui-toggler-header-collapsed">
-			<span class="arrow"></span>
-			<span class="text">Header</span>
-		</h2>
-		<div class="content aui-toggler-content-collapsed">
-			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-		</div>
-	</div>
-</div>
-
-<script type="text/javascript" charset="utf-8">
-
-AUI().use('node-load', 'aui-toggler', function(A) {
-	var content = A.one('.content');
-	var header = A.one('.header');
-
-	console.time('toggler');
-
-	var toggler = new A.Toggler({
-		animated: true,
-		content: content,
-		header: header,
-		expanded: false,
-		transition: {
-			duration: .6,
-			easing: 'cubic-bezier',
-			on: {
-				end: function() {
-					content.load('assets/content.html');
-				}
-			}
-		}
-	});
-
-	console.timeEnd('toggler');
-
-	console.time('toggler-delegate');
-
-	var togglerDelegate1 = new A.TogglerDelegate({
-		container: '#container1',
-		content: '.content',
-		header: '.header',
-		expanded: false,
-		transition: {
-			duration: .4,
-			easing: 'cubic-bezier'
-		}
-	});
-
-	console.timeEnd('toggler-delegate');
-
-	var togglerDelegate2 = new A.TogglerDelegate({
-		animated: true,
-		closeAllOnExpand: true,
-		container: '#container2',
-		content: '.content',
-		header: '.header',
-		expanded: false
-	});
-});
-
-</script>
-
+    });
+    </script>
 </body>
 </html>

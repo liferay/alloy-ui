@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+</head>
+<body>
+    <h1>AlloyUI - I/O demo</h1>
+    <script>
+    YUI({ filter:'raw' }).use('aui-io', function(A) {
+
+        A.io.request('data/content.html', {
+            on: {
+                success: function() {
+                    var data = this.get('responseData');
+                    alert(data);
+                }
+            }
+        });
+
+    });
+    </script>
+</body>
+</html>
