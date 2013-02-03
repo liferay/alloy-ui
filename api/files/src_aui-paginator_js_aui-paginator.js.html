@@ -17,7 +17,7 @@
         </div>
         <div class="yui3-u-1-4 version">
             <div class="version-details">
-                <span class="version-lib">AlloyUI 1.7.0pr3</span>
+                <span class="version-lib">AlloyUI 1.7.0</span>
                 <div class="yui-version">
                     <span class="version-lib version-lib-yui">YUI 3.7.3</span>
                 </div>
@@ -1672,7 +1672,9 @@ var L = A.Lang,
 		totalLabel: &#x27;(Total {total})&#x27;
 	},
 	GT_TPL = &#x27;&amp;gt;&#x27;,
-	LT_TPL = &#x27;&amp;lt;&#x27;;
+	LT_TPL = &#x27;&amp;lt;&#x27;,
+
+	REGEX_ATTR_SELECTED = &#x2F;selected(?:=&quot;&quot;)*&#x2F;gi;
 
 &#x2F;**
  * &lt;p&gt;&lt;img src=&quot;assets&#x2F;images&#x2F;aui-paginator&#x2F;main.png&quot;&#x2F;&gt;&lt;&#x2F;p&gt;
@@ -2385,11 +2387,25 @@ var Paginator = A.Component.create(
 					pageContainer.append(pageLink);
 				}
 
-				if (rowsPerPageEl) {
-					var rowsPerPageSelect = rowsPerPageEl.outerHTML();
+				var rowsPerPageElOuterHTML;
 
-					if (IE &gt;= 9) {
-						rowsPerPageSelect = rowsPerPageSelect.replace(&#x2F;selected=&quot;&quot;&#x2F;gi, &#x27;&#x27;);
+				if (rowsPerPageEl) {
+					var options = rowsPerPageEl.all(OPTION);
+
+					rowsPerPageElOuterHTML = rowsPerPageEl.outerHTML();
+
+					if (IE) {
+						rowsPerPageElOuterHTML = rowsPerPageElOuterHTML.replace(REGEX_ATTR_SELECTED, &#x27;&#x27;);
+
+						var rowsPerPage = instance.get(ROWS_PER_PAGE);
+
+						var itemValue = &#x27;value=&quot;&#x27; + rowsPerPage + &#x27;&quot;&#x27;;
+
+						if (IE &lt; 9) {
+							itemValue = &#x27;value=&#x27; + rowsPerPage;
+						}
+
+						rowsPerPageElOuterHTML = rowsPerPageElOuterHTML.replace(new RegExp(itemValue), itemValue + &#x27; selected&#x27;);
 					}
 				}
 
@@ -2402,7 +2418,7 @@ var Paginator = A.Component.create(
 						NextPageLink: nextPageLink.outerHTML(),
 						PageLinks: pageContainer.outerHTML(),
 						PrevPageLink: prevPageLink.outerHTML(),
-						RowsPerPageSelect: rowsPerPageSelect,
+						RowsPerPageSelect: rowsPerPageElOuterHTML,
 						Total: totalLink.outerHTML()
 					}
 				);

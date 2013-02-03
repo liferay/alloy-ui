@@ -1043,7 +1043,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "aui-overlay-base",
             "name": "aui-overlay-base",
-            "description": "Provides a basic Overlay widget, with Standard Module content support. The Overlay widget\nprovides Page XY positioning support, alignment and centering support along with basic \nstackable support (z-index and shimming)."
+            "description": "Provides a basic Overlay widget, with Standard Module content support. The Overlay widget\nprovides Page XY positioning support, alignment and centering support along with basic\nstackable support (z-index and shimming)."
         },
         {
             "displayName": "aui-overlay-context",

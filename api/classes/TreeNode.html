@@ -17,7 +17,7 @@
         </div>
         <div class="yui3-u-1-4 version">
             <div class="version-details">
-                <span class="version-lib">AlloyUI 1.7.0pr3</span>
+                <span class="version-lib">AlloyUI 1.7.0</span>
                 <div class="yui-version">
                     <span class="version-lib version-lib-yui">YUI 3.7.3</span>
                 </div>
@@ -1589,7 +1589,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l82"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:82</code></a>
+            Defined in: <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l85"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:85</code></a>
         </div>
     
 
@@ -1660,7 +1660,7 @@ TreeNode.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l82"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:82</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l85"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:85</code></a>
         
         </p>
 
@@ -1999,6 +1999,12 @@ TreeNode.</p>
                                 
                             </li>
                         
+                            <li class="index-item method protected">
+                                <a href="#method__setIO">_setIO</a>
+
+                                
+                            </li>
+                        
                             <li class="index-item method private inherited">
                                 <a href="#method__setStateVal">_setStateVal</a>
 
@@ -2233,6 +2239,12 @@ TreeNode.</p>
                                 
                             </li>
                         
+                            <li class="index-item method">
+                                <a href="#method_initIO">initIO</a>
+
+                                
+                            </li>
+                        
                             <li class="index-item method inherited">
                                 <a href="#method_insert">insert</a>
 
@@ -2247,6 +2259,30 @@ TreeNode.</p>
                         
                             <li class="index-item method inherited">
                                 <a href="#method_insertBefore">insertBefore</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_ioCompleteHandler">ioCompleteHandler</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_ioFailureHandler">ioFailureHandler</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_ioStartHandler">ioStartHandler</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_ioSuccessHandler">ioSuccessHandler</a>
 
                                 
                             </li>
@@ -2539,6 +2575,10 @@ TreeNode.</p>
                         
                             <li class="index-item attr inherited">
                                 <a href="#attr_initialized">initialized</a>
+                            </li>
+                        
+                            <li class="index-item attr">
+                                <a href="#attr_io">io</a>
                             </li>
                         
                             <li class="index-item attr">
@@ -2861,7 +2901,7 @@ See <a href="#method_addAttr">addAttr</a>.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l435"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:435</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l453"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:453</code></a>
         
         </p>
 
@@ -3311,7 +3351,7 @@ this class.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l509"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:509</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l525"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:525</code></a>
         
         </p>
 
@@ -6070,7 +6110,7 @@ attr config objects.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l476"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:476</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l494"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:494</code></a>
         
         </p>
 
@@ -6140,7 +6180,7 @@ attr config objects.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l448"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:448</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l466"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:466</code></a>
         
         </p>
 
@@ -6845,6 +6885,111 @@ if validation and setter passes.</p>
 </div>
 
                 
+                    <div id="method__setIO" class="method item protected">
+    <h3 class="name"><code>_setIO</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>v</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                    <p>Provided by the <a href="../modules/aui-tree.html">aui-tree</a> module.</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-io.js.html#l177"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-io.js:177</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Setter for <a href="TreeNodeIO.html#config_io">io</a>.</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">v</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
                     <div id="method__setStateVal" class="method item private inherited">
     <h3 class="name"><code>_setStateVal</code></h3>
 
@@ -6993,7 +7138,7 @@ internal state object, or the state proxy if it exits</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l530"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:530</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l546"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:546</code></a>
         
         </p>
 
@@ -7080,7 +7225,7 @@ internal state object, or the state proxy if it exits</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l775"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:775</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l791"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:791</code></a>
         
         </p>
 
@@ -8075,7 +8220,7 @@ callback, object (method host), methodName, context, 0-n arguments</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l367"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:367</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l371"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:371</code></a>
         
         </p>
 
@@ -8374,7 +8519,7 @@ callback, object (method host), methodName, context, 0-n arguments</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l561"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:561</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l577"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:577</code></a>
         
         </p>
 
@@ -8489,7 +8634,7 @@ callback, object (method host), methodName, context, 0-n arguments</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l581"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:581</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l597"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:597</code></a>
         
         </p>
 
@@ -9201,7 +9346,7 @@ be removed.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l592"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:592</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l608"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:608</code></a>
         
         </p>
 
@@ -9748,7 +9893,7 @@ returned. If set to true, all attributes modified from their initial values are 
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l612"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:612</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l628"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:628</code></a>
         
         </p>
 
@@ -10569,7 +10714,7 @@ invoking initializers for the class hierarchy.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l347"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:347</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l350"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:350</code></a>
         
         </p>
 
@@ -10581,6 +10726,61 @@ invoking initializers for the class hierarchy.</p>
 
     <div class="description">
         <p>Construction logic executed during TreeNode instantiation. Lifecycle.</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_initIO" class="method item">
+    <h3 class="name"><code>initIO</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                    <p>Provided by the <a href="../modules/aui-tree.html">aui-tree</a> module.</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-io.js.html#l57"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-io.js:57</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Initialize the IO transaction setup on the <a
+href="TreeNode.html#config_io">io</a> attribute.</p>
     </div>
 
     
@@ -10921,6 +11121,222 @@ invoking initializers for the class hierarchy.</p>
 </div>
 
                 
+                    <div id="method_ioCompleteHandler" class="method item">
+    <h3 class="name"><code>ioCompleteHandler</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                    <p>Provided by the <a href="../modules/aui-tree.html">aui-tree</a> module.</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-io.js.html#l100"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-io.js:100</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>IO Complete handler.</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_ioFailureHandler" class="method item">
+    <h3 class="name"><code>ioFailureHandler</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                    <p>Provided by the <a href="../modules/aui-tree.html">aui-tree</a> module.</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-io.js.html#l153"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-io.js:153</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>IO Failure handler.</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_ioStartHandler" class="method item">
+    <h3 class="name"><code>ioStartHandler</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                    <p>Provided by the <a href="../modules/aui-tree.html">aui-tree</a> module.</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-io.js.html#l85"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-io.js:85</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>IO Start handler.</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_ioSuccessHandler" class="method item">
+    <h3 class="name"><code>ioSuccessHandler</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                    <p>Provided by the <a href="../modules/aui-tree.html">aui-tree</a> module.</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-io.js.html#l116"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-io.js:116</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>IO Success handler.</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
                     <div id="method_isLeaf" class="method item">
     <h3 class="name"><code>isLeaf</code></h3>
 
@@ -10955,7 +11371,7 @@ invoking initializers for the class hierarchy.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l662"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:662</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l666"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:666</code></a>
         
         </p>
 
@@ -10966,7 +11382,7 @@ invoking initializers for the class hierarchy.</p>
     </div>
 
     <div class="description">
-        <p>Whether the current TreeNode is ancestor of the passed <code>node</code> or not.</p>
+        <p>Whether the current TreeNode is a leaf or not.</p>
     </div>
 
     
@@ -11023,7 +11439,7 @@ invoking initializers for the class hierarchy.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l650"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:650</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l678"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:678</code></a>
         
         </p>
 
@@ -11034,7 +11450,7 @@ invoking initializers for the class hierarchy.</p>
     </div>
 
     <div class="description">
-        <p>Whether the current TreeNode is a leaf or not.</p>
+        <p>Whether the current TreeNode is ancestor of the passed <code>node</code> or not.</p>
     </div>
 
     
@@ -11189,7 +11605,7 @@ invoking initializers for the class hierarchy.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l640"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:640</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l656"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:656</code></a>
         
         </p>
 
@@ -12681,7 +13097,7 @@ case the custom event is returned.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l398"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:398</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l410"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:410</code></a>
         
         </p>
 
@@ -13176,7 +13592,7 @@ to set the value of a property within the object (e.g. <code>set("x.y.z", 5)</co
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l411"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:411</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l423"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:423</code></a>
         
         </p>
 
@@ -13228,7 +13644,7 @@ to set the value of a property within the object (e.g. <code>set("x.y.z", 5)</co
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l683"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:683</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l699"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:699</code></a>
         
         </p>
 
@@ -13833,7 +14249,7 @@ not handled by the MyClass.<em>NON</em>ATTRS_CFG</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l1894"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:1894</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l1575"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:1575</code></a>
         
         </p>
 
@@ -13887,7 +14303,7 @@ not handled by the MyClass.<em>NON</em>ATTRS_CFG</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l330"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:330</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l333"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:333</code></a>
         
         </p>
 
@@ -13933,7 +14349,7 @@ not handled by the MyClass.<em>NON</em>ATTRS_CFG</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l338"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:338</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l341"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:341</code></a>
         
         </p>
 
@@ -14024,7 +14440,7 @@ not handled by the MyClass.<em>NON</em>ATTRS_CFG</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l116"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:116</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l119"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:119</code></a>
         
         </p>
 
@@ -14071,7 +14487,7 @@ configuration for the TreeNode.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l107"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:107</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l110"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:110</code></a>
         
         </p>
 
@@ -14124,7 +14540,7 @@ configuration for the TreeNode.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l290"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:290</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l293"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:293</code></a>
         
         </p>
 
@@ -14508,7 +14924,7 @@ has been through the destroy lifecycle phase.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l138"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:138</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l141"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:141</code></a>
         
         </p>
 
@@ -14606,7 +15022,7 @@ has been through the destroy lifecycle phase.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l173"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:173</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l176"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:176</code></a>
         
         </p>
 
@@ -14704,7 +15120,7 @@ has been through the destroy lifecycle phase.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l276"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:276</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l279"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:279</code></a>
         
         </p>
 
@@ -14802,7 +15218,7 @@ has been through the destroy lifecycle phase.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l302"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:302</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l305"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:305</code></a>
         
         </p>
 
@@ -14898,7 +15314,7 @@ has been through the destroy lifecycle phase.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l185"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:185</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l188"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:188</code></a>
         
         </p>
 
@@ -15163,6 +15579,106 @@ has been through the init lifecycle phase.</p>
 </div>
 
                 
+                    <div id="attr_io" class="attr item">
+    <a name="config_io"></a> 
+    <h3 class="name"><code>io</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                    <p>Provided by the <a href="../modules/aui-tree.html">aui-tree</a> module.</p>
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-io.js.html#l32"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-io.js:32</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>IO options for the current TreeNode load the children.</p>
+    </div>
+
+    
+        <p><strong>Default:</strong> Default IO Configuration.</p>
+    
+
+    
+        <div class="emits box">
+            <h4>Fires event <code>ioChange</code></h4>
+
+            <p>
+            Fires when the value for the configuration attribute <code>io</code> is
+            changed. You can listen for the event using the <code>on</code> method if you
+            wish to be notified before the attribute's value has changed, or
+            using the <code>after</code> method if you wish to be notified after the
+            attribute's value has changed.
+            </p>
+
+            <div class="params">
+                <h4>Parameters:</h4>
+
+                <ul class="params-list">
+                    <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type"><a href="../classes/EventFacade.html" class="crosslink">EventFacade</a></span>
+
+                        <div class="param-description">
+                            An Event Facade object with the following
+                            attribute-specific properties added:
+                        </div>
+
+                        <ul class="params-list">
+                            <li class="param">
+                                <code class="param-name">prevVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value of the attribute, prior to it being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">newVal</code>
+                                <span class="type">Any</span>
+                                <div class="param-description">The value the attribute is to be set to.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">attrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">The name of the attribute being set.</div>
+                            </li>
+                            <li class="param">
+                                <code class="param-name">subAttrName</code>
+                                <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                <div class="param-description">If setting a property within the attribute's value, the name of the sub-attribute property being set.</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
                     <div id="attr_label" class="attr item">
     <a name="config_label"></a> 
     <h3 class="name"><code>label</code></h3>
@@ -15187,7 +15703,7 @@ has been through the init lifecycle phase.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l161"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:161</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l164"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:164</code></a>
         
         </p>
 
@@ -15285,7 +15801,7 @@ has been through the init lifecycle phase.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l260"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:260</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l263"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:263</code></a>
         
         </p>
 
@@ -15383,7 +15899,7 @@ has been through the init lifecycle phase.</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l199"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:199</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l202"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:202</code></a>
         
         </p>
 
@@ -15482,7 +15998,7 @@ children is present the TreeNode is a leaf).</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l220"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:220</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l223"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:223</code></a>
         
         </p>
 
@@ -15580,7 +16096,7 @@ children is present the TreeNode is a leaf).</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l150"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:150</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l153"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:153</code></a>
         
         </p>
 
@@ -15678,7 +16194,7 @@ children is present the TreeNode is a leaf).</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l246"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:246</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l249"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:249</code></a>
         
         </p>
 
@@ -15776,7 +16292,7 @@ children is present the TreeNode is a leaf).</p>
             
         
         
-        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l233"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:233</code></a>
+        <a href="../..&#x2F;files&#x2F;src_aui-tree_js_aui-tree-node.js.html#l236"><code>src&#x2F;aui-tree&#x2F;js&#x2F;aui-tree-node.js:236</code></a>
         
         </p>
 

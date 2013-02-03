@@ -17,7 +17,7 @@
         </div>
         <div class="yui3-u-1-4 version">
             <div class="version-details">
-                <span class="version-lib">AlloyUI 1.7.0pr3</span>
+                <span class="version-lib">AlloyUI 1.7.0</span>
                 <div class="yui-version">
                     <span class="version-lib version-lib-yui">YUI 3.7.3</span>
                 </div>
@@ -2365,6 +2365,8 @@ A.mix(TreeData.prototype, {
 			container = instance._createNodeContainer();
 		}
 
+		instance.childrenLength = v.length;
+
 		&#x2F;&#x2F; before render the node, make sure the PARENT_NODE and OWNER_TREE references are updated
 		&#x2F;&#x2F; this is required on the render phase of the TreeNode (_createNodeContainer)
 		&#x2F;&#x2F; to propagate the events callback (appendChild&#x2F;expand)
@@ -2383,7 +2385,7 @@ A.mix(TreeData.prototype, {
 
 		instance.updateIndex({});
 
-		if (v.length &gt; 0) {
+		if (instance.childrenLength &gt; 0) {
 			instance.set(LEAF, false);
 		}
 
@@ -2406,8 +2408,6 @@ A.mix(TreeData.prototype, {
 					node = instance.createNode(node);
 
 					if (hasChildren &amp;&amp; lazyLoad) {
-						node.childrenLength = children.length;
-
 						A.setTimeout(function() {
 							node.set(CHILDREN, children);
 						}, 50);

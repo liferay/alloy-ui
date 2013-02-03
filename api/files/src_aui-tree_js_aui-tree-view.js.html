@@ -17,7 +17,7 @@
         </div>
         <div class="yui3-u-1-4 version">
             <div class="version-details">
-                <span class="version-lib">AlloyUI 1.7.0pr3</span>
+                <span class="version-lib">AlloyUI 1.7.0</span>
                 <div class="yui-version">
                     <span class="version-lib version-lib-yui">YUI 3.7.3</span>
                 </div>
@@ -1603,6 +1603,7 @@ var L = A.Lang,
 	FILE = &#x27;file&#x27;,
 	HITAREA = &#x27;hitarea&#x27;,
 	ICON = &#x27;icon&#x27;,
+	INVALID = &#x27;invalid&#x27;,
 	LABEL = &#x27;label&#x27;,
 	LAST_SELECTED = &#x27;lastSelected&#x27;,
 	LEAF = &#x27;leaf&#x27;,
@@ -1631,6 +1632,7 @@ var L = A.Lang,
 	CSS_TREE_ICON = getCN(TREE, ICON),
 	CSS_TREE_LABEL = getCN(TREE, LABEL),
 	CSS_TREE_NODE_CONTENT = getCN(TREE, NODE, CONTENT),
+	CSS_TREE_NODE_CONTENT_INVALID = getCN(TREE, NODE, CONTENT, INVALID),
 	CSS_TREE_ROOT_CONTAINER = getCN(TREE, ROOT, CONTAINER),
 	CSS_TREE_VIEW_CONTENT = getCN(TREE, VIEW, CONTENT);
 
@@ -1716,28 +1718,13 @@ var TreeView = A.Component.create(
 				value: true
 			},
 
-			&#x2F;**
-			 * IO metadata for loading the children using ajax.
-			 *
-			 * @attribute io
-			 * @default null
-			 * @type Object
-			 *&#x2F;
-			io: {
-				value: null
-			},
-
-			paginator: {
-				value: null
-			},
-
 			selectOnToggle: {
 				validator: isBoolean,
 				value: false
 			}
 		},
 
-		AUGMENTS: [A.TreeData],
+		AUGMENTS: [A.TreeData, A.TreeViewPaginator, A.TreeViewIO],
 
 		prototype: {
 			CONTENT_TEMPLATE: &#x27;&lt;ul&gt;&lt;&#x2F;ul&gt;&#x27;,
@@ -1759,6 +1746,18 @@ var TreeView = A.Component.create(
 				var instance = this;
 
 				instance._delegateDOM();
+			},
+
+			createNodes: function(nodes) {
+				var instance = this;
+
+				A.Array.each(A.Array(nodes), function(node) {
+					var newNode = instance.createNode(node);
+
+					instance.appendChild(newNode);
+				});
+
+				instance._syncPaginatorUI(nodes);
 			},
 
 			&#x2F;**
@@ -1863,6 +1862,7 @@ var TreeView = A.Component.create(
 			 *&#x2F;
 			_delegateDOM: function() {
 				var instance = this;
+
 				var boundingBox = instance.get(BOUNDING_BOX);
 
 				&#x2F;&#x2F; expand&#x2F;collapse delegations
@@ -1883,6 +1883,7 @@ var TreeView = A.Component.create(
 			 *&#x2F;
 			_onClickNodeEl: function(event) {
 				var instance = this;
+
 				var treeNode = instance.getNodeByChild( event.currentTarget );
 
 				if (treeNode) {
@@ -2185,6 +2186,7 @@ var TreeViewDD = A.Component.create(
 						{
 							bubbleTargets: instance,
 							container: boundingBox,
+							invalid: DOT+CSS_TREE_NODE_CONTENT_INVALID,
 							nodes: DOT+CSS_TREE_NODE_CONTENT,
 							target: true
 						}

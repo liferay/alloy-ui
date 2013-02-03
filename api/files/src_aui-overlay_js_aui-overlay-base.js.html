@@ -17,7 +17,7 @@
         </div>
         <div class="yui3-u-1-4 version">
             <div class="version-details">
-                <span class="version-lib">AlloyUI 1.7.0pr3</span>
+                <span class="version-lib">AlloyUI 1.7.0</span>
                 <div class="yui-version">
                     <span class="version-lib version-lib-yui">YUI 3.7.3</span>
                 </div>
@@ -1583,7 +1583,7 @@
     <pre class="code prettyprint linenums">
 &#x2F;**
  * Provides a basic Overlay widget, with Standard Module content support. The Overlay widget
- * provides Page XY positioning support, alignment and centering support along with basic 
+ * provides Page XY positioning support, alignment and centering support along with basic
  * stackable support (z-index and shimming).
  *
  * @module aui-overlay
@@ -1608,6 +1608,11 @@
 A.OverlayBase = A.Component.create(
 	{
 		NAME: &#x27;overlay&#x27;,
+		ATTRS: {
+			hideClass: {
+				value: false
+			}
+		},
 		AUGMENTS: [A.WidgetPosition, A.WidgetStack, A.WidgetPositionAlign, A.WidgetPositionConstrain, A.WidgetStdMod]
 	}
 );
