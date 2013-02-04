@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+</head>
+<body>
+    <h1>AlloyUI - Toolbar</h1>
+    <h2>Horizontal</h2>
+    <p>
+        <div id="toolbar1" class="aui-toolbar">
+            <button class="aui-btn aui-btn-mini"><i class="aui-icon-print"></i></button>
+            <div id="checkgroup1" class="aui-btn-group aui-btn-group-checkbox">
+                <button class="aui-btn aui-btn-mini"><i class="aui-icon-bold"></i></button>
+                <button class="aui-btn aui-btn-mini"><i class="aui-icon-italic"></i></button>
+                <button class="aui-btn aui-btn-mini"><i class="aui-icon-font"></i></button>
+            </div>
+            <div id="radiogroup1" class="aui-btn-group aui-btn-group-radio">
+                <button class="aui-btn aui-btn-mini"><i class="aui-icon-align-left"></i></button>
+                <button class="aui-btn aui-btn-mini"><i class="aui-icon-align-center"></i></button>
+                <button class="aui-btn aui-btn-mini"><i class="aui-icon-align-right"></i></button>
+                <button class="aui-btn aui-btn-mini"><i class="aui-icon-align-justify"></i></button>
+            </div>
+        </div>
+    </p>
+    <p>
+        <div id="toolbar2" class="aui-toolbar">
+            <button class="aui-btn"><i class="aui-icon-print"></i></button>
+            <div id="checkgroup2" class="aui-btn-group aui-btn-group-checkbox">
+                <button class="aui-btn"><i class="aui-icon-bold"></i></button>
+                <button class="aui-btn"><i class="aui-icon-italic"></i></button>
+                <button class="aui-btn"><i class="aui-icon-font"></i></button>
+            </div>
+            <div id="radiogroup2" class="aui-btn-group aui-btn-group-radio">
+                <button class="aui-btn"><i class="aui-icon-align-left"></i></button>
+                <button class="aui-btn"><i class="aui-icon-align-center"></i></button>
+                <button class="aui-btn"><i class="aui-icon-align-right"></i></button>
+                <button class="aui-btn"><i class="aui-icon-align-justify"></i></button>
+            </div>
+        </div>
+    </p>
+    <p>
+        <div id="toolbar3" class="aui-toolbar">
+            <button class="aui-btn aui-btn-large"><i class="aui-icon-print"></i></button>
+            <div id="checkgroup3" class="aui-btn-group aui-btn-group-checkbox">
+                <button class="aui-btn aui-btn-large"><i class="aui-icon-bold"></i></button>
+                <button class="aui-btn aui-btn-large"><i class="aui-icon-italic"></i></button>
+                <button class="aui-btn aui-btn-large"><i class="aui-icon-font"></i></button>
+            </div>
+            <div id="radiogroup3" class="aui-btn-group aui-btn-group-radio">
+                <button class="aui-btn aui-btn-large"><i class="aui-icon-align-left"></i></button>
+                <button class="aui-btn aui-btn-large"><i class="aui-icon-align-center"></i></button>
+                <button class="aui-btn aui-btn-large"><i class="aui-icon-align-right"></i></button>
+                <button class="aui-btn aui-btn-large"><i class="aui-icon-align-justify"></i></button>
+            </div>
+        </div>
+    </p>
+    <h2>Vertical</h2>
+    <div id="vertical" class="aui-toolbar">
+        <button class="aui-btn"><i class="aui-icon-print"></i></button>
+        <div id="checkgroup4" class="aui-btn-group aui-btn-group-checkbox aui-btn-group-vertical">
+            <button class="aui-btn"><i class="aui-icon-bold"></i></button>
+            <button class="aui-btn"><i class="aui-icon-italic"></i></button>
+            <button class="aui-btn"><i class="aui-icon-font"></i></button>
+        </div>
+        <div id="radiogroup4" class="aui-btn-group aui-btn-group-radio aui-btn-group-vertical">
+            <button class="aui-btn"><i class="aui-icon-align-left"></i></button>
+            <button class="aui-btn"><i class="aui-icon-align-center"></i></button>
+            <button class="aui-btn"><i class="aui-icon-align-right"></i></button>
+            <button class="aui-btn"><i class="aui-icon-align-justify"></i></button>
+        </div>
+    </div>
+    <h2>From JavaScript</h2>
+    <div id="toolbarjs1"></div><br>
+    <div id="toolbarjs2"></div>
+    <div class="aui-hide">
+        <div id="btngroupjs" class="aui-btn-group">
+            <button class="aui-btn"><i class="aui-icon-align-left"></i></button>
+            <button class="aui-btn"><i class="aui-icon-align-center"></i></button>
+            <button class="aui-btn"><i class="aui-icon-align-right"></i></button>
+            <button class="aui-btn"><i class="aui-icon-align-justify"></i></button>
+        </div>
+    </div>
+    <script>
+    YUI({ filter: 'raw' }).use('aui-toolbar', function(A) {
+
+        console.time('How long does it takes?');
+
+        new A.Toolbar({
+            boundingBox: '#toolbar1',
+            on: {
+                click: function(event) {
+                    var widget = this.getEnclosingWidget(event);
+
+                    if (A.instanceOf(widget, A.Button)) {
+                        console.log(widget.getNode());
+                    }
+                    else if (A.instanceOf(widget, A.ButtonGroup)) {
+                        console.log(widget.getSelectedButtons());
+                    }
+                }
+            }
+        }).render();
+
+        new A.Toolbar({
+            boundingBox: '#toolbar2'
+        }).render();
+
+        new A.Toolbar({
+            boundingBox: '#toolbar3'
+        }).render();
+
+        new A.Toolbar({
+            boundingBox: '#vertical'
+        }).render();
+
+        new A.Toolbar({
+            boundingBox: '#toolbarjs1',
+            children: [
+                [
+                    { icon: 'aui-icon-camera' },
+                    { icon: 'aui-icon-print' }
+                ],
+                [
+                    'radio',
+                    {
+                        icon: 'aui-icon-facetime-video',
+                        label: '1'
+                    },
+                    { label: '2' },
+                    { label: '3' }
+                ],
+                [
+                    'checkbox',
+                    { icon: 'aui-icon-bold' },
+                    { icon: 'aui-icon-italic' },
+                    { icon: 'aui-icon-font' }
+                ],
+                [
+                    'radio',
+                    { icon: 'aui-icon-align-left' },
+                    { icon: 'aui-icon-align-center' },
+                    { icon: 'aui-icon-align-right' },
+                    { icon: 'aui-icon-align-justify' }
+                ]
+            ]
+        }).render();
+
+        new A.Toolbar({
+            boundingBox: '#toolbarjs2',
+            children: [
+                new A.ButtonGroup({
+                    boundingBox: '#btngroupjs',
+                    render: true
+                }),
+                [ /*empty button group*/ ],
+                new A.Button({
+                    label: 'From constructor',
+                    render: true
+                }),
+                [ /*empty button group*/ ],
+                [ /*empty button group*/ ],
+                {
+                    cssClass: 'aui-btn-info aui-btn-large',
+                    icon: 'aui-icon-print',
+                    label: 'Large from plain object',
+                    on: {
+                        click: function(event) {
+                            console.log(event);
+                        }
+                    }
+                }
+            ]
+        }).render();
+
+        console.timeEnd('How long does it takes?');
+
+    });
+    </script>
+</body>
+</html>
