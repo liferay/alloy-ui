@@ -1,0 +1,10 @@
+{
+    "aui-toolbar": {
+        "requires": [
+            "arraylist",
+            "arraylist-add",
+            "aui-component",
+            "aui-button"
+        ]
+    }
+}
