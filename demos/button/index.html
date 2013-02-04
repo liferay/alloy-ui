@@ -13,22 +13,22 @@
     <button id="toggle"></button>
     <h2>JavaScript button group</h2>
     <p>
-        <div id='checkgroup'>
-            <input type='button' value='2'>
-            <input class="aui-active" type='reset' value='3'>
-            <input class="aui-active" type='submit' value='4'>
-            <input type='button' value='5'>
-            <input type='button' value='6'>
+        <div id="checkgroup">
+            <input type="button" value="2">
+            <input class="aui-active" type="reset" value="3">
+            <input class="aui-active" type="submit" value="4">
+            <input type="button" value="5">
+            <input type="button" value="6">
             <button>7</button>
         </div>
     </p>
     <p>
-        <div id='radiogroup'>
-            <input type='button' value='2'>
-            <input type='reset' value='3'>
-            <input class="aui-active" type='submit' value='4'>
-            <input type='button' value='5'>
-            <input type='button' value='6'>
+        <div id="radiogroup">
+            <input type="button" value="2">
+            <input type="reset" value="3">
+            <input class="aui-active" type="submit" value="4">
+            <input type="button" value="5">
+            <input type="button" value="6">
             <button>7</button>
         </div>
     </p>
@@ -54,7 +54,7 @@
     </p>
     <p>
         <button class="aui-btn aui-btn-primary" type="button">Default button</button>
-        <button class="aui-btn " type="button">Default button</button>
+        <button class="aui-btn" type="button">Default button</button>
     </p>
     <p>
         <button class="aui-btn aui-btn-mini aui-btn-primary" type="button">Mini button</button>
@@ -73,7 +73,9 @@
 
         new A.Button({
             label: 'Basic',
-            srcNode: '#basic'
+            srcNode: '#basic',
+            icon: 'aui-icon-print',
+            iconAlign: 'left'
         }).render();
 
         new A.ToggleButton({
@@ -82,12 +84,12 @@
        }).render();
 
         new A.ButtonGroup({
-            srcNode: '#checkgroup',
+            boundingBox: '#checkgroup',
             type: 'checkbox'
         }).render();
 
         new A.ButtonGroup({
-            srcNode: '#radiogroup',
+            boundingBox: '#radiogroup',
             type: 'radio'
         }).render();
 
