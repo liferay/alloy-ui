@@ -46,7 +46,7 @@
     },
     "aui-button-core": {
         "requires": [
-            "aui-classnamemanager"
+            "aui-component"
         ]
     },
     "aui-carousel": {
@@ -286,6 +286,14 @@
         "requires": [
             "node-event-delegate",
             "aui-toggler-base"
+        ]
+    },
+    "aui-toolbar": {
+        "requires": [
+            "arraylist",
+            "arraylist-add",
+            "aui-component",
+            "aui-button"
         ]
     },
     "aui-tree": {

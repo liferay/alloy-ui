@@ -10,7 +10,7 @@
 
     "aui-button-core": {
         "requires": [
-            "aui-classnamemanager"
+            "aui-component"
         ]
     }
 }

@@ -55,7 +55,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-button-core": {
         "requires": [
-            "aui-classnamemanager"
+            "aui-component"
         ]
     },
     "aui-carousel": {
@@ -311,6 +311,14 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-toggler-base"
         ]
     },
+    "aui-toolbar": {
+        "requires": [
+            "arraylist",
+            "arraylist-add",
+            "aui-component",
+            "aui-button"
+        ]
+    },
     "aui-tree": {
         "use": [
             "aui-tree-data",
@@ -374,6 +382,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '4645970301124afba98b1f5b3ee65e28';
+YUI.Env[Y.version].md5 = '4237c24dffd7861d224184e15e0e0138';
 
 });
