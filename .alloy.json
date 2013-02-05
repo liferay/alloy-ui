@@ -9,13 +9,14 @@
         "yui3": {
             "folder": "../yui3",
             "repo": "https://github.com/yui/yui3.git",
-            "version": "master"
+            "version": "v3.8.1"
         },
         "alloy-twitter-bootstrap": {
             "folder": "../alloy-twitter-bootstrap",
-            "repo": "https://github.com/eduardolundgren/alloy-twitter-bootstrap.git",
-            "version": "dev"
+            "repo": "https://github.com/liferay/alloy-twitter-bootstrap.git",
+            "version": "master"
         }
     },
-    "version": "2.0.0"
+    "yui-version": "3.8.1",
+    "version": "2.0.0pr1"
 }
