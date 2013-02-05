@@ -12,6 +12,15 @@ Alloy is a UI framework built on top of YUI3 that provides a simple API for buil
 * [Contributing](http://alloyui.com/contributing/)
 * [About](http://alloyui.com/about/)
 
+## Branches
+
+Branch [master](https://github.com/liferay/alloy-ui/tree/master) now contains in progress version 2.0.x. If you were using the old master checkout [1.7.x](https://github.com/liferay/alloy-ui/tree/1.7.x).
+
+* [1.7.x](https://github.com/liferay/alloy-ui/tree/1.7.x)
+* [1.6.x](https://github.com/liferay/alloy-ui/tree/1.6.x)
+* [1.5.x](https://github.com/liferay/alloy-ui/tree/1.5.x)
+
+
 ## Discussion
 
 * [Liferay Forums](http://www.liferay.com/community/forums/-/message_boards/category/8409523)
