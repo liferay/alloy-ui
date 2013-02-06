@@ -7,7 +7,6 @@ var Lang = A.Lang,
     GROUP = 'group',
     BUTTON = 'button',
     RENDERED = 'rendered',
-    MOUSEDOWN = 'mousedown',
     TOOLBAR = 'toolbar',
     TOOLBAR_RENDERER = 'toolbarRenderer',
     BOUNDING_BOX = 'boundingBox',
@@ -15,7 +14,10 @@ var Lang = A.Lang,
     BTN = 'btn',
     CHILDREN = 'children',
     RADIO = 'radio',
-    CONSTRUCTOR = 'constructor',
+    FOCUS = 'focus',
+    MOUSEMOVE = 'mousemove',
+    ENCLOSING_WIDGET_INITIALIZED = 'enclosingWidgetInitialized',
+    CLICK = 'click',
 
     _DOT = '.',
     _EMPTY = '',
@@ -56,7 +58,7 @@ A.Toolbar = A.Component.create({
             var instance = this,
                 boundingBox = instance.get(BOUNDING_BOX);
 
-            boundingBox.delegate(MOUSEDOWN, instance._onItemMouseDown, _DOT+CSS_BTN, instance);
+            boundingBox.delegate([CLICK, MOUSEMOVE, FOCUS], instance._onUserInitInteraction, _DOT+CSS_BTN, instance);
         },
 
         renderUI: function() {
@@ -72,7 +74,7 @@ A.Toolbar = A.Component.create({
             return A.Widget.getByNode(seed);
         },
 
-        _onItemMouseDown: function(event) {
+        _onUserInitInteraction: function(event) {
             var instance = this,
                 currentTarget = event.currentTarget;
 
@@ -80,30 +82,40 @@ A.Toolbar = A.Component.create({
         },
 
         _initEnclosingWidgetIfNeeded: function(seed) {
-            var instance = this,
-                enclosingWidget = A.Widget.getByNode(seed),
-                isAlreadyButton = A.instanceOf(enclosingWidget, A.Button),
-                isAlreadyButtonGroup = A.instanceOf(enclosingWidget, A.ButtonGroup);
+            var instance = this;
 
-            if (isAlreadyButton || isAlreadyButtonGroup) {
+            if (seed.getData(ENCLOSING_WIDGET_INITIALIZED)) {
                 return;
             }
+            seed.setData(ENCLOSING_WIDGET_INITIALIZED, true);
+
+            var enclosingWidget = A.Widget.getByNode(seed),
+                isAlreadyButton = A.instanceOf(enclosingWidget, A.Button);
+
+            if (isAlreadyButton) {
+                return;
+            }
+
+            new A.Button(A.Button.getWidgetLazyConstructorFromNodeData(seed));
+            A.Button.setWidgetLazyConstructorNodeData(seed, null);
 
             var groupNode = seed.ancestor(_DOT+CSS_BTN_GROUP);
             if (groupNode) {
                 var type;
                 if (groupNode.hasClass(CSS_BTN_GROUP_CHECKBOX)) {
-                    type = 'checkbox';
+                    type = CHECKBOX;
                 }
                 else if (groupNode.hasClass(CSS_BTN_GROUP_RADIO)) {
-                    type = 'radio';
+                    type = RADIO;
                 }
+
                 if (type) {
-                    new A.ButtonGroup(instance._makeNodeConstructor(groupNode));
+                    new A.ButtonGroup({
+                        boundingBox: groupNode,
+                        type: type,
+                        render: true
+                    });
                 }
-            }
-            else {
-                new A.Button(instance._makeNodeConstructor(seed));
             }
         },
 
@@ -126,15 +138,6 @@ A.Toolbar = A.Component.create({
             }
 
             instance._renderChildrenUI();
-        },
-
-        _makeNodeConstructor: function(node) {
-            var instance = this,
-                config = node.getData('constructor') || {};
-
-            config.boundingBox = node;
-            config.render = true;
-            return config;
         }
     }
 });
@@ -169,7 +172,8 @@ ToolbarRenderer.prototype = {
             if (value.label) {
                 buttonNode.appendChild(value.label);
             }
-            buttonNode.setData(CONSTRUCTOR, value);
+
+            A.Button.setWidgetLazyConstructorNodeData(buttonNode, value);
             return buttonNode;
         },
 
@@ -196,10 +200,11 @@ ToolbarRenderer.prototype = {
             var groupNode = A.Node.create(
                     Lang.sub(instance.TEMPLATES.group, { cssClass: cssClass }));
 
-            A.Array.each(value, function(child) {
-                groupNode.appendChild(instance._renderChild(child));
+            A.Array.each(value, function(child, index) {
+                var childNode = instance._renderChild(child);
+                groupNode.appendChild(childNode);
+                A.Button.setWidgetLazyConstructorNodeData(childNode, value[index]);
             });
-            groupNode.setData(CONSTRUCTOR, value);
             return groupNode;
         }
     },
