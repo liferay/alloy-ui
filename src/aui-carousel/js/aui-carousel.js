@@ -121,11 +121,11 @@ var Carousel = A.Component.create(
              * Interval time in seconds between an item transition
              *
              * @attribute intervalTime
-             * @default 0.75
+             * @default 2
              * @type {Integer | Float}
              */
             intervalTime: {
-                value: 0.75
+                value: 2
             },
 
             /**
