@@ -76,7 +76,7 @@
     <div id="toolbarjs1"></div><br>
     <div id="toolbarjs2"></div>
     <div class="aui-hide">
-        <div id="btngroupjs" class="aui-btn-group">
+        <div id="btngroupjs" class="aui-btn-group aui-btn-group-radio">
             <button class="aui-btn"><i class="aui-icon-align-left"></i></button>
             <button class="aui-btn"><i class="aui-icon-align-center"></i></button>
             <button class="aui-btn"><i class="aui-icon-align-right"></i></button>
@@ -119,8 +119,17 @@
         new A.Toolbar({
             boundingBox: '#toolbarjs1',
             children: [
+                { label: 'testando' },
                 [
-                    { icon: 'aui-icon-camera' },
+                    {
+                        icon: 'aui-icon-camera',
+                        label: '12345',
+                        on: {
+                            click: function(event) {
+                                console.log(event);
+                            }
+                        }
+                    },
                     { icon: 'aui-icon-print' }
                 ],
                 [
@@ -155,6 +164,10 @@
                     boundingBox: '#btngroupjs',
                     render: true
                 }),
+                [
+                    { icon: 'aui-icon-align-camera' },
+                    { icon: 'aui-icon-align-print' }
+                ],
                 [ /*empty button group*/ ],
                 new A.Button({
                     label: 'From constructor',
