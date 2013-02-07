@@ -1,0 +1,55 @@
+{
+    "name": "aui-scheduler",
+    "builds": {
+        "aui-scheduler-base": {
+            "jsfiles": [
+                "js/aui-scheduler-base-event.js",
+                "js/aui-scheduler-base-calendar.js",
+                "js/aui-scheduler-base.js",
+                "js/aui-scheduler-base-view.js"
+            ]
+        },
+
+        "aui-scheduler-event-recorder": {
+            "jsfiles": [
+                "js/aui-scheduler-event-recorder.js"
+            ]
+        },
+
+        "aui-scheduler-view-agenda": {
+            "jsfiles": [
+                "js/aui-scheduler-view-agenda.js"
+            ]
+        },
+
+        "aui-scheduler-view-day": {
+            "jsfiles": [
+                "js/aui-scheduler-view-day.js"
+            ]
+        },
+
+        "aui-scheduler-view-month": {
+            "jsfiles": [
+                "js/aui-scheduler-view-month.js"
+            ]
+        },
+
+        "aui-scheduler-view-table-dd": {
+            "jsfiles": [
+                "js/aui-scheduler-view-table-dd.js"
+            ]
+        },
+
+        "aui-scheduler-view-table": {
+            "jsfiles": [
+                "js/aui-scheduler-view-table.js"
+            ]
+        },
+
+        "aui-scheduler-view-week": {
+            "jsfiles": [
+                "js/aui-scheduler-view-week.js"
+            ]
+        }
+    }
+}

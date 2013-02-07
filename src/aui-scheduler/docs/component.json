@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-scheduler",
+    "displayName": "Gallery: aui-scheduler",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "eduardo.lundgren" ],
+    "use"        : [ "aui-scheduler" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}
