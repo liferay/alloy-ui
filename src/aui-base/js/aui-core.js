@@ -236,10 +236,12 @@
 			var UA = A.UA;
 			var OS = UA.os;
 
+			var IE = UA.ie;
+
 			var UAX = {
 				aol: 0,
-				trident: 0,
 				ieCompatibilityMode: false,
+				trident: 0,
 
 				camino: 0,
 				firefox: 0,
@@ -261,12 +263,12 @@
 				agent: userAgent
 			};
 
-			if (UA.ie) {
+			if (IE) {
 				UAX.aol = getVersion(/America Online Browser ([^\s]*);/, userAgent);
 				UAX.trident = getVersion(/Trident\/([^\s]*)/, userAgent);
 
-				if (UA.ie == 7 && UAX.trident !== 0) {
-					UA.ie = document.documentMode;
+				if (IE == 7 && UAX.trident !== 0) {
+					IE = document.documentMode;
 					UAX.ieCompatibilityMode = true;
 				}
 			}
