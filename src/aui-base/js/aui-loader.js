@@ -192,6 +192,7 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "node-base",
             "node-style",
+            "node-screen",
             "array-extras",
             "aui-base-lang",
             "aui-classnamemanager",
@@ -243,6 +244,85 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "aui-rating-base"
         ]
+    },
+    "aui-scheduler": {
+        "use": [
+            "aui-scheduler-base",
+            "aui-scheduler-event-recorder",
+            "aui-scheduler-view-agenda",
+            "aui-scheduler-view-day",
+            "aui-scheduler-view-month",
+            "aui-scheduler-view-table-dd",
+            "aui-scheduler-view-table",
+            "aui-scheduler-view-week"
+        ]
+    },
+    "aui-scheduler-base": {
+        "requires": [
+            "model",
+            "model-list",
+            "widget-stdmod",
+            "color-hsl",
+            "aui-event-base",
+            "aui-node-base",
+            "aui-component",
+            "aui-datatype",
+            "aui-button"
+        ],
+        "skinnable": true
+    },
+    "aui-scheduler-event-recorder": {
+        "requires": [
+            "querystring",
+            "io-form",
+            "overlay",
+            "aui-scheduler-base",
+            "aui-toolbar"
+        ],
+        "skinnable": true
+    },
+    "aui-scheduler-view-agenda": {
+        "requires": [
+            "aui-scheduler-base"
+        ],
+        "skinnable": true
+    },
+    "aui-scheduler-view-day": {
+        "requires": [
+            "dd-drag",
+            "dd-delegate",
+            "dd-drop",
+            "dd-constrain",
+            "aui-scheduler-view-table"
+        ],
+        "skinnable": true
+    },
+    "aui-scheduler-view-month": {
+        "requires": [
+            "aui-scheduler-view-table"
+        ],
+        "skinnable": true
+    },
+    "aui-scheduler-view-table": {
+        "requires": [
+            "overlay",
+            "aui-scheduler-base"
+        ],
+        "skinnable": true
+    },
+    "aui-scheduler-view-table-dd": {
+        "requires": [
+            "dd-drag",
+            "dd-delegate",
+            "dd-drop",
+            "aui-scheduler-view-table"
+        ]
+    },
+    "aui-scheduler-view-week": {
+        "requires": [
+            "aui-scheduler-view-day"
+        ],
+        "skinnable": true
     },
     "aui-search": {
         "use": [
@@ -312,7 +392,7 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     },
     "aui-toolbar": {
-        "requires": [
+        "use": [
             "arraylist",
             "arraylist-add",
             "aui-component",
@@ -382,6 +462,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '4237c24dffd7861d224184e15e0e0138';
+YUI.Env[Y.version].md5 = '594fc2fcf054391a7220e5147d097b02';
 
 });
