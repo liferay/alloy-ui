@@ -67,11 +67,26 @@ A.Toolbar = A.Component.create({
             instance._renderChildrenUI();
         },
 
+        add: function(children, where) {
+            var instance = this,
+                boundingBox = instance.get(BOUNDING_BOX),
+                toolbarRenderer = instance.get(TOOLBAR_RENDERER);
+
+            boundingBox.insert(toolbarRenderer.render(A.Array(children)), where);
+        },
+
         getEnclosingWidget: function(seed) {
             if (A.instanceOf(seed, A.EventFacade)) {
                 seed = seed.domEvent ? seed.domEvent.target : seed.target;
             }
             return A.Widget.getByNode(seed);
+        },
+
+        remove: function(where) {
+            var instance = this,
+                boundingBox = instance.get(BOUNDING_BOX);
+
+            return boundingBox.get(CHILDREN).item(where).remove();
         },
 
         _onUserInitInteraction: function(event) {
@@ -128,12 +143,10 @@ A.Toolbar = A.Component.create({
 
         _renderChildrenUI: function() {
             var instance = this,
-                children = instance.get(CHILDREN),
-                boundingBox = instance.get(BOUNDING_BOX);
+                children = instance.get(CHILDREN);
 
             if (children) {
-                var toolbarRenderer = instance.get(TOOLBAR_RENDERER);
-                boundingBox.setContent(toolbarRenderer.render(children));
+                instance.add(children);
             }
         },
 
