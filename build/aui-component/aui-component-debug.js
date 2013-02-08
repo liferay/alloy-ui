@@ -11,6 +11,11 @@ var Lang = A.Lang,
 		return (arr || []).concat(arr2 || []);
 	},
 
+	ClassNameManager = A.ClassNameManager,
+
+	_getClassName = ClassNameManager.getClassName,
+	_getWidgetClassName = A.Widget.getClassName,
+
 	getClassName = A.getClassName,
 
 	NAME = 'component',
@@ -96,8 +101,8 @@ Component.ATTRS = {
 
 	/**
 	 * css class added to hide the <code>boundingBox</code> when
-     * <a href="Component.html#config_visible">visible</a> is set to
-     * <code>false</code>.
+	 * <a href="Component.html#config_visible">visible</a> is set to
+	 * <code>false</code>.
 	 *
 	 * @attribute hideClass
 	 * @default 'aui-helper-hidden'
@@ -109,7 +114,7 @@ Component.ATTRS = {
 
 	/**
 	 * If <code>true</code> the render phase will be autimatically invoked
-     * preventing the <code>.render()</code> manual call.
+	 * preventing the <code>.render()</code> manual call.
 	 *
 	 * @attribute render
 	 * @default false
@@ -138,8 +143,6 @@ A.extend(
 				instance._uiSetCssClass(config.cssClass);
 			}
 
-			instance._setComponentClassNames();
-
 			instance.after('cssClassChange', instance._afterCssClassChange);
 		},
 
@@ -164,7 +167,7 @@ A.extend(
 
 		/**
 		 * Toggle the visibility of the Panel toggling the value of the
-	     * <a href="Widget.html#config_visible">visible</a> attribute.
+		 * <a href="Widget.html#config_visible">visible</a> attribute.
 		 *
 		 * @method toggle
 		 * @param visible Force the visibility of the component to this state.
@@ -212,6 +215,60 @@ A.extend(
 		},
 
 		/**
+		 * Applies standard class names to the boundingBox and contentBox
+		 *
+		 * @method _renderBoxClassNames
+		 * @protected
+		 */
+		_renderBoxClassNames : function() {
+			var instance = this;
+
+			var boundingBoxNode = instance.get('boundingBox')._node;
+			var contentBoxNode = instance.get('contentBox')._node;
+
+			var boundingBoxNodeClassName = boundingBoxNode.className;
+			var contentBoxNodeClassName = contentBoxNode.className;
+
+			var boundingBoxBuffer = (boundingBoxNodeClassName) ? boundingBoxNodeClassName.split(' ') : [];
+			var contentBoxBuffer = (contentBoxNodeClassName) ? contentBoxNodeClassName.split(' ') : [];
+
+			var classes = instance._getClasses();
+
+			var auiClassesLength = classes.length - 4;
+
+			var classItem;
+			var classItemName;
+
+			boundingBoxBuffer.push(_getWidgetClassName());
+
+			for (var i = classes.length - 3; i >= 0; i--) {
+				classItem = classes[i];
+
+				boundingBoxBuffer.push(classItem.CSS_PREFIX || _getClassName(classItem.NAME.toLowerCase()));
+
+				if (i <= auiClassesLength) {
+					classItemName = String(classes[i].NAME).toLowerCase();
+
+					contentBoxBuffer.push(getClassName(classItemName, 'content'));
+				}
+			}
+
+			contentBoxBuffer.push(instance.getClassName('content'));
+
+			boundingBoxBuffer = A.Array.dedupe(boundingBoxBuffer);
+			contentBoxBuffer = A.Array.dedupe(contentBoxBuffer);
+
+			if (boundingBoxNode === contentBoxNode) {
+				var concatBuffer = contentBoxBuffer.concat(boundingBoxBuffer);
+				contentBoxNode.className = concatBuffer.join(' ');
+			}
+			else {
+				boundingBoxNode.className = boundingBoxBuffer.join(' ');
+				contentBoxNode.className = contentBoxBuffer.join(' ');
+			}
+		},
+
+		/**
 		 * Renders the Component based upon a passed in interaction.
 		 *
 		 * @method _renderInteraction
@@ -229,28 +286,6 @@ A.extend(
 
 				handle.detach();
 			}
-		},
-
-		/**
-		 * Set the class names on the Component <code>contentBox</code>.
-		 *
-		 * @method _setComponentClassNames
-		 * @protected
-		 */
-		_setComponentClassNames: function() {
-			var instance = this;
-
-			var classes = instance._getClasses();
-			var name;
-			var buffer = [];
-
-			for (var i = classes.length - 4; i >= 0; i--) {
-				name = String(classes[i].NAME).toLowerCase();
-
-				buffer.push(getClassName(name, 'content'));
-			}
-
-			instance.get('contentBox').addClass(buffer.join(' '));
 		},
 
 		/**
@@ -294,7 +329,7 @@ A.extend(
 
 		/**
 		 * Applies the CSS classes to the <code>boundingBox</code> and
-         * <code>contentBox</code>.
+		 * <code>contentBox</code>.
 		 *
 		 * @method _uiSetCssClass
 		 * @protected
@@ -410,4 +445,4 @@ Component.build = function() {
 
 A.Component = Component;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-classnamemanager','base-build','widget']});
+}, '@VERSION@' ,{requires:['aui-classnamemanager','base-build','widget'], skinnable:false});
