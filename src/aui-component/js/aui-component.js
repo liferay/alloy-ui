@@ -13,7 +13,7 @@ var Lang = A.Lang,
 	ClassNameManager = A.ClassNameManager,
 
 	_getClassName = ClassNameManager.getClassName,
-	_getWidgetClassName,
+	_getWidgetClassName = A.Widget.getClassName,
 
 	getClassName = A.getClassName,
 
@@ -124,8 +124,6 @@ Component.ATTRS = {
 		writeOnce: true
 	}
 };
-
-_getWidgetClassName = A.Widget.getClassName;
 
 A.extend(
 	Component,
