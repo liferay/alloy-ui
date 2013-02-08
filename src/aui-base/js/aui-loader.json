@@ -76,6 +76,44 @@
             "widget-base"
         ]
     },
+    "aui-datatable": {
+        "use": [
+            "aui-datatable-edit",
+            "aui-datatable-highlight",
+            "aui-datatable-selection"
+        ]
+    },
+    "aui-datatable-core": {
+        "requires": [
+            "datatable-base",
+            "event-key",
+            "aui-event-base"
+        ]
+    },
+    "aui-datatable-edit": {
+        "requires": [
+            "datatable-base",
+            "calendar",
+            "overlay",
+            "sortable",
+            "aui-datatype",
+            "aui-toolbar",
+            "aui-form-validator"
+        ],
+        "skinnable": true
+    },
+    "aui-datatable-highlight": {
+        "requires": [
+            "aui-datatable-selection"
+        ],
+        "skinnable": true
+    },
+    "aui-datatable-selection": {
+        "requires": [
+            "aui-datatable-core"
+        ],
+        "skinnable": true
+    },
     "aui-datatype": {
         "requires": [
             "datatype"
@@ -369,7 +407,7 @@
         ]
     },
     "aui-toolbar": {
-        "use": [
+        "requires": [
             "arraylist",
             "arraylist-add",
             "aui-component",

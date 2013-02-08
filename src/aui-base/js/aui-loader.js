@@ -85,6 +85,44 @@ Y.mix(YUI.Env[Y.version].modules, {
             "widget-base"
         ]
     },
+    "aui-datatable": {
+        "use": [
+            "aui-datatable-edit",
+            "aui-datatable-highlight",
+            "aui-datatable-selection"
+        ]
+    },
+    "aui-datatable-core": {
+        "requires": [
+            "datatable-base",
+            "event-key",
+            "aui-event-base"
+        ]
+    },
+    "aui-datatable-edit": {
+        "requires": [
+            "datatable-base",
+            "calendar",
+            "overlay",
+            "sortable",
+            "aui-datatype",
+            "aui-toolbar",
+            "aui-form-validator"
+        ],
+        "skinnable": true
+    },
+    "aui-datatable-highlight": {
+        "requires": [
+            "aui-datatable-selection"
+        ],
+        "skinnable": true
+    },
+    "aui-datatable-selection": {
+        "requires": [
+            "aui-datatable-core"
+        ],
+        "skinnable": true
+    },
     "aui-datatype": {
         "requires": [
             "datatype"
@@ -392,7 +430,7 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     },
     "aui-toolbar": {
-        "use": [
+        "requires": [
             "arraylist",
             "arraylist-add",
             "aui-component",
@@ -462,6 +500,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '594fc2fcf054391a7220e5147d097b02';
+YUI.Env[Y.version].md5 = '7fc2445e38214ffafac4b225dc12f3d7';
 
 });
