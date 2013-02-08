@@ -163,17 +163,19 @@ ButtonGroup.CLASS_NAMES = CLASS_NAMES;
 ButtonGroup.prototype.CONTENT_TEMPLATE = null; // Bootstrap button group depends on buttons to be a direct children, force one-box widget.
 ButtonGroup.prototype.renderUI = (function(original) {
     return function() {
-        var instance = this,
-            args = arguments;
+        var instance = this;
 
         instance.getButtons().each(function(button) {
-            if (!A.Button.hasWidgetLazyConstructorData(button)) {
-                original.apply(instance, args);
-                return;
-            }
-            if (!A.instanceOf(A.Widget.getByNode(button), A.Button)) {
-                new A.Button(A.Button.getWidgetLazyConstructorFromNodeData(button));
-                A.Button.setWidgetLazyConstructorNodeData(button, null);
+            if (!button.button &&
+                !A.instanceOf(A.Widget.getByNode(button), A.Button)) {
+
+                if (A.Button.hasWidgetLazyConstructorData(button)) {
+                    new A.Button(A.Button.getWidgetLazyConstructorFromNodeData(button));
+                    A.Button.setWidgetLazyConstructorNodeData(button, null);
+                }
+                else {
+                    button.plug(A.Plugin.Button);
+                }
             }
         });
     };

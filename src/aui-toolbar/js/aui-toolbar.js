@@ -90,14 +90,21 @@ A.Toolbar = A.Component.create({
             seed.setData(ENCLOSING_WIDGET_INITIALIZED, true);
 
             var enclosingWidget = A.Widget.getByNode(seed),
-                isAlreadyButton = A.instanceOf(enclosingWidget, A.Button);
+                isAlreadyButton = A.instanceOf(enclosingWidget, A.Button),
+                isAlreadyButtonGroup = A.instanceOf(enclosingWidget, A.ButtonGroup);
 
-            if (isAlreadyButton) {
+            if (isAlreadyButton || isAlreadyButtonGroup) {
                 return;
             }
 
-            new A.Button(A.Button.getWidgetLazyConstructorFromNodeData(seed));
-            A.Button.setWidgetLazyConstructorNodeData(seed, null);
+            // Initialize button first since it can be outside a group
+            if (A.Button.hasWidgetLazyConstructorData(seed)) {
+                new A.Button(A.Button.getWidgetLazyConstructorFromNodeData(seed));
+                A.Button.setWidgetLazyConstructorNodeData(seed, null);
+            }
+            else {
+                seed.plug(A.Plugin.Button);
+            }
 
             var groupNode = seed.ancestor(_DOT+CSS_BTN_GROUP);
             if (groupNode) {
