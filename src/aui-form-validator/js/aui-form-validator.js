@@ -397,7 +397,7 @@ var FormValidator = A.Component.create({
             if (isString(fieldOrFieldName)) {
                 fieldOrFieldName = instance.getFieldsByName(fieldOrFieldName);
 
-                if (fieldOrFieldName.length) {
+                if (fieldOrFieldName && fieldOrFieldName.length) {
                     fieldOrFieldName = fieldOrFieldName[0];
                 }
             }
