@@ -1,0 +1,28 @@
+{
+    "name": "aui-datatable",
+    "builds": {
+        "aui-datatable-core": {
+            "jsfiles": [
+                "js/aui-datatable-core.js"
+            ]
+        },
+
+        "aui-datatable-edit": {
+            "jsfiles": [
+                "js/aui-datatable-edit.js"
+            ]
+        },
+
+        "aui-datatable-highlight": {
+            "jsfiles": [
+                "js/aui-datatable-highlight.js"
+            ]
+        },
+
+        "aui-datatable-selection": {
+            "jsfiles": [
+                "js/aui-datatable-selection.js"
+            ]
+        }
+    }
+}

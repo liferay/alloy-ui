@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-datatable",
+    "displayName": "Gallery: aui-datatable",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "eduardo.lundgren" ],
+    "use"        : [ "aui-datatable" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}
