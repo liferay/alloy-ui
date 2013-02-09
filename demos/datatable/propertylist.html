@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+    <style>
+    #simple {
+        margin: 10px;
+    }
+    </style>
+</head>
+<body>
+    <h1>AlloyUI - Datatable property list</h1>
+    <div id="simple" class="aui-table-condensed aui-table-striped"></div>
+    <script>
+    YUI({ filter: 'raw' }).use('aui-datatable', function(A) {
+
+        var properties = [
+            {
+                editor: new A.CheckboxCellEditor({
+                    editable: true,
+                    options: [ 'Yes', 'No' ]
+                }),
+                name: 'Boolean',
+                value: 'Yes'
+            },
+            {
+                editor: new A.DateCellEditor(),
+                name: 'Date',
+                value: '10/10/2011'
+            },
+            {
+                name: 'Decimal',
+                value: '0.1',
+                readOnly: true
+            },
+            {
+                name: 'Integer',
+                value: '1',
+                readOnly: true
+            },
+            {
+                name: 'Number',
+                value: '123',
+                readOnly: true
+            },
+            {
+                editor: new A.RadioCellEditor({
+                    editable: true,
+                    options: [ 'Yes', 'No' ]
+                }),
+                name: 'Radio',
+                value: 'Yes'
+            },
+            {
+                editor: new A.DropDownCellEditor({
+                    editable: true,
+                    options: {
+                        apple: 'Apple',
+                        cherry: 'Cherry',
+                        banana: 'Banana',
+                        kiwi: 'Kiwi'
+                    }
+                }),
+                name: 'Select',
+                value: 'Apple'
+            },
+            {
+                editor: new A.DropDownCellEditor({
+                    editable: true,
+                    multiple: true,
+                    options: {
+                        apple: 'Apple',
+                        cherry: 'Cherry',
+                        banana: 'Banana',
+                        kiwi: 'Kiwi'
+                    }
+                }),
+                name: 'Select multiple',
+                value: 'apple'
+            },
+            {
+                name: 'Text',
+                value: 'Text value'
+            },
+            {
+                editor: new A.TextAreaCellEditor(),
+                name: 'Text-box',
+                value: 'Text-box value'
+            }
+        ];
+
+        new A.PropertyList({
+            boundingBox: '#simple',
+            data: properties,
+            on: {
+                'model:change': function(event) {
+                    var model = event.target;
+                    console.log('saved', model);
+                }
+            }
+        })
+        .render();
+
+    });
+    </script>
+</body>
+</html>
