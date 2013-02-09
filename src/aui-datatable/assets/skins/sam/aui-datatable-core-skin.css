@@ -1,0 +1,27 @@
+/*
+* css from datatable-scroll-skin.css
+*/
+.aui-table-scroll-columns .aui-table-header {
+    padding: 0;
+}
+
+.aui-table-x-scroller,
+.aui-table-y-scroller-container {
+    border: 1px solid #ddd;
+}
+
+.aui-table-scrollable-x .aui-table-y-scroller-container,
+.aui-table-x-scroller .aui-table-table,
+.aui-table-y-scroller .aui-table-table {
+    border: 0 none;
+}
+
+/*
+* custom
+*/
+.aui-table-header {
+    background: #fff;
+    border-bottom: 1px;
+    border-bottom-color: #ddd;
+    border-bottom-style: solid;
+}

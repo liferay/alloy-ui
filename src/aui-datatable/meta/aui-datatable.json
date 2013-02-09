@@ -3,7 +3,8 @@
         "use": [
             "aui-datatable-edit",
             "aui-datatable-highlight",
-            "aui-datatable-selection"
+            "aui-datatable-selection",
+            "aui-datatable-property-list"
         ]
     },
 
@@ -12,7 +13,8 @@
             "datatable-base",
             "event-key",
             "aui-event-base"
-        ]
+        ],
+        "skinnable": true
     },
 
     "aui-datatable-edit": {
@@ -23,7 +25,8 @@
             "sortable",
             "aui-datatype",
             "aui-toolbar",
-            "aui-form-validator"
+            "aui-form-validator",
+            "aui-datatable-core"
         ],
         "skinnable": true
     },
@@ -40,5 +43,16 @@
             "aui-datatable-core"
         ],
         "skinnable": true
+    },
+
+    "aui-datatable-property-list": {
+        "requires": [
+            "datatable-scroll",
+            "datatable-sort",
+            "aui-datatable-core",
+            "aui-datatable-edit",
+            "aui-datatable-highlight",
+            "aui-datatable-selection"
+        ]
     }
 }
