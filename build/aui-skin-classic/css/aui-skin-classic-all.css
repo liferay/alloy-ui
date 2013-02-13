@@ -1743,7 +1743,7 @@ input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focu
 	border-color: #555;
 }
 
-.aui-state-default {
+.aui-state-default, .aui-state-disabled, .aui-state-disabled:hover {
 	background: #d4d4d4 url(../images/common/state_default_bg.png) repeat-x 0 0;
 	border: 1px solid;
 	border-color: #c8c9ca #9e9e9e #9e9e9e #c8c9ca;

@@ -399,13 +399,12 @@ AUI.add('aui-datepicker-select', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isString = Lang.isString,
-	isBoolean = Lang.isBoolean,
 	isValue = Lang.isValue,
-	isNumber = Lang.isNumber,
-	isDate = Lang.isDate,
 	toInt = Lang.toInt,
 	DataType = A.DataType,
 	DateMath = DataType.DateMath,
+
+	getClassName = A.getClassName,
 
 	nodeSetter = function(v) {
 		return A.one(v);
@@ -419,7 +418,6 @@ var Lang = A.Lang,
 
 	APPEND_ORDER = 'appendOrder',
 	BLANK = '',
-	BODY = 'body',
 	BOUNDING_BOX = 'boundingBox',
 	BUTTON = 'button',
 	BUTTONITEM = 'buttonitem',
@@ -434,9 +432,11 @@ var Lang = A.Lang,
 	DAY = 'day',
 	DAY_NODE = 'dayNode',
 	DAY_NODE_NAME = 'dayNodeName',
+	DISABLED = 'disabled',
 	DISPLAY = 'display',
 	DOT = '.',
 	HELPER = 'helper',
+	ID = 'id',
 	KEY_PRESS = 'keypress',
 	MAX_DATE = 'maxDate',
 	MIN_DATE = 'minDate',
@@ -453,12 +453,9 @@ var Lang = A.Lang,
 	POPULATE_MONTH = 'populateMonth',
 	POPULATE_YEAR = 'populateYear',
 	SELECT = 'select',
-	SELECT_MULTIPLE_DATES = 'selectionMode',
-	SELECTED = 'selected',
 	SELECTED_DATES = 'selectedDates',
 	SELECT_WRAPPER_NODE = 'selectWrapperNode',
 	SPACE = ' ',
-	SRC_NODE = 'srcNode',
 	TRIGGER = 'trigger',
 	WRAPPER = 'wrapper',
 	YEAR = 'year',
@@ -466,10 +463,7 @@ var Lang = A.Lang,
 	YEAR_NODE_NAME = 'yearNodeName',
 	YEAR_RANGE = 'yearRange',
 
-	getClassName = A.getClassName,
-
 	CSS_BUTTONITEM = getClassName(BUTTONITEM),
-	CSS_DATEPICKER = getClassName(DATEPICKER),
 	CSS_DATEPICKER_BUTTON_WRAPPER = getClassName(DATEPICKER, BUTTON, WRAPPER),
 	CSS_DATEPICKER_DAY = getClassName(DATEPICKER, DAY),
 	CSS_DATEPICKER_DISPLAY = getClassName(DATEPICKER, DISPLAY),
@@ -480,9 +474,8 @@ var Lang = A.Lang,
 	CSS_HELPER_CLEARFIX = getClassName(HELPER, CLEARFIX),
 
 	SELECT_TPL = '<select></select>',
-	SELECT_OPTION_TPL = '<option></option>',
-	WRAPPER_BUTTON_TPL = '<div class="'+ CSS_DATEPICKER_BUTTON_WRAPPER +'"></div>',
-	WRAPPER_SELECT_TPL = '<div class='+ CSS_DATEPICKER_SELECT_WRAPPER +'></div>';
+	WRAPPER_BUTTON_TPL = '<div class="' + CSS_DATEPICKER_BUTTON_WRAPPER + '"></div>',
+	WRAPPER_SELECT_TPL = '<div class=' + CSS_DATEPICKER_SELECT_WRAPPER + '></div>';
 
 /**
  * <p><img src="assets/images/aui-calendar-datepicker-select/main.png"/></p>
@@ -604,7 +597,7 @@ var DatePickerSelect = A.Component.create(
 			 * @type String
 			 */
 			locale: {
-				validator: 'isString',
+				validator: isString,
 				value: 'en'
 			},
 
@@ -932,7 +925,7 @@ var DatePickerSelect = A.Component.create(
 				var instance = this;
 
 				var appendOrder = instance.get(APPEND_ORDER);
-				var id = instance.get('id');
+				var id = instance.get(ID);
 
 				var mapping = {
 					d: instance.get(DAY_NODE),
@@ -1307,7 +1300,7 @@ var DatePickerSelect = A.Component.create(
 
 				instance.get(CONTENT_BOX).append(trigger);
 
-				trigger.setAttribute(DATA_COMPONENT_ID, instance.get('id'));
+				trigger.setAttribute(DATA_COMPONENT_ID, instance.get(ID));
 
 				if (trigger.test(DOT + CSS_DATEPICKER_BUTTON_WRAPPER)) {
 					// use Button if the user doesn't specify a trigger
@@ -1415,9 +1408,13 @@ var DatePickerSelect = A.Component.create(
 
 				DatePickerSelect.superclass._uiSetDisabled.apply(instance, arguments);
 
-				instance.get(DAY_NODE).set('disabled', disabled);
-				instance.get(MONTH_NODE).set('disabled', disabled);
-				instance.get(YEAR_NODE).set('disabled', disabled);
+				instance.get(DAY_NODE).set(DISABLED, disabled);
+				instance.get(MONTH_NODE).set(DISABLED, disabled);
+				instance.get(YEAR_NODE).set(DISABLED, disabled);
+
+				instance.datePicker.set(DISABLED, disabled);
+
+				instance._buttonItem.StateInteraction.set(DISABLED, disabled);
 			}
 		}
 	}
