@@ -1,0 +1,19 @@
+.yui3-skin-sam .yui3-panel-content.aui-ace-autocomplete-list {
+  left: -10000px;
+  max-height: 300px;
+}
+
+.aui-ace-autocomplete-list-results {
+  margin: 0 0;
+  max-height: 250px;
+  overflow: auto;
+}
+.aui-ace-autocomplete-list-results .aui-ace-autocomplete-entry-container {
+  cursor: pointer;
+  list-style-image: none;
+  list-style-type: none;
+  margin: 0 0;
+}
+.aui-ace-autocomplete-list-results .aui-ace-autocomplete-entry {
+  padding-left: 0.3em;
+}
