@@ -299,10 +299,10 @@ var FormValidator = A.Component.create({
 		initializer: function() {
 			var instance = this;
 
+			instance.errors = {};
 			instance._blurHandlers = null;
 			instance._inputHandlers = null;
 			instance._rulesAlreadyExtracted = false;
-			instance._errors = {};
 			instance._stackErrorContainers = {};
 
 			instance.bindUI();
@@ -337,7 +337,7 @@ var FormValidator = A.Component.create({
 
 		addFieldError: function(field, ruleName) {
 			var instance = this,
-				errors = instance._errors,
+				errors = instance.errors,
 				name = field.get(NAME);
 
 			if (!errors[name]) {
@@ -350,7 +350,7 @@ var FormValidator = A.Component.create({
 		clearFieldError: function(field) {
 			var instance = this;
 
-			delete instance._errors[field.get(NAME)];
+			delete instance.errors[field.get(NAME)];
 		},
 
 		eachRule: function(fn) {
@@ -413,7 +413,7 @@ var FormValidator = A.Component.create({
 		getFieldError: function(field) {
 			var instance = this;
 
-			return instance._errors[field.get(NAME)];
+			return instance.errors[field.get(NAME)];
 		},
 
 		getFieldStackErrorContainer: function(field) {
@@ -455,7 +455,7 @@ var FormValidator = A.Component.create({
 		hasErrors: function() {
 			var instance = this;
 
-			return !isEmpty(instance._errors);
+			return !isEmpty(instance.errors);
 		},
 
 		highlight: function(field, valid) {
@@ -755,7 +755,7 @@ var FormValidator = A.Component.create({
 			instance.validate();
 
 			if (instance.hasErrors()) {
-				data.validator.errors = instance._errors;
+				data.validator.errors = instance.errors;
 
 				instance.fire(EV_SUBMIT_ERROR, data);
 
