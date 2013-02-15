@@ -1,4 +1,4 @@
-AUI.add('aui-ace-autocomplete', function(A) {
+AUI.add('aui-ace-autocomplete-base', function(A) {
 var Lang = A.Lang,
 	AArray = A.Array,
 	Do = A.Do,
@@ -269,6 +269,9 @@ Base.ATTRS = {
 };
 
 A.AceEditor.AutoCompleteBase = Base;
+
+}, '@VERSION@' ,{requires:['aui-ace-editor']});
+AUI.add('aui-ace-autocomplete-list', function(A) {
 var Lang = A.Lang,
 	AArray = A.Array,
 	Do = A.Do,
@@ -756,6 +759,30 @@ var AutoCompleteList = A.Component.create({
 
 A.AceEditor.AutoCompleteList = AutoCompleteList;
 A.AceEditor.AutoComplete = AutoCompleteList;
+
+}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-base','widget-autohide','aui-ace-autocomplete-base']});
+AUI.add('aui-ace-autocomplete-plugin', function(A) {
+var Plugin = A.Plugin;
+
+function ACListPlugin(config) {
+	if (!config.render && config.render !== false) {
+		config.render = true;
+	}
+
+	ACListPlugin.superclass.constructor.apply(this, arguments);
+}
+
+A.extend(ACListPlugin, A.AceEditor.AutoCompleteList, {}, {
+	CSS_PREFIX: 'aui-ace-autocomplete',
+	NAME      : 'aui-ace-autocomplete-plugin',
+	NS        : 'aui-ace-autocomplete-plugin'
+});
+
+Plugin.AceAutoComplete = ACListPlugin;
+Plugin.AceAutoCompleteList = ACListPlugin;
+
+}, '@VERSION@' ,{requires:['plugin','aui-ace-autocomplete-list']});
+AUI.add('aui-ace-autocomplete-freemarker', function(A) {
 var Lang = A.Lang,
 	AArray = A.Array,
 	AObject = A.Object,
@@ -1008,23 +1035,9 @@ var Freemarker = A.Component.create({
 Freemarker.DIRECTIVES = DIRECTIVES;
 
 A.AceEditor.AutoCompleteFreemarker = Freemarker;
-var Plugin = A.Plugin;
 
-function ACListPlugin(config) {
-	if (!config.render && config.render !== false) {
-		config.render = true;
-	}
+}, '@VERSION@' ,{requires:['aui-ace-autocomplete-base','aui-search-ternary-search-tree']});
 
-	ACListPlugin.superclass.constructor.apply(this, arguments);
-}
 
-A.extend(ACListPlugin, A.AceEditor.AutoCompleteList, {}, {
-	CSS_PREFIX: 'aui-ace-autocomplete',
-	NAME      : 'aui-ace-autocomplete-plugin',
-	NS        : 'aui-ace-autocomplete-plugin'
-});
+AUI.add('aui-ace-autocomplete', function(A){}, '@VERSION@' ,{use:['aui-ace-autocomplete-base','aui-ace-autocomplete-list','aui-ace-autocomplete-plugin']});
 
-Plugin.AceAutoComplete = ACListPlugin;
-Plugin.AceAutoCompleteList = ACListPlugin;
-
-}, '@VERSION@' ,{requires:['aui-ace-editor','aui-overlay-base','plugin','aui-search-ternary-search-tree','aui-io-request','widget-autohide'], skinnable:true});

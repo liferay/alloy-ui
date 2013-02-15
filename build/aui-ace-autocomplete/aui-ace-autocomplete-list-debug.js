@@ -1,261 +1,4 @@
 AUI.add('aui-ace-autocomplete-list', function(A) {
-/*global A, AUI*/
-
-var Lang = A.Lang,
-	AArray = A.Array,
-	Do = A.Do,
-
-	EXEC = 'exec',
-	PROCESSOR = 'processor',
-
-	STATUS_ERROR = -1,
-	STATUS_SUCCESS = 0,
-
-	NAME = 'ace-autocomplete-base';
-
-var Base = function(){};
-
-Base.prototype = {
-	initializer: function() {
-		var instance = this;
-
-		instance._editorCommands = [];
-
-		A.after(this._bindUIACBase, this, 'renderUI');
-	},
-
-	_bindUIACBase: function() {
-		var instance = this;
-
-		instance.publish(
-			'cursorChange',
-			{
-				defaultFn: instance._defaultCursorChangeFn
-			}
-		);
-
-		var editor = instance._getEditor();
-
-		editor.on('change',	A.bind(instance._onEditorChange, instance));
-
-		editor.commands.addCommand(
-			{
-				name: 'showAutoComplete',
-				bindKey: A.merge(
-					instance.get('showListKey'),
-					{
-						sender: 'editor|cli'
-					}
-				),
-				exec: function(env, args, request) {
-					var cursorPosition = editor.getCursorPosition();
-
-					instance._processAutoComplete(cursorPosition.row, cursorPosition.column);
-				}
-			}
-		);
-
-		editor.getSelection().on('changeCursor', A.bind(instance._onEditorChangeCursor, instance));
-
-		instance.on('destroy', instance._destroyUIACBase, instance);
-	},
-
-	_destroyUIACBase: function() {
-		var instance = this;
-
-		instance._removeAutoCompleteCommands();
-	},
-
-	_defaultCursorChangeFn: function(event) {
-		var instance = this;
-
-		var editor = instance._getEditor();
-
-		var cursorPosition = editor.getCursorPosition();
-
-		var row = cursorPosition.row;
-		var column = cursorPosition.column;
-
-		var enteringParams = instance._enteringParams;
-
-		if (row !== enteringParams.row || column < enteringParams.match.start) {
-			instance.fire('cursorOut');
-		}
-		else {
-			var line = editor.getSession().getLine(row);
-
-			var subline = line.substring(enteringParams.match.start, column);
-
-			if (!instance.get(PROCESSOR).getMatch(subline)) {
-				instance.fire('match');
-			}
-		}
-	},
-
-	_getEditor: function() {
-		var instance = this;
-
-		return instance.get('host').getEditor();
-	},
-
-	_handleEnter: function(text) {
-		var instance = this;
-
-		if (text === '\n' || text === '\t') {
-			var editor = instance._getEditor();
-
-			var selectedEntryText = instance._getSelectedEntry();
-
-			var data = instance.get(PROCESSOR).getSuggestion(instance._enteringParams.match, selectedEntryText);
-
-			editor.insert(data);
-
-			editor.focus();
-
-			instance.fire('addSuggestion', data);
-
-			return new Do.Halt(null);
-		}
-	},
-
-	_onEditorChange: function(event) {
-		var instance = this;
-
-		var data = event.data;
-
-		var dataAction = data.action;
-
-		if (dataAction === 'insertText' || dataAction === 'removeText') {
-			var dataRange = data.range;
-
-			var column = dataRange.start.column;
-			var endRow = dataRange.end.row;
-			var startRow = dataRange.start.row;
-
-			if (dataAction === 'insertText' && startRow === endRow) {
-				instance._processAutoComplete(startRow, column + 1);
-			}
-
-			instance.fire(
-				dataAction,
-				{
-					column: column,
-					dataRange: dataRange,
-					endRow: endRow,
-					startRow: startRow
-				}
-			);
-		}
-	},
-
-	_onEditorChangeCursor: function(event) {
-		var instance = this;
-
-		instance.fire('cursorChange', instance._getEditor().getCursorPosition());
-	},
-
-	_onResponseError: function(error) {
-		// TODO
-	},
-
-	_onResultsSuccess: function(results) {
-		var instance = this;
-
-		instance.set('results', results);
-	},
-
-	_overwriteCommands: function() {
-		var instance = this;
-
-		var editor = instance._getEditor();
-
-		var commands = editor.commands.commands;
-
-		instance._editorCommands.push(
-			Do.before(instance._handleEnter, editor, 'onTextInput', this),
-			Do.before(instance._handleKey, commands['golinedown'], EXEC, this, 40),
-			Do.before(instance._handleKey, commands['golineup'], EXEC, this, 38),
-			Do.before(instance._handleKey, commands['gotoend'], EXEC, this, 35),
-			Do.before(instance._handleKey, commands['gotolineend'], EXEC, this, 35),
-			Do.before(instance._handleKey, commands['gotolinestart'], EXEC, this, 36),
-			Do.before(instance._handleKey, commands['gotopagedown'], EXEC, this, 34),
-			Do.before(instance._handleKey, commands['gotopageup'], EXEC, this, 33),
-			Do.before(instance._handleKey, commands['gotostart'], EXEC, this, 36)
-		);
-	},
-
-	_processAutoComplete: function(row, column) {
-		var instance = this;
-
-		var col = column;
-
-		var editor = instance._getEditor();
-
-		var line = editor.getSession().getLine(row);
-
-		line = line.substring(0, column);
-
-		var processor = instance.get(PROCESSOR);
-
-		var match = processor.getMatch(line);
-
-		var coords;
-
-		if (Lang.isObject(match)) {
-			coords = editor.renderer.textToScreenCoordinates(row, column);
-
-			instance._enteringParams = {
-				column: column,
-				match: match,
-				row: row
-			};
-
-			processor.getResults(match, A.bind(instance._onResultsSuccess, instance), A.bind(instance._onResponseError, instance));
-		}
-
-		instance.fire(
-			'match',
-			{
-				column: column,
-				coords: coords,
-				line: line,
-				match: match,
-				row: row
-			}
-		);
-	},
-
-	_removeAutoCompleteCommands: function() {
-		var instance = this;
-
-		AArray.invoke(instance._editorCommands, 'detach');
-
-		instance._editorCommands.length = 0;
-	}
-};
-
-Base.NAME = NAME;
-
-Base.NS = NAME;
-
-Base.ATTRS = {
-	processor: {
-		validator: function(value) {
-			return Lang.isObject(value) || Lang.isFunction(value);
-		}
-	},
-
-	showListKey: {
-		validator: Lang.isObject,
-		value: {
-			mac: 'Alt-Space',
-			win: 'Ctrl-Space'
-		}
-	}
-};
-
-A.AceEditor.AutoCompleteBase = Base;
-/*global A, AUI*/
 var Lang = A.Lang,
 	AArray = A.Array,
 	Do = A.Do,
@@ -264,7 +7,7 @@ var Lang = A.Lang,
 
 	ATTR_DATA_INDEX = 'data-index',
 
-	NAME = 'aui-ace-autocomplete-list',
+	NAME = 'ace-autocomplete-list',
 
 	CONTAINER = 'container',
 	DOT = '.',
@@ -275,6 +18,7 @@ var Lang = A.Lang,
 	LIST = 'list',
 	LOADING = 'loading',
 	OFFSET_HEIGHT = 'offsetHeight',
+	PREVIOUS = 'previous',
 	REGION = 'region',
 	RESULTS = 'results',
 	SELECTED = 'selected',
@@ -286,8 +30,8 @@ var Lang = A.Lang,
 	CLASS_ENTRY = getCN(CSS_PREFIX, ENTRY),
 	CLASS_ENTRY_CONTAINER = getCN(CSS_PREFIX, ENTRY, CONTAINER),
 	CLASS_ENTRY_CONTAINER_HIGHLIGHTED = getCN(CSS_PREFIX, ENTRY, CONTAINER, HIGHLIGHTED),
-	CLASS_ENTRY_LOADING = getCN(CSS_PREFIX, ENTRY, LOADING),
 	CLASS_ENTRY_EMPTY = getCN(CSS_PREFIX, ENTRY, EMPTY),
+	CLASS_ENTRY_LOADING = getCN(CSS_PREFIX, ENTRY, LOADING),
 	CLASS_LOADING = getCN(CSS_PREFIX, ENTRY, LOADING),
 	CLASS_RESULTS_LIST = getCN(CSS_PREFIX, RESULTS),
 
@@ -338,11 +82,11 @@ var AutoCompleteList = A.Component.create({
 		}
 	},
 
-	AUGMENTS: [A.AceEditor.AutoCompleteBase],
+	AUGMENTS: [A.AceEditor.AutoCompleteBase,A.WidgetAutohide],
 
 	CSS_PREFIX: CSS_PREFIX,
 
-	EXTENDS: A.Panel,
+	EXTENDS: A.OverlayBase,
 
 	HTML_PARSER: {
 		listNode: DOT + CLASS_RESULTS_LIST
@@ -355,12 +99,13 @@ var AutoCompleteList = A.Component.create({
 			instance.on('addSuggestion', instance.hide, instance);
 			instance.on('cursorChange', instance._onCursorChange, instance);
 			instance.on('cursorOut', instance.hide, instance);
-			instance.on('entrySelected', instance._insertWord, instance);
 			instance.on('insertText', instance._onInsertText, instance);
 			instance.on('match', instance._onMatch, instance);
 			instance.on('removeText', instance._onRemoveText, instance);
 			instance.on('resultsChange', instance._onResultsChange, instance);
-			instance.on('visibleChange', instance._onVisibleChange);
+			instance.on('resultsError', instance._setEmptyResults, instance);
+			instance.on('showLoadingMessage', instance._onShowLoadingMessage, instance);
+			instance.on('visibleChange', instance._onVisibleChange, instance);
 		},
 
 		renderUI: function() {
@@ -414,10 +159,10 @@ var AutoCompleteList = A.Component.create({
 
 			var entryText;
 
-			var selectedEntry = instance._autoCompleteResultsList.one(SELECTOR_SELECTED_ENTRY);
+			var selectedEntryNode = instance._autoCompleteResultsList.one(SELECTOR_SELECTED_ENTRY);
 
-			if (selectedEntry) {
-				entryText = selectedEntry.text();
+			if (selectedEntryNode) {
+				entryText = selectedEntryNode.text();
 			}
 
 			return entryText;
@@ -429,7 +174,7 @@ var AutoCompleteList = A.Component.create({
 			var action;
 
 			if (keyCode === KEY_UP) {
-				action = 'previous';
+				action = PREVIOUS;
 			}
 			else if (keyCode === KEY_DONW) {
 				action = 'next';
@@ -452,14 +197,20 @@ var AutoCompleteList = A.Component.create({
 
 						var entryRegion = entry.get(REGION);
 
-						if (action === 'previous') {
+						if (action === PREVIOUS) {
 							if (entryRegion.top < resultsListNodeRegion.top) {
 								entry.scrollIntoView(true);
+							}
+							else if (entryRegion.top > resultsListNodeRegion.bottom) {
+								entry.scrollIntoView();
 							}
 						}
 						else {
 							if (entryRegion.top + entryRegion.height > resultsListNodeRegion.bottom) {
 								entry.scrollIntoView();
+							}
+							else if(entryRegion.top + entryRegion.height < resultsListNodeRegion.top) {
+								entry.scrollIntoView(true);
 							}
 						}
 					}
@@ -498,7 +249,7 @@ var AutoCompleteList = A.Component.create({
 
 			var selectedEntry = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER_SELECTED);
 
-			var selectedEntryIndex = parseInt(selectedEntry.attr(ATTR_DATA_INDEX), 0);
+			var selectedEntryIndex = Lang.toInt(selectedEntry.attr(ATTR_DATA_INDEX));
 
 			var nextSelectedEntryIndex;
 
@@ -547,7 +298,16 @@ var AutoCompleteList = A.Component.create({
 				entryNode.addClass(SELECTED);
 			}
 
-			instance.fire('entrySelected', entryNode);
+			var content = entryNode.text();
+
+			instance._addSuggestion(content);
+
+			instance.fire(
+				'entrySelected',
+				{
+					content: content
+				}
+			);
 		},
 
 		_handleStartEnd: function(keyCode) {
@@ -604,10 +364,6 @@ var AutoCompleteList = A.Component.create({
 				var coords = event.coords;
 
 				instance.set('xy', [coords.pageX + PADDING_HORIZ, coords.pageY + PADDING_VERT]);
-
-				if (!instance.get(VISIBLE)) {
-					instance.show();
-				}
 			}
 			else if (instance.get(VISIBLE)) {
 				instance.hide();
@@ -660,41 +416,54 @@ var AutoCompleteList = A.Component.create({
 
 			if (firstEntry) {
 				firstEntry.addClass(SELECTED);
+
+				if (!instance.get(VISIBLE)) {
+					instance.show();
+				}
 			}
 			else {
-				autoCompleteResultsList.appendChild(
-					Lang.sub(
-						instance.TPL_RESULTS_EMPTY,
-						{
-							label: instance.get('emptyMessage')
-						}
-					)
-				);
+				if (instance.get(VISIBLE)) {
+					instance.hide();
+				}
+			}
+		},
+
+		_onShowLoadingMessage: function(event) {
+			var instance = this;
+
+			var autoCompleteResultsList = instance._autoCompleteResultsList;
+
+			autoCompleteResultsList.empty();
+
+			autoCompleteResultsList.appendChild(
+				Lang.sub(
+					instance.TPL_LOADING,
+					{
+						label: instance.get('loadingMessage')
+					}
+				)
+			);
+
+			if (!instance.get(VISIBLE)) {
+				instance.show();
 			}
 		},
 
 		_onVisibleChange: function(event) {
 			var instance = this;
 
-			var autoCompleteResultsList = instance._autoCompleteResultsList;
-
 			if (event.newVal) {
 				instance._overwriteCommands();
 			}
 			else {
 				instance._removeAutoCompleteCommands();
-			
-				autoCompleteResultsList.empty();
-
-				autoCompleteResultsList.appendChild(
-					Lang.sub(
-						instance.TPL_LOADING,
-						{
-							label: instance.get('loadingMessage')
-						}
-					)
-				);
 			}
+		},
+
+		_setEmptyResults: function() {
+			var instance = this;
+
+			instance.set('results', []);
 		},
 
 		TPL_ENTRY:
@@ -718,4 +487,4 @@ var AutoCompleteList = A.Component.create({
 A.AceEditor.AutoCompleteList = AutoCompleteList;
 A.AceEditor.AutoComplete = AutoCompleteList;
 
-}, '@VERSION@' ,{requires:['aui-ace-editor','panel'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-base','widget-autohide','aui-ace-autocomplete-base']});
