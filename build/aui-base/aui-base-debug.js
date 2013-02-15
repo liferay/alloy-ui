@@ -338,17 +338,16 @@
 		AUI._uaExtensions = function(A) {
 			var nav = navigator;
 
+			var CONFIG = A.config,
+				DOC = CONFIG.doc;
+
 			var userAgent = nav.userAgent;
 
 			var UA = A.UA;
 			var OS = UA.os;
 
-			var IE = UA.ie;
-
 			var UAX = {
 				aol: 0,
-				ieCompatibilityMode: false,
-				trident: 0,
 
 				camino: 0,
 				firefox: 0,
@@ -370,13 +369,14 @@
 				agent: userAgent
 			};
 
-			if (IE) {
+			if (UA.ie) {
 				UAX.aol = getVersion(/America Online Browser ([^\s]*);/, userAgent);
-				UAX.trident = getVersion(/Trident\/([^\s]*)/, userAgent);
 
-				if (IE == 7 && UAX.trident !== 0) {
-					IE = document.documentMode;
-					UAX.ieCompatibilityMode = true;
+				var docMode = DOC.documentMode;
+
+				if (docMode) {
+					UA.browser = UA.ie;
+					UA.ie = docMode;
 				}
 			}
 			else if (UA.gecko) {
@@ -406,9 +406,6 @@
 					UAX.sun = sun;
 				}
 			}
-
-			var CONFIG = A.config,
-				DOC = CONFIG.doc;
 
 			UAX.touch = ('ontouchstart' in DOC);
 
