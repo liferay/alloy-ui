@@ -99,10 +99,10 @@ AUI(
 		{
 			name: 'Test TST Prefixes',
 
-			assertPrefixEquals: function(prefix, expected) {
+			assertPrefixEquals: function(prefix, expected, caseInsensitive) {
 				var instance = this;
 
-				var words = tstree.prefixSearch(prefix);
+				var words = tstree.prefixSearch(prefix, caseInsensitive);
 
 				return checkArrays(expected, words);
 			},
@@ -133,6 +133,23 @@ AUI(
 						'returne',
 						'return'
 					]
+				);
+
+				A.Assert.isTrue(result, 'Prefix Search on: ' + prefix + ' failed');
+			},
+
+			testPrefixSearchCaseInsensitive: function() {
+				var instance = this;
+
+				var prefix = 'EL';
+
+				var result = instance.assertPrefixEquals(
+					prefix,
+					[
+						'else',
+						'elseif'
+					],
+					true
 				);
 
 				A.Assert.isTrue(result, 'Prefix Search on: ' + prefix + ' failed');
