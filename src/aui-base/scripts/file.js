@@ -44,7 +44,7 @@ exports.find = function(filepath, opt_pattern) {
 
 exports.mkdir = function(path, mode) {
     if (!exports.exists(path)) {
-        return fs.mkdirSync(path, mode);
+        return fs.mkdirsSync(path, mode);
     }
 };
 
