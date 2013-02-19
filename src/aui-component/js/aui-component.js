@@ -5,6 +5,7 @@
  */
 
 var Lang = A.Lang,
+	AArray = A.Array,
 
 	concat = function(arr, arr2) {
 		return (arr || []).concat(arr2 || []);
@@ -20,7 +21,8 @@ var Lang = A.Lang,
 	NAME = 'component',
 
 	CSS_HELPER_HIDDEN = getClassName('helper', 'hidden'),
-	CONSTRUCTOR_OBJECT = A.config.win.Object.prototype.constructor;
+	CONSTRUCTOR_OBJECT = A.config.win.Object.prototype.constructor,
+	STR_BLANK = ' ';
 
 /**
  * A base class for Component, providing:
@@ -228,25 +230,29 @@ A.extend(
 			var boundingBoxNodeClassName = boundingBoxNode.className;
 			var contentBoxNodeClassName = contentBoxNode.className;
 
-			var boundingBoxBuffer = (boundingBoxNodeClassName) ? boundingBoxNodeClassName.split(' ') : [];
-			var contentBoxBuffer = (contentBoxNodeClassName) ? contentBoxNodeClassName.split(' ') : [];
+			var boundingBoxBuffer = (boundingBoxNodeClassName) ? boundingBoxNodeClassName.split(STR_BLANK) : [];
+			var contentBoxBuffer = (contentBoxNodeClassName) ? contentBoxNodeClassName.split(STR_BLANK) : [];
 
 			var classes = instance._getClasses();
 
-			var auiClassesLength = classes.length - 4;
+			var classLength = classes.length;
+
+			var auiClassesLength = classLength - 4;
 
 			var classItem;
 			var classItemName;
 
 			boundingBoxBuffer.push(_getWidgetClassName());
 
-			for (var i = classes.length - 3; i >= 0; i--) {
+			for (var i = classLength - 3; i >= 0; i--) {
 				classItem = classes[i];
 
-				boundingBoxBuffer.push(classItem.CSS_PREFIX || _getClassName(classItem.NAME.toLowerCase()));
+				classItemName = String(classItem.NAME).toLowerCase();
+
+				boundingBoxBuffer.push(classItem.CSS_PREFIX || _getClassName(classItemName));
 
 				if (i <= auiClassesLength) {
-					classItemName = String(classes[i].NAME).toLowerCase();
+					classItemName = classItemName;
 
 					contentBoxBuffer.push(getClassName(classItemName, 'content'));
 				}
@@ -254,17 +260,16 @@ A.extend(
 
 			contentBoxBuffer.push(instance.getClassName('content'));
 
-			boundingBoxBuffer = A.Array.dedupe(boundingBoxBuffer);
-			contentBoxBuffer = A.Array.dedupe(contentBoxBuffer);
-
 			if (boundingBoxNode === contentBoxNode) {
-				var concatBuffer = contentBoxBuffer.concat(boundingBoxBuffer);
-				contentBoxNode.className = concatBuffer.join(' ');
+				contentBoxNodeClassName = AArray.dedupe(contentBoxBuffer.concat(boundingBoxBuffer)).join(STR_BLANK);
 			}
 			else {
-				boundingBoxNode.className = boundingBoxBuffer.join(' ');
-				contentBoxNode.className = contentBoxBuffer.join(' ');
+				boundingBoxNode.className = AArray.dedupe(boundingBoxBuffer).join(STR_BLANK);
+
+				contentBoxNodeClassName = AArray.dedupe(contentBoxBuffer).join(STR_BLANK);
 			}
+
+			contentBoxNode.className = contentBoxNodeClassName;
 		},
 
 		/**
