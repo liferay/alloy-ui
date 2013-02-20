@@ -1,0 +1,37 @@
+.aui-ace-autocomplete {
+  left: -10000px;
+  max-height: 300px;
+}
+
+.aui-ace-autocomplete .aui-ace-autocomplete-results {
+  margin: 0 0;
+  max-height: 250px;
+  overflow: auto;
+}
+
+.aui-ace-autocomplete .aui-ace-autocomplete-results .aui-ace-autocomplete-entry-container {
+  cursor: pointer;
+  list-style-image: none;
+  list-style-type: none;
+  margin: 0 0;
+}
+
+.aui-ace-autocomplete .aui-ace-autocomplete-results .aui-ace-autocomplete-entry {
+  padding-left: 0.3em;
+}
+
+.aui-ace-autocomplete-hidden {
+  visibility: hidden;
+}
+
+.aui-ace-autocomplete .aui-ace-autocomplete-results .aui-ace-autocomplete-list-entry,
+.aui-ace-autocomplete .aui-ace-autocomplete-results .aui-ace-autocomplete-list-entry-empty {
+  padding-left: 0.3em;
+}
+
+.aui-ace-autocomplete .aui-ace-autocomplete-results .aui-ace-autocomplete-entry-loading {
+  display: inline-block;
+  height: 18px;
+  padding-left: 18px;
+  vertical-align: middle;
+}

@@ -783,6 +783,8 @@ A.mix(TreeData.prototype, {
 			container = instance._createNodeContainer();
 		}
 
+		instance.childrenLength = v.length;
+
 		// before render the node, make sure the PARENT_NODE and OWNER_TREE references are updated
 		// this is required on the render phase of the TreeNode (_createNodeContainer)
 		// to propagate the events callback (appendChild/expand)
@@ -801,7 +803,7 @@ A.mix(TreeData.prototype, {
 
 		instance.updateIndex({});
 
-		if (v.length > 0) {
+		if (instance.childrenLength > 0) {
 			instance.set(LEAF, false);
 		}
 
@@ -824,8 +826,6 @@ A.mix(TreeData.prototype, {
 					node = instance.createNode(node);
 
 					if (hasChildren && lazyLoad) {
-						node.childrenLength = children.length;
-
 						A.setTimeout(function() {
 							node.set(CHILDREN, children);
 						}, 50);
@@ -1251,7 +1251,14 @@ var TreeNode = A.Component.create(
 				}
 
 				if (container) {
-					instance.get(BOUNDING_BOX).appendTo(container);
+					var boundingBox = instance.get(BOUNDING_BOX);
+					var paginator = instance.get(PAGINATOR);
+
+					boundingBox.appendTo(container);
+
+					if (paginator) {
+						boundingBox.insertBefore(paginator.element);
+					}
 				}
 			},
 
@@ -2632,7 +2639,7 @@ TreeViewPaginator.prototype = {
 			var start = paginator.start;
 			var total = paginator.total || childrenLength;
 
-			var showPaginator = hasMoreData && (total > childrenLength);
+			var showPaginator = childrenLength && hasMoreData && (total > childrenLength);
 
 			if (paginator.alwaysVisible || showPaginator) {
 				instance.get(CONTAINER).append(
@@ -2821,6 +2828,8 @@ var TreeView = A.Component.create(
 			bindUI: function() {
 				var instance = this;
 
+				instance.after('childrenChange', A.bind(instance._afterSetChildren, instance));
+
 				instance._delegateDOM();
 			},
 
@@ -2846,6 +2855,19 @@ var TreeView = A.Component.create(
 				var instance = this;
 
 				instance._renderElements();
+			},
+
+			/**
+			 * Fires after set children.
+			 *
+			 * @method _afterSetChildren
+			 * @param {EventFacade} event
+			 * @protected
+			 */
+			_afterSetChildren: function(event) {
+				var instance = this;
+
+				instance._syncPaginatorUI();
 			},
 
 			/**
@@ -3595,7 +3617,7 @@ var TreeViewDD = A.Component.create(
 
 A.TreeViewDD = TreeViewDD;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-tree-node','aui-tree-paginator','aui-tree-io','dd-delegate','dd-proxy']});
+}, '@VERSION@' ,{requires:['aui-tree-node','aui-tree-paginator','aui-tree-io','dd-delegate','dd-proxy'], skinnable:true});
 AUI.add('aui-tree-io', function(A) {
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
@@ -3837,5 +3859,5 @@ A.TreeViewIO = TreeViewIO;
 }, '@VERSION@' ,{skinnable:false, requires:['aui-io','json']});
 
 
-AUI.add('aui-tree', function(A){}, '@VERSION@' ,{use:['aui-tree-data', 'aui-tree-node', 'aui-tree-io', 'aui-tree-paginator', 'aui-tree-view'], skinnable:true});
+AUI.add('aui-tree', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-io', 'aui-tree-paginator', 'aui-tree-view']});
 
