@@ -38,6 +38,8 @@ var Lang = A.Lang,
 		'function'
 	],
 
+	Base = A.AceEditor.AutoCompleteBase,
+
 	MATCH_DIRECTIVES = 0,
 	MATCH_VARIABLES = 1,
 
@@ -129,7 +131,7 @@ var Freemarker = A.Component.create({
 						instance._addDirectives();
 					}
 
-					matchDirectives = tstree.prefixSearch(content);
+					matchDirectives = tstree.prefixSearch(content, true);
 				}
 
 				callbackSuccess(matchDirectives);
@@ -147,20 +149,24 @@ var Freemarker = A.Component.create({
 			var result = selectedSuggestion || STR_EMPTY;
 
 			if (selectedSuggestion) {
-				var type = match.type;
+				var fillMode = instance.get('host').get('fillMode');
 
-				if (type === MATCH_DIRECTIVES) {
-					if (match.content && selectedSuggestion.indexOf(match.content) === 0) {
-						result = selectedSuggestion.substring(match.content.length);
+				if (fillMode === Base.FILL_MODE_INSERT) {
+					var type = match.type;
+
+					if (type === MATCH_DIRECTIVES) {
+						if (match.content && selectedSuggestion.indexOf(match.content) === 0) {
+							result = selectedSuggestion.substring(match.content.length);
+						}
 					}
-				}
-				else if (type === MATCH_VARIABLES) {
-					var variables = match.content.split(DOT);
+					else if (type === MATCH_VARIABLES) {
+						var variables = match.content.split(DOT);
 
-					var lastEntry = variables[variables.length - 1];
+						var lastEntry = variables[variables.length - 1];
 
-					if (lastEntry && selectedSuggestion.indexOf(lastEntry) === 0) {
-						result = selectedSuggestion.substring(lastEntry.length);
+						if (lastEntry && selectedSuggestion.indexOf(lastEntry) === 0) {
+							result = selectedSuggestion.substring(lastEntry.length);
+						}
 					}
 				}
 			}
@@ -236,7 +242,7 @@ var Freemarker = A.Component.create({
 						}
 					);
 
-					matches = tstree.prefixSearch(lastEntry);
+					matches = tstree.prefixSearch(lastEntry, true);
 
 					instance._lastTSTLoad = MATCH_VARIABLES;
 				}

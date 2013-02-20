@@ -2,10 +2,14 @@ var Lang = A.Lang,
 	AArray = A.Array,
 	Do = A.Do,
 
-	INSERT_TEXT = 'insertText',
 	EXEC = 'exec',
+	FILL_MODE = 'fillMode',
 	HOST = 'host',
+	INSERT_TEXT = 'insertText',
 	PROCESSOR = 'processor',
+
+	FILL_MODE_INSERT = 1,
+	FILL_MODE_OVERWRITE = 0,
 
 	STATUS_ERROR = -1,
 	STATUS_SUCCESS = 0,
@@ -35,6 +39,10 @@ Base.prototype = {
 		var editor = instance._getEditor();
 
 		var data = instance.get(PROCESSOR).getSuggestion(instance._matchParams.match, content);
+
+		if (this.get(FILL_MODE) === Base.FILL_MODE_OVERWRITE) {
+			editor.removeWordLeft();
+		}
 
 		editor.insert(data);
 
@@ -244,14 +252,26 @@ Base.prototype = {
 		AArray.invoke(instance._editorCommands, 'detach');
 
 		instance._editorCommands.length = 0;
+	},
+
+	_validateFillMode: function(value) {
+		return (value === Base.FILL_MODE_OVERWRITE || value === Base.FILL_MODE_INSERT);
 	}
 };
+
+Base.FILL_MODE_INSERT = FILL_MODE_INSERT;
+Base.FILL_MODE_OVERWRITE = FILL_MODE_OVERWRITE;
 
 Base.NAME = NAME;
 
 Base.NS = NAME;
 
 Base.ATTRS = {
+	fillMode: {
+		validator: '_validateFillMode',
+		value: Base.FILL_MODE_OVERWRITE
+	},
+
 	processor: {
 		validator: function(value) {
 			return Lang.isObject(value) || Lang.isFunction(value);
