@@ -28,8 +28,7 @@
 .aui-textcelleditor-hidden,
 .aui-textareacelleditor-hidden,
 .aui-checkboxcelleditor-hidden,
-.aui-radiocelleditor-hidden,
-.aui-helper-hidden {
+.aui-radiocelleditor-hidden {
   display: none !important;
 }
 
