@@ -398,12 +398,16 @@ var TreeNode = A.Component.create(
 
 				if (container) {
 					var boundingBox = instance.get(BOUNDING_BOX);
-					var paginator = instance.get(PAGINATOR);
+					var parentNode = instance.get(PARENT_NODE);
 
 					boundingBox.appendTo(container);
 
-					if (paginator) {
-						boundingBox.insertBefore(paginator.element);
+					if (parentNode) {
+						var paginator = parentNode.get(PAGINATOR);
+
+						if (paginator) {
+							boundingBox.insertBefore(paginator.element);
+						}
 					}
 				}
 			},
