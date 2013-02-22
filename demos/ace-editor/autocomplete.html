@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+</head>
+<style type="text/css" media="screen">
+	body {
+		font-size: 12px;
+	}
+
+	#wrapper {
+		padding: 10px;
+	}
+
+	#editor {
+		height: 400px;
+		position: relative;
+		width: 800px;
+	}
+</style>
+<body>
+
+<div id="wrapper">
+	<h1>Alloy Ace Editor AutoComplete demo</h1>
+	
+	<p>Type &lt;# to see the list of all available Freemarker directives
+	<p>Type ${ to see list of some Freemarker variables
+
+	<p>Press Ctrl+Space for PC or Alt-Space for Mac in order to show the list with suggestions
+
+	<div id="editor"></div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+YUI({ filter:'raw' }).use('aui-ace-autocomplete-plugin', 'aui-ace-autocomplete-freemarker', function(A) {
+	var editor = new A.AceEditor(
+		{
+			boundingBox: '#editor',
+			mode: 'php',
+			plugins: [
+				{
+					fn: A.Plugin.AceAutoComplete,
+					cfg: {
+						processor: new A.AceEditor.AutoCompleteFreemarker(
+							{
+								variables: {
+									'HttpUtil': {
+										'getCompleteURL': {
+											'toLowerCase': {}
+										}
+									}
+								}
+							}
+						),
+						render: true,
+						visible: false,
+						width: 250,
+						zIndex: 10000
+					}
+				}
+			],
+			value: '<#assign portlet_display = portletDisplay />\n' +
+					'<#assign portlet_id = htmlUtil.escapeAttribute(portlet_display.getId()) />\n' +
+					'<#assign portlet_title = portlet_display.getTitle() />\n' +
+					'<#assign portlet_back_url = htmlUtil.escapeAttribute(portlet_display.getURLBack()) />\n' +
+					'<section class="portlet" id="portlet_${portlet_id}">\n' +
+					'	<header class="portlet-topper">\n' +
+					'		<h1 class="portlet-title">\n' +
+					'			${theme.iconPortlet()} <span class="portlet-title-text">${portlet_title}</span>\n' +
+					'		</h1>\n' +
+					'		<menu class="portlet-topper-toolbar" id="portlet-topper-toolbar_${portlet_id}" type="toolbar">\n' +
+					'			<#if portlet_display.isShowBackIcon()>\n' +
+					'				<a href="${portlet_back_url}" class="portlet-icon-back"><@liferay.language key="return-to-full-page" /></a>\n' +
+					'			<#else>\n' +
+					'				${theme.iconOptions()}' + 
+					'				${theme.iconMinimize()}' + 
+					'				${theme.iconMaximize()}' + 
+					'				${theme.iconClose()}' + 
+					'			</#if>\n' +
+					'		</menu>\n' +
+					'	</header>\n' +
+					'	<div class="portlet-content">\n' +
+					'		${portlet_display.writeContent(writer)}' + 
+					'	</div>\n' +
+					'</section>'
+		}
+	).render();
+});
+</script>
+
+</body>
+</html>

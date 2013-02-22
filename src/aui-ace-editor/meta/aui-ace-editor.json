@@ -4,5 +4,30 @@
             "aui-node",
             "aui-component"
         ]
+    },
+    "aui-ace-autocomplete-base": {
+    	"requires": [
+            "aui-ace-editor"
+        ]
+    },
+    "aui-ace-autocomplete-freemarker": {
+    	"requires": [
+            "aui-ace-autocomplete-base",
+            "aui-search-tst"
+        ]
+    },
+    "aui-ace-autocomplete-list": {
+    	"requires": [
+            "aui-ace-autocomplete-base",
+            "overlay",
+            "widget-autohide"
+        ],
+        "skinnable": true
+    },
+    "aui-ace-autocomplete-plugin": {
+    	"requires": [
+            "aui-ace-autocomplete-list",
+            "plugin"
+        ]
     }
 }

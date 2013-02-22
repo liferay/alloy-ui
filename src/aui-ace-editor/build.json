@@ -11,6 +11,26 @@
             "jsfiles": [
                 "js/.aui-ace-editor.js"
             ]
+        },
+        "aui-ace-autocomplete-base": {
+            "jsfiles": [
+                "js/aui-ace-autocomplete-base.js"
+            ]
+        },
+        "aui-ace-autocomplete-freemarker": {
+            "jsfiles": [
+                "js/aui-ace-autocomplete-freemarker.js"
+            ]
+        },
+        "aui-ace-autocomplete-list": {
+            "jsfiles": [
+                "js/aui-ace-autocomplete-list.js"
+            ]
+        },
+        "aui-ace-autocomplete-plugin": {
+            "jsfiles": [
+                "js/aui-ace-autocomplete-plugin.js"
+            ]
         }
     }
 }
