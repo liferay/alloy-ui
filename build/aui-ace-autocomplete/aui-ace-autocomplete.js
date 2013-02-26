@@ -2,6 +2,7 @@ AUI.add('aui-ace-autocomplete-base', function(A) {
 var Lang = A.Lang,
 	AArray = A.Array,
 	Do = A.Do,
+	ADOM = A.DOM,
 
 	INSERT_TEXT = 'insertText',
 	EXEC = 'exec',
@@ -217,6 +218,9 @@ Base.prototype = {
 
 		if (Lang.isObject(match)) {
 			coords = editor.renderer.textToScreenCoordinates(row, column);
+
+			coords.pageX += ADOM.docScrollX();
+			coords.pageY += ADOM.docScrollY();
 
 			instance._matchParams = {
 				column: column,
@@ -760,7 +764,7 @@ var AutoCompleteList = A.Component.create({
 A.AceEditor.AutoCompleteList = AutoCompleteList;
 A.AceEditor.AutoComplete = AutoCompleteList;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-base','widget-autohide','aui-ace-autocomplete-base']});
+}, '@VERSION@' ,{requires:['aui-overlay-base','widget-autohide','aui-ace-autocomplete-base'], skinnable:true});
 AUI.add('aui-ace-autocomplete-plugin', function(A) {
 var Plugin = A.Plugin;
 
