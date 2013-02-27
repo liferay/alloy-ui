@@ -85,7 +85,9 @@ Base.prototype = {
 			}
 		);
 
-		editor.getSelection().on('changeCursor', A.bind(instance._onEditorChangeCursor, instance));
+		instance._onEditorChangeCursorFn = A.bind(instance._onEditorChangeCursor, instance);
+
+		editor.getSelection().on('changeCursor', instance._onEditorChangeCursorFn);
 
 		instance.on('destroy', instance._destroyUIACBase, instance);
 	},
@@ -118,6 +120,12 @@ Base.prototype = {
 
 	_destroyUIACBase: function() {
 		var instance = this;
+
+		var editor = instance._getEditor();
+
+		editor.commands.removeCommand('showAutoComplete');
+
+		editor.getSelection().removeListener('changeCursor', instance._onEditorChangeCursorFn);
 
 		instance._removeAutoCompleteCommands();
 	},
@@ -250,7 +258,7 @@ Base.prototype = {
 	_removeAutoCompleteCommands: function() {
 		var instance = this;
 
-		AArray.invoke(instance._editorCommands, 'detach');
+		(new A.EventHandle(instance._editorCommands)).detach();
 
 		instance._editorCommands.length = 0;
 	},
@@ -780,7 +788,7 @@ var AutoCompleteList = A.Component.create({
 A.AceEditor.AutoCompleteList = AutoCompleteList;
 A.AceEditor.AutoComplete = AutoCompleteList;
 
-}, '@VERSION@' ,{requires:['aui-overlay-base','widget-autohide','aui-ace-autocomplete-base'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-base','widget-autohide','aui-ace-autocomplete-base']});
 AUI.add('aui-ace-autocomplete-plugin', function(A) {
 var Plugin = A.Plugin;
 
