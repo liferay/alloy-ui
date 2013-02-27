@@ -1252,12 +1252,16 @@ var TreeNode = A.Component.create(
 
 				if (container) {
 					var boundingBox = instance.get(BOUNDING_BOX);
-					var paginator = instance.get(PAGINATOR);
+					var parentNode = instance.get(PARENT_NODE);
 
 					boundingBox.appendTo(container);
 
-					if (paginator) {
-						boundingBox.insertBefore(paginator.element);
+					if (parentNode) {
+						var paginator = parentNode.get(PAGINATOR);
+
+						if (paginator) {
+							boundingBox.insertBefore(paginator.element);
+						}
 					}
 				}
 			},
@@ -3617,7 +3621,7 @@ var TreeViewDD = A.Component.create(
 
 A.TreeViewDD = TreeViewDD;
 
-}, '@VERSION@' ,{requires:['aui-tree-node','aui-tree-paginator','aui-tree-io','dd-delegate','dd-proxy'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-tree-node','aui-tree-paginator','aui-tree-io','dd-delegate','dd-proxy']});
 AUI.add('aui-tree-io', function(A) {
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
@@ -3859,5 +3863,5 @@ A.TreeViewIO = TreeViewIO;
 }, '@VERSION@' ,{skinnable:false, requires:['aui-io','json']});
 
 
-AUI.add('aui-tree', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-io', 'aui-tree-paginator', 'aui-tree-view']});
+AUI.add('aui-tree', function(A){}, '@VERSION@' ,{use:['aui-tree-data', 'aui-tree-node', 'aui-tree-io', 'aui-tree-paginator', 'aui-tree-view'], skinnable:true});
 
