@@ -1,486 +1,486 @@
 var Lang = A.Lang,
-	AArray = A.Array,
-	Do = A.Do,
+    AArray = A.Array,
+    Do = A.Do,
 
-	getCN = A.getClassName,
+    getCN = A.getClassName,
 
-	ATTR_DATA_INDEX = 'data-index',
+    ATTR_DATA_INDEX = 'data-index',
 
-	NAME = 'ace-autocomplete-list',
+    NAME = 'ace-autocomplete-list',
 
-	CONTAINER = 'container',
-	DOT = '.',
-	EMPTY = 'empty',
-	EMPTY_STRING = '',
-	ENTRY = 'entry',
-	HIGHLIGHTED = 'highlighted',
-	LIST = 'list',
-	LOADING = 'loading',
-	OFFSET_HEIGHT = 'offsetHeight',
-	PREVIOUS = 'previous',
-	REGION = 'region',
-	RESULTS = 'results',
-	SELECTED = 'selected',
-	SPACE = ' ',
-	VISIBLE = 'visible',
+    CONTAINER = 'container',
+    DOT = '.',
+    EMPTY = 'empty',
+    EMPTY_STRING = '',
+    ENTRY = 'entry',
+    HIGHLIGHTED = 'highlighted',
+    LIST = 'list',
+    LOADING = 'loading',
+    OFFSET_HEIGHT = 'offsetHeight',
+    PREVIOUS = 'previous',
+    REGION = 'region',
+    RESULTS = 'results',
+    SELECTED = 'selected',
+    SPACE = ' ',
+    VISIBLE = 'visible',
 
-	CSS_PREFIX = 'ace-autocomplete',
+    CSS_PREFIX = 'ace-autocomplete',
 
-	CLASS_ENTRY = getCN(CSS_PREFIX, ENTRY),
-	CLASS_ENTRY_CONTAINER = getCN(CSS_PREFIX, ENTRY, CONTAINER),
-	CLASS_ENTRY_CONTAINER_HIGHLIGHTED = getCN(CSS_PREFIX, ENTRY, CONTAINER, HIGHLIGHTED),
-	CLASS_ENTRY_EMPTY = getCN(CSS_PREFIX, ENTRY, EMPTY),
-	CLASS_ENTRY_LOADING = getCN(CSS_PREFIX, ENTRY, LOADING),
-	CLASS_LOADING = getCN(CSS_PREFIX, ENTRY, LOADING),
-	CLASS_RESULTS_LIST = getCN(CSS_PREFIX, RESULTS),
+    CLASS_ENTRY = getCN(CSS_PREFIX, ENTRY),
+    CLASS_ENTRY_CONTAINER = getCN(CSS_PREFIX, ENTRY, CONTAINER),
+    CLASS_ENTRY_CONTAINER_HIGHLIGHTED = getCN(CSS_PREFIX, ENTRY, CONTAINER, HIGHLIGHTED),
+    CLASS_ENTRY_EMPTY = getCN(CSS_PREFIX, ENTRY, EMPTY),
+    CLASS_ENTRY_LOADING = getCN(CSS_PREFIX, ENTRY, LOADING),
+    CLASS_LOADING = getCN(CSS_PREFIX, ENTRY, LOADING),
+    CLASS_RESULTS_LIST = getCN(CSS_PREFIX, RESULTS),
 
-	SELECTOR_ENTRY_CONTAINER = DOT + CLASS_ENTRY_CONTAINER,
-	SELECTOR_ENTRY_CONTAINER_SELECTED = SELECTOR_ENTRY_CONTAINER + DOT + SELECTED,
-	SELECTOR_SELECTED_ENTRY = SELECTOR_ENTRY_CONTAINER_SELECTED + SPACE + DOT + CLASS_ENTRY,
+    SELECTOR_ENTRY_CONTAINER = DOT + CLASS_ENTRY_CONTAINER,
+    SELECTOR_ENTRY_CONTAINER_SELECTED = SELECTOR_ENTRY_CONTAINER + DOT + SELECTED,
+    SELECTOR_SELECTED_ENTRY = SELECTOR_ENTRY_CONTAINER_SELECTED + SPACE + DOT + CLASS_ENTRY,
 
-	KEY_DONW = 40,
-	KEY_END = 35,
-	KEY_PAGE_DOWN = 34,
-	KEY_PAGE_UP = 33,
-	KEY_START = 36,
-	KEY_UP = 38,
+    KEY_DONW = 40,
+    KEY_END = 35,
+    KEY_PAGE_DOWN = 34,
+    KEY_PAGE_UP = 33,
+    KEY_START = 36,
+    KEY_UP = 38,
 
-	PADDING_HORIZ = 5,
-	PADDING_VERT = 20;
+    PADDING_HORIZ = 5,
+    PADDING_VERT = 20;
 
 var AutoCompleteList = A.Component.create({
-	NAME: NAME,
+    NAME: NAME,
 
-	NS: NAME,
+    NS: NAME,
 
-	ATTRS: {
-		emptyMessage: {
-			validator: Lang.isString,
-			value: 'No suggestions'
-		},
+    ATTRS: {
+        emptyMessage: {
+            validator: Lang.isString,
+            value: 'No suggestions'
+        },
 
-		host: {
-			validator: Lang.isObject
-		},
+        host: {
+            validator: Lang.isObject
+        },
 
-		listNode: {
-			value: null
-		},
+        listNode: {
+            value: null
+        },
 
-		loadingMessage: {
-			validator: Lang.isString,
-			value: 'Loading'
-		},
+        loadingMessage: {
+            validator: Lang.isString,
+            value: 'Loading'
+        },
 
-		results: {
-			validator: Lang.isArray
-		},
+        results: {
+            validator: Lang.isArray
+        },
 
-		selectedEntry: {
-			getter: '_getSelectedEntry'
-		}
-	},
+        selectedEntry: {
+            getter: '_getSelectedEntry'
+        }
+    },
 
-	AUGMENTS: [A.AceEditor.AutoCompleteBase,A.WidgetAutohide],
+    AUGMENTS: [A.AceEditor.AutoCompleteBase,A.WidgetAutohide],
 
-	CSS_PREFIX: CSS_PREFIX,
+    CSS_PREFIX: CSS_PREFIX,
 
-	EXTENDS: A.Overlay,
+    EXTENDS: A.Overlay,
 
-	HTML_PARSER: {
-		listNode: DOT + CLASS_RESULTS_LIST
-	},
+    HTML_PARSER: {
+        listNode: DOT + CLASS_RESULTS_LIST
+    },
 
-	prototype: {
-		bindUI: function() {
-			var instance = this;
+    prototype: {
+        bindUI: function() {
+            var instance = this;
 
-			instance.on('addSuggestion', instance.hide, instance);
-			instance.on('cursorChange', instance._onCursorChange, instance);
-			instance.on('cursorOut', instance.hide, instance);
-			instance.on('insertText', instance._onInsertText, instance);
-			instance.on('match', instance._onMatch, instance);
-			instance.on('removeText', instance._onRemoveText, instance);
-			instance.on('resultsChange', instance._onResultsChange, instance);
-			instance.on('resultsError', instance._setEmptyResults, instance);
-			instance.on('showLoadingMessage', instance._onShowLoadingMessage, instance);
-			instance.on('visibleChange', instance._onVisibleChange, instance);
-		},
+            instance.on('addSuggestion', instance.hide, instance);
+            instance.on('cursorChange', instance._onCursorChange, instance);
+            instance.on('cursorOut', instance.hide, instance);
+            instance.on('insertText', instance._onInsertText, instance);
+            instance.on('match', instance._onMatch, instance);
+            instance.on('removeText', instance._onRemoveText, instance);
+            instance.on('resultsChange', instance._onResultsChange, instance);
+            instance.on('resultsError', instance._setEmptyResults, instance);
+            instance.on('showLoadingMessage', instance._onShowLoadingMessage, instance);
+            instance.on('visibleChange', instance._onVisibleChange, instance);
+        },
 
-		renderUI: function() {
-			var instance = this;
+        renderUI: function() {
+            var instance = this;
 
-			var autoCompleteResultsList = instance.get('listNode');
+            var autoCompleteResultsList = instance.get('listNode');
 
-			if (!autoCompleteResultsList) {
-				autoCompleteResultsList = instance._createListNode();
-			}
+            if (!autoCompleteResultsList) {
+                autoCompleteResultsList = instance._createListNode();
+            }
 
-			autoCompleteResultsList.delegate('click', instance._handleResultListClick, SELECTOR_ENTRY_CONTAINER, instance);
-			autoCompleteResultsList.delegate('mouseenter', instance._onMouseEnter, SELECTOR_ENTRY_CONTAINER, instance);
-			autoCompleteResultsList.delegate('mouseleave', instance._onMouseLeave, SELECTOR_ENTRY_CONTAINER);
+            autoCompleteResultsList.delegate('click', instance._handleResultListClick, SELECTOR_ENTRY_CONTAINER, instance);
+            autoCompleteResultsList.delegate('mouseenter', instance._onMouseEnter, SELECTOR_ENTRY_CONTAINER, instance);
+            autoCompleteResultsList.delegate('mouseleave', instance._onMouseLeave, SELECTOR_ENTRY_CONTAINER);
 
-			instance._autoCompleteResultsList = autoCompleteResultsList;
-		},
+            instance._autoCompleteResultsList = autoCompleteResultsList;
+        },
 
-		_createListNode: function () {
-			var instance = this;
+        _createListNode: function () {
+            var instance = this;
 
-			var listNode = A.Node.create(instance.TPL_LIST);
+            var listNode = A.Node.create(instance.TPL_LIST);
 
-			instance.get('contentBox').append(listNode);
-	 
-			return listNode;
-		},
+            instance.get('contentBox').append(listNode);
 
-		_getEntriesPerPage: function() {
-			var instance = this;
+            return listNode;
+        },
 
-			var entriesPerPage = instance._entriesPerPage;
+        _getEntriesPerPage: function() {
+            var instance = this;
 
-			if (!entriesPerPage) {
-				var autoCompleteResultsList = instance._autoCompleteResultsList;
+            var entriesPerPage = instance._entriesPerPage;
 
-				var entryHeight = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER).get(OFFSET_HEIGHT);
+            if (!entriesPerPage) {
+                var autoCompleteResultsList = instance._autoCompleteResultsList;
 
-				var containerHeight = autoCompleteResultsList.get(OFFSET_HEIGHT);
+                var entryHeight = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER).get(OFFSET_HEIGHT);
 
-				entriesPerPage = Math.floor(containerHeight / entryHeight);
+                var containerHeight = autoCompleteResultsList.get(OFFSET_HEIGHT);
 
-				instance._entriesPerPage = entriesPerPage;
-			}
+                entriesPerPage = Math.floor(containerHeight / entryHeight);
 
-			return entriesPerPage;
-		},
+                instance._entriesPerPage = entriesPerPage;
+            }
 
-		_getSelectedEntry: function() {
-			var instance = this;
+            return entriesPerPage;
+        },
 
-			var entryText;
+        _getSelectedEntry: function() {
+            var instance = this;
 
-			var selectedEntryNode = instance._autoCompleteResultsList.one(SELECTOR_SELECTED_ENTRY);
+            var entryText;
 
-			if (selectedEntryNode) {
-				entryText = selectedEntryNode.text();
-			}
+            var selectedEntryNode = instance._autoCompleteResultsList.one(SELECTOR_SELECTED_ENTRY);
 
-			return entryText;
-		},
+            if (selectedEntryNode) {
+                entryText = selectedEntryNode.text();
+            }
 
-		_handleArrows: function(keyCode) {
-			var instance = this;
+            return entryText;
+        },
 
-			var action;
+        _handleArrows: function(keyCode) {
+            var instance = this;
 
-			if (keyCode === KEY_UP) {
-				action = PREVIOUS;
-			}
-			else if (keyCode === KEY_DONW) {
-				action = 'next';
-			}
+            var action;
 
-			if (action) {
-				var autoCompleteResultsList = instance._autoCompleteResultsList;
+            if (keyCode === KEY_UP) {
+                action = PREVIOUS;
+            }
+            else if (keyCode === KEY_DONW) {
+                action = 'next';
+            }
 
-				var selectedEntry = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER_SELECTED);
+            if (action) {
+                var autoCompleteResultsList = instance._autoCompleteResultsList;
 
-				if (selectedEntry) {
-					var entry = selectedEntry[action](SELECTOR_ENTRY_CONTAINER);
+                var selectedEntry = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER_SELECTED);
 
-					if (entry) {
-						selectedEntry.removeClass(SELECTED);
+                if (selectedEntry) {
+                    var entry = selectedEntry[action](SELECTOR_ENTRY_CONTAINER);
 
-						entry.addClass(SELECTED);
+                    if (entry) {
+                        selectedEntry.removeClass(SELECTED);
 
-						var resultsListNodeRegion = autoCompleteResultsList.get(REGION);
+                        entry.addClass(SELECTED);
 
-						var entryRegion = entry.get(REGION);
+                        var resultsListNodeRegion = autoCompleteResultsList.get(REGION);
 
-						if (action === PREVIOUS) {
-							if (entryRegion.top < resultsListNodeRegion.top) {
-								entry.scrollIntoView(true);
-							}
-							else if (entryRegion.top > resultsListNodeRegion.bottom) {
-								entry.scrollIntoView();
-							}
-						}
-						else {
-							if (entryRegion.top + entryRegion.height > resultsListNodeRegion.bottom) {
-								entry.scrollIntoView();
-							}
-							else if(entryRegion.top + entryRegion.height < resultsListNodeRegion.top) {
-								entry.scrollIntoView(true);
-							}
-						}
-					}
-				}
+                        var entryRegion = entry.get(REGION);
 
-				return new Do.Halt(null);
-			}
-		},
+                        if (action === PREVIOUS) {
+                            if (entryRegion.top < resultsListNodeRegion.top) {
+                                entry.scrollIntoView(true);
+                            }
+                            else if (entryRegion.top > resultsListNodeRegion.bottom) {
+                                entry.scrollIntoView();
+                            }
+                        }
+                        else {
+                            if (entryRegion.top + entryRegion.height > resultsListNodeRegion.bottom) {
+                                entry.scrollIntoView();
+                            }
+                            else if(entryRegion.top + entryRegion.height < resultsListNodeRegion.top) {
+                                entry.scrollIntoView(true);
+                            }
+                        }
+                    }
+                }
 
-		_handleKey: function(event, obj, keyCode) {
-			var instance = this;
+                return new Do.Halt(null);
+            }
+        },
 
-			var result;
+        _handleKey: function(event, obj, keyCode) {
+            var instance = this;
 
-			if (instance.get(VISIBLE)) {
-				if (keyCode === KEY_UP || keyCode === KEY_DONW) {
-					result = instance._handleArrows(keyCode);
-				}
-				else if (keyCode === KEY_PAGE_UP || keyCode === KEY_PAGE_DOWN) {
-					result = instance._handlePageUpDown(keyCode);
-				}
-				else if (keyCode === KEY_END || keyCode === KEY_START) {
-					result = instance._handleStartEnd(keyCode);
-				}
-			}
+            var result;
 
-			return result;
-		},
+            if (instance.get(VISIBLE)) {
+                if (keyCode === KEY_UP || keyCode === KEY_DONW) {
+                    result = instance._handleArrows(keyCode);
+                }
+                else if (keyCode === KEY_PAGE_UP || keyCode === KEY_PAGE_DOWN) {
+                    result = instance._handlePageUpDown(keyCode);
+                }
+                else if (keyCode === KEY_END || keyCode === KEY_START) {
+                    result = instance._handleStartEnd(keyCode);
+                }
+            }
 
-		_handlePageUpDown: function(keyCode) {
-			var instance = this;
+            return result;
+        },
 
-			var autoCompleteResultsList = instance._autoCompleteResultsList;
+        _handlePageUpDown: function(keyCode) {
+            var instance = this;
 
-			var entriesPerPage = instance._getEntriesPerPage();
+            var autoCompleteResultsList = instance._autoCompleteResultsList;
 
-			var selectedEntry = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER_SELECTED);
+            var entriesPerPage = instance._getEntriesPerPage();
 
-			var selectedEntryIndex = Lang.toInt(selectedEntry.attr(ATTR_DATA_INDEX));
+            var selectedEntry = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER_SELECTED);
 
-			var nextSelectedEntryIndex;
+            var selectedEntryIndex = Lang.toInt(selectedEntry.attr(ATTR_DATA_INDEX));
 
-			var sudoClass = EMPTY_STRING;
+            var nextSelectedEntryIndex;
 
-			var scrollTop = false;
+            var sudoClass = EMPTY_STRING;
 
-			if (keyCode === KEY_PAGE_UP) {
-				nextSelectedEntryIndex = selectedEntryIndex - entriesPerPage;
+            var scrollTop = false;
 
-				scrollTop = true;
-			}
-			else if (keyCode === KEY_PAGE_DOWN) {
-				nextSelectedEntryIndex = selectedEntryIndex + entriesPerPage;
+            if (keyCode === KEY_PAGE_UP) {
+                nextSelectedEntryIndex = selectedEntryIndex - entriesPerPage;
 
-				sudoClass = ':last-child';
-			}
+                scrollTop = true;
+            }
+            else if (keyCode === KEY_PAGE_DOWN) {
+                nextSelectedEntryIndex = selectedEntryIndex + entriesPerPage;
 
-			var nextSelectedEntry = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER + '[' + ATTR_DATA_INDEX + '="' + nextSelectedEntryIndex + '"]');
+                sudoClass = ':last-child';
+            }
 
-			if (!nextSelectedEntry) {
-				nextSelectedEntry = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER + sudoClass);
-			}
-			
-			if (selectedEntry !== nextSelectedEntry) {
-				selectedEntry.removeClass(SELECTED);
+            var nextSelectedEntry = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER + '[' + ATTR_DATA_INDEX + '="' + nextSelectedEntryIndex + '"]');
 
-				nextSelectedEntry.addClass(SELECTED);
+            if (!nextSelectedEntry) {
+                nextSelectedEntry = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER + sudoClass);
+            }
 
-				nextSelectedEntry.scrollIntoView(scrollTop);
-			}
+            if (selectedEntry !== nextSelectedEntry) {
+                selectedEntry.removeClass(SELECTED);
 
-			return new Do.Halt(null);
-		},
+                nextSelectedEntry.addClass(SELECTED);
 
-		_handleResultListClick: function(event) {
-			var instance = this;
+                nextSelectedEntry.scrollIntoView(scrollTop);
+            }
 
-			var entryNode = event.currentTarget;
+            return new Do.Halt(null);
+        },
 
-			var selectedEntry = instance._autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER_SELECTED);
+        _handleResultListClick: function(event) {
+            var instance = this;
 
-			if (entryNode !== selectedEntry) {
-				selectedEntry.removeClass(SELECTED);
+            var entryNode = event.currentTarget;
 
-				entryNode.addClass(SELECTED);
-			}
+            var selectedEntry = instance._autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER_SELECTED);
 
-			var content = entryNode.text();
+            if (entryNode !== selectedEntry) {
+                selectedEntry.removeClass(SELECTED);
 
-			instance._addSuggestion(content);
+                entryNode.addClass(SELECTED);
+            }
 
-			instance.fire(
-				'entrySelected',
-				{
-					content: content
-				}
-			);
-		},
+            var content = entryNode.text();
 
-		_handleStartEnd: function(keyCode) {
-			var instance = this;
+            instance._addSuggestion(content);
 
-			var item;
+            instance.fire(
+                'entrySelected',
+                {
+                    content: content
+                }
+            );
+        },
 
-			var scrollTop = false;
+        _handleStartEnd: function(keyCode) {
+            var instance = this;
 
-			var autoCompleteResultsList = instance._autoCompleteResultsList;
+            var item;
 
-			if (keyCode === KEY_END) {
-				item = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER + ':last-child');
-			}
-			else if (keyCode === KEY_START) {
-				item = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER);
+            var scrollTop = false;
 
-				scrollTop = true;
-			}
+            var autoCompleteResultsList = instance._autoCompleteResultsList;
 
-			var selectedEntry = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER_SELECTED);
+            if (keyCode === KEY_END) {
+                item = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER + ':last-child');
+            }
+            else if (keyCode === KEY_START) {
+                item = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER);
 
-			if (item !== selectedEntry) {
-				selectedEntry.removeClass(SELECTED);
+                scrollTop = true;
+            }
 
-				item.addClass(SELECTED);
+            var selectedEntry = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER_SELECTED);
 
-				item.scrollIntoView(scrollTop);
-			}
+            if (item !== selectedEntry) {
+                selectedEntry.removeClass(SELECTED);
 
-			return new Do.Halt(null);
-		},
+                item.addClass(SELECTED);
 
-		_onCursorChange: function(event) {
-			var instance = this;
+                item.scrollIntoView(scrollTop);
+            }
 
-			if (!instance.get(VISIBLE)) {
-				event.preventDefault();
-			}
-		},
+            return new Do.Halt(null);
+        },
 
-		_onInsertText: function(event) {
-			var instance = this;
+        _onCursorChange: function(event) {
+            var instance = this;
 
-			if (event.startRow !== event.endRow && instance.get(VISIBLE)) {
-				instance.hide();
-			}
-		},
+            if (!instance.get(VISIBLE)) {
+                event.preventDefault();
+            }
+        },
 
-		_onMatch: function(event) {
-			var instance = this;
+        _onInsertText: function(event) {
+            var instance = this;
 
-			if (event.match) {
-				var coords = event.coords;
+            if (event.startRow !== event.endRow && instance.get(VISIBLE)) {
+                instance.hide();
+            }
+        },
 
-				instance.set('xy', [coords.pageX + PADDING_HORIZ, coords.pageY + PADDING_VERT]);
-			}
-			else if (instance.get(VISIBLE)) {
-				instance.hide();
-			}
-		},
+        _onMatch: function(event) {
+            var instance = this;
 
-		_onMouseEnter: function(event) {
-			event.currentTarget.addClass(CLASS_ENTRY_CONTAINER_HIGHLIGHTED);
-		},
+            if (event.match) {
+                var coords = event.coords;
 
-		_onMouseLeave: function(event) {
-			event.currentTarget.removeClass(CLASS_ENTRY_CONTAINER_HIGHLIGHTED);
-		},
+                instance.set('xy', [coords.pageX + PADDING_HORIZ, coords.pageY + PADDING_VERT]);
+            }
+            else if (instance.get(VISIBLE)) {
+                instance.hide();
+            }
+        },
 
-		_onRemoveText: function(event) {
-			var instance = this;
+        _onMouseEnter: function(event) {
+            event.currentTarget.addClass(CLASS_ENTRY_CONTAINER_HIGHLIGHTED);
+        },
 
-			if (instance.get(VISIBLE)) {
-				instance.hide();
-			}
-		},
+        _onMouseLeave: function(event) {
+            event.currentTarget.removeClass(CLASS_ENTRY_CONTAINER_HIGHLIGHTED);
+        },
 
-		_onResultsChange: function(event) {
-			var instance = this;
+        _onRemoveText: function(event) {
+            var instance = this;
 
-			var autoCompleteResultsList = instance._autoCompleteResultsList;
+            if (instance.get(VISIBLE)) {
+                instance.hide();
+            }
+        },
 
-			autoCompleteResultsList.empty();
+        _onResultsChange: function(event) {
+            var instance = this;
 
-			var results = event.newVal;
+            var autoCompleteResultsList = instance._autoCompleteResultsList;
 
-			var entryTemplate = instance.TPL_ENTRY;
+            autoCompleteResultsList.empty();
 
-			AArray.each(
-				results,
-				function(item, index) {
-					autoCompleteResultsList.appendChild(
-						Lang.sub(
-							entryTemplate,
-							{
-								index: index,
-								value: item
-							}
-						)
-					);
-				}
-			);
+            var results = event.newVal;
 
-			var firstEntry = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER);
+            var entryTemplate = instance.TPL_ENTRY;
 
-			if (firstEntry) {
-				firstEntry.addClass(SELECTED);
+            AArray.each(
+                results,
+                function(item, index) {
+                    autoCompleteResultsList.appendChild(
+                        Lang.sub(
+                            entryTemplate,
+                            {
+                                index: index,
+                                value: item
+                            }
+                        )
+                    );
+                }
+            );
 
-				if (!instance.get(VISIBLE)) {
-					instance.show();
-				}
-			}
-			else {
-				if (instance.get(VISIBLE)) {
-					instance.hide();
-				}
-			}
-		},
+            var firstEntry = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER);
 
-		_onShowLoadingMessage: function(event) {
-			var instance = this;
+            if (firstEntry) {
+                firstEntry.addClass(SELECTED);
 
-			var autoCompleteResultsList = instance._autoCompleteResultsList;
+                if (!instance.get(VISIBLE)) {
+                    instance.show();
+                }
+            }
+            else {
+                if (instance.get(VISIBLE)) {
+                    instance.hide();
+                }
+            }
+        },
 
-			autoCompleteResultsList.empty();
+        _onShowLoadingMessage: function(event) {
+            var instance = this;
 
-			autoCompleteResultsList.appendChild(
-				Lang.sub(
-					instance.TPL_LOADING,
-					{
-						label: instance.get('loadingMessage')
-					}
-				)
-			);
+            var autoCompleteResultsList = instance._autoCompleteResultsList;
 
-			if (!instance.get(VISIBLE)) {
-				instance.show();
-			}
-		},
+            autoCompleteResultsList.empty();
 
-		_onVisibleChange: function(event) {
-			var instance = this;
+            autoCompleteResultsList.appendChild(
+                Lang.sub(
+                    instance.TPL_LOADING,
+                    {
+                        label: instance.get('loadingMessage')
+                    }
+                )
+            );
 
-			if (event.newVal) {
-				instance._overwriteCommands();
-			}
-			else {
-				instance._removeAutoCompleteCommands();
-			}
-		},
+            if (!instance.get(VISIBLE)) {
+                instance.show();
+            }
+        },
 
-		_setEmptyResults: function() {
-			var instance = this;
+        _onVisibleChange: function(event) {
+            var instance = this;
 
-			instance.set('results', []);
-		},
+            if (event.newVal) {
+                instance._overwriteCommands();
+            }
+            else {
+                instance._removeAutoCompleteCommands();
+            }
+        },
 
-		TPL_ENTRY:
-			'<li class="' + CLASS_ENTRY_CONTAINER + '" data-index="{index}">' +
-				'<span class="' + CLASS_ENTRY + '">{value}</span>' +
-			'</li>',
+        _setEmptyResults: function() {
+            var instance = this;
 
-		TPL_LIST: '<ul class="' + CLASS_RESULTS_LIST + '"/>',
+            instance.set('results', []);
+        },
 
-		TPL_LOADING: '<li class="' + CLASS_ENTRY_CONTAINER + '">' +
-			'<span class="aui-icon-loading ' + CLASS_ENTRY_LOADING + '">{label}</span>' +
-		'</li>',
+        TPL_ENTRY:
+            '<li class="' + CLASS_ENTRY_CONTAINER + '" data-index="{index}">' +
+                '<span class="' + CLASS_ENTRY + '">{value}</span>' +
+            '</li>',
 
-		TPL_RESULTS_EMPTY:
-			'<li class="' + CLASS_ENTRY_CONTAINER + '">' +
-				'<span class="' + CLASS_ENTRY_EMPTY + '">{label}</span>' +
-			'</li>'
-	}
+        TPL_LIST: '<ul class="' + CLASS_RESULTS_LIST + '"/>',
+
+        TPL_LOADING: '<li class="' + CLASS_ENTRY_CONTAINER + '">' +
+            '<span class="aui-icon-loading ' + CLASS_ENTRY_LOADING + '">{label}</span>' +
+        '</li>',
+
+        TPL_RESULTS_EMPTY:
+            '<li class="' + CLASS_ENTRY_CONTAINER + '">' +
+                '<span class="' + CLASS_ENTRY_EMPTY + '">{label}</span>' +
+            '</li>'
+    }
 });
 
 A.AceEditor.AutoCompleteList = AutoCompleteList;
