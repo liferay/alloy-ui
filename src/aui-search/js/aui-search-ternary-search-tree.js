@@ -28,10 +28,10 @@ var TernarySearchTree = A.Component.create({
 			}
 		},
 
-		contains: function(word) {
+		contains: function(word, caseInsensitive) {
 			var instance = this;
 
-			var node = instance._search(instance._root, word, 0);
+			var node = instance._search(instance._root, word, 0, caseInsensitive);
 
 			return !!(Lang.isValue(node) && node.isEndOfWord());
 		},
@@ -52,12 +52,12 @@ var TernarySearchTree = A.Component.create({
 			return results;
 		},
 
-		prefixSearch: function(prefix) {
+		prefixSearch: function(prefix, caseInsensitive) {
 			var instance = this;
 
 			var results = [];
 
-			var node = instance._search(instance._root, prefix, 0);
+			var node = instance._search(instance._root, prefix, 0, caseInsensitive);
 
 			if (node) {
 				instance._inOrderTraversal(node.get(CHILD), results);
@@ -149,7 +149,7 @@ var TernarySearchTree = A.Component.create({
 			}
 		},
 
-		_search: function(node, word, index) {
+		_search: function(node, word, index, caseInsensitive) {
 			var instance = this;
 
 			var result = node;
@@ -159,16 +159,21 @@ var TernarySearchTree = A.Component.create({
 
 				var nodeCharacter = node.get(CHARACTER);
 
+				if (caseInsensitive) {
+					character = character.toLowerCase();
+					nodeCharacter = nodeCharacter.toLowerCase();
+				}
+
 				if (character === nodeCharacter) {
 					if (index + 1 < word.length) {
-						result = instance._search(node.get(CHILD), word, index + 1);
+						result = instance._search(node.get(CHILD), word, index + 1, caseInsensitive);
 					}
 				}
 				else if (character < nodeCharacter) {
-					result = instance._search(node.get(SMALLER_NODE), word, index);
+					result = instance._search(node.get(SMALLER_NODE), word, index, caseInsensitive);
 				}
 				else {
-					result = instance._search(node.get(LARGER_NODE), word, index);
+					result = instance._search(node.get(LARGER_NODE), word, index, caseInsensitive);
 				}
 			}
 
