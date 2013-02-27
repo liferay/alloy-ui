@@ -3,10 +3,14 @@ var Lang = A.Lang,
 	AArray = A.Array,
 	Do = A.Do,
 
-	INSERT_TEXT = 'insertText',
 	EXEC = 'exec',
+	FILL_MODE = 'fillMode',
 	HOST = 'host',
+	INSERT_TEXT = 'insertText',
 	PROCESSOR = 'processor',
+
+	FILL_MODE_INSERT = 1,
+	FILL_MODE_OVERWRITE = 0,
 
 	STATUS_ERROR = -1,
 	STATUS_SUCCESS = 0,
@@ -36,6 +40,10 @@ Base.prototype = {
 		var editor = instance._getEditor();
 
 		var data = instance.get(PROCESSOR).getSuggestion(instance._matchParams.match, content);
+
+		if (this.get(FILL_MODE) === Base.FILL_MODE_OVERWRITE) {
+			editor.removeWordLeft();
+		}
 
 		editor.insert(data);
 
@@ -245,14 +253,26 @@ Base.prototype = {
 		AArray.invoke(instance._editorCommands, 'detach');
 
 		instance._editorCommands.length = 0;
+	},
+
+	_validateFillMode: function(value) {
+		return (value === Base.FILL_MODE_OVERWRITE || value === Base.FILL_MODE_INSERT);
 	}
 };
+
+Base.FILL_MODE_INSERT = FILL_MODE_INSERT;
+Base.FILL_MODE_OVERWRITE = FILL_MODE_OVERWRITE;
 
 Base.NAME = NAME;
 
 Base.NS = NAME;
 
 Base.ATTRS = {
+	fillMode: {
+		validator: '_validateFillMode',
+		value: Base.FILL_MODE_OVERWRITE
+	},
+
 	processor: {
 		validator: function(value) {
 			return Lang.isObject(value) || Lang.isFunction(value);
@@ -760,7 +780,7 @@ var AutoCompleteList = A.Component.create({
 A.AceEditor.AutoCompleteList = AutoCompleteList;
 A.AceEditor.AutoComplete = AutoCompleteList;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-base','widget-autohide','aui-ace-autocomplete-base']});
+}, '@VERSION@' ,{requires:['aui-overlay-base','widget-autohide','aui-ace-autocomplete-base'], skinnable:true});
 AUI.add('aui-ace-autocomplete-plugin', function(A) {
 var Plugin = A.Plugin;
 
@@ -822,6 +842,8 @@ var Lang = A.Lang,
 		't',
 		'function'
 	],
+
+	Base = A.AceEditor.AutoCompleteBase,
 
 	MATCH_DIRECTIVES = 0,
 	MATCH_VARIABLES = 1,
@@ -914,7 +936,7 @@ var Freemarker = A.Component.create({
 						instance._addDirectives();
 					}
 
-					matchDirectives = tstree.prefixSearch(content);
+					matchDirectives = tstree.prefixSearch(content, true);
 				}
 
 				callbackSuccess(matchDirectives);
@@ -932,20 +954,24 @@ var Freemarker = A.Component.create({
 			var result = selectedSuggestion || STR_EMPTY;
 
 			if (selectedSuggestion) {
-				var type = match.type;
+				var fillMode = instance.get('host').get('fillMode');
 
-				if (type === MATCH_DIRECTIVES) {
-					if (match.content && selectedSuggestion.indexOf(match.content) === 0) {
-						result = selectedSuggestion.substring(match.content.length);
+				if (fillMode === Base.FILL_MODE_INSERT) {
+					var type = match.type;
+
+					if (type === MATCH_DIRECTIVES) {
+						if (match.content && selectedSuggestion.indexOf(match.content) === 0) {
+							result = selectedSuggestion.substring(match.content.length);
+						}
 					}
-				}
-				else if (type === MATCH_VARIABLES) {
-					var variables = match.content.split(DOT);
+					else if (type === MATCH_VARIABLES) {
+						var variables = match.content.split(DOT);
 
-					var lastEntry = variables[variables.length - 1];
+						var lastEntry = variables[variables.length - 1];
 
-					if (lastEntry && selectedSuggestion.indexOf(lastEntry) === 0) {
-						result = selectedSuggestion.substring(lastEntry.length);
+						if (lastEntry && selectedSuggestion.indexOf(lastEntry) === 0) {
+							result = selectedSuggestion.substring(lastEntry.length);
+						}
 					}
 				}
 			}
@@ -1021,7 +1047,7 @@ var Freemarker = A.Component.create({
 						}
 					);
 
-					matches = tstree.prefixSearch(lastEntry);
+					matches = tstree.prefixSearch(lastEntry, true);
 
 					instance._lastTSTLoad = MATCH_VARIABLES;
 				}
