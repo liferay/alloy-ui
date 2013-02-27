@@ -1,6 +1,7 @@
 var Lang = A.Lang,
 	AArray = A.Array,
 	Do = A.Do,
+	ADOM = A.DOM,
 
 	EXEC = 'exec',
 	FILL_MODE = 'fillMode',
@@ -232,6 +233,9 @@ Base.prototype = {
 
 		if (Lang.isObject(match)) {
 			coords = editor.renderer.textToScreenCoordinates(row, column);
+
+			coords.pageX += ADOM.docScrollX();
+			coords.pageY += ADOM.docScrollY();
 
 			instance._matchParams = {
 				column: column,
