@@ -419,6 +419,12 @@
             "aui-component"
         ]
     },
+    "aui-tabview": {
+        "requires": [
+            "tabview",
+            "aui-component"
+        ]
+    },
     "aui-timer": {
         "requires": [
             "oop"
