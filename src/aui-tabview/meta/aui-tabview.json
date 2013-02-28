@@ -1,0 +1,8 @@
+{
+    "aui-tabview": {
+        "requires": [
+            "tabview",
+            "aui-component"
+        ]
+    }
+}

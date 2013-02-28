@@ -1,0 +1,10 @@
+{
+    "name": "aui-tabview",
+    "builds": {
+        "aui-tabview": {
+            "jsfiles": [
+                "js/aui-tabview.js"
+            ]
+        }
+    }
+}
