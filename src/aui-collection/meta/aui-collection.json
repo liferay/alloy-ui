@@ -1,0 +1,13 @@
+{
+    "aui-collection": {
+        "use": [
+            "aui-hashmap"
+        ]
+    },
+
+    "aui-hashmap": {
+        "requires": [
+            "base-build"
+        ]
+    }
+}

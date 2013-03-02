@@ -1,0 +1,10 @@
+{
+    "name": "aui-collection",
+    "builds": {
+        "aui-hashmap": {
+            "jsfiles": [
+                "js/aui-hashmap.js"
+            ]
+        }
+    }
+}
