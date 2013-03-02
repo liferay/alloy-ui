@@ -60,6 +60,10 @@ var Lang = A.Lang,
             return instance._hashToValueMap[instance._getHash(key)];
         },
 
+        keys: function() {
+            return AObject.values(this._hashToKeyMap);
+        },
+
         isEmpty: function() {
             return this._size === 0;
         },
@@ -87,6 +91,10 @@ var Lang = A.Lang,
 
         size: function() {
             return this._size;
+        },
+
+        values: function() {
+            return AObject.values(this._hashToValueMap);
         },
 
         _defClearFn: function() {

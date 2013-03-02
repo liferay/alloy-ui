@@ -125,6 +125,28 @@ YUI.add('module-tests', function(Y) {
             Y.Assert.areSame(map.getValue('c'), 3);
         },
 
+        'test keys': function() {
+            var map = new Y.HashMap(),
+                keys;
+            map.put('a', 1);
+            map.put('b', 2);
+            keys = map.keys();
+            Y.Assert.areSame(keys.length, 2);
+            Y.Assert.areSame(keys[0], 'a');
+            Y.Assert.areSame(keys[1], 'b');
+        },
+
+        'test values': function() {
+            var map = new Y.HashMap(),
+                values;
+            map.put('a', 1);
+            map.put('b', 2);
+            values = map.values();
+            Y.Assert.areSame(values.length, 2);
+            Y.Assert.areSame(values[0], 1);
+            Y.Assert.areSame(values[1], 2);
+        },
+
         'test size': function() {
             var map = new Y.HashMap();
             map.put('key1', 'value');
