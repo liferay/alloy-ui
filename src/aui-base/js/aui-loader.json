@@ -94,6 +94,11 @@
             "classnamemanager"
         ]
     },
+    "aui-collection": {
+        "use": [
+            "aui-hashmap"
+        ]
+    },
     "aui-component": {
         "requires": [
             "aui-classnamemanager",
@@ -204,6 +209,11 @@
             "aui-node",
             "aui-component",
             "aui-event-input"
+        ]
+    },
+    "aui-hashmap": {
+        "requires": [
+            "base-build"
         ]
     },
     "aui-image-cropper": {

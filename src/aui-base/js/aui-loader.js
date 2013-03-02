@@ -103,6 +103,11 @@ Y.mix(YUI.Env[Y.version].modules, {
             "classnamemanager"
         ]
     },
+    "aui-collection": {
+        "use": [
+            "aui-hashmap"
+        ]
+    },
     "aui-component": {
         "requires": [
             "aui-classnamemanager",
@@ -227,6 +232,11 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-node",
             "aui-component",
             "aui-event-input"
+        ]
+    },
+    "aui-hashmap": {
+        "requires": [
+            "base-build"
         ]
     },
     "aui-image-cropper": {
@@ -544,6 +554,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '9caaaa2ab8ccac38829f61457ba6b7e3';
+YUI.Env[Y.version].md5 = 'bfcdb62ca9a07731d5a8fb7a97fc057b';
 
 });
