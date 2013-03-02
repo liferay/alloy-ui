@@ -112,6 +112,11 @@ YUI.add('module-tests', function(Y) {
             Y.Assert.areSame(map.getValue('NaN'), 2);
         },
 
+        'is empty': function() {
+            var map = new Y.HashMap();
+            Y.Assert.isTrue(map.isEmpty());
+        },
+
         'put all': function() {
             var map = new Y.HashMap();
             map.putAll({
