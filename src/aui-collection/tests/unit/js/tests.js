@@ -324,6 +324,131 @@ YUI.add('module-tests', function(Y) {
         }
     }));
 
+    suite.add(new Y.Test.Case({
+        name: 'HashSet',
+
+        //---------------------------------------------
+        // Tests
+        //---------------------------------------------
+
+        'test add': function() {
+            var set = new Y.HashSet(),
+                reference = {};
+
+            set.add('string1');
+            set.add('string1');
+            Y.Assert.areSame(set.size(), 1);
+            Y.Assert.areSame(set.values()[0], 'string1');
+
+            set.clear();
+            set.add(1);
+            set.add(1);
+            Y.Assert.areSame(set.size(), 1);
+            Y.Assert.areSame(set.values()[0], 1);
+
+            set.clear();
+            set.add(null);
+            set.add(null);
+            Y.Assert.areSame(set.size(), 1);
+            Y.Assert.areSame(set.values()[0], null);
+
+            set.clear();
+            set.add(NaN);
+            set.add(NaN);
+            Y.Assert.areSame(set.size(), 1);
+            Y.Assert.isNaN(set.values()[0]);
+
+            set.clear();
+            set.add(reference);
+            set.add(reference);
+            Y.Assert.areSame(set.size(), 1);
+            Y.Assert.areSame(set.values()[0], reference);
+        },
+
+        'test size': function() {
+            var set = new Y.HashSet();
+            set.add('string1');
+            set.add('string1');
+            set.add('string2');
+            set.add('string2');
+            Y.Assert.areSame(set.size(), 2);
+        },
+
+        'test clear': function() {
+            var set = new Y.HashSet();
+            set.add('string');
+            set.clear();
+            Y.Assert.areSame(set.size(), 0);
+        },
+
+        'contains value': function() {
+            var set = new Y.HashSet();
+            set.add('string1');
+            set.add('string1');
+            set.add('string2');
+            set.add('string2');
+            Y.Assert.isTrue(set.contains('string1'));
+            Y.Assert.isTrue(set.contains('string2'));
+            Y.Assert.isFalse(set.contains('string3'));
+        },
+
+        'is empty': function() {
+            var set = new Y.HashSet();
+            Y.Assert.isTrue(set.isEmpty());
+        },
+
+        'remove value': function() {
+            var set = new Y.HashSet();
+            set.add('string1');
+            set.add('string2');
+            set.remove('string1');
+            Y.Assert.areSame(set.values()[0], 'string2');
+            Y.Assert.areSame(set.size(), 1);
+        },
+
+        'add/remove/clear events': function() {
+            var added,
+                cleared,
+                removed,
+                afterAdd,
+                afterRemove,
+                afterClear,
+                set = new Y.HashSet({
+                    on: {
+                        add: function(event) {
+                            added = true;
+                        },
+                        clear: function(event) {
+                            cleared = true;
+                        },
+                        remove: function(event) {
+                            removed = true;
+                        }
+                    },
+                    after: {
+                        add: function(event) {
+                            afterAdd = true;
+                        },
+                        clear: function(event) {
+                            afterClear = true;
+                        },
+                        remove: function(event) {
+                            afterRemove = true;
+                        }
+                    }
+                });
+            set.add(1);
+            set.remove(1);
+            set.clear(1);
+            Y.Assert.isTrue(added);
+            Y.Assert.isTrue(cleared);
+            Y.Assert.isTrue(removed);
+            Y.Assert.isTrue(afterAdd);
+            Y.Assert.isTrue(afterClear);
+            Y.Assert.isTrue(afterRemove);
+        }
+    }));
+
     Y.Test.Runner.add(suite);
 
 },'', { requires: [ 'test', 'aui-collection' ] });
