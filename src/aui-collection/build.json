@@ -5,6 +5,12 @@
             "jsfiles": [
                 "js/aui-hashmap.js"
             ]
+        },
+
+        "aui-hashset": {
+            "jsfiles": [
+                "js/aui-hashset.js"
+            ]
         }
     }
 }
