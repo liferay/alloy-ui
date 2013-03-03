@@ -105,7 +105,8 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-collection": {
         "use": [
-            "aui-hashmap"
+            "aui-hashmap",
+            "aui-hashset"
         ]
     },
     "aui-component": {
@@ -237,6 +238,11 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-hashmap": {
         "requires": [
             "base-build"
+        ]
+    },
+    "aui-hashset": {
+        "requires": [
+            "aui-hashmap"
         ]
     },
     "aui-image-cropper": {
@@ -554,6 +560,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'bfcdb62ca9a07731d5a8fb7a97fc057b';
+YUI.Env[Y.version].md5 = '75ae0a7303f221529d9a1f9013cdd5a9';
 
 });

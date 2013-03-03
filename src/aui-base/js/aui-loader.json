@@ -96,7 +96,8 @@
     },
     "aui-collection": {
         "use": [
-            "aui-hashmap"
+            "aui-hashmap",
+            "aui-hashset"
         ]
     },
     "aui-component": {
@@ -214,6 +215,11 @@
     "aui-hashmap": {
         "requires": [
             "base-build"
+        ]
+    },
+    "aui-hashset": {
+        "requires": [
+            "aui-hashmap"
         ]
     },
     "aui-image-cropper": {
