@@ -26,7 +26,7 @@ var HashSet = A.Base.create('hashset', A.Base, [],
         },
 
         isEmpty: function() {
-            return this._map.size() === 0;
+            return this._map.isEmpty();
         },
 
         remove: function(value) {
