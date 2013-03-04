@@ -43,10 +43,23 @@ Base.prototype = {
 		var data = instance.get(PROCESSOR).getSuggestion(instance._matchParams.match, content);
 
 		if (this.get(FILL_MODE) === Base.FILL_MODE_OVERWRITE) {
-			editor.removeWordLeft();
-		}
+			var matchParams = instance._matchParams;
 
-		editor.insert(data);
+			var startRow = matchParams.row;
+
+			var startColumn = matchParams.column - matchParams.match.content.length;
+
+			var cursorPosition = editor.getCursorPosition();
+
+			var Range = require('ace/range').Range;
+
+			var overwriteRange = new Range(startRow, startColumn, cursorPosition.row, cursorPosition.column);
+
+			editor.getSession().replace(overwriteRange, data);
+		}
+		else {
+			editor.insert(data);
+		}
 
 		editor.focus();
 
@@ -792,7 +805,7 @@ var AutoCompleteList = A.Component.create({
 A.AceEditor.AutoCompleteList = AutoCompleteList;
 A.AceEditor.AutoComplete = AutoCompleteList;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-base','widget-autohide','aui-ace-autocomplete-base']});
+}, '@VERSION@' ,{requires:['aui-overlay-base','widget-autohide','aui-ace-autocomplete-base'], skinnable:true});
 AUI.add('aui-ace-autocomplete-plugin', function(A) {
 var Plugin = A.Plugin;
 
@@ -968,23 +981,34 @@ var Freemarker = A.Component.create({
 			if (selectedSuggestion) {
 				var fillMode = instance.get('host').get('fillMode');
 
-				if (fillMode === Base.FILL_MODE_INSERT) {
-					var type = match.type;
+				var type = match.type;
 
+				var variables;
+
+				var lastEntry;
+
+				if (fillMode === Base.FILL_MODE_INSERT) {
 					if (type === MATCH_DIRECTIVES) {
 						if (match.content && selectedSuggestion.indexOf(match.content) === 0) {
 							result = selectedSuggestion.substring(match.content.length);
 						}
 					}
 					else if (type === MATCH_VARIABLES) {
-						var variables = match.content.split(DOT);
+						variables = match.content.split(DOT);
 
-						var lastEntry = variables[variables.length - 1];
+						lastEntry = variables[variables.length - 1];
 
 						if (lastEntry && selectedSuggestion.indexOf(lastEntry) === 0) {
 							result = selectedSuggestion.substring(lastEntry.length);
 						}
 					}
+				}
+				else if (type === MATCH_VARIABLES) {
+					variables = match.content.split(DOT);
+
+					variables[variables.length - 1] = selectedSuggestion;
+
+					result = variables.join(DOT);
 				}
 			}
 
