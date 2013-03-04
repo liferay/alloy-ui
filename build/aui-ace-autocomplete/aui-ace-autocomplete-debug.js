@@ -38,6 +38,8 @@ Base.prototype = {
 	_addSuggestion: function(content) {
 		var instance = this;
 
+		instance._lockEditor = true;
+
 		var editor = instance._getEditor();
 
 		var data = instance.get(PROCESSOR).getSuggestion(instance._matchParams.match, content);
@@ -49,6 +51,8 @@ Base.prototype = {
 		editor.insert(data);
 
 		editor.focus();
+
+		instance._lockEditor = false;
 
 		instance.fire('addSuggestion', data);
 
@@ -154,7 +158,7 @@ Base.prototype = {
 
 		var dataAction = data.action;
 
-		if (dataAction === INSERT_TEXT || dataAction === 'removeText') {
+		if (!instance._lockEditor && (dataAction === INSERT_TEXT || dataAction === 'removeText')) {
 			var dataRange = data.range;
 
 			var column = dataRange.start.column;
@@ -792,7 +796,7 @@ var AutoCompleteList = A.Component.create({
 A.AceEditor.AutoCompleteList = AutoCompleteList;
 A.AceEditor.AutoComplete = AutoCompleteList;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-base','widget-autohide','aui-ace-autocomplete-base']});
+}, '@VERSION@' ,{requires:['aui-overlay-base','widget-autohide','aui-ace-autocomplete-base'], skinnable:true});
 AUI.add('aui-ace-autocomplete-plugin', function(A) {
 var Plugin = A.Plugin;
 
