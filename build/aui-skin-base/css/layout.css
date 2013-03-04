@@ -326,7 +326,7 @@
 	overflow: hidden;
 }
 
-.ie body {
+.ie7 body {
 	position: relative;
 }
 
