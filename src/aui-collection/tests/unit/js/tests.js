@@ -384,8 +384,6 @@ YUI.add('module-tests', function(Y) {
         'contains value': function() {
             var set = new Y.HashSet();
             set.add('string1');
-            set.add('string1');
-            set.add('string2');
             set.add('string2');
             Y.Assert.isTrue(set.contains('string1'));
             Y.Assert.isTrue(set.contains('string2'));
