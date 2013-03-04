@@ -37,6 +37,8 @@ Base.prototype = {
 	_addSuggestion: function(content) {
 		var instance = this;
 
+		instance._lockEditor = true;
+
 		var editor = instance._getEditor();
 
 		var data = instance.get(PROCESSOR).getSuggestion(instance._matchParams.match, content);
@@ -48,6 +50,8 @@ Base.prototype = {
 		editor.insert(data);
 
 		editor.focus();
+
+		instance._lockEditor = false;
 
 		instance.fire('addSuggestion', data);
 
@@ -153,7 +157,7 @@ Base.prototype = {
 
 		var dataAction = data.action;
 
-		if (dataAction === INSERT_TEXT || dataAction === 'removeText') {
+		if (!instance._lockEditor && (dataAction === INSERT_TEXT || dataAction === 'removeText')) {
 			var dataRange = data.range;
 
 			var column = dataRange.start.column;
