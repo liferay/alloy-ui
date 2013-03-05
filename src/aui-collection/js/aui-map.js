@@ -14,10 +14,10 @@ var Lang = A.Lang,
         TRUE: A.guid(),
         UNDEFINED: A.guid(),
 
-        _hashToKeyMap: null,
-        _hashToValueMap: null,
+        _keys: null,
         _objects: null,
         _size: 0,
+        _values: null,
 
         initializer: function() {
             var instance = this;
@@ -28,8 +28,8 @@ var Lang = A.Lang,
                 remove: { defaultFn: instance._defRemoveFn }
             });
 
-            instance._hashToKeyMap = {};
-            instance._hashToValueMap = {};
+            instance._keys = {};
+            instance._values = {};
             instance._objects = [];
         },
 
@@ -37,16 +37,22 @@ var Lang = A.Lang,
             this.fire('clear');
         },
 
-        containsKey: function(key) {
+        getValue: function(key) {
             var instance = this;
 
-            return instance._hashToValueMap.hasOwnProperty(instance._getHash(key));
+            return instance._values[instance._getHash(key)];
         },
 
-        containsValue: function(value) {
+        has: function(key) {
+            var instance = this;
+
+            return instance._values.hasOwnProperty(instance._getHash(key));
+        },
+
+        hasValue: function(value) {
             var found = false;
 
-            AObject.some(this._hashToValueMap, function(val) {
+            AObject.some(this._values, function(val) {
                 found = val === value;
                 return found;
             });
@@ -54,14 +60,8 @@ var Lang = A.Lang,
             return found;
         },
 
-        getValue: function(key) {
-            var instance = this;
-
-            return instance._hashToValueMap[instance._getHash(key)];
-        },
-
         keys: function() {
-            return AObject.values(this._hashToKeyMap);
+            return AObject.values(this._keys);
         },
 
         isEmpty: function() {
@@ -94,13 +94,13 @@ var Lang = A.Lang,
         },
 
         values: function() {
-            return AObject.values(this._hashToValueMap);
+            return AObject.values(this._values);
         },
 
         _defClearFn: function() {
             var instance = this;
 
-            AObject.each(instance._hashToValueMap, function(value, hash) {
+            AObject.each(instance._values, function(value, hash) {
                 instance.remove(instance._unhash(hash));
             });
 
@@ -111,29 +111,29 @@ var Lang = A.Lang,
             var instance = this,
                 hash = instance._getHash(event.key);
 
-            if (!instance.containsKey(event.key)) {
+            if (!instance.has(event.key)) {
                 instance._size++;
             }
-            instance._hashToKeyMap[hash] = event.key;
-            instance._hashToValueMap[hash] = event.value;
+            instance._keys[hash] = event.key;
+            instance._values[hash] = event.value;
         },
 
         _defRemoveFn: function(event) {
             var instance = this,
                 key = event.key,
-                hashToKeyMap = instance._hashToKeyMap,
-                hashToValueMap = instance._hashToValueMap,
+                keys = instance._keys,
+                values = instance._values,
                 hash,
                 objects,
                 oldValue,
                 valueIndex;
 
-            if (instance.containsKey(key)) {
+            if (instance.has(key)) {
                 hash = instance._getHash(key);
-                oldValue = hashToValueMap[hash];
+                oldValue = values[hash];
 
-                delete hashToValueMap[hash];
-                delete hashToKeyMap[hash];
+                delete values[hash];
+                delete keys[hash];
 
                 if (!instance._isObjectWithHashCode(oldValue)) {
                     objects = instance._objects;
@@ -205,7 +205,7 @@ var Lang = A.Lang,
         },
 
         _unhash: function(hash) {
-            return this._hashToKeyMap[hash];
+            return this._keys[hash];
         }
     },
     {}

@@ -165,7 +165,7 @@ YUI.add('module-tests', function(Y) {
             map.put('key', 'value');
             map.clear();
             Y.Assert.areSame(map.size(), 0);
-            Y.Assert.isTrue(Y.Object.isEmpty(map._hashToValueMap), 'map should be empty after a clear');
+            Y.Assert.isTrue(Y.Object.isEmpty(map._values), 'map should be empty after a clear');
         },
 
         'put/get object reference': function() {
@@ -193,13 +193,13 @@ YUI.add('module-tests', function(Y) {
             Y.Assert.areSame(map.getValue(functionKey), 3);
         },
 
-        'contains value': function() {
+        'has value': function() {
             var map = new Y.Map();
             map.put('key1', 'value');
             map.put('key2', null);
-            Y.Assert.isTrue(map.containsValue('value'));
-            Y.Assert.isTrue(map.containsValue(null));
-            Y.Assert.isFalse(map.containsValue('bar'));
+            Y.Assert.isTrue(map.hasValue('value'));
+            Y.Assert.isTrue(map.hasValue(null));
+            Y.Assert.isFalse(map.hasValue('bar'));
         },
 
         'remove value': function() {
@@ -214,13 +214,15 @@ YUI.add('module-tests', function(Y) {
             Y.Assert.areSame(map.remove(arrayKey), 'value');
             Y.Assert.areSame(map.remove(objectKey), 'value');
             Y.Assert.isUndefined(map.remove('foo'));
-            Y.Assert.isUndefined(map._hashToKeyMap[map._getHash('key1')]);
-            Y.Assert.isUndefined(map._hashToKeyMap[map._getHash(arrayKey)]);
-            Y.Assert.isUndefined(map._hashToKeyMap[map._getHash(objectKey)]);
+            Y.Assert.isUndefined(map._keys[map._getHash('key1')]);
+            Y.Assert.isUndefined(map._keys[map._getHash(arrayKey)]);
+            Y.Assert.isUndefined(map._keys[map._getHash(objectKey)]);
         },
 
         'put/remove/clear events': function() {
             var cleared = false,
+                put = false,
+                removed = false,
                 afterPut = false,
                 afterRemove = false,
                 afterClear = false,
@@ -231,6 +233,7 @@ YUI.add('module-tests', function(Y) {
                     },
 
                     put: function(event) {
+                        put = true;
                         Y.Assert.isTrue(event.hasOwnProperty('key'));
                         Y.Assert.isTrue(event.hasOwnProperty('value'));
                         Y.Assert.areSame(event.key, 'key1');
@@ -238,6 +241,7 @@ YUI.add('module-tests', function(Y) {
                     },
 
                     remove: function(event) {
+                        removed = true;
                         Y.Assert.isTrue(event.hasOwnProperty('key'));
                         Y.Assert.isTrue(event.hasOwnProperty('value'));
                         Y.Assert.areSame(event.key, 'key1');
@@ -263,6 +267,8 @@ YUI.add('module-tests', function(Y) {
             map.clear();
 
             Y.Assert.isTrue(cleared);
+            Y.Assert.isTrue(put);
+            Y.Assert.isTrue(removed);
             Y.Assert.isTrue(afterClear);
             Y.Assert.isTrue(afterPut);
             Y.Assert.isTrue(afterRemove);
@@ -381,13 +387,13 @@ YUI.add('module-tests', function(Y) {
             Y.Assert.areSame(set.size(), 0);
         },
 
-        'contains value': function() {
+        'has value': function() {
             var set = new Y.Set();
             set.add('string1');
             set.add('string2');
-            Y.Assert.isTrue(set.contains('string1'));
-            Y.Assert.isTrue(set.contains('string2'));
-            Y.Assert.isFalse(set.contains('string3'));
+            Y.Assert.isTrue(set.has('string1'));
+            Y.Assert.isTrue(set.has('string2'));
+            Y.Assert.isFalse(set.has('string3'));
         },
 
         'is empty': function() {

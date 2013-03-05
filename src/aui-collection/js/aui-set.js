@@ -21,8 +21,8 @@ var HashSet = A.Base.create('set', A.Base, [],
             this.fire('clear');
         },
 
-        contains: function(value) {
-            return this._map.containsKey(value);
+        has: function(value) {
+            return this._map.has(value);
         },
 
         isEmpty: function() {
