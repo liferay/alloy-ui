@@ -96,8 +96,8 @@
     },
     "aui-collection": {
         "use": [
-            "aui-hashmap",
-            "aui-hashset"
+            "aui-map",
+            "aui-set"
         ]
     },
     "aui-component": {
@@ -212,16 +212,6 @@
             "aui-event-input"
         ]
     },
-    "aui-hashmap": {
-        "requires": [
-            "base-build"
-        ]
-    },
-    "aui-hashset": {
-        "requires": [
-            "aui-hashmap"
-        ]
-    },
     "aui-image-cropper": {
         "requires": [
             "resize-base",
@@ -244,6 +234,11 @@
             "plugin",
             "querystring-stringify",
             "aui-component"
+        ]
+    },
+    "aui-map": {
+        "requires": [
+            "base-build"
         ]
     },
     "aui-messaging": {
@@ -407,6 +402,11 @@
         "requires": [
             "selector-css3",
             "aui-classnamemanager"
+        ]
+    },
+    "aui-set": {
+        "requires": [
+            "aui-map"
         ]
     },
     "aui-sortable": {
