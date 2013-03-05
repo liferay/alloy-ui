@@ -3,28 +3,28 @@ YUI.add('module-tests', function(Y) {
     var suite = new Y.Test.Suite('aui-collection');
 
     suite.add(new Y.Test.Case({
-        name: 'HashMap',
+        name: 'Map',
 
         //---------------------------------------------
         // Tests
         //---------------------------------------------
 
         'put/get string key': function() {
-            var map = new Y.HashMap();
+            var map = new Y.Map();
             map.put('string', 1);
             map.put('string', 2);
             Y.Assert.areSame(map.getValue('string'), 2);
         },
 
         'put/get empty string key': function() {
-            var map = new Y.HashMap();
+            var map = new Y.Map();
             map.put('', 1);
             map.put('', 2);
             Y.Assert.areSame(map.getValue(''), 2);
         },
 
         'put/get number key': function() {
-            var map = new Y.HashMap();
+            var map = new Y.Map();
 
             map.put(Infinity, 1);
             map.put(-Infinity, 1);
@@ -76,7 +76,7 @@ YUI.add('module-tests', function(Y) {
         },
 
         'put/get boolean key': function() {
-            var map = new Y.HashMap();
+            var map = new Y.Map();
             map.put(true, 1);
             map.put(false, 1);
             map.put('true', 2);
@@ -88,7 +88,7 @@ YUI.add('module-tests', function(Y) {
         },
 
         'put/get null key': function() {
-            var map = new Y.HashMap();
+            var map = new Y.Map();
             map.put(null, 1);
             map.put('null', 2);
             Y.Assert.areSame(map.getValue(null), 1);
@@ -96,7 +96,7 @@ YUI.add('module-tests', function(Y) {
         },
 
         'put/get undefined key': function() {
-            var map = new Y.HashMap();
+            var map = new Y.Map();
             map.put(undefined, 1);
             map.put('undefined', 2);
             Y.Assert.areSame(map.getValue(undefined), 1);
@@ -105,7 +105,7 @@ YUI.add('module-tests', function(Y) {
 
 
         'put/get NaN key': function() {
-            var map = new Y.HashMap();
+            var map = new Y.Map();
             map.put(NaN, 1);
             map.put('NaN', 2);
             Y.Assert.areSame(map.getValue(NaN), 1);
@@ -113,12 +113,12 @@ YUI.add('module-tests', function(Y) {
         },
 
         'is empty': function() {
-            var map = new Y.HashMap();
+            var map = new Y.Map();
             Y.Assert.isTrue(map.isEmpty());
         },
 
         'put all': function() {
-            var map = new Y.HashMap();
+            var map = new Y.Map();
             map.putAll({
                 a: 1,
                 b: 2
@@ -131,7 +131,7 @@ YUI.add('module-tests', function(Y) {
         },
 
         'test keys': function() {
-            var map = new Y.HashMap(),
+            var map = new Y.Map(),
                 keys;
             map.put('a', 1);
             map.put('b', 2);
@@ -142,7 +142,7 @@ YUI.add('module-tests', function(Y) {
         },
 
         'test values': function() {
-            var map = new Y.HashMap(),
+            var map = new Y.Map(),
                 values;
             map.put('a', 1);
             map.put('b', 2);
@@ -153,7 +153,7 @@ YUI.add('module-tests', function(Y) {
         },
 
         'test size': function() {
-            var map = new Y.HashMap();
+            var map = new Y.Map();
             map.put('key1', 'value');
             map.put('key1', 'value');
             map.put('key2', 'value');
@@ -161,7 +161,7 @@ YUI.add('module-tests', function(Y) {
         },
 
         'test clear': function() {
-            var map = new Y.HashMap();
+            var map = new Y.Map();
             map.put('key', 'value');
             map.clear();
             Y.Assert.areSame(map.size(), 0);
@@ -169,7 +169,7 @@ YUI.add('module-tests', function(Y) {
         },
 
         'put/get object reference': function() {
-            var map = new Y.HashMap(),
+            var map = new Y.Map(),
                 reference = {};
 
             map.put('string', reference);
@@ -179,7 +179,7 @@ YUI.add('module-tests', function(Y) {
         },
 
         'put/get object key': function() {
-            var map = new Y.HashMap(),
+            var map = new Y.Map(),
                 arrayKey = [],
                 objectKey = {},
                 functionKey = function() {};
@@ -194,7 +194,7 @@ YUI.add('module-tests', function(Y) {
         },
 
         'contains value': function() {
-            var map = new Y.HashMap();
+            var map = new Y.Map();
             map.put('key1', 'value');
             map.put('key2', null);
             Y.Assert.isTrue(map.containsValue('value'));
@@ -203,7 +203,7 @@ YUI.add('module-tests', function(Y) {
         },
 
         'remove value': function() {
-            var map = new Y.HashMap(),
+            var map = new Y.Map(),
                 arrayKey = [],
                 objectKey = {};
 
@@ -224,7 +224,7 @@ YUI.add('module-tests', function(Y) {
                 afterPut = false,
                 afterRemove = false,
                 afterClear = false,
-                map = new Y.HashMap({
+                map = new Y.Map({
                 on: {
                     clear: function(event) {
                         cleared = true;
@@ -273,7 +273,7 @@ YUI.add('module-tests', function(Y) {
                 afterPut = false,
                 afterRemove = false,
                 afterClear = false,
-                map = new Y.HashMap({
+                map = new Y.Map({
                 on: {
                     clear: function(event) {
                         cleared = true;
@@ -325,14 +325,14 @@ YUI.add('module-tests', function(Y) {
     }));
 
     suite.add(new Y.Test.Case({
-        name: 'HashSet',
+        name: 'Set',
 
         //---------------------------------------------
         // Tests
         //---------------------------------------------
 
         'test add': function() {
-            var set = new Y.HashSet(),
+            var set = new Y.Set(),
                 reference = {};
 
             set.add('string1');
@@ -366,7 +366,7 @@ YUI.add('module-tests', function(Y) {
         },
 
         'test size': function() {
-            var set = new Y.HashSet();
+            var set = new Y.Set();
             set.add('string1');
             set.add('string1');
             set.add('string2');
@@ -375,14 +375,14 @@ YUI.add('module-tests', function(Y) {
         },
 
         'test clear': function() {
-            var set = new Y.HashSet();
+            var set = new Y.Set();
             set.add('string');
             set.clear();
             Y.Assert.areSame(set.size(), 0);
         },
 
         'contains value': function() {
-            var set = new Y.HashSet();
+            var set = new Y.Set();
             set.add('string1');
             set.add('string2');
             Y.Assert.isTrue(set.contains('string1'));
@@ -391,12 +391,12 @@ YUI.add('module-tests', function(Y) {
         },
 
         'is empty': function() {
-            var set = new Y.HashSet();
+            var set = new Y.Set();
             Y.Assert.isTrue(set.isEmpty());
         },
 
         'remove value': function() {
-            var set = new Y.HashSet();
+            var set = new Y.Set();
             set.add('string1');
             set.add('string2');
             set.remove('string1');
@@ -411,7 +411,7 @@ YUI.add('module-tests', function(Y) {
                 afterAdd,
                 afterRemove,
                 afterClear,
-                set = new Y.HashSet({
+                set = new Y.Set({
                     on: {
                         add: function(event) {
                             added = true;

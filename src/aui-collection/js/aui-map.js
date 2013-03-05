@@ -4,7 +4,7 @@ var Lang = A.Lang,
 
     _UNDERLINE = '_',
 
-    HashMap = A.Base.create('hashmap', A.Base, [],
+    HashMap = A.Base.create('map', A.Base, [],
     {
         FALSE: A.guid(),
         NAN: A.guid(),
@@ -211,4 +211,4 @@ var Lang = A.Lang,
     {}
 );
 
-A.HashMap = HashMap;
+A.Map = HashMap;

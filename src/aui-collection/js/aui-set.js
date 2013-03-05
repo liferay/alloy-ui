@@ -1,11 +1,11 @@
-var HashSet = A.Base.create('hashset', A.Base, [],
+var HashSet = A.Base.create('set', A.Base, [],
     {
         _map: null,
 
         initializer: function() {
             var instance = this;
 
-            instance._map = new A.HashMap();
+            instance._map = new A.Map();
             instance.publish({
                 add: { defaultFn: instance._defAddFn },
                 clear: { defaultFn: instance._defClearFn },
@@ -62,4 +62,4 @@ var HashSet = A.Base.create('hashset', A.Base, [],
     }
 );
 
-A.HashSet = HashSet;
+A.Set = HashSet;

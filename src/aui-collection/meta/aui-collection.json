@@ -1,20 +1,20 @@
 {
     "aui-collection": {
         "use": [
-            "aui-hashmap",
-            "aui-hashset"
+            "aui-map",
+            "aui-set"
         ]
     },
 
-    "aui-hashmap": {
+    "aui-map": {
         "requires": [
             "base-build"
         ]
     },
 
-    "aui-hashset": {
+    "aui-set": {
         "requires": [
-            "aui-hashmap"
+            "aui-map"
         ]
     }
 }

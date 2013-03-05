@@ -1,15 +1,15 @@
 {
     "name": "aui-collection",
     "builds": {
-        "aui-hashmap": {
+        "aui-map": {
             "jsfiles": [
-                "js/aui-hashmap.js"
+                "js/aui-map.js"
             ]
         },
 
-        "aui-hashset": {
+        "aui-set": {
             "jsfiles": [
-                "js/aui-hashset.js"
+                "js/aui-set.js"
             ]
         }
     }
