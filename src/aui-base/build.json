@@ -11,6 +11,12 @@
             ]
         },
 
+        "aui-base-html5-shiv": {
+            "jsfiles": [
+                "js/aui-html5-shiv.js"
+            ]
+        },
+
         "aui-base-lang": {
             "jsfiles": [
                 "js/aui-lang.js"

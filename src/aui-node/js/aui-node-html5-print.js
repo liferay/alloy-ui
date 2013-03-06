@@ -21,11 +21,9 @@ var BUFFER_CSS_TEXT = [],
 
 	DOMAIN = LOCATION.protocol + '//' + LOCATION.host,
 
-	GLOBAL_AUI = YUI.AUI,
-
 	HTML = DOC.documentElement,
 
-	HTML5_ELEMENTS = GLOBAL_AUI.HTML5_ELEMENTS,
+	HTML5_ELEMENTS = A.HTML5_ELEMENTS,
 	HTML5_ELEMENTS_LENGTH = HTML5_ELEMENTS.length,
 	HTML5_ELEMENTS_LIST = HTML5_ELEMENTS.join('|'),
 
@@ -61,7 +59,7 @@ var BUFFER_CSS_TEXT = [],
 	TAG_REPLACE_ORIGINAL = '<$1$2',
 	TAG_REPLACE_FONT = '<$1font';
 
-var html5shiv = GLOBAL_AUI.html5shiv,
+var html5shiv = A.html5shiv,
 	// Yes, IE does this wackiness; converting an object
 	// to a string should never result in undefined, but
 	// IE's styleSheet object sometimes becomes inaccessible
