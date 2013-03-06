@@ -1,0 +1,62 @@
+.aui-image-viewer,
+.aui-image-viewer-control {
+	position: absolute;
+	z-index: 3000;
+}
+
+.aui-image-viewer-control {
+	top: 50%;
+	margin-top: -20px;
+}
+
+.aui-image-viewer.aui-well {
+	padding: 0;
+}
+
+.aui-image-viewer-close {
+	color: #fff;
+	font-size: 30px;
+	opacity: 0.5;
+	position: fixed;
+	right: 20px;
+	top: 10px;
+	z-index: 3000;
+}
+
+.aui-image-viewer-close:hover {
+	color: #fff;
+	opacity: 1;
+}
+
+.aui-image-viewer-hidden,
+.aui-image-viewer-loading .yui3-widget-ft {
+	display: none;
+}
+
+.aui-image-viewer-bd,
+.aui-image-viewer .yui3-widget-ft {
+	background: #fff;
+	padding: 5px;
+	width: 16px;
+}
+
+.aui-image-viewer-caption,
+.aui-image-viewer-info {
+	margin: 0;
+}
+
+.aui-image-viewer-caption {
+	color: #222;
+}
+
+.aui-image-viewer-info {
+	color: #777;
+}
+
+.aui-image-viewer-loader {
+	visibility: hidden;
+}
+
+.ie6 .aui-image-viewer-close {
+	position: absolute;
+}

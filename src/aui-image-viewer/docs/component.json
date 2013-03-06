@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-image-viewer",
+    "displayName": "Gallery: aui-image-viewer",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "" ],
+    "use"        : [ "aui-image-viewer" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}
