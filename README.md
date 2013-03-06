@@ -1,4 +1,4 @@
-# Alloy UI
+# AlloyUI
 
 Alloy is a framework built on top of YUI3 that provides a simple API for building high scalable applications.
 
