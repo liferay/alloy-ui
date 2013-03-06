@@ -1094,56 +1094,12 @@ A.mix(NODE_PROTO, {
 	}
 }, true);
 
-NODE_PROTO.__show = NODE_PROTO._show;
-NODE_PROTO.__hide = NODE_PROTO._hide;
 NODE_PROTO.__isHidden = NODE_PROTO._isHidden;
 
 NODE_PROTO._isHidden = function() {
 	var instance = this;
 
 	return NODE_PROTO.__isHidden.call(instance) || instance.hasClass(instance._hideClass || CSS_HIDE);
-};
-/**
- * <p>Hide the node adding a css class on it. If <code>cssClass</code> is not
- * passed as argument, the className 'aui-hide' will be used by
- * default.</p>
- *
- * <p><string>NOTE:</string> This method assume that your node were visible
- * because the absence of 'aui-hide' css class. This won't
- * manipulate the inline <code>style.display</code> property.</p>
- *
- * @method hide
- * @chainable
- * @param {string} cssClass Class name to hide the element. Optional.
- */
-NODE_PROTO._hide = function() {
-	var instance = this;
-
-	instance.addClass(instance._hideClass || CSS_HIDE);
-
-	return instance;
-};
-
-/**
- * <p>Show the node removing a css class used to hide it. Use the same
- * className added using the <a href="A.Node.html#method_hide">hide</a>
- * method. If <code>cssClass</code> is not passed as argument, the
- * className 'aui-hide' will be used by default.</p>
- *
- * <p><string>NOTE:</string> This method assume that your node were hidden
- * because of the 'aui-hide' css class were being used. This won't
- * manipulate the inline <code>style.display</code> property.</p>
- *
- * @method show
- * @chainable
- * @param {string} cssClass Class name to hide the element. Optional.
- */
-NODE_PROTO._show = function() {
-	var instance = this;
-
-	instance.removeClass(instance._hideClass || CSS_HIDE);
-
-	return instance;
 };
 
 /**
@@ -1622,19 +1578,3 @@ A.allNS = function(ns, selector) {
 A.byIdNS = function(ns, id) {
 	return A.one(prefixSelector(ns, id));
 };
-
-// Patch for http://yuilibrary.com/projects/yui3/ticket/2531537
-
-var addMethod = ANodeList.addMethod;
-
-AArray.each(
-	['hide', 'show'],
-	function(item, index, collection) {
-		addMethod(
-			item,
-			function() {
-				return this[item].apply(this, arguments);
-			}
-		);
-	}
-);

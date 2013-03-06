@@ -71,7 +71,6 @@ var Lang = A.Lang,
 	CSS_TREE_COLLAPSED = getCN(TREE, COLLAPSED),
 	CSS_TREE_CONTAINER = getCN(TREE, CONTAINER),
 	CSS_TREE_EXPANDED = getCN(TREE, EXPANDED),
-	CSS_HIDE = getCN(HIDE),
 	CSS_TREE_HITAREA = getCN(TREE, HITAREA),
 	CSS_TREE_ICON = getCN(TREE, ICON),
 	CSS_TREE_LABEL = getCN(TREE, LABEL),
@@ -565,7 +564,7 @@ var TreeNode = A.Component.create(
 
 				if (nodeContainer) {
 					if (!instance.get(EXPANDED)) {
-						nodeContainer.addClass(CSS_HIDE);
+						nodeContainer.hide();
 					}
 
 					boundingBox.append(nodeContainer);
@@ -926,14 +925,14 @@ var TreeNode = A.Component.create(
 						contentBox.replaceClass(CSS_TREE_COLLAPSED, CSS_TREE_EXPANDED);
 
 						if (container) {
-							container.removeClass(CSS_HIDE);
+							container.show();
 						}
 					}
 					else {
 						contentBox.replaceClass(CSS_TREE_EXPANDED, CSS_TREE_COLLAPSED);
 
 						if (container) {
-							container.addClass(CSS_HIDE);
+							container.hide();
 						}
 					}
 				}
