@@ -97,7 +97,8 @@
     "aui-collection": {
         "use": [
             "aui-map",
-            "aui-set"
+            "aui-set",
+            "aui-linkedset"
         ]
     },
     "aui-component": {
@@ -234,6 +235,11 @@
             "plugin",
             "querystring-stringify",
             "aui-component"
+        ]
+    },
+    "aui-linkedset": {
+        "requires": [
+            "aui-set"
         ]
     },
     "aui-map": {

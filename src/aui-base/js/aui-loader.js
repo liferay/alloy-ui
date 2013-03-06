@@ -106,7 +106,8 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-collection": {
         "use": [
             "aui-map",
-            "aui-set"
+            "aui-set",
+            "aui-linkedset"
         ]
     },
     "aui-component": {
@@ -257,6 +258,11 @@ Y.mix(YUI.Env[Y.version].modules, {
             "plugin",
             "querystring-stringify",
             "aui-component"
+        ]
+    },
+    "aui-linkedset": {
+        "requires": [
+            "aui-set"
         ]
     },
     "aui-map": {
@@ -560,6 +566,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'c327bf31fcf3cc40638c705e028459b0';
+YUI.Env[Y.version].md5 = '78aa276292292649ca042c0816afc047';
 
 });
