@@ -60,6 +60,13 @@
         ]
     },
     "aui-base-core": {},
+    "aui-base-html5-shiv": {
+        "condition": {
+            "name": "aui-base-html5-shiv",
+            "trigger": "aui-base",
+            "ua": "ie"
+        }
+    },
     "aui-base-lang": {},
     "aui-button": {
         "use": [

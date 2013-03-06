@@ -69,6 +69,13 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     },
     "aui-base-core": {},
+    "aui-base-html5-shiv": {
+        "condition": {
+            "name": "aui-base-html5-shiv",
+            "trigger": "aui-base",
+            "ua": "ie"
+        }
+    },
     "aui-base-lang": {},
     "aui-button": {
         "use": [
@@ -566,6 +573,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '78aa276292292649ca042c0816afc047';
+YUI.Env[Y.version].md5 = '05d7a99acb662f75fba6eb0af38d5b09';
 
 });
