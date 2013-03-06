@@ -134,6 +134,9 @@ var Freemarker = A.Component.create({
 
 					matchDirectives = tstree.prefixSearch(content, true);
 				}
+				else {
+					matchDirectives = matchDirectives.sort();
+				}
 
 				callbackSuccess(matchDirectives);
 			}

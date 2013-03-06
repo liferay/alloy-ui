@@ -792,7 +792,7 @@ var AutoCompleteList = A.Component.create({
 A.AceEditor.AutoCompleteList = AutoCompleteList;
 A.AceEditor.AutoComplete = AutoCompleteList;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-base','widget-autohide','aui-ace-autocomplete-base']});
+}, '@VERSION@' ,{requires:['aui-overlay-base','widget-autohide','aui-ace-autocomplete-base'], skinnable:true});
 AUI.add('aui-ace-autocomplete-plugin', function(A) {
 var Plugin = A.Plugin;
 
@@ -949,6 +949,9 @@ var Freemarker = A.Component.create({
 					}
 
 					matchDirectives = tstree.prefixSearch(content, true);
+				}
+				else {
+					matchDirectives = matchDirectives.sort();
 				}
 
 				callbackSuccess(matchDirectives);
