@@ -43,10 +43,11 @@ var Lang = A.Lang,
             return instance._values[instance._getHash(key)];
         },
 
-        has: function(key) {
+        has: function(key, opt_hash) {
             var instance = this;
 
-            return instance._values.hasOwnProperty(instance._getHash(key));
+            return instance._values.hasOwnProperty(
+                    opt_hash || instance._getHash(key));
         },
 
         hasValue: function(value) {
@@ -68,8 +69,12 @@ var Lang = A.Lang,
             return this._size === 0;
         },
 
-        put: function(key, value) {
-            this.fire('put', { key: key, value: value });
+        put: function(key, value, opt_hash) {
+            this.fire('put', {
+                key: key,
+                value: value,
+                hash: opt_hash
+            });
         },
 
         putAll: function(map) {
@@ -80,11 +85,15 @@ var Lang = A.Lang,
             });
         },
 
-        remove: function(key) {
+        remove: function(key, opt_hash) {
             var instance = this,
                 oldValue = instance.getValue(key);
 
-            this.fire('remove', { key: key, value: oldValue });
+            instance.fire('remove', {
+                key: key,
+                value: oldValue,
+                hash: opt_hash
+            });
 
             return oldValue;
         },
@@ -100,8 +109,8 @@ var Lang = A.Lang,
         _defClearFn: function() {
             var instance = this;
 
-            AObject.each(instance._values, function(value, hash) {
-                instance.remove(instance._unhash(hash));
+            AArray.each(instance.keys(), function(key) {
+                instance.remove(key);
             });
 
             instance._size = 0;
@@ -109,7 +118,11 @@ var Lang = A.Lang,
 
         _defPutFn: function(event) {
             var instance = this,
+                hash = event.hash;
+
+            if (Lang.isUndefined(hash)) {
                 hash = instance._getHash(event.key);
+            }
 
             if (!instance.has(event.key)) {
                 instance._size++;
@@ -123,13 +136,17 @@ var Lang = A.Lang,
                 key = event.key,
                 keys = instance._keys,
                 values = instance._values,
-                hash,
+                hash = event.hash,
                 objects,
                 oldValue,
                 valueIndex;
 
+
             if (instance.has(key)) {
-                hash = instance._getHash(key);
+                if (Lang.isUndefined(hash)) {
+                    hash = instance._getHash(key);
+                }
+
                 oldValue = values[hash];
 
                 delete values[hash];
@@ -202,10 +219,6 @@ var Lang = A.Lang,
                 return false;
             }
             return Lang.isFunction(value.hashCode);
-        },
-
-        _unhash: function(hash) {
-            return this._keys[hash];
         }
     },
     {}

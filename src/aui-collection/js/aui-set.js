@@ -21,8 +21,8 @@ var HashSet = A.Base.create('set', A.Base, [],
             this.fire('clear');
         },
 
-        has: function(value) {
-            return this._map.has(value);
+        has: function(value, opt_hash) {
+            return this._map.has(value, opt_hash);
         },
 
         isEmpty: function() {
@@ -42,17 +42,21 @@ var HashSet = A.Base.create('set', A.Base, [],
         },
 
         _defAddFn: function(event) {
-            this._map.put(event.value, HashSet.PRESENT);
+            this._map.put(event.value, HashSet.PRESENT, event.hash);
         },
 
         _defClearFn: function() {
-            this._map.clear();
+            var instance = this;
+
+            A.Array.each(instance.values(), function(value) {
+                instance.remove(value);
+            });
         },
 
         _defRemoveFn: function(event) {
             var instance = this,
                 map = instance._map,
-                value = map.remove(event.value);
+                value = map.remove(event.value, event.hash);
 
             event.removed = (value === HashSet.PRESENT);
         }
