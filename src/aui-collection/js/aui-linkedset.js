@@ -34,7 +34,7 @@ var LinkedSet = A.Base.create('linkedset', A.Set, [],
             }
 
             // The hash was already calculated, pass it to avoid recompute it
-            // durong remove chain. Good to improve performance on linear cases
+            // during remove chain. Good to improve performance on linear cases
             event.hash = hash;
 
             A.LinkedSet.superclass._defAddFn.apply(this, arguments);
@@ -56,7 +56,7 @@ var LinkedSet = A.Base.create('linkedset', A.Set, [],
             }
 
             // The hash was already calculated, pass it to avoid recompute it
-            // durong remove chain. Good to improve performance on linear cases
+            // during remove chain. Good to improve performance on linear cases
             event.hash = hash;
 
             A.LinkedSet.superclass._defRemoveFn.apply(this, arguments);
