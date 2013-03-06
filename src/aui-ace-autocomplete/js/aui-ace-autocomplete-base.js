@@ -42,10 +42,23 @@ Base.prototype = {
 		var data = instance.get(PROCESSOR).getSuggestion(instance._matchParams.match, content);
 
 		if (this.get(FILL_MODE) === Base.FILL_MODE_OVERWRITE) {
-			editor.removeWordLeft();
-		}
+			var matchParams = instance._matchParams;
 
-		editor.insert(data);
+			var startRow = matchParams.row;
+
+			var startColumn = matchParams.column - matchParams.match.content.length;
+
+			var cursorPosition = editor.getCursorPosition();
+
+			var Range = require('ace/range').Range;
+
+			var overwriteRange = new Range(startRow, startColumn, cursorPosition.row, cursorPosition.column);
+
+			editor.getSession().replace(overwriteRange, data);
+		}
+		else {
+			editor.insert(data);
+		}
 
 		editor.focus();
 
