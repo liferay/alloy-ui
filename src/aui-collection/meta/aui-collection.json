@@ -2,7 +2,8 @@
     "aui-collection": {
         "use": [
             "aui-map",
-            "aui-set"
+            "aui-set",
+            "aui-linkedset"
         ]
     },
 
@@ -15,6 +16,12 @@
     "aui-set": {
         "requires": [
             "aui-map"
+        ]
+    },
+
+    "aui-linkedset": {
+        "requires": [
+            "aui-set"
         ]
     }
 }

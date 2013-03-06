@@ -453,6 +453,74 @@ YUI.add('module-tests', function(Y) {
         }
     }));
 
+    suite.add(new Y.Test.Case({
+        name: 'LinkedSet',
+
+        //---------------------------------------------
+        // Tests
+        //---------------------------------------------
+
+        'test add': function() {
+            var linkedSet = new Y.LinkedSet();
+
+            linkedSet.add('foo');
+            Y.Assert.areSame(linkedSet.values()[0], 'foo');
+            linkedSet.add('bar');
+            Y.Assert.areSame(linkedSet.values()[1], 'bar');
+        },
+
+        'test remove': function() {
+            var linkedSet = new Y.LinkedSet(),
+                reference = {};
+
+            linkedSet.add('foo');
+            linkedSet.add('foo');
+            linkedSet.add('bar');
+            linkedSet.add('bar');
+            linkedSet.add('baz');
+            linkedSet.add('baz');
+            linkedSet.add(reference);
+            linkedSet.add(reference);
+
+            linkedSet.remove('foo');
+            Y.Assert.areSame(linkedSet.values().length, 3);
+            linkedSet.remove('bar');
+            Y.Assert.areSame(linkedSet.values().length, 2);
+            linkedSet.remove('baz');
+            Y.Assert.areSame(linkedSet.values().length, 1);
+            linkedSet.remove(reference);
+            Y.Assert.areSame(linkedSet.values().length, 0);
+        },
+
+        'test size': function() {
+            var linkedSet = new Y.LinkedSet();
+            linkedSet.add('foo');
+            linkedSet.add('bar');
+            Y.Assert.areSame(linkedSet.size(), 2);
+        },
+
+        'test clear': function() {
+            var linkedSet = new Y.LinkedSet();
+
+            linkedSet.add('foo');
+            linkedSet.add('bar');
+            linkedSet.clear();
+            Y.Assert.isTrue(linkedSet.isEmpty());
+            Y.Assert.isTrue(Y.Object.isEmpty(linkedSet._entries), 'Internal entries linked list should be empty after removing all elements');
+        },
+
+        'test isEmpty': function() {
+            var linkedSet = new Y.LinkedSet();
+
+            linkedSet.add('foo');
+            linkedSet.add('bar');
+            linkedSet.remove('foo');
+            linkedSet.remove('bar');
+            Y.Assert.isTrue(linkedSet.isEmpty());
+            Y.Assert.isTrue(Y.Object.isEmpty(linkedSet._entries), 'Internal entries linked list should be empty after removing all elements');
+        }
+    }));
+
     Y.Test.Runner.add(suite);
 
 },'', { requires: [ 'test', 'aui-collection' ] });

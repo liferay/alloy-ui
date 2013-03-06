@@ -11,6 +11,12 @@
             "jsfiles": [
                 "js/aui-set.js"
             ]
+        },
+
+        "aui-linkedset": {
+            "jsfiles": [
+                "js/aui-linkedset.js"
+            ]
         }
     }
 }
