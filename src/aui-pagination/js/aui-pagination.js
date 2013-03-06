@@ -6,6 +6,7 @@
 
 var Lang = A.Lang,
     isBoolean = Lang.isBoolean,
+    isFunction = Lang.isFunction,
     isNumber = Lang.isNumber,
 
     ACTIVE = 'active',
@@ -14,7 +15,9 @@ var Lang = A.Lang,
     CIRCULAR = 'circular',
     CLICK = 'click',
     CONTENT_BOX = 'contentBox',
+    CONTROL = 'control',
     DISABLED = 'disabled',
+    FORMATTER = 'formatter',
     ITEMS = 'items',
     LI = 'li',
     NEXT = 'next',
@@ -28,7 +31,8 @@ var Lang = A.Lang,
     getCN = A.getClassName,
 
     CSS_ACTIVE = getCN(ACTIVE),
-    CSS_DISABLED = getCN(DISABLED);
+    CSS_DISABLED = getCN(DISABLED),
+    CSS_PAGINATION_CONTROL = getCN(PAGINATION, CONTROL);
 
     /**
      * A base class for Pagination, providing:
@@ -89,6 +93,22 @@ var Pagination = A.Component.create(
             circular: {
                 validator: isBoolean,
                 value: true
+            },
+
+            /**
+             * A formatter function to format each pagination item
+             *
+             * @attribute formatter
+             * @default instance._formatter
+             * @type Function
+             */
+            formatter: {
+                validator: isFunction,
+                valueFn: function() {
+                    var instance = this;
+
+                    return instance._formatter;
+                }
             },
 
             /**
@@ -162,7 +182,7 @@ var Pagination = A.Component.create(
 
         prototype: {
             CONTENT_TEMPLATE: '<ul></ul>',
-            ITEM_TEMPLATE: '<li><a href="#">{content}</a></li>',
+            ITEM_TEMPLATE: '<li class="{cssClass}"><a href="#">{content}</a></li>',
             TOTAL_CONTROLS: 2,
 
             items: null,
@@ -337,6 +357,16 @@ var Pagination = A.Component.create(
                 });
             },
 
+            _formatter: function(index) {
+                var instance = this,
+                    tpl = instance.ITEM_TEMPLATE;
+
+                return Lang.sub(tpl, {
+                    content: index,
+                    cssClass: ''
+                });
+            },
+
             _queryItemsIfNotSet: function(srcNode) {
                 var instance = this;
 
@@ -394,20 +424,23 @@ var Pagination = A.Component.create(
                 }
 
                 var tpl = instance.ITEM_TEMPLATE,
+                    formatter = instance.get(FORMATTER),
                     offset = instance.get(OFFSET),
                     i,
                     buffer = '';
 
                 buffer += Lang.sub(tpl, {
-                    content: instance.getString(PREV)
+                    content: instance.getString(PREV),
+                    cssClass: CSS_PAGINATION_CONTROL
                 });
 
-                for (i = offset + 1; i <= (offset + total); i++) {
-                    buffer += Lang.sub(tpl, { content: i });
+                for (i = offset; i <= (offset + total - 1); i++) {
+                    buffer += formatter.apply(instance, [i]);
                 }
 
                 buffer += Lang.sub(tpl, {
-                    content: instance.getString(NEXT)
+                    content: instance.getString(NEXT),
+                    cssClass: CSS_PAGINATION_CONTROL
                 });
 
                 var items = A.NodeList.create(buffer);
