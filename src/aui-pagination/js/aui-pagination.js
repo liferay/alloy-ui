@@ -99,16 +99,11 @@ var Pagination = A.Component.create(
              * A formatter function to format each pagination item
              *
              * @attribute formatter
-             * @default instance._formatter
              * @type Function
              */
             formatter: {
                 validator: isFunction,
-                valueFn: function() {
-                    var instance = this;
-
-                    return instance._formatter;
-                }
+                valueFn: '_formatterValueFn'
             },
 
             /**
@@ -357,14 +352,18 @@ var Pagination = A.Component.create(
                 });
             },
 
-            _formatter: function(index) {
-                var instance = this,
-                    tpl = instance.ITEM_TEMPLATE;
+            _formatterValueFn: function() {
+                return function(index) {
+                    var instance = this;
 
-                return Lang.sub(tpl, {
-                    content: index,
-                    cssClass: ''
-                });
+                    return Lang.sub(
+                        instance.ITEM_TEMPLATE,
+                        {
+                            content: index,
+                            cssClass: ''
+                        }
+                    );
+                };
             },
 
             _queryItemsIfNotSet: function(srcNode) {
