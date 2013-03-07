@@ -254,23 +254,24 @@ Y.mix(YUI.Env[Y.version].modules, {
         "skinnable": true
     },
     "aui-image-viewer": {
-        "skinnable": true,
         "use": [
             "aui-image-viewer-base",
             "aui-image-viewer-gallery",
-            "aui-media-viewer-plugin"
+            "aui-image-viewer-media"
         ]
     },
     "aui-image-viewer-base": {
         "requires": [
             "anim",
-            "aui-event",
-            "aui-node-base",
             "widget",
             "widget-modality",
             "widget-position",
             "widget-position-align",
-            "widget-stdmod"
+            "widget-position-constrain",
+            "widget-stack",
+            "widget-stdmod",
+            "aui-event",
+            "aui-node-base"
         ],
         "skinnable": true
     },
@@ -281,6 +282,14 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-toolbar"
         ],
         "skinnable": true
+    },
+    "aui-image-viewer-media": {
+        "requires": [
+            "plugin",
+            "aui-image-viewer-base",
+            "aui-pagination",
+            "aui-toolbar"
+        ]
     },
     "aui-io": {
         "use": [
@@ -304,14 +313,6 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-map": {
         "requires": [
             "base-build"
-        ]
-    },
-    "aui-media-viewer-plugin": {
-        "requires": [
-            "aui-image-viewer-base",
-            "aui-pagination",
-            "aui-toolbar",
-            "plugin"
         ]
     },
     "aui-messaging": {
@@ -610,6 +611,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '4b71742de1ada6116b3802adb6549b5f';
+YUI.Env[Y.version].md5 = 'bf1e0e7a829a9a43042e4ba51c9f64c9';
 
 });
