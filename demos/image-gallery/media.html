@@ -1,40 +1,34 @@
-<!DOCTYPE html>
-
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
-
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
     <script src="../../build/aui/aui.js"></script>
-
-    <style type="text/css">
-
+    <style>
 	.gallery {
 		margin: 30px;
 	}
-
 	.gallery .picture {
 		border: 5px solid #222;
 		margin: 3px;
 	}
-
 	.gallery a {
 		outline: none;
 	}
-
 	</style>
 </head>
 <body class="yui3-skin-sam">
-
-<h1>AlloyUI - MediaGallery Demo</h1>
-
-<h1 id="log">Loading...</h1>
-
+<h1>AlloyUI - Media gallery viewer</h1>
 <div id="gallery" class="gallery">
 	<a href="http://www.youtube.com/watch?v=z-mPuFs4Gls&width=560&height=349" title="Liferay Retreat 2010">
 		<img alt="Liferay Retreat 2010 (YouTube movie)" class="picture" src="../image-viewer/assets/liferay_retreat.png">
 	</a>
 	<a data-options="width=400&height=300" href="http://vimeo.com/18225907" title="Institucional SEA Liferay Roadshow 2010 (Vimeo movie)">
 		<img alt="Institucional SEA Liferay Roadshow 2010 - parte 2 (Vimeo movie)" class="picture" src="../image-viewer/assets/liferay_roadshow_brasil.jpg">
+	</a>
+	<a href="http://www.adobe.com/products/flashplayer/include/marquee/design.swf?width=450&height=403" title="Flash 10 demo">
+		<img alt="Flash 10 demo" class="picture" src="../image-viewer/assets/flash-logo.png">
 	</a>
 	<a href="http://www.dailymotion.com/video/xdi011_op-nworks-presente-le-portail-d-ent_tech&width=480&height=270" title="Op'nWorks présente le portail d'entreprise Liferay">
 		<img alt="Op'nWorks présente le portail d'entreprise Liferay" class="picture" src="../image-viewer/assets/liferay_fr.png">
@@ -52,15 +46,17 @@
 		<img alt="The real champion winners, Brazilian team!" class="picture" src="../image-viewer/assets/lfr-soccer-4_tn.jpg" />
 	</a>
 </div>
+<script>
 
-<script type="text/javascript">
+YUI({ filter: 'raw' }).use('aui-image-viewer-gallery', 'aui-image-viewer-media', function(A) {
 
-YUI().ready('aui-image-viewer-gallery', 'aui-media-viewer-plugin', function(A) {
-
-	var mediaGallery = new A.ImageGallery({
-		caption: 'AlloyUI - MediaGallery mixed demo',
+	new A.ImageGallery({
+		caption: 'AlloyUI - MediaViewer mixed demo',
 		delay: 3000,
 		links: '#gallery a',
+		pagination: {
+			total: 10
+		},
 		plugins: [
 			{
 				cfg: {
@@ -83,14 +79,10 @@ YUI().ready('aui-image-viewer-gallery', 'aui-media-viewer-plugin', function(A) {
 			}
 		],
 		preloadNeighborImages: true
-	});
+	}).render();
 
-	mediaGallery.render();
-
-	A.one('#log').html('Ready, click on the videos or images below.');
 });
 
 </script>
-
 </body>
 </html>

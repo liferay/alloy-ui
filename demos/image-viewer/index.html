@@ -4,33 +4,23 @@
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
-
     <script src="../../build/aui/aui.js"></script>
-
-    <style type="text/css">
-
+    <style>
 	.gallery {
 		margin: 30px;
 	}
-
 	.gallery .picture {
 		border: 5px solid #222;
 		margin: 3px;
 	}
-
 	.gallery a {
 		outline: none;
 	}
-
 	</style>
 </head>
 <body class="yui3-skin-sam">
-
-<h1>Alloy - ImageViewer</h1>
-
-<h1 id="log">Loading...</h1>
-
-<div id="gallery1" class="gallery">
+<h1>AlloyUI - Image viewer</h1>
+<div id="gallery" class="gallery">
 	<a href="assets/lfr-soccer-1.jpg" title="Doug, Meesa and Louis resting">
 		<img class="picture" src="assets/lfr-soccer-1_tn.jpg" />
 	</a>
@@ -53,55 +43,43 @@
 		<img class="picture" src="assets/lfr-soccer-7_tn.jpg" />
 	</a>
 </div>
+<script>
 
-<script type="text/javascript">
+YUI({ filter: 'raw' }).use('aui-image-viewer-base', 'panel', function(A) {
 
-YUI({
-	filter: 'raw'
-}).ready('aui-image-viewer-base', 'panel', function(A) {
-
-	var imageViewer1 = new A.ImageViewer({
+	new A.ImageViewer({
 		anim: false,
-		links: '#gallery1 a',
+		links: '#gallery a',
 		caption: 'Liferay Champion Soccer',
 		captionFromTitle: true,
-		// preloadNeighborImages: true,
 		preloadAllImages: true,
 		showInfo: true,
-		// lockScroll: false,
-		// infoTemplate: 'Image {current} of {total}, modified.',
 
-		// showArrows: false,
-		// showClose: false,
 		// anim: false,
 		// currentIndex: 3,
+		// infoTemplate: 'Image {current} of {total}, modified.',
+		// lockScroll: false,
+		// modal: false,
+		// preloadNeighborImages: true,
+		// showArrows: false,
+		// showClose: false,
 		// imageAnim: {
 		// 	duration: 2,
 		// 	easing: 'bounceOut',
 		// },
 
-		// modal: false,
-
 		after: {
 			anim: function(event) {
-				// console.log('anim', event);
-				// event.image.setStyle('opacity', .5);
 			},
 			request: function(event) {
-				// console.log('request', event);
 			},
 			load: function(event) {
-				// console.log('load', event);
 			}
 		}
-	})
-	.render();
+	}).render();
 
-	// imageViewer1.show();
-	// imageViewer1.destroy();
 });
 
 </script>
-
 </body>
 </html>

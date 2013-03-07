@@ -13,9 +13,9 @@
             ]
         },
 
-        "aui-media-viewer-plugin": {
+        "aui-image-viewer-media": {
             "jsfiles": [
-                "js/aui-media-viewer-plugin.js"
+                "js/aui-image-viewer-media.js"
             ]
         }
     }
