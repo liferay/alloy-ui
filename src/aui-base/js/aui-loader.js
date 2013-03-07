@@ -183,6 +183,41 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     },
     "aui-debounce": {},
+    "aui-diagram-builder": {
+        "use": [
+            "aui-diagram-builder-base",
+            "aui-diagram-builder-connector",
+            "aui-diagram-builder-impl"
+        ]
+    },
+    "aui-diagram-builder-base": {
+        "requires": [
+            "dd",
+            "collection",
+            "aui-tabview",
+            "aui-datatable-property-list"
+        ],
+        "skinnable": true
+    },
+    "aui-diagram-builder-connector": {
+        "requires": [
+            "arraylist-add",
+            "arraylist-filter",
+            "json",
+            "graphics",
+            "dd"
+        ],
+        "skinnable": true
+    },
+    "aui-diagram-builder-impl": {
+        "requires": [
+            "overlay",
+            "aui-map",
+            "aui-diagram-builder-base",
+            "aui-diagram-builder-connector"
+        ],
+        "skinnable": true
+    },
     "aui-event": {
         "use": [
             "aui-event-base",
@@ -613,6 +648,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'bf1e0e7a829a9a43042e4ba51c9f64c9';
+YUI.Env[Y.version].md5 = '2a10b3a148dee0439309073e9cf66027';
 
 });
