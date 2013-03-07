@@ -7,6 +7,7 @@ var Lang = A.Lang,
     ACTIVE = 'active',
     BOUNDING_BOX = 'boundingBox',
     CONTENT = 'content',
+    DISABLED = 'disabled',
     LABEL = 'label',
     LIST_NODE = 'listNode',
     NAV = 'nav',
@@ -73,14 +74,23 @@ A.TabView = A.Component.create({
     EXTENDS: A.TabView,
 
     prototype: {
-        LIST_TEMPLATE: '<span></span>',
-        PANEL_TEMPLATE: '<span></span>',
-
         initializer: function() {
             var instance = this;
 
             instance.after(instance._afterSyncUI, instance, SYNC_UI);
             instance.after(TYPE_CHANGE, instance._afterTypeChange);
+        },
+
+        disableTab: function(i) {
+            var instance = this;
+
+            instance.item(i).set(DISABLED, true);
+        },
+
+        enableTab: function(i) {
+            var instance = this;
+
+            instance.item(i).set(DISABLED, false);
         },
 
         _afterSelectionChange: function(event) {
