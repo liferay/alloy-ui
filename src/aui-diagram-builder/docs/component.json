@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-diagram-builder",
+    "displayName": "Gallery: aui-diagram-builder",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "eduardo.lundgren" ],
+    "use"        : [ "aui-diagram-builder" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}
