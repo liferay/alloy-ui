@@ -36,12 +36,12 @@ var Lang = A.Lang,
 
 	TPL_MENU = new A.Template(
 		'<menu>',
-		'<li><a class="', CSS_MENU_ITEM, ' ', CSS_MENU_PLAY, '"></a></li>',
-		'<li><a class="', CSS_MENU_ITEM, ' ', CSS_MENU_PREV, '"></a></li>',
+		'<li><a href="" class="', CSS_MENU_ITEM, ' ', CSS_MENU_PLAY, '"></a></li>',
+		'<li><a href="" class="', CSS_MENU_ITEM, ' ', CSS_MENU_PREV, '"></a></li>',
 		'<tpl for="items">',
-			'<li><a class="', CSS_MENU_ITEM, ' {[ $i == parent.activeIndex ? "', CSS_MENU_ITEM_ACTIVE, '" : "', CSS_MENU_ITEM_DEFAULT,'" ]}">{$index}</a></li>',
+			'<li><a href="" class="', CSS_MENU_ITEM, ' {[ $i == parent.activeIndex ? "', CSS_MENU_ITEM_ACTIVE, '" : "', CSS_MENU_ITEM_DEFAULT,'" ]}">{$index}</a></li>',
 		'</tpl>',
-		'<li><a class="', CSS_MENU_ITEM, ' ', CSS_MENU_NEXT, '"></a></li>',
+		'<li><a href="" class="', CSS_MENU_ITEM, ' ', CSS_MENU_NEXT, '"></a></li>',
 		'</menu>'
 	),
 
