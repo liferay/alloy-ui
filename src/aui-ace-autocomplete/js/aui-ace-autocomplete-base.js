@@ -32,6 +32,9 @@ Base.prototype = {
 		if (processor && !processor.get(HOST)) {
 			processor.set(HOST, instance);
 		}
+
+		instance._onResultsErrorFn = A.bind(instance._onResultsError, instance);
+		instance._onResultsSuccessFn = A.bind(instance._onResultsSuccess, instance);
 	},
 
 	_addSuggestion: function(content) {
@@ -83,7 +86,9 @@ Base.prototype = {
 
 		var editor = instance._getEditor();
 
-		editor.on('change',	A.bind(instance._onEditorChange, instance));
+		instance._onChangeFn = A.bind(instance._onEditorChange, instance);
+
+		editor.on('change',	instance._onChangeFn);
 
 		editor.commands.addCommand(
 			{
@@ -141,6 +146,8 @@ Base.prototype = {
 		var editor = instance._getEditor();
 
 		editor.commands.removeCommand('showAutoComplete');
+
+		editor.removeListener('change', instance._onChangeFn);
 
 		editor.getSelection().removeListener('changeCursor', instance._onEditorChangeCursorFn);
 
@@ -260,7 +267,7 @@ Base.prototype = {
 				row: row
 			};
 
-			processor.getResults(match, A.bind(instance._onResultsSuccess, instance), A.bind(instance._onResultsError, instance));
+			processor.getResults(match, instance._onResultsSuccessFn, instance._onResultsErrorFn);
 		}
 
 		instance.fire(
