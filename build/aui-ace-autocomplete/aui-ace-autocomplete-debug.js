@@ -158,7 +158,33 @@ Base.prototype = {
 	_getEditor: function() {
 		var instance = this;
 
-		return instance.get('host').getEditor();
+		return instance.get(HOST).getEditor();
+	},
+
+	_filterResults: function(content, results) {
+		var instance = this;
+
+		var filters = this.get('filters');
+
+		for (var i = 0, length = filters.length; i < length; ++i) {
+			results = filters[i].call(instance, content, results.concat());
+
+			if (!results.length) {
+				break;
+			}
+		}
+
+		var sorters = this.get('sorters');
+
+		for (i = 0, length = sorters.length; i < length; ++i) {
+			results = sorters[i].call(instance, content, results.concat());
+
+			if (!results.length) {
+				break;
+			}
+		}
+
+		return results;
 	},
 
 	_handleEnter: function(text) {
@@ -239,6 +265,23 @@ Base.prototype = {
 		);
 	},
 
+	_phraseMatch: function (content, results, caseSensitive) {
+		if (!content) {
+			return results;
+		}
+
+		if (!caseSensitive) {
+			content = content.toLowerCase();
+		}
+
+		return AArray.filter(
+			results,
+			function (result) {
+				return (caseSensitive ? result : result.toLowerCase()).indexOf(content) !== -1;
+			}
+		);
+	},
+
 	_processAutoComplete: function(row, column) {
 		var instance = this;
 
@@ -291,6 +334,27 @@ Base.prototype = {
 		instance._editorCommands.length = 0;
 	},
 
+	_sortAscLength: function (content, results, caseSensitive) {
+		return results.sort(
+			function(item1, item2) {
+				var result = 0;
+
+				var index1 = (caseSensitive ? item1 : item1.toLowerCase()).indexOf(content);
+
+				var index2 = (caseSensitive ? item2 : item2.toLowerCase()).indexOf(content);
+
+				if (index1 > index2) {
+					result = 1;
+				}
+				else if (index1 < index2) {
+					result = -1;
+				}
+
+				return result;
+			}
+		);
+	},
+
 	_validateFillMode: function(value) {
 		return (value === Base.FILL_MODE_OVERWRITE || value === Base.FILL_MODE_INSERT);
 	}
@@ -309,6 +373,16 @@ Base.ATTRS = {
 		value: Base.FILL_MODE_OVERWRITE
 	},
 
+	filters: {
+		valueFn: function() {
+			var instance = this;
+
+			return [
+				instance._phraseMatch
+			];
+		}
+	},
+
 	processor: {
 		validator: function(value) {
 			return Lang.isObject(value) || Lang.isFunction(value);
@@ -320,6 +394,16 @@ Base.ATTRS = {
 		value: {
 			mac: 'Alt-Space',
 			win: 'Ctrl-Space'
+		}
+	},
+
+	sorters: {
+		valueFn: function() {
+			var instance = this;
+
+			return [
+				instance._sortAscLength
+			];
 		}
 	}
 };
@@ -816,7 +900,7 @@ var AutoCompleteList = A.Component.create({
 A.AceEditor.AutoCompleteList = AutoCompleteList;
 A.AceEditor.AutoComplete = AutoCompleteList;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-base','widget-autohide','aui-ace-autocomplete-base']});
+}, '@VERSION@' ,{requires:['aui-overlay-base','widget-autohide','aui-ace-autocomplete-base'], skinnable:true});
 AUI.add('aui-ace-autocomplete-plugin', function(A) {
 var Plugin = A.Plugin;
 
@@ -892,6 +976,7 @@ var Lang = A.Lang,
 
 	ALL =  'all',
 	DOT = '.',
+	HOST = 'host',
 	STR_EMPTY = '',
 	STR_RESPONSE_DATA = 'responseData',
 	VARIABLES = 'variables',
@@ -960,15 +1045,9 @@ var Freemarker = A.Component.create({
 				var content = match.content.toLowerCase();
 
 				if (content.length) {
-					matchDirectives = AArray.filter(
-						matchDirectives,
-						function(item, index) {
-							return (item.indexOf(content) === 0);
-						}
-					);
-				}
-				else {
-					matchDirectives = matchDirectives.sort();
+					var host = instance.get(HOST);
+
+					matchDirectives = host._filterResults(content, matchDirectives);
 				}
 
 				callbackSuccess(matchDirectives);
@@ -986,7 +1065,7 @@ var Freemarker = A.Component.create({
 			var result = selectedSuggestion || STR_EMPTY;
 
 			if (selectedSuggestion) {
-				var fillMode = instance.get('host').get('fillMode');
+				var fillMode = instance.get(HOST).get('fillMode');
 
 				var type = match.type;
 
@@ -1050,22 +1129,12 @@ var Freemarker = A.Component.create({
 			lastEntry = lastEntry.toLowerCase();
 
 			if (Lang.isObject(variableCache)) {
-				AArray.each(
-					AObject.keys(variableCache),
-					function(item, index) {
-						if (lastEntry) {
-							if (item.toLowerCase().indexOf(lastEntry) === 0) {
-								matches.push(item);
-							}
-						}
-						else {
-							matches.push(item);
-						}
-					}
-				);
+				var host = instance.get(HOST);
+
+				matches = host._filterResults(lastEntry, AObject.keys(variableCache));
 			}
 
-			return matches.sort();
+			return matches;
 		}
 	}
 });
