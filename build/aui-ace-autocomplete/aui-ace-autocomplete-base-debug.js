@@ -34,8 +34,8 @@ Base.prototype = {
 			processor.set(HOST, instance);
 		}
 
-		instance._onResultsErrorFn = A.bind(instance._onResultsError, instance);
-		instance._onResultsSuccessFn = A.bind(instance._onResultsSuccess, instance);
+		instance._onResultsErrorFn = A.bind('_onResultsError', instance);
+		instance._onResultsSuccessFn = A.bind('_onResultsSuccess', instance);
 	},
 
 	_addSuggestion: function(content) {
@@ -87,7 +87,7 @@ Base.prototype = {
 
 		var editor = instance._getEditor();
 
-		instance._onChangeFn = A.bind(instance._onEditorChange, instance);
+		instance._onChangeFn = A.bind('_onEditorChange', instance);
 
 		editor.on('change',	instance._onChangeFn);
 
@@ -108,7 +108,7 @@ Base.prototype = {
 			}
 		);
 
-		instance._onEditorChangeCursorFn = A.bind(instance._onEditorChangeCursor, instance);
+		instance._onEditorChangeCursorFn = A.bind('_onEditorChangeCursor', instance);
 
 		editor.getSelection().on('changeCursor', instance._onEditorChangeCursorFn);
 
