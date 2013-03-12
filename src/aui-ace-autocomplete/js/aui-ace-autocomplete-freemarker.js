@@ -51,6 +51,7 @@ var Lang = A.Lang,
 
 	ALL =  'all',
 	DOT = '.',
+	HOST = 'host',
 	STR_EMPTY = '',
 	STR_RESPONSE_DATA = 'responseData',
 	VARIABLES = 'variables',
@@ -119,15 +120,9 @@ var Freemarker = A.Component.create({
 				var content = match.content.toLowerCase();
 
 				if (content.length) {
-					matchDirectives = AArray.filter(
-						matchDirectives,
-						function(item, index) {
-							return (item.indexOf(content) === 0);
-						}
-					);
-				}
-				else {
-					matchDirectives = matchDirectives.sort();
+					var host = instance.get(HOST);
+
+					matchDirectives = host._filterResults(content, matchDirectives);
 				}
 
 				callbackSuccess(matchDirectives);
@@ -145,7 +140,7 @@ var Freemarker = A.Component.create({
 			var result = selectedSuggestion || STR_EMPTY;
 
 			if (selectedSuggestion) {
-				var fillMode = instance.get('host').get('fillMode');
+				var fillMode = instance.get(HOST).get('fillMode');
 
 				var type = match.type;
 
@@ -209,22 +204,12 @@ var Freemarker = A.Component.create({
 			lastEntry = lastEntry.toLowerCase();
 
 			if (Lang.isObject(variableCache)) {
-				AArray.each(
-					AObject.keys(variableCache),
-					function(item, index) {
-						if (lastEntry) {
-							if (item.toLowerCase().indexOf(lastEntry) === 0) {
-								matches.push(item);
-							}
-						}
-						else {
-							matches.push(item);
-						}
-					}
-				);
+				var host = instance.get(HOST);
+
+				matches = host._filterResults(lastEntry, AObject.keys(variableCache));
 			}
 
-			return matches.sort();
+			return matches;
 		}
 	}
 });

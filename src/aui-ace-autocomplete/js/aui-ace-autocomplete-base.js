@@ -157,7 +157,33 @@ Base.prototype = {
 	_getEditor: function() {
 		var instance = this;
 
-		return instance.get('host').getEditor();
+		return instance.get(HOST).getEditor();
+	},
+
+	_filterResults: function(content, results) {
+		var instance = this;
+
+		var filters = this.get('filters');
+
+		for (var i = 0, length = filters.length; i < length; ++i) {
+			results = filters[i].call(instance, content, results.concat());
+
+			if (!results.length) {
+				break;
+			}
+		}
+
+		var sorters = this.get('sorters');
+
+		for (i = 0, length = sorters.length; i < length; ++i) {
+			results = sorters[i].call(instance, content, results.concat());
+
+			if (!results.length) {
+				break;
+			}
+		}
+
+		return results;
 	},
 
 	_handleEnter: function(text) {
@@ -238,6 +264,23 @@ Base.prototype = {
 		);
 	},
 
+	_phraseMatch: function (content, results, caseSensitive) {
+		if (!content) {
+			return results;
+		}
+
+		if (!caseSensitive) {
+			content = content.toLowerCase();
+		}
+
+		return AArray.filter(
+			results,
+			function (result) {
+				return (caseSensitive ? result : result.toLowerCase()).indexOf(content) !== -1;
+			}
+		);
+	},
+
 	_processAutoComplete: function(row, column) {
 		var instance = this;
 
@@ -290,6 +333,27 @@ Base.prototype = {
 		instance._editorCommands.length = 0;
 	},
 
+	_sortAscLength: function (content, results, caseSensitive) {
+		return results.sort(
+			function(item1, item2) {
+				var result = 0;
+
+				var index1 = (caseSensitive ? item1 : item1.toLowerCase()).indexOf(content);
+
+				var index2 = (caseSensitive ? item2 : item2.toLowerCase()).indexOf(content);
+
+				if (index1 > index2) {
+					result = 1;
+				}
+				else if (index1 < index2) {
+					result = -1;
+				}
+
+				return result;
+			}
+		);
+	},
+
 	_validateFillMode: function(value) {
 		return (value === Base.FILL_MODE_OVERWRITE || value === Base.FILL_MODE_INSERT);
 	}
@@ -308,6 +372,16 @@ Base.ATTRS = {
 		value: Base.FILL_MODE_OVERWRITE
 	},
 
+	filters: {
+		valueFn: function() {
+			var instance = this;
+
+			return [
+				instance._phraseMatch
+			];
+		}
+	},
+
 	processor: {
 		validator: function(value) {
 			return Lang.isObject(value) || Lang.isFunction(value);
@@ -319,6 +393,16 @@ Base.ATTRS = {
 		value: {
 			mac: 'Alt-Space',
 			win: 'Ctrl-Space'
+		}
+	},
+
+	sorters: {
+		valueFn: function() {
+			var instance = this;
+
+			return [
+				instance._sortAscLength
+			];
 		}
 	}
 };
