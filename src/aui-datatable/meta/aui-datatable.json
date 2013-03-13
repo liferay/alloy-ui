@@ -53,6 +53,7 @@
             "aui-datatable-edit",
             "aui-datatable-highlight",
             "aui-datatable-selection"
-        ]
+        ],
+        "skinnable": true
     }
 }

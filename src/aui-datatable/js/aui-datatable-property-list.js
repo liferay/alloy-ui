@@ -4,12 +4,14 @@ var Lang = A.Lang,
     ACTIVE_CELL_CHANGE = 'activeCellChange',
     ACTIVE_ROW = 'activeRow',
     AUTO = 'auto',
+    BOUNDING_BOX = 'boundingBox',
     CELL = 'cell',
     COLUMNS = 'columns',
     DBLCLICK = 'dblclick',
     ID = 'id',
     INIT_VALUE = 'initValue',
     NAME = 'name',
+    PROPERTY_LIST = 'property-list',
     PROPERTY_NAME = 'propertyName',
     ROWS = 'rows',
     VALUE = 'value',
@@ -26,8 +28,9 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [], {
 
         instance._initHighlight();
 
-        instance.on(ACTIVE_CELL_CHANGE, instance._onActiveCellChange);
+        instance.after(instance._afterRenderUI, instance, 'renderUI');
         instance.after(instance._afterUITriggerSort, instance, '_onUITriggerSort');
+        instance.on(ACTIVE_CELL_CHANGE, instance._onActiveCellChange);
 
         // DataTable doesn't allow redefine the columns attribute in extended classes
         // See http://yuilibrary.com/projects/yui3/ticket/2532599
@@ -39,6 +42,14 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [], {
 
     getDefaultEditor: function() {
         return new A.TextCellEditor();
+    },
+
+    _afterRenderUI: function() {
+        var instance = this;
+
+        instance.get(BOUNDING_BOX).addClass(
+            instance.getClassName(PROPERTY_LIST)
+        );
     },
 
     _afterUITriggerSort: function(event) {
