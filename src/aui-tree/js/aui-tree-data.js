@@ -108,7 +108,7 @@ A.mix(TreeData.prototype, {
 	 * @method initializer
 	 * @protected
 	 */
-	initializer: function() {
+	initTreeData: function() {
 		var instance = this;
 
 		// binding on initializer, needed before .render() phase
