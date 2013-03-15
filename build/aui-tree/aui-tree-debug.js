@@ -109,7 +109,7 @@ A.mix(TreeData.prototype, {
 	 * @method initializer
 	 * @protected
 	 */
-	initializer: function() {
+	initTreeData: function() {
 		var instance = this;
 
 		// binding on initializer, needed before .render() phase
@@ -1217,6 +1217,8 @@ var TreeNode = A.Component.create(
 
 				instance._uiSetExpanded(instance.get(EXPANDED));
 				instance._uiSetLeaf(instance.get(LEAF));
+
+				instance.initTreeData();
 			},
 
 			/**
