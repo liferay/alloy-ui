@@ -1,0 +1,9 @@
+{
+    "aui-loading-mask-deprecated": {
+        "requires": [
+            "plugin",
+            "aui-overlay-mask-deprecated"
+        ],
+        "skinnable": true
+    }
+}

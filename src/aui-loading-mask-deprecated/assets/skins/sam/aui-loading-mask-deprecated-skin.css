@@ -1,0 +1,5 @@
+.aui-loadingmask-message {
+	background: #d4d4d4 url(../../../../../build/aui-skin-classic/images/common/state_default_bg.png) repeat-x 0 0;
+	border: 1px solid;
+	border-color: #c8c9ca #9e9e9e #9e9e9e #c8c9ca;
+}
