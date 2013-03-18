@@ -1,0 +1,10 @@
+{
+    "name": "aui-resize-iframe-deprecated",
+    "builds": {
+        "aui-resize-iframe-deprecated": {
+            "jsfiles": [
+                "js/aui-resize-iframe-deprecated.js"
+            ]
+        }
+    }
+}
