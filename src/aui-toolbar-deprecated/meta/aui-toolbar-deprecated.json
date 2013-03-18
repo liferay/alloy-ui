@@ -1,0 +1,11 @@
+{
+    "aui-toolbar-deprecated": {
+        "requires": [
+            "widget-parent",
+            "aui-base-deprecated",
+            "aui-button-item-deprecated",
+            "aui-data-set-deprecated"
+        ],
+        "skinnable": true
+    }
+}
