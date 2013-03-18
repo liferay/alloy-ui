@@ -21,6 +21,7 @@ var Lang = A.Lang,
 
     _DOT = '.',
     _EMPTY = '',
+    _SPACE = ' ',
 
     getCN = A.getClassName,
 
@@ -197,6 +198,11 @@ ToolbarRenderer.prototype = {
             if (value.icon) {
                 buttonNode.appendChild(
                     Lang.sub(instance.TEMPLATES.icon, { cssClass: value.icon }));
+            }
+            if (value.icon && value.label) {
+                value.label = _SPACE + value.label;
+
+                buttonNode.appendChild('&nbsp;');
             }
             if (value.label) {
                 buttonNode.appendChild(value.label);
