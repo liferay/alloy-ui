@@ -1,0 +1,34 @@
+{
+    "name": "aui-tpl-snippets-deprecated",
+    "builds": {
+        "aui-tpl-snippets-base-deprecated": {
+	        "jsfiles": [
+	            "js/aui-tpl-snippets-base-deprecated.js"
+	        ]
+	    },
+
+	    "aui-tpl-snippets-checkbox-deprecated": {
+	        "jsfiles": [
+	            "js/aui-tpl-snippets-checkbox-deprecated.js"
+	        ]
+	    },
+
+	    "aui-tpl-snippets-input-deprecated": {
+	        "jsfiles": [
+	            "js/aui-tpl-snippets-input-deprecated.js"
+	        ]
+	    },
+
+	    "aui-tpl-snippets-textarea-deprecated": {
+	        "jsfiles": [
+	            "js/aui-tpl-snippets-textarea-deprecated.js"
+	        ]
+	    },
+
+	    "aui-tpl-snippets-select-deprecated": {
+	        "jsfiles": [
+	            "js/aui-tpl-snippets-select-deprecated.js"
+	        ]
+	    }
+    }
+}
