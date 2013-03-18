@@ -1,0 +1,12 @@
+{
+    "aui-autocomplete-deprecated": {
+        "requires": [
+            "aui-base-deprecated",
+            "aui-overlay-base-deprecated",
+            "datasource",
+            "dataschema",
+            "aui-form-combobox-deprecated"
+        ],
+        "skinnable": true
+    }
+}
