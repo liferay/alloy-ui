@@ -1,0 +1,21 @@
+.aui-form-builder .aui-diagram-builder-drop-container {
+	overflow: auto;
+}
+
+.aui-form-builder .aui-diagram-builder-fields-container .aui-form-builder-placeholder {
+	display: none;
+}
+
+.aui-form-builder-placeholder {
+	border: 1px dashed #CCCCCC;
+	margin: 5px;
+}
+
+.aui-form-builder-options-editor-hidden {
+	display: none;
+}
+
+/* work around Y.Widget zIndex bug */
+.aui-basecelleditor {
+	z-index: 500 !important;
+}
