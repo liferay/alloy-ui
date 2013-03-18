@@ -1,0 +1,40 @@
+{
+    "aui-diagram-builder": {
+        "use": [
+            "aui-diagram-builder-base",
+            "aui-diagram-builder-connector",
+            "aui-diagram-builder-impl"
+        ]
+    },
+
+    "aui-diagram-builder-base": {
+        "requires": [
+            "dd",
+            "collection",
+            "aui-tabview",
+            "aui-datatable-property-list"
+        ],
+        "skinnable": true
+    },
+
+    "aui-diagram-builder-connector": {
+        "requires": [
+            "arraylist-add",
+            "arraylist-filter",
+            "json",
+            "graphics",
+            "dd"
+        ],
+        "skinnable": true
+    },
+
+    "aui-diagram-builder-impl": {
+        "requires": [
+            "overlay",
+            "aui-map",
+            "aui-diagram-builder-base",
+            "aui-diagram-builder-connector"
+        ],
+        "skinnable": true
+    }
+}

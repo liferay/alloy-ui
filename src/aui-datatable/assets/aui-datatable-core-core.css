@@ -79,3 +79,26 @@
 .aui-table-sortable-column {
     cursor: pointer;
 }
+
+.aui-table-sort-liner {
+    display: block;
+    height: 100%;
+    padding-right: 15px;
+    position: relative;
+}
+
+.aui-table-sort-indicator {
+    bottom: .5ex;
+    height: 10px;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    width: 7px;
+}
+
+.aui-table-sorted .aui-table-sort-indicator {
+    background-position: 0 -10px;
+}
+.aui-table-sorted-desc .aui-table-sort-indicator {
+    background-position: 0 -20px;
+}

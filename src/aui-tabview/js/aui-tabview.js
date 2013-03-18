@@ -7,10 +7,12 @@ var Lang = A.Lang,
     ACTIVE = 'active',
     BOUNDING_BOX = 'boundingBox',
     CONTENT = 'content',
+    DISABLED = 'disabled',
     LABEL = 'label',
     LIST_NODE = 'listNode',
     NAV = 'nav',
     PANE = 'pane',
+    PANEL_NODE = 'panelNode',
     PILLS = 'pills',
     STACKED = 'stacked',
     SYNC_UI = 'syncUI',
@@ -73,14 +75,23 @@ A.TabView = A.Component.create({
     EXTENDS: A.TabView,
 
     prototype: {
-        LIST_TEMPLATE: '<span></span>',
-        PANEL_TEMPLATE: '<span></span>',
-
         initializer: function() {
             var instance = this;
 
             instance.after(instance._afterSyncUI, instance, SYNC_UI);
             instance.after(TYPE_CHANGE, instance._afterTypeChange);
+        },
+
+        disableTab: function(i) {
+            var instance = this;
+
+            instance.item(i).set(DISABLED, true);
+        },
+
+        enableTab: function(i) {
+            var instance = this;
+
+            instance.item(i).set(DISABLED, false);
         },
 
         _afterSelectionChange: function(event) {
@@ -93,9 +104,11 @@ A.TabView = A.Component.create({
 
             if (newVal) {
                 newVal.get(BOUNDING_BOX).addClass(selectedTabClassName);
+                newVal.get(PANEL_NODE).addClass(selectedTabClassName);
             }
             if (prevVal) {
                 prevVal.get(BOUNDING_BOX).removeClass(selectedTabClassName);
+                prevVal.get(PANEL_NODE).removeClass(selectedTabClassName);
             }
         },
 

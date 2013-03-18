@@ -98,16 +98,10 @@ ButtonExt.prototype = {
     },
 
     _uiSetIconAlign: function(val) {
-        var instance = this,
-            boundingBox = instance.get(BOUNDING_BOX),
-            iconElement = instance.get(ICON_ELEMENT);
+        var instance = this;
 
-        if (val === LEFT) {
-            boundingBox.prepend(iconElement);
-        }
-        else if (val === RIGHT) {
-            boundingBox.append(iconElement);
-        }
+        A.Button.syncIconUI(
+            instance.get(BOUNDING_BOX), instance.get(ICON_ELEMENT), val);
     }
 };
 
@@ -145,6 +139,19 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt], {}, {
 
     setWidgetLazyConstructorNodeData: function(node, config) {
         node.setData(WIDGET_CONSTRUCTOR, config);
+    },
+
+    syncIconUI: function(buttonElement, iconElement, iconAlign) {
+        var instance = this,
+            textNode = A.config.doc.createTextNode(' '),
+            insertPos = 0;
+
+        if (iconAlign === RIGHT) {
+            insertPos = null;
+        }
+
+        buttonElement.insert(textNode, insertPos);
+        buttonElement.insert(iconElement, insertPos);
     }
 });
 

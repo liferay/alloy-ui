@@ -1,0 +1,107 @@
+.aui-form-builder-field {
+	background: #FFF;
+	border-top: 5px solid transparent;
+	margin: 8px 6px 0;
+	outline: none;
+	padding: 10px;
+	position: relative;
+	border-radius: 3px;
+
+	-webkit-box-shadow: 0 1px 2px #c4c4c4;
+	box-shadow: 0 1px 2px #c4c4c4;
+	background-color: #fff;
+}
+
+
+.aui-form-builder-field label {
+	float: left;
+	margin-right: 5px;
+}
+
+.aui-form-builder-field .aui-form-builder-field-node {
+	clear: both;
+	display: block;
+}
+
+.aui-form-builder-field-hover {
+	border-color: #ccc;
+}
+
+.aui-form-builder-field-selected {
+	border-color: #76a7fa;
+}
+
+/* Field icons */
+
+.aui-form-builder-field-icon {
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.aui-form-builder-field-icon-button {
+	background-image: url(icon-button.png);
+}
+
+.aui-form-builder-field-icon-checkbox {
+	background-image: url(icon-checkbox.png);
+}
+
+.aui-form-builder-field-icon-date {
+	background-image: url(icon-date.png);
+}
+
+.aui-form-builder-field-icon-decimal {
+	background-image: url(icon-decimal.png);
+}
+
+.aui-form-builder-field-icon-default {
+	background-image: url(icon-default.png);
+}
+
+.aui-form-builder-field-icon-document {
+	background-image: url(icon-document.png);
+}
+
+.aui-form-builder-field-icon-fieldset {
+	background-image: url(icon-fieldset.png);
+}
+
+.aui-form-builder-field-icon-fileupload {
+	background-image: url(icon-fileupload.png);
+}
+
+.aui-form-builder-field-icon-integer {
+	background-image: url(icon-integer.png);
+}
+
+.aui-form-builder-field-icon-number {
+	background-image: url(icon-number.png);
+}
+
+.aui-form-builder-field-icon-paragraph {
+	background-image: url(icon-paragraph.png);
+}
+
+.aui-form-builder-field-icon-password {
+	background-image: url(icon-password.png);
+}
+
+.aui-form-builder-field-icon-radio {
+	background-image: url(icon-radio.png);
+}
+
+.aui-form-builder-field-icon-select {
+	background-image: url(icon-select.png);
+}
+
+.aui-form-builder-field-icon-separator {
+	background-image: url(icon-separator.png);
+}
+
+.aui-form-builder-field-icon-text {
+	background-image: url(icon-text.png);
+}
+
+.aui-form-builder-field-icon-textarea {
+	background-image: url(icon-textarea.png);
+}

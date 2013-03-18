@@ -75,6 +75,13 @@ A.Toolbar = A.Component.create({
             boundingBox.insert(toolbarRenderer.render(A.Array(children)), where);
         },
 
+        clear: function() {
+            var instance = this,
+                boundingBox = instance.get(BOUNDING_BOX);
+
+            boundingBox.get(CHILDREN).remove();
+        },
+
         getEnclosingWidget: function(seed) {
             if (A.instanceOf(seed, A.EventFacade)) {
                 seed = seed.domEvent ? seed.domEvent.target : seed.target;
@@ -146,6 +153,8 @@ A.Toolbar = A.Component.create({
                 children = instance.get(CHILDREN);
 
             if (children) {
+                instance.clear();
+
                 instance.add(children);
             }
         },
@@ -153,7 +162,7 @@ A.Toolbar = A.Component.create({
         _uiSetChildren: function(val) {
             var instance = this;
 
-            if (!val || !instance.get(RENDERED)) {
+            if (!val) {
                 return;
             }
 
@@ -185,12 +194,17 @@ ToolbarRenderer.prototype = {
                     cssClass: value.cssClass || _EMPTY
                 })
             );
-            if (value.icon) {
-                buttonNode.appendChild(
-                    Lang.sub(instance.TEMPLATES.icon, { cssClass: value.icon }));
-            }
+
             if (value.label) {
-                buttonNode.appendChild(value.label);
+                buttonNode.append(value.label);
+            }
+
+            if (value.icon) {
+                var iconContent = Lang.sub(instance.TEMPLATES.icon, {
+                        cssClass: value.icon
+                    });
+
+                A.Button.syncIconUI(buttonNode, iconContent, value.iconAlign);
             }
 
             A.Button.setWidgetLazyConstructorNodeData(buttonNode, value);
