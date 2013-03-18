@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-color-picker-deprecated",
+    "displayName": "Gallery: aui-color-picker-deprecated",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "" ],
+    "use"        : [ "aui-color-picker-deprecated" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}
