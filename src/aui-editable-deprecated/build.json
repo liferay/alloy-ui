@@ -1,0 +1,10 @@
+{
+    "name": "aui-editable-deprecated",
+    "builds": {
+        "aui-editable-deprecated": {
+            "jsfiles": [
+                "js/aui-editable-deprecated.js"
+            ]
+        }
+    }
+}
