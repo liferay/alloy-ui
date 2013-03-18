@@ -1,0 +1,10 @@
+{
+    "aui-textboxlist-deprecated": {
+        "requires": [
+            "anim-node-plugin",
+            "node-focusmanager",
+            "aui-autocomplete-deprecated"
+        ],
+        "skinnable": true
+    }
+}
