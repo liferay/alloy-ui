@@ -12,6 +12,7 @@ var Lang = A.Lang,
     LIST_NODE = 'listNode',
     NAV = 'nav',
     PANE = 'pane',
+    PANEL_NODE = 'panelNode',
     PILLS = 'pills',
     STACKED = 'stacked',
     SYNC_UI = 'syncUI',
@@ -103,9 +104,11 @@ A.TabView = A.Component.create({
 
             if (newVal) {
                 newVal.get(BOUNDING_BOX).addClass(selectedTabClassName);
+                newVal.get(PANEL_NODE).addClass(selectedTabClassName);
             }
             if (prevVal) {
                 prevVal.get(BOUNDING_BOX).removeClass(selectedTabClassName);
+                prevVal.get(PANEL_NODE).removeClass(selectedTabClassName);
             }
         },
 
