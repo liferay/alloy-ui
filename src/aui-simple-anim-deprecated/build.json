@@ -1,0 +1,10 @@
+{
+    "name": "aui-simple-anim-deprecated",
+    "builds": {
+        "aui-simple-anim-deprecated": {
+            "jsfiles": [
+                "js/aui-simple-anim-deprecated.js"
+            ]
+        }
+    }
+}

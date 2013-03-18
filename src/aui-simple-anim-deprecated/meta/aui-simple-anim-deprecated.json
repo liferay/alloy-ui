@@ -1,0 +1,7 @@
+{
+    "aui-simple-anim-deprecated": {
+        "requires": [
+            "aui-base-deprecated"
+        ]
+    }
+}
