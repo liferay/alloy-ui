@@ -11,6 +11,17 @@
         ]
     },
 
+    "aui-base-deprecated": {
+        "use": [
+            "aui-base",
+            "aui-node",
+            "aui-component",
+            "aui-delayed-task-deprecated",
+            "aui-selector",
+            "aui-event-base"
+        ]
+    },
+
     "aui-base-core": {
     },
 
