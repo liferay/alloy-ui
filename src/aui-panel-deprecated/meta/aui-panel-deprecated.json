@@ -1,0 +1,11 @@
+{
+    "aui-panel-deprecated": {
+        "requires": [
+            "widget-stdmod",
+            "aui-component",
+            "aui-toolbar-deprecated",
+            "aui-aria"
+        ],
+        "skinnable": true
+    }
+}
