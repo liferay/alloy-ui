@@ -68,9 +68,11 @@
 
 .aui-scheduler-view-day-resizer-icon {
   bottom: -4px;
+  height: 16px;
   left: 50%;
   margin-left: -8px;
   position: absolute;
+  width: 16px;
 }
 
 .aui-scheduler-view-day-header-day-first {
