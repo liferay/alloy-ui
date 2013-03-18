@@ -1,0 +1,25 @@
+{
+    "aui-datasource-control-deprecated": {
+        "use": [
+            "aui-datasource-control-base-deprecated",
+            "aui-input-text-control-deprecated"
+        ],
+        "skinnable": true
+    },
+
+    "aui-datasource-control-base-deprecated": {
+        "requires": [
+            "datasource",
+            "dataschema",
+            "aui-base-deprecated"
+        ]
+    },
+
+    "aui-input-text-control-deprecated": {
+        "requires": [
+            "aui-base-deprecated",
+            "aui-datasource-control-base-deprecated",
+            "aui-form-combobox-deprecated"
+        ]
+    }
+}
