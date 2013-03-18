@@ -1,0 +1,9 @@
+{
+    "aui-chart-deprecated": {
+        "requires": [
+            "datasource",
+            "json",
+            "aui-swf-deprecated"
+        ]
+    }
+}
