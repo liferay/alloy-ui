@@ -1,0 +1,16 @@
+{
+    "name": "aui-io-deprecated",
+    "builds": {
+        "aui-io-plugin-deprecated": {
+            "jsfiles": [
+                "js/aui-io-plugin-deprecated.js"
+            ]
+        },
+
+        "aui-io-request-deprecated": {
+            "jsfiles": [
+                "js/aui-io-request-deprecated.js"
+            ]
+        }
+    }
+}
