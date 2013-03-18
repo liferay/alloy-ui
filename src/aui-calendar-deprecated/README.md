@@ -1,0 +1,2 @@
+aui-calendar-deprecated
+========

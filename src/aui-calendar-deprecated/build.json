@@ -1,0 +1,10 @@
+{
+    "name": "aui-calendar-deprecated",
+    "builds": {
+        "aui-calendar-deprecated": {
+            "jsfiles": [
+                "js/aui-calendar-deprecated.js"
+            ]
+        }
+    }
+}

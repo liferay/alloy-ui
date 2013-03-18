@@ -1,0 +1,12 @@
+{
+    "aui-calendar-deprecated": {
+        "requires": [
+            "widget-stdmod",
+            "datatype-date",
+            "widget-locale",
+            "aui-base-deprecated",
+            "aui-datatype"
+        ],
+        "skinnable": true
+    }
+}
