@@ -1,0 +1,16 @@
+{
+    "name": "aui-resize-deprecated",
+    "builds": {
+        "aui-resize-base-deprecated": {
+            "jsfiles": [
+                "js/aui-resize-base-deprecated.js"
+            ]
+        },
+
+        "aui-resize-constrain-deprecated": {
+            "jsfiles": [
+                "js/aui-resize-constrain-deprecated.js"
+            ]
+        }
+    }
+}
