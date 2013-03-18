@@ -1,0 +1,27 @@
+{
+    "aui-tabs-deprecated": {
+        "use": [
+            "aui-tabs-base-deprecated",
+            "aui-tabs-menu-plugin-deprecated"
+        ],
+        "skinnable": true
+    },
+
+    "aui-tabs-base-deprecated": {
+        "requires": [
+            "aui-component",
+            "aui-state-interaction-deprecated"
+        ],
+        "skinnable": true
+    },
+
+    "aui-tabs-menu-plugin-deprecated": {
+        "requires": [
+            "plugin",
+            "aui-component",
+            "aui-overlay-context-deprecated",
+            "aui-state-interaction-deprecated",
+            "aui-tabs-base-deprecated"
+        ]
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "name": "aui-tabs-deprecated",
+    "builds": {
+        "aui-tabs-base-deprecated": {
+            "jsfiles": [
+                "js/aui-tabs-base-deprecated.js"
+            ]
+        },
+
+        "aui-tabs-menu-plugin-deprecated": {
+            "jsfiles": [
+                "js/aui-tabs-menu-plugin-deprecated.js"
+            ]
+        }
+    }
+}
