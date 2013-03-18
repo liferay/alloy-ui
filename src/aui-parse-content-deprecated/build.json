@@ -1,0 +1,10 @@
+{
+    "name": "aui-parse-content-deprecated",
+    "builds": {
+        "aui-parse-content-deprecated": {
+            "jsfiles": [
+                "js/aui-parse-content-deprecated.js"
+            ]
+        }
+    }
+}
