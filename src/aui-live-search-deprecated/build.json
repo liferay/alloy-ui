@@ -1,0 +1,10 @@
+{
+    "name": "aui-live-search-deprecated",
+    "builds": {
+        "aui-live-search-deprecated": {
+            "jsfiles": [
+                "js/aui-live-search-deprecated.js"
+            ]
+        }
+    }
+}
