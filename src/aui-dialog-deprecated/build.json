@@ -1,0 +1,10 @@
+{
+    "name": "aui-dialog-deprecated",
+    "builds": {
+        "aui-dialog-deprecated": {
+            "jsfiles": [
+                "js/aui-dialog-deprecated.js"
+            ]
+        }
+    }
+}

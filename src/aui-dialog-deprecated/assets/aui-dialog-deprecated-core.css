@@ -1,0 +1,19 @@
+.aui-dialog {
+	position: absolute;
+}
+
+.aui-dialog .aui-icon-loading {
+	margin: 0 auto;
+}
+
+.yui3-dd-draggable .aui-dialog-hd {
+	cursor: move;
+}
+
+.aui-dialog-bd {
+	overflow-y: auto;
+}
+
+.aui-dialog-button {
+	margin-right: 2px;
+}

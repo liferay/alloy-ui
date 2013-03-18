@@ -1,0 +1,14 @@
+{
+    "aui-dialog-deprecated": {
+        "requires": [
+            "dd-constrain",
+            "aui-button-item-deprecated",
+            "aui-io-plugin-deprecated",
+            "aui-overlay-manager-deprecated",
+            "aui-overlay-mask-deprecated",
+            "aui-panel-deprecated",
+            "aui-resize-deprecated"
+        ],
+        "skinnable": true
+    }
+}
