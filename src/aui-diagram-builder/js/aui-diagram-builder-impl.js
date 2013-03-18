@@ -644,9 +644,12 @@ var DiagramBuilder = A.Component.create({
 		_onDeleteKey: function(event) {
 			var instance = this;
 
-			instance.deleteSelectedConnectors();
-			instance.deleteSelectedNode();
-			event.halt();
+			if (isDiagramNode(A.Widget.getByNode(event.target))) {
+				instance.deleteSelectedConnectors();
+				instance.deleteSelectedNode();
+
+				event.halt();
+			}
 		},
 
 		_onDrag: function(event) {
