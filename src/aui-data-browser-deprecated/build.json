@@ -1,0 +1,10 @@
+{
+    "name": "aui-data-browser-deprecated",
+    "builds": {
+        "aui-data-browser-deprecated": {
+            "jsfiles": [
+                "js/aui-data-browser-deprecated.js"
+            ]
+        }
+    }
+}

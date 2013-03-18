@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-data-browser-deprecated",
+    "displayName": "Gallery: aui-data-browser-deprecated",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "" ],
+    "use"        : [ "aui-data-browser-deprecated" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}
