@@ -19,7 +19,6 @@ var Lang = A.Lang,
 
 	AArray = A.Array,
 
-	ADD = 'add',
 	ADD_NODE = 'addNode',
 	AUTO = 'auto',
 	AVAILABLE_FIELD = 'availableField',
@@ -30,12 +29,10 @@ var Lang = A.Lang,
 	CANCEL = 'cancel',
 	CANVAS = 'canvas',
 	CLEARFIX = 'clearfix',
-	COLUMN = 'column',
 	CONTAINER = 'container',
 	CONTENT = 'content',
 	CONTENT_BOX = 'contentBox',
 	CONTENT_CONTAINER = 'contentContainer',
-	CONTENT_NODE = 'contentNode',
 	CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
 	DIAGRAM = 'diagram',
 	DIAGRAM_BUILDER = 'diagram-builder',
@@ -47,13 +44,11 @@ var Lang = A.Lang,
 	FIELDS = 'fields',
 	FIELDS_CONTAINER = 'fieldsContainer',
 	HEIGHT = 'height',
-	HELPER = 'helper',
 	ICON = 'icon',
 	ICON_CLASS = 'iconClass',
 	ID = 'id',
 	LABEL = 'label',
 	LAYOUT = 'layout',
-	LIST = 'list',
 	MAX_FIELDS = 'maxFields',
 	NODE = 'node',
 	PARENT_NODE = 'parentNode',
@@ -61,21 +56,21 @@ var Lang = A.Lang,
 	RENDERED = 'rendered',
 	SAVE = 'save',
 	SETTINGS = 'settings',
-	TAB = 'tab',
 	TAB_VIEW = 'tabView',
+	TABBABLE = 'tabbable',
 	TABS = 'tabs',
-	TABVIEW = 'tabview',
 	TITLE = 'title',
 	TOOLBAR = 'toolbar',
 	TOOLBAR_CONTAINER = 'toolbarContainer',
 
 	AgetClassName = A.getClassName,
 
-	_SPACE = ' ',
 	_DOT = '.',
 	_HASH = '#',
+	_SPACE = ' ',
 	_UNDERLINE = '_',
 
+	CSS_CLEARFIX = AgetClassName(CLEARFIX),
 	CSS_DIAGRAM_BUILDER_CANVAS = AgetClassName(DIAGRAM, BUILDER, CANVAS),
 	CSS_DIAGRAM_BUILDER_CONTENT_CONTAINER = AgetClassName(DIAGRAM, BUILDER, CONTENT, CONTAINER),
 	CSS_DIAGRAM_BUILDER_DROP_CONTAINER = AgetClassName(DIAGRAM, BUILDER, DROP, CONTAINER),
@@ -84,16 +79,12 @@ var Lang = A.Lang,
 	CSS_DIAGRAM_BUILDER_FIELD_ICON = AgetClassName(DIAGRAM, BUILDER, FIELD, ICON),
 	CSS_DIAGRAM_BUILDER_FIELD_LABEL = AgetClassName(DIAGRAM, BUILDER, FIELD, LABEL),
 	CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER = AgetClassName(DIAGRAM, BUILDER, FIELDS, CONTAINER),
-	CSS_DIAGRAM_BUILDER_TAB_ADD = AgetClassName(DIAGRAM, BUILDER, TAB, ADD),
-	CSS_DIAGRAM_BUILDER_TAB_SETTINGS = AgetClassName(DIAGRAM, BUILDER, TAB, SETTINGS),
 	CSS_DIAGRAM_BUILDER_TABS = AgetClassName(DIAGRAM, BUILDER, TABS),
-	CSS_DIAGRAM_BUILDER_TABS_CONTENT = AgetClassName(DIAGRAM, BUILDER, TABS, CONTENT),
 	CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER = AgetClassName(DIAGRAM, BUILDER, TOOLBAR, CONTAINER),
-	CSS_CLEARFIX = AgetClassName(CLEARFIX),
 	CSS_ICON = AgetClassName(ICON),
 	CSS_LAYOUT = AgetClassName(LAYOUT),
-	CSS_TABVIEW_CONTENT = AgetClassName(TABVIEW, CONTENT),
-	CSS_TABVIEW_LIST = AgetClassName(TABVIEW, LIST);
+	CSS_TABBABLE = AgetClassName(TABBABLE),
+	CSS_TABBABLE_CONTENT = AgetClassName(TABBABLE, CONTENT);
 
 var AvailableField = A.Component.create({
 	NAME: AVAILABLE_FIELD,
@@ -438,11 +429,11 @@ var DiagramBuilderBase = A.Component.create(
 		AUGMENTS: [A.FieldSupport],
 
 		prototype: {
+			CANVAS_TEMPLATE: '<div tabindex="1" class="' + CSS_DIAGRAM_BUILDER_CANVAS + '"></div>',
 			CONTENT_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_CONTENT_CONTAINER + '"></div>',
 			DROP_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_DROP_CONTAINER + '"></div>',
+			FIELDS_CONTAINER_TEMPLATE: '<ul class="' + [CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER, CSS_CLEARFIX].join(_SPACE) + '"></ul>',
 			TOOLBAR_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER + '"></div>',
-			FIELDS_CONTAINER_TEMPLATE: '<ul class="' + [CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER, CSS_CLEARFIX ].join(_SPACE) + '"></ul>',
-			CANVAS_TEMPLATE: '<div tabindex="1" class="' + CSS_DIAGRAM_BUILDER_CANVAS + '"></div>',
 
 			fieldsNode: null,
 			propertyList: null,
@@ -700,7 +691,7 @@ var DiagramBuilderBase = A.Component.create(
 				return A.merge(
 					{
 						bubbleTargets: instance,
-						width: 250,
+						width: 260,
 						scroll: {
 							height: 400,
 							width: AUTO
@@ -711,25 +702,22 @@ var DiagramBuilderBase = A.Component.create(
 			},
 
 			_setTabView: function(val) {
-				// TODO
 				var instance = this,
 					boundingBox = instance.get(BOUNDING_BOX),
-					tabListNode = boundingBox.one(A.TabviewBase._queries.tabviewList),
+					tabViewContentNode = boundingBox.one(_DOT+CSS_TABBABLE_CONTENT);
+
 					defaultValue = {
 						after: {
 							selectionChange: A.bind(instance._afterSelectionChange, instance)
 						},
-						// boundingBox: boundingBox.one(_DOT+CSS_DIAGRAM_BUILDER_TABS),
-						// srcNode: boundingBox.one(_DOT+CSS_DIAGRAM_BUILDER_TABS_CONTENT),
-						srcNode: boundingBox.one('.aui-tabbable-content'),
+						boundingBox: boundingBox.one(_DOT+CSS_TABBABLE),
 						bubbleTargets: instance,
-						// contentNode: boundingBox.one(_DOT+CSS_TABVIEW_CONTENT),
 						cssClass: CSS_DIAGRAM_BUILDER_TABS,
-						// listNode: tabListNode,
-						render: instance.get(CONTENT_BOX)
+						render: instance.get(CONTENT_BOX),
+						srcNode: tabViewContentNode
 					};
 
-				if (!tabListNode) {
+				if (!tabViewContentNode) {
 					var strings = instance.getStrings();
 
 					defaultValue.children = [
