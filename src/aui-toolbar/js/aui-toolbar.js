@@ -75,6 +75,13 @@ A.Toolbar = A.Component.create({
             boundingBox.insert(toolbarRenderer.render(A.Array(children)), where);
         },
 
+        clear: function() {
+            var instance = this,
+                boundingBox = instance.get(BOUNDING_BOX);
+
+            boundingBox.get(CHILDREN).remove();
+        },
+
         getEnclosingWidget: function(seed) {
             if (A.instanceOf(seed, A.EventFacade)) {
                 seed = seed.domEvent ? seed.domEvent.target : seed.target;
@@ -146,6 +153,8 @@ A.Toolbar = A.Component.create({
                 children = instance.get(CHILDREN);
 
             if (children) {
+                instance.clear();
+
                 instance.add(children);
             }
         },
@@ -153,7 +162,7 @@ A.Toolbar = A.Component.create({
         _uiSetChildren: function(val) {
             var instance = this;
 
-            if (!val || !instance.get(RENDERED)) {
+            if (!val) {
                 return;
             }
 
