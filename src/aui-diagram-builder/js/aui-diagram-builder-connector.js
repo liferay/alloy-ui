@@ -26,7 +26,7 @@ var Lang = A.Lang,
 	},
 
 	toDegrees = function(angleRadians) {
-	  return angleRadians * 180 / Math.PI;
+		return angleRadians * 180 / Math.PI;
 	},
 
 	sign = function(x) {
@@ -317,7 +317,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 	},
 
 	_afterNameChange: function(event) {
-	    var instance = this;
+		var instance = this;
 
 		instance._uiSetName(event.newVal);
 
@@ -337,7 +337,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 	},
 
 	_afterVisibleChange: function(event) {
-	    var instance = this;
+		var instance = this;
 
 		instance._uiSetVisible(event.newVal);
 	},
