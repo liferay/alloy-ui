@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-datepicker-deprecated",
+    "displayName": "Gallery: aui-datepicker-deprecated",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "" ],
+    "use"        : [ "aui-datepicker-deprecated" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

@@ -1,0 +1,26 @@
+{
+    "aui-datepicker-deprecated": {
+        "use": [
+            "aui-datepicker-base-deprecated",
+            "aui-datepicker-select-deprecated"
+        ],
+        "skinnable": true
+    },
+
+    "aui-datepicker-base-deprecated": {
+        "requires": [
+            "calendar",
+            "aui-datatype",
+            "aui-overlay-context-deprecated"
+        ],
+        "skinnable": true
+    },
+
+    "aui-datepicker-select-deprecated": {
+        "requires": [
+            "aui-datepicker-base-deprecated",
+            "aui-button-item-deprecated"
+        ],
+        "skinnable": true
+    }
+}
