@@ -12,7 +12,7 @@
             alloy: {
 				combine: false,
                 modules: {
-						'aui-ace-autocomplete': {submodules: {'aui-ace-autocomplete-freemarker': {requires:['aui-ace-autocomplete-base']}, 'aui-ace-autocomplete-plugin': {requires:['plugin','aui-ace-autocomplete-list']}, 'aui-ace-autocomplete-list': {requires:['aui-overlay-base','widget-autohide','aui-ace-autocomplete-base'], skinnable:true}, 'aui-ace-autocomplete-base': {requires:['aui-ace-editor']} }, use:['aui-ace-autocomplete-base','aui-ace-autocomplete-list','aui-ace-autocomplete-plugin']},
+						'aui-ace-autocomplete': {submodules: {'aui-ace-autocomplete-velocity': {requires:['aui-ace-autocomplete-templateprocessor']}, 'aui-ace-autocomplete-freemarker': {requires:['aui-ace-autocomplete-templateprocessor']}, 'aui-ace-autocomplete-templateprocessor': {requires:['aui-ace-autocomplete-base']}, 'aui-ace-autocomplete-plugin': {requires:['plugin','aui-ace-autocomplete-list']}, 'aui-ace-autocomplete-list': {requires:['aui-overlay-base','widget-autohide','aui-ace-autocomplete-base'], skinnable:true}, 'aui-ace-autocomplete-base': {requires:['aui-ace-editor']} }, use:['aui-ace-autocomplete-base','aui-ace-autocomplete-list','aui-ace-autocomplete-plugin']},
 						'aui-ace-editor': {skinnable:false, requires:['aui-base']},
 						'aui-aria': {skinnable:false, requires:['aui-base','plugin']},
 						'aui-arraysort': {skinnable:false, requires:['arraysort']},
