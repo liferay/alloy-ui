@@ -26,7 +26,7 @@ Base.prototype = {
 
 		instance._editorCommands = [];
 
-		A.after(this._bindUIACBase, this, 'renderUI');
+		A.after(instance._bindUIACBase, instance, 'renderUI');
 
 		var processor = instance.get(PROCESSOR);
 
@@ -47,7 +47,7 @@ Base.prototype = {
 
 		var data = instance.get(PROCESSOR).getSuggestion(instance._matchParams.match, content);
 
-		if (this.get(FILL_MODE) === Base.FILL_MODE_OVERWRITE) {
+		if (instance.get(FILL_MODE) === Base.FILL_MODE_OVERWRITE) {
 			var matchParams = instance._matchParams;
 
 			var startRow = matchParams.row;
@@ -130,15 +130,6 @@ Base.prototype = {
 		if (row !== matchParams.row || column < matchParams.match.start) {
 			instance.fire('cursorOut');
 		}
-		else {
-			var line = editor.getSession().getLine(row);
-
-			var subline = line.substring(matchParams.match.start, column);
-
-			if (!instance.get(PROCESSOR).getMatch(subline)) {
-				instance.fire('match');
-			}
-		}
 	},
 
 	_destroyUIACBase: function() {
@@ -158,7 +149,33 @@ Base.prototype = {
 	_getEditor: function() {
 		var instance = this;
 
-		return instance.get('host').getEditor();
+		return instance.get(HOST).getEditor();
+	},
+
+	_filterResults: function(content, results) {
+		var instance = this;
+
+		var filters = instance.get('filters');
+
+		for (var i = 0, length = filters.length; i < length; ++i) {
+			results = filters[i].call(instance, content, results.concat());
+
+			if (!results.length) {
+				break;
+			}
+		}
+
+		var sorters = instance.get('sorters');
+
+		for (i = 0, length = sorters.length; i < length; ++i) {
+			results = sorters[i].call(instance, content, results.concat());
+
+			if (!results.length) {
+				break;
+			}
+		}
+
+		return results;
 	},
 
 	_handleEnter: function(text) {
@@ -227,15 +244,32 @@ Base.prototype = {
 		var commands = editor.commands.commands;
 
 		instance._editorCommands.push(
-			Do.before(instance._handleEnter, editor, 'onTextInput', this),
-			Do.before(instance._handleKey, commands['golinedown'], EXEC, this, 40),
-			Do.before(instance._handleKey, commands['golineup'], EXEC, this, 38),
-			Do.before(instance._handleKey, commands['gotoend'], EXEC, this, 35),
-			Do.before(instance._handleKey, commands['gotolineend'], EXEC, this, 35),
-			Do.before(instance._handleKey, commands['gotolinestart'], EXEC, this, 36),
-			Do.before(instance._handleKey, commands['gotopagedown'], EXEC, this, 34),
-			Do.before(instance._handleKey, commands['gotopageup'], EXEC, this, 33),
-			Do.before(instance._handleKey, commands['gotostart'], EXEC, this, 36)
+			Do.before(instance._handleEnter, editor, 'onTextInput', instance),
+			Do.before(instance._handleKey, commands['golinedown'], EXEC, instance, 40),
+			Do.before(instance._handleKey, commands['golineup'], EXEC, instance, 38),
+			Do.before(instance._handleKey, commands['gotoend'], EXEC, instance, 35),
+			Do.before(instance._handleKey, commands['gotolineend'], EXEC, instance, 35),
+			Do.before(instance._handleKey, commands['gotolinestart'], EXEC, instance, 36),
+			Do.before(instance._handleKey, commands['gotopagedown'], EXEC, instance, 34),
+			Do.before(instance._handleKey, commands['gotopageup'], EXEC, instance, 33),
+			Do.before(instance._handleKey, commands['gotostart'], EXEC, instance, 36)
+		);
+	},
+
+	_phraseMatch: function (content, results, caseSensitive) {
+		if (!content) {
+			return results;
+		}
+
+		if (!caseSensitive) {
+			content = content.toLowerCase();
+		}
+
+		return AArray.filter(
+			results,
+			function (result) {
+				return (caseSensitive ? result : result.toLowerCase()).indexOf(content) !== -1;
+			}
 		);
 	},
 
@@ -291,6 +325,39 @@ Base.prototype = {
 		instance._editorCommands.length = 0;
 	},
 
+	_sortAscLength: function (content, results, caseSensitive) {
+		return results.sort(
+			function(item1, item2) {
+				var result = 0;
+
+				if (!caseSensitive) {
+					item1 = item1.toLowerCase();
+
+					item2 = item2.toLowerCase();
+				}
+
+				var index1 = item1.indexOf(content);
+
+				var index2 = item2.indexOf(content);
+
+				if (index1 === 0 && index2 === 0) {
+					result = item1.localeCompare(item2);
+				}
+				else if (index1 === 0) {
+					result = -1;
+				}
+				else if (index2 === 0) {
+					result = 1;
+				}
+				else {
+					result = item1.localeCompare(item2);
+				}
+
+				return result;
+			}
+		);
+	},
+
 	_validateFillMode: function(value) {
 		return (value === Base.FILL_MODE_OVERWRITE || value === Base.FILL_MODE_INSERT);
 	}
@@ -309,6 +376,16 @@ Base.ATTRS = {
 		value: Base.FILL_MODE_OVERWRITE
 	},
 
+	filters: {
+		valueFn: function() {
+			var instance = this;
+
+			return [
+				instance._phraseMatch
+			];
+		}
+	},
+
 	processor: {
 		validator: function(value) {
 			return Lang.isObject(value) || Lang.isFunction(value);
@@ -320,6 +397,16 @@ Base.ATTRS = {
 		value: {
 			mac: 'Alt-Space',
 			win: 'Ctrl-Space'
+		}
+	},
+
+	sorters: {
+		valueFn: function() {
+			var instance = this;
+
+			return [
+				instance._sortAscLength
+			];
 		}
 	}
 };
@@ -816,7 +903,7 @@ var AutoCompleteList = A.Component.create({
 A.AceEditor.AutoCompleteList = AutoCompleteList;
 A.AceEditor.AutoComplete = AutoCompleteList;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-base','widget-autohide','aui-ace-autocomplete-base']});
+}, '@VERSION@' ,{requires:['aui-overlay-base','widget-autohide','aui-ace-autocomplete-base'], skinnable:true});
 AUI.add('aui-ace-autocomplete-plugin', function(A) {
 var Plugin = A.Plugin;
 
@@ -838,72 +925,30 @@ Plugin.AceAutoComplete = ACListPlugin;
 Plugin.AceAutoCompleteList = ACListPlugin;
 
 }, '@VERSION@' ,{requires:['plugin','aui-ace-autocomplete-list']});
-AUI.add('aui-ace-autocomplete-freemarker', function(A) {
+AUI.add('aui-ace-autocomplete-templateprocessor', function(A) {
 var Lang = A.Lang,
-	AArray = A.Array,
 	AObject = A.Object,
-
-	DIRECTIVES = [
-		'assign',
-		'attempt',
-		'break',
-		'case',
-		'compress',
-		'default',
-		'else',
-		'elseif',
-		'escape',
-		'fallback',
-		'flush',
-		'ftl',
-		'function',
-		'global',
-		'if',
-		'import',
-		'include',
-		'list',
-		'local',
-		'lt',
-		'macro',
-		'nested',
-		'noescape',
-		'nt',
-		'recover',
-		'recurse',
-		'return',
-		'rt',
-		'setting',
-		'stop',
-		'switch',
-		't',
-		'visit'
-	],
-
 	Base = A.AceEditor.AutoCompleteBase,
 
 	MATCH_DIRECTIVES = 0,
 	MATCH_VARIABLES = 1,
 
-	REGEX_DIRECTIVES = /<#[\w.]*>?$/,
-	REGEX_VARIABLES = /\$\{[\w., ()"]*\}?$/,
-
-	STATUS_ERROR = -1,
-	STATUS_SUCCESS = 0,
-
-	ALL =  'all',
 	DOT = '.',
+	HOST = 'host',
 	STR_EMPTY = '',
-	STR_RESPONSE_DATA = 'responseData',
-	VARIABLES = 'variables',
 
-	NAME = 'aui-ace-autocomplete-freemarker';
+	NAME = 'aui-ace-autocomplete-templateprocessor';
 
-var Freemarker = A.Component.create({
+var TemplateProcessor = A.Component.create({
 	NAME: NAME,
 
 	NS: NAME,
 
 	ATTRS: {
+		directives: {
+			validator: Lang.isArray
+		},
+
 		host: {
 			validator: Lang.isObject
 		},
@@ -916,59 +961,20 @@ var Freemarker = A.Component.create({
 	EXTENDS: A.Base,
 
 	prototype: {
-		getMatch: function(content) {
-			var instance = this;
-
-			var match;
-
-			var matchIndex;
-
-			if ((matchIndex = content.lastIndexOf('<')) >= 0) {
-				content = content.substring(matchIndex);
-
-				if (REGEX_DIRECTIVES.test(content)) {
-					match = {
-						content: content.substring(2),
-						start: matchIndex,
-						type: MATCH_DIRECTIVES
-					};
-				}
-			}
-			else if ((matchIndex = content.lastIndexOf('$')) >= 0) {
-				content = content.substring(matchIndex);
-
-				if (REGEX_VARIABLES.test(content)) {
-					match = {
-						content: content.substring(2),
-						start: matchIndex,
-						type: MATCH_VARIABLES
-					};
-				}
-			}
-
-			return match;
-		},
-
 		getResults: function(match, callbackSuccess, callbackError) {
 			var instance = this;
 
 			var type = match.type;
 
 			if (type === MATCH_DIRECTIVES) {
-				var matchDirectives = DIRECTIVES;
+				var matchDirectives = instance.get('directives');
 
 				var content = match.content.toLowerCase();
 
 				if (content.length) {
-					matchDirectives = AArray.filter(
-						matchDirectives,
-						function(item, index) {
-							return (item.indexOf(content) === 0);
-						}
-					);
-				}
-				else {
-					matchDirectives = matchDirectives.sort();
+					var host = instance.get(HOST);
+
+					matchDirectives = host._filterResults(content, matchDirectives);
 				}
 
 				callbackSuccess(matchDirectives);
@@ -986,7 +992,7 @@ var Freemarker = A.Component.create({
 			var result = selectedSuggestion || STR_EMPTY;
 
 			if (selectedSuggestion) {
-				var fillMode = instance.get('host').get('fillMode');
+				var fillMode = instance.get(HOST).get('fillMode');
 
 				var type = match.type;
 
@@ -1027,7 +1033,7 @@ var Freemarker = A.Component.create({
 
 			var variables = content.split(DOT);
 
-			var variableCache = instance.get(VARIABLES);
+			var variableCache = instance.get('variables');
 
 			var lastEntry = variables[variables.length - 1];
 
@@ -1050,31 +1056,238 @@ var Freemarker = A.Component.create({
 			lastEntry = lastEntry.toLowerCase();
 
 			if (Lang.isObject(variableCache)) {
-				AArray.each(
-					AObject.keys(variableCache),
-					function(item, index) {
-						if (lastEntry) {
-							if (item.toLowerCase().indexOf(lastEntry) === 0) {
-								matches.push(item);
-							}
-						}
-						else {
-							matches.push(item);
-						}
-					}
-				);
+				var host = instance.get(HOST);
+
+				matches = host._filterResults(lastEntry, AObject.keys(variableCache));
 			}
 
-			return matches.sort();
+			return matches;
+		},
+
+		_setRegexValue: function(value) {
+			var result = A.AttributeCore.INVALID_VALUE;
+
+			if (Lang.isString(value)) {
+				result = new RegExp(value);
+			}
+			else if (value instanceof RegExp) {
+				result = value;
+			}
+
+			return result;
 		}
 	}
 });
 
-Freemarker.DIRECTIVES = DIRECTIVES;
+A.AceEditor.TemplateProcessor = TemplateProcessor;
+
+}, '@VERSION@' ,{requires:['aui-ace-autocomplete-base']});
+AUI.add('aui-ace-autocomplete-freemarker', function(A) {
+var Lang = A.Lang,
+
+	Base = A.AceEditor.AutoCompleteBase,
+
+	MATCH_DIRECTIVES = 0,
+	MATCH_VARIABLES = 1,
+
+	NAME = 'aui-ace-autocomplete-freemarker';
+
+var Freemarker = A.Component.create({
+	NAME: NAME,
+
+	NS: NAME,
+
+	ATTRS: {
+		directives: {
+			validator: Lang.isArray,
+			value: [
+				'assign',
+				'attempt',
+				'break',
+				'case',
+				'compress',
+				'default',
+				'else',
+				'elseif',
+				'escape',
+				'fallback',
+				'flush',
+				'ftl',
+				'function',
+				'global',
+				'if',
+				'import',
+				'include',
+				'list',
+				'local',
+				'lt',
+				'macro',
+				'nested',
+				'noescape',
+				'nt',
+				'recover',
+				'recurse',
+				'return',
+				'rt',
+				'setting',
+				'stop',
+				'switch',
+				't',
+				'visit'
+			]
+		},
+
+		directivesMatcher: {
+			setter: '_setRegexValue',
+			value: /<#[\w]*[^<#]*$/
+		},
+
+		host: {
+			validator: Lang.isObject
+		},
+
+		variables: {
+			validator: Lang.isObject
+		},
+
+		variablesMatcher: {
+			setter: '_setRegexValue',
+			value: /\${[\w., ()"]*(?:[^$]|\\\$)*$/
+		}
+	},
+
+	EXTENDS: A.AceEditor.TemplateProcessor,
+
+	prototype: {
+		getMatch: function(content) {
+			var instance = this;
+
+			var match;
+
+			var matchIndex;
+
+			if ((matchIndex = content.lastIndexOf('<')) >= 0) {
+				content = content.substring(matchIndex);
+
+				if (instance.get('directivesMatcher').test(content)) {
+					match = {
+						content: content.substring(2),
+						start: matchIndex,
+						type: MATCH_DIRECTIVES
+					};
+				}
+			}
+			else if ((matchIndex = content.lastIndexOf('$')) >= 0) {
+				content = content.substring(matchIndex);
+
+				if (instance.get('variablesMatcher').test(content)) {
+					match = {
+						content: content.substring(2),
+						start: matchIndex,
+						type: MATCH_VARIABLES
+					};
+				}
+			}
+
+			return match;
+		}
+	}
+});
 
 A.AceEditor.AutoCompleteFreemarker = Freemarker;
 
-}, '@VERSION@' ,{requires:['aui-ace-autocomplete-base']});
+}, '@VERSION@' ,{requires:['aui-ace-autocomplete-templateprocessor']});
+AUI.add('aui-ace-autocomplete-velocity', function(A) {
+var Lang = A.Lang,
+
+	Base = A.AceEditor.AutoCompleteBase,
+
+	MATCH_DIRECTIVES = 0,
+	MATCH_VARIABLES = 1,
+
+	NAME = 'aui-ace-autocomplete-velocity';
+
+var Velocity = A.Component.create({
+	NAME: NAME,
+
+	NS: NAME,
+
+	ATTRS: {
+		directives: {
+			validator: Lang.isArray,
+			value: [
+				'else',
+				'elseif',
+				'foreach',
+				'if',
+				'include',
+				'macro',
+				'parse',
+				'set',
+				'stop'
+			]
+		},
+
+		directivesMatcher: {
+			setter: '_setRegexValue',
+			value: /#[\w]*[^#]*$/
+		},
+
+		host: {
+			validator: Lang.isObject
+		},
+
+		variables: {
+			validator: Lang.isObject
+		},
+
+		variablesMatcher: {
+			setter: '_setRegexValue',
+			value: /\$[\w., ()"]*(?:[^$]|\\\$)*$/
+		}
+	},
+
+	EXTENDS: A.AceEditor.TemplateProcessor,
+
+	prototype: {
+		getMatch: function(content) {
+			var instance = this;
+
+			var match;
+
+			var matchIndex;
+
+			if ((matchIndex = content.lastIndexOf('#')) >= 0) {
+				content = content.substring(matchIndex);
+
+				if (instance.get('directivesMatcher').test(content)) {
+					match = {
+						content: content.substring(1),
+						start: matchIndex,
+						type: MATCH_DIRECTIVES
+					};
+				}
+			}
+			else if ((matchIndex = content.lastIndexOf('$')) >= 0) {
+				content = content.substring(matchIndex);
+
+				if (instance.get('variablesMatcher').test(content)) {
+					match = {
+						content: content.substring(1),
+						start: matchIndex,
+						type: MATCH_VARIABLES
+					};
+				}
+			}
+
+			return match;
+		}
+	}
+});
+
+A.AceEditor.AutoCompleteVelocity = Velocity;
+
+}, '@VERSION@' ,{requires:['aui-ace-autocomplete-templateprocessor']});
 
 
 AUI.add('aui-ace-autocomplete', function(A){}, '@VERSION@' ,{use:['aui-ace-autocomplete-base','aui-ace-autocomplete-list','aui-ace-autocomplete-plugin']});
