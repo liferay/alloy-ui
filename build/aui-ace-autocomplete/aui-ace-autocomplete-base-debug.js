@@ -26,7 +26,7 @@ Base.prototype = {
 
 		instance._editorCommands = [];
 
-		A.after(this._bindUIACBase, this, 'renderUI');
+		A.after(instance._bindUIACBase, instance, 'renderUI');
 
 		var processor = instance.get(PROCESSOR);
 
@@ -47,7 +47,7 @@ Base.prototype = {
 
 		var data = instance.get(PROCESSOR).getSuggestion(instance._matchParams.match, content);
 
-		if (this.get(FILL_MODE) === Base.FILL_MODE_OVERWRITE) {
+		if (instance.get(FILL_MODE) === Base.FILL_MODE_OVERWRITE) {
 			var matchParams = instance._matchParams;
 
 			var startRow = matchParams.row;
@@ -130,15 +130,6 @@ Base.prototype = {
 		if (row !== matchParams.row || column < matchParams.match.start) {
 			instance.fire('cursorOut');
 		}
-		else {
-			var line = editor.getSession().getLine(row);
-
-			var subline = line.substring(matchParams.match.start, column);
-
-			if (!instance.get(PROCESSOR).getMatch(subline)) {
-				instance.fire('match');
-			}
-		}
 	},
 
 	_destroyUIACBase: function() {
@@ -164,7 +155,7 @@ Base.prototype = {
 	_filterResults: function(content, results) {
 		var instance = this;
 
-		var filters = this.get('filters');
+		var filters = instance.get('filters');
 
 		for (var i = 0, length = filters.length; i < length; ++i) {
 			results = filters[i].call(instance, content, results.concat());
@@ -174,7 +165,7 @@ Base.prototype = {
 			}
 		}
 
-		var sorters = this.get('sorters');
+		var sorters = instance.get('sorters');
 
 		for (i = 0, length = sorters.length; i < length; ++i) {
 			results = sorters[i].call(instance, content, results.concat());
@@ -253,15 +244,15 @@ Base.prototype = {
 		var commands = editor.commands.commands;
 
 		instance._editorCommands.push(
-			Do.before(instance._handleEnter, editor, 'onTextInput', this),
-			Do.before(instance._handleKey, commands['golinedown'], EXEC, this, 40),
-			Do.before(instance._handleKey, commands['golineup'], EXEC, this, 38),
-			Do.before(instance._handleKey, commands['gotoend'], EXEC, this, 35),
-			Do.before(instance._handleKey, commands['gotolineend'], EXEC, this, 35),
-			Do.before(instance._handleKey, commands['gotolinestart'], EXEC, this, 36),
-			Do.before(instance._handleKey, commands['gotopagedown'], EXEC, this, 34),
-			Do.before(instance._handleKey, commands['gotopageup'], EXEC, this, 33),
-			Do.before(instance._handleKey, commands['gotostart'], EXEC, this, 36)
+			Do.before(instance._handleEnter, editor, 'onTextInput', instance),
+			Do.before(instance._handleKey, commands['golinedown'], EXEC, instance, 40),
+			Do.before(instance._handleKey, commands['golineup'], EXEC, instance, 38),
+			Do.before(instance._handleKey, commands['gotoend'], EXEC, instance, 35),
+			Do.before(instance._handleKey, commands['gotolineend'], EXEC, instance, 35),
+			Do.before(instance._handleKey, commands['gotolinestart'], EXEC, instance, 36),
+			Do.before(instance._handleKey, commands['gotopagedown'], EXEC, instance, 34),
+			Do.before(instance._handleKey, commands['gotopageup'], EXEC, instance, 33),
+			Do.before(instance._handleKey, commands['gotostart'], EXEC, instance, 36)
 		);
 	},
 
@@ -339,15 +330,27 @@ Base.prototype = {
 			function(item1, item2) {
 				var result = 0;
 
-				var index1 = (caseSensitive ? item1 : item1.toLowerCase()).indexOf(content);
+				if (!caseSensitive) {
+					item1 = item1.toLowerCase();
 
-				var index2 = (caseSensitive ? item2 : item2.toLowerCase()).indexOf(content);
+					item2 = item2.toLowerCase();
+				}
 
-				if (index1 > index2) {
+				var index1 = item1.indexOf(content);
+
+				var index2 = item2.indexOf(content);
+
+				if (index1 === 0 && index2 === 0) {
+					result = item1.localeCompare(item2);
+				}
+				else if (index1 === 0) {
+					result = -1;
+				}
+				else if (index2 === 0) {
 					result = 1;
 				}
-				else if (index1 < index2) {
-					result = -1;
+				else {
+					result = item1.localeCompare(item2);
 				}
 
 				return result;

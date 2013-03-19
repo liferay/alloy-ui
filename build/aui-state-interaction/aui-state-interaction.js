@@ -62,6 +62,11 @@ var StateInteraction = A.Component.create(
 				validator: isBoolean
 			},
 
+			disabled: {
+				value: false,
+				validator: isBoolean
+			},
+
 			disabledState: {
 				value: true,
 				validator: isBoolean
@@ -117,7 +122,7 @@ var StateInteraction = A.Component.create(
 					node.addClass(instance._CSS_STATES[DEFAULT]);
 				}
 
-				if (instance.get(DISABLED_STATE)) {
+				if (instance.get(DISABLED)) {
 					node.addClass(instance._CSS_STATES[DISABLED]);
 				}
 				else {
@@ -132,7 +137,7 @@ var StateInteraction = A.Component.create(
 
 				var node = instance.get(NODE);
 
-				if (!instance.get(DISABLED_STATE)) {
+				if (!instance.get(DISABLED)) {
 					node.on(CLICK, instance._fireEvents, instance);
 
 					node.on(MOUSE_ENTER, A.rbind(instance._fireEvents, instance, MOUSE_OVER));
