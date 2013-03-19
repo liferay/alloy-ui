@@ -1269,4 +1269,15 @@ Y.extend(Widget, Y.Base, {
 Y.Widget = Widget;
 
 
-}, '3.7.3', {"requires": ["attribute", "base-base", "base-pluginhost", "classnamemanager", "event-focus", "node-base", "node-style"], "skinnable": true});
+}, '3.7.3', {
+    "requires": [
+        "attribute",
+        "base-base",
+        "base-pluginhost",
+        "classnamemanager",
+        "event-focus",
+        "node-base",
+        "node-style"
+    ],
+    "skinnable": true
+});
