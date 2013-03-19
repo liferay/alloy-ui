@@ -5,9 +5,9 @@ var Lang = A.Lang,
 	MATCH_DIRECTIVES = 0,
 	MATCH_VARIABLES = 1,
 
-	NAME = 'aui-ace-autocomplete-freemarker';
+	NAME = 'aui-ace-autocomplete-velocity';
 
-var Freemarker = A.Component.create({
+var Velocity = A.Component.create({
 	NAME: NAME,
 
 	NS: NAME,
@@ -16,45 +16,21 @@ var Freemarker = A.Component.create({
 		directives: {
 			validator: Lang.isArray,
 			value: [
-				'assign',
-				'attempt',
-				'break',
-				'case',
-				'compress',
-				'default',
 				'else',
 				'elseif',
-				'escape',
-				'fallback',
-				'flush',
-				'ftl',
-				'function',
-				'global',
+				'foreach',
 				'if',
-				'import',
 				'include',
-				'list',
-				'local',
-				'lt',
 				'macro',
-				'nested',
-				'noescape',
-				'nt',
-				'recover',
-				'recurse',
-				'return',
-				'rt',
-				'setting',
-				'stop',
-				'switch',
-				't',
-				'visit'
+				'parse',
+				'set',
+				'stop'
 			]
 		},
 
 		directivesMatcher: {
 			setter: '_setRegexValue',
-			value: /<#[\w]*[^<#]*$/
+			value: /#[\w]*[^#]*$/
 		},
 
 		host: {
@@ -67,7 +43,7 @@ var Freemarker = A.Component.create({
 
 		variablesMatcher: {
 			setter: '_setRegexValue',
-			value: /\${[\w., ()"]*(?:[^$]|\\\$)*$/
+			value: /\$[\w., ()"]*(?:[^$]|\\\$)*$/
 		}
 	},
 
@@ -81,12 +57,12 @@ var Freemarker = A.Component.create({
 
 			var matchIndex;
 
-			if ((matchIndex = content.lastIndexOf('<')) >= 0) {
+			if ((matchIndex = content.lastIndexOf('#')) >= 0) {
 				content = content.substring(matchIndex);
 
 				if (instance.get('directivesMatcher').test(content)) {
 					match = {
-						content: content.substring(2),
+						content: content.substring(1),
 						start: matchIndex,
 						type: MATCH_DIRECTIVES
 					};
@@ -97,7 +73,7 @@ var Freemarker = A.Component.create({
 
 				if (instance.get('variablesMatcher').test(content)) {
 					match = {
-						content: content.substring(2),
+						content: content.substring(1),
 						start: matchIndex,
 						type: MATCH_VARIABLES
 					};
@@ -109,4 +85,4 @@ var Freemarker = A.Component.create({
 	}
 });
 
-A.AceEditor.AutoCompleteFreemarker = Freemarker;
+A.AceEditor.AutoCompleteVelocity = Velocity;

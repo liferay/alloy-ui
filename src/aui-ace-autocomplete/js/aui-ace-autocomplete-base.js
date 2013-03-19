@@ -25,7 +25,7 @@ Base.prototype = {
 
 		instance._editorCommands = [];
 
-		A.after(this._bindUIACBase, this, 'renderUI');
+		A.after(instance._bindUIACBase, instance, 'renderUI');
 
 		var processor = instance.get(PROCESSOR);
 
@@ -46,7 +46,7 @@ Base.prototype = {
 
 		var data = instance.get(PROCESSOR).getSuggestion(instance._matchParams.match, content);
 
-		if (this.get(FILL_MODE) === Base.FILL_MODE_OVERWRITE) {
+		if (instance.get(FILL_MODE) === Base.FILL_MODE_OVERWRITE) {
 			var matchParams = instance._matchParams;
 
 			var startRow = matchParams.row;
@@ -163,7 +163,7 @@ Base.prototype = {
 	_filterResults: function(content, results) {
 		var instance = this;
 
-		var filters = this.get('filters');
+		var filters = instance.get('filters');
 
 		for (var i = 0, length = filters.length; i < length; ++i) {
 			results = filters[i].call(instance, content, results.concat());
@@ -173,7 +173,7 @@ Base.prototype = {
 			}
 		}
 
-		var sorters = this.get('sorters');
+		var sorters = instance.get('sorters');
 
 		for (i = 0, length = sorters.length; i < length; ++i) {
 			results = sorters[i].call(instance, content, results.concat());
@@ -252,15 +252,15 @@ Base.prototype = {
 		var commands = editor.commands.commands;
 
 		instance._editorCommands.push(
-			Do.before(instance._handleEnter, editor, 'onTextInput', this),
-			Do.before(instance._handleKey, commands['golinedown'], EXEC, this, 40),
-			Do.before(instance._handleKey, commands['golineup'], EXEC, this, 38),
-			Do.before(instance._handleKey, commands['gotoend'], EXEC, this, 35),
-			Do.before(instance._handleKey, commands['gotolineend'], EXEC, this, 35),
-			Do.before(instance._handleKey, commands['gotolinestart'], EXEC, this, 36),
-			Do.before(instance._handleKey, commands['gotopagedown'], EXEC, this, 34),
-			Do.before(instance._handleKey, commands['gotopageup'], EXEC, this, 33),
-			Do.before(instance._handleKey, commands['gotostart'], EXEC, this, 36)
+			Do.before(instance._handleEnter, editor, 'onTextInput', instance),
+			Do.before(instance._handleKey, commands['golinedown'], EXEC, instance, 40),
+			Do.before(instance._handleKey, commands['golineup'], EXEC, instance, 38),
+			Do.before(instance._handleKey, commands['gotoend'], EXEC, instance, 35),
+			Do.before(instance._handleKey, commands['gotolineend'], EXEC, instance, 35),
+			Do.before(instance._handleKey, commands['gotolinestart'], EXEC, instance, 36),
+			Do.before(instance._handleKey, commands['gotopagedown'], EXEC, instance, 34),
+			Do.before(instance._handleKey, commands['gotopageup'], EXEC, instance, 33),
+			Do.before(instance._handleKey, commands['gotostart'], EXEC, instance, 36)
 		);
 	},
 
