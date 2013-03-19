@@ -129,15 +129,6 @@ Base.prototype = {
 		if (row !== matchParams.row || column < matchParams.match.start) {
 			instance.fire('cursorOut');
 		}
-		else {
-			var line = editor.getSession().getLine(row);
-
-			var subline = line.substring(matchParams.match.start, column);
-
-			if (!instance.get(PROCESSOR).getMatch(subline)) {
-				instance.fire('match');
-			}
-		}
 	},
 
 	_destroyUIACBase: function() {
