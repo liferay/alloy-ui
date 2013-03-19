@@ -330,15 +330,27 @@ Base.prototype = {
 			function(item1, item2) {
 				var result = 0;
 
-				var index1 = (caseSensitive ? item1 : item1.toLowerCase()).indexOf(content);
+				if (!caseSensitive) {
+					item1 = item1.toLowerCase();
 
-				var index2 = (caseSensitive ? item2 : item2.toLowerCase()).indexOf(content);
+					item2 = item2.toLowerCase();
+				}
 
-				if (index1 > index2) {
+				var index1 = item1.indexOf(content);
+
+				var index2 = item2.indexOf(content);
+
+				if (index1 === 0 && index2 === 0) {
+					result = item1.localeCompare(item2);
+				}
+				else if (index1 === 0) {
+					result = -1;
+				}
+				else if (index2 === 0) {
 					result = 1;
 				}
-				else if (index1 < index2) {
-					result = -1;
+				else {
+					result = item1.localeCompare(item2);
 				}
 
 				return result;
