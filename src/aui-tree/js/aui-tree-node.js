@@ -366,6 +366,8 @@ var TreeNode = A.Component.create(
 				instance._uiSetDraggable(instance.get(DRAGGABLE));
 				instance._uiSetExpanded(instance.get(EXPANDED));
 				instance._uiSetLeaf(instance.get(LEAF));
+
+				instance.initTreeData();
 			},
 
 			/**
