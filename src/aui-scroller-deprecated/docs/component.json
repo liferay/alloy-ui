@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-scroller-deprecated",
+    "displayName": "Gallery: aui-scroller-deprecated",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "" ],
+    "use"        : [ "aui-scroller-deprecated" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

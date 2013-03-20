@@ -1,0 +1,10 @@
+{
+    "aui-scroller-deprecated": {
+        "requires": [
+        	"event-mouseenter",
+            "aui-base-deprecated",
+            "aui-simple-anim-deprecated"
+        ],
+        "skinnable": true
+    }
+}
