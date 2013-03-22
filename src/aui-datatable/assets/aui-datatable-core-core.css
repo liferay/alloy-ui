@@ -88,8 +88,6 @@
 }
 
 .aui-table-sort-indicator {
-    _background: url(sort-arrow-sprite-ie.png) no-repeat 0 0;
-    background: url(sort-arrow-sprite.png) no-repeat 0 0;
     bottom: .5ex;
     height: 10px;
     overflow: hidden;
