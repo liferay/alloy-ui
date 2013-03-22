@@ -1,6 +1,5 @@
 var L = A.Lang,
 	isArray = L.isArray,
-	isBoolean = L.isBoolean,
 	isObject = L.isObject,
 
 	AArray = A.Array,
@@ -13,32 +12,22 @@ var L = A.Lang,
 	BOOLEAN = 'boolean',
 	BOUNDING_BOX = 'boundingBox',
 	BUILDER = 'builder',
-	BUTTON = 'button',
 	CHILDREN = 'children',
 	CLEARFIX = 'clearfix',
-	CLOSE = 'close',
 	COMPONENT = 'component',
 	CONTENT_BOX = 'contentBox',
-	CONTROLS = 'controls',
 	CONTROLS_TOOLBAR = 'controlsToolbar',
-	DELETE_EVENT = 'deleteEvent',
 	DELETE_FIELDS_MESSAGE = 'deleteFieldsMessage',
-	DELETE_MESSAGE = 'deleteMessage',
 	DISABLED = 'disabled',
 	DOT = '.',
 	DROP = 'drop',
 	DROP_ZONE_NODE = 'dropZoneNode',
-	DUPLICATE_EVENT = 'duplicateEvent',
-	DUPLICATE_MESSAGE = 'duplicateMessage',
-	EDIT_EVENT = 'editEvent',
-	EDIT_MESSAGE = 'editMessage',
 	EMPTY_STR = '',
 	FIELD = 'field',
 	FIELDS = 'fields',
+	FOCUSED = 'focused',
 	FORM = 'form',
 	FORM_BUILDER_FIELD = 'form-builder-field',
-	GEAR = 'gear',
-	HIDDEN = 'hidden',
 	HIDDEN_ATTRIBUTES = 'hiddenAttributes',
 	ICON = 'icon',
 	ID = 'id',
@@ -46,18 +35,15 @@ var L = A.Lang,
 	LABEL = 'label',
 	LABEL_NODE = 'labelNode',
 	NAME = 'name',
-	NEWWIN = 'newwin',
 	NO = 'no',
 	PARENT = 'parent',
+	PLUS = 'plus',
 	PREDEFINED_VALUE = 'predefinedValue',
 	QUESTION = 'question',
 	READ_ONLY = 'readOnly',
 	READ_ONLY_ATTRIBUTES = 'readOnlyAttributes',
-	RENDERED = 'rendered',
-	REPEAT = 'repeat',
 	REQUIRED = 'required',
 	REQUIRED_FLAG_NODE = 'requiredFlagNode',
-	SELECTED = 'selected',
 	SHOW_LABEL = 'showLabel',
 	SIGN = 'sign',
 	SPACE = ' ',
@@ -68,7 +54,6 @@ var L = A.Lang,
 	TRASH = 'trash',
 	TYPE = 'type',
 	UNIQUE = 'unique',
-	VISIBLE = 'visible',
 	WIDGET = 'widget',
 	WRENCH = 'wrench',
 	YES = 'yes',
@@ -84,13 +69,11 @@ var L = A.Lang,
 	CSS_COMPONENT = getCN(COMPONENT),
 	CSS_FB_DROP_ZONE = getCN(FORM, BUILDER, DROP, ZONE),
 	CSS_FB_FIELD = getCN(FORM, BUILDER, FIELD),
-	CSS_FB_FIELD_SELECTED = getCN(FORM, BUILDER, FIELD, SELECTED),
 	CSS_FB_UNIQUE = getCN(FORM, BUILDER, UNIQUE),
-	CSS_FIELD_LABEL = getCN(FIELD, LABEL),
 	CSS_ICON = getCN(ICON),
 	CSS_ICON_ASTERISK = getCN(ICON, ASTERISK),
+	CSS_ICON_PLUS = getCN(ICON, PLUS),
 	CSS_ICON_QUESTION_SIGN = getCN(ICON, QUESTION, SIGN),
-	CSS_ICON_REPEAT = getCN(ICON, REPEAT),
 	CSS_ICON_TRASH = getCN(ICON, TRASH),
 	CSS_ICON_WRENCH = getCN(ICON, WRENCH),
 	CSS_WIDGET = getCN(WIDGET),
@@ -126,7 +109,8 @@ var FormBuilderField = A.Component.create({
 				var instance = this;
 
 				return {
-					children: instance._getToolbarItems(instance.get(REQUIRED), instance.get(UNIQUE))
+					children: instance._getToolbarItems(instance.get(REQUIRED), instance.get(UNIQUE)),
+					visible: false
 				};
 			}
 		},
@@ -188,11 +172,6 @@ var FormBuilderField = A.Component.create({
 			value: false
 		},
 
-		selected: {
-			setter: A.DataType.Boolean.parse,
-			value: false
-		},
-
 		showLabel: {
 			setter: A.DataType.Boolean.parse,
 			value: true
@@ -227,7 +206,7 @@ var FormBuilderField = A.Component.create({
 		},
 
 		tabIndex: {
-			value: 1
+			value: 0
 		},
 
 		template: {
@@ -291,7 +270,7 @@ var FormBuilderField = A.Component.create({
 
 	},
 
-	UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, FIELDS, LABEL, NAME, PREDEFINED_VALUE, REQUIRED, SELECTED, SHOW_LABEL, TIP, UNIQUE],
+	UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, FIELDS, LABEL, NAME, PREDEFINED_VALUE, REQUIRED, SHOW_LABEL, TIP, UNIQUE],
 
 	EXTENDS: FormBuilderFieldBase,
 
@@ -335,12 +314,15 @@ var FormBuilderField = A.Component.create({
 			var instance = this,
 				tipFlagNode = instance.get(TIP_FLAG_NODE);
 
+			instance.after(instance._afterOnDocFocus, instance, '_onDocFocus');
+
 			tipFlagNode.on('mouseover', A.bind(instance._onMouseOverTipFlagNode, instance));
 			tipFlagNode.on('mouseout', A.bind(instance._onMouseOutTipFlagNode, instance));
 		},
 
 		renderUI: function() {
 			var instance = this,
+				boundingBox = instance.get(BOUNDING_BOX),
 				contentBox = instance.get(CONTENT_BOX),
 				labelNode = instance.get(LABEL_NODE),
 				requiredFlagNode = instance.get(REQUIRED_FLAG_NODE),
@@ -354,7 +336,7 @@ var FormBuilderField = A.Component.create({
 			contentBox.append(tipFlagNode);
 			contentBox.append(templateNode);
 
-			instance.controlsToolbar.render(contentBox);
+			instance.controlsToolbar.render(boundingBox);
 			instance.toolTip.render(contentBox);
 		},
 
@@ -371,10 +353,6 @@ var FormBuilderField = A.Component.create({
 				delete builder.editingField;
 
 				builder.closeEditProperties();
-			}
-
-			if (builder.selectedField === instance) {
-				delete builder.selectedField;
 			}
 
 			if (instance.controlsToolbar) {
@@ -522,6 +500,15 @@ var FormBuilderField = A.Component.create({
 			];
 		},
 
+		_afterOnDocFocus: function(event) {
+			var instance = this,
+				builder = instance.get(BUILDER);
+
+			if (!instance.get(FOCUSED)) {
+				builder.closeEditProperties();
+			}
+		},
+
 		_booleanFormatter: function(o) {
 			var instance = this,
 				strings = instance.getStrings();
@@ -534,7 +521,7 @@ var FormBuilderField = A.Component.create({
 				builder = instance.get(BUILDER),
 				items = [
 					{
-						icon:  'aui-icon-wrench',
+						icon: CSS_ICON_WRENCH,
 						on: {
 							click: A.bind(instance._handleEditEvent, instance)
 						}
@@ -544,7 +531,7 @@ var FormBuilderField = A.Component.create({
 			if (!instance.get(UNIQUE)) {
 				items.push(
 					{
-						icon: 'aui-icon-repeat',
+						icon: CSS_ICON_PLUS,
 						on: {
 							click: A.bind(instance._handleDuplicateEvent, instance)
 						}
@@ -555,7 +542,7 @@ var FormBuilderField = A.Component.create({
 			if ((builder && builder.get(ALLOW_REMOVE_REQUIRED_FIELDS)) || !instance.get(REQUIRED)) {
 				items.push(
 					{
-						icon: 'aui-icon-trash',
+						icon: CSS_ICON_TRASH,
 						on: {
 							click: A.bind(instance._handleDeleteEvent, instance)
 						}
@@ -685,14 +672,6 @@ var FormBuilderField = A.Component.create({
 			}
 
 			controlsToolbar.set(CHILDREN, instance._getToolbarItems());
-		},
-
-		_uiSetSelected: function(val) {
-			var instance = this;
-
-			instance.controlsToolbar.set(VISIBLE, val);
-
-			instance.get(BOUNDING_BOX).toggleClass(CSS_FB_FIELD_SELECTED, val);
 		},
 
 		_uiSetShowLabel: function(val)  {

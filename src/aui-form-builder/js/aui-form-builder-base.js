@@ -23,19 +23,17 @@ var L = A.Lang,
 	AVAILABLE_FIELDS = 'availableFields',
 	BOUNDING_BOX = 'boundingBox',
 	BUILDER = 'builder',
-	CLICK = 'click',
 	DATA = 'data',
-	DBLCLICK = 'dblclick',
 	DD = 'dd',
 	DIAGRAM = 'diagram',
 	DRAGGABLE = 'draggable',
 	DRAGGING = 'dragging',
 	DROP = 'drop',
-	EDITING = 'editing',
 	EMPTY_STR = '',
 	FIELD = 'field',
 	FIELDS = 'fields',
 	FIELDS_SORTABLE_LIST_CONFIG = 'fieldsSortableListConfig',
+	FOCUSED = 'focused',
 	FORM = 'form',
 	FORM_BUILDER = 'form-builder',
 	HIDDEN_ATTRIBUTES = 'hiddenAttributes',
@@ -53,13 +51,13 @@ var L = A.Lang,
 	REMOVE = 'remove',
 	RENDERED = 'rendered',
 	REQUIRED = 'required',
-	SELECTED = 'selected',
 	SHOW_LABEL = 'showLabel',
 	TIP = 'tip',
 	TYPE = 'type',
 	UNIQUE = 'unique',
 	VALUE = 'value',
 	WIDTH = 'width',
+	HOVER = 'hover',
 	ZONE = 'zone',
 
 	_DOT = '.',
@@ -73,9 +71,9 @@ var L = A.Lang,
 
 	CSS_DD_DRAGGING = getCN(DD, DRAGGING),
 	CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE = getCN(DIAGRAM, BUILDER, FIELD, DRAGGABLE),
+	CSS_FIELD_HOVER = getCN(FORM, BUILDER, FIELD, HOVER),
 	CSS_FORM_BUILDER_DROP_ZONE = getCN(FORM, BUILDER, DROP, ZONE),
 	CSS_FORM_BUILDER_FIELD = getCN(FORM, BUILDER, FIELD),
-	CSS_FORM_BUILDER_FIELD_EDITING = getCN(FORM, BUILDER, FIELD, EDITING),
 	CSS_FORM_BUILDER_PLACEHOLDER = getCN(FORM, BUILDER, PLACEHOLDER),
 
 	INVALID_CLONE_ATTRS = [ID, NAME],
@@ -188,7 +186,8 @@ var FormBuilder = A.Component.create({
 			instance.uniqueFieldsMap.after(ADD, A.bind(instance._afterUniqueFieldsMapAdd, instance));
 			instance.uniqueFieldsMap.after(REMOVE, A.bind(instance._afterUniqueFieldsMapRemove, instance));
 
-			instance.dropContainer.delegate(CLICK, A.bind(instance._onlClickField, instance), _DOT+CSS_FORM_BUILDER_FIELD);
+			instance.dropContainer.delegate('click', A.bind(instance._onClickField, instance), _DOT+CSS_FORM_BUILDER_FIELD);
+			instance.dropContainer.delegate('focus', A.bind(instance._onFocusField, instance), _DOT+CSS_FORM_BUILDER_FIELD);
 			instance.dropContainer.delegate('mouseover', A.bind(instance._onMouseOverField, instance), _DOT+CSS_FORM_BUILDER_FIELD);
 			instance.dropContainer.delegate('mouseout', A.bind(instance._onMouseOutField, instance), _DOT+CSS_FORM_BUILDER_FIELD);
 		},
@@ -205,10 +204,6 @@ var FormBuilder = A.Component.create({
 				field = instance.editingField;
 
 			instance.tabView.selectChild(A.FormBuilder.FIELDS_TAB);
-
-			if (field && field.get(RENDERED)) {
-				field.get(BOUNDING_BOX).removeClass(CSS_FORM_BUILDER_FIELD_EDITING);
-			}
 
 			instance.editingField = null;
 		},
@@ -244,13 +239,13 @@ var FormBuilder = A.Component.create({
 			if (isFormBuilderField(field)) {
 				instance.closeEditProperties();
 
+				instance.simulateDocFocusField(field);
+
 				instance.tabView.selectChild(A.FormBuilder.SETTINGS_TAB);
 
 				instance.propertyList.set(DATA, instance.getFieldProperties(field));
 
-				field.get(BOUNDING_BOX).addClass(CSS_FORM_BUILDER_FIELD_EDITING);
-
-				instance.editingField = instance.selectedField = field;
+				instance.editingField = field;
 			}
 		},
 
@@ -314,23 +309,14 @@ var FormBuilder = A.Component.create({
 			});
 		},
 
-		select: function(field) {
+		simulateDocFocusField: function(field) {
 			var instance = this;
 
-			instance.unselectFields();
-
-			instance.selectedField = field.set(SELECTED, true).focus();
-		},
-
-		unselectFields: function() {
-			var instance = this,
-				selectedField = instance.selectedField;
-
-			if (selectedField) {
-				selectedField.set(SELECTED, false);
+			if (!field.get(FOCUSED)) {
+				field._onDocFocus({
+					target: field.get(BOUNDING_BOX)
+				});
 			}
-
-			instance.selectedField = null;
 		},
 
 		_afterUniqueFieldsMapAdd: function(event) {
@@ -423,8 +409,6 @@ var FormBuilder = A.Component.create({
 				}
 
 				instance.insertField(field, index, dropField);
-
-				instance.select(field);
 			}
 		},
 
@@ -453,25 +437,6 @@ var FormBuilder = A.Component.create({
 			).indexOf(fieldNode);
 		},
 
-		_onlClickField: function(event) {
-			var instance = this,
-				field;
-
-			// Only enable editing if the double clicked node is inside the node
-			// contentBox.
-			if (!event.target.ancestor(_DOT+CSS_FORM_BUILDER_FIELD, true)) {
-				return;
-			}
-
-			field = A.Widget.getByNode(event.currentTarget);
-
-			if (field) {
-				instance.editField(field);
-			}
-
-			event.stopPropagation();
-		},
-
 		_onDragEnd: function(event) {
 			var instance = this,
 				drag = event.target,
@@ -484,6 +449,37 @@ var FormBuilder = A.Component.create({
 				dragNode.remove();
 
 				drag.set(NODE, instance._originalDragNode);
+			}
+		},
+
+		_onClickField: function(event) {
+			var instance = this;
+
+			instance._handleEditField(event);
+
+			event.stopPropagation();
+		},
+
+		_onFocusField: function(event) {
+			var instance = this;
+
+			instance._handleEditField(event);
+
+			event.stopPropagation();
+		},
+
+		_handleEditField: function(event) {
+			var instance = this,
+				target = event.target,
+				field = A.Widget.getByNode(target),
+				boundingBox = field.get('boundingBox'),
+				contentBox = field.get('contentBox');
+
+			// Clicks outside contentBox should not focus the field, e.g. clicking
+			// a toolbar icon rendered on the boundingBox should not focus anything.
+			if (boundingBox.compareTo(target) || contentBox.contains(target, true)) {
+				console.log('EDIT');
+				instance.editField(field);
 			}
 		},
 
@@ -528,10 +524,12 @@ var FormBuilder = A.Component.create({
 			instance.fieldsSortableList.add(clonedDragNode);
 		},
 
-		_onMouseOutField: function() {
-			var instance = this;
+		_onMouseOutField: function(event) {
+			var instance = this,
+				field = A.Widget.getByNode(event.currentTarget);
 
-			instance.unselectFields();
+			field.controlsToolbar.hide();
+			field.get(BOUNDING_BOX).removeClass(CSS_FIELD_HOVER);
 
 			event.stopPropagation();
 		},
@@ -540,7 +538,8 @@ var FormBuilder = A.Component.create({
 			var instance = this,
 				field = A.Widget.getByNode(event.currentTarget);
 
-			instance.select(field);
+			field.controlsToolbar.show();
+			field.get(BOUNDING_BOX).addClass(CSS_FIELD_HOVER);
 
 			event.stopPropagation();
 		},

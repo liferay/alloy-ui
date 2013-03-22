@@ -6,13 +6,12 @@ var L = A.Lang,
 		}
 	),
 
+	BTN = 'btn',
 	BUTTON = 'button',
 	BUTTON_TYPE = 'buttonType',
-	FIELD = 'field',
 	FORM_BUILDER_BUTTON_FIELD = 'form-builder-button-field',
 	FORM_BUILDER_FIELD = 'form-builder-field',
 	ID = 'id',
-	INPUT = 'input',
 	LABEL = 'label',
 	NAME = 'name',
 	NODE = 'node',
@@ -22,16 +21,15 @@ var L = A.Lang,
 	SUBMIT = 'submit',
 	TEMPLATE = 'template',
 	TEMPLATE_NODE = 'templateNode',
-	TEXT = 'text',
 	TYPE = 'type',
 
 	getCN = A.getClassName,
 
-	CSS_FIELD_INPUT = getCN(FIELD, INPUT),
+	CSS_BTN = getCN(BTN),
 	CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
 	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
 
-	TPL_BUTTON = '<button id="{id}" class="' + CSS_FORM_BUILDER_FIELD_NODE + '" type="{type}">{value}</button>',
+	TPL_BUTTON = '<button id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_BTN].join(SPACE) + '" type="{type}">{value}</button>',
 
 	BUTTON_TYPES = [SUBMIT, RESET, BUTTON];
 
