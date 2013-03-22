@@ -478,7 +478,6 @@ var FormBuilder = A.Component.create({
 			// Clicks outside contentBox should not focus the field, e.g. clicking
 			// a toolbar icon rendered on the boundingBox should not focus anything.
 			if (boundingBox.compareTo(target) || contentBox.contains(target, true)) {
-				console.log('EDIT');
 				instance.editField(field);
 			}
 		},
