@@ -344,151 +344,12 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
-    "aui-drawing-animate-deprecated": {
-        "requires": [
-            "aui-drawing-base-deprecated"
-        ]
-    },
-    "aui-drawing-base-deprecated": {
-        "requires": [
-            "substitute",
-            "aui-base-deprecated",
-            "aui-color-util-deprecated"
-        ]
-    },
-    "aui-drawing-deprecated": {
-        "use": [
-            "arraylist",
-            "aui-drawing-base-deprecated",
-            "aui-drawing-animate-deprecated",
-            "aui-drawing-drag-deprecated",
-            "aui-drawing-fonts-deprecated"
-        ]
-    },
-    "aui-drawing-drag-deprecated": {
-        "requires": [
-            "event-gestures",
-            "aui-drawing-base-deprecated"
-        ]
-    },
-    "aui-drawing-fonts-deprecated": {
-        "requires": [
-            "aui-drawing-base-deprecated"
-        ]
-    },
-    "aui-drawing-safari-deprecated": {
-        "condition": {
-            "name": "aui-drawing-safari-deprecated",
-            "test": function(A) { var UA = A.UA; return UA.safari && (UA.version.major < 4 || (UA.iphone || UA.ipad)); },
-            "trigger": "aui-drawing-base-deprecated"
-        },
-        "requires": [
-            "aui-drawing-base-deprecated"
-        ]
-    },
-    "aui-drawing-svg-deprecated": {
-        "condition": {
-            "name": "aui-drawing-svg-deprecated",
-            "test": function(A) { return A.UA.svg },
-            "trigger": "aui-drawing-base-deprecated"
-        },
-        "requires": [
-            "aui-drawing-base-deprecated"
-        ]
-    },
-    "aui-drawing-vml-deprecated": {
-        "condition": {
-            "name": "aui-drawing-vml-deprecated",
-            "test": function(A){ return A.UA.vml },
-            "trigger": "aui-drawing-base-deprecated"
-        },
-        "requires": [
-            "aui-drawing-base-deprecated"
-        ]
-    },
     "aui-editable-deprecated": {
         "requires": [
             "aui-base-deprecated",
             "aui-form-combobox-deprecated"
         ],
         "skinnable": true
-    },
-    "aui-editor-base-deprecated": {
-        "requires": [
-            "editor-base",
-            "aui-base-deprecated",
-            "aui-editor-toolbar-plugin-deprecated"
-        ]
-    },
-    "aui-editor-bbcode-plugin-deprecated": {
-        "requires": [
-            "editor-base",
-            "aui-base-deprecated"
-        ]
-    },
-    "aui-editor-creole-parser-deprecated": {
-        "requires": [
-            "aui-base-deprecated"
-        ]
-    },
-    "aui-editor-creole-plugin-deprecated": {
-        "requires": [
-            "editor-base",
-            "aui-base-deprecated",
-            "aui-editor-creole-parser-deprecated",
-            "aui-editor-html-creole-deprecated"
-        ]
-    },
-    "aui-editor-deprecated": {
-        "skinnable": true,
-        "use": [
-            "aui-editor-bbcode-plugin-deprecated",
-            "aui-editor-creole-parser-deprecated",
-            "aui-editor-creole-plugin-deprecated",
-            "aui-editor-html-creole-deprecated",
-            "aui-editor-menu-plugin-deprecated",
-            "aui-editor-toolbar-plugin-deprecated",
-            "aui-editor-tools-plugin-deprecated",
-            "aui-editor-base-deprecated"
-        ]
-    },
-    "aui-editor-html-creole-deprecated": {
-        "requires": [
-            "aui-editor-base-deprecated"
-        ]
-    },
-    "aui-editor-menu-plugin-deprecated": {
-        "requires": [
-            "editor-base",
-            "aui-base-deprecated",
-            "aui-editor-tools-plugin-deprecated",
-            "aui-overlay-context-deprecated",
-            "aui-panel-deprecated"
-        ]
-    },
-    "aui-editor-toolbar-plugin-deprecated": {
-        "requires": [
-            "createlink-base",
-            "editor-base",
-            "editor-lists",
-            "plugin",
-            "aui-base-deprecated",
-            "aui-button-item-deprecated",
-            "aui-color-picker-deprecated",
-            "aui-editor-menu-plugin-deprecated",
-            "aui-editor-tools-plugin-deprecated",
-            "aui-form-select-deprecated",
-            "aui-overlay-context-panel-deprecated",
-            "aui-panel-deprecated",
-            "aui-toolbar-deprecated"
-        ],
-        "skinnable": true
-    },
-    "aui-editor-tools-plugin-deprecated": {
-        "requires": [
-            "editor-base",
-            "aui-base-deprecated"
-        ]
     },
     "aui-event": {
         "use": [
@@ -580,7 +441,8 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     },
     "aui-form-textarea-deprecated": {
-        "use": [
+        "requires": [
+            "node-pluginhost",
             "aui-autosize-deprecated",
             "aui-form-textfield-deprecated"
         ]
@@ -959,6 +821,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-scroller-deprecated": {
         "requires": [
+            "event-mouseenter",
             "aui-base-deprecated",
             "aui-simple-anim-deprecated"
         ],
@@ -1216,6 +1079,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'a11948dec5c65eb141e22f02a1241b83';
+YUI.Env[Y.version].md5 = '641c15b56bfd4286069f2b0d1196bc34';
 
 });
