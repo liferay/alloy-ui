@@ -10,7 +10,7 @@ var Lang = A.Lang,
     isString = Lang.isString,
     trim = Lang.trim,
 
-    defaults = YUI.namespace('defaults.FormValidator'),
+    defaults = A.namespace('config.FormValidator'),
 
     getRegExp = A.DOM._getRegExp,
 
