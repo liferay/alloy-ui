@@ -52,8 +52,8 @@
             showAllMessages: true
         });
 
-        YUI.defaults.FormValidator.STRINGS.gt50 = 'The digit should be >= 50.';
-        YUI.defaults.FormValidator.RULES.gt50 = function(val, fieldNode, ruleValue) {
+        A.config.FormValidator.STRINGS.gt50 = 'The digit should be >= 50.';
+        A.config.FormValidator.RULES.gt50 = function(val, fieldNode, ruleValue) {
             return (val >= 50);
         };
         new A.FormValidator({
