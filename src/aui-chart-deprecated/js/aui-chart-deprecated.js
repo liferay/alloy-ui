@@ -11,7 +11,7 @@ var Lang = A.Lang,
 	DEFAULT_SWF_PATH = A.config.base + 'aui-chart-deprecated/assets/chart.swf?t=' + Lang.now();
 
 YUI.namespace('_CHART');
-YUI.namespace('defaults.chart');
+A.namespace('config.chart');
 
 var Chart = A.Component.create(
 	{
