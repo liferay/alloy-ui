@@ -16,7 +16,6 @@ var L = A.Lang,
 		return (v instanceof A.FormBuilderField);
 	},
 
-	ADD = 'add',
 	ALLOW_REMOVE_REQUIRED_FIELDS = 'allowRemoveRequiredFields',
 	ATTRIBUTE_NAME = 'attributeName',
 	AVAILABLE_FIELD = 'availableField',
@@ -33,7 +32,6 @@ var L = A.Lang,
 	FIELD = 'field',
 	FIELDS = 'fields',
 	FIELDS_SORTABLE_LIST_CONFIG = 'fieldsSortableListConfig',
-	FOCUSED = 'focused',
 	FORM = 'form',
 	FORM_BUILDER = 'form-builder',
 	HIDDEN_ATTRIBUTES = 'hiddenAttributes',
@@ -42,15 +40,16 @@ var L = A.Lang,
 	LOCALIZATION_MAP = 'localizationMap',
 	NAME = 'name',
 	NODE = 'node',
+	OPACITY = 'opacity',
 	OPTIONS = 'options',
 	PARENT = 'parent',
 	PARENT_NODE = 'parentNode',
 	PLACEHOLDER = 'placeholder',
 	PREDEFINED_VALUE = 'predefinedValue',
 	READ_ONLY_ATTRIBUTES = 'readOnlyAttributes',
-	REMOVE = 'remove',
 	RENDERED = 'rendered',
 	REQUIRED = 'required',
+	SELECTED = 'selected',
 	SHOW_LABEL = 'showLabel',
 	TIP = 'tip',
 	TYPE = 'type',
@@ -151,7 +150,7 @@ var FormBuilder = A.Component.create({
 		strings: {
 			value: {
 				addNode: 'Add field',
-				cancel: 'Cancel',
+				close: 'Close',
 				propertyName: 'Property Name',
 				save: 'Save',
 				settings: 'Settings',
@@ -170,10 +169,25 @@ var FormBuilder = A.Component.create({
 
 	prototype: {
 
-		uniqueFieldsMap: new A.Map(),
+		selectedFieldsLinkedSet: null,
+		uniqueFieldsMap: null,
 
 		initializer: function() {
 			var instance = this;
+
+			instance.selectedFieldsLinkedSet = new A.LinkedSet({
+				after: {
+					add: A.bind(instance._afterSelectedFieldsSetAdd, instance),
+					remove: A.bind(instance._afterSelectedFieldsSetRemove, instance)
+				}
+			});
+
+			instance.uniqueFieldsMap = new A.Map({
+				after: {
+					add: A.bind(instance._afterUniqueFieldsMapAdd, instance),
+					remove: A.bind(instance._afterUniqueFieldsMapRemove, instance)
+				}
+			});
 
 			instance.on({
 				cancel: instance._onCancel,
@@ -183,11 +197,9 @@ var FormBuilder = A.Component.create({
 				save: instance._onSave
 			});
 
-			instance.uniqueFieldsMap.after(ADD, A.bind(instance._afterUniqueFieldsMapAdd, instance));
-			instance.uniqueFieldsMap.after(REMOVE, A.bind(instance._afterUniqueFieldsMapRemove, instance));
+			instance.after('*:focusedChange', instance._afterFieldFocusedChange);
 
 			instance.dropContainer.delegate('click', A.bind(instance._onClickField, instance), _DOT+CSS_FORM_BUILDER_FIELD);
-			instance.dropContainer.delegate('focus', A.bind(instance._onFocusField, instance), _DOT+CSS_FORM_BUILDER_FIELD);
 			instance.dropContainer.delegate('mouseover', A.bind(instance._onMouseOverField, instance), _DOT+CSS_FORM_BUILDER_FIELD);
 			instance.dropContainer.delegate('mouseout', A.bind(instance._onMouseOutField, instance), _DOT+CSS_FORM_BUILDER_FIELD);
 		},
@@ -200,27 +212,26 @@ var FormBuilder = A.Component.create({
 		},
 
 		closeEditProperties: function() {
-			var instance = this,
-				field = instance.editingField;
+			var instance = this;
 
 			instance.tabView.selectChild(A.FormBuilder.FIELDS_TAB);
-
-			instance.editingField = null;
 		},
 
 		createField: function(val) {
-			var instance = this;
+			var instance = this,
+				attrs = {
+					builder: instance,
+					parent: instance
+				};
 
 			if (isFormBuilderField(val)) {
-				val.set(BUILDER, instance);
-				val.set(PARENT, instance);
+				val.setAttrs(attrs);
 			}
 			else {
-				val.builder = instance;
-				val.parent = instance;
-
-				val = new (instance.getFieldClass(val.type || FIELD))(val);
+				val = new (instance.getFieldClass(val.type || FIELD))(A.mix(attrs, val));
 			}
+
+			val.addTarget(instance);
 
 			return val;
 		},
@@ -228,25 +239,48 @@ var FormBuilder = A.Component.create({
 		duplicateField: function(field) {
 			var instance = this,
 				index = instance._getFieldNodeIndex(field.get(BOUNDING_BOX)),
-				newField = instance._cloneField(field, true);
+				newField = instance._cloneField(field, true),
+				boundingBox = newField.get(BOUNDING_BOX);
 
+			boundingBox.setStyle(OPACITY, 0);
 			instance.insertField(newField, ++index, field.get(PARENT));
+			boundingBox.show(true);
 		},
 
 		editField: function(field) {
 			var instance = this;
 
 			if (isFormBuilderField(field)) {
-				instance.closeEditProperties();
-
-				instance.simulateDocFocusField(field);
+				instance.editingField = field;
 
 				instance.tabView.selectChild(A.FormBuilder.SETTINGS_TAB);
-
 				instance.propertyList.set(DATA, instance.getFieldProperties(field));
 
-				instance.editingField = field;
+				instance.unselectFields();
+				instance.selectFields(field);
 			}
+		},
+
+		selectFields: function(fields) {
+			var instance = this,
+				selectedFieldsLinkedSet = instance.selectedFieldsLinkedSet;
+
+			AArray.each(AArray(fields), function(field) {
+				selectedFieldsLinkedSet.add(field);
+			});
+		},
+
+		unselectFields: function(fields) {
+			var instance = this,
+				selectedFieldsLinkedSet = instance.selectedFieldsLinkedSet;
+
+			if (!fields) {
+				fields = selectedFieldsLinkedSet.values();
+			}
+
+			AArray.each(AArray(fields), function(field) {
+				selectedFieldsLinkedSet.remove(field);
+			});
 		},
 
 		getFieldClass: function(type) {
@@ -309,13 +343,23 @@ var FormBuilder = A.Component.create({
 			});
 		},
 
-		simulateDocFocusField: function(field) {
-			var instance = this;
+		simulateFocusField: function(field) {
+			var instance = this,
+				lastFocusedField = instance.lastFocusedField;
 
-			if (!field.get(FOCUSED)) {
-				field._onDocFocus({
-					target: field.get(BOUNDING_BOX)
-				});
+			if (lastFocusedField) {
+				lastFocusedField.blur();
+			}
+
+			instance.lastFocusedField = field.focus();
+		},
+
+		_afterFieldFocusedChange: function(event) {
+			var instance = this,
+				field = event.target;
+
+			if (event.newVal && isFormBuilderField(field)) {
+				instance.editField(field);
 			}
 		},
 
@@ -343,6 +387,14 @@ var FormBuilder = A.Component.create({
 				availableField.set(DRAGGABLE, true);
 				node.selectable();
 			}
+		},
+
+		_afterSelectedFieldsSetAdd: function(event) {
+			event.value.set(SELECTED, true);
+		},
+
+		_afterSelectedFieldsSetRemove: function(event) {
+			event.value.set(SELECTED, false);
 		},
 
 		_cloneField: function(field, deep) {
@@ -437,6 +489,12 @@ var FormBuilder = A.Component.create({
 			).indexOf(fieldNode);
 		},
 
+		_onCancel: function(event) {
+			var instance = this;
+
+			instance.unselectFields();
+		},
+
 		_onDragEnd: function(event) {
 			var instance = this,
 				drag = event.target,
@@ -453,33 +511,12 @@ var FormBuilder = A.Component.create({
 		},
 
 		_onClickField: function(event) {
-			var instance = this;
-
-			instance._handleEditField(event);
-
-			event.stopPropagation();
-		},
-
-		_onFocusField: function(event) {
-			var instance = this;
-
-			instance._handleEditField(event);
-
-			event.stopPropagation();
-		},
-
-		_handleEditField: function(event) {
 			var instance = this,
-				target = event.target,
-				field = A.Widget.getByNode(target),
-				boundingBox = field.get('boundingBox'),
-				contentBox = field.get('contentBox');
+				field = A.Widget.getByNode(event.target);
 
-			// Clicks outside contentBox should not focus the field, e.g. clicking
-			// a toolbar icon rendered on the boundingBox should not focus anything.
-			if (boundingBox.compareTo(target) || contentBox.contains(target, true)) {
-				instance.editField(field);
-			}
+			instance.simulateFocusField(field);
+
+			event.stopPropagation();
 		},
 
 		_onDragMouseDown: function(event) {

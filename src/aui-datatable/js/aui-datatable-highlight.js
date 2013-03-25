@@ -11,6 +11,7 @@ var Lang = A.Lang,
 	BORDER = 'border',
 	CELLS = 'cells',
 	CHILDREN = 'children',
+	DATA_CHANGE = 'dataChange',
 	HIGHLIGHT = 'highlight',
 	HIGHLIGHT_RANGE = 'highlightRange',
 	HOST = 'host',
@@ -74,6 +75,7 @@ var DataTableHighlight = A.Base.create(
 
 			instance.afterHostEvent(ACTIVE_COORD_CHANGE, instance._afterActiveCoordChange);
 			instance.afterHostEvent(SELECTION_CHANGE, instance._afterSelectionChange);
+			instance.afterHostEvent(DATA_CHANGE, instance._afterDataChange);
 		},
 
 		clear: function() {
@@ -158,6 +160,12 @@ var DataTableHighlight = A.Base.create(
 			instance._lastActiveRow = activeRow;
 		},
 
+		_afterDataChange: function(event) {
+			var instance = this;
+
+			instance.clear();
+		},
+
 		_afterSelectionChange: function(event) {
 			var instance = this,
 				nodes,
@@ -232,7 +240,9 @@ var DataTableHighlight = A.Base.create(
 			var instance = this;
 
 			A.Array.each(instance._nodes, function(node) {
-				node.removeClass(instance.CLASS_NAMES.highlight);
+				if (node) {
+					node.removeClass(instance.CLASS_NAMES.highlight);
+				}
 			});
 		},
 

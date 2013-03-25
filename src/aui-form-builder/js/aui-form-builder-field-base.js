@@ -25,7 +25,6 @@ var L = A.Lang,
 	EMPTY_STR = '',
 	FIELD = 'field',
 	FIELDS = 'fields',
-	FOCUSED = 'focused',
 	FORM = 'form',
 	FORM_BUILDER_FIELD = 'form-builder-field',
 	HIDDEN_ATTRIBUTES = 'hiddenAttributes',
@@ -44,6 +43,7 @@ var L = A.Lang,
 	READ_ONLY_ATTRIBUTES = 'readOnlyAttributes',
 	REQUIRED = 'required',
 	REQUIRED_FLAG_NODE = 'requiredFlagNode',
+	SELECTED = 'selected',
 	SHOW_LABEL = 'showLabel',
 	SIGN = 'sign',
 	SPACE = ' ',
@@ -69,6 +69,7 @@ var L = A.Lang,
 	CSS_COMPONENT = getCN(COMPONENT),
 	CSS_FB_DROP_ZONE = getCN(FORM, BUILDER, DROP, ZONE),
 	CSS_FB_FIELD = getCN(FORM, BUILDER, FIELD),
+	CSS_FB_FIELD_SELECTED = getCN(FORM, BUILDER, FIELD, SELECTED),
 	CSS_FB_UNIQUE = getCN(FORM, BUILDER, UNIQUE),
 	CSS_ICON = getCN(ICON),
 	CSS_ICON_ASTERISK = getCN(ICON, ASTERISK),
@@ -120,6 +121,10 @@ var FormBuilderField = A.Component.create({
 		},
 
 		disabled: {
+			value: false
+		},
+
+		selected: {
 			value: false
 		},
 
@@ -270,7 +275,7 @@ var FormBuilderField = A.Component.create({
 
 	},
 
-	UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, FIELDS, LABEL, NAME, PREDEFINED_VALUE, REQUIRED, SHOW_LABEL, TIP, UNIQUE],
+	UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, FIELDS, LABEL, NAME, PREDEFINED_VALUE, REQUIRED, SELECTED, SHOW_LABEL, TIP, UNIQUE],
 
 	EXTENDS: FormBuilderFieldBase,
 
@@ -313,8 +318,6 @@ var FormBuilderField = A.Component.create({
 		bindUI: function() {
 			var instance = this,
 				tipFlagNode = instance.get(TIP_FLAG_NODE);
-
-			instance.after(instance._afterOnDocFocus, instance, '_onDocFocus');
 
 			tipFlagNode.on('mouseover', A.bind(instance._onMouseOverTipFlagNode, instance));
 			tipFlagNode.on('mouseout', A.bind(instance._onMouseOutTipFlagNode, instance));
@@ -500,15 +503,6 @@ var FormBuilderField = A.Component.create({
 			];
 		},
 
-		_afterOnDocFocus: function(event) {
-			var instance = this,
-				builder = instance.get(BUILDER);
-
-			if (!instance.get(FOCUSED)) {
-				builder.closeEditProperties();
-			}
-		},
-
 		_booleanFormatter: function(o) {
 			var instance = this,
 				strings = instance.getStrings();
@@ -617,6 +611,12 @@ var FormBuilderField = A.Component.create({
 			else if (val && markupDropZone) {
 				instance.set(DROP_ZONE_NODE, markupDropZone);
 			}
+		},
+
+		_uiSetSelected: function(val) {
+			var instance = this;
+
+			instance.get(BOUNDING_BOX).toggleClass(CSS_FB_FIELD_SELECTED, val);
 		},
 
 		_uiSetDisabled: function(val) {

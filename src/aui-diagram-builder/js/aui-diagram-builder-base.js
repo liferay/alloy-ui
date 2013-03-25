@@ -29,6 +29,7 @@ var Lang = A.Lang,
 	CANCEL = 'cancel',
 	CANVAS = 'canvas',
 	CLEARFIX = 'clearfix',
+	CLOSE = 'close',
 	CONTAINER = 'container',
 	CONTENT = 'content',
 	CONTENT_BOX = 'contentBox',
@@ -55,9 +56,11 @@ var Lang = A.Lang,
 	PROPERTY_LIST = 'propertyList',
 	RENDERED = 'rendered',
 	SAVE = 'save',
+	STRIPED = 'striped',
 	SETTINGS = 'settings',
 	TAB_VIEW = 'tabView',
 	TABBABLE = 'tabbable',
+	TABLE = 'table',
 	TABS = 'tabs',
 	TITLE = 'title',
 	TOOLBAR = 'toolbar',
@@ -84,7 +87,8 @@ var Lang = A.Lang,
 	CSS_ICON = AgetClassName(ICON),
 	CSS_LAYOUT = AgetClassName(LAYOUT),
 	CSS_TABBABLE = AgetClassName(TABBABLE),
-	CSS_TABBABLE_CONTENT = AgetClassName(TABBABLE, CONTENT);
+	CSS_TABBABLE_CONTENT = AgetClassName(TABBABLE, CONTENT),
+	CSS_TABLE_STRIPED = AgetClassName(TABLE, STRIPED);
 
 var AvailableField = A.Component.create({
 	NAME: AVAILABLE_FIELD,
@@ -388,6 +392,7 @@ var DiagramBuilderBase = A.Component.create(
 			strings: {
 				value: {
 					addNode: 'Add node',
+					close: 'Close',
 					cancel: 'Cancel',
 					propertyName: 'Property Name',
 					save: 'Save',
@@ -579,12 +584,11 @@ var DiagramBuilderBase = A.Component.create(
 				var instance = this;
 
 				if (!instance.propertyList) {
-					instance.propertyList = new A.PropertyList(
-						instance.get(PROPERTY_LIST)
-					)
-					.render(instance.settingsNode);
+					var propertyList = instance.propertyList = new A.PropertyList(instance.get(PROPERTY_LIST));
 
-					instance.propertyList.get(BOUNDING_BOX).unselectable();
+					propertyList.render(instance.settingsNode);
+
+					propertyList.get(BOUNDING_BOX).unselectable().addClass(CSS_TABLE_STRIPED);
 				}
 			},
 
@@ -741,7 +745,7 @@ var DiagramBuilderBase = A.Component.create(
 								on: {
 									click: A.bind(instance._handleCancelEvent, instance)
 								},
-								label: strings[CANCEL]
+								label: strings[CLOSE]
 							}
 						]
 					},
