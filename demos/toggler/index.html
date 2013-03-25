@@ -179,8 +179,6 @@ AUI().use('node-load', 'aui-toggler', function(A) {
 	var content = A.one('.content');
 	var header = A.one('.header');
 
-	console.time('toggler');
-
 	var toggler = new A.Toggler({
 		animated: true,
 		content: content,
@@ -188,7 +186,7 @@ AUI().use('node-load', 'aui-toggler', function(A) {
 		expanded: false,
 		transition: {
 			duration: .6,
-			easing: 'cubic-bezier',
+			easing: 'cubic-bezier(0, 0.1, 0, 1.0)',
 			on: {
 				end: function() {
 					content.load('assets/content.html');
@@ -197,10 +195,6 @@ AUI().use('node-load', 'aui-toggler', function(A) {
 		}
 	});
 
-	console.timeEnd('toggler');
-
-	console.time('toggler-delegate');
-
 	var togglerDelegate1 = new A.TogglerDelegate({
 		container: '#container1',
 		content: '.content',
@@ -208,11 +202,9 @@ AUI().use('node-load', 'aui-toggler', function(A) {
 		expanded: false,
 		transition: {
 			duration: .4,
-			easing: 'cubic-bezier'
+			easing: 'cubic-bezier(0, 0.1, 0, 1.0)'
 		}
 	});
-
-	console.timeEnd('toggler-delegate');
 
 	var togglerDelegate2 = new A.TogglerDelegate({
 		animated: true,
