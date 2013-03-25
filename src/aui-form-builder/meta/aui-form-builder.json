@@ -18,6 +18,7 @@
 
     "aui-form-builder-base": {
         "requires": [
+            "transition",
             "aui-button",
             "aui-collection",
             "aui-diagram-builder-base",
