@@ -7,6 +7,7 @@
 
 var Lang = A.Lang,
 	isArray = Lang.isArray,
+	isFunction = Lang.isFunction,
 	isObject = Lang.isObject,
 	isString = Lang.isString,
 	isUndefined = Lang.isUndefined,
@@ -1354,15 +1355,14 @@ A.mix(
 		 * @method all
 		 */
 		all: function(selector) {
-			var instance = this;
+			var instance = this,
+				newNodeList = [],
+				nodes = instance._nodes,
+				length = nodes.length,
+				subList,
+				i;
 
-			var newNodeList = [];
-			var nodes = instance._nodes;
-			var length = nodes.length;
-
-			var subList;
-
-			for (var i = 0; i < length; i++) {
+			for (i = 0; i < length; i++) {
 				subList = A.Selector.query(selector, nodes[i]);
 
 				if (subList && subList.length) {
@@ -1373,12 +1373,6 @@ A.mix(
 			newNodeList = AArray.unique(newNodeList);
 
 			return A.all(newNodeList);
-		},
-
-		allNS: function(ns, selector) {
-			var instance = this;
-
-			return instance.all(formatSelectorNS(ns, selector));
 		},
 
 		/**
@@ -1422,14 +1416,13 @@ A.mix(
 		 * @method one
 		 */
 		one: function(selector) {
-			var instance = this;
+			var instance = this,
+				newNode = null,
+				nodes = instance._nodes,
+				length = nodes.length,
+				i;
 
-			var newNode = null;
-
-			var nodes = instance._nodes;
-			var length = nodes.length;
-
-			for (var i = 0; i < length; i++) {
+			for (i = 0; i < length; i++) {
 				newNode = A.Selector.query(selector, nodes[i], true);
 
 				if (newNode) {
@@ -1440,12 +1433,6 @@ A.mix(
 			}
 
 			return newNode;
-		},
-
-		oneNS: function(ns, selector) {
-			var instance = this;
-
-			return instance.one(formatSelectorNS(ns, selector));
 		}
 	}
 );
