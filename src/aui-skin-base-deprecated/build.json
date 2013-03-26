@@ -1,0 +1,10 @@
+{
+    "name": "aui-skin-base-deprecated",
+    "builds": {
+        "aui-skin-base-deprecated": {
+            "cssfiles": [
+                "css/aui-skin-base-deprecated.css"
+            ]
+        }
+    }
+}

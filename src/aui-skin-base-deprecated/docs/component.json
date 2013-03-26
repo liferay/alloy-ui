@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-skin-base-deprecated",
+    "displayName": "Gallery: aui-skin-base-deprecated",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "eduardo.lundgren" ],
+    "use"        : [ "aui-skin-base-deprecated" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}
