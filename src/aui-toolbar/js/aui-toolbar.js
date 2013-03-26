@@ -13,6 +13,7 @@ var Lang = A.Lang,
     CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
     BTN = 'btn',
     CHILDREN = 'children',
+    LEFT = 'left',
     RADIO = 'radio',
     FOCUS = 'focus',
     MOUSEMOVE = 'mousemove',
@@ -194,12 +195,22 @@ ToolbarRenderer.prototype = {
                     cssClass: value.cssClass || _EMPTY
                 })
             );
-            if (value.icon) {
-                buttonNode.appendChild(
-                    Lang.sub(instance.TEMPLATES.icon, { cssClass: value.icon }));
-            }
+
             if (value.label) {
                 buttonNode.appendChild(value.label);
+            }
+
+            if (value.icon) {
+                var iconContent = Lang.sub(instance.TEMPLATES.icon, {
+                    cssClass: value.icon
+                });
+
+                if (value.iconAlign === LEFT) {
+                    buttonNode.prepend(iconContent);
+                }
+                else {
+                    buttonNode.append(iconContent);
+                }
             }
 
             A.Button.setWidgetLazyConstructorNodeData(buttonNode, value);
