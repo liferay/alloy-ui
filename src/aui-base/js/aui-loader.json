@@ -422,6 +422,7 @@
         "requires": [
             "node-base",
             "node-style",
+            "node-pluginhost",
             "node-screen",
             "array-extras",
             "aui-base-lang",
