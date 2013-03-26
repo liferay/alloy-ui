@@ -969,6 +969,9 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-base-deprecated"
         ]
     },
+    "aui-skin-base-deprecated": {
+        "type": "css"
+    },
     "aui-sortable": {
         "use": [
             "aui-sortable-layout",
@@ -1195,6 +1198,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '716fe23ab85992e27d72b37a29be8c28';
+YUI.Env[Y.version].md5 = '106c1611db6fe3055938cdb605fdd6de';
 
 });

@@ -944,6 +944,9 @@
             "aui-base-deprecated"
         ]
     },
+    "aui-skin-base-deprecated": {
+        "type": "css"
+    },
     "aui-sortable": {
         "use": [
             "aui-sortable-layout",
