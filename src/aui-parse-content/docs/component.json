@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-parse-content",
+    "displayName": "Gallery: aui-parse-content",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "" ],
+    "use"        : [ "aui-parse-content" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}
