@@ -197,7 +197,7 @@ ToolbarRenderer.prototype = {
             );
 
             if (value.label) {
-                buttonNode.appendChild(value.label);
+                buttonNode.append(value.label);
             }
 
             if (value.icon) {
