@@ -7,7 +7,6 @@
 
 var Lang = A.Lang,
 	isArray = Lang.isArray,
-	isFunction = Lang.isFunction,
 	isObject = Lang.isObject,
 	isString = Lang.isString,
 	isUndefined = Lang.isUndefined,
@@ -19,8 +18,6 @@ var Lang = A.Lang,
 
 	getClassName = A.getClassName,
 	getRegExp = A.DOM._getRegExp,
-
-	prefix = Lang.String.prefix,
 
 	CONFIG = A.config,
 	DOC = CONFIG.doc,
@@ -44,11 +41,9 @@ var Lang = A.Lang,
 	INNER = 'inner',
 	INNER_HTML = 'innerHTML',
 	NEXT_SIBLING = 'nextSibling',
-	NONE = 'none',
 	OUTER = 'outer',
 	PARENT_NODE = 'parentNode',
 	REGION = 'region',
-	SCRIPT = 'script',
 
 	SUPPORT_CLONED_EVENTS = false,
 
@@ -71,14 +66,6 @@ var Lang = A.Lang,
 		l: 'paddingLeft',
 		r: 'paddingRight',
 		t: 'paddingTop'
-	},
-
-	prefixSelector = function(ns, id) {
-		return '#' + prefix(ns, id);
-	},
-
-	formatSelectorNS = function(ns, selector) {
-		return selector.replace(getRegExp('(#|\\[id=(\\\"|\\\'))(?!' + ns + ')', 'g'), '$1' + ns);
 	};
 
 	/*
@@ -106,25 +93,23 @@ var Lang = A.Lang,
 	var SUPPORT_OPTIONAL_TBODY = !div.getElementsByTagName('tbody').length;
 
 	var REGEX_LEADING_WHITE_SPACE = /^\s+/,
-		REGEX_IE8_ACTION = /=([^=\x27\x22>\s]+\/)>/g,
+		REGEX_IE8_ACTION = /\=([^=\x27\x22>\s]+\/)>/g,
 		REGEX_TAGNAME = /<([\w:]+)/;
 
 	div = null;
 
-	ANode.cssId = prefixSelector;
-
-	ANode.formatSelectorNS = formatSelectorNS;
-
 	var _setUnselectable = function(element, unselectable, noRecurse) {
 		var descendants,
-			value = unselectable ? 'on' : '';
+			value = unselectable ? 'on' : '',
+			i,
+			descendant;
 
 		element.setAttribute('unselectable', value);
 
 		if (!noRecurse) {
 			descendants = element.getElementsByTagName('*');
 
-			for (var i = 0, descendant; descendant = descendants[i]; i++) {
+			for (i = 0; (descendant = descendants[i]); i++) {
 				descendant.setAttribute('unselectable', value);
 			}
 		}
@@ -141,12 +126,6 @@ var Lang = A.Lang,
  * @uses Node
  */
 A.mix(NODE_PROTO, {
-	allNS: function(ns, selector) {
-		var instance = this;
-
-		return instance.all(formatSelectorNS(ns, selector));
-	},
-
 	/**
 	 * <p>Returns the current ancestors of the node element. If a selector is
 	 * specified, the ancestors are filtered to match the selector.</p>
@@ -262,7 +241,8 @@ A.mix(NODE_PROTO, {
 	 * @return {String}
 	 */
 	attr: function(name, value) {
-		var instance = this;
+		var instance = this,
+			i;
 
 		if (!isUndefined(value)) {
 			var el = instance.getDOM();
@@ -278,7 +258,7 @@ A.mix(NODE_PROTO, {
 		}
 		else {
 			if (isObject(name)) {
-				for (var i in name) {
+				for (i in name) {
 					instance.attr(i, name[i]);
 				}
 
@@ -316,7 +296,7 @@ A.mix(NODE_PROTO, {
 				var el = this.getDOM();
 				var clone;
 
-				if (el.nodeType != 3) {
+				if (el.nodeType !== 3) {
 					var outerHTML = this.outerHTML();
 
 					outerHTML = outerHTML.replace(REGEX_IE8_ACTION, '="$1">').replace(REGEX_LEADING_WHITE_SPACE, STR_EMPTY);
@@ -337,7 +317,7 @@ A.mix(NODE_PROTO, {
 		}
 
 		return clone;
-	})(),
+	}()),
 
 	/**
 	 * <p>Centralize the current Node instance with the passed
@@ -488,7 +468,7 @@ A.mix(NODE_PROTO, {
 	 * @param {string} prefix optional guid prefix
 	 * @return {String} The current id of the node
 	 */
-	guid: function(prefix) {
+	guid: function() {
 		var instance = this;
 		var currentId = instance.get('id');
 
@@ -573,12 +553,6 @@ A.mix(NODE_PROTO, {
 		}
 
 		return this;
-	},
-
-	oneNS: function(ns, selector) {
-		var instance = this;
-
-		return instance.one(formatSelectorNS(ns, selector));
 	},
 
 	/**
@@ -697,10 +671,11 @@ A.mix(NODE_PROTO, {
 		else if (isArray(cssClass)) {
 			var siblingNodes = siblings.getDOM();
 
-			var regex = getRegExp('(?:^|\\s+)(?:' + cssClass.join('|') + ')(?=\\s+|$)', 'g');
-			var node;
+			var regex = getRegExp('(?:^|\\s+)(?:' + cssClass.join('|') + ')(?=\\s+|$)', 'g'),
+				node,
+				i;
 
-			for (var i = siblingNodes.length - 1; i >= 0; i--) {
+			for (i = siblingNodes.length - 1; i >= 0; i--) {
 				node = siblingNodes[i];
 				node.className = node.className.replace(regex, '');
 			}
@@ -763,7 +738,7 @@ A.mix(NODE_PROTO, {
 				textField.select();
 			}
 
-			if (textField != DOC.activeElement) {
+			if (textField !== DOC.activeElement) {
 				textField.focus();
 			}
 		}
@@ -944,12 +919,13 @@ A.mix(NODE_PROTO, {
 	_getBoxStyleAsNumber: function(sides, map) {
 		var instance = this;
 
-		var sidesArray = sides.match(/\w/g);
-		var value = 0;
-		var side;
-		var sideKey;
+		var sidesArray = sides.match(/\w/g),
+			value = 0,
+			side,
+			sideKey,
+			i;
 
-		for (var i = sidesArray.length - 1; i >= 0; i--) {
+		for (i = sidesArray.length - 1; i >= 0; i--) {
 			sideKey = sidesArray[i];
 			side = 0;
 
@@ -974,16 +950,16 @@ A.mix(NODE_PROTO, {
 	_getText: function(childNodes) {
 		var instance = this;
 
-		var length = childNodes.length;
-		var childNode;
+		var length = childNodes.length,
+			childNode,
+			str = [],
+			i;
 
-		var str = [];
-
-		for (var i = 0; i < length; i++) {
+		for (i = 0; i < length; i++) {
 			childNode = childNodes[i];
 
-			if (childNode && childNode.nodeType != 8) {
-				if (childNode.nodeType != 1) {
+			if (childNode && childNode.nodeType !== 8) {
+				if (childNode.nodeType !== 1) {
 					str.push(childNode.nodeValue);
 				}
 
@@ -1215,9 +1191,6 @@ A.each(
 					else {
 						dimension = instance.get(OFFSET + item);
 
-						var previous = {};
-						var styleObj = node.style;
-
 						if (!dimension) {
 							instance.addClass(CSS_FORCE_OFFSET);
 
@@ -1276,7 +1249,7 @@ if (!SUPPORT_OPTIONAL_TBODY) {
 			if (isString(content)) {
 				tagName = (REGEX_TAGNAME.exec(content) || ARRAY_EMPTY_STRINGS)[1];
 			}
-			else if (content.nodeType && content.nodeType == 11 && content.childNodes.length) { // a doc frag
+			else if (content.nodeType && content.nodeType === 11 && content.childNodes.length) { // a doc frag
 				tagName = content.childNodes[0].nodeName;
 			}
 			else if (content.nodeName) { // a node
@@ -1286,7 +1259,7 @@ if (!SUPPORT_OPTIONAL_TBODY) {
 			tagName = tagName && tagName.toLowerCase();
 		}
 
-		if (nodeName == 'table' && tagName == 'tr') {
+		if (nodeName === 'table' && tagName === 'tr') {
 			node = node.getElementsByTagName('tbody')[0] || node.appendChild(node.ownerDocument.createElement('tbody'));
 
 			var whereNodeName = ((where && where.nodeName) || STR_EMPTY).toLowerCase();
@@ -1294,7 +1267,7 @@ if (!SUPPORT_OPTIONAL_TBODY) {
 			// Assuming if the "where" is a tbody node,
 			// we're trying to prepend to a table. Attempt to
 			// grab the first child of the tbody.
-			if (whereNodeName == 'tbody' && where.childNodes.length > 0) {
+			if (whereNodeName === 'tbody' && where.childNodes.length > 0) {
 				where = where.firstChild;
 			}
 		}
@@ -1564,17 +1537,3 @@ A.mix(
 		}
 	}
 );
-
-A.queryNS = function(ns, selector, methodName) {
-	return A[methodName || 'one'](formatSelectorNS(ns, selector));
-};
-
-A.oneNS = A.queryNS;
-
-A.allNS = function(ns, selector) {
-	return A.queryNS(ns, selector, 'all');
-};
-
-A.byIdNS = function(ns, id) {
-	return A.one(prefixSelector(ns, id));
-};
