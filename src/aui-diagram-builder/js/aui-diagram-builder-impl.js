@@ -16,11 +16,8 @@ var Lang = A.Lang,
 	BOUNDARY = 'boundary',
 	BOUNDING_BOX = 'boundingBox',
 	BUILDER = 'builder',
-	CANCEL = 'cancel',
 	CANVAS = 'canvas',
 	CLICK = 'click',
-	CLOSE_EVENT = 'closeEvent',
-	CLOSE_MESSAGE = 'closeMessage',
 	CONDITION = 'condition',
 	CONNECTOR = 'connector',
 	CONNECTORS = 'connectors',
@@ -41,8 +38,6 @@ var Lang = A.Lang,
 	DIAGRAM_NODE_NAME = 'diagram-node',
 	DRAG_NODE = 'dragNode',
 	DRAGGING = 'dragging',
-	EDIT_EVENT = 'editEvent',
-	EDIT_MESSAGE = 'editMessage',
 	EDITING = 'editing',
 	END = 'end',
 	ESC = 'esc',
@@ -67,9 +62,7 @@ var Lang = A.Lang,
 	P1 = 'p1',
 	P2 = 'p2',
 	PARENT_NODE = 'parentNode',
-	PENCIL = 'pencil',
 	RADIUS = 'radius',
-	REGION = 'region',
 	RENDERED = 'rendered',
 	REQUIRED = 'required',
 	SELECTED = 'selected',
@@ -97,7 +90,6 @@ var Lang = A.Lang,
 	_DASH = '-',
 	_DOT = '.',
 	_EMPTY_STR = '',
-	_HASH = '#',
 	_UNDERLINE = '_',
 
 	AgetClassName = A.getClassName,
@@ -206,6 +198,7 @@ var DiagramBuilder = A.Component.create({
 			value: {
 				addNode: 'Add node',
 				cancel: 'Cancel',
+				close: 'Close',
 				deleteConnectorsMessage: 'Are you sure you want to delete the selected connector(s)?',
 				deleteNodesMessage: 'Are you sure you want to delete the selected node(s)?',
 				propertyName: 'Property Name',
@@ -1526,7 +1519,7 @@ var DiagramNode = A.Component.create({
 			});
 		},
 
-		_handleConnectOutTarget: function(mouseXY) {
+		_handleConnectOutTarget: function() {
 			var instance = this;
 			var builder = instance.get(BUILDER);
 			var publishedSource = builder.publishedSource;

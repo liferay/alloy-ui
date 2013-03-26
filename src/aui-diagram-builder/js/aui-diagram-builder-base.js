@@ -392,8 +392,8 @@ var DiagramBuilderBase = A.Component.create(
 			strings: {
 				value: {
 					addNode: 'Add node',
-					close: 'Close',
 					cancel: 'Cancel',
+					close: 'Close',
 					propertyName: 'Property Name',
 					save: 'Save',
 					settings: 'Settings',
