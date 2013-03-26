@@ -261,28 +261,6 @@ var FormBuilder = A.Component.create({
 			}
 		},
 
-		selectFields: function(fields) {
-			var instance = this,
-				selectedFieldsLinkedSet = instance.selectedFieldsLinkedSet;
-
-			AArray.each(AArray(fields), function(field) {
-				selectedFieldsLinkedSet.add(field);
-			});
-		},
-
-		unselectFields: function(fields) {
-			var instance = this,
-				selectedFieldsLinkedSet = instance.selectedFieldsLinkedSet;
-
-			if (!fields) {
-				fields = selectedFieldsLinkedSet.values();
-			}
-
-			AArray.each(AArray(fields), function(field) {
-				selectedFieldsLinkedSet.remove(field);
-			});
-		},
-
 		getFieldClass: function(type) {
 			var instance = this,
 				clazz = A.FormBuilder.types[type];
@@ -343,6 +321,15 @@ var FormBuilder = A.Component.create({
 			});
 		},
 
+		selectFields: function(fields) {
+			var instance = this,
+				selectedFieldsLinkedSet = instance.selectedFieldsLinkedSet;
+
+			AArray.each(AArray(fields), function(field) {
+				selectedFieldsLinkedSet.add(field);
+			});
+		},
+
 		simulateFocusField: function(field) {
 			var instance = this,
 				lastFocusedField = instance.lastFocusedField;
@@ -352,6 +339,19 @@ var FormBuilder = A.Component.create({
 			}
 
 			instance.lastFocusedField = field.focus();
+		},
+
+		unselectFields: function(fields) {
+			var instance = this,
+				selectedFieldsLinkedSet = instance.selectedFieldsLinkedSet;
+
+			if (!fields) {
+				fields = selectedFieldsLinkedSet.values();
+			}
+
+			AArray.each(AArray(fields), function(field) {
+				selectedFieldsLinkedSet.remove(field);
+			});
 		},
 
 		_afterFieldFocusedChange: function(event) {
