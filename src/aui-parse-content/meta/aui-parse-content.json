@@ -1,0 +1,9 @@
+{
+    "aui-parse-content": {
+        "requires": [
+            "async-queue",
+            "plugin",
+            "aui-base-deprecated"
+        ]
+    }
+}

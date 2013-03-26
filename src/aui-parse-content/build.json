@@ -1,0 +1,10 @@
+{
+    "name": "aui-parse-content",
+    "builds": {
+        "aui-parse-content": {
+            "jsfiles": [
+                "js/aui-parse-content.js"
+            ]
+        }
+    }
+}
