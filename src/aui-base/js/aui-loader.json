@@ -449,6 +449,13 @@
             "widget-htmlparser"
         ]
     },
+    "aui-parse-content": {
+        "requires": [
+            "async-queue",
+            "plugin",
+            "aui-base-deprecated"
+        ]
+    },
     "aui-progressbar": {
         "requires": [
             "aui-node",
