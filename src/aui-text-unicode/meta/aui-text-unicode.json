@@ -1,0 +1,13 @@
+{
+    "aui-text-unicode": {
+        "requires": [
+            "aui-text-data-unicode"
+        ]
+    },
+
+    "aui-text-data-unicode": {
+        "requires": [
+            "text"
+        ]
+    }
+}

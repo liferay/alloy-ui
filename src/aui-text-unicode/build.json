@@ -1,0 +1,16 @@
+{
+    "name": "aui-text-unicode",
+    "builds": {
+        "aui-text-unicode": {
+            "jsfiles": [
+                "js/aui-text-unicode.js"
+            ]
+        },
+
+        "aui-text-data-unicode": {
+            "jsfiles": [
+                "js/aui-text-data-unicode.js"
+            ]
+        }
+    }
+}
