@@ -119,13 +119,6 @@
   width: 100%;
 }
 
-/*
-The rules below set the base font size and background color. These are best overwritten inside of custom.css.
-*/
-body {
-  background-color: #FFF;
-  font: 62.5%/1.6em Arial, Helvetica, Verdana, sans-serif;
-}
 .aui-layout {
   width: 100%;
 }
@@ -452,15 +445,6 @@ body {
 .ie6 .aui-layout-content .aui-column-content-last {
   word-wrap: break-word;
   overflow: hidden;
-}
-
-.ie7 body {
-  position: relative;
-}
-
-.ie5 body,
-.ie6 body {
-  position: static;
 }
 
 .floatbox {
