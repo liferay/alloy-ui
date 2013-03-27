@@ -1,8 +1,7 @@
 /**
  * The DatePickerSelect Utility
  *
- * @module aui-calendar
- * @submodule aui-calendar-datepicker-select
+ * @module aui-datepicker
  */
 
 var Lang = A.Lang,
