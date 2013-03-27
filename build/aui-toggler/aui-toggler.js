@@ -18,7 +18,7 @@ var Lang = A.Lang,
 	CLICK = 'click',
 	COLLAPSED = 'collapsed',
 	CONTENT = 'content',
-	CUBIC_BEZIER = 'cubic-bezier(0, 0.1, 0, 1.0)',
+	CUBIC_BEZIER = 'cubic-bezier(0.25, 0.1, 0.25, 1)',
 	DOWN = 'down',
 	ENTER = 'enter',
 	ESC = 'esc',
@@ -280,7 +280,8 @@ var Toggler = A.Component.create({
 
 A.Toggler = Toggler;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','transition']});
+}, '@VERSION@' ,{requires:['aui-base','transition'], skinnable:true});
+
 AUI.add('aui-toggler-delegate', function(A) {
 var Lang = A.Lang,
 	isBoolean = Lang.isBoolean,
@@ -303,7 +304,7 @@ var Lang = A.Lang,
 	CLOSE_ALL_ON_EXPAND = 'closeAllOnExpand',
 	CONTAINER = 'container',
 	CONTENT = 'content',
-	CUBIC_BEZIER = 'cubic-bezier(0, 0.1, 0, 1.0)',
+	CUBIC_BEZIER = 'cubic-bezier(0.25, 0.1, 0.25, 1)',
 	EXPANDED = 'expanded',
 	FIRST_CHILD = 'firstChild',
 	HEADER = 'header',
@@ -467,6 +468,7 @@ var TogglerDelegate = A.Component.create({
 A.TogglerDelegate = TogglerDelegate;
 
 }, '@VERSION@' ,{requires:['aui-toggler-base'], skinnable:false});
+
 
 
 AUI.add('aui-toggler', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-toggler-base','aui-toggler-delegate']});
