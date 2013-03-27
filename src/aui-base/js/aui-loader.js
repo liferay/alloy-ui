@@ -128,16 +128,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
-    "aui-calendar-deprecated": {
-        "requires": [
-            "widget-stdmod",
-            "datatype-date",
-            "widget-locale",
-            "aui-base-deprecated",
-            "aui-datatype"
-        ],
-        "skinnable": true
-    },
     "aui-carousel": {
         "requires": [
             "anim",
@@ -1011,29 +1001,6 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-base-deprecated"
         ]
     },
-    "aui-tabs-base-deprecated": {
-        "requires": [
-            "aui-component",
-            "aui-state-interaction-deprecated"
-        ],
-        "skinnable": true
-    },
-    "aui-tabs-deprecated": {
-        "skinnable": true,
-        "use": [
-            "aui-tabs-base-deprecated",
-            "aui-tabs-menu-plugin-deprecated"
-        ]
-    },
-    "aui-tabs-menu-plugin-deprecated": {
-        "requires": [
-            "plugin",
-            "aui-component",
-            "aui-overlay-context-deprecated",
-            "aui-state-interaction-deprecated",
-            "aui-tabs-base-deprecated"
-        ]
-    },
     "aui-tabview": {
         "requires": [
             "tabview",
@@ -1198,6 +1165,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '106c1611db6fe3055938cdb605fdd6de';
+YUI.Env[Y.version].md5 = '14197fad8f9b1765cf647e6536dda4c9';
 
 });

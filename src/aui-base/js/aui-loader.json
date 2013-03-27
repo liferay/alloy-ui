@@ -117,16 +117,6 @@
         ],
         "skinnable": true
     },
-    "aui-calendar-deprecated": {
-        "requires": [
-            "widget-stdmod",
-            "datatype-date",
-            "widget-locale",
-            "aui-base-deprecated",
-            "aui-datatype"
-        ],
-        "skinnable": true
-    },
     "aui-carousel": {
         "requires": [
             "anim",
@@ -984,29 +974,6 @@
             "querystring-parse-simple",
             "querystring-stringify-simple",
             "aui-base-deprecated"
-        ]
-    },
-    "aui-tabs-base-deprecated": {
-        "requires": [
-            "aui-component",
-            "aui-state-interaction-deprecated"
-        ],
-        "skinnable": true
-    },
-    "aui-tabs-deprecated": {
-        "skinnable": true,
-        "use": [
-            "aui-tabs-base-deprecated",
-            "aui-tabs-menu-plugin-deprecated"
-        ]
-    },
-    "aui-tabs-menu-plugin-deprecated": {
-        "requires": [
-            "plugin",
-            "aui-component",
-            "aui-overlay-context-deprecated",
-            "aui-state-interaction-deprecated",
-            "aui-tabs-base-deprecated"
         ]
     },
     "aui-tabview": {
