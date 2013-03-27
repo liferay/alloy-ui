@@ -19,7 +19,7 @@ var Lang = A.Lang,
 	CLOSE_ALL_ON_EXPAND = 'closeAllOnExpand',
 	CONTAINER = 'container',
 	CONTENT = 'content',
-	CUBIC_BEZIER = 'cubic-bezier',
+	CUBIC_BEZIER = 'cubic-bezier(0, 0.1, 0, 1.0)',
 	EXPANDED = 'expanded',
 	FIRST_CHILD = 'firstChild',
 	HEADER = 'header',
@@ -73,7 +73,7 @@ var TogglerDelegate = A.Component.create({
 			validator: isObject,
 			value: {
 				duration: 0.4,
-			    easing: CUBIC_BEZIER
+				easing: CUBIC_BEZIER
 			}
 		}
 
