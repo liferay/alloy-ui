@@ -3,8 +3,7 @@
         "use": [
             "aui-datasource-control-base-deprecated",
             "aui-input-text-control-deprecated"
-        ],
-        "skinnable": true
+        ]
     },
 
     "aui-datasource-control-base-deprecated": {
