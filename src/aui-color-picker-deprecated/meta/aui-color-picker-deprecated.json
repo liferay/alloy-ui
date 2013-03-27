@@ -3,8 +3,7 @@
         "use": [
             "aui-color-picker-base-deprecated",
             "aui-color-picker-grid-plugin-deprecated"
-        ],
-        "skinnable": true
+        ]
     },
 
     "aui-color-picker-base-deprecated": {
