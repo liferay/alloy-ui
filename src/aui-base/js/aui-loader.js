@@ -175,7 +175,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         "skinnable": true
     },
     "aui-color-picker-deprecated": {
-        "skinnable": true,
         "use": [
             "aui-color-picker-base-deprecated",
             "aui-color-picker-grid-plugin-deprecated"
@@ -198,16 +197,6 @@ Y.mix(YUI.Env[Y.version].modules, {
             "widget-base"
         ]
     },
-    "aui-data-browser-deprecated": {
-        "requires": [
-            "aui-base-deprecated",
-            "aui-datasource-control-base-deprecated",
-            "aui-input-text-control-deprecated",
-            "aui-tree",
-            "aui-panel-deprecated"
-        ],
-        "skinnable": true
-    },
     "aui-data-set-deprecated": {
         "requires": [
             "oop",
@@ -223,7 +212,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     },
     "aui-datasource-control-deprecated": {
-        "skinnable": true,
         "use": [
             "aui-datasource-control-base-deprecated",
             "aui-input-text-control-deprecated"
@@ -959,7 +947,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-base-deprecated"
         ]
     },
-    "aui-skin-base-deprecated": {
+    "aui-skin-deprecated": {
         "type": "css"
     },
     "aui-sortable": {
@@ -1165,6 +1153,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '14197fad8f9b1765cf647e6536dda4c9';
+YUI.Env[Y.version].md5 = 'f3115f28146f2bb9ba2eaa128e44008f';
 
 });

@@ -164,7 +164,6 @@
         "skinnable": true
     },
     "aui-color-picker-deprecated": {
-        "skinnable": true,
         "use": [
             "aui-color-picker-base-deprecated",
             "aui-color-picker-grid-plugin-deprecated"
@@ -187,16 +186,6 @@
             "widget-base"
         ]
     },
-    "aui-data-browser-deprecated": {
-        "requires": [
-            "aui-base-deprecated",
-            "aui-datasource-control-base-deprecated",
-            "aui-input-text-control-deprecated",
-            "aui-tree",
-            "aui-panel-deprecated"
-        ],
-        "skinnable": true
-    },
     "aui-data-set-deprecated": {
         "requires": [
             "oop",
@@ -212,7 +201,6 @@
         ]
     },
     "aui-datasource-control-deprecated": {
-        "skinnable": true,
         "use": [
             "aui-datasource-control-base-deprecated",
             "aui-input-text-control-deprecated"
@@ -934,7 +922,7 @@
             "aui-base-deprecated"
         ]
     },
-    "aui-skin-base-deprecated": {
+    "aui-skin-deprecated": {
         "type": "css"
     },
     "aui-sortable": {
