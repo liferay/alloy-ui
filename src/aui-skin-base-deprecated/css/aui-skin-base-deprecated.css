@@ -1,3 +1,35 @@
+/*
+* base.css
+*/
+/* ---------- Interaction styles ---------- */
+
+.aui-state-default,
+.aui-state-active,
+.aui-state-hover {
+    background: #eee;
+    border: 1px solid #ccc;
+    border-color: #bbb #999 #999 #bbb;
+}
+
+.aui-state-active {
+    background: #efefef;
+    border-color: #333;
+}
+
+.aui-state-hover {
+    background: #ddd;
+    border-color: #999 #bbb #bbb #999;
+    cursor: pointer;
+}
+
+.aui-state-disabled {
+    cursor: default !important;
+}
+
+.aui-html-template {
+    display: none;
+}
+
 .aui-basecelleditor-hidden,
 .aui-datecelleditor-hidden,
 .aui-dropdowncelleditor-hidden,
@@ -13,7 +45,6 @@
 .aui-overlay-hidden,
 .aui-overlaycontext-hidden,
 .aui-overlaymask-hidden,
-.aui-calendar-hidden,
 .aui-date-picker-hidden,
 .aui-datepicker-hidden,
 .aui-colorpicker-hidden,
@@ -32,4 +63,204 @@
     *position: fixed !important;
     /*...And reset back to absolute for IE6*/
     _position: absolute !important;
+}
+
+.aui-helper-force-offset {
+    display: block !important;
+    position: absolute !important;
+    visibility: hidden !important;
+}
+
+.aui-helper-reset {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    text-decoration: none;
+    font-size: 100%;
+    list-style: none;
+    border: 0;
+}
+
+.aui-helper-clearfix:after {
+    clear: both;
+    content: "";
+    display: block;
+    height: 0;
+}
+
+.aui-helper-clearfix {
+    /* IE7/IE6 */
+    zoom: 1;
+}
+
+.aui-helper-zfix {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    opacity: 0;
+
+    /* IE8 */
+    -ms-filter: alpha(opacity=0);
+    /* IE7/IE8(quirks) */
+    filter: alpha(opacity=0);
+}
+
+/* unselectable */
+
+.aui-helper-unselectable, .aui-helper-unselectable * {
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* scroll lock */
+.aui-helper-scroll-lock {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+/*
+* extras.css
+*/
+
+/* ---------- CSS3 shadows ---------- */
+.aui-dialog-content,
+.aui-date-picker-content,
+.aui-overlaycontextpanel-content,
+.aui-tooltip-content,
+.aui-colorpicker-content {
+    -moz-box-shadow: 4px 4px 14px #777;
+    -webkit-box-shadow: 4px 4px 14px #777;
+    box-shadow: 4px 4px 14px #777;
+}
+
+/* No shadow */
+
+.aui-null-selector {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+/* ---------- Rounded corners ---------- */
+
+/* All corners */
+
+.aui-state-default,
+.aui-state-active,
+.aui-state-hover,
+.aui-colorpicker-content,
+.aui-colorpicker-panel-content,
+.aui-loadingmask-message,
+.aui-loadingmask-message-content {
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+
+/* Large corners */
+.aui-textboxlistentry,
+.aui-textboxlistentry-close {
+    -moz-border-radius: 14px;
+    -webkit-border-radius: 14px;
+    border-radius: 14px;
+}
+
+
+/* No corners */
+
+.aui-dialog .yui3-widget-hd,
+.aui-editable-hover,
+.aui-overlaycontextpanel-pointer.aui-state-default,
+.aui-toolbar-item-content,
+.aui-toolbar-item,
+.aui-toolbar-vertical .aui-toolbar-item {
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}
+
+/* Left corners */
+
+.aui-toolbar-first {
+    -moz-border-radius-topleft: 4px;
+    -moz-border-radius-bottomleft: 4px;
+    -webkit-border-top-left-radius: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+/* Right corners */
+
+.aui-toolbar-last {
+    -moz-border-radius-topright: 4px;
+    -moz-border-radius-bottomright: 4px;
+    -webkit-border-top-right-radius: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+/* Top left */
+
+.aui-image-viewer-bd,
+.aui-toolbar-vertical .aui-toolbar-first {
+    -moz-border-radius-topleft: 4px;
+    -webkit-border-top-left-radius: 4px;
+    border-top-left-radius: 4px;
+}
+
+/* Top right */
+
+.aui-image-viewer-bd,
+.aui-toolbar-vertical .aui-toolbar-first {
+    -moz-border-radius-topright: 4px;
+    -webkit-border-top-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+/* Bottom left */
+
+.aui-image-viewer-content .yui3-widget-ft,
+.aui-toolbar-vertical .aui-toolbar-last {
+    -moz-border-radius-bottomleft: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+/* Bottom right */
+
+.aui-image-viewer-content .yui3-widget-ft,
+.aui-toolbar-vertical .aui-toolbar-last {
+    -moz-border-radius-bottomright: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+/* Animating background color */
+
+.aui-image-cropper-overlay {
+    -moz-transition: background-color 0.3s ease-out;
+    -ms-transition: background-color 0.3s ease-out;
+    -o-transition: background-color 0.3s ease-out;
+    -webkit-transition: background-color 0.3s ease-out;
+    transition: background-color 0.3s ease-out;
+}
+
+/*
+* overlay.css
+*/
+.aui-autocomplete-results-content,
+.aui-colorpicker-content,
+.aui-dialog-content,
+.aui-overlaycontext-content {
+    background: #fff;
 }
