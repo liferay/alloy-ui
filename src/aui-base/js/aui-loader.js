@@ -769,6 +769,13 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
+    "aui-parse-content": {
+        "requires": [
+            "async-queue",
+            "plugin",
+            "aui-base-deprecated"
+        ]
+    },
     "aui-parse-content-deprecated": {
         "requires": [
             "async-queue",
@@ -1153,6 +1160,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'f3115f28146f2bb9ba2eaa128e44008f';
+YUI.Env[Y.version].md5 = 'eb6b110eda5120e5f6786dcca2322629';
 
 });

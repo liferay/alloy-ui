@@ -744,6 +744,13 @@
         ],
         "skinnable": true
     },
+    "aui-parse-content": {
+        "requires": [
+            "async-queue",
+            "plugin",
+            "aui-base-deprecated"
+        ]
+    },
     "aui-parse-content-deprecated": {
         "requires": [
             "async-queue",
