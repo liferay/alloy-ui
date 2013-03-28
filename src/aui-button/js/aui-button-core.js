@@ -125,6 +125,8 @@ Button.NAME = BTN;
 Button.CSS_PREFIX = CLASS_NAMES.BUTTON;
 Button.CLASS_NAMES = CLASS_NAMES;
 A.Button = A.Base.create(Button.NAME, Button, [ButtonExt], {}, {
+    CSS_PREFIX: CLASS_NAMES.BUTTON,
+
     getWidgetLazyConstructorFromNodeData: function(node) {
         var instance = this,
             config = node.getData(WIDGET_CONSTRUCTOR) || {};
