@@ -48,8 +48,8 @@ A.TabviewBase._queries = {
 };
 
 A.TabView.NAME = 'tabbable';
-A.TabView.CSS_PREFIX = getClassName('tabbable');
-A.Tab.CSS_PREFIX = getClassName('tab');
+A.TabView.CSS_PREFIX = getClassName(TABBABLE);
+A.Tab.CSS_PREFIX = getClassName(TAB);
 
 A.TabView = A.Component.create({
     NAME: TABBABLE,
