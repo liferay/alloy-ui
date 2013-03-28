@@ -984,14 +984,6 @@
             "aui-base-deprecated"
         ]
     },
-    "aui-textboxlist-deprecated": {
-        "requires": [
-            "anim-node-plugin",
-            "node-focusmanager",
-            "aui-autocomplete-deprecated"
-        ],
-        "skinnable": true
-    },
     "aui-text-data-unicode": {
         "requires": [
             "text"
@@ -1001,6 +993,14 @@
         "requires": [
             "aui-text-data-unicode"
         ]
+    },
+    "aui-textboxlist-deprecated": {
+        "requires": [
+            "anim-node-plugin",
+            "node-focusmanager",
+            "aui-autocomplete-deprecated"
+        ],
+        "skinnable": true
     },
     "aui-timer": {
         "requires": [

@@ -1009,14 +1009,6 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-base-deprecated"
         ]
     },
-    "aui-textboxlist-deprecated": {
-        "requires": [
-            "anim-node-plugin",
-            "node-focusmanager",
-            "aui-autocomplete-deprecated"
-        ],
-        "skinnable": true
-    },
     "aui-text-data-unicode": {
         "requires": [
             "text"
@@ -1026,6 +1018,14 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "aui-text-data-unicode"
         ]
+    },
+    "aui-textboxlist-deprecated": {
+        "requires": [
+            "anim-node-plugin",
+            "node-focusmanager",
+            "aui-autocomplete-deprecated"
+        ],
+        "skinnable": true
     },
     "aui-timer": {
         "requires": [
@@ -1172,6 +1172,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'cd558a1a7a35b238d3934a00f31abc1a';
+YUI.Env[Y.version].md5 = '418cf54df404ba9bf3e5820a71cc0e15';
 
 });
