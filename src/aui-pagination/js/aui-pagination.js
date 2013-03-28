@@ -25,7 +25,6 @@ var Lang = A.Lang,
     PAGE = 'page',
     PAGINATION = 'pagination',
     PREV = 'prev',
-    RENDERED = 'rendered',
     TOTAL = 'total',
 
     getCN = A.getClassName,
@@ -173,7 +172,9 @@ var Pagination = A.Component.create(
             }
         },
 
-        UI_ATTRS: [OFFSET, PAGE, TOTAL],
+        BIND_UI_ATTRS: [OFFSET, TOTAL],
+
+        UI_ATTRS: [PAGE],
 
         prototype: {
             CONTENT_TEMPLATE: '<ul></ul>',
@@ -414,15 +415,8 @@ var Pagination = A.Component.create(
             },
 
             _renderItemsUI: function(total) {
-                var instance = this;
-
-                // Do not render anything if the number of markup items matches
-                // with the passed total attributes.
-                if ((total > 0) && (total === instance._countItemsInDoc())) {
-                    return;
-                }
-
-                var tpl = instance.ITEM_TEMPLATE,
+                var instance = this,
+                    tpl = instance.ITEM_TEMPLATE,
                     formatter = instance.get(FORMATTER),
                     offset = instance.get(OFFSET),
                     i,
@@ -465,9 +459,7 @@ var Pagination = A.Component.create(
             _uiSetOffset: function(val) {
                 var instance = this;
 
-                if (instance.get(RENDERED)) {
-                    instance._renderItemsUI(instance.get(TOTAL));
-                }
+                instance._renderItemsUI(instance.get(TOTAL));
             },
 
             _uiSetPage: function(val) {
@@ -492,9 +484,7 @@ var Pagination = A.Component.create(
             _uiSetTotal: function(val) {
                 var instance = this;
 
-                if (instance.get(RENDERED)) {
-                    instance._renderItemsUI(val);
-                }
+                instance._renderItemsUI(val);
             }
         }
     }

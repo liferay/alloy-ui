@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-text-unicode",
+    "displayName": "Gallery: aui-text-unicode",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "" ],
+    "use"        : [ "aui-text-unicode" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

@@ -992,6 +992,16 @@
         ],
         "skinnable": true
     },
+    "aui-text-data-unicode": {
+        "requires": [
+            "text"
+        ]
+    },
+    "aui-text-unicode": {
+        "requires": [
+            "aui-text-data-unicode"
+        ]
+    },
     "aui-timer": {
         "requires": [
             "oop"
