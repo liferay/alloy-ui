@@ -61,12 +61,6 @@ A.Toolbar = A.Component.create({
             boundingBox.delegate([CLICK, MOUSEMOVE, FOCUS], instance._onUserInitInteraction, _DOT+CSS_BTN, instance);
         },
 
-        renderUI: function() {
-            var instance = this;
-
-            instance._renderChildrenUI();
-        },
-
         add: function(children, where) {
             var instance = this,
                 boundingBox = instance.get(BOUNDING_BOX),
@@ -148,17 +142,6 @@ A.Toolbar = A.Component.create({
             }
         },
 
-        _renderChildrenUI: function() {
-            var instance = this,
-                children = instance.get(CHILDREN);
-
-            if (children) {
-                instance.clear();
-
-                instance.add(children);
-            }
-        },
-
         _uiSetChildren: function(val) {
             var instance = this;
 
@@ -166,7 +149,9 @@ A.Toolbar = A.Component.create({
                 return;
             }
 
-            instance._renderChildrenUI();
+            instance.clear();
+
+            instance.add(val);
         }
     }
 });
