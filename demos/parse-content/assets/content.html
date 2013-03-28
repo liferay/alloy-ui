@@ -1,7 +1,11 @@
 <span id="internal">Lorem ipsum</span> dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 <script type="text/javascript">
-	YUI().use('aui-node-base').getBody().append('<br/>inline script 1<br/>');
-	YUI().use('aui-node-base').getBody().append('Reference to #internal: ' + YUI().use('node').one('#internal') + '<br/>');
+	YUI().use('aui-node-base', function(A) {
+        A.getBody().append('<br/>inline script 1<br/>')
+    });
+	YUI().use('aui-node-base', function(A) {
+        A.getBody().append('Reference to #internal: ' + A.one('#internal') + '<br/>');
+    })
 </script>
 
 <script type="text/javascript" src="assets/external.js"></script>
@@ -9,7 +13,9 @@
 <script type="text/javascript" src="assets/external.js"></script>
 
 <script type="text/javascript">
-	YUI().use('aui-node-base').getBody().append('inline script 2<br/>');
+	YUI().use('aui-node-base', function(A) {
+        A.getBody().append('inline script 2<br/>');
+    })
 </script>
 <style type="text/css">
 	span {
@@ -20,8 +26,12 @@
 	scriptless2
 </script>
 <script>
-	YUI().use('aui-node-base').getBody().append('inline script 3<br/>');
+	YUI().use('aui-node-base', function(A) {
+        A.getBody().append('inline script 3<br/>');
+    })
 </script>
 <script type="TEXT/JAVASCRIPT">
-	YUI().use('aui-node-base').getBody().append('inline script 4<br/>');
+	YUI().use('aui-node-base', function(A) {
+        A.getBody().append('inline script 4<br/>');
+    })
 </script>
