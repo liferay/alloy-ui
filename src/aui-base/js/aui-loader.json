@@ -453,7 +453,9 @@
         "requires": [
             "async-queue",
             "plugin",
-            "aui-base-deprecated"
+            "io-base",
+            "aui-component",
+            "aui-node-base"
         ]
     },
     "aui-progressbar": {
