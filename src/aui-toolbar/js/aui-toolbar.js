@@ -220,7 +220,7 @@ ToolbarRenderer.prototype = {
                     Lang.sub(instance.TEMPLATES.group, { cssClass: cssClass }));
 
             A.Array.each(value, function(child, index) {
-                var childNode = instance._renderChild(child);
+                var childNode = instance.renderNode(child);
                 groupNode.appendChild(childNode);
                 A.Button.setWidgetLazyConstructorNodeData(childNode, value[index]);
             });
@@ -236,9 +236,19 @@ ToolbarRenderer.prototype = {
         }
         var docFrag = A.one(A.config.doc).invoke(CREATE_DOCUMENT_FRAGMENT);
         A.Array.each(children, function(child) {
-            docFrag.appendChild(instance._renderChild(child));
+            docFrag.appendChild(instance.renderNode(child));
         });
         return docFrag;
+    },
+
+    renderNode: function(child) {
+        var instance = this,
+            childRenderHints = instance._getChildRenderHints(child),
+            renderer = instance.RENDERER[childRenderHints.renderer];
+
+        if (isFunction(renderer)) {
+            return renderer.call(instance, childRenderHints);
+        }
     },
 
     _getChildRenderHints: function(child) {
@@ -264,16 +274,6 @@ ToolbarRenderer.prototype = {
             renderer: renderer,
             value: child
         };
-    },
-
-    _renderChild: function(child) {
-        var instance = this,
-            childRenderHints = instance._getChildRenderHints(child),
-            renderer = instance.RENDERER[childRenderHints.renderer];
-
-        if (isFunction(renderer)) {
-            return renderer.call(instance, childRenderHints);
-        }
     }
 };
 
