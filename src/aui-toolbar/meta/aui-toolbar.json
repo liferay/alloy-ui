@@ -4,7 +4,7 @@
             "arraylist",
             "arraylist-add",
             "aui-component",
-            "aui-button"
+            "aui-button-core"
         ]
     }
 }

@@ -81,14 +81,14 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-base-lang": {},
     "aui-button": {
         "use": [
-            "button",
-            "button-group",
-            "button-plugin",
             "aui-button-core"
         ]
     },
     "aui-button-core": {
         "requires": [
+            "button",
+            "button-group",
+            "button-plugin",
             "aui-component"
         ]
     },
@@ -682,7 +682,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "arraylist",
             "arraylist-add",
             "aui-component",
-            "aui-button"
+            "aui-button-core"
         ]
     },
     "aui-tree": {
