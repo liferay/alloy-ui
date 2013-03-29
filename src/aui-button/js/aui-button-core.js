@@ -1,4 +1,5 @@
 var Lang = A.Lang,
+    isNumber = Lang.isNumber,
     isString = Lang.isString,
 
     ACTIVE = 'active',
@@ -16,9 +17,11 @@ var Lang = A.Lang,
     LABEL = 'label',
     LEFT = 'left',
     PRIMARY = 'primary',
+    RADIO = 'radio',
     RIGHT = 'right',
     SYNC_UI = 'syncUI',
     TOGGLEBTN = 'togglebtn',
+    TYPE = 'type',
     WIDGET_CONSTRUCTOR = 'widgetConstructor',
 
     getClassName = A.getClassName,
@@ -231,3 +234,42 @@ ButtonGroup.prototype.renderUI = (function(original) {
         });
     };
 }(ButtonGroup.prototype.renderUI));
+ButtonGroup.prototype.item = function(index) {
+    var instance = this,
+        buttons = instance.getButtons(),
+        node = buttons.item(index),
+        button = A.Widget.getByNode(node);
+
+    return A.instanceOf(button, Button) ? button : node;
+};
+ButtonGroup.prototype.select = function(items) {
+    var instance = this;
+
+    return instance.toggle(items, true);
+};
+ButtonGroup.prototype.toggle = function(items, state) {
+    var instance = this,
+        buttons = instance.getButtons(),
+        selectedClass = ButtonGroup.CLASS_NAMES.SELECTED;
+
+    items = A.Array(items);
+
+    A.Array.each(items, function(item) {
+        var node = instance.item(item);
+
+        if (A.instanceOf(node, A.Button)) {
+            node = node.get(BOUNDING_BOX);
+        }
+
+        if (instance.get(TYPE) === RADIO) {
+            buttons.removeClass(selectedClass);
+        }
+
+        node.toggleClass(selectedClass, state);
+    });
+};
+ButtonGroup.prototype.unselect = function(items) {
+    var instance = this;
+
+    return instance.toggle(items, false);
+};
