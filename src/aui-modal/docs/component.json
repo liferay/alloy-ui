@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-modal",
+    "displayName": "Gallery: aui-modal",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "eduardo.lundgren" ],
+    "use"        : [ "aui-modal" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

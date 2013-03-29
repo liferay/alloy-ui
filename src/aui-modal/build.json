@@ -1,0 +1,10 @@
+{
+    "name": "aui-modal",
+    "builds": {
+        "aui-modal": {
+            "jsfiles": [
+                "js/aui-modal.js"
+            ]
+        }
+    }
+}

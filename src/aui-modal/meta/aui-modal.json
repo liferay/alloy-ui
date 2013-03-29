@@ -1,0 +1,19 @@
+{
+    "aui-modal": {
+        "requires": [
+            "widget",
+            "widget-autohide",
+            "widget-buttons",
+            "widget-modality",
+            "widget-position",
+            "widget-position-align",
+            "widget-position-constrain",
+            "widget-stack",
+            "widget-stdmod",
+            "dd-plugin",
+            "resize-plugin",
+            "aui-classnamemanager",
+            "aui-widget-toolbars"
+        ]
+    }
+}
