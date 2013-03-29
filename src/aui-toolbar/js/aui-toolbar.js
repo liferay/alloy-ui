@@ -50,7 +50,7 @@ A.Toolbar = A.Component.create({
     prototype: {
         CONTENT_TEMPLATE: null,
         TEMPLATES: {
-            button: '<button class="aui-btn {cssClass}">{content}</button>',
+            button: '<button class="aui-btn">{content}</button>',
             icon: '<i class="{cssClass}"></i>',
             group: '<div class="aui-btn-group {cssClass}"></div>'
         },
@@ -161,36 +161,41 @@ var ToolbarRenderer = function() {};
 
 ToolbarRenderer.prototype = {
     TEMPLATES: {
-        button: '<button class="aui-btn {cssClass}"></button>',
-        group: '<div class="aui-btn-group {cssClass}"></div>',
-        icon: '<i class="{cssClass}"></i>'
+        button: A.Button.prototype.TEMPLATE,
+        group: '<div class="' + CSS_BTN_GROUP + ' {cssClass}"></div>',
+        icon: '<i class="{cssClass}" />'
     },
 
     RENDERER: {
         button: function(childRenderHints) {
             var instance = this,
-                value = childRenderHints.value;
+                value = childRenderHints.value,
+                cssClass,
+                buttonNode;
 
             if (A.instanceOf(value, A.Button)) {
                 return value.get(BOUNDING_BOX);
             }
 
-            var cssClass = [value.cssClass || _EMPTY];
+            // Add node reference support
+            buttonNode = A.one(value.boundingBox || value.srcNode);
+            if (!buttonNode) {
+                buttonNode = A.Node.create(instance.TEMPLATES.button);
+            }
 
+            // Add cssClass support
+            cssClass = [ CSS_BTN, value.cssClass ];
             if (value.primary) {
                 cssClass.push(A.ButtonCore.CLASS_NAMES.PRIMARY);
             }
+            buttonNode.addClass(cssClass.join(_SPACE));
 
-            var buttonNode = A.Node.create(
-                    Lang.sub(instance.TEMPLATES.button, {
-                        cssClass: cssClass.join(_SPACE)
-                    })
-                );
-
+            // Add label support
             if (value.label) {
                 buttonNode.append(value.label);
             }
 
+            // Add icon support
             if (value.icon) {
                 var iconContent = Lang.sub(instance.TEMPLATES.icon, {
                         cssClass: value.icon
