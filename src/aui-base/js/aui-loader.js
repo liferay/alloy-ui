@@ -438,6 +438,23 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-timer"
         ]
     },
+    "aui-modal": {
+        "requires": [
+            "widget",
+            "widget-autohide",
+            "widget-buttons",
+            "widget-modality",
+            "widget-position",
+            "widget-position-align",
+            "widget-position-constrain",
+            "widget-stack",
+            "widget-stdmod",
+            "dd-plugin",
+            "resize-plugin",
+            "aui-classnamemanager",
+            "aui-widget-toolbars"
+        ]
+    },
     "aui-node": {
         "use": [
             "aui-node-base"
@@ -754,6 +771,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '892482c3dfd45e67cae1f186bf65f405';
+YUI.Env[Y.version].md5 = '749c21e24e167cb48c93e4d5eb5cf75b';
 
 });
