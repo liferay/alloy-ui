@@ -87,6 +87,16 @@ A.Toolbar = A.Component.create({
             return A.Widget.getByNode(seed);
         },
 
+        item: function(index) {
+            var instance = this,
+                boundingBox = instance.get(BOUNDING_BOX),
+                node = boundingBox.get(CHILDREN).item(index);
+
+            instance._initEnclosingWidgetIfNeeded(node);
+
+            return instance.getEnclosingWidget(node);
+        },
+
         remove: function(where) {
             var instance = this,
                 boundingBox = instance.get(BOUNDING_BOX);
@@ -117,16 +127,19 @@ A.Toolbar = A.Component.create({
                 return;
             }
 
-            // Initialize button first since it can be outside a group
-            if (A.Button.hasWidgetLazyConstructorData(seed)) {
-                new A.Button(A.Button.getWidgetLazyConstructorFromNodeData(seed));
-                A.Button.setWidgetLazyConstructorNodeData(seed, null);
-            }
-            else {
-                seed.plug(A.Plugin.Button);
+            var buttonNode = seed.ancestor(_DOT+CSS_BTN, true);
+            if (buttonNode) {
+                // Initialize button first since it can be outside a group
+                if (A.Button.hasWidgetLazyConstructorData(seed)) {
+                    new A.Button(A.Button.getWidgetLazyConstructorFromNodeData(seed));
+                    A.Button.setWidgetLazyConstructorNodeData(seed, null);
+                }
+                else {
+                    seed.plug(A.Plugin.Button);
+                }
             }
 
-            var groupNode = seed.ancestor(_DOT+CSS_BTN_GROUP);
+            var groupNode = seed.ancestor(_DOT+CSS_BTN_GROUP, true);
             if (groupNode) {
                 var type;
                 if (groupNode.hasClass(CSS_BTN_GROUP_CHECKBOX)) {
