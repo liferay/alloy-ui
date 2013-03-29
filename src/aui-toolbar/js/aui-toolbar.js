@@ -113,7 +113,7 @@ A.Toolbar = A.Component.create({
         _initEnclosingWidgetIfNeeded: function(seed) {
             var instance = this;
 
-            if (seed.getData(ENCLOSING_WIDGET_INITIALIZED)) {
+            if (!seed || seed.getData(ENCLOSING_WIDGET_INITIALIZED)) {
                 return;
             }
             seed.setData(ENCLOSING_WIDGET_INITIALIZED, true);
