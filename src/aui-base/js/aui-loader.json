@@ -721,5 +721,11 @@
             "aui-node",
             "aui-component"
         ]
+    },
+    "aui-widget-toolbar": {
+        "requires": [
+            "widget-stdmod",
+            "aui-toolbar"
+        ]
     }
 }
