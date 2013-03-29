@@ -21,6 +21,7 @@ var Lang = A.Lang,
 
     _DOT = '.',
     _EMPTY = '',
+    _SPACE = ' ',
 
     getCN = A.getClassName,
 
@@ -174,11 +175,17 @@ ToolbarRenderer.prototype = {
                 return value.get(BOUNDING_BOX);
             }
 
+            var cssClass = [value.cssClass || _EMPTY];
+
+            if (value.primary) {
+                cssClass.push(A.ButtonCore.CLASS_NAMES.PRIMARY);
+            }
+
             var buttonNode = A.Node.create(
-                Lang.sub(instance.TEMPLATES.button, {
-                    cssClass: value.cssClass || _EMPTY
-                })
-            );
+                    Lang.sub(instance.TEMPLATES.button, {
+                        cssClass: cssClass.join(_SPACE)
+                    })
+                );
 
             if (value.label) {
                 buttonNode.append(value.label);
