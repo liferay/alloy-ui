@@ -1,23 +1,25 @@
 var Lang = A.Lang,
     isString = Lang.isString,
 
-    RIGHT = 'right',
-    SYNC_UI = 'syncUI',
-    CLASS_NAME = 'className',
-    ICON_ALIGN = 'iconAlign',
+    ACTIVE = 'active',
     BOUNDING_BOX = 'boundingBox',
-    ICON = 'icon',
-    LEFT = 'left',
-    WIDGET_CONSTRUCTOR = 'widgetConstructor',
+    BTN = 'btn',
+    BTNGROUP = 'btngroup',
+    CLASS_NAME = 'className',
+    CSS_CLASS = 'cssClass',
+    DISABLED = 'disabled',
     GROUP = 'group',
     I = 'i',
-    TOGGLEBTN = 'togglebtn',
-    LABEL = 'label',
-    DISABLED = 'disabled',
-    BTNGROUP = 'btngroup',
-    ACTIVE = 'active',
+    ICON = 'icon',
+    ICON_ALIGN = 'iconAlign',
     ICON_ELEMENT = 'iconElement',
-    BTN = 'btn',
+    LABEL = 'label',
+    LEFT = 'left',
+    PRIMARY = 'primary',
+    RIGHT = 'right',
+    SYNC_UI = 'syncUI',
+    TOGGLEBTN = 'togglebtn',
+    WIDGET_CONSTRUCTOR = 'widgetConstructor',
 
     getClassName = A.getClassName,
 
@@ -26,6 +28,7 @@ var Lang = A.Lang,
         BUTTON_GROUP: getClassName(BTN, GROUP),
         DISABLED: getClassName(DISABLED),
         LABEL: getClassName(LABEL),
+        PRIMARY: getClassName(BTN, PRIMARY),
         SELECTED: getClassName(ACTIVE),
         TOGGLE: getClassName(TOGGLEBTN)
     };
@@ -34,6 +37,9 @@ var ButtonExt = function() {
 };
 
 ButtonExt.ATTRS = {
+    cssClass: {
+    },
+
     icon: {
     },
 
@@ -47,6 +53,10 @@ ButtonExt.ATTRS = {
     iconAlign: {
         value: LEFT,
         validator: isString
+    },
+
+    primary: {
+        value: false
     }
 };
 
@@ -63,8 +73,10 @@ ButtonExt.prototype = {
 
         instance.after(instance.syncButtonExtUI, instance, SYNC_UI);
         instance.after({
+            cssClassChange: instance._afterCssClassChange,
             iconChange: instance._afterIconChange,
-            iconAlignChange: instance._afterIconAlignChange
+            iconAlignChange: instance._afterIconAlignChange,
+            primaryChange: instance._afterPrimaryChange
         });
     },
 
@@ -72,6 +84,14 @@ ButtonExt.prototype = {
         var instance = this;
 
         instance._uiSetIcon(instance.get(ICON));
+        instance._uiSetPrimary(instance.get(PRIMARY));
+        instance._uiSetCssClass(instance.get(CSS_CLASS));
+    },
+
+    _afterCssClassChange: function(event) {
+        var instance = this;
+
+        instance._uiSetCssClass(event.newVal, event.prevVal);
     },
 
     _afterIconChange: function(event) {
@@ -84,6 +104,28 @@ ButtonExt.prototype = {
         var instance = this;
 
         instance._uiSetIconAlign(event.newVal);
+    },
+
+    _afterPrimaryChange: function(event) {
+        var instance = this;
+
+        instance._uiSetPrimary(event.newVal);
+    },
+
+    _uiSetCssClass: function(val, prevVal) {
+        var instance = this,
+            boundingBox = instance.get(BOUNDING_BOX);
+
+        if (prevVal) {
+            boundingBox.removeClass(prevVal);
+        }
+        boundingBox.addClass(val);
+    },
+
+    _uiSetPrimary: function(val) {
+        var instance = this;
+
+        instance.get(BOUNDING_BOX).toggleClass(CLASS_NAMES.PRIMARY, val);
     },
 
     _uiSetIcon: function(val) {
