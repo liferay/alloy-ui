@@ -3,21 +3,23 @@ var Lang = A.Lang,
     isString = Lang.isString,
     isFunction = Lang.isFunction,
 
-    CHECKBOX = 'checkbox',
-    GROUP = 'group',
+    BOUNDING_BOX = 'boundingBox',
+    BTN = 'btn',
     BUTTON = 'button',
+    CHECKBOX = 'checkbox',
+    CHILDREN = 'children',
+    CLICK = 'click',
+    CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
+    ENCLOSING_WIDGET_INITIALIZED = 'enclosingWidgetInitialized',
+    FOCUS = 'focus',
+    GROUP = 'group',
+    MOUSEMOVE = 'mousemove',
+    NORMAL = 'normal',
+    RADIO = 'radio',
     RENDERED = 'rendered',
     TOOLBAR = 'toolbar',
     TOOLBAR_RENDERER = 'toolbarRenderer',
-    BOUNDING_BOX = 'boundingBox',
-    CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
-    BTN = 'btn',
-    CHILDREN = 'children',
-    RADIO = 'radio',
-    FOCUS = 'focus',
-    MOUSEMOVE = 'mousemove',
-    ENCLOSING_WIDGET_INITIALIZED = 'enclosingWidgetInitialized',
-    CLICK = 'click',
+    VERTICAL = 'vertical',
 
     _DOT = '.',
     _EMPTY = '',
@@ -28,7 +30,8 @@ var Lang = A.Lang,
     CSS_BTN = getCN(BTN),
     CSS_BTN_GROUP = getCN(BTN, GROUP),
     CSS_BTN_GROUP_CHECKBOX = getCN(BTN, GROUP, CHECKBOX),
-    CSS_BTN_GROUP_RADIO = getCN(BTN, GROUP, RADIO);
+    CSS_BTN_GROUP_RADIO = getCN(BTN, GROUP, RADIO),
+    CSS_BTN_GROUP_VERTICAL = getCN(BTN, GROUP, VERTICAL);
 
 A.Toolbar = A.Component.create({
     NAME: TOOLBAR,
@@ -212,24 +215,26 @@ ToolbarRenderer.prototype = {
             var instance = this,
                 value = childRenderHints.value,
                 groupType = childRenderHints.groupType,
-                cssClass;
+                orientation = childRenderHints.orientation,
+                cssClass = [];
 
             if (A.instanceOf(value, A.ButtonGroup)) {
                 return value.get(BOUNDING_BOX);
             }
 
             if (groupType === CHECKBOX) {
-                cssClass = CSS_BTN_GROUP_CHECKBOX;
+                cssClass.push(CSS_BTN_GROUP_CHECKBOX);
             }
             else if (groupType === RADIO) {
-                cssClass = CSS_BTN_GROUP_RADIO;
+                cssClass.push(CSS_BTN_GROUP_RADIO);
             }
-            else {
-                cssClass = _EMPTY;
+
+            if (orientation === VERTICAL) {
+                cssClass.push(CSS_BTN_GROUP_VERTICAL);
             }
 
             var groupNode = A.Node.create(
-                    Lang.sub(instance.TEMPLATES.group, { cssClass: cssClass }));
+                    Lang.sub(instance.TEMPLATES.group, { cssClass: cssClass.join(_SPACE) }));
 
             A.Array.each(value, function(child, index) {
                 var childNode = instance.renderNode(child);
@@ -266,6 +271,7 @@ ToolbarRenderer.prototype = {
     _getChildRenderHints: function(child) {
         var instance = this,
             groupType = null,
+            orientation = NORMAL,
             renderer;
 
         if (A.instanceOf(child, A.Button)) {
@@ -277,12 +283,14 @@ ToolbarRenderer.prototype = {
         else if (isArray(child)) {
             renderer = GROUP;
             groupType = isString(child[0]) ? child.shift() : null;
+            orientation = isString(child[0]) ? child.shift() : NORMAL;
         }
         else {
             renderer = BUTTON;
         }
         return {
             groupType: groupType,
+            orientation: orientation,
             renderer: renderer,
             value: child
         };
