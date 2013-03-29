@@ -6,6 +6,7 @@ var Lang = A.Lang,
 
     getClassName = A.getClassName,
 
+    _DOT = '.',
     _SPACE = ' ',
 
     BOUNDING_BOX = 'boundingBox',
@@ -73,7 +74,9 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
 
     ATTRS: {
         draggable: {
-            value: false,
+            value: {
+                handles: [_DOT+CSS_MODAL_HD]
+            },
             writeOnce: true
         },
 
