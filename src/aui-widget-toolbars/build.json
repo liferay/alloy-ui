@@ -1,0 +1,10 @@
+{
+    "name": "aui-widget-toolbars",
+    "builds": {
+        "aui-widget-toolbars": {
+            "jsfiles": [
+                "js/aui-widget-toolbars.js"
+            ]
+        }
+    }
+}

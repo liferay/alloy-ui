@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>aui-widget-toolbar</title>
+    <title>aui-widget-toolbars</title>
     <script src="/build/yui/yui.js"></script>
     <script src="js/tests.js"></script>
     <meta charset="utf-8" />
@@ -11,13 +11,13 @@
 
 <script>
 YUI({
-    coverage: ['aui-widget-toolbar'],
+    coverage: ['aui-widget-toolbars'],
     filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
 }).use('test-console', 'test', 'module-tests', function(Y) {
     
     (new Y.Test.Console()).render('#logger');
 
-    Y.Test.Runner.setName('aui-widget-toolbar');
+    Y.Test.Runner.setName('aui-widget-toolbars');
     Y.Test.Runner.run();
 });
 </script>

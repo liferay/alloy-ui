@@ -1,5 +1,5 @@
 {
-    "aui-widget-toolbar": {
+    "aui-widget-toolbars": {
         "requires": [
             "widget-stdmod",
             "aui-toolbar"

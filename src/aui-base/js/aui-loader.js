@@ -747,13 +747,13 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-component"
         ]
     },
-    "aui-widget-toolbar": {
+    "aui-widget-toolbars": {
         "requires": [
             "widget-stdmod",
             "aui-toolbar"
         ]
     }
 });
-YUI.Env[Y.version].md5 = '5169a7e67068c9d771aba9dc89006460';
+YUI.Env[Y.version].md5 = '892482c3dfd45e67cae1f186bf65f405';
 
 });
