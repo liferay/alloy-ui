@@ -1,15 +1,15 @@
 {
     "aui-button": {
         "use": [
-            "button",
-            "button-group",
-            "button-plugin",
             "aui-button-core"
         ]
     },
 
     "aui-button-core": {
         "requires": [
+            "button",
+            "button-group",
+            "button-plugin",
             "aui-component"
         ]
     }
