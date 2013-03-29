@@ -89,12 +89,11 @@ A.Toolbar = A.Component.create({
 
         item: function(index) {
             var instance = this,
-                boundingBox = instance.get(BOUNDING_BOX),
-                node = boundingBox.get(CHILDREN).item(index);
+                seed = instance.get(BOUNDING_BOX).get(CHILDREN).item(index);
 
-            instance._initEnclosingWidgetIfNeeded(node);
+            instance._initEnclosingWidgetIfNeeded(seed);
 
-            return instance.getEnclosingWidget(node);
+            return instance.getEnclosingWidget(seed);
         },
 
         remove: function(where) {
