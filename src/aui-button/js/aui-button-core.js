@@ -1,6 +1,8 @@
 var Lang = A.Lang,
+    isArray = Lang.isArray,
     isNumber = Lang.isNumber,
     isString = Lang.isString,
+    isUndefined = Lang.isUndefined,
 
     ACTIVE = 'active',
     BOUNDING_BOX = 'boundingBox',
@@ -17,10 +19,10 @@ var Lang = A.Lang,
     LABEL = 'label',
     LEFT = 'left',
     PRIMARY = 'primary',
-    RADIO = 'radio',
     RIGHT = 'right',
     SYNC_UI = 'syncUI',
     TOGGLEBTN = 'togglebtn',
+    CHECKBOX = 'checkbox',
     TYPE = 'type',
     WIDGET_CONSTRUCTOR = 'widgetConstructor',
 
@@ -36,6 +38,7 @@ var Lang = A.Lang,
         TOGGLE: getClassName(TOGGLEBTN)
     };
 
+// ButtonExt
 var ButtonExt = function() {
 };
 
@@ -214,9 +217,24 @@ var ButtonGroup = A.ButtonGroup;
 ButtonGroup.NAME = BTNGROUP;
 ButtonGroup.CSS_PREFIX = CLASS_NAMES.BUTTON_GROUP;
 ButtonGroup.CLASS_NAMES = CLASS_NAMES;
-ButtonGroup.prototype.CONTENT_TEMPLATE = null; // Bootstrap button group depends on buttons to be a direct children, force one-box widget.
-ButtonGroup.prototype.renderUI = (function(original) {
-    return function() {
+
+A.mix(ButtonGroup.prototype, {
+    // Bootstrap button group depends on buttons to be a direct children, force one-box widget.
+    CONTENT_TEMPLATE: null,
+
+    item: function(index) {
+        var instance = this,
+            node = instance.getButtons().item(index),
+            item = A.Widget.getByNode(node);
+
+        if (A.instanceOf(item, Button)) {
+            return item;
+        }
+
+        return node;
+    },
+
+    renderUI: function() {
         var instance = this;
 
         instance.getButtons().each(function(button) {
@@ -232,44 +250,55 @@ ButtonGroup.prototype.renderUI = (function(original) {
                 }
             }
         });
-    };
-}(ButtonGroup.prototype.renderUI));
-ButtonGroup.prototype.item = function(index) {
-    var instance = this,
-        buttons = instance.getButtons(),
-        node = buttons.item(index),
-        button = A.Widget.getByNode(node);
+    },
 
-    return A.instanceOf(button, Button) ? button : node;
-};
-ButtonGroup.prototype.select = function(items) {
-    var instance = this;
+    select: function(items) {
+        var instance = this;
 
-    return instance.toggle(items, true);
-};
-ButtonGroup.prototype.toggle = function(items, state) {
-    var instance = this,
-        buttons = instance.getButtons(),
-        selectedClass = ButtonGroup.CLASS_NAMES.SELECTED;
+        return instance.toggleSelect(items, true);
+    },
 
-    items = A.Array(items);
+    toggleSelect: function(items, forceSelection) {
+        var instance = this,
+            type = instance.get(TYPE),
+            buttons = instance.getButtons();
 
-    A.Array.each(items, function(item) {
-        var node = instance.item(item);
-
-        if (A.instanceOf(node, A.Button)) {
-            node = node.get(BOUNDING_BOX);
+        if (isUndefined(items)) {
+            items = buttons.getDOMNodes();
+        }
+        if (!isArray(items)) {
+            items = A.Array(items);
         }
 
-        if (instance.get(TYPE) === RADIO) {
-            buttons.removeClass(selectedClass);
-        }
+        A.Array.each(items, function(item) {
+            if (isNumber(item)) {
+                item = buttons.item(item);
+            }
+            // Make sure the passed dom nodes are instance of Node
+            item = A.one(item);
 
-        node.toggleClass(selectedClass, state);
-    });
-};
-ButtonGroup.prototype.unselect = function(items) {
-    var instance = this;
+            if (type === CHECKBOX) {
+                // If item is already selected...
+                if (item.hasClass(A.ButtonGroup.CLASS_NAMES.SELECTED)) {
+                    if (forceSelection === true) {
+                        // Prevent click
+                        return;
+                    }
+                }
+                // If item is not selected yet...
+                else if (forceSelection === false) {
+                    // Prevent click
+                    return;
+                }
+            }
 
-    return instance.toggle(items, false);
-};
+            instance._handleClick({ target: item });
+        });
+    },
+
+    unselect: function(items) {
+        var instance = this;
+
+        return instance.toggleSelect(items, false);
+    }
+}, true);
