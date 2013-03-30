@@ -87,13 +87,26 @@ A.Toolbar = A.Component.create({
             return A.Widget.getByNode(seed);
         },
 
+        isSupportedType: function(o) {
+            return  A.instanceOf(o, A.Button) ||
+                    A.instanceOf(o, A.ToggleButton) ||
+                    A.instanceOf(o, A.ButtonGroup);
+        },
+
         item: function(index) {
             var instance = this,
-                seed = instance.get(BOUNDING_BOX).get(CHILDREN).item(index);
+                seed = instance.get(BOUNDING_BOX).get(CHILDREN).item(index),
+                widget;
 
             instance._initEnclosingWidgetIfNeeded(seed);
 
-            return instance.getEnclosingWidget(seed);
+            widget = instance.getEnclosingWidget(seed);
+
+            if (instance.isSupportedType(widget)) {
+                return widget;
+            }
+
+            return seed;
         },
 
         remove: function(where) {
