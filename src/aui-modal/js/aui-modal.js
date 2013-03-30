@@ -9,13 +9,14 @@ var Lang = A.Lang,
     _DOT = '.',
     _SPACE = ' ',
 
-    BOUNDING_BOX = 'boundingBox',
     BR = 'br',
     CLICK = 'click',
     DRAGGABLE = 'draggable',
+    HEIGHT = 'height',
     MODAL = 'modal',
     MOUSEMOVE = 'mousemove',
     RESIZABLE = 'resizable',
+    WIDTH = 'width',
 
     CSS_MODAL_BD = getClassName('modal-body'),
     CSS_MODAL_FT = getClassName('modal-footer'),
@@ -35,11 +36,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
         var instance = this;
 
         instance.once([CLICK, MOUSEMOVE], instance._onUserInitInteraction);
-
-        instance.after({
-            'resize:end': A.bind(instance._fillHeight, instance),
-            'resize:resize': A.bind(instance._fillHeight, instance)
-        });
+        instance.after('resize:end', A.bind(instance._syncResizeDimensions, instance));
     },
 
     _addBubbleTargets: function(config) {
@@ -55,19 +52,35 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
         return A.Node.create(A.Modal.TEMPLATES[section], this._stdModNode.get(OWNER_DOCUMENT));
     },
 
+    _beforeResizeCorrectDimensions: function(event) {
+        var instance = this;
+
+        if (instance.resize.proxy) {
+            return new A.Do.Prevent();
+        }
+    },
+
     _onUserInitInteraction: function() {
         var instance = this,
-            boundingBox = instance.get(BOUNDING_BOX),
             draggable = instance.get(DRAGGABLE),
             resizable = instance.get(RESIZABLE);
 
         if (draggable) {
-            boundingBox.plug(A.Plugin.Drag, instance._addBubbleTargets(draggable));
+            instance.plug(A.Plugin.Drag, instance._addBubbleTargets(draggable));
         }
 
         if (resizable) {
-            boundingBox.plug(A.Plugin.Resize, instance._addBubbleTargets(resizable));
+            instance.plug(A.Plugin.Resize, instance._addBubbleTargets(resizable));
+            A.before(instance._beforeResizeCorrectDimensions, instance.resize, '_correctDimensions', instance);
         }
+    },
+
+    _syncResizeDimensions: function(event) {
+        var instance = this,
+            resize = event.info;
+
+        instance.set(WIDTH, resize.offsetWidth);
+        instance.set(HEIGHT, resize.offsetHeight);
     }
 }, {
     CSS_PREFIX: getClassName(MODAL),
