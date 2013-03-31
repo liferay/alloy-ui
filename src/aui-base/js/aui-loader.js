@@ -450,6 +450,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "widget-stack",
             "widget-stdmod",
             "dd-plugin",
+            "dd-constrain",
             "resize-plugin",
             "aui-classnamemanager",
             "aui-widget-toolbars"
@@ -771,6 +772,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '749c21e24e167cb48c93e4d5eb5cf75b';
+YUI.Env[Y.version].md5 = 'de7f0a1495f373968db529f5ba1cc1e2';
 
 });
