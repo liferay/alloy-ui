@@ -88,7 +88,10 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
     ATTRS: {
         draggable: {
             value: {
-                handles: [_DOT+CSS_MODAL_HD]
+                handles: [_DOT+CSS_MODAL_HD],
+                plugins: [
+                    { fn: A.Plugin.DDConstrained }
+                ]
             },
             writeOnce: true
         },

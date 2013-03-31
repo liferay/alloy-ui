@@ -11,6 +11,7 @@
             "widget-stack",
             "widget-stdmod",
             "dd-plugin",
+            "dd-constrain",
             "resize-plugin",
             "aui-classnamemanager",
             "aui-widget-toolbars"
