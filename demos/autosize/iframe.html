@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+    <style>
+    body {
+        margin: 20px;
+    }
+    iframe {
+        border: 5px solid lightblue;
+    }
+    </style>
+</head>
+<body>
+    <h1>AlloyUI - Autosize iframe</h1>
+    <iframe frameborder="0" border="0" scrolling="no" src="assets/short.html" width="100%" height="100" id="iframe"></iframe></div></div>
+    <button class="aui-btn">Load long url</button>
+    <script>
+    YUI({ filter: 'raw' }).use('aui-autosize-iframe', function(A) {
+
+        var iframe = A.one('#iframe'),
+            button = A.one('button');
+
+        iframe.plug(A.Plugin.AutosizeIframe);
+
+        button.on('click', function() {
+            iframe.set('src', 'assets/long.html');
+        });
+
+    });
+    </script>
+</body>
+</html>
