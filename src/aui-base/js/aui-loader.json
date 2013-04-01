@@ -48,6 +48,19 @@
             "querystring-stringify-simple"
         ]
     },
+    "aui-autosize": {
+        "use": [
+            "aui-autosize-iframe"
+        ]
+    },
+    "aui-autosize-iframe": {
+        "requires": [
+            "plugin",
+            "aui-component",
+            "aui-timer",
+            "aui-node-base"
+        ]
+    },
     "aui-base": {
         "use": [
             "oop",
