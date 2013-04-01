@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-widget-toolbars",
+    "displayName": "Gallery: aui-widget-toolbars",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "eduardo.lundgren" ],
+    "use"        : [ "aui-widget-toolbars" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

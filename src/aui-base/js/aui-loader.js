@@ -109,14 +109,14 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-base-lang": {},
     "aui-button": {
         "use": [
-            "button",
-            "button-group",
-            "button-plugin",
             "aui-button-core"
         ]
     },
     "aui-button-core": {
         "requires": [
+            "button",
+            "button-group",
+            "button-plugin",
             "aui-component"
         ]
     },
@@ -675,6 +675,24 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-timer"
         ]
     },
+    "aui-modal": {
+        "requires": [
+            "widget",
+            "widget-autohide",
+            "widget-buttons",
+            "widget-modality",
+            "widget-position",
+            "widget-position-align",
+            "widget-position-constrain",
+            "widget-stack",
+            "widget-stdmod",
+            "dd-plugin",
+            "dd-constrain",
+            "resize-plugin",
+            "aui-classnamemanager",
+            "aui-widget-toolbars"
+        ]
+    },
     "aui-node": {
         "use": [
             "aui-node-base"
@@ -1057,7 +1075,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "arraylist",
             "arraylist-add",
             "aui-component",
-            "aui-button"
+            "aui-button-core"
         ]
     },
     "aui-toolbar-deprecated": {
@@ -1170,8 +1188,14 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-node",
             "aui-component"
         ]
+    },
+    "aui-widget-toolbars": {
+        "requires": [
+            "widget-stdmod",
+            "aui-toolbar"
+        ]
     }
 });
-YUI.Env[Y.version].md5 = '418cf54df404ba9bf3e5820a71cc0e15';
+YUI.Env[Y.version].md5 = 'c4720d230360dc030829208cbbc2f310';
 
 });

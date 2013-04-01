@@ -98,14 +98,14 @@
     "aui-base-lang": {},
     "aui-button": {
         "use": [
-            "button",
-            "button-group",
-            "button-plugin",
             "aui-button-core"
         ]
     },
     "aui-button-core": {
         "requires": [
+            "button",
+            "button-group",
+            "button-plugin",
             "aui-component"
         ]
     },
@@ -650,6 +650,24 @@
             "aui-timer"
         ]
     },
+    "aui-modal": {
+        "requires": [
+            "widget",
+            "widget-autohide",
+            "widget-buttons",
+            "widget-modality",
+            "widget-position",
+            "widget-position-align",
+            "widget-position-constrain",
+            "widget-stack",
+            "widget-stdmod",
+            "dd-plugin",
+            "dd-constrain",
+            "resize-plugin",
+            "aui-classnamemanager",
+            "aui-widget-toolbars"
+        ]
+    },
     "aui-node": {
         "use": [
             "aui-node-base"
@@ -1032,7 +1050,7 @@
             "arraylist",
             "arraylist-add",
             "aui-component",
-            "aui-button"
+            "aui-button-core"
         ]
     },
     "aui-toolbar-deprecated": {
@@ -1144,6 +1162,12 @@
         "requires": [
             "aui-node",
             "aui-component"
+        ]
+    },
+    "aui-widget-toolbars": {
+        "requires": [
+            "widget-stdmod",
+            "aui-toolbar"
         ]
     }
 }

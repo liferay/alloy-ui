@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+</head>
+<body class="yui3-skin-sam">
+    <h1>AlloyUI - Modal</h1>
+    <div id="content"></div>
+    <script>
+    YUI({ filter:'raw' }).use('aui-modal', 'resize-proxy', function(A) {
+
+        console.time('How long does it takes?');
+
+        var modal = new A.Modal({
+            bodyContent: 'One fine body…',
+            centered: true,
+            headerContent: '<h3>Modal header</h3>',
+            // height: 400,
+            modal: true,
+            render: '#content',
+            visible: true,
+            width: 450,
+            // draggable: false,
+            // resizable: {
+            //     handles: 'br, r',
+            //     plugins: [
+            //         { fn: A.Plugin.ResizeProxy }
+            //     ]
+            // },
+            // toolbars: {
+            //     header: [
+            //         { icon: 'aui-icon-camera' },
+            //     ],
+            //     body: [
+            //         { label: 'Body' }
+            //     ],
+            //     footer: [
+            //         { icon: 'Footer' }
+            //     ]
+            // }
+        }).render();
+
+        modal.addToolbar([
+            {
+                label: 'Cancel',
+                on: {
+                    click: function() { modal.hide(); }
+                }
+            },
+            {
+                label: 'Okay',
+                on: {
+                    click: function() { alert('This is the primary action!'); }
+                },
+                primary: true
+            }
+        ]);
+
+        console.timeEnd('How long does it takes?');
+
+    });
+    </script>
+</body>
+</html>
