@@ -1,0 +1,10 @@
+{
+    "name": "aui-autosize",
+    "builds": {
+        "aui-autosize-iframe": {
+            "jsfiles": [
+                "js/aui-autosize-iframe.js"
+            ]
+        }
+    }
+}
