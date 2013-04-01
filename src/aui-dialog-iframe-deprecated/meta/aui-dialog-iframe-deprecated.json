@@ -4,7 +4,7 @@
             "plugin",
             "aui-base-deprecated",
             "aui-loading-mask-deprecated",
-            "aui-resize-iframe-deprecated"
+            "aui-autosize-iframe"
         ],
         "skinnable": true
     }

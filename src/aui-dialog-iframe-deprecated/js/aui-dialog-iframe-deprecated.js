@@ -200,9 +200,9 @@ var DialogIframePlugin = A.Component.create(
 
 				var node = A.Node.create(iframeTpl);
 
-				node.plug(A.Plugin.ResizeIframe);
+				node.plug(A.Plugin.AutosizeIframe);
 
-				node.resizeiframe.addTarget(instance);
+				node.autosizeiframe.addTarget(instance);
 
 				instance._host.set('bodyContent', node);
 
@@ -223,7 +223,7 @@ var DialogIframePlugin = A.Component.create(
 			_uiSetMonitor: function(value) {
 				var instance = this;
 
-				var resizeIframe = instance.node.resizeiframe;
+				var resizeIframe = instance.node.autosizeiframe;
 
 				if (value) {
 					resizeIframe.restartMonitor();
@@ -260,7 +260,7 @@ var DialogIframePlugin = A.Component.create(
 					updateIframeSizeUI = function() {
 						var bodyHeight = bodyNode.getStyle('height');
 
-						node.resizeiframe.set('height', bodyHeight);
+						node.autosizeiframe.set('height', bodyHeight);
 
 						bodyNode.loadingmask.refreshMask();
 					};
