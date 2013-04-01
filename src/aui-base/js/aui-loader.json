@@ -356,7 +356,7 @@
             "plugin",
             "aui-base-deprecated",
             "aui-loading-mask-deprecated",
-            "aui-resize-iframe-deprecated"
+            "aui-autosize-iframe"
         ],
         "skinnable": true
     },
@@ -840,14 +840,6 @@
             "aui-resize-base-deprecated",
             "aui-resize-constrain-deprecated"
         ]
-    },
-    "aui-resize-iframe-deprecated": {
-        "requires": [
-            "plugin",
-            "aui-base-deprecated",
-            "aui-timer"
-        ],
-        "skinnable": true
     },
     "aui-scheduler": {
         "use": [
