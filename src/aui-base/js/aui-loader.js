@@ -69,6 +69,11 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
+    "aui-autosize": {
+        "use": [
+            "aui-autosize-iframe"
+        ]
+    },
     "aui-autosize-deprecated": {
         "requires": [
             "event-valuechange",
@@ -76,6 +81,14 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-base-deprecated"
         ],
         "skinnable": true
+    },
+    "aui-autosize-iframe": {
+        "requires": [
+            "plugin",
+            "aui-component",
+            "aui-timer",
+            "aui-node-base"
+        ]
     },
     "aui-base": {
         "use": [
@@ -1196,6 +1209,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'c4720d230360dc030829208cbbc2f310';
+YUI.Env[Y.version].md5 = '78101ca249b933b98d3051f9c925998c';
 
 });
