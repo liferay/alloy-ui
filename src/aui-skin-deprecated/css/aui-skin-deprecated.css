@@ -1371,6 +1371,11 @@
 .aui-overlaycontext-content {
   background: #fff;
 }
+
+.aui-overlay {
+  position: absolute;
+}
+
 /*
 Add your classname to the list below in order to have your element
 recieve a gracefully degrading chrome enhancement such as a drop
