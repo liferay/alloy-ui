@@ -1,4 +1,6 @@
 {
+    "alloycore": [ "aui-base-core" ],
+    "alloyregex": "simpleaui|aui|simpleyui|yui",
     "cssnamespace": "aui",
     "dependencies": {
         "ace": {
