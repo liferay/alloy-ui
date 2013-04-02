@@ -16,18 +16,21 @@
 </head>
 <body>
     <h1>AlloyUI - Autosize iframe</h1>
-    <iframe frameborder="0" border="0" scrolling="no" src="assets/short.html" width="100%" height="100" id="iframe"></iframe></div></div>
-    <button class="aui-btn">Load long url</button>
+    <iframe frameborder="0" border="0" scrolling="no" src="assets/short.html" width="100%" id="iframe"></iframe></div></div>
+    <button id="long" class="aui-btn">Load long url</button>
+    <button id="short" class="aui-btn">Load short url</button>
     <script>
     YUI({ filter: 'raw' }).use('aui-autosize-iframe', function(A) {
 
-        var iframe = A.one('#iframe'),
-            button = A.one('button');
+        var iframe = A.one('#iframe');
 
         iframe.plug(A.Plugin.AutosizeIframe);
 
-        button.on('click', function() {
+        A.one('#long').on('click', function() {
             iframe.set('src', 'assets/long.html');
+        });
+        A.one('#short').on('click', function() {
+            iframe.set('src', 'assets/short.html');
         });
 
     });
