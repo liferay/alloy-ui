@@ -77,6 +77,7 @@
 			maxmemory="256m"
 			newenvironment="true"
 		>
+			<arg line="${year}"/>
 			<jvmarg value="-Dtagbuilder.tld.dir=${tagbuilder.tld.dir}" />
 			<jvmarg value="-Dtagbuilder.components.xml=${tagbuilder.components.xml}" />
 			<jvmarg value="-Dtagbuilder.templates.dir=${tagbuilder.templates.dir}" />

@@ -8,6 +8,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.Node;
@@ -21,6 +22,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +45,14 @@ public class TagBuilder {
 		String jspCommonInitPath = System.getProperty("tagbuilder.jsp.common.init.path");
 		String tldDir = System.getProperty("tagbuilder.tld.dir");
 		String docrootDir = System.getProperty("tagbuilder.docroot.dir");
+
+		Calendar date = Calendar.getInstance();
+
+		_copyrightYear = String.valueOf(date.get(Calendar.YEAR));
+
+		if (args.length > 0 && Validator.isNumber(args[0])) {
+			_copyrightYear = args[0];
+		}
 
 		new TagBuilder(
 			componentsXML, templatesDir, javaDir, docrootDir,
@@ -306,6 +316,7 @@ public class TagBuilder {
 		context.put("jspCommonInitPath", _jspCommonInitPath);
 		context.put("jspDir", _jspDir);
 		context.put("packagePath", _javaPackage);
+		context.put("copyrightYear", _copyrightYear);
 
 		return context;
 	}
@@ -756,5 +767,6 @@ public class TagBuilder {
 	private String _tplTag;
 	private String _tplTagBase;
 	private String _tplTld;
+	private static String _copyrightYear;
 
 }
