@@ -83,8 +83,6 @@ AutosizeIframe = A.Component.create({
 		_afterHeightChange: function(event) {
 			var instance = this;
 
-			instance.set('monitorHeight', false);
-
 			instance._uiSetHeight(event.newVal);
 		},
 
