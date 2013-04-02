@@ -61,7 +61,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
     _fillMaxHeight: function(height) {
         var instance = this,
             fillHeight = instance.get(FILL_HEIGHT),
-            node = instance.getStdModNode(fillHeight);
+            node = instance.getStdModNode(fillHeight, true);
 
         if (node) {
             node.setStyle('max-height', height);
@@ -106,6 +106,12 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
     CSS_PREFIX: getClassName(MODAL),
 
     ATTRS: {
+        // Temporary fix for widget-stdmod bug when bodyContent initializes empty.
+        // this._currFillNode is never updated if _uiSetFillHeight is not called.
+        bodyContent: {
+            value: _EMPTY
+        },
+
         draggable: {
             value: {
                 handles: [_DOT+CSS_MODAL_HD],
