@@ -125,9 +125,6 @@ var DialogIframePlugin = A.Component.create(
 			_bindEvents: function() {
 				var instance = this;
 
-				instance.afterHostEvent('heightChange', instance._updateIframeSize, instance);
-				instance.afterHostEvent('widthChange', instance._updateIframeSize, instance);
-
 				instance.afterHostEvent('visibleChange', instance._afterDialogVisibleChange);
 
 				instance.after('uriChange', instance._afterUriChange);
@@ -246,29 +243,6 @@ var DialogIframePlugin = A.Component.create(
 				}
 
 				instance.node.attr('src', newVal);
-			},
-
-			_updateIframeSize: function(event) {
-				var instance = this;
-
-				var bodyNode = instance._bodyNode;
-				var node = instance.node;
-
-				var updateIframeSizeUI = instance._updateIframeSizeUI;
-
-				if (!updateIframeSizeUI) {
-					updateIframeSizeUI = function() {
-						var bodyHeight = bodyNode.getStyle('height');
-
-						node.autosizeiframe.set('height', bodyHeight);
-
-						bodyNode.loadingmask.refreshMask();
-					};
-
-					instance._updateIframeSizeUI = updateIframeSizeUI;
-				}
-
-				A.setTimeout(updateIframeSizeUI, 50);
 			}
 		}
 	}
