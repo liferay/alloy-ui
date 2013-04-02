@@ -7,6 +7,7 @@ var Lang = A.Lang,
     getClassName = A.getClassName,
 
     _DOT = '.',
+    _EMPTY = '',
     _SPACE = ' ',
 
     BR = 'br',
@@ -17,6 +18,8 @@ var Lang = A.Lang,
     MOUSEMOVE = 'mousemove',
     RESIZABLE = 'resizable',
     WIDTH = 'width',
+    FILL_HEIGHT = 'fillHeight',
+    HEIGHT_CHANGE = 'heightChange',
 
     CSS_MODAL_BD = getClassName('modal-body'),
     CSS_MODAL_FT = getClassName('modal-footer'),
@@ -37,6 +40,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
 
         instance.once([CLICK, MOUSEMOVE], instance._onUserInitInteraction);
         instance.after('resize:end', A.bind(instance._syncResizeDimensions, instance));
+        instance.after(HEIGHT_CHANGE, instance._afterHeightChange);
     },
 
     _addBubbleTargets: function(config) {
@@ -46,6 +50,22 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
             config = {};
         }
         return A.mix(config, { bubbleTargets: instance });
+    },
+
+    _afterHeightChange: function(event) {
+        var instance = this;
+
+        instance._fillMaxHeight(event.newVal);
+    },
+
+    _fillMaxHeight: function(height) {
+        var instance = this,
+            fillHeight = instance.get(FILL_HEIGHT),
+            node = instance.getStdModNode(fillHeight);
+
+        if (node) {
+            node.setStyle('max-height', height);
+        }
     },
 
     _getStdModTemplate : function(section) {
