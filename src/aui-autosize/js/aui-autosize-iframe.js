@@ -50,8 +50,8 @@ AutosizeIframe = A.Component.create({
 			var instance = this;
 
 			instance.after('heightChange', instance._afterHeightChange);
-			instance.after('monitorHeightChange', instance._afterMonitorHeightChange);
 			instance.after('widthChange', instance._afterWidthChange);
+			instance.after('monitorHeightChange', instance._afterMonitorHeightChange);
 		},
 
 		syncUI: function() {
@@ -101,9 +101,8 @@ AutosizeIframe = A.Component.create({
 		},
 
 		_clearInterval: function() {
-			var instance = this;
-
-			var iframeDoc = instance._iframeDoc;
+			var instance = this,
+				iframeDoc = instance._iframeDoc;
 
 			if (iframeDoc) {
 				var docEl = iframeDoc.documentElement;
