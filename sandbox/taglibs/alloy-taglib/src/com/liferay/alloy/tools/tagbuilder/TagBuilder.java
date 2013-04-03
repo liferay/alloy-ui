@@ -38,20 +38,21 @@ public class TagBuilder {
 
 	public static void main(String[] args) throws Exception {
 		String componentsXML = System.getProperty("tagbuilder.components.xml");
-		String templatesDir = System.getProperty("tagbuilder.templates.dir");
+		String copyrightYear = System.getProperty("tagbuilder.copyright.year");
+		String docrootDir = System.getProperty("tagbuilder.docroot.dir");
 		String javaDir = System.getProperty("tagbuilder.java.dir");
 		String javaPackage = System.getProperty("tagbuilder.java.package");
-		String jspDir = System.getProperty("tagbuilder.jsp.dir");
 		String jspCommonInitPath = System.getProperty("tagbuilder.jsp.common.init.path");
+		String jspDir = System.getProperty("tagbuilder.jsp.dir");
+		String templatesDir = System.getProperty("tagbuilder.templates.dir");
 		String tldDir = System.getProperty("tagbuilder.tld.dir");
-		String docrootDir = System.getProperty("tagbuilder.docroot.dir");
 
-		Calendar date = Calendar.getInstance();
+		Calendar calendar = Calendar.getInstance();
 
-		_copyrightYear = String.valueOf(date.get(Calendar.YEAR));
+		_copyrightYear = String.valueOf(calendar.get(Calendar.YEAR));
 
-		if (args.length > 0 && Validator.isNumber(args[0])) {
-			_copyrightYear = args[0];
+		if (Validator.isNotNull(copyrightYear)) {
+			_copyrightYear = copyrightYear;
 		}
 
 		new TagBuilder(
@@ -313,10 +314,10 @@ public class TagBuilder {
 	protected Map<String, Object> getDefaultTemplateContext() {
 		Map<String, Object> context = new HashMap<String, Object>();
 
+		context.put("copyrightYear", _copyrightYear);
 		context.put("jspCommonInitPath", _jspCommonInitPath);
 		context.put("jspDir", _jspDir);
 		context.put("packagePath", _javaPackage);
-		context.put("copyrightYear", _copyrightYear);
 
 		return context;
 	}
@@ -726,10 +727,10 @@ public class TagBuilder {
 	};
 
 	private static final String _AFTER = "after";
-	private static final String _AUTHOR = "author";
-	private static final String _AUTHORS = "authors";
 	private static final String _ATTRIBUTE = "attribute";
 	private static final String _ATTRIBUTES = "attributes";
+	private static final String _AUTHOR = "author";
+	private static final String _AUTHORS = "authors";
 	private static final String _BASE = "base";
 	private static final String _BASE_CLASS_PREFIX = "Base";
 	private static final String _CLASS_SUFFIX = ".java";
@@ -753,11 +754,12 @@ public class TagBuilder {
 
 	private List<Document> _componentsExtDoc;
 	private List<String> _componentsXML;
-	private String _javaDir;
+	private static String _copyrightYear;
 	private String _docrootDir;
+	private String _javaDir;
 	private String _javaPackage;
-	private String _jspDir;
 	private String _jspCommonInitPath;
+	private String _jspDir;
 	private String _templatesDir;
 	private String _tldDir;
 	private String _tplCommonInitJsp;
@@ -767,6 +769,5 @@ public class TagBuilder {
 	private String _tplTag;
 	private String _tplTagBase;
 	private String _tplTld;
-	private static String _copyrightYear;
 
 }
