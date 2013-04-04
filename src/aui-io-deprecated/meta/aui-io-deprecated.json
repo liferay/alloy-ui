@@ -1,8 +1,8 @@
 {
     "aui-io-deprecated": {
         "use": [
-            "aui-io-plugin",
-            "aui-io-request"
+            "aui-io-request",
+            "aui-io-plugin-deprecated"
         ]
     },
 
@@ -10,7 +10,7 @@
         "requires": [
            "aui-overlay-base-deprecated",
            "aui-parse-content-deprecated",
-           "aui-io-request-deprecated",
+           "aui-io-request",
            "aui-loading-mask-deprecated"
         ]
     },
