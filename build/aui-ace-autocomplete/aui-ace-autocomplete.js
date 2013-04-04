@@ -927,6 +927,7 @@ Plugin.AceAutoCompleteList = ACListPlugin;
 }, '@VERSION@' ,{requires:['plugin','aui-ace-autocomplete-list']});
 AUI.add('aui-ace-autocomplete-templateprocessor', function(A) {
 var Lang = A.Lang,
+	AArray = A.Array,
 	AObject = A.Object,
 	Base = A.AceEditor.AutoCompleteBase,
 
@@ -1031,34 +1032,98 @@ var TemplateProcessor = A.Component.create({
 		_getVariableMatches: function(content) {
 			var instance = this;
 
-			var variables = content.split(DOT);
+			var results = [];
 
-			var variableCache = instance.get('variables');
+			var resultsData = {};
 
-			var lastEntry = variables[variables.length - 1];
+			var lastEntry;
 
-			variables.length -= 1;
+			var data = instance.get('variables');
 
-			var variable;
+			var parts = content.split(DOT);
 
-			if (variables.length > 0) {
-				for (var i = 0; i < variables.length; i++) {
-					variable = variables[i];
+			if (parts.length) {
+				var lastEntryIndex = parts.length - 1;
 
-					if (Lang.isObject(variableCache)) {
-						variableCache = variableCache[variable];
+				lastEntry = parts[parts.length - 1];
+
+				var part = parts[0];
+
+				var variableData = data.variables[part];
+
+				if (variableData) {
+					var variableType = variableData.type;
+
+					var typeData = data.types[variableType];
+
+					for (var i = 1; typeData && i < parts.length; i++) {
+						part = parts[i];
+
+						if (i < lastEntryIndex) {
+							var leftPartheseIndex = part.indexOf('(');
+
+							if (leftPartheseIndex !== -1) {
+								part = part.substring(0, leftPartheseIndex);
+							}
+						}
+
+						var tmp = typeData[part];
+
+						if (tmp) {
+							var returnType = tmp.returnType;
+
+							typeData = data.types[returnType];
+						}
+						else {
+							break;
+						}
+					}
+
+					if (typeData) {
+						resultsData = typeData;
 					}
 				}
+				else {
+					resultsData = data.variables;
+				}
+			}
+			else {
+				resultsData = data.variables;
 			}
 
-			var matches = [];
+			results = AObject.keys(resultsData);
 
-			lastEntry = lastEntry.toLowerCase();
+			var matches = results.sort();
 
-			if (Lang.isObject(variableCache)) {
+			if (lastEntry) {
 				var host = instance.get(HOST);
 
-				matches = host._filterResults(lastEntry, AObject.keys(variableCache));
+				matches = host._filterResults(lastEntry, matches);
+			}
+
+			if (matches.length) {
+				matches = AArray.map(
+					matches,
+					function(item, index) {
+						var data = resultsData[item];
+
+						if (data.type === 'Method') {
+							var args = AArray.map(
+								data.argumentTypes,
+								function(item, index) {
+									var parts = item.split('.');
+
+									return parts[parts.length - 1];
+								}
+							);
+
+							return item + '(' + args.join(', ') + ')';
+						}
+						else {
+							return item;
+						}
+					}
+				);
 			}
 
 			return matches;
