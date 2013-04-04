@@ -47,9 +47,49 @@ AUI().ready('aui-ace-editor', 'aui-ace-autocomplete', 'aui-ace-autocomplete-velo
 						processor: new A.AceEditor.AutoCompleteVelocity(
 							{
 								variables: {
-									'HttpUtil': {
-										'getCompleteURL': {
-											'toLowerCase': {}
+									"types": {
+										"java.lang.String": {
+											"numberOfLeadingZeros": {
+												"type": "Method",
+												"returnType": "long",
+												"argumentTypes": ["long"]
+											},
+											"toString": {
+												"type": "Method",
+												"returnType": "java.lang.String",
+												"argumentTypes": ["long", "java.lang.String", "int"]
+											},
+											"field": {
+												"type": "java.lang.String"
+											}
+										},
+										"com.liferay.portal.model.Group": {
+
+										},
+										"Method": {
+											"toString": {
+												"type": "Method",
+												"returnType": "java.lang.String",
+												"argumentTypes": []
+											},
+											"indexOf": {
+												"type": "Method",
+												"returnType": "java.lang.Integer",
+												"argumentTypes": []
+											}
+										}
+									},
+									"variables": {
+										"scopeGroupId": {
+											"type": "java.lang.String"
+										},
+
+										"scopeGroup": {
+											"type": "com.liferay.portal.model.Group"
+										},
+
+										"scopeGroupString": {
+											"type": "java.lang.String"
 										}
 									}
 								}
