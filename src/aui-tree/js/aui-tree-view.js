@@ -320,7 +320,9 @@ var TreeView = A.Component.create(
 
 				if (treeNode) {
 					if (event.target.test(DOT+CSS_TREE_HITAREA)) {
-						treeNode.toggle();
+						if (treeNode.hasChildNodes()) {
+							treeNode.toggle();
+						}
 
 						if (!instance.get(SELECT_ON_TOGGLE)) {
 							return;
