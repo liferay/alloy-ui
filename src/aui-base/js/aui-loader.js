@@ -349,18 +349,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
-    "aui-dialog-deprecated": {
-        "requires": [
-            "dd-constrain",
-            "aui-button-item-deprecated",
-            "aui-io-plugin-deprecated",
-            "aui-overlay-manager-deprecated",
-            "aui-overlay-mask-deprecated",
-            "aui-panel-deprecated",
-            "aui-resize-deprecated"
-        ],
-        "skinnable": true
-    },
     "aui-dialog-iframe-deprecated": {
         "requires": [
             "plugin",
@@ -520,7 +508,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-form-combobox-deprecated": {
         "requires": [
             "aui-form-textarea-deprecated",
-            "aui-toolbar-deprecated"
+            "aui-toolbar"
         ],
         "skinnable": true
     },
@@ -629,15 +617,15 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-io-deprecated": {
         "use": [
-            "aui-io-plugin",
-            "aui-io-request"
+            "aui-io-request",
+            "aui-io-plugin-deprecated"
         ]
     },
     "aui-io-plugin-deprecated": {
         "requires": [
             "aui-overlay-base-deprecated",
             "aui-parse-content-deprecated",
-            "aui-io-request-deprecated",
+            "aui-io-request",
             "aui-loading-mask-deprecated"
         ]
     },
@@ -789,15 +777,6 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-component",
             "widget-htmlparser"
         ]
-    },
-    "aui-panel-deprecated": {
-        "requires": [
-            "widget-stdmod",
-            "aui-component",
-            "aui-toolbar-deprecated",
-            "aui-aria"
-        ],
-        "skinnable": true
     },
     "aui-parse-content": {
         "requires": [
@@ -1082,15 +1061,6 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-button-core"
         ]
     },
-    "aui-toolbar-deprecated": {
-        "requires": [
-            "widget-parent",
-            "aui-base-deprecated",
-            "aui-button-item-deprecated",
-            "aui-data-set-deprecated"
-        ],
-        "skinnable": true
-    },
     "aui-tooltip-deprecated": {
         "requires": [
             "aui-overlay-context-panel-deprecated"
@@ -1200,4 +1170,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '8bdb0871d3ea66357ba7d5a5ca0c880d';
+YUI.Env[Y.version].md5 = '3b492eeaf5660e5bfa4031039ba24038';

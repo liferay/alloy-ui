@@ -16,7 +16,7 @@ Y.mix(YUI.Env.aliases, {
     "aui-form-deprecated": ["aui-form-base-deprecated","aui-form-combobox-deprecated","aui-form-field-deprecated","aui-form-select-deprecated","aui-form-textarea-deprecated","aui-form-textfield-deprecated"],
     "aui-image-viewer": ["aui-image-viewer-base","aui-image-viewer-gallery","aui-image-viewer-media"],
     "aui-io": ["aui-io-request"],
-    "aui-io-deprecated": ["aui-io-plugin","aui-io-request"],
+    "aui-io-deprecated": ["aui-io-request","aui-io-plugin-deprecated"],
     "aui-node": ["aui-node-base"],
     "aui-overlay-deprecated": ["aui-overlay-base-deprecated","aui-overlay-context-deprecated","aui-overlay-context-panel-deprecated","aui-overlay-manager-deprecated","aui-overlay-mask-deprecated"],
     "aui-rating": ["aui-rating-base","aui-rating-thumb"],
