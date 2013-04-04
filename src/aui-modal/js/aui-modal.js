@@ -19,7 +19,6 @@ var Lang = A.Lang,
     RESIZABLE = 'resizable',
     WIDTH = 'width',
     FILL_HEIGHT = 'fillHeight',
-    HEIGHT_CHANGE = 'heightChange',
 
     CSS_MODAL_BD = getClassName('modal-body'),
     CSS_MODAL_FT = getClassName('modal-footer'),
@@ -40,7 +39,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
 
         instance.once([CLICK, MOUSEMOVE], instance._onUserInitInteraction);
         instance.after('resize:end', A.bind(instance._syncResizeDimensions, instance));
-        instance.after(HEIGHT_CHANGE, instance._afterHeightChange);
+        A.after(instance._afterFillHeight, instance, 'fillHeight');
     },
 
     _addBubbleTargets: function(config) {
@@ -52,10 +51,10 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
         return A.mix(config, { bubbleTargets: instance });
     },
 
-    _afterHeightChange: function(event) {
+    _afterFillHeight: function(event) {
         var instance = this;
 
-        instance._fillMaxHeight(event.newVal);
+        instance._fillMaxHeight(instance.get(HEIGHT));
     },
 
     _fillMaxHeight: function(height) {
