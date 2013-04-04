@@ -18,6 +18,7 @@ var Lang = A.Lang,
 
 	DateMath = A.DataType.DateMath,
 
+	_COMMA = ',',
 	_DASH = '-',
 	_DOT = '.',
 	_SPACE = ' ',
@@ -25,25 +26,26 @@ var Lang = A.Lang,
 	SCHEDULER_EVENT = 'scheduler-event',
 	SCHEDULER_EVENT_RECORDER = 'scheduler-event-recorder',
 
-	ACTIVE_VIEW = 'activeView',
-	BODY_TEMPLATE = 'bodyTemplate',
-	BOUNDING_BOX = 'boundingBox',
-	CANCEL = 'cancel',
-	CLICK = 'click',
-	CLICKOUTSIDE = 'clickoutside',
-	CONTENT = 'content',
-	CONTENT_BOX = 'contentBox',
-	DATE_FORMAT = 'dateFormat',
-	DELETE = 'delete',
-	END_DATE = 'endDate',
-	EVENT = 'event',
-	EVENT_CHANGE = 'eventChange',
-	HEADER_TEMPLATE = 'headerTemplate',
-	ISO_TIME = 'isoTime',
-	NODE = 'node',
-	POP_OVER = 'popover',
-	RECORDER = 'recorder',
-	RENDERED = 'rendered',
+    ACTIVE_VIEW = 'activeView',
+    ALL_DAY = 'allDay',
+    BODY_TEMPLATE = 'bodyTemplate',
+    BOUNDING_BOX = 'boundingBox',
+    CANCEL = 'cancel',
+    CLICK = 'click',
+    CLICKOUTSIDE = 'clickoutside',
+    CONTENT = 'content',
+    CONTENT_BOX = 'contentBox',
+    DATE_FORMAT = 'dateFormat',
+    DELETE = 'delete',
+    END_DATE = 'endDate',
+    EVENT = 'event',
+    EVENT_CHANGE = 'eventChange',
+    HEADER_TEMPLATE = 'headerTemplate',
+    ISO_TIME = 'isoTime',
+    NODE = 'node',
+    POP_OVER = 'popover',
+    RECORDER = 'recorder',
+    RENDERED = 'rendered',
 	SAVE = 'save',
 	SCHEDULER = 'scheduler',
 	SCHEDULER_CHANGE = 'schedulerChange',
@@ -596,12 +598,21 @@ var SchedulerEventRecorder = A.Component.create({
 			var dateFormat = instance.get(DATE_FORMAT);
 			var evt = (instance.get(EVENT) || instance);
 
+			var allDay = evt.get(ALL_DAY);
 			var endDate = evt.get(END_DATE);
 			var scheduler = evt.get(SCHEDULER);
 			var startDate = evt.get(START_DATE);
 			var fmtHourFn = (scheduler.get(ACTIVE_VIEW).get(ISO_TIME) ? DateMath.toIsoTimeString : DateMath.toUsTimeString);
 
-			return [ evt._formatDate(startDate, dateFormat), fmtHourFn(startDate), _DASH, fmtHourFn(endDate) ].join(_SPACE);
+			var formattedDate = evt._formatDate(startDate, dateFormat);
+
+			if (allDay === true) {
+				return formattedDate;
+			}
+
+			formattedDate = formattedDate.concat(_COMMA);
+
+			return [ formattedDate, fmtHourFn(startDate), _DASH, fmtHourFn(endDate) ].join(_SPACE);
 		},
 
 		/**
