@@ -87,6 +87,7 @@
 .aui-tree-collapsed .aui-tree-node-hidden-hitarea,
 .aui-tree-expanded .aui-tree-node-hidden-hitarea {
   background-image: none;
+  cursor: default;
 }
 
 /* TreeNodeIO */
