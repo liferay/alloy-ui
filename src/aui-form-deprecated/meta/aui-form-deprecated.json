@@ -23,7 +23,7 @@
     "aui-form-combobox-deprecated": {
         "requires": [
             "aui-form-textarea-deprecated",
-            "aui-toolbar-deprecated"
+            "aui-toolbar"
         ],
         "skinnable": true
     },

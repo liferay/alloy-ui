@@ -2,9 +2,14 @@ var Lang = A.Lang,
 
 	getClassName = A.getClassName,
 
+	ARROW = 'arrow',
+	CIRCLE = 'circle',
+	DOWN = 'down',
+	ICON = 'icon',
 	NAME = 'combobox',
 
-	CSS_COMBOBOX = getClassName(NAME);
+	CSS_COMBOBOX = getClassName(NAME),
+	CSS_ICON_CIRCLE_ARROW_DOWN = getClassName(ICON, CIRCLE, ARROW, DOWN);
 
 var Combobox = A.Component.create(
 	{
@@ -29,7 +34,7 @@ var Combobox = A.Component.create(
 			},
 
 			icons: {
-				value: ['circle-triangle-b'],
+				value: [CSS_ICON_CIRCLE_ARROW_DOWN],
 				validator: Lang.isArray
 			}
 		},
@@ -65,7 +70,7 @@ var Combobox = A.Component.create(
 				if (icons.length) {
 					var toolbar = new A.Toolbar(
 						{
-							children: icons
+							children: [icons]
 						}
 					).render(instance.get('contentBox'));
 

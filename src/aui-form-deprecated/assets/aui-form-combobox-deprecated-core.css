@@ -14,3 +14,12 @@
 .aui-combobox-content .aui-field-input {
 	display: block;
 }
+
+.aui-editable .aui-btn-group {
+	margin-top: -3px;
+}
+
+.aui-editable .aui-toolbar {
+	display: inline-block;
+	margin-left: 1px;
+}

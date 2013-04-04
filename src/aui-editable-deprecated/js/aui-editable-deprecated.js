@@ -13,10 +13,13 @@ var Lang = A.Lang,
 	DOC = A.config.doc,
 
 	HOVER = 'hover',
+	ICON = 'icon',
 	NAME = 'editable',
 
 	CSS_EDITING = getClassName(NAME, 'editing'),
 	CSS_HOVER = getClassName(NAME, HOVER),
+	CSS_ICON_OK = getClassName(ICON, 'ok'),
+	CSS_ICON_REMOVE = getClassName(ICON, 'remove');
 
 	CONTENT_BOX = 'contentBox';
 
@@ -78,11 +81,9 @@ var Editable = A.Component.create(
 					var instance = this;
 
 					return {
-						id: 'cancel',
-						icon: 'circle-close',
-						handler: {
-							context: instance,
-							fn: instance.cancel
+						icon: CSS_ICON_REMOVE,
+						on: {
+							click: A.bind(instance.cancel, instance)
 						}
 					};
 				}
@@ -202,11 +203,9 @@ var Editable = A.Component.create(
 					var instance = this;
 
 					return {
-						id: 'save',
-						icon: 'circle-check',
-						handler: {
-							context: instance,
-							fn: instance.save
+						icon: CSS_ICON_OK,
+						on: {
+							click: A.bind(instance.save, instance)
 						}
 					};
 				}
