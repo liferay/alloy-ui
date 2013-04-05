@@ -12,13 +12,15 @@ var Lang = A.Lang,
 
     BR = 'br',
     CLICK = 'click',
+    DESTROY_ON_HIDE = 'destroyOnHide',
     DRAGGABLE = 'draggable',
+    FILL_HEIGHT = 'fillHeight',
     HEIGHT = 'height',
     MODAL = 'modal',
     MOUSEMOVE = 'mousemove',
     RESIZABLE = 'resizable',
+    VISIBLE_CHANGE = 'visibleChange',
     WIDTH = 'width',
-    FILL_HEIGHT = 'fillHeight',
 
     CSS_MODAL_BD = getClassName('modal-body'),
     CSS_MODAL_FT = getClassName('modal-footer'),
@@ -37,9 +39,10 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
     initializer: function() {
         var instance = this;
 
-        instance.once([CLICK, MOUSEMOVE], instance._onUserInitInteraction);
+        A.after(instance._afterFillHeight, instance, FILL_HEIGHT);
         instance.after('resize:end', A.bind(instance._syncResizeDimensions, instance));
-        A.after(instance._afterFillHeight, instance, 'fillHeight');
+        instance.after(VISIBLE_CHANGE, instance._afterVisibleChange);
+        instance.once([CLICK, MOUSEMOVE], instance._onUserInitInteraction);
     },
 
     _addBubbleTargets: function(config) {
@@ -55,6 +58,14 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
         var instance = this;
 
         instance._fillMaxHeight(instance.get(HEIGHT));
+    },
+
+    _afterVisibleChange: function(event) {
+        var instance = this;
+
+        if (!event.newVal && instance.get(DESTROY_ON_HIDE)) {
+            instance.destroy();
+        }
     },
 
     _fillMaxHeight: function(height) {
@@ -109,6 +120,11 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
         // this._currFillNode is never updated if _uiSetFillHeight is not called.
         bodyContent: {
             value: _EMPTY
+        },
+
+        destroyOnHide: {
+            validator: Lang.isBoolean,
+            value: false
         },
 
         draggable: {
