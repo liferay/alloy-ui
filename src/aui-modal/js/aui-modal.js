@@ -74,7 +74,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
             node = instance.getStdModNode(fillHeight, true);
 
         if (node) {
-            node.setStyle('max-height', height);
+            node.setStyle('maxHeight', height);
         }
     },
 
