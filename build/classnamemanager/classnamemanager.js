@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('classnamemanager', function(Y) {
+YUI.add('classnamemanager', function (Y, NAME) {
 
 /**
 * Contains a singleton (ClassNameManager) that enables easy creation and caching of 
@@ -88,4 +88,4 @@ Y.ClassNameManager = function () {
 }();
 
 
-}, '3.4.0' ,{requires:['yui-base']});
+}, '3.7.3', {"requires": ["yui-base"]});

@@ -4,9 +4,7 @@ var Lang = A.Lang,
 	isObject = Lang.isObject,
 	isUndefined = Lang.isUndefined,
 
-	toNumber = function(val) {
-		return parseInt(val, 10) || 0;
-	},
+	toInt = Lang.toInt,
 
 	DASH = '-',
 	DOT = '.',
@@ -20,7 +18,6 @@ var Lang = A.Lang,
 	CLICK = 'click',
 	COLLAPSED = 'collapsed',
 	CONTENT = 'content',
-	CUBIC_BEZIER = 'cubic-bezier',
 	DOWN = 'down',
 	ENTER = 'enter',
 	ESC = 'esc',
@@ -108,8 +105,7 @@ var Toggler = A.Component.create({
 		transition: {
 			validator: isObject,
 			value: {
-				duration: 0.4,
-			    easing: CUBIC_BEZIER
+				duration: 0.4
 			}
 		}
 
@@ -230,7 +226,7 @@ var Toggler = A.Component.create({
 				var content = instance.get(CONTENT);
 
 				var height = instance.getContentHeight();
-				var gutter = toNumber(content.getStyle(MARGIN_TOP));
+				var gutter = toInt(content.getStyle(MARGIN_TOP));
 
 				if (!instance.wrapped) {
 					content.wrap(TPL_CONTENT_WRAPPER);
@@ -305,7 +301,7 @@ var Lang = A.Lang,
 	CLOSE_ALL_ON_EXPAND = 'closeAllOnExpand',
 	CONTAINER = 'container',
 	CONTENT = 'content',
-	CUBIC_BEZIER = 'cubic-bezier',
+	CUBIC_BEZIER = 'cubic-bezier(0.25, 0.1, 0.25, 1)',
 	EXPANDED = 'expanded',
 	FIRST_CHILD = 'firstChild',
 	HEADER = 'header',
@@ -359,7 +355,7 @@ var TogglerDelegate = A.Component.create({
 			validator: isObject,
 			value: {
 				duration: 0.4,
-			    easing: CUBIC_BEZIER
+				easing: CUBIC_BEZIER
 			}
 		}
 
@@ -409,7 +405,7 @@ var TogglerDelegate = A.Component.create({
 			var contentNode = header.next(content) || header.one(content);
 
 			if (!contentNode) {
-				var wrapper = header.next(DOT + CSS_TOGGLER_CONTENT_WRAPPER); 
+				var wrapper = header.next(DOT + CSS_TOGGLER_CONTENT_WRAPPER);
 
 				if (wrapper) {
 					contentNode = wrapper.get(FIRST_CHILD);
@@ -468,8 +464,8 @@ var TogglerDelegate = A.Component.create({
 
 A.TogglerDelegate = TogglerDelegate;
 
-}, '@VERSION@' ,{requires:['aui-toggler-base'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-toggler-base']});
 
 
-AUI.add('aui-toggler', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-toggler-base','aui-toggler-delegate']});
+AUI.add('aui-toggler', function(A){}, '@VERSION@' ,{use:['aui-toggler-base','aui-toggler-delegate'], skinnable:true});
 

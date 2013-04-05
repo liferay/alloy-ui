@@ -1,14 +1,18 @@
-# Alloy UI
+# AlloyUI
 
-Alloy is a UI metaframework that provides a consistent and simple API for building web applications across allthree levels of the browser: structure, style and behavior.
+Alloy is a framework built on top of YUI3 that provides a simple API for building high scalable applications.
 
 It incorporates three design languages: HTML, CSS, and JavaScript.
 
+* [Documentation](http://deploy.alloyui.com/api/)
 * [License](https://github.com/liferay/alloy-ui/blob/master/LICENSE.txt)
-* [Documentation](http://alloyui.com/deploy/api/)
-* [Discuss](http://www.liferay.com/community/forums/-/message_boards/category/8409523)
-* [Latest Stable Release](http://www.liferay.com/downloads/liferay-projects/alloy-ui)
 * [Attribution/Third-party licenses](https://github.com/liferay/alloy-ui/blob/master/ATTRIBUTION.txt)
+
+## Discussion
+
+* [Liferay Forums](http://www.liferay.com/community/forums/-/message_boards/category/8409523)
+* [Google Groups](https://groups.google.com/forum/?fromgroups#!forum/alloyui)
+* [Stack Overflow](http://stackoverflow.com/questions/tagged/alloy-ui)
 
 ## Folder description
 
@@ -25,19 +29,19 @@ It incorporates three design languages: HTML, CSS, and JavaScript.
 
 After change any component on the `src/aui-yourcomponent/` folder you need to run `ant all` from the component source folder or `ant all` on the [build.xml](https://github.com/liferay/alloy-ui/blob/master/build.xml) from the root to re-build all modules to the build folder. Example:
 
-	cd trunk/src/aui-tree/
+	cd alloy-ui/src/aui-tree/
 	ant all
 
 or...
 
-	cd trunk/
+	cd alloy-ui/
 	ant all
 
 ## Module creation
 
 To create a new module you can use our "create-module" task. Example:
 
-	cd trunk/resources/create-module/
+	cd alloy-ui/resources/create-module/
 	./create.sh aui-module-name
 
 More information, [see here](https://github.com/liferay/alloy-ui/tree/master/resources/create-module).

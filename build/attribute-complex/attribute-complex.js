@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('attribute-complex', function(Y) {
+YUI.add('attribute-complex', function (Y, NAME) {
 
     /**
      * Adds support for attribute providers to handle complex attributes in the constructor
@@ -50,7 +50,7 @@ YUI.add('attribute-complex', function(Y) {
                             attr = path.shift();
                             v = subvals[attr] = subvals[attr] || [];
                             v[v.length] = {
-                                path : path, 
+                                path : path,
                                 value: valueHash[k]
                             };
                         } else {
@@ -83,6 +83,8 @@ YUI.add('attribute-complex', function(Y) {
 
             var val = cfg.value,
                 valFn = cfg.valueFn,
+                tmpVal,
+                initValSet = false,
                 simple,
                 complex,
                 i,
@@ -91,26 +93,31 @@ YUI.add('attribute-complex', function(Y) {
                 subval,
                 subvals;
 
-            if (valFn) {
+            if (!cfg.readOnly && initValues) {
+                // Simple Attributes
+                simple = initValues.simple;
+                if (simple && simple.hasOwnProperty(attr)) {
+                    val = simple[attr];
+                    initValSet = true;
+                }
+            }
+
+            if (valFn && !initValSet) {
                 if (!valFn.call) {
                     valFn = this[valFn];
                 }
                 if (valFn) {
-                    val = valFn.call(this);
+                    tmpVal = valFn.call(this, attr);
+                    val = tmpVal;
                 }
             }
 
             if (!cfg.readOnly && initValues) {
 
-                // Simple Attributes
-                simple = initValues.simple;
-                if (simple && simple.hasOwnProperty(attr)) {
-                    val = simple[attr];
-                }
-
-                // Complex Attributes (complex values applied, after simple, incase both are set)
+                // Complex Attributes (complex values applied, after simple, in case both are set)
                 complex = initValues.complex;
-                if (complex && complex.hasOwnProperty(attr)) {
+
+                if (complex && complex.hasOwnProperty(attr) && (val !== undefined) && (val !== null)) {
                     subvals = complex[attr];
                     for (i = 0, l = subvals.length; i < l; ++i) {
                         path = subvals[i].path;
@@ -126,5 +133,8 @@ YUI.add('attribute-complex', function(Y) {
 
     Y.mix(Y.Attribute, Y.Attribute.Complex, true, null, 1);
 
+    // Consistency with the rest of the Attribute addons for now. 
+    Y.AttributeComplex = Y.Attribute.Complex;
 
-}, '3.4.0' ,{requires:['attribute-base']});
+
+}, '3.7.3', {"requires": ["attribute-base"]});

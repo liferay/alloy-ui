@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('recordset-sort', function(Y) {
+YUI.add('recordset-sort', function (Y, NAME) {
 
 /**
  * Adds default and custom sorting functionality to the Recordset utility
@@ -210,4 +210,4 @@ Y.namespace("Plugin").RecordsetSort = RecordsetSort;
 
 
 
-}, '3.4.0' ,{requires:['arraysort','recordset-base','plugin']});
+}, '3.7.3', {"requires": ["arraysort", "recordset-base", "plugin"]});

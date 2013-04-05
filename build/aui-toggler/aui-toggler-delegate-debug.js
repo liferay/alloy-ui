@@ -20,7 +20,7 @@ var Lang = A.Lang,
 	CLOSE_ALL_ON_EXPAND = 'closeAllOnExpand',
 	CONTAINER = 'container',
 	CONTENT = 'content',
-	CUBIC_BEZIER = 'cubic-bezier',
+	CUBIC_BEZIER = 'cubic-bezier(0.25, 0.1, 0.25, 1)',
 	EXPANDED = 'expanded',
 	FIRST_CHILD = 'firstChild',
 	HEADER = 'header',
@@ -74,7 +74,7 @@ var TogglerDelegate = A.Component.create({
 			validator: isObject,
 			value: {
 				duration: 0.4,
-			    easing: CUBIC_BEZIER
+				easing: CUBIC_BEZIER
 			}
 		}
 
@@ -124,7 +124,7 @@ var TogglerDelegate = A.Component.create({
 			var contentNode = header.next(content) || header.one(content);
 
 			if (!contentNode) {
-				var wrapper = header.next(DOT + CSS_TOGGLER_CONTENT_WRAPPER); 
+				var wrapper = header.next(DOT + CSS_TOGGLER_CONTENT_WRAPPER);
 
 				if (wrapper) {
 					contentNode = wrapper.get(FIRST_CHILD);
@@ -183,4 +183,4 @@ var TogglerDelegate = A.Component.create({
 
 A.TogglerDelegate = TogglerDelegate;
 
-}, '@VERSION@' ,{requires:['aui-toggler-base'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-toggler-base']});

@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('sortable-scroll', function(Y) {
+YUI.add('sortable-scroll', function (Y, NAME) {
 
     
     /**
@@ -18,7 +18,7 @@ YUI.add('sortable-scroll', function(Y) {
      * @class SortScroll
      * @extends Base
      * @constructor
-     * @namespace Plugin     
+     * @namespace Plugin
      */
     
     var SortScroll = function() {
@@ -71,4 +71,4 @@ YUI.add('sortable-scroll', function(Y) {
 
 
 
-}, '3.4.0' ,{requires:['sortable', 'dd-scroll']});
+}, '3.7.3', {"requires": ["dd-scroll", "sortable"]});

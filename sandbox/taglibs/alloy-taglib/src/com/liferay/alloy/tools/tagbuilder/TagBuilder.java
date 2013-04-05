@@ -8,6 +8,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.Node;
@@ -21,6 +22,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -36,13 +38,22 @@ public class TagBuilder {
 
 	public static void main(String[] args) throws Exception {
 		String componentsXML = System.getProperty("tagbuilder.components.xml");
-		String templatesDir = System.getProperty("tagbuilder.templates.dir");
+		String copyrightYear = System.getProperty("tagbuilder.copyright.year");
+		String docrootDir = System.getProperty("tagbuilder.docroot.dir");
 		String javaDir = System.getProperty("tagbuilder.java.dir");
 		String javaPackage = System.getProperty("tagbuilder.java.package");
-		String jspDir = System.getProperty("tagbuilder.jsp.dir");
 		String jspCommonInitPath = System.getProperty("tagbuilder.jsp.common.init.path");
+		String jspDir = System.getProperty("tagbuilder.jsp.dir");
+		String templatesDir = System.getProperty("tagbuilder.templates.dir");
 		String tldDir = System.getProperty("tagbuilder.tld.dir");
-		String docrootDir = System.getProperty("tagbuilder.docroot.dir");
+
+		Calendar calendar = Calendar.getInstance();
+
+		_copyrightYear = String.valueOf(calendar.get(Calendar.YEAR));
+
+		if (Validator.isNotNull(copyrightYear)) {
+			_copyrightYear = copyrightYear;
+		}
 
 		new TagBuilder(
 			componentsXML, templatesDir, javaDir, docrootDir,
@@ -303,6 +314,7 @@ public class TagBuilder {
 	protected Map<String, Object> getDefaultTemplateContext() {
 		Map<String, Object> context = new HashMap<String, Object>();
 
+		context.put("copyrightYear", _copyrightYear);
 		context.put("jspCommonInitPath", _jspCommonInitPath);
 		context.put("jspDir", _jspDir);
 		context.put("packagePath", _javaPackage);
@@ -715,10 +727,10 @@ public class TagBuilder {
 	};
 
 	private static final String _AFTER = "after";
-	private static final String _AUTHOR = "author";
-	private static final String _AUTHORS = "authors";
 	private static final String _ATTRIBUTE = "attribute";
 	private static final String _ATTRIBUTES = "attributes";
+	private static final String _AUTHOR = "author";
+	private static final String _AUTHORS = "authors";
 	private static final String _BASE = "base";
 	private static final String _BASE_CLASS_PREFIX = "Base";
 	private static final String _CLASS_SUFFIX = ".java";
@@ -742,11 +754,12 @@ public class TagBuilder {
 
 	private List<Document> _componentsExtDoc;
 	private List<String> _componentsXML;
-	private String _javaDir;
+	private static String _copyrightYear;
 	private String _docrootDir;
+	private String _javaDir;
 	private String _javaPackage;
-	private String _jspDir;
 	private String _jspCommonInitPath;
+	private String _jspDir;
 	private String _templatesDir;
 	private String _tldDir;
 	private String _tplCommonInitJsp;

@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('yui-later', function(Y) {
+YUI.add('yui-later', function (Y, NAME) {
 
 /**
  * Provides a setTimeout/setInterval wrapper. This module is a `core` YUI module, <a href="../classes/YUI.html#method_later">it's documentation is located under the YUI class</a>.
@@ -81,4 +81,4 @@ Y.Lang.later = Y.later;
 
 
 
-}, '3.4.0' ,{requires:['yui-base']});
+}, '3.7.3', {"requires": ["yui-base"]});

@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('oop', function(Y) {
+YUI.add('oop', function (Y, NAME) {
 
 /**
 Adds object inheritance and manipulation utilities to the YUI instance. This
@@ -144,18 +144,19 @@ Y.augment = function (receiver, supplier, overwrite, whitelist, args) {
 };
 
 /**
- * Applies object properties from the supplier to the receiver.  If
- * the target has the property, and the property is an object, the target
- * object will be augmented with the supplier's value.  If the property
- * is an array, the suppliers value will be appended to the target.
+ * Copies object properties from the supplier to the receiver. If the target has
+ * the property, and the property is an object, the target object will be
+ * augmented with the supplier's value.
+ *
  * @method aggregate
- * @param {function} r  the object to receive the augmentation.
- * @param {function} s  the object that supplies the properties to augment.
- * @param {boolean} ov if true, properties already on the receiver
- * will be overwritten if found on the supplier.
- * @param {string[]} wl a whitelist.  If supplied, only properties in
- * this list will be applied to the receiver.
- * @return {object} the extended object.
+ * @param {Object} receiver Object to receive the augmentation.
+ * @param {Object} supplier Object that supplies the properties with which to
+ *     augment the receiver.
+ * @param {Boolean} [overwrite=false] If `true`, properties already on the receiver
+ *     will be overwritten if found on the supplier.
+ * @param {String[]} [whitelist] Whitelist. If supplied, only properties in this
+ *     list will be applied to the receiver.
+ * @return {Object} Augmented object.
  */
 Y.aggregate = function(r, s, ov, wl) {
     return Y.mix(r, s, ov, wl, 0, true);
@@ -245,6 +246,17 @@ Y.some = function(o, f, c, proto) {
  * Primitives are returned untouched.  Optionally, a
  * function can be provided to handle other data types,
  * filter keys, validate values, etc.
+ *
+ * NOTE: Cloning a non-trivial object is a reasonably heavy operation, due to
+ * the need to recurrsively iterate down non-primitive properties. Clone
+ * should be used only when a deep clone down to leaf level properties
+ * is explicitly required.
+ *
+ * In many cases (for example, when trying to isolate objects used as 
+ * hashes for configuration properties), a shallow copy, using Y.merge is 
+ * normally sufficient. If more than one level of isolation is required, 
+ * Y.merge can be used selectively at each level which needs to be 
+ * isolated from the original without going all the way to leaf properties.
  *
  * @method clone
  * @param {object} o what to clone.
@@ -393,4 +405,4 @@ Y.rbind = function(f, c) {
 };
 
 
-}, '3.4.0' ,{requires:['yui-base']});
+}, '3.7.3', {"requires": ["yui-base"]});

@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('widget-anim', function(Y) {
+YUI.add('widget-anim', function (Y, NAME) {
 
 /**
  * Provides a plugin which can be used to animate widget visibility changes.
@@ -261,4 +261,4 @@ Y.extend(WidgetAnim, Y.Plugin.Base, {
 Y.namespace("Plugin").WidgetAnim = WidgetAnim;
 
 
-}, '3.4.0' ,{requires:['plugin', 'anim-base', 'widget']});
+}, '3.7.3', {"requires": ["anim-base", "plugin", "widget"]});

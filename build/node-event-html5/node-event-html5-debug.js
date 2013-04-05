@@ -2,10 +2,17 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('node-event-html5', function(Y) {
+YUI.add('node-event-html5', function (Y, NAME) {
+
+/**
+ * Adds HTML5 event support to Node.
+ *
+ * @module node
+ * @submodule node-event-html5
+ **/
 
 Y.mix(Y.Node.DOM_EVENTS, {
     DOMActivate: 1,
@@ -43,10 +50,10 @@ Y.mix(Y.Node.DOM_EVENTS, {
     stalled: 1,
     suspend: 1,
     timeupdate: 1,
-    undeo: 1,
+    undo: 1,
     volumechange: 1,
     waiting: 1
 });
 
 
-}, '3.4.0' ,{requires:['node-base']});
+}, '3.7.3', {"requires": ["node-base"]});

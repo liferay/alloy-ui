@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('cache-offline', function(Y) {
+YUI.add('cache-offline', function (Y, NAME) {
 
 /**
  * Provides a Cache subclass which uses HTML5 `localStorage` for persistence.
@@ -337,4 +337,4 @@ Y.extend(CacheOffline, Y.Cache, localStorage ? {
 Y.CacheOffline = CacheOffline;
 
 
-}, '3.4.0' ,{requires:['cache-base', 'json']});
+}, '3.7.3', {"requires": ["cache-base", "json"]});

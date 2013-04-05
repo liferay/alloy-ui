@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+</head>
+
+<style type="text/css" media="screen">
+
+	.aui-tree-view {
+		margin: 30px;
+		font-size: 12px;
+	}
+
+</style>
+
+<body>
+<h1>Alloy - TreeView</h1>
+
+<h1>A.TreeViewDD</h1>
+<div id="tree"></div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready('aui-tree-view', function(A) {
+	var Lang = A.Lang;
+	var now = Lang.now;
+
+	var number_of_levels = 15;
+
+	var ts = now();
+	create_children = function(amount, level) {
+		amount = amount || 100;
+		if (level <= 3) {
+			return A.Array.map(new Array(amount).join('x').split('x'), function(n, i, c) {
+				var node = { label: 'test'+i };
+
+				if(level < 3 && (i % 4 === 0)){
+					node.children = create_children(amount, level + 1);
+					node.leaf = false;
+					node.expanded = true;
+				}
+
+				return node;
+			});
+		}
+	};
+
+	var objSize = function(arr) {
+		var size = arr.length;
+
+		A.each(
+			arr,
+			function(item, index, collection) {
+				if (item.children) {
+					size += objSize(item.children);
+				}
+			}
+		);
+
+		return size;
+	};
+
+	var cache = 1;
+
+	var children = cache && !Lang.isUndefined(children) ? children : create_children(number_of_levels, 0);
+
+	var times = !Lang.isUndefined(times) ? times : [];
+
+	if (times.length === 0) {
+		console.log(
+			Lang.sub(
+				'Number of children nodes: {number}',
+				{
+					number: objSize(children)
+				}
+			)
+		);
+	}
+
+	var start = now();
+
+	new A.TreeViewDD({
+		label: 'ROOT',
+		id: 'root10',
+		expanded: true,
+		children: children,
+		//lazyLoad: false
+	}).render();
+
+	var end = now();
+	var time = end - start;
+	times.push(time);
+
+	console.log(
+		Lang.sub(
+			'Current time: {time}, all times: [{times}]',
+			{
+				time: time,
+				times: times.join(', ')
+			}
+		)
+	);
+
+	var timesLength = times.length;
+
+	if (timesLength === 3) {
+		var avg = A.Array.reduce(
+			times,
+			0,
+			function(prevVal, curVal, index, collection) {
+				return prevVal + curVal;
+			}
+		);
+
+		avg /= timesLength;
+
+		times.length = 0;
+
+		console.log(
+			Lang.sub(
+				'Average times across {timesLength} runs: {avg}',
+				{
+					avg: avg,
+					timesLength: timesLength
+				}
+			)
+		);
+	}
+});
+
+</script>
+
+</body>
+</html>

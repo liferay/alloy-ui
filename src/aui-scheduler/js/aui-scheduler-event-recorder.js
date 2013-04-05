@@ -1,83 +1,84 @@
-var L = A.Lang,
-	isArray = L.isArray,
-	isObject = L.isObject,
+var Lang = A.Lang,
+	isArray = Lang.isArray,
+	isObject = Lang.isObject,
+	isString = Lang.isString,
+	isUndefined = Lang.isUndefined,
+
+	_serialize = A.IO.prototype._serialize,
+
+	toInt = Lang.toInt,
+
+	clamp = function(value, min, max) {
+		return Math.min(Math.max(value, min), max);
+	},
+
+	DateMath = A.DataType.DateMath,
+
+	_DASH = '-',
+	_DOT = '.',
+	_SPACE = ' ',
+
+	SCHEDULER_EVENT = 'scheduler-event',
+	SCHEDULER_EVENT_RECORDER = 'scheduler-event-recorder',
 
 	ACTIVE_VIEW = 'activeView',
-	ALL_DAY = 'allDay',
 	ARROW = 'arrow',
 	BODY = 'body',
 	BODY_CONTENT = 'bodyContent',
+	BORDER_RADIUS = 'borderRadius',
 	BOUNDING_BOX = 'boundingBox',
 	CANCEL = 'cancel',
 	CLICK = 'click',
+	CONSTRAIN = 'constrain',
 	CONTENT = 'content',
 	DATE = 'date',
 	DATE_FORMAT = 'dateFormat',
 	DELETE = 'delete',
-	DESCRIPTION = 'description',
-	EDIT = 'edit',
+	END_DATE = 'endDate',
 	EVENT = 'event',
-	EVENT_CLASS = 'eventClass',
 	FOOTER_CONTENT = 'footerContent',
 	FORM = 'form',
 	HEADER = 'header',
-	HIDE = 'hide',
 	ISO_TIME = 'isoTime',
-	LINK = 'link',
+	KEY_DOWN = 'keydown',
 	NODE = 'node',
 	OFFSET_HEIGHT = 'offsetHeight',
 	OFFSET_WIDTH = 'offsetWidth',
 	OVERLAY = 'overlay',
 	OVERLAY_OFFSET = 'overlayOffset',
+	PX = 'px',
 	RECORDER = 'recorder',
 	RENDERED = 'rendered',
-	REPEAT = 'repeat',
+	REGION = 'region',
+	RIGHT = 'right',
 	SAVE = 'save',
 	SCHEDULER = 'scheduler',
 	SCHEDULER_CHANGE = 'schedulerChange',
-	SCHEDULER_EVENT = 'scheduler-event',
-	SCHEDULER_EVENT_RECORDER = 'scheduler-event-recorder',
 	SHADOW = 'shadow',
-	SHOW = 'show',
-	START_DATE_CHANGE = 'startDateChange',
+	START_DATE = 'startDate',
 	STRINGS = 'strings',
+	SUBMIT = 'submit',
 	TEMPLATE = 'template',
 	TITLE = 'title',
-	TL = 'tl',
 	TOOLBAR = 'toolbar',
-	SUBMIT = 'submit',
-	VALUE = 'value',
+	TOP = 'top',
 	VISIBLE_CHANGE = 'visibleChange',
-	WHEN = 'when',
-	X = 'x',
-	Y = 'y',
-
-	EV_SCHEDULER_EVENT_RECORDER_CANCEL = 'cancel',
-	EV_SCHEDULER_EVENT_RECORDER_DELETE = 'delete',
-	EV_SCHEDULER_EVENT_RECORDER_EDIT = 'edit',
-	EV_SCHEDULER_EVENT_RECORDER_SAVE = 'save',
-
-	_DASH = '-',
-	_DOT = '.',
-	_EMPTY_STR = '',
-	_POUND = '#',
-
-	_serialize = A.IO.prototype._serialize,
 
 	getCN = A.getClassName,
 
-	CSS_SCHEDULER_EVENT = getCN(SCHEDULER, EVENT),
-	CSS_SCHEDULER_EVENT_RECORDER = getCN(SCHEDULER, EVENT, RECORDER),
+	CSS_SCHEDULER_EVENT = getCN(SCHEDULER_EVENT),
+	CSS_SCHEDULER_EVENT_TITLE = getCN(SCHEDULER_EVENT, TITLE),
+
+	CSS_SCHEDULER_EVENT_RECORDER = getCN(SCHEDULER_EVENT, RECORDER),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, ARROW),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_TOP = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, ARROW, TOP),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_SHADOW = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, ARROW, SHADOW),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_BODY = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, BODY),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_CONTENT = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, CONTENT),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_DATE = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, DATE),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_FORM = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, FORM),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_HEADER = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, HEADER),
-	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_REPEAT = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, REPEAT),
-	CSS_SCHEDULER_EVENT_TITLE = getCN(SCHEDULER, EVENT, TITLE),
 
 	TPL_OVERLAY_BODY_CONTENT = new A.Template(
 		'<div class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_SHADOW, ' ', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW, '"></div>',
@@ -89,11 +90,6 @@ var L = A.Lang,
 		'</div>',
 		'<div class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_BODY, '">',
 			'<label class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_DATE, '">{date}</label>',
-			'<select class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_REPEAT, '" name="repeat">',
-				'<tpl for="eventRepeat">',
-					'<option {[ (parent.repeat && parent.repeat.value) == parent.eventRepeat[$i].value ? \'selected="selected"\' : "" ]} value="{value}">{description}</option>',
-				'</tpl>',
-			'</select>',
 		'</div>'
 	),
 
@@ -108,7 +104,6 @@ var SchedulerEventRecorder = A.Component.create({
 		},
 
 		content: {
-			value: _EMPTY_STR
 		},
 
 		duration: {
@@ -136,11 +131,9 @@ var SchedulerEventRecorder = A.Component.create({
 					{
 						'delete': 'Delete',
 						'description-hint': 'e.g., Dinner at Brian\'s',
-						'no-repeat': 'No repeat',
 						cancel: 'Cancel',
 						description: 'Description',
 						edit: 'Edit',
-						repeat: 'Repeat',
 						save: 'Save',
 						when: 'When'
 					},
@@ -153,9 +146,7 @@ var SchedulerEventRecorder = A.Component.create({
 		overlay: {
 			validator: isObject,
 			value: {
-				align: {
-					points: [ TL, TL ]
-				},
+				constrain: true,
 				visible: false,
 				width: 300,
 				zIndex: 500
@@ -208,19 +199,19 @@ var SchedulerEventRecorder = A.Component.create({
 
 			instance.get(NODE).addClass(CSS_SCHEDULER_EVENT_RECORDER);
 
-			instance.publish(EV_SCHEDULER_EVENT_RECORDER_CANCEL, {
+			instance.publish('cancel', {
 				defaultFn: instance._defCancelEventFn
 			});
 
-			instance.publish(EV_SCHEDULER_EVENT_RECORDER_DELETE, {
+			instance.publish('delete', {
 				defaultFn: instance._defDeleteEventFn
 			});
 
-			instance.publish(EV_SCHEDULER_EVENT_RECORDER_EDIT, {
+			instance.publish('edit', {
 				defaultFn: instance._defEditEventFn
 			});
 
-			instance.publish(EV_SCHEDULER_EVENT_RECORDER_SAVE, {
+			instance.publish('save', {
 				defaultFn: instance._defSaveEventFn
 			});
 
@@ -228,6 +219,33 @@ var SchedulerEventRecorder = A.Component.create({
 
 			instance[OVERLAY] = new A.Overlay(instance.get(OVERLAY));
 			instance[TOOLBAR] = new A.Toolbar(instance.get(TOOLBAR));
+
+			instance[OVERLAY].on(VISIBLE_CHANGE, A.bind(instance._onOverlayVisibleChange, instance));
+		},
+
+		getOverlayContentNode: function() {
+			var instance = this;
+			var overlayBB = instance[OVERLAY].get(BOUNDING_BOX);
+
+			return overlayBB.one(_DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_CONTENT);
+		},
+
+		getUpdatedSchedulerEvent: function(optAttrMap) {
+			var instance = this,
+				schedulerEvent = instance.get(EVENT),
+				options = {
+					silent: !schedulerEvent
+				},
+				formValues = instance.serializeForm();
+
+			if (!schedulerEvent) {
+				schedulerEvent = instance.clone();
+			}
+
+			schedulerEvent.set(SCHEDULER, instance.get(SCHEDULER), { silent: true });
+			schedulerEvent.setAttrs(A.merge(formValues, optAttrMap), options);
+
+			return schedulerEvent;
 		},
 
 		_afterSchedulerChange: function(event) {
@@ -250,7 +268,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
 
-			scheduler.removeEvent(instance.get(EVENT));
+			scheduler.removeEvents(instance.get(EVENT));
 
 			instance.hideOverlay();
 
@@ -270,7 +288,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
 
-			scheduler.addEvent(event.newSchedulerEvent);
+			scheduler.addEvents(event.newSchedulerEvent);
 
 			instance.hideOverlay();
 
@@ -280,30 +298,44 @@ var SchedulerEventRecorder = A.Component.create({
 		_handleCancelEvent: function(event) {
 			var instance = this;
 
-			instance.fire(EV_SCHEDULER_EVENT_RECORDER_CANCEL);
+			instance.fire('cancel');
 
 			event.preventDefault();
+		},
+
+		_handleClickOutSide: function(event) {
+			var instance = this;
+
+			instance.fire('cancel');
 		},
 
 		_handleDeleteEvent: function(event) {
 			var instance = this;
 
-			instance.fire(EV_SCHEDULER_EVENT_RECORDER_DELETE, {
+			instance.fire('delete', {
 				schedulerEvent: instance.get(EVENT)
 			});
 
 			event.preventDefault();
 		},
 
-		_handleSaveEvent: function(event) {
+		_handleEscapeEvent: function(event) {
 			var instance = this;
 
-			instance.fire(
-				instance.get(EVENT) ? EV_SCHEDULER_EVENT_RECORDER_EDIT : EV_SCHEDULER_EVENT_RECORDER_SAVE,
-				{
-					newSchedulerEvent: instance.getEventCopy()
-				}
-			);
+			if (instance[OVERLAY].get(RENDERED) && (event.keyCode == A.Event.KeyMap.ESC)) {
+				instance.fire('cancel');
+
+				event.preventDefault();
+			}
+		},
+
+		_handleSaveEvent: function(event) {
+			var instance = this,
+				eventName = instance.get(EVENT) ? 'edit' : 'save';
+
+			instance.fire(eventName, {
+				newSchedulerEvent: instance.getUpdatedSchedulerEvent()
+			});
 
 			event.preventDefault();
 		},
@@ -313,7 +345,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var evt = event.currentTarget.getData(SCHEDULER_EVENT);
 
 			if (evt) {
-				instance.set(EVENT, evt);
+				instance.set(EVENT, evt, { silent: true });
 				instance.showOverlay([event.pageX, event.pageY]);
 
 				instance.get(NODE).remove();
@@ -327,16 +359,17 @@ var SchedulerEventRecorder = A.Component.create({
 				instance.populateForm();
 
 				if (!instance.get(EVENT)) {
-					var overlayBB = instance[OVERLAY].get(BOUNDING_BOX);
-					var contentNode = overlayBB.one(_DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_CONTENT);
+					var overlayContentNode = instance.getOverlayContentNode();
 
-					setTimeout(function() {
-						contentNode.selectText();
-					}, 0);
+					if (overlayContentNode) {
+						setTimeout(function() {
+							overlayContentNode.selectText();
+						}, 0);
+					}
 				}
 			}
 			else {
-				instance.set(EVENT, null);
+				instance.set(EVENT, null, { silent: true });
 
 				instance.get(NODE).remove();
 			}
@@ -350,46 +383,25 @@ var SchedulerEventRecorder = A.Component.create({
 
 		_renderOverlay: function() {
 			var instance = this;
+			var scheduler = instance.get(SCHEDULER);
+			var schedulerBB = scheduler.get(BOUNDING_BOX);
 			var strings = instance.get(STRINGS);
 
-			instance[OVERLAY].render();
-			instance[TOOLBAR].render();
+			instance[OVERLAY].render(schedulerBB);
+			instance[TOOLBAR].render(schedulerBB);
 
 			var overlayBB = instance[OVERLAY].get(BOUNDING_BOX);
 			overlayBB.addClass(CSS_SCHEDULER_EVENT_RECORDER_OVERLAY);
 
 			instance[OVERLAY].set(FOOTER_CONTENT, instance[TOOLBAR].get(BOUNDING_BOX));
-			instance[OVERLAY].on(VISIBLE_CHANGE, A.bind(instance._onOverlayVisibleChange, instance));
 
 			instance.formNode = A.Node.create(TPL_OVERLAY_FORM);
 
 			instance[OVERLAY].set(BODY_CONTENT, instance.formNode);
 
 			instance.formNode.on(SUBMIT, A.bind(instance._onSubmitForm, instance));
-		},
 
-		getEventCopy: function() {
-			var instance = this;
-			var newEvt = instance.get(EVENT);
-
-			if (!newEvt) {
-				newEvt = new (instance.get(EVENT_CLASS))({
-					allDay: instance.get(ALL_DAY),
-					endDate: instance.get(END_DATE),
-					scheduler: instance.get(SCHEDULER),
-					startDate: instance.get(START_DATE)
-				});
-
-				// copying propagatable attrs
-				newEvt.copyPropagateAttrValues(instance, { content: true });
-			}
-
-			var values = instance.serializeForm();
-
-			newEvt.set(CONTENT, values[CONTENT]);
-			newEvt.set(REPEAT, values[REPEAT]);
-
-			return newEvt;
+			scheduler.get(BOUNDING_BOX).on('clickoutside', A.bind(instance._handleClickOutSide, instance));
 		},
 
 		getFormattedDate: function() {
@@ -402,21 +414,23 @@ var SchedulerEventRecorder = A.Component.create({
 			var startDate = evt.get(START_DATE);
 			var fmtHourFn = (scheduler.get(ACTIVE_VIEW).get(ISO_TIME) ? DateMath.toIsoTimeString : DateMath.toUsTimeString);
 
-			return [ evt._formatDate(startDate, dateFormat), fmtHourFn(startDate), DASH, fmtHourFn(endDate) ].join(SPACE);
+			return [ evt._formatDate(startDate, dateFormat), fmtHourFn(startDate), _DASH, fmtHourFn(endDate) ].join(_SPACE);
 		},
 
 		getTemplateData: function() {
-			var instance = this;
+			var instance = this,
+				strings = instance.get(STRINGS),
+				evt = instance.get(EVENT) || instance,
+				content = evt.get(CONTENT);
 
-			var strings = instance.get(STRINGS);
-			var evt = (instance.get(EVENT) || instance);
+			if (isUndefined(content)) {
+				content = strings['description-hint'];
+			}
 
 			return {
-				content: evt.get(CONTENT) || strings['description-hint'],
+				content: content,
 				date: instance.getFormattedDate(),
 				endDate: evt.get(END_DATE).getTime(),
-				eventRepeat: instance.eventRepeatArray,
-				repeat: evt.get(REPEAT),
 				startDate: evt.get(START_DATE).getTime()
 			};
 		},
@@ -430,17 +444,6 @@ var SchedulerEventRecorder = A.Component.create({
 		populateForm: function() {
 			var instance = this;
 
-			if (!instance.eventRepeatArray) {
-				instance.eventRepeatArray = [];
-
-				A.each(A.SchedulerEventRepeat, function(item) {
-					instance.eventRepeatArray.push({
-						description: item[DESCRIPTION],
-						value: item[VALUE]
-					});
-				});
-			}
-
 			instance.formNode.setContent(
 				instance.get(TEMPLATE).parse(instance.getTemplateData())
 			);
@@ -452,34 +455,46 @@ var SchedulerEventRecorder = A.Component.create({
 			return A.QueryString.parse(_serialize(instance.formNode.getDOM()));
 		},
 
-		showOverlay: function(xy, offset) {
-			var instance = this;
-			var defaultOffset = instance.get(OVERLAY_OFFSET);
+		showOverlay: function(xy) {
+			var instance = this,
+				originalXY = xy.concat([]),
+				overlay = instance[OVERLAY],
+				overlayBB = overlay.get(BOUNDING_BOX);
 
 			if (!instance[OVERLAY].get(RENDERED)) {
 				instance._renderOverlay();
 			}
 
-			instance[OVERLAY].show();
+			overlay.show();
 
-			if (!xy) {
-				var eventNode = (instance.get(EVENT) || instance).get(NODE);
-				var titleNode = eventNode.one(_DOT + CSS_SCHEDULER_EVENT_TITLE);
+			instance.handleEscapeEvent = A.on(KEY_DOWN, A.bind(instance._handleEscapeEvent, instance));
 
-				offset = [defaultOffset[0] + titleNode.get(OFFSET_WIDTH), defaultOffset[1] + titleNode.get(OFFSET_HEIGHT) / 2];
+			var arrows = overlayBB.all(_DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW),
+				firstArrow = arrows.item(0),
+				firstArrowHeight = firstArrow.get(OFFSET_HEIGHT),
+				firstArrowWidth = firstArrow.get(OFFSET_WIDTH);
 
-				xy = titleNode.getXY();
+			arrows.removeClass(CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_TOP).show();
+
+			xy[0] -= overlayBB.get(OFFSET_WIDTH)*0.5;
+			xy[1] -= overlayBB.get(OFFSET_HEIGHT) + firstArrowHeight*0.5;
+
+			var constrainedXY = overlay.getConstrainedXY(xy);
+
+			if (constrainedXY[1] !== xy[1]) {
+				xy[1] = originalXY[1] + firstArrowHeight*0.5;
+
+				arrows.addClass(CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_TOP);
 			}
 
-			// Since #2530972 is not yet done, manually putting an offset to the alignment
-			offset = offset || defaultOffset;
+			xy = overlay.getConstrainedXY(xy);
 
-			xy[0] += offset[0];
-			xy[1] += offset[1];
+			overlay.set('xy', xy);
 
-			instance[OVERLAY].set('xy', xy);
+			var arrowX = clamp(originalXY[0] - firstArrowWidth*0.5, xy[0], xy[0] + overlayBB.get(OFFSET_WIDTH));
+
+			arrows.setX(arrowX);
 		}
-
 	}
 });
 

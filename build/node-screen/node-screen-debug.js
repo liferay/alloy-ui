@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('node-screen', function(Y) {
+YUI.add('node-screen', function (Y, NAME) {
 
 /**
  * Extended Node interface for managing regions and screen positioning.
@@ -33,7 +33,7 @@ Y.each([
 
     /**
      * Document width 
-     * @config winHeight
+     * @config docWidth
      * @type {Int}
      */
     'docWidth',
@@ -244,4 +244,4 @@ Y.Node.prototype.inRegion = function(node2, all, altRegion) {
 };
 
 
-}, '3.4.0' ,{requires:['node-base', 'dom-screen']});
+}, '3.7.3', {"requires": ["dom-screen", "node-base"]});

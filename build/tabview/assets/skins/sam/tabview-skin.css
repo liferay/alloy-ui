@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
 /* .yui-navset defaults to .yui-navset-top */
 .yui3-skin-sam .yui3-tabview-list {
@@ -27,7 +27,7 @@ build: nightly
     border:solid #a3a3a3;
     border-width: 1px 1px 0 1px;
     color:#000;
-    cursor:hand;
+    cursor:pointer;
     font-size:85%;
     padding:0.3em .75em;
     text-decoration:none;

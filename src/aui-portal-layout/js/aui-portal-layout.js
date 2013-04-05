@@ -11,6 +11,8 @@ var Lang = A.Lang,
 	isString = Lang.isString,
 	isValue = Lang.isValue,
 
+	toInt = Lang.toInt,
+
 	ceil = Math.ceil,
 
 	DDM = A.DD.DDM,
@@ -74,7 +76,7 @@ var Lang = A.Lang,
 	},
 
 	getNumStyle = function(elem, styleName) {
-		return parseInt(elem.getStyle(styleName), 10) || 0;
+		return toInt(elem.getStyle(styleName));
 	},
 
 	getCN = A.getClassName,

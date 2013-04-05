@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('anim-easing', function(Y) {
+YUI.add('anim-easing', function (Y, NAME) {
 
 /*
 TERMS OF USE - EASING EQUATIONS
@@ -354,4 +354,4 @@ var Easing = {
 Y.Easing = Easing;
 
 
-}, '3.4.0' ,{requires:['anim-base']});
+}, '3.7.3', {"requires": ["anim-base"]});

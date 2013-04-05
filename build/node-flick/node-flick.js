@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('node-flick', function(Y) {
+YUI.add('node-flick', function (Y, NAME) {
 
 /**
  * Provide a simple Flick plugin, which can be used along with the "flick" gesture event, to 
@@ -121,11 +121,11 @@ YUI.add('node-flick', function(Y) {
         },
 
         /**
-         * The constraining box relative to which the flick animation and bounds should be calculated.
+         * Time between flick animation frames.
          *
-         * @attribute boundingBox
-         * @type Node
-         * @default parentNode
+         * @attribute step
+         * @type Number
+         * @default 10
          */
         step : {
             value:10
@@ -527,4 +527,4 @@ YUI.add('node-flick', function(Y) {
     Y.Plugin.Flick = Flick;
 
 
-}, '3.4.0' ,{requires:['classnamemanager', 'transition', 'event-flick', 'plugin']});
+}, '3.7.3', {"requires": ["classnamemanager", "transition", "event-flick", "plugin"], "skinnable": true});

@@ -20,7 +20,6 @@ var L = A.Lang,
 	},
 
 	ANCHOR = 'a',
-	BLANK = '',
 	BOUNDING_BOX = 'boundingBox',
 	CAN_RESET = 'canReset',
 	CLEARFIX = 'clearfix',
@@ -30,7 +29,6 @@ var L = A.Lang,
 	DOT = '.',
 	ELEMENT = 'element',
 	ELEMENTS = 'elements',
-	EMPTY_STR = '',
 	HELPER = 'helper',
 	HOVER = 'hover',
 	HREF = 'href',
@@ -48,41 +46,42 @@ var L = A.Lang,
 	SELECTED_INDEX = 'selectedIndex',
 	SHOW_TITLE = 'showTitle',
 	SIZE = 'size',
+	STR_EMPTY = '',
 	TITLE = 'title',
 	VALUE = 'value',
 
 	EV_RATING_ITEM_CLICK = 'itemClick',
-	EV_RATING_ITEM_SELECT = 'itemSelect',
 	EV_RATING_ITEM_OUT = 'itemOut',
 	EV_RATING_ITEM_OVER = 'itemOver',
+	EV_RATING_ITEM_SELECT = 'itemSelect',
 
 	getCN = A.getClassName,
 
 	CSS_CLEAR_FIX = getCN(HELPER, CLEARFIX),
-	CSS_RATING_LABEL_EL = getCN(RATING, LABEL, ELEMENT),
 	CSS_RATING_EL = getCN(RATING, ELEMENT),
 	CSS_RATING_EL_HOVER  = getCN(RATING, ELEMENT, HOVER),
 	CSS_RATING_EL_OFF = getCN(RATING, ELEMENT, OFF),
 	CSS_RATING_EL_ON = getCN(RATING, ELEMENT, ON),
+	CSS_RATING_LABEL_EL = getCN(RATING, LABEL, ELEMENT),
 
-	TPL_LABEL = '<div class="'+CSS_RATING_LABEL_EL+'"></div>',
+	TPL_LABEL = '<div class="' + CSS_RATING_LABEL_EL + '"></div>',
 	MAP_RATING_EL = {
 		tagName: 'a',
-		attrs: ''
+		attrs: STR_EMPTY
 	},
 	MAP_RATING_EL_DISABLED = {
 		tagName: 'a',
-		attrs: 'href="'+HREF_JAVASCRIPT+'"'
+		attrs: ' href="' + HREF_JAVASCRIPT + '"'
 	},
-	TPL_RATING_EL = '<a href="'+HREF_JAVASCRIPT+'"></a>',
+	TPL_RATING_EL = '<a href="' + HREF_JAVASCRIPT + '"></a>',
 	TPL_RATING_EL_DISABLED = '<span></span>',
 	TPL_RATING_CLASS_ATTR = ' class="' + CSS_RATING_EL + '"',
 	FN_GET_RATING_TPL = function(disabled) {
 		var map = disabled ? MAP_RATING_EL_DISABLED : MAP_RATING_EL;
 
-		var buffer = ['<',map.tagName, map.attrs, TPL_RATING_CLASS_ATTR, '>','</',map.tagName,'>'];
+		var buffer = ['<', map.tagName, map.attrs, TPL_RATING_CLASS_ATTR, '>', '</', map.tagName, '>'];
 
-		return buffer.join('');
+		return buffer.join(STR_EMPTY);
 	};
 
 /**
@@ -135,7 +134,7 @@ var Rating = A.Component.create(
 		ATTRS: {
 			/**
 			 * Whether the Rating is disabled or not. Disabled Ratings don't allow
-	         * hover or click, just display selected stars.
+			 * hover or click, just display selected stars.
 			 *
 			 * @attribute disabled
 			 * @default false
@@ -148,7 +147,7 @@ var Rating = A.Component.create(
 
 			/**
 			 * If <code>true</code> could be reseted (i.e., have no values
-	         * selected).
+			 * selected).
 			 *
 			 * @attribute canReset
 			 * @default true
@@ -175,7 +174,7 @@ var Rating = A.Component.create(
 
 			/**
 			 * <a href="NodeList.html">NodeList</a> of elements used on the
-	         * Rating. Each element is one Star.
+			 * Rating. Each element is one Star.
 			 *
 			 * @attribute elements
 			 * @writeOnce
@@ -188,7 +187,7 @@ var Rating = A.Component.create(
 
 			/**
 			 * Hidden input to handle the selected value. This hidden input
-	         * replace the radio elements and keep the same name.
+			 * replace the radio elements and keep the same name.
 			 *
 			 * @attribute hiddenInput
 			 * @type Node
@@ -199,15 +198,15 @@ var Rating = A.Component.create(
 
 			/**
 			 * Name of the <a
-	         * href="Rating.html#config_hiddenInput">hiddenInput</a> element. If
-	         * not specified will use the name of the replaced radio.
+			 * href="Rating.html#config_hiddenInput">hiddenInput</a> element. If
+			 * not specified will use the name of the replaced radio.
 			 *
 			 * @attribute inputName
 			 * @default ''
 			 * @type String
 			 */
 			inputName: {
-				value: BLANK,
+				value: STR_EMPTY,
 				validator: isString
 			},
 
@@ -219,14 +218,14 @@ var Rating = A.Component.create(
 			 * @type String
 			 */
 			label: {
-				value: BLANK,
+				value: STR_EMPTY,
 				validator: isString
 			},
 
 			/**
 			 * DOM Node to display the text of the StarRating. If not
-             * specified try to query using HTML_PARSER an element inside
-             * boundingBox which matches <code>aui-rating-label-element</code>.
+			 * specified try to query using HTML_PARSER an element inside
+			 * boundingBox which matches <code>aui-rating-label-element</code>.
 			 *
 			 * @attribute labelNode
 			 * @default Generated div element.
@@ -253,8 +252,8 @@ var Rating = A.Component.create(
 
 			/**
 			 * If <code>true</code> will extract the value of the
-	         * <code>title</code> attribute on the radio, and use it on the
-	         * generated Rating elements.
+			 * <code>title</code> attribute on the radio, and use it on the
+			 * generated Rating elements.
 			 *
 			 * @attribute showTitle
 			 * @default true
@@ -281,7 +280,7 @@ var Rating = A.Component.create(
 
 			/**
 			 * If set, will be used when there is no DOM <code>title</code> on the
-	         * radio elements.
+			 * radio elements.
 			 *
 			 * @attribute title
 			 * @default null
@@ -309,18 +308,18 @@ var Rating = A.Component.create(
 		 */
 		HTML_PARSER: {
 			elements: function(srcNode) {
-				return srcNode.all(DOT+CSS_RATING_EL);
+				return srcNode.all(DOT + CSS_RATING_EL);
 			},
 
 			label: function(srcNode) {
-				var labelNode = srcNode.one(DOT+CSS_RATING_LABEL_EL);
+				var labelNode = srcNode.one(DOT + CSS_RATING_LABEL_EL);
 
 				if (labelNode) {
 					return labelNode.html();
 				}
 			},
 
-			labelNode: DOT+CSS_RATING_LABEL_EL
+			labelNode: DOT + CSS_RATING_LABEL_EL
 		},
 
 		prototype: {
@@ -330,7 +329,7 @@ var Rating = A.Component.create(
 			 * @method initializer
 			 * @protected
 			 */
-			initializer: function(){
+			initializer: function() {
 				var instance = this;
 
 				instance.inputElementsData = {};
@@ -344,8 +343,9 @@ var Rating = A.Component.create(
 			 * @method renderUI
 			 * @protected
 			 */
-			renderUI: function () {
+			renderUI: function() {
 				var instance = this;
+
 				var contentBox = instance.get(CONTENT_BOX);
 
 				contentBox.addClass(CSS_CLEAR_FIX);
@@ -361,7 +361,7 @@ var Rating = A.Component.create(
 			 * @method bindUI
 			 * @protected
 			 */
-			bindUI: function () {
+			bindUI: function() {
 				var instance = this;
 
 				instance._createEvents();
@@ -377,7 +377,7 @@ var Rating = A.Component.create(
 			 * @method syncUI
 			 * @protected
 			 */
-			syncUI: function(){
+			syncUI: function() {
 				var instance = this;
 
 				instance._syncElements();
@@ -406,6 +406,7 @@ var Rating = A.Component.create(
 			 */
 			select: function(index) {
 				var instance = this;
+
 				var oldIndex = instance.get(SELECTED_INDEX);
 				var canReset = instance.get(CAN_RESET);
 
@@ -419,7 +420,7 @@ var Rating = A.Component.create(
 				var selectedIndex = instance.get(SELECTED_INDEX);
 				var	data = instance._getInputData(selectedIndex);
 
-				var title = (TITLE in data) ? data.title : BLANK;
+				var title = (TITLE in data) ? data.title : STR_EMPTY;
 				var value = (VALUE in data) ? data.value : selectedIndex;
 
 				instance.fillTo(selectedIndex);
@@ -435,7 +436,7 @@ var Rating = A.Component.create(
 
 			/**
 			 * Add the <code>className</code> on the the <code>index</code> element
-		     * and all the previous Rating elements.
+			 * and all the previous Rating elements.
 			 *
 			 * @method fillTo
 			 * @param {Number} index Index to be selected
@@ -471,7 +472,7 @@ var Rating = A.Component.create(
 
 			/**
 			 * Check if the Rating element can fire the custom events. Disabled
-		     * elements won't fire nothing.
+			 * elements won't fire nothing.
 			 *
 			 * @method _canFireCustomEvent
 			 * @param {EventFacade} event
@@ -480,6 +481,7 @@ var Rating = A.Component.create(
 			 */
 			_canFireCustomEvent: function(event) {
 				var instance = this;
+
 				var domTarget = event.domEvent.target;
 
 				// checks if the widget is not disabled and if the dom event is firing with a item as target
@@ -489,8 +491,8 @@ var Rating = A.Component.create(
 
 			/**
 			 * Create rating elements based on the <code>size</code>
-             * attribute. It's only invoked when the HTML_PARSER does not find
-             * nothing.
+			 * attribute. It's only invoked when the HTML_PARSER does not find
+			 * nothing.
 			 *
 			 * @method _createElements
 			 * @protected
@@ -498,6 +500,7 @@ var Rating = A.Component.create(
 			 */
 			_createElements: function() {
 				var instance = this;
+
 				var elements = [];
 
 				var ratingTPL = FN_GET_RATING_TPL(instance.get(DISABLED));
@@ -508,7 +511,7 @@ var Rating = A.Component.create(
 					);
 				}
 
-				var elementFrag = A.DOM.create(elements.join(''));
+				var elementFrag = A.DOM.create(elements.join(STR_EMPTY));
 
 				return new A.NodeList(elementFrag.childNodes);
 			},
@@ -525,11 +528,11 @@ var Rating = A.Component.create(
 				// create publish function for kweight optimization
 				var publish = function(name, fn) {
 					instance.publish(name, {
-			            defaultFn: fn,
-			            queuable: false,
-			            emitFacade: true,
-			            bubbles: true
-			        });
+						defaultFn: fn,
+						queuable: false,
+						emitFacade: true,
+						bubbles: true
+					});
 				};
 
 				/**
@@ -594,6 +597,7 @@ var Rating = A.Component.create(
 			 */
 			_defRatingItemClickFn: function(event) {
 				var instance = this;
+
 				var domEvent = event.domEvent;
 
 				instance.fire(EV_RATING_ITEM_SELECT, {
@@ -612,6 +616,7 @@ var Rating = A.Component.create(
 			 */
 			_defRatingItemSelectFn: function(event) {
 				var instance = this;
+
 				var domTarget = event.domEvent.target;
 
 				instance.select(
@@ -643,6 +648,7 @@ var Rating = A.Component.create(
 			 */
 			_defRatingItemOverFn: function(event) {
 				var instance = this;
+
 				var index = instance.indexOf(event.domEvent.target);
 
 				instance.fillTo(index, CSS_RATING_EL_HOVER);
@@ -656,6 +662,7 @@ var Rating = A.Component.create(
 			 */
 			_parseInputElements: function() {
 				var instance = this;
+
 				var boundingBox = instance.get(BOUNDING_BOX);
 				var inputs = boundingBox.all(INPUT);
 				var size = inputs.size();
@@ -671,12 +678,12 @@ var Rating = A.Component.create(
 
 					inputs.each(function(node, index) {
 						var id = node.get(ID);
-						var label = EMPTY_STR;
+						var label = STR_EMPTY;
 
 						if (id) {
 							// for a11y parse the <label> elments information
 							// checking if the node has a <label>
-							var labelEl = labels.filter('[for="'+id+'"]');
+							var labelEl = labels.filter('[for="' + id + '"]');
 
 							if (labelEl.size()) {
 								// if there is, extract the content of the label to use as content of the anchors...
@@ -713,7 +720,7 @@ var Rating = A.Component.create(
 			_renderLabel: function() {
 				var instance = this;
 
-				instance.get(CONTENT_BOX).append(
+				instance.get(CONTENT_BOX).setContent(
 					instance.get(LABEL_NODE)
 				);
 			},
@@ -724,14 +731,15 @@ var Rating = A.Component.create(
 			 * @method _renderElements
 			 * @protected
 			 */
-			_renderElements: function(elements) {
+			_renderElements: function() {
 				var instance = this;
+
 				var contentBox = instance.get(CONTENT_BOX);
 
 				var elements = instance.get(ELEMENTS);
 
-				// if not found any elements from the HTML_PARSER create them based on the size attribute
-				if (!elements.size()) {
+				// if there are no elements in the markup, create them based on the size attribute
+				if (!elements || !elements.size()) {
 					elements = instance._createElements();
 
 					instance.set(ELEMENTS, elements);
@@ -774,6 +782,7 @@ var Rating = A.Component.create(
 			 */
 			_syncElements: function() {
 				var instance = this;
+
 				var selectedIndex = instance.get(DEFAULT_SELECTED) - 1;
 
 				instance.set(SELECTED_INDEX, selectedIndex);
@@ -789,6 +798,7 @@ var Rating = A.Component.create(
 			 */
 			_syncLabelUI: function() {
 				var instance = this;
+
 				var labelText = instance.get(LABEL);
 
 				instance.get(LABEL_NODE).html(labelText);
@@ -796,7 +806,7 @@ var Rating = A.Component.create(
 
 			/**
 			 * Get the <code>index</code> element input data stored on <a
-		     * href="Rating.html#property_inputElementsData">inputElementsData</a>.
+			 * href="Rating.html#property_inputElementsData">inputElementsData</a>.
 			 *
 			 * @method _getInputData
 			 * @protected
@@ -972,7 +982,7 @@ var ThumbRating = A.Component.create(
 
 			/**
 			 * Add the <code>className</code> on the the <code>index</code> element
-		     * and all the previous Rating elements.
+			 * and all the previous Rating elements.
 			 *
 			 * @method fillTo
 			 * @param {Number} index Index to be selected

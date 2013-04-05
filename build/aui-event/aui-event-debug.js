@@ -252,6 +252,26 @@ A.mix(
 
 A.Event.KeyMap = KeyMap;
 
+// Simple version of http://perfectionkills.com/detecting-event-support-without-browser-sniffing/
+A.Event.supportsDOMEvent = function(domNode, eventName) {
+	eventName = 'on' + eventName;
+
+	if (!(eventName in domNode)) {
+		if (!domNode.setAttribute) {
+			domNode = document.createElement('div');
+		}
+
+		if (domNode.setAttribute) {
+			domNode.setAttribute(eventName, '');
+			return (typeof domNode[eventName] === 'function');
+		}
+	}
+
+	domNode = null;
+
+	return true;
+};
+
 }, '@VERSION@' ,{requires:['event']});
 AUI.add('aui-event-input', function(A) {
 /**
@@ -265,87 +285,86 @@ AUI.add('aui-event-input', function(A) {
  * @class AUI~event~input
  */
 
-var	L = A.Lang,
-	isFunction = L.isFunction,
+var DOM_EVENTS = A.Node.DOM_EVENTS;
 
-	ACTIVE_ELEMENT = 'activeElement',
-	OWNER_DOCUMENT = 'ownerDocument',
-
-	UA = A.UA,
-
-	DOC = A.config.doc,
-	IMP = DOC && DOC.implementation,
-	SUPPORTS_EVENTS = IMP && (!IMP.hasFeature('Events', '2.0'));
-
-var evt = {
-	/**
-	 * This event fires when the value of the element changes, either as a result of
-	 * a keystroke, or from an input event.
-	 *
-	 * @event input
-	 * @param type {String} 'input'
-	 * @param fn {Function} the callback function
-	 * @param el {String|Node|etc} the element to bind (typically document)
-	 * @param o {Object} optional context object
-	 * @param args 0..n additional arguments that should be provided
-	 * to the listener.
-	 * @return {Event.Handle} the detach handle
-	 */
-	on: function(type, fn, el) {
-		// priorize input event that supports copy & paste
-		var etype = 'input';
-
-		// WebKit before version 531 (3.0.182.2) did not support input events for textareas.
-		// http://dev.chromium.org/developers/webkit-version-table
-		// All Chrome versions supports input event
-		// TODO: use UA.chrome when YUI 3 detects it
-		if (!/chrome/i.test(UA.agent) && UA.webkit && UA.version.major <= 2) {
-			etype = 'keypress';
-		}
-		else if (UA.ie && SUPPORTS_EVENTS) {
-			// IE doesn't support input event, simulate it with propertychange
-			etype = 'propertychange';
-		}
-
-		var handler = function(event) {
-			var instance = this;
-			var input = event.target;
-			var originalEvent = event._event;
-
-			// only trigger checkLength() on IE when propertychange happens on the value attribute
-			if (event.type == 'propertychange') {
-				if (originalEvent && (originalEvent.propertyName != 'value')) {
-					return false; // NOTE: return
-				}
-			}
-
-			var focused = (input.get(OWNER_DOCUMENT).get(ACTIVE_ELEMENT) == input);
-
-			if (focused && isFunction(fn)) {
-				fn.apply(instance, arguments);
-			}
-		};
-
-		return A.Event.attach(etype, handler, el);
-	}
-};
-
-A.Env.evt.plugins.input = evt;
-
-if (A.Node) {
-	/**
-	 * A.Node.DOM_EVENTS.input event.
-	 *
-	 * @property A.Node.DOM_EVENTS.input
-	 * @type Event.Handle
-	 * @static
-	 */
-	A.Node.DOM_EVENTS.input = evt;
+// Input event feature check should be done on textareas. WebKit before
+// version 531 (3.0.182.2) did not support input events for textareas.
+// See http://dev.chromium.org/developers/webkit-version-table
+if (A.Event.supportsDOMEvent(document.createElement('textarea'), 'input')) {
+	// http://yuilibrary.com/projects/yui3/ticket/2533063
+	DOM_EVENTS.input = 1;
+	return;
 }
 
-/**
- * @method void();
- */
+DOM_EVENTS.cut = 1;
+DOM_EVENTS.dragend = 1;
+DOM_EVENTS.paste = 1;
+
+var ACTIVE_ELEMENT = 'activeElement',
+	OWNER_DOCUMENT = 'ownerDocument',
+
+	_HANDLER_DATA_KEY = '~~aui|input|event~~',
+	_INPUT_EVENT_TYPE = ['keydown', 'paste', 'drop', 'cut'],
+	_SKIP_FOCUS_CHECK_MAP = {
+		cut: 1,
+		drop: 1,
+		paste: 1
+	};
+
+A.Event.define('input', {
+	on: function (node, subscription, notifier) {
+		var instance = this;
+
+		subscription._handler = node.on(
+			_INPUT_EVENT_TYPE, A.bind(instance._dispatchEvent, instance, notifier));
+	},
+
+	delegate: function (node, subscription, notifier, filter) {
+		var instance = this;
+
+		subscription._handles = [];
+		subscription._handler = node.delegate('focus', function(event) {
+			var element = event.target,
+				handler = element.getData(_HANDLER_DATA_KEY);
+
+			if (!handler) {
+				handler = element.on(
+					_INPUT_EVENT_TYPE,
+					A.bind(instance._dispatchEvent, instance, notifier));
+
+				subscription._handles.push(handler);
+				element.setData(_HANDLER_DATA_KEY, handler);
+			}
+		}, filter);
+	},
+
+	detach: function (node, subscription, notifier) {
+		subscription._handler.detach();
+	},
+
+	detachDelegate: function (node, subscription, notifier) {
+		A.Array.each(subscription._handles, function(handle) {
+			var element = A.one(handle.evt.el);
+			if (element) {
+				element.setData(_HANDLER_DATA_KEY, null);
+			}
+			handle.detach();
+		});
+		subscription._handler.detach();
+	},
+
+	_dispatchEvent: function(notifier, event) {
+		var instance = this,
+			input = event.target;
+
+		if (// Since cut, drop and paste events fires before the element is focused, skip focus checking.
+			_SKIP_FOCUS_CHECK_MAP[event.type] ||
+			(input.get(OWNER_DOCUMENT).get(ACTIVE_ELEMENT) === input)) {
+
+			notifier.fire(event);
+		}
+	}
+});
 
 }, '@VERSION@' ,{requires:['aui-base']});
 AUI.add('aui-event-delegate-change', function(A) {
@@ -488,14 +507,19 @@ A.Event.define(
 	true
 );
 
-}, '@VERSION@' ,{requires:['aui-node-base','aui-event-base'], condition: {name: 'aui-event-delegate-change', trigger: 'event-base-ie', ua: 'ie'}});
+}, '@VERSION@' ,{condition: {name: 'aui-event-delegate-change', trigger: 'event-base-ie', ua: 'ie'}, requires:['aui-node-base','aui-event-base']});
 AUI.add('aui-event-delegate-submit', function(A) {
-var AObject = A.Object,
+var AArray = A.Array,
+	AObject = A.Object,
 	Node = A.Node,
 	Selector = A.Selector,
 
 	EVENT_CLICK = 'click',
-	EVENT_SUBMIT = 'submit';
+	EVENT_SUBMIT = 'submit',
+
+	AFTER = 'after',
+	SUBMIT_DELEGATE = 'submit_delegate',
+	SUBMIT_ON = 'submit_on';
 
 A.Event.define(
 	EVENT_SUBMIT,
@@ -571,7 +595,7 @@ A.Event.define(
 						while (result !== false && !event.stopped && tmpEl && tmpEl !== delegateEl);
 
 						result = ((result !== false) && (event.stopped !== 2));
-					}					
+					}
 				}
 				else {
 					result = notifier.fire(event);
@@ -587,7 +611,7 @@ A.Event.define(
 			var handles = instance._prepareHandles(subscription, form);
 
 			if (!AObject.owns(handles, EVENT_SUBMIT)) {
-				handles[EVENT_SUBMIT] = A.Event._attach([EVENT_SUBMIT, fireFn, form, notifier, filter ? 'submit_delegate' : 'submit_on']);
+				handles[EVENT_SUBMIT] = A.Event._attach([EVENT_SUBMIT, fireFn, form, notifier, filter ? SUBMIT_DELEGATE : SUBMIT_ON]);
 			}
 		},
 
@@ -642,43 +666,95 @@ A.Event.define(
 var originalOn = A.CustomEvent.prototype._on;
 
 A.CustomEvent.prototype._on = function(fn, context, args, when) {
-	var instance = this;
+ 	var instance = this;
 
 	var eventHandle = originalOn.apply(instance, arguments);
 
-	if (args && args[0] === 'submit_on' && instance.subCount > 1) {
-		var subscribers = instance.subscribers;
-
-		var lastSubscriber = subscribers[eventHandle.sub.id];
-
-		var orderedSubscribers = {};
-
-		var replace = false;
-
-		AObject.each(
-			subscribers,
-			function(subscriber, index) {
-				if (!replace && subscriber.args && subscriber.args[0] === 'submit_delegate') {
-					 orderedSubscribers[lastSubscriber.id] = lastSubscriber;
-
-					replace = true;
-				}
-
-				if (subscriber !== lastSubscriber) {
-					 orderedSubscribers[subscriber.id] = subscriber;
-				}
-			}
-		);
-
-		if (replace) {
-			instance.subscribers =  orderedSubscribers;
-		}
+	if (instance._kds) {
+		updateDeprecatedSubscribers.call(instance, eventHandle, fn, context, args, when);
+	}
+	else {
+		updateSubscribers.call(instance, eventHandle, fn, context, args, when);
 	}
 
 	return eventHandle;
 };
 
-}, '@VERSION@' ,{requires:['aui-node-base','aui-event-base'], condition: {name: 'aui-event-delegate-submit', trigger: 'event-base-ie', ua: 'ie'}});
+function sortSubscribers(subscribers) {
+	var instance = this;
+
+	var item = AArray.some(
+		subscribers,
+		function(item, index) {
+			if (item.args && item.args[0] === SUBMIT_DELEGATE) {
+				var lastSubscriber = subscribers.splice(subscribers.length - 1, 1)[0];
+
+				subscribers.splice(index, 0, lastSubscriber);
+
+				return true;
+			}
+		}
+	);
+}
+
+function sortDeprecatedSubscribers(eventHandle, subscribers) {
+	var result = subscribers;
+
+	var orderedSubscribers = {};
+
+	var lastSubscriber = subscribers[eventHandle.sub.id];
+
+	var replace = false;
+
+	AObject.each(
+		subscribers,
+		function(subscriber, index) {
+			if (!replace && subscriber.args && subscriber.args[0] === SUBMIT_DELEGATE) {
+				orderedSubscribers[lastSubscriber.id] = lastSubscriber;
+
+				replace = true;
+			}
+
+			if (subscriber !== lastSubscriber) {
+				orderedSubscribers[subscriber.id] = subscriber;
+			}
+		}
+	);
+
+	if (replace) {
+		result = orderedSubscribers;
+	}
+
+	return result;
+}
+
+function updateSubscribers(eventHandle, fn, context, args, when) {
+	var instance = this;
+
+	if (args && args[0] === SUBMIT_ON) {
+		if (when === AFTER && instance._afters.length) {
+			sortSubscribers.call(instance, instance._afters);
+		}
+		else if (instance._subscribers.length) {
+			sortSubscribers.call(instance, instance._subscribers);
+		}
+	}
+}
+
+function updateDeprecatedSubscribers(eventHandle, fn, context, args, when) {
+	var instance = this;
+
+	if (args && args[0] === SUBMIT_ON) {
+		if (when === AFTER && !AObject.isEmpty(instance.afters)) {
+			instance.afters = sortDeprecatedSubscribers.call(instance, eventHandle, instance.afters);
+		}
+		else if (!AObject.isEmpty(instance.subscribers)) {
+			instance.subscribers = sortDeprecatedSubscribers.call(instance, instance.subscribers);
+		}
+	}
+}
+
+}, '@VERSION@' ,{condition: {name: 'aui-event-delegate-submit', trigger: 'event-base-ie', ua: 'ie'}, requires:['aui-node-base','aui-event-base']});
 
 
 AUI.add('aui-event', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-event-base','aui-event-input']});

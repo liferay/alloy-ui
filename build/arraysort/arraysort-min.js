@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add("arraysort",function(c){var b=c.Lang,a=b.isValue,d=b.isString;c.ArraySort={compare:function(f,e,g){if(!a(f)){if(!a(e)){return 0;}else{return 1;}}else{if(!a(e)){return -1;}}if(d(f)){f=f.toLowerCase();}if(d(e)){e=e.toLowerCase();}if(f<e){return(g)?1:-1;}else{if(f>e){return(g)?-1:1;}else{return 0;}}}};},"3.4.0",{requires:["yui-base"]});
+YUI.add("arraysort",function(e,t){var n=e.Lang,r=n.isValue,i=n.isString;e.ArraySort={compare:function(e,t,n){return r(e)?r(t)?(i(e)&&(e=e.toLowerCase()),i(t)&&(t=t.toLowerCase()),e<t?n?1:-1:e>t?n?-1:1:0):-1:r(t)?1:0}}},"3.7.3",{requires:["yui-base"]});

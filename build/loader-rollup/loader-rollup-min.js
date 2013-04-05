@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add("loader-rollup",function(a){a.Loader.prototype._rollup=function(){var k,h,g,o,b=this.required,e,f=this.moduleInfo,d,l,n;if(this.dirty||!this.rollups){this.rollups={};for(k in f){if(f.hasOwnProperty(k)){g=this.getModule(k);if(g&&g.rollup){this.rollups[k]=g;}}}this.forceMap=(this.force)?a.Array.hash(this.force):{};}for(;;){d=false;for(k in this.rollups){if(this.rollups.hasOwnProperty(k)){if(!b[k]&&((!this.loaded[k])||this.forceMap[k])){g=this.getModule(k);o=g.supersedes||[];e=false;if(!g.rollup){continue;}l=0;for(h=0;h<o.length;h++){n=f[o[h]];if(this.loaded[o[h]]&&!this.forceMap[o[h]]){e=false;break;}else{if(b[o[h]]&&g.type==n.type){l++;e=(l>=g.rollup);if(e){break;}}}}if(e){b[k]=true;d=true;this.getRequires(g);}}}}if(!d){break;}}};},"3.4.0",{requires:["loader-base"]});
+YUI.add("loader-rollup",function(e,t){e.Loader.prototype._rollup=function(){var e,t,n,r,i=this.required,s,o=this.moduleInfo,u,a,f;if(this.dirty||!this.rollups){this.rollups={};for(e in o)o.hasOwnProperty(e)&&(n=this.getModule(e),n&&n.rollup&&(this.rollups[e]=n))}for(;;){u=!1;for(e in this.rollups)if(this.rollups.hasOwnProperty(e)&&!i[e]&&(!this.loaded[e]||this.forceMap[e])){n=this.getModule(e),r=n.supersedes||[],s=!1;if(!n.rollup)continue;a=0;for(t=0;t<r.length;t++){f=o[r[t]];if(this.loaded[r[t]]&&!this.forceMap[r[t]]){s=!1;break}if(i[r[t]]&&n.type===f.type){a++,s=a>=n.rollup;if(s)break}}s&&(i[e]=!0,u=!0,this.getRequires(n))}if(!u)break}}},"3.7.3",{requires:["loader-base"]});

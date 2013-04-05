@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('event-resize', function(Y) {
+YUI.add('event-resize', function (Y, NAME) {
 
 /**
  * Adds a window resize event that has its behavior normalized to fire at the
@@ -57,4 +57,4 @@ Y.Event.define('windowresize', {
 });
 
 
-}, '3.4.0' ,{requires:['event-synthetic']});
+}, '3.7.3', {"requires": ["node-base", "event-synthetic"]});

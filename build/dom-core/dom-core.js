@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('dom-core', function(Y) {
+YUI.add('dom-core', function (Y, NAME) {
 
 var NODE_TYPE = 'nodeType',
     OWNER_DOCUMENT = 'ownerDocument',
@@ -19,6 +19,19 @@ var NODE_TYPE = 'nodeType',
     CONTAINS = 'contains',
     COMPARE_DOCUMENT_POSITION = 'compareDocumentPosition',
     EMPTY_ARRAY = [],
+    
+    // IE < 8 throws on node.contains(textNode)
+    supportsContainsTextNode = (function() {
+        var node = Y.config.doc.createElement('div'),
+            textNode = node.appendChild(Y.config.doc.createTextNode('')),
+            result = false;
+        
+        try {
+            result = node.contains(textNode);
+        } catch(e) {}
+
+        return result;
+    })(),
 
 /** 
  * The DOM utility provides a cross-browser abtraction layer
@@ -48,6 +61,28 @@ Y_DOM = {
     byId: function(id, doc) {
         // handle dupe IDs and IE name collision
         return Y_DOM.allById(id, doc)[0] || null;
+    },
+
+    getId: function(node) {
+        var id;
+        // HTMLElement returned from FORM when INPUT name === "id"
+        // IE < 8: HTMLCollection returned when INPUT id === "id"
+        // via both getAttribute and form.id 
+        if (node.id && !node.id.tagName && !node.id.item) {
+            id = node.id;
+        } else if (node.attributes && node.attributes.id) {
+            id = node.attributes.id.value;
+        }
+
+        return id;
+    },
+
+    setId: function(node, id) {
+        if (node.setAttribute) {
+            node.setAttribute('id', id);
+        } else {
+            node.id = id;
+        }
     },
 
     /*
@@ -133,16 +168,19 @@ Y_DOM = {
 
         if ( !needle || !element || !needle[NODE_TYPE] || !element[NODE_TYPE]) {
             ret = false;
-        } else if (element[CONTAINS])  {
-            if (Y.UA.opera || needle[NODE_TYPE] === 1) { // IE & SAF contains fail if needle not an ELEMENT_NODE
+        } else if (element[CONTAINS] &&
+                // IE < 8 throws on node.contains(textNode) so fall back to brute.
+                // Falling back for other nodeTypes as well.
+                (needle[NODE_TYPE] === 1 || supportsContainsTextNode)) {
                 ret = element[CONTAINS](needle);
-            } else {
-                ret = Y_DOM._bruteContains(element, needle); 
-            }
-        } else if (element[COMPARE_DOCUMENT_POSITION]) { // gecko
+        } else if (element[COMPARE_DOCUMENT_POSITION]) {
+            // Match contains behavior (node.contains(node) === true).
+            // Needed for Firefox < 4.
             if (element === needle || !!(element[COMPARE_DOCUMENT_POSITION](needle) & 16)) { 
                 ret = true;
             }
+        } else {
+            ret = Y_DOM._bruteContains(element, needle);
         }
 
         return ret;
@@ -221,7 +259,7 @@ Y_DOM = {
 
 
     isWindow: function(obj) {
-        return !!(obj && obj.alert && obj.document);
+        return !!(obj && obj.scrollTo && obj.document);
     },
 
     _removeChildNodes: function(node) {
@@ -339,42 +377,6 @@ Y_DOM = {
         return (typeof ret !== 'undefined') ? ret : nodes;
     },
 
-    wrap: function(node, html) {
-        var parent = Y.DOM.create(html),
-            nodes = parent.getElementsByTagName('*');
-
-        if (nodes.length) {
-            parent = nodes[nodes.length - 1];
-        }
-
-        if (node.parentNode) { 
-            node.parentNode.replaceChild(parent, node);
-        }
-        parent.appendChild(node);
-    },
-
-    unwrap: function(node) {
-        var parent = node.parentNode,
-            lastChild = parent.lastChild,
-            next = node,
-            grandparent;
-
-        if (parent) {
-            grandparent = parent.parentNode;
-            if (grandparent) {
-                node = parent.firstChild;
-                while (node !== lastChild) {
-                    next = node.nextSibling;
-                    grandparent.insertBefore(node, parent);
-                    node = next;
-                }
-                grandparent.replaceChild(lastChild, parent);
-            } else {
-                parent.removeChild(node);
-            }
-        }
-    },
-
     generateID: function(el) {
         var id = el.id;
 
@@ -391,4 +393,4 @@ Y_DOM = {
 Y.DOM = Y_DOM;
 
 
-}, '3.4.0' ,{requires:['oop','features']});
+}, '3.7.3', {"requires": ["oop", "features"]});

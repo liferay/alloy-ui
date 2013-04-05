@@ -1,7 +1,7 @@
 AUI.add('aui-overlay-base', function(A) {
 /**
  * Provides a basic Overlay widget, with Standard Module content support. The Overlay widget
- * provides Page XY positioning support, alignment and centering support along with basic 
+ * provides Page XY positioning support, alignment and centering support along with basic
  * stackable support (z-index and shimming).
  *
  * @module aui-overlay
@@ -26,6 +26,11 @@ AUI.add('aui-overlay-base', function(A) {
 A.OverlayBase = A.Component.create(
 	{
 		NAME: 'overlay',
+		ATTRS: {
+			hideClass: {
+				value: false
+			}
+		},
 		AUGMENTS: [A.WidgetPosition, A.WidgetStack, A.WidgetPositionAlign, A.WidgetPositionConstrain, A.WidgetStdMod]
 	}
 );
@@ -905,7 +910,7 @@ var L = A.Lang,
  * </ul>
  *
  * Quick Example:<br/>
- * 
+ *
  * <pre><code>var instance = new A.OverlayContextPanel({
  *  bodyContent: 'Here s a sample OverlayContextPanel.',
  *  boundingBox: '#overlay-context-panel',
@@ -959,7 +964,7 @@ var OverlayContextPanel = A.Component.create(
 			 *  }
 			 * }
 			 * </code></pre>
-			 * 
+			 *
 			 * @attribute anim
 			 * @default { show: false }
 			 * @type Object
@@ -1181,7 +1186,7 @@ var OverlayContextPanel = A.Component.create(
 			 * Hides the OverlayContextPanel.
 			 *
 			 * @method hide
-			 * @param {EventFacade} event 
+			 * @param {EventFacade} event
 			 */
 			hide: function(event) {
 				var instance = this;
@@ -1328,7 +1333,7 @@ var OverlayContextPanel = A.Component.create(
 			 * Fires before show the OverlayContextPanel.
 			 *
 			 * @method _beforeShow
-			 * @param {EventFacade} event 
+			 * @param {EventFacade} event
 			 * @protected
 			 */
 			_beforeShow: function(event) {
@@ -1350,7 +1355,7 @@ var OverlayContextPanel = A.Component.create(
 			 * Fires after showArrow attribute changes.
 			 *
 			 * @method _afterShowArrowChange
-			 * @param {EventFacade} event 
+			 * @param {EventFacade} event
 			 * @protected
 			 */
 			_afterShowArrowChange: function() {
@@ -1458,9 +1463,7 @@ var Lang = A.Lang,
 				zIndexBase: {
 					value: 1000,
 					validator: isNumber,
-					setter: function(value) {
-						return parseInt(value, 10);
-					}
+					setter: Lang.toInt
 				}
 			},
 
@@ -2074,7 +2077,7 @@ var OverlayMask = A.Component.create(
 			},
 
 			/**
-			 * UI Setter for the 
+			 * UI Setter for the
 			 * <a href="Paginator.html#config_xy">XY</a> attribute.
 			 *
 			 * @method _uiSetXY
@@ -2097,5 +2100,5 @@ A.OverlayMask = OverlayMask;
 }, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-overlay-base','event-resize']});
 
 
-AUI.add('aui-overlay', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-overlay-base','aui-overlay-context','aui-overlay-context-panel','aui-overlay-manager','aui-overlay-mask']});
+AUI.add('aui-overlay', function(A){}, '@VERSION@' ,{use:['aui-overlay-base','aui-overlay-context','aui-overlay-context-panel','aui-overlay-manager','aui-overlay-mask'], skinnable:true});
 

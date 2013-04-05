@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('dom-style-ie', function(Y) {
+YUI.add('dom-style-ie', function (Y, NAME) {
 
 (function(Y) {
 var HAS_LAYOUT = 'hasLayout',
@@ -307,4 +307,4 @@ if (!testFeature('style', 'computedStyle')) {
 })(Y);
 
 
-}, '3.4.0' ,{requires:['dom-style']});
+}, '3.7.3', {"requires": ["dom-style"]});

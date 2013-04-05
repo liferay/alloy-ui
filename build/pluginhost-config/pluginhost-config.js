@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('pluginhost-config', function(Y) {
+YUI.add('pluginhost-config', function (Y, NAME) {
 
     /**
      * Adds pluginhost constructor configuration and static configuration support
@@ -134,4 +134,4 @@ YUI.add('pluginhost-config', function(Y) {
     };
 
 
-}, '3.4.0' ,{requires:['pluginhost-base']});
+}, '3.7.3', {"requires": ["pluginhost-base"]});

@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('graphics', function(Y) {
+YUI.add('graphics', function (Y, NAME) {
 
 /**
  * 
@@ -44,324 +44,8 @@ var SETTER = "setter",
     Y_LANG = Y.Lang,
     STR = "string",
     WRITE_ONCE = "writeOnce",
-    BaseGraphic,
-    AttributeLite,
-    Matrix;
-
-    /**
-     * Matrix is a class that allows for the manipulation of a transform matrix.
-     * This class is a work in progress.
-     *
-     * @class Matrix
-     * @constructor
-     */
-    Matrix = function(config) {
-        this.init(config);
-    };
-
-    Matrix.prototype = {
-        /**
-         * Used as value for the _rounding method.
-         *
-         * @property _rounder
-         * @private
-         */
-        _rounder: 100000,
-
-        /**
-         * Updates the matrix. 
-         *
-         * @method multiple
-         * @param {Number} a 
-         * @param {Number} b
-         * @param {Number} c
-         * @param {Number} d
-         * @param {Number} dx
-         * @param {Number} dy
-         */
-        multiply: function(a, b, c, d, dx, dy) {
-            var matrix = this,
-                matrix_a = matrix.a * a + matrix.c * b,
-                matrix_b = matrix.b * a + matrix.d * b,
-                matrix_c = matrix.a * c + matrix.c * d,
-                matrix_d = matrix.b * c + matrix.d * d,
-                matrix_dx = matrix.a * dx + matrix.c * dy + matrix.dx,
-                matrix_dy = matrix.b * dx + matrix.d * dy + matrix.dy;
-
-            matrix.a = matrix_a;
-            matrix.b = matrix_b;
-            matrix.c = matrix_c;
-            matrix.d = matrix_d;
-            matrix.dx = matrix_dx;
-            matrix.dy = matrix_dy;
-            return this;
-        },
-
-        /**
-         * Parses a string and updates the matrix.
-         *
-         * @method applyCSSText
-         * @param {String} val A css transform string
-         */
-        applyCSSText: function(val) {
-            var re = /\s*([a-z]*)\(([\w,\s]*)\)/gi,
-                args,
-                m;
-
-            while ((m = re.exec(val))) {
-                if (typeof this[m[1]] === 'function') {
-                    args = m[2].split(',');
-                    console.log(args);
-                    this[m[1]].apply(this, args);
-                }
-            }
-        },
-        
-        /**
-         * Parses a string and returns an array of transform arrays.
-         *
-         * @method applyCSSText
-         * @param {String} val A css transform string
-         * @return Array
-         */
-        getTransformArray: function(val) {
-            var re = /\s*([a-z]*)\(([\w,\s]*)\)/gi,
-                transforms = [],
-                args,
-                m;
-
-            while ((m = re.exec(val))) {
-                if (typeof this[m[1]] === 'function') {
-                    args = m[2].split(',');
-                    args.unshift(m[1]);
-                    transforms.push(args);
-                }
-            }
-            return transforms;
-        },
-
-        /**
-         * Default values for the matrix
-         *
-         * @property _defaults
-         * @private
-         */
-        _defaults: {
-            a: 1,
-            b: 0,
-            c: 0,
-            d: 1,
-            dx: 0,
-            dy: 0
-        },
-
-        /**
-         * Rounds values
-         *
-         * @method _round
-         * @private
-         */
-        _round: function(val) {
-            val = Math.round(val * this._rounder) / this._rounder;
-            return val;
-        },
-
-        /**
-         * Initializes a matrix.
-         *
-         * @method init
-         * @param {Object} config Specified key value pairs for matrix properties. If a property is not explicitly defined in the config argument,
-         * the default value will be used.
-         */
-        init: function(config) {
-            var defaults = this._defaults,
-                prop;
-
-            config = config || {};
-
-            for (prop in defaults) {
-                if(defaults.hasOwnProperty(prop))
-                {
-                    this[prop] = (prop in config) ? config[prop] : defaults[prop];
-                }
-            }
-
-            this._config = config;
-        },
-
-        /**
-         * Applies a scale transform
-         *
-         * @method scale
-         * @param {Number} val
-         */
-        scale: function(x, y) {
-            this.multiply(x, 0, 0, y, 0, 0);
-            return this;
-        },
-        
-        /**
-         * Applies a skew transformation.
-         *
-         * @method skew
-         * @param {Number} x The value to skew on the x-axis.
-         * @param {Number} y The value to skew on the y-axis.
-         */
-        skew: function(x, y) {
-            x = x || 0;
-            y = y || 0;
-
-            if (x !== undefined) { // null or undef
-                x = this._round(Math.tan(this.angle2rad(x)));
-
-            }
-
-            if (y !== undefined) { // null or undef
-                y = this._round(Math.tan(this.angle2rad(y)));
-            }
-
-            this.multiply(1, y, x, 1, 0, 0);
-            return this;
-        },
-
-        /**
-         * Applies a skew to the x-coordinate
-         *
-         * @method skewX
-         * @param {Number} x x-coordinate
-         */
-        skewX: function(x) {
-            this.skew(x);
-            return this;
-        },
-
-        /**
-         * Applies a skew to the y-coordinate
-         *
-         * @method skewY
-         * @param {Number} y y-coordinate
-         */
-        skewY: function(y) {
-            this.skew(null, y);
-            return this;
-        },
-
-        /**
-         * Returns a string of text that can be used to populate a the css transform property of an element.
-         *
-         * @method toCSSText
-         * @return String
-         */
-        toCSSText: function() {
-            var matrix = this,
-                dx = matrix.dx,
-                dy = matrix.dy,
-                text = 'matrix(';
-
-
-            if (Y.UA.gecko) { // requires unit
-                if (!isNaN(dx)) {
-                    dx += 'px';
-                }
-                if (!isNaN(dy)) {
-                    dy += 'px';
-                }
-            }
-
-            text +=     matrix.a + ',' + 
-                        matrix.b + ',' + 
-                        matrix.c + ',' + 
-                        matrix.d + ',' + 
-                        dx + ',' +
-                        dy;
-
-            text += ')';
-
-            return text;
-        },
-
-        /**
-         * Returns a string that can be used to populate the css filter property of an element.
-         *
-         * @method toFilterText
-         * @return String
-         */
-        toFilterText: function() {
-            var matrix = this,
-                text = 'progid:DXImageTransform.Microsoft.Matrix(';
-            text +=     'M11=' + matrix.a + ',' + 
-                        'M21=' + matrix.b + ',' + 
-                        'M12=' + matrix.c + ',' + 
-                        'M22=' + matrix.d + ',' +
-                        'sizingMethod="auto expand")';
-
-            text += '';
-
-            return text;
-        },
-
-        /**
-         * Converts a radian value to a degree.
-         *
-         * @method rad2deg
-         * @param {Number} rad Radian value to be converted.
-         * @return Number
-         */
-        rad2deg: function(rad) {
-            var deg = rad * (180 / Math.PI);
-            return deg;
-        },
-
-        /**
-         * Converts a degree value to a radian.
-         *
-         * @method deg2rad
-         * @param {Number} deg Degree value to be converted to radian.
-         * @return Number
-         */
-        deg2rad: function(deg) {
-            var rad = deg * (Math.PI / 180);
-            return rad;
-        },
-
-        angle2rad: function(val) {
-            if (typeof val === 'string' && val.indexOf('rad') > -1) {
-                val = parseFloat(val);
-            } else { // default to deg
-                val = this.deg2rad(parseFloat(val));
-            }
-
-            return val;
-        },
-
-        /**
-         * Applies a rotate transform.
-         *
-         * @method rotate
-         * @param {Number} deg The degree of the rotation.
-         */
-        rotate: function(deg, x, y) {
-            var matrix = [],
-                rad = this.angle2rad(deg),
-                sin = this._round(Math.sin(rad)),
-                cos = this._round(Math.cos(rad));
-            this.multiply(cos, sin, 0 - sin, cos, 0, 0);
-            return this;
-        },
-
-        /**
-         * Applies translate transformation.
-         *
-         * @method translate
-         * @param {Number} x The value to transate on the x-axis.
-         * @param {Number} y The value to translate on the y-axis.
-         */
-        translate: function(x, y) {
-            this.multiply(1, 0, 0, 1, parseFloat(x), parseFloat(y));
-            return this;
-        }
-    };
-    Y.Matrix = Matrix;
+    GraphicBase,
+    AttributeLite;
     
     /**
 	 * AttributeLite provides Attribute-like getters and setters for shape classes in the Graphics module. It provides a get/set API without the event infastructure.
@@ -548,15 +232,15 @@ var SETTER = "setter",
 	Y.AttributeLite = AttributeLite;
 
     /**
-     * BaseGraphic serves as the base class for the graphic layer. It serves the same purpose as
+     * GraphicBase serves as the base class for the graphic layer. It serves the same purpose as
      * Base but uses a lightweight getter/setter class instead of Attribute.
      * This class is temporary and a work in progress.
      *
-     * @class BaseGraphic
+     * @class GraphicBase
      * @constructor
      * @param {Object} cfg Key value pairs for attributes
      */
-    BaseGraphic = function(cfg)
+    GraphicBase = function(cfg)
     {
         var host = this,
             PluginHost = Y.Plugin && Y.Plugin.Host;  
@@ -576,9 +260,9 @@ var SETTER = "setter",
         host.initialized = true;
     };
 
-    BaseGraphic.NAME = "baseGraphic";
+    GraphicBase.NAME = "baseGraphic";
 
-    BaseGraphic.prototype = {
+    GraphicBase.prototype = {
         /**
          * Init method, invoked during construction.
          * Fires an init event after calling `initializer` on implementers.
@@ -593,15 +277,29 @@ var SETTER = "setter",
             });
             this.initializer.apply(this, arguments);
             this.fire("init", {cfg: arguments[0]});
+        },
+
+        /**
+         * Camel case concatanates two strings.
+         *
+         * @method _camelCaseConcat
+         * @param {String} prefix The first string
+         * @param {String} name The second string
+         * @return String
+         * @private
+         */
+        _camelCaseConcat: function(prefix, name)
+        {
+            return prefix + name.charAt(0).toUpperCase() + name.slice(1);
         }
     };
 //Straightup augment, no wrapper functions
-Y.mix(BaseGraphic, Y.AttributeLite, false, null, 1);
-Y.mix(BaseGraphic, PluginHost, false, null, 1);
-BaseGraphic.prototype.constructor = BaseGraphic;
-BaseGraphic.plug = PluginHost.plug;
-BaseGraphic.unplug = PluginHost.unplug;
-Y.BaseGraphic = BaseGraphic;
+Y.mix(GraphicBase, Y.AttributeLite, false, null, 1);
+Y.mix(GraphicBase, PluginHost, false, null, 1);
+GraphicBase.prototype.constructor = GraphicBase;
+GraphicBase.plug = PluginHost.plug;
+GraphicBase.unplug = PluginHost.unplug;
+Y.GraphicBase = GraphicBase;
 
 
 /**
@@ -987,6 +685,14 @@ Y.BaseGraphic = BaseGraphic;
 	 * @type HTMLElement
 	 * @readOnly
 	 */
+    /**
+     * Represents an SVG Path string. This will be parsed and added to shape's API to represent the SVG data across all implementations. Note that when using VML or SVG 
+     * implementations, part of this content will be added to the DOM using respective VML/SVG attributes. If your content comes from an untrusted source, you will need 
+     * to ensure that no malicious code is included in that content. 
+     *
+     * @config data
+     * @type String
+     */
 	/**
 	 * Reference to the parent graphic instance
 	 *
@@ -1315,12 +1021,42 @@ Y.BaseGraphic = BaseGraphic;
 	 * @type Number
 	 */
     /**
-     *  Determines how the size of instance is calculated. If true, the width and height are determined by the size of the contents.
-     *  If false, the width and height values are either explicitly set or determined by the size of the parent node's dimensions.
+     *  Determines the sizing of the Graphic. 
+     *
+     *  <dl>
+     *      <dt>sizeContentToGraphic</dt><dd>The Graphic's width and height attributes are, either explicitly set through the <code>width</code> and <code>height</code>
+     *      attributes or are determined by the dimensions of the parent element. The content contained in the Graphic will be sized to fit with in the Graphic instance's 
+     *      dimensions. When using this setting, the <code>preserveAspectRatio</code> attribute will determine how the contents are sized.</dd>
+     *      <dt>sizeGraphicToContent</dt><dd>(Also accepts a value of true) The Graphic's width and height are determined by the size and positioning of the content.</dd>
+     *      <dt>false</dt><dd>The Graphic's width and height attributes are, either explicitly set through the <code>width</code> and <code>height</code>
+     *      attributes or are determined by the dimensions of the parent element. The contents of the Graphic instance are not affected by this setting.</dd>
+     *  </dl>
+     *
      *
      *  @config autoSize
-     *  @type Boolean
+     *  @type Boolean | String
      *  @default false
+     */
+    /**
+     * Determines how content is sized when <code>autoSize</code> is set to <code>sizeContentToGraphic</code>.
+     *
+     *  <dl>
+     *      <dt>none<dt><dd>Do not force uniform scaling. Scale the graphic content of the given element non-uniformly if necessary 
+     *      such that the element's bounding box exactly matches the viewport rectangle.</dd>
+     *      <dt>xMinYMin</dt><dd>Force uniform scaling position along the top left of the Graphic's node.</dd>
+     *      <dt>xMidYMin</dt><dd>Force uniform scaling horizontally centered and positioned at the top of the Graphic's node.<dd>
+     *      <dt>xMaxYMin</dt><dd>Force uniform scaling positioned horizontally from the right and vertically from the top.</dd>
+     *      <dt>xMinYMid</dt>Force uniform scaling positioned horizontally from the left and vertically centered.</dd>
+     *      <dt>xMidYMid (the default)</dt><dd>Force uniform scaling with the content centered.</dd>
+     *      <dt>xMaxYMid</dt><dd>Force uniform scaling positioned horizontally from the right and vertically centered.</dd>
+     *      <dt>xMinYMax</dt><dd>Force uniform scaling positioned horizontally from the left and vertically from the bottom.</dd>
+     *      <dt>xMidYMax</dt><dd>Force uniform scaling horizontally centered and position vertically from the bottom.</dd>
+     *      <dt>xMaxYMax</dt><dd>Force uniform scaling positioned horizontally from the right and vertically from the bottom.</dd>
+     *  </dl>
+     * 
+     * @config preserveAspectRatio
+     * @type String
+     * @default xMidYMid
      */
     /**
      * The contentBounds will resize to greater values but not to smaller values. (for performance)
@@ -1447,4 +1183,4 @@ Y.BaseGraphic = BaseGraphic;
 	 */
 
 
-}, '3.4.0' ,{requires:['event-custom', 'node', 'pluginhost']});
+}, '3.7.3', {"requires": ["node", "event-custom", "pluginhost", "matrix", "classnamemanager"]});

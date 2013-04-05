@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
 (function () {
 var GLOBAL_ENV = YUI.Env;
@@ -17,7 +17,7 @@ if (!GLOBAL_ENV._ready) {
     GLOBAL_ENV.add(YUI.config.doc, 'DOMContentLoaded', GLOBAL_ENV._ready);
 }
 })();
-YUI.add('event-base', function(Y) {
+YUI.add('event-base', function (Y, NAME) {
 
 /*
  * DOM event listener abstraction layer
@@ -158,6 +158,18 @@ Y.extend(DOMEventFacade, Object, {
         this.pageX = x;
         this.pageY = y;
 
+        // charCode is unknown in keyup, keydown. keyCode is unknown in keypress.
+        // FF 3.6 - 8+? pass 0 for keyCode in keypress events.
+        // Webkit, FF 3.6-8+?, and IE9+? pass 0 for charCode in keydown, keyup.
+        // Webkit and IE9+? duplicate charCode in keyCode.
+        // Opera never sets charCode, always keyCode (though with the charCode).
+        // IE6-8 don't set charCode or which.
+        // All browsers other than IE6-8 set which=keyCode in keydown, keyup, and 
+        // which=charCode in keypress.
+        //
+        // Moral of the story: (e.which || e.keyCode) will always return the
+        // known code for that key event phase. e.keyCode is often different in
+        // keypress from keydown and keyup.
         c = e.keyCode || e.charCode;
 
         if (ua.webkit && (c in webkitKeymap)) {
@@ -166,6 +178,8 @@ Y.extend(DOMEventFacade, Object, {
 
         this.keyCode = c;
         this.charCode = c;
+        // Fill in e.which for IE - implementers should always use this over
+        // e.keyCode or e.charCode.
         this.which = e.which || e.charCode || c;
         // this.button = e.button;
         this.button = this.which;
@@ -390,7 +404,8 @@ Y.DOMEventFacade = DOMEventFacade;
 Y.Env.evt.dom_wrappers = {};
 Y.Env.evt.dom_map = {};
 
-var _eventenv = Y.Env.evt,
+var YDOM = Y.DOM,
+    _eventenv = Y.Env.evt,
     config = Y.config,
     win = config.win,
     add = YUI.Env.add,
@@ -412,13 +427,12 @@ var _eventenv = Y.Env.evt,
 
     shouldIterate = function(o) {
         try {
-            return (o && typeof o !== "string" && Y.Lang.isNumber(o.length) &&
-                    !o.tagName && !o.alert);
+            // TODO: See if there's a more performant way to return true early on this, for the common case
+            return (o && typeof o !== "string" && Y.Lang.isNumber(o.length) && !o.tagName && !YDOM.isWindow(o));
         } catch(ex) {
             Y.log("collection check failure", "warn", "event");
             return false;
         }
-
     },
 
     // aliases to support DOM event subscription clean up when the last
@@ -428,7 +442,7 @@ var _eventenv = Y.Env.evt,
     _deleteAndClean = function(s) {
         var ret = _ceProtoDelete.apply(this, arguments);
 
-        if (!this.subCount && !this.afterCount) {
+        if (!this.hasSubs()) {
             Y.Event._clean(this);
         }
 
@@ -699,6 +713,7 @@ Event._interval = setInterval(Event._poll, Event.POLL_INTERVAL);
                 cewrapper = Y.publish(key, {
                     silent: true,
                     bubbles: false,
+                    emitFacade: false,
                     contextFn: function() {
                         if (compat) {
                             return cewrapper.el;
@@ -784,7 +799,7 @@ Y.log(type + " attach call failed, invalid callback", "error", "event");
                 // oEl = (compat) ? Y.DOM.byId(el) : Y.Selector.query(el);
 
                 if (compat) {
-                    oEl = Y.DOM.byId(el);
+                    oEl = YDOM.byId(el);
                 } else {
 
                     oEl = Y.Selector.query(el);
@@ -901,7 +916,7 @@ Y.log(type + " attach call failed, invalid callback", "error", "event");
 
                 // el = (compat) ? Y.DOM.byId(el) : Y.all(el);
                 if (compat) {
-                    el = Y.DOM.byId(el);
+                    el = YDOM.byId(el);
                 } else {
                     el = Y.Selector.query(el);
                     l = el.length;
@@ -975,7 +990,7 @@ Y.log(type + " attach call failed, invalid callback", "error", "event");
          * @static
          */
         generateId: function(el) {
-            return Y.DOM.generateID(el);
+            return YDOM.generateID(el);
         },
 
         /**
@@ -1058,20 +1073,24 @@ Y.log(type + " attach call failed, invalid callback", "error", "event");
 
             executeItem = function (el, item) {
                 var context, ov = item.override;
-                if (item.compat) {
-                    if (item.override) {
-                        if (ov === true) {
-                            context = item.obj;
+                try {
+                    if (item.compat) {
+                        if (item.override) {
+                            if (ov === true) {
+                                context = item.obj;
+                            } else {
+                                context = ov;
+                            }
                         } else {
-                            context = ov;
+                            context = el;
                         }
+                        item.fn.call(context, item.obj);
                     } else {
-                        context = el;
+                        context = item.obj || Y.one(el);
+                        item.fn.apply(context, (Y.Lang.isArray(ov)) ? ov : []);
                     }
-                    item.fn.call(context, item.obj);
-                } else {
-                    context = item.obj || Y.one(el);
-                    item.fn.apply(context, (Y.Lang.isArray(ov)) ? ov : []);
+                } catch (e) {
+                    Y.log("Error in available or contentReady callback", 'error', 'event');
                 }
             };
 
@@ -1081,7 +1100,7 @@ Y.log(type + " attach call failed, invalid callback", "error", "event");
                 if (item && !item.checkReady) {
 
                     // el = (item.compat) ? Y.DOM.byId(item.id) : Y.one(item.id);
-                    el = (item.compat) ? Y.DOM.byId(item.id) : Y.Selector.query(item.id, null, true);
+                    el = (item.compat) ? YDOM.byId(item.id) : Y.Selector.query(item.id, null, true);
 
                     if (el) {
                         // Y.log('avail: ' + el);
@@ -1100,7 +1119,7 @@ Y.log(type + " attach call failed, invalid callback", "error", "event");
                 if (item && item.checkReady) {
 
                     // el = (item.compat) ? Y.DOM.byId(item.id) : Y.one(item.id);
-                    el = (item.compat) ? Y.DOM.byId(item.id) : Y.Selector.query(item.id, null, true);
+                    el = (item.compat) ? YDOM.byId(item.id) : Y.Selector.query(item.id, null, true);
 
                     if (el) {
                         // The element is available, but not necessarily ready
@@ -1151,9 +1170,8 @@ Y.log(type + " attach call failed, invalid callback", "error", "event");
             if (recurse && oEl) {
                 lis = lis || [];
                 children = Y.Selector.query('*', oEl);
-                i = 0;
                 len = children.length;
-                for (; i < len; ++i) {
+                for (i = 0; i < len; ++i) {
                     child = Event.getListeners(children[i], type);
                     if (child) {
                         lis = lis.concat(child);
@@ -1298,7 +1316,11 @@ if (Y.UA.ie) {
     Y.on(EVENT_READY, Event._poll);
 }
 
-add(win, "unload", onUnload);
+try {
+    add(win, "unload", onUnload);
+} catch(e) {
+    Y.log("Registering unload listener failed. This is known to happen in Chrome Packaged Apps and Extensions, which don't support unload, and don't provide a way to test for support", "warn", "event-base");
+}
 
 Event.Custom = Y.CustomEvent;
 Event.Subscriber = Y.Subscriber;
@@ -1308,7 +1330,7 @@ Event.Facade = Y.EventFacade;
 
 Event._poll();
 
-})();
+}());
 
 /**
  * DOM event listener abstraction layer
@@ -1363,4 +1385,4 @@ Y.Env.evt.plugins.contentready = {
 };
 
 
-}, '3.4.0' ,{requires:['event-custom-base']});
+}, '3.7.3', {"requires": ["event-custom-base"]});

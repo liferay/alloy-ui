@@ -1,16 +1,28 @@
 AUI.add('aui-datepicker-base', function(A) {
 var Lang = A.Lang,
+	isArray	= Lang.isArray,
 	isBoolean = Lang.isBoolean,
 	isFunction = Lang.isFunction,
+	isString = Lang.isString,
+
+	AArray = A.Array,
+	DataType = A.DataType,
 
 	CALENDAR = 'calendar',
 	CONTENT_BOX = 'contentBox',
 	CURRENT_NODE = 'currentNode',
+	DATE_FORMAT = 'dateFormat',
+	DATEPICKER = 'date-picker',
+	ESCAPE_KEY = 27,
+	FOCUS = 'focus',
 	FORMATTER = 'formatter',
-	SELECT_MULTIPLE_DATES = 'selectMultipleDates',
+	KEY_DOWN = 'keydown',
+	KEY_PRESS = 'keypress',
+	LOCALE = 'locale',
+	SELECT_MODE = 'selectionMode',
 	SET_VALUE = 'setValue',
-
-	DATEPICKER = 'date-picker';
+	TRIGGER = 'trigger',
+	TYPE = 'type';
 
 var DatePicker = A.Component.create({
 	NAME: DATEPICKER,
@@ -37,16 +49,28 @@ var DatePicker = A.Component.create({
 		 * @type function
 		 */
 		formatter: {
-			value: function(dates) {
-				return dates.formatted.join(',');
+			value: function (dates) {
+				var instance = this,
+					formattedDates = [];
+
+				if (isArray(dates)) {
+					AArray.each(dates, function (date, index) {
+						formattedDates[index] = instance.calendar.formatDate(date);
+					});
+
+					return formattedDates.join(',');
+				} else {
+					return instance.calendar.formatDate(dates);
+				}
 			},
+
 			validator: isFunction
 		},
 
 		/**
 		 * If true set the selected date with the correct
-		 * <a href="Calendar.html#config_dateFormat">dateFormat</a> to the
-		 * value of the input field which is hosting the Calendar.
+		 * dateFormat to the value of the input field
+		 * which is hosting the Calendar.
 		 *
 		 * @attribute setValue
 		 * @default true
@@ -89,12 +113,22 @@ var DatePicker = A.Component.create({
 		 * @method initializer
 		 * @protected
 		 */
-		initializer: function() {
-			var instance = this;
+		initializer: function () {
+			var instance = this,
+				calendarConfig = instance.get(CALENDAR),
+				calendar = new A.Calendar(calendarConfig);
 
-			instance.calendar = new A.Calendar(
-				instance.get(CALENDAR)
-			);
+			instance.calendar = calendar;
+
+			instance.after('calendar:selectionChange', instance._afterSelectionChange);
+
+			instance.after(instance._afterShow, instance, 'show');
+
+			instance._hideOnEscapeEvent();
+
+			if (calendarConfig.hasOwnProperty('selectedDates')) {
+				calendar.set('selectedDates', calendarConfig.selectedDates);
+			}
 		},
 
 		/**
@@ -103,20 +137,14 @@ var DatePicker = A.Component.create({
 		 * @method bindUI
 		 * @protected
 		 */
-		bindUI: function() {
+		bindUI: function () {
 			var instance = this;
 
 			DatePicker.superclass.bindUI.apply(this, arguments);
 
 			instance.on('show', instance._onShowOverlay);
-			instance.after('calendar:select', instance._afterSelectDate);
 
-			// Set the value of the trigger with the Calendar current date
-			if (instance.get(SET_VALUE)) {
-				instance._setTriggerValue(
-					instance.calendar._getSelectEventData().date
-				);
-			}
+			instance._bindTriggerEvents();
 		},
 
 		/**
@@ -126,40 +154,81 @@ var DatePicker = A.Component.create({
 		 * @method destructor
 		 * @protected
 		 */
-		destructor: function() {
+		destructor: function () {
 			var instance = this;
 
 			instance.calendar.destroy();
+
+			instance.escapeEventHandler.detach();
 		},
 
 		/**
 		 * Fires when a date is selected on the Calendar.
 		 *
-		 * @method _afterSelectDate
+		 * @method _afterSelectionChange
 		 * @param {Event} event
 		 * @protected
 		 */
-		_afterSelectDate: function(event) {
+		_afterSelectionChange: function (event) {
 			var instance = this;
 
-			if (!instance.calendar.get(SELECT_MULTIPLE_DATES)) {
-				instance.hide();
-			}
-
-			if (instance.get(SET_VALUE)) {
-				instance._setTriggerValue(event.date);
-			}
+			instance._uiSetSelectedDates(event.newSelection);
 		},
 
 		/**
-		* Fires before the DatePicker overlay show. Responsible to invoke the
-		* render phase of the Calendar.
+		 * Fires after show method executes
+		 *
+		 * @method _afterShow
+		 * @param {Event} event
+		 * @protected
+		 */
+		_afterShow: function (event) {
+			var instance = this;
+
+			instance.calendar.focus();
+		},
+
+		/**
+		 * Bind some events on datepicker trigger
+		 *
+		 * @method _bindTriggerEvents
+		 * @protected
+		 */
+		_bindTriggerEvents: function () {
+			var instance = this,
+				trigger = instance.get(TRIGGER),
+				type = trigger.get(TYPE);
+
+			trigger.after(FOCUS, function () {
+				if (/^(text|textarea)$/i.test(type)) {
+					instance.show();
+				}
+			});
+
+			trigger.after(KEY_PRESS, function () {
+				instance.show();
+			});
+		},
+
+		_hideOnEscapeEvent: function () {
+			var instance = this;
+
+			instance.escapeEventHandler = A.on(KEY_DOWN, function (event) {
+				if (event.keyCode === ESCAPE_KEY) {
+					instance.hide();
+				}
+			});
+		},
+
+		/**
+		 * Fires before the DatePicker overlay show. Responsible to invoke the
+		 * render phase of the Calendar.
 		 *
 		 * @method _onShowOverlay
 		 * @param {Event} event
 		 * @protected
 		 */
-		_onShowOverlay: function(event) {
+		_onShowOverlay: function (event) {
 			var instance = this;
 
 			instance._renderCalendar();
@@ -171,7 +240,7 @@ var DatePicker = A.Component.create({
 		 * @method _renderCalendar
 		 * @protected
 		 */
-		_renderCalendar: function() {
+		_renderCalendar: function () {
 			var instance = this;
 
 			instance.calendar.render(
@@ -188,7 +257,7 @@ var DatePicker = A.Component.create({
 		 * @protected
 		 * @return {}
 		 */
-		_setCalendar: function(val) {
+		_setCalendar: function (val) {
 			var instance = this;
 
 			A.mix(val, {
@@ -206,7 +275,7 @@ var DatePicker = A.Component.create({
 		 * @protected
 		 * @return {boolean}
 		 */
-		_setStack: function(value) {
+		_setStack: function (value) {
 			var instance = this;
 
 			if (value) {
@@ -226,12 +295,28 @@ var DatePicker = A.Component.create({
 		 * @param {Object} dateObj Object containing date information
 		 * @protected
 		 */
-		_setTriggerValue: function(dateObj) {
+		_setTriggerValue: function (dateObj) {
 			var instance = this;
 
 			var value = instance.get(FORMATTER).apply(instance, [dateObj]);
 
 			instance.get(CURRENT_NODE).val(value);
+		},
+
+		_uiSetSelectedDates: function (val) {
+			var instance = this;
+
+			if (instance.calendar.get(SELECT_MODE) !== 'multiple') {
+				instance.hide();
+			}
+
+			if (instance.get(SET_VALUE)) {
+				instance._setTriggerValue(val);
+			}
+
+			if (val.length) {
+				instance.calendar.set('date', val[val.length-1]);
+			}
 		}
 	}
 });
@@ -261,7 +346,48 @@ A.DatepickerManager = new A.OverlayManager({
 	zIndexBase: 1000
 });
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-calendar','aui-overlay-context']});
+var Calendar = function() {};
+
+Calendar.ATTRS = {
+	/**
+	 * The default date format string which can be overriden for
+	 * localization support. The format must be valid according to
+	 * <a href="DataType.Date.html">A.DataType.Date.format</a>.
+	 *
+	 * @attribute dateFormat
+	 * @default %m/%d/%Y
+	 * @type String
+	 */
+	dateFormat: {
+		value: '%m/%d/%Y',
+		validator: isString
+	},
+
+	selectedDates: {
+		readOnly: false,
+		setter: function(val) {
+			var instance = this;
+
+			instance._clearSelection();
+
+			instance.selectDates(val);
+		}
+	}
+};
+
+Calendar.prototype = {
+	formatDate: function (date) {
+		var instance = this,
+			dateFormat = instance.get(DATE_FORMAT),
+			locale = instance.get(LOCALE);
+
+		return DataType.Date.format(date, {format: dateFormat, locale: locale});
+	}
+};
+
+A.Base.mix(A.Calendar, [Calendar]);
+
+}, '@VERSION@' ,{skinnable:true, requires:['aui-datatype','calendar','aui-overlay-context']});
 AUI.add('aui-datepicker-select', function(A) {
 /**
  * The DatePickerSelect Utility
@@ -272,6 +398,13 @@ AUI.add('aui-datepicker-select', function(A) {
 
 var Lang = A.Lang,
 	isArray = Lang.isArray,
+	isString = Lang.isString,
+	isValue = Lang.isValue,
+	toInt = Lang.toInt,
+	DataType = A.DataType,
+	DateMath = DataType.DateMath,
+
+	getClassName = A.getClassName,
 
 	nodeSetter = function(v) {
 		return A.one(v);
@@ -285,28 +418,29 @@ var Lang = A.Lang,
 
 	APPEND_ORDER = 'appendOrder',
 	BLANK = '',
-	BODY = 'body',
 	BOUNDING_BOX = 'boundingBox',
 	BUTTON = 'button',
 	BUTTONITEM = 'buttonitem',
 	BUTTON_NODE = 'buttonNode',
 	CALENDAR = 'calendar',
+	CHANGE = 'change',
 	CLEARFIX = 'clearfix',
 	CONTENT_BOX = 'contentBox',
 	CONTENT = 'content',
-	CURRENT_DAY = 'currentDay',
-	CURRENT_MONTH = 'currentMonth',
-	CURRENT_YEAR = 'currentYear',
 	DATA_COMPONENT_ID = 'data-auiComponentID',
 	DATEPICKER = 'datepicker',
 	DAY = 'day',
 	DAY_NODE = 'dayNode',
 	DAY_NODE_NAME = 'dayNodeName',
+	DISABLED = 'disabled',
 	DISPLAY = 'display',
 	DOT = '.',
 	HELPER = 'helper',
+	ID = 'id',
+	KEY_PRESS = 'keypress',
 	MAX_DATE = 'maxDate',
 	MIN_DATE = 'minDate',
+	LOCALE = 'locale',
 	MONTH = 'month',
 	MONTH_NODE = 'monthNode',
 	MONTH_NODE_NAME = 'monthNodeName',
@@ -319,10 +453,9 @@ var Lang = A.Lang,
 	POPULATE_MONTH = 'populateMonth',
 	POPULATE_YEAR = 'populateYear',
 	SELECT = 'select',
-	SELECTED = 'selected',
+	SELECTED_DATES = 'selectedDates',
 	SELECT_WRAPPER_NODE = 'selectWrapperNode',
 	SPACE = ' ',
-	SRC_NODE = 'srcNode',
 	TRIGGER = 'trigger',
 	WRAPPER = 'wrapper',
 	YEAR = 'year',
@@ -330,10 +463,7 @@ var Lang = A.Lang,
 	YEAR_NODE_NAME = 'yearNodeName',
 	YEAR_RANGE = 'yearRange',
 
-	getClassName = A.getClassName,
-
 	CSS_BUTTONITEM = getClassName(BUTTONITEM),
-	CSS_DATEPICKER = getClassName(DATEPICKER),
 	CSS_DATEPICKER_BUTTON_WRAPPER = getClassName(DATEPICKER, BUTTON, WRAPPER),
 	CSS_DATEPICKER_DAY = getClassName(DATEPICKER, DAY),
 	CSS_DATEPICKER_DISPLAY = getClassName(DATEPICKER, DISPLAY),
@@ -344,9 +474,8 @@ var Lang = A.Lang,
 	CSS_HELPER_CLEARFIX = getClassName(HELPER, CLEARFIX),
 
 	SELECT_TPL = '<select></select>',
-	SELECT_OPTION_TPL = '<option></option>',
-	WRAPPER_BUTTON_TPL = '<div class="'+ CSS_DATEPICKER_BUTTON_WRAPPER +'"></div>',
-	WRAPPER_SELECT_TPL = '<div class='+ CSS_DATEPICKER_SELECT_WRAPPER +'></div>';
+	WRAPPER_BUTTON_TPL = '<div class="' + CSS_DATEPICKER_BUTTON_WRAPPER + '"></div>',
+	WRAPPER_SELECT_TPL = '<div class=' + CSS_DATEPICKER_SELECT_WRAPPER + '></div>';
 
 /**
  * <p><img src="assets/images/aui-calendar-datepicker-select/main.png"/></p>
@@ -399,21 +528,21 @@ var DatePickerSelect = A.Component.create(
 		ATTRS: {
 			/**
 			 * The order the selects elements are appended to the
-	         * <a href="DatePickerSelect.html#config_srcNode">srcNode</a>.
+			 * <a href="DatePickerSelect.html#config_srcNode">srcNode</a>.
 			 *
 			 * @attribute appendOrder
 			 * @default [ 'm', 'd', 'y' ]
 			 * @type Array
 			 */
 			appendOrder: {
-				value: [ 'm', 'd', 'y' ],
-				validator: isArray
+				validator: isArray,
+				value: [ 'm', 'd', 'y' ]
 			},
 
 			/**
 			 * DOM Node to display the button of the DatePickerSelect. If not
-             * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-buttonitem</code>.
+			 * specified try to query using HTML_PARSER an element inside
+			 * contentBox which matches <code>aui-buttonitem</code>.
 			 *
 			 * @attribute buttonNode
 			 * @default Generated div element.
@@ -429,13 +558,13 @@ var DatePickerSelect = A.Component.create(
 			 * @type Object
 			 */
 			calendar: {
-				value: {}
+				setter: '_setCalendar'
 			},
 
 			/**
 			 * DOM Node to display the day of the DatePickerSelect. If not
-             * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-datepicker-year</code>.
+			 * specified try to query using HTML_PARSER an element inside
+			 * contentBox which matches <code>aui-datepicker-year</code>.
 			 *
 			 * @attribute dayNode
 			 * @default Generated div element.
@@ -448,7 +577,7 @@ var DatePickerSelect = A.Component.create(
 
 			/**
 			 * Name attribute used on the
-	         * <a href="DatePickerSelect.html#config_dayNode">dayNode</a>.
+			 * <a href="DatePickerSelect.html#config_dayNode">dayNode</a>.
 			 *
 			 * @attribute dayNodeName
 			 * @default day
@@ -461,9 +590,21 @@ var DatePickerSelect = A.Component.create(
 			},
 
 			/**
+			 * Current locale
+			 *
+			 * @attribute locale
+			 * @default en
+			 * @type String
+			 */
+			locale: {
+				validator: isString,
+				value: 'en'
+			},
+
+			/**
 			 * DOM Node to display the month of the DatePickerSelect. If not
-             * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-datepicker-year</code>.
+			 * specified try to query using HTML_PARSER an element inside
+			 * contentBox which matches <code>aui-datepicker-year</code>.
 			 *
 			 * @attribute monthNode
 			 * @default Generated div element.
@@ -476,7 +617,7 @@ var DatePickerSelect = A.Component.create(
 
 			/**
 			 * Name attribute used on the
-	         * <a href="DatePickerSelect.html#config_monthNode">monthNode</a>.
+			 * <a href="DatePickerSelect.html#config_monthNode">monthNode</a>.
 			 *
 			 * @attribute monthNodeName
 			 * @default month
@@ -581,15 +722,15 @@ var DatePickerSelect = A.Component.create(
 			 * @type {Node | String}
 			 */
 			trigger: {
-				setter: function(v) {
-					if (v instanceof A.NodeList) {
-						return v;
+				setter: function(value) {
+					if (value instanceof A.NodeList) {
+						return value;
 					}
-					else if (Lang.isString(v)) {
-						return A.all(v);
+					else if (Lang.isString(value)) {
+						return A.all(value);
 					}
 
-					return new A.NodeList(v);
+					return new A.NodeList(value);
 				},
 				valueFn: function() {
 					return A.NodeList.create(WRAPPER_BUTTON_TPL);
@@ -633,12 +774,12 @@ var DatePickerSelect = A.Component.create(
 			 * @type Array
 			 */
 			yearRange: {
+				validator: isArray,
 				valueFn: function() {
 					var year = new Date().getFullYear();
 
 					return [ year - 10, year + 10 ];
-				},
-				validator: isArray
+				}
 			}
 		},
 
@@ -651,17 +792,12 @@ var DatePickerSelect = A.Component.create(
 		 * @static
 		 */
 		HTML_PARSER: {
-			buttonNode: DOT+CSS_BUTTONITEM,
-
-			dayNode: DOT+CSS_DATEPICKER_DAY,
-
-			monthNode: DOT+CSS_DATEPICKER_MONTH,
-
-			selectWrapperNode: DOT+CSS_DATEPICKER_SELECT_WRAPPER,
-
-			trigger: DOT+CSS_DATEPICKER_BUTTON_WRAPPER,
-
-			yearNode: DOT+CSS_DATEPICKER_YEAR
+			buttonNode: DOT + CSS_BUTTONITEM,
+			dayNode: DOT + CSS_DATEPICKER_DAY,
+			monthNode: DOT + CSS_DATEPICKER_MONTH,
+			selectWrapperNode: DOT + CSS_DATEPICKER_SELECT_WRAPPER,
+			trigger: DOT + CSS_DATEPICKER_BUTTON_WRAPPER,
+			yearNode: DOT + CSS_DATEPICKER_YEAR
 		},
 
 		EXTENDS: A.Component,
@@ -678,7 +814,7 @@ var DatePickerSelect = A.Component.create(
 
 				instance._bindSelectEvents();
 
-				instance.after('calendar:select', instance._afterSelectDate);
+				instance.after('calendar:selectionChange', instance._afterSelectionChange);
 			},
 
 			/**
@@ -722,17 +858,43 @@ var DatePickerSelect = A.Component.create(
 			},
 
 			/**
+			 * Get current date.
+			 *
+			 * @method getCurrentDate
+			 * @return {Date}
+			 */
+			getCurrentDate: function(offsetYear, offsetMonth, offsetDay) {
+				var instance = this;
+
+				var date = instance._normalizeYearMonth();
+
+				var newDay = date.day + toInt(offsetDay);
+				var newMonth = date.month + toInt(offsetMonth);
+				var newYear = date.year + toInt(offsetYear);
+
+				var totalMonthDays = instance.getDaysInMonth(date.year, newMonth);
+
+				if (newDay > totalMonthDays) {
+					newDay = totalMonthDays;
+				}
+
+				return DateMath.getDate(newYear, newMonth, newDay);
+			},
+
+			/**
 			 * Fires when a date is selected on the Calendar.
 			 *
 			 * @method _afterSelectDate
 			 * @param {Event} event
 			 * @protected
 			 */
-			_afterSelectDate: function(event) {
+			_afterSelectionChange: function(event) {
 				var instance = this;
 
-				if (event.date.normal.length) {
-					instance._syncSelectsUI();
+				var selectedDates = event.newSelection;
+
+				if (selectedDates.length) {
+					instance._syncSelectsUI(selectedDates[selectedDates.length - 1]);
 				}
 			},
 
@@ -744,15 +906,16 @@ var DatePickerSelect = A.Component.create(
 			 */
 			_bindSelectEvents: function() {
 				var instance = this;
+
 				var selects = instance.get(SELECT_WRAPPER_NODE).all(SELECT);
 
-				selects.on('change', instance._onSelectChange, instance);
-				selects.on('keypress', instance._onSelectChange, instance);
+				selects.on(CHANGE, instance._onSelectChange, instance);
+				selects.on(KEY_PRESS, instance._onSelectChange, instance);
 			},
 
 			/**
 			 * Gets an Array with the field elements in the correct order defined
-		     * on <a href="DatePickerSelect.html#config_appendOrder">appendOrder</a>.
+			 * on <a href="DatePickerSelect.html#config_appendOrder">appendOrder</a>.
 			 *
 			 * @method _getAppendOrder
 			 * @protected
@@ -760,7 +923,9 @@ var DatePickerSelect = A.Component.create(
 			 */
 			_getAppendOrder: function() {
 				var instance = this;
+
 				var appendOrder = instance.get(APPEND_ORDER);
+				var id = instance.get(ID);
 
 				var mapping = {
 					d: instance.get(DAY_NODE),
@@ -768,17 +933,92 @@ var DatePickerSelect = A.Component.create(
 					y: instance.get(YEAR_NODE)
 				};
 
-				var firstField = mapping[ appendOrder[0] ];
-				var secondField = mapping[ appendOrder[1] ];
-				var thirdField = mapping[ appendOrder[2] ];
-
-				var id = instance.get('id');
+				var firstField = mapping[appendOrder[0]];
+				var secondField = mapping[appendOrder[1]];
+				var thirdField = mapping[appendOrder[2]];
 
 				firstField.setAttribute(DATA_COMPONENT_ID, id);
 				secondField.setAttribute(DATA_COMPONENT_ID, id);
 				thirdField.setAttribute(DATA_COMPONENT_ID, id);
 
-				return [ firstField, secondField, thirdField ];
+				return [firstField, secondField, thirdField];
+			},
+
+			/**
+			 * Get the number of days in the passed year and month.
+			 *
+			 * @method getDaysInMonth
+			 * @param {Number} year Year in the format YYYY.
+			 * @param {Number} month 0 for January 11 for December.
+			 * @return {Number}
+			 */
+			_getDaysInMonth: function(year, month) {
+				var instance = this;
+
+				var date = instance._normalizeYearMonth(year, month);
+
+				return DateMath.getDaysInMonth(date.year, date.month);
+			},
+
+			/**
+			 * Get the locale map containing the respective values for the
+			 * <a href="Widget.html#config_locale">locale</a> used.
+			 *
+			 * <pre><code>A.DataType.Date.Locale['pt-br'] = A.merge(
+			 *	A.DataType.Date.Locale['en'], {
+			 *		a: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Fri', 'Sat'],
+			 *		A: ['Domingo','Segunda-feira','Ter&ccedil;a-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sabado'],
+			 *		b: ['Jan','Fev','Mar','Abr','Mai','Jun', 'Jul','Ago','Set','Out','Nov','Dez'],
+			 *		B: ['Janeiro','Fevereiro','Mar&ccedil;o','Abril','Maio','Junho', 'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+			 *		c: '%a %d %b %Y %T %Z',
+			 *		p: ['AM', 'PM'],
+			 *		P: ['am', 'pm'],
+			 *		r: '%I:%M:%S %p',
+			 *		x: '%d/%m/%y',
+			 *		X: '%T'
+			 *	}
+			 *);</code></pre>
+			 *
+			 * @method _getLocaleMap
+			 * @protected
+			 * @return {Object}
+			 */
+			_getLocaleMap: function() {
+				var instance = this;
+
+				return DataType.Date.Locale[instance.get(LOCALE)];
+			},
+
+			/**
+			 * Returns an Object with the current day, month and year.
+			 *
+			 * @method _normalizeYearMonth
+			 * @param {Number} year Year in the format YYYY.
+			 * @param {Number} month 0 for January 11 for December.
+			 * @param {Number} day
+			 * @protected
+			 * @return {Object}
+			 */
+			_normalizeYearMonth: function(year, month, day) {
+				var instance = this;
+
+				var selectedDates = instance.calendar.get(SELECTED_DATES);
+
+				var date = selectedDates.length ? selectedDates[0] : new Date();
+
+				if (!isValue(day)) {
+					day = date.getDate();
+				}
+
+				if (!isValue(month)) {
+					month = date.getMonth();
+				}
+
+				if (!isValue(year)) {
+					year = date.getFullYear();
+				}
+
+				return { year: year, month: month, day: day };
 			},
 
 			/**
@@ -790,9 +1030,10 @@ var DatePickerSelect = A.Component.create(
 			 */
 			_onSelectChange: function(event) {
 				var instance = this;
+
 				var target = event.currentTarget || event.target;
 
-				var monthChanged = target.test(DOT+CSS_DATEPICKER_MONTH);
+				var monthChanged = target.test(DOT + CSS_DATEPICKER_MONTH);
 
 				var currentDay = instance.get(DAY_NODE).val();
 				var currentMonth = instance.get(MONTH_NODE).val();
@@ -802,32 +1043,28 @@ var DatePickerSelect = A.Component.create(
 				var validMonth = (currentMonth > -1);
 				var validYear = (currentYear > -1);
 
-				if (validDay) {
-					instance.calendar.set(CURRENT_DAY, currentDay);
+				if (validMonth && validYear) {
+					var totalMonthDays = instance._getDaysInMonth(currentYear, currentMonth);
+
+					if (currentDay > totalMonthDays) {
+						currentDay = totalMonthDays;
+					}
 				}
 
-				if (validMonth) {
-					instance.calendar.set(CURRENT_MONTH, currentMonth);
-				}
+				var date = new Date(currentYear, currentMonth, currentDay);
 
-				if (validYear) {
-					instance.calendar.set(CURRENT_YEAR, currentYear);
+				if (!validDay || !validMonth || !validYear) {
+					instance.calendar._clearSelection();
+				} else {
+					instance.calendar.set(SELECTED_DATES, date);
 				}
 
 				if (monthChanged) {
 					instance._uiSetCurrentMonth();
 
 					if (validDay) {
-						instance._selectCurrentDay();
+						instance._selectCurrentDay(date);
 					}
-				}
-
-				if (validDay) {
-					instance.calendar.selectCurrentDate();
-				}
-
-				if (!validDay || !validMonth || !validYear) {
-					instance.calendar.clear();
 				}
 			},
 
@@ -839,11 +1076,16 @@ var DatePickerSelect = A.Component.create(
 			 */
 			_populateDays: function() {
 				var instance = this;
-				var dayNode = instance.get(DAY_NODE);
-				var daysInMonth = instance.calendar.getDaysInMonth();
 
 				if (instance.get(POPULATE_DAY)) {
-					instance._populateSelect(dayNode, 1, daysInMonth, null, null, instance.get(NULLABLE_DAY));
+					instance._populateSelect(
+						instance.get(DAY_NODE),
+						1,
+						instance._getDaysInMonth(),
+						null,
+						null,
+						instance.get(NULLABLE_DAY)
+					);
 				}
 			},
 
@@ -855,28 +1097,20 @@ var DatePickerSelect = A.Component.create(
 			 */
 			_populateMonths: function() {
 				var instance = this;
-				var monthNode = instance.get(MONTH_NODE);
-				var localeMap = instance.calendar._getLocaleMap();
+
+				var localeMap = instance._getLocaleMap();
+
 				var monthLabels = localeMap.B;
 
 				if (instance.get(POPULATE_MONTH)) {
-					instance._populateSelect(monthNode, 0, (monthLabels.length - 1), monthLabels, null, instance.get(NULLABLE_MONTH));
-				}
-			},
-
-			/**
-			 * Populate the year select element with the correct data.
-			 *
-			 * @method _populateYears
-			 * @protected
-			 */
-			_populateYears: function() {
-				var instance = this;
-				var yearRange = instance.get(YEAR_RANGE);
-				var yearNode = instance.get(YEAR_NODE);
-
-				if (instance.get(POPULATE_YEAR)) {
-					instance._populateSelect(yearNode, yearRange[0], yearRange[1], null, null, instance.get(NULLABLE_YEAR));
+					instance._populateSelect(
+						instance.get(MONTH_NODE),
+						0,
+						(monthLabels.length - 1),
+						monthLabels,
+						null,
+						instance.get(NULLABLE_MONTH)
+					);
 				}
 			},
 
@@ -888,17 +1122,18 @@ var DatePickerSelect = A.Component.create(
 			 * @param {Number} fromIndex Index to start
 			 * @param {Number} toIndex Index to end
 			 * @param {Object} values Object with labels to be used as content of each
-		     * option. Optional.
+			 * option. Optional.
 			 * @protected
 			 * @return {String}
 			 */
 			_populateSelect: function(select, fromIndex, toIndex, labels, values, nullable) {
 				var i = 0;
-				var index = fromIndex;
 
+				var index = fromIndex;
 				var selectEl = A.Node.getDOMNode(select);
 
 				select.empty();
+
 				labels = labels || [];
 				values = values || [];
 
@@ -909,8 +1144,8 @@ var DatePickerSelect = A.Component.create(
 				}
 
 				while (index <= toIndex) {
-					var value = values[index] || index;
-					var label = labels[index] || index;
+					var value = values[index] || index,
+						label = labels[index] || index;
 
 					selectEl.options[i] = new Option(label, index);
 
@@ -921,7 +1156,7 @@ var DatePickerSelect = A.Component.create(
 
 			/**
 			 * Populate each select element with the correct data for the day, month
-		     * and year.
+			 * and year.
 			 *
 			 * @method _populateSelects
 			 * @protected
@@ -945,7 +1180,7 @@ var DatePickerSelect = A.Component.create(
 				var lastMonth = monthOptions.item(mLength).val();
 				var lastYear = yearOptions.item(yLength).val();
 
-				var maxMonthDays = instance.calendar.getDaysInMonth(lastYear, lastMonth);
+				var maxMonthDays = instance._getDaysInMonth(lastYear, lastMonth);
 
 				var minDate = new Date(firstYear, firstMonth, 1);
 				var maxDate = new Date(lastYear, lastMonth, maxMonthDays);
@@ -954,17 +1189,41 @@ var DatePickerSelect = A.Component.create(
 				instance.calendar.set(MIN_DATE, minDate);
 			},
 
+			/**
+			 * Populate the year select element with the correct data.
+			 *
+			 * @method _populateYears
+			 * @protected
+			 */
+			_populateYears: function() {
+				var instance = this;
+
+				var yearRange = instance.get(YEAR_RANGE);
+
+				if (instance.get(POPULATE_YEAR)) {
+					instance._populateSelect(
+						instance.get(YEAR_NODE),
+						yearRange[0],
+						yearRange[1],
+						null,
+						null,
+						instance.get(NULLABLE_YEAR)
+					);
+				}
+			},
+
 			_renderCalendar: function() {
 				var instance = this;
 
 				var datePickerConfig = {
-					calendar: instance.get(CALENDAR),
-					trigger: instance.get(TRIGGER).item(0)
-				};
+						calendar: instance.get(CALENDAR),
+						trigger: instance.get(TRIGGER).item(0)
+					};
 
 				var datePicker = new A.DatePicker(datePickerConfig).render();
 
 				datePicker.addTarget(instance);
+
 				instance.datePicker = datePicker;
 				instance.calendar = datePicker.calendar;
 			},
@@ -1002,6 +1261,7 @@ var DatePickerSelect = A.Component.create(
 				if (!monthNode.inDoc(A.config.doc)) {
 					// append elements
 					var selectWrapper = instance.get(SELECT_WRAPPER_NODE);
+
 					var orderedFields = instance._getAppendOrder();
 
 					// this textNode is to prevent layout shifting only
@@ -1011,9 +1271,9 @@ var DatePickerSelect = A.Component.create(
 					);
 
 					selectWrapper.append(orderedFields[0]);
-					selectWrapper.append( textNode.clone() );
+					selectWrapper.append(textNode.clone());
 					selectWrapper.append(orderedFields[1]);
-					selectWrapper.append( textNode );
+					selectWrapper.append(textNode);
 					selectWrapper.append(orderedFields[2]);
 
 					contentBox.append(selectWrapper);
@@ -1030,18 +1290,19 @@ var DatePickerSelect = A.Component.create(
 				var instance = this;
 
 				var trigger = instance.get(TRIGGER).item(0);
-				var contentBox = instance.get(CONTENT_BOX);
 
-				instance._buttonItem = new A.ButtonItem({
-					boundingBox: instance.get(BUTTON_NODE),
-					icon: CALENDAR
-				});
+				instance._buttonItem = new A.ButtonItem(
+					{
+						boundingBox: instance.get(BUTTON_NODE),
+						icon: CALENDAR
+					}
+				);
 
-				contentBox.append(trigger);
+				instance.get(CONTENT_BOX).append(trigger);
 
-				trigger.setAttribute(DATA_COMPONENT_ID, instance.get('id'));
+				trigger.setAttribute(DATA_COMPONENT_ID, instance.get(ID));
 
-				if ( trigger.test(DOT+CSS_DATEPICKER_BUTTON_WRAPPER) ) {
+				if (trigger.test(DOT + CSS_DATEPICKER_BUTTON_WRAPPER)) {
 					// use Button if the user doesn't specify a trigger
 					instance._buttonItem.render(trigger);
 				}
@@ -1053,9 +1314,8 @@ var DatePickerSelect = A.Component.create(
 			 * @method _selectCurrentDay
 			 * @protected
 			 */
-			_selectCurrentDay: function() {
+			_selectCurrentDay: function(currentDate) {
 				var instance = this;
-				var currentDate = instance.calendar.getCurrentDate();
 
 				instance.get(DAY_NODE).val(
 					String(currentDate.getDate())
@@ -1068,13 +1328,14 @@ var DatePickerSelect = A.Component.create(
 			 * @method _selectCurrentMonth
 			 * @protected
 			 */
-			_selectCurrentMonth: function() {
+			_selectCurrentMonth: function(currentDate) {
 				var instance = this;
-				var currentDate = instance.calendar.getCurrentDate();
 
 				instance.get(MONTH_NODE).val(
 					String(currentDate.getMonth())
 				);
+
+				instance._uiSetCurrentMonth();
 			},
 
 			/**
@@ -1083,12 +1344,22 @@ var DatePickerSelect = A.Component.create(
 			 * @method _selectCurrentYear
 			 * @protected
 			 */
-			_selectCurrentYear: function() {
+			_selectCurrentYear: function(currentDate) {
 				var instance = this;
-				var currentDate = instance.calendar.getCurrentDate();
 
 				instance.get(YEAR_NODE).val(
 					String(currentDate.getFullYear())
+				);
+			},
+
+			_setCalendar: function (val) {
+				var instance = this;
+
+				return A.merge(
+					{
+						selectedDates: new Date()
+					},
+					val || {}
 				);
 			},
 
@@ -1098,17 +1369,21 @@ var DatePickerSelect = A.Component.create(
 			 * @method _syncSelectsUI
 			 * @protected
 			 */
-			_syncSelectsUI: function() {
+			_syncSelectsUI: function(date) {
 				var instance = this;
 
-				instance._selectCurrentDay();
-				instance._selectCurrentMonth();
-				instance._selectCurrentYear();
+				var selectedDates = instance.calendar.get(SELECTED_DATES);
+
+				date = date || (selectedDates.length ? selectedDates[0] : new Date());
+
+				instance._selectCurrentMonth(date);
+				instance._selectCurrentDay(date);
+				instance._selectCurrentYear(date);
 			},
 
 			/**
 			 * Fired after
-		     * <a href="DatePickerSelect.html#config_currentMonth">currentMonth</a> is set.
+			 * <a href="DatePickerSelect.html#config_currentMonth">currentMonth</a> is set.
 			 *
 			 * @method _uiSetCurrentMonth
 			 * @param {EventFacade} event
@@ -1122,7 +1397,7 @@ var DatePickerSelect = A.Component.create(
 
 			/**
 			 * Fired after
-		     * <a href="DatePickerSelect.html#config_disabled">disabled</a> is set.
+			 * <a href="DatePickerSelect.html#config_disabled">disabled</a> is set.
 			 *
 			 * @method _afterDisabledChangeDatePicker
 			 * @param {EventFacade} event
@@ -1133,9 +1408,13 @@ var DatePickerSelect = A.Component.create(
 
 				DatePickerSelect.superclass._uiSetDisabled.apply(instance, arguments);
 
-				instance.get(DAY_NODE).set('disabled', disabled);
-				instance.get(MONTH_NODE).set('disabled', disabled);
-				instance.get(YEAR_NODE).set('disabled', disabled);
+				instance.get(DAY_NODE).set(DISABLED, disabled);
+				instance.get(MONTH_NODE).set(DISABLED, disabled);
+				instance.get(YEAR_NODE).set(DISABLED, disabled);
+
+				instance.datePicker.set(DISABLED, disabled);
+
+				instance._buttonItem.StateInteraction.set(DISABLED, disabled);
 			}
 		}
 	}

@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('scrollview-base-ie', function(Y) {
+YUI.add('scrollview-base-ie', function (Y, NAME) {
 
 /**
  * IE specific support for the scrollview-base module.
@@ -58,5 +58,4 @@ Y.mix(Y.ScrollView.prototype, {
     }
 }, true);
 
-
-}, '3.4.0' ,{requires:['scrollview-base']});
+}, '3.7.3', {"requires": ["scrollview-base"]});

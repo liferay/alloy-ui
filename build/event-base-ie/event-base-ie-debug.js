@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
 (function() {
 
@@ -45,7 +45,7 @@ if (docElement.doScroll && !GLOBAL_ENV._ieready) {
 }
 
 })();
-YUI.add('event-base-ie', function(Y) {
+YUI.add('event-base-ie', function (Y, NAME) {
 
 /*
  * Custom event engine, DOM event listener abstraction layer, synthetic DOM
@@ -135,17 +135,11 @@ var imp = Y.config.doc && Y.config.doc.implementation,
             // events, so Y.Event.simulate sets relatedTarget instead.
             this.relatedTarget = resolve(t || e.relatedTarget);
 
-            // which should contain the unicode key code if this is a key event
-            // if (e.charCode) {
-            //     this.which = e.charCode;
-            // }
-
-            // for click events, which is normalized for which mouse button was
+            // which should contain the unicode key code if this is a key event.
+            // For click events, which is normalized for which mouse button was
             // clicked.
-            if (e.button !== undefined) {
-                this.which = this.button = buttonMap[e.button] || e.button;
-            }
-
+            this.which = // chained assignment
+            this.button = e.keyCode || buttonMap[e.button] || e.button;
         },
 
         stopPropagation: function() {
@@ -184,6 +178,10 @@ IELazyFacade.prototype.init = function () {
     this.type     = (overrides && overrides.type) || e.type;
     this.clientX  = e.clientX;
     this.clientY  = e.clientY;
+    this.keyCode  = // chained assignment
+    this.charCode = e.keyCode;
+    this.which    = // chained assignment
+    this.button   = e.keyCode || buttonMap[e.button] || e.button;
 
     for (prop in lazyProperties) {
         if (lazyProperties.hasOwnProperty(prop)) {
@@ -197,22 +195,6 @@ IELazyFacade.prototype.init = function () {
 };
 
 IELazyFacade._lazyProperties = {
-    charCode: function () {
-        var e = this._event;
-
-        return e.keyCode || e.charCode;
-    },
-    keyCode: function () { return this.charCode; },
-
-    button: function () {
-        var e = this._event;
-
-        return (e.button !== undefined) ?
-            (buttonMap[e.button] || e.button) :
-            (e.which || e.charCode || this.charCode);
-    },
-    which: function () { return this.button; },
-
     target: function () {
         return resolve(this._event.srcElement);
     },
@@ -325,4 +307,4 @@ if (imp && (!imp.hasFeature('Events', '2.0'))) {
 }
 
 
-}, '3.4.0' ,{after:['event-base'], requires:['node-base']});
+}, '3.7.3', {"requires": ["node-base"]});

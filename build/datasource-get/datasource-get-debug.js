@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('datasource-get', function(Y) {
+YUI.add('datasource-get', function (Y, NAME) {
 
 /**
  * Provides a DataSource implementation which can be used to retrieve data via the Get Utility.
@@ -217,4 +217,4 @@ Y.DataSource.Get = Y.extend(DSGet, Y.DataSource.Local, {
 YUI.namespace("Env.DataSource.callbacks");
 
 
-}, '3.4.0' ,{requires:['datasource-local', 'get']});
+}, '3.7.3', {"requires": ["datasource-local", "get"]});

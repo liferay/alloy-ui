@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add("classnamemanager",function(c){var b="classNamePrefix",d="classNameDelimiter",a=c.config;a[b]=a[b]||"yui3";a[d]=a[d]||"-";c.ClassNameManager=function(){var e=a[b],f=a[d];return{getClassName:c.cached(function(){var g=c.Array(arguments);if(g[g.length-1]!==true){g.unshift(e);}else{g.pop();}return g.join(f);})};}();},"3.4.0",{requires:["yui-base"]});
+YUI.add("classnamemanager",function(e,t){var n="classNamePrefix",r="classNameDelimiter",i=e.config;i[n]=i[n]||"yui3",i[r]=i[r]||"-",e.ClassNameManager=function(){var t=i[n],s=i[r];return{getClassName:e.cached(function(){var n=e.Array(arguments);return n[n.length-1]!==!0?n.unshift(t):n.pop(),n.join(s)})}}()},"3.7.3",{requires:["yui-base"]});

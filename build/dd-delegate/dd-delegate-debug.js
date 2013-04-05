@@ -2,17 +2,17 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('dd-delegate', function(Y) {
+YUI.add('dd-delegate', function (Y, NAME) {
 
 
     /**
      * Provides the ability to drag multiple nodes under a container element using only one Y.DD.Drag instance as a delegate.
      * @module dd
      * @submodule dd-delegate
-     */     
+     */
     /**
      * Provides the ability to drag multiple nodes under a container element using only one Y.DD.Drag instance as a delegate.
      * @class Delegate
@@ -22,7 +22,7 @@ YUI.add('dd-delegate', function(Y) {
      */
 
 
-    var Delegate = function(o) {
+    var Delegate = function() {
         Delegate.superclass.constructor.apply(this, arguments);
     },
     CONT = 'container',
@@ -40,13 +40,13 @@ YUI.add('dd-delegate', function(Y) {
         /**
         * @property dd
         * @description A reference to the temporary dd instance used under the hood.
-        */    
+        */
         dd: null,
         /**
         * @property _shimState
         * @private
         * @description The state of the Y.DD.DDM._noShim property to it can be reset.
-        */    
+        */
         _shimState: null,
         /**
         * @private
@@ -69,7 +69,7 @@ YUI.add('dd-delegate', function(Y) {
         * @description Listens for the drag:end event and updates the temp dd instance.
         * @param {Event} e The Event.
         */
-        _afterDragEnd: function(e) {
+        _afterDragEnd: function() {
             Y.DD.DDM._noShim = this._shimState;
 
             this.set('lastNode', this.dd.get('node'));
@@ -85,20 +85,23 @@ YUI.add('dd-delegate', function(Y) {
         */
         _delMouseDown: function(e) {
             var tar = e.currentTarget,
-                dd = this.dd;
-            
+                dd = this.dd,
+                dNode = tar,
+                config = this.get('dragConfig');
+
             if (tar.test(this.get(NODES)) && !tar.test(this.get('invalid'))) {
                 this._shimState = Y.DD.DDM._noShim;
                 Y.DD.DDM._noShim = true;
                 this.set('currentNode', tar);
                 dd.set('node', tar);
-                if (dd.proxy) {
-                    dd.set('dragNode', Y.DD.DDM._proxy);
-                } else {
-                    dd.set('dragNode', tar);
+                if (config && config.dragNode) {
+                    dNode = config.dragNode;
+                } else if (dd.proxy) {
+                    dNode = Y.DD.DDM._proxy;
                 }
+                dd.set('dragNode', dNode);
                 dd._prep();
-                
+
                 dd.fire('drag:mouseDown', { ev: e });
             }
         },
@@ -108,7 +111,7 @@ YUI.add('dd-delegate', function(Y) {
         * @description Sets the target shim state
         * @param {Event} e The MouseEnter Event
         */
-        _onMouseEnter: function(e) {
+        _onMouseEnter: function() {
             this._shimState = Y.DD.DDM._noShim;
             Y.DD.DDM._noShim = true;
         },
@@ -118,10 +121,10 @@ YUI.add('dd-delegate', function(Y) {
         * @description Resets the target shim state
         * @param {Event} e The MouseLeave Event
         */
-        _onMouseLeave: function(e) {
+        _onMouseLeave: function() {
             Y.DD.DDM._noShim = this._shimState;
         },
-        initializer: function(cfg) {
+        initializer: function() {
             this._handles = [];
             //Create a tmp DD instance under the hood.
             //var conf = Y.clone(this.get('dragConfig') || {}),
@@ -159,7 +162,7 @@ YUI.add('dd-delegate', function(Y) {
         * @description Applies the Y.Plugin.Drop to all nodes matching the cont + nodes selector query.
         * @return {Self}
         * @chainable
-        */        
+        */
         syncTargets: function() {
             if (!Y.Plugin.Drop || this.get('destroyed')) {
                 return;
@@ -170,8 +173,8 @@ YUI.add('dd-delegate', function(Y) {
                 items = Y.one(this.get(CONT)).all(this.get(NODES));
                 groups = this.dd.get('groups');
                 config = this.get('dragConfig');
-                
-                if (config && 'groups' in config) {
+
+                if (config && config.groups) {
                     groups = config.groups;
                 }
 
@@ -219,7 +222,7 @@ YUI.add('dd-delegate', function(Y) {
             * @attribute container
             * @description A selector query to get the container to listen for mousedown events on. All "nodes" should be a child of this container.
             * @type String
-            */    
+            */
             container: {
                 value: 'body'
             },
@@ -227,7 +230,7 @@ YUI.add('dd-delegate', function(Y) {
             * @attribute nodes
             * @description A selector query to get the children of the "container" to make draggable elements from.
             * @type String
-            */        
+            */
             nodes: {
                 value: '.dd-draggable'
             },
@@ -235,7 +238,7 @@ YUI.add('dd-delegate', function(Y) {
             * @attribute invalid
             * @description A selector query to test a node to see if it's an invalid item.
             * @type String
-            */        
+            */
             invalid: {
                 value: 'input, select, button, a, textarea'
             },
@@ -243,7 +246,7 @@ YUI.add('dd-delegate', function(Y) {
             * @attribute lastNode
             * @description Y.Node instance of the last item dragged.
             * @type Node
-            */        
+            */
             lastNode: {
                 value: _tmpNode
             },
@@ -251,7 +254,7 @@ YUI.add('dd-delegate', function(Y) {
             * @attribute currentNode
             * @description Y.Node instance of the dd node.
             * @type Node
-            */        
+            */
             currentNode: {
                 value: _tmpNode
             },
@@ -259,7 +262,7 @@ YUI.add('dd-delegate', function(Y) {
             * @attribute dragNode
             * @description Y.Node instance of the dd dragNode.
             * @type Node
-            */        
+            */
             dragNode: {
                 value: _tmpNode
             },
@@ -267,7 +270,7 @@ YUI.add('dd-delegate', function(Y) {
             * @attribute over
             * @description Is the mouse currently over the container
             * @type Boolean
-            */        
+            */
             over: {
                 value: false
             },
@@ -275,7 +278,7 @@ YUI.add('dd-delegate', function(Y) {
             * @attribute target
             * @description Should the items also be a drop target.
             * @type Boolean
-            */        
+            */
             target: {
                 value: false
             },
@@ -283,7 +286,7 @@ YUI.add('dd-delegate', function(Y) {
             * @attribute dragConfig
             * @description The default config to be used when creating the DD instance.
             * @type Object
-            */        
+            */
             dragConfig: {
                 value: null
             },
@@ -291,7 +294,7 @@ YUI.add('dd-delegate', function(Y) {
             * @attribute handles
             * @description The handles config option added to the temp DD instance.
             * @type Array
-            */        
+            */
             handles: {
                 value: null
             }
@@ -333,10 +336,10 @@ YUI.add('dd-delegate', function(Y) {
         }
     });
 
-    Y.namespace('DD');    
+    Y.namespace('DD');
     Y.DD.Delegate = Delegate;
 
 
 
 
-}, '3.4.0' ,{skinnable:false, requires:['dd-drag', 'event-mouseenter', 'dd-drop-plugin']});
+}, '3.7.3', {"requires": ["dd-drag", "dd-drop-plugin", "event-mouseenter"]});

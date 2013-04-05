@@ -1,0 +1,133 @@
+.aui-scheduler-view-day-hidden {
+  display: none;
+}
+
+.aui-scheduler-view-day-table {
+  border: 0;
+  clear: both;
+  height: 1251px;
+  margin-top: -1px;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.aui-scheduler-view-day-table-col {
+  border-left: 1px solid #ddd;
+  padding: 0;
+  vertical-align: top;
+}
+
+.aui-scheduler-view-day-table-col-shim {
+  height: 1248px;
+  margin-bottom: -1248px;
+  position: relative;
+}
+
+.aui-scheduler-view-day-table-colblank {
+  width: 60px;
+}
+
+.aui-scheduler-view-day-table-coltime {
+  border-left: 0;
+  color: #555;
+  text-align: right;
+  width: 60px;
+}
+
+.aui-scheduler-view-day-table-time {
+  border-top: 1px solid #ddd;
+  height: 52px;
+  margin-top: -1px;
+  padding-right: 4px;
+}
+
+.aui-scheduler-view-day-header-table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.aui-scheduler-view-day-content .yui3-widget-hd {
+  border-bottom: 1px solid #ddd;
+  color: #555;
+  padding-top: 4px;
+}
+
+.aui-scheduler-view-day-content .yui3-widget-bd {
+  height: 600px;
+}
+
+.aui-scheduler-view-day-resizer {
+  bottom: 0;
+  cursor: ns-resize;
+  display: block;
+  height: 6px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.aui-scheduler-view-day-resizer-icon {
+  bottom: -4px;
+  left: 50%;
+  margin-left: -8px;
+  position: absolute;
+}
+
+.aui-scheduler-view-day-header-day-first {
+  width: 60px;
+}
+
+.aui-scheduler-view-day-header-day-pad-right {
+  width: 15px;
+}
+
+.aui-scheduler-view-day-header-day {
+  text-align: center;
+}
+
+.aui-scheduler-view-day-header-day .aui-scheduler-today-hd {
+  color: #333333;
+  font-weight: bold;
+}
+
+.aui-scheduler-view-day-header-day a {
+  color: #555;
+  display: block;
+  font-size: 12px;
+  font-weight: normal;
+  padding: 2px;
+  text-decoration: none;
+}
+
+.aui-scheduler-view-day-header-view-label {
+  margin: 0 -4px;
+  position: absolute;
+  text-align: right;
+  top: 26px;
+  width: 60px;
+}
+
+.aui-scheduler-view-day-header-day a:hover {
+  text-decoration: underline;
+}
+
+.aui-scheduler-view-day {
+  background: white;
+}
+
+.aui-scheduler-view-day .aui-scheduler-view-table {
+  margin: 5px 15px 5px 62px;
+}
+
+.aui-scheduler-view-day .aui-scheduler-view-table .aui-scheduler-view-table-data-col-title {
+  display: none;
+}
+
+.aui-scheduler-view-day .aui-scheduler-view-table .aui-scheduler-view-table-grid {
+  border: 1px solid #DDDDDD;
+  border-left: none;
+}
+
+.aui-scheduler-view-day .aui-scheduler-view-table .yui3-widget-hd {
+  display: none;
+}

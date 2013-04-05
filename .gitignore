@@ -1120,6 +1120,7 @@ build_rollup_tmp/
 /lib/builder/componentbuild/templates/yui3/rollup/build_tmp
 /lib/builder/componentbuild/templates/yui3/rollup/build_rollup_tmp
 /lib/builder/componentbuild/templates/yui3/rollup/__MACOSX
+/lib/jazz.jar
 # /resources/
 /resources/.git
 /resources/build_tmp
@@ -1969,3 +1970,6 @@ build_rollup_tmp/
 /src/aui-tree/js/__MACOSX
 /alloy-*.zip
 /.htaccess
+
+.ruby-gems
+.sass-cache

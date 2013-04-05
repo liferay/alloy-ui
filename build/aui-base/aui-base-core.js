@@ -231,6 +231,9 @@
 		AUI._uaExtensions = function(A) {
 			var nav = navigator;
 
+			var CONFIG = A.config,
+				DOC = CONFIG.doc;
+
 			var userAgent = nav.userAgent;
 
 			var UA = A.UA;
@@ -261,6 +264,13 @@
 
 			if (UA.ie) {
 				UAX.aol = getVersion(/America Online Browser ([^\s]*);/, userAgent);
+
+				var docMode = DOC.documentMode;
+
+				if (docMode) {
+					UA.browser = UA.ie;
+					UA.ie = docMode;
+				}
 			}
 			else if (UA.gecko) {
 				UAX.netscape = getVersion(/(Netscape|Navigator)\/([^\s]*)/, userAgent);
@@ -289,9 +299,6 @@
 					UAX.sun = sun;
 				}
 			}
-
-			var CONFIG = A.config,
-				DOC = CONFIG.doc;
 
 			UAX.touch = ('ontouchstart' in DOC);
 
@@ -447,7 +454,11 @@ A.mix(
 		removeItem: function(a, item) {
 			var index = arrayIndexOf(a, item);
 
-			return AArray.remove(a, index);
+			if (index > -1) {
+				return AArray.remove(a, index);
+			}
+
+			return a;
 		}
 	}
 );
@@ -501,4 +512,4 @@ A.fn = function(fn, context, args) {
 	return wrappedFn;
 };
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-classnamemanager','aui-node','aui-component','aui-debounce','aui-delayed-task','aui-selector','aui-event-base','oop','yui-throttle']});
+}, '@VERSION@' ,{requires:['aui-classnamemanager','aui-node','aui-component','aui-debounce','aui-delayed-task','aui-selector','aui-event-base','oop','yui-throttle'], skinnable:false});

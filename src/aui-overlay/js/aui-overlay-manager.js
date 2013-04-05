@@ -76,9 +76,7 @@ var Lang = A.Lang,
 				zIndexBase: {
 					value: 1000,
 					validator: isNumber,
-					setter: function(value) {
-						return parseInt(value, 10);
-					}
+					setter: Lang.toInt
 				}
 			},
 

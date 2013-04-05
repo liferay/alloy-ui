@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('tabview', function(Y) {
+YUI.add('tabview', function (Y, NAME) {
 
 /**
  * The TabView module 
@@ -356,7 +356,7 @@ Y.Tab = Y.Base.create('tab', Y.Widget, [Y.WidgetChild], {
 
         /**
          * @attribute label
-         * @type String
+         * @type HTML
          */
         label: { 
             setter: '_defLabelSetter',
@@ -365,7 +365,7 @@ Y.Tab = Y.Base.create('tab', Y.Widget, [Y.WidgetChild], {
 
         /**
          * @attribute content
-         * @type String
+         * @type HTML
          */
         content: {
             setter: '_defContentSetter',
@@ -405,4 +405,14 @@ Y.Tab = Y.Base.create('tab', Y.Widget, [Y.WidgetChild], {
 });
 
 
-}, '3.4.0' ,{requires:['node-pluginhost', 'node-focusmanager', 'tabview-base', 'widget', 'widget-parent', 'widget-child']});
+}, '3.7.3', {
+    "requires": [
+        "widget",
+        "widget-parent",
+        "widget-child",
+        "tabview-base",
+        "node-pluginhost",
+        "node-focusmanager"
+    ],
+    "skinnable": true
+});

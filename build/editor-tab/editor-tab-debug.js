@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('editor-tab', function(Y) {
+YUI.add('editor-tab', function (Y, NAME) {
 
 
     /**
@@ -16,7 +16,7 @@ YUI.add('editor-tab', function(Y) {
      * @module editor
      * @submodule editor-tab
      */
-    
+
     var EditorTab = function() {
         EditorTab.superclass.constructor.apply(this, arguments);
     }, HOST = 'host';
@@ -73,4 +73,4 @@ YUI.add('editor-tab', function(Y) {
     Y.Plugin.EditorTab = EditorTab;
 
 
-}, '3.4.0' ,{skinnable:false, requires:['editor-base']});
+}, '3.7.3', {"requires": ["editor-base"]});

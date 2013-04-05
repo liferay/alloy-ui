@@ -4,9 +4,7 @@ var Lang = A.Lang,
 	isObject = Lang.isObject,
 	isUndefined = Lang.isUndefined,
 
-	toNumber = function(val) {
-		return parseInt(val, 10) || 0;
-	},
+	toInt = Lang.toInt,
 
 	DASH = '-',
 	DOT = '.',
@@ -20,7 +18,6 @@ var Lang = A.Lang,
 	CLICK = 'click',
 	COLLAPSED = 'collapsed',
 	CONTENT = 'content',
-	CUBIC_BEZIER = 'cubic-bezier',
 	DOWN = 'down',
 	ENTER = 'enter',
 	ESC = 'esc',
@@ -108,8 +105,7 @@ var Toggler = A.Component.create({
 		transition: {
 			validator: isObject,
 			value: {
-				duration: 0.4,
-			    easing: CUBIC_BEZIER
+				duration: 0.4
 			}
 		}
 
@@ -230,7 +226,7 @@ var Toggler = A.Component.create({
 				var content = instance.get(CONTENT);
 
 				var height = instance.getContentHeight();
-				var gutter = toNumber(content.getStyle(MARGIN_TOP));
+				var gutter = toInt(content.getStyle(MARGIN_TOP));
 
 				if (!instance.wrapped) {
 					content.wrap(TPL_CONTENT_WRAPPER);

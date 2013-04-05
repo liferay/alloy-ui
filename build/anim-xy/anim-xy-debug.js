@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('anim-xy', function(Y) {
+YUI.add('anim-xy', function (Y, NAME) {
 
 /**
  * Adds support for the <code>xy</code> property in <code>from</code> and 
@@ -30,4 +30,4 @@ Y.Anim.behaviors.xy = {
 
 
 
-}, '3.4.0' ,{requires:['anim-base', 'node-screen']});
+}, '3.7.3', {"requires": ["anim-base", "node-screen"]});

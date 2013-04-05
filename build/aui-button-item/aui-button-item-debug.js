@@ -14,21 +14,25 @@ var Lang = A.Lang,
 
 	BOUNDING_BOX = 'boundingBox',
 	BUTTON = 'button',
+	CLASS = 'class',
+	CLICK = 'click',
 	CONTENT_BOX = 'contentBox',
+	DISABLED = 'disabled',
 	DOT = '.',
 	HANDLER = 'handler',
+	HIDE = 'hide',
 	ICON = 'icon',
 	ICON_NODE = 'iconNode',
 	LABEL = 'label',
 	LABEL_NODE = 'labelNode',
 	ONLY = 'only',
+	PARENT = 'parent',
 	RESET = 'reset',
-	STATE = 'state',
+	SHOW = 'show',
 	SUBMIT = 'submit',
 	TITLE = 'title',
 	TYPE = 'type',
 
-	CSS_BUTTON = getClassName(NAME),
 	CSS_BUTTON_ICON = getClassName(NAME, ICON),
 	CSS_BUTTON_LABEL = getClassName(NAME, LABEL),
 
@@ -40,7 +44,7 @@ var Lang = A.Lang,
 
 	REGEX_ICON = new RegExp(CSS_ICON + '-([a-zA-Z0-9-]+)'),
 
-	TPL_BUTTON = '<button type="button"></button>',
+	TPL_BUTTON = '<button type="{0}"></button>',
 	TPL_ICON = '<span class="' + [CSS_BUTTON_ICON, CSS_ICON].join(' ') + '"></span>',
 	TPL_LABEL = '<span class="' + CSS_BUTTON_LABEL + '"></span>';
 
@@ -133,6 +137,17 @@ var ButtonItem = A.Component.create(
 			defaultState: {},
 
 			/**
+			 * Whether to apply the disabled interaction state to the button
+			 *
+			 * @attribute disabledState
+			 * @default true
+			 * @type Boolean
+			 */
+			disabledState: {
+				value: true
+			},
+
+			/**
 			 * An event callback to handle when a user interacts with the button.
 			 * This can either be a function that will be attached on click, or
 			 * an object map that accepts the following keys:
@@ -171,8 +186,8 @@ var ButtonItem = A.Component.create(
 
 			/**
 			 * DOM Node to display the icon of the ButtonItem. If not
-             * specified try to query using HTML_PARSER an element inside
-             * boundingBox which matches <code>aui-button-icon</code>.
+			 * specified try to query using HTML_PARSER an element inside
+			 * boundingBox which matches <code>aui-button-icon</code>.
 			 *
 			 * @attribute iconNode
 			 * @default Generated div element.
@@ -208,8 +223,8 @@ var ButtonItem = A.Component.create(
 
 			/**
 			 * DOM Node to display the text of the ButtonItem. If not
-             * specified try to query using HTML_PARSER an element inside
-             * boundingBox which matches <code>aui-button-label</code>.
+			 * specified try to query using HTML_PARSER an element inside
+			 * boundingBox which matches <code>aui-button-label</code>.
 			 *
 			 * @attribute labelNode
 			 * @default Generated div element.
@@ -257,17 +272,17 @@ var ButtonItem = A.Component.create(
 		 */
 		HTML_PARSER: {
 			iconNode: function(srcNode) {
-				return srcNode.one(DOT+CSS_BUTTON_ICON);
+				return srcNode.one(DOT + CSS_BUTTON_ICON);
 			},
 			labelNode: function(srcNode) {
-				return srcNode.one(DOT+CSS_BUTTON_LABEL);
+				return srcNode.one(DOT + CSS_BUTTON_LABEL);
 			},
 			icon: function(srcNode) {
-				var iconNode = srcNode.one(DOT+CSS_BUTTON_ICON);
+				var iconNode = srcNode.one(DOT + CSS_BUTTON_ICON);
 
 				if (iconNode) {
 					this.set(ICON_NODE, iconNode);
-					var cssClass = iconNode.attr('class');
+					var cssClass = iconNode.attr(CLASS);
 
 					var match = cssClass.match(REGEX_ICON);
 
@@ -275,7 +290,7 @@ var ButtonItem = A.Component.create(
 				}
 			},
 			label: function(srcNode) {
-				var labelNode = srcNode.one(DOT+CSS_BUTTON_LABEL);
+				var labelNode = srcNode.one(DOT + CSS_BUTTON_LABEL);
 
 				if (labelNode) {
 					this.set(LABEL_NODE, labelNode);
@@ -286,13 +301,24 @@ var ButtonItem = A.Component.create(
 		},
 
 		constructor: function(config) {
-			if (isString(config)) {
-				config = {
-					icon: config
-				};
+			var instance = this;
+
+			var buttonType = BUTTON;
+
+			if (config) {
+				if (isString(config)) {
+					config = {
+						icon: config
+					};
+				}
+				else if (config.type) {
+					buttonType = config.type;
+				}
 			}
 
-			ButtonItem.superclass.constructor.call(this, config);
+			instance.BOUNDING_TEMPLATE = Lang.sub(TPL_BUTTON, [buttonType]);
+
+			ButtonItem.superclass.constructor.call(instance, config);
 		},
 
 		UI_ATTRS: [HANDLER, ICON, LABEL, TITLE, TYPE],
@@ -324,9 +350,9 @@ var ButtonItem = A.Component.create(
 			syncUI: function() {
 				var instance = this;
 
-				var icon = instance.get('icon');
-				var label = instance.get('label');
-				var title = instance.get('title');
+				var icon = instance.get(ICON);
+				var label = instance.get(LABEL);
+				var title = instance.get(TITLE);
 
 				if (icon) {
 					instance._uiSetIcon(icon);
@@ -409,11 +435,12 @@ var ButtonItem = A.Component.create(
 			_renderStates: function(event) {
 				var instance = this;
 
-				var parent = instance.get('parent');
+				var parent = instance.get(PARENT);
 
 				var activeState = instance._getState('activeState', parent);
 				var classNames = instance._getState('classNames', parent);
 				var defaultState = instance._getState('defaultState', parent);
+				var disabledState = instance._getState('disabledState', parent);
 				var hoverState = instance._getState('hoverState', parent);
 
 				instance.plug(
@@ -422,6 +449,7 @@ var ButtonItem = A.Component.create(
 						activeState: activeState,
 						classNames: classNames,
 						defaultState: defaultState,
+						disabledState: disabledState,
 						hoverState: hoverState
 					}
 				);
@@ -437,7 +465,7 @@ var ButtonItem = A.Component.create(
 				var instance = this;
 
 				if (value === null) {
-					value = instance.get('label');
+					value = instance.get(LABEL);
 				}
 				else if (value === false) {
 					value = '';
@@ -455,8 +483,8 @@ var ButtonItem = A.Component.create(
 			_syncChildrenStates: function() {
 				var instance = this;
 
-				var icon = instance.get('icon');
-				var label = instance.get('label');
+				var icon = instance.get(ICON);
+				var label = instance.get(LABEL);
 
 				var hasIconAndLabel = (icon && label);
 				var hasLabelOnly = (!icon && label);
@@ -480,10 +508,10 @@ var ButtonItem = A.Component.create(
 				var instance = this;
 
 				var fn = value;
-				var parent = instance.get('parent');
+				var parent = instance.get(PARENT);
 				var context = (parent && parent._DEFAULT_CONTEXT) || instance._DEFAULT_CONTEXT || instance;
 
-				var type = 'click';
+				var type = CLICK;
 
 				var args = instance;
 				var customArgs;
@@ -507,7 +535,14 @@ var ButtonItem = A.Component.create(
 
 					var boundFn = A.rbind.apply(A, [fn, context, args].concat(customArgs || []));
 
-					instance._interactionHandle = instance.on(type, boundFn);
+					instance._interactionHandle = instance.on(
+						type,
+						function() {
+							if (!instance.get(DISABLED)) {
+								boundFn.apply(this, arguments);
+							}
+						}
+					);
 				}
 			},
 
@@ -523,10 +558,10 @@ var ButtonItem = A.Component.create(
 
 				var iconNode = instance.get(ICON_NODE);
 
-				var action = 'show';
+				var action = SHOW;
 
 				if (!val) {
-					action = 'hide';
+					action = HIDE;
 				}
 
 				val = getClassName(ICON, val);
@@ -552,10 +587,10 @@ var ButtonItem = A.Component.create(
 
 				var labelNode = instance.get(LABEL_NODE);
 
-				var action = 'show';
+				var action = SHOW;
 
 				if (!val) {
-					action = 'hide';
+					action = HIDE;
 				}
 
 				labelNode.text(val);
@@ -575,9 +610,7 @@ var ButtonItem = A.Component.create(
 			_uiSetTitle: function(val) {
 				var instance = this;
 
-				var boundingBox = instance.get(BOUNDING_BOX);
-
-				boundingBox.setAttribute(TITLE, val);
+				instance.get(BOUNDING_BOX).setAttribute(TITLE, val);
 			},
 
 			/**
@@ -590,9 +623,7 @@ var ButtonItem = A.Component.create(
 			_uiSetType: function(val) {
 				var instance = this;
 
-				var boundingBox = instance.get(BOUNDING_BOX);
-
-				boundingBox.setAttribute(TYPE, val);
+				instance.get(BOUNDING_BOX).setAttribute(TYPE, val);
 			}
 		}
 	}

@@ -7,11 +7,14 @@
 var Lang = A.Lang,
 	Do = A.Do,
 
+	STR_ABOUT_BLANK = 'about:blank',
 	STR_BODY = 'body',
 	STR_HREF = 'href',
+	STR_IFRAME = 'iframe',
 	STR_IMAGE = 'image',
 	STR_LOADING = 'loading',
 	STR_PROVIDERS = 'providers',
+	STR_SRC = 'src',
 
 	NAME = 'mediaViewerPlugin',
 
@@ -98,6 +101,8 @@ var MediaViewerPlugin = A.Component.create(
 				var mediaType = instance._getMediaType(source.attr('href'));
 
 				if (mediaType != STR_IMAGE) {
+					instance._redirectIframe(STR_ABOUT_BLANK);
+
 					host.setStdModContent(STR_BODY, '');
 				}
 			},
@@ -110,6 +115,8 @@ var MediaViewerPlugin = A.Component.create(
 				var mediaType = instance._getMediaType(linkHref);
 
 				var result = true;
+
+				instance._redirectIframe(STR_ABOUT_BLANK);
 
 				if (mediaType != STR_IMAGE) {
 					var providers = instance.get(STR_PROVIDERS)[mediaType];
@@ -199,6 +206,20 @@ var MediaViewerPlugin = A.Component.create(
 				);
 
 				return mediaType;
+			},
+
+			_redirectIframe: function(source) {
+				var instance = this;
+
+				var bodyNode = instance.get('host.bodyNode');
+
+				if (bodyNode) {
+					var iframe = bodyNode.one(STR_IFRAME);
+
+					if (iframe) {
+						iframe.attr(STR_SRC, source);
+					}
+				}
 			},
 
 			_restoreMedia: function(event) {

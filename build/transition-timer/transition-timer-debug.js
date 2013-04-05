@@ -2,17 +2,12 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('transition-timer', function(Y) {
+YUI.add('transition-timer', function (Y, NAME) {
 
-/*
-* The Transition Utility provides an API for creating advanced transitions.
-* @module transition
-*/
-
-/*
+/**
 * Provides the base Transition class, for animating numeric properties.
 *
 * @module transition
@@ -343,4 +338,4 @@ Transition.behaviors.top = Transition.behaviors.bottom = Transition.behaviors.ri
 Y.Transition = Transition;
 
 
-}, '3.4.0' ,{requires:['transition']});
+}, '3.7.3', {"requires": ["transition"]});

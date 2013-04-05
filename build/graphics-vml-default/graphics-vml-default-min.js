@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add("graphics-vml-default",function(a){a.Graphic=a.VMLGraphic;a.Shape=a.VMLShape;a.Circle=a.VMLCircle;a.Rect=a.VMLRect;a.Ellipse=a.VMLEllipse;a.Path=a.VMLPath;a.Drawing=a.VMLDrawing;},"3.4.0",{skinnable:false});
+YUI.add("graphics-vml-default",function(e,t){e.Graphic=e.VMLGraphic,e.Shape=e.VMLShape,e.Circle=e.VMLCircle,e.Rect=e.VMLRect,e.Ellipse=e.VMLEllipse,e.Path=e.VMLPath,e.Drawing=e.VMLDrawing},"3.7.3");

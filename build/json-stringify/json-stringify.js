@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('json-stringify', function(Y) {
+YUI.add('json-stringify', function (Y, NAME) {
 
 /**
  * Provides Y.JSON.stringify method for converting objects to JSON strings.
@@ -15,7 +15,12 @@ YUI.add('json-stringify', function(Y) {
  * @for JSON
  * @static
  */
-var _JSON     = (Y.config.win || {}).JSON,
+// All internals kept private for security reasons
+function fromGlobal(ref) {
+    var g = ((typeof global === 'object') ? global : undefined);
+    return ((Y.UA.nodejs && g) ? g : (Y.config.win || {}))[ref];
+}
+var _JSON     = fromGlobal('JSON'),
     Lang      = Y.Lang,
     isFunction= Lang.isFunction,
     isObject  = Lang.isObject,
@@ -352,4 +357,4 @@ Y.mix(Y.namespace('JSON'),{
 });
 
 
-}, '3.4.0' ,{requires:['yui-base']});
+}, '3.7.3', {"requires": ["yui-base"]});

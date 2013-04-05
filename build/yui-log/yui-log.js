@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('yui-log', function(Y) {
+YUI.add('yui-log', function (Y, NAME) {
 
 /**
  * Provides console log capability and exposes a custom event for
@@ -51,7 +51,8 @@ INSTANCE.log = function(msg, cat, src, silent) {
     // or the event call stack contains a consumer of the yui:log event
     if (c.debug) {
         // apply source filters
-        if (src) {
+        src = src || "";
+        if (typeof src !== "undefined") {
             excl = c.logExclude;
             incl = c.logInclude;
             if (incl && !(src in incl)) {
@@ -113,4 +114,4 @@ INSTANCE.message = function() {
 };
 
 
-}, '3.4.0' ,{requires:['yui-base']});
+}, '3.7.3', {"requires": ["yui-base"]});

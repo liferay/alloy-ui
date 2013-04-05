@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('widget-parent', function(Y) {
+YUI.add('widget-parent', function (Y, NAME) {
 
 /**
  * Extension enabling a Widget to be a parent of another Widget.
@@ -525,7 +525,7 @@ Parent.prototype = {
             children = this._items;
 
         if (child.get("focused")) {
-            child.set("focused", false);
+            child.blur(); // focused is readOnly, so use the public i/f to unset it
         }
 
         if (child.get("selected")) {
@@ -874,4 +874,4 @@ Y.augment(Parent, Y.ArrayList);
 Y.WidgetParent = Parent;
 
 
-}, '3.4.0' ,{requires:['base-build', 'arraylist', 'widget']});
+}, '3.7.3', {"requires": ["arraylist", "base-build", "widget"]});

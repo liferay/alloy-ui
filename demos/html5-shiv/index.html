@@ -13,12 +13,17 @@ body {
 	margin: 1em;
 }
  
+ h1 {
+ 	margin: 0 0 0.5em;
+ 	font-size: 1em;
+ }
+
 article,
 section {
 	border: 0.25em solid black;
 	display: block;
-	margin: 0.5em;
-	padding: 0.5em;
+	margin: 3px;
+	padding: 3px;
 }
  
 p {
@@ -32,7 +37,7 @@ time {
 time,
 mark {
 	border: 2px solid blue;
-	padding: 0.1em;
+	padding: 1px;
 }
  
 var {
@@ -79,34 +84,7 @@ var {
  
 	</style>
 
-	<script> 
- 
-/* Cross Browser Add Event Shortcut */
-function addEvent(obj,type,fn){if(!obj)return;if(obj.attachEvent){obj['e'+type+fn]=fn;obj[type+fn]=function(){obj['e'+type+fn](window.event);};obj.attachEvent('on'+type,obj[type+fn]);}else obj.addEventListener(type,fn,false);};
- 
-/* Get Element By Id Shortcut */
-function get(id) { return document.getElementById(id); };
- 
-/* On Window Load */
-window.onload = function () {
-	addEvent(
-		get('hoverExample'),
-		'mouseover',
-		function () {
-			this.style.background = '#AAA';
-		}
-	);
-
-	addEvent(
-		get('hoverExample'),
-		'mouseout',
-		function () {
-			this.style.background = '#FFF';
-		}
-	);
-};
- 
-	</script>
+	
 </head>
 
 <body>
@@ -115,6 +93,25 @@ window.onload = function () {
 	Print Me in IE!
 </h1> 
  
+ <fieldset>
+ 	<legend>These elements are changed from their defaults via JavaScript</legend>
+ 	<label for="defCheckOff">Should be checked</label><input type="checkbox" id="defCheckOff" /><br />
+ 	<label for="defCheckOn">Should not be checked</label><input checked type="checkbox" id="defCheckOn" /><br />
+ 	<label for="defRadioOff">Should be checked</label><input type="radio" id="defRadioOff" /><br />
+ 	<label for="defRadioOn">Should not be checked</label><input checked type="radio" id="defRadioOn" /><br />
+ 	<label for="defSelect">Should be set to 2</label>
+ 	<select id="defSelect">
+ 		<option>Default 1</option>
+ 		<option>2</option>
+ 		<option>3</option>
+ 	</select>
+ 	<br />
+ 	<label for="defTextArea">Textarea</label>
+ 	<textarea id="defTextArea">Should not have this text</textarea>
+ 	<br />
+ 	
+ </fieldset>
+
 <article class="show_on_print"> 
 	<p> 
 		This article is only visible on print.
@@ -167,11 +164,43 @@ window.onload = function () {
 
 <script>
 if (!location.hash) {
-	document.write('<iframe src="index.html#test" width="100%" height="400" id="test123"></iframe>');
+	document.write('<iframe src="index.html#test1" width="100%" height="400" id="test123"></iframe>');
 }
 
-AUI().use('aui-node-html5-print');
+var addEvent = AUI.Env.add;
 
+var byId = function(id) {
+	return document.getElementById(id);
+};
+
+var hoverExample = byId('hoverExample');
+
+addEvent(
+	hoverExample,
+	'mouseover',
+	function() {
+		hoverExample.style.background = '#AAA';
+	}
+);
+
+addEvent(
+	hoverExample,
+	'mouseout',
+	function() {
+		hoverExample.style.background = '#FFF';
+	}
+);
+
+byId('defCheckOn').checked = false;
+byId('defCheckOff').checked = true;
+byId('defRadioOn').checked = false;
+byId('defRadioOff').checked = true;
+byId('defSelect').selectedIndex = 1;
+byId('defTextArea').value = 'Should have this value';
+var children = document.body.children;
+var length = children.length;
+
+AUI().use('aui-node-html5-print');
 </script>
 
 </body>

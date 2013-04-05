@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('loader-rollup', function(Y) {
+YUI.add('loader-rollup', function (Y, NAME) {
 
 /**
  * Optional automatic rollup logic for reducing http connections
@@ -40,8 +40,6 @@ Y.Loader.prototype._rollup = function() {
                 }
             }
         }
-
-        this.forceMap = (this.force) ? Y.Array.hash(this.force) : {};
     }
 
     // make as many passes as needed to pick up rollup rollups
@@ -76,7 +74,7 @@ Y.Loader.prototype._rollup = function() {
                         // increment the counter if this module is required.
                         // if we are beyond the rollup threshold, we will
                         // use the rollup module
-                        } else if (r[s[j]] && m.type == smod.type) {
+                        } else if (r[s[j]] && m.type === smod.type) {
                             c++;
                             // Y.log("adding to thresh: " + c + ", " + s[j]);
                             roll = (c >= m.rollup);
@@ -108,4 +106,4 @@ Y.Loader.prototype._rollup = function() {
 };
 
 
-}, '3.4.0' ,{requires:['loader-base']});
+}, '3.7.3', {"requires": ["loader-base"]});

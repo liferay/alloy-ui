@@ -2,22 +2,22 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('datatype-number-parse', function(Y) {
+YUI.add('datatype-number-parse', function (Y, NAME) {
 
 /**
  * Parse number submodule.
  *
- * @module datatype
+ * @module datatype-number
  * @submodule datatype-number-parse
- * @for DataType.Number
+ * @for Number
  */
 
 var LANG = Y.Lang;
 
-Y.mix(Y.namespace("DataType.Number"), {
+Y.mix(Y.namespace("Number"), {
     /**
      * Converts data to type Number.
      *
@@ -38,7 +38,9 @@ Y.mix(Y.namespace("DataType.Number"), {
 });
 
 // Add Parsers shortcut
-Y.namespace("Parsers").number = Y.DataType.Number.parse;
+Y.namespace("Parsers").number = Y.Number.parse;
+Y.namespace("DataType");
+Y.DataType.Number = Y.Number;
 
 
-}, '3.4.0' );
+}, '3.7.3');

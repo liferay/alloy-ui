@@ -2,12 +2,12 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('frame', function(Y) {
+YUI.add('frame', function (Y, NAME) {
 
-
+    /*jshint maxlen: 500 */
     /**
      * Creates a wrapper around an iframe. It loads the content either from a local
      * file or from script and creates a local YUI instance bound to that new window and document.
@@ -21,8 +21,8 @@ YUI.add('frame', function(Y) {
 
     var Frame = function() {
         Frame.superclass.constructor.apply(this, arguments);
-    }, LAST_CHILD = ':last-child', BODY = 'body';
-    
+    };
+
 
     Y.extend(Frame, Y.Base, {
         /**
@@ -60,46 +60,50 @@ YUI.add('frame', function(Y) {
         * @return {Object} Hash table containing references to the new Document & Window
         */
         _create: function(cb) {
-            var win, doc, res, node;
+            var res, html = '', timer,
+                //if the src attr is different than the default, don't create the document
+                create = (this.get('src') === Frame.ATTRS.src.value),
+                extra_css = ((this.get('extracss')) ? '<style id="extra_css">' + this.get('extracss') + '</style>' : '');
             
-            this._iframe = Y.Node.create(Frame.HTML);
+            this._iframe = Y.one(Y.config.doc.createElement('iframe'));
+            this._iframe.setAttrs(Frame.IFRAME_ATTRS);
+
             this._iframe.setStyle('visibility', 'hidden');
             this._iframe.set('src', this.get('src'));
             this.get('container').append(this._iframe);
-
             this._iframe.set('height', '99%');
 
-            
-            var html = '',
-                extra_css = ((this.get('extracss')) ? '<style id="extra_css">' + this.get('extracss') + '</style>' : '');
+            if (create) {
+                html = Y.Lang.sub(Frame.PAGE_HTML, {
+                    DIR: this.get('dir'),
+                    LANG: this.get('lang'),
+                    TITLE: this.get('title'),
+                    META: Frame.META,
+                    LINKED_CSS: this.get('linkedcss'),
+                    CONTENT: this.get('content'),
+                    BASE_HREF: this.get('basehref'),
+                    DEFAULT_CSS: Frame.DEFAULT_CSS,
+                    EXTRA_CSS: extra_css
+                });
+                if (Y.config.doc.compatMode !== 'BackCompat') {
 
-            html = Y.substitute(Frame.PAGE_HTML, {
-                DIR: this.get('dir'),
-                LANG: this.get('lang'),
-                TITLE: this.get('title'),
-                META: Frame.META,
-                LINKED_CSS: this.get('linkedcss'),
-                CONTENT: this.get('content'),
-                BASE_HREF: this.get('basehref'),
-                DEFAULT_CSS: Frame.DEFAULT_CSS,
-                EXTRA_CSS: extra_css
-            });
-            if (Y.config.doc.compatMode != 'BackCompat') {
-                
-                //html = Frame.DOC_TYPE + "\n" + html;
-                html = Frame.getDocType() + "\n" + html;
-            } else {
+                    //html = Frame.DOC_TYPE + "\n" + html;
+                    html = Frame.getDocType() + "\n" + html;
+                } else {
+                }
+
             }
 
-
-
             res = this._resolveWinDoc();
-            res.doc.open();
-            res.doc.write(html);
-            res.doc.close();
+
+            if (html) {
+                res.doc.open();
+                res.doc.write(html);
+                res.doc.close();
+            }
 
             if (!res.doc.documentElement) {
-                var timer = Y.later(1, this, function() {
+                timer = Y.later(1, this, function() {
                     if (res.doc && res.doc.documentElement) {
                         cb(res);
                         timer.cancel();
@@ -140,7 +144,7 @@ YUI.add('frame', function(Y) {
         */
         _onDomEvent: function(e) {
             var xy, node;
-            
+
             if (!Y.Node.getDOMNode(this._iframe)) {
                 //The iframe is null for some reason, bail on sending events.
                 return;
@@ -192,7 +196,7 @@ YUI.add('frame', function(Y) {
             if (e._event.clipboardData) {
                 data = e._event.clipboardData.getData('Text');
             }
-            
+
             if (win.clipboardData) {
                 data = win.clipboardData.getData('Text');
                 if (data === '') { // Could be empty, or failed
@@ -202,12 +206,12 @@ YUI.add('frame', function(Y) {
                     }
                 }
             }
-            
+
 
             e.frameTarget = e.target;
             e.frameCurrentTarget = e.currentTarget;
             e.frameEvent = e;
-            
+
             if (data) {
                 e.clipboardData = {
                     data: data,
@@ -249,26 +253,23 @@ YUI.add('frame', function(Y) {
             }, this);
 
             inst.Node.DOM_EVENTS.paste = 1;
-            
+
             inst.on('paste', Y.bind(this._DOMPaste, this), inst.one('body'));
 
             //Adding focus/blur to the window object
             inst.on('focus', Y.bind(this._onDomEvent, this), inst.config.win);
             inst.on('blur', Y.bind(this._onDomEvent, this), inst.config.win);
 
-            inst._use = inst.use;
+            inst.__use = inst.use;
             inst.use = Y.bind(this.use, this);
             this._iframe.setStyles({
                 visibility: 'inherit'
             });
             inst.one('body').setStyle('display', 'block');
-            if (Y.UA.ie) {
-                this._fixIECursors();
-            }
         },
         /**
         * It appears that having a BR tag anywhere in the source "below" a table with a percentage width (in IE 7 & 8)
-        * if there is any TEXTINPUT's outside the iframe, the cursor will rapidly flickr and the CPU would occasionally 
+        * if there is any TEXTINPUT's outside the iframe, the cursor will rapidly flickr and the CPU would occasionally
         * spike. This method finds all <BR>'s below the sourceIndex of the first table. Does some checks to see if they
         * can be modified and replaces then with a <WBR> so the layout will remain in tact, but the flickering will
         * no longer happen.
@@ -286,7 +287,7 @@ YUI.add('frame', function(Y) {
                 brs.each(function(n) {
                     var p = n.get('parentNode'),
                         c = p.get('children'), b = p.all('>br');
-                    
+
                     if (p.test('div')) {
                         if (c.size() > 2) {
                             n.replace(inst.Node.create('<wbr>'));
@@ -302,7 +303,7 @@ YUI.add('frame', function(Y) {
                             }
                         }
                     }
-                    
+
                 });
             }
         },
@@ -317,7 +318,7 @@ YUI.add('frame', function(Y) {
                 this._ready = true;
                 var inst = this.getInstance(),
                     args = Y.clone(this.get('use'));
-                
+
                 this.fire('contentready');
 
                 if (e) {
@@ -325,8 +326,8 @@ YUI.add('frame', function(Y) {
                 }
                 //TODO Circle around and deal with CSS loading...
                 args.push(Y.bind(function() {
-                    if (inst.Selection) {
-                        inst.Selection.DEFAULT_BLOCK_TAG = this.get('defaultblock');
+                    if (inst.EditorSelection) {
+                        inst.EditorSelection.DEFAULT_BLOCK_TAG = this.get('defaultblock');
                     }
                     //Moved to here so that the iframe is ready before allowing editing..
                     if (this.get('designMode')) {
@@ -348,7 +349,7 @@ YUI.add('frame', function(Y) {
         _ieHeightCounter: null,
         /**
         * Internal method to set the height of the body to the height of the document in IE.
-        * With contenteditable being set, the document becomes unresponsive to clicks, this 
+        * With contenteditable being set, the document becomes unresponsive to clicks, this
         * method expands the body to be the height of the document so that doesn't happen.
         * @private
         * @method _ieSetBodyHeight
@@ -358,7 +359,7 @@ YUI.add('frame', function(Y) {
                 this._ieHeightCounter = 0;
             }
             this._ieHeightCounter++;
-            var run = false;
+            var run = false, inst, h, bh;
             if (!e) {
                 run = true;
             }
@@ -375,9 +376,9 @@ YUI.add('frame', function(Y) {
             }
             if (run) {
                 try {
-                    var inst = this.getInstance();
-                    var h = this._iframe.get('offsetHeight');
-                    var bh = inst.config.doc.body.scrollHeight;
+                    inst = this.getInstance();
+                    h = this._iframe.get('offsetHeight');
+                    bh = inst.config.doc.body.scrollHeight;
                     if (h > bh) {
                         h = (h - 15) + 'px';
                         inst.config.doc.body.style.height = h;
@@ -436,7 +437,7 @@ YUI.add('frame', function(Y) {
                 inst.one('body').set('innerHTML', html);
             } else {
                 //This needs to be wrapped in a contentready callback for the !_ready state
-                this.on('contentready', Y.bind(function(html, e) {
+                this.on('contentready', Y.bind(function(html) {
                     var inst = this.getInstance();
                     inst.one('body').set('innerHTML', html);
                 }, this, html));
@@ -485,7 +486,7 @@ YUI.add('frame', function(Y) {
             if (this._ready) {
                 var inst = this.getInstance(),
                     node = inst.one('#extra_css');
-                
+
                 node.remove();
                 inst.one('head').append('<style id="extra_css">' + css + '</style>');
             }
@@ -501,7 +502,7 @@ YUI.add('frame', function(Y) {
         _instanceLoaded: function(inst) {
             this._instance = inst;
             this._onContentReady();
-            
+
             var doc = this._instance.config.doc;
 
             if (this.get('designMode')) {
@@ -534,7 +535,7 @@ YUI.add('frame', function(Y) {
 
                 });
             }
-            inst._use.apply(inst, args);
+            inst.__use.apply(inst, args);
         },
         /**
         * @method delegate
@@ -624,16 +625,17 @@ YUI.add('frame', function(Y) {
         */
         _handleFocus: function() {
             var inst = this.getInstance(),
-                sel = new inst.Selection();
+                sel = new inst.EditorSelection(),
+                n, c, b, par;
 
             if (sel.anchorNode) {
-                var n = sel.anchorNode, c;
-                
+                n = sel.anchorNode;
+
                 if (n.test('p') && n.get('innerHTML') === '') {
                     n = n.get('parentNode');
                 }
                 c = n.get('childNodes');
-                
+
                 if (c.size()) {
                     if (c.item(0).test('br')) {
                         sel.selectNode(n, true, false);
@@ -652,9 +654,9 @@ YUI.add('frame', function(Y) {
                             sel.selectNode(n, true, false);
                         }
                     } else {
-                        var b = inst.one('br.yui-cursor');
+                        b = inst.one('br.yui-cursor');
                         if (b) {
-                            var par = b.get('parentNode');
+                            par = b.get('parentNode');
                             if (par) {
                                 sel.selectNode(par, true, false);
                             }
@@ -666,15 +668,19 @@ YUI.add('frame', function(Y) {
         /**
         * @method focus
         * @description Set the focus to the iframe
-        * @param {Function} fn Callback function to execute after focus happens        
+        * @param {Function} fn Callback function to execute after focus happens
         * @return {Frame}
-        * @chainable        
+        * @chainable
         */
         focus: function(fn) {
             if (Y.UA.ie && Y.UA.ie < 9) {
                 try {
                     Y.one('win').focus();
-                    this.getInstance().one('win').focus();
+                    if (this.getInstance()) {
+                        if (this.getInstance().one('win')) {
+                            this.getInstance().one('win').focus();
+                        }
+                    }
                 } catch (ierr) {
                 }
                 if (fn === true) {
@@ -687,7 +693,11 @@ YUI.add('frame', function(Y) {
                 try {
                     Y.one('win').focus();
                     Y.later(100, this, function() {
-                        this.getInstance().one('win').focus();
+                        if (this.getInstance()) {
+                            if (this.getInstance().one('win')) {
+                                this.getInstance().one('win').focus();
+                            }
+                        }
                         if (fn === true) {
                             this._handleFocus();
                         }
@@ -704,7 +714,7 @@ YUI.add('frame', function(Y) {
         * @method show
         * @description Show the iframe instance
         * @return {Frame}
-        * @chainable        
+        * @chainable
         */
         show: function() {
             this._iframe.setStyles({
@@ -713,17 +723,19 @@ YUI.add('frame', function(Y) {
             });
             if (Y.UA.gecko) {
                 try {
-                    this._instance.config.doc.designMode = 'on';
+                    if (this.getInstance()) {
+                        this.getInstance().config.doc.designMode = 'on';
+                    }
                 } catch (e) { }
                 this.focus();
-            }           
+            }
             return this;
         },
         /**
         * @method hide
         * @description Hide the iframe instance
         * @return {Frame}
-        * @chainable        
+        * @chainable
         */
         hide: function() {
             this._iframe.setStyles({
@@ -769,16 +781,32 @@ YUI.add('frame', function(Y) {
         * @description The default css used when creating the document.
         * @type String
         */
-        //DEFAULT_CSS: 'html { height: 95%; } body { padding: 7px; background-color: #fff; font: 13px/1.22 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small; } a, a:visited, a:hover { color: blue !important; text-decoration: underline !important; cursor: text !important; } img { cursor: pointer !important; border: none; }',
         DEFAULT_CSS: 'body { background-color: #fff; font: 13px/1.22 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small; } a, a:visited, a:hover { color: blue !important; text-decoration: underline !important; cursor: text !important; } img { cursor: pointer !important; border: none; }',
         /**
+        * The template string used to create the iframe, deprecated to use DOM instead of innerHTML
         * @static
         * @property HTML
-        * @description The template string used to create the iframe
         * @type String
+        * @deprecated
         */
         //HTML: '<iframe border="0" frameBorder="0" marginWidth="0" marginHeight="0" leftMargin="0" topMargin="0" allowTransparency="true" width="100%" height="99%"></iframe>',
-        HTML: '<iframe border="0" frameBorder="0" marginWidth="0" marginHeight="0" leftMargin="0" topMargin="0" allowTransparency="true" width="100%" height="99%"></iframe>',
+        /**
+        * Attributes to auto add to the dynamic iframe under the hood
+        * @static
+        * @property IFRAME_ATTRS
+        * @type Object
+        */
+        IFRAME_ATTRS: {
+            border: '0',
+            frameBorder: '0',
+            marginWidth: '0',
+            marginHeight: '0',
+            leftMargin: '0',
+            topMargin: '0',
+            allowTransparency: 'true',
+            width: "100%",
+            height: "99%"
+        },
         /**
         * @static
         * @property PAGE_HTML
@@ -792,7 +820,7 @@ YUI.add('frame', function(Y) {
         * @method getDocType
         * @description Parses document.doctype and generates a DocType to match the parent page, if supported.
         * For IE8, it grabs document.all[0].nodeValue and uses that. For IE < 8, it falls back to Frame.DOC_TYPE.
-        * @returns {String} The normalized DocType to apply to the iframe
+        * @return {String} The normalized DocType to apply to the iframe
         */
         getDocType: function() {
             var dt = Y.config.doc.doctype,
@@ -909,7 +937,7 @@ YUI.add('frame', function(Y) {
             */
             use: {
                 writeOnce: true,
-                value: ['substitute', 'node', 'node-style', 'selector-css3']
+                value: ['node', 'node-style', 'selector-css3']
             },
             /**
             * @attribute container
@@ -970,7 +998,7 @@ YUI.add('frame', function(Y) {
             },
             /**
             * @attribute host
-            * @description A reference to the Editor instance 
+            * @description A reference to the Editor instance
             * @type Object
             */
             host: {
@@ -980,7 +1008,7 @@ YUI.add('frame', function(Y) {
             * @attribute defaultblock
             * @description The default tag to use for block level items, defaults to: p
             * @type String
-            */            
+            */
             defaultblock: {
                 value: 'p'
             }
@@ -992,4 +1020,4 @@ YUI.add('frame', function(Y) {
 
 
 
-}, '3.4.0' ,{skinnable:false, requires:['base', 'node', 'selector-css3', 'substitute', 'yui-throttle']});
+}, '3.7.3', {"requires": ["base", "node", "selector-css3", "yui-throttle"]});

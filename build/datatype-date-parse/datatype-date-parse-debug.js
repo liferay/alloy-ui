@@ -2,21 +2,21 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('datatype-date-parse', function(Y) {
+YUI.add('datatype-date-parse', function (Y, NAME) {
 
 /**
  * Parse number submodule.
  *
- * @module datatype
+ * @module datatype-date
  * @submodule datatype-date-parse
- * @for DataType.Date
+ * @for Date
  */
 var LANG = Y.Lang;
 
-Y.mix(Y.namespace("DataType.Date"), {
+Y.mix(Y.namespace("Date"), {
     /**
      * Converts data to type Date.
      *
@@ -40,14 +40,17 @@ Y.mix(Y.namespace("DataType.Date"), {
             return date;
         }
         else {
-            Y.log("Could not convert data " + LANG.dump(date) + " to type Date", "warn", "date");
+            Y.log("Could not convert data to type Date", "warn", "date");
             return null;
         }
     }
 });
 
 // Add Parsers shortcut
-Y.namespace("Parsers").date = Y.DataType.Date.parse;
+Y.namespace("Parsers").date = Y.Date.parse;
+
+Y.namespace("DataType");
+Y.DataType.Date = Y.Date;
 
 
-}, '3.4.0' );
+}, '3.7.3');

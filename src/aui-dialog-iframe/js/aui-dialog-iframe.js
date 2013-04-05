@@ -58,6 +58,8 @@ var DialogIframePlugin = A.Component.create(
 
 				instance._host = instance.get('host');
 
+				instance._eventHandles = [];
+
 				instance.publish(
 					'load',
 					{
@@ -74,6 +76,8 @@ var DialogIframePlugin = A.Component.create(
 
 			destructor: function() {
 				var instance = this;
+
+				instance._detachEventHandles();
 
 				instance._host.set('bodyContent', instance._previousBodyContent);
 
@@ -114,7 +118,7 @@ var DialogIframePlugin = A.Component.create(
 				var instance = this;
 
 				if (event.src != UI) {
-					instance._uiSetUri(event.newVal);
+					instance._uiSetUri(event.newVal, event.prevVal);
 				}
 			},
 
@@ -133,26 +137,42 @@ var DialogIframePlugin = A.Component.create(
 				bindLoadHandler.call(instance);
 			},
 
+			_detachEventHandles: function() {
+				var instance = this;
+
+				var eventHandles = instance._eventHandles;
+
+				A.Array.invoke(eventHandles, 'detach');
+
+				eventHandles.length = 0;
+			},
+
 			_defaultLoadIframeFn: function(event) {
 				var instance = this;
 
 				var node = instance.node;
 
 				try {
-					var iframeDoc = node.get('contentWindow.document');
+					var iframeWindow = node.get('contentWindow');
+
+					iframeWindow.once('unload', instance._detachEventHandles, instance);
+
+					var iframeDoc = iframeWindow.get('document');
 
 					iframeDoc.get('documentElement').addClass(CSS_IFRAME_ROOT_NODE);
 
 					instance.set('uri', iframeDoc.get('location.href'), UI_SRC);
 
 					if (instance.get('closeOnEscape')) {
-						A.on(
-							'key',
-							function(event) {
-								instance._host.close();
-							},
-							[iframeDoc],
-							'down:27'
+						instance._eventHandles.push(
+							A.on(
+								'key',
+								function(event) {
+									instance._host.close();
+								},
+								[iframeDoc],
+								'down:27'
+							)
 						);
 					}
 				}
@@ -213,14 +233,19 @@ var DialogIframePlugin = A.Component.create(
 				}
 			},
 
-			_uiSetUri: function(value) {
+			_uiSetUri: function(newVal, prevVal) {
 				var instance = this;
 
-				if (instance._bodyNode.loadingmask) {
-					instance._bodyNode.loadingmask.show();
+				var loadingMask = instance._bodyNode.loadingmask;
+
+				var oldUrl = prevVal.split('#');
+				var newUrl = newVal.split('#');
+
+				if (newUrl[0] != oldUrl[0] && loadingMask) {
+					loadingMask.show();
 				}
 
-				instance.node.attr('src', value);
+				instance.node.attr('src', newVal);
 			},
 
 			_updateIframeSize: function(event) {

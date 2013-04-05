@@ -4,7 +4,6 @@ var L = A.Lang,
 	isBoolean = L.isBoolean,
 	isString = L.isString,
 	isObject = L.isObject,
-	isValue = L.isValue,
 
 	AArray = A.Array,
 
@@ -14,151 +13,58 @@ var L = A.Lang,
 		return (v instanceof A.AvailableField);
 	},
 
-	isNode = function(v) {
-		return (v instanceof A.Node);
-	},
-
-	isNodeList = function(v) {
-		return (v instanceof A.NodeList);
-	},
-
-	isFormBuilder = function(v) {
-		return (v instanceof A.FormBuilder);
-	},
-
 	isFormBuilderField = function(v) {
 		return (v instanceof A.FormBuilderField);
 	},
 
-	DDM = A.DD.DDM,
-
-	ACCEPT_CHILDREN = 'acceptChildren',
-	ACTIVE = 'active',
-	ALLOW_REMOVE_REQUIRED_FIELDS = 'allowRemoveRequiredFields',
 	ADD = 'add',
-	APPEND = 'append',
-	AUTO_SELECT_FIELDS = 'autoSelectFields',
+	ALLOW_REMOVE_REQUIRED_FIELDS = 'allowRemoveRequiredFields',
+	ATTRIBUTE_NAME = 'attributeName',
 	AVAILABLE_FIELD = 'availableField',
 	AVAILABLE_FIELDS = 'availableFields',
-	BASE = 'base',
 	BOUNDING_BOX = 'boundingBox',
 	BUILDER = 'builder',
-	BUTTON = 'button',
-	BUTTONS = 'buttons',
-	BUTTONS_NODE = 'buttonsNode',
-	CHILDREN = 'children',
 	CLICK = 'click',
-	CLONE_NODE = 'cloneNode',
-	COMPONENT = 'component',
-	CONTAINER = 'container',
-	CONTENT = 'content',
-	CONTENT_BOX = 'contentBox',
 	DATA = 'data',
 	DBLCLICK = 'dblclick',
 	DD = 'dd',
-	DEFAULT = 'default',
-	DEFAULT_MESSAGE = 'defaultMessage',
-	DEFAULT_MESSAGE_NODE = 'defaultMessageNode',
-	DELETE = 'delete',
 	DIAGRAM = 'diagram',
-	DOT = '.',
-	DRAG = 'drag',
-	DRAG_CONTAINER = 'dragContainer',
-	DRAG_CONTAINER_NODE = 'dragContainerNode',
-	DRAG_NODES_LIST = 'dragNodesList',
 	DRAGGABLE = 'draggable',
 	DRAGGING = 'dragging',
 	DROP = 'drop',
-	DROP_CONTAINER = 'dropContainer',
-	DROP_CONTAINER_NODE = 'dropContainerNode',
-	DROP_NODE = 'dropNode',
-	DROP_ZONE_NODE = 'dropZoneNode',
-	DUPLICATE = 'duplicate',
-	EDIT = 'edit',
 	EDITING = 'editing',
-	EMPTY_SELECTION = 'emptySelection',
 	EMPTY_STR = '',
-	ENABLE_EDITING = 'enableEditing',
 	FIELD = 'field',
 	FIELDS = 'fields',
 	FIELDS_NESTED_LIST_CONFIG = 'fieldsNestedListConfig',
-	FIRST = 'first',
-	FIRST_CHILD = 'firstChild',
-	FOCUSED = 'focused',
 	FORM = 'form',
 	FORM_BUILDER = 'formBuilder',
-	FORM_LAYOUT = 'form-layout',
-	HELPER = 'helper',
-	HIDDEN = 'hidden',
 	HIDDEN_ATTRIBUTES = 'hiddenAttributes',
-	ICON = 'icon',
 	ID = 'id',
-	INACTIVE = 'inactive',
-	INDEX = 'index',
-	INPUT = 'input',
-	ITEMS = 'items',
-	KEY = 'key',
 	LABEL = 'label',
-	LABEL_NODE = 'labelNode',
-	LAST = 'last',
-	LAST_CHILD = 'lastChild',
-	LIST = 'list',
 	LOCALIZATION_MAP = 'localizationMap',
-	MESSAGE = 'message',
-	MOUSEENTER = 'mouseenter',
-	MOUSELEAVE = 'mouseleave',
 	NAME = 'name',
-	NESTED_LIST = 'nestedList',
 	NODE = 'node',
 	OPTIONS = 'options',
-	OVER = 'over',
 	PARENT = 'parent',
 	PARENT_NODE = 'parentNode',
-	PLACE_AFTER = 'placeAfter',
-	PLACE_BEFORE = 'placeBefore',
 	PLACEHOLDER = 'placeholder',
 	PREDEFINED_VALUE = 'predefinedValue',
-	PREPEND = 'prepend',
 	READ_ONLY_ATTRIBUTES = 'readOnlyAttributes',
-	RECORDS = 'records',
-	RECORDSET = 'recordset',
-	REGION = 'region',
 	REMOVE = 'remove',
-	RENDER = 'render',
 	RENDERED = 'rendered',
 	REQUIRED = 'required',
-	SAVE = 'save',
 	SELECTED = 'selected',
-	SETTINGS = 'settings',
-	SETTINGS_BUTTONS_NODE = 'settingsButtonsNode',
-	SETTINGS_FORM_NODE = 'settingsFormNode',
 	SHOW_LABEL = 'showLabel',
-	SPACE = ' ',
-	SRC_NODE = 'srcNode',
-	STATE = 'state',
-	STRINGS = 'strings',
-	TABS = 'tabs',
-	TABS_CONTENT_NODE = 'tabsContentNode',
-	TABS_LIST_NODE = 'tabsListNode',
-	TABS_NODE = 'tabsNode',
-	TABVIEW = 'tabview',
-	TARGET = 'target',
-	TEMPLATE_NODE = 'templateNode',
-	TEXT = 'text',
 	TIP = 'tip',
 	TYPE = 'type',
 	UNIQUE = 'unique',
 	VALUE = 'value',
-	VALUES = 'values',
-	WIDGET = 'widget',
 	WIDTH = 'width',
 	ZONE = 'zone',
 
-	_COMMA = ',',
-	_DASH = '-',
 	_DOT = '.',
 	_EMPTY_STR = '',
-	_HASH = '#',
 	_UNDERLINE = '_',
 
 	getCN = A.getClassName,
@@ -167,13 +73,11 @@ var L = A.Lang,
 	FIELDS_ID_PREFIX = FIELDS + _UNDERLINE + FIELD + _UNDERLINE,
 
 	CSS_DD_DRAGGING = getCN(DD, DRAGGING),
-	CSS_DIAGRAM_BUILDER_DROP_CONTAINER = getCN(DIAGRAM, BUILDER, DROP, CONTAINER),
 	CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE = getCN(DIAGRAM, BUILDER, FIELD, DRAGGABLE),
 	CSS_FORM_BUILDER_DROP_ZONE = getCN(FORM, BUILDER, DROP, ZONE),
 	CSS_FORM_BUILDER_FIELD = getCN(FORM, BUILDER, FIELD),
 	CSS_FORM_BUILDER_FIELD_EDITING = getCN(FORM, BUILDER, FIELD, EDITING),
 	CSS_FORM_BUILDER_PLACEHOLDER = getCN(FORM, BUILDER, PLACEHOLDER),
-	CSS_FORM_BUILDER_UNIQUE = getCN(FORM, BUILDER, UNIQUE),
 
 	INVALID_CLONE_ATTRS = [ID, NAME],
 
@@ -349,12 +253,7 @@ var FormBuilder = A.Component.create({
 
 				instance.tabView.selectTab(A.FormBuilder.SETTINGS_TAB);
 
-				// The current YUI DataTable version has issues with plugins
-				// event order when sort and scroll are plugged, to prevent
-				// misalignment between columns and headers set the record set
-				// twice, the first time set to an empty recordset then the desired value.
-				instance.propertyList.set(RECORDSET, [{}]);
-				instance.propertyList.set(RECORDSET, instance.getFieldProperties(field));
+				instance.propertyList.set(DATA, instance.getFieldProperties(field));
 
 				field.get(BOUNDING_BOX).addClass(CSS_FORM_BUILDER_FIELD_EDITING);
 
@@ -443,7 +342,7 @@ var FormBuilder = A.Component.create({
 
 		_afterUniqueFieldsAdd: function(event) {
 			var instance = this;
-			var availableField = event.attrName;
+			var availableField = getAvailableFieldById(event.attrName);
 
 			if (isAvailableField(availableField)) {
 				var node = availableField.get(NODE);
@@ -455,7 +354,7 @@ var FormBuilder = A.Component.create({
 
 		_afterUniqueFieldsRemove: function(event) {
 			var instance = this;
-			var availableField = event.attrName;
+			var availableField = getAvailableFieldById(event.attrName);
 
 			if (isAvailableField(availableField)) {
 				var node = availableField.get(NODE);
@@ -649,12 +548,10 @@ var FormBuilder = A.Component.create({
 			var editingField = instance.editingField;
 
 			if (editingField) {
-				var recordset = instance.propertyList.get(RECORDSET);
+				var modelList = instance.propertyList.get(DATA);
 
-				AArray.each(recordset.get(RECORDS), function(record) {
-					var data = record.get(DATA);
-
-					editingField.set(data.attributeName, data.value);
+				modelList.each(function(model) {
+					editingField.set(model.get(ATTRIBUTE_NAME), model.get(VALUE));
 				});
 
 				instance._syncUniqueField(editingField);
@@ -750,13 +647,12 @@ var FormBuilder = A.Component.create({
 			var uniqueFields = instance.uniqueFields;
 
 			// Get the corresponding availableField to the given field
-			var availableField = getAvailableFieldById(
-				instance._getFieldId(field)
-			);
+			var fieldId = instance._getFieldId(field);
+			var availableField = getAvailableFieldById(fieldId);
 
 			if (isAvailableField(availableField)) {
 				if (availableField.get(UNIQUE) || field.get(UNIQUE)) {
-					uniqueFields.add(availableField, field);
+					uniqueFields.add(fieldId, field);
 				}
 			}
 		},
@@ -1235,7 +1131,7 @@ var FormBuilderField = A.Component.create({
 
 				// TODO - Change checking to use hashes O(1) instead of indexOf arrays O(N)
 				if (AArray.indexOf(readOnlyAttributes, attribute) > -1) {
-					property.editor = false;
+					property.readOnly = true;
 				}
 
 				properties.push(property);
@@ -1322,9 +1218,7 @@ var FormBuilderField = A.Component.create({
 			var instance = this;
 			var strings = instance.getStrings();
 
-			var value = A.DataType.Boolean.parse(
-				o.record.get(DATA).value
-			);
+			var value = A.DataType.Boolean.parse(o.data.value);
 
 			return value ? strings[YES] : strings[NO];
 		},
@@ -1551,7 +1445,7 @@ var FormBuilderField = A.Component.create({
 
 A.FormBuilderField = FormBuilderField;
 
-A.FormBuilder.types['field'] = A.FormBuilderField;
+A.FormBuilder.types.field = A.FormBuilderField;
 var L = A.Lang,
 	isArray = L.isArray,
 	isNumber = L.isNumber,
@@ -1681,7 +1575,7 @@ var FormBuilderButtonField = A.Component.create({
 
 			return model;
 		},
-		
+
 		_uiSetButtonType: function(val) {
 			var instance = this;
 			var templateNode = instance.get(TEMPLATE_NODE);
@@ -1695,7 +1589,7 @@ var FormBuilderButtonField = A.Component.create({
 
 A.FormBuilderButtonField = FormBuilderButtonField;
 
-A.FormBuilder.types['button'] = A.FormBuilderButtonField;
+A.FormBuilder.types.button = A.FormBuilderButtonField;
 var L = A.Lang,
 	isArray = L.isArray,
 	isBoolean = L.isBoolean,
@@ -1972,7 +1866,7 @@ var FormBuilderFieldsetField = A.Component.create({
 
 A.FormBuilderFieldsetField = FormBuilderFieldsetField;
 
-A.FormBuilder.types['fieldset'] = A.FormBuilderFieldsetField;
+A.FormBuilder.types.fieldset = A.FormBuilderFieldsetField;
 var L = A.Lang,
 
 	DOT = '.',
@@ -2043,7 +1937,7 @@ var FormBuilderFileUploadField = A.Component.create({
 
 A.FormBuilderFileUploadField = FormBuilderFileUploadField;
 
-A.FormBuilder.types['fileupload'] = A.FormBuilderFileUploadField;
+A.FormBuilder.types.fileupload = A.FormBuilderFileUploadField;
 var Lang = A.Lang,
 	AArray = A.Array,
 	isString = Lang.isString,
@@ -2210,7 +2104,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 								formatter: function(o) {
 									var editorOptions = instance.predefinedValueEditor.get(OPTIONS);
 
-									var values = AArray(o.record.get(DATA).value);
+									var values = AArray(o.data.value);
 
 									var labels = A.Array.map(values, function (val) {
 										return editorOptions[val];
@@ -2266,7 +2160,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 						var buffer = [];
 
 						A.each(
-							o.record.get(DATA).value,
+							o.data.value,
 							function(item, index, collection) {
 								buffer.push(item.label);
 							}
@@ -2379,10 +2273,6 @@ var FormBuilderRadioField = A.Component.create({
 	NAME: FORM_BUILDER_RADIO_FIELD,
 
 	ATTRS: {
-
-		name: {
-			value: RADIO
-		},
 
 		template: {
 			valueFn: function() {
@@ -2672,7 +2562,7 @@ var FormBuilderTextField = A.Component.create({
 						}
 					}),
 					formatter: function(o) {
-						var value = o.record.get(DATA).value;
+						var value = o.data.value;
 
 						return strings[WIDTH_VALUES_MAP[value]];
 					},
@@ -2699,7 +2589,7 @@ var FormBuilderTextField = A.Component.create({
 
 A.FormBuilderTextField = FormBuilderTextField;
 
-A.FormBuilder.types['text'] = A.FormBuilderTextField;
+A.FormBuilder.types.text = A.FormBuilderTextField;
 var L = A.Lang,
 	isArray = L.isArray,
 	isNumber = L.isNumber,
@@ -2716,7 +2606,7 @@ var L = A.Lang,
 	CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
 	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
 
-	TPL_TEXTAREA = '<textarea id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD, CSS_FIELD_TEXT, CSS_FIELD_TEXTAREA].join(SPACE) + '" name="{name}">{value}</textarea>'
+	TPL_TEXTAREA = '<textarea id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD, CSS_FIELD_TEXT, CSS_FIELD_TEXTAREA].join(SPACE) + '" name="{name}">{value}</textarea>';
 
 var FormBuilderTextAreaField = A.Component.create({
 
@@ -2737,7 +2627,7 @@ var FormBuilderTextAreaField = A.Component.create({
 	EXTENDS: A.FormBuilderTextField,
 
 	prototype: {
-		
+
 		getPropertyModel: function() {
 			var instance = this;
 			var options = instance.get(OPTIONS);
@@ -2762,10 +2652,10 @@ var FormBuilderTextAreaField = A.Component.create({
 
 A.FormBuilderTextAreaField = FormBuilderTextAreaField;
 
-A.FormBuilder.types['textarea'] = A.FormBuilderTextAreaField;
+A.FormBuilder.types.textarea = A.FormBuilderTextAreaField;
 
 }, '@VERSION@' ,{skinnable:true, requires:['aui-datatype','aui-panel','aui-tooltip']});
 
 
-AUI.add('aui-form-builder', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-form-builder-base','aui-form-builder-field']});
+AUI.add('aui-form-builder', function(A){}, '@VERSION@' ,{use:['aui-form-builder-base','aui-form-builder-field'], skinnable:true});
 

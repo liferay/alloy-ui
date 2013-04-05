@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('querystring-stringify-simple', function(Y) {
+YUI.add('querystring-stringify-simple', function (Y, NAME) {
 
 /*global Y */
 /**
@@ -65,4 +65,4 @@ QueryString.stringify = function (obj, c) {
 };
 
 
-}, '3.4.0' ,{requires:['yui-base']});
+}, '3.7.3', {"requires": ["yui-base"]});

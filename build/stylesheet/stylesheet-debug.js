@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('stylesheet', function(Y) {
+YUI.add('stylesheet', function (Y, NAME) {
 
 /**
  * The StyleSheet component is a module for creating and modifying CSS
@@ -646,4 +646,4 @@ NOTES
 
 
 
-}, '3.4.0' ,{requires:['yui-base']});
+}, '3.7.3', {"requires": ["yui-base"]});

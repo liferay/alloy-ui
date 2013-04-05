@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('anim-base', function(Y) {
+YUI.add('anim-base', function (Y, NAME) {
 
 /**
 * The Animation Utility provides an API for creating advanced transitions.
@@ -126,15 +126,22 @@ YUI.add('anim-base', function(Y) {
      */
     Y.Anim.DEFAULT_SETTER = function(anim, att, from, to, elapsed, duration, fn, unit) {
         var node = anim._node,
+            domNode = node._node,
             val = fn(elapsed, NUM(from), NUM(to) - NUM(from), duration);
 
-        if (att in node._node.style || att in Y.DOM.CUSTOM_STYLES) {
-            unit = unit || '';
-            node.setStyle(att, val + unit);
-        } else if (node._node.attributes[att]) {
-            node.setAttribute(att, val);
-        } else {
+        if (domNode) {
+            if ('style' in domNode && (att in domNode.style || att in Y.DOM.CUSTOM_STYLES)) {
+                unit = unit || '';
+                node.setStyle(att, val + unit);
+            } else if ('attributes' in domNode && att in domNode.attributes) {
+                node.setAttribute(att, val);
+            } else if (att in domNode) {
+                domNode[att] = val;
+            }
+        } else if (node.set) {
             node.set(att, val);
+        } else if (att in node) {
+            node[att] = val;
         }
     };
 
@@ -146,14 +153,21 @@ YUI.add('anim-base', function(Y) {
      */
     Y.Anim.DEFAULT_GETTER = function(anim, att) {
         var node = anim._node,
+            domNode = node._node,
             val = '';
 
-        if (att in node._node.style || att in Y.DOM.CUSTOM_STYLES) {
-            val = node.getComputedStyle(att);
-        } else if (node._node.attributes[att]) {
-            val = node.getAttribute(att);
-        } else {
+        if (domNode) {
+            if ('style' in domNode && (att in domNode.style || att in Y.DOM.CUSTOM_STYLES)) {
+                val = node.getComputedStyle(att);
+            } else if ('attributes' in domNode && att in domNode.attributes) {
+                val = node.getAttribute(att);
+            } else if (att in domNode) {
+                val = domNode[att];
+            }
+        } else if (node.get) {
             val = node.get(att);
+        } else if (att in node) {
+            val = node[att];
         }
 
         return val;
@@ -212,7 +226,7 @@ YUI.add('anim-base', function(Y) {
          * If a function is used, the return value becomes the from value.
          * If no from value is specified, the DEFAULT_GETTER will be used.
          * Supports any unit, provided it matches the "to" (or default)
-         * unit (e.g. `{width: '10em', color: 'rgb(0, 0 0)', borderColor: '#ccc'}`).
+         * unit (e.g. `{width: '10em', color: 'rgb(0, 0, 0)', borderColor: '#ccc'}`).
          *
          * If using the default ('px' for length-based units), the unit may be omitted
          * (e.g. `{width: 100}, borderColor: 'ccc'}`, which defaults to pixels
@@ -634,7 +648,7 @@ YUI.add('anim-base', function(Y) {
                 }
 
                 attr[name] = {
-                    from: begin,
+                    from: Y.Lang.isObject(begin) ? Y.clone(begin) : begin,
                     to: end,
                     unit: unit
                 };
@@ -673,4 +687,4 @@ YUI.add('anim-base', function(Y) {
     Y.extend(Y.Anim, Y.Base, proto);
 
 
-}, '3.4.0' ,{requires:['base-base', 'node-style']});
+}, '3.7.3', {"requires": ["base-base", "node-style"]});

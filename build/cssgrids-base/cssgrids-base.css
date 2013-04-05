@@ -1,0 +1,23 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.7.3
+build: 3.7.3
+*/
+.yui3-g {
+    letter-spacing: -0.31em; /* webkit: collapse white-space between units */
+    *letter-spacing: normal; /* reset IE < 8 */
+    word-spacing: -0.43em; /* IE < 8 && gecko: collapse white-space between units */
+}
+
+.yui3-u {
+    display: inline-block;
+    zoom: 1; *display: inline; /* IE < 8: fake inline-block */
+    letter-spacing: normal;
+    word-spacing: normal;
+    vertical-align: top;
+}
+
+/* YUI CSS Detection Stamp */
+#yui3-css-stamp.cssgrids-base { display: none; }

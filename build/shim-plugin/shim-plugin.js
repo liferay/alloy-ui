@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('shim-plugin', function(Y) {
+YUI.add('shim-plugin', function (Y, NAME) {
 
     /**
      * Provides shimming support for Node via a Plugin.
@@ -110,4 +110,4 @@ YUI.add('shim-plugin', function(Y) {
     Y.Plugin.Shim = Shim;
 
 
-}, '3.4.0' ,{requires:['node-style', 'node-pluginhost']});
+}, '3.7.3', {"requires": ["node-style", "node-pluginhost"]});

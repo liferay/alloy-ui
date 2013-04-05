@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('tabview-base', function(Y) {
+YUI.add('tabview-base', function (Y, NAME) {
 
 var getClassName = Y.ClassNameManager.getClassName,
     TABVIEW = 'tabview',
@@ -31,7 +31,7 @@ var getClassName = Y.ClassNameManager.getClassName,
         tabview: DOT + _classNames.tabview,
         tabviewList: '> ul',
         tab: '> ul > li',
-        tabLabel: '> ul > li > a ',
+        tabLabel: '> ul > li > a',
         tabviewPanel: '> div',
         tabPanel: '> div > div',
         selectedTab: '> ul > ' + DOT + _classNames.selectedTab,
@@ -148,4 +148,4 @@ Y.mix(TabviewBase.prototype, {
 Y.TabviewBase = TabviewBase;
 
 
-}, '3.4.0' ,{requires:['node-event-delegate', 'classnamemanager', 'skin-sam-tabview']});
+}, '3.7.3', {"requires": ["node-event-delegate", "classnamemanager", "skin-sam-tabview"]});

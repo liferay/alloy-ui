@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('node-focusmanager', function(Y) {
+YUI.add('node-focusmanager', function (Y, NAME) {
 
 /**
 * <p>The Focus Manager Node Plugin makes it easy to manage focus among
@@ -1070,4 +1070,4 @@ Y.namespace("Plugin");
 Y.Plugin.NodeFocusManager = NodeFocusManager;
 
 
-}, '3.4.0' ,{requires:['attribute', 'node', 'plugin', 'node-event-simulate', 'event-key', 'event-focus']});
+}, '3.7.3', {"requires": ["attribute", "node", "plugin", "node-event-simulate", "event-key", "event-focus"]});

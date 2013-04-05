@@ -14,6 +14,7 @@ var Lang = A.Lang,
 
 	DOC = A.config.doc,
 	INNER_HTML = 'innerHTML',
+	NORMALIZE = 'normalize',
 	REGEX_DASH = /-([a-z])/gi,
 	REGEX_ESCAPE_REGEX = /([.*+?^$(){}|[\]\/\\])/g,
 	REGEX_NL2BR = /\r?\n/g,
@@ -340,38 +341,12 @@ A.mix(
 );
 
 A.mix(
-	AArray,
-	{
-		/**
-		 * Sorts an object array keeping the order of equal items. ECMA script
-		 * standard does not specify the behaviour when the compare function
-		 * returns the value 0;
-		 */
-		stableSort: function(array, sorter) {
-			var i, len = array.length;
-
-			for (i = 0; i < len; i++) {
-				array[i] = { index: i, value: array[i] };
-			}
-
-			array.sort(
-				function(a, b) {
-					var result = sorter.call(array, a.value, b.value);
-
-					return (result === 0) ? (a.index - b.index) : result;
-				}
-			);
-
-			for (i = 0; i < len; i++) {
-				array[i] = array[i].value;
-			}
-		}
-	}
-);
-
-A.mix(
 	Lang,
 	{
+		constrain: function(num, min, max) {
+			return Math.min(Math.max(num, min), max);
+		},
+
 		emptyFn: function() {},
 
 		emptyFnFalse: function() {
@@ -383,9 +358,15 @@ A.mix(
 		},
 
 		isGuid: function(id) {
-			var instance = this;
-
 			return String(id).indexOf(A.Env._guidp) === 0;
+		},
+
+		toFloat: function(value, defaultValue) {
+			return parseFloat(value) || defaultValue || 0;
+		},
+
+		toInt: function(value, radix, defaultValue) {
+			return parseInt(value, radix || 10) || defaultValue || 0;
 		}
 	}
 );

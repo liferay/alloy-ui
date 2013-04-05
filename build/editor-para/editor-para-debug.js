@@ -2,16 +2,16 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('editor-para', function(Y) {
+YUI.add('editor-para', function (Y, NAME) {
 
 
     /**
      * Plugin for Editor to paragraph auto wrapping and correction.
      * @class Plugin.EditorPara
-     * @extends Base
+     * @extends Plugin.EditorParaBase
      * @constructor
      * @module editor
      * @submodule editor-para
@@ -24,31 +24,7 @@ YUI.add('editor-para', function(Y) {
     FIRST_P = BODY + ' > p', P = 'p', BR = '<br>', FC = 'firstChild', LI = 'li';
 
 
-    Y.extend(EditorPara, Y.Base, {
-        /**
-        * Utility method to create an empty paragraph when the document is empty.
-        * @private
-        * @method _fixFirstPara
-        */
-        _fixFirstPara: function() {
-            Y.log('Fix First Paragraph', 'info', 'editor-para');
-            var host = this.get(HOST), inst = host.getInstance(), sel, n,
-                body = inst.config.doc.body,
-                html = body.innerHTML,
-                col = ((html.length) ? true : false);
-
-            if (html === BR) {
-                html = '';
-                col = false;
-            }
-
-            body.innerHTML = '<' + P + '>' + html + inst.Selection.CURSOR + '</' + P + '>';
-
-            n = inst.one(FIRST_P);
-            sel = new inst.Selection();
-
-            sel.selectNode(n, true, col);
-        },
+    Y.extend(EditorPara, Y.Plugin.EditorParaBase, {
         /**
         * nodeChange handler to handle fixing an empty document.
         * @private
@@ -56,14 +32,15 @@ YUI.add('editor-para', function(Y) {
         */
         _onNodeChange: function(e) {
             var host = this.get(HOST), inst = host.getInstance(),
-                html, txt, par , d, sel, btag = inst.Selection.DEFAULT_BLOCK_TAG,
-                inHTML, txt2, childs, aNode, index, node2, top, n, sib,
-                ps, br, item, p, imgs, t, LAST_CHILD = ':last-child';
+                html, txt, par , d, sel, btag = inst.EditorSelection.DEFAULT_BLOCK_TAG,
+                inHTML, txt2, childs, aNode, node2, top, n, sib, para2, prev,
+                ps, br, item, p, imgs, t, LAST_CHILD = ':last-child', para, b, dir,
+                lc, lc2, found = false, start;
 
             switch (e.changedType) {
                 case 'enter-up':
-                    var para = ((this._lastPara) ? this._lastPara : e.changedNode),
-                        b = para.one('br.yui-cursor');
+                    para = ((this._lastPara) ? this._lastPara : e.changedNode);
+                    b = para.one('br.yui-cursor');
 
                     if (this._lastPara) {
                         delete this._lastPara;
@@ -77,14 +54,14 @@ YUI.add('editor-para', function(Y) {
                         }
                     }
                     if (!para.test(btag)) {
-                        var para2 = para.ancestor(btag);
+                        para2 = para.ancestor(btag);
                         if (para2) {
                             para = para2;
                             para2 = null;
                         }
                     }
                     if (para.test(btag)) {
-                        var prev = para.previous(), lc, lc2, found = false;
+                        prev = para.previous();
                         if (prev) {
                             lc = prev.one(LAST_CHILD);
                             while (!found) {
@@ -106,16 +83,6 @@ YUI.add('editor-para', function(Y) {
                     }
                     break;
                 case 'enter':
-                    if (Y.UA.ie) {
-                        if (e.changedNode.test('br')) {
-                            e.changedNode.remove();
-                        } else if (e.changedNode.test('p, span')) {
-                            var b = e.changedNode.one('br.yui-cursor');
-                            if (b) {
-                                b.remove();
-                            }
-                        }
-                    }
                     if (Y.UA.webkit) {
                         //Webkit doesn't support shift+enter as a BR, this fixes that.
                         if (e.changedEvent.shiftKey) {
@@ -124,20 +91,20 @@ YUI.add('editor-para', function(Y) {
                         }
                     }
                     if (e.changedNode.test('li') && !Y.UA.ie) {
-                        html = inst.Selection.getText(e.changedNode);
+                        html = inst.EditorSelection.getText(e.changedNode);
                         if (html === '') {
                             par = e.changedNode.ancestor('ol,ul');
-                            var dir = par.getAttribute('dir');
+                            dir = par.getAttribute('dir');
                             if (dir !== '') {
                                 dir = ' dir = "' + dir + '"';
                             }
-                            par = e.changedNode.ancestor(inst.Selection.BLOCKS);
-                            d = inst.Node.create('<p' + dir + '>' + inst.Selection.CURSOR + '</p>');
+                            par = e.changedNode.ancestor(inst.EditorSelection.BLOCKS);
+                            d = inst.Node.create('<p' + dir + '>' + inst.EditorSelection.CURSOR + '</p>');
                             par.insert(d, 'after');
                             e.changedNode.remove();
                             e.changedEvent.halt();
 
-                            sel = new inst.Selection();
+                            sel = new inst.EditorSelection();
                             sel.selectNode(d, true, false);
                         }
                     }
@@ -151,7 +118,7 @@ YUI.add('editor-para', function(Y) {
                             }
                             d = inst.Node.create('<' + btag + '></' + btag + '>');
                             par.insert(d, 'after');
-                            sel = new inst.Selection();
+                            sel = new inst.EditorSelection();
                             if (sel.anchorOffset) {
                                 inHTML = sel.anchorNode.get('textContent');
 
@@ -170,10 +137,11 @@ YUI.add('editor-para', function(Y) {
                                         n = sib.cloneNode();
                                         n.set('innerHTML', '');
                                         n.append(node2);
-                                        
+
                                         //Get children..
                                         childs = sib.get('childNodes');
-                                        var start = false;
+                                        start = false;
+                                        /*jshint loopfunc: true */
                                         childs.each(function(c) {
                                             if (start) {
                                                 n.append(c);
@@ -199,11 +167,11 @@ YUI.add('editor-para', function(Y) {
                             if (d.get(FC)) {
                                 d = d.get(FC);
                             }
-                            d.prepend(inst.Selection.CURSOR);
+                            d.prepend(inst.EditorSelection.CURSOR);
                             sel.focusCursor(true, true);
-                            html = inst.Selection.getText(d);
+                            html = inst.EditorSelection.getText(d);
                             if (html !== '') {
-                                inst.Selection.cleanCursor();
+                                inst.EditorSelection.cleanCursor();
                             }
                             e.changedEvent.preventDefault();
                         }
@@ -233,10 +201,10 @@ YUI.add('editor-para', function(Y) {
                             br.removeAttribute('class');
                         }
 
-                        txt = inst.Selection.getText(item);
+                        txt = inst.EditorSelection.getText(item);
                         txt = txt.replace(/ /g, '').replace(/\n/g, '');
                         imgs = item.all('img');
-                        
+
                         if (txt.length === 0 && !imgs.size()) {
                             //God this is horrible..
                             if (!item.test(P)) {
@@ -256,11 +224,15 @@ YUI.add('editor-para', function(Y) {
                                 if (!p.previous() && p.get(PARENT_NODE) && p.get(PARENT_NODE).test(BODY)) {
                                     Y.log('Stopping the backspace event', 'warn', 'editor-para');
                                     e.changedEvent.frameEvent.halt();
+                                    e.preventDefault();
                                 }
                             }
                         }
                         if (Y.UA.webkit) {
                             if (e.changedNode) {
+                                //All backspace calls in Webkit need a preventDefault to
+                                //stop history navigation #2531299
+                                e.preventDefault();
                                 item = e.changedNode;
                                 if (item.test('li') && (!item.previous() && !item.next())) {
                                     html = item.get('innerHTML').replace(BR, '');
@@ -268,8 +240,7 @@ YUI.add('editor-para', function(Y) {
                                         if (item.get(PARENT_NODE)) {
                                             item.get(PARENT_NODE).replace(inst.Node.create(BR));
                                             e.changedEvent.frameEvent.halt();
-                                            e.preventDefault();
-                                            inst.Selection.filterBlocks();
+                                            inst.EditorSelection.filterBlocks();
                                         }
                                     }
                                 }
@@ -298,46 +269,7 @@ YUI.add('editor-para', function(Y) {
                     }
                 }
             }
-            
-        },
-        /**
-        * Performs a block element filter when the Editor is first ready
-        * @private
-        * @method _afterEditorReady
-        */
-        _afterEditorReady: function() {
-            var host = this.get(HOST), inst = host.getInstance(), btag;
-            if (inst) {
-                inst.Selection.filterBlocks();
-                btag = inst.Selection.DEFAULT_BLOCK_TAG;
-                FIRST_P = BODY + ' > ' + btag;
-                P = btag;
-            }
-        },
-        /**
-        * Performs a block element filter when the Editor after an content change
-        * @private
-        * @method _afterContentChange
-        */
-        _afterContentChange: function() {
-            var host = this.get(HOST), inst = host.getInstance();
-            if (inst && inst.Selection) {
-                inst.Selection.filterBlocks();
-            }
-        },
-        /**
-        * Performs block/paste filtering after paste.
-        * @private
-        * @method _afterPaste
-        */
-        _afterPaste: function() {
-            var host = this.get(HOST), inst = host.getInstance(),
-                sel = new inst.Selection();
 
-            Y.later(50, host, function() {
-                inst.Selection.filterBlocks();
-            });
-            
         },
         initializer: function() {
             var host = this.get(HOST);
@@ -347,11 +279,6 @@ YUI.add('editor-para', function(Y) {
             }
 
             host.on(NODE_CHANGE, Y.bind(this._onNodeChange, this));
-            host.after('ready', Y.bind(this._afterEditorReady, this));
-            host.after('contentChange', Y.bind(this._afterContentChange, this));
-            if (Y.Env.webkit) {
-                host.after('dom:paste', Y.bind(this._afterPaste, this));
-            }
         }
     }, {
         /**
@@ -372,11 +299,11 @@ YUI.add('editor-para', function(Y) {
             }
         }
     });
-    
+
     Y.namespace('Plugin');
-    
+
     Y.Plugin.EditorPara = EditorPara;
 
 
 
-}, '3.4.0' ,{skinnable:false, requires:['editor-base']});
+}, '3.7.3', {"requires": ["editor-para-base"]});

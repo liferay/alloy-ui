@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add("anim-scroll",function(b){var a=Number;b.Anim.behaviors.scroll={set:function(f,g,i,j,k,e,h){var d=f._node,c=([h(k,a(i[0]),a(j[0])-a(i[0]),e),h(k,a(i[1]),a(j[1])-a(i[1]),e)]);if(c[0]){d.set("scrollLeft",c[0]);}if(c[1]){d.set("scrollTop",c[1]);}},get:function(d){var c=d._node;return[c.get("scrollLeft"),c.get("scrollTop")];}};},"3.4.0",{requires:["anim-base"]});
+YUI.add("anim-scroll",function(e,t){var n=Number;e.Anim.behaviors.scroll={set:function(e,t,r,i,s,o,u){var a=e._node,f=[u(s,n(r[0]),n(i[0])-n(r[0]),o),u(s,n(r[1]),n(i[1])-n(r[1]),o)];f[0]&&a.set("scrollLeft",f[0]),f[1]&&a.set("scrollTop",f[1])},get:function(e){var t=e._node;return[t.get("scrollLeft"),t.get("scrollTop")]}}},"3.7.3",{requires:["anim-base"]});

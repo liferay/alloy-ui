@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('node-menunav', function(Y) {
+YUI.add('node-menunav', function (Y, NAME) {
 
 /**
 * <p>The MenuNav Node Plugin makes it easy to transform existing list-based 
@@ -1392,7 +1392,7 @@ Y.extend(NodeMenuNav, Y.Plugin.Base, {
 	            //  submenu immediately.
 	            //  http://yuilibrary.com/projects/yui3/ticket/2528316
 	            
-	            Y.message("Pause path");
+	            //Y.message("Pause path");
 	            
 	            menuNav._hoverTimer = later(submenuShowDelay, menuNav, function () {
                     showSubmenu(0);
@@ -2188,4 +2188,4 @@ Y.namespace('Plugin');
 Y.Plugin.NodeMenuNav = NodeMenuNav;
 
 
-}, '3.4.0' ,{requires:['node', 'classnamemanager', 'node-focusmanager', 'plugin']});
+}, '3.7.3', {"requires": ["node", "classnamemanager", "plugin", "node-focusmanager"], "skinnable": true});

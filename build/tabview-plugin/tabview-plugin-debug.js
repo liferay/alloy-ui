@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('tabview-plugin', function(Y) {
+YUI.add('tabview-plugin', function (Y, NAME) {
 
 function TabviewPlugin() {
     TabviewPlugin.superclass.constructor.apply(this, arguments);
@@ -20,4 +20,4 @@ Y.namespace('Plugin');
 Y.Plugin.Tabview = TabviewPlugin;
 
 
-}, '3.4.0' ,{requires:['tabview-base']});
+}, '3.7.3', {"requires": ["tabview-base"]});

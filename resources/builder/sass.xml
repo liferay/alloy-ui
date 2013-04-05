@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<project name="AlloySass" default="local" xmlns:antelope="antlib:ise.antelope.tasks">
+
+	<basename property="ant.file.basename" file="${ant.file}" />
+
+	<target name="build-jazz">
+		<if>
+			<not>
+				<available file="${project.dir}/lib/jazz.jar" />
+			</not>
+			<then>
+				<get
+					dest="${project.dir}/lib"
+					src="http://cloud.github.com/downloads/eduardolundgren/jazz/jazz.jar"
+				/>
+			</then>
+		</if>
+	</target>
+
+	<target name="sass-parse">
+		<sass-parse />
+	</target>
+
+	<macrodef name="sass-parse">
+		<attribute name="folder.sass" default="${component.assets.base}" />
+		<attribute name="folder.sass.backup" default="${component.basedir}/.sass-tmp" />
+
+		<sequential>
+			<if>
+				<and>
+					<equals arg1="${ant.file.basename}" arg2="build.xml" />
+					<available file="@{folder.sass}" type="dir" />
+				</and>
+
+				<then>
+					<echo message="Parsing SASS" />
+
+					<if>
+						<not>
+							<equals arg1="@{folder.sass.backup}" arg2="" />
+						</not>
+						<then>
+							<copy todir="@{folder.sass.backup}" overwrite="true">
+								<fileset dir="@{folder.sass}" />
+							</copy>
+						</then>
+					</if>
+
+					<property name="file.path.pattern" value='"@{folder.sass}/**/**.css"' />
+
+					<java
+						fork="true"
+						jar="${project.dir}/lib/jazz.jar"
+					>
+						<arg line="${file.path.pattern}" />
+					</java>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<target name="sass-postclean">
+		<sass-postclean />
+	</target>
+
+	<macrodef name="sass-postclean">
+		<attribute name="folder.sass" default="${component.assets.base}" />
+		<attribute name="folder.sass.backup" default="${component.basedir}/.sass-tmp" />
+
+		<sequential>
+			<if>
+				<and>
+					<available file="@{folder.sass}" type="dir" />
+					<equals arg1="${ant.file.basename}" arg2="build.xml" />
+				</and>
+
+				<then>
+					<delete dir="@{folder.sass}" />
+					<copy todir="@{folder.sass}" overwrite="true">
+						<fileset dir="@{folder.sass.backup}" />
+					</copy>
+					<delete dir="@{folder.sass.backup}" />
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+</project>

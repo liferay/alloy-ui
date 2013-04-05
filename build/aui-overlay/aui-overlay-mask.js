@@ -361,7 +361,7 @@ var OverlayMask = A.Component.create(
 			},
 
 			/**
-			 * UI Setter for the 
+			 * UI Setter for the
 			 * <a href="Paginator.html#config_xy">XY</a> attribute.
 			 *
 			 * @method _uiSetXY

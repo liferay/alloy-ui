@@ -23,6 +23,31 @@ A.mix(
 			}
 
 			return sort;
+		},
+
+		/**
+		 * Sorts an object array keeping the order of equal items. ECMA script
+		 * standard does not specify the behaviour when the compare function
+		 * returns the value 0;
+		 */
+		stableSort: function(array, compareFn) {
+			var i, len = array.length;
+
+			for (i = 0; i < len; i++) {
+				array[i] = { index: i, value: array[i] };
+			}
+
+			array.sort(
+				function(a, b) {
+					var result = compareFn.call(array, a.value, b.value);
+
+					return (result === 0) ? (a.index - b.index) : result;
+				}
+			);
+
+			for (i = 0; i < len; i++) {
+				array[i] = array[i].value;
+			}
 		}
 	}
 );

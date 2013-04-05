@@ -250,3 +250,23 @@ A.mix(
 );
 
 A.Event.KeyMap = KeyMap;
+
+// Simple version of http://perfectionkills.com/detecting-event-support-without-browser-sniffing/
+A.Event.supportsDOMEvent = function(domNode, eventName) {
+	eventName = 'on' + eventName;
+
+	if (!(eventName in domNode)) {
+		if (!domNode.setAttribute) {
+			domNode = document.createElement('div');
+		}
+
+		if (domNode.setAttribute) {
+			domNode.setAttribute(eventName, '');
+			return (typeof domNode[eventName] === 'function');
+		}
+	}
+
+	domNode = null;
+
+	return true;
+};

@@ -50,7 +50,7 @@ var InputTextControl = function() {
 InputTextControl.ATTRS = {
 	/**
 	 * To use a button
-	 * 
+	 *
 	 * @attribute button
 	 * @default true
 	 * @type Boolean
@@ -63,7 +63,7 @@ InputTextControl.ATTRS = {
 	/**
 	 * The character used to indicate the beginning or ending of a new value. Most commonly used
 	 * is a ",".
-	 * 
+	 *
 	 * @attribute delimChar
 	 * @default null
 	 * @type String
@@ -85,7 +85,7 @@ InputTextControl.ATTRS = {
 	/**
 	 * If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, this
 	 * will clear a selection when the overlay closes unless a user explicitly selects an item.
-	 * 
+	 *
 	 * @attribute forceSelection
 	 * @default false
 	 * @type Boolean
@@ -164,7 +164,7 @@ InputTextControl.ATTRS = {
 	/**
 	 * When <a href="AutoComplete.html#config_applyLocalFilter">applyLocalFilter</a> is true,
 	 * setting this to true will match only results with the same case.
-	 * 
+	 *
 	 * @attribute queryMatchCase
 	 * @default false
 	 * @type Boolean
@@ -177,7 +177,7 @@ InputTextControl.ATTRS = {
 	 * When <a href="AutoComplete.html#config_applyLocalFilter">applyLocalFilter</a> is true,
 	 * setting this to true will match results which contain the query anywhere in the text,
 	 * instead of just matching just items that start with the query.
-	 * 
+	 *
 	 * @attribute queryMatchContains
 	 * @default false
 	 * @type Boolean
@@ -187,7 +187,7 @@ InputTextControl.ATTRS = {
 	},
 
 	/**
-	 * For IO DataSources, AutoComplete will automatically insert a "?" between the server URI and 
+	 * For IO DataSources, AutoComplete will automatically insert a "?" between the server URI and
 	 * the encoded query string. To prevent this behavior, you can
 	 * set this value to false. If you need to customize this even further, you
 	 * can override the <a href="AutoComplete.html#method_generateRequest">generateRequest</a> method.
@@ -212,8 +212,8 @@ InputTextControl.ATTRS = {
 	},
 
 	/**
-	 * If <a href="AutoComplete.html#config_autoHighlight">autoHighlight</a> is enabled, whether or not the 
-	 * input field should be automatically updated with the first result as the user types, 
+	 * If <a href="AutoComplete.html#config_autoHighlight">autoHighlight</a> is enabled, whether or not the
+	 * input field should be automatically updated with the first result as the user types,
 	 * automatically selecting the portion of the text the user has not typed yet.
 	 *
 	 * @attribute typeAhead
@@ -225,7 +225,7 @@ InputTextControl.ATTRS = {
 	},
 
 	/**
-	 * If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, number of seconds 
+	 * If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, number of seconds
 	 * to delay before updating the input. In order to prevent certain race conditions, this value must
 	 * always be greater than the <a href="AutoComplete.html#config_queryDelay">queryDelay</a>.
 	 *

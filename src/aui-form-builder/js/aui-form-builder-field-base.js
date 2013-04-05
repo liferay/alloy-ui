@@ -455,7 +455,7 @@ var FormBuilderField = A.Component.create({
 
 				// TODO - Change checking to use hashes O(1) instead of indexOf arrays O(N)
 				if (AArray.indexOf(readOnlyAttributes, attribute) > -1) {
-					property.editor = false;
+					property.readOnly = true;
 				}
 
 				properties.push(property);
@@ -542,9 +542,7 @@ var FormBuilderField = A.Component.create({
 			var instance = this;
 			var strings = instance.getStrings();
 
-			var value = A.DataType.Boolean.parse(
-				o.record.get(DATA).value
-			);
+			var value = A.DataType.Boolean.parse(o.data.value);
 
 			return value ? strings[YES] : strings[NO];
 		},
@@ -771,4 +769,4 @@ var FormBuilderField = A.Component.create({
 
 A.FormBuilderField = FormBuilderField;
 
-A.FormBuilder.types['field'] = A.FormBuilderField;
+A.FormBuilder.types.field = A.FormBuilderField;

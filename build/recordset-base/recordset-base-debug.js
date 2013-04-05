@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('recordset-base', function(Y) {
+YUI.add('recordset-base', function (Y, NAME) {
 
 /**
  * Provides a wrapper around a standard javascript object. Can be inserted into a Recordset instance.
@@ -655,4 +655,4 @@ Y.Recordset = Recordset;
 
 
 
-}, '3.4.0' ,{requires:['base','arraylist']});
+}, '3.7.3', {"requires": ["base", "arraylist"]});

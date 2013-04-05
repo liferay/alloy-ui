@@ -960,7 +960,7 @@ var ImageViewer = A.Component.create(
 			},
 
 			/**
-			 * Creates the preload image instance, and add's it 
+			 * Creates the preload image instance, and add's it
 			 * to the internal pool.
 			 *
 			 * @method _createPreloadImage

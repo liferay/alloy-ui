@@ -2,7 +2,9 @@
 
 .aui-rating-content {}
 
-.aui-rating-disabled {}
+.aui-rating-disabled .aui-rating-element {
+	cursor: default;
+}
 
 .aui-rating-element {
 	background: transparent url(rating.png) no-repeat scroll 0 0;

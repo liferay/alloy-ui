@@ -65,7 +65,7 @@ var L = A.Lang,
  * </ul>
  *
  * Quick Example:<br/>
- * 
+ *
  * <pre><code>var instance = new A.OverlayContextPanel({
  *  bodyContent: 'Here s a sample OverlayContextPanel.',
  *  boundingBox: '#overlay-context-panel',
@@ -119,7 +119,7 @@ var OverlayContextPanel = A.Component.create(
 			 *  }
 			 * }
 			 * </code></pre>
-			 * 
+			 *
 			 * @attribute anim
 			 * @default { show: false }
 			 * @type Object
@@ -341,7 +341,7 @@ var OverlayContextPanel = A.Component.create(
 			 * Hides the OverlayContextPanel.
 			 *
 			 * @method hide
-			 * @param {EventFacade} event 
+			 * @param {EventFacade} event
 			 */
 			hide: function(event) {
 				var instance = this;
@@ -488,7 +488,7 @@ var OverlayContextPanel = A.Component.create(
 			 * Fires before show the OverlayContextPanel.
 			 *
 			 * @method _beforeShow
-			 * @param {EventFacade} event 
+			 * @param {EventFacade} event
 			 * @protected
 			 */
 			_beforeShow: function(event) {
@@ -510,7 +510,7 @@ var OverlayContextPanel = A.Component.create(
 			 * Fires after showArrow attribute changes.
 			 *
 			 * @method _afterShowArrowChange
-			 * @param {EventFacade} event 
+			 * @param {EventFacade} event
 			 * @protected
 			 */
 			_afterShowArrowChange: function() {

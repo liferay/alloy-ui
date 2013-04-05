@@ -2,13 +2,11 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
 .yui3-skin-sam .yui3-calendar-content {
     padding:10px;
-    font-size:0.8em;
-    font-family:"Lucida Grande", "Lucida Sans", Calibri, Helvetica, Arial, sans-serif;
     color: #000000;
     border: 1px solid gray;
     background: #f2f2f2; /* Old browsers */
@@ -32,23 +30,21 @@ build: nightly
     padding-bottom:10px;
 }
 
-.yui3-skin-sam .yui3-calendar-header-label h4 {
+.yui3-skin-sam .yui3-calendar-header-label {
     margin: 0;
     font-size: 1em;
     font-weight: bold;
 }
 
-.yui3-skin-sam .yui3-calendar-selection-disabled {
-  color: #555555;
-}
-
 .yui3-skin-sam .yui3-calendar-day,
 .yui3-skin-sam .yui3-calendar-prevmonth-day, 
 .yui3-skin-sam .yui3-calendar-nextmonth-day {
+    padding:5px;
     border: 1px solid #CCCCCC;
     background: #FFFFFF;
     text-align:center;
 }
+
 
 .yui3-skin-sam .yui3-calendar-day:hover {
     background: #0066CC;
@@ -62,20 +58,38 @@ build: nightly
 }
 
 .yui3-skin-sam .yui3-calendar-weekday {
-	font-weight: bold;
+    font-weight: bold;
 }
 
-.yui3-skin-sam .yui3-calendar-prevmonth-day, .yui3-calendar-nextmonth-day {
+.yui3-skin-sam .yui3-calendar-prevmonth-day, .yui3-skin-sam .yui3-calendar-nextmonth-day {
   color: #A6A6A6;
 }
 
 .yui3-skin-sam .yui3-calendar-day {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 .yui3-skin-sam .yui3-calendar-day-selected {
-	background-color: #B3D4FF;
-	color: #000000;
-
+    background-color: #B3D4FF;
+    color: #000000;
 }
 
+.yui3-skin-sam .yui3-calendar-header-label {
+    text-align: center;
+}
+
+.yui3-skin-sam .yui3-calendar-left-grid {
+   margin-right:1em;
+}
+
+.yui3-skin-sam .yui3-calendar-right-grid {
+   margin-left:1em;
+}
+
+.yui3-skin-sam .yui3-calendar-day-highlighted {
+    background-color: #DCDEF5;
+}
+
+.yui3-skin-sam .yui3-calendar-day-selected.yui3-calendar-day-highlighted {
+    background-color: #758FBB;
+}

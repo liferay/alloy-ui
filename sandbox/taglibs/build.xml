@@ -10,7 +10,7 @@
 		<antcall target="start" />
 		<antcall target="deploy" />
 	</target>
-	
+
 	<target name="import-portal-libs">
 		<echo>${lp.source.dir}/portal-impl/</echo>
 		<copy todir="${project.dir}/lib/application" overwrite="true">
@@ -77,14 +77,15 @@
 			maxmemory="256m"
 			newenvironment="true"
 		>
-			<jvmarg value="-Dtagbuilder.tld.dir=${tagbuilder.tld.dir}" />
 			<jvmarg value="-Dtagbuilder.components.xml=${tagbuilder.components.xml}" />
-			<jvmarg value="-Dtagbuilder.templates.dir=${tagbuilder.templates.dir}" />
+			<jvmarg value="-Dtagbuilder.copyright.year=${tagbuilder.copyright.year}" />
+			<jvmarg value="-Dtagbuilder.docroot.dir=${tagbuilder.docroot.dir}" />
 			<jvmarg value="-Dtagbuilder.java.dir=${tagbuilder.java.dir}" />
 			<jvmarg value="-Dtagbuilder.java.package=${tagbuilder.java.package}" />
-			<jvmarg value="-Dtagbuilder.docroot.dir=${tagbuilder.docroot.dir}" />
 			<jvmarg value="-Dtagbuilder.jsp.common.init.path=${tagbuilder.jsp.common.init.path}" />
 			<jvmarg value="-Dtagbuilder.jsp.dir=${tagbuilder.jsp.dir}" />
+			<jvmarg value="-Dtagbuilder.templates.dir=${tagbuilder.templates.dir}" />
+			<jvmarg value="-Dtagbuilder.tld.dir=${tagbuilder.tld.dir}" />
 		</java>
 	</target>
 

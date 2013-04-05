@@ -14,7 +14,7 @@ DataSourceControl.ATTRS = {
 	 * The data source that results will be read from. This can either be
 	 * an existing <a href="DataSource.html">DataSource</a> object, or it can be a
 	 * value that would be passed to <a href="DataSource.html">DataSource</a>.
-	 * 
+	 *
 	 * @attribute dataSource
 	 * @default null
 	 * @type Object | String | Function | Array
@@ -69,7 +69,7 @@ DataSourceControl.ATTRS = {
 	 * The type of the data source passed into <a href="AutoComplete.html#config_dataSource">dataSource</a>.
 	 * This can be used to explicitly declare what kind of <a href="DataSource.html">DataSource</a> object will
 	 * be created.
-	 * 
+	 *
 	 * @attribute dataSourceType
 	 * @default null
 	 * @type String
@@ -159,7 +159,7 @@ DataSourceControl.prototype = {
 		instance.publish(BINDUI);
 		instance.publish(SYNCUI);
 	},
-	
+
 	renderUI: function() {
 		var instance = this;
 
@@ -258,7 +258,7 @@ var InputTextControl = function() {
 InputTextControl.ATTRS = {
 	/**
 	 * To use a button
-	 * 
+	 *
 	 * @attribute button
 	 * @default true
 	 * @type Boolean
@@ -271,7 +271,7 @@ InputTextControl.ATTRS = {
 	/**
 	 * The character used to indicate the beginning or ending of a new value. Most commonly used
 	 * is a ",".
-	 * 
+	 *
 	 * @attribute delimChar
 	 * @default null
 	 * @type String
@@ -293,7 +293,7 @@ InputTextControl.ATTRS = {
 	/**
 	 * If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, this
 	 * will clear a selection when the overlay closes unless a user explicitly selects an item.
-	 * 
+	 *
 	 * @attribute forceSelection
 	 * @default false
 	 * @type Boolean
@@ -372,7 +372,7 @@ InputTextControl.ATTRS = {
 	/**
 	 * When <a href="AutoComplete.html#config_applyLocalFilter">applyLocalFilter</a> is true,
 	 * setting this to true will match only results with the same case.
-	 * 
+	 *
 	 * @attribute queryMatchCase
 	 * @default false
 	 * @type Boolean
@@ -385,7 +385,7 @@ InputTextControl.ATTRS = {
 	 * When <a href="AutoComplete.html#config_applyLocalFilter">applyLocalFilter</a> is true,
 	 * setting this to true will match results which contain the query anywhere in the text,
 	 * instead of just matching just items that start with the query.
-	 * 
+	 *
 	 * @attribute queryMatchContains
 	 * @default false
 	 * @type Boolean
@@ -395,7 +395,7 @@ InputTextControl.ATTRS = {
 	},
 
 	/**
-	 * For IO DataSources, AutoComplete will automatically insert a "?" between the server URI and 
+	 * For IO DataSources, AutoComplete will automatically insert a "?" between the server URI and
 	 * the encoded query string. To prevent this behavior, you can
 	 * set this value to false. If you need to customize this even further, you
 	 * can override the <a href="AutoComplete.html#method_generateRequest">generateRequest</a> method.
@@ -420,8 +420,8 @@ InputTextControl.ATTRS = {
 	},
 
 	/**
-	 * If <a href="AutoComplete.html#config_autoHighlight">autoHighlight</a> is enabled, whether or not the 
-	 * input field should be automatically updated with the first result as the user types, 
+	 * If <a href="AutoComplete.html#config_autoHighlight">autoHighlight</a> is enabled, whether or not the
+	 * input field should be automatically updated with the first result as the user types,
 	 * automatically selecting the portion of the text the user has not typed yet.
 	 *
 	 * @attribute typeAhead
@@ -433,7 +433,7 @@ InputTextControl.ATTRS = {
 	},
 
 	/**
-	 * If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, number of seconds 
+	 * If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, number of seconds
 	 * to delay before updating the input. In order to prevent certain race conditions, this value must
 	 * always be greater than the <a href="AutoComplete.html#config_queryDelay">queryDelay</a>.
 	 *
@@ -1140,5 +1140,5 @@ A.InputTextControl = InputTextControl;
 }, '@VERSION@' ,{requires:['aui-base','aui-datasource-control-base','aui-form-combobox']});
 
 
-AUI.add('aui-datasource-control', function(A){}, '@VERSION@' ,{use:['aui-datasource-control-base','aui-input-text-control'], skinnable:true});
+AUI.add('aui-datasource-control', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-datasource-control-base','aui-input-text-control']});
 

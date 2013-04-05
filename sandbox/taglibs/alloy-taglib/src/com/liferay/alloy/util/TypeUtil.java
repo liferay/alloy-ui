@@ -149,14 +149,14 @@ public class TypeUtil {
 						String curType = genericsTypes[i].trim();
 
 						if (!curType.equals(StringPool.QUESTION)) {
-							Class.forName(curType);
+							Class.forName(_removeArrayNotation(curType));
 						}
 					}
 
 					type = _removeGenericsType(type);
 				}
 
-				Class.forName(type);
+				Class.forName(_removeArrayNotation(type));
 
 				return true;
 			}
@@ -174,6 +174,10 @@ public class TypeUtil {
 		}
 	}
 
+	private String _removeArrayNotation(String type) {
+		return type.replace(ARRAY_NOTATION, StringPool.BLANK);
+	}
+
 	private String _removeGenericsType(String type) {
 		String genericsType = _getGenericsType(type);
 
@@ -185,6 +189,8 @@ public class TypeUtil {
 
 		return type;
 	}
+
+	public static final String ARRAY_NOTATION = "[]";
 
 	public static final String[] ARRAYS = {
 		"array", "[]"

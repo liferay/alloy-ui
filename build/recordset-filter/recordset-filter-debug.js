@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('recordset-filter', function(Y) {
+YUI.add('recordset-filter', function (Y, NAME) {
 
 /**
  * Plugin that provides the ability to filter through a recordset.
@@ -109,4 +109,4 @@ Y.extend(RecordsetFilter, Y.Plugin.Base, {
 Y.namespace("Plugin").RecordsetFilter = RecordsetFilter;
 
 
-}, '3.4.0' ,{requires:['recordset-base','array-extras','plugin']});
+}, '3.7.3', {"requires": ["recordset-base", "array-extras", "plugin"]});

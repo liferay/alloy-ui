@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('highlight-base', function(Y) {
+YUI.add('highlight-base', function (Y, NAME) {
 
 /**
 Provides methods for highlighting strings within other strings by wrapping
@@ -316,4 +316,4 @@ Highlight = {
 Y.Highlight = Highlight;
 
 
-}, '3.4.0' ,{requires:['array-extras', 'classnamemanager', 'escape', 'text-wordbreak']});
+}, '3.7.3', {"requires": ["array-extras", "classnamemanager", "escape", "text-wordbreak"]});

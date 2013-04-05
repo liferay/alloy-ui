@@ -4,4 +4,12 @@
 	<property file="build.properties" />
 
 	<import file="../../resources/builder/bootstrap.xml" />
+
+	<target name="all">
+		<copy todir="${global.build.component}/ace">
+			<fileset dir="../../lib/ace/build/src" />
+		</copy>
+
+		<subant antfile="../../resources/builder/bootstrap.xml" buildpath="." inheritall="true" target="all" />
+	</target>
 </project>

@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add("node-event-delegate",function(a){a.Node.prototype.delegate=function(d){var c=a.Array(arguments,0,true),b=(a.Lang.isObject(d)&&!a.Lang.isArray(d))?1:2;c.splice(b,0,this._node);return a.delegate.apply(a,c);};},"3.4.0",{requires:["node-base","event-delegate"]});
+YUI.add("node-event-delegate",function(e,t){e.Node.prototype.delegate=function(t){var n=e.Array(arguments,0,!0),r=e.Lang.isObject(t)&&!e.Lang.isArray(t)?1:2;return n.splice(r,0,this._node),e.delegate.apply(e,n)}},"3.7.3",{requires:["node-base","event-delegate"]});

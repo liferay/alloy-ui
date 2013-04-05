@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('node-core', function(Y) {
+YUI.add('node-core', function (Y, NAME) {
 
 /**
  * The Node Utility provides a DOM-like interface for interacting with DOM nodes.
@@ -69,6 +69,7 @@ var DOT = '.',
         /**
          * The underlying DOM node bound to the Y.Node instance
          * @property _node
+         * @type DOMNode
          * @private
          */
         this._node = node;
@@ -117,6 +118,7 @@ Y_Node._fromString = function(node) {
 /**
  * The name of the component
  * @static
+ * @type String
  * @property NAME
  */
 Y_Node.NAME = 'node';
@@ -132,6 +134,7 @@ Y_Node.HIDE_TRANSITION = 'fadeOut';
 /**
  * A list of Node instances that have been created
  * @private
+ * @type Object
  * @property _instances
  * @static
  *
@@ -202,11 +205,11 @@ Y_Node.addMethod = function(name, fn, context) {
                 node = this,
                 ret;
 
-            if (args[0] && Y.instanceOf(args[0], Y_Node)) {
+            if (args[0] && args[0]._node) {
                 args[0] = args[0]._node;
             }
 
-            if (args[1] && Y.instanceOf(args[1], Y_Node)) {
+            if (args[1] && args[1]._node) {
                 args[1] = args[1]._node;
             }
             args.unshift(node._node);
@@ -355,6 +358,8 @@ Y_Node.DEFAULT_GETTER = function(name) {
 };
 
 Y.mix(Y_Node.prototype, {
+    DATA_PREFIX: 'data-',
+
     /**
      * The method called when outputting Node instances as strings
      * @method toString
@@ -509,7 +514,7 @@ Y.mix(Y_Node.prototype, {
     compareTo: function(refNode) {
         var node = this._node;
 
-        if (Y.instanceOf(refNode, Y_Node)) {
+        if (refNode && refNode._node) {
             refNode = refNode._node;
         }
         return node === refNode;
@@ -546,6 +551,7 @@ Y.mix(Y_Node.prototype, {
      * @method ancestor
      * @param {String | Function} fn A selector string or boolean method for testing elements.
      * If a function is used, it receives the current node being tested as the only argument.
+     * If fn is not passed as an argument, the parent node will be returned.
      * @param {Boolean} testSelf optional Whether or not to include the element in the scan
      * @param {String | Function} stopFn optional A selector string or boolean
      * method to indicate when the search should stop. The search bails when the function
@@ -709,7 +715,9 @@ Y.mix(Y_Node.prototype, {
     },
 
     /**
-     * Nulls internal node references, removes any plugins and event listeners
+     * Nulls internal node references, removes any plugins and event listeners.
+     * Note that destroy() will not remove the node from its parent or from the DOM. For that
+     * functionality, call remove(true).
      * @method destroy
      * @param {Boolean} recursivePurge (optional) Whether or not to remove listeners from the
      * node's subtree (default is false)
@@ -732,6 +740,8 @@ Y.mix(Y_Node.prototype, {
                 instance = Y_Node._instances[node[UID]];
                 if (instance) {
                    instance.destroy();
+                } else { // purge in case added by other means
+                    Y.Event.purgeElement(node);
                 }
             });
         }
@@ -756,11 +766,11 @@ Y.mix(Y_Node.prototype, {
         var node = this._node,
             ret;
 
-        if (a && Y.instanceOf(a, Y_Node)) {
+        if (a && a._node) {
             a = a._node;
         }
 
-        if (b && Y.instanceOf(b, Y_Node)) {
+        if (b && b._node) {
             b = b._node;
         }
 
@@ -796,67 +806,6 @@ Y.mix(Y_Node.prototype, {
             return this;
         },
 
-
-    /**
-    * @method getData
-    * @description Retrieves arbitrary data stored on a Node instance.
-    * This is not stored with the DOM node.
-    * @param {string} name Optional name of the data field to retrieve.
-    * If no name is given, all data is returned.
-    * @return {any | Object} Whatever is stored at the given field,
-    * or an object hash of all fields.
-    */
-    getData: function(name) {
-        var ret;
-        this._data = this._data || {};
-        if (arguments.length) {
-            ret = this._data[name];
-        } else {
-            ret = this._data;
-        }
-
-        return ret;
-
-    },
-
-    /**
-    * @method setData
-    * @description Stores arbitrary data on a Node instance.
-    * This is not stored with the DOM node.
-    * @param {string} name The name of the field to set. If no name
-    * is given, name is treated as the data and overrides any existing data.
-    * @param {any} val The value to be assigned to the field.
-    * @chainable
-    */
-    setData: function(name, val) {
-        this._data = this._data || {};
-        if (arguments.length > 1) {
-            this._data[name] = val;
-        } else {
-            this._data = name;
-        }
-
-       return this;
-    },
-
-    /**
-    * @method clearData
-    * @description Clears stored data.
-    * @param {string} name The name of the field to clear. If no name
-    * is given, all data is cleared.
-    * @chainable
-    */
-    clearData: function(name) {
-        if ('_data' in this) {
-            if (name) {
-                delete this._data[name];
-            } else {
-                delete this._data;
-            }
-        }
-
-        return this;
-    },
 
     hasMethod: function(method) {
         var node = this._node;
@@ -905,6 +854,7 @@ Y.one = Y_Node.one;
  *
  * @class NodeList
  * @constructor
+ * @param nodes {String|element|Node|Array} A selector, DOM element, Node, list of DOM elements, or list of Nodes with which to populate this NodeList.
  */
 
 var NodeList = function(nodes) {
@@ -1015,6 +965,19 @@ NodeList._getTempNode = function(node) {
 };
 
 Y.mix(NodeList.prototype, {
+    _invoke: function(method, args, getter) {
+        var ret = (getter) ? [] : this;
+
+        this.each(function(node) {
+            var val = node[method].apply(node, args);
+            if (getter) {
+                ret.push(val);
+            }
+        });
+
+        return ret;
+    },
+
     /**
      * Retrieves the Node instance at the given index.
      * @method item
@@ -1176,68 +1139,6 @@ Y.mix(NodeList.prototype, {
         return this;
     },
 
-    _prepEvtArgs: function(type, fn, context) {
-        // map to Y.on/after signature (type, fn, nodes, context, arg1, arg2, etc)
-        var args = Y.Array(arguments, 0, true);
-
-        if (args.length < 2) { // type only (event hash) just add nodes
-            args[2] = this._nodes;
-        } else {
-            args.splice(2, 0, this._nodes);
-        }
-
-        args[3] = context || this; // default to NodeList instance as context
-
-        return args;
-    },
-
-    /**
-     * Applies an event listener to each Node bound to the NodeList.
-     * @method on
-     * @param {String} type The event being listened for
-     * @param {Function} fn The handler to call when the event fires
-     * @param {Object} context The context to call the handler with.
-     * Default is the NodeList instance.
-     * @param {Object} context The context to call the handler with.
-     * param {mixed} arg* 0..n additional arguments to supply to the subscriber
-     * when the event fires.
-     * @return {Object} Returns an event handle that can later be use to detach().
-     * @see Event.on
-     */
-    on: function(type, fn, context) {
-        return Y.on.apply(Y, this._prepEvtArgs.apply(this, arguments));
-    },
-
-    /**
-     * Applies an one-time event listener to each Node bound to the NodeList.
-     * @method once
-     * @param {String} type The event being listened for
-     * @param {Function} fn The handler to call when the event fires
-     * @param {Object} context The context to call the handler with.
-     * Default is the NodeList instance.
-     * @return {Object} Returns an event handle that can later be use to detach().
-     * @see Event.on
-     */
-    once: function(type, fn, context) {
-        return Y.once.apply(Y, this._prepEvtArgs.apply(this, arguments));
-    },
-
-    /**
-     * Applies an event listener to each Node bound to the NodeList.
-     * The handler is called only after all on() handlers are called
-     * and the event is not prevented.
-     * @method after
-     * @param {String} type The event being listened for
-     * @param {Function} fn The handler to call when the event fires
-     * @param {Object} context The context to call the handler with.
-     * Default is the NodeList instance.
-     * @return {Object} Returns an event handle that can later be use to detach().
-     * @see Event.on
-     */
-    after: function(type, fn, context) {
-        return Y.after.apply(Y, this._prepEvtArgs.apply(this, arguments));
-    },
-
     /**
      * Returns the current number of items in the NodeList.
      * @method size
@@ -1291,26 +1192,46 @@ Y.mix(NodeList.prototype, {
 }, true);
 
 NodeList.importMethod(Y.Node.prototype, [
-    /** Called on each Node instance
+     /** 
+      * Called on each Node instance. Nulls internal node references, 
+      * removes any plugins and event listeners
       * @method destroy
+      * @param {Boolean} recursivePurge (optional) Whether or not to 
+      * remove listeners from the node's subtree (default is false)
       * @see Node.destroy
       */
     'destroy',
 
-    /** Called on each Node instance
+     /** 
+      * Called on each Node instance. Removes and destroys all of the nodes 
+      * within the node
       * @method empty
+      * @chainable
       * @see Node.empty
       */
     'empty',
 
-    /** Called on each Node instance
+     /** 
+      * Called on each Node instance. Removes the node from its parent.
+      * Shortcut for myNode.get('parentNode').removeChild(myNode);
       * @method remove
+      * @param {Boolean} destroy whether or not to call destroy() on the node
+      * after removal.
+      * @chainable
       * @see Node.remove
       */
     'remove',
 
-    /** Called on each Node instance
+     /** 
+      * Called on each Node instance. Sets an attribute on the Node instance.
+      * Unless pre-configured (via Node.ATTRS), set hands
+      * off to the underlying DOM node.  Only valid
+      * attributes/properties for the node will be set.
+      * To set custom attributes use setAttribute.
       * @method set
+      * @param {String} attr The attribute to be set.
+      * @param {any} val The value to set the attribute to.
+      * @chainable
       * @see Node.set
       */
     'set'
@@ -1568,7 +1489,7 @@ Y.Array.each([
 Y.Node.prototype.removeAttribute = function(attr) {
     var node = this._node;
     if (node) {
-        node.removeAttribute(attr);
+        node.removeAttribute(attr, 0); // comma zero for IE < 8 to force case-insensitive
     }
 
     return this;
@@ -1587,7 +1508,6 @@ Y.Node.importMethod(Y.DOM, [
      * This passes through to the DOM node, allowing for custom attributes.
      * @method setAttribute
      * @for Node
-     * @for NodeList
      * @chainable
      * @param {string} name The attribute name
      * @param {string} value The value to set
@@ -1598,7 +1518,6 @@ Y.Node.importMethod(Y.DOM, [
      * This passes through to the DOM node, allowing for custom attributes.
      * @method getAttribute
      * @for Node
-     * @for NodeList
      * @param {string} name The attribute name
      * @return {string} The attribute value
      */
@@ -1684,4 +1603,4 @@ Y.NodeList.importMethod(Y.Node.prototype, [
 ]);
 
 
-}, '3.4.0' ,{requires:['dom-core', 'selector']});
+}, '3.7.3', {"requires": ["dom-core", "selector"]});

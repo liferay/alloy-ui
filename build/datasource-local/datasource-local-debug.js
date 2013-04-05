@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('datasource-local', function(Y) {
+YUI.add('datasource-local', function (Y, NAME) {
 
 /**
  * The DataSource utility provides a common configurable interface for widgets to
@@ -361,7 +361,7 @@ Y.extend(DSLocal, Y.Base, {
      * property described below.
      *
      * @method sendRequest
-     * @param request {Object} An object literal with the following properties:
+     * @param [request] {Object} An object literal with the following properties:
      *     <dl>
      *     <dt><code>request</code></dt>
      *     <dd>The request to send to the live data source, if any.</dd>
@@ -406,4 +406,4 @@ Y.extend(DSLocal, Y.Base, {
 Y.namespace("DataSource").Local = DSLocal;
 
 
-}, '3.4.0' ,{requires:['base']});
+}, '3.7.3', {"requires": ["base"]});

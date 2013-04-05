@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('text-wordbreak', function(Y) {
+YUI.add('text-wordbreak', function (Y, NAME) {
 
 /**
  * Provides utility methods for splitting strings on word breaks and determining
@@ -366,4 +366,4 @@ WordBreak = {
 Text.WordBreak = WordBreak;
 
 
-}, '3.4.0' ,{requires:['array-extras', 'text-data-wordbreak']});
+}, '3.7.3', {"requires": ["array-extras", "text-data-wordbreak"]});

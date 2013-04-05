@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('querystring-parse-simple', function(Y) {
+YUI.add('querystring-parse-simple', function (Y, NAME) {
 
 // @TODO this looks like we are requiring the user to extract the querystring
 // portion of the url, which isn't good.  The majority use case will be to
@@ -83,4 +83,4 @@ QueryString.unescape = function (s) {
 };
 
 
-}, '3.4.0' ,{requires:['yui-base']});
+}, '3.7.3', {"requires": ["yui-base"]});

@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('widget-uievents', function(Y) {
+YUI.add('widget-uievents', function (Y, NAME) {
 
 /**
  * Support for Widget UI Events (Custom Events fired by the widget, which wrap the underlying DOM events - e.g. widget:click, widget:mousedown)
@@ -231,4 +231,4 @@ Y.mix(Widget.prototype, {
 }, true); // overwrite existing EventTarget methods
 
 
-}, '3.4.0' ,{requires:['widget-base', 'node-event-delegate']});
+}, '3.7.3', {"requires": ["node-event-delegate", "widget-base"]});

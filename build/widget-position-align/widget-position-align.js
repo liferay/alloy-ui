@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('widget-position-align', function(Y) {
+YUI.add('widget-position-align', function (Y, NAME) {
 
 /**
 Provides extended/advanced XY positioning support for Widgets, through an
@@ -653,4 +653,4 @@ PositionAlign.prototype = {
 Y.WidgetPositionAlign = PositionAlign;
 
 
-}, '3.4.0' ,{requires:['widget-position']});
+}, '3.7.3', {"requires": ["widget-position"]});

@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('intl-base', function(Y) {
+YUI.add('intl-base', function (Y, NAME) {
 
 /**
  * The Intl utility provides a central location for managing sets of
@@ -92,4 +92,4 @@ Y.mix(Y.namespace('Intl'), {
 });
 
 
-}, '3.4.0' ,{requires:['yui-base']});
+}, '3.7.3', {"requires": ["yui-base"]});

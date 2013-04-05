@@ -2,14 +2,14 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('event-delegate', function(Y) {
+YUI.add('event-delegate', function (Y, NAME) {
 
 /**
  * Adds event delegation support to the library.
- * 
+ *
  * @module event
  * @submodule event-delegate
  */
@@ -49,21 +49,22 @@ var toArray          = Y.Array,
  * @param fn {Function} the callback function to execute.  This function
  *              will be provided the event object for the delegated event.
  * @param el {String|node} the element that is the delegation container
- * @param spec {string|Function} a selector that must match the target of the
+ * @param filter {string|Function} a selector that must match the target of the
  *              event or a function to test target and its parents for a match
  * @param context optional argument that specifies what 'this' refers to.
  * @param args* 0..n additional arguments to pass on to the callback function.
  *              These arguments will be added after the event object.
  * @return {EventHandle} the detach handle
- * @for YUI
+ * @static
+ * @for Event
  */
 function delegate(type, fn, el, filter) {
     var args     = toArray(arguments, 0, true),
         query    = isString(el) ? el : null,
         typeBits, synth, container, categories, cat, i, len, handles, handle;
 
-    // Support Y.delegate({ click: fnA, key: fnB }, context, filter, ...);
-    // and Y.delegate(['click', 'key'], fn, context, filter, ...);
+    // Support Y.delegate({ click: fnA, key: fnB }, el, filter, ...);
+    // and Y.delegate(['click', 'key'], fn, el, filter, ...);
     if (isObject(type)) {
         handles = [];
 
@@ -73,8 +74,8 @@ function delegate(type, fn, el, filter) {
                 handles.push(Y.delegate.apply(Y, args));
             }
         } else {
-            // Y.delegate({'click', fn}, context, filter) =>
-            // Y.delegate('click', fn, context, filter)
+            // Y.delegate({'click', fn}, el, filter) =>
+            // Y.delegate('click', fn, el, filter)
             args.unshift(null); // one arg becomes two; need to make space
 
             for (i in type) {
@@ -173,7 +174,7 @@ delegate.notifySub = function (thisObj, args, ce) {
         e = args[0] = new Y.DOMEventFacade(args[0], ce.el, ce);
 
         e.container = Y.one(ce.el);
-    
+
         for (i = 0, len = currentTarget.length; i < len && !e.stopped; ++i) {
             e.currentTarget = Y.one(currentTarget[i]);
 
@@ -209,7 +210,8 @@ Hosted as a property of the `delegate` method (e.g. `Y.delegate.compileFilter`).
 **/
 delegate.compileFilter = Y.cached(function (selector) {
     return function (target, e) {
-        return selectorTest(target._node, selector, e.currentTarget._node);
+        return selectorTest(target._node, selector,
+            (e.currentTarget === e.target) ? null : e.currentTarget._node);
     };
 });
 
@@ -249,7 +251,7 @@ delegate._applyFilter = function (filter, args, ce) {
     if (isString(filter)) {
         while (target) {
             isContainer = (target === container);
-            if (selectorTest(target, filter, (isContainer ?null: container))) {
+            if (selectorTest(target, filter, (isContainer ? null: container))) {
                 match.push(target);
             }
 
@@ -325,4 +327,4 @@ delegate._applyFilter = function (filter, args, ce) {
 Y.delegate = Y.Event.delegate = delegate;
 
 
-}, '3.4.0' ,{requires:['node-base']});
+}, '3.7.3', {"requires": ["node-base"]});

@@ -2,10 +2,10 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
-build: nightly
+version: 3.7.3
+build: 3.7.3
 */
-YUI.add('align-plugin', function(Y) {
+YUI.add('align-plugin', function (Y, NAME) {
 
     /**
      * Provides advanced positioning support for Node via a Plugin
@@ -197,4 +197,4 @@ YUI.add('align-plugin', function(Y) {
 
 
 
-}, '3.4.0' ,{requires:['node-pluginhost', 'node-screen']});
+}, '3.7.3', {"requires": ["node-screen", "node-pluginhost"]});
