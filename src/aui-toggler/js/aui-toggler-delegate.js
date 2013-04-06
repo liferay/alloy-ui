@@ -17,6 +17,7 @@ var Lang = A.Lang,
     ANIMATED = 'animated',
     CLICK = 'click',
     CLOSE_ALL_ON_EXPAND = 'closeAllOnExpand',
+    COLLAPSED = 'collapsed',
     CONTAINER = 'container',
     CONTENT = 'content',
     CUBIC_BEZIER = 'cubic-bezier',
@@ -33,7 +34,9 @@ var Lang = A.Lang,
 
     getCN = A.getClassName,
 
-    CSS_TOGGLER_CONTENT_WRAPPER = getCN(TOGGLER, CONTENT, WRAPPER);
+    CSS_TOGGLER_CONTENT_WRAPPER = getCN(TOGGLER, CONTENT, WRAPPER),
+    CSS_TOGGLER_HEADER_COLLAPSED = getCN(TOGGLER, HEADER, COLLAPSED),
+    CSS_TOGGLER_HEADER_EXPANDED = getCN(TOGGLER, HEADER, EXPANDED);
 
 var TogglerDelegate = A.Component.create({
     NAME: TOGGLER_DELEGATE,
@@ -156,14 +159,23 @@ var TogglerDelegate = A.Component.create({
         },
 
         _create: function(header) {
-            var instance = this;
+            var instance = this,
+                expanded = instance.get(EXPANDED);
+
+            // Prioritize markup information to decide whether it's expanded or not
+            if (header.hasClass(CSS_TOGGLER_HEADER_EXPANDED)) {
+                expanded = true;
+            }
+            else if (header.hasClass(CSS_TOGGLER_HEADER_COLLAPSED)) {
+                expanded = false;
+            }
 
             var toggler = new Toggler({
                 animated: instance.get(ANIMATED),
                 bindDOMEvents: false,
                 bubbleTargets: [ instance ],
                 content: instance.findContentNode(header),
-                expanded: instance.get(EXPANDED),
+                expanded: expanded,
                 header: header,
                 transition: instance.get(TRANSITION)
             });
