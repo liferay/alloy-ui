@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	
+</head>
+<style type="text/css" media="screen">
+	body {
+		font-size: 12px;
+	}
+
+	.aui-field {
+		margin-bottom: 2em;
+	}
+
+	#wrapper {
+		padding: 10px;
+		width: 500px;
+	}
+
+	.aui-field-input-text {
+		padding: 5px;
+		display: inline-block;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+
+	.aui-field-input-textarea {
+		width: 100%;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		min-height: 200px;
+	}
+
+	.aui-textarea-ft {
+		background: #dfdfdf;
+		border-top: 1px solid #999;
+		padding: 2px 3px;
+		text-align: right;
+		margin-top: -1px;
+	}
+
+	.aui-field-text, .aui-field-textarea {
+		line-height: 1;
+	}
+
+	.aui-input-localize-selector, .aui-input-localize {
+		background: #EEE;
+		padding: 3px 10px;
+		border-radius: 8px;
+		border: 1px solid #AAA;
+	}
+
+	.aui-field-text .aui-text-button {
+		display: inline-block;
+		margin-left: -4px;
+		padding-top: 4px;
+		border-bottom-left-radius: 0;
+		border-top-left-radius: 0;
+		vertical-align: top;
+	}
+
+	.aui-input-localize {
+		vertical-align: middle;
+		background-image: url(images/arrows/05_down.png);
+		background-position: 90% 50%;
+		background-repeat: no-repeat;
+		padding-right: 20px;
+		display: inline-block;
+		cursor: pointer;
+		position: relative;
+	}
+
+	.aui-input-localize-selector {
+		list-style: none;
+		position: absolute;
+		top: 100%;
+		margin: 0;
+		right: 0;
+		margin-top: -1px;
+		padding: 8px 0;
+		line-height: inherit;
+	}
+
+	.aui-locale-count {
+		display: inline-block;
+		background: #444;
+		color: #fff;
+		padding: 3px 6px;
+		border-radius: 20px;
+		margin-right: 5px;
+		vertical-align: middle;
+		text-align: center;
+		box-shadow: 1px 1px 0 #FFFFFF, 1px 1px 1px #000000 inset;
+	}
+
+	.aui-locale-count {
+		font-weight: bold;
+	}
+
+	.aui-input-localize-item {
+		white-space: nowrap;
+		text-align: left;
+		padding: 5px;
+	}
+
+	.aui-input-localize-item:hover, .aui-input-localize-item:hover a {
+		background-color: #275A93;
+		color: #fff;
+	}
+
+	.aui-selected-locale {
+		vertical-align: middle;
+	}
+
+	.aui-field-hint {
+		float: left;
+		text-align: left;
+	}
+	.aui-field-label {
+		line-height: 2;
+	}
+
+	.aui-input-localize-value {
+		background: #CAFD5B url(images/common/checked.png) no-repeat 5px 50%;
+		padding-left: 25px;
+	}
+
+	.aui-input-localize-item-selected {
+		background-color: #5C7D93;
+	}
+
+	.aui-input-localize-item-selected, .aui-input-localize-item-selected a {
+		color: #fff;
+	}
+</style>
+<body>
+
+<div id="wrapper">
+	<h1>Alloy Base File</h1>
+	<div id="demo">
+		<div class="aui-field aui-field-text">
+			<div class="aui-field-content">
+				<label class="aui-field-label" for="textareaField">Title</label>
+				<input class="aui-field-input aui-field-input-text" id="textField" data-langId="en_US" />
+				<span class="aui-text-button aui-input-localize">
+					<span class="aui-locale-count">1</span>
+					<img class="aui-selected-locale" src="images/language/en_US.png" title="English (United States)" />
+				</span>
+			</div>
+		</div>
+
+		<div class="aui-field aui-field-text aui-field-textarea">
+			<div class="aui-field-content">
+				<label class="aui-field-label" for="textareaField">Description</label>
+				<textarea class="aui-field-input aui-field-input-text aui-field-input-textarea" id="textareaField" data-langId="en_US"></textarea>
+				<div class="aui-textarea-ft">
+					<span class="aui-textarea-button aui-input-localize">
+						<span class="aui-locale-count">1</span>
+						<img class="aui-selected-locale" src="images/language/en_US.png" title="English (United States)" />
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script id="selectorTemplate" type="text/html">
+	<ul class="aui-input-localize-selector" id="{ns}languageId">
+		<tpl for="languages">
+			<li class="aui-input-localize-item" id="localizeItem{[parent.ns]}{id}" title="{name}" data-langId="{id}">
+				<a href="javascript:;"><img class="aui-locale" src="images/language/{id}.png" /></a>
+				<a href="javascript:;">{name}</a>
+			</li>
+		</tpl>
+	</ul>
+</script>
+
+<script type="text/javascript" charset="utf-8">
+AUI().use(
+	'aui-base', 'aui-template', 'aui-overlay-context',
+	function(A) {
+		var languages = [
+			{id: 'ar_SA', name: 'Arabic (Saudi Arabia)'},
+			{id: 'eu_ES', name: 'Basque (Spain)'},
+			{id: 'bg_BG', name: 'Bulgarian (Bulgaria)'},
+			{id: 'ca_AD', name: 'Catalan (Andorra)'},
+			{id: 'ca_ES', name: 'Catalan (Spain)'},
+			{id: 'zh_CN', name: 'Chinese (China)'},
+			{id: 'zh_TW', name: 'Chinese (Taiwan)'},
+			{id: 'hr_HR', name: 'Croatian (Croatia)'},
+			{id: 'cs_CZ', name: 'Czech (Czech Republic)'},
+			{id: 'nl_NL', name: 'Dutch (Netherlands)'},
+			{id: 'nl_BE', name: 'Dutch (Belgium)'},
+			{id: 'en_US', name: 'English (United States)'},
+			{id: 'en_GB', name: 'English (United Kingdom)'},
+			{id: 'et_EE', name: 'Estonian (Estonia)'},
+			{id: 'fi_FI', name: 'Finnish (Finland)'},
+			{id: 'fr_FR', name: 'French (France)'},
+			{id: 'gl_ES', name: 'Gallegan (Spain)'},
+			{id: 'de_DE', name: 'German (Germany)'},
+			{id: 'el_GR', name: 'Greek (Greece)'},
+			{id: 'iw_IL', name: 'Hebrew (Israel)'},
+			{id: 'hi_IN', name: 'Hindi (India)'},
+			{id: 'hu_HU', name: 'Hungarian (Hungary)'},
+			{id: 'in_ID', name: 'Indonesian (Indonesia)'},
+			{id: 'it_IT', name: 'Italian (Italy)'},
+			{id: 'ja_JP', name: 'Japanese (Japan)'},
+			{id: 'ko_KR', name: 'Korean (South Korea)'},
+			{id: 'nb_NO', name: 'Norwegian Bokmål (Norway)'},
+			{id: 'fa_IR', name: 'Persian (Iran)'},
+			{id: 'pl_PL', name: 'Polish (Poland)'},
+			{id: 'pt_BR', name: 'Portuguese (Brazil)'},
+			{id: 'pt_PT', name: 'Portuguese (Portugal)'},
+			{id: 'ro_RO', name: 'Romanian (Romania)'},
+			{id: 'ru_RU', name: 'Russian (Russia)'},
+			{id: 'sr_RS', name: 'Serbian (Serbia)'},
+			{id: 'sr_RS_latin', name: 'Serbian (Serbia,latin)'},
+			{id: 'sl_SI', name: 'Slovenian (Slovenia)'},
+			{id: 'sk_SK', name: 'Slovak (Slovakia)'},
+			{id: 'es_ES', name: 'Spanish (Spain)'},
+			{id: 'sv_SE', name: 'Swedish (Sweden)'},
+			{id: 'tr_TR', name: 'Turkish (Turkey)'},
+			{id: 'uk_UA', name: 'Ukrainian (Ukraine)'},
+			{id: 'vi_VN', name: 'Vietnamese (Vietnam)'}
+		];
+
+		var selectorTemplate = A.Template.from('#selectorTemplate');
+
+/*
+		selectorNode.hide();
+
+		var localizer = A.one('.aui-input-localize');
+
+		localizer.append(selectorNode);
+
+		var show = A.debounce(function(event) {
+			hide.cancel();
+			selectorNode.show();
+		}, 0);
+
+		var hide = A.debounce(function(event) {
+			show.cancel();
+			selectorNode.hide();
+		}, 500);
+
+		localizer.hover(show, hide);
+*/
+
+		A.all('.aui-field').each(
+			function(item, index, collection) {
+				var selectorNode = selectorTemplate.render({
+					ns: index,
+					languages: languages
+				});
+
+				var localizer = item.one('.aui-input-localize');
+
+				var overlay = new A.Overlay(
+					{
+						trigger: localizer,
+						bodyContent: selectorNode,
+						align: {
+							node: localizer,
+							points: ['tr', 'br']
+						},
+						visible: false
+					}
+				).render();
+
+				var show = A.debounce(function(event) {
+					hide.cancel();
+					overlay.show();
+				}, 0);
+
+				var hide = A.debounce(function(event) {
+					show.cancel();
+					overlay.hide();
+				}, 500);
+
+				var hoverConfig = {
+					mouseenter: show,
+					mouseleave: hide
+				};
+
+				localizer.on(hoverConfig);
+				overlay.on(hoverConfig);
+
+				var count = item.one('.aui-locale-count');
+
+				var textarea = item.one('.aui-field-input');
+
+				var selectedLocaleImage = item.one('.aui-selected-locale');
+
+				var MAP_SELECTED_LANGS = {};
+				var MAP_PREV_LANGS = {};
+
+				selectorNode.delegate('click', function(event) {
+					var prevVal = textarea.val();
+					var prevLangId = textarea.attr('data-langId');
+
+					var prevSelectedLang = MAP_SELECTED_LANGS[prevLangId];
+
+					if (!prevVal) {
+						if (prevSelectedLang) {
+							prevSelectedLang.remove();
+
+							delete MAP_SELECTED_LANGS[prevLangId];
+
+							MAP_PREV_LANGS[prevLangId] = prevSelectedLang;
+						}
+					}
+					else {
+						var hiddenInput = MAP_SELECTED_LANGS[prevLangId];
+
+						if (!hiddenInput) {
+							hiddenInput = MAP_PREV_LANGS[prevLangId] || A.Node.create('<input id="' + prevLangId + '" type="hidden" />');
+
+							textarea.placeBefore(hiddenInput);
+
+							MAP_SELECTED_LANGS[prevLangId] = hiddenInput;
+						}
+
+						hiddenInput.val(prevVal);
+					}
+
+					A.one('#localizeItem' + index + prevLangId).toggleClass('aui-input-localize-value', !!prevVal);
+
+					var currentTarget = event.currentTarget;
+
+					var langId = currentTarget.attr('data-langId');
+					var currentValue = '';
+
+					var currentHiddenInput = item.one('#' + langId);
+
+					if (currentHiddenInput) {
+						currentValue = currentHiddenInput.val();
+					}
+
+					textarea.val(currentValue);
+					textarea.attr('data-langId', langId);
+
+					var selectedLocaleImageSrc = selectedLocaleImage.attr('src');
+
+					selectedLocaleImageSrc = selectedLocaleImageSrc.replace(/\/[A-Za-z_]+.png$/, '/' + langId + '.png');
+
+					selectedLocaleImage.attr('src', selectedLocaleImageSrc);
+					selectedLocaleImage.attr('title', currentTarget.attr('title'));
+
+					count.text(Math.max(A.Object.size(MAP_SELECTED_LANGS), 1));
+
+					currentTarget.radioClass('aui-input-localize-item-selected');
+
+					textarea.focus();
+				}, 'li');
+			}
+		);
+	}
+);
+</script>
+
+</body>
+</html>
