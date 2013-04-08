@@ -600,7 +600,7 @@
     "aui-io-plugin-deprecated": {
         "requires": [
             "aui-overlay-base-deprecated",
-            "aui-parse-content-deprecated",
+            "aui-parse-content",
             "aui-io-request",
             "aui-loading-mask-deprecated"
         ]
@@ -761,13 +761,6 @@
             "io-base",
             "aui-component",
             "aui-node-base"
-        ]
-    },
-    "aui-parse-content-deprecated": {
-        "requires": [
-            "async-queue",
-            "plugin",
-            "aui-base-deprecated"
         ]
     },
     "aui-progressbar": {

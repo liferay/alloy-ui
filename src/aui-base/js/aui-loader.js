@@ -624,7 +624,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-io-plugin-deprecated": {
         "requires": [
             "aui-overlay-base-deprecated",
-            "aui-parse-content-deprecated",
+            "aui-parse-content",
             "aui-io-request",
             "aui-loading-mask-deprecated"
         ]
@@ -785,13 +785,6 @@ Y.mix(YUI.Env[Y.version].modules, {
             "io-base",
             "aui-component",
             "aui-node-base"
-        ]
-    },
-    "aui-parse-content-deprecated": {
-        "requires": [
-            "async-queue",
-            "plugin",
-            "aui-base-deprecated"
         ]
     },
     "aui-progressbar": {
@@ -1170,4 +1163,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '3b492eeaf5660e5bfa4031039ba24038';
+YUI.Env[Y.version].md5 = '291c9ca93ccc8cd52ec544d776699c67';

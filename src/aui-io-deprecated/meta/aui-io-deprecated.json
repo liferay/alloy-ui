@@ -9,7 +9,7 @@
     "aui-io-plugin-deprecated": {
         "requires": [
            "aui-overlay-base-deprecated",
-           "aui-parse-content-deprecated",
+           "aui-parse-content",
            "aui-io-request",
            "aui-loading-mask-deprecated"
         ]
