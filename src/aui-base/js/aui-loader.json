@@ -993,6 +993,8 @@
         "requires": [
             "anim-node-plugin",
             "node-focusmanager",
+            "aui-button-item-deprecated",
+            "aui-data-set-deprecated",
             "aui-autocomplete-deprecated"
         ],
         "skinnable": true

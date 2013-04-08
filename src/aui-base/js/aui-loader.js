@@ -1017,6 +1017,8 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "anim-node-plugin",
             "node-focusmanager",
+            "aui-button-item-deprecated",
+            "aui-data-set-deprecated",
             "aui-autocomplete-deprecated"
         ],
         "skinnable": true
@@ -1163,4 +1165,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '291c9ca93ccc8cd52ec544d776699c67';
+YUI.Env[Y.version].md5 = '1fa29b8449ded61ed2ddf8d4132af50a';
