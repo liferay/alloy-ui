@@ -24,6 +24,7 @@ var Lang = A.Lang,
     TOGGLEBTN = 'togglebtn',
     CHECKBOX = 'checkbox',
     TYPE = 'type',
+    VISIBLE = 'visible',
     WIDGET_CONSTRUCTOR = 'widgetConstructor',
 
     getClassName = A.getClassName,
@@ -92,6 +93,16 @@ ButtonExt.prototype = {
         instance._uiSetIcon(instance.get(ICON));
         instance._uiSetPrimary(instance.get(PRIMARY));
         instance._uiSetCssClass(instance.get(CSS_CLASS));
+    },
+
+    toggle: function(visible) {
+        var instance = this;
+
+        if (!Lang.isBoolean(visible)) {
+            visible = !instance.get(VISIBLE);
+        }
+
+        return instance.set(VISIBLE, visible);
     },
 
     _afterCssClassChange: function(event) {
