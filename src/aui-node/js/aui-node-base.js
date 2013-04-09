@@ -25,6 +25,8 @@ var Lang = A.Lang,
 	WIN = CONFIG.win,
 
 	NODE_PROTO = ANode.prototype,
+	NODE_PROTO_HIDE = NODE_PROTO._hide,
+	NODE_PROTO_SHOW = NODE_PROTO._show,
 	NODELIST_PROTO = ANodeList.prototype,
 
 	STR_EMPTY = '',
@@ -974,6 +976,20 @@ A.mix(NODE_PROTO, {
 	},
 
 	/**
+	 * Overrides Y.Node._hide. Adds aui-hide to the node's cssClass
+	 *
+	 * @method _hide
+	 * @private
+	 */
+	_hide: function() {
+		var instance = this;
+
+		instance.addClass(CSS_HIDE);
+
+		return NODE_PROTO_HIDE.apply(instance, arguments);
+	},
+
+	/**
 	 * The event handler for the "out" function that is fired for events attached via the hover method.
 	 *
 	 * @method _hoverOutHandler
@@ -1059,6 +1075,20 @@ A.mix(NODE_PROTO, {
 		}
 
 		return instance;
+	},
+
+	/**
+	 * Overrides Y.Node._show. Removes aui-hide from the node's cssClass
+	 *
+	 * @method _show
+	 * @private
+	 */
+	_show: function() {
+		var instance = this;
+
+		instance.removeClass(CSS_HIDE);
+
+		return NODE_PROTO_SHOW.apply(instance, arguments);
 	},
 
 	_defaultHoverOptions: {
