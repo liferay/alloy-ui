@@ -55,10 +55,6 @@
 					<input class="aui-field-required" type="text" name="name" id="name2" />
 				</p>
 				<p>
-					<label class="aui-field-label" for="password">Password:</label>
-					<input class="aui-field-warning" type="text" name="password" id="password2" />
-				</p>
-				<p>
 					<label class="aui-field-label" for="email2">Email:</label>
 					<input class="aui-field-required aui-field-email" type="text" name="email" id="email2" />
 				</p>
@@ -151,7 +147,7 @@
 				{
 					customRule: 'Type the number 55.',
 					anotherRule: 'Message for another rule',
-					warning: 'Short passwords are rubbish'
+					warning: 'Passwords longer than 5 characters are recommended'
 				},
 				true
 			);
@@ -167,7 +163,7 @@
 						return (val == 'another');
 					},
 					
-					warningRule: function(val, fieldNode, ruleValue) {
+					warning: function(val, fieldNode, ruleValue) {
 						return (!!val && val.length > 5);
 					}
 				},
