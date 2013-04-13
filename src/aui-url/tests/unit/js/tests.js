@@ -9,6 +9,57 @@ YUI.add('module-tests', function(Y) {
         // Tests
         //---------------------------------------------
 
+        'manage parameters': function() {
+            var url = new Y.UrlParser('http://host.com?p1=1&p1=2');
+
+            Y.Assert.areSame(url.getQuery(), 'p1=1&p1=2');
+            Y.Assert.areSame(Y.Object.keys(url.getParameters()).length, 1);
+            Y.Assert.areSame(Y.Object.keys(url.getParameters())[0], 'p1');
+            Y.Assert.areSame(url.getParameter('p1').length, 2);
+            Y.Assert.areSame(url.getParameter('p1')[0], 1);
+            Y.Assert.areSame(url.getParameter('p1')[1], 2);
+
+            url.addParameter('p1', 3);
+
+            Y.Assert.areSame(url.getParameter('p1').length, 3);
+            Y.Assert.areSame(url.getParameter('p1')[0], 1);
+            Y.Assert.areSame(url.getParameter('p1')[1], 2);
+            Y.Assert.areSame(url.getParameter('p1')[2], 3);
+
+            url.addParameter('p2', 1);
+
+            Y.Assert.areSame(url.getQuery(), 'p1=1&p1=2&p1=3&p2=1');
+            Y.Assert.areSame(Y.Object.keys(url.getParameters())[1], 'p2');
+            Y.Assert.areSame(url.getParameter('p2'), 1);
+
+            url.addParameter('p2', 2);
+
+            Y.Assert.areSame(url.getParameter('p2').length, 2);
+            Y.Assert.areSame(url.getParameter('p2')[0], 1);
+            Y.Assert.areSame(url.getParameter('p2')[1], 2);
+
+            url.setParameter('p2', 1);
+
+            Y.Assert.areSame(Y.Object.keys(url.getParameters())[1], 'p2');
+            Y.Assert.areSame(url.getParameter('p2'), 1);
+
+            url.removeParameter('p2');
+
+            Y.Assert.isUndefined(url.getParameter('p2'));
+
+            url.addParameters({
+                p1: 4,
+                p2: 1
+            });
+
+            Y.Assert.areSame(url.getParameter('p1').length, 4);
+            Y.Assert.areSame(url.getParameter('p1')[0], 1);
+            Y.Assert.areSame(url.getParameter('p1')[1], 2);
+            Y.Assert.areSame(url.getParameter('p1')[2], 3);
+            Y.Assert.areSame(url.getParameter('p1')[3], 4);
+            Y.Assert.areSame(url.getParameter('p2'), 1);
+        },
+
         'protocol only': function() {
             Y.Assert.areSame(new Y.UrlParser('http:').getProtocol(), 'http');
             Y.Assert.areSame(new Y.UrlParser('https://').getProtocol(), 'https');
