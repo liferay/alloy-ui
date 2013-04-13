@@ -42,6 +42,32 @@
         <div id="pills"></div>
         <h2>Stacked pills</h2>
         <div id="stackedpills"></div>
+        <h2>List</h2>
+        <div id="list">
+            <ul class="aui-well aui-nav aui-nav-list">
+                <li class="aui-nav-header">List Header</li>
+                <li><a href="#foo">foo</a></li>
+                <li class="aui-nav-header">List Header</li>
+                <li class="aui-active"><a href="#bar">bar</a></li>
+                <li><a href="#baz">baz</a></li>
+                <li><a href="#qux">qux</a></li>
+            </ul>
+
+            <div class="aui-tab-content">
+                <div class="aui-hide" id="foo">
+                    <p>foo Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente officia minus nobis obcaecati neque sint fugit reiciendis dolorum quia nihil numquam sunt eum? Odio doloribus laborum quisquam enim aliquam iure.</p>
+                </div>
+                <div id="bar">
+                    <p>bar Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas non iste perspiciatis explicabo distinctio quaerat maiores ab aut quasi quod aliquid iusto possimus neque eius consequuntur deserunt inventore doloremque rerum.</p>
+                </div>
+                <div class="aui-hide" id="baz">
+                    <p>baz Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore aut officia commodi maxime ea cumque nulla quam molestias odit ipsam sapiente laudantium minima reprehenderit. Esse laboriosam fuga beatae doloremque officiis.</p>
+                </div>
+                <div class="aui-hide" id="qux">
+                    <p>qux Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore aut officia commodi maxime ea cumque nulla quam molestias odit ipsam sapiente laudantium minima reprehenderit. Esse laboriosam fuga beatae doloremque officiis.</p>
+                </div>
+            </div>
+        </div>
     </div>
     <script>
     YUI({ filter:'raw' }).use('aui-tabview', function(A) {
@@ -108,6 +134,11 @@
            srcNode: '#stackedpills',
            stacked: true,
            type: 'pills'
+        }).render();
+
+        tt=new A.TabView({
+            srcNode: '#list',
+            type: 'list'
         }).render();
 
         console.timeEnd('How long does it takes?');
