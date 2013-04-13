@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-url",
+    "displayName": "Gallery: aui-url",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "eduardo.lundgren" ],
+    "use"        : [ "aui-url" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

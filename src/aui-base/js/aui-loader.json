@@ -1120,6 +1120,18 @@
         ],
         "skinnable": true
     },
+    "aui-url": {
+        "use": [
+            "aui-url-parser"
+        ]
+    },
+    "aui-url-parser": {
+        "requires": [
+            "oop",
+            "querystring-parse",
+            "querystring-stringify"
+        ]
+    },
     "aui-video": {
         "requires": [
             "querystring-stringify-simple",

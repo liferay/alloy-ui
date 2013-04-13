@@ -7,8 +7,10 @@ var Lang = A.Lang,
     ACTIVE = 'active',
     BOUNDING_BOX = 'boundingBox',
     CONTENT = 'content',
+    CONTENT_BOX = 'contentBox',
     DISABLED = 'disabled',
     LABEL = 'label',
+    LIST = 'list',
     LIST_NODE = 'listNode',
     NAV = 'nav',
     PANE = 'pane',
@@ -39,17 +41,42 @@ A.TabviewBase._classNames = {
 A.TabviewBase._queries = {
     selectedPanel: '> div ' + _DOT + A.TabviewBase._classNames.selectedPanel,
     selectedTab: '> ul > ' + _DOT + A.TabviewBase._classNames.selectedTab,
-    tab: '> ul > li',
-    tabLabel: '> ul > li > a',
+    tab: '> ul > li:not(.aui-nav-header):not(.aui-disabled)',
+    tabLabel: '> ul > li:not(.aui-nav-header) > a',
     tabPanel: '> div > div',
     tabview: _DOT + A.TabviewBase._classNames.tabview,
     tabviewList: '> ul',
     tabviewPanel: '> div'
 };
 
-A.TabView.NAME = 'tabbable';
-A.TabView.CSS_PREFIX = getClassName(TABBABLE);
 A.Tab.CSS_PREFIX = getClassName(TAB);
+A.Tab.NAME = TAB;
+
+A.Tab = A.Component.create({
+    NAME: TAB,
+
+    CSS_PREFIX: getClassName(TAB),
+
+    EXTENDS: A.Tab,
+
+    prototype: {
+        initializer: function() {
+            var instance = this;
+
+            A.after(instance._afterUiSetDisabled, instance, '_uiSetDisabled');
+        },
+
+        // TODO: move to A.Component?
+        _afterUiSetDisabled: function(val) {
+            var instance = this;
+
+            instance.get(BOUNDING_BOX).toggleClass(getClassName(DISABLED), val);
+        }
+    }
+});
+
+A.TabView.NAME = TABBABLE;
+A.TabView.CSS_PREFIX = getClassName(TABBABLE);
 
 A.TabView = A.Component.create({
     NAME: TABBABLE,
@@ -64,7 +91,7 @@ A.TabView = A.Component.create({
 
         type: {
             validator: function(val) {
-                return val === TABS || val === PILLS;
+                return val === LIST || val === TABS || val === PILLS;
             },
             value: TABS
         }
@@ -95,8 +122,7 @@ A.TabView = A.Component.create({
         },
 
         _afterSelectionChange: function(event) {
-            var instance = this,
-                newVal = event.newVal,
+            var newVal = event.newVal,
                 prevVal = event.prevVal,
                 selectedTabClassName = A.TabviewBase._classNames.selectedTab;
 
@@ -119,6 +145,22 @@ A.TabView = A.Component.create({
             if (event.prevVal) {
                 listNode.removeClass(getClassName(NAV, event.prevVal));
             }
+        },
+
+        // Check if the child is already inDoc to avoid be appended to the renderTo node.
+        // TODO: file issue on yui.
+        _renderChildren: function () {
+            var instance = this,
+                renderTo = instance._childrenContainer || instance.get(CONTENT_BOX);
+
+            instance._childrenContainer = renderTo;
+
+            instance.each(function (child) {
+                if (child.get(BOUNDING_BOX).inDoc()) {
+                    renderTo = null;
+                }
+                child.render(renderTo);
+            });
         },
 
         _uiSetType: function(val) {

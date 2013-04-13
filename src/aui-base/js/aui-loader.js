@@ -1144,6 +1144,18 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
+    "aui-url": {
+        "use": [
+            "aui-url-parser"
+        ]
+    },
+    "aui-url-parser": {
+        "requires": [
+            "oop",
+            "querystring-parse",
+            "querystring-stringify"
+        ]
+    },
     "aui-video": {
         "requires": [
             "querystring-stringify-simple",
@@ -1165,4 +1177,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '1fa29b8449ded61ed2ddf8d4132af50a';
+YUI.Env[Y.version].md5 = '18f4faf16f805979355f27428c0e2d55';
