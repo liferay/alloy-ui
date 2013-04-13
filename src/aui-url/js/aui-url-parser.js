@@ -161,19 +161,36 @@ A.mix(UrlParser.prototype, {
 	},
 
 	getUrl: function() {
-		var instance = this;
+		var instance = this,
+			url = [];
 
-       //   foo://example.com:8042/over/there?name=ferret#nose
-       //   \_/   \______________/\_________/ \_________/ \__/
-       // scheme     authority       path        query   fragment
-		return [ instance._protocol,
-				_SCHEME_SEPARATOR,
-				instance._authority,
-				instance._path,
+		//   foo://example.com:8042/over/there?name=ferret#nose
+		//   \_/   \______________/\_________/ \_________/ \__/
+		// scheme     authority       path        query   fragment
+		if (instance._protocol) {
+			url.push(
+				instance._protocol,
+				_SCHEME_SEPARATOR
+			);
+		}
+		url.push(
+			instance._authority,
+			instance._path
+		);
+		if (instance._query) {
+			url.push(
 				_QUERY_SEPARATOR,
-				instance._query,
+				instance._query
+			);
+		}
+		if (instance._anchor) {
+			url.push(
 				_ANCHOR_SEPARATOR,
-				instance._anchor ].join(_BLANK);
+				instance._anchor
+			);
+		}
+
+		return url.join(_BLANK);
 	},
 
 	getUser: function() {
