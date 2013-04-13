@@ -62,20 +62,12 @@ A.mix(UrlParser.prototype, {
 									A.Array(instance.getParameter(key)).concat(values));
 	},
 
-	removeParameter: function(key) {
+	addParameters: function(parameters) {
 		var instance = this;
 
-		delete instance._parameters[key];
-
-		instance._indexParameters();
-	},
-
-	setParameter: function(key, opt_values) {
-		var instance = this;
-
-		instance._parameters[key] = opt_values;
-
-		instance._indexParameters();
+		A.each(parameters, function(val, key) {
+			instance.addParameter(key, val);
+		});
 	},
 
 	hasParameter: function(key) {
@@ -194,6 +186,38 @@ A.mix(UrlParser.prototype, {
 		var instance = this;
 
 		return instance._user_info;
+	},
+
+	removeParameter: function(key) {
+		var instance = this;
+
+		delete instance._parameters[key];
+
+		instance._indexParameters();
+	},
+
+	removeParameters: function(parameters) {
+		var instance = this;
+
+		A.each(parameters, function(val, key) {
+			instance.removeParameter(key);
+		});
+	},
+
+	setParameter: function(key, opt_values) {
+		var instance = this;
+
+		instance._parameters[key] = opt_values;
+
+		instance._indexParameters();
+	},
+
+	setParameters: function(parameters) {
+		var instance = this;
+
+		A.each(parameters, function(val, key) {
+			instance.setParameter(key, val);
+		});
 	},
 
 	_indexParameters: function() {
