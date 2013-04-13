@@ -58,6 +58,7 @@ YUI.add('module-tests', function(Y) {
             Y.Assert.areSame(url.getParameter('p1')[2], 3);
             Y.Assert.areSame(url.getParameter('p1')[3], 4);
             Y.Assert.areSame(url.getParameter('p2'), 1);
+            Y.Assert.areSame(url.getUrl(), 'http://host.com?p1=1&p1=2&p1=3&p1=4&p2=1');
         },
 
         'protocol only': function() {
