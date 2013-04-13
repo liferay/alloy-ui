@@ -7,6 +7,7 @@
 
     "aui-url-parser": {
         "requires": [
+        	"oop",
             "querystring-parse",
             "querystring-stringify"
         ]
