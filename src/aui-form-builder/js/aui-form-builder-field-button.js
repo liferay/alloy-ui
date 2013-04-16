@@ -124,8 +124,6 @@ var FormBuilderButtonField = A.Component.create({
 			var instance = this,
 				templateNode = instance.get(TEMPLATE_NODE);
 
-			console.log(templateNode, 'the value is', val);
-
 			templateNode.setContent(val);
 		}
 
