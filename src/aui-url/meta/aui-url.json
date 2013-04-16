@@ -1,13 +1,7 @@
 {
-	"aui-url": {
-	    "use": [
-	        "aui-url-parser"
-	    ]
-	},
-
-    "aui-url-parser": {
+    "aui-url": {
         "requires": [
-        	"oop",
+            "oop",
             "querystring-parse",
             "querystring-stringify"
         ]

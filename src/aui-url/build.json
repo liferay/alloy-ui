@@ -1,9 +1,9 @@
 {
     "name": "aui-url",
     "builds": {
-        "aui-url-parser": {
+        "aui-url": {
             "jsfiles": [
-                "js/aui-url-parser.js"
+                "js/aui-url.js"
             ]
         }
     }
