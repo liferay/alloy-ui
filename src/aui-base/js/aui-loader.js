@@ -1145,11 +1145,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         "skinnable": true
     },
     "aui-url": {
-        "use": [
-            "aui-url-parser"
-        ]
-    },
-    "aui-url-parser": {
         "requires": [
             "oop",
             "querystring-parse",
@@ -1177,4 +1172,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '18f4faf16f805979355f27428c0e2d55';
+YUI.Env[Y.version].md5 = 'd6fa2b143b0028a06a969436bea92e67';
