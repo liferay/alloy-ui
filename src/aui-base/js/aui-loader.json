@@ -763,6 +763,23 @@
             "aui-node-base"
         ]
     },
+    "aui-popover": {
+        "requires": [
+            "transition",
+            "widget",
+            "widget-autohide",
+            "widget-buttons",
+            "widget-modality",
+            "widget-position",
+            "widget-position-align",
+            "widget-position-constrain",
+            "widget-stack",
+            "widget-stdmod",
+            "aui-classnamemanager",
+            "aui-component",
+            "aui-node-base"
+        ]
+    },
     "aui-progressbar": {
         "requires": [
             "aui-node",

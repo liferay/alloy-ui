@@ -17,6 +17,11 @@
             "folder": "../alloy-twitter-bootstrap",
             "repo": "https://github.com/liferay/alloy-twitter-bootstrap.git",
             "version": "master"
+        },
+        "alloy-docs-theme": {
+            "folder": "../alloy-docs-theme",
+            "repo": "https://github.com/zenorocha/alloy-docs-theme.git",
+            "version": "master"
         }
     },
     "yui-version": "3.9.0pr3",

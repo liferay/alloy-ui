@@ -787,6 +787,23 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-node-base"
         ]
     },
+    "aui-popover": {
+        "requires": [
+            "transition",
+            "widget",
+            "widget-autohide",
+            "widget-buttons",
+            "widget-modality",
+            "widget-position",
+            "widget-position-align",
+            "widget-position-constrain",
+            "widget-stack",
+            "widget-stdmod",
+            "aui-classnamemanager",
+            "aui-component",
+            "aui-node-base"
+        ]
+    },
     "aui-progressbar": {
         "requires": [
             "aui-node",
@@ -1172,4 +1189,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'd6fa2b143b0028a06a969436bea92e67';
+YUI.Env[Y.version].md5 = 'bc9fb236ece19b64a16ee450f0c13b0d';

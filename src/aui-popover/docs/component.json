@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-popover",
+    "displayName": "Gallery: aui-popover",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "eduardo.lundgren" ],
+    "use"        : [ "aui-popover" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}
