@@ -139,7 +139,7 @@ var SchedulerEventRecorder = A.Component.create({
 		 */
 		dateFormat: {
 			validator: isString,
-			value: '%a, %B %d,'
+			value: '%a, %B %d'
 		},
 
 		/**
@@ -594,23 +594,20 @@ var SchedulerEventRecorder = A.Component.create({
 		 * @method getFormattedDate
 		 */
 		getFormattedDate: function() {
-			var instance = this;
-			var dateFormat = instance.get(DATE_FORMAT);
-			var evt = (instance.get(EVENT) || instance);
+			var instance = this,
+				evt = (instance.get(EVENT) || instance),
+				endDate = evt.get(END_DATE),
+				startDate = evt.get(START_DATE),
+				formattedDate = evt._formatDate(startDate, instance.get(DATE_FORMAT));
 
-			var allDay = evt.get(ALL_DAY);
-			var endDate = evt.get(END_DATE);
-			var scheduler = evt.get(SCHEDULER);
-			var startDate = evt.get(START_DATE);
-			var fmtHourFn = (scheduler.get(ACTIVE_VIEW).get(ISO_TIME) ? DateMath.toIsoTimeString : DateMath.toUsTimeString);
-
-			var formattedDate = evt._formatDate(startDate, dateFormat);
-
-			if (allDay === true) {
+			if (evt.get(ALL_DAY)) {
 				return formattedDate;
 			}
 
 			formattedDate = formattedDate.concat(_COMMA);
+
+			var scheduler = evt.get(SCHEDULER),
+				fmtHourFn = (scheduler.get(ACTIVE_VIEW).get(ISO_TIME) ? DateMath.toIsoTimeString : DateMath.toUsTimeString);
 
 			return [ formattedDate, fmtHourFn(startDate), _DASH, fmtHourFn(endDate) ].join(_SPACE);
 		},
