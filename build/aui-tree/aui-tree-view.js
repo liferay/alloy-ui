@@ -19,6 +19,7 @@ var L = A.Lang,
 	CONTENT_BOX = 'contentBox',
 	DOT = '.',
 	FILE = 'file',
+	HIDDEN = 'hidden',
 	HITAREA = 'hitarea',
 	ICON = 'icon',
 	LABEL = 'label',
@@ -49,6 +50,7 @@ var L = A.Lang,
 	CSS_TREE_ICON = getCN(TREE, ICON),
 	CSS_TREE_LABEL = getCN(TREE, LABEL),
 	CSS_TREE_NODE_CONTENT = getCN(TREE, NODE, CONTENT),
+	CSS_TREE_NODE_HIDDEN_HITAREA = getCN(TREE, NODE, HIDDEN, HITAREA),
 	CSS_TREE_ROOT_CONTAINER = getCN(TREE, ROOT, CONTAINER),
 	CSS_TREE_VIEW_CONTENT = getCN(TREE, VIEW, CONTENT);
 
@@ -319,7 +321,7 @@ var TreeView = A.Component.create(
 
 				var treeNode = instance.getNodeByChild( event.currentTarget );
 
-				if (treeNode) {
+				if (treeNode && !event.target.test(DOT+CSS_TREE_NODE_HIDDEN_HITAREA)) {
 					if (event.target.test(DOT+CSS_TREE_HITAREA)) {
 						treeNode.toggle();
 
