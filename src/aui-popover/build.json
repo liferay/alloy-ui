@@ -1,0 +1,10 @@
+{
+    "name": "aui-popover",
+    "builds": {
+        "aui-popover": {
+            "jsfiles": [
+                "js/aui-popover.js"
+            ]
+        }
+    }
+}
