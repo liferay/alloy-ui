@@ -250,10 +250,9 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 	},
 
 	_getPositionDate: function(position) {
-		var instance = this;
-		var intervalStartDate = instance._findCurrentIntervalStart();
-
-		var date = DateMath.add(intervalStartDate, DateMath.DAY, instance._getCellIndex(position));
+		var instance = this,
+			intervalStartDate = instance._findCurrentIntervalStart(),
+			date = DateMath.add(intervalStartDate, DateMath.DAY, instance._getCellIndex(position));
 
 		date.setHours(0, 0, 0, 0);
 
