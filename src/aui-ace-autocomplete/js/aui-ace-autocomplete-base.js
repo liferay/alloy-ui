@@ -260,14 +260,27 @@ Base.prototype = {
 			return results;
 		}
 
-		if (!caseSensitive) {
-			content = content.toLowerCase();
-		}
-
 		return AArray.filter(
 			results,
-			function (result) {
-				return (caseSensitive ? result : result.toLowerCase()).indexOf(content) !== -1;
+			function (item) {
+				var result = true;
+
+				if (item === content) {
+					result = false;
+				}
+				else {
+					if (!caseSensitive) {
+						item = item.toLowerCase();
+
+						content = content.toLowerCase();
+					}
+
+					if (item.indexOf(content) === -1) {
+						result = false;
+					}
+				}
+
+				return result;
 			}
 		);
 	},
