@@ -1963,6 +1963,12 @@ var TreeNodeIO = A.Component.create(
 				var instance = this;
 
 				instance.expand();
+
+				var ownerTree = instance.get(OWNER_TREE);
+
+				if (ownerTree && ownerTree.ddDelegate) {
+					ownerTree.ddDelegate.syncTargets();
+				}
 			}
 		}
 	}
@@ -3000,8 +3006,10 @@ var TreeView = A.Component.create(
 
 				var treeNode = instance.getNodeByChild( event.currentTarget );
 
-				if (treeNode && !event.target.test(DOT+CSS_TREE_NODE_HIDDEN_HITAREA)) {
-					if (event.target.test(DOT+CSS_TREE_HITAREA)) {
+				var target = event.target;
+
+				if (treeNode && !target.hasClass(CSS_TREE_NODE_HIDDEN_HITAREA)) {
+					if (target.hasClass(CSS_TREE_HITAREA)) {
 						treeNode.toggle();
 
 						if (!instance.get(SELECT_ON_TOGGLE)) {
