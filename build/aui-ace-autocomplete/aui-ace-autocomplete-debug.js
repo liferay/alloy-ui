@@ -430,6 +430,7 @@ A.AceEditor.AutoCompleteBase = Base;
 AUI.add('aui-ace-autocomplete-list', function(A) {
 var Lang = A.Lang,
 	AArray = A.Array,
+	ANode = A.Node,
 	Do = A.Do,
 
 	getCN = A.getClassName,
@@ -467,6 +468,8 @@ var Lang = A.Lang,
 	SELECTOR_ENTRY_CONTAINER = DOT + CLASS_ENTRY_CONTAINER,
 	SELECTOR_ENTRY_CONTAINER_SELECTED = SELECTOR_ENTRY_CONTAINER + DOT + SELECTED,
 	SELECTOR_SELECTED_ENTRY = SELECTOR_ENTRY_CONTAINER_SELECTED + SPACE + DOT + CLASS_ENTRY,
+
+	TPL_FRAGMENT = '<div></div>',
 
 	KEY_DONW = 40,
 	KEY_END = 35,
@@ -789,12 +792,25 @@ var AutoCompleteList = A.Component.create({
 		_onMatch: function(event) {
 			var instance = this;
 
-			if (event.match) {
-				var coords = event.coords;
+			var visible = instance.get(VISIBLE);
 
-				instance.set('xy', [coords.pageX + PADDING_HORIZ, coords.pageY + PADDING_VERT]);
+			var hasResults = instance._autoCompleteResultsList.hasChildNodes();
+
+			if (event.match) {
+				if (hasResults) {
+					if (!visible) {
+						var coords = event.coords;
+
+						instance.set('xy', [coords.pageX + PADDING_HORIZ, coords.pageY + PADDING_VERT]);
+
+						instance.show();
+					}
+				}
+				else if (visible) {
+					instance.hide();
+				}
 			}
-			else if (instance.get(VISIBLE)) {
+			else if (visible) {
 				instance.hide();
 			}
 		},
@@ -826,10 +842,12 @@ var AutoCompleteList = A.Component.create({
 
 			var entryTemplate = instance.TPL_ENTRY;
 
+			var tmpNode = ANode.create(TPL_FRAGMENT);
+
 			AArray.each(
 				results,
 				function(item, index) {
-					autoCompleteResultsList.appendChild(
+					tmpNode.appendChild(
 						Lang.sub(
 							entryTemplate,
 							{
@@ -841,19 +859,12 @@ var AutoCompleteList = A.Component.create({
 				}
 			);
 
+			autoCompleteResultsList.setHTML(tmpNode.getHTML());
+
 			var firstEntry = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER);
 
 			if (firstEntry) {
 				firstEntry.addClass(SELECTED);
-
-				if (!instance.get(VISIBLE)) {
-					instance.show();
-				}
-			}
-			else {
-				if (instance.get(VISIBLE)) {
-					instance.hide();
-				}
 			}
 		},
 
