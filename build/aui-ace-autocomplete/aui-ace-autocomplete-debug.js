@@ -261,14 +261,27 @@ Base.prototype = {
 			return results;
 		}
 
-		if (!caseSensitive) {
-			content = content.toLowerCase();
-		}
-
 		return AArray.filter(
 			results,
-			function (result) {
-				return (caseSensitive ? result : result.toLowerCase()).indexOf(content) !== -1;
+			function (item) {
+				var result = true;
+
+				if (item === content) {
+					result = false;
+				}
+				else {
+					if (!caseSensitive) {
+						item = item.toLowerCase();
+
+						content = content.toLowerCase();
+					}
+
+					if (item.indexOf(content) === -1) {
+						result = false;
+					}
+				}
+
+				return result;
 			}
 		);
 	},
@@ -934,6 +947,10 @@ var Lang = A.Lang,
 	MATCH_DIRECTIVES = 0,
 	MATCH_VARIABLES = 1,
 
+	TOKEN_PUNCTUATOR_DOT = 1,
+	TOKEN_UNRECOGNIZED = -1,
+	TOKEN_VARIABLE = 0,
+
 	DOT = '.',
 	HOST = 'host',
 	STR_EMPTY = '',
@@ -1029,62 +1046,96 @@ var TemplateProcessor = A.Component.create({
 			return result;
 		},
 
+		_isLastToken: function(index, tokens) {
+			return index === tokens.length - 1;
+		},
+
+		_getTokenType: function(token) {
+			var tokenType = TOKEN_UNRECOGNIZED;
+
+			if (Lang.isString(token)) {
+				if (token.length) {
+					tokenType = TOKEN_VARIABLE;
+				}
+				else {
+					tokenType = TOKEN_PUNCTUATOR_DOT;
+				}
+			}
+
+			return tokenType;
+		},
+
 		_getVariableMatches: function(content) {
 			var instance = this;
 
 			var results = [];
 
+			var data = instance.get('variables');
+
 			var resultsData = {};
+
+			var curVariableData = data.variables;
 
 			var lastEntry;
 
-			var data = instance.get('variables');
+			if (content) {
+				var tokens = content.split(DOT);
 
-			var parts = content.split(DOT);
+				lastEntry = tokens[tokens.length - 1];
 
-			if (parts.length) {
-				var lastEntryIndex = parts.length - 1;
+				for (var i = 0; i < tokens.length; i++) {
+					var token = tokens[i];
 
-				lastEntry = parts[parts.length - 1];
+					var tokenType = instance._getTokenType(token);
 
-				var part = parts[0];
-
-				var variableData = data.variables[part];
-
-				if (variableData) {
-					var variableType = variableData.type;
-
-					var typeData = data.types[variableType];
-
-					for (var i = 1; typeData && i < parts.length; i++) {
-						part = parts[i];
-
-						if (i < lastEntryIndex) {
-							var leftPartheseIndex = part.indexOf('(');
-
-							if (leftPartheseIndex !== -1) {
-								part = part.substring(0, leftPartheseIndex);
-							}
-						}
-
-						var tmp = typeData[part];
-
-						if (tmp) {
-							var returnType = tmp.returnType;
-
-							typeData = data.types[returnType];
+					if (tokenType === TOKEN_PUNCTUATOR_DOT) {
+						if (i === 0) {
+							curVariableData = {};
 						}
 						else {
+							resultsData = curVariableData;
+						}
+					}
+					else if (tokenType === TOKEN_VARIABLE) {
+						var isLastToken = instance._isLastToken(i, tokens);
+
+						if (isLastToken) {
+							resultsData = curVariableData;
+
+							break;
+						}
+
+						var leftPartheseIndex = token.indexOf('(');
+
+						if (leftPartheseIndex !== -1) {
+							token = token.substring(0, leftPartheseIndex);
+						}
+
+						var variableData = curVariableData[token];
+
+						if (variableData) {
+							var variableType;
+
+							if (i === 0) {
+								variableType = variableData.type;
+							}
+							else {
+								variableType = variableData.returnType;
+							}
+
+							curVariableData = data.types[variableType] || {};
+						}
+						else if (isLastToken) {
+							resultsData = curVariableData;
+
+							break;
+						}
+						else {
+							resultsData = {};
+
 							break;
 						}
 					}
-
-					if (typeData) {
-						resultsData = typeData;
-					}
-				}
-				else {
-					resultsData = data.variables;
 				}
 			}
 			else {
