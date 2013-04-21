@@ -645,10 +645,15 @@ var SchedulerEvent = A.Component.create({
 		_setColor: function(val) {
 			var instance = this;
 
-			var hsl = Color.toArray(Color.toHSL(val));
+			var hsl = Color.toArray(Color.toHSL(val)),
+                hslString;
+
 			hsl[1] *= instance.get(COLOR_SATURATION_FACTOR);
 			hsl[2] *= instance.get(COLOR_BRIGHTNESS_FACTOR);
-			instance[BORDER_COLOR_RGB] = Color.toRGB(hsl);
+
+            hslString = 'hsl(' + hsl[0] + ', ' + hsl[1] + '%, ' + hsl[2] + '%)';
+
+			instance[BORDER_COLOR_RGB] = Color.toRGB(hslString);
 
 			return val;
 		},
