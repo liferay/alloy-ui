@@ -408,7 +408,7 @@ var TreeNode = A.Component.create(
 						var paginator = parentNode.get(PAGINATOR);
 
 						if (paginator) {
-							boundingBox.insertBefore(paginator.element);
+							boundingBox.insertBefore(paginator.element, null);
 						}
 					}
 				}
