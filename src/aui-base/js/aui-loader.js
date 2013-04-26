@@ -504,6 +504,16 @@ Y.mix(YUI.Env[Y.version].modules, {
             "widget-htmlparser"
         ]
     },
+    "aui-palette": {
+        "requires": [
+            "base-build",
+            "event-hover",
+            "widget",
+            "aui-classnamemanager",
+            "aui-base"
+        ],
+        "skinnable": true
+    },
     "aui-parse-content": {
         "requires": [
             "async-queue",
@@ -808,4 +818,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'f97e82b55594e52c573e0c09ca6baa75';
+YUI.Env[Y.version].md5 = 'db5ab77e9024e5d21c4f7506b98c177c';
