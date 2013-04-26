@@ -1,0 +1,10 @@
+{
+    "name": "aui-palette",
+    "builds": {
+        "aui-palette": {
+            "jsfiles": [
+                "js/aui-palette.js"
+            ]
+        }
+    }
+}

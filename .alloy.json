@@ -10,7 +10,7 @@
         },
         "yui3": {
             "folder": "../yui3",
-            "repo": "https://github.com/liferay/yui3.git",
+            "repo": "https://github.com/yui/yui3.git",
             "version": "dev-master"
         },
         "alloy-twitter-bootstrap": {
@@ -25,5 +25,5 @@
         }
     },
     "yui-version": "3.9.0pr3",
-    "version": "2.0.0pr4"
+    "version": "2.0.0pr5"
 }

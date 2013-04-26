@@ -49,7 +49,9 @@
 
         new A.FormValidator({
             boundingBox: A.one('#fm1'),
-            showAllMessages: true
+            showAllMessages: true,
+            validateOnBlur: false,
+            validateOnInput: true
         });
 
         A.config.FormValidator.STRINGS.gt50 = 'The digit should be >= 50.';
