@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <style type="text/css" media="screen">
+        body {
+            font-size: 12px;
+        }
+
+        #wrapper {
+            padding: 3em;
+        }
+    </style>
+
+    <script src="../../build/aui/aui.js"></script>
+</head>
+
+<body class="yui3-skin-sam">
+
+<div id="wrapper">
+    <h1>Alloy - ColorPickerPopover Demo</h1>
+
+    <form>
+        <label>Color trigger #1</label>
+        <input class="aui-color-picker-trigger" type="text">
+
+        <label>Color trigger #2</label>
+        <input class="aui-color-picker-trigger" type="text">
+
+        <label>Color trigger #3</label>
+        <input class="aui-color-picker-trigger" type="text">
+    </form>
+
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    YUI({ filter:'raw' }).use(
+        'aui-color-picker-popover',
+        function(A) {
+            var colorPicker = new A.ColorPickerPopover({
+                trigger: '.aui-color-picker-trigger'
+            }).render();
+
+            colorPicker.on('selectColor', function(event) {
+                event.trigger.setStyle('backgroundColor', event.color);
+            });
+        }
+    );
+</script>
+
+</body>
+</html>

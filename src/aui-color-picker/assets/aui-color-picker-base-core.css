@@ -1,0 +1,22 @@
+.aui-actions-container {
+    margin-top: .5em;
+    position: relative;
+}
+
+.aui-hsv-trigger, .aui-color-picker-nocolor {
+	cursor: pointer;
+}
+
+.aui-color-picker-nocolor {
+	padding-right: 5px;
+	text-align: right;
+}
+
+.aui-color-picker-nocolor .aui-btn-link {
+	text-decoration: none;
+}
+
+.aui-color-picker-nocolor .aui-color-picker-nocolor-icon {
+	margin-right: 2px;
+	margin-top: 0;
+}

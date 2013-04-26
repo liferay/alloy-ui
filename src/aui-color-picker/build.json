@@ -1,0 +1,40 @@
+{
+    "name": "aui-color-picker",
+    "builds": {
+        "aui-color-palette": {
+        	"jsfiles": [
+                "js/aui-color-palette.js"
+            ]
+        },
+
+        "aui-hsv-palette": {
+            "jsfiles": [
+                "js/aui-hsv-palette.js"
+            ]
+        },
+
+        "aui-hsva-palette": {
+            "jsfiles": [
+                "js/aui-hsva-palette.js"
+            ]
+        },
+
+        "aui-hsva-palette-modal": {
+            "jsfiles": [
+                "js/aui-hsva-palette-modal.js"
+            ]
+        },
+
+        "aui-color-picker-base": {
+            "jsfiles": [
+                "js/aui-color-picker-base.js"
+            ]
+        },
+
+        "aui-color-picker-popover": {
+            "jsfiles": [
+                "js/aui-color-picker-popover.js"
+            ]
+        }
+    }
+}
