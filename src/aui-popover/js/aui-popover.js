@@ -1,3 +1,9 @@
+/**
+ * The Popover Component
+ *
+ * @module aui-popover
+ */
+
 var Lang = A.Lang,
 
     StdMod = A.WidgetStdMod,
@@ -28,6 +34,17 @@ var Lang = A.Lang,
     CSS_POPOVER_FT = getClassName('popover-footer'),
     CSS_POPOVER_HD = getClassName('popover-title');
 
+/**
+ * A base class for Popover.
+ *
+ * Check the list of Configuration Attributes available for
+ * Popover.
+ *
+ * @class Popover
+ * @uses transition, widget
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 A.Popover = A.Base.create(POPOVER, A.Widget, [
     A.WidgetPosition,
     A.WidgetStdMod,
@@ -37,6 +54,13 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
     A.WidgetPositionConstrain,
     A.WidgetStack
 ], {
+
+    /**
+     * Construction logic executed during Popover instantiation. Lifecycle.
+     *
+     * @method initializer
+     * @protected
+     */
     initializer: function() {
         var instance = this;
 
@@ -46,6 +70,12 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
         A.after(instance._afterRenderBoxClassNames, instance, '_renderBoxClassNames');
     },
 
+    /**
+     * Render the Popover component instance. Lifecycle.
+     *
+     * @method renderUI
+     * @protected
+     */
     renderUI: function() {
         var instance = this,
             boundingBox = instance.get(BOUNDING_BOX);
@@ -55,12 +85,26 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
         instance._uiSetPosition(instance.get(POSITION));
     },
 
+    /**
+     * Fire after <code>boundingBox</code> position changes.
+     *
+     * @method _afterPositionChange
+     * @param event
+     * @protected
+     */
     _afterPositionChange: function(event) {
         var instance = this;
 
         instance._uiSetPosition(event.newVal, event.prevVal);
     },
 
+    /**
+     * Fire after <code>contentBox</code> class names changes.
+     *
+     * @method _afterRenderBoxClassNames
+     * @param event
+     * @protected
+     */
     _afterRenderBoxClassNames: function(event) {
         var instance = this,
             contentBox = instance.get(CONTENT_BOX);
@@ -68,6 +112,13 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
         contentBox.removeClass(instance.getClassName(CONTENT));
     },
 
+    /**
+     * Fire after <code>boundingBox</code> style changes.
+     *
+     * @method _afterUiSetVisible
+     * @param val
+     * @protected
+     */
     _afterUiSetVisible: function(val) {
         var instance = this,
             boundingBox = instance.get(BOUNDING_BOX);
@@ -75,10 +126,24 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
         boundingBox.setStyle(DISPLAY, val ? BLOCK : NONE);
     },
 
+    /**
+     * Get templates from a widget extension.
+     *
+     * @method _getStdModTemplate
+     * @param section
+     * @protected
+     */
     _getStdModTemplate : function(section) {
         return A.Node.create(A.Popover.TEMPLATES[section], this._stdModNode.get(OWNER_DOCUMENT));
     },
 
+    /**
+     * Set the <code>boundingBox</code> position on the UI.
+     *
+     * @method _uiSetPosition
+     * @param val, prevVal
+     * @protected
+     */
     _uiSetPosition: function(val, prevVal) {
         var instance = this,
             boundingBox = instance.get(BOUNDING_BOX);
@@ -89,8 +154,24 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
         boundingBox.addClass(getClassName(val));
     }
 }, {
+
+    /**
+     * Static property provides a string to identify the CSS prefix.
+     *
+     * @property Popover.CSS_PREFIX
+     * @type String
+     * @static
+     */
     CSS_PREFIX: getClassName(POPOVER),
 
+    /**
+     * Static property used to define the default attribute
+     * configuration for the Popover.
+     *
+     * @property Popover.ATTRS
+     * @type Object
+     * @static
+     */
     ATTRS: {
         position: {
             validator: function(val) {
@@ -100,6 +181,13 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
         }
     },
 
+    /**
+     * Static property provides a set of reusable templates.
+     *
+     * @property Popover.TEMPLATES
+     * @type Object
+     * @static
+     */
     TEMPLATES: {
         header : '<div class="' + StdMod.SECTION_CLASS_NAMES[StdMod.HEADER] + _SPACE + CSS_POPOVER_HD + '"></div>',
         body : '<div class="' + StdMod.SECTION_CLASS_NAMES[StdMod.BODY] + _SPACE + CSS_POPOVER_BD + '"></div>',
