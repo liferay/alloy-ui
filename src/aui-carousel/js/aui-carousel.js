@@ -52,19 +52,6 @@ var Lang = A.Lang,
 /**
  * A base class for Carousel.
  *
- * Quick Example:<br/>
- *
- * <pre><code>var component = new A.Carousel(
- *  {
- *      contentBox: '#demo',
- *      intervalTime: 1,
- *      activeIndex: 0,
- *      height: 254,
- *      width: 940
- *  }
- * ).render();
- * </code></pre>
- *
  * Check the list of Configuration Attributes available for
  * Carousel.
  *
@@ -72,7 +59,7 @@ var Lang = A.Lang,
  * @uses AUI-base,AUI-template,anim
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
-  */
+ */
 var Carousel = A.Component.create(
     {
         /**
