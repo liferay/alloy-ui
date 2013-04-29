@@ -201,7 +201,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Render de Carousel component instance. Lifecycle.
+             * Render the Carousel component instance. Lifecycle.
              *
              * @method renderUI
              * @protected
@@ -343,6 +343,7 @@ var Carousel = A.Component.create(
              *
              * @method _afterAnimationTimeChange
              * @param event
+             * @protected
              */
             _afterAnimationTimeChange: function(event) {
                 var instance = this;
@@ -796,7 +797,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Update the <code>nodeSelecton</code> by adding the CSS_ITEM class.
+             * Update the <code>nodeSelection</code> by adding the CSS_ITEM class.
              *
              * @method _updateMenuNodes
              * @param options
