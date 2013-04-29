@@ -50,7 +50,7 @@ var Lang = A.Lang,
     };
 
 /**
- * A base class for Carousel
+ * A base class for Carousel.
  *
  * Quick Example:<br/>
  *
@@ -94,7 +94,7 @@ var Carousel = A.Component.create(
          */
         ATTRS: {
             /**
-             * Index of the first visible item of the carousel
+             * Index of the first visible item of the carousel.
              *
              * @attribute activeIndex
              * @default 0
@@ -107,7 +107,7 @@ var Carousel = A.Component.create(
 
             /**
              * Duration of the animation in seconds when change index on
-             * Carousel
+             * Carousel.
              *
              * @attribute animationTime
              * @default 0.5
@@ -118,7 +118,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Interval time in seconds between an item transition
+             * Interval time in seconds between an item transition.
              *
              * @attribute intervalTime
              * @default 2
@@ -141,7 +141,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Node container of the navigation items
+             * Node container of the navigation items.
              *
              * @attribute nodeMenu
              * @default null
@@ -153,7 +153,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * CSS selector to match the navigation items
+             * CSS selector to match the navigation items.
              *
              * @attribute nodeMenuItemSelector
              * @default .carousel-menu-item
@@ -165,7 +165,7 @@ var Carousel = A.Component.create(
 
             /**
              * Attributes that determines the status of transitions between
-             * items
+             * items.
              *
              * @attribute playing
              * @default true
@@ -285,7 +285,7 @@ var Carousel = A.Component.create(
 
             /**
              * Set the playing attribute
-             * to false which pauses the animation
+             * to false which pauses the animation.
              *
              * @method pause
              */
@@ -297,7 +297,7 @@ var Carousel = A.Component.create(
 
             /**
              * Set the playing attribute
-             * to true which starts the animation
+             * to true which starts the animation.
              *
              * @method play
              */
@@ -319,7 +319,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Fire after activeIndex attribute changes
+             * Fire after activeIndex attribute changes.
              *
              * @method _afterActiveIndexChange
              * @param event
@@ -339,7 +339,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Fire after animationTime attribute changes
+             * Fire after animationTime attribute changes.
              *
              * @method _afterAnimationTimeChange
              * @param event
@@ -351,7 +351,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Fire after itemSelector attribute change
+             * Fire after itemSelector attribute change.
              *
              * @method _afterItemSelectorChange
              * @param event
@@ -364,7 +364,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Fire after nodeMenuItemSelector attribute change
+             * Fire after nodeMenuItemSelector attribute change.
              *
              * @method _afterNodeMenuItemSelectorChange
              * @param event
@@ -379,7 +379,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Fire after intervalTime attribute changes
+             * Fire after intervalTime attribute changes.
              *
              * @method _afterIntervalTimeChange
              * @param event
@@ -393,7 +393,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Fire after playing attribute changes
+             * Fire after playing attribute changes.
              *
              * @method _afterPlayingChange
              * @param event
@@ -425,7 +425,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Attach delegate to the carousel menu
+             * Attach delegate to the carousel menu.
              *
              * @method _bindMenu
              * @protected
@@ -443,7 +443,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Clear the rotation task interval
+             * Clear the rotation task interval.
              *
              * @method _clearIntervalRotationTask
              * @protected
@@ -455,7 +455,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Create an random number to be current index
+             * Create an random number to be current index.
              *
              * @method _createIndexRandom
              * @protected
@@ -467,7 +467,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Create an timer for the rotation task
+             * Create an timer for the rotation task.
              *
              * @method _createIntervalRotationTask
              * @protected
@@ -490,7 +490,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Fire when animation ends
+             * Fire when animation ends.
              *
              * @method _onAnimationEnd
              * @param event, newImage, oldImage, newMenuItem, oldMenuItem
@@ -507,7 +507,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Fire when animation starts
+             * Fire when animation starts.
              *
              * @method _onAnimationStart
              * @param event, newImage, oldImage, newMenuItem, oldMenuItem
@@ -532,7 +532,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Fire when a click is fired on menu
+             * Fire when a click is fired on menu.
              *
              * @method _onClickDelegate
              * @param event
@@ -566,7 +566,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Execute when delegates handle menuItem click
+             * Execute when delegates handle menuItem click.
              *
              * @method _onMenuItemClick
              * @param event
@@ -583,7 +583,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Execute when delegates handle play click
+             * Execute when delegates handle play click.
              *
              * @method _onMenuPlayClick
              * @param event
@@ -596,7 +596,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Render the menu in DOM
+             * Render the menu in DOM.
              *
              * @method _renderMenu
              * @protected
@@ -625,7 +625,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Set the activeIndex attribute
+             * Set the activeIndex attribute.
              *
              * @method _setActiveIndex
              * @param val
@@ -645,7 +645,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Set the nodeMenu attribute
+             * Set the nodeMenu attribute.
              *
              * @method _setNodeMenu
              * @param val
@@ -658,7 +658,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Set the activeIndex on the UI
+             * Set the activeIndex on the UI.
              *
              * @method _uiSetActiveIndex
              * @param newVal, objOptions
@@ -732,7 +732,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Set the activeIndex to the next index
+             * Set the activeIndex to the next index.
              *
              * @method _updateIndexNext
              * @param options
@@ -758,7 +758,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Set the activeIndex to the previous index
+             * Set the activeIndex to the previous index.
              *
              * @method _updateIndexPrev
              * @param options
@@ -783,7 +783,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Set the menuNodes attribute based on the selector menu index
+             * Set the menuNodes attribute based on the selector menu index.
              *
              * @method _updateMenuNodes
              * @param options
@@ -796,7 +796,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Update the nodeSelecton by adding the CSS_ITEM class
+             * Update the nodeSelecton by adding the CSS_ITEM class.
              *
              * @method _updateMenuNodes
              * @param options
