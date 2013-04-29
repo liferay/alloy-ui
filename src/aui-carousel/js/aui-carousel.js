@@ -65,7 +65,7 @@ var Lang = A.Lang,
  * ).render();
  * </code></pre>
  *
- * Check the list of <a href="Carousel.html#configattributes">Configuration Attributes</a> available for
+ * Check the list of Configuration Attributes available for
  * Carousel.
  *
  * @class Carousel
@@ -284,8 +284,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Set the <a
-             * href="Carousel.html#config_play">playing</a> attribute
+             * Set the playing attribute
              * to false which pauses the animation
              *
              * @method pause
@@ -297,8 +296,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Set the <a
-             * href="Carousel.html#config_play">playing</a> attribute
+             * Set the playing attribute
              * to true which starts the animation
              *
              * @method play
