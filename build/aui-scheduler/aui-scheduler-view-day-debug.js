@@ -1170,4 +1170,4 @@ var SchedulerDayView = A.Component.create({
 
 A.SchedulerDayView = SchedulerDayView;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-view-table','dd-drag','dd-delegate','dd-drop','dd-constrain']});
+}, '@VERSION@' ,{requires:['aui-scheduler-view-table','dd-drag','dd-delegate','dd-drop','dd-constrain'], skinnable:true});

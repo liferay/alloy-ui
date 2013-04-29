@@ -251,8 +251,9 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 	_getPositionDate: function(position) {
 		var instance = this;
+
 		var intervalStartDate = instance._findCurrentIntervalStart();
-		var startDateRef = DateMath.safeClearTime(instance._findFirstDayOfWeek(intervalStartDate));
+		var startDateRef = DateMath.safeClearTime(intervalStartDate);
 
 		var date = DateMath.add(startDateRef, DateMath.DAY, instance._getCellIndex(position));
 

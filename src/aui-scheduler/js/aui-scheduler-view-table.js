@@ -596,14 +596,6 @@ var SchedulerTableView = A.Component.create({
 			return scheduler.get(VIEW_DATE);
 		},
 
-		_findFirstDayOfWeek: function(date) {
-			var instance = this;
-			var scheduler = instance.get(SCHEDULER);
-			var firstDayOfWeek = scheduler.get(FIRST_DAY_OF_WEEK);
-
-			return DateMath.getFirstDayOfWeek(date, firstDayOfWeek);
-		},
-
 		_getCellIndex: function(position) {
 			var instance = this;
 

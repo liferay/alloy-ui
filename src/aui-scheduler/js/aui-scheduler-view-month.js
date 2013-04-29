@@ -109,19 +109,11 @@ var SchedulerMonthView = A.Component.create({
 
 		_findCurrentIntervalStart: function() {
 			var instance = this;
+
 			var scheduler = instance.get(SCHEDULER);
 			var viewDate = scheduler.get(VIEW_DATE);
 
 			return instance._findFirstDayOfWeek(viewDate);
-		},
-
-		_findFirstDayOfWeek: function(date) {
-			var instance = this;
-
-			var scheduler = instance.get(SCHEDULER);
-			var firstDayOfWeek = scheduler.get(FIRST_DAY_OF_WEEK);
-
-			return DateMath.getFirstDayOfWeek(date, firstDayOfWeek);
 		}
 
 	}
