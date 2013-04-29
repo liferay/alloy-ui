@@ -284,7 +284,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Sets the <a
+             * Set the <a
              * href="Carousel.html#config_play">playing</a> attribute
              * to false which pauses the animation
              *
@@ -297,7 +297,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Sets the <a
+             * Set the <a
              * href="Carousel.html#config_play">playing</a> attribute
              * to true which starts the animation
              *
@@ -321,7 +321,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Fires after activeIndex attribute changes
+             * Fire after activeIndex attribute changes
              *
              * @method _afterActiveIndexChange
              * @param event
@@ -341,7 +341,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Fires after animationTime attribute changes
+             * Fire after animationTime attribute changes
              *
              * @method _afterAnimationTimeChange
              * @param event
@@ -353,7 +353,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Fires after itemSelector attribute changes
+             * Fire after itemSelector attribute change
              *
              * @method _afterItemSelectorChange
              * @param event
@@ -366,7 +366,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Fires after nodeMenuItemSelector attribute changes
+             * Fire after nodeMenuItemSelector attribute change
              *
              * @method _afterNodeMenuItemSelectorChange
              * @param event
@@ -381,7 +381,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Fires after intervalTime attribute changes
+             * Fire after intervalTime attribute changes
              *
              * @method _afterIntervalTimeChange
              * @param event
@@ -395,7 +395,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Fires after playing attribute changes
+             * Fire after playing attribute changes
              *
              * @method _afterPlayingChange
              * @param event
@@ -457,7 +457,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Creates an random number to be current index
+             * Create an random number to be current index
              *
              * @method _createIndexRandom
              * @protected
@@ -469,7 +469,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Creates an timer for the rotation task
+             * Create an timer for the rotation task
              *
              * @method _createIntervalRotationTask
              * @protected
@@ -492,7 +492,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Fires when animation ends
+             * Fire when animation ends
              *
              * @method _onAnimationEnd
              * @param event, newImage, oldImage, newMenuItem, oldMenuItem
@@ -509,7 +509,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Fires when animation starts
+             * Fire when animation starts
              *
              * @method _onAnimationStart
              * @param event, newImage, oldImage, newMenuItem, oldMenuItem
@@ -534,7 +534,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Fires when a click is fired on menu
+             * Fire when a click is fired on menu
              *
              * @method _onClickDelegate
              * @param event
@@ -568,7 +568,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Executed when delegates handle menuItem click
+             * Execute when delegates handle menuItem click
              *
              * @method _onMenuItemClick
              * @param event
@@ -585,7 +585,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Executed when delegates handle play click
+             * Execute when delegates handle play click
              *
              * @method _onMenuPlayClick
              * @param event
@@ -798,7 +798,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Upates the nodeSelecton by adding the CSS_ITEM class
+             * Update the nodeSelecton by adding the CSS_ITEM class
              *
              * @method _updateMenuNodes
              * @param options
