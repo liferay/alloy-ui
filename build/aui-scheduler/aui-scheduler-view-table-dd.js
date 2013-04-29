@@ -252,8 +252,9 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 	_getPositionDate: function(position) {
 		var instance = this;
+
 		var intervalStartDate = instance._findCurrentIntervalStart();
-		var startDateRef = DateMath.safeClearTime(instance._findFirstDayOfWeek(intervalStartDate));
+		var startDateRef = DateMath.safeClearTime(intervalStartDate);
 
 		var date = DateMath.add(startDateRef, DateMath.DAY, instance._getCellIndex(position));
 
@@ -456,4 +457,4 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 A.Base.mix(A.SchedulerTableView, [ A.SchedulerTableViewDD ]);
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-scheduler-view-table','dd-drag','dd-delegate','dd-drop']});
+}, '@VERSION@' ,{requires:['aui-scheduler-view-table','dd-drag','dd-delegate','dd-drop'], skinnable:false});

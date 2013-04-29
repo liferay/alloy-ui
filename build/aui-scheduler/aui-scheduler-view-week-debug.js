@@ -81,15 +81,7 @@ var SchedulerWeekView = A.Component.create({
 			var instance = this;
 			var todayDate = SchedulerWeekView.superclass.getToday.apply(this, arguments);
 
-			return instance._firstDayOfWeek(todayDate);
-		},
-
-		_firstDayOfWeek: function(date) {
-			var instance = this;
-			var scheduler = instance.get(SCHEDULER);
-			var firstDayOfWeek = scheduler.get(FIRST_DAY_OF_WEEK);
-
-			return DateMath.getFirstDayOfWeek(date, firstDayOfWeek);
+			return instance._findFirstDayOfWeek(todayDate);
 		},
 
 		_valueNavigationDateFormatter: function(date) {
@@ -97,7 +89,7 @@ var SchedulerWeekView = A.Component.create({
 			var scheduler = instance.get(SCHEDULER);
 			var locale = scheduler.get(LOCALE);
 
-			var startDate = instance._firstDayOfWeek(date);
+			var startDate = instance._findFirstDayOfWeek(date);
 
 			var startDateLabel = A.DataType.Date.format(
 				startDate,
@@ -124,4 +116,4 @@ var SchedulerWeekView = A.Component.create({
 
 A.SchedulerWeekView = SchedulerWeekView;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-view-day']});
+}, '@VERSION@' ,{requires:['aui-scheduler-view-day'], skinnable:true});

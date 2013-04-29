@@ -597,14 +597,6 @@ var SchedulerTableView = A.Component.create({
 			return scheduler.get(VIEW_DATE);
 		},
 
-		_findFirstDayOfWeek: function(date) {
-			var instance = this;
-			var scheduler = instance.get(SCHEDULER);
-			var firstDayOfWeek = scheduler.get(FIRST_DAY_OF_WEEK);
-
-			return DateMath.getFirstDayOfWeek(date, firstDayOfWeek);
-		},
-
 		_getCellIndex: function(position) {
 			var instance = this;
 
@@ -836,4 +828,4 @@ var SchedulerTableView = A.Component.create({
 
 A.SchedulerTableView = SchedulerTableView;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-base','overlay']});
+}, '@VERSION@' ,{requires:['aui-scheduler-base','overlay'], skinnable:true});
