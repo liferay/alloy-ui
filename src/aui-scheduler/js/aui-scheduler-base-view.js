@@ -1,3 +1,5 @@
+var FIRST_DAY_OF_WEEK = 'firstDayOfWeek';
+
 var SchedulerView = A.Component.create({
 	NAME: SCHEDULER_VIEW,
 
@@ -166,7 +168,16 @@ var SchedulerView = A.Component.create({
 				bodyNode.toggleClass(CSS_SCHEDULER_VIEW_SCROLLABLE, val);
 				bodyNode.toggleClass(CSS_SCHEDULER_VIEW_NOSCROLL, !val);
 			}
+		},
+
+		_findFirstDayOfWeek: function(date) {
+			var instance = this;
+			var scheduler = instance.get(SCHEDULER);
+			var firstDayOfWeek = scheduler.get(FIRST_DAY_OF_WEEK);
+
+			return DateMath.getFirstDayOfWeek(date, firstDayOfWeek);
 		}
+
 	}
 });
 
