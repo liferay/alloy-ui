@@ -284,7 +284,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Set the playing attribute
+             * Set the <code>playing</code> attribute
              * to false which pauses the animation.
              *
              * @method pause
@@ -296,7 +296,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Set the playing attribute
+             * Set the <code>playing</code> attribute
              * to true which starts the animation.
              *
              * @method play
@@ -319,7 +319,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Fire after activeIndex attribute changes.
+             * Fire after <code>activeIndex</code> attribute changes.
              *
              * @method _afterActiveIndexChange
              * @param event
@@ -339,7 +339,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Fire after animationTime attribute changes.
+             * Fire after <code>animationTime</code> attribute changes.
              *
              * @method _afterAnimationTimeChange
              * @param event
@@ -351,7 +351,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Fire after itemSelector attribute change.
+             * Fire after <code>itemSelector</code> attribute change.
              *
              * @method _afterItemSelectorChange
              * @param event
@@ -364,7 +364,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Fire after nodeMenuItemSelector attribute change.
+             * Fire after <code>nodeMenuItemSelector</code> attribute change.
              *
              * @method _afterNodeMenuItemSelectorChange
              * @param event
@@ -379,7 +379,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Fire after intervalTime attribute changes.
+             * Fire after <code>intervalTime</code> attribute changes.
              *
              * @method _afterIntervalTimeChange
              * @param event
@@ -393,7 +393,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Fire after playing attribute changes.
+             * Fire after <code>playing</code> attribute changes.
              *
              * @method _afterPlayingChange
              * @param event
@@ -625,7 +625,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Set the activeIndex attribute.
+             * Set the <code>activeIndex</code> attribute.
              *
              * @method _setActiveIndex
              * @param val
@@ -645,7 +645,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Set the nodeMenu attribute.
+             * Set the <code>nodeMenu</code> attribute.
              *
              * @method _setNodeMenu
              * @param val
@@ -658,7 +658,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Set the activeIndex on the UI.
+             * Set the <code>activeIndex</code> on the UI.
              *
              * @method _uiSetActiveIndex
              * @param newVal, objOptions
@@ -732,7 +732,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Set the activeIndex to the next index.
+             * Set the <code>activeIndex</code> to the next index.
              *
              * @method _updateIndexNext
              * @param options
@@ -758,7 +758,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Set the activeIndex to the previous index.
+             * Set the <code>activeIndex</code> to the previous index.
              *
              * @method _updateIndexPrev
              * @param options
@@ -783,7 +783,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Set the menuNodes attribute based on the selector menu index.
+             * Set the <code>menuNodes</code> attribute based on the selector menu index.
              *
              * @method _updateMenuNodes
              * @param options
@@ -796,7 +796,7 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Update the nodeSelecton by adding the CSS_ITEM class.
+             * Update the <code>nodeSelecton</code> by adding the CSS_ITEM class.
              *
              * @method _updateMenuNodes
              * @param options
