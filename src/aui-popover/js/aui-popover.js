@@ -37,11 +37,9 @@ var Lang = A.Lang,
 /**
  * A base class for Popover.
  *
- * Check the list of Configuration Attributes available for
- * Popover.
+ * Check the [live demo](http://alloyui.com/examples/popover/).
  *
  * @class Popover
- * @uses transition, widget
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

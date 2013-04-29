@@ -52,8 +52,7 @@ var Lang = A.Lang,
 /**
  * A base class for Carousel.
  *
- * Check the list of Configuration Attributes available for
- * Carousel.
+ * Check the [live demo](http://alloyui.com/examples/carousel/).
  *
  * @class Carousel
  * @uses AUI-base,AUI-template,anim
