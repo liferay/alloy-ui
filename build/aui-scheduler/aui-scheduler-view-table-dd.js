@@ -456,4 +456,4 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 A.Base.mix(A.SchedulerTableView, [ A.SchedulerTableViewDD ]);
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-scheduler-view-table','dd-drag','dd-delegate','dd-drop']});
+}, '@VERSION@' ,{requires:['aui-scheduler-view-table','dd-drag','dd-delegate','dd-drop'], skinnable:false});

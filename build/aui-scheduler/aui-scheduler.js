@@ -513,13 +513,13 @@ var SchedulerEvent = A.Component.create({
 		getClearEndDate: function() {
 			var instance = this;
 
-			return DateMath.safeClearTime(instance.get(END_DATE));
+			return instance._safeClearUTCTime(instance.get(END_DATE));
 		},
 
 		getClearStartDate: function() {
 			var instance = this;
 
-			return DateMath.safeClearTime(instance.get(START_DATE));
+			return instance._safeClearUTCTime(instance.get(START_DATE));
 		},
 
 		move: function(date, options) {
@@ -640,6 +640,13 @@ var SchedulerEvent = A.Component.create({
 			instance._uiSetVisible(event.newVal);
 		},
 
+		_clearUTCTime: function(date) {
+			var instance = this;
+			date.setHours(12, 0, 0, 0);
+			date.setUTCHours(12, 0, 0, 0);
+			return date;
+		},
+
 		_setColor: function(val) {
 			var instance = this;
 
@@ -686,6 +693,11 @@ var SchedulerEvent = A.Component.create({
 			}
 
 			return val;
+		},
+
+		_safeClearUTCTime: function(date) {
+			var instance = this;
+			return instance._clearUTCTime(DateMath.clone(date));
 		},
 
 		_uiSetAllDay: function(val) {
@@ -964,7 +976,7 @@ A.mix(SchedulerEventSupport.prototype, {
 	getEventsByDay: function(date, includeOverlap) {
 		var instance = this;
 
-		date = DateMath.safeClearTime(date);
+		date = instance._safeClearUTCTime(date);
 
 		return instance.getEvents(function(evt) {
 			return DateMath.compare(evt.getClearStartDate(), date) ||
@@ -975,7 +987,7 @@ A.mix(SchedulerEventSupport.prototype, {
 	getIntersectEvents: function(date) {
 		var instance = this;
 
-		date = DateMath.safeClearTime(date);
+		date = instance._safeClearUTCTime(date);
 
 		return instance.getEvents(function(evt) {
 			var startDate = evt.getClearStartDate();
@@ -1008,6 +1020,18 @@ A.mix(SchedulerEventSupport.prototype, {
 		event.model.set(SCHEDULER, instance);
 	},
 
+	_clearUTCTime: function(date) {
+		var instance = this;
+		date.setHours(12, 0, 0, 0);
+		date.setUTCHours(12, 0, 0, 0);
+		return date;
+	},
+
+	_safeClearUTCTime: function(date) {
+		var instance = this;
+		return instance._clearUTCTime(DateMath.clone(date));
+	},
+
 	_toSchedulerEvents: function(values) {
 		var instance = this,
 			events = [];
@@ -1033,6 +1057,7 @@ A.mix(SchedulerEventSupport.prototype, {
 
 		return events;
 	}
+
 });
 
 A.SchedulerEventSupport = SchedulerEventSupport;
@@ -1676,7 +1701,7 @@ var SchedulerView = A.Component.create({
 
 A.SchedulerView = SchedulerView;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-color-util','aui-datatype','button-group','model','model-list','widget-stdmod']});
+}, '@VERSION@' ,{requires:['aui-base','aui-color-util','aui-datatype','button-group','model','model-list','widget-stdmod'], skinnable:true});
 AUI.add('aui-scheduler-view-day', function(A) {
 var Lang = A.Lang,
 	isBoolean = Lang.isBoolean,
@@ -2849,7 +2874,7 @@ var SchedulerDayView = A.Component.create({
 
 A.SchedulerDayView = SchedulerDayView;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-view-table','dd-drag','dd-delegate','dd-drop','dd-constrain']});
+}, '@VERSION@' ,{requires:['aui-scheduler-view-table','dd-drag','dd-delegate','dd-drop','dd-constrain'], skinnable:true});
 AUI.add('aui-scheduler-view-week', function(A) {
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
@@ -2976,7 +3001,7 @@ var SchedulerWeekView = A.Component.create({
 
 A.SchedulerWeekView = SchedulerWeekView;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-view-day']});
+}, '@VERSION@' ,{requires:['aui-scheduler-view-day'], skinnable:true});
 AUI.add('aui-scheduler-view-table', function(A) {
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
@@ -3560,6 +3585,13 @@ var SchedulerTableView = A.Component.create({
 				WidgetStdMod.HEADER, instance[HEADER_TABLE_NODE].getDOM());
 		},
 
+		_clearUTCTime: function (date) {
+			var instance = this;
+			date.setHours(12, 0, 0, 0);
+			date.setUTCHours(12, 0, 0, 0);
+			return date;
+		},
+
 		_findCurrentIntervalEnd: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
@@ -3616,6 +3648,10 @@ var SchedulerTableView = A.Component.create({
 			var instance = this;
 			var startDate = evt.getClearStartDate();
 			var endDate = evt.getClearEndDate();
+
+			celDate = instance._safeClearUTCTime(celDate);
+			rowStartDate = instance._safeClearUTCTime(rowStartDate);
+			rowEndDate = instance._safeClearUTCTime(rowEndDate);
 
 			var maxColspan = DateMath.getDayOffset(rowEndDate, celDate);
 
@@ -3731,6 +3767,11 @@ var SchedulerTableView = A.Component.create({
 			instance[EVENTS_OVERLAY].bodyNode.delegate('click', A.bind(instance.hideEventsOverlay, instance), _DOT+CSS_SVT_EVENTS_OVERLAY_NODE_CLOSE);
 		},
 
+		_safeClearUTCTime: function (date) {
+			var instance = this;
+			return instance._clearUTCTime(DateMath.clone(date));
+		},
+
 		_syncEventNodeContainerUI: function(evt, node, evtSplitInfo) {
 			var instance = this;
 
@@ -3815,7 +3856,7 @@ var SchedulerTableView = A.Component.create({
 
 A.SchedulerTableView = SchedulerTableView;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-base','overlay']});
+}, '@VERSION@' ,{requires:['aui-scheduler-base','overlay'], skinnable:true});
 AUI.add('aui-scheduler-view-table-dd', function(A) {
 var Lang = A.Lang,
 	isObject = Lang.isObject,
@@ -4274,7 +4315,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 A.Base.mix(A.SchedulerTableView, [ A.SchedulerTableViewDD ]);
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-scheduler-view-table','dd-drag','dd-delegate','dd-drop']});
+}, '@VERSION@' ,{requires:['aui-scheduler-view-table','dd-drag','dd-delegate','dd-drop'], skinnable:false});
 AUI.add('aui-scheduler-view-month', function(A) {
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
@@ -4407,7 +4448,7 @@ var SchedulerMonthView = A.Component.create({
 
 A.SchedulerMonthView = SchedulerMonthView;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-view-table']});
+}, '@VERSION@' ,{requires:['aui-scheduler-view-table'], skinnable:true});
 AUI.add('aui-scheduler-view-agenda', function(A) {
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
@@ -4861,7 +4902,7 @@ var SchedulerAgendaView = A.Component.create({
 
 A.SchedulerAgendaView = SchedulerAgendaView;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-base']});
+}, '@VERSION@' ,{requires:['aui-scheduler-base'], skinnable:true});
 AUI.add('aui-scheduler-event-recorder', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -5365,8 +5406,8 @@ var SchedulerEventRecorder = A.Component.create({
 
 A.SchedulerEventRecorder = SchedulerEventRecorder;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-base','aui-template','aui-toolbar','io-form','querystring','overlay']});
+}, '@VERSION@' ,{requires:['aui-scheduler-base','aui-template','aui-toolbar','io-form','querystring','overlay'], skinnable:true});
 
 
-AUI.add('aui-scheduler', function(A){}, '@VERSION@' ,{use:['aui-scheduler-base','aui-scheduler-view-day','aui-scheduler-view-week','aui-scheduler-view-table','aui-scheduler-view-table-dd','aui-scheduler-view-month','aui-scheduler-view-agenda','aui-scheduler-event-recorder'], skinnable:false});
+AUI.add('aui-scheduler', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-scheduler-base','aui-scheduler-view-day','aui-scheduler-view-week','aui-scheduler-view-table','aui-scheduler-view-table-dd','aui-scheduler-view-month','aui-scheduler-view-agenda','aui-scheduler-event-recorder']});
 

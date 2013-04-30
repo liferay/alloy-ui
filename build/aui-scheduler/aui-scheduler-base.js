@@ -513,13 +513,13 @@ var SchedulerEvent = A.Component.create({
 		getClearEndDate: function() {
 			var instance = this;
 
-			return DateMath.safeClearTime(instance.get(END_DATE));
+			return instance._safeClearUTCTime(instance.get(END_DATE));
 		},
 
 		getClearStartDate: function() {
 			var instance = this;
 
-			return DateMath.safeClearTime(instance.get(START_DATE));
+			return instance._safeClearUTCTime(instance.get(START_DATE));
 		},
 
 		move: function(date, options) {
@@ -640,6 +640,13 @@ var SchedulerEvent = A.Component.create({
 			instance._uiSetVisible(event.newVal);
 		},
 
+		_clearUTCTime: function(date) {
+			var instance = this;
+			date.setHours(12, 0, 0, 0);
+			date.setUTCHours(12, 0, 0, 0);
+			return date;
+		},
+
 		_setColor: function(val) {
 			var instance = this;
 
@@ -686,6 +693,11 @@ var SchedulerEvent = A.Component.create({
 			}
 
 			return val;
+		},
+
+		_safeClearUTCTime: function(date) {
+			var instance = this;
+			return instance._clearUTCTime(DateMath.clone(date));
 		},
 
 		_uiSetAllDay: function(val) {
@@ -964,7 +976,7 @@ A.mix(SchedulerEventSupport.prototype, {
 	getEventsByDay: function(date, includeOverlap) {
 		var instance = this;
 
-		date = DateMath.safeClearTime(date);
+		date = instance._safeClearUTCTime(date);
 
 		return instance.getEvents(function(evt) {
 			return DateMath.compare(evt.getClearStartDate(), date) ||
@@ -975,7 +987,7 @@ A.mix(SchedulerEventSupport.prototype, {
 	getIntersectEvents: function(date) {
 		var instance = this;
 
-		date = DateMath.safeClearTime(date);
+		date = instance._safeClearUTCTime(date);
 
 		return instance.getEvents(function(evt) {
 			var startDate = evt.getClearStartDate();
@@ -1008,6 +1020,18 @@ A.mix(SchedulerEventSupport.prototype, {
 		event.model.set(SCHEDULER, instance);
 	},
 
+	_clearUTCTime: function(date) {
+		var instance = this;
+		date.setHours(12, 0, 0, 0);
+		date.setUTCHours(12, 0, 0, 0);
+		return date;
+	},
+
+	_safeClearUTCTime: function(date) {
+		var instance = this;
+		return instance._clearUTCTime(DateMath.clone(date));
+	},
+
 	_toSchedulerEvents: function(values) {
 		var instance = this,
 			events = [];
@@ -1033,6 +1057,7 @@ A.mix(SchedulerEventSupport.prototype, {
 
 		return events;
 	}
+
 });
 
 A.SchedulerEventSupport = SchedulerEventSupport;
@@ -1676,4 +1701,4 @@ var SchedulerView = A.Component.create({
 
 A.SchedulerView = SchedulerView;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-color-util','aui-datatype','button-group','model','model-list','widget-stdmod']});
+}, '@VERSION@' ,{requires:['aui-base','aui-color-util','aui-datatype','button-group','model','model-list','widget-stdmod'], skinnable:true});
