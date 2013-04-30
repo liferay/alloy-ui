@@ -84,7 +84,7 @@ A.mix(SchedulerEventSupport.prototype, {
 	getEventsByDay: function(date, includeOverlap) {
 		var instance = this;
 
-		date = DateMath.safeClearTime(date);
+		date = instance._safeClearUTCTime(date);
 
 		return instance.getEvents(function(evt) {
 			return DateMath.compare(evt.getClearStartDate(), date) ||
@@ -95,7 +95,7 @@ A.mix(SchedulerEventSupport.prototype, {
 	getIntersectEvents: function(date) {
 		var instance = this;
 
-		date = DateMath.safeClearTime(date);
+		date = instance._safeClearUTCTime(date);
 
 		return instance.getEvents(function(evt) {
 			var startDate = evt.getClearStartDate();
@@ -128,6 +128,18 @@ A.mix(SchedulerEventSupport.prototype, {
 		event.model.set(SCHEDULER, instance);
 	},
 
+	_clearUTCTime: function(date) {
+		var instance = this;
+		date.setHours(12, 0, 0, 0);
+		date.setUTCHours(12, 0, 0, 0);
+		return date;
+	},
+
+	_safeClearUTCTime: function(date) {
+		var instance = this;
+		return instance._clearUTCTime(DateMath.clone(date));
+	},
+
 	_toSchedulerEvents: function(values) {
 		var instance = this,
 			events = [];
@@ -153,6 +165,7 @@ A.mix(SchedulerEventSupport.prototype, {
 
 		return events;
 	}
+
 });
 
 A.SchedulerEventSupport = SchedulerEventSupport;

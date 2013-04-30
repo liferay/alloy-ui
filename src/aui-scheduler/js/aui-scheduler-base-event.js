@@ -512,13 +512,13 @@ var SchedulerEvent = A.Component.create({
 		getClearEndDate: function() {
 			var instance = this;
 
-			return DateMath.safeClearTime(instance.get(END_DATE));
+			return instance._safeClearUTCTime(instance.get(END_DATE));
 		},
 
 		getClearStartDate: function() {
 			var instance = this;
 
-			return DateMath.safeClearTime(instance.get(START_DATE));
+			return instance._safeClearUTCTime(instance.get(START_DATE));
 		},
 
 		move: function(date, options) {
@@ -639,6 +639,13 @@ var SchedulerEvent = A.Component.create({
 			instance._uiSetVisible(event.newVal);
 		},
 
+		_clearUTCTime: function(date) {
+			var instance = this;
+			date.setHours(12, 0, 0, 0);
+			date.setUTCHours(12, 0, 0, 0);
+			return date;
+		},
+
 		_setColor: function(val) {
 			var instance = this;
 
@@ -685,6 +692,11 @@ var SchedulerEvent = A.Component.create({
 			}
 
 			return val;
+		},
+
+		_safeClearUTCTime: function(date) {
+			var instance = this;
+			return instance._clearUTCTime(DateMath.clone(date));
 		},
 
 		_uiSetAllDay: function(val) {

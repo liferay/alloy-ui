@@ -580,6 +580,13 @@ var SchedulerTableView = A.Component.create({
 				WidgetStdMod.HEADER, instance[HEADER_TABLE_NODE].getDOM());
 		},
 
+		_clearUTCTime: function (date) {
+			var instance = this;
+			date.setHours(12, 0, 0, 0);
+			date.setUTCHours(12, 0, 0, 0);
+			return date;
+		},
+
 		_findCurrentIntervalEnd: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
@@ -636,6 +643,10 @@ var SchedulerTableView = A.Component.create({
 			var instance = this;
 			var startDate = evt.getClearStartDate();
 			var endDate = evt.getClearEndDate();
+
+			celDate = instance._safeClearUTCTime(celDate);
+			rowStartDate = instance._safeClearUTCTime(rowStartDate);
+			rowEndDate = instance._safeClearUTCTime(rowEndDate);
 
 			var maxColspan = DateMath.getDayOffset(rowEndDate, celDate);
 
@@ -749,6 +760,11 @@ var SchedulerTableView = A.Component.create({
 			});
 
 			instance[EVENTS_OVERLAY].bodyNode.delegate('click', A.bind(instance.hideEventsOverlay, instance), _DOT+CSS_SVT_EVENTS_OVERLAY_NODE_CLOSE);
+		},
+
+		_safeClearUTCTime: function (date) {
+			var instance = this;
+			return instance._clearUTCTime(DateMath.clone(date));
 		},
 
 		_syncEventNodeContainerUI: function(evt, node, evtSplitInfo) {
