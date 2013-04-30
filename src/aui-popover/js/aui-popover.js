@@ -173,6 +173,14 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
      * @static
      */
     ATTRS: {
+
+        /**
+         * Determine the position of the popover.
+         *
+         * @attribute position
+         * @default bottom
+         * @type {String}
+         */
         position: {
             validator: function(val) {
                 return val === BOTTOM || val === TOP || val === LEFT || val === RIGHT;
@@ -190,8 +198,8 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
      */
     TEMPLATES: {
         header: '<div class="' + StdMod.SECTION_CLASS_NAMES[StdMod.HEADER] + _SPACE + CSS_POPOVER_HD + '"></div>',
-        body: '<div class="' + StdMod.SECTION_CLASS_NAMES[StdMod.BODY] + _SPACE + CSS_POPOVER_BD + '"></div>',
+        body:   '<div class="' + StdMod.SECTION_CLASS_NAMES[StdMod.BODY] + _SPACE + CSS_POPOVER_BD + '"></div>',
         footer: '<div class="' + StdMod.SECTION_CLASS_NAMES[StdMod.FOOTER] + _SPACE + CSS_POPOVER_FT + '"></div>',
-        arrow: '<div class="' + CSS_ARROW + '"></div>'
+        arrow:  '<div class="' + CSS_ARROW + '"></div>'
     }
 });
