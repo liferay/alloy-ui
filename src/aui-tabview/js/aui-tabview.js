@@ -1,3 +1,9 @@
+/**
+ * The TabView Component
+ *
+ * @module aui-tabview
+ */
+
 var Lang = A.Lang,
     isBoolean = Lang.isBoolean,
 
@@ -52,22 +58,67 @@ A.TabviewBase._queries = {
 A.Tab.CSS_PREFIX = getClassName(TAB);
 A.Tab.NAME = TAB;
 
+/**
+ * A base class for Tab.
+ *
+ * Check the [live demo](http://alloyui.com/examples/tabview/).
+ *
+ * @class Tab
+ * @extends Component
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 A.Tab = A.Component.create({
+
+    /**
+     * Static property provides a string to identify the class.
+     *
+     * @property Tab.NAME
+     * @type String
+     * @static
+     */
     NAME: TAB,
 
+    /**
+     * Static property provides a string to identify the CSS prefix.
+     *
+     * @property Tab.CSS_PREFIX
+     * @type String
+     * @static
+     */
     CSS_PREFIX: getClassName(TAB),
 
+    /**
+     * Static property used to define which component it extends.
+     *
+     * @property Tab.EXTENDS
+     * @type Object
+     * @static
+     */
     EXTENDS: A.Tab,
 
     prototype: {
+
+        /**
+         * Construction logic executed during Tab instantiation. Lifecycle.
+         *
+         * @method initializer
+         * @protected
+         */
         initializer: function() {
             var instance = this;
 
             A.after(instance._afterUiSetDisabled, instance, '_uiSetDisabled');
         },
 
-        // TODO: move to A.Component?
-        _afterUiSetDisabled: function(val) {
+        /**
+         * Fire after <code>disabled</code> class been set on the UI.
+         *
+         * @method _afterUiSetDisabled
+         * @param val
+         * @protected
+         */
+        _afterUiSetDisabled: function(val) { // TODO: move to A.Component?
             var instance = this;
 
             instance.get(BOUNDING_BOX).toggleClass(getClassName(DISABLED), val);
@@ -78,17 +129,66 @@ A.Tab = A.Component.create({
 A.TabView.NAME = TABBABLE;
 A.TabView.CSS_PREFIX = getClassName(TABBABLE);
 
+/**
+ * A base class for TabView.
+ *
+ * Check the [live demo](http://alloyui.com/examples/tabview/).
+ *
+ * @class TabView
+ * @extends Component
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 A.TabView = A.Component.create({
+
+    /**
+     * Static property provides a string to identify the class.
+     *
+     * @property TabView.NAME
+     * @type String
+     * @static
+     */
     NAME: TABBABLE,
 
+    /**
+     * Static property provides a string to identify the CSS prefix.
+     *
+     * @property TabView.CSS_PREFIX
+     * @type String
+     * @static
+     */
     CSS_PREFIX: getClassName(TABBABLE),
 
+    /**
+     * Static property used to define the default attribute
+     * configuration for the TabView.
+     *
+     * @property TabView.ATTRS
+     * @type Object
+     * @static
+     */
     ATTRS: {
+
+        /**
+         * Determine the orientation of tabs.
+         * Can be stacked (vertical) or not (horizontal).
+         *
+         * @attribute stacked
+         * @default false
+         * @type {Boolean}
+         */
         stacked: {
             validator: isBoolean,
             value: false
         },
 
+        /**
+         * Determine the type of tabs.
+         *
+         * @attribute type
+         * @default tabs
+         * @type {String}
+         */
         type: {
             validator: function(val) {
                 return val === LIST || val === TABS || val === PILLS;
@@ -97,11 +197,32 @@ A.TabView = A.Component.create({
         }
     },
 
+    /**
+     * Static property used to define the UI attributes.
+     *
+     * @property TabView.UI_ATTRS
+     * @type Array
+     * @static
+     */
     UI_ATTRS: [STACKED, TYPE],
 
+    /**
+     * Static property used to define which component it extends.
+     *
+     * @property TabView.EXTENDS
+     * @type Object
+     * @static
+     */
     EXTENDS: A.TabView,
 
     prototype: {
+
+        /**
+         * Construction logic executed during TabView instantiation. Lifecycle.
+         *
+         * @method initializer
+         * @protected
+         */
         initializer: function() {
             var instance = this;
 
@@ -109,18 +230,37 @@ A.TabView = A.Component.create({
             instance.after(TYPE_CHANGE, instance._afterTypeChange);
         },
 
+        /**
+         * Disable tab based on its index.
+         *
+         * @method disableTab
+         * @param i
+         */
         disableTab: function(i) {
             var instance = this;
 
             instance.item(i).set(DISABLED, true);
         },
 
+        /**
+         * Enable tab based on its index.
+         *
+         * @method enableTab
+         * @param i
+         */
         enableTab: function(i) {
             var instance = this;
 
             instance.item(i).set(DISABLED, false);
         },
 
+        /**
+         * Fire after selected tab changes.
+         *
+         * @method _afterSelectionChange
+         * @param event
+         * @protected
+         */
         _afterSelectionChange: function(event) {
             var newVal = event.newVal,
                 prevVal = event.prevVal,
@@ -138,6 +278,13 @@ A.TabView = A.Component.create({
             }
         },
 
+        /**
+         * Fire after <code>type</code> attribute changes.
+         *
+         * @method _afterTypeChange
+         * @param event
+         * @protected
+         */
         _afterTypeChange: function(event) {
             var instance = this,
                 listNode = instance.get(LIST_NODE);
@@ -147,9 +294,13 @@ A.TabView = A.Component.create({
             }
         },
 
-        // Check if the child is already inDoc to avoid be appended to the renderTo node.
-        // TODO: file issue on yui.
-        _renderChildren: function () {
+        /**
+         * Check if the child is already inDoc to avoid be appended to the renderTo node.
+         *
+         * @method _renderChildren
+         * @protected
+         */
+        _renderChildren: function () { // TODO: file issue on YUI.
             var instance = this,
                 renderTo = instance._childrenContainer || instance.get(CONTENT_BOX);
 
@@ -163,6 +314,13 @@ A.TabView = A.Component.create({
             });
         },
 
+        /**
+         * Set the <code>type</code> attribute on the UI.
+         *
+         * @method _uiSetType
+         * @param val
+         * @protected
+         */
         _uiSetType: function(val) {
             var instance = this,
                 listNode = instance.get(LIST_NODE);
@@ -170,6 +328,13 @@ A.TabView = A.Component.create({
             listNode.addClass(getClassName(NAV, val));
         },
 
+        /**
+         * Toggle <code>stacked</code> attribute on the UI.
+         *
+         * @method _uiSetStacked
+         * @param val
+         * @protected
+         */
         _uiSetStacked: function(val) {
             var instance = this,
                 listNode = instance.get(LIST_NODE);
