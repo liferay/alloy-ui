@@ -1,0 +1,160 @@
+.aui-hsv-container {
+    height: 260px;
+    padding: 5px;
+    position: relative;
+    width: 430px;
+}
+
+.aui-hsv-container-controls {
+    width: 510px;
+}
+
+.aui-hsv-container-alpha {
+    width: 470px;
+}
+
+.aui-hsv-container-controls.aui-hsv-container-alpha {
+    width: 550px;
+}
+
+.aui-hsv-view-container .aui-control-group {
+    margin-bottom: 0;
+}
+
+.aui-hsv-hs-container, .aui-hsv-image-backdrop {
+    height: 256px;
+    position: absolute;
+    width: 256px;
+}
+
+.aui-hsv-hs-thumb {
+    height: 11px;
+    position: absolute;
+    width: 11px;
+}
+
+.aui-hsv-value-slider-container, .aui-hsv-alpha-slider-container {
+    height: 256px;
+    position: absolute;
+    width: 19px;
+}
+
+.aui-hsv-value-slider-container {
+    left: 280px;
+}
+
+.aui-hsv-alpha-slider-container {
+    left: 320px;
+}
+
+.aui-hsv-value-canvas, .aui-hsv-alpha-canvas {
+    display: inline-block;
+    height: 256px;
+    position: relative;
+    width: 19px;
+}
+
+.aui-hsv-value-thumb, .aui-hsv-alpha-thumb {
+    cursor: default;
+    height: 7px;
+    position: absolute;
+    width: 18px;
+}
+
+.aui-hsv-value-image, .aui-hsv-alpha-image {
+    display: block;
+    height: 11px;
+    margin-left: -7px;
+    margin-top: -6px;
+    width: 32px;
+}
+
+.aui-hsv-result-view, .aui-hsv-view-backdrop {
+    height: 65px;
+    left: 320px;
+    position: absolute;
+    width: 65px;
+}
+
+.aui-hsv-container-alpha .aui-hsv-result-view, .aui-hsv-container-alpha .aui-hsv-view-backdrop {
+    left: 360px;
+}
+
+.aui-hsv-label {
+    display: inline;
+    margin-left: 5px;
+}
+
+.aui-hsv-label-value-container {
+    position: absolute;
+    top: 90px;
+}
+
+.aui-hsv-label-value-container .controls {
+    display: inline;
+}
+
+.aui-hsv-label-value-hsv-container {
+    left: 320px;
+}
+
+.aui-hsv-container-alpha .aui-hsv-label-value-hsv-container {
+    left: 360px;
+}
+
+.aui-hsv-label-value-rgb-container {
+    left: 440px;
+}
+
+.aui-hsv-container-alpha .aui-hsv-label-value-rgb-container {
+    left: 480px;
+}
+
+.aui-hsv-label-value-hex-container {
+    left: 310px;
+    top: 80px;
+}
+
+.aui-hsv-label-value-hex-container .aui-hsv-output-type {
+    width: 75px;
+}
+
+.aui-hsv-container-alpha .aui-hsv-label-value-hex-container {
+    left: 350px;
+    top: 70px;
+}
+
+.aui-hsv-container-controls .aui-hsv-label-value-hex-container {
+    left: 390px;
+    top: 0;
+}
+
+.aui-hsv-container-controls.aui-hsv-container-alpha .aui-hsv-label-value-hex-container {
+    left: 430px;
+}
+
+.aui-hsv-label-value-hex {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+}
+
+.aui-hsv-label-value-container .aui-control-group .aui-hsv-label-hidden {
+    display: none;
+}
+
+.aui-hsv-label-value-container .aui-hsv-label-value-hex .aui-hsv-label {
+    display: block;
+}
+
+.aui-hsv-label-value-container .aui-hsv-label-value-hex .aui-hsv-value {
+    width: 50px;
+}
+
+.aui-hsv-label-value-container .aui-hsv-label-value-hex .aui-hsv-value {
+    width: 95px;
+}
+
+.aui-hsv-label-value-container .aui-hsv-value {
+    width: 30px;
+}

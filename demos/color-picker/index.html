@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <style>
+        .label-option {
+            display: inline;
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+    </style>
+
+    <script src="../../build/aui/aui.js"></script>
+</head>
+
+<body class="yui3-skin-sam">
+
+<div id="wrapper">
+    <h1>Alloy - ColorPicker Palettes Demo</h1>
+
+    <h3>Palette</h3>
+    <div id="palette"></div>
+
+    <h3>Color palette</h3>
+    <div id="colorPalette"></div>
+
+    <h3>HSV palette</h3>
+
+    <div id="hsvPaletteOptions">
+        <input type="checkbox" checked id="controls"><label class="label-option" for="controls">Controls</label>
+        <input type="checkbox" checked id="alpha"><label class="label-option" for="alpha">Alpha</label>
+    </div>
+
+    <div id="hsvPalette"></div>
+</div>
+
+<script>
+    YUI({ filter:'raw' }).use(
+        'aui-palette',
+        function(A) {
+            var palette = new A.Palette({
+                items: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ],
+                on: {
+                    enter: function(event) {
+                        console.log(event.type);
+                    },
+                    leave: function(event) {
+                        console.log(event.type);
+                    },
+                    select: function(event) {
+                        console.log(event.type);
+                    },
+                    unselect: function(event) {
+                        console.log(event.type);
+                    }
+                },
+                toggleSelection: false
+            }).render('#palette');
+        }
+    );
+
+    YUI({ filter:'raw' }).use(
+        'aui-color-palette',
+        function(A) {
+            var colorPalette = new A.ColorPalette({
+                on: {
+                    enter: function(event) {
+                        console.log(event.type);
+                    },
+                    leave: function(event) {
+                        console.log(event.type);
+                    },
+                    select: function(event) {
+                        console.log(event.type);
+                    },
+                    unselect: function(event) {
+                        console.log(event.type);
+                    }
+                }
+            }).render('#colorPalette');
+        }
+    );
+
+    YUI({ filter:'raw' }).use(
+        'aui-hsva-palette', 'aui-color-palette',
+        function(A) {
+            var hsvPalette;
+
+            var alphaCheckbox = A.one('#alpha');
+            var controlsCheckbox = A.one('#controls');
+
+            function createHSVPalette() {
+                if (hsvPalette) {
+                    hsvPalette.destroy();
+                }
+
+                var hsvClass = A.HSVPalette;
+
+                if (alphaCheckbox.get('checked')) {
+                    hsvClass = A.HSVAPalette;
+                }
+
+                hsvPalette = new hsvClass(
+                    {
+                        controls: controlsCheckbox.get('checked'),
+                    }
+                ).render('#hsvPalette');
+
+                hsvPalette.on('selectedChange', function (event) {
+                    console.log('via selected: ' + hsvPalette.get('selected'));
+
+                    console.log('via new val: ' +event.newVal);
+                });
+            }
+
+            alphaCheckbox.after('change', createHSVPalette);
+            controlsCheckbox.after('change', createHSVPalette);
+
+            createHSVPalette();
+        }
+    );
+
+</script>
+
+</body>
+</html>

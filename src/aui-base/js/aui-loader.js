@@ -174,6 +174,23 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-linkedset"
         ]
     },
+    "aui-color-palette": {
+        "requires": [
+            "array-extras",
+            "aui-palette",
+            "color-base",
+            "node-core"
+        ],
+        "skinnable": true
+    },
+    "aui-color-picker-base": {
+        "requires": [
+            "aui-color-palette",
+            "aui-hsva-palette-modal",
+            "event-outside"
+        ],
+        "skinnable": true
+    },
     "aui-color-picker-base-deprecated": {
         "requires": [
             "dd-drag",
@@ -196,6 +213,13 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "plugin",
             "aui-color-picker-base-deprecated"
+        ],
+        "skinnable": true
+    },
+    "aui-color-picker-popover": {
+        "requires": [
+            "aui-color-picker-base",
+            "aui-popover"
         ],
         "skinnable": true
     },
@@ -554,6 +578,32 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-component",
             "aui-event-input"
         ]
+    },
+    "aui-hsv-palette": {
+        "requires": [
+            "aui-classnamemanager",
+            "aui-event-input",
+            "base-build",
+            "clickable-rail",
+            "color-hsv",
+            "dd-constrain",
+            "slider",
+            "widget"
+        ],
+        "skinnable": true
+    },
+    "aui-hsva-palette": {
+        "requires": [
+            "aui-hsv-palette"
+        ],
+        "skinnable": true
+    },
+    "aui-hsva-palette-modal": {
+        "requires": [
+            "aui-hsva-palette",
+            "aui-modal"
+        ],
+        "skinnable": true
     },
     "aui-image-cropper": {
         "requires": [
@@ -1199,4 +1249,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '29d4b7cb210e4a777bea410a1d35aa55';
+YUI.Env[Y.version].md5 = '210a5c17423f7a4a4549d94b10d3ba15';

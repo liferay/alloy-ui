@@ -344,7 +344,8 @@ Palette = A.Base.create(_NAME, A.Widget, [], {
         },
 
         selected: {
-            validator: Lang.isNumber
+            validator: Lang.isNumber,
+            value: -1
         },
 
         toggleSelection: {
