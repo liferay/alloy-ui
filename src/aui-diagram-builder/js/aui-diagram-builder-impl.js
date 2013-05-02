@@ -1470,7 +1470,7 @@ var DiagramNode = A.Component.create({
 			return {
 				children: [
 					{
-						icon: 'aui-icon-remove',
+						icon: 'icon-remove',
 						on: {
 							click: A.bind(instance._handleCloseEvent, instance)
 						}

@@ -1,22 +1,22 @@
-.aui-form-builder .aui-diagram-builder-drop-container {
+.form-builder .diagram-builder-drop-container {
 	overflow: auto;
     padding-bottom: 10px;
 }
 
-.aui-form-builder .aui-diagram-builder-fields-container .aui-form-builder-placeholder {
+.form-builder .diagram-builder-fields-container .form-builder-placeholder {
 	display: none;
 }
 
-.aui-form-builder-placeholder {
+.form-builder-placeholder {
 	border: 1px dashed #CCCCCC;
 	margin: 5px;
 }
 
-.aui-form-builder-options-editor-hidden {
+.form-builder-options-editor-hidden {
 	display: none;
 }
 
 /* work around Y.Widget zIndex bug */
-.aui-basecelleditor {
+.basecelleditor {
 	z-index: 500 !important;
 }

@@ -473,7 +473,7 @@ var AutoCompleteList = A.Component.create({
         TPL_LIST: '<ul class="' + CLASS_RESULTS_LIST + '"/>',
 
         TPL_LOADING: '<li class="' + CLASS_ENTRY_CONTAINER + '">' +
-            '<span class="aui-icon-loading ' + CLASS_ENTRY_LOADING + '">{label}</span>' +
+            '<span class="icon-loading ' + CLASS_ENTRY_LOADING + '">{label}</span>' +
         '</li>',
 
         TPL_RESULTS_EMPTY:

@@ -1,68 +1,68 @@
-.aui-tree-view {
+.tree-view {
     overflow: auto
 }
 
-.aui-tree-view ul {
+.tree-view ul {
     list-style: none
 }
 
-.aui-tree-view-content {
+.tree-view-content {
     margin: 0
 }
 
-.aui-tree-container {
+.tree-container {
     margin: 0 0 0 20px
 }
 
-.aui-tree-node-content .aui-tree-hitarea {
+.tree-node-content .tree-hitarea {
     cursor: pointer
 }
 
-.aui-tree-label {
+.tree-label {
     cursor: pointer;
     line-height: 19px;
     margin-left: 2px;
 }
 
-.aui-tree-node .yui3-dd-draggable, .aui-tree-node .yui3-dd-draggable .aui-tree-label {
+.tree-node .yui3-dd-draggable, .tree-node .yui3-dd-draggable .tree-label {
     cursor: pointer
 }
 
-.aui-tree-node-leaf {
+.tree-node-leaf {
     margin-left: 15px
 }
 
-.aui-tree-node-selected .aui-tree-label {
+.tree-node-selected .tree-label {
     background: #eee
 }
 
 /* TreeView file */
 
-.aui-tree-file i {
+.tree-file i {
     cursor: move
 }
 
 /* TreeNodeCheck */
 
-.aui-tree-node-checkbox-container {
+.tree-node-checkbox-container {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
     filter: alpha(opacity=25);
     opacity: .25;
 }
 
-.aui-tree-node-checked .aui-tree-node-checkbox-container {
+.tree-node-checked .tree-node-checkbox-container {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
     filter: alpha(opacity=100);
     opacity: 1;
 }
 
-.aui-tree-node .aui-tree-node-checkbox-container {
+.tree-node .tree-node-checkbox-container {
     cursor: pointer
 }
 
 /* TreeNodeTask */
 
-.aui-tree-node-child-unchecked .aui-tree-node-checkbox-container {
+.tree-node-child-unchecked .tree-node-checkbox-container {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
     filter: alpha(opacity=60);
     opacity: .6
@@ -70,26 +70,26 @@
 
 /* TreeViewDragDrop */
 
-.aui-tree-drag-insert-above {
+.tree-drag-insert-above {
     border-top: 1px dotted #555
 }
 
-.aui-tree-drag-insert-below {
+.tree-drag-insert-below {
     border-bottom: 1px dotted #555
 }
 
-.aui-tree-drag-insert-append .aui-tree-label {
+.tree-drag-insert-append .tree-label {
     background: #eee;
     border: 1px dotted #555;
 }
 
-.aui-tree-drag-helper {
+.tree-drag-helper {
     line-height: 18px;
     min-width: 100px;
     position: absolute;
 }
 
-.aui-tree-drag-helper-content {
+.tree-drag-helper-content {
     background: #fff;
     border: 1px solid #aaa;
     margin: 20px 0 0 60px;
@@ -99,12 +99,12 @@
     opacity: .9
 }
 
-.aui-tree-drag-helper-label {
+.tree-drag-helper-label {
     float: left;
     font-size: 12px;
     padding-left: 2px;
 }
 
-.aui-tree-node-paginator {
+.tree-node-paginator {
     margin-left: 18px
 }

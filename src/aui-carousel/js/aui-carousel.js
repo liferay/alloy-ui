@@ -156,7 +156,7 @@ var Carousel = A.Component.create(
              * CSS selector to match the navigation items
              *
              * @attribute nodeMenuItemSelector
-             * @default .aui-carousel-menu-item
+             * @default .carousel-menu-item
              * @type {String}
              */
             nodeMenuItemSelector: {

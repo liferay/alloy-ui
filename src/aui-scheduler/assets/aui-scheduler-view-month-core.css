@@ -1,12 +1,12 @@
-.aui-scheduler-view-month-hidden {
+.scheduler-view-month-hidden {
   display: none;
 }
 
-.aui-scheduler-view-month .aui-scheduler-view-table-colgrid-first {
+.scheduler-view-month .scheduler-view-table-colgrid-first {
   border-left: 0 none;
 }
 
-.aui-scheduler-view-month-table-data-col-nomonth {
+.scheduler-view-month-table-data-col-nomonth {
   background-color: #fff;
   color: #ccc;
   font-size: 11px;

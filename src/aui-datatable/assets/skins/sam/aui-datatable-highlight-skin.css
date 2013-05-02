@@ -1,18 +1,18 @@
-.aui-table-odd.aui-table-highlight .aui-table-cell,
-.aui-table-even.aui-table-highlight .aui-table-cell,
+.table-odd.table-highlight .table-cell,
+.table-even.table-highlight .table-cell,
 
-.aui-table-odd .aui-table-cell.aui-table-highlight,
-.aui-table-even .aui-table-cell.aui-table-highlight {
+.table-odd .table-cell.table-highlight,
+.table-even .table-cell.table-highlight {
 	background-color: #eff4fe;
 	color: #000;
 }
 
-.aui-table-highlight-border {
+.table-highlight-border {
 	position: absolute;
 	background-color: #89aff9;
 
 }
-.aui-table-highlight-overlay-active .aui-table-highlight-border {
+.table-highlight-overlay-active .table-highlight-border {
 	position: absolute;
 	background-color: #5292F7;
 }

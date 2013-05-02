@@ -1,15 +1,15 @@
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-t,
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-tr,
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-r,
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-br,
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-b,
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-bl,
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-l,
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-tl {
+.image-cropper .image-cropper-crop .yui3-resize-handle-inner-t,
+.image-cropper .image-cropper-crop .yui3-resize-handle-inner-tr,
+.image-cropper .image-cropper-crop .yui3-resize-handle-inner-r,
+.image-cropper .image-cropper-crop .yui3-resize-handle-inner-br,
+.image-cropper .image-cropper-crop .yui3-resize-handle-inner-b,
+.image-cropper .image-cropper-crop .yui3-resize-handle-inner-bl,
+.image-cropper .image-cropper-crop .yui3-resize-handle-inner-l,
+.image-cropper .image-cropper-crop .yui3-resize-handle-inner-tl {
 	background: url(resize-handle.png) no-repeat 0 0;
 }
 
-.aui-image-cropper-overlay {
+.image-cropper-overlay {
   -moz-transition: background-color 0.3s ease-out;
   -ms-transition: background-color 0.3s ease-out;
   -o-transition: background-color 0.3s ease-out;

@@ -51,12 +51,12 @@ function ColorPickerBase(config) {}
 ColorPickerBase.prototype = {
     TPL_HEADER_CONTENT: '<h3>{header}</h3>',
 
-    TPL_ACTIONS: '<div class="aui-row-fluid ' + CSS_ACTIONS_CONTAINER + '"></div',
+    TPL_ACTIONS: '<div class="row-fluid ' + CSS_ACTIONS_CONTAINER + '"></div',
 
-    TPL_HSV_TRIGGER: '<div class="aui-span6 ' + CSS_HSV_TRIGGER + '">{more}</div>',
+    TPL_HSV_TRIGGER: '<div class="span6 ' + CSS_HSV_TRIGGER + '">{more}</div>',
 
-    TPL_NO_COLOR:   '<div class="aui-span6 ' + CSS_NO_COLOR + '">' +
-                        '<a href class="aui-btn-link"><i class="' + CSS_NO_COLOR_ICON + ' aui-icon-remove-circle"></i>{none}</a>' +
+    TPL_NO_COLOR:   '<div class="span6 ' + CSS_NO_COLOR + '">' +
+                        '<a href class="btn-link"><i class="' + CSS_NO_COLOR_ICON + ' aui-icon-remove-circle"></i>{none}</a>' +
                     '</div>',
 
     _currentTrigger: null,
@@ -484,7 +484,7 @@ ColorPickerBase.prototype = {
 
             instance._currentTrigger = target;
 
-            instance.get(CONTENT_BOX).one('.aui-palette-item-inner').focus();
+            instance.get(CONTENT_BOX).one('.palette-item-inner').focus();
         }
     },
 

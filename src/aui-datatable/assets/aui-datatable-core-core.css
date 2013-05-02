@@ -2,50 +2,50 @@
 * css from datatable-scroll-core.css
 */
 /* foundational CSS */
-.aui-table-scrollable-x {
+.table-scrollable-x {
     _overflow-x: hidden;
     _position: relative;
 }
 
-.aui-table-scrollable-y,
-.aui-table-scrollable-y .aui-table-x-scroller {
+.table-scrollable-y,
+.table-scrollable-y .table-x-scroller {
     _overflow-y: hidden;
     _position: relative;
 }
 
-.aui-table-y-scroller-container {
+.table-y-scroller-container {
     overflow-x: hidden;
     position: relative;
 }
 
-.aui-table-scrollable-y .aui-table-content {
+.table-scrollable-y .table-content {
     /* To allow absolute positioning of virtual scrollbar */
     position: relative;
 }
 
-.aui-table-scrollable-y .aui-table-table .aui-table-columns {
+.table-scrollable-y .table-table .table-columns {
     /* Prevent masked headers from showing during momentum scrolling */
     visibility: hidden;
 }
 
-.aui-table-scroll-columns {
+.table-scroll-columns {
     position: absolute;
     width: 100%;
     z-index: 2;
 }
 
-.aui-table-y-scroller,
-.aui-table-scrollable-x .aui-table-caption-table {
+.table-y-scroller,
+.table-scrollable-x .table-caption-table {
     width: 100%;
 }
 
-.aui-table-x-scroller {
+.table-x-scroller {
     position: relative;
     overflow-x: scroll;
     overflow-y: hidden;
 }
 
-.aui-table-scrollable-y .aui-table-y-scroller {
+.table-scrollable-y .table-y-scroller {
     position: relative;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -53,14 +53,14 @@
     -webkit-overflow-scrolling: touch;
 }
 
-.aui-table-scrollbar {
+.table-scrollbar {
     position: absolute;
     overflow-x: hidden;
     overflow-y: scroll;
     z-index: 2;
 }
 
-.aui-table-scrollbar div {
+.table-scrollbar div {
     position: absolute;
     width: 1px;
     visibility: hidden;
@@ -68,7 +68,7 @@
 
 /* Removed because it prevented cmd + zoom resizing in Chrome (at least) */
 /*
-.aui-table-header {
+.table-header {
     -webkit-text-size-adjust: none;
 }
 */
@@ -76,18 +76,18 @@
 /*
 * custom
 */
-.aui-table-sortable-column {
+.table-sortable-column {
     cursor: pointer;
 }
 
-.aui-table-sort-liner {
+.table-sort-liner {
     display: block;
     height: 100%;
     padding-right: 15px;
     position: relative;
 }
 
-.aui-table-sort-indicator {
+.table-sort-indicator {
     bottom: .5ex;
     height: 10px;
     overflow: hidden;
@@ -96,9 +96,9 @@
     width: 7px;
 }
 
-.aui-table-sorted .aui-table-sort-indicator {
+.table-sorted .table-sort-indicator {
     background-position: 0 -10px;
 }
-.aui-table-sorted-desc .aui-table-sort-indicator {
+.table-sorted-desc .table-sort-indicator {
     background-position: 0 -20px;
 }

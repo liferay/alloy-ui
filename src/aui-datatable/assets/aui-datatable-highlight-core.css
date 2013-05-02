@@ -1,12 +1,12 @@
-.aui-table-selection {
+.table-selection {
 	outline: 0;
 }
 
-.aui-table-highlight-overlay {
+.table-highlight-overlay {
 	position: absolute;
 	z-index: 1;
 }
 
-.aui-table-highlight-overlay-active {
+.table-highlight-overlay-active {
 	z-index: 2;
 }

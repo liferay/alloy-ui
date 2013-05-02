@@ -107,7 +107,7 @@ var Lang = A.Lang,
  * <pre><code>var SortableLayout = new A.SortableLayout({
  *      dragNodes: '.portlet',
  *      dropNodes: '.column',
- *      proxyNode: A.Node.create('<div class="aui-sortable-layout-proxy"></div>'),
+ *      proxyNode: A.Node.create('<div class="sortable-layout-proxy"></div>'),
  *      lazyStart: true
  * </code></pre>
  *

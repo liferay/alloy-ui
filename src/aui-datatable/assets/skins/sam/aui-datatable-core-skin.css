@@ -1,36 +1,36 @@
 /*
 * css from datatable-scroll-skin.css
 */
-.aui-table-scroll-columns .aui-table-header {
+.table-scroll-columns .table-header {
     padding: 0;
 }
 
-.aui-table-x-scroller,
-.aui-table-y-scroller-container {
+.table-x-scroller,
+.table-y-scroller-container {
     border: 1px solid #ddd;
 }
 
-.aui-table-scrollable-x .aui-table-y-scroller-container,
-.aui-table-x-scroller .aui-table-table,
-.aui-table-y-scroller .aui-table-table {
+.table-scrollable-x .table-y-scroller-container,
+.table-x-scroller .table-table,
+.table-y-scroller .table-table {
     border: 0 none;
 }
 
 /*
 * custom
 */
-.aui-table-header {
+.table-header {
     background: #fff;
     border-bottom: 1px;
     border-bottom-color: #ddd;
     border-bottom-style: solid;
 }
 
-.aui-table-sort-indicator {
+.table-sort-indicator {
     _background: url(sort-arrow-sprite-ie.png) no-repeat 0 0;
     background: url(sort-arrow-sprite.png) no-repeat 0 0;
 }
 
-.aui-table-sorted {
+.table-sorted {
     background: #f9f9f9;
 }

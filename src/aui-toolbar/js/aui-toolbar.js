@@ -53,7 +53,7 @@ A.Toolbar = A.Component.create({
     prototype: {
         CONTENT_TEMPLATE: null,
         TEMPLATES: {
-            button: '<button class="aui-btn">{content}</button>',
+            button: '<button class="btn">{content}</button>',
             icon: '<i class="{cssClass}"></i>',
             group: '<div class="aui-btn-group {cssClass}"></div>'
         },

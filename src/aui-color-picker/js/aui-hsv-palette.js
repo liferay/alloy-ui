@@ -85,9 +85,9 @@ var AColor = A.Color,
     UNIT_SATURATION = '%',
     UNIT_VALUE = '%',
 
-    SELECTOR_CONTROL_GROUP_ERROR = '.aui-control-group.aui-error',
-    SELECTOR_CONTROL_GROUP = '.aui-control-group',
-    SELECTOR_HSV_VALUE = '.aui-hsv-value',
+    SELECTOR_CONTROL_GROUP_ERROR = '.control-group.error',
+    SELECTOR_CONTROL_GROUP = '.control-group',
+    SELECTOR_HSV_VALUE = '.hsv-value',
 
     CSS_CONTAINER = getClassName('hsv-container'),
     CSS_CONTAINER_CONTROLS = getClassName('hsv-container-controls'),
@@ -161,16 +161,16 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
 
     TPL_LABEL_VALUE_CONTAINER:  '<div class="' + CSS_LABEL_VALUE_CONTAINER + ' {subClass}"></div>',
 
-    TPL_OUTPUT:  '<div class="aui-control-group ' + CSS_LABEL_VALUE + ' ' + CSS_LABEL_VALUE_HEX + '">' +
+    TPL_OUTPUT:  '<div class="control-group ' + CSS_LABEL_VALUE + ' ' + CSS_LABEL_VALUE_HEX + '">' +
                     '<label>{label}</label>' +
                     '<div class="controls">' +
                         '<input class="' + CSS_VALUE + '" data-type="{type}" type="text" maxlength="{maxlength}" value="{value}">' +
                     '</div>' +
                 '</div>',
 
-    TPL_LABEL_VALUE: '<div class="aui-control-group aui-input-prepend aui-input-append">' +
-                        '<label class="aui-add-on">{label}</label>' +
-                        '<input class="aui-span2 ' + CSS_VALUE + '" data-type="{type}" type="text" maxlength="{maxlength}" value="{value}">' +
+    TPL_LABEL_VALUE: '<div class="control-group input-prepend input-append">' +
+                        '<label class="add-on">{label}</label>' +
+                        '<input class="span2 ' + CSS_VALUE + '" data-type="{type}" type="text" maxlength="{maxlength}" value="{value}">' +
                         '<label class="' + CSS_LABEL + '">{labelUnit}</label>' +
                     '</div>',
 

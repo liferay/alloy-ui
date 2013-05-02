@@ -1,20 +1,20 @@
-.aui-image-cropper {
+.image-cropper {
 	line-height: 0;
 	position: relative;
 }
 
-.aui-image-cropper .aui-image-cropper-crop {
+.image-cropper .image-cropper-crop {
 	background-repeat: no-repeat;
 	border: 1px solid #000;
 	position: absolute;
 	z-index: 10;
 }
 
-.aui-image-cropper .aui-image-cropper-crop:hover {
+.image-cropper .image-cropper-crop:hover {
 	cursor: move;
 }
 
-.aui-image-cropper-overlay {
+.image-cropper-overlay {
 	background-color: transparent;
 	height: 100%;
 	left: 0;
@@ -25,7 +25,7 @@
 	z-index: 9;
 }
 
-.aui-image-cropper-crop-outline {
+.image-cropper-crop-outline {
 	height: 100%;
 	width: 100%;
 	border: 1px dashed #FFF;
@@ -34,94 +34,94 @@
 	outline: 3px solid rgba(255, 255, 255, 0.5);
 }
 
-.aui-image-cropper-crop-hover .aui-image-cropper-overlay {
+.image-cropper-crop-hover .image-cropper-overlay {
 	background-color: #FFF;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner {
+.image-cropper .image-cropper-crop .yui3-resize-handle-inner {
 	width: 10px;
 	height: 10px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-t {
+.image-cropper .image-cropper-crop .yui3-resize-handle-t {
 	top: -4px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-tr {
+.image-cropper .image-cropper-crop .yui3-resize-handle-tr {
 	right: -5px;
 	top: -5px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-r {
+.image-cropper .image-cropper-crop .yui3-resize-handle-r {
 	right: -4px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-br {
+.image-cropper .image-cropper-crop .yui3-resize-handle-br {
 	bottom: -5px;
 	right: -5px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-b {
+.image-cropper .image-cropper-crop .yui3-resize-handle-b {
 	bottom: -4px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-bl {
+.image-cropper .image-cropper-crop .yui3-resize-handle-bl {
 	bottom: -5px;
 	left: -5px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-l {
+.image-cropper .image-cropper-crop .yui3-resize-handle-l {
 	left: -4px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-tl {
+.image-cropper .image-cropper-crop .yui3-resize-handle-tl {
 	left: -5px;
 	top: -5px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-t {
+.image-cropper .image-cropper-crop .yui3-resize-handle-inner-t {
 	margin-left: -5px;
 	top: -2px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-tr {
+.image-cropper .image-cropper-crop .yui3-resize-handle-inner-tr {
 	right: 0;
 	top: 0;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-r {
+.image-cropper .image-cropper-crop .yui3-resize-handle-inner-r {
 	margin-top: -5px;
 	right: -2px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-br {
+.image-cropper .image-cropper-crop .yui3-resize-handle-inner-br {
 	bottom: 0;
 	right: 0;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-b {
+.image-cropper .image-cropper-crop .yui3-resize-handle-inner-b {
 	margin-left: -5px;
 	bottom: -2px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-bl {
+.image-cropper .image-cropper-crop .yui3-resize-handle-inner-bl {
 	bottom: 0;
 	left: 0;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-l {
+.image-cropper .image-cropper-crop .yui3-resize-handle-inner-l {
 	margin-top: -5px;
 	left: -2px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-tl {
+.image-cropper .image-cropper-crop .yui3-resize-handle-inner-tl {
 	left: 0;
 	top: 0;
 }
 
 /* IE fixes */
 
-.aui-image-cropper-overlay {
+.image-cropper-overlay {
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)"\9;
 	filter: alpha(opacity=40)\9;
 }

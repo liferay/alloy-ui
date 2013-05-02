@@ -610,7 +610,7 @@ var BaseCellEditor = A.Component.create({
 									click: A.bind(instance._handleSaveEvent, instance)
 								},
 								label: strings[SAVE],
-								icon: 'aui-icon-ok-sign'
+								icon: 'icon-ok-sign'
 							},
 							{
 								on: {
@@ -713,7 +713,7 @@ var BaseCellEditor = A.Component.create({
 					toolbar.add(
 						[
 							{
-								icon: 'aui-icon-edit',
+								icon: 'icon-edit',
 								label: instance.getString(EDIT),
 								on: {
 									click: A.bind(instance._handleEditEvent, instance)
@@ -1249,7 +1249,7 @@ var CheckboxCellEditor = A.Component.create({
 	prototype: {
 		ELEMENT_TEMPLATE: '<div class="' + CSS_CELLEDITOR_ELEMENT + '"></div>',
 		OPTION_TEMPLATE: '<input class="' + CSS_CELLEDITOR_OPTION + '" id="{id}" name="{name}" type="checkbox" value="{value}"/>',
-		OPTION_WRAPPER: '<label class="aui-checkbox" for="{id}"> {label}</label>',
+		OPTION_WRAPPER: '<label class="checkbox" for="{id}"> {label}</label>',
 
 		getElementsValue: function() {
 			var instance = this;
@@ -1297,8 +1297,8 @@ var RadioCellEditor = A.Component.create({
 	EXTENDS: A.CheckboxCellEditor,
 
 	prototype: {
-		OPTION_TEMPLATE: '<input class="aui-field-input-choice" id="{id}" name="{name}" type="radio" value="{value}"/>',
-		OPTION_WRAPPER: '<label class="aui-radio" for="{id}"> {label}</label>',
+		OPTION_TEMPLATE: '<input class="field-input-choice" id="{id}" name="{name}" type="radio" value="{value}"/>',
+		OPTION_WRAPPER: '<label class="radio" for="{id}"> {label}</label>',
 
 		getElementsValue: function() {
 			var instance = this;
