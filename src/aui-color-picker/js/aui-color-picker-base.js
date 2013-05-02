@@ -120,7 +120,7 @@ ColorPickerBase.prototype = {
         }
         else {
             instance._eventHandles.push(
-                trigger.on(triggerEvent, instance._onTriggerInteraction, trigger, instance)
+                trigger.on(triggerEvent, instance._onTriggerInteraction, instance)
             );
         }
     },
