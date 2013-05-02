@@ -702,7 +702,7 @@ var FormValidator = A.Component.create({
                 elements = domBoundingBox.elements,
                 defaultRulesKeys = AObject.keys(defaults.RULES),
                 defaultRulesJoin = defaultRulesKeys.join('|'),
-                regex = getRegExp('aui-field-(' + defaultRulesJoin + ')', 'g'),
+                regex = getRegExp('field-(' + defaultRulesJoin + ')', 'g'),
                 i,
                 length,
                 ruleNameMatch = [],
