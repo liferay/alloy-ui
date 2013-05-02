@@ -1,25 +1,25 @@
-.aui-combobox-content .aui-field-content {
+.combobox-content .field-content {
 	float: none;
 }
 
-.aui-combobox-content {
+.combobox-content {
 	white-space: nowrap;
 	vertical-align: middle;
 }
 
-.aui-combobox-content .aui-field-content {
+.combobox-content .field-content {
 	display: inline-block;
 }
 
-.aui-combobox-content .aui-field-input {
+.combobox-content .field-input {
 	display: block;
 }
 
-.aui-editable .aui-btn-group {
+.editable .btn-group {
 	margin-top: -3px;
 }
 
-.aui-editable .aui-toolbar {
+.editable .toolbar {
 	display: inline-block;
 	margin-left: 1px;
 }

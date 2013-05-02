@@ -1,50 +1,50 @@
 /* ---------- Interaction styles ---------- */
-.aui-state-default,
-.aui-state-active,
-.aui-state-hover {
+.state-default,
+.state-active,
+.state-hover {
   background: #eee;
   border: 1px solid #ccc;
   border-color: #bbb #999 #999 #bbb;
 }
 
-.aui-state-active {
+.state-active {
   background: #efefef;
   border-color: #333;
 }
 
-.aui-state-hover {
+.state-hover {
   background: #ddd;
   border-color: #999 #bbb #bbb #999;
   cursor: pointer;
 }
 
-.aui-state-disabled {
+.state-disabled {
   cursor: default !important;
 }
 
-.aui-html-template {
+.html-template {
   display: none;
 }
 
-.aui-basecelleditor-hidden,
-.aui-datecelleditor-hidden,
-.aui-dropdowncelleditor-hidden,
-.aui-textcelleditor-hidden,
-.aui-textareacelleditor-hidden,
-.aui-checkboxcelleditor-hidden,
-.aui-radiocelleditor-hidden,
-.aui-helper-hidden {
+.basecelleditor-hidden,
+.datecelleditor-hidden,
+.dropdowncelleditor-hidden,
+.textcelleditor-hidden,
+.textareacelleditor-hidden,
+.checkboxcelleditor-hidden,
+.radiocelleditor-hidden,
+.helper-hidden {
   display: none !important;
 }
 
-.aui-helper-hidden-accessible,
-.aui-overlay-hidden,
-.aui-overlaycontext-hidden,
-.aui-overlaymask-hidden,
-.aui-date-picker-hidden,
-.aui-datepicker-hidden,
-.aui-colorpicker-hidden,
-.aui-tooltip-hidden {
+.helper-hidden-accessible,
+.overlay-hidden,
+.overlaycontext-hidden,
+.overlaymask-hidden,
+.date-picker-hidden,
+.datepicker-hidden,
+.colorpicker-hidden,
+.tooltip-hidden {
   clip: rect(0 0 0 0) !important;
   position: absolute !important;
   /*Webkit and IE7 let clipped content change the scroll height of the page*/
@@ -58,13 +58,13 @@
   _position: absolute !important;
 }
 
-.aui-helper-force-offset {
+.helper-force-offset {
   display: block !important;
   position: absolute !important;
   visibility: hidden !important;
 }
 
-.aui-helper-reset {
+.helper-reset {
   margin: 0;
   padding: 0;
   outline: 0;
@@ -74,19 +74,19 @@
   border: 0;
 }
 
-.aui-helper-clearfix:after {
+.helper-clearfix:after {
   clear: both;
   content: "";
   display: block;
   height: 0;
 }
 
-.aui-helper-clearfix {
+.helper-clearfix {
   /* IE7/IE6 */
   zoom: 1;
 }
 
-.aui-helper-zfix {
+.helper-zfix {
   width: 100%;
   height: 100%;
   top: 0;
@@ -100,7 +100,7 @@
 }
 
 /* unselectable */
-.aui-helper-unselectable, .aui-helper-unselectable * {
+.helper-unselectable, .helper-unselectable * {
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -110,337 +110,337 @@
 }
 
 /* scroll lock */
-.aui-helper-scroll-lock {
+.helper-scroll-lock {
   height: 100%;
   margin: 0;
   overflow: hidden;
   width: 100%;
 }
 
-.aui-layout {
+.layout {
   width: 100%;
 }
 
-.ie6 .aui-layout-content,
-.ie7 .aui-layout-content {
+.ie6 .layout-content,
+.ie7 .layout-content {
   display: block;
 }
 
-.ltr .aui-column,
-.rtl .aui-column-last {
+.ltr .column,
+.rtl .column-last {
   float: left;
 }
 
-.rtl .aui-column,
-.ltr .aui-column-last {
+.rtl .column,
+.ltr .column-last {
   float: right;
 }
 
-.ltr .aui-column-last {
+.ltr .column-last {
   margin-left: -5px;
 }
 
-.rtl .aui-column-last {
+.rtl .column-last {
   margin-right: -5px;
 }
 
-.aui-layout-content:after {
+.layout-content:after {
   clear: both;
   content: "";
   display: block;
   height: 0;
 }
 
-.aui-layout-content {
+.layout-content {
   /* IE7/IE6 */
   zoom: 1;
 }
 
-.aui-w1-20,
-.aui-w5 {
+.w1-20,
+.w5 {
   width: 5%;
 }
 
-.aui-w1-16 {
+.w1-16 {
   width: 6.25%;
 }
 
-.aui-w1-12 {
+.w1-12 {
   width: 8.334%;
 }
 
-.aui-w1-10,
-.aui-w10 {
+.w1-10,
+.w10 {
   width: 10%;
 }
 
-.aui-w1-9 {
+.w1-9 {
   width: 11.112%;
 }
 
-.aui-w1-8 {
+.w1-8 {
   width: 12.5%;
 }
 
-.aui-w1-7 {
+.w1-7 {
   width: 14.286%;
 }
 
-.aui-w15 {
+.w15 {
   width: 15%;
 }
 
-.aui-w1-6 {
+.w1-6 {
   width: 16.667%;
 }
 
-.aui-w3-16 {
+.w3-16 {
   width: 18.75%;
 }
 
-.aui-w1-5,
-.aui-w20 {
+.w1-5,
+.w20 {
   width: 20%;
 }
 
-.aui-w2-9 {
+.w2-9 {
   width: 22.223%;
 }
 
-.aui-w1-4,
-.aui-w25 {
+.w1-4,
+.w25 {
   width: 25%;
 }
 
-.aui-w2-7 {
+.w2-7 {
   width: 28.572%;
 }
 
-.aui-w3-10,
-.aui-w30 {
+.w3-10,
+.w30 {
   width: 30%;
 }
 
-.aui-w5-16 {
+.w5-16 {
   width: 31.25%;
 }
 
-.aui-w1-3,
-.aui-w33 {
+.w1-3,
+.w33 {
   width: 33.334%;
 }
 
-.aui-w35 {
+.w35 {
   width: 35%;
 }
 
-.aui-w3-8 {
+.w3-8 {
   width: 37.5%;
 }
 
-.aui-w38 {
+.w38 {
   width: 38.2%;
 }
 
-.aui-w2-5,
-.aui-w40 {
+.w2-5,
+.w40 {
   width: 40%;
 }
 
-.aui-w5-12 {
+.w5-12 {
   width: 41.667%;
 }
 
-.aui-w7-16 {
+.w7-16 {
   width: 43.75%;
 }
 
-.aui-w4-9 {
+.w4-9 {
   width: 44.445%;
 }
 
-.aui-w45 {
+.w45 {
   width: 45%;
 }
 
-.aui-w3-7 {
+.w3-7 {
   width: 42.858%;
 }
 
-.aui-w1-2,
-.aui-w50 {
+.w1-2,
+.w50 {
   width: 50%;
 }
 
-.aui-w55 {
+.w55 {
   width: 55%;
 }
 
-.aui-w5-9 {
+.w5-9 {
   width: 55.556%;
 }
 
-.aui-w9-16 {
+.w9-16 {
   width: 56.25%;
 }
 
-.aui-w4-7 {
+.w4-7 {
   width: 57.143%;
 }
 
-.aui-w7-12 {
+.w7-12 {
   width: 58.334%;
 }
 
-.aui-w3-5,
-.aui-w60 {
+.w3-5,
+.w60 {
   width: 60%;
 }
 
-.aui-w5-8 {
+.w5-8 {
   width: 62.5%;
 }
 
-.aui-w62 {
+.w62 {
   width: 61.8%;
 }
 
-.aui-w65 {
+.w65 {
   width: 65%;
 }
 
-.aui-w2-3,
-.aui-w66 {
+.w2-3,
+.w66 {
   width: 66.667%;
 }
 
-.aui-w11-16 {
+.w11-16 {
   width: 68.75%;
 }
 
-.aui-w7-10,
-.aui-w70 {
+.w7-10,
+.w70 {
   width: 70%;
 }
 
-.aui-w5-7 {
+.w5-7 {
   width: 71.429%;
 }
 
-.aui-w3-4,
-.aui-w75 {
+.w3-4,
+.w75 {
   width: 75%;
 }
 
-.aui-w7-9 {
+.w7-9 {
   width: 77.778%;
 }
 
-.aui-w4-5,
-.aui-w80 {
+.w4-5,
+.w80 {
   width: 80%;
 }
 
-.aui-w13-16 {
+.w13-16 {
   width: 81.25%;
 }
 
-.aui-w5-6 {
+.w5-6 {
   width: 83.334%;
 }
 
-.aui-w85 {
+.w85 {
   width: 85%;
 }
 
-.aui-w6-7 {
+.w6-7 {
   width: 85.715%;
 }
 
-.aui-w7-8 {
+.w7-8 {
   width: 87.5%;
 }
 
-.aui-w9-10,
-.aui-w90 {
+.w9-10,
+.w90 {
   width: 90%;
 }
 
-.aui-w11-12 {
+.w11-12 {
   width: 91.667%;
 }
 
-.aui-w15-16 {
+.w15-16 {
   width: 93.75%;
 }
 
-.aui-w95 {
+.w95 {
   width: 95%;
 }
 
-.aui-w100 {
+.w100 {
   width: 100%;
 }
 
-.webkit .aui-w1-12 {
+.webkit .w1-12 {
   width: 8.345%;
 }
 
-.webkit .aui-w11-12 {
+.webkit .w11-12 {
   width: 91.675%;
 }
 
-.webkit .aui-w1-6 {
+.webkit .w1-6 {
   width: 16.675%;
 }
 
-.webkit .aui-w5-6 {
+.webkit .w5-6 {
   width: 83.345%;
 }
 
-.webkit .aui-w5-12 {
+.webkit .w5-12 {
   width: 41.675%;
 }
 
-.webkit .aui-w7-12 {
+.webkit .w7-12 {
   width: 58.345%;
 }
 
-.webkit .aui-w1-3,
-.webkit .aui-w33 {
+.webkit .w1-3,
+.webkit .w33 {
   width: 33.345%;
 }
 
-.webkit .aui-w2-3,
-.webkit .aui-w66 {
+.webkit .w2-3,
+.webkit .w66 {
   width: 66.675%;
 }
 
-.aui-column-content,
-.aui-column-content-center {
+.column-content,
+.column-content-center {
   padding: 0 0.5em;
 }
 
-.ltr .aui-column-content-first,
-.rtl .aui-column-content-last {
+.ltr .column-content-first,
+.rtl .column-content-last {
   padding-left: 0;
 }
 
-.rtl .aui-column-content-first,
-.ltr .aui-column-content-last {
+.rtl .column-content-first,
+.ltr .column-content-last {
   padding-right: 0;
 }
 
-.ie6.ltr .aui-column-first,
-.ie6.ltr .aui-column-content-first,
-.ie6.rtl .aui-column-last,
-.ie6.rtl .aui-column-content-last {
+.ie6.ltr .column-first,
+.ie6.ltr .column-content-first,
+.ie6.rtl .column-last,
+.ie6.rtl .column-content-last {
   display: inline;
 }
 
-.ie6 .aui-layout-content .aui-column-content-center,
-.ie6 .aui-layout-content .aui-column-content-first,
-.ie6 .aui-layout-content .aui-column-content-last {
+.ie6 .layout-content .column-content-center,
+.ie6 .layout-content .column-content-first,
+.ie6 .layout-content .column-content-last {
   word-wrap: break-word;
   overflow: hidden;
 }
@@ -448,39 +448,39 @@
 .floatbox {
   overflow: hidden;
 }
-.aui-fieldset-legend {
+.fieldset-legend {
   font-size: 1.2em;
   font-weight: bold;
 }
 
-.aui-field-labels-inline .aui-field-label,
-.aui-field-labels-inline .aui-field-input,
-.aui-field-labels-inline .aui-field-hint {
+.field-labels-inline .field-label,
+.field-labels-inline .field-input,
+.field-labels-inline .field-hint {
   float: left;
 }
 
-.aui-field-labels-inline .aui-field-label,
-.aui-field-labels-inline .aui-field-input-text {
+.field-labels-inline .field-label,
+.field-labels-inline .field-input-text {
   width: 45%;
 }
 
-.aui-field-labels-inline .aui-field-label {
+.field-labels-inline .field-label {
   margin: 0.3em 2% 0 0;
 }
 
-.aui-field-labels-right .aui-field-label {
+.field-labels-right .field-label {
   text-align: right;
 }
 
-.aui-field-labels-inline .aui-field-hint {
+.field-labels-inline .field-hint {
   display: block;
   float: none;
   clear: both;
   margin-left: 47%;
 }
 
-.aui-field-label,
-.aui-field-labels-top .aui-field-label {
+.field-label,
+.field-labels-top .field-label {
   display: block;
   float: none;
   text-align: left;
@@ -488,14 +488,14 @@
   width: auto;
 }
 
-.aui-field-input,
-.aui-field-labels-top .aui-field-input {
+.field-input,
+.field-labels-top .field-input {
   float: none;
   width: auto;
 }
 
-.aui-field-hint,
-.aui-field-labels-top .aui-field-hint {
+.field-hint,
+.field-labels-top .field-hint {
   line-height: 1;
   clear: none;
   float: right;
@@ -503,69 +503,69 @@
   margin: 0;
 }
 
-.aui-field-hint-icon {
+.field-hint-icon {
   float: left;
 }
 
-.aui-field-inline {
+.field-inline {
   display: inline-block;
   vertical-align: middle;
 }
 
-.aui-field-label-inline {
+.field-label-inline {
   display: inline-block;
   margin: 0.4em 0.4em 0 0;
 }
 
-.aui-field-inline .aui-field-content,
-.aui-field-inline .aui-field-label {
+.field-inline .field-content,
+.field-inline .field-label {
   display: inline-block;
 }
 
-.aui-field-inline .aui-field-label {
+.field-inline .field-label {
   vertical-align: middle;
 }
 
-.aui-field-group {
+.field-group {
   float: left;
   width: 53%;
 }
 
-.aui-choice-label {
+.choice-label {
   line-height: 1;
   width: 89%;
 }
 
-.aui-field-input-choice {
+.field-input-choice {
   display: inline-block;
   margin: 0 0.4em 0 0;
   vertical-align: middle;
 }
 
-.aui-field-row {
+.field-row {
   display: block;
   clear: both;
 }
 
-.aui-field-row:after {
+.field-row:after {
   clear: both;
   content: "";
   display: block;
   height: 0;
 }
 
-.aui-field-row {
+.field-row {
   /* IE7/IE6 */
   zoom: 1;
 }
 
-.aui-button-holder {
+.button-holder {
   overflow: hidden;
   display: block;
   clear: both;
 }
 
-.aui-button-input {
+.button-input {
   margin: 0;
   line-height: 1.3;
   text-decoration: none;
@@ -575,12 +575,12 @@
 }
 
 /* IE7 and below */
-.aui-button-input {
+.button-input {
   *padding: 4px 10px 3px 7px;
 }
 
-.aui-field-content:after,
-.aui-button-holder:after {
+.field-content:after,
+.button-holder:after {
   clear: both;
   content: " ";
   display: block;
@@ -588,74 +588,74 @@
   overflow: hidden;
 }
 
-.aui-field-content,
-.aui-button-holder {
+.field-content,
+.button-holder {
   display: inline-block;
 }
 
 /* start commented backslash hack \*/
-* html .aui-field-content,
-* html .aui-button-holder {
+* html .field-content,
+* html .button-holder {
   height: 1%;
 }
 
-.aui-field-content,
-.aui-button-holder {
+.field-content,
+.button-holder {
   display: block;
 }
 
 /* close commented backslash hack */
-.aui-field-label,
-.aui-field-label-inline-label {
+.field-label,
+.field-label-inline-label {
   font-weight: bold;
 }
 
-.aui-choice-label {
+.choice-label {
   font-weight: normal;
 }
 
-.aui-field-hint {
+.field-hint {
   color: #777;
   font-size: 0.9em;
 }
 
-.aui-choice-label,
-.aui-field-hint {
+.choice-label,
+.field-hint {
   line-height: 1.2;
 }
 
-.aui-field-element-left {
+.field-element-left {
   display: inline-block;
   vertical-align: middle;
 }
 
 /* Fields used for form validation */
-.aui-field.aui-has-error .aui-field-content {
+.field.has-error .field-content {
   border-bottom: 1px solid #EF4A4A;
   background-color: #FF9F9F;
 }
 
-.aui-field.aui-has-warn .aui-field-content {
+.field.has-warn .field-content {
   border-bottom: 1px solid #FFC45F;
   background-color: #FFFABF;
 }
 
-.aui-field .aui-message-holder {
+.field .message-holder {
   color: #FF0000;
   display: block;
   font-weight: bold;
 }
 
-.aui-status-failure {
+.status-failure {
   border: 1px solid #EF4A4A;
 }
-.aui-autocomplete-results-content,
-.aui-colorpicker-content,
-.aui-overlaycontext-content {
+.autocomplete-results-content,
+.colorpicker-content,
+.overlaycontext-content {
   background: #fff;
 }
 
-.aui-overlay {
+.overlay {
   position: absolute;
 }
 
@@ -665,18 +665,18 @@ recieve a gracefully degrading chrome enhancement such as a drop
 shadow or rounded corners.
 */
 /* ---------- CSS3 shadows ---------- */
-.aui-date-picker-content,
-.aui-overlaycontextpanel-content,
-.aui-tooltip-content,
-.aui-colorpicker-content,
-.aui-tree-drag-helper-content {
+.date-picker-content,
+.overlaycontextpanel-content,
+.tooltip-content,
+.colorpicker-content,
+.tree-drag-helper-content {
   -moz-box-shadow: 4px 4px 14px #777;
   -webkit-box-shadow: 4px 4px 14px #777;
   box-shadow: 4px 4px 14px #777;
 }
 
 /* No shadow */
-.aui-null-selector {
+.null-selector {
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -684,67 +684,67 @@ shadow or rounded corners.
 
 /* ---------- Rounded corners ---------- */
 /* All corners */
-.aui-state-default,
-.aui-state-active,
-.aui-state-hover,
-.aui-colorpicker-content,
-.aui-colorpicker-panel-content,
-.aui-loadingmask-message,
-.aui-loadingmask-message-content,
-.aui-progress-bar-content,
-.aui-progress-bar-status,
-.aui-form-builder-field,
-.aui-form-builder-default-message {
+.state-default,
+.state-active,
+.state-hover,
+.colorpicker-content,
+.colorpicker-panel-content,
+.loadingmask-message,
+.loadingmask-message-content,
+.progress-bar-content,
+.progress-bar-status,
+.form-builder-field,
+.form-builder-default-message {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
 }
 
-.aui-carousel menu {
+.carousel menu {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
 }
 
-.aui-carousel menu a {
+.carousel menu a {
   -moz-border-radius: 9px;
   -webkit-border-radius: 9px;
   border-radius: 9px;
 }
 
 /* Large corners */
-.aui-textboxlistentry,
-.aui-textboxlistentry-close {
+.textboxlistentry,
+.textboxlistentry-close {
   -moz-border-radius: 14px;
   -webkit-border-radius: 14px;
   border-radius: 14px;
 }
 
 /* No corners */
-.aui-editable-hover,
-.aui-overlaycontextpanel-pointer.aui-state-default {
+.editable-hover,
+.overlaycontextpanel-pointer.state-default {
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
   border-radius: 0;
 }
 
-.aui-state-default, .aui-state-disabled, .aui-state-disabled:hover {
+.state-default, .state-disabled, .state-disabled:hover {
     background: #d4d4d4 url(../images/common/state_default_bg.png) repeat-x 0 0;
     border: 1px solid;
     border-color: #c8c9ca #9e9e9e #9e9e9e #c8c9ca;
 }
 
-.aui-state-hover {
+.state-hover {
     background: #b9ced9 url(../images/common/state_hover_bg.png) repeat-x 0 0;
     border-color: #627782;
 }
 
-.aui-state-active {
+.state-active {
     background: #ebebeb url(../images/common/state_active_bg.png) repeat-x 0 0;
     border-color: #555;
 }
 
-.aui-state-active:hover {
+.state-active:hover {
     background: #f2faff url(../images/common/state_selected_hover.png) repeat-x 0 0;
     border-color: #627782;
 }
@@ -756,4 +756,4 @@ shadow or rounded corners.
 /* ---------- Rounded corners ---------- */
 
 /* YUI CSS Detection Stamp */
-#yui3-css-stamp.aui-skin-deprecated { display: none; }
+#yui3-css-stamp.skin-deprecated { display: none; }

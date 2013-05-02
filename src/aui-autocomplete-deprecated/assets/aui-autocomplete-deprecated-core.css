@@ -1,29 +1,29 @@
-.aui-autocomplete-content {
+.autocomplete-content {
 }
 
-.aui-autocomplete-trigger {
+.autocomplete-trigger {
 	cursor: pointer;
 	display: inline-block;
 	float: none;
 }
 
-.aui-autocomplete-results {	
+.autocomplete-results {	
 }
 
-.aui-autocomplete-list-item {
+.autocomplete-list-item {
 	border: 1px solid #fff;
 	list-style: none;
 	margin: 0;
 	padding: 0 3px;
 }
 
-.aui-autocomplete-results-content {
+.autocomplete-results-content {
 	border: 1px solid #98c0f4;
 	height: 100%;
 	overflow-y: auto;
 }
 
-.aui-autocomplete-selected {
+.autocomplete-selected {
 	background: #dfe8f6;
 	border-color: #a3bae9;
 }

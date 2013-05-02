@@ -1,28 +1,28 @@
-.aui-scroller {
+.scroller {
 	overflow: hidden;
 	position: relative;
 }
 
-.aui-scroller-content {
+.scroller-content {
 	left: 0;
 	position: absolute;
 	top: 0;
 }
 
-.aui-scroller-vertical .aui-scroller-content {
+.scroller-vertical .scroller-content {
 	height: auto !important;
 }
 
-.aui-scroller-horizontal .aui-scroller-content {
+.scroller-horizontal .scroller-content {
 	float: left;
 	white-space: nowrap;
 }
 
-.aui-scroller-horizontal .aui-scroller-item {
+.scroller-horizontal .scroller-item {
 	display: inline-block;
 }
 
-.ie7 .aui-scroller-horizontal .aui-scroller-item, .ie6 .aui-scroller-horizontal .aui-scroller-item {
+.ie7 .scroller-horizontal .scroller-item, .ie6 .scroller-horizontal .scroller-item {
 	display: inline;
 	zoom: 1;
 }

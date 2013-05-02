@@ -1,19 +1,19 @@
-.aui-datepicker-display,
-.aui-datepicker-select-wrapper,
-.aui-field-date .aui-datepicker-display,
-.aui-field-date .aui-datepicker-select-wrapper,
-.aui-datepicker-button-wrapper {
+.datepicker-display,
+.datepicker-select-wrapper,
+.field-date .datepicker-display,
+.field-date .datepicker-select-wrapper,
+.datepicker-button-wrapper {
   float: left;
 }
 
-.aui-datepicker-button-wrapper .aui-buttonitem-content {
+.datepicker-button-wrapper .buttonitem-content {
   margin: 0;
 }
 
-.aui-datepicker-button-wrapper {
+.datepicker-button-wrapper {
   margin: 0 5px 0 2px;
 }
 
-.aui-datepicker-select-wrapper select {
+.datepicker-select-wrapper select {
   margin-left: 2px;
 }

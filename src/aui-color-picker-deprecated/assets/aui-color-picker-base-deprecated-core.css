@@ -1,13 +1,13 @@
-.aui-colorpicker {
+.colorpicker {
 	width: 315px;
 }
 
-.aui-colorpicker-container {
+.colorpicker-container {
 	height: 228px;
 	position: relative;
 }
 
-.aui-colorpicker-canvas {
+.colorpicker-canvas {
 	background: #f00 url(picker_bg.png);
 	background-color: #f00;
 	height: 184px;
@@ -18,7 +18,7 @@
 	width: 184px;
 }
 
-.aui-colorpicker-controls {
+.colorpicker-controls {
 	height: 115px;
 	left: 226px;
 	position: absolute;
@@ -26,29 +26,29 @@
 	width: 80px;
 }
 
-.aui-colorpicker-controls .aui-field-content .aui-field-label {
+.colorpicker-controls .field-content .field-label {
 	margin-top: 0;
 	width: 20%;
 }
 
-.aui-colorpicker-controls .aui-field-content .aui-field-input-text {
+.colorpicker-controls .field-content .field-input-text {
 	padding: 1px;
 	width: 60%;
 }
 
-.aui-colorpicker-controls .aui-field-content {
+.colorpicker-controls .field-content {
 	clear: both;
 	padding: 3px 0;
 }
 
-.aui-colorpicker-hue-thumb {
+.colorpicker-hue-thumb {
 	cursor: default;
 	height: 7px;
 	position: absolute;
 	width: 18px;
 }
 
-.aui-colorpicker-hue-thumb-image {
+.colorpicker-hue-thumb-image {
 	background: url(color_indic.png) no-repeat 0 0;
 	display: block;
 	height: 7px;
@@ -57,7 +57,7 @@
 	width: 18px;
 }
 
-.aui-colorpicker-hue-canvas {
+.colorpicker-hue-canvas {
 	background: url(hue.png) no-repeat -2px -2px;
 	height: 186px;
 	left: 200px;
@@ -67,13 +67,13 @@
 	width: 14px;
 }
 
-.aui-colorpicker-mask {
+.colorpicker-mask {
 	left: 0;
 	position: absolute;
 	top: 0;
 }
 
-.aui-colorpicker-swatch {
+.colorpicker-swatch {
 	border: 2px solid #727C81;
 	height: 60px;
 	left: 226px;
@@ -82,8 +82,8 @@
 	width: 60px;
 }
 
-.aui-colorpicker-swatch-current,
-.aui-colorpicker-swatch-original {
+.colorpicker-swatch-current,
+.colorpicker-swatch-original {
 	background: #fff;
 	height: 30px;
 	left: 0;
@@ -92,25 +92,25 @@
 	width: 100%;
 }
 
-.aui-colorpicker-swatch-original {
+.colorpicker-swatch-original {
 	top: auto;
 	bottom: 0;
 	cursor: pointer;
 }
 
-.aui-colorpicker-thumb {
+.colorpicker-thumb {
 	cursor: default;
 	position: absolute;
 }
 
-.aui-colorpicker-thumb-image {
+.colorpicker-thumb-image {
 	background: url(select.png) no-repeat 0 0;
 	display: block;
 	height: 11px;
 	width: 11px;
 }
 
-.aui-colorpicker-container .aui-colorpicker-hue-slider-content {
+.colorpicker-container .colorpicker-hue-slider-content {
 	display: inline;
 	position: static;
 }
