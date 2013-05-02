@@ -1,3 +1,8 @@
 .yui3-color-picker-popover .aui-popover-content {
 	margin-left: 4px;
 }
+
+.yui3-color-picker-popover .aui-color-picker-nocolor,
+.yui3-color-picker-popover .aui-hsv-trigger {
+    min-height: 0;
+}

@@ -6,7 +6,13 @@ var AArray = A.Array,
 
     getClassName = A.getClassName,
 
+    _NAME = 'color-picker-inline',
+
+    _DATA_INDEX = 'data-index',
+    _DATA_VALUE = 'data-value',
+    _DEFAULT_COLOR = '#FFF',
     _DEFAULT_COLUMNS = 10,
+    _DEFAULT_HSV_COLOR = 'FF0000',
     _DOT = '.',
     _EMPTY = '',
     _INVALID_COLOR_INDEX = -1,
@@ -19,10 +25,6 @@ var AArray = A.Array,
     COLOR_CHANGE = 'colorChange',
     COLOR_PALETTE = 'colorPalette',
     CONTENT_BOX = 'contentBox',
-    DATA_INDEX = 'data-index',
-    DATA_VALUE = 'data-value',
-    DEFAULT_COLOR = '#FFF',
-    DEFAULT_HSV_COLOR = 'FF0000',
     HSV_PALETTE = 'hsvPalette',
     ITEMS = 'items',
     RC_SRC = 'sourceRecentColor',
@@ -42,25 +44,24 @@ var AArray = A.Array,
     CSS_NO_COLOR_ICON = getClassName('color-picker-nocolor-icon'),
     CSS_TRIGGER = getClassName('color-picker-trigger'),
     CSS_HSV_TRIGGER = getClassName('hsv-trigger'),
-    CSS_ACTIONS_CONTAINER = getClassName('actions-container'),
-
-    NAME = 'color-picker-inline';
+    CSS_ACTIONS_CONTAINER = getClassName('actions-container');
 
 function ColorPickerBase(config) {}
 
 ColorPickerBase.prototype = {
     TPL_HEADER_CONTENT: '<h3>{header}</h3>',
 
-    TPL_ACTIONS:
-        '<div class="aui-row-fluid ' + CSS_ACTIONS_CONTAINER + '"></div',
+    TPL_ACTIONS: '<div class="aui-row-fluid ' + CSS_ACTIONS_CONTAINER + '"></div',
 
-    TPL_HSV_TRIGGER:
-        '<div class="aui-span6 ' + CSS_HSV_TRIGGER + '">{more}</div>',
+    TPL_HSV_TRIGGER: '<div class="aui-span6 ' + CSS_HSV_TRIGGER + '">{more}</div>',
 
-    TPL_NO_COLOR:
-        '<div class="aui-span6 ' + CSS_NO_COLOR + '">' +
-            '<a href class="aui-btn-link"><i class="' + CSS_NO_COLOR_ICON + ' aui-icon-remove-circle"></i>{none}</a>' +
-        '</div>',
+    TPL_NO_COLOR:   '<div class="aui-span6 ' + CSS_NO_COLOR + '">' +
+                        '<a href class="aui-btn-link"><i class="' + CSS_NO_COLOR_ICON + ' aui-icon-remove-circle"></i>{none}</a>' +
+                    '</div>',
+
+    _currentTrigger: null,
+    _eventHandles: null,
+    _hsvPaletteModal: null,
 
     initializer: function() {
         var instance = this;
@@ -84,50 +85,7 @@ ColorPickerBase.prototype = {
         (new A.EventHandle(instance._eventHandles)).detach();
     },
 
-    _bindTrigger: function() {
-        var instance = this,
-            trigger;
-
-        trigger = instance.get(TRIGGER);
-
-        if (Lang.isString(trigger)) {
-            instance._eventHandles.push(
-                A.getBody().delegate(CLICK, instance._onTriggerClick, trigger, instance)
-            );
-        }
-        else {
-            instance._eventHandles.push(
-                trigger.on(CLICK, instance._onTriggerClick, trigger, instance)
-            );
-        }
-    },
-
-    _bindUICPBase: function() {
-        var instance = this,
-            renderHSVPalette;
-
-        renderHSVPalette = instance.get(RENDER_HSV_PALETTE);
-
-        if (renderHSVPalette) {
-            instance._eventHandles.push(
-                instance._hsvTrigger.on(CLICK, instance._onHSVTriggerClick, instance)
-            );
-
-            instance._recentColorsPalette.on(SELECTED_CHANGE, instance._onRecentColorPaletteSelectChange, instance);
-        }
-
-        instance.on(COLOR_CHANGE, instance._onColorChange, instance);
-
-        instance.on(VISIBLE_CHANGE, instance._onVisibleChange, instance);
-
-        instance._eventHandles.push(
-            instance._noColorNode.on(CLICK, instance._onNoColorClick, instance)
-        );
-
-        instance._bindTrigger();
-    },
-
-    _cleanup: function() {
+    reset: function() {
         var instance = this;
 
         instance.set(COLOR, _EMPTY, {
@@ -147,28 +105,85 @@ ColorPickerBase.prototype = {
         }
     },
 
+    _bindTrigger: function() {
+        var instance = this,
+            trigger,
+            triggerEvent;
+
+        trigger = instance.get(TRIGGER);
+        triggerEvent = instance.get('triggerEvent');
+
+        if (Lang.isString(trigger)) {
+            instance._eventHandles.push(
+                A.getBody().delegate(triggerEvent, instance._onTriggerInteraction, trigger, instance)
+            );
+        }
+        else {
+            instance._eventHandles.push(
+                trigger.on(triggerEvent, instance._onTriggerInteraction, trigger, instance)
+            );
+        }
+    },
+
+    _bindHSVPalette: function() {
+        var instance = this,
+            renderHSVPalette;
+
+        renderHSVPalette = instance.get(RENDER_HSV_PALETTE);
+
+        if (renderHSVPalette) {
+            instance._eventHandles.push(
+                instance._hsvTrigger.on(CLICK, instance._onHSVTriggerClick, instance)
+            );
+
+            instance._recentColorsPalette.on(SELECTED_CHANGE, instance._onRecentColorPaletteSelectChange, instance);
+        }
+    },
+
+    _bindNoColor: function() {
+        var instance = this;
+
+        instance._eventHandles.push(
+            instance._noColorNode.on(CLICK, instance._onNoColorClick, instance)
+        );
+    },
+
+    _bindUICPBase: function() {
+        var instance = this;
+
+        instance._bindNoColor();
+        instance._bindHSVPalette();
+        instance._bindTrigger();
+
+        instance.on(COLOR_CHANGE, instance._onColorChange, instance);
+        instance.on(VISIBLE_CHANGE, instance._onVisibleChange, instance);
+    },
+
     _defaultValueRecentColors: function() {
         var instance = this,
-            defaultColor;
+            defaultColor,
+            itemValue;
 
-        defaultColor = {
+        defaultColor = instance.get('defaultColor');
+
+        itemValue = {
             name: instance.get(STRINGS).noColor,
-            value: DEFAULT_COLOR
+            value: defaultColor
         };
 
         return {
             columns: _DEFAULT_COLUMNS,
             items: [
-                defaultColor,
-                defaultColor,
-                defaultColor,
-                defaultColor,
-                defaultColor,
-                defaultColor,
-                defaultColor,
-                defaultColor,
-                defaultColor,
-                defaultColor
+                itemValue,
+                itemValue,
+                itemValue,
+                itemValue,
+                itemValue,
+                itemValue,
+                itemValue,
+                itemValue,
+                itemValue,
+                itemValue
             ]
         };
     },
@@ -179,37 +194,44 @@ ColorPickerBase.prototype = {
         return instance._currentTrigger;
     },
 
-    _getDefaultOptions: function(optionsName) {
+    _getDefaultAttributeValue: function(attributeName) {
         var instance = this,
-            color,
-            options;
-
-        options = instance.get(optionsName);
+            attributeValue,
+            color;
 
         color = instance.get(COLOR);
 
+        attributeValue = instance.get(attributeName);
+
         if (color) {
             A.mix(
-                options,
+                attributeValue,
                 {
                     selected: color
                 }
             );
         }
 
-        return options;
+        return attributeValue;
     },
 
     _findRecentColorEmptySpot: function(items) {
         var instance = this,
-            result = _INVALID_COLOR_INDEX;
+            defaultColor,
+            result;
 
-        items = items || instance._recentColorsPalette.get(ITEMS);
+        defaultColor = instance.get('defaultColor');
+
+        result = _INVALID_COLOR_INDEX;
+
+        if (!items) {
+            items = instance._recentColorsPalette.get(ITEMS);
+        }
 
         AArray.some(
             items,
             function(item, index) {
-                var emptySlot = (item.value === DEFAULT_COLOR);
+                var emptySlot = (item.value === defaultColor);
 
                 if (emptySlot) {
                     result = index;
@@ -243,25 +265,30 @@ ColorPickerBase.prototype = {
                     ),
                     hsv: instance.get(HSV_PALETTE),
                     modal: true,
-                    resizable: false
+                    resizable: false,
+                    toolbars: {
+                        footer: [
+                            {
+                                label: strings.cancel,
+                                on: {
+                                    click: function() {
+                                        instance._hsvPaletteModal.hide();
+                                    }
+                                }
+                            },
+                            {
+                                label: strings.ok,
+                                on: {
+                                    click: function() {
+                                        instance._onHSVPaletteOK();
+                                    }
+                                },
+                                primary: true
+                            }
+                        ]
+                    }
                 }
             ).render();
-
-            instance._hsvPaletteModal.addToolbar([
-                {
-                    label: strings.cancel,
-                    on: {
-                        click: A.bind(instance._hsvPaletteModal.hide, instance._hsvPaletteModal)
-                    }
-                },
-                {
-                    label: strings.ok,
-                    on: {
-                        click: A.bind(instance._onHSVPaletteOK, instance)
-                    },
-                    primary: true
-                }
-            ]);
         }
 
         return instance._hsvPaletteModal;
@@ -275,7 +302,7 @@ ColorPickerBase.prototype = {
         }
 
         if (event.src !== AWidget.UI_SRC) {
-            instance.fire('selectColor', {
+            instance.fire('select', {
                 color: event.newVal,
                 trigger: event.trigger
             });
@@ -367,7 +394,7 @@ ColorPickerBase.prototype = {
 
         hsvPalette = instance._getHSVPalette();
 
-        hsvPalette.set(SELECTED, DEFAULT_HSV_COLOR);
+        hsvPalette.set(SELECTED, _DEFAULT_HSV_COLOR);
 
         if (instance._clickOutsideHandle) {
             instance._clickOutsideHandle.detach();
@@ -422,16 +449,16 @@ ColorPickerBase.prototype = {
 
         node = event.item;
 
-        color = node.getAttribute(DATA_VALUE);
+        color = node.getAttribute(_DATA_VALUE);
 
-        instance._recentColorIndex = Lang.toInt(node.getAttribute(DATA_INDEX));
+        instance._recentColorIndex = Lang.toInt(node.getAttribute(_DATA_INDEX));
 
-        if (color === DEFAULT_COLOR) {
+        if (color === _DEFAULT_COLOR) {
             event.preventDefault();
 
             hsvPalette = instance._getHSVPalette();
 
-            hsvPalette.set(SELECTED, DEFAULT_HSV_COLOR);
+            hsvPalette.set(SELECTED, _DEFAULT_HSV_COLOR);
 
             if (instance._clickOutsideHandle) {
                 instance._clickOutsideHandle.detach();
@@ -441,7 +468,7 @@ ColorPickerBase.prototype = {
         }
     },
 
-    _onTriggerClick: function(event) {
+    _onTriggerInteraction: function(event) {
         var instance = this,
             target;
 
@@ -474,7 +501,7 @@ ColorPickerBase.prototype = {
             }
         }
         else {
-            instance._cleanup();
+            instance.reset();
 
             A.later(0, instance, function(event) {
                 instance._clickOutsideHandle = instance.get(BOUNDING_BOX).once(CLICKOUTSIDE, instance.hide, instance);
@@ -499,7 +526,7 @@ ColorPickerBase.prototype = {
 
         body = instance.getStdModNode(A.WidgetStdMod.BODY);
 
-        colorPaletteOptions = instance._getDefaultOptions(COLOR_PALETTE);
+        colorPaletteOptions = instance._getDefaultAttributeValue(COLOR_PALETTE);
 
         instance._colorPalette = new A.ColorPalette(colorPaletteOptions).render(body);
 
@@ -544,7 +571,7 @@ ColorPickerBase.prototype = {
             recentColors,
             recentColorsPalette;
 
-        recentColors = instance._getDefaultOptions(RECENT_COLORS);
+        recentColors = instance._getDefaultAttributeValue(RECENT_COLORS);
 
         body = instance.getStdModNode(A.WidgetStdMod.BODY);
 
@@ -691,6 +718,11 @@ ColorPickerBase.ATTRS = {
         readOnly: true
     },
 
+    defaultColor: {
+        validator: Lang.isString,
+        value: _DEFAULT_COLOR
+    },
+
     hsvPalette: {
         validator: Lang.isObject,
         value: {
@@ -710,7 +742,8 @@ ColorPickerBase.ATTRS = {
 
     renderHSVPalette: {
         validator: Lang.isBoolean,
-        value: true
+        value: true,
+        writeOnce: true
     },
 
     strings: {
@@ -720,20 +753,23 @@ ColorPickerBase.ATTRS = {
             more: 'More colors...',
             noColor: 'No color',
             none: 'None',
-            ok: 'Ok'
+            ok: 'OK'
         }
     },
 
     trigger: {
         validator: '_validateTrigger',
         value: _DOT + CSS_TRIGGER
+    },
+
+    triggerEvent: {
+        validator: Lang.isString,
+        value: CLICK
     }
 };
 
-ColorPickerBase.CSS_PREFIX = getClassName(NAME);
+ColorPickerBase.CSS_PREFIX = getClassName(_NAME);
 
-ColorPickerBase.NAME = NAME;
-
-ColorPickerBase.NS = NAME;
+ColorPickerBase.NAME = _NAME;
 
 A.ColorPickerBase = ColorPickerBase;

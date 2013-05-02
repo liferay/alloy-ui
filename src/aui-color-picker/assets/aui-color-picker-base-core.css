@@ -1,6 +1,5 @@
 .aui-actions-container {
-    margin-top: .5em;
-    position: relative;
+    padding: 5px 0;
 }
 
 .aui-hsv-trigger, .aui-color-picker-nocolor {

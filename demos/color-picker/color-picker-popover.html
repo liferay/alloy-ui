@@ -3,16 +3,6 @@
 <html>
 <head>
     <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
-    <style type="text/css" media="screen">
-        body {
-            font-size: 12px;
-        }
-
-        #wrapper {
-            padding: 3em;
-        }
-    </style>
-
     <script src="../../build/aui/aui.js"></script>
 </head>
 
@@ -34,7 +24,7 @@
 
 </div>
 
-<script type="text/javascript" charset="utf-8">
+<script>
     YUI({ filter:'raw' }).use(
         'aui-color-picker-popover',
         function(A) {
@@ -42,7 +32,7 @@
                 trigger: '.aui-color-picker-trigger'
             }).render();
 
-            colorPicker.on('selectColor', function(event) {
+            colorPicker.on('select', function(event) {
                 event.trigger.setStyle('backgroundColor', event.color);
             });
         }
