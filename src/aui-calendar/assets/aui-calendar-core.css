@@ -35,26 +35,20 @@
 .aui-calendar-week {
 	float: left;
 	text-align: center;
-	width: 27px;
+	width: 14.2%;
 }
 
 .aui-calendar-day {
 	color: #000;
 	float: left;
-	margin: 0 0 3px 3px;
+	margin: 0 0.5% 2% 0.5%;
 	text-align: center;
 	text-decoration: none;
-	width: 22px;
-}
+	width: 13.2%;
 
-.aui-calendar-day-blank {
-	float: left;
-	height: 16px;
-	margin: 0 0 3px 3px;
-	text-align: center;
-	width: 24px;
-
-	_width: 23px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .aui-calendar-day-padding-end, .aui-calendar-day-padding-start {
@@ -88,4 +82,19 @@
 
 .aui-calendar-link-none {
 	float: right;
+}
+
+.ie {
+	.aui-calendar-week {
+		width: 27px;
+	}
+
+	.aui-calendar-day {
+		width: 23px;
+	}
+
+	.aui-calendar-day-blank {
+		width: 24px;
+		_width: 23px;
+	}
 }
