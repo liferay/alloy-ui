@@ -78,7 +78,7 @@ var Video = A.Component.create(
 			 * a fallback player with Flash.
 			 *
 			 * @attribute swfUrl
-			 * @default ''
+			 * @default aui-video/assets/player.swf
 			 * @type String
 			 */
 			swfUrl: {
