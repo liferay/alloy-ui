@@ -2,7 +2,7 @@ YUI.add('module-tests', function(Y) {
 
 	var suite = new Y.Test.Suite('aui-node');
 
-	var CSS_HIDE = 'aui-hide';
+	var CSS_HIDE = 'hide';
 
 	var NODE_TPL = '<div {cssClass} style="{display}; height: 50px; width: 50px; position: absolute; top: 0; left: 0;"></div>';
 

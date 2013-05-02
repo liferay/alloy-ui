@@ -10,7 +10,7 @@ var AColor = A.Color,
     _EMPTY = '',
     _POUND = '#',
 
-    CSS_ERROR = 'aui-error',
+    CSS_ERROR = 'error',
 
     BACKGROUND_COLOR = 'backgroundColor',
     CHANGE = 'change',
