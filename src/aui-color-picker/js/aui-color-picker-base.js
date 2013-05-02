@@ -39,6 +39,7 @@ var AArray = A.Array,
     UNSELECT = 'unselect',
     VISIBLE = 'visible',
     VISIBLE_CHANGE = 'visibleChange',
+    Z_INDEX = 'zIndex',
 
     CSS_NO_COLOR = getClassName('color-picker-nocolor'),
     CSS_NO_COLOR_ICON = getClassName('color-picker-nocolor-icon'),
@@ -247,12 +248,17 @@ ColorPickerBase.prototype = {
     _getHSVPalette: function() {
         var instance = this,
             contentBox,
-            strings;
+            strings,
+            zIndex;
 
         if (!instance._hsvPaletteModal) {
             contentBox = instance.get(CONTENT_BOX);
 
             strings = instance.get(STRINGS);
+
+            zIndex = instance.get(Z_INDEX) || 0;
+
+            zIndex += 2;
 
             instance._hsvPaletteModal = new A.HSVAPaletteModal(
                 {
@@ -286,7 +292,8 @@ ColorPickerBase.prototype = {
                                 primary: true
                             }
                         ]
-                    }
+                    },
+                    zIndex: zIndex
                 }
             ).render();
         }
@@ -575,7 +582,9 @@ ColorPickerBase.prototype = {
 
         body = instance.getStdModNode(A.WidgetStdMod.BODY);
 
-        recentColorsPalette = new A.ColorPalette(recentColors).render(body);
+        recentColorsPalette = new A.ColorPalette(recentColors);
+
+        recentColorsPalette.render(body);
 
         recentColorsPalette.on([SELECT, UNSELECT], instance._onRecentColorClick, instance);
 
