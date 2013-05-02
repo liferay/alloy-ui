@@ -38,7 +38,7 @@
 			font-size: 1.1em;
 		}
 
-		.aui-layout-content {
+		.layout-content {
 			margin-bottom: 4em;
 		}
 
@@ -92,10 +92,10 @@
 	<div id="demo">
 		<p>AlloyUI Templates allow the ability to format text and JavaScript objects in an easy to use manner that is also performant.<br /></p>
 
-		<div class="aui-layout-content" id="simple">
+		<div class="layout-content" id="simple">
 			<h2>Simple formatting</h2>
-			<div class="aui-column aui-w30">
-				<div class="aui-column-content">
+			<div class="column w30">
+				<div class="column-content">
 					<h3 class="header">Template markup</h3>
 					<pre class="tpl">
 &lt;div class=&quot;user-name&quot;&gt;Name: {name}&lt;/div&gt;
@@ -103,27 +103,27 @@
 					</pre>
 				</div>
 			</div>
-			<div class="aui-column aui-w30">
-				<div class="aui-column-content">
+			<div class="column w30">
+				<div class="column-content">
 					<h3 class="header">Javascript object</h3>
 					<pre class="js">
 {name: 'Nate Cavanaugh', expertise: 'Procrastinating'}
 					</pre>
 				</div>
 			</div>
-			<div class="aui-column aui-w30">
-				<div class="aui-column-content">
+			<div class="column w30">
+				<div class="column-content">
 					<input class="render-button" type="button" value="Render template" />
 					<div class="render-output"></div>
 				</div>
 			</div>
 		</div>
 
-		<div class="aui-layout-content" id="looping">
+		<div class="layout-content" id="looping">
 			<h2>Looping</h2>
 			<p>Loops can be nested, as well as operate on Arrays or Objects. If looping over an array, use the <code>{.}</code> variable to refer to the current item in the loop. If looping over an object, you can use the keys of the object such as <code>{name}</code> (if obj.name exists) or <code>{age}</code> (if obj.age exists), etc.</p>
-			<div class="aui-column aui-w30">
-				<div class="aui-column-content">
+			<div class="column w30">
+				<div class="column-content">
 					<h3 class="header">Template markup</h3>
 					<pre class="tpl">
 &lt;div class=&quot;user-name&quot;&gt;{name}&lt;/div&gt;
@@ -135,8 +135,8 @@
 					</pre>
 				</div>
 			</div>
-			<div class="aui-column aui-w30">
-				<div class="aui-column-content">
+			<div class="column w30">
+				<div class="column-content">
 					<h3 class="header">Javascript object</h3>
 					<pre class="js">
 {
@@ -146,19 +146,19 @@
 					</pre>
 				</div>
 			</div>
-			<div class="aui-column aui-w30">
-				<div class="aui-column-content">
+			<div class="column w30">
+				<div class="column-content">
 					<input class="render-button" type="button" value="Render template" />
 					<div class="render-output"></div>
 				</div>
 			</div>
 		</div>
 
-		<div class="aui-layout-content" id="conditionals">
+		<div class="layout-content" id="conditionals">
 			<h2>Conditionals</h2>
 			<p>You can test conditions using an if attribute of the tpl element.</p>
-			<div class="aui-column aui-w30">
-				<div class="aui-column-content">
+			<div class="column w30">
+				<div class="column-content">
 					<h3 class="header">Template markup</h3>
 					<pre class="tpl">
 &lt;tpl for=&quot;.&quot;&gt;
@@ -178,8 +178,8 @@
 					</pre>
 				</div>
 			</div>
-			<div class="aui-column aui-w30">
-				<div class="aui-column-content">
+			<div class="column w30">
+				<div class="column-content">
 					<h3 class="header">Javascript object</h3>
 					<pre class="js">
 [
@@ -189,21 +189,21 @@
 					</pre>
 				</div>
 			</div>
-			<div class="aui-column aui-w30">
-				<div class="aui-column-content">
+			<div class="column w30">
+				<div class="column-content">
 					<input class="render-button" type="button" value="Render template" />
 					<div class="render-output"></div>
 				</div>
 			</div>
 		</div>
 
-		<div class="aui-layout-content" id="formatting">
+		<div class="layout-content" id="formatting">
 			<h2>Formatting</h2>
 			<p>You have a couple of different formatting options available to you. To use the baked in formatting methods (which are all contained on A.Lang.String), you simply need to format your variable like so: <code>{var:formattingMethod}</code>. An example of this would be to capitalize the <code>name</code> variable, you would do: <code>{name:capitalize}</code>, or to repeat the age variable 10 times, you could do <code>{age:repeat(10)}</code>. You can also add your own methods on a per template instance by passing the last configuration item into the A.Template constructor as an object that contains methods. For example, <code>new A.Template('{name:customFormatter}', {customFormatter: function(str){return str;}})</code>
 				<p class="note">* The formatting methods can take any number of arguments, but the first argument is always implicitly passed, which is the string itself. So if you have no arguments, you don't need to use the parenthesis. If you do have other arguments, you need the parenthesis, but you don't need to pass the string itself.</p>
 				</p>
-			<div class="aui-column aui-w30">
-				<div class="aui-column-content">
+			<div class="column w30">
+				<div class="column-content">
 					<h3 class="header">Template markup</h3>
 					<pre class="tpl">
 &lt;tpl for=&quot;.&quot;&gt;
@@ -215,8 +215,8 @@
 					</pre>
 				</div>
 			</div>
-			<div class="aui-column aui-w30">
-				<div class="aui-column-content">
+			<div class="column w30">
+				<div class="column-content">
 					<h3 class="header">Javascript object</h3>
 					<pre class="js">
 [
@@ -229,20 +229,20 @@
 					</pre>
 				</div>
 			</div>
-			<div class="aui-column aui-w30">
-				<div class="aui-column-content">
+			<div class="column w30">
+				<div class="column-content">
 					<input class="render-button" type="button" value="Render template" />
 					<div class="render-output"></div>
 				</div>
 			</div>
 		</div>
 
-		<div class="aui-layout-content" id="rendering">
+		<div class="layout-content" id="rendering">
 			<h2>Rendering from an Element</h2>
 			<p>You can place your template markup on the page in a couple of different formats. You can place it as a hidden div, inside of an input/textarea, or in a script element (if you use a script element, you MUST set the type="" attribute to something other than "text/javascript"; we use type="aui/template").</p>
 				</p>
-			<div class="aui-column aui-w50">
-				<div class="aui-column-content">
+			<div class="column w50">
+				<div class="column-content">
 					<h3 class="header">Template markup</h3>
 
 					<h4>Script tag</h4>
@@ -270,8 +270,8 @@
 &lt;/textarea&gt;</pre>
 				</div>
 			</div>
-			<div class="aui-column aui-w50">
-				<div class="aui-column-content">
+			<div class="column w50">
+				<div class="column-content">
 					<h3 class="header">Javascript object</h3>
 					<h4>Script tag</h4>
 					<pre class="js">
@@ -291,7 +291,7 @@ textareaTPL.render(['Item 1', 'Item 2', 'Item 3'], '#somewhere');</pre>
 			</div>
 		</div>
 
-		<div class="aui-layout-content" id="embedding">
+		<div class="layout-content" id="embedding">
 			<h2>Embedding JavaScript</h2>
 			<p>You can embed arbitrary JS code into your templates using scriptlets. The result of the scriptlet expression is embedded into the template. A scriptlet is demarked with the special <code>{[ syntax ]}</code>. Scriptlets can accept any valid JS expression, but are also passed the following variables:
 				<ul>
@@ -304,8 +304,8 @@ textareaTPL.render(['Item 1', 'Item 2', 'Item 3'], '#somewhere');</pre>
 
 				<span class="note">* One thing to note, accessing or manipulating the DOM of the template is not allowed, as the JS is executing before the template has finished rendering. You can modify/read other parts of the DOM and have that value returned in your expression however.</span>
 				</p>
-			<div class="aui-column aui-w30">
-				<div class="aui-column-content">
+			<div class="column w30">
+				<div class="column-content">
 					<h3 class="header">Template markup</h3>
 					<pre class="tpl">
 &lt;tpl for=&quot;.&quot;&gt;
@@ -315,8 +315,8 @@ textareaTPL.render(['Item 1', 'Item 2', 'Item 3'], '#somewhere');</pre>
 &lt;/tpl&gt;</pre>
 				</div>
 			</div>
-			<div class="aui-column aui-w30">
-				<div class="aui-column-content">
+			<div class="column w30">
+				<div class="column-content">
 					<h3 class="header">Javascript object</h3>
 					<pre class="js">
 [
@@ -327,15 +327,15 @@ textareaTPL.render(['Item 1', 'Item 2', 'Item 3'], '#somewhere');</pre>
 ]</pre>
 				</div>
 			</div>
-			<div class="aui-column aui-w30">
-				<div class="aui-column-content">
+			<div class="column w30">
+				<div class="column-content">
 					<input class="render-button" type="button" value="Render template" />
 					<div class="render-output"></div>
 				</div>
 			</div>
 		</div>
 
-		<div class="aui-layout-content" id="advancedLooping">
+		<div class="layout-content" id="advancedLooping">
 			<h2>Advanced Looping</h2>
 			<p>Loops contain other special variables that help with processing logic of the data you're dealing with. The variables are:
 				<ul>
@@ -347,8 +347,8 @@ textareaTPL.render(['Item 1', 'Item 2', 'Item 3'], '#somewhere');</pre>
 					<li><code>{$last}</code> - This is a true or false value indicating whether you are currently on the last item of the array (also available in scriptlets as <code>$last</code>)</li>
 				</ul>
 			</p>
-			<div class="aui-column aui-w30">
-				<div class="aui-column-content">
+			<div class="column w30">
+				<div class="column-content">
 					<h3 class="header">Template markup</h3>
 					<pre class="tpl">
 &lt;tpl for=&quot;devs&quot;&gt;
@@ -356,27 +356,27 @@ textareaTPL.render(['Item 1', 'Item 2', 'Item 3'], '#somewhere');</pre>
 &lt;/tpl&gt;</pre>
 				</div>
 			</div>
-			<div class="aui-column aui-w30">
-				<div class="aui-column-content">
+			<div class="column w30">
+				<div class="column-content">
 					<h3 class="header">Javascript object</h3>
 					<pre class="js">
 {devs: ['Nate', 'Eduardo', 'Iliyan', 'Bruno', 'Jon', 'Aaron']}</pre>
 				</div>
 			</div>
-			<div class="aui-column aui-w30">
-				<div class="aui-column-content">
+			<div class="column w30">
+				<div class="column-content">
 					<input class="render-button" type="button" value="Render template" />
 					<div class="render-output"></div>
 				</div>
 			</div>
 		</div>
 
-		<div class="aui-layout-content" id="performance">
+		<div class="layout-content" id="performance">
 			<h2>Performance</h2>
 			<p>Parsing a template is extremely fast. Because of the way it's compiled down, the end call is just basic string substitution. This test creates an object using 5,000 rows and parses it out.</p>
 			<p class="note">* There is one small cheat we do in this test, which is we move the container off DOM first. Modifying a live DOM element is always the most expensive part. For a ratio of comparison, for 5,000 rows, calling tpl.parse({...5,000...}) takes only about 5ms but the rendering portion (if done on DOM) takes about 300ms.</p>
-			<div class="aui-column aui-w30">
-				<div class="aui-column-content">
+			<div class="column w30">
+				<div class="column-content">
 					<h3 class="header">Template markup</h3>
 					<pre class="tpl">
 &lt;tpl for=&quot;rows&quot;&gt;
@@ -384,8 +384,8 @@ textareaTPL.render(['Item 1', 'Item 2', 'Item 3'], '#somewhere');</pre>
 &lt;/tpl&gt;</pre>
 				</div>
 			</div>
-			<div class="aui-column aui-w30">
-				<div class="aui-column-content">
+			<div class="column w30">
+				<div class="column-content">
 					<h3 class="header">Javascript object</h3>
 					<pre class="js">
 (function(){
@@ -403,8 +403,8 @@ textareaTPL.render(['Item 1', 'Item 2', 'Item 3'], '#somewhere');</pre>
 })();</pre>
 				</div>
 			</div>
-			<div class="aui-column aui-w30">
-				<div class="aui-column-content">
+			<div class="column w30">
+				<div class="column-content">
 					<input class="render-button" type="button" value="Render template" />
 					<div class="render-output"></div>
 				</div>
@@ -412,13 +412,13 @@ textareaTPL.render(['Item 1', 'Item 2', 'Item 3'], '#somewhere');</pre>
 		</div>
 
 
-		<div class="aui-layout-content" id="examples">
+		<div class="layout-content" id="examples">
 			<h2>Examples</h2>
 			<p>There are a couple of different ways in which you can create a template.<br />
 			The <code>A.Template</code> constructor can be passed either an array of strings as the first argument, or as just a series of strings.
 			</p>
-			<div class="aui-column">
-				<div class="aui-column-content">
+			<div class="column">
+				<div class="column-content">
 					<h3 class="header">Creating a new Template</h3>
 					<pre class="tpl">tpl = new A.Template('This is my', '{name}.');</pre>
 					or
@@ -455,7 +455,7 @@ textareaTPL.render(['Item 1', 'Item 2', 'Item 3'], '#somewhere');</pre>
 YUI({filter: 'raw'}).use('aui-template-deprecated', 'node', function(A) {
 	A.one('body').delegate('click', function(event) {
 		var parent = event.currentTarget.ancestor();
-		var layoutContent = parent.ancestor('.aui-layout-content');
+		var layoutContent = parent.ancestor('.layout-content');
 
 		var id = layoutContent.guid();
 
@@ -520,7 +520,7 @@ YUI({filter: 'raw'}).use('aui-template-deprecated', 'node', function(A) {
 });
 </script>
 
-<div class="aui-helper-hidden" id="auiDivTPL">
+<div class="helper-hidden" id="auiDivTPL">
 	From Div
 	<tpl for=".">
 		<p>{name}:{age} - {age * 5}</p>
