@@ -1,19 +1,19 @@
-.aui-sortable-layout-drag-indicator {
+.sortable-layout-drag-indicator {
 	height: 6px;
 	position: absolute;
 	width: 100px;
 	z-index: 300;
 }
 
-.aui-sortable-layout-drag-indicator-icon {
+.sortable-layout-drag-indicator-icon {
 	position: absolute;
 	top: -5px;
 }
 
-.aui-sortable-layout-drag-indicator-icon-left {
+.sortable-layout-drag-indicator-icon-left {
 	left: -13px;
 }
 
-.aui-sortable-layout-drag-indicator-icon-right {
+.sortable-layout-drag-indicator-icon-right {
 	right: -13px;
 }

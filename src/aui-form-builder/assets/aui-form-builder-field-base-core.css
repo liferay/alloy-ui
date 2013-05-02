@@ -1,12 +1,12 @@
 /* Fields */
 
-.aui-form-builder-field .aui-field-checkbox,
-.aui-form-builder-field .aui-field-radio {
+.form-builder-field .field-checkbox,
+.form-builder-field .field-radio {
 	float: left;
 	margin-right: 5px;
 }
 
-.aui-form-builder-field .aui-toolbar {
+.form-builder-field .toolbar {
 	position: absolute;
 	right: 10px;
 	top: 10px;

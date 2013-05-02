@@ -1,24 +1,24 @@
 /* scheduler-base-event */
-.aui-scheduler-event-icons {
+.scheduler-event-icons {
   display: none;
   position: absolute;
   right: 3px;
   top: 3px;
 }
 
-.aui-scheduler-event-icons .aui-icon {
+.scheduler-event-icons .icon {
   display: none;
   float: left;
   margin: 0 1px;
 }
 
-.aui-scheduler-event-icons .aui-icon {
+.scheduler-event-icons .icon {
   background: url(scheduler-notification.png) no-repeat 0 0;
   height: 7px;
   width: 8px;
 }
 
-.aui-scheduler-event-disabled {
+.scheduler-event-disabled {
   -moz-opacity: .80;
   background-image: url(scheduler-background-striped.png);
   background-repeat: repeat;
@@ -26,34 +26,34 @@
   opacity: .80;
 }
 
-.aui-scheduler-event-disabled .aui-scheduler-event-icons, .aui-scheduler-event-disabled .aui-scheduler-event-icon-disabled {
+.scheduler-event-disabled .scheduler-event-icons, .scheduler-event-disabled .scheduler-event-icon-disabled {
   display: block;
 }
 
-.aui-scheduler-event-disabled .aui-scheduler-event-icons .aui-scheduler-event-icon-disabled {
+.scheduler-event-disabled .scheduler-event-icons .scheduler-event-icon-disabled {
   background-position: 0 -28px;
 }
 
-.aui-scheduler-event-meeting .aui-scheduler-event-icons, .aui-scheduler-event-meeting .aui-scheduler-event-icon-meeting {
+.scheduler-event-meeting .scheduler-event-icons, .scheduler-event-meeting .scheduler-event-icon-meeting {
   display: block;
 }
 
-.aui-scheduler-event-meeting .aui-scheduler-event-icons .aui-scheduler-event-icon-meeting {
+.scheduler-event-meeting .scheduler-event-icons .scheduler-event-icon-meeting {
   background-position: 0 0;
 }
 
-.aui-scheduler-event-reminder .aui-scheduler-event-icons, .aui-scheduler-event-reminder .aui-scheduler-event-icon-reminder {
+.scheduler-event-reminder .scheduler-event-icons, .scheduler-event-reminder .scheduler-event-icon-reminder {
   display: block;
 }
 
-.aui-scheduler-event-reminder .aui-scheduler-event-icons .aui-scheduler-event-icon-reminder {
+.scheduler-event-reminder .scheduler-event-icons .scheduler-event-icon-reminder {
   background-position: 0 -7px;
 }
 
-.aui-scheduler-event-repeated .aui-scheduler-event-icons, .aui-scheduler-event-repeated .aui-scheduler-event-icon-repeated {
+.scheduler-event-repeated .scheduler-event-icons, .scheduler-event-repeated .scheduler-event-icon-repeated {
   display: block;
 }
 
-.aui-scheduler-event-repeated .aui-scheduler-event-icons .aui-scheduler-event-icon-repeated {
+.scheduler-event-repeated .scheduler-event-icons .scheduler-event-icon-repeated {
   background-position: -9px 0;
 }

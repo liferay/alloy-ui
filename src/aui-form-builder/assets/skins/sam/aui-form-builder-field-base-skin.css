@@ -1,4 +1,4 @@
-.aui-form-builder-field {
+.form-builder-field {
 	background: #FFF;
 	border-top: 5px solid transparent;
 	margin: 8px 6px 0;
@@ -13,95 +13,95 @@
 }
 
 
-.aui-form-builder-field label {
+.form-builder-field label {
 	float: left;
 	margin-right: 5px;
 }
 
-.aui-form-builder-field .aui-form-builder-field-node {
+.form-builder-field .form-builder-field-node {
 	clear: both;
 	display: block;
 }
 
-.aui-form-builder-field-hover {
+.form-builder-field-hover {
 	border-color: #ccc;
 }
 
-.aui-form-builder-field-selected {
+.form-builder-field-selected {
 	border-color: #76a7fa;
 }
 
 /* Field icons */
 
-.aui-form-builder-field-icon {
+.form-builder-field-icon {
 	background-position: center center;
 	background-repeat: no-repeat;
 }
 
-.aui-form-builder-field-icon-button {
+.form-builder-field-icon-button {
 	background-image: url(icon-button.png);
 }
 
-.aui-form-builder-field-icon-checkbox {
+.form-builder-field-icon-checkbox {
 	background-image: url(icon-checkbox.png);
 }
 
-.aui-form-builder-field-icon-date {
+.form-builder-field-icon-date {
 	background-image: url(icon-date.png);
 }
 
-.aui-form-builder-field-icon-decimal {
+.form-builder-field-icon-decimal {
 	background-image: url(icon-decimal.png);
 }
 
-.aui-form-builder-field-icon-default {
+.form-builder-field-icon-default {
 	background-image: url(icon-default.png);
 }
 
-.aui-form-builder-field-icon-document {
+.form-builder-field-icon-document {
 	background-image: url(icon-document.png);
 }
 
-.aui-form-builder-field-icon-fieldset {
+.form-builder-field-icon-fieldset {
 	background-image: url(icon-fieldset.png);
 }
 
-.aui-form-builder-field-icon-fileupload {
+.form-builder-field-icon-fileupload {
 	background-image: url(icon-fileupload.png);
 }
 
-.aui-form-builder-field-icon-integer {
+.form-builder-field-icon-integer {
 	background-image: url(icon-integer.png);
 }
 
-.aui-form-builder-field-icon-number {
+.form-builder-field-icon-number {
 	background-image: url(icon-number.png);
 }
 
-.aui-form-builder-field-icon-paragraph {
+.form-builder-field-icon-paragraph {
 	background-image: url(icon-paragraph.png);
 }
 
-.aui-form-builder-field-icon-password {
+.form-builder-field-icon-password {
 	background-image: url(icon-password.png);
 }
 
-.aui-form-builder-field-icon-radio {
+.form-builder-field-icon-radio {
 	background-image: url(icon-radio.png);
 }
 
-.aui-form-builder-field-icon-select {
+.form-builder-field-icon-select {
 	background-image: url(icon-select.png);
 }
 
-.aui-form-builder-field-icon-separator {
+.form-builder-field-icon-separator {
 	background-image: url(icon-separator.png);
 }
 
-.aui-form-builder-field-icon-text {
+.form-builder-field-icon-text {
 	background-image: url(icon-text.png);
 }
 
-.aui-form-builder-field-icon-textarea {
+.form-builder-field-icon-textarea {
 	background-image: url(icon-textarea.png);
 }

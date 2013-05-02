@@ -1,58 +1,58 @@
-.aui-hsv-container {
+.hsv-container {
 	border: 1px solid #666;
 }
 
-.aui-hsv-image-backdrop {
+.hsv-image-backdrop {
 	background-color: #000;
 }
 
-.aui-hsv-hs-container {
+.hsv-hs-container {
 	background-image: url(sprite.png);
 	border: 1px solid #666;
 }
 
-.aui-hsv-hs-thumb {
+.hsv-hs-thumb {
 	background-image: url(sprite.png);
 	background-position: -315px -84px;
 	left: 1px;
 	top: 1px;
 }
 
-.aui-hsv-value-slider-container, .aui-hsv-alpha-slider-container {
+.hsv-value-slider-container, .hsv-alpha-slider-container {
 	background-color: #FF0000;
 	border: 1px solid #666;
 }
 
-.aui-hsv-value-canvas {
+.hsv-value-canvas {
 	background-image: url(sprite.png);
 	background-position: -260px 0;
 }
 
-.aui-hsv-alpha-canvas {
+.hsv-alpha-canvas {
 	background-image: url(sprite.png);
 	background-position: -290px 0;
 }
 
-.aui-hsv-value-image, .aui-hsv-alpha-image {
+.hsv-value-image, .hsv-alpha-image {
 	background-image: url(sprite.png);
 	background-position: -315px -69px;
 }
 
-.aui-hsv-alpha-slider-container {
+.hsv-alpha-slider-container {
 	border: 1px solid #666;
 }
 
-.aui-hsv-view-backdrop {
+.hsv-view-backdrop {
 	background-color: #FFF;
 	background-image: url(sprite.png);
 	background-position: -315px 0;
 }
 
-.aui-hsv-result-view {
+.hsv-result-view {
 	background-color: #FF0000;
 	border: 1px solid #666;
 }
 
-.aui-hsv-result-input {
+.hsv-result-input {
 	width: 60px;
 }

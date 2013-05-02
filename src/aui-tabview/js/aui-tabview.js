@@ -41,8 +41,8 @@ A.TabviewBase._classNames = {
 A.TabviewBase._queries = {
     selectedPanel: '> div ' + _DOT + A.TabviewBase._classNames.selectedPanel,
     selectedTab: '> ul > ' + _DOT + A.TabviewBase._classNames.selectedTab,
-    tab: '> ul > li:not(.aui-nav-header):not(.aui-disabled)',
-    tabLabel: '> ul > li:not(.aui-nav-header) > a',
+    tab: '> ul > li:not(.nav-header):not(.disabled)',
+    tabLabel: '> ul > li:not(.nav-header) > a',
     tabPanel: '> div > div',
     tabview: _DOT + A.TabviewBase._classNames.tabview,
     tabviewList: '> ul',

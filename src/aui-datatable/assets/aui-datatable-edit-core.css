@@ -1,41 +1,41 @@
-.aui-table-editable {
+.table-editable {
 	cursor: pointer;
 }
 
-.aui-basecelleditor .aui-buttonitem-content {
+.basecelleditor .buttonitem-content {
 	margin: 2px 0;
 	padding: 3px 3px 1px 1px;
 }
 
-.aui-basecelleditor .aui-buttonitem-label-only {
+.basecelleditor .buttonitem-label-only {
 	padding-bottom: 2px;
 }
 
-.webkit .aui-basecelleditor .aui-buttonitem-label-only {
+.webkit .basecelleditor .buttonitem-label-only {
 	padding-bottom: 3px;
 }
 
-.aui-celleditor-edit-dd-handle {
+.celleditor-edit-dd-handle {
   cursor: move;
   display: inline-block;
   margin-top: -3px;
   vertical-align: middle;
 }
 
-.aui-basecelleditor-hidden,
-.aui-datecelleditor-hidden,
-.aui-dropdowncelleditor-hidden,
-.aui-textcelleditor-hidden,
-.aui-textareacelleditor-hidden,
-.aui-checkboxcelleditor-hidden,
-.aui-radiocelleditor-hidden {
+.basecelleditor-hidden,
+.datecelleditor-hidden,
+.dropdowncelleditor-hidden,
+.textcelleditor-hidden,
+.textareacelleditor-hidden,
+.checkboxcelleditor-hidden,
+.radiocelleditor-hidden {
   display: none !important;
 }
 
-.aui-basecelleditor form {
+.basecelleditor form {
   margin: 0;
 }
 
-.aui-celleditor-edit-label {
+.celleditor-edit-label {
   padding-bottom: 5px;
 }

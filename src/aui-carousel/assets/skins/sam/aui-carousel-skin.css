@@ -1,10 +1,10 @@
-.aui-carousel menu {
+.carousel menu {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
 }
 
-.aui-carousel menu a {
+.carousel menu a {
     -moz-border-radius: 9px;
     -webkit-border-radius: 9px;
     border-radius: 9px;

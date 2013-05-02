@@ -1,4 +1,4 @@
-.aui-color-palette .aui-palette-item-selected .aui-palette-item-inner {
+.color-palette .palette-item-selected .palette-item-inner {
     background-image: url(sprite.png);
     background-position: -315px -96px;
 }

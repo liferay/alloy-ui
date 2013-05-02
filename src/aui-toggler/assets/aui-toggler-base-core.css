@@ -1,7 +1,7 @@
-.aui-toggler-content-collapsed {
+.toggler-content-collapsed {
     display: none;
 }
 
-.aui-toggler-content-wrapper {
+.toggler-content-wrapper {
     overflow: hidden;
 }

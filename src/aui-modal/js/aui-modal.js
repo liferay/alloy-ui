@@ -151,7 +151,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
                 return {
                     header: [
                         {
-                            cssClass: 'aui-close',
+                            cssClass: 'close',
                             label: "\u00D7",
                             after: {
                                 click: function() { instance.hide(); }

@@ -1,21 +1,21 @@
-.aui-scheduler-view-table-hidden {
+.scheduler-view-table-hidden {
   display: none;
 }
 
-.aui-scheduler-view-table-lasso {
+.scheduler-view-table-lasso {
   background: #000;
   filter: alpha(opacity=4);
   opacity: 0.04;
   position: absolute;
 }
 
-.aui-scheduler-view-table-more {
+.scheduler-view-table-more {
   display: inline-block;
   margin-left: 3px;
   text-decoration: none;
 }
 
-.aui-scheduler-view-table-events-overlay-node {
+.scheduler-view-table-events-overlay-node {
   -moz-border-radius: 6px;
   -moz-box-shadow: 0 1px 12px rgba(0, 0, 0, 0.3);
   -webkit-border-radius: 6px;
@@ -27,26 +27,26 @@
   padding: 6px;
 }
 
-.aui-scheduler-view-table-events-overlay-node .aui-scheduler-event-content {
+.scheduler-view-table-events-overlay-node .scheduler-event-content {
   display: inline;
 }
 
-.aui-scheduler-view-table-events-overlay-node .aui-scheduler-event {
+.scheduler-view-table-events-overlay-node .scheduler-event {
   margin: 2px;
 }
 
-.aui-scheduler-view-table-events-overlay-close {
+.scheduler-view-table-events-overlay-close {
   display: block;
   margin-top: 4px;
   text-align: center;
   text-decoration: none;
 }
 
-.aui-scheduler-view-table-dragging .aui-scheduler-view-table-data-event-left .aui-icon, .aui-scheduler-view-table-dragging .aui-scheduler-view-table-data-event-right .aui-icon {
+.scheduler-view-table-dragging .scheduler-view-table-data-event-left .icon, .scheduler-view-table-dragging .scheduler-view-table-data-event-right .icon {
   display: none;
 }
 
-.aui-scheduler-view-table-proxy-node {
+.scheduler-view-table-proxy-node {
   border-radius: 3px;
   border: 1px solid;
   font-size: 11px;
@@ -55,35 +55,35 @@
   width: 200px;
 }
 
-.aui-scheduler-view-table-header-day {
+.scheduler-view-table-header-day {
   text-align: center;
 }
 
-.aui-scheduler-view-table-header-table {
+.scheduler-view-table-header-table {
   table-layout: fixed;
   width: 100%;
 }
 
-.aui-scheduler-view-table-content .yui3-widget-hd {
+.scheduler-view-table-content .yui3-widget-hd {
   background-color: #fff;
   border-bottom: 1px solid #ddd;
   color: #555;
 }
 
-.aui-scheduler-view-table-header-col .aui-scheduler-view-table-header-day div {
+.scheduler-view-table-header-col .scheduler-view-table-header-day div {
   font-size: 12px;
   font-weight: normal;
   padding: 6px;
 }
 
-.aui-scheduler-view-table-container {
+.scheduler-view-table-container {
   height: 100%;
   line-height: 20px;
   position: relative;
   white-space: nowrap;
 }
 
-.aui-scheduler-view-table-row-container {
+.scheduler-view-table-row-container {
   background: #fff;
   bottom: 0;
   left: 0;
@@ -93,18 +93,18 @@
   width: 100%;
 }
 
-.aui-scheduler-view-table-row {
+.scheduler-view-table-row {
   left: 0;
   overflow: hidden;
   position: absolute;
   width: 100%;
 }
 
-.aui-scheduler-view-table-grid-first {
+.scheduler-view-table-grid-first {
   border-top: 0;
 }
 
-.aui-scheduler-view-table-grid {
+.scheduler-view-table-grid {
   height: 100%;
   left: 0;
   position: absolute;
@@ -113,36 +113,36 @@
   width: 100%;
 }
 
-.aui-scheduler-view-table-colgrid {
+.scheduler-view-table-colgrid {
   border-left: 1px solid #dddddd;
 }
 
-.aui-scheduler-view-table-data {
+.scheduler-view-table-data {
   position: relative;
   table-layout: fixed;
   width: 100%;
 }
 
-.aui-scheduler-view-table-data-col {
+.scheduler-view-table-data-col {
   border-left: 0 none;
   padding: 1px 2px 0;
 }
 
-.aui-scheduler-view-table-data-col .aui-scheduler-event-content {
+.scheduler-view-table-data-col .scheduler-event-content {
   display: inline;
 }
 
-.aui-scheduler-view-table-data-col .aui-scheduler-event {
+.scheduler-view-table-data-col .scheduler-event {
   height: auto;
   position: relative;
   width: auto;
 }
 
-.aui-scheduler-view-table-data-first .aui-scheduler-view-table-data-col-title {
+.scheduler-view-table-data-first .scheduler-view-table-data-col-title {
   border-top: 0;
 }
 
-.aui-scheduler-view-table-data-col-title {
+.scheduler-view-table-data-col-title {
   border-left: 1px solid #ddd;
   border-top: 1px solid #ddd;
   color: #666;
@@ -152,22 +152,22 @@
   text-align: right;
 }
 
-.aui-scheduler-view-table-data-col-title-down {
+.scheduler-view-table-data-col-title-down {
   border-top: 1px solid #fad163;
 }
 
-.aui-scheduler-view-table-colgrid-today {
+.scheduler-view-table-colgrid-today {
   background-color: #FFF7D7;
   border-left: 1px solid #FAD163;
   border-right: 1px solid #FAD163;
 }
 
-.aui-scheduler-view-table-data-col-title-today {
+.scheduler-view-table-data-col-title-today {
   background: #FAD163;
   border: 1px solid #FAD163;
 }
 
-.aui-scheduler-view-table-data-event {
+.scheduler-view-table-data-event {
   color: #1D1D1D;
   cursor: pointer;
   margin-bottom: 1px;
@@ -176,11 +176,11 @@
   white-space: nowrap;
 }
 
-.aui-scheduler-view-table-data-event .aui-scheduler-event-content {
+.scheduler-view-table-data-event .scheduler-event-content {
   font-size: 11px;
 }
 
-.aui-scheduler-view-table-data-event .aui-icon-arrowstop-1-r {
+.scheduler-view-table-data-event .icon-arrowstop-1-r {
   background-image: url(scheduler-arrows.png);
   background-position: -10px 3px;
   position: absolute;
@@ -188,7 +188,7 @@
   top: 0;
 }
 
-.aui-scheduler-view-table-data-event .aui-icon-arrowstop-1-l {
+.scheduler-view-table-data-event .icon-arrowstop-1-l {
   background-image: url(scheduler-arrows.png);
   background-position: -4px -17px;
   left: 0;
@@ -196,10 +196,10 @@
   top: 3px;
 }
 
-.aui-scheduler-view-table-data-event .aui-icon {
+.scheduler-view-table-data-event .icon {
   z-index: 450;
 }
 
-.aui-scheduler-view-table-data-event.aui-scheduler-view-table-data-event-left .aui-scheduler-event {
+.scheduler-view-table-data-event.scheduler-view-table-data-event-left .scheduler-event {
   padding-left: 12px;
 }
