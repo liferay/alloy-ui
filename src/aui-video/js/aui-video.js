@@ -1,3 +1,9 @@
+/**
+ * The Video Component
+ *
+ * @module aui-video
+ */
+
 var Lang = A.Lang,
 	UA = A.UA,
 	getClassName = A.getClassName,
@@ -14,39 +20,146 @@ var Lang = A.Lang,
 	TPL_VIDEO = '<video id="{0}" controls="controls" class="' + CSS_VIDEO_NODE + '"></video>',
 	TPL_VIDEO_FALLBACK = '<div class="' + CSS_VIDEO_NODE + '"></div>';
 
+/**
+ * A base class for Video.
+ *
+ * Check the [live demo](http://alloyui.com/examples/video/).
+ *
+ * @class Video
+ * @extends Component
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var Video = A.Component.create(
 	{
-		NAME: NAME,
+		/**
+         * Static property provides a string to identify the class.
+         *
+         * @property Video.NAME
+         * @type String
+         * @static
+         */
+        NAME: NAME,
 
-		ATTRS: {
-			url: {
+		/**
+         * Static property used to define the default attribute
+         * configuration for the Video.
+         *
+         * @property Video.ATTRS
+         * @type Object
+         * @static
+         */
+        ATTRS: {
+
+            /**
+             * URL used by Video to play.
+             *
+             * @attribute url
+             * @default ''
+             * @type String
+             */
+            url: {
 				value: ''
 			},
-			ogvUrl: {
+
+            /**
+             * URL (on .ogv format) used by Video to play.
+             *
+             * @attribute ogvUrl
+             * @default ''
+             * @type String
+             */
+            ogvUrl: {
 				value: ''
 			},
-			swfUrl: {
+
+            /**
+             * URL (on .swf format) used by Video to create
+             * a fallback player with Flash.
+             *
+             * @attribute swfUrl
+             * @default ''
+             * @type String
+             */
+            swfUrl: {
 				value: DEFAULT_PLAYER_PATH
 			},
-			poster: {
+
+            /**
+             * Image displayed before playback starts.
+             *
+             * @attribute poster
+             * @default ''
+             * @type String
+             */
+            poster: {
 				value: ''
 			},
+
+            /**
+             * An additional list of attributes.
+             *
+             * @attribute fixedAttributes
+             * @default {}
+             * @type Object
+             */
 			fixedAttributes: {
 				value: {}
 			},
-			flashVars: {
+
+            /**
+             * Variables used by Flash player.
+             *
+             * @attribute flashVars
+             * @default {}
+             * @type Object
+             */
+            flashVars: {
 				value: {}
 			},
-			render: {
+
+            /**
+             * If <code>true</code> the render phase will be automatically invoked
+             * preventing the <code>.render()</code> manual call.
+             *
+             * @attribute render
+             * @default true
+             * @type Boolean
+             */
+            render: {
 				value: true
 			}
 		},
 
-		BIND_UI_ATTRS: ['url', 'poster', 'ogvUrl', 'swfUrl', 'fixedAttributes', 'flashVars'],
-		SYNC_UI_ATTRS: ['url', 'poster', 'ogvUrl'],
+		/**
+         * Static property used to define the attributes
+         * for the bindUI lifecycle phase.
+         *
+         * @property Video.BIND_UI_ATTRS
+         * @type Array
+         * @static
+         */
+        BIND_UI_ATTRS: ['url', 'poster', 'ogvUrl', 'swfUrl', 'fixedAttributes', 'flashVars'],
+
+        /**
+         * Static property used to define the attributes
+         * for the syncUI lifecycle phase.
+         *
+         * @property Video.SYNC_UI_ATTRS
+         * @type Array
+         * @static
+         */
+        SYNC_UI_ATTRS: ['url', 'poster', 'ogvUrl'],
 
 		prototype: {
-			renderUI: function () {
+
+            /**
+             * Render the Video component instance. Lifecycle.
+             *
+             * @method renderUI
+             * @protected
+             */
+            renderUI: function () {
 				var instance = this;
 
 				instance._renderVideoTask = A.debounce(instance._renderVideo, 1, instance);
@@ -55,7 +168,13 @@ var Video = A.Component.create(
 				instance._renderVideo(!instance.get('ogvUrl'));
 			},
 
-			bindUI: function () {
+			/**
+             * Bind the events on the Video UI. Lifecycle.
+             *
+             * @method bindUI
+             * @protected
+             */
+            bindUI: function () {
 				var instance = this;
 
 				instance.publish(
@@ -66,7 +185,15 @@ var Video = A.Component.create(
 				);
 			},
 
-			_createSource: function(type) {
+			/**
+             * Create <code>source</code> element
+             * using passed type attribute.
+             *
+             * @method _renderSwf
+             * @param type
+             * @protected
+             */
+            _createSource: function(type) {
 				var instance = this;
 
 				var sourceNode = new A.Node(DOC.createElement('source'));
@@ -76,7 +203,13 @@ var Video = A.Component.create(
 				return sourceNode;
 			},
 
-			_renderSwf: function () {
+			/**
+             * Render SWF in DOM.
+             *
+             * @method _renderSwf
+             * @protected
+             */
+            _renderSwf: function () {
 				var instance = this;
 
 				var swfUrl = instance.get('swfUrl');
@@ -139,7 +272,14 @@ var Video = A.Component.create(
 				}
 			},
 
-			_renderVideo: function(fallback) {
+			/**
+             * Render Video in DOM.
+             *
+             * @method _renderVideo
+             * @param fallback
+             * @protected
+             */
+            _renderVideo: function(fallback) {
 				var instance = this;
 
 				var tpl = TPL_VIDEO;
@@ -157,19 +297,40 @@ var Video = A.Component.create(
 				instance._video = video;
 			},
 
-			_uiSetFixedAttributes: function (val) {
+			/**
+             * Set the <code>fixedAttributes</code> on the UI.
+             *
+             * @method _uiSetFixedAttributes
+             * @param val
+             * @protected
+             */
+            _uiSetFixedAttributes: function (val) {
 				var instance = this;
 
 				instance._renderSwfTask();
 			},
 
-			_uiSetFlashVars: function (val) {
+			/**
+             * Set the <code>flashVars</code> on the UI.
+             *
+             * @method _uiSetFlashVars
+             * @param val
+             * @protected
+             */
+            _uiSetFlashVars: function (val) {
 				var instance = this;
 
 				instance._renderSwfTask();
 			},
 
-			_uiSetOgvUrl: function (val) {
+			/**
+             * Set the <code>ogvUrl</code> on the UI.
+             *
+             * @method _uiSetOgvUrl
+             * @param val
+             * @protected
+             */
+            _uiSetOgvUrl: function (val) {
 				var instance = this;
 
 				if (UA.gecko || UA.opera) {
@@ -202,7 +363,14 @@ var Video = A.Component.create(
 				}
 			},
 
-			_uiSetPoster: function (val) {
+			/**
+             * Set the <code>poster</code> on the UI.
+             *
+             * @method _uiSetPoster
+             * @param val
+             * @protected
+             */
+            _uiSetPoster: function (val) {
 				var instance = this;
 
 				var video = instance._video;
@@ -214,13 +382,27 @@ var Video = A.Component.create(
 				instance._renderSwfTask();
 			},
 
-			_uiSetSwfUrl: function (val) {
+			/**
+             * Set the <code>swfUrl</code> on the UI.
+             *
+             * @method _uiSetSwfUrl
+             * @param val
+             * @protected
+             */
+            _uiSetSwfUrl: function (val) {
 				var instance = this;
 
 				instance._renderSwfTask();
 			},
 
-			_uiSetUrl: function (val) {
+			/**
+             * Set the <code>url</code> on the UI.
+             *
+             * @method _uiSetUrl
+             * @param val
+             * @protected
+             */
+            _uiSetUrl: function (val) {
 				var instance = this;
 
 				var ogvUrl = instance.get('ogvUrl');
@@ -253,7 +435,13 @@ var Video = A.Component.create(
 				instance._renderSwfTask();
 			},
 
-			_usingVideo: function() {
+			/**
+             * Check if it's a <code>video</code> node.
+             *
+             * @method _usingVideo
+             * @protected
+             */
+            _usingVideo: function() {
 				var instance = this;
 
 				return (instance._video.get('nodeName').toLowerCase() == 'video');
