@@ -9,44 +9,44 @@
 <body>
     <h1>AlloyUI - Toggler</h1>
     <h2>Toggler</h2>
-    <button class="aui-btn">Read more &raquo</button>
+    <button class="btn">Read more &raquo</button>
     <div class="content aui-toggler-content-collapse">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea qui sint distinctio recusandae quo ut eaque provident eius eos commodi natus labore culpa modi soluta quia repudiandae nulla ex. Reiciendis cupiditate quis voluptatum atque veniam assumenda itaque perferendis eos voluptatem dolores aut eum. Ut voluptatum amet earum delectus totam unde!
     </div>
     <h2>Toggler Delegate</h2>
-    <div class="aui-accordion" id="accordion">
-        <div class="aui-accordion-group">
-            <div class="aui-accordion-heading">
-                <a class="aui-accordion-toggle" href="#collapseOne">
+    <div class="accordion" id="accordion">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" href="#collapseOne">
                 Collapsible Group Item #1
                 </a>
             </div>
-            <div id="collapseOne" class="aui-toggler-content aui-toggler-content-collapsed">
-                <div class="aui-accordion-inner">
+            <div id="collapseOne" class="toggler-content toggler-content-collapsed">
+                <div class="accordion-inner">
                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                 </div>
             </div>
         </div>
-        <div class="aui-accordion-group">
-            <div class="aui-accordion-heading">
-                <a class="aui-accordion-toggle" href="#collapseTwo">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" href="#collapseTwo">
                 Collapsible Group Item #2
                 </a>
             </div>
-            <div id="collapseTwo" class="aui-toggler-content aui-toggler-content-collapsed">
-                <div class="aui-accordion-inner">
+            <div id="collapseTwo" class="toggler-content toggler-content-collapsed">
+                <div class="accordion-inner">
                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                 </div>
             </div>
         </div>
-        <div class="aui-accordion-group">
-            <div class="aui-accordion-heading aui-toggler-header-expanded">
-                <a class="aui-accordion-toggle" href="#collapseThree">
+        <div class="accordion-group">
+            <div class="accordion-heading toggler-header-expanded">
+                <a class="accordion-toggle" href="#collapseThree">
                 Collapsible Group Item #3
                 </a>
             </div>
-            <div id="collapseThree" class="aui-toggler-content aui-toggler-content-expanded">
-                <div class="aui-accordion-inner">
+            <div id="collapseThree" class="toggler-content toggler-content-expanded">
+                <div class="accordion-inner">
                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                 </div>
             </div>
@@ -58,7 +58,7 @@
         new A.Toggler({
             animated: true,
             content: '.content',
-            header: '.aui-btn',
+            header: '.btn',
             expanded: false,
             transition: {
                 duration: .6,
@@ -73,8 +73,8 @@
         new A.TogglerDelegate({
             animated: true,
             container: '#accordion',
-            content: '.aui-toggler-content',
-            header: '.aui-accordion-heading',
+            content: '.toggler-content',
+            header: '.accordion-heading',
             expanded: false,
             transition: {
                 duration: .4,
