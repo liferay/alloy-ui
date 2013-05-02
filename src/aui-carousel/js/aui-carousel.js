@@ -246,10 +246,11 @@ var Carousel = A.Component.create(
             },
 
             /**
-             * Sync the Carousel UI. Lifecycle.
+             * Set the <code>activeIndex</code> attribute which
+             * activates a certain item on Carousel based on its index.
              *
-             * @method syncUI
-             * @param {Integer}
+             * @method item
+             * @param val
              * @protected
              */
             item: function(val) {
