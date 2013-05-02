@@ -189,7 +189,7 @@ var Video = A.Component.create(
 			 * Create <code>source</code> element
 			 * using passed type attribute.
 			 *
-			 * @method _renderSwf
+			 * @method _createSource
 			 * @param type
 			 * @protected
 			 */
