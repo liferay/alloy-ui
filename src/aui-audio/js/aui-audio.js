@@ -1,3 +1,9 @@
+/**
+ * The Audio Component
+ *
+ * @module aui-audio
+ */
+
 var AObject = A.Object,
 	Lang = A.Lang,
 	UA = A.UA,
@@ -21,54 +27,177 @@ var AObject = A.Object,
 
 	REGEX_FILE_EXTENSION = /\.([^\.]+)$/;
 
+/**
+ * A base class for Audio.
+ *
+ * Check the [live demo](http://alloyui.com/examples/audio/).
+ *
+ * @class Audio
+ * @extends Component
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var Audio = A.Component.create(
 	{
-		NAME: NAME,
+		/**
+         * Static property provides a string to identify the class.
+         *
+         * @property Audio.NAME
+         * @type String
+         * @static
+         */
+        NAME: NAME,
 
-		ATTRS: {
-			url: {
+		/**
+         * Static property used to define the default attribute
+         * configuration for the Audio.
+         *
+         * @property Audio.ATTRS
+         * @type Object
+         * @static
+         */
+        ATTRS: {
+
+            /**
+             * URL used by Audio to play.
+             *
+             * @attribute url
+             * @default ''
+             * @type String
+             */
+            url: {
 				value: '',
 				validator: Lang.isString
 			},
-			oggUrl: {
+
+            /**
+             * URL (on .ogg format) used by Audio to play.
+             *
+             * @attribute oggUrl
+             * @default ''
+             * @type String
+             */
+            oggUrl: {
 				value: '',
 				validator: Lang.isString
 			},
-			type: {
+
+            /**
+             * TODO
+             *
+             * @attribute type
+             * @default mp3
+             * @type String
+             */
+            type: {
 				value: MP3,
 				validator: Lang.isString
 			},
-			swfWidth: {
+
+            /**
+             * The width of Audio's fallback using Flash.
+             *
+             * @attribute swfWidth
+             * @default 100%
+             * @type String
+             */
+            swfWidth: {
 				value: '100%',
 				validator: Lang.isString
 			},
-			swfHeight: {
+
+            /**
+             * The height of Audio's fallback using Flash.
+             *
+             * @attribute swfHeight
+             * @default 30
+             * @type String
+             */
+            swfHeight: {
 				value: '30',
 				validator: Lang.isString
 			},
+
+            /**
+             * URL (on .swf format) used by Audio to create
+             * a fallback player with Flash.
+             *
+             * @attribute swfUrl
+             * @default aui-audio/assets/player.swf
+             * @type String
+             */
 			swfUrl: {
 				value: DEFAULT_PLAYER_PATH,
 				validator: Lang.isString
 			},
+
+            /**
+             * An additional list of attributes.
+             *
+             * @attribute fixedAttributes
+             * @default {}
+             * @type Object
+             */
 			fixedAttributes: {
 				value: {},
 				validator: Lang.isObject
 			},
-			flashVars: {
+
+            /**
+             * Variables used by Flash player.
+             *
+             * @attribute flashVars
+             * @default {}
+             * @type Object
+             */
+            flashVars: {
 				value: {},
 				validator: Lang.isObject
 			},
-			render: {
+
+            /**
+             * If <code>true</code> the render phase will be automatically invoked
+             * preventing the <code>.render()</code> manual call.
+             *
+             * @attribute render
+             * @default true
+             * @type Boolean
+             */
+            render: {
 				value: true,
 				validator: Lang.isBoolean
 			}
 		},
 
-		BIND_UI_ATTRS: [URL, OGG_URL, SWF_URL, FIXED_ATTRIBUTES, FLASH_VARS],
-		SYNC_UI_ATTRS: [URL, OGG_URL],
+		/**
+         * Static property used to define the attributes
+         * for the bindUI lifecycle phase.
+         *
+         * @property Audio.BIND_UI_ATTRS
+         * @type Array
+         * @static
+         */
+        BIND_UI_ATTRS: [URL, OGG_URL, SWF_URL, FIXED_ATTRIBUTES, FLASH_VARS],
+
+        /**
+         * Static property used to define the attributes
+         * for the syncUI lifecycle phase.
+         *
+         * @property Audio.SYNC_UI_ATTRS
+         * @type Array
+         * @static
+         */
+        SYNC_UI_ATTRS: [URL, OGG_URL],
 
 		prototype: {
-			renderUI: function () {
+
+            /**
+             * Render the Audio component instance. Lifecycle.
+             *
+             * @method renderUI
+             * @protected
+             */
+            renderUI: function () {
 				var instance = this;
 
 				instance._renderAudioTask = A.debounce(instance._renderAudio, 1, instance);
@@ -77,7 +206,13 @@ var Audio = A.Component.create(
 				instance._renderAudio(!instance.get(OGG_URL));
 			},
 
-			bindUI: function () {
+			/**
+             * Bind the events on the Audio UI. Lifecycle.
+             *
+             * @method bindUI
+             * @protected
+             */
+            bindUI: function () {
 				var instance = this;
 
 				instance.publish(
@@ -88,7 +223,15 @@ var Audio = A.Component.create(
 				);
 			},
 
-			_createSource: function(type) {
+			/**
+             * Create <code>source</code> element
+             * using passed type attribute.
+             *
+             * @method _createSource
+             * @param type
+             * @protected
+             */
+            _createSource: function(type) {
 				var sourceNode = new A.Node(DOC.createElement('source'));
 
 				sourceNode.attr('type', type);
@@ -96,7 +239,13 @@ var Audio = A.Component.create(
 				return sourceNode;
 			},
 
-			_renderSwf: function () {
+			/**
+             * Render SWF in DOM.
+             *
+             * @method _renderSwf
+             * @protected
+             */
+            _renderSwf: function () {
 				var instance = this;
 
 				var swfUrl = instance.get(SWF_URL);
@@ -162,7 +311,14 @@ var Audio = A.Component.create(
 				}
 			},
 
-			_renderAudio: function(fallback) {
+			/**
+             * Render Audio in DOM.
+             *
+             * @method _renderAudio
+             * @param fallback
+             * @protected
+             */
+            _renderAudio: function(fallback) {
 				var instance = this;
 
 				var tpl = Audio.TPL_AUDIO;
@@ -182,7 +338,14 @@ var Audio = A.Component.create(
 				return audio;
 			},
 
-			_setMedia: function(flashVars) {
+			/**
+             * Set media on <code>flashVars</code>.
+             *
+             * @method _setMedia
+             * @param flashVars
+             * @protected
+             */
+            _setMedia: function(flashVars) {
 				var instance = this;
 
 				if (!AObject.owns(flashVars, MP3) && !AObject.owns(flashVars, 'mp4') && !AObject.owns(flashVars, 'flv')) {
@@ -202,19 +365,40 @@ var Audio = A.Component.create(
 				}
 			},
 
-			_uiSetFixedAttributes: function (val) {
+			/**
+             * Set the <code>fixedAttributes</code> on the UI.
+             *
+             * @method _uiSetFixedAttributes
+             * @param val
+             * @protected
+             */
+            _uiSetFixedAttributes: function (val) {
 				var instance = this;
 
 				instance._renderSwfTask();
 			},
 
-			_uiSetFlashVars: function (val) {
+			/**
+             * Set the <code>flashVars</code> on the UI.
+             *
+             * @method _uiSetFlashVars
+             * @param val
+             * @protected
+             */
+            _uiSetFlashVars: function (val) {
 				var instance = this;
 
 				instance._renderSwfTask();
 			},
 
-			_uiSetOggUrl: function (val) {
+			/**
+             * Set the <code>oggUrl</code> on the UI.
+             *
+             * @method _uiSetOggUrl
+             * @param val
+             * @protected
+             */
+            _uiSetOggUrl: function (val) {
 				var instance = this;
 
 				if (UA.gecko || UA.opera) {
@@ -247,13 +431,27 @@ var Audio = A.Component.create(
 				}
 			},
 
-			_uiSetSwfUrl: function (val) {
+			/**
+             * Set the <code>swfUrl</code> on the UI.
+             *
+             * @method _uiSetSwfUrl
+             * @param val
+             * @protected
+             */
+            _uiSetSwfUrl: function (val) {
 				var instance = this;
 
 				instance._renderSwfTask();
 			},
 
-			_uiSetUrl: function (val) {
+			/**
+             * Set the <code>url</code> on the UI.
+             *
+             * @method _uiSetUrl
+             * @param val
+             * @protected
+             */
+            _uiSetUrl: function (val) {
 				var instance = this;
 
 				var oggUrl = instance.get(OGG_URL);
@@ -286,7 +484,13 @@ var Audio = A.Component.create(
 				instance._renderSwfTask();
 			},
 
-			_usingAudio: function() {
+			/**
+             * Check if it's a <code>video</code> node.
+             *
+             * @method _usingVideo
+             * @protected
+             */
+            _usingAudio: function() {
 				var instance = this;
 
 				return (instance._audio.get('nodeName').toLowerCase() == 'audio');
