@@ -56,7 +56,7 @@ ColorPickerBase.prototype = {
     TPL_HSV_TRIGGER: '<div class="span6 ' + CSS_HSV_TRIGGER + '">{more}</div>',
 
     TPL_NO_COLOR:   '<div class="span6 ' + CSS_NO_COLOR + '">' +
-                        '<a href class="btn-link"><i class="' + CSS_NO_COLOR_ICON + ' aui-icon-remove-circle"></i>{none}</a>' +
+                        '<a href class="btn-link"><i class="' + CSS_NO_COLOR_ICON + ' icon-remove-circle"></i>{none}</a>' +
                     '</div>',
 
     _currentTrigger: null,
