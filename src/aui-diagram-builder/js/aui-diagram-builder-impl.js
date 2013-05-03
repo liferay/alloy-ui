@@ -867,8 +867,8 @@ var DiagramBuilder = A.Component.create({
 				boundingBox = val.get(BOUNDING_BOX);
 				contentBox = val.get('contentBox');
 
-				contentBox.addClass('aui-popover-content');
-				boundingBox.addClass('aui-popover');
+				contentBox.addClass('popover-content');
+				boundingBox.addClass('popover');
 
 				boundingBox.delegate(CLICK, A.bind(instance._onSuggestConnectorNodeClick, instance), _DOT+CSS_DIAGRAM_BUILDER_FIELD);
 			}
