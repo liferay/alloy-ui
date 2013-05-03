@@ -55,7 +55,7 @@ A.Toolbar = A.Component.create({
         TEMPLATES: {
             button: '<button class="btn">{content}</button>',
             icon: '<i class="{cssClass}"></i>',
-            group: '<div class="aui-btn-group {cssClass}"></div>'
+            group: '<div class="btn-group {cssClass}"></div>'
         },
 
         bindUI: function() {
