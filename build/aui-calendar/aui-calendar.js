@@ -89,6 +89,7 @@ var L = A.Lang,
 	WEEK_DAYS = 'weekDays',
 	WEEK_DAYS_NODE = 'weekDaysNode',
 
+	EV_CALENDAR_CLEAR = 'calendar:clear',
 	EV_CALENDAR_SELECT = 'calendar:select',
 
 	getCN = A.ClassNameManager.getClassName,
@@ -708,6 +709,8 @@ var Calendar = A.Component.create(
 				var instance = this;
 
 				instance.set(DATES, Calendar.EMPTY_DATES);
+
+				instance.fire(EV_CALENDAR_CLEAR);
 			},
 
 			/**
@@ -1153,15 +1156,19 @@ var Calendar = A.Component.create(
 
 				// create publish function for kweight optimization
 				var publish = function(name, fn) {
-					instance.publish(name, {
-						defaultFn: fn,
-						queuable: false,
-						emitFacade: true,
-						bubbles: true,
-						prefix: CALENDAR
-					});
+					instance.publish(
+						name,
+						{
+							bubbles: true,
+							defaultFn: fn,
+							emitFacade: true,
+							prefix: CALENDAR,
+							queuable: false
+						}
+					);
 				};
 
+				publish(EV_CALENDAR_CLEAR);
 				publish(EV_CALENDAR_SELECT);
 			},
 
