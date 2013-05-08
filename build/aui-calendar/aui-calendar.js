@@ -1305,7 +1305,7 @@ var Calendar = A.Component.create(
 			_getMonthOverlapDaysOffset: function() {
 				var instance = this;
 
-				return Math.abs(DateMath.getDayOffset(instance.getFirstDayOfWeek(), instance.findMonthStart()));
+				return Math.abs(DateMath.getDayOffset(DateMath.safeClearTime(instance.getFirstDayOfWeek()), DateMath.safeClearTime(instance.findMonthStart())));
 			},
 
 			/**
