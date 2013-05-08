@@ -1,6 +1,10 @@
-/*
-* ThumbRating
-*/
+/**
+ * The Rating Utility - The Thumb Rating creates a non-obstrusive star rating
+ * control with only two options using Thumb Up and Thumb Down icons.
+ *
+ * @module aui-rating
+ */
+
 var CSS_CLASSES = 'cssClasses',
     DOWN = 'down',
     ELEMENT = 'element',
@@ -23,7 +27,6 @@ var CSS_CLASSES = 'cssClasses',
     CSS_RATING_ON = getCN(RATING, ON);
 
 /**
- * <p><img src="assets/images/aui-rating/thumb-rating.png"/></p>
  *
  * A base class for ThumbRating, providing:
  * <ul>
@@ -31,24 +34,12 @@ var CSS_CLASSES = 'cssClasses',
  *    <li>Could be based on a set of radio input boxes</li>
  * </ul>
  *
- * Quick Example:<br/>
- *
- * <pre><code>var instance = new A.ThumbRating({
- *   boundingBox: '#rating',
- *   defaultSelected: 3,
- *   disabled: false,
- *   label: LABEL
- * }).render();
- * </code></pre>
- *
- * Check the list of <a href="ThumbRating.html#configattributes">Configuration Attributes</a> available for
- * ThumbRating.
- *
- * @param config {Object} Object literal specifying widget configuration properties.
+ * Check the [live demo](http://alloyui.com/examples/rating/).
  *
  * @class ThumbRating
+ * @extends Rating, Component
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
- * @extends Rating
  */
 var ThumbRating = A.Component.create(
     {
@@ -70,6 +61,13 @@ var ThumbRating = A.Component.create(
          * @static
          */
         ATTRS: {
+
+            /**
+             * CSS classes applied on ThumbRating.
+             *
+             * @attribute cssClasses
+             * @type Object
+             */
             cssClasses: {
                 value: {
                     down: CSS_ICON_THUMBS_DOWN,
@@ -95,9 +93,17 @@ var ThumbRating = A.Component.create(
             }
         },
 
+        /**
+         * Static property used to define which component it extends.
+         *
+         * @property ThumbRating.EXTENDS
+         * @type Object
+         * @static
+         */
         EXTENDS: A.Rating,
 
         prototype: {
+
             /**
              * Create the DOM structure for the ThumbRating. Lifecycle.
              *

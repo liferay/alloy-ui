@@ -64,7 +64,6 @@ var Lang = A.Lang,
     TPL_LABEL = '<span class="' + CSS_RATING_LABEL + '"></span>';
 
 /**
- * <p><img src="assets/images/aui-rating/main.png"/></p>
  *
  * A base class for Rating, providing:
  * <ul>
@@ -72,24 +71,12 @@ var Lang = A.Lang,
  *    <li>Could be based on a set of radio input boxes</li>
  * </ul>
  *
- * Quick Example:<br/>
- *
- * <pre><code>var instance = new A.Rating({
- *   boundingBox: '#rating',
- *   defaultSelected: 3,
- *   disabled: false,
- *   label: 'Label'
- * }).render();
- * </code></pre>
- *
- * Check the list of <a href="Rating.html#configattributes">Configuration Attributes</a> available for
- * Rating.
- *
- * @param config {Object} Object literal specifying widget configuration properties.
+ * Check the [live demo](http://alloyui.com/examples/rating/).
  *
  * @class Rating
- * @constructor
  * @extends Component
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
  */
 var Rating = A.Component.create(
     {
@@ -111,13 +98,15 @@ var Rating = A.Component.create(
          * @static
          */
         ATTRS: {
+
             /**
-             * Whether the Rating is disabled or not. Disabled Ratings don't allow
-             * hover or click, just display selected stars.
+             * Whether the Rating is disabled or not.
+             * Disabled Ratings don't allow hover or click,
+             * just display selected stars.
              *
              * @attribute disabled
              * @default false
-             * @type boolean
+             * @type Boolean
              */
             disabled: {
                 value: false,
@@ -125,18 +114,24 @@ var Rating = A.Component.create(
             },
 
             /**
-             * If <code>true</code> could be reseted (i.e., have no values
-             * selected).
+             * If <code>true</code> could be reseted
+             * (i.e., have no values selected).
              *
              * @attribute canReset
              * @default true
-             * @type boolean
+             * @type Boolean
              */
             canReset: {
                 value: true,
                 validator: isBoolean
             },
 
+            /**
+             * CSS classes applied on Rating.
+             *
+             * @attribute cssClasses
+             * @type Object
+             */
             cssClasses: {
                 value: {
                     element: CSS_STAR_EMPTY,
