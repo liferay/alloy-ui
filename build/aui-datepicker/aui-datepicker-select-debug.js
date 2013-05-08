@@ -410,6 +410,7 @@ var DatePickerSelect = A.Component.create(
 
 				instance._bindSelectEvents();
 
+				instance.after('calendar:clear', instance._afterClearDate);
 				instance.after('calendar:select', instance._afterSelectDate);
 			},
 
@@ -450,6 +451,23 @@ var DatePickerSelect = A.Component.create(
 				var instance = this;
 
 				instance._syncSelectsUI();
+			},
+
+			/**
+			 * Fires when a None is selected on the Calendar.
+			 *
+			 * @method _afterClearDate
+			 * @param {Event} event
+			 * @protected
+			 */
+			_afterClearDate: function(event) {
+				var instance = this;
+
+				if (instance.get(NULLABLE_DAY) && instance.get(NULLABLE_MONTH) && instance.get(NULLABLE_YEAR)) {
+					instance.get(DAY_NODE).val(-1);
+					instance.get(MONTH_NODE).val(-1);
+					instance.get(YEAR_NODE).val(-1);
+				}
 			},
 
 			/**
