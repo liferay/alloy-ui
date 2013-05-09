@@ -15,7 +15,6 @@ var L = A.Lang,
 	SCROLL_TOP = 'scrollTop';
 
 /**
- * <p><img src="assets/images/aui-char-counter/main.png"/></p>
  *
  * A base class for CharCounter, providing:
  * <ul>
@@ -23,23 +22,13 @@ var L = A.Lang,
  *    <li>Display the number of characters left</li>
  * </ul>
  *
- * Quick Example:<br/>
- *
- * <pre><code>var instance = new A.CharCounter({
- *  input: '#elementId',
- *  counter: '#counterDisplayId',
- *  maxLength: 10
- * });
- * </code></pre>
- *
- * Check the list of <a href="CharCounter.html#configattributes">Configuration Attributes</a> available for
- * CharCounter.
+ * Check the [live demo](http://alloyui.com/examples/char-counter/).
  *
  * @class CharCounter
+ * @extends Base, Component
  * @uses AUI~input~handle
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
- * @extends Base
  */
 var CharCounter = A.Component.create(
 	{
@@ -101,10 +90,18 @@ var CharCounter = A.Component.create(
 			}
 		},
 
-		EXTENDS: A.Base,
+		/**
+         * Static property used to define which component it extends.
+         *
+         * @property CharCounter.EXTENDS
+         * @type Object
+         * @static
+         */
+        EXTENDS: A.Base,
 
 		prototype: {
-			/**
+
+            /**
 			 * Event handler for the input <a
 		     * href="module_aui-event.html">aui-event</a> event.
 			 *
