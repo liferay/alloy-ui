@@ -28,17 +28,12 @@ var Lang = A.Lang,
  * A base class for Component, providing:
  * <ul>
  *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li></li>
  * </ul>
  *
- * Check the list of <a href="Component.html#configattributes">Configuration Attributes</a> available for
- * Component.
- *
- * @param config {Object} Object literal specifying widget configuration properties.
- *
  * @class Component
- * @constructor
  * @extends Widget
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
  */
 var Component = function(config) {
 	var instance = this;
@@ -72,15 +67,15 @@ Component.NAME = 'component';
  * @static
  */
 Component.ATTRS = {
+
 	/**
 	* Boolean indicating if use of the WAI-ARIA Roles and States should be
 	* enabled for the Widget.
 	*
 	* @attribute useARIA
-	* @readOnly
+	* @default false
+	* @type Boolean
 	* @writeOnce
-	* @default true
-	* @type boolean
 	*/
 	useARIA: {
 		writeOnce: true,
@@ -101,7 +96,7 @@ Component.ATTRS = {
 	},
 
 	/**
-	 * css class added to hide the <code>boundingBox</code> when
+	 * CSS class added to hide the <code>boundingBox</code> when
 	 * <a href="Component.html#config_visible">visible</a> is set to
 	 * <code>false</code>.
 	 *
@@ -119,7 +114,7 @@ Component.ATTRS = {
 	 *
 	 * @attribute render
 	 * @default false
-	 * @type boolean | Node
+	 * @type Boolean | Node
 	 */
 	render: {
 		value: false,
@@ -135,6 +130,7 @@ A.extend(
 		 * Construction logic executed during Component instantiation. Lifecycle.
 		 *
 		 * @method initializer
+		 * @param {Object} config
 		 * @protected
 		 */
 		initializer: function(config) {
@@ -183,6 +179,13 @@ A.extend(
 			return instance.set('visible', visible);
 		},
 
+		/**
+		 * Set the visibility on the UI.
+		 *
+		 * @method _uiSetVisible
+		 * @param value
+		 * @protected
+		 */
 		_uiSetVisible: function(value) {
 			var instance = this;
 
