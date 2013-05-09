@@ -83,3 +83,27 @@
 .aui-calendar-link-none {
 	float: right;
 }
+
+.ie6 .aui-calendar-week {
+	width: 27px;
+}
+
+.ie6 .aui-calendar-day {
+	width: 23px;
+}
+
+.ie6 .aui-calendar-day-blank {
+	width: 23px;
+}
+
+.ie7 .aui-calendar-week {
+	width: 27px;
+}
+
+.ie7 .aui-calendar-day {
+	width: 23px;
+}
+
+.ie7 .aui-calendar-day-blank {
+	width: 24px;
+}
