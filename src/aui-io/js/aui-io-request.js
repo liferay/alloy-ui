@@ -94,10 +94,10 @@ var IORequest = A.Component.create(
 		 */
 		ATTRS: {
 
-            /**
+			/**
 			 * If <code>true</code> invoke the
-	         * <a href="IORequest.html#method_start">start</a> method
-             * automatically, initializing the IO transaction.
+			 * <a href="IORequest.html#method_start">start</a> method
+			 * automatically, initializing the IO transaction.
 			 *
 			 * @attribute autoLoad
 			 * @default true
@@ -110,7 +110,7 @@ var IORequest = A.Component.create(
 
 			/**
 			 * If <code>false</code> the current timestamp will be appended to the
-	         * url, avoiding the url to be cached.
+			 * url, avoiding the url to be cached.
 			 *
 			 * @attribute cache
 			 * @default true
@@ -138,9 +138,9 @@ var IORequest = A.Component.create(
 
 			/**
 			 * This is a normalized attribute for the response data. It's useful
-	         * to retrieve the correct type for the
-	         * <a href="IORequest.html#config_dataType">dataType</a> (i.e., in json
-	         * requests the <code>responseData</code>) is a JSONObject.
+			 * to retrieve the correct type for the
+			 * <a href="IORequest.html#config_dataType">dataType</a> (i.e., in json
+			 * requests the <code>responseData</code>) is a JSONObject.
 			 *
 			 * @attribute responseData
 			 * @default null
@@ -184,13 +184,13 @@ var IORequest = A.Component.create(
 
 			/**
 			 * Object containing all the
-	         * <a href="io.html#configattributes">IO Configuration Attributes</a>.
-	         * This Object is passed to the <code>A.io</code> internally.
+			 * <a href="io.html#configattributes">IO Configuration Attributes</a>.
+			 * This Object is passed to the <code>A.io</code> internally.
 			 *
 			 * @attribute cfg
 			 * @default Object containing all the
-	         * <a href="io.html#configattributes">IO Configuration Attributes</a>.
-	         * @readOnly
+			 * <a href="io.html#configattributes">IO Configuration Attributes</a>.
+			 * @readOnly
 			 * @type String
 			 */
 			cfg: {
@@ -238,7 +238,7 @@ var IORequest = A.Component.create(
 
 			/**
 			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
-             * Configuration</a>.
+			 * Configuration</a>.
 			 *
 			 * @attribute arguments
 			 * @default Value mapped on YUI.AUI.defaults.io.
@@ -250,7 +250,7 @@ var IORequest = A.Component.create(
 
 			/**
 			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
-             * Configuration</a>.
+			 * Configuration</a>.
 			 *
 			 * @attribute context
 			 * @default Value mapped on YUI.AUI.defaults.io.
@@ -262,7 +262,7 @@ var IORequest = A.Component.create(
 
 			/**
 			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
-             * Configuration</a>.
+			 * Configuration</a>.
 			 *
 			 * @attribute data
 			 * @default Value mapped on YUI.AUI.defaults.io.
@@ -274,7 +274,7 @@ var IORequest = A.Component.create(
 
 			/**
 			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
-             * Configuration</a>.
+			 * Configuration</a>.
 			 *
 			 * @attribute form
 			 * @default Value mapped on YUI.AUI.defaults.io.
@@ -320,7 +320,7 @@ var IORequest = A.Component.create(
 
 			/**
 			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
-             * Configuration</a>.
+			 * Configuration</a>.
 			 *
 			 * @attribute method
 			 * @default Value mapped on YUI.AUI.defaults.io.
@@ -335,7 +335,7 @@ var IORequest = A.Component.create(
 			 * request. Only works if the response is XML or HTML.
 			 *
 			 * @attribute selector
-             * @default null
+			 * @default null
 			 * @type String
 			 */
 			selector: {
@@ -344,7 +344,7 @@ var IORequest = A.Component.create(
 
 			/**
 			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
-             * Configuration</a>.
+			 * Configuration</a>.
 			 *
 			 * @attribute sync
 			 * @default Value mapped on YUI.AUI.defaults.io.
@@ -356,7 +356,7 @@ var IORequest = A.Component.create(
 
 			/**
 			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
-             * Configuration</a>.
+			 * Configuration</a>.
 			 *
 			 * @attribute timeout
 			 * @default Value mapped on YUI.AUI.defaults.io.
@@ -368,7 +368,7 @@ var IORequest = A.Component.create(
 
 			/**
 			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
-	         * Configuration</a>.
+			 * Configuration</a>.
 			 *
 			 * @attribute xdr
 			 * @default Value mapped on YUI.AUI.defaults.io.
@@ -380,21 +380,21 @@ var IORequest = A.Component.create(
 		},
 
 		/**
-         * Static property used to define which component it extends.
-         *
-         * @property IORequest.EXTENDS
-         * @type Object
-         * @static
-         */
-        EXTENDS: A.Plugin.Base,
+		 * Static property used to define which component it extends.
+		 *
+		 * @property IORequest.EXTENDS
+		 * @type Object
+		 * @static
+		 */
+		EXTENDS: A.Plugin.Base,
 
 		prototype: {
 
-            /**
+			/**
 			 * Construction logic executed during IORequest instantiation. Lifecycle.
 			 *
 			 * @method initializer
-             * @param config
+			 * @param config
 			 * @protected
 			 */
 			init: function(config) {
@@ -422,10 +422,10 @@ var IORequest = A.Component.create(
 
 			/**
 			 * Applies the <code>YUI.AUI.defaults.io.dataFormatter</code> if
-             * defined and return the formatted data.
+			 * defined and return the formatted data.
 			 *
 			 * @method getFormattedData
-             * @return {String}
+			 * @return {String}
 			 */
 			getFormattedData: function() {
 				var instance = this;
@@ -497,9 +497,9 @@ var IORequest = A.Component.create(
 
 			/**
 			 * Parse the <a href="IORequest.html#config_uri">uri</a> to add a
-		     * timestamp if <a href="IORequest.html#config_cache">cache</a> is
-		     * <code>true</code>. Also applies the
-		     * <code>YUI.AUI.defaults.io.uriFormatter</code>.
+			 * timestamp if <a href="IORequest.html#config_cache">cache</a> is
+			 * <code>true</code>. Also applies the
+			 * <code>YUI.AUI.defaults.io.uriFormatter</code>.
 			 *
 			 * @method _parseURL
 			 * @param {String} url
