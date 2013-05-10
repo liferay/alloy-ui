@@ -65,19 +65,13 @@ var L = A.Lang,
  *    <li>Cache options</li>
  * </ul>
  *
- * Quick Example:<br/>
- *
- * <pre><code>A.io.request(uri, config);</code></pre>
- *
- * Check the list of <a href="IORequest.html#configattributes">Configuration Attributes</a> available for
- * IORequest.
- *
- * @param config {Object} Object literal specifying widget configuration properties.
+ * Check the [live demo](http://alloyui.com/examples/io/).
  *
  * @class IORequest
- * @constructor
  * @extends Plugin.Base
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @uses io
+ * @constructor
  */
 var IORequest = A.Component.create(
 	{
@@ -99,14 +93,15 @@ var IORequest = A.Component.create(
 		 * @static
 		 */
 		ATTRS: {
-			/**
+
+            /**
 			 * If <code>true</code> invoke the
-	         * <a href="IORequest.html#method_start">start</a> method automatically,
-	         * initializing the IO transaction.
+	         * <a href="IORequest.html#method_start">start</a> method
+             * automatically, initializing the IO transaction.
 			 *
 			 * @attribute autoLoad
 			 * @default true
-			 * @type boolean
+			 * @type Boolean
 			 */
 			autoLoad: {
 				value: true,
@@ -119,7 +114,7 @@ var IORequest = A.Component.create(
 			 *
 			 * @attribute cache
 			 * @default true
-			 * @type boolean
+			 * @type Boolean
 			 */
 			cache: {
 				value: true,
@@ -180,7 +175,7 @@ var IORequest = A.Component.create(
 			 *
 			 * @attribute active
 			 * @default false
-			 * @type boolean
+			 * @type Boolean
 			 */
 			active: {
 				value: false,
@@ -243,7 +238,7 @@ var IORequest = A.Component.create(
 
 			/**
 			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
-	        * Configuration</a>.
+             * Configuration</a>.
 			 *
 			 * @attribute arguments
 			 * @default Value mapped on YUI.AUI.defaults.io.
@@ -255,7 +250,7 @@ var IORequest = A.Component.create(
 
 			/**
 			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
-	        * Configuration</a>.
+             * Configuration</a>.
 			 *
 			 * @attribute context
 			 * @default Value mapped on YUI.AUI.defaults.io.
@@ -267,7 +262,7 @@ var IORequest = A.Component.create(
 
 			/**
 			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
-	        * Configuration</a>.
+             * Configuration</a>.
 			 *
 			 * @attribute data
 			 * @default Value mapped on YUI.AUI.defaults.io.
@@ -279,7 +274,7 @@ var IORequest = A.Component.create(
 
 			/**
 			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
-	        * Configuration</a>.
+             * Configuration</a>.
 			 *
 			 * @attribute form
 			 * @default Value mapped on YUI.AUI.defaults.io.
@@ -325,7 +320,7 @@ var IORequest = A.Component.create(
 
 			/**
 			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
-	        * Configuration</a>.
+             * Configuration</a>.
 			 *
 			 * @attribute method
 			 * @default Value mapped on YUI.AUI.defaults.io.
@@ -340,7 +335,8 @@ var IORequest = A.Component.create(
 			 * request. Only works if the response is XML or HTML.
 			 *
 			 * @attribute selector
-			 * @type string
+             * @default null
+			 * @type String
 			 */
 			selector: {
 				value: null
@@ -348,11 +344,11 @@ var IORequest = A.Component.create(
 
 			/**
 			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
-	        * Configuration</a>.
+             * Configuration</a>.
 			 *
 			 * @attribute sync
 			 * @default Value mapped on YUI.AUI.defaults.io.
-			 * @type boolean
+			 * @type Boolean
 			 */
 			sync: {
 				valueFn: getDefault(SYNC)
@@ -360,7 +356,7 @@ var IORequest = A.Component.create(
 
 			/**
 			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
-	        * Configuration</a>.
+             * Configuration</a>.
 			 *
 			 * @attribute timeout
 			 * @default Value mapped on YUI.AUI.defaults.io.
@@ -383,13 +379,22 @@ var IORequest = A.Component.create(
 			}
 		},
 
-		EXTENDS: A.Plugin.Base,
+		/**
+         * Static property used to define which component it extends.
+         *
+         * @property IORequest.EXTENDS
+         * @type Object
+         * @static
+         */
+        EXTENDS: A.Plugin.Base,
 
 		prototype: {
-			/**
+
+            /**
 			 * Construction logic executed during IORequest instantiation. Lifecycle.
 			 *
 			 * @method initializer
+             * @param config
 			 * @protected
 			 */
 			init: function(config) {
@@ -401,7 +406,7 @@ var IORequest = A.Component.create(
 			},
 
 			/**
-			 * Descructor lifecycle implementation for the IORequest class.
+			 * Destructor lifecycle implementation for the IORequest class.
 			 * Purges events attached to the node (and all child nodes).
 			 *
 			 * @method destructor
@@ -416,11 +421,11 @@ var IORequest = A.Component.create(
 			},
 
 			/**
-			 * Applies the <code>YUI.AUI.defaults.io.dataFormatter</code> if defined and return the formatted data.
+			 * Applies the <code>YUI.AUI.defaults.io.dataFormatter</code> if
+             * defined and return the formatted data.
 			 *
 			 * @method getFormattedData
-			 * @protected
-			 * @return {String}
+             * @return {String}
 			 */
 			getFormattedData: function() {
 				var instance = this;
@@ -641,7 +646,8 @@ A.IORequest = IORequest;
  */
 
 /**
- * Static method to invoke the <a href="IORequest.html">IORequest</a>. Likewise <a href="io.html#method_io">io</a>.
+ * Static method to invoke the <a href="IORequest.html">IORequest</a>.
+ * Likewise <a href="io.html#method_io">io</a>.
  *
  * @method A.io.request
  * @for A.io
