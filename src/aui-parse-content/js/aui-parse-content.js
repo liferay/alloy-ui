@@ -7,9 +7,9 @@
  */
 
 /*
-* NOTE: The inspiration of ParseContent cames from the "Caridy Patino" Node Dispatcher Plugin
-* 		http://github.com/caridy/yui3-gallery/blob/master/src/gallery-dispatcher/
-*/
+ * NOTE: The inspiration of ParseContent cames from the "Caridy Patino" Node Dispatcher Plugin
+ * 		 http://github.com/caridy/yui3-gallery/blob/master/src/gallery-dispatcher/
+ */
 
 var L = A.Lang,
 	isString = L.isString,
@@ -54,11 +54,10 @@ var L = A.Lang,
  * Check the list of <a href="ParseContent.html#configattributes">Configuration Attributes</a> available for
  * ParseContent.
  *
- * @param config {Object} Object literal specifying widget configuration properties.
- *
  * @class ParseContent
- * @constructor
  * @extends Plugin.Base
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
  */
 var ParseContent = A.Component.create(
 	{
@@ -89,14 +88,29 @@ var ParseContent = A.Component.create(
 		 * @static
 		 */
 		ATTRS: {
+
+			/**
+			 * A queue of elements to be parsed.
+			 *
+			 * @attribute queue
+			 * @default null
+			 */
 			queue: {
 				value: null
 			}
 		},
 
+		/**
+		 * Static property used to define which component it extends.
+		 *
+		 * @property ParseContent.EXTENDS
+		 * @type Object
+		 * @static
+		 */
 		EXTENDS: A.Plugin.Base,
 
 		prototype: {
+
 			/**
 			 * Construction logic executed during ParseContent instantiation. Lifecycle.
 			 *
@@ -179,9 +193,9 @@ var ParseContent = A.Component.create(
 
 			/**
 			 * Bind listeners on the <code>insert</code> and <code>setContent</code>
-		     * methods of the Node instance where you are plugging the ParseContent.
-		     * These listeners are responsible for intercept the HTML passed and parse
-		     * them.
+			 * methods of the Node instance where you are plugging the ParseContent.
+			 * These listeners are responsible for intercept the HTML passed and parse
+			 * them.
 			 *
 			 * @method _bindAOP
 			 * @protected
@@ -214,8 +228,8 @@ var ParseContent = A.Component.create(
 
 			/**
 			 * Create an HTML fragment with the String passed, extract all the script
-		     * tags and return an Object with a reference for the extracted scripts and
-		     * the fragment.
+			 * tags and return an Object with a reference for the extracted scripts and
+			 * the fragment.
 			 *
 			 * @method clean
 			 * @param {String} content HTML content.
