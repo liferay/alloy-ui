@@ -133,6 +133,18 @@ var Carousel = A.Component.create(
 			},
 
 			/**
+			 * Settings to be passed to the "flick" event filter
+			 *
+			 * @attribute flick
+			 * @default {}
+			 * @type {Object}
+			 */
+			flick: {
+				validator: Lang.isObject,
+				value: {}
+			},
+
+			/**
 			 * Interval time in seconds between an item transition
 			 *
 			 * @attribute intervalTime
@@ -468,20 +480,19 @@ var Carousel = A.Component.create(
 
 				var nodeSelection = contentBox.all(DOT + CSS_ITEM);
 
-				var gestureFlickFilter = {
-					minDistance: GESTURE_FLICK_FILTER_DISTANCE,
-					minVelocity: GESTURE_FLICK_FILTER_VELOCITY
-				};
-
-				nodeSelection.each(
-					function(item, index, collection) {
-						item.on(
-							'flick',
-							instance._onFlickHandler,
-							gestureFlickFilter,
-							instance
-						);
+				var gestureFlickFilter = A.mix(
+					instance.get('flick') || {},
+					{
+						minDistance: GESTURE_FLICK_FILTER_DISTANCE,
+						minVelocity: GESTURE_FLICK_FILTER_VELOCITY
 					}
+				);
+
+				nodeSelection.on(
+					'flick',
+					instance._onFlickHandler,
+					gestureFlickFilter,
+					instance
 				);
 			},
 
@@ -614,13 +625,13 @@ var Carousel = A.Component.create(
 			_onFlickHandler: function(event) {
 				var instance = this;
 
-				var handler;
-
-				var distance = event.flick.distance;
-
 				if (event.flick.axis == 'x') {
+					var handler;
+
+					var distance = event.flick.distance;
+
 					// event.flick.axis has more consistant behavior than {axis: 'x'}
-					if (distance < 0) {//Think backwards for touch.
+					if (distance < 0) { //Think backwards for touch.
 						handler = instance._updateIndexNext;
 					}
 					else if (distance > 0) {
@@ -632,7 +643,6 @@ var Carousel = A.Component.create(
 					}
 				}
 			},
-
 
 			/**
 			 * Executed when delegates handle menuItem click
