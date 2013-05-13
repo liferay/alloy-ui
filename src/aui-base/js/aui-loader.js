@@ -16,8 +16,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-ace-autocomplete-freemarker": {
         "requires": [
-            "aui-ace-autocomplete-base",
-            "aui-search-tst"
+            "aui-ace-autocomplete-templateprocessor"
         ]
     },
     "aui-ace-autocomplete-list": {
@@ -32,6 +31,16 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "aui-ace-autocomplete-list",
             "plugin"
+        ]
+    },
+    "aui-ace-autocomplete-templateprocessor": {
+        "requires": [
+            "aui-ace-autocomplete-base"
+        ]
+    },
+    "aui-ace-autocomplete-velocity": {
+        "requires": [
+            "aui-ace-autocomplete-templateprocessor"
         ]
     },
     "aui-ace-editor": {
@@ -868,4 +877,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'ec02d2469e97b5b7b1a52b2c404ac54f';
+YUI.Env[Y.version].md5 = 'ab292d3a0bd26ed072056238514d1f0e';
