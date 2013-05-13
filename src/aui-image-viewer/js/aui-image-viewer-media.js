@@ -30,13 +30,53 @@ var Lang = A.Lang,
 
 	REGEX_PARAM = '(?:[\\?&]|^){param}=([^&#]*)';
 
+/**
+ * A base class for MediaViewerPlugin.
+ *
+ * Check the [live demo](http://alloyui.com/examples/image-viewer/).
+ *
+ * @class MediaViewerPlugin
+ * @extends Plugin.Base
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var MediaViewerPlugin = A.Component.create(
 	{
-		NAME: NAME,
+		/**
+         * Static property provides a string to identify the class.
+         *
+         * @property MediaViewerPlugin.NAME
+         * @type String
+         * @static
+         */
+        NAME: NAME,
+
+        /**
+         * Static property provides a string to identify the namespace.
+         *
+         * @property MediaViewerPlugin.NS
+         * @type String
+         * @static
+         */
 		NS: 'media',
 
-		ATTRS: {
-			providers: {
+		/**
+         * Static property used to define the default attribute
+         * configuration for the MediaViewerPlugin.
+         *
+         * @property MediaViewerPlugin.ATTRS
+         * @type Object
+         * @static
+         */
+        ATTRS: {
+
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @attribute providers
+             * @type Object
+             */
+            providers: {
 				validator: Lang.isObject,
 				value: {
 					'flash': {
@@ -77,10 +117,25 @@ var MediaViewerPlugin = A.Component.create(
 			}
 		},
 
-		EXTENDS: A.Plugin.Base,
+		/**
+         * Static property used to define which component it extends.
+         *
+         * @property MediaViewerPlugin.EXTENDS
+         * @type Object
+         * @static
+         */
+        EXTENDS: A.Plugin.Base,
 
 		prototype: {
-			initializer: function(config) {
+
+            /**
+             * Construction logic executed during MediaViewerPlugin instantiation. Lifecycle.
+             *
+             * @method initializer
+             * @param config
+             * @protected
+             */
+            initializer: function(config) {
 				var instance = this;
 
 				var handles = instance._handles;
@@ -91,7 +146,12 @@ var MediaViewerPlugin = A.Component.create(
 				handles.preloadImage = instance.beforeHostMethod('preloadImage', instance.preloadImage);
 			},
 
-			close: function() {
+			/**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method close
+             */
+            close: function() {
 				var instance = this;
 
 				var host = instance.get('host');
@@ -107,7 +167,13 @@ var MediaViewerPlugin = A.Component.create(
 				}
 			},
 
-			loadMedia: function(linkHref) {
+			/**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method loadMedia
+             * @param linkHref
+             */
+            loadMedia: function(linkHref) {
 				var instance = this;
 
 				var host = instance.get('host');
@@ -169,7 +235,13 @@ var MediaViewerPlugin = A.Component.create(
 				return result;
 			},
 
-			preloadImage: function(index) {
+			/**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method preloadImage
+             * @param index
+             */
+            preloadImage: function(index) {
 				var instance = this;
 
 				var host = instance.get('host');
@@ -191,7 +263,14 @@ var MediaViewerPlugin = A.Component.create(
 				return result;
 			},
 
-			_getMediaType: function(source) {
+			/**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _getMediaType
+             * @param source
+             * @protected
+             */
+            _getMediaType: function(source) {
 				var instance = this;
 
 				var providers = instance.get(STR_PROVIDERS);
@@ -208,7 +287,14 @@ var MediaViewerPlugin = A.Component.create(
 				return mediaType;
 			},
 
-			_redirectIframe: function(source) {
+			/**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _redirectIframe
+             * @param source
+             * @protected
+             */
+            _redirectIframe: function(source) {
 				var instance = this;
 
 				var bodyNode = instance.get('host.bodyNode');
@@ -222,7 +308,14 @@ var MediaViewerPlugin = A.Component.create(
 				}
 			},
 
-			_restoreMedia: function(event) {
+			/**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _restoreMedia
+             * @param event
+             * @protected
+             */
+            _restoreMedia: function(event) {
 				var instance = this;
 
 				var host = instance.get('host');
@@ -238,7 +331,14 @@ var MediaViewerPlugin = A.Component.create(
 				}
 			},
 
-			_uiSetContainerSize: function(width, height) {
+			/**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _uiSetContainerSize
+             * @param width, height
+             * @protected
+             */
+            _uiSetContainerSize: function(width, height) {
 				var instance = this;
 
 				var host = instance.get('host'),
@@ -255,7 +355,14 @@ var MediaViewerPlugin = A.Component.create(
 				);
 			},
 
-			_updateOptions: function(source, options) {
+			/**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _updateOptions
+             * @param source, options
+             * @protected
+             */
+            _updateOptions: function(source, options) {
 				var dataOptions = source.attr(DATA_OPTIONS);
 				var linkHref = source.attr(STR_HREF);
 
