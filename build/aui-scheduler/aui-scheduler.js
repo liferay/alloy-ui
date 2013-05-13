@@ -4069,11 +4069,9 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 	},
 
 	_getPositionDate: function(position) {
-		var instance = this;
-		var intervalStartDate = instance._findCurrentIntervalStart();
-		var startDateRef = DateMath.safeClearTime(instance._findFirstDayOfWeek(intervalStartDate));
-
-		var date = DateMath.add(startDateRef, DateMath.DAY, instance._getCellIndex(position));
+		var instance = this,
+			intervalStartDate = instance._findCurrentIntervalStart(),
+			date = DateMath.add(intervalStartDate, DateMath.DAY, instance._getCellIndex(position));
 
 		date.setHours(0, 0, 0, 0);
 
@@ -4138,9 +4136,9 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 			instance.renderLasso(startPosition, instance._getDatePosition(endPositionDate));
 
-			draggingEvent.set(VISIBLE, false, { silent: true });
-
 			instance._syncProxyNodeUI(draggingEvent);
+
+			draggingEvent.set(VISIBLE, false, { silent: true });
 
 			instance.lassoStartPosition = instance.lassoLastPosition = startPosition;
 
@@ -4225,14 +4223,8 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 		var dd = instance[DELEGATE][DD];
 
-		dd.unplug(A.Plugin.DDConstrained);
 		dd.unplug(A.Plugin.DDNodeScroll);
 		dd.unplug(A.Plugin.DDProxy);
-
-		dd.plug(A.Plugin.DDConstrained, {
-			bubbleTargets: instance,
-			constrain: instance.bodyNode
-		});
 
 		dd.plug(A.Plugin.DDNodeScroll, {
 			node: instance.bodyNode,
@@ -4260,12 +4252,18 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		var instance = this;
 
 		var eventNode = evt.get(NODE).item(0);
+		var eventNodePadding = evt.get(NODE).item(1);
 
 		instance[PROXY_NODE].setStyles({
 			backgroundColor: eventNode.getStyle('backgroundColor'),
-			display: 'block',
-			width: '200px'
+			display: 'block'
 		});
+
+		if (!eventNodePadding || !eventNodePadding.test(':visible')) {
+			var offsetWidth = eventNode.get(OFFSET_WIDTH);
+
+			instance[PROXY_NODE].set(OFFSET_WIDTH, offsetWidth);
+		}
 
 		instance[PROXY_NODE].appendTo(instance[ROWS_CONTAINER_NODE]);
 		instance[PROXY_NODE].setContent(evt.get(CONTENT));
@@ -4274,7 +4272,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 A.Base.mix(A.SchedulerTableView, [ A.SchedulerTableViewDD ]);
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-scheduler-view-table','dd-drag','dd-delegate','dd-drop','dd-constrain']});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-scheduler-view-table','dd-drag','dd-delegate','dd-drop']});
 AUI.add('aui-scheduler-view-month', function(A) {
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
@@ -4879,6 +4877,7 @@ var Lang = A.Lang,
 
 	DateMath = A.DataType.DateMath,
 
+	_COMMA = ',',
 	_DASH = '-',
 	_DOT = '.',
 	_SPACE = ' ',
@@ -4887,6 +4886,7 @@ var Lang = A.Lang,
 	SCHEDULER_EVENT_RECORDER = 'scheduler-event-recorder',
 
 	ACTIVE_VIEW = 'activeView',
+	ALL_DAY = 'allDay',
 	ARROW = 'arrow',
 	BODY = 'body',
 	BODY_CONTENT = 'bodyContent',
@@ -4977,7 +4977,7 @@ var SchedulerEventRecorder = A.Component.create({
 
 		dateFormat: {
 			validator: isString,
-			value: '%a, %B %d,'
+			value: '%a, %B %d'
 		},
 
 		event: {
@@ -5271,15 +5271,21 @@ var SchedulerEventRecorder = A.Component.create({
 
 		getFormattedDate: function() {
 			var instance = this;
-			var dateFormat = instance.get(DATE_FORMAT);
-			var evt = (instance.get(EVENT) || instance);
+				evt = (instance.get(EVENT) || instance);
+				endDate = evt.get(END_DATE),
+				startDate = evt.get(START_DATE),
+				formattedDate = evt._formatDate(startDate, instance.get(DATE_FORMAT));
 
-			var endDate = evt.get(END_DATE);
-			var scheduler = evt.get(SCHEDULER);
-			var startDate = evt.get(START_DATE);
-			var fmtHourFn = (scheduler.get(ACTIVE_VIEW).get(ISO_TIME) ? DateMath.toIsoTimeString : DateMath.toUsTimeString);
+			if (evt.get(ALL_DAY)) {
+				return formattedDate;
+			}
 
-			return [ evt._formatDate(startDate, dateFormat), fmtHourFn(startDate), _DASH, fmtHourFn(endDate) ].join(_SPACE);
+			formattedDate = formattedDate.concat(_COMMA);
+
+			var scheduler = evt.get(SCHEDULER),
+				fmtHourFn = (scheduler.get(ACTIVE_VIEW).get(ISO_TIME) ? DateMath.toIsoTimeString : DateMath.toUsTimeString);
+
+			return [ formattedDate, fmtHourFn(startDate), _DASH, fmtHourFn(endDate) ].join(_SPACE);
 		},
 
 		getTemplateData: function() {

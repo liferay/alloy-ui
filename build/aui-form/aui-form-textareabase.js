@@ -88,7 +88,7 @@ var Lang = A.Lang,
 			var instance = this;
 
 			if (instance.get(AUTOSIZE)) {
-				instance.get(NODE).on('keyup', instance._onKeyup, instance);
+				instance.get(NODE).on('input', instance._onInput, instance);
 			}
 
 			instance.after(ADJUSTSIZE, instance._uiAutoSize);
@@ -124,7 +124,7 @@ var Lang = A.Lang,
 			instance._uiSetDim(WIDTH, event.newVal, event.prevVal);
 		},
 
-		_onKeyup: function(event) {
+		_onInput: function(event) {
 			var instance = this;
 
 			instance.fire(ADJUSTSIZE);
@@ -238,4 +238,4 @@ var Lang = A.Lang,
 
 	A.TextareaBase = TextareaBase;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base']});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-base','aui-event-input']});

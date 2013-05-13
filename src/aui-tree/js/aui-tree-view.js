@@ -18,8 +18,10 @@ var L = A.Lang,
 	CONTENT_BOX = 'contentBox',
 	DOT = '.',
 	FILE = 'file',
+	HIDDEN = 'hidden',
 	HITAREA = 'hitarea',
 	ICON = 'icon',
+	INVALID = 'invalid',
 	LABEL = 'label',
 	LAST_SELECTED = 'lastSelected',
 	LEAF = 'leaf',
@@ -48,6 +50,8 @@ var L = A.Lang,
 	CSS_TREE_ICON = getCN(TREE, ICON),
 	CSS_TREE_LABEL = getCN(TREE, LABEL),
 	CSS_TREE_NODE_CONTENT = getCN(TREE, NODE, CONTENT),
+	CSS_TREE_NODE_CONTENT_INVALID = getCN(TREE, NODE, CONTENT, INVALID),
+	CSS_TREE_NODE_HIDDEN_HITAREA = getCN(TREE, NODE, HIDDEN, HITAREA),
 	CSS_TREE_ROOT_CONTAINER = getCN(TREE, ROOT, CONTAINER),
 	CSS_TREE_VIEW_CONTENT = getCN(TREE, VIEW, CONTENT);
 
@@ -133,28 +137,13 @@ var TreeView = A.Component.create(
 				value: true
 			},
 
-			/**
-			 * IO metadata for loading the children using ajax.
-			 *
-			 * @attribute io
-			 * @default null
-			 * @type Object
-			 */
-			io: {
-				value: null
-			},
-
-			paginator: {
-				value: null
-			},
-
 			selectOnToggle: {
 				validator: isBoolean,
 				value: false
 			}
 		},
 
-		AUGMENTS: [A.TreeData],
+		AUGMENTS: [A.TreeData, A.TreeViewPaginator, A.TreeViewIO],
 
 		prototype: {
 			CONTENT_TEMPLATE: '<ul></ul>',
@@ -175,7 +164,21 @@ var TreeView = A.Component.create(
 			bindUI: function() {
 				var instance = this;
 
+				instance.after('childrenChange', A.bind(instance._afterSetChildren, instance));
+
 				instance._delegateDOM();
+			},
+
+			createNodes: function(nodes) {
+				var instance = this;
+
+				A.Array.each(A.Array(nodes), function(node) {
+					var newNode = instance.createNode(node);
+
+					instance.appendChild(newNode);
+				});
+
+				instance._syncPaginatorUI(nodes);
 			},
 
 			/**
@@ -188,6 +191,19 @@ var TreeView = A.Component.create(
 				var instance = this;
 
 				instance._renderElements();
+			},
+
+			/**
+			 * Fires after set children.
+			 *
+			 * @method _afterSetChildren
+			 * @param {EventFacade} event
+			 * @protected
+			 */
+			_afterSetChildren: function(event) {
+				var instance = this;
+
+				instance._syncPaginatorUI();
 			},
 
 			/**
@@ -280,6 +296,7 @@ var TreeView = A.Component.create(
 			 */
 			_delegateDOM: function() {
 				var instance = this;
+
 				var boundingBox = instance.get(BOUNDING_BOX);
 
 				// expand/collapse delegations
@@ -300,10 +317,13 @@ var TreeView = A.Component.create(
 			 */
 			_onClickNodeEl: function(event) {
 				var instance = this;
+
 				var treeNode = instance.getNodeByChild( event.currentTarget );
 
-				if (treeNode) {
-					if (event.target.test(DOT+CSS_TREE_HITAREA)) {
+				var target = event.target;
+
+				if (treeNode && !target.hasClass(CSS_TREE_NODE_HIDDEN_HITAREA)) {
+					if (target.hasClass(CSS_TREE_HITAREA)) {
 						treeNode.toggle();
 
 						if (!instance.get(SELECT_ON_TOGGLE)) {
@@ -602,6 +622,7 @@ var TreeViewDD = A.Component.create(
 						{
 							bubbleTargets: instance,
 							container: boundingBox,
+							invalid: DOT+CSS_TREE_NODE_CONTENT_INVALID,
 							nodes: DOT+CSS_TREE_NODE_CONTENT,
 							target: true
 						}

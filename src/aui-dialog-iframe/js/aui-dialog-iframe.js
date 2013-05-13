@@ -236,11 +236,13 @@ var DialogIframePlugin = A.Component.create(
 			_uiSetUri: function(newVal, prevVal) {
 				var instance = this;
 
+				var loadingMask = instance._bodyNode.loadingmask;
+
 				var oldUrl = prevVal.split('#');
 				var newUrl = newVal.split('#');
 
-				if (newUrl[0] != oldUrl[0] && instance._bodyNode.loadingmask) {
-					instance._bodyNode.loadingmask.show();
+				if (newUrl[0] != oldUrl[0] && loadingMask) {
+					loadingMask.show();
 				}
 
 				instance.node.attr('src', newVal);

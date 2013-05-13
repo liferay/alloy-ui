@@ -231,6 +231,9 @@
 		AUI._uaExtensions = function(A) {
 			var nav = navigator;
 
+			var CONFIG = A.config,
+				DOC = CONFIG.doc;
+
 			var userAgent = nav.userAgent;
 
 			var UA = A.UA;
@@ -261,6 +264,13 @@
 
 			if (UA.ie) {
 				UAX.aol = getVersion(/America Online Browser ([^\s]*);/, userAgent);
+
+				var docMode = DOC.documentMode;
+
+				if (docMode) {
+					UA.browser = UA.ie;
+					UA.ie = docMode;
+				}
 			}
 			else if (UA.gecko) {
 				UAX.netscape = getVersion(/(Netscape|Navigator)\/([^\s]*)/, userAgent);
@@ -289,9 +299,6 @@
 					UAX.sun = sun;
 				}
 			}
-
-			var CONFIG = A.config,
-				DOC = CONFIG.doc;
 
 			UAX.touch = ('ontouchstart' in DOC);
 

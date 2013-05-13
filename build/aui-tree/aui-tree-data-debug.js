@@ -783,6 +783,8 @@ A.mix(TreeData.prototype, {
 			container = instance._createNodeContainer();
 		}
 
+		instance.childrenLength = v.length;
+
 		// before render the node, make sure the PARENT_NODE and OWNER_TREE references are updated
 		// this is required on the render phase of the TreeNode (_createNodeContainer)
 		// to propagate the events callback (appendChild/expand)
@@ -801,7 +803,7 @@ A.mix(TreeData.prototype, {
 
 		instance.updateIndex({});
 
-		if (v.length > 0) {
+		if (instance.childrenLength > 0) {
 			instance.set(LEAF, false);
 		}
 

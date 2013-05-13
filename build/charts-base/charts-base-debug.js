@@ -16203,4 +16203,17 @@ Y.PieChart = Y.Base.create("pieChart", Y.Widget, [Y.ChartBase], {
 });
 
 
-}, '3.7.3', {"requires": ["dom", "datatype-number", "datatype-date", "event-custom", "event-mouseenter", "event-touch", "widget", "widget-position", "widget-stack", "graphics"]});
+}, '3.7.3', {
+    "requires": [
+        "dom",
+        "datatype-number",
+        "datatype-date",
+        "event-custom",
+        "event-mouseenter",
+        "event-touch",
+        "widget",
+        "widget-position",
+        "widget-stack",
+        "graphics"
+    ]
+});

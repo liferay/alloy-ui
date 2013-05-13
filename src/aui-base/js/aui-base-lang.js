@@ -342,6 +342,10 @@ A.mix(
 A.mix(
 	Lang,
 	{
+		constrain: function(num, min, max) {
+			return Math.min(Math.max(num, min), max);
+		},
+
 		emptyFn: function() {},
 
 		emptyFnFalse: function() {

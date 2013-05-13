@@ -18,7 +18,6 @@ var Lang = A.Lang,
 	CLICK = 'click',
 	COLLAPSED = 'collapsed',
 	CONTENT = 'content',
-	CUBIC_BEZIER = 'cubic-bezier',
 	DOWN = 'down',
 	ENTER = 'enter',
 	ESC = 'esc',
@@ -106,8 +105,7 @@ var Toggler = A.Component.create({
 		transition: {
 			validator: isObject,
 			value: {
-				duration: 0.4,
-			    easing: CUBIC_BEZIER
+				duration: 0.4
 			}
 		}
 

@@ -1302,4 +1302,19 @@ YUI.add('dial', function (Y, NAME) {
     Y.Dial = Dial;
 
 
-}, '3.7.3', {"requires": ["widget", "dd-drag", "event-mouseenter", "event-move", "event-key", "transition", "intl"], "lang": ["en", "es"], "skinnable": true});
+}, '3.7.3', {
+    "requires": [
+        "widget",
+        "dd-drag",
+        "event-mouseenter",
+        "event-move",
+        "event-key",
+        "transition",
+        "intl"
+    ],
+    "lang": [
+        "en",
+        "es"
+    ],
+    "skinnable": true
+});

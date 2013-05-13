@@ -1,7 +1,7 @@
 AUI.add('aui-overlay-base', function(A) {
 /**
  * Provides a basic Overlay widget, with Standard Module content support. The Overlay widget
- * provides Page XY positioning support, alignment and centering support along with basic 
+ * provides Page XY positioning support, alignment and centering support along with basic
  * stackable support (z-index and shimming).
  *
  * @module aui-overlay
@@ -26,6 +26,11 @@ AUI.add('aui-overlay-base', function(A) {
 A.OverlayBase = A.Component.create(
 	{
 		NAME: 'overlay',
+		ATTRS: {
+			hideClass: {
+				value: false
+			}
+		},
 		AUGMENTS: [A.WidgetPosition, A.WidgetStack, A.WidgetPositionAlign, A.WidgetPositionConstrain, A.WidgetStdMod]
 	}
 );
@@ -2095,5 +2100,5 @@ A.OverlayMask = OverlayMask;
 }, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-overlay-base','event-resize']});
 
 
-AUI.add('aui-overlay', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-overlay-base','aui-overlay-context','aui-overlay-context-panel','aui-overlay-manager','aui-overlay-mask']});
+AUI.add('aui-overlay', function(A){}, '@VERSION@' ,{use:['aui-overlay-base','aui-overlay-context','aui-overlay-context-panel','aui-overlay-manager','aui-overlay-mask'], skinnable:true});
 

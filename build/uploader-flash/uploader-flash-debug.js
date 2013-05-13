@@ -1039,4 +1039,16 @@ Y.UploaderFlash.Queue = UploaderQueue;
 
 
 
-}, '3.7.3', {"requires": ["swf", "widget", "substitute", "base", "cssbutton", "node", "event-custom", "file-flash", "uploader-queue"]});
+}, '3.7.3', {
+    "requires": [
+        "swf",
+        "widget",
+        "substitute",
+        "base",
+        "cssbutton",
+        "node",
+        "event-custom",
+        "file-flash",
+        "uploader-queue"
+    ]
+});

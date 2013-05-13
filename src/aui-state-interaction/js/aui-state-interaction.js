@@ -4,11 +4,30 @@ var Lang = A.Lang,
 
 	getClassName = A.getClassName,
 
+	ACTIVE = 'active',
+	ACTIVE_CHANGE = 'activeChange',
+	BUBBLE_TARGET = 'bubbleTarget',
+	CLICK = 'click',
+	CONTENT_BOX = 'contentBox',
+	DEFAULT = 'default',
+	DEFAULT_CHANGE = 'defaultChange',
+	DEFAULT_STATE = 'defaultState',
+	DISABLED = 'disabled',
+	DISABLED_CHANGE = 'disabledChange',
+	DISABLED_STATE = 'disabledState',
+	HOVER = 'hover',
+	HOVER_CHANGE = 'hoverChange',
+	MOUSE_ENTER = 'mouseenter',
+	MOUSE_LEAVE = 'mouseleave',
+	MOUSE_OUT = 'mouseout',
+	MOUSE_OVER = 'mouseover',
+	NODE = 'node',
 	STATE = 'state',
 
-	CSS_STATE_DEFAULT = getClassName(STATE, 'default'),
-	CSS_STATE_HOVER = getClassName(STATE, 'hover'),
-	CSS_STATE_ACTIVE = getClassName(STATE, 'active');
+	CSS_STATE_ACTIVE = getClassName(STATE, ACTIVE),
+	CSS_STATE_DEFAULT = getClassName(STATE, DEFAULT),
+	CSS_STATE_DISABLED = getClassName(STATE, DISABLED),
+	CSS_STATE_HOVER = getClassName(STATE, HOVER);
 
 var StateInteraction = A.Component.create(
 	{
@@ -42,6 +61,16 @@ var StateInteraction = A.Component.create(
 				validator: isBoolean
 			},
 
+			disabled: {
+				value: false,
+				validator: isBoolean
+			},
+
+			disabledState: {
+				value: true,
+				validator: isBoolean
+			},
+
 			hover: {
 				value: false
 			},
@@ -63,7 +92,7 @@ var StateInteraction = A.Component.create(
 			var node = host;
 
 			if (A.Widget && host instanceof A.Widget) {
-				node = host.get('contentBox');
+				node = host.get(CONTENT_BOX);
 			}
 
 			config.node = node;
@@ -77,19 +106,27 @@ var StateInteraction = A.Component.create(
 
 				var activeClass = instance.get('classNames.active');
 				var defaultClass = instance.get('classNames.default');
+				var disabledClass = instance.get('classNames.disabled');
 				var hoverClass = instance.get('classNames.hover');
+				var node = instance.get(NODE);
 
 				instance._CSS_STATES = {
 					active: isString(activeClass) ? activeClass : CSS_STATE_ACTIVE,
 					'default': isString(defaultClass) ? defaultClass : CSS_STATE_DEFAULT,
+					disabled: isString(disabledClass) ? disabledClass : CSS_STATE_DISABLED,
 					hover: isString(hoverClass) ? hoverClass : CSS_STATE_HOVER
 				};
 
-				if (instance.get('defaultState')) {
-					instance.get('node').addClass(instance._CSS_STATES['default']);
+				if (instance.get(DEFAULT_STATE)) {
+					node.addClass(instance._CSS_STATES[DEFAULT]);
 				}
 
-				instance._createEvents();
+				if (instance.get(DISABLED)) {
+					node.addClass(instance._CSS_STATES[DISABLED]);
+				}
+				else {
+					instance._createEvents();
+				}
 
 				instance._attachInteractionEvents();
 			},
@@ -97,22 +134,25 @@ var StateInteraction = A.Component.create(
 			_attachInteractionEvents: function() {
 				var instance = this;
 
-				var node = instance.get('node');
+				var node = instance.get(NODE);
 
-				node.on('click', instance._fireEvents, instance);
+				if (!instance.get(DISABLED)) {
+					node.on(CLICK, instance._fireEvents, instance);
 
-				node.on('mouseenter', A.rbind(instance._fireEvents, instance, 'mouseover'));
-				node.on('mouseleave', A.rbind(instance._fireEvents, instance, 'mouseout'));
+					node.on(MOUSE_ENTER, A.rbind(instance._fireEvents, instance, MOUSE_OVER));
+					node.on(MOUSE_LEAVE, A.rbind(instance._fireEvents, instance, MOUSE_OUT));
+				}
 
-				instance.after('activeChange', instance._uiSetState);
-				instance.after('hoverChange', instance._uiSetState);
-				instance.after('defaultChange', instance._uiSetState);
+				instance.after(ACTIVE_CHANGE, instance._uiSetState);
+				instance.after(HOVER_CHANGE, instance._uiSetState);
+				instance.after(DEFAULT_CHANGE, instance._uiSetState);
+				instance.after(DISABLED_CHANGE, instance._uiSetState);
 			},
 
 			_fireEvents: function(event, officialType) {
 				var instance = this;
 
-				var bubbleTarget = instance.get('bubbleTarget');
+				var bubbleTarget = instance.get(BUBBLE_TARGET);
 
 				officialType = officialType || event.type;
 
@@ -126,14 +166,14 @@ var StateInteraction = A.Component.create(
 			_createEvents: function() {
 				var instance = this;
 
-				var bubbleTarget = instance.get('bubbleTarget');
+				var bubbleTarget = instance.get(BUBBLE_TARGET);
 
 				if (bubbleTarget) {
 					instance.addTarget(bubbleTarget);
 				}
 
 				instance.publish(
-					'click',
+					CLICK,
 					{
 						defaultFn: instance._defClickFn,
 						emitFacade: true
@@ -141,7 +181,7 @@ var StateInteraction = A.Component.create(
 				);
 
 				instance.publish(
-					'mouseout',
+					MOUSE_OUT,
 					{
 						defaultFn: instance._defMouseOutFn,
 						emitFacade: true
@@ -149,7 +189,7 @@ var StateInteraction = A.Component.create(
 				);
 
 				instance.publish(
-					'mouseover',
+					MOUSE_OVER,
 					{
 						defaultFn: instance._defMouseOverFn,
 						emitFacade: true
@@ -160,19 +200,19 @@ var StateInteraction = A.Component.create(
 			_defClickFn: function(event) {
 				var instance = this;
 
-				instance.set('active', !instance.get('active'));
+				instance.set(ACTIVE, !instance.get(ACTIVE));
 			},
 
 			_defMouseOutFn: function() {
 				var instance = this;
 
-				instance.set('hover', false);
+				instance.set(HOVER, false);
 			},
 
 			_defMouseOverFn: function() {
 				var instance = this;
 
-				instance.set('hover', true);
+				instance.set(HOVER, true);
 			},
 
 			_uiSetState: function(event) {
@@ -187,7 +227,7 @@ var StateInteraction = A.Component.create(
 						action = 'removeClass';
 					}
 
-					instance.get('node')[action](instance._CSS_STATES[attrName]);
+					instance.get(NODE)[action](instance._CSS_STATES[attrName]);
 				}
 			}
 		}
