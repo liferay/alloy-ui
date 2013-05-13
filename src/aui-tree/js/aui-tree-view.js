@@ -54,37 +54,17 @@ var L = A.Lang,
 	CSS_TREE_VIEW_CONTENT = getCN(TREE, VIEW, CONTENT);
 
 /**
- * <p><img src="assets/images/aui-tree-view/main.png"/></p>
- *
  * A base class for TreeView, providing:
  * <ul>
  *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
  * </ul>
  *
- * Quick Example:<br/>
- *
- * <pre><code>var tree2 = new A.TreeView({
- *  	width: 200,
- *  	type: 'normal',
- *  	boundingBox: '#tree',
- *  	children: [
- *  		{ label: 'Folder 1', children: [ { label: 'file' }, { label: 'file' }, { label: 'file' } ] },
- *  		{ label: 'Folder 2', expanded: true, children: [ { label: 'file' }, { label: 'file' } ] },
- *  		{ label: 'Folder 3', children: [ { label: 'file' } ] },
- *  		{ label: 'Folder 4', expanded: true, children: [ { label: 'Folder 4-1', expanded: true, children: [ { label: 'file' } ] } ] }
- *  	]
- *  })
- *  .render();
- * </code></pre>
- *
- * Check the list of <a href="TreeView.html#configattributes">Configuration Attributes</a> available for
- * TreeView.
- *
- * @param config {Object} Object literal specifying widget configuration properties.
+ * Check the [live demo](http://alloyui.com/examples/tree/).
  *
  * @class TreeView
- * @constructor
  * @extends TreeData
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
  */
 var TreeView = A.Component.create(
 	{
@@ -106,6 +86,7 @@ var TreeView = A.Component.create(
 		 * @static
 		 */
 		ATTRS: {
+
 			/**
 			 * Type of the treeview (i.e. could be 'file' or 'normal').
 			 *
@@ -130,11 +111,25 @@ var TreeView = A.Component.create(
 				validator: isTreeNode
 			},
 
+			/**
+			 * Determine if its going to be lazy loaded or not.
+			 *
+			 * @attribute lazyLoad
+			 * @default true
+			 * @type Boolean
+			 */
 			lazyLoad: {
 				validator: isBoolean,
 				value: true
 			},
 
+			/**
+			 * Determine if its going to be selected on toggle.
+			 *
+			 * @attribute selectOnToggle
+			 * @default false
+			 * @type Boolean
+			 */
 			selectOnToggle: {
 				validator: isBoolean,
 				value: false
@@ -146,6 +141,12 @@ var TreeView = A.Component.create(
 		prototype: {
 			CONTENT_TEMPLATE: '<ul></ul>',
 
+			/**
+			 * Construction logic executed during TreeView instantiation. Lifecycle.
+			 *
+			 * @method initializer
+			 * @protected
+			 */
 			initializer: function() {
 				var instance = this;
 				var boundingBox = instance.get(BOUNDING_BOX);
@@ -167,6 +168,12 @@ var TreeView = A.Component.create(
 				instance._delegateDOM();
 			},
 
+			/**
+			 * Create Nodes.
+			 *
+			 * @method createNodes
+			 * @param nodes
+			 */
 			createNodes: function(nodes) {
 				var instance = this;
 
@@ -252,6 +259,12 @@ var TreeView = A.Component.create(
 				});
 			},
 
+			/**
+			 * Create Node container.
+			 *
+			 * @method _createNodeContainer
+			 * @protected
+			 */
 			_createNodeContainer: function() {
 				var instance = this;
 				var contentBox = instance.get(CONTENT_BOX);
@@ -341,7 +354,7 @@ var TreeView = A.Component.create(
 			},
 
 			/**
-			 * Fires on <code>mouseeneter</code> the TreeNode.
+			 * Fires on <code>mouseEnter</code> the TreeNode.
 			 *
 			 * @method _onMouseEnterNodeEl
 			 * @param {EventFacade} event
@@ -357,7 +370,7 @@ var TreeView = A.Component.create(
 			},
 
 			/**
-			 * Fires on <code>mouseleave</code> the TreeNode.
+			 * Fires on <code>mouseLeave</code> the TreeNode.
 			 *
 			 * @method _onMouseLeaveNodeEl
 			 * @param {EventFacade} event
@@ -449,16 +462,10 @@ var isNumber = L.isNumber,
  *    <li>DragDrop support for the TreeNodes</li>
  * </ul>
  *
- * Quick Example:<br/>
- *
- * Check the list of <a href="TreeViewDD.html#configattributes">Configuration Attributes</a> available for
- * TreeViewDD.
- *
- * @param config {Object} Object literal specifying widget configuration properties.
- *
  * @class TreeViewDD
- * @constructor
  * @extends TreeView
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
  */
 var TreeViewDD = A.Component.create(
 	{
@@ -507,6 +514,7 @@ var TreeViewDD = A.Component.create(
 		EXTENDS: A.TreeView,
 
 		prototype: {
+
 			/**
 			 * Direction of the drag (i.e. could be 'up' or 'down').
 			 *
@@ -534,6 +542,12 @@ var TreeViewDD = A.Component.create(
 			 */
 			lastY: 0,
 
+			/**
+			 * Node.
+			 *
+			 * @attribute node
+			 * @default null
+			 */
 			node: null,
 
 			/**

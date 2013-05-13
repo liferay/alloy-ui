@@ -50,20 +50,25 @@ var L = A.Lang,
  *    <li>Indexing management to handle the children nodes</li>
  * </ul>
  *
- * Check the list of <a href="TreeData.html#configattributes">Configuration Attributes</a> available for
- * TreeData.
- *
- * @param config {Object} Object literal specifying widget configuration properties.
- *
  * @class TreeData
- * @constructor
  * @extends Base
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
  */
 
 var TreeData = function () {};
 
+/**
+ * Static property used to define the default attribute
+ * configuration for the TreeData.
+ *
+ * @property TreeData.ATTRS
+ * @type Object
+ * @static
+ */
 TreeData.ATTRS = {
-	/**
+
+    /**
 	 * Container to nest children nodes. If has cntainer it's not a leaf.
 	 *
 	 * @attribute container
