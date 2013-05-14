@@ -1,31 +1,46 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
-    <script src="../../build/aui/aui.js"></script>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+	<script src="../../build/aui/aui.js"></script>
 </head>
 <body>
-    <h1>AlloyUI - Parse content</h1>
-    <div id="temp"></div>
-    <script>
-    var index = 0;
+<h1>AlloyUI - Parse content</h1>
+<div id="temp1"></div>
+<div id="temp2"></div>
+<script>
+	var index = 0;
 
-    YUI({ filter:'raw' }).use('aui-parse-content', function(A) {
+	var Y = YUI({ filter:'raw' }).use('aui-parse-content', function(A) {
 
-        var node = A.one('#temp');
-        node.plug(A.Plugin.ParseContent);
+		var node1 = A.one('#temp1');
+		var node2 = A.one('#temp2');
 
-        A.io('assets/content.html', {
-            on: {
-                success: function(id, o) {
-                    node.setContent(o.responseText);
-                }
-            }
-        });
+		node1.plug(A.Plugin.ParseContent);
+		node2.plug(A.Plugin.ParseContent);
 
-    });
-    </script>
+		node1.plug(A.Plugin.ParseContent);
+
+		A.io('assets/content.html', {
+			on: {
+				success: function(id, o) {
+					node1.setContent(o.responseText);
+				}
+			}
+		});
+
+		A.io('assets/blank-content-script.html', {
+			on: {
+				success: function(id, o) {
+					// or using setContent
+					node2.setContent(o.responseText);
+					// node2.append(o.responseText);
+				}
+			}
+		});
+	});
+</script>
 </body>
 </html>
