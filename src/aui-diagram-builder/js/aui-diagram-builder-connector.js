@@ -1,3 +1,10 @@
+/**
+ * The Diagram Builder Connector
+ *
+ * @module aui-diagram-builder
+ * @submodule aui-diagram-builder-connector
+ */
+
 var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isBoolean = Lang.isBoolean,
@@ -133,12 +140,27 @@ A.PolygonUtil = {
 	}
 };
 
+/**
+ * A base class for Connector.
+ *
+ * @class Connector
+ * @extends Base
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 A.Connector = A.Base.create('line', A.Base, [], {
 	SERIALIZABLE_ATTRS: [COLOR, LAZY_DRAW, NAME, SHAPE_SELECTED, SHAPE_HOVER, /*SHAPE,*/ P1, P2],
 
 	shape: null,
 	shapeArrow: null,
 
+	/**
+	 * Construction logic executed during Connector instantiation. Lifecycle.
+	 *
+	 * @method initializer
+	 * @param config
+	 * @protected
+	 */
 	initializer: function(config) {
 		var instance = this;
 		var lazyDraw = instance.get(LAZY_DRAW);
@@ -164,6 +186,12 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		instance._uiSetShowName(instance.get(SHOW_NAME));
 	},
 
+	/**
+	 * Destructor lifecycle implementation for the Connector class. Lifecycle.
+	 *
+	 * @method destructor
+	 * @protected
+	 */
 	destructor: function() {
 		var instance = this;
 
@@ -172,6 +200,11 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		instance.get(NODE_NAME).remove();
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method draw
+	 */
 	draw: function() {
 		var instance = this;
 		var shape = instance.shape;
@@ -236,6 +269,11 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		return instance;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method getProperties
+	 */
 	getProperties: function() {
 		var instance = this;
 		var propertyModel = instance.getPropertyModel();
@@ -247,6 +285,11 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		return propertyModel;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method getPropertyModel
+	 */
 	getPropertyModel: function() {
 		var instance = this;
 		var strings = instance.getStrings();
@@ -268,10 +311,20 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		];
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method getStrings
+	 */
 	getStrings: function() {
 		return A.Connector.STRINGS;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method hide
+	 */
 	hide: function() {
 		var instance = this;
 
@@ -280,6 +333,11 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		return instance;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method show
+	 */
 	show: function() {
 		var instance = this;
 
@@ -288,12 +346,23 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		return instance;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method toCoordinate
+	 * @attribute coord
+	 */
 	toCoordinate: function(coord) {
 		var instance = this;
 
 		return instance._offsetXY(coord, -1);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method toJSON
+	 */
 	toJSON: function() {
 		var instance = this;
 		var output = {};
@@ -305,12 +374,25 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		return output;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method toXY
+	 * @attribute coord
+	 */
 	toXY: function(coord) {
 		var instance = this;
 
 		return instance._offsetXY(coord, 1);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _afterNameChange
+	 * @param event
+	 * @protected
+	 */
 	_afterNameChange: function(event) {
 		var instance = this;
 
@@ -319,24 +401,51 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		instance.draw();
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _afterSelectedChange
+	 * @param event
+	 * @protected
+	 */
 	_afterSelectedChange: function(event) {
 		var instance = this;
 
 		instance._uiSetSelected(event.newVal);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _afterShowNameChange
+	 * @param event
+	 * @protected
+	 */
 	_afterShowNameChange: function(event) {
 		var instance = this;
 
 		instance._uiSetShowName(event.newVal);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _afterVisibleChange
+	 * @param event
+	 * @protected
+	 */
 	_afterVisibleChange: function(event) {
 		var instance = this;
 
 		instance._uiSetVisible(event.newVal);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _initShapes
+	 * @protected
+	 */
 	_initShapes: function() {
 		var instance = this;
 
@@ -355,6 +464,13 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		instance.get(NODE_NAME).on(CLICK, A.bind(instance._onShapeClick, instance));
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _offsetXY
+	 * @param xy, sign
+	 * @protected
+	 */
 	_offsetXY: function(xy, sign) {
 		var instance = this;
 		var offsetXY = instance.get(GRAPHIC).getXY();
@@ -362,6 +478,13 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		return [ xy[0] + offsetXY[0]*sign, xy[1] + offsetXY[1]*sign ];
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _onShapeClick
+	 * @param event
+	 * @protected
+	 */
 	_onShapeClick: function(event) {
 		var instance = this;
 		var builder = instance.get(BUILDER);
@@ -388,6 +511,13 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		event.halt();
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _onShapeMouseEnter
+	 * @param event
+	 * @protected
+	 */
 	_onShapeMouseEnter: function(event) {
 		var instance = this;
 
@@ -405,6 +535,13 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _onShapeMouseLeave
+	 * @param event
+	 * @protected
+	 */
 	_onShapeMouseLeave: function(event) {
 		var instance = this;
 
@@ -414,6 +551,13 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _setNodeName
+	 * @param val
+	 * @protected
+	 */
 	_setNodeName: function(val) {
 		var instance = this;
 
@@ -425,6 +569,13 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		return val;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _setShape
+	 * @param val
+	 * @protected
+	 */
 	_setShape: function(val) {
 		var instance = this;
 
@@ -441,6 +592,13 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _setShapeArrow
+	 * @param val
+	 * @protected
+	 */
 	_setShapeArrow: function(val) {
 		var instance = this;
 
@@ -461,12 +619,26 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _uiSetName
+	 * @param val
+	 * @protected
+	 */
 	_uiSetName: function(val) {
 		var instance = this;
 
 		instance.get(NODE_NAME).html(val);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _uiSetSelected
+	 * @param val, draw
+	 * @protected
+	 */
 	_uiSetSelected: function(val, draw) {
 		var instance = this;
 
@@ -474,12 +646,26 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		instance._updateShape(instance.shapeArrow, val ? instance.get(SHAPE_ARROW_SELECTED) : instance.get(SHAPE_ARROW), draw);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _uiSetShowName
+	 * @param val
+	 * @protected
+	 */
 	_uiSetShowName: function(val) {
 		var instance = this;
 
 		instance.get(NODE_NAME).toggleClass(CSS_HIDE, !val);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _uiSetVisible
+	 * @param val
+	 * @protected
+	 */
 	_uiSetVisible: function(val) {
 		var instance = this;
 
@@ -488,6 +674,13 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		instance._uiSetShowName(val && instance.get(SHOW_NAME));
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _updateShape
+	 * @param shape, cShape, draw
+	 * @protected
+	 */
 	_updateShape: function(shape, cShape, draw) {
 		var instance = this;
 
@@ -504,28 +697,76 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		}
 	}
 },{
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the Connector.
+	 *
+	 * @property Connector.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute arrowPoints
+		 * @default 'arrowPoints'
+		 * @type String
+		 */
 		arrowPoints: {
 			value: A.PolygonUtil.ARROW_POINTS
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute builder
+		 * @default undefined
+		 */
 		builder: {
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute color
+		 * @default '#27aae1'
+		 * @type String
+		 */
 		color: {
 			value: '#27aae1',
 			validator: isString
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute graphic
+		 * @type Graphic
+		 */
 		graphic: {
 			validator: isGraphic
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute lazyDraw
+		 * @default false
+		 * @type Boolean
+		 */
 		lazyDraw: {
 			value: false,
 			validator: isBoolean
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute name
+		 * @type String
+		 */
 		name: {
 			valueFn: function() {
 				var instance = this;
@@ -535,37 +776,83 @@ A.Connector = A.Base.create('line', A.Base, [], {
 			validator: isString
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute nodeName
+		 * @type String
+		 * @writeOnce
+		 */
 		nodeName: {
 			setter: '_setNodeName',
 			value: '<span class="' + CSS_DIAGRAM_BUILDER_CONNECTOR_NAME + '"></span>',
 			writeOnce: true
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute p1
+		 * @default [0, 0]
+		 * @type Array
+		 */
 		p1: {
 			value: [0, 0],
 			validator: isArray
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute p2
+		 * @default [0, 0]
+		 * @type Array
+		 */
 		p2: {
 			value: [0, 0],
 			validator: isArray
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute selected
+		 * @default false
+		 * @type Boolean
+		 */
 		selected: {
 			value: false,
 			validator: isBoolean
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute shape
+		 * @default null
+		 */
 		shape: {
 			value: null,
 			setter: '_setShape'
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute shapeArrow
+		 * @default null
+		 */
 		shapeArrow: {
 			value: null,
 			setter: '_setShapeArrow'
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute shapeArrowHover
+		 * @type Object
+		 */
 		shapeArrowHover: {
 			value: {
 				fill: {
@@ -579,6 +866,12 @@ A.Connector = A.Base.create('line', A.Base, [], {
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute shapeArrowSelected
+		 * @type Object
+		 */
 		shapeArrowSelected: {
 			value: {
 				fill: {
@@ -592,6 +885,12 @@ A.Connector = A.Base.create('line', A.Base, [], {
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute shapeHover
+		 * @type Object
+		 */
 		shapeHover: {
 			value: {
 				stroke: {
@@ -602,6 +901,12 @@ A.Connector = A.Base.create('line', A.Base, [], {
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute shapeSelected
+		 * @type Object
+		 */
 		shapeSelected: {
 			value: {
 				stroke: {
@@ -612,22 +917,50 @@ A.Connector = A.Base.create('line', A.Base, [], {
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute showName
+		 * @default true
+		 * @type Boolean
+		 */
 		showName: {
 			validator: isBoolean,
 			value: true
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute transition
+		 * @default {}
+		 * @type Object
+		 */
 		transition: {
 			value: {},
 			validator: isObject
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute visible
+		 * @default true
+		 * @type Boolean
+		 */
 		visible: {
 			validator: isBoolean,
 			value: true
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @property Connector.STRINGS
+	 * @type Object
+	 * @static
+	 */
 	STRINGS: {
 		name: 'Name'
 	}

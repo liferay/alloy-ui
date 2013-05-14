@@ -1,3 +1,10 @@
+/**
+ * The Diagram Builder Base
+ *
+ * @module aui-diagram-builder
+ * @submodule aui-diagram-builder-base
+ */
+
 var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isBoolean = Lang.isBoolean,
@@ -90,29 +97,86 @@ var Lang = A.Lang,
 	CSS_TABBABLE_CONTENT = AgetClassName(TABBABLE, CONTENT),
 	CSS_TABLE_STRIPED = AgetClassName(TABLE, STRIPED);
 
+/**
+ * A base class for AvailableField.
+ *
+ * @class AvailableField
+ * @extends Base
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var AvailableField = A.Component.create({
+
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property AvailableField.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: AVAILABLE_FIELD,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the AvailableField.
+	 *
+	 * @property AvailableField.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute draggable
+		 * @default true
+		 * @type Boolean
+		 */
 		draggable: {
 			value: true,
 			validator: isBoolean
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute label
+		 * @type String
+		 */
 		label: {
 			validator: isString
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute iconClass
+		 * @type String
+		 */
 		iconClass: {
 			validator: isString
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute id
+		 * @type String
+		 */
 		id: {
 			value: A.guid(),
 			setter: '_setId',
 			validator: isString
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute node
+		 * @type Node
+		 * @writeOnce
+		 */
 		node: {
 			valueFn: function(val) {
 				var instance = this;
@@ -136,22 +200,57 @@ var AvailableField = A.Component.create({
 			writeOnce: true
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute type
+		 * @default 'node'
+		 * @type String
+		 */
 		type: {
 			value: NODE,
 			validator: isString
 		}
 	},
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property AvailableField.EXTENDS
+	 * @type String
+	 * @static
+	 */
 	EXTENDS: A.Base,
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method buildNodeId
+	 * @param id
+	 * @private
+	 */
 	buildNodeId: function(id) {
 		return AVAILABLE_FIELDS + _UNDERLINE + FIELD + _UNDERLINE + id;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method getAvailableFieldById
+	 * @param id
+	 * @private
+	 */
 	getAvailableFieldById: function(id) {
 		return A.AvailableField.getAvailableFieldByNode(_HASH+A.AvailableField.buildNodeId(id));
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method getAvailableFieldById
+	 * @param node
+	 * @private
+	 */
 	getAvailableFieldByNode: function(node) {
 		node = A.one(node);
 
@@ -168,6 +267,12 @@ var AvailableField = A.Component.create({
 									'<div class="' + CSS_DIAGRAM_BUILDER_FIELD_LABEL + '"></div>' +
 								'</li>',
 
+		/**
+		 * Construction logic executed during AvailableField instantiation. Lifecycle.
+		 *
+		 * @method initializer
+		 * @protected
+		 */
 		initializer: function() {
 			var instance = this;
 			var node = instance.get(NODE);
@@ -193,6 +298,13 @@ var AvailableField = A.Component.create({
 			);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterDraggableChange
+		 * @param event
+		 * @protected
+		 */
 		_afterDraggableChange: function(event) {
 			var instance = this;
 
@@ -201,6 +313,13 @@ var AvailableField = A.Component.create({
 			);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterIdChange
+		 * @param event
+		 * @protected
+		 */
 		_afterIdChange: function(event) {
 			var instance = this;
 
@@ -209,6 +328,13 @@ var AvailableField = A.Component.create({
 			);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterLabelChange
+		 * @param event
+		 * @protected
+		 */
 		_afterLabelChange: function(event) {
 			var instance = this;
 
@@ -217,22 +343,50 @@ var AvailableField = A.Component.create({
 			);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _setId
+		 * @param val
+		 * @protected
+		 */
 		_setId: function(val) {
 			return A.AvailableField.buildNodeId(val);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetDraggable
+		 * @param val
+		 * @protected
+		 */
 		_uiSetDraggable: function(val) {
 			var instance = this;
 
 			instance.get(NODE).toggleClass(CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE, val);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetId
+		 * @param val
+		 * @protected
+		 */
 		_uiSetId: function(val) {
 			var instance = this;
 
 			instance.get(NODE).set(ID, val);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetLabel
+		 * @param val
+		 * @protected
+		 */
 		_uiSetLabel: function(val) {
 			var instance = this;
 
@@ -244,10 +398,32 @@ var AvailableField = A.Component.create({
 
 A.AvailableField = AvailableField;
 
+/**
+ * A base class for FieldSupport.
+ *
+ * @class FieldSupport
+ * @constructor
+ */
 var FieldSupport = function() {
 };
 
+/**
+ * Static property used to define the default attribute
+ * configuration for the FieldSupport.
+ *
+ * @property FieldSupport.ATTRS
+ * @type Object
+ * @static
+ */
 FieldSupport.ATTRS = {
+
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @attribute fields
+	 * @default []
+	 * @type Array
+	 */
 	fields: {
 		value: [],
 		setter: '_setFields',
@@ -256,6 +432,13 @@ FieldSupport.ATTRS = {
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @attribute maxFields
+	 * @default Infinity
+	 * @type Number
+	 */
 	maxFields: {
 		value: Infinity,
 		validator: isNumber
@@ -263,6 +446,14 @@ FieldSupport.ATTRS = {
 };
 
 A.mix(FieldSupport.prototype, {
+
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _setFields
+	 * @param val
+	 * @protected
+	 */
 	_setFields: function(val) {
 		var instance = this;
 
@@ -274,12 +465,25 @@ A.mix(FieldSupport.prototype, {
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _updateFields
+	 * @param fields
+	 * @protected
+	 */
 	_updateFields: function(fields) {
 		var instance = this;
 
 		instance.set(FIELDS, fields);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method addField
+	 * @param field, index
+	 */
 	addField: function(field, index) {
 		var instance = this;
 
@@ -298,6 +502,12 @@ A.mix(FieldSupport.prototype, {
 		return null;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method createFields
+	 * @param val
+	 */
 	createFields: function(val) {
 		var instance = this;
 		var fields = [];
@@ -311,6 +521,12 @@ A.mix(FieldSupport.prototype, {
 		return new A.ArrayList(fields);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method removeField
+	 * @param field
+	 */
 	removeField: function(field) {
 		var instance = this;
 
@@ -319,76 +535,152 @@ A.mix(FieldSupport.prototype, {
 		);
 	},
 
-	/*
-	 * NOTE FOR DEVELOPERS:
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
 	 *
-	 * Yoy *may* want to replace the methods from this section on your implementation.
+	 * NOTE FOR DEVELOPERS: Yoy *may* want to replace the
+	 * methods from this section on your implementation.
+	 *
+	 * @method createField
+	 * @param val
 	 */
-
 	createField: function(val) {
 		return val;
 	}
-
-	/*
-	 * End of replaceable methods.
-	 */
 });
 
 A.FieldSupport = FieldSupport;
 // A.FieldSupport = A.Base.create('field-support', A.Base, [FieldSupport]);
 
+/**
+ * A base class for DiagramBuilderBase.
+ *
+ * @class DiagramBuilderBase
+ * @extends Component
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var DiagramBuilderBase = A.Component.create(
 	{
+		/**
+		 * Static property provides a string to identify the class.
+		 *
+		 * @property DiagramBuilderBase.NAME
+		 * @type String
+		 * @static
+		 */
 		NAME: DIAGRAM_BUILDER,
 
+		/**
+		 * Static property used to define the default attribute
+		 * configuration for the DiagramBuilderBase.
+		 *
+		 * @property DiagramBuilderBase.ATTRS
+		 * @type Object
+		 * @static
+		 */
 		ATTRS: {
+
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @attribute availableFields
+			 * @type Array
+			 */
 			availableFields: {
 				setter: '_setAvailableFields',
 				validator: isArray
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @attribute availableFieldsDragConfig
+			 * @type null
+			 * @type Object
+			 */
 			availableFieldsDragConfig: {
 				value: null,
 				setter: '_setAvailableFieldsDragConfig',
 				validator: isObject
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @attribute canvas
+			 */
 			canvas: {
 				valueFn: function() {
 					return A.Node.create(this.CANVAS_TEMPLATE);
 				}
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @attribute dropConfig
+			 * @default null
+			 * @type Object
+			 */
 			dropConfig: {
 				value: null,
 				setter: '_setDropConfig',
 				validator: isObject
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @attribute contentContainer
+			 */
 			contentContainer: {
 				valueFn: function() {
 					return A.Node.create(this.CONTENT_CONTAINER_TEMPLATE);
 				}
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @attribute dropContainer
+			 */
 			dropContainer: {
 				valueFn: function() {
 					return A.Node.create(this.DROP_CONTAINER_TEMPLATE);
 				}
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @attribute fieldsContainer
+			 */
 			fieldsContainer: {
 				valueFn: function() {
 					return A.Node.create(this.FIELDS_CONTAINER_TEMPLATE);
 				}
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @attribute propertyList
+			 * @default null
+			 * @type Object
+			 */
 			propertyList: {
 				setter: '_setPropertyList',
 				validator: isObject,
 				value: null
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @attribute strings
+			 * @type Object
+			 */
 			strings: {
 				value: {
 					addNode: 'Add node',
@@ -401,6 +693,14 @@ var DiagramBuilderBase = A.Component.create(
 				}
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @attribute tabView
+			 * @default null
+			 * @type Object
+			 * @writeOnce
+			 */
 			tabView: {
 				setter: '_setTabView',
 				validator: isObject,
@@ -408,12 +708,24 @@ var DiagramBuilderBase = A.Component.create(
 				writeOnce: true
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @attribute toolbar
+			 * @default null
+			 * @type Object
+			 */
 			toolbar: {
 				setter: '_setToolbar',
 				validator: isObject,
 				value: null
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @attribute toolbarContainer
+			 */
 			toolbarContainer: {
 				valueFn: function() {
 					return A.Node.create(this.TOOLBAR_CONTAINER_TEMPLATE);
@@ -421,6 +733,13 @@ var DiagramBuilderBase = A.Component.create(
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @property DiagramBuilderBase.HTML_PARSER
+		 * @type Object
+		 * @static
+		 */
 		HTML_PARSER: {
 			contentContainer: _DOT+CSS_DIAGRAM_BUILDER_CONTENT_CONTAINER,
 			dropContainer: _DOT+CSS_DIAGRAM_BUILDER_DROP_CONTAINER,
@@ -429,8 +748,22 @@ var DiagramBuilderBase = A.Component.create(
 			canvas: _DOT+CSS_DIAGRAM_BUILDER_CANVAS
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @property DiagramBuilderBase.UI_ATTRS
+		 * @type Array
+		 * @static
+		 */
 		UI_ATTRS: [AVAILABLE_FIELDS, FIELDS],
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @property DiagramBuilderBase.AUGMENTS
+		 * @type Array
+		 * @static
+		 */
 		AUGMENTS: [A.FieldSupport],
 
 		prototype: {
@@ -446,6 +779,12 @@ var DiagramBuilderBase = A.Component.create(
 			tabView: null,
 			toolbar: null,
 
+			/**
+			 * Construction logic executed during DiagramBuilderBase instantiation. Lifecycle.
+			 *
+			 * @method initializer
+			 * @protected
+			 */
 			initializer: function() {
 				var instance = this;
 
@@ -469,6 +808,12 @@ var DiagramBuilderBase = A.Component.create(
 				instance.toolbarContainer = instance.get(TOOLBAR_CONTAINER);
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @method isAvailableFieldsDrag
+			 * @param drag
+			 */
 			isAvailableFieldsDrag: function(drag) {
 				var instance = this;
 				var availableFieldsDrag = instance.availableFieldsDrag;
@@ -476,6 +821,11 @@ var DiagramBuilderBase = A.Component.create(
 				return (drag === availableFieldsDrag.dd);
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @method plotFields
+			 */
 			plotFields: function() {
 				var instance = this;
 				var fields = instance.get(FIELDS);
@@ -485,6 +835,12 @@ var DiagramBuilderBase = A.Component.create(
 				});
 			},
 
+			/**
+			 * Render the DiagramBuilderBase component instance. Lifecycle.
+			 *
+			 * @method renderUI
+			 * @protected
+			 */
 			renderUI: function() {
 				var instance = this;
 
@@ -496,6 +852,12 @@ var DiagramBuilderBase = A.Component.create(
 				);
 			},
 
+			/**
+			 * Sync the DiagramBuilderBase UI. Lifecycle.
+			 *
+			 * @method syncUI
+			 * @protected
+			 */
 			syncUI: function() {
 				var instance = this;
 				var contentBox = instance.get(CONTENT_BOX);
@@ -506,18 +868,39 @@ var DiagramBuilderBase = A.Component.create(
 				contentBox.addClass(CSS_LAYOUT);
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @method _afterModelChange
+			 * @param event
+			 * @protected
+			 */
 			_afterModelChange: function(event) {
 				var instance = this;
 
 				instance._handleSaveEvent();
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @method _afterRender
+			 * @param event
+			 * @protected
+			 */
 			_afterRender: function(event) {
 				var instance = this;
 
 				instance.plotFields();
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @method _afterSelectionChange
+			 * @param event
+			 * @protected
+			 */
 			_afterSelectionChange: function(event) {
 				var instance = this,
 					tabview = event.newVal,
@@ -532,6 +915,13 @@ var DiagramBuilderBase = A.Component.create(
 				}
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @method _afterUiSetHeight
+			 * @param val
+			 * @protected
+			 */
 			_afterUiSetHeight: function(val) {
 				var instance = this;
 
@@ -539,24 +929,49 @@ var DiagramBuilderBase = A.Component.create(
 				instance.dropContainer.setStyle(HEIGHT, isNumber(val) ? val + instance.DEF_UNIT : val);
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @method _defCancelFn
+			 * @param event
+			 * @protected
+			 */
 			_defCancelFn: function(event) {
 				var instance = this;
 
 				instance.tabView.selectChild(0);
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @method _handleCancelEvent
+			 * @protected
+			 */
 			_handleCancelEvent: function() {
 				var instance = this;
 
 				instance.fire(CANCEL);
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @method _handleSaveEvent
+			 * @protected
+			 */
 			_handleSaveEvent: function() {
 				var instance = this;
 
 				instance.fire(SAVE);
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @method _renderCanvas
+			 * @protected
+			 */
 			_renderCanvas: function() {
 				var instance = this;
 				var contentBox = instance.get(CONTENT_BOX);
@@ -580,6 +995,12 @@ var DiagramBuilderBase = A.Component.create(
 				}
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @method _renderPropertyList
+			 * @protected
+			 */
 			_renderPropertyList: function() {
 				var instance = this;
 
@@ -592,6 +1013,12 @@ var DiagramBuilderBase = A.Component.create(
 				}
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @method _renderSettings
+			 * @protected
+			 */
 			_renderSettings: function() {
 				var instance = this;
 
@@ -600,6 +1027,12 @@ var DiagramBuilderBase = A.Component.create(
 				instance._renderToolbar();
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @method _renderTabs
+			 * @protected
+			 */
 			_renderTabs: function() {
 				var instance = this;
 
@@ -612,6 +1045,12 @@ var DiagramBuilderBase = A.Component.create(
 				}
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @method _renderToolbar
+			 * @protected
+			 */
 			_renderToolbar: function() {
 				var instance = this;
 
@@ -623,6 +1062,12 @@ var DiagramBuilderBase = A.Component.create(
 				}
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @method _setupDrop
+			 * @protected
+			 */
 			_setupDrop: function() {
 				var instance = this;
 
@@ -631,6 +1076,12 @@ var DiagramBuilderBase = A.Component.create(
 				);
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @method _setupAvailableFieldsDrag
+			 * @protected
+			 */
 			_setupAvailableFieldsDrag: function() {
 				var instance = this;
 
@@ -639,6 +1090,13 @@ var DiagramBuilderBase = A.Component.create(
 				);
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @method _setAvailableFields
+			 * @param val
+			 * @protected
+			 */
 			_setAvailableFields: function(val) {
 				var instance = this;
 				var fields = [];
@@ -652,6 +1110,13 @@ var DiagramBuilderBase = A.Component.create(
 				return fields;
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @method _setDropConfig
+			 * @param val
+			 * @protected
+			 */
 			_setDropConfig: function(val) {
 				var instance = this;
 
@@ -665,6 +1130,13 @@ var DiagramBuilderBase = A.Component.create(
 				);
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @method _setAvailableFieldsDragConfig
+			 * @param val
+			 * @protected
+			 */
 			_setAvailableFieldsDragConfig: function(val) {
 				var instance = this;
 
@@ -689,6 +1161,13 @@ var DiagramBuilderBase = A.Component.create(
 				);
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @method _setPropertyList
+			 * @param val
+			 * @protected
+			 */
 			_setPropertyList: function(val) {
 				var instance = this;
 
@@ -705,6 +1184,13 @@ var DiagramBuilderBase = A.Component.create(
 				);
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @method _setTabView
+			 * @param val
+			 * @protected
+			 */
 			_setTabView: function(val) {
 				var instance = this,
 					boundingBox = instance.get(BOUNDING_BOX),
@@ -733,6 +1219,13 @@ var DiagramBuilderBase = A.Component.create(
 				return A.merge(defaultValue, val);
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @method _setToolbar
+			 * @param val
+			 * @protected
+			 */
 			_setToolbar: function(val) {
 				var instance = this;
 				var strings = instance.getStrings();
@@ -753,6 +1246,13 @@ var DiagramBuilderBase = A.Component.create(
 				);
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @method _uiSetAvailableFields
+			 * @param val
+			 * @protected
+			 */
 			_uiSetAvailableFields: function(val) {
 				var instance = this;
 				var fieldsNode = instance.fieldsNode;
@@ -770,6 +1270,13 @@ var DiagramBuilderBase = A.Component.create(
 				}
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @method _uiSetFields
+			 * @param event
+			 * @protected
+			 */
 			_uiSetFields: function(event) {
 				var instance = this;
 
