@@ -11,17 +11,20 @@
 
 <h1>Alloy - Parse Content</h1>
 
-<div id="temp"></div>
+<div id="temp1"></div>
+<div id="temp2"></div>
 
 <script type="text/javascript">
 
 var index = 0;
 
 AUI().ready('aui-parse-content', 'io', function(A) {
-	var node = A.one('#temp');
+	var node1 = A.one('#temp1');
+	var node2 = A.one('#temp2');
 
 	// after plug the ParseContent, it will parse the internal script/css content
-	node.plug(A.Plugin.ParseContent);
+	node1.plug(A.Plugin.ParseContent);
+	node2.plug(A.Plugin.ParseContent);
 
 	// var html = 'textNode<' + 'script src="assets/external.js"></' + 'script>anyNode<span>span</span>';
 	// var frag = document.createElement('div');
@@ -35,8 +38,18 @@ AUI().ready('aui-parse-content', 'io', function(A) {
 		on: {
 			success: function(id, o) {
 				// or using setContent
- 				node.setContent(o.responseText);
- 				// node.append(o.responseText);
+ 				node1.setContent(o.responseText);
+ 				// node1.append(o.responseText);
+			}
+		}
+	});
+
+	A.io('assets/blank-content-script.html', {
+		on: {
+			success: function(id, o) {
+				// or using setContent
+ 				node2.setContent(o.responseText);
+ 				// node2.append(o.responseText);
 			}
 		}
 	});
