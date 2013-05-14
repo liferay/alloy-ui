@@ -22,6 +22,7 @@ var L = A.Lang,
 	HEAD = 'head',
 	HOST = 'host',
 	INNER_HTML = 'innerHTML',
+	PADDING_NODE = '<div>_</div>',
 	PARSE_CONTENT = 'ParseContent',
 	QUEUE = 'queue',
 	SCRIPT = 'script',
@@ -223,16 +224,21 @@ var ParseContent = A.Component.create(
 			 */
 			_clean: function(content) {
 				var output = {};
-				var fragment = A.Node.create('<div></div>');
 
-				// instead of fix all tags to "XHTML"-style, make the firstChild be a valid non-empty tag
-				fragment.append('<div>_</div>');
+				var fragment = A.Node.create('<div></div>');
 
 				if (isString(content)) {
 					// create fragment from {String}
+
+					// instead of fix all tags to "XHTML"-style, make the firstChild be a valid non-empty tag
+					content = PADDING_NODE + content;
+
 					A.DOM.addHTML(fragment, content, APPEND);
 				}
 				else {
+					// instead of fix all tags to "XHTML"-style, make the firstChild be a valid non-empty tag
+					fragment.append(PADDING_NODE);
+
 					// create fragment from {Y.Node | HTMLElement}
 					fragment.append(content);
 				}
@@ -247,7 +253,7 @@ var ParseContent = A.Component.create(
 					}
 				);
 
-				// remove padding node
+				// remove PADDING_NODE
 				fragment.get(FIRST_CHILD).remove();
 
 				output.fragment = fragment.get('childNodes').toFrag();
