@@ -1,3 +1,10 @@
+/**
+ * The Form Builder Component
+ *
+ * @module aui-form-builder
+ * @submodule aui-form-builder-base
+ */
+
 var L = A.Lang,
 	isArray = L.isArray,
 	isBoolean = L.isBoolean,
@@ -79,74 +86,219 @@ var L = A.Lang,
 
 	TPL_PLACEHOLDER = '<div class="' + CSS_FORM_BUILDER_PLACEHOLDER + '"></div>';
 
+/**
+ * A base class for FormBuilderAvailableField.
+ *
+ * @class FormBuilderAvailableField
+ * @extends AvailableField
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
+
 var FormBuilderAvailableField = A.Component.create({
+
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property FormBuilderAvailableField.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: AVAILABLE_FIELD,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the ModuleName.
+	 *
+	 * @property FormBuilderAvailableField.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute hiddenAttributes
+		 * @type Array
+		 */
 		hiddenAttributes: {
 			validator: isArray
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute name
+		 * @default undefined
+		 */
 		name: {
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute options
+		 * @type Object
+		 */
 		options: {
 			validator: isObject
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute predefinedValue
+		 * @default undefined
+		 */
 		predefinedValue: {
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute readOnlyAttributes
+		 * @type Array
+		 */
 		readOnlyAttributes: {
 			validator: isArray
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute required
+		 * @type Boolean
+		 */
 		required: {
 			validator: isBoolean
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute showLabel
+		 * @default true
+		 * @type Boolean
+		 */
 		showLabel: {
 			validator: isBoolean,
 			value: true
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute tip
+		 * @type String
+		 */
 		tip: {
 			validator: isString
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute unique
+		 * @type Boolean
+		 */
 		unique: {
 			validator: isBoolean
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute width
+		 * @default undefined
+		 */
 		width: {
 		}
 	},
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property FormBuilderAvailableField.EXTENDS
+	 * @type String
+	 * @static
+	 */
 	EXTENDS: A.AvailableField
 });
 
 A.FormBuilderAvailableField = FormBuilderAvailableField;
 
+/**
+ * A base class for FormBuilder.
+ *
+ * @class FormBuilder
+ * @extends DiagramBuilderBase
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var FormBuilder = A.Component.create({
 
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property FormBuilder.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: FORM_BUILDER,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the FormBuilder.
+	 *
+	 * @property FormBuilder.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute allowRemoveRequiredFields
+		 * @default false
+		 * @type Boolean
+		 */
 		allowRemoveRequiredFields: {
 			validator: isBoolean,
 			value: false
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute enableEditing
+		 * @default true
+		 * @type Boolean
+		 */
 		enableEditing: {
 			value: true
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute fieldsSortableListConfig
+		 * @default null
+		 * @type Object
+		 */
 		fieldsSortableListConfig: {
 			setter: '_setFieldsSortableListConfig',
 			validator: isObject,
 			value: null
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute strings
+		 * @type Object
+		 */
 		strings: {
 			value: {
 				addNode: 'Add field',
@@ -160,11 +312,42 @@ var FormBuilder = A.Component.create({
 
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @property FormBuilder.UI_ATTRS
+	 * @type Array
+	 * @static
+	 */
 	UI_ATTRS: [ALLOW_REMOVE_REQUIRED_FIELDS],
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property FormBuilder.EXTENDS
+	 * @type String
+	 * @static
+	 */
 	EXTENDS: A.DiagramBuilderBase,
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @property FormBuilder.FIELDS_TAB
+	 * @default 0
+	 * @type Number
+	 * @static
+	 */
 	FIELDS_TAB: 0,
+
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @property FormBuilder.SETTINGS_TAB
+	 * @default 1
+	 * @type Number
+	 * @static
+	 */
 	SETTINGS_TAB: 1,
 
 	prototype: {
@@ -172,6 +355,12 @@ var FormBuilder = A.Component.create({
 		selectedFieldsLinkedSet: null,
 		uniqueFieldsMap: null,
 
+		/**
+         * Construction logic executed during FormBuilder instantiation. Lifecycle.
+         *
+         * @method initializer
+         * @protected
+         */
 		initializer: function() {
 			var instance = this;
 
@@ -204,6 +393,12 @@ var FormBuilder = A.Component.create({
 			instance.dropContainer.delegate('mouseout', A.bind(instance._onMouseOutField, instance), _DOT+CSS_FORM_BUILDER_FIELD);
 		},
 
+		/**
+         * Sync the FormBuilder UI. Lifecycle.
+         *
+         * @method syncUI
+         * @protected
+         */
 		syncUI: function() {
 			var instance = this;
 
@@ -211,12 +406,23 @@ var FormBuilder = A.Component.create({
 			instance._setupFieldsSortableList();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method closeEditProperties
+		 */
 		closeEditProperties: function() {
 			var instance = this;
 
 			instance.tabView.selectChild(A.FormBuilder.FIELDS_TAB);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method createField
+		 * @param val
+		 */
 		createField: function(val) {
 			var instance = this,
 				attrs = {
@@ -236,6 +442,12 @@ var FormBuilder = A.Component.create({
 			return val;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method duplicateField
+		 * @param field
+		 */
 		duplicateField: function(field) {
 			var instance = this,
 				index = instance._getFieldNodeIndex(field.get(BOUNDING_BOX)),
@@ -247,6 +459,12 @@ var FormBuilder = A.Component.create({
 			boundingBox.show(true);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method editField
+		 * @param field
+		 */
 		editField: function(field) {
 			var instance = this;
 
@@ -261,6 +479,12 @@ var FormBuilder = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getFieldClass
+		 * @param type
+		 */
 		getFieldClass: function(type) {
 			var instance = this,
 				clazz = A.FormBuilder.types[type];
@@ -275,12 +499,24 @@ var FormBuilder = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getFieldProperties
+		 * @param field
+		 */
 		getFieldProperties: function(field) {
 			var instance = this;
 
 			return field.getProperties();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method insertField
+		 * @param field, index, parent
+		 */
 		insertField: function(field, index, parent) {
 			var instance = this;
 
@@ -292,6 +528,12 @@ var FormBuilder = A.Component.create({
 			parent.addField(field, index);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method plotField
+		 * @param field, container
+		 */
 		plotField: function(field, container) {
 			var instance = this,
 				boundingBox = field.get(BOUNDING_BOX);
@@ -308,6 +550,12 @@ var FormBuilder = A.Component.create({
 			instance.fieldsSortableList.add(boundingBox);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method plotFields
+		 * @param fields, container
+		 */
 		plotFields: function(fields, container) {
 			var instance = this;
 
@@ -321,6 +569,12 @@ var FormBuilder = A.Component.create({
 			});
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method selectFields
+		 * @param fields
+		 */
 		selectFields: function(fields) {
 			var instance = this,
 				selectedFieldsLinkedSet = instance.selectedFieldsLinkedSet;
@@ -330,6 +584,12 @@ var FormBuilder = A.Component.create({
 			});
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method simulateFocusField
+		 * @param field
+		 */
 		simulateFocusField: function(field) {
 			var instance = this,
 				lastFocusedField = instance.lastFocusedField;
@@ -341,6 +601,12 @@ var FormBuilder = A.Component.create({
 			instance.lastFocusedField = field.focus();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method unselectFields
+		 * @param fields
+		 */
 		unselectFields: function(fields) {
 			var instance = this,
 				selectedFieldsLinkedSet = instance.selectedFieldsLinkedSet;
@@ -354,6 +620,13 @@ var FormBuilder = A.Component.create({
 			});
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterFieldFocusedChange
+		 * @param event
+		 * @protected
+		 */
 		_afterFieldFocusedChange: function(event) {
 			var instance = this,
 				field = event.target;
@@ -363,6 +636,13 @@ var FormBuilder = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterUniqueFieldsMapAdd
+		 * @param event
+		 * @protected
+		 */
 		_afterUniqueFieldsMapAdd: function(event) {
 			var instance = this,
 				availableField = getAvailableFieldById(event.attrName),
@@ -376,6 +656,13 @@ var FormBuilder = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterUniqueFieldsMapRemove
+		 * @param event
+		 * @protected
+		 */
 		_afterUniqueFieldsMapRemove: function(event) {
 			var instance = this,
 				availableField = getAvailableFieldById(event.attrName),
@@ -389,14 +676,35 @@ var FormBuilder = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterSelectedFieldsSetAdd
+		 * @param event
+		 * @protected
+		 */
 		_afterSelectedFieldsSetAdd: function(event) {
 			event.value.set(SELECTED, true);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterSelectedFieldsSetRemove
+		 * @param event
+		 * @protected
+		 */
 		_afterSelectedFieldsSetRemove: function(event) {
 			event.value.set(SELECTED, false);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _cloneField
+		 * @param field, deep
+		 * @protected
+		 */
 		_cloneField: function(field, deep) {
 			var instance = this,
 				config  = {};
@@ -422,6 +730,13 @@ var FormBuilder = A.Component.create({
 			return instance.createField(config);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _dropField
+		 * @param dragNode
+		 * @protected
+		 */
 		_dropField: function(dragNode) {
 			var instance = this,
 				availableField = dragNode.getData(AVAILABLE_FIELD),
@@ -464,6 +779,13 @@ var FormBuilder = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _getFieldId
+		 * @param field
+		 * @protected
+		 */
 		_getFieldId: function(field) {
 			var instance = this,
 				id = field.get(ID),
@@ -479,6 +801,13 @@ var FormBuilder = A.Component.create({
 			return id.replace(prefix, _EMPTY_STR);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _getFieldNodeIndex
+		 * @param fieldNode
+		 * @protected
+		 */
 		_getFieldNodeIndex: function(fieldNode) {
 			var instance = this;
 
@@ -489,12 +818,26 @@ var FormBuilder = A.Component.create({
 			).indexOf(fieldNode);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onCancel
+		 * @param event
+		 * @protected
+		 */
 		_onCancel: function(event) {
 			var instance = this;
 
 			instance.unselectFields();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onDragEnd
+		 * @param event
+		 * @protected
+		 */
 		_onDragEnd: function(event) {
 			var instance = this,
 				drag = event.target,
@@ -510,6 +853,13 @@ var FormBuilder = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onClickField
+		 * @param event
+		 * @protected
+		 */
 		_onClickField: function(event) {
 			var instance = this,
 				field = A.Widget.getByNode(event.target);
@@ -519,6 +869,13 @@ var FormBuilder = A.Component.create({
 			event.stopPropagation();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onDragMouseDown
+		 * @param event
+		 * @protected
+		 */
 		_onDragMouseDown: function(event) {
 			var instance = this,
 				dragNode = event.target.get(NODE),
@@ -529,6 +886,13 @@ var FormBuilder = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onDragStart
+		 * @param event
+		 * @protected
+		 */
 		_onDragStart: function(event) {
 			var instance = this,
 				drag = event.target,
@@ -560,6 +924,13 @@ var FormBuilder = A.Component.create({
 			instance.fieldsSortableList.add(clonedDragNode);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onMouseOutField
+		 * @param event
+		 * @protected
+		 */
 		_onMouseOutField: function(event) {
 			var instance = this,
 				field = A.Widget.getByNode(event.currentTarget);
@@ -570,6 +941,13 @@ var FormBuilder = A.Component.create({
 			event.stopPropagation();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onMouseOverField
+		 * @param event
+		 * @protected
+		 */
 		_onMouseOverField: function(event) {
 			var instance = this,
 				field = A.Widget.getByNode(event.currentTarget);
@@ -580,6 +958,13 @@ var FormBuilder = A.Component.create({
 			event.stopPropagation();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onSave
+		 * @param event
+		 * @protected
+		 */
 		_onSave: function(event) {
 			var instance = this,
 				editingField = instance.editingField;
@@ -595,6 +980,13 @@ var FormBuilder = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _setAvailableFields
+		 * @param val
+		 * @protected
+		 */
 		_setAvailableFields: function(val) {
 			var instance = this,
 				fields = [];
@@ -608,6 +1000,13 @@ var FormBuilder = A.Component.create({
 			return fields;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _setFieldsSortableListConfig
+		 * @param val
+		 * @protected
+		 */
 		_setFieldsSortableListConfig: function(val) {
 			var instance = this,
 				dropContainer = instance.dropContainer;
@@ -650,6 +1049,12 @@ var FormBuilder = A.Component.create({
 			);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _setupAvailableFieldsSortableList
+		 * @protected
+		 */
 		_setupAvailableFieldsSortableList: function() {
 			var instance = this;
 
@@ -669,6 +1074,12 @@ var FormBuilder = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _setupFieldsSortableList
+		 * @protected
+		 */
 		_setupFieldsSortableList: function() {
 			var instance = this;
 
@@ -679,6 +1090,13 @@ var FormBuilder = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _syncUniqueField
+		 * @param field
+		 * @protected
+		 */
 		_syncUniqueField: function(field) {
 			var instance = this,
 				fieldId = instance._getFieldId(field),
@@ -691,6 +1109,13 @@ var FormBuilder = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetAllowRemoveRequiredFields
+		 * @param val
+		 * @protected
+		 */
 		_uiSetAllowRemoveRequiredFields: function(val) {
 			var instance = this;
 

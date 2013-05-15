@@ -1,3 +1,10 @@
+/**
+ * The Form Builder Component
+ *
+ * @module aui-form-builder
+ * @submodule aui-form-builder-field-fieldset
+ */
+
 var L = A.Lang,
 
 	ACCEPT_CHILDREN = 'acceptChildren',
@@ -31,27 +38,74 @@ var L = A.Lang,
 	TPL_FIELDSET = '<fieldset id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE].join(SPACE) + '"></fieldset>',
 	TPL_LEGEND = '<legend class="' + CSS_FIELD_LABEL + '"></legend>';
 
+/**
+ * A base class for FormBuilderFieldsetField.
+ *
+ * @class FormBuilderFieldsetField
+ * @extends FormBuilderField
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var FormBuilderFieldsetField = A.Component.create({
 
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property FormBuilderFieldsetField.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: FORM_BUILDER_FIELDSET_FIELD,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the FormBuilderFieldsetField.
+	 *
+	 * @property FormBuilderFieldsetField.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute acceptChildren
+		 * @default true
+		 * @type Boolean
+		 * @readOnly
+		 */
 		acceptChildren: {
 			value: true,
 			readOnly: true
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute dataType
+		 * @default undefined
+		 */
 		dataType: {
 			value: undefined
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute labelNode
+		 */
 		labelNode: {
 			valueFn: function() {
 				return A.Node.create(TPL_LEGEND);
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute template
+		 */
 		template: {
 			valueFn: function() {
 				return TPL_FIELDSET;
@@ -60,15 +114,40 @@ var FormBuilderFieldsetField = A.Component.create({
 
 	},
 
+	/**
+     * Static property used to define the UI attributes.
+     *
+     * @property FormBuilderFieldsetField.UI_ATTRS
+     * @type Array
+     * @static
+     */
 	UI_ATTRS: [ACCEPT_CHILDREN, LABEL, SHOW_LABEL],
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @property FormBuilderFieldsetField.CSS_PREFIX
+	 * @static
+	 */
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property FormBuilderFieldsetField.EXTENDS
+	 * @type Object
+	 * @static
+	 */
 	EXTENDS: A.FormBuilderField,
 
 	prototype: {
 		CONTENT_TEMPLATE: TPL_FIELDSET,
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getHTML
+		 */
 		getHTML: function() {
 			var instance = this;
 
@@ -80,6 +159,11 @@ var FormBuilderFieldsetField = A.Component.create({
 			);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getPropertyModel
+		 */
 		getPropertyModel: function() {
 			var instance = this,
 				strings = instance.getStrings();
@@ -109,6 +193,13 @@ var FormBuilderFieldsetField = A.Component.create({
 			];
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetAcceptChildren
+		 * @param val
+		 * @protected
+		 */
 		_uiSetAcceptChildren: function(val) {
 			var instance = this,
 				contentBox = instance.get(CONTENT_BOX),

@@ -1,3 +1,10 @@
+/**
+ * The Form Builder Component
+ *
+ * @module aui-form-builder
+ * @submodule aui-form-builder-field-text
+ */
+
 var L = A.Lang,
 
 	FIELD = 'field',
@@ -29,30 +36,82 @@ var L = A.Lang,
 
 	WIDTH_VALUES_MAP = { small: 'large', medium: 'xlarge', large: 'xxlarge' };
 
+/**
+ * A base class for FormBuilderTextField.
+ *
+ * @class FormBuilderTextField
+ * @extends FormBuilderField
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var FormBuilderTextField = A.Component.create({
 
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property FormBuilderTextField.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: FORM_BUILDER_TEXT_FIELD,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the FormBuilderTextField.
+	 *
+	 * @property FormBuilderTextField.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute template
+		 */
 		template: {
 			valueFn: function() {
 				return TPL_INPUT;
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute width
+		 * @default 'small'
+		 */
 		width: {
 			value: SMALL
 		}
 
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @property FormBuilderTextField.CSS_PREFIX
+	 * @static
+	 */
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property FormBuilderTextField.EXTENDS
+	 * @type Object
+	 * @static
+	 */
 	EXTENDS: A.FormBuilderField,
 
 	prototype: {
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getHTML
+		 */
 		getHTML: function() {
 			var instance = this;
 
@@ -68,6 +127,11 @@ var FormBuilderTextField = A.Component.create({
 			);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getPropertyModel
+		 */
 		getPropertyModel: function() {
 			var instance = this,
 				strings = instance.getStrings();
@@ -94,6 +158,13 @@ var FormBuilderTextField = A.Component.create({
 			return model;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetWidth
+		 * @param val
+		 * @protected
+		 */
 		_uiSetWidth: function(val) {
 			var instance = this,
 				templateNode = instance.get(TEMPLATE_NODE);

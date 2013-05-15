@@ -1,3 +1,10 @@
+/**
+ * The Form Builder Component
+ *
+ * @module aui-form-builder
+ * @submodule aui-form-builder-field-base
+ */
+
 var L = A.Lang,
 	isArray = L.isArray,
 	isObject = L.isObject,
@@ -86,24 +93,92 @@ var L = A.Lang,
 	TPL_FLAG_TIP = '<span class="' + [CSS_ICON, CSS_ICON_QUESTION_SIGN].join(SPACE) + '"></span>',
 	TPL_LABEL = '<label for="{id}">{label}</label>';
 
+/**
+ * A base class for FormBuilderFieldBase.
+ *
+ * @class FormBuilderFieldBase
+ * @extends Component
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var FormBuilderFieldBase = A.Component.create({
+
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property FormBuilderFieldBase.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: FORM_BUILDER_FIELD,
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @property FormBuilderFieldBase.AUGMENTS
+	 * @type Array
+	 * @static
+	 */
 	AUGMENTS: [A.FieldSupport]
 });
 
+/**
+ * A base class for FormBuilderField.
+ *
+ * @class FormBuilderField
+ * @extends FormBuilderFieldBase
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var FormBuilderField = A.Component.create({
+
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property FormBuilderField.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: FORM_BUILDER_FIELD,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the FormBuilderField.
+	 *
+	 * @property FormBuilderField.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute acceptChildren
+		 * @default true
+		 * @type Boolean
+		 */
 		acceptChildren: {
 			value: true
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute builder
+		 * @default null
+		 * @type Boolean
+		 */
 		builder: {
 			value: null
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute controlsToolbar
+		 * @type Object
+		 */
 		controlsToolbar: {
 			validator: isObject,
 			valueFn: function() {
@@ -116,35 +191,87 @@ var FormBuilderField = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute dataType
+		 * @default 'string'
+		 * @type String
+		 */
 		dataType: {
 			value: STRING
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute disabled
+		 * @default false
+		 * @type Boolean
+		 */
 		disabled: {
 			value: false
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute selected
+		 * @default false
+		 * @type Boolean
+		 */
 		selected: {
 			value: false
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute hiddenAttributes
+		 * @default []
+		 * @type Array
+		 */
 		hiddenAttributes: {
 			validator: isArray,
 			value: []
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute id
+		 */
 		id: {
 			setter: '_setId'
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute label
+		 * @default ''
+		 * @type String
+		 */
 		label: {
 			value: EMPTY_STR
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute localizationMap
+		 * @default {}
+		 * @type Object
+		 */
 		localizationMap: {
 			value: {}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute name
+		 */
 		name: {
 			valueFn: function() {
 				var instance = this,
@@ -154,34 +281,81 @@ var FormBuilderField = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute parent
+		 * @default null
+		 */
 		parent: {
 			value: null
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute predefinedValue
+		 * @default ''
+		 * @type String
+		 */
 		predefinedValue: {
 			value: EMPTY_STR
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute readOnly
+		 * @default false
+		 * @type Boolean
+		 */
 		readOnly: {
 			setter: A.DataType.Boolean.parse,
 			value: false
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute readOnlyAttributes
+		 * @default []
+		 * @type Array
+		 */
 		readOnlyAttributes: {
 			validator: isArray,
 			value: []
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute required
+		 * @default false
+		 * @type Boolean
+		 */
 		required: {
 			setter: A.DataType.Boolean.parse,
 			value: false
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute showLabel
+		 * @default true
+		 * @type Boolean
+		 */
 		showLabel: {
 			setter: A.DataType.Boolean.parse,
 			value: true
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute strings
+		 * @type Object
+		 */
 		strings: {
 			value: {
 				button: 'Button',
@@ -210,37 +384,89 @@ var FormBuilderField = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute tabIndex
+		 * @default 0
+		 * @type Number
+		 */
 		tabIndex: {
 			value: 0
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute template
+		 * @default ''
+		 * @type String
+		 */
 		template: {
 			value: EMPTY_STR
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute tip
+		 * @default ''
+		 * @type String
+		 */
 		tip: {
 			value: EMPTY_STR
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute type
+		 * @default ''
+		 * @type String
+		 */
 		type: {
 			value: EMPTY_STR
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute unique
+		 * @default false
+		 * @type Boolean
+		 */
 		unique: {
 			setter: A.DataType.Boolean.parse,
 			value: false
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute zIndex
+		 * @default 100
+		 * @type Number
+		 */
 		zIndex: {
 			value: 100
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute dropZoneNode
+		 */
 		dropZoneNode: {
 			valueFn: function() {
 				return A.Node.create(TPL_DROP_ZONE);
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute labelNode
+		 */
 		labelNode: {
 			valueFn: function() {
 				var instance = this;
@@ -257,16 +483,31 @@ var FormBuilderField = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute requiredFlagNode
+		 */
 		requiredFlagNode: {
 			valueFn: function() {
 				return A.Node.create(TPL_FLAG_REQUIRED);
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute templateNode
+		 */
 		templateNode: {
 			valueFn: 'getNode'
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute tipFlagNode
+		 */
 		tipFlagNode: {
 			valueFn: function() {
 				return A.Node.create(TPL_FLAG_TIP);
@@ -275,8 +516,22 @@ var FormBuilderField = A.Component.create({
 
 	},
 
+	/**
+     * Static property used to define the UI attributes.
+     *
+     * @property FormBuilderField.UI_ATTRS
+     * @type Array
+     * @static
+     */
 	UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, FIELDS, LABEL, NAME, PREDEFINED_VALUE, REQUIRED, SELECTED, SHOW_LABEL, TIP, UNIQUE],
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property FormBuilderField.EXTENDS
+	 * @type Object
+	 * @static
+	 */
 	EXTENDS: FormBuilderFieldBase,
 
 	buildFieldId: function(id) {
@@ -287,6 +542,13 @@ var FormBuilderField = A.Component.create({
 		return type + (++A.Env._uidx);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @property FormBuilderField.HTML_PARSER
+	 * @type Object
+	 * @static
+	 */
 	HTML_PARSER: {
 		dropZoneNode: DOT + CSS_FB_DROP_ZONE,
 		labelNode: LABEL,
@@ -297,6 +559,12 @@ var FormBuilderField = A.Component.create({
 	prototype: {
 		BOUNDING_TEMPLATE: TPL_BOUNDING_BOX,
 
+		/**
+         * Construction logic executed during FormBuilderField instantiation. Lifecycle.
+         *
+         * @method initializer
+         * @protected
+         */
 		initializer: function() {
 			var instance = this;
 
@@ -315,6 +583,12 @@ var FormBuilderField = A.Component.create({
 			});
 		},
 
+		/**
+         * Bind the events on the FormBuilderField UI. Lifecycle.
+         *
+         * @method bindUI
+         * @protected
+         */
 		bindUI: function() {
 			var instance = this,
 				tipFlagNode = instance.get(TIP_FLAG_NODE);
@@ -323,6 +597,12 @@ var FormBuilderField = A.Component.create({
 			tipFlagNode.on('mouseout', A.bind(instance._onMouseOutTipFlagNode, instance));
 		},
 
+		/**
+         * Render the FormBuilderField component instance. Lifecycle.
+         *
+         * @method renderUI
+         * @protected
+         */
 		renderUI: function() {
 			var instance = this,
 				boundingBox = instance.get(BOUNDING_BOX),
@@ -343,6 +623,12 @@ var FormBuilderField = A.Component.create({
 			instance.toolTip.render(contentBox);
 		},
 
+		/**
+		 * Destructor lifecycle implementation for the FormBuilderField class. Lifecycle.
+		 *
+		 * @method destructor
+		 * @protected
+		 */
 		destructor: function() {
 			var instance = this;
 
@@ -373,6 +659,12 @@ var FormBuilderField = A.Component.create({
 			builder.uniqueFieldsMap.remove(instance);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method createField
+		 * @param val
+		 */
 		createField: function(val) {
 			var instance = this,
 				builder = instance.get(BUILDER);
@@ -384,17 +676,32 @@ var FormBuilderField = A.Component.create({
 			return val;
 		},
 
-		// To developer: Implement this
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 * To developer: Implement this
+		 *
+		 * @method getHTML
+		 */
 		getHTML: function() {
 			return EMPTY_STR;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getNode
+		 */
 		getNode: function() {
 			var instance = this;
 
 			return A.Node.create(instance.getHTML());
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getProperties
+		 */
 		getProperties: function() {
 			var instance = this,
 				propertyModel = instance.getPropertyModel(),
@@ -429,6 +736,11 @@ var FormBuilderField = A.Component.create({
 			return properties;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getPropertyModel
+		 */
 		getPropertyModel: function() {
 			var instance = this,
 				strings = instance.getStrings();
@@ -503,6 +815,13 @@ var FormBuilderField = A.Component.create({
 			];
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _booleanFormatter
+		 * @param o
+		 * @protected
+		 */
 		_booleanFormatter: function(o) {
 			var instance = this,
 				strings = instance.getStrings();
@@ -510,6 +829,11 @@ var FormBuilderField = A.Component.create({
 			return A.DataType.Boolean.parse(o.data.value) ? strings[YES] : strings[NO];
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _getToolbarItems
+		 */
 		_getToolbarItems: function() {
 			var instance = this,
 				builder = instance.get(BUILDER),
@@ -547,6 +871,13 @@ var FormBuilderField = A.Component.create({
 			return [items];
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _handleDuplicateEvent
+		 * @param event
+		 * @protected
+		 */
 		_handleDuplicateEvent: function(event) {
 			var instance = this;
 
@@ -557,6 +888,13 @@ var FormBuilderField = A.Component.create({
 			event.stopPropagation();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _handleEditEvent
+		 * @param event
+		 * @protected
+		 */
 		_handleEditEvent: function(event) {
 			var instance = this;
 
@@ -565,6 +903,13 @@ var FormBuilderField = A.Component.create({
 			event.stopPropagation();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _handleDeleteEvent
+		 * @param event
+		 * @protected
+		 */
 		_handleDeleteEvent: function(event) {
 			var instance = this,
 				strings = instance.getStrings();
@@ -576,6 +921,12 @@ var FormBuilderField = A.Component.create({
 			event.stopPropagation();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onMouseOutTipFlagNode
+		 * @protected
+		 */
 		_onMouseOutTipFlagNode: function() {
 			var instance = this;
 
@@ -584,6 +935,12 @@ var FormBuilderField = A.Component.create({
 			}, 300);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onMouseOverTipFlagNode
+		 * @protected
+		 */
 		_onMouseOverTipFlagNode: function() {
 			var instance = this;
 
@@ -592,10 +949,24 @@ var FormBuilderField = A.Component.create({
 			instance.toolTip.show();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _setId
+		 * @param val
+		 * @protected
+		 */
 		_setId: function(val) {
 			return A.FormBuilderField.buildFieldId(val);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetAcceptChildren
+		 * @param val
+		 * @protected
+		 */
 		_uiSetAcceptChildren: function(val) {
 			var instance = this,
 				boundingBox = instance.get(BOUNDING_BOX),
@@ -613,12 +984,26 @@ var FormBuilderField = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetSelected
+		 * @param val
+		 * @protected
+		 */
 		_uiSetSelected: function(val) {
 			var instance = this;
 
 			instance.get(BOUNDING_BOX).toggleClass(CSS_FB_FIELD_SELECTED, val);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetSelected
+		 * @param val
+		 * @protected
+		 */
 		_uiSetDisabled: function(val) {
 			var instance = this,
 				templateNode = instance.get(TEMPLATE_NODE);
@@ -631,6 +1016,13 @@ var FormBuilderField = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetFields
+		 * @param val
+		 * @protected
+		 */
 		_uiSetFields: function(val) {
 			var instance = this,
 				builder = instance.get(BUILDER);
@@ -638,6 +1030,13 @@ var FormBuilderField = A.Component.create({
 			builder.plotFields(val, instance.get(DROP_ZONE_NODE));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetLabel
+		 * @param val
+		 * @protected
+		 */
 		_uiSetLabel: function(val) {
 			var instance = this,
 				labelNode = instance.get(LABEL_NODE);
@@ -645,6 +1044,13 @@ var FormBuilderField = A.Component.create({
 			labelNode.setContent(val);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetName
+		 * @param val
+		 * @protected
+		 */
 		_uiSetName: function(val) {
 			var instance = this,
 				templateNode = instance.get(TEMPLATE_NODE);
@@ -652,6 +1058,13 @@ var FormBuilderField = A.Component.create({
 			templateNode.set(NAME, val);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetPredefinedValue
+		 * @param val
+		 * @protected
+		 */
 		_uiSetPredefinedValue: function(val) {
 			var instance = this,
 				templateNode = instance.get(TEMPLATE_NODE);
@@ -659,6 +1072,13 @@ var FormBuilderField = A.Component.create({
 			templateNode.val(val);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetRequired
+		 * @param val
+		 * @protected
+		 */
 		_uiSetRequired: function(val) {
 			var instance = this,
 				controlsToolbar = instance.controlsToolbar,
@@ -674,6 +1094,13 @@ var FormBuilderField = A.Component.create({
 			controlsToolbar.set(CHILDREN, instance._getToolbarItems());
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetShowLabel
+		 * @param val
+		 * @protected
+		 */
 		_uiSetShowLabel: function(val)  {
 			var instance = this,
 				labelNode = instance.get(LABEL_NODE);
@@ -686,6 +1113,13 @@ var FormBuilderField = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetTip
+		 * @param val
+		 * @protected
+		 */
 		_uiSetTip: function(val) {
 			var instance = this,
 				tipFlagNode = instance.get(TIP_FLAG_NODE);
@@ -700,6 +1134,13 @@ var FormBuilderField = A.Component.create({
 			instance.toolTip.set(BODY_CONTENT, val);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetUnique
+		 * @param val
+		 * @protected
+		 */
 		_uiSetUnique: function(val) {
 			var instance = this,
 				boundingBox = instance.get(BOUNDING_BOX),
