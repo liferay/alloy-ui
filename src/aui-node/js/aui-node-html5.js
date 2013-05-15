@@ -1,5 +1,5 @@
 /**
- * aui-node-html5 provides support for HTML shiv natively on the Alloy dom
+ * Provides support for HTML shiv natively on the Alloy DOM
  * methods. The HTML5 shiv just affects IE.
  *
  * @module aui-node

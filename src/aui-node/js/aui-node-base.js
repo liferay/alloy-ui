@@ -1,5 +1,5 @@
 /**
- * aui-node-base A set of utility methods to the Node.
+ * A set of utility methods to the Node.
  *
  * @module aui-node
  * @submodule aui-node-base
@@ -121,14 +121,14 @@ var Lang = A.Lang,
 /**
  * Augment the <a href="Node.html">YUI3 Node</a> with more util methods.
  *
- * Check the list of <a href="Node.html#methods">Methods</a> available for
- * AUI Node.
+ * Check the [live demo](http://alloyui.com/examples/node/).
  *
  * @class A.Node
  * @constructor
  * @uses Node
  */
 A.mix(NODE_PROTO, {
+
 	/**
 	 * <p>Returns the current ancestors of the node element. If a selector is
 	 * specified, the ancestors are filtered to match the selector.</p>
@@ -176,8 +176,8 @@ A.mix(NODE_PROTO, {
 	 * A.one('#nodeId').ancestorsByClassName('aui-hide');
 	 * </code></pre>
 	 *
-	 * @method ancestors
-	 * @param {String} selector A selector to filter the ancestor elements against.
+	 * @method ancestorsByClassName
+	 * @param {String} className A selector to filter the ancestor elements against.
 	 * @return {NodeList}
 	 */
 	ancestorsByClassName: function(className) {
@@ -468,7 +468,6 @@ A.mix(NODE_PROTO, {
 	 * <a href="YUI.html#method_stamp">stamp</a> method.
 	 *
 	 * @method guid
-	 * @param {string} prefix optional guid prefix
 	 * @return {String} The current id of the node
 	 */
 	guid: function() {
@@ -562,6 +561,7 @@ A.mix(NODE_PROTO, {
 	 * Gets the outerHTML of a node, which islike innerHTML, except that it
 	 * actually contains the HTML of the node itself.
 	 *
+	 * @method outerHTML
 	 * @return {string} The outerHTML of the given element.
 	 */
 	outerHTML: function() {
@@ -754,6 +754,7 @@ A.mix(NODE_PROTO, {
 	 * Enables text selection for this element (normalized across browsers).
 	 *
 	 * @method selectable
+	 * @param noRecurse
 	 * @chainable
 	 */
 	selectable: function(noRecurse) {
@@ -869,6 +870,7 @@ A.mix(NODE_PROTO, {
 	 * Disables text selection for this element (normalized across browsers).
 	 *
 	 * @method unselectable
+	 * @param noRecurse
 	 * @chainable
 	 */
 	unselectable: function(noRecurse) {
@@ -918,6 +920,7 @@ A.mix(NODE_PROTO, {
 	 * those to represent the top, right, bottom, or left sides.
 	 * @param {string} map An object mapping mapping the "sides" param to the a CSS value to retrieve
 	 * @return {number}
+	 * @private
 	 */
 	_getBoxStyleAsNumber: function(sides, map) {
 		var instance = this;
