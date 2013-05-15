@@ -218,7 +218,6 @@ A.mix(TreeData.prototype, {
 
 			if (!oldParent.get('children').length) {
 				oldParent.collapse();
-				oldParent.hideHitArea();
 			}
 
 			output.tree.oldParent = oldParent;
