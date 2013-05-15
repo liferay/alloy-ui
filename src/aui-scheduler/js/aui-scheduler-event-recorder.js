@@ -1,3 +1,10 @@
+/**
+ * The Scheduler Component
+ *
+ * @module aui-scheduler
+ * @submodule aui-scheduler-event-recorder
+ */
+
 var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isObject = Lang.isObject,
@@ -86,35 +93,102 @@ var Lang = A.Lang,
 
 	TPL_OVERLAY_FORM = '<form class="' + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_FORM + '" id="schedulerEventRecorderForm"></form>';
 
+/**
+ * A base class for SchedulerEventRecorder.
+ *
+ * @class SchedulerEventRecorder
+ * @extends SchedulerEvent
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var SchedulerEventRecorder = A.Component.create({
+
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property SchedulerEventRecorder.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: SCHEDULER_EVENT_RECORDER,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the SchedulerEventRecorder.
+	 *
+	 * @property SchedulerEventRecorder.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute allDay
+		 * @default false
+		 * @type Boolean
+		 */
 		allDay: {
 			value: false
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute content
+		 */
 		content: {
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute duration
+		 * @default 60
+		 * @type Number
+		 */
 		duration: {
 			value: 60
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute dateFormat
+		 * @default '%a, %B %d,'
+		 * @type String
+		 */
 		dateFormat: {
 			validator: isString,
 			value: '%a, %B %d,'
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute event
+		 */
 		event: {
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute eventClass
+		 */
 		eventClass: {
 			valueFn: function() {
 				return A.SchedulerEvent;
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute strings
+		 * @type Object
+		 */
 		strings: {
 			value: {},
 			setter: function(val) {
@@ -134,6 +208,12 @@ var SchedulerEventRecorder = A.Component.create({
 			validator: isObject
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute overlay
+		 * @type Object
+		 */
 		overlay: {
 			validator: isObject,
 			value: {
@@ -144,16 +224,35 @@ var SchedulerEventRecorder = A.Component.create({
 			}
 		},
 
-		// See #2530972
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 * See #2530972
+		 *
+		 * @attribute overlayOffset
+		 * @default [15, -38]
+		 * @type Array
+		 */
 		overlayOffset: {
 			value: [15, -38],
 			validator: isArray
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute template
+		 */
 		template: {
 			value: TPL_OVERLAY_BODY_CONTENT
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute toolbar
+		 * @default {}
+		 * @type Object
+		 */
 		toolbar: {
 			setter: function(val) {
 				var instance = this;
@@ -189,10 +288,24 @@ var SchedulerEventRecorder = A.Component.create({
 		}
 	},
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property SchedulerEventRecorder.EXTENDS
+	 * @type Object
+	 * @static
+	 */
 	EXTENDS: A.SchedulerEvent,
 
 	prototype: {
 
+		/**
+		 * Construction logic executed during SchedulerEventRecorder
+		 * instantiation. Lifecycle.
+		 *
+		 * @method initializer
+		 * @protected
+		 */
 		initializer: function() {
 			var instance = this;
 
@@ -222,6 +335,11 @@ var SchedulerEventRecorder = A.Component.create({
 			instance[OVERLAY].on(VISIBLE_CHANGE, A.bind(instance._onOverlayVisibleChange, instance));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getOverlayContentNode
+		 */
 		getOverlayContentNode: function() {
 			var instance = this;
 			var overlayBB = instance[OVERLAY].get(BOUNDING_BOX);
@@ -229,6 +347,12 @@ var SchedulerEventRecorder = A.Component.create({
 			return overlayBB.one(_DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_CONTENT);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getUpdatedSchedulerEvent
+		 * @param optAttrMap
+		 */
 		getUpdatedSchedulerEvent: function(optAttrMap) {
 			var instance = this,
 				schedulerEvent = instance.get(EVENT),
@@ -247,6 +371,13 @@ var SchedulerEventRecorder = A.Component.create({
 			return schedulerEvent;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterSchedulerChange
+		 * @param event
+		 * @protected
+		 */
 		_afterSchedulerChange: function(event) {
 			var instance = this;
 			var scheduler = event.newVal;
@@ -255,6 +386,13 @@ var SchedulerEventRecorder = A.Component.create({
 			schedulerBB.delegate(CLICK, A.bind(instance._onClickSchedulerEvent, instance), _DOT + CSS_SCHEDULER_EVENT);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _defCancelEventFn
+		 * @param event
+		 * @protected
+		 */
 		_defCancelEventFn: function(event) {
 			var instance = this;
 
@@ -263,6 +401,13 @@ var SchedulerEventRecorder = A.Component.create({
 			instance.hideOverlay();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _defDeleteEventFn
+		 * @param event
+		 * @protected
+		 */
 		_defDeleteEventFn: function(event) {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
@@ -274,6 +419,13 @@ var SchedulerEventRecorder = A.Component.create({
 			scheduler.syncEventsUI();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _defEditEventFn
+		 * @param event
+		 * @protected
+		 */
 		_defEditEventFn: function(event) {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
@@ -283,6 +435,13 @@ var SchedulerEventRecorder = A.Component.create({
 			scheduler.syncEventsUI();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _defSaveEventFn
+		 * @param event
+		 * @protected
+		 */
 		_defSaveEventFn: function(event) {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
@@ -294,6 +453,13 @@ var SchedulerEventRecorder = A.Component.create({
 			scheduler.syncEventsUI();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _handleCancelEvent
+		 * @param event
+		 * @protected
+		 */
 		_handleCancelEvent: function(event) {
 			var instance = this;
 
@@ -302,12 +468,26 @@ var SchedulerEventRecorder = A.Component.create({
 			event.preventDefault();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _handleClickOutSide
+		 * @param event
+		 * @protected
+		 */
 		_handleClickOutSide: function(event) {
 			var instance = this;
 
 			instance.fire('cancel');
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _handleDeleteEvent
+		 * @param event
+		 * @protected
+		 */
 		_handleDeleteEvent: function(event) {
 			var instance = this;
 
@@ -318,6 +498,13 @@ var SchedulerEventRecorder = A.Component.create({
 			event.preventDefault();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _handleEscapeEvent
+		 * @param event
+		 * @protected
+		 */
 		_handleEscapeEvent: function(event) {
 			var instance = this;
 
@@ -328,6 +515,13 @@ var SchedulerEventRecorder = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _handleSaveEvent
+		 * @param event
+		 * @protected
+		 */
 		_handleSaveEvent: function(event) {
 			var instance = this,
 				eventName = instance.get(EVENT) ? 'edit' : 'save';
@@ -339,6 +533,13 @@ var SchedulerEventRecorder = A.Component.create({
 			event.preventDefault();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onClickSchedulerEvent
+		 * @param event
+		 * @protected
+		 */
 		_onClickSchedulerEvent: function(event) {
 			var instance = this;
 			var evt = event.currentTarget.getData(SCHEDULER_EVENT);
@@ -351,6 +552,13 @@ var SchedulerEventRecorder = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onOverlayVisibleChange
+		 * @param event
+		 * @protected
+		 */
 		_onOverlayVisibleChange: function(event) {
 			var instance = this;
 
@@ -374,12 +582,25 @@ var SchedulerEventRecorder = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onSubmitForm
+		 * @param event
+		 * @protected
+		 */
 		_onSubmitForm: function(event) {
 			var instance = this;
 
 			instance._handleSaveEvent(event);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _renderOverlay
+		 * @protected
+		 */
 		_renderOverlay: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
@@ -403,6 +624,11 @@ var SchedulerEventRecorder = A.Component.create({
 			scheduler.get(BOUNDING_BOX).on('clickoutside', A.bind(instance._handleClickOutSide, instance));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getFormattedDate
+		 */
 		getFormattedDate: function() {
 			var instance = this;
 			var dateFormat = instance.get(DATE_FORMAT);
@@ -416,6 +642,11 @@ var SchedulerEventRecorder = A.Component.create({
 			return [ evt._formatDate(startDate, dateFormat), fmtHourFn(startDate), _DASH, fmtHourFn(endDate) ].join(_SPACE);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getTemplateData
+		 */
 		getTemplateData: function() {
 			var instance = this,
 				strings = instance.get(STRINGS),
@@ -434,12 +665,22 @@ var SchedulerEventRecorder = A.Component.create({
 			};
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method hideOverlay
+		 */
 		hideOverlay: function() {
 			var instance = this;
 
 			instance[OVERLAY].hide();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method populateForm
+		 */
 		populateForm: function() {
 			var instance = this,
 				tpl = instance.get(TEMPLATE).join(_EMPTY);
@@ -448,12 +689,23 @@ var SchedulerEventRecorder = A.Component.create({
 				A.Lang.sub(tpl, instance.getTemplateData()));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method serializeForm
+		 */
 		serializeForm: function() {
 			var instance = this;
 
 			return A.QueryString.parse(_serialize(instance.formNode.getDOM()));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method showOverlay
+		 * @param xy
+		 */
 		showOverlay: function(xy) {
 			var instance = this,
 				originalXY = xy.concat([]),

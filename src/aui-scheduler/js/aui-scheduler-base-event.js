@@ -1,3 +1,10 @@
+/**
+ * The Scheduler Component
+ *
+ * @module aui-scheduler
+ * @submodule aui-scheduler-base-event
+ */
+
 var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isBoolean = Lang.isBoolean,
@@ -165,40 +172,112 @@ var Lang = A.Lang,
 	TPL_SCHEDULER_VIEW_DATE = '<span class="'+CSS_SCHEDULER_VIEW_DATE+'"></span>',
 	TPL_SCHEDULER_VIEWS = '<div class="'+CSS_SCHEDULER_VIEWS+'"></div>';
 
+/**
+ * A base class for SchedulerEvent.
+ *
+ * @class SchedulerEvent
+ * @extends Model
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var SchedulerEvent = A.Component.create({
+
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property SchedulerEvent.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: SCHEDULER_EVENT,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the SchedulerEvent.
+	 *
+	 * @property SchedulerEvent.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute allDay
+		 * @default false
+		 * @type Boolean
+		 */
 		allDay: {
 			setter: A.DataType.Boolean.parse,
 			value: false
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute borderStyle
+		 * @default 'solid'
+		 * @type String
+		 */
 		borderStyle: {
 			value: 'solid',
 			validator: isString
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute borderWidth
+		 * @default '1px'
+		 * @type String
+		 */
 		borderWidth: {
 			value: '1px',
 			validator: isString
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute colorBrightnessFactor
+		 * @default 0.75
+		 * @type Number
+		 */
 		colorBrightnessFactor: {
 			value: 0.75,
 			validator: isNumber
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute colorSaturationFactor
+		 * @default 1.5
+		 * @type Number
+		 */
 		colorSaturationFactor: {
 			value: 1.5,
 			validator: isNumber
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute content
+		 */
 		content: {
 			setter: String,
 			validator: isValue
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute color
+		 * @default '#D96666'
+		 * @type String
+		 */
 		color: {
 			lazyAdd: false,
 			setter: '_setColor',
@@ -206,6 +285,12 @@ var SchedulerEvent = A.Component.create({
 			validator: isString
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute titleDateFormat
+		 * @type Function
+		 */
 		titleDateFormat: {
 			getter: '_getTitleDateFormat',
 			value: function() {
@@ -234,6 +319,11 @@ var SchedulerEvent = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute endDate
+		 */
 		endDate: {
 			setter: '_setDate',
 			valueFn: function() {
@@ -245,35 +335,78 @@ var SchedulerEvent = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute disabled
+		 * @default false
+		 * @type Boolean
+		 */
 		disabled: {
 			value: false,
 			validator: isBoolean
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute meeting
+		 * @default false
+		 * @type Boolean
+		 */
 		meeting: {
 			value: false,
 			validator: isBoolean
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute node
+		 */
 		node: {
 			valueFn: function() {
 				return A.NodeList.create(A.Node.create(this.EVENT_NODE_TEMPLATE).setData(SCHEDULER_EVENT, this));
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute reminder
+		 * @default false
+		 * @type Boolean
+		 */
 		reminder: {
 			value: false,
 			validator: isBoolean
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute repeated
+		 * @default false
+		 * @type Boolean
+		 */
 		repeated: {
 			value: false,
 			validator: isBoolean
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute scheduler
+		 */
 		scheduler: {
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute startDate
+		 */
 		startDate: {
 			setter: '_setDate',
 			valueFn: function() {
@@ -281,14 +414,35 @@ var SchedulerEvent = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute visible
+		 * @default true
+		 * @type Boolean
+		 */
 		visible: {
 			value: true,
 			validator: isBoolean
 		}
 	},
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property SchedulerEvent.EXTENDS
+	 * @type Object
+	 * @static
+	 */
 	EXTENDS: A.Model,
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @property SchedulerEvent.PROPAGATE_ATTRS
+	 * @type Array
+	 * @static
+	 */
 	PROPAGATE_ATTRS: [ALL_DAY, START_DATE, END_DATE, CONTENT, COLOR, COLOR_BRIGHTNESS_FACTOR, COLOR_SATURATION_FACTOR, BORDER_STYLE, BORDER_WIDTH, TITLE_DATE_FORMAT, VISIBLE, DISABLED],
 
 	prototype: {
@@ -303,6 +457,12 @@ var SchedulerEvent = A.Component.create({
 									'</div>' +
 								'</div>',
 
+		/**
+	     * Construction logic executed during SchedulerEvent instantiation. Lifecycle.
+	     *
+	     * @method initializer
+	     * @protected
+	     */
 		initializer: function() {
 			var instance = this;
 
@@ -310,6 +470,12 @@ var SchedulerEvent = A.Component.create({
 			instance.syncUI();
 		},
 
+		/**
+		 * Bind the events on the SchedulerEvent UI. Lifecycle.
+		 *
+		 * @method bindUI
+		 * @protected
+		 */
 		bindUI: function() {
 			var instance = this;
 
@@ -325,6 +491,12 @@ var SchedulerEvent = A.Component.create({
 			});
 		},
 
+		/**
+		 * Sync the SchedulerEvent UI. Lifecycle.
+		 *
+		 * @method syncUI
+		 * @protected
+		 */
 		syncUI: function() {
 			var instance = this;
 
@@ -357,12 +529,23 @@ var SchedulerEvent = A.Component.create({
 			instance.syncNodeContentUI();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request. Lifecycle.
+		 *
+		 * @method destroy
+		 * @protected
+		 */
 		destroy: function() {
 			var instance = this;
 
 			instance.get(NODE).remove(true);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method addPaddingNode
+		 */
 		addPaddingNode: function() {
 			var instance = this;
 
@@ -371,6 +554,11 @@ var SchedulerEvent = A.Component.create({
 			instance.syncUI();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method clone
+		 */
 		clone: function() {
 			var instance = this,
 				cloned = null,
@@ -384,6 +572,12 @@ var SchedulerEvent = A.Component.create({
 			return cloned;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method copyDates
+		 * @param evt, options
+		 */
 		copyDates: function(evt, options) {
 			var instance = this;
 
@@ -394,6 +588,12 @@ var SchedulerEvent = A.Component.create({
 			options);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method copyPropagateAttrValues
+		 * @param evt, dontCopyMap, options
+		 */
 		copyPropagateAttrValues: function(evt, dontCopyMap, options) {
 			var instance = this,
 				attrMap = {};
@@ -413,12 +613,22 @@ var SchedulerEvent = A.Component.create({
 			instance.setAttrs(attrMap, options);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getBorderColor
+		 */
 		getBorderColor: function() {
 			var instance = this;
 
 			return instance[BORDER_COLOR_RGB].hex;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getDaysDuration
+		 */
 		getDaysDuration: function() {
 			var instance = this;
 
@@ -426,6 +636,11 @@ var SchedulerEvent = A.Component.create({
 				instance.get(END_DATE), instance.get(START_DATE));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getHoursDuration
+		 */
 		getHoursDuration: function() {
 			var instance = this;
 
@@ -433,6 +648,11 @@ var SchedulerEvent = A.Component.create({
 				instance.get(END_DATE), instance.get(START_DATE));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getMinutesDuration
+		 */
 		getMinutesDuration: function() {
 			var instance = this;
 
@@ -440,6 +660,11 @@ var SchedulerEvent = A.Component.create({
 				instance.get(END_DATE), instance.get(START_DATE));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getSecondsDuration
+		 */
 		getSecondsDuration: function() {
 			var instance = this;
 
@@ -447,12 +672,24 @@ var SchedulerEvent = A.Component.create({
 				instance.get(END_DATE), instance.get(START_DATE));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method sameEndDate
+		 * @param evt
+		 */
 		sameEndDate: function(evt) {
 			var instance = this;
 
 			return DateMath.compare(instance.get(END_DATE), evt.get(END_DATE));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method sameStartDate
+		 * @param evt
+		 */
 		sameStartDate: function(evt) {
 			var instance = this;
 
@@ -460,6 +697,12 @@ var SchedulerEvent = A.Component.create({
 				instance.get(START_DATE), evt.get(START_DATE));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method isAfter
+		 * @param evt
+		 */
 		isAfter: function(evt) {
 			var instance = this;
 			var startDate = instance.get(START_DATE);
@@ -468,6 +711,12 @@ var SchedulerEvent = A.Component.create({
 			return DateMath.after(startDate, evtStartDate);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method isBefore
+		 * @param evt
+		 */
 		isBefore: function(evt) {
 			var instance = this;
 			var startDate = instance.get(START_DATE);
@@ -476,6 +725,12 @@ var SchedulerEvent = A.Component.create({
 			return DateMath.before(startDate, evtStartDate);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method intersects
+		 * @param evt
+		 */
 		intersects: function(evt) {
 			var instance = this;
 			var endDate = instance.get(END_DATE);
@@ -486,6 +741,12 @@ var SchedulerEvent = A.Component.create({
 					DateMath.between(evtStartDate, startDate, endDate));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method intersectHours
+		 * @param evt
+		 */
 		intersectHours: function(evt) {
 			var instance = this;
 			var endDate = instance.get(END_DATE);
@@ -498,6 +759,11 @@ var SchedulerEvent = A.Component.create({
 					DateMath.between(evtModifiedStartDate, startDate, endDate));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method isDayBoundaryEvent
+		 */
 		isDayBoundaryEvent: function() {
 			var instance = this;
 
@@ -505,6 +771,11 @@ var SchedulerEvent = A.Component.create({
 				instance.get(START_DATE), instance.get(END_DATE));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method isDayOverlapEvent
+		 */
 		isDayOverlapEvent: function() {
 			var instance = this;
 
@@ -512,18 +783,34 @@ var SchedulerEvent = A.Component.create({
 				instance.get(START_DATE), instance.get(END_DATE));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getClearEndDate
+		 */
 		getClearEndDate: function() {
 			var instance = this;
 
 			return DateMath.safeClearTime(instance.get(END_DATE));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getClearStartDate
+		 */
 		getClearStartDate: function() {
 			var instance = this;
 
 			return DateMath.safeClearTime(instance.get(START_DATE));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method move
+		 * @param date, options
+		 */
 		move: function(date, options) {
 			var instance = this;
 			var duration = instance.getMinutesDuration();
@@ -535,6 +822,12 @@ var SchedulerEvent = A.Component.create({
 			options);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method setContent
+		 * @param content
+		 */
 		setContent: function(content) {
 			var instance = this;
 
@@ -545,6 +838,12 @@ var SchedulerEvent = A.Component.create({
 			});
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method setTitle
+		 * @param content
+		 */
 		setTitle: function(content) {
 			var instance = this;
 
@@ -555,12 +854,22 @@ var SchedulerEvent = A.Component.create({
 			});
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method syncNodeContentUI
+		 */
 		syncNodeContentUI: function() {
 			var instance = this;
 
 			instance.setContent(instance.get(CONTENT));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method syncNodeTitleUI
+		 */
 		syncNodeTitleUI: function() {
 			var instance = this,
 				format = instance.get(TITLE_DATE_FORMAT),
@@ -579,6 +888,11 @@ var SchedulerEvent = A.Component.create({
 			instance.setTitle(title.join(_SPACE));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method split
+		 */
 		split: function() {
 			var instance = this,
 				s1 = DateMath.clone(instance.get(START_DATE)),
@@ -594,70 +908,140 @@ var SchedulerEvent = A.Component.create({
 			return [ [ s1, e1 ] ];
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterAllDayChange
+		 * @param event
+		 * @protected
+		 */
 		_afterAllDayChange: function(event) {
 			var instance = this;
 
 			instance._uiSetAllDay(event.newVal);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterColorChange
+		 * @param event
+		 * @protected
+		 */
 		_afterColorChange: function(event) {
 			var instance = this;
 
 			instance._uiSetColor(event.newVal);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterDisabledChange
+		 * @param event
+		 * @protected
+		 */
 		_afterDisabledChange: function(event) {
 			var instance = this;
 
 			instance._uiSetDisabled(event.newVal);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterEndDateChange
+		 * @param event
+		 * @protected
+		 */
 		_afterEndDateChange: function(event) {
 			var instance = this;
 
 			instance._uiSetEndDate(event.newVal);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterMeetingChange
+		 * @param event
+		 * @protected
+		 */
 		_afterMeetingChange: function(event) {
 			var instance = this;
 
 			instance._uiSetMeeting(event.newVal);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterReminderChange
+		 * @param event
+		 * @protected
+		 */
 		_afterReminderChange: function(event) {
 			var instance = this;
 
 			instance._uiSetReminder(event.newVal);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterRepeatedChange
+		 * @param event
+		 * @protected
+		 */
 		_afterRepeatedChange: function(event) {
 			var instance = this;
 
 			instance._uiSetRepeated(event.newVal);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterVisibleChange
+		 * @param event
+		 * @protected
+		 */
 		_afterVisibleChange: function(event) {
 			var instance = this;
 
 			instance._uiSetVisible(event.newVal);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _setColor
+		 * @param val
+		 * @protected
+		 */
 		_setColor: function(val) {
 			var instance = this;
 
 			var hsl = Color.toArray(Color.toHSL(val)),
-                hslString;
+				hslString;
 
 			hsl[1] *= instance.get(COLOR_SATURATION_FACTOR);
 			hsl[2] *= instance.get(COLOR_BRIGHTNESS_FACTOR);
 
-            hslString = 'hsl(' + hsl[0] + ', ' + hsl[1] + '%, ' + hsl[2] + '%)';
+			hslString = 'hsl(' + hsl[0] + ', ' + hsl[1] + '%, ' + hsl[2] + '%)';
 
 			instance[BORDER_COLOR_RGB] = Color.toRGB(hslString);
 
 			return val;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _setDate
+		 * @param val
+		 * @protected
+		 */
 		_setDate: function(val) {
 			var instance = this;
 
@@ -668,6 +1052,13 @@ var SchedulerEvent = A.Component.create({
 			return val;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _formatDate
+		 * @param date, format
+		 * @protected
+		 */
 		_formatDate: function(date, format) {
 			var instance = this;
 			var locale = instance.get(LOCALE);
@@ -678,6 +1069,13 @@ var SchedulerEvent = A.Component.create({
 			});
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _getTitleDateFormat
+		 * @param val
+		 * @protected
+		 */
 		_getTitleDateFormat: function(val) {
 			var instance = this;
 
@@ -694,12 +1092,26 @@ var SchedulerEvent = A.Component.create({
 			return val;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetAllDay
+		 * @param val
+		 * @protected
+		 */
 		_uiSetAllDay: function(val) {
 			var instance = this;
 
 			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_ALL_DAY, !!val);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetColor
+		 * @param val
+		 * @protected
+		 */
 		_uiSetColor: function(val) {
 			var instance = this;
 			var node = instance.get(NODE);
@@ -718,36 +1130,78 @@ var SchedulerEvent = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetDisabled
+		 * @param val
+		 * @protected
+		 */
 		_uiSetDisabled: function(val) {
 			var instance = this;
 
 			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_DISABLED, !!val);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetEndDate
+		 * @param val
+		 * @protected
+		 */
 		_uiSetEndDate: function(val) {
 			var instance = this;
 
 			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_SHORT, instance.getMinutesDuration() <= 30);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetMeeting
+		 * @param val
+		 * @protected
+		 */
 		_uiSetMeeting: function(val) {
 			var instance = this;
 
 			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_MEETING, !!val);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetReminder
+		 * @param val
+		 * @protected
+		 */
 		_uiSetReminder: function(val) {
 			var instance = this;
 
 			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_REMINDER, !!val);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetRepeated
+		 * @param val
+		 * @protected
+		 */
 		_uiSetRepeated: function(val) {
 			var instance = this;
 
 			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_REPEATED, !!val);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetVisible
+		 * @param val
+		 * @protected
+		 */
 		_uiSetVisible: function(val) {
 			var instance = this;
 
