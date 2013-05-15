@@ -14,8 +14,8 @@ var L = A.Lang,
 
 	/**
 	 * DataType.Boolean provides a set of utility to parse <code>falsey</code>
-     * value to <code>false</code> and <code>non-falsey</code> to
-     * <code>true</code>.
+	 * value to <code>false</code> and <code>non-falsey</code> to
+	 * <code>true</code>.
 	 *
 	 * @class DataType.Boolean
 	 * @static
@@ -24,8 +24,8 @@ var L = A.Lang,
 
 	/**
 	 * DataType.String provides a set of utility to provides a simple function
-     * that evaluates a string to a primitive value (if possible). Supports
-     * <code>true</code> and <code>false</code> also.
+	 * that evaluates a string to a primitive value (if possible). Supports
+	 * <code>true</code> and <code>false</code> also.
 	 *
 	 * @class DataType.String
 	 * @static
@@ -473,15 +473,15 @@ A.mix(A.DataType.DateMath, {
 		return offset;
 	},
 
-    _absFloor: function(n) {
+	_absFloor: function(n) {
 		var abs = Math.floor(Math.abs(n));
 
 		if (n < 0) {
 			abs *= -1;
 		}
 
-        return abs;
-    },
+		return abs;
+	},
 
 	/**
 	* Calculates the week number for the given date. Can currently support standard
@@ -651,11 +651,11 @@ A.mix(A.DataType.DateMath, {
 	},
 
 	/**
-	* Determines if a given week overlaps two different years.
-	* @method isYearOverlapWeek
-	* @param {Date}	weekBeginDate	The JavaScript Date representing the first day of the week.
-	* @return {Boolean}	true if the date overlaps two different years.
-	*/
+	 * Determines if a given week overlaps two different years.
+	 * @method isYearOverlapWeek
+	 * @param {Date}	weekBeginDate	The JavaScript Date representing the first day of the week.
+	 * @return {Boolean}	true if the date overlaps two different years.
+	 */
 	isYearOverlapWeek : function(weekBeginDate) {
 		var overlaps = false;
 		var nextWeek = this.add(weekBeginDate, this.DAY, 6);
@@ -666,11 +666,11 @@ A.mix(A.DataType.DateMath, {
 	},
 
 	/**
-	* Determines if a given week overlaps two different months.
-	* @method isMonthOverlapWeek
-	* @param {Date}	weekBeginDate	The JavaScript Date representing the first day of the week.
-	* @return {Boolean}	true if the date overlaps two different months.
-	*/
+	 * Determines if a given week overlaps two different months.
+	 * @method isMonthOverlapWeek
+	 * @param {Date}	weekBeginDate	The JavaScript Date representing the first day of the week.
+	 * @return {Boolean}	true if the date overlaps two different months.
+	 */
 	isMonthOverlapWeek : function(weekBeginDate) {
 		var overlaps = false;
 		var nextWeek = this.add(weekBeginDate, this.DAY, 6);
@@ -681,22 +681,22 @@ A.mix(A.DataType.DateMath, {
 	},
 
 	/**
-	* Gets the first day of a month containing a given date.
-	* @method findMonthStart
-	* @param {Date}	date	The JavaScript Date used to calculate the month start
-	* @return {Date}		The JavaScript Date representing the first day of the month
-	*/
+	 * Gets the first day of a month containing a given date.
+	 * @method findMonthStart
+	 * @param {Date}	date	The JavaScript Date used to calculate the month start
+	 * @return {Date}		The JavaScript Date representing the first day of the month
+	 */
 	findMonthStart : function(date) {
 		var start = this.getDate(date.getFullYear(), date.getMonth(), 1);
 		return start;
 	},
 
 	/**
-	* Gets the last day of a month containing a given date.
-	* @method findMonthEnd
-	* @param {Date}	date	The JavaScript Date used to calculate the month end
-	* @return {Date}		The JavaScript Date representing the last day of the month
-	*/
+	 * Gets the last day of a month containing a given date.
+	 * @method findMonthEnd
+	 * @param {Date}	date	The JavaScript Date used to calculate the month end
+	 * @return {Date}		The JavaScript Date representing the last day of the month
+	 */
 	findMonthEnd : function(date) {
 		var start = this.findMonthStart(date);
 		var nextMonth = this.add(start, this.MONTH, 1);
@@ -706,56 +706,56 @@ A.mix(A.DataType.DateMath, {
 	},
 
 	/**
-	* Clears the time fields from a given date, effectively setting the time to 12 noon.
-	* @method clearTime
-	* @param {Date}	date	The JavaScript Date for which the time fields will be cleared
-	* @return {Date}		The JavaScript Date cleared of all time fields
-	*/
+	 * Clears the time fields from a given date, effectively setting the time to 12 noon.
+	 * @method clearTime
+	 * @param {Date}	date	The JavaScript Date for which the time fields will be cleared
+	 * @return {Date}		The JavaScript Date cleared of all time fields
+	 */
 	clearTime : function(date) {
 		date.setHours(12,0,0,0);
 		return date;
 	},
 
 	/**
-	* Clears the time fields from a given date, effectively setting the time to
-	* 12 noon. This is "safe" because clones the date before clear, not affecting
-	* the passed reference.
-	* @method safeClearTime
-	* @param {Date}	date	The JavaScript Date for which the time fields will be cleared
-	* @return {Date}		The JavaScript Date cleared of all time fields
-	*/
+	 * Clears the time fields from a given date, effectively setting the time to
+	 * 12 noon. This is "safe" because clones the date before clear, not affecting
+	 * the passed reference.
+	 * @method safeClearTime
+	 * @param {Date}	date	The JavaScript Date for which the time fields will be cleared
+	 * @return {Date}		The JavaScript Date cleared of all time fields
+	 */
 	safeClearTime : function(date) {
 		return this.clearTime(this.clone(date));
 	},
 
 	/**
-	* Set the time fields from a given date to the last possible hour.
-	* @method toLastHour
-	* @param {Date}	date	The JavaScript Date for which the time fields will be set to the last possible hour
-	* @return {Date}		The JavaScript Date set to the last possible hour
-	*/
+	 * Set the time fields from a given date to the last possible hour.
+	 * @method toLastHour
+	 * @param {Date}	date	The JavaScript Date for which the time fields will be set to the last possible hour
+	 * @return {Date}		The JavaScript Date set to the last possible hour
+	 */
 	toLastHour: function(date) {
 		date.setHours(23,59,59,999);
 		return date;
 	},
 
 	/**
-	* Set the time fields from a given date to midnight.
-	* @method toMidnight
-	* @param {Date}	date	The JavaScript Date for which the time fields will be set to midnight
-	* @return {Date}		The JavaScript Date set to midnight
-	*/
+	 * Set the time fields from a given date to midnight.
+	 * @method toMidnight
+	 * @param {Date}	date	The JavaScript Date for which the time fields will be set to midnight
+	 * @return {Date}		The JavaScript Date set to midnight
+	 */
 	toMidnight: function(date) {
 		date.setHours(0,0,0,0);
 		return date;
 	},
 
 	/**
-	* Clone the passed date object.
-	* @method clone
-	* @param {Date}	date	The JavaScript Date to clone
-	* @return {Date}		The JavaScript Date cloned
-	*/
+	 * Clone the passed date object.
+	 * @method clone
+	 * @param {Date}	date	The JavaScript Date to clone
+	 * @return {Date}		The JavaScript Date cloned
+	 */
 	clone : function(date) {
 		return new Date(date.getTime());
 	},
@@ -791,10 +791,22 @@ A.mix(A.DataType.DateMath, {
 		return dt;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method getDaysInMonth
+	 * @param year, month
+	 */
 	getDaysInMonth: function(year, month) {
 		return this.findMonthEnd(this.getDate(year, month)).getDate();
-    },
+	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method toUsTimeString
+	 * @param date, padHours, omitMinutes, hideAmPm
+	 */
 	toUsTimeString: function(date, padHours, omitMinutes, hideAmPm) {
 		date = isDate(date) ? date : new Date(0, 0, 0, date);
 
@@ -827,6 +839,12 @@ A.mix(A.DataType.DateMath, {
 		return time;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method toIsoTimeString
+	 * @param date, showSeconds
+	 */
 	toIsoTimeString: function(date, showSeconds) {
 		date = isDate(date) ? date : new Date(0, 0, 0, date);
 
