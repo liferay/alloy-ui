@@ -1,3 +1,10 @@
+/**
+ * The Event Delegate Change.
+ *
+ * @module aui-event
+ * @submodule aui-event-delegate-change
+ */
+
 var AObject = A.Object,
 	Node = A.Node,
 	Selector = A.Selector,
@@ -8,30 +15,61 @@ var AObject = A.Object,
 A.Event.define(
 	EVENT_CHANGE,
 	{
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method delegate
+		 * @param node, subscription, notifier, filter
+		 */
 		delegate: function (node, subscription, notifier, filter) {
 			var instance = this;
 
 			instance._attachEvents(node, subscription, notifier, filter);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method detach
+		 * @param node, subscription, notifier
+		 */
 		detach: function (node, subscription, notifier) {
 			var instance = this;
 
 			instance._detachEvents(node, subscription, notifier);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method detachDelegate
+		 * @param node, subscription, notifier
+		 */
 		detachDelegate: function (node, subscription, notifier) {
 			var instance = this;
 
 			instance._detachEvents(node, subscription, notifier);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method on
+		 * @param node, subscription, notifier
+		 */
 		on: function (node, subscription, notifier) {
 			var instance = this;
 
 			instance._attachEvent(node, subscription, notifier);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _attachEvent
+		 * @param node, subscription, notifier, delegateNode, filter
+		 * @protected
+		 */
 		_attachEvent: function(node, subscription, notifier, delegateNode, filter) {
 			var instance = this;
 
@@ -72,6 +110,13 @@ A.Event.define(
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _attachEvents
+		 * @param node, subscription, notifier, filter
+		 * @protected
+		 */
 		_attachEvents: function(node, subscription, notifier, filter) {
 			var instance = this;
 
@@ -88,6 +133,13 @@ A.Event.define(
 			);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _detachEvents
+		 * @param node, subscription, notifier
+		 * @protected
+		 */
 		_detachEvents: function(node, subscription, notifier) {
 			A.each(
 				subscription._handles,
@@ -104,6 +156,12 @@ A.Event.define(
 			delete subscription._handles;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _getEventName
+		 * @protected
+		 */
 		_getEventName: A.cached(
 			function(activeElement) {
 				var eventName = EVENT_CHANGE;
@@ -120,6 +178,13 @@ A.Event.define(
 			}
 		),
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _prepareHandles
+		 * @param subscription, node
+		 * @protected
+		 */
 		_prepareHandles: function(subscription, node) {
 			if (!AObject.owns(subscription, '_handles')) {
 				subscription._handles = {};
