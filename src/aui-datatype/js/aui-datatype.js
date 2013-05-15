@@ -80,11 +80,11 @@ DS.evaluate = function(data) {
 };
 
 /**
-* A.DataType.DateMath is used for simple date manipulation. The class is a static utility
-* used for adding, subtracting, and comparing dates. Based on YAHOO.widget.DateMath.
-*
-* @class A.DataType.DateMath
-*/
+ * A.DataType.DateMath is used for simple date manipulation. The class is a static utility
+ * used for adding, subtracting, and comparing dates. Based on YAHOO.widget.DateMath.
+ *
+ * @class A.DataType.DateMath
+ */
 var L = A.Lang,
 	S = A.Lang.String,
 
@@ -98,121 +98,135 @@ var L = A.Lang,
 A.namespace('DataType.DateMath');
 
 A.mix(A.DataType.DateMath, {
+
 	/**
-	* Constant field representing Day
-	* @property DAY
-	* @static
-	* @final
-	* @type String
-	*/
+	 * Constant field representing Day.
+	 *
+	 * @property DAY
+	 * @static
+	 * @final
+	 * @type String
+	 */
 	DAY : 'D',
 
 	/**
-	* Constant field representing Week
-	* @property WEEK
-	* @static
-	* @final
-	* @type String
-	*/
+	 * Constant field representing Week.
+	 *
+	 * @property WEEK
+	 * @static
+	 * @final
+	 * @type String
+	 */
 	WEEK : 'W',
 
 	/**
-	* Constant field representing Year
-	* @property YEAR
-	* @static
-	* @final
-	* @type String
-	*/
+	 * Constant field representing Year.
+	 *
+	 * @property YEAR
+	 * @static
+	 * @final
+	 * @type String
+	 */
 	YEAR : 'Y',
 
 	/**
-	* Constant field representing Month
-	* @property MONTH
-	* @static
-	* @final
-	* @type String
-	*/
+	 * Constant field representing Month.
+	 *
+	 * @property MONTH
+	 * @static
+	 * @final
+	 * @type String
+	 */
 	MONTH : 'M',
 
 	/**
-	* Constant field representing Minutes
-	* @property MINUTES
-	* @static
-	* @final
-	* @type String
-	*/
+	 * Constant field representing Minutes.
+	 *
+	 * @property MINUTES
+	 * @static
+	 * @final
+	 * @type String
+	 */
 	MINUTES : 'MINUTES',
 
 	/**
-	* Constant field representing Hour
-	* @property HOUR
-	* @static
-	* @final
-	* @type String
-	*/
+	 * Constant field representing Hour.
+	 *
+	 * @property HOUR
+	 * @static
+	 * @final
+	 * @type String
+	 */
 	HOUR : 'HOUR',
 
 	/**
-	* Constant field representing Seconds
-	* @property SECONDS
-	* @static
-	* @final
-	* @type String
-	*/
+	 * Constant field representing Seconds.
+	 *
+	 * @property SECONDS
+	 * @static
+	 * @final
+	 * @type String
+	 */
 	SECONDS : 'SECONDS',
 
 	/**
-	* Constant field representing the number of maximum days in a month
-	* @property MAX_MONTH_LENGTH
-	* @static
-	* @final
-	* @type Number
-	*/
+	 * Constant field representing the number of maximum days in a month.
+	 *
+	 * @property MAX_MONTH_LENGTH
+	 * @static
+	 * @final
+	 * @type Number
+	 */
 	MAX_MONTH_LENGTH: 31,
 
 	/**
-	* Constant field representing the number of maximum days in a week
-	* @property WEEK_LENGTH
-	* @static
-	* @final
-	* @type Number
-	*/
+	 * Constant field representing the number of maximum days in a week.
+	 *
+	 * @property WEEK_LENGTH
+	 * @static
+	 * @final
+	 * @type Number
+	 */
 	WEEK_LENGTH: 7,
 
 	/**
-	* Constant field representing one day, in milliseconds
-	* @property ONE_DAY_MS
-	* @static
-	* @final
-	* @type Number
-	*/
+	 * Constant field representing one day, in milliseconds.
+	 *
+	 * @property ONE_DAY_MS
+	 * @static
+	 * @final
+	 * @type Number
+	 */
 	ONE_DAY_MS : NUM_THOUSAND * NUM_SIXTY * NUM_SIXTY * NUM_TWENTY_FOUR,
 
 	/**
-	* Constant field representing one hour, in milliseconds
-	* @property ONE_HOUR_MS
-	* @static
-	* @final
-	* @type Number
-	*/
+	 * Constant field representing one hour, in milliseconds.
+	 *
+	 * @property ONE_HOUR_MS
+	 * @static
+	 * @final
+	 * @type Number
+	 */
 	ONE_HOUR_MS : NUM_THOUSAND * NUM_SIXTY * NUM_SIXTY,
 
 	/**
-	* Constant field representing one minute, in milliseconds
-	* @property ONE_MINUTE_MS
-	* @static
-	* @final
-	* @type Number
-	*/
+	 * Constant field representing one minute, in milliseconds.
+	 *
+	 * @property ONE_MINUTE_MS
+	 * @static
+	 * @final
+	 * @type Number
+	 */
 	ONE_MINUTE_MS : NUM_THOUSAND * NUM_SIXTY,
 
 	/**
-	* Constant field representing one second, in milliseconds
-	* @property ONE_SECOND_MS
-	* @static
-	* @final
-	* @type Number
-	*/
+	 * Constant field representing one second, in milliseconds.
+	 *
+	 * @property ONE_SECOND_MS
+	 * @static
+	 * @final
+	 * @type Number
+	 */
 	ONE_SECOND_MS : NUM_THOUSAND,
 
 	/**
@@ -222,6 +236,7 @@ A.mix(A.DataType.DateMath, {
 	 * In the U.S, Jan 1st is normally used based on a Sunday start of week.
 	 * ISO 8601, used widely throughout Europe, uses Jan 4th, based on a Monday start of week.
 	 * </p>
+	 *
 	 * @property WEEK_ONE_JAN_DATE
 	 * @static
 	 * @type Number
@@ -229,13 +244,14 @@ A.mix(A.DataType.DateMath, {
 	WEEK_ONE_JAN_DATE : 1,
 
 	/**
-	* Adds the specified amount of time to the this instance.
-	* @method add
-	* @param {Date} date	The JavaScript Date object to perform addition on
-	* @param {String} field	The field constant to be used for performing addition.
-	* @param {Number} amount	The number of units (measured in the field constant) to add to the date.
-	* @return {Date} The resulting Date object
-	*/
+	 * Adds the specified amount of time to the this instance.
+	 *
+	 * @method add
+	 * @param {Date} date	The JavaScript Date object to perform addition on
+	 * @param {String} field	The field constant to be used for performing addition.
+	 * @param {Number} amount	The number of units (measured in the field constant) to add to the date.
+	 * @return {Date} The resulting Date object
+	 */
 	add: function(date, field, amount) {
 		var d = new Date(date.getTime());
 		switch (field) {
@@ -295,6 +311,7 @@ A.mix(A.DataType.DateMath, {
 	 * Fix approach and original findings are available here:
 	 * http://brianary.blogspot.com/2006/03/safari-date-bug.html
 	 * </p>
+	 *
 	 * @method _addDays
 	 * @param {Date} d JavaScript date object
 	 * @param {Number} nDays The number of days to add to the date object (can be negative)
@@ -319,12 +336,13 @@ A.mix(A.DataType.DateMath, {
 	},
 
 	/**
-	* Compare dates.
-	* @method compare
-	* @param {Date} d1	The JavaScript Date object to compare
-	* @param {Date} d2	The JavaScript Date object to compare
-	* @return {boolean}
-	*/
+	 * Compare dates.
+	 *
+	 * @method compare
+	 * @param {Date} d1	The JavaScript Date object to compare
+	 * @param {Date} d2	The JavaScript Date object to compare
+	 * @return {boolean}
+	 */
 	compare: function(d1, d2) {
 		return ( d1 && d2 && (d1.getTime() == d2.getTime()) );
 	},
@@ -339,24 +357,26 @@ A.mix(A.DataType.DateMath, {
 	},
 
 	/**
-	* Subtracts the specified amount of time from the this instance.
-	* @method subtract
-	* @param {Date} date	The JavaScript Date object to perform subtraction on
-	* @param {Number} field	The this field constant to be used for performing subtraction.
-	* @param {Number} amount	The number of units (measured in the field constant) to subtract from the date.
-	* @return {Date} The resulting Date object
-	*/
+	 * Subtracts the specified amount of time from the this instance.
+	 *
+	 * @method subtract
+	 * @param {Date} date	The JavaScript Date object to perform subtraction on
+	 * @param {Number} field	The this field constant to be used for performing subtraction.
+	 * @param {Number} amount	The number of units (measured in the field constant) to subtract from the date.
+	 * @return {Date} The resulting Date object
+	 */
 	subtract: function(date, field, amount) {
 		return this.add(date, field, (amount*-1));
 	},
 
 	/**
-	* Determines whether a given date is before another date on the calendar.
-	* @method before
-	* @param {Date} date		The Date object to compare with the compare argument
-	* @param {Date} compareTo	The Date object to use for the comparison
-	* @return {Boolean} true if the date occurs before the compared date; false if not.
-	*/
+	 * Determines whether a given date is before another date on the calendar.
+	 *
+	 * @method before
+	 * @param {Date} date		The Date object to compare with the compare argument
+	 * @param {Date} compareTo	The Date object to use for the comparison
+	 * @return {Boolean} true if the date occurs before the compared date; false if not.
+	 */
 	before: function(date, compareTo) {
 		var ms = compareTo.getTime();
 		if (date.getTime() < ms) {
@@ -367,12 +387,13 @@ A.mix(A.DataType.DateMath, {
 	},
 
 	/**
-	* Determines whether a given date is after another date on the calendar.
-	* @method after
-	* @param {Date} date		The Date object to compare with the compare argument
-	* @param {Date} compareTo	The Date object to use for the comparison
-	* @return {Boolean} true if the date occurs after the compared date; false if not.
-	*/
+	 * Determines whether a given date is after another date on the calendar.
+	 *
+	 * @method after
+	 * @param {Date} date		The Date object to compare with the compare argument
+	 * @param {Date} compareTo	The Date object to use for the comparison
+	 * @return {Boolean} true if the date occurs after the compared date; false if not.
+	 */
 	after: function(date, compareTo) {
 		var ms = compareTo.getTime();
 		if (date.getTime() > ms) {
@@ -383,13 +404,14 @@ A.mix(A.DataType.DateMath, {
 	},
 
 	/**
-	* Determines whether a given date is between two other dates on the calendar.
-	* @method between
-	* @param {Date} date		The date to check for
-	* @param {Date} dateBegin	The start of the range
-	* @param {Date} dateEnd		The end of the range
-	* @return {Boolean} true if the date occurs between the compared dates; false if not.
-	*/
+	 * Determines whether a given date is between two other dates on the calendar.
+	 *
+	 * @method between
+	 * @param {Date} date		The date to check for
+	 * @param {Date} dateBegin	The start of the range
+	 * @param {Date} dateEnd	The end of the range
+	 * @return {Boolean} true if the date occurs between the compared dates; false if not.
+	 */
 	between: function(date, dateBegin, dateEnd) {
 		if (this.after(date, dateBegin) && this.before(date, dateEnd)) {
 			return true;
@@ -399,23 +421,25 @@ A.mix(A.DataType.DateMath, {
 	},
 
 	/**
-	* Retrieves a JavaScript Date object representing January 1 of any given year.
-	* @method getJan1
-	* @param {Number} calendarYear		The calendar year for which to retrieve January 1
-	* @return {Date}	January 1 of the calendar year specified.
-	*/
+	 * Retrieves a JavaScript Date object representing January 1 of any given year.
+	 *
+	 * @method getJan1
+	 * @param {Number} calendarYear		The calendar year for which to retrieve January 1
+	 * @return {Date}	January 1 of the calendar year specified.
+	 */
 	getJan1: function(calendarYear) {
 		return this.getDate(calendarYear,0,1);
 	},
 
 	/**
-	* Calculates the number of days the specified date is from January 1 of the specified calendar year.
-	* Passing January 1 to this function would return an offset value of zero.
-	* @method getDayOffset
-	* @param {Date}	date	The JavaScript date for which to find the offset
-	* @param {Number} calendarYear	The calendar year to use for determining the offset
-	* @return {Number}	The number of days since January 1 of the given year
-	*/
+	 * Calculates the number of days the specified date is from January 1 of the specified calendar year.
+	 * Passing January 1 to this function would return an offset value of zero.
+	 *
+	 * @method getDayOffset
+	 * @param {Date}	date	The JavaScript date for which to find the offset
+	 * @param {Number} calendarYear	The calendar year to use for determining the offset
+	 * @return {Number}	The number of days since January 1 of the given year
+	 */
 	getDayOffsetYear: function(date, calendarYear) {
 		var beginYear = this.getJan1(calendarYear); // Find the start of the year. This will be in week 1.
 
@@ -424,55 +448,68 @@ A.mix(A.DataType.DateMath, {
 	},
 
 	/**
-	* Calculates the number of days between the specified dates.
-	* @method getDayOffset
-	* @param {Date}	d1 Date 1
-	* @param {Date}	d2 Date 2
-	* @return {Number}	The number of days
-	*/
+	 * Calculates the number of days between the specified dates.
+	 * @method getDayOffset
+	 * @param {Date}	d1 Date 1
+	 * @param {Date}	d2 Date 2
+	 * @return {Number}	The number of days
+	 */
 	getDayOffset: function(d1, d2) {
 		return this._absFloor(this.getOffset(d1, d2, this.ONE_DAY_MS));
 	},
 
 	/**
-	* Calculates the number of hours between the specified dates.
-	* @method getHoursOffset
-	* @param {Date}	d1 Date 1
-	* @param {Date}	d2 Date 2
-	* @return {Number}	The number of hours
-	*/
+	 * Calculates the number of hours between the specified dates.
+	 * @method getHoursOffset
+	 * @param {Date}	d1 Date 1
+	 * @param {Date}	d2 Date 2
+	 * @return {Number}	The number of hours
+	 */
 	getHoursOffset: function(d1, d2) {
 		return this._absFloor(this.getOffset(d1, d2, this.ONE_HOUR_MS));
 	},
 
 	/**
-	* Calculates the number of minutes between the specified dates.
-	* @method getMinutesOffset
-	* @param {Date}	d1 Date 1
-	* @param {Date}	d2 Date 2
-	* @return {Number}	The number of minutes
-	*/
+	 * Calculates the number of minutes between the specified dates.
+	 * @method getMinutesOffset
+	 * @param {Date}	d1 Date 1
+	 * @param {Date}	d2 Date 2
+	 * @return {Number}	The number of minutes
+	 */
 	getMinutesOffset: function(d1, d2) {
 		return this._absFloor(this.getOffset(d1, d2, this.ONE_MINUTE_MS));
 	},
 
 	/**
-	* Calculates the number of seconds between the specified dates.
-	* @method getSecondsOffset
-	* @param {Date}	d1 Date 1
-	* @param {Date}	d2 Date 2
-	* @return {Number}	The number of seconds
-	*/
+	 * Calculates the number of seconds between the specified dates.
+	 * @method getSecondsOffset
+	 * @param {Date}	d1 Date 1
+	 * @param {Date}	d2 Date 2
+	 * @return {Number}	The number of seconds
+	 */
 	getSecondsOffset: function(d1, d2) {
 		return this._absFloor(this.getOffset(d1, d2, this.ONE_SECOND_MS));
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method getOffset
+	 * @param d1, d2, constantAmount
+	 */
 	getOffset: function(d1, d2, constantAmount) {
 		var offset = (d1.getTime()-d2.getTime()) / (constantAmount || 0);
 
 		return offset;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _absFloor
+	 * @param n
+	 * @protected
+	 */
 	_absFloor: function(n) {
 		var abs = Math.floor(Math.abs(n));
 
@@ -484,20 +521,20 @@ A.mix(A.DataType.DateMath, {
 	},
 
 	/**
-	* Calculates the week number for the given date. Can currently support standard
-	* U.S. week numbers, based on Jan 1st defining the 1st week of the year, and
-	* ISO8601 week numbers, based on Jan 4th defining the 1st week of the year.
-	*
-	* @method getWeekNumber
-	* @param {Date}	date The JavaScript date for which to find the week number
-	* @param {Number} firstDayOfWeek The index of the first day of the week (0 = Sun, 1 = Mon ... 6 = Sat).
-	* Defaults to 0
-	* @param {Number} janDate The date in the first week of January which defines week one for the year
-	* Defaults to the value of YAHOO.widget.DateMath.WEEK_ONE_JAN_DATE, which is 1 (Jan 1st).
-	* For the U.S, this is normally Jan 1st. ISO8601 uses Jan 4th to define the first week of the year.
-	*
-	* @return {Number} The number of the week containing the given date.
-	*/
+	 * Calculates the week number for the given date. Can currently support standard
+	 * U.S. week numbers, based on Jan 1st defining the 1st week of the year, and
+	 * ISO8601 week numbers, based on Jan 4th defining the 1st week of the year.
+	 *
+	 * @method getWeekNumber
+	 * @param {Date}	date The JavaScript date for which to find the week number
+	 * @param {Number} firstDayOfWeek The index of the first day of the week (0 = Sun, 1 = Mon ... 6 = Sat).
+	 * Defaults to 0
+	 * @param {Number} janDate The date in the first week of January which defines week one for the year
+	 * Defaults to the value of YAHOO.widget.DateMath.WEEK_ONE_JAN_DATE, which is 1 (Jan 1st).
+	 * For the U.S, this is normally Jan 1st. ISO8601 uses Jan 4th to define the first week of the year.
+	 *
+	 * @return {Number} The number of the week containing the given date.
+	 */
 	getWeekNumber: function(date, firstDayOfWeek, janDate) {
 
 		// Setup Defaults
@@ -653,8 +690,8 @@ A.mix(A.DataType.DateMath, {
 	/**
 	 * Determines if a given week overlaps two different years.
 	 * @method isYearOverlapWeek
-	 * @param {Date}	weekBeginDate	The JavaScript Date representing the first day of the week.
-	 * @return {Boolean}	true if the date overlaps two different years.
+	 * @param {Date} weekBeginDate The JavaScript Date representing the first day of the week.
+	 * @return {Boolean} true if the date overlaps two different years.
 	 */
 	isYearOverlapWeek : function(weekBeginDate) {
 		var overlaps = false;
@@ -668,8 +705,8 @@ A.mix(A.DataType.DateMath, {
 	/**
 	 * Determines if a given week overlaps two different months.
 	 * @method isMonthOverlapWeek
-	 * @param {Date}	weekBeginDate	The JavaScript Date representing the first day of the week.
-	 * @return {Boolean}	true if the date overlaps two different months.
+	 * @param {Date} weekBeginDate The JavaScript Date representing the first day of the week.
+	 * @return {Boolean} true if the date overlaps two different months.
 	 */
 	isMonthOverlapWeek : function(weekBeginDate) {
 		var overlaps = false;
@@ -683,8 +720,8 @@ A.mix(A.DataType.DateMath, {
 	/**
 	 * Gets the first day of a month containing a given date.
 	 * @method findMonthStart
-	 * @param {Date}	date	The JavaScript Date used to calculate the month start
-	 * @return {Date}		The JavaScript Date representing the first day of the month
+	 * @param {Date} date The JavaScript Date used to calculate the month start
+	 * @return {Date} The JavaScript Date representing the first day of the month
 	 */
 	findMonthStart : function(date) {
 		var start = this.getDate(date.getFullYear(), date.getMonth(), 1);
@@ -694,8 +731,8 @@ A.mix(A.DataType.DateMath, {
 	/**
 	 * Gets the last day of a month containing a given date.
 	 * @method findMonthEnd
-	 * @param {Date}	date	The JavaScript Date used to calculate the month end
-	 * @return {Date}		The JavaScript Date representing the last day of the month
+	 * @param {Date} date The JavaScript Date used to calculate the month end
+	 * @return {Date} The JavaScript Date representing the last day of the month
 	 */
 	findMonthEnd : function(date) {
 		var start = this.findMonthStart(date);
@@ -708,8 +745,8 @@ A.mix(A.DataType.DateMath, {
 	/**
 	 * Clears the time fields from a given date, effectively setting the time to 12 noon.
 	 * @method clearTime
-	 * @param {Date}	date	The JavaScript Date for which the time fields will be cleared
-	 * @return {Date}		The JavaScript Date cleared of all time fields
+	 * @param {Date} date The JavaScript Date for which the time fields will be cleared
+	 * @return {Date} The JavaScript Date cleared of all time fields
 	 */
 	clearTime : function(date) {
 		date.setHours(12,0,0,0);
@@ -721,8 +758,8 @@ A.mix(A.DataType.DateMath, {
 	 * 12 noon. This is "safe" because clones the date before clear, not affecting
 	 * the passed reference.
 	 * @method safeClearTime
-	 * @param {Date}	date	The JavaScript Date for which the time fields will be cleared
-	 * @return {Date}		The JavaScript Date cleared of all time fields
+	 * @param {Date} date The JavaScript Date for which the time fields will be cleared
+	 * @return {Date} The JavaScript Date cleared of all time fields
 	 */
 	safeClearTime : function(date) {
 		return this.clearTime(this.clone(date));
@@ -731,8 +768,8 @@ A.mix(A.DataType.DateMath, {
 	/**
 	 * Set the time fields from a given date to the last possible hour.
 	 * @method toLastHour
-	 * @param {Date}	date	The JavaScript Date for which the time fields will be set to the last possible hour
-	 * @return {Date}		The JavaScript Date set to the last possible hour
+	 * @param {Date} date The JavaScript Date for which the time fields will be set to the last possible hour
+	 * @return {Date} The JavaScript Date set to the last possible hour
 	 */
 	toLastHour: function(date) {
 		date.setHours(23,59,59,999);
@@ -742,8 +779,8 @@ A.mix(A.DataType.DateMath, {
 	/**
 	 * Set the time fields from a given date to midnight.
 	 * @method toMidnight
-	 * @param {Date}	date	The JavaScript Date for which the time fields will be set to midnight
-	 * @return {Date}		The JavaScript Date set to midnight
+	 * @param {Date} date The JavaScript Date for which the time fields will be set to midnight
+	 * @return {Date} The JavaScript Date set to midnight
 	 */
 	toMidnight: function(date) {
 		date.setHours(0,0,0,0);
@@ -753,8 +790,8 @@ A.mix(A.DataType.DateMath, {
 	/**
 	 * Clone the passed date object.
 	 * @method clone
-	 * @param {Date}	date	The JavaScript Date to clone
-	 * @return {Date}		The JavaScript Date cloned
+	 * @param {Date} date The JavaScript Date to clone
+	 * @return {Date} The JavaScript Date cloned
 	 */
 	clone : function(date) {
 		return new Date(date.getTime());
@@ -868,7 +905,7 @@ A.mix(A.DataType.DateMath, {
 
 	/**
 	 * @module datatype
-	*/
+	 */
 
 	/**
 	 * The Date.Locale class is a container for all localised date strings
