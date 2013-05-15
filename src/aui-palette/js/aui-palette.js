@@ -1,4 +1,8 @@
-/* global A*/
+/**
+ * The Pallete Utility
+ *
+ * @module aui-pallete
+ */
 
 var Lang = A.Lang,
 
@@ -38,6 +42,14 @@ var Lang = A.Lang,
     CSS_PALETTE_ITEMS_CONTAINER = getClassName('palette-items-container'),
     CSS_PALETTE_ITEMS_CONTAINER_INDEX = getClassName('palette-items-container-{index}'),
 
+/**
+ * A base class for Palette.
+ *
+ * @class Palette
+ * @extends Widget
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 Palette = A.Base.create(_NAME, A.Widget, [], {
     CONTAINER_TEMPLATE: '<table class="' + CSS_PALETTE_CONTAINER + '">{content}</table>',
 
@@ -49,6 +61,12 @@ Palette = A.Base.create(_NAME, A.Widget, [], {
 
     _items: null,
 
+    /**
+     * Construction logic executed during Palette instantiation. Lifecycle.
+     *
+     * @method initializer
+     * @protected
+     */
     initializer: function() {
         var instance = this;
 
@@ -65,12 +83,24 @@ Palette = A.Base.create(_NAME, A.Widget, [], {
         });
     },
 
+    /**
+     * Render the Palette component instance. Lifecycle.
+     *
+     * @method renderUI
+     * @protected
+     */
     renderUI: function() {
         var instance = this;
 
         instance._uiSetItems(instance.get(ITEMS));
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method getItem
+     * @param row, col
+     */
     getItem: function(row, col) {
         var instance = this;
 
@@ -78,12 +108,24 @@ Palette = A.Base.create(_NAME, A.Widget, [], {
                 row*instance.get(COLUMNS) + col);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method getItemByIndex
+     * @param index
+     */
     getItemByIndex: function(index) {
         var instance = this;
 
         return instance._getIndexedItems().item(index);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method getItemByValue
+     * @param value
+     */
     getItemByValue: function (value) {
         var instance = this,
             itemIndex = -1,
@@ -105,12 +147,24 @@ Palette = A.Base.create(_NAME, A.Widget, [], {
         return instance.getItemByIndex(itemIndex);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method select
+     * @param valueOrIndex
+     */
     select: function(valueOrIndex) {
         var instance = this;
 
         instance.toggleSelection(valueOrIndex, true);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method toggleSelection
+     * @param valueOrIndex, force
+     */
     toggleSelection: function(valueOrIndex, force) {
         var instance = this,
             item =  instance.getItemByIndex(valueOrIndex) ||
@@ -121,12 +175,25 @@ Palette = A.Base.create(_NAME, A.Widget, [], {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method unselect
+     * @param valueOrIndex
+     */
     unselect: function(valueOrIndex) {
         var instance = this;
 
         instance.toggleSelection(valueOrIndex, false);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _afterItemsChange
+     * @param event
+     * @protected
+     */
     _afterItemsChange: function (event) {
         var instance = this;
 
@@ -135,6 +202,13 @@ Palette = A.Base.create(_NAME, A.Widget, [], {
         instance._uiSetItems(event.newVal);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _afterSelectedChange
+     * @param event
+     * @protected
+     */
     _afterSelectedChange: function (event) {
         var instance = this;
 
@@ -142,6 +216,12 @@ Palette = A.Base.create(_NAME, A.Widget, [], {
         instance.select(event.newVal);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _bindUIPalette
+     * @protected
+     */
     _bindUIPalette: function() {
         var instance = this,
             boundingBox = instance.get(BOUNDING_BOX);
@@ -150,14 +230,35 @@ Palette = A.Base.create(_NAME, A.Widget, [], {
         boundingBox.delegate(HOVER, instance._onItemMouseEnter, instance._onItemMouseLeave, _DOT+CSS_PALETTE_ITEM, instance);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _defEnterFn
+     * @param event
+     * @protected
+     */
     _defEnterFn: function(event) {
         event.item.addClass(CSS_PALETTE_ITEM_HOVER);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _defLeaveFn
+     * @param event
+     * @protected
+     */
     _defLeaveFn: function(event) {
         event.item.removeClass(CSS_PALETTE_ITEM_HOVER);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _defSelectFn
+     * @param event
+     * @protected
+     */
     _defSelectFn: function(event) {
         var instance = this;
 
@@ -166,6 +267,13 @@ Palette = A.Base.create(_NAME, A.Widget, [], {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _defUnselectFn
+     * @param event
+     * @protected
+     */
     _defUnselectFn: function(event) {
         var instance = this;
 
@@ -174,6 +282,13 @@ Palette = A.Base.create(_NAME, A.Widget, [], {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _getContent
+     * @param items, columns
+     * @protected
+     */
     _getContent: function(items, columns) {
         var instance = this,
             formatter = instance.get(FORMATTER),
@@ -205,6 +320,13 @@ Palette = A.Base.create(_NAME, A.Widget, [], {
         return instance._getPaletteContent(items, result);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _getEventsPayload
+     * @param event
+     * @protected
+     */
     _getEventsPayload: function(event) {
         var instance = this,
             items = instance.get(ITEMS),
@@ -223,6 +345,12 @@ Palette = A.Base.create(_NAME, A.Widget, [], {
         };
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _getIndexedItems
+     * @protected
+     */
     _getIndexedItems: function () {
         var instance = this;
 
@@ -233,6 +361,13 @@ Palette = A.Base.create(_NAME, A.Widget, [], {
         return instance._items;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _getPaletteContent
+     * @param items, content
+     * @protected
+     */
     _getPaletteContent: function(items, content) {
         var instance = this;
 
@@ -245,6 +380,13 @@ Palette = A.Base.create(_NAME, A.Widget, [], {
         );
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _getRowContent
+     * @param items, index, row, content
+     * @protected
+     */
     _getRowContent: function(items, index, row, content) {
         var instance = this;
 
@@ -258,6 +400,13 @@ Palette = A.Base.create(_NAME, A.Widget, [], {
         );
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onItemClick
+     * @param event
+     * @protected
+     */
     _onItemClick: function(event) {
         var instance = this,
             selected = instance.get(SELECTED),
@@ -278,18 +427,39 @@ Palette = A.Base.create(_NAME, A.Widget, [], {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onItemMouseEnter
+     * @param event
+     * @protected
+     */
     _onItemMouseEnter: function(event) {
         var instance = this;
 
         instance.fire(ENTER, instance._getEventsPayload(event));
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onItemMouseLeave
+     * @param event
+     * @protected
+     */
     _onItemMouseLeave: function(event) {
         var instance = this;
 
         instance.fire(LEAVE, instance._getEventsPayload(event));
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _uiSetItems
+     * @param val
+     * @protected
+     */
     _uiSetItems: function(val) {
         var instance = this,
             columns,
@@ -310,6 +480,12 @@ Palette = A.Base.create(_NAME, A.Widget, [], {
             instance._getContent(val, columns));
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _valueFormatterFn
+     * @protected
+     */
     _valueFormatterFn: function() {
         return function (items, index, row, column, selected) {
             var instance = this;
@@ -327,27 +503,70 @@ Palette = A.Base.create(_NAME, A.Widget, [], {
         };
     }
 }, {
+
+    /**
+     * Static property used to define the default attribute
+     * configuration for the Palette.
+     *
+     * @property Palette.ATTRS
+     * @type Object
+     * @static
+     */
     ATTRS: {
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute columns
+         * @default -1
+         * @type Number
+         */
         columns: {
             validator: Lang.isNumber,
             value: -1
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute formatter
+         * @type Function
+         */
         formatter: {
             validator: Lang.isFunction,
             valueFn: '_valueFormatterFn'
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute items
+         * @default []
+         * @type Array
+         */
         items: {
             validator: Lang.isArray,
             value: []
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute selected
+         * @type Number
+         */
         selected: {
             validator: Lang.isNumber,
             value: -1
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute toggleSelection
+         * @default true
+         * @type Boolean
+         */
         toggleSelection: {
             validator: Lang.isBoolean,
             value: true
