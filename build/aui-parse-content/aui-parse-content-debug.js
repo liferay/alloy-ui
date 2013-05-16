@@ -228,16 +228,16 @@ var ParseContent = A.Component.create(
 
 				var fragment = A.Node.create('<div></div>');
 
-				if (isString(content)) {
-					// create fragment from {String}
+				// For PADDING_NODE, instead of fixing all tags in the content to be "XHTML"-style,
+				// we make the firstChild be a valid non-empty tag, then we remove it later
 
-					// instead of fix all tags to "XHTML"-style, make the firstChild be a valid non-empty tag
+				if (isString(content)) {
 					content = PADDING_NODE + content;
 
+					// create fragment from {String}
 					A.DOM.addHTML(fragment, content, APPEND);
 				}
 				else {
-					// instead of fix all tags to "XHTML"-style, make the firstChild be a valid non-empty tag
 					fragment.append(PADDING_NODE);
 
 					// create fragment from {Y.Node | HTMLElement}
@@ -319,4 +319,4 @@ var ParseContent = A.Component.create(
 
 A.namespace('Plugin').ParseContent = ParseContent;
 
-}, '@VERSION@' ,{requires:['async-queue','aui-base','plugin'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['async-queue','aui-base','plugin']});
