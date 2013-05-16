@@ -71,12 +71,12 @@ A.mix(SchedulerEventSupport.prototype, {
 	eventsModel: A.SchedulerEvents,
 
 	/**
-     * Construction logic executed during SchedulerEventSupport instantiation. Lifecycle.
-     *
-     * @method initializer
-     * @param config
-     * @protected
-     */
+	 * Construction logic executed during SchedulerEventSupport instantiation. Lifecycle.
+	 *
+	 * @method initializer
+	 * @param config
+	 * @protected
+	 */
 	initializer: function(config) {
 		var instance = this;
 
@@ -504,11 +504,11 @@ var SchedulerBase = A.Component.create({
 		viewStack: null,
 
 		/**
-         * Construction logic executed during SchedulerBase instantiation. Lifecycle.
-         *
-         * @method initializer
-         * @protected
-         */
+		 * Construction logic executed during SchedulerBase instantiation. Lifecycle.
+		 *
+		 * @method initializer
+		 * @protected
+		 */
 		initializer: function() {
 			var instance = this;
 
@@ -530,11 +530,11 @@ var SchedulerBase = A.Component.create({
 		},
 
 		/**
-         * Bind the events on the SchedulerBase UI. Lifecycle.
-         *
-         * @method bindUI
-         * @protected
-         */
+		 * Bind the events on the SchedulerBase UI. Lifecycle.
+		 *
+		 * @method bindUI
+		 * @protected
+		 */
 		bindUI: function() {
 			var instance = this;
 

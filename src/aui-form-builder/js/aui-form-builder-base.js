@@ -130,7 +130,6 @@ var FormBuilderAvailableField = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @attribute name
-		 * @default undefined
 		 */
 		name: {
 		},
@@ -149,7 +148,6 @@ var FormBuilderAvailableField = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @attribute predefinedValue
-		 * @default undefined
 		 */
 		predefinedValue: {
 		},
@@ -210,7 +208,6 @@ var FormBuilderAvailableField = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @attribute width
-		 * @default undefined
 		 */
 		width: {
 		}
@@ -356,11 +353,11 @@ var FormBuilder = A.Component.create({
 		uniqueFieldsMap: null,
 
 		/**
-         * Construction logic executed during FormBuilder instantiation. Lifecycle.
-         *
-         * @method initializer
-         * @protected
-         */
+		 * Construction logic executed during FormBuilder instantiation. Lifecycle.
+		 *
+		 * @method initializer
+		 * @protected
+		 */
 		initializer: function() {
 			var instance = this;
 
@@ -394,11 +391,11 @@ var FormBuilder = A.Component.create({
 		},
 
 		/**
-         * Sync the FormBuilder UI. Lifecycle.
-         *
-         * @method syncUI
-         * @protected
-         */
+		 * Sync the FormBuilder UI. Lifecycle.
+		 *
+		 * @method syncUI
+		 * @protected
+		 */
 		syncUI: function() {
 			var instance = this;
 

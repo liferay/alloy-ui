@@ -517,12 +517,12 @@ var FormBuilderField = A.Component.create({
 	},
 
 	/**
-     * Static property used to define the UI attributes.
-     *
-     * @property FormBuilderField.UI_ATTRS
-     * @type Array
-     * @static
-     */
+	 * Static property used to define the UI attributes.
+	 *
+	 * @property FormBuilderField.UI_ATTRS
+	 * @type Array
+	 * @static
+	 */
 	UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, FIELDS, LABEL, NAME, PREDEFINED_VALUE, REQUIRED, SELECTED, SHOW_LABEL, TIP, UNIQUE],
 
 	/**
@@ -534,10 +534,24 @@ var FormBuilderField = A.Component.create({
 	 */
 	EXTENDS: FormBuilderFieldBase,
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method buildFieldId
+	 * @param id
+	 * @private
+	 */
 	buildFieldId: function(id) {
 		return FIELDS + _UNDERLINE + FIELD + _UNDERLINE + id;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method buildFieldName
+	 * @param type
+	 * @private
+	 */
 	buildFieldName: function(type) {
 		return type + (++A.Env._uidx);
 	},
@@ -560,11 +574,11 @@ var FormBuilderField = A.Component.create({
 		BOUNDING_TEMPLATE: TPL_BOUNDING_BOX,
 
 		/**
-         * Construction logic executed during FormBuilderField instantiation. Lifecycle.
-         *
-         * @method initializer
-         * @protected
-         */
+		 * Construction logic executed during FormBuilderField instantiation. Lifecycle.
+		 *
+		 * @method initializer
+		 * @protected
+		 */
 		initializer: function() {
 			var instance = this;
 
@@ -584,11 +598,11 @@ var FormBuilderField = A.Component.create({
 		},
 
 		/**
-         * Bind the events on the FormBuilderField UI. Lifecycle.
-         *
-         * @method bindUI
-         * @protected
-         */
+		 * Bind the events on the FormBuilderField UI. Lifecycle.
+		 *
+		 * @method bindUI
+		 * @protected
+		 */
 		bindUI: function() {
 			var instance = this,
 				tipFlagNode = instance.get(TIP_FLAG_NODE);
@@ -598,11 +612,11 @@ var FormBuilderField = A.Component.create({
 		},
 
 		/**
-         * Render the FormBuilderField component instance. Lifecycle.
-         *
-         * @method renderUI
-         * @protected
-         */
+		 * Render the FormBuilderField component instance. Lifecycle.
+		 *
+		 * @method renderUI
+		 * @protected
+		 */
 		renderUI: function() {
 			var instance = this,
 				boundingBox = instance.get(BOUNDING_BOX),

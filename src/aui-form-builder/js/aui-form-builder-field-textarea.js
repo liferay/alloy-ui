@@ -57,6 +57,11 @@ var FormBuilderTextAreaField = A.Component.create({
 	 */
 	ATTRS: {
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute template
+		 */
 		template: {
 			valueFn: function() {
 				return TPL_TEXTAREA;

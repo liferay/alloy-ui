@@ -112,7 +112,7 @@ var ImageGallery = A.Component.create(
 		 */
 		ATTRS: {
 
-            /**
+			/**
 			 * If <code>true</code> the slide show will be played when the
 			 * ImageGallery is displayed.
 			 *
@@ -300,17 +300,17 @@ var ImageGallery = A.Component.create(
 		},
 
 		/**
-         * Static property used to define which component it extends.
-         *
-         * @property ImageGallery.EXTENDS
-         * @type Object
-         * @static
-         */
-        EXTENDS: A.ImageViewer,
+		 * Static property used to define which component it extends.
+		 *
+		 * @property ImageGallery.EXTENDS
+		 * @type Object
+		 * @static
+		 */
+		EXTENDS: A.ImageViewer,
 
 		prototype: {
 
-            /**
+			/**
 			 * Toolbar instance reference.
 			 *
 			 * @property toolbar
@@ -382,7 +382,7 @@ var ImageGallery = A.Component.create(
 
 			/**
 			 * Hide the <a href="Pagination.html">Pagination</a>
-             * with the thumbnails list.
+			 * with the thumbnails list.
 			 *
 			 * @method hidePagination
 			 */
@@ -451,7 +451,7 @@ var ImageGallery = A.Component.create(
 
 			/**
 			 * Show the <a href="Pagination.html">Pagination</a>
-             * with the thumbnails list.
+			 * with the thumbnails list.
 			 *
 			 * @method showPagination
 			 */
@@ -519,13 +519,13 @@ var ImageGallery = A.Component.create(
 			},
 
 			/**
-             * Set the Toolbar instance.
-             *
-             * @method _setToolbar
-             * @param value
-             * @protected
-             */
-            _setToolbar: function(value) {
+			 * Set the Toolbar instance.
+			 *
+			 * @method _setToolbar
+			 * @param value
+			 * @protected
+			 */
+			_setToolbar: function(value) {
 				var instance = this;
 
 				if (instance.get(SHOW_PLAYER)) {
@@ -747,7 +747,7 @@ var ImageGallery = A.Component.create(
 			},
 
 			/**
-			 * Fires after the value of the
+			 * Fire after the value of the
 			 * <a href="ImageViewer.html#config_visible">visible</a> attribute change.
 			 *
 			 * @method _afterVisibleChange
@@ -768,7 +768,7 @@ var ImageGallery = A.Component.create(
 			},
 
 			/**
-			 * Fires before the value of the
+			 * Fire before the value of the
 			 * <a href="ImageGallery.html#config_paused">paused</a> attribute change.
 			 *
 			 * @method _onPausedChange
@@ -784,7 +784,7 @@ var ImageGallery = A.Component.create(
 			},
 
 			/**
-			 * Fires before the value of the
+			 * Fire before the value of the
 			 * <a href="ImageGallery.html#config_playing">playing</a> attribute change.
 			 *
 			 * @method _onPlayingChange

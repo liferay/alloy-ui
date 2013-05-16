@@ -78,7 +78,7 @@ var L = A.Lang,
 	VIEWPORT_REGION = 'viewportRegion',
 	VISIBLE = 'visible',
 	WELL = 'well',
-    OWNER_DOCUMENT = 'ownerDocument',
+	OWNER_DOCUMENT = 'ownerDocument',
 
 	isNodeList = function(v) {
 		return (v instanceof A.NodeList);
@@ -141,7 +141,7 @@ var L = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/image-viewer/).
  *
  * @class ImageViewer
- * @extends Widget
+ * @extends A.Widget
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -506,7 +506,7 @@ var ImageViewer = A.Base.create(
 		 * to the internal pool.
 		 *
 		 * @method _createPreloadImage
-         * @param src
+		 * @param src
 		 * @protected
 		 */
 		_createPreloadImage: function(src) {
@@ -924,7 +924,7 @@ var ImageViewer = A.Base.create(
 
 		/**
 		 * Set the size of the image and the overlay respecting the
-         * maxHeight/maxWidth ratio.
+		 * maxHeight/maxWidth ratio.
 		 *
 		 * @method _uiSetImageSize
 		 * @param {HTMLImage} image Image
@@ -967,13 +967,13 @@ var ImageViewer = A.Base.create(
 		NAME: IMAGE_VIEWER,
 
 		/**
-         * Static property provides a string to identify the CSS prefix.
-         *
-         * @property ImageViewer.CSS_PREFIX
-         * @type String
-         * @static
-         */
-        CSS_PREFIX: getCN(IMAGE_VIEWER),
+		 * Static property provides a string to identify the CSS prefix.
+		 *
+		 * @property ImageViewer.CSS_PREFIX
+		 * @type String
+		 * @static
+		 */
+		CSS_PREFIX: getCN(IMAGE_VIEWER),
 
 		/**
 		 * Static property used to define the default attribute
@@ -985,7 +985,7 @@ var ImageViewer = A.Base.create(
 		 */
 		ATTRS: {
 
-            /**
+			/**
 			 * If <code>true</code> the navigation is animated.
 			 *
 			 * @attribute anim
@@ -998,12 +998,12 @@ var ImageViewer = A.Base.create(
 			},
 
 			/**
-             * The content of body.
-             *
-             * @attribute bodyContent
-             * @type String
-             */
-            bodyContent: {
+			 * The content of body.
+			 *
+			 * @attribute bodyContent
+			 * @type String
+			 */
+			bodyContent: {
 				value: NODE_BLANK_TEXT
 			},
 
@@ -1208,13 +1208,13 @@ var ImageViewer = A.Base.create(
 			},
 
 			/**
-             * Specify the tab order of elements.
-             *
-             * @attribute tabIndex
-             * @default null
-             * @type Number
-             */
-            tabIndex: {
+			 * Specify the tab order of elements.
+			 *
+			 * @attribute tabIndex
+			 * @default null
+			 * @type Number
+			 */
+			tabIndex: {
 				value: null
 			},
 
@@ -1235,24 +1235,24 @@ var ImageViewer = A.Base.create(
 			},
 
 			/**
-             * Determine if the ImageViewer should be visible or not.
-             *
-             * @attribute visible
-             * @default false
-             * @type Boolean
-             */
-            visible: {
+			 * Determine if the ImageViewer should be visible or not.
+			 *
+			 * @attribute visible
+			 * @default false
+			 * @type Boolean
+			 */
+			visible: {
 				value: false
 			},
 
 			/**
-             * Specify the stack order of elements.
-             *
-             * @attribute zIndex
-             * @default 3000
-             * @type Number
-             */
-            zIndex: {
+			 * Specify the stack order of elements.
+			 *
+			 * @attribute zIndex
+			 * @default 3000
+			 * @type Number
+			 */
+			zIndex: {
 				value: 3000,
 				validator: isNumber
 			},

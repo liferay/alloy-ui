@@ -2,6 +2,7 @@
  * The Search Component
  *
  * @module aui-search
+ * @submodule aui-search-ternary-search-node
  */
 
 var Lang = A.Lang,

@@ -199,7 +199,7 @@ var TreeView = A.Component.create(
 			},
 
 			/**
-			 * Fires after set children.
+			 * Fire after set children.
 			 *
 			 * @method _afterSetChildren
 			 * @param {EventFacade} event
@@ -320,7 +320,7 @@ var TreeView = A.Component.create(
 			},
 
 			/**
-			 * Fires on click the TreeView (i.e. set the select/unselect state).
+			 * Fire on click the TreeView (i.e. set the select/unselect state).
 			 *
 			 * @method _onClickNodeEl
 			 * @param {EventFacade} event
@@ -354,7 +354,7 @@ var TreeView = A.Component.create(
 			},
 
 			/**
-			 * Fires on <code>mouseEnter</code> the TreeNode.
+			 * Fire on <code>mouseEnter</code> the TreeNode.
 			 *
 			 * @method _onMouseEnterNodeEl
 			 * @param {EventFacade} event
@@ -370,7 +370,7 @@ var TreeView = A.Component.create(
 			},
 
 			/**
-			 * Fires on <code>mouseLeave</code> the TreeNode.
+			 * Fire on <code>mouseLeave</code> the TreeNode.
 			 *
 			 * @method _onMouseLeaveNodeEl
 			 * @param {EventFacade} event
@@ -386,7 +386,7 @@ var TreeView = A.Component.create(
 			},
 
 			/**
-			 * Fires on <code>click</code> the TreeNode hitarea.
+			 * Fire on <code>click</code> the TreeNode hitarea.
 			 *
 			 * @method _onClickHitArea
 			 * @param {EventFacade} event
@@ -560,7 +560,7 @@ var TreeViewDD = A.Component.create(
 			nodeContent: null,
 
 			/**
-			 * Descructor lifecycle implementation for the TreeViewDD class.
+			 * Destructor lifecycle implementation for the TreeViewDD class.
 			 * Purges events attached to the node (and all child nodes).
 			 *
 			 * @method destructor
@@ -809,7 +809,7 @@ var TreeViewDD = A.Component.create(
 			},
 
 			/**
-			 * Fires after the drop hit event.
+			 * Fire after the drop hit event.
 			 *
 			 * @method _afterDropHit
 			 * @param {EventFacade} event drop hit event facade
@@ -861,7 +861,7 @@ var TreeViewDD = A.Component.create(
 			},
 
 			/**
-			 * Fires on drag align event.
+			 * Fire on drag align event.
 			 *
 			 * @method _onDragAlign
 			 * @param {EventFacade} event append event facade
@@ -882,7 +882,7 @@ var TreeViewDD = A.Component.create(
 			},
 
 			/**
-			 * Fires on drag start event.
+			 * Fire on drag start event.
 			 *
 			 * @method _onDragStart
 			 * @param {EventFacade} event append event facade
@@ -917,7 +917,7 @@ var TreeViewDD = A.Component.create(
 			},
 
 			/**
-			 * Fires on drop over event.
+			 * Fire on drop over event.
 			 *
 			 * @method _onDropOver
 			 * @param {EventFacade} event append event facade
@@ -930,7 +930,7 @@ var TreeViewDD = A.Component.create(
 			},
 
 			/**
-			 * Fires on drop hit event.
+			 * Fire on drop hit event.
 			 *
 			 * @method _onDropHit
 			 * @param {EventFacade} event append event facade
@@ -946,7 +946,7 @@ var TreeViewDD = A.Component.create(
 			},
 
 			/**
-			 * Fires on drop exit event.
+			 * Fire on drop exit event.
 			 *
 			 * @method _onDropExit
 			 * @param {EventFacade} event append event facade

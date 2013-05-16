@@ -1,5 +1,5 @@
 /**
- * The Pagination Utility - The Pagination widget provides a set of controls to navigate through paged data.
+ * The Pagination widget provides a set of controls to navigate through paged data.
  *
  * @module aui-pagination
  */

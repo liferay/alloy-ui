@@ -129,18 +129,19 @@ var FormBuilderButtonField = A.Component.create({
 	},
 
 	/**
-     * Static property used to define the UI attributes.
-     *
-     * @property FormBuilderButtonField.UI_ATTRS
-     * @type Array
-     * @static
-     */
+	 * Static property used to define the UI attributes.
+	 *
+	 * @property FormBuilderButtonField.UI_ATTRS
+	 * @type Array
+	 * @static
+	 */
 	UI_ATTRS: A.FormBuilderField.UI_ATTRS.concat([BUTTON_TYPE]),
 
 	/**
 	 * TODO. Wanna help? Please send a Pull Request.
 	 *
 	 * @property FormBuilderButtonField.CSS_PREFIX
+	 * @type String
 	 * @static
 	 */
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,

@@ -51,7 +51,7 @@ function TreeViewIO(config) {
  */
 TreeViewIO.ATTRS = {
 
-    /**
+	/**
 	 * IO options for the current TreeNode load the children.
 	 *
 	 * @attribute io
@@ -69,13 +69,13 @@ TreeViewIO.ATTRS = {
 
 TreeViewIO.prototype = {
 
-    /**
-     * Construction logic executed during TreeViewIO instantiation. Lifecycle.
-     *
-     * @method initializer
-     * @protected
-     */
-    initializer: function() {
+	/**
+	 * Construction logic executed during TreeViewIO instantiation. Lifecycle.
+	 *
+	 * @method initializer
+	 * @protected
+	 */
+	initializer: function() {
 		var instance = this;
 
 		instance.publish(
@@ -194,13 +194,13 @@ TreeViewIO.prototype = {
 	},
 
 	/**
-     * Fire after IO success default.
-     *
-     * @method _onIOSuccessDefault
-     * @param event
-     * @protected
-     */
-    _onIOSuccessDefault: function(event) {
+	 * Fire after IO success default.
+	 *
+	 * @method _onIOSuccessDefault
+	 * @param event
+	 * @protected
+	 */
+	_onIOSuccessDefault: function(event) {
 		var instance = this;
 
 		var ownerTree = instance.get(OWNER_TREE);

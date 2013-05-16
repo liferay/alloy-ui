@@ -425,6 +425,13 @@ var FormValidator = A.Component.create({
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method isCheckable
+     * @param node
+     * @private
+     */
     isCheckable: function(node) {
         var nodeType = node.get(TYPE).toLowerCase();
 

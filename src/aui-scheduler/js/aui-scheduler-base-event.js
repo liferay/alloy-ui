@@ -458,11 +458,11 @@ var SchedulerEvent = A.Component.create({
 								'</div>',
 
 		/**
-	     * Construction logic executed during SchedulerEvent instantiation. Lifecycle.
-	     *
-	     * @method initializer
-	     * @protected
-	     */
+		 * Construction logic executed during SchedulerEvent instantiation. Lifecycle.
+		 *
+		 * @method initializer
+		 * @protected
+		 */
 		initializer: function() {
 			var instance = this;
 

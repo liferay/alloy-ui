@@ -722,7 +722,6 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @attribute builder
-		 * @default undefined
 		 */
 		builder: {
 		},

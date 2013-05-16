@@ -115,18 +115,19 @@ var FormBuilderFieldsetField = A.Component.create({
 	},
 
 	/**
-     * Static property used to define the UI attributes.
-     *
-     * @property FormBuilderFieldsetField.UI_ATTRS
-     * @type Array
-     * @static
-     */
+	 * Static property used to define the UI attributes.
+	 *
+	 * @property FormBuilderFieldsetField.UI_ATTRS
+	 * @type Array
+	 * @static
+	 */
 	UI_ATTRS: [ACCEPT_CHILDREN, LABEL, SHOW_LABEL],
 
 	/**
 	 * TODO. Wanna help? Please send a Pull Request.
 	 *
 	 * @property FormBuilderFieldsetField.CSS_PREFIX
+	 * @type String
 	 * @static
 	 */
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,

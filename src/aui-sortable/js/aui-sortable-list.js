@@ -1,5 +1,5 @@
 /**
- * The SortableList Utility - Full documentation coming soon.
+ * The SortableList Utility
  *
  * @module aui-sortable-list
  */

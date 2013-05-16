@@ -178,6 +178,13 @@ CellEditorSupport.ATTRS = {
 };
 
 A.mix(CellEditorSupport.prototype, {
+
+	/**
+	 * Construction logic executed during CellEditorSupport instantiation. Lifecycle.
+	 *
+	 * @method initializer
+	 * @protected
+	 */
 	initializer: function() {
 		var instance = this,
 			editEvent = instance.get(EDIT_EVENT);
@@ -192,6 +199,12 @@ A.mix(CellEditorSupport.prototype, {
 		instance.delegate(editEvent, instance._onEditCell, _DOT+instance.CLASS_NAMES_CELL_EDITOR_SUPPORT.cell, instance);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method getEditor
+	 * @param record, column
+	 */
 	getEditor: function(record, column) {
 		var instance = this,
 			columnEditor = column.editor,
@@ -204,6 +217,12 @@ A.mix(CellEditorSupport.prototype, {
 		return recordEditor || columnEditor;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _afterCellEditorSupportRender
+	 * @protected
+	 */
 	_afterCellEditorSupportRender: function() {
 		var instance = this;
 
@@ -212,6 +231,13 @@ A.mix(CellEditorSupport.prototype, {
 		instance.body.after(A.bind(instance._syncModelsReadOnlyUI, instance), instance.body, RENDER);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _onEditCell
+	 * @param event
+	 * @protected
+	 */
 	_onEditCell: function(event) {
 		var instance = this,
 			activeCell = instance.get(ACTIVE_CELL),
@@ -237,6 +263,13 @@ A.mix(CellEditorSupport.prototype, {
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _onEditorSave
+	 * @param event
+	 * @protected
+	 */
 	_onEditorSave: function(event) {
 		var instance = this,
 			editor = event.currentTarget,
@@ -256,6 +289,13 @@ A.mix(CellEditorSupport.prototype, {
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _onEditorVisibleChange
+	 * @param event
+	 * @protected
+	 */
 	_onEditorVisibleChange: function(event) {
 		var instance = this,
 			editor = event.currentTarget;
@@ -265,6 +305,13 @@ A.mix(CellEditorSupport.prototype, {
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _syncModelReadOnlyUI
+	 * @param model
+	 * @protected
+	 */
 	_syncModelReadOnlyUI: function(model) {
 		var instance = this,
 			row = instance.getRow(model);
@@ -272,6 +319,12 @@ A.mix(CellEditorSupport.prototype, {
 		row.toggleClass(instance.CLASS_NAMES_CELL_EDITOR_SUPPORT[READ_ONLY], model.get(READ_ONLY) === true);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _syncModelsReadOnlyUI
+	 * @protected
+	 */
 	_syncModelsReadOnlyUI: function() {
 		var instance = this;
 
@@ -281,12 +334,23 @@ A.mix(CellEditorSupport.prototype, {
 	},
 
 	// Deprecated methods
-
 	// Use getEditor
+
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method getCellEditor
+	 */
 	getCellEditor: function() {
 		return this.getEditor.apply(this, arguments);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method getRecordColumnValue
+	 * @param record, column
+	 */
 	getRecordColumnValue: function(record, column) {
 		return record.get(column.key);
 	}

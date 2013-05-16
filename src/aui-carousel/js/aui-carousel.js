@@ -79,12 +79,13 @@ var Carousel = A.Component.create(
          * @static
          */
         ATTRS: {
+
             /**
              * Index of the first visible item of the carousel.
              *
              * @attribute activeIndex
              * @default 0
-             * @type {Integer}
+             * @type Number
              */
             activeIndex: {
                 value: 0,
@@ -97,7 +98,7 @@ var Carousel = A.Component.create(
              *
              * @attribute animationTime
              * @default 0.5
-             * @type {Integer | Float}
+             * @type Number
              */
             animationTime: {
                 value: 0.5
@@ -108,7 +109,7 @@ var Carousel = A.Component.create(
              *
              * @attribute intervalTime
              * @default 2
-             * @type {Integer | Float}
+             * @type Number
              */
             intervalTime: {
                 value: 2
@@ -120,7 +121,7 @@ var Carousel = A.Component.create(
              *
              * @attribute itemSelector
              * @default >* (All first childs)
-             * @type {String}
+             * @type String
              */
             itemSelector: {
                 value: '>*'
@@ -131,7 +132,7 @@ var Carousel = A.Component.create(
              *
              * @attribute nodeMenu
              * @default null
-             * @type {Node | String}
+             * @type Node | String
              */
             nodeMenu: {
                 value: null,
@@ -143,7 +144,7 @@ var Carousel = A.Component.create(
              *
              * @attribute nodeMenuItemSelector
              * @default .carousel-menu-item
-             * @type {String}
+             * @type String
              */
             nodeMenuItemSelector: {
                 value: DOT + CSS_MENU_ITEM
@@ -155,7 +156,7 @@ var Carousel = A.Component.create(
              *
              * @attribute playing
              * @default true
-             * @type {Boolean}
+             * @type Boolean
              */
             playing: {
                 value: true
@@ -251,7 +252,6 @@ var Carousel = A.Component.create(
              *
              * @method item
              * @param val
-             * @protected
              */
             item: function(val) {
                 var instance = this;

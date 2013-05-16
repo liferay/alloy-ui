@@ -388,7 +388,7 @@ var Rating = A.Component.create(
             },
 
             /**
-             * Selects the <code>index</code> Rating element.
+             * Select the <code>index</code> Rating element.
              *
              * @method select
              * @param {Number} index Index to be selected
@@ -445,7 +445,7 @@ var Rating = A.Component.create(
             },
 
             /**
-             * Finds the index of the <code>elem</code>.
+             * Find the index of the <code>elem</code>.
              *
              * @method indexOf
              * @param {Node} elem Rating element
@@ -521,7 +521,7 @@ var Rating = A.Component.create(
                 };
 
                 /**
-                 * Handles the itemClick event.
+                 * Handle the itemClick event.
                  *
                  * @event itemClick
                  * @preventable _defRatingItemClickFn
@@ -534,7 +534,7 @@ var Rating = A.Component.create(
                 );
 
                 /**
-                 * Handles the itemSelect event.
+                 * Handle the itemSelect event.
                  *
                  * @event itemSelect
                  * @preventable _defRatingItemSelectFn
@@ -547,7 +547,7 @@ var Rating = A.Component.create(
                 );
 
                 /**
-                 * Handles the itemOver event.
+                 * Handle the itemOver event.
                  *
                  * @event itemSelect
                  * @preventable _defRatingItemOverFn
@@ -560,7 +560,7 @@ var Rating = A.Component.create(
                 );
 
                 /**
-                 * Handles the itemOut event.
+                 * Handle the itemOut event.
                  *
                  * @event itemOut
                  * @preventable _defRatingItemOutFn
@@ -574,7 +574,7 @@ var Rating = A.Component.create(
             },
 
             /**
-             * Fires the itemClick event.
+             * Fire the itemClick event.
              *
              * @method _defRatingItemClickFn
              * @param {EventFacade} event itemClick event facade
@@ -592,7 +592,7 @@ var Rating = A.Component.create(
             },
 
             /**
-             * Fires the itemSelect event.
+             * Fire the itemSelect event.
              *
              * @method _defRatingItemSelectFn
              * @param {EventFacade} event itemSelect event facade
@@ -608,7 +608,7 @@ var Rating = A.Component.create(
             },
 
             /**
-             * Fires the itemOut event.
+             * Fire the itemOut event.
              *
              * @method _defRatingItemOutFn
              * @param {EventFacade} event itemOut event facade
@@ -621,7 +621,7 @@ var Rating = A.Component.create(
             },
 
             /**
-             * Fires the itemOver event.
+             * Fire the itemOver event.
              *
              * @method _defRatingItemOverFn
              * @param {EventFacade} event itemOver event facade
@@ -787,7 +787,7 @@ var Rating = A.Component.create(
             },
 
             /**
-             * Fires the click event.
+             * Fire the click event.
              *
              * @method _handleClickEvent
              * @param {EventFacade} event click event facade
@@ -809,7 +809,7 @@ var Rating = A.Component.create(
             },
 
             /**
-             * Fires the mouseOut event.
+             * Fire the mouseOut event.
              *
              * @method _handleMouseOutEvent
              * @param {EventFacade} event mouseOut event facade
@@ -827,7 +827,7 @@ var Rating = A.Component.create(
             },
 
             /**
-             * Fires the mouseOver event.
+             * Fire the mouseOver event.
              *
              * @method _handleMouseOverEvent
              * @param {EventFacade} event mouseOver event facade
@@ -845,7 +845,7 @@ var Rating = A.Component.create(
             },
 
             /**
-             * Fires after the value of the
+             * Fire after the value of the
              * <a href="Rating.html#config_label">label</a> attribute change.
              *
              * @method _afterSetLabel

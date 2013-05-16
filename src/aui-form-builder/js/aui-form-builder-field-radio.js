@@ -83,6 +83,7 @@ var FormBuilderRadioField = A.Component.create({
 	 * TODO. Wanna help? Please send a Pull Request.
 	 *
 	 * @property FormBuilderRadioField.CSS_PREFIX
+	 * @type String
 	 * @static
 	 */
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,

@@ -124,11 +124,11 @@ var FormBuilderCheckBoxField = A.Component.create({
 	prototype: {
 
 		/**
-         * Render the FormBuilderCheckBoxField component instance. Lifecycle.
-         *
-         * @method renderUI
-         * @protected
-         */
+		 * Render the FormBuilderCheckBoxField component instance. Lifecycle.
+		 *
+		 * @method renderUI
+		 * @protected
+		 */
 		renderUI: function() {
 			var instance = this,
 				templateNode = instance.get(TEMPLATE_NODE),

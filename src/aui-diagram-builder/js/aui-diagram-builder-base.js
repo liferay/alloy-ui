@@ -227,7 +227,7 @@ var AvailableField = A.Component.create({
 	 *
 	 * @method buildNodeId
 	 * @param id
-	 * @private
+     * @private
 	 */
 	buildNodeId: function(id) {
 		return AVAILABLE_FIELDS + _UNDERLINE + FIELD + _UNDERLINE + id;
@@ -238,7 +238,7 @@ var AvailableField = A.Component.create({
 	 *
 	 * @method getAvailableFieldById
 	 * @param id
-	 * @private
+     * @private
 	 */
 	getAvailableFieldById: function(id) {
 		return A.AvailableField.getAvailableFieldByNode(_HASH+A.AvailableField.buildNodeId(id));
@@ -249,7 +249,7 @@ var AvailableField = A.Component.create({
 	 *
 	 * @method getAvailableFieldById
 	 * @param node
-	 * @private
+     * @private
 	 */
 	getAvailableFieldByNode: function(node) {
 		node = A.one(node);

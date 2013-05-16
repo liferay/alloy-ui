@@ -70,6 +70,7 @@ var FormBuilderFileUploadField = A.Component.create({
 	 * TODO. Wanna help? Please send a Pull Request.
 	 *
 	 * @property FormBuilderFileUploadField.CSS_PREFIX
+	 * @type String
 	 * @static
 	 */
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,

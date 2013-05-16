@@ -63,7 +63,7 @@ var CharCounter = A.Component.create(
 
 			/**
 			 * Max number of characters the <a
-	         * href="CharCounter.html#config_input">input</a> can have.
+			 * href="CharCounter.html#config_input">input</a> can have.
 			 *
 			 * @attribute maxLength
 			 * @default Infinity
@@ -91,19 +91,19 @@ var CharCounter = A.Component.create(
 		},
 
 		/**
-         * Static property used to define which component it extends.
-         *
-         * @property CharCounter.EXTENDS
-         * @type Object
-         * @static
-         */
-        EXTENDS: A.Base,
+		 * Static property used to define which component it extends.
+		 *
+		 * @property CharCounter.EXTENDS
+		 * @type Object
+		 * @static
+		 */
+		EXTENDS: A.Base,
 
 		prototype: {
 
-            /**
+			/**
 			 * Event handler for the input <a
-		     * href="module_aui-event.html">aui-event</a> event.
+			 * href="module_aui-event.html">aui-event</a> event.
 			 *
 			 * @property handler
 			 * @type EventHandle
@@ -165,7 +165,7 @@ var CharCounter = A.Component.create(
 			},
 
 			/**
-			 * Descructor lifecycle implementation for the CharCounter class.
+			 * Destructor lifecycle implementation for the CharCounter class.
 			 * Purges events attached to the node (and all child nodes).
 			 *
 			 * @method destroy
@@ -181,9 +181,9 @@ var CharCounter = A.Component.create(
 
 			/**
 			 * Check the current value of the <a
-		     * href="CharCounter.html#config_input">input</a>, truncate the data if
-		     * needed, and re-sync the UI. Fired from <a
-		     *  href="CharCounter.html#method__onInputChange">_onInputChange</a>.
+			 * href="CharCounter.html#config_input">input</a>, truncate the data if
+			 * needed, and re-sync the UI. Fired from <a
+			 *  href="CharCounter.html#method__onInputChange">_onInputChange</a>.
 			 *
 			 * @method checkLength
 			 */
@@ -234,7 +234,7 @@ var CharCounter = A.Component.create(
 			 *
 			 * @method _setMaxLength
 			 * @param {Number} v Value of the new <a
-		     * href="CharCounter.html#config_maxLenght">maxLenght</a>.
+			 * href="CharCounter.html#config_maxLenght">maxLenght</a>.
 			 * @protected
 			 * @return {Number}
 			 */

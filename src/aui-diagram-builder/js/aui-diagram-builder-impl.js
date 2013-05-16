@@ -1339,22 +1339,22 @@ var DiagramNode = A.Component.create({
 	NAME: DIAGRAM_NODE_NAME,
 
 	/**
-     * Static property used to define the UI attributes.
-     *
-     * @property DiagramNode.UI_ATTRS
-     * @type Array
-     * @static
-     */
+	 * Static property used to define the UI attributes.
+	 *
+	 * @property DiagramNode.UI_ATTRS
+	 * @type Array
+	 * @static
+	 */
 	UI_ATTRS: [HIGHLIGHTED, NAME, REQUIRED, SELECTED],
 
 	/**
-     * Static property used to define the default attribute
-     * configuration for the DiagramNode.
-     *
-     * @property DiagramNode.ATTRS
-     * @type Object
-     * @static
-     */
+	 * Static property used to define the default attribute
+	 * configuration for the DiagramNode.
+	 *
+	 * @property DiagramNode.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
 
 		/**
@@ -1652,7 +1652,7 @@ var DiagramNode = A.Component.create({
 	 *
 	 * @method buildNodeId
 	 * @param id
-	 * @protected
+	 * @private
 	 */
 	buildNodeId: function(id) {
 		return DIAGRAM_NODE + _UNDERLINE + FIELD + _UNDERLINE + id.replace(/[^a-z0-9.:_\-]/ig, '_');
@@ -1670,11 +1670,11 @@ var DiagramNode = A.Component.create({
 		SERIALIZABLE_ATTRS: [DESCRIPTION, NAME, REQUIRED, TYPE, WIDTH, HEIGHT, Z_INDEX, XY],
 
 		/**
-         * Construction logic executed during DiagramNode instantiation. Lifecycle.
-         *
-         * @method initializer
-         * @protected
-         */
+		 * Construction logic executed during DiagramNode instantiation. Lifecycle.
+		 *
+		 * @method initializer
+		 * @protected
+		 */
 		initializer: function() {
 			var instance = this;
 

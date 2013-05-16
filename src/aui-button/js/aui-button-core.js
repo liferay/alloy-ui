@@ -234,7 +234,7 @@ ButtonExt.prototype = {
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @method _afterCssClassChange
+     * @method _uiSetCssClass
      * @param val, prevVal
      * @protected
      */
@@ -503,13 +503,12 @@ ButtonGroup.CLASS_NAMES = CLASS_NAMES;
  * A base class for ButtonGroup.
  *
  * @class ButtonGroup
- * @extends Component
- * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
 A.mix(ButtonGroup.prototype, {
 
-    // Bootstrap button group depends on buttons to be a direct children, force one-box widget.
+    // Bootstrap button group depends on buttons to be a direct children,
+    // force one-box widget.
     CONTENT_TEMPLATE: null,
 
     /**

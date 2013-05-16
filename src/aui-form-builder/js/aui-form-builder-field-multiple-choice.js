@@ -104,11 +104,11 @@ var OptionsEditor = A.Component.create({
 		ELEMENT_TEMPLATE: '<div class="' + CSS_FORM_BUILDER_OPTIONS_EDITOR_HIDDEN + '"></div>',
 
 		/**
-         * Construction logic executed during OptionsEditor instantiation. Lifecycle.
-         *
-         * @method initializer
-         * @protected
-         */
+		 * Construction logic executed during OptionsEditor instantiation. Lifecycle.
+		 *
+		 * @method initializer
+		 * @protected
+		 */
 		initializer: function() {
 			var instance = this;
 
@@ -223,18 +223,19 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 	},
 
 	/**
-     * Static property used to define the UI attributes.
-     *
-     * @property FormBuilderMultipleChoiceField.UI_ATTRS
-     * @type Array
-     * @static
-     */
+	 * Static property used to define the UI attributes.
+	 *
+	 * @property FormBuilderMultipleChoiceField.UI_ATTRS
+	 * @type Array
+	 * @static
+	 */
 	UI_ATTRS: [ACCEPT_CHILDREN, LABEL, NAME, OPTIONS, PREDEFINED_VALUE, SHOW_LABEL],
 
 	/**
 	 * TODO. Wanna help? Please send a Pull Request.
 	 *
 	 * @property FormBuilderMultipleChoiceField.CSS_PREFIX
+	 * @type String
 	 * @static
 	 */
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
@@ -251,12 +252,12 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 	prototype: {
 
 		/**
-         * Construction logic executed during FormBuilderMultipleChoiceField
-         * instantiation. Lifecycle.
-         *
-         * @method initializer
-         * @protected
-         */
+		 * Construction logic executed during FormBuilderMultipleChoiceField
+		 * instantiation. Lifecycle.
+		 *
+		 * @method initializer
+		 * @protected
+		 */
 		initializer: function() {
 			var instance = this,
 				options = instance.get(OPTIONS);

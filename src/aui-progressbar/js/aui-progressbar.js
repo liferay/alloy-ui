@@ -57,8 +57,6 @@ var L = A.Lang,
     TPL_TEXT = '<p></p>';
 
 /**
- * <p><img src="assets/images/aui-progressbar/main.png"/></p>
- *
  * A base class for Progressbar, providing:
  * <ul>
  *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>

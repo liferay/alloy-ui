@@ -17,11 +17,11 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
 	model: A.SchedulerEvent,
 
 	/**
-     * Construction logic executed during SchedulerCalendar instantiation. Lifecycle.
-     *
-     * @method initializer
-     * @protected
-     */
+	 * Construction logic executed during SchedulerCalendar instantiation. Lifecycle.
+	 *
+	 * @method initializer
+	 * @protected
+	 */
 	initializer: function() {
 		var instance = this;
 

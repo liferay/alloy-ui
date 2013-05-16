@@ -133,7 +133,7 @@ A.mix(DataTableSelection.prototype, {
 	/**
 	 * TODO. Wanna help? Please send a Pull Request. Lifecycle.
 	 *
-	 * @method DataTableSelection
+	 * @method destroy
 	 * @protected
 	 */
 	destroy: function() {

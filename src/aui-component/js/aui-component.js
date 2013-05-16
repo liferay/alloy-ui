@@ -359,6 +359,12 @@ A.extend(
 	}
 );
 
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @method getById
+ * @param id
+ */
 Component.getById = function(id) {
 	return INSTANCES[id];
 };
@@ -367,6 +373,13 @@ var COMP_PROTO = Component.prototype;
 
 var DEFAULT_UI_ATTRS = A.Widget.prototype._UI_ATTRS;
 
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @method _applyCssPrefix
+ * @param component
+ * @protected
+ */
 Component._applyCssPrefix = function(component) {
 	if (component && component.NAME && !('CSS_PREFIX' in component)) {
 		component.CSS_PREFIX = A.getClassName(String(component.NAME).toLowerCase());
@@ -375,6 +388,12 @@ Component._applyCssPrefix = function(component) {
 	return component;
 };
 
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @method create
+ * @param config
+ */
 Component.create = function(config) {
 	config = config || {};
 
@@ -438,10 +457,22 @@ Component.create = function(config) {
 	return component;
 };
 
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @property Component.CSS_PREFIX
+ * @type String
+ * @static
+ */
 Component.CSS_PREFIX = getClassName('component');
 
 var Base = A.Base;
 
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @method build
+ */
 Component.build = function() {
 	var component = Base.build.apply(Base, arguments);
 

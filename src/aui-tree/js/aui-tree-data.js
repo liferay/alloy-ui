@@ -68,7 +68,7 @@ var TreeData = function () {};
  */
 TreeData.ATTRS = {
 
-    /**
+	/**
 	 * Container to nest children nodes. If has cntainer it's not a leaf.
 	 *
 	 * @attribute container
@@ -123,7 +123,7 @@ A.mix(TreeData.prototype, {
 	},
 
 	/**
-	 * Descructor lifecycle implementation for the TreeData class.
+	 * Destructor lifecycle implementation for the TreeData class.
 	 * Purges events attached to the node (and all child nodes).
 	 *
 	 * @method destructor
@@ -515,7 +515,7 @@ A.mix(TreeData.prototype, {
 
 	/**
 	 * Index of the passed TreeNode on the <a
-     * href="TreeData.html#config_children">children</a> attribute.
+	 * href="TreeData.html#config_children">children</a> attribute.
 	 *
 	 * @method indexOf
 	 * @param {TreeNode} node

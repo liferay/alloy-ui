@@ -1,5 +1,5 @@
 /**
- * The SortableLayout Utility - Full documentation coming soon.
+ * The SortableLayout Utility
  *
  * @module aui-sortable-layout
  */
