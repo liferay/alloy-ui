@@ -5,10 +5,23 @@
 	<title></title>
 	<link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
 	<script src="../../build/aui/aui.js"></script>
+
+
+	<style type="text/css">
+		.error {
+			font-size: 1.2em;
+			background: #ffc;
+			border: 1px solid #fc0;
+			padding: 1em;
+		}
+	</style>
 </head>
 <body>
 <h1>AlloyUI - Parse content</h1>
 <div id="temp1"></div>
+<div class="error hide" id="missing">
+	<b>Response with empty element did not load.</b>
+</div>
 <div id="temp2"></div>
 <script>
 	var index = 0;
@@ -21,8 +34,6 @@
 		node1.plug(A.Plugin.ParseContent);
 		node2.plug(A.Plugin.ParseContent);
 
-		node1.plug(A.Plugin.ParseContent);
-
 		A.io('assets/content.html', {
 			on: {
 				success: function(id, o) {
@@ -31,16 +42,23 @@
 			}
 		});
 
-		A.io('assets/blank-content-script.html', {
-			on: {
-				success: function(id, o) {
-					// or using setContent
-					node2.setContent(o.responseText);
-					// node2.append(o.responseText);
-				}
+	A.io('assets/blank-content-script.html', {
+		on: {
+			success: function(id, o) {
+				node2.setContent(o.responseText);
+
+				setTimeout(
+					function() {
+						if (!window.EMPTY_EL_SCRIPT_LOADED) {
+							A.one('#missing').show();
+						}
+					},
+					500
+				);
 			}
-		});
+		}
 	});
+});
 </script>
 </body>
 </html>
