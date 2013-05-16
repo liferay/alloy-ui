@@ -1,4 +1,9 @@
-/* global A*/
+/**
+ * The Color Picker Component
+ *
+ * @module aui-color-picker
+ * @submodule aui-hsv-palette
+ */
 
 var AColor = A.Color,
     AWidget = A.Widget,
@@ -131,6 +136,14 @@ var AColor = A.Color,
 
     REGEX_RANGE_0_360 = /^([0]{0,2}[1-9]|[0]?[1-9][0-9]|[12][0-9][0-9]|3[0-5][0-9]|360)$/,
 
+/**
+ * A base class for HSVPalette.
+ *
+ * @class HSVPalette
+ * @extends A.Widget
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 HSVPalette = A.Base.create(NAME, A.Widget, [], {
     TPL_CONTAINER:
         '<div class="' + CSS_CONTAINER + ' {subClass}"><div>',
@@ -176,6 +189,12 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
 
     _outputType: TYPE_HEX,
 
+    /**
+     * Construction logic executed during HSVPalette instantiation. Lifecycle.
+     *
+     * @method initializer
+     * @protected
+     */
     initializer: function() {
         var instance = this;
 
@@ -184,6 +203,12 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         instance.on(SELECTED_CHANGE, instance._onSelectedChange, instance);
     },
 
+    /**
+     * Bind the events on the HSVPalette UI. Lifecycle.
+     *
+     * @method bindUI
+     * @protected
+     */
     bindUI: function() {
         var instance = this;
 
@@ -194,12 +219,24 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         instance._bindDD();
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request. Lifecycle.
+     *
+     * @method destructor
+     * @protected
+     */
     destructor: function() {
         var instance = this;
 
         instance._dd.destroy();
     },
 
+    /**
+     * Render the HSVPalette component instance. Lifecycle.
+     *
+     * @method renderUI
+     * @protected
+     */
     renderUI: function() {
         var instance = this;
 
@@ -213,6 +250,13 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         instance._hsContainerHeight = instance._hsContainer.get(CLIENT_HEIGHT);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _afterInputChange
+     * @param event
+     * @protected
+     */
     _afterInputChange: function(event) {
         var instance = this,
             fieldNode,
@@ -237,6 +281,13 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _afterHSThumbChange
+     * @param x, y
+     * @protected
+     */
     _afterHSThumbChange: function(x, y) {
         var instance = this,
             hexColor,
@@ -284,6 +335,13 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         });
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _afterPaletteMousedown
+     * @param event
+     * @protected
+     */
     _afterPaletteMousedown: function(event) {
         var instance = this,
             hsContainerXY,
@@ -307,12 +365,25 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         instance._dd._handleMouseDownEvent(event);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _afterPaletteDragStart
+     * @protected
+     */
     _afterPaletteDragStart: function() {
         var instance = this;
 
         instance._setHSContainerXY();
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _afterPaletteThumbDrag
+     * @param event
+     * @protected
+     */
     _afterPaletteThumbDrag: function(event) {
         var instance = this,
             x,
@@ -324,6 +395,12 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         instance._afterHSThumbChange(x, y);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _bindDD
+     * @protected
+     */
     _bindDD: function() {
         var instance = this,
             dd;
@@ -341,12 +418,26 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         instance._dd = dd;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _calculateRGBColor
+     * @param hue, saturation, value
+     * @protected
+     */
     _calculateRGBColor: function(hue, saturation, value) {
         var instance = this;
 
         return instance._calculateRGB(hue, saturation, value);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _calculateHue
+     * @param x
+     * @protected
+     */
     _calculateHue: function(x) {
         var instance = this,
             hue;
@@ -364,6 +455,13 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         return hue;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _calculateRGB
+     * @param hue, saturation, value
+     * @protected
+     */
     _calculateRGB: function(hue, saturation, value) {
         var rgbColor = DEFAULT_RGB,
             hsvColor;
@@ -377,12 +475,26 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         return rgbColor;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _calculateRGBArray
+     * @param r, g, b
+     * @protected
+     */
     _calculateRGBArray: function(r, g, b) {
         var instance = this;
 
         return AColor.fromArray([r, g, b], RGB);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _calculateSaturation
+     * @param y
+     * @protected
+     */
     _calculateSaturation: function(y) {
         var instance = this,
             saturation;
@@ -400,6 +512,13 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         return saturation;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _calculateX
+     * @param hue
+     * @protected
+     */
     _calculateX: function(hue) {
         var instance = this,
             x;
@@ -417,6 +536,13 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         return x;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _calculateY
+     * @param saturation
+     * @protected
+     */
     _calculateY: function(saturation) {
         var instance = this,
             y;
@@ -434,12 +560,24 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         return y;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _createSliders
+     * @protected
+     */
     _createSliders: function() {
         var instance = this;
 
         instance._createValueSlider();
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _createValueSlider
+     * @protected
+     */
     _createValueSlider: function() {
         var instance = this,
             contentBox,
@@ -475,6 +613,12 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         instance._valueSlider = slider;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _getContainerClassName
+     * @protected
+     */
     _getContainerClassName: function() {
         var instance = this,
             className = _EMPTY;
@@ -486,16 +630,36 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         return className;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _getFieldValue
+     * @param fieldNode
+     * @protected
+     */
     _getFieldValue: function(fieldNode) {
         var instance = this;
 
         return fieldNode.one(_DOT + CSS_VALUE).get(VALUE);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _getHexValue
+     * @param hexColor, rgbColorArray
+     * @protected
+     */
     _getHexValue: function(hexColor, rgbColorArray) {
         return hexColor.substring(1);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _getHexContainerConfig
+     * @protected
+     */
     _getHexContainerConfig: function() {
         var instance = this;
 
@@ -508,12 +672,26 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         };
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _getHSVArray
+     * @param hsv
+     * @protected
+     */
     _getHSVArray: function(hsv) {
         var instance = this;
 
         return AColor.toArray(hsv, COLOR_TYPE_HSV);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _getXYFromHueSaturation
+     * @param hue, saturation
+     * @protected
+     */
     _getXYFromHueSaturation: function(hue, saturation) {
         var instance = this,
             x,
@@ -526,6 +704,13 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         return [x,y];
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _normalizeHexValue
+     * @param hex
+     * @protected
+     */
     _normalizeHexValue: function(hex) {
         var padding = _EMPTY;
 
@@ -540,6 +725,13 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         return (hex += padding).toUpperCase();
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onSelectedChange
+     * @param event
+     * @protected
+     */
     _onSelectedChange: function(event) {
         var instance = this;
 
@@ -548,6 +740,13 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onValueChange
+     * @param event
+     * @protected
+     */
     _onValueChange: function(event) {
         var instance = this,
             hexColor,
@@ -604,6 +803,12 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _renderContainer
+     * @protected
+     */
     _renderContainer: function() {
         var instance = this,
             className;
@@ -622,6 +827,12 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         instance._renderViewContainer();
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _renderViewContainer
+     * @protected
+     */
     _renderViewContainer: function() {
         var instance = this;
 
@@ -632,6 +843,12 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         instance._paletteContainer.appendChild(instance._viewContainer);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _renderViewContainerContent
+     * @protected
+     */
     _renderViewContainerContent: function() {
         var instance = this;
 
@@ -654,6 +871,13 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         instance._renderHexNode();
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _renderField
+     * @param container, data
+     * @protected
+     */
     _renderField: function(container, data) {
         var instance = this;
 
@@ -672,6 +896,13 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         );
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _renderOutputField
+     * @param container, data
+     * @protected
+     */
     _renderOutputField: function(container, data) {
         var instance = this;
 
@@ -688,6 +919,12 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         );
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _renderHexNode
+     * @protected
+     */
     _renderHexNode: function() {
         var instance = this,
             labelValueHexContainer,
@@ -711,6 +948,12 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         instance._labelValueRGBContainer = labelValueHexContainer;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _renderFields
+     * @protected
+     */
     _renderFields: function() {
         var instance = this,
             labelValueHSVContainer,
@@ -809,6 +1052,12 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         instance._labelValueRGBContainer = labelValueRGBContainer;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _renderImageBackdrop
+     * @protected
+     */
     _renderImageBackdrop: function() {
         var instance = this;
 
@@ -817,6 +1066,12 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         );
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _renderHSContainer
+     * @protected
+     */
     _renderHSContainer: function() {
         var instance = this;
 
@@ -825,6 +1080,12 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         );
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _renderValueSliderContainer
+     * @protected
+     */
     _renderValueSliderContainer: function() {
         var instance = this;
 
@@ -833,6 +1094,12 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         );
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _renderResultBackdrop
+     * @protected
+     */
     _renderResultBackdrop: function() {
         var instance = this;
 
@@ -841,6 +1108,12 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         );
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _renderResultView
+     * @protected
+     */
     _renderResultView: function() {
         var instance = this;
 
@@ -849,6 +1122,12 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         );
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _renderThumb
+     * @protected
+     */
     _renderThumb: function() {
         var instance = this;
 
@@ -857,24 +1136,51 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         );
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _setHSContainerXY
+     * @protected
+     */
     _setHSContainerXY: function() {
         var instance = this;
 
         instance._hsContainerXY = instance._hsContainer.getXY();
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _setFieldValue
+     * @param fieldNode, value
+     * @protected
+     */
     _setFieldValue: function(fieldNode, value) {
         var instance = this;
 
         fieldNode.one(_DOT + CSS_VALUE).set(VALUE, value);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _updatePaletteThumbPosition
+     * @param xy
+     * @protected
+     */
     _updatePaletteThumbPosition: function(xy) {
         var instance = this;
 
         instance._colorThumb.setXY([xy[0] - instance._colorThumbGutter, xy[1] - instance._colorThumbGutter]);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _updateViewFromInput
+     * @param fieldNode
+     * @protected
+     */
     _updateViewFromInput: function(fieldNode) {
         var instance = this,
             type;
@@ -892,6 +1198,13 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _updateViewByHSVA
+     * @param fieldNode
+     * @protected
+     */
     _updateViewByHSVA: function(fieldNode) {
         var instance = this,
             hexColor,
@@ -955,6 +1268,13 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         });
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _updateViewByRGB
+     * @param fieldNode
+     * @protected
+     */
     _updateViewByRGB: function(fieldNode) {
         var instance = this,
             b,
@@ -1033,6 +1353,13 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         });
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _updateViewByHEXNode
+     * @param fieldNode
+     * @protected
+     */
     _updateViewByHEXNode: function(fieldNode) {
         var instance = this,
             hex;
@@ -1050,6 +1377,13 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         );
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _updateViewByHEX
+     * @param hex
+     * @protected
+     */
     _updateViewByHEX: function(hex) {
         var instance = this,
             b,
@@ -1118,6 +1452,13 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _validateFieldValue
+     * @param fieldNode
+     * @protected
+     */
     _validateFieldValue: function(fieldNode) {
         var instance = this,
             fieldValidator,
@@ -1140,15 +1481,46 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         return result;
     }
 }, {
+
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @property HSVPalette.CSS_PREFIX
+     * @type String
+     * @static
+     */
     CSS_PREFIX: getClassName(NAME),
 
+    /**
+     * Static property used to define the default attribute
+     * configuration for the HSVPalette.
+     *
+     * @property HSVPalette.ATTRS
+     * @type Object
+     * @static
+     */
     ATTRS: {
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute controls
+         * @default true
+         * @type Boolean
+         * @writeOnce
+         */
         controls: {
             validator: Lang.isBoolean,
             value: true,
             writeOnce: true
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute fieldValidator
+         * @type Object
+         */
         fieldValidator: {
             validator: Lang.isObject,
             value: {
@@ -1163,11 +1535,24 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
             }
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute selected
+         * @default ''
+         * @type String
+         */
         selected: {
             validator: Lang.isString,
             value: _EMPTY
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute strings
+         * @type Object
+         */
         strings: {
             value: {
                 a: 'A',
@@ -1182,8 +1567,22 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
         }
     },
 
+    /**
+     * Static property provides a string to identify the class.
+     *
+     * @property HSVPalette.NAME
+     * @type String
+     * @static
+     */
     NAME: NAME,
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @property HSVPalette.NS
+     * @type String
+     * @static
+     */
     NS: NAME
 });
 

@@ -1,4 +1,9 @@
-/* global A*/
+/**
+ * The Color Picker Component
+ *
+ * @module aui-color-picker
+ * @submodule aui-color-pallete
+ */
 
 var AArray = A.Array,
     AColor = A.Color,
@@ -14,6 +19,14 @@ var AArray = A.Array,
     CSS_PALETTE_ITEM_INNER = getClassName('palette-item-inner'),
     CSS_PALETTE_ITEM_SELECTED = getClassName('palette-item-selected'),
 
+/**
+ * A base class for ColorPalette.
+ *
+ * @class ColorPalette
+ * @extends A.Widget
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 ColorPalette = A.Base.create(_NAME, A.Widget, [
     A.Palette
 ], {
@@ -21,6 +34,12 @@ ColorPalette = A.Base.create(_NAME, A.Widget, [
                         '<a href="" class="' + CSS_PALETTE_ITEM_INNER + '" style="background-color:{value}" onclick="return false;" title="{title}"></a>' +
                     '</td>',
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _valueFormatterFn
+     * @protected
+     */
     _valueFormatterFn: function() {
         return function(items, index, row, column, selected) {
             var instance = this,
@@ -40,6 +59,13 @@ ColorPalette = A.Base.create(_NAME, A.Widget, [
         };
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _setItems
+     * @param value
+     * @protected
+     */
     _setItems: function(value) {
         var instance = this,
             result;
@@ -65,11 +91,41 @@ ColorPalette = A.Base.create(_NAME, A.Widget, [
         return result;
     }
 }, {
+
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @property ColorPalette.CSS_PREFIX
+     * @type String
+     * @static
+     */
     CSS_PREFIX: getClassName(_NAME),
 
+    /**
+     * Static property provides a string to identify the class.
+     *
+     * @property ColorPalette.NAME
+     * @type String
+     * @static
+     */
     NAME: _NAME,
 
+    /**
+     * Static property used to define the default attribute
+     * configuration for the ColorPalette.
+     *
+     * @property ColorPalette.ATTRS
+     * @type Object
+     * @static
+     */
     ATTRS: {
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute items
+         * @type Array
+         */
         items: {
             setter: '_setItems',
             value: [

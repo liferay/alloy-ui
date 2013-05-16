@@ -1,4 +1,9 @@
-/* global A*/
+/**
+ * The Color Picker Component
+ *
+ * @module aui-color-picker
+ * @submodule aui-color-picker-base
+ */
 
 var AArray = A.Array,
     AWidget = A.Widget,
@@ -47,6 +52,13 @@ var AArray = A.Array,
     CSS_HSV_TRIGGER = getClassName('hsv-trigger'),
     CSS_ACTIONS_CONTAINER = getClassName('actions-container');
 
+/**
+ * A base class for ColorPickerBase.
+ *
+ * @class ColorPickerBase
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 function ColorPickerBase(config) {}
 
 ColorPickerBase.prototype = {
@@ -64,6 +76,12 @@ ColorPickerBase.prototype = {
     _eventHandles: null,
     _hsvPaletteModal: null,
 
+    /**
+     * Construction logic executed during ColorPickerBase instantiation. Lifecycle.
+     *
+     * @method initializer
+     * @protected
+     */
     initializer: function() {
         var instance = this;
 
@@ -72,6 +90,12 @@ ColorPickerBase.prototype = {
         A.after(instance._rendererUICPBase, instance, 'renderer');
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request. Lifecycle.
+     *
+     * @method destructor
+     * @protected
+     */
     destructor: function() {
         var instance = this;
 
@@ -86,6 +110,11 @@ ColorPickerBase.prototype = {
         (new A.EventHandle(instance._eventHandles)).detach();
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method reset
+     */
     reset: function() {
         var instance = this;
 
@@ -106,6 +135,12 @@ ColorPickerBase.prototype = {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _bindTrigger
+     * @protected
+     */
     _bindTrigger: function() {
         var instance = this,
             trigger,
@@ -126,6 +161,12 @@ ColorPickerBase.prototype = {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _bindHSVPalette
+     * @protected
+     */
     _bindHSVPalette: function() {
         var instance = this,
             renderHSVPalette;
@@ -141,6 +182,12 @@ ColorPickerBase.prototype = {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _bindNoColor
+     * @protected
+     */
     _bindNoColor: function() {
         var instance = this;
 
@@ -149,6 +196,12 @@ ColorPickerBase.prototype = {
         );
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _bindUICPBase
+     * @protected
+     */
     _bindUICPBase: function() {
         var instance = this;
 
@@ -160,6 +213,12 @@ ColorPickerBase.prototype = {
         instance.on(VISIBLE_CHANGE, instance._onVisibleChange, instance);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _defaultValueRecentColors
+     * @protected
+     */
     _defaultValueRecentColors: function() {
         var instance = this,
             defaultColor,
@@ -189,12 +248,25 @@ ColorPickerBase.prototype = {
         };
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _getCurrentTrigger
+     * @protected
+     */
     _getCurrentTrigger: function() {
         var instance = this;
 
         return instance._currentTrigger;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _getDefaultAttributeValue
+     * @param attributeName
+     * @protected
+     */
     _getDefaultAttributeValue: function(attributeName) {
         var instance = this,
             attributeValue,
@@ -216,6 +288,13 @@ ColorPickerBase.prototype = {
         return attributeValue;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _findRecentColorEmptySpot
+     * @param items
+     * @protected
+     */
     _findRecentColorEmptySpot: function(items) {
         var instance = this,
             defaultColor,
@@ -245,6 +324,12 @@ ColorPickerBase.prototype = {
         return result;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _getHSVPalette
+     * @protected
+     */
     _getHSVPalette: function() {
         var instance = this,
             contentBox,
@@ -301,6 +386,13 @@ ColorPickerBase.prototype = {
         return instance._hsvPaletteModal;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onColorChange
+     * @param event
+     * @protected
+     */
     _onColorChange: function(event) {
         var instance = this;
 
@@ -316,6 +408,13 @@ ColorPickerBase.prototype = {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onColorPaletteSelectChange
+     * @param event
+     * @protected
+     */
     _onColorPaletteSelectChange: function(event) {
         var instance = this,
             color,
@@ -346,6 +445,13 @@ ColorPickerBase.prototype = {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onHSVPaletteOK
+     * @param event
+     * @protected
+     */
     _onHSVPaletteOK: function(event) {
         var instance = this,
             color,
@@ -393,6 +499,12 @@ ColorPickerBase.prototype = {
         instance._hsvPaletteModal.hide();
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onHSVTriggerClick
+     * @protected
+     */
     _onHSVTriggerClick: function() {
         var instance = this,
             hsvPalette;
@@ -410,6 +522,13 @@ ColorPickerBase.prototype = {
         hsvPalette.show();
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onNoColorClick
+     * @param event
+     * @protected
+     */
     _onNoColorClick: function(event) {
         var instance = this;
 
@@ -420,6 +539,13 @@ ColorPickerBase.prototype = {
         });
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onRecentColorPaletteSelectChange
+     * @param event
+     * @protected
+     */
     _onRecentColorPaletteSelectChange: function(event) {
         var instance = this,
             color,
@@ -447,6 +573,13 @@ ColorPickerBase.prototype = {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onRecentColorClick
+     * @param event
+     * @protected
+     */
     _onRecentColorClick: function(event) {
         var instance = this,
             color,
@@ -475,6 +608,13 @@ ColorPickerBase.prototype = {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onTriggerInteraction
+     * @param event
+     * @protected
+     */
     _onTriggerInteraction: function(event) {
         var instance = this,
             target;
@@ -495,6 +635,13 @@ ColorPickerBase.prototype = {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onVisibleChange
+     * @param event
+     * @protected
+     */
     _onVisibleChange: function(event) {
         var instance = this;
 
@@ -516,6 +663,12 @@ ColorPickerBase.prototype = {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _renderActionsContainer
+     * @protected
+     */
     _renderActionsContainer: function() {
         var instance = this,
             body;
@@ -525,6 +678,12 @@ ColorPickerBase.prototype = {
         instance._actionsContainer = body.appendChild(instance.TPL_ACTIONS);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _renderColorPalette
+     * @protected
+     */
     _renderColorPalette: function() {
         var instance = this,
             body,
@@ -541,6 +700,12 @@ ColorPickerBase.prototype = {
 
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _renderHSVTrigger
+     * @protected
+     */
     _renderHSVTrigger: function() {
         var instance = this,
             body,
@@ -558,6 +723,12 @@ ColorPickerBase.prototype = {
         );
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _renderNoColor
+     * @protected
+     */
     _renderNoColor: function() {
         var instance = this;
 
@@ -571,6 +742,12 @@ ColorPickerBase.prototype = {
         );
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _renderRecentColors
+     * @protected
+     */
     _renderRecentColors: function() {
         var instance = this,
             body,
@@ -591,6 +768,12 @@ ColorPickerBase.prototype = {
         instance._recentColorsPalette = recentColorsPalette;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _rendererUICPBase
+     * @protected
+     */
     _rendererUICPBase: function() {
         var instance = this,
             renderColorPalette,
@@ -617,6 +800,13 @@ ColorPickerBase.prototype = {
         instance._bindUICPBase();
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _validateTrigger
+     * @param value
+     * @protected
+     */
     _validateTrigger: function(value) {
         var instance = this;
 
@@ -624,15 +814,43 @@ ColorPickerBase.prototype = {
     }
 };
 
+/**
+ * Static property used to define the default attribute
+ * configuration for the ColorPickerBase.
+ *
+ * @property ColorPickerBase.ATTRS
+ * @type Object
+ * @static
+ */
 ColorPickerBase.ATTRS = {
+
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute bodyContent
+     * @default ''
+     * @type String
+     */
     bodyContent: {
         value: _EMPTY
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute color
+     * @type String
+     */
     color: {
         validator: Lang.isString
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute colorPalette
+     * @type Object
+     */
     colorPalette: {
         validator: Lang.isObject,
         value: {
@@ -722,16 +940,35 @@ ColorPickerBase.ATTRS = {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute currentTrigger
+     * @readOnly
+     */
     currentTrigger: {
         getter: '_getCurrentTrigger',
         readOnly: true
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute defaultColor
+     * @default '#FFF'
+     * @type String
+     */
     defaultColor: {
         validator: Lang.isString,
         value: _DEFAULT_COLOR
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute hsvPalette
+     * @type Object
+     */
     hsvPalette: {
         validator: Lang.isObject,
         value: {
@@ -739,22 +976,49 @@ ColorPickerBase.ATTRS = {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute recentColors
+     * @type Object
+     */
     recentColors: {
         validator: Lang.isObject,
         valueFn: '_defaultValueRecentColors'
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute renderColorPalette
+     * @default true
+     * @type Boolean
+     */
     renderColorPalette: {
         validator: Lang.isBoolean,
         value: true
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute renderHSVPalette
+     * @default true
+     * @type Boolean
+     * @writeOnce
+     */
     renderHSVPalette: {
         validator: Lang.isBoolean,
         value: true,
         writeOnce: true
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute strings
+     * @type Object
+     */
     strings: {
         value: {
             cancel: 'Cancel',
@@ -766,19 +1030,45 @@ ColorPickerBase.ATTRS = {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute trigger
+     */
     trigger: {
         validator: '_validateTrigger',
         value: _DOT + CSS_TRIGGER
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute triggerEvent
+     * @default 'click'
+     * @type String
+     */
     triggerEvent: {
         validator: Lang.isString,
         value: CLICK
     }
 };
 
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @property ColorPickerBase.CSS_PREFIX
+ * @type String
+ * @static
+ */
 ColorPickerBase.CSS_PREFIX = getClassName(_NAME);
 
+/**
+ * Static property provides a string to identify the class.
+ *
+ * @property ColorPickerBase.NAME
+ * @type String
+ * @static
+ */
 ColorPickerBase.NAME = _NAME;
 
 A.ColorPickerBase = ColorPickerBase;
