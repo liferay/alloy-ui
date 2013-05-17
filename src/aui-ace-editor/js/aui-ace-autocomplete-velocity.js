@@ -10,9 +10,37 @@ var Lang = A.Lang,
 	DIRECTIVES_MATCHER = 'directivesMatcher',
 	VARIABLES_MATCHER = 'variablesMatcher',
 
-Velocity = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [
-], {
+Velocity = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [], {
+    getMatch: function(content) {
+        var instance = this,
+            match,
+            matchIndex;
 
+        if ((matchIndex = content.lastIndexOf('#')) >= 0) {
+            content = content.substring(matchIndex);
+
+            if (instance.get(DIRECTIVES_MATCHER).test(content)) {
+                match = {
+                    content: content.substring(1),
+                    start: matchIndex,
+                    type: MATCH_DIRECTIVES
+                };
+            }
+        }
+        else if ((matchIndex = content.lastIndexOf('$')) >= 0) {
+            content = content.substring(matchIndex);
+
+            if (instance.get(VARIABLES_MATCHER).test(content)) {
+                match = {
+                    content: content.substring(1),
+                    start: matchIndex,
+                    type: MATCH_VARIABLES
+                };
+            }
+        }
+
+        return match;
+    }
 }, {
 	NAME: _NAME,
 
@@ -51,37 +79,7 @@ Velocity = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [
 			setter: '_setRegexValue',
 			value: /\$[\w., ()"]*(?:[^$]|\\\$)*$/
 		}
-}, {
-	getMatch: function(content) {
-		var instance = this,
-			match,
-			matchIndex;
-
-		if ((matchIndex = content.lastIndexOf('#')) >= 0) {
-			content = content.substring(matchIndex);
-
-			if (instance.get(DIRECTIVES_MATCHER).test(content)) {
-				match = {
-					content: content.substring(1),
-					start: matchIndex,
-					type: MATCH_DIRECTIVES
-				};
-			}
-		}
-		else if ((matchIndex = content.lastIndexOf('$')) >= 0) {
-			content = content.substring(matchIndex);
-
-			if (instance.get(VARIABLES_MATCHER).test(content)) {
-				match = {
-					content: content.substring(1),
-					start: matchIndex,
-					type: MATCH_VARIABLES
-				};
-			}
-		}
-
-		return match;
-	}
+    }
 });
 
 A.AceEditor.AutoCompleteVelocity = Velocity;
