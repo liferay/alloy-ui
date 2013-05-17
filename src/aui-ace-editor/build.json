@@ -17,9 +17,19 @@
                 "js/aui-ace-autocomplete-base.js"
             ]
         },
+        "aui-ace-autocomplete-templateprocessor": {
+            "jsfiles": [
+                "js/aui-ace-autocomplete-templateprocessor.js"
+            ]
+        },
         "aui-ace-autocomplete-freemarker": {
             "jsfiles": [
                 "js/aui-ace-autocomplete-freemarker.js"
+            ]
+        },
+        "aui-ace-autocomplete-velocity": {
+            "jsfiles": [
+                "js/aui-ace-autocomplete-velocity.js"
             ]
         },
         "aui-ace-autocomplete-list": {

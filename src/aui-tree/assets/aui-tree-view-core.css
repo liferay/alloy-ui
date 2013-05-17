@@ -18,6 +18,11 @@
     cursor: pointer
 }
 
+.tree-node-content .tree-hitarea.tree-node-hidden-hitarea {
+    background: none;
+    cursor: default;
+}
+
 .tree-label {
     cursor: pointer;
     line-height: 19px;
