@@ -1,3 +1,10 @@
+/**
+ * The ACE Editor Component
+ *
+ * @module aui-ace-editor
+ * @submodule aui-ace-autocomplete-list
+ */
+
 var Lang = A.Lang,
     AArray = A.Array,
     ANode = A.Node,
@@ -71,10 +78,25 @@ var Lang = A.Lang,
     PADDING_HORIZ = 5,
     PADDING_VERT = 20,
 
+/**
+ * A base class for AutoCompleteList.
+ *
+ * @class AutoCompleteList
+ * @extends A.Overlay
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
     A.AceEditor.AutoCompleteBase,
     A.WidgetAutohide
 ], {
+
+    /**
+     * Bind the events on the AutoCompleteList UI. Lifecycle.
+     *
+     * @method bindUI
+     * @protected
+     */
     bindUI: function() {
         var instance = this;
 
@@ -90,6 +112,12 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
         instance.on(VISIBLE_CHANGE, instance._onVisibleChange, instance);
     },
 
+    /**
+     * Render the AutoCompleteList component instance. Lifecycle.
+     *
+     * @method renderUI
+     * @protected
+     */
     renderUI: function() {
         var instance = this,
             autoCompleteResultsList;
@@ -107,6 +135,12 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
         instance._autoCompleteResultsList = autoCompleteResultsList;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _createListNode
+     * @protected
+     */
     _createListNode: function () {
         var instance = this,
             listNode;
@@ -118,6 +152,12 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
         return listNode;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _getEntriesPerPage
+     * @protected
+     */
     _getEntriesPerPage: function() {
         var instance = this,
             autoCompleteResultsList,
@@ -143,6 +183,12 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
         return entriesPerPage;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _getSelectedEntry
+     * @protected
+     */
     _getSelectedEntry: function() {
         var instance = this,
             entryText,
@@ -157,6 +203,13 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
         return entryText;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _handleArrows
+     * @param keyCode
+     * @protected
+     */
     _handleArrows: function(keyCode) {
         var instance = this,
             action,
@@ -213,6 +266,13 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _handleKey
+     * @param event, obj, keyCode
+     * @protected
+     */
     _handleKey: function(event, obj, keyCode) {
         var instance = this,
             result;
@@ -232,6 +292,13 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
         return result;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _handlePageUpDown
+     * @param keyCode
+     * @protected
+     */
     _handlePageUpDown: function(keyCode) {
         var instance = this,
             autoCompleteResultsList,
@@ -283,6 +350,13 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
         return new Do.Halt(null);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _handleResultListClick
+     * @param event
+     * @protected
+     */
     _handleResultListClick: function(event) {
         var instance = this,
             content,
@@ -311,6 +385,13 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
         );
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _handleStartEnd
+     * @param keyCode
+     * @protected
+     */
     _handleStartEnd: function(keyCode) {
         var instance = this,
             autoCompleteResultsList,
@@ -344,6 +425,13 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
         return new Do.Halt(null);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onCursorChange
+     * @param event
+     * @protected
+     */
     _onCursorChange: function(event) {
         var instance = this;
 
@@ -352,6 +440,13 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onInsertText
+     * @param eventevent
+     * @protected
+     */
     _onInsertText: function(event) {
         var instance = this;
 
@@ -360,6 +455,13 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onMatch
+     * @param event
+     * @protected
+     */
     _onMatch: function(event) {
         var instance = this,
             coords,
@@ -389,14 +491,35 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onMouseEnter
+     * @param event
+     * @protected
+     */
     _onMouseEnter: function(event) {
         event.currentTarget.addClass(CLASS_ENTRY_CONTAINER_HIGHLIGHTED);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onMouseLeave
+     * @param event
+     * @protected
+     */
     _onMouseLeave: function(event) {
         event.currentTarget.removeClass(CLASS_ENTRY_CONTAINER_HIGHLIGHTED);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onRemoveText
+     * @param event
+     * @protected
+     */
     _onRemoveText: function(event) {
         var instance = this;
 
@@ -405,6 +528,13 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onResultsChange
+     * @param event
+     * @protected
+     */
     _onResultsChange: function(event) {
         var instance = this,
             autoCompleteResultsList,
@@ -447,6 +577,13 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onShowLoadingMessage
+     * @param event
+     * @protected
+     */
     _onShowLoadingMessage: function(event) {
         var instance = this,
             autoCompleteResultsList;
@@ -469,6 +606,13 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onVisibleChange
+     * @param event
+     * @protected
+     */
     _onVisibleChange: function(event) {
         var instance = this;
 
@@ -480,6 +624,12 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _setEmptyResults
+     * @protected
+     */
     _setEmptyResults: function() {
         var instance = this;
 
@@ -502,32 +652,92 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
             '<span class="' + CLASS_ENTRY_EMPTY + '">{label}</span>' +
         '</li>'
 }, {
+
+    /**
+     * Static property provides a string to identify the class.
+     *
+     * @property AutoCompleteList.NAME
+     * @type String
+     * @static
+     */
     NAME: _NAME,
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @property AutoCompleteList.NS
+     * @type String
+     * @static
+     */
     NS: _NAME,
 
+    /**
+     * Static property used to define the default attribute
+     * configuration for the AutoCompleteList.
+     *
+     * @property AutoCompleteList.ATTRS
+     * @type Object
+     * @static
+     */
     ATTRS: {
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute host
+         * @type Object
+         */
         host: {
             validator: Lang.isObject
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute listNode
+         * @default null
+         */
         listNode: {
             value: null
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute loadingMessage
+         * @default 'Loading'
+         * @type String
+         */
         loadingMessage: {
             validator: Lang.isString,
             value: 'Loading'
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute results
+         * @type Array
+         */
         results: {
             validator: Lang.isArray
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute selectedEntry
+         */
         selectedEntry: {
             getter: '_getSelectedEntry'
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute strings
+         * @type Object
+         */
         strings: {
             validator: Lang.isObject,
             value: {
@@ -536,8 +746,21 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @property AutoCompleteList.CSS_PREFIX
+     * @type String
+     * @static
+     */
     CSS_PREFIX: CSS_PREFIX,
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @property AutoCompleteList.HTML_PARSER
+     * @static
+     */
     HTML_PARSER: {
         listNode: _DOT + CLASS_RESULTS_LIST
     }

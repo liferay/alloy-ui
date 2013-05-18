@@ -1,3 +1,10 @@
+/**
+ * The ACE Editor Component
+ *
+ * @module aui-ace-editor
+ * @submodule aui-ace-autocomplete-freemarker
+ */
+
 var Lang = A.Lang,
     Base = A.AceEditor.AutoCompleteBase,
 
@@ -9,8 +16,23 @@ var Lang = A.Lang,
     DIRECTIVES_MATCHER = 'directivesMatcher',
     VARIABLES_MATCHER = 'variablesMatcher',
 
+/**
+ * A base class for Freemarker.
+ *
+ * @class Freemarker
+ * @extends A.AceEditor.TemplateProcessor
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 Freemarker = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [
 ], {
+
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method getMatch
+     * @param content
+     */
     getMatch: function(content) {
         var instance = this,
             match,
@@ -42,11 +64,41 @@ Freemarker = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [
         return match;
     }
 }, {
+
+    /**
+     * Static property provides a string to identify the class.
+     *
+     * @property Freemarker.NAME
+     * @type String
+     * @static
+     */
     NAME: _NAME,
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @property Freemarker.NS
+     * @type String
+     * @static
+     */
     NS: _NAME,
 
+    /**
+     * Static property used to define the default attribute
+     * configuration for the Freemarker.
+     *
+     * @property Freemarker.ATTRS
+     * @type Object
+     * @static
+     */
     ATTRS: {
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute directives
+         * @type Array
+         */
         directives: {
             validator: Lang.isArray,
             value: [
@@ -86,19 +138,41 @@ Freemarker = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [
             ]
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute directivesMatcher
+         */
         directivesMatcher: {
             setter: '_setRegexValue',
             value: /<#[\w]*[^<#]*$/
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute host
+         * @type Object
+         */
         host: {
             validator: Lang.isObject
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute variables
+         * @type Object
+         */
         variables: {
             validator: Lang.isObject
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute variablesMatcher
+         */
         variablesMatcher: {
             setter: '_setRegexValue',
             value: /\${[\w., ()"]*(?:[^$]|\\\$)*$/

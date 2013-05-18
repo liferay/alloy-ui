@@ -1,3 +1,10 @@
+/**
+ * The ACE Editor Component
+ *
+ * @module aui-ace-editor
+ * @submodule aui-ace-autocomplete-base
+ */
+
 var Lang = A.Lang,
     AArray = A.Array,
     Do = A.Do,
@@ -44,7 +51,22 @@ var Lang = A.Lang,
 
 Base = function(){};
 
+/**
+ * A base class for AutoCompleteBase.
+ *
+ * @class AutoCompleteBase
+ * @extends Base
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 Base.prototype = {
+
+    /**
+     * Construction logic executed during AutoCompleteBase instantiation. Lifecycle.
+     *
+     * @method initializer
+     * @protected
+     */
     initializer: function() {
         var instance = this,
             processor;
@@ -63,6 +85,13 @@ Base.prototype = {
         instance._onResultsSuccessFn = A.bind('_onResultsSuccess', instance);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _addSuggestion
+     * @param content
+     * @protected
+     */
     _addSuggestion: function(content) {
         var instance = this,
             cursorPosition,
@@ -108,6 +137,12 @@ Base.prototype = {
         return new Do.Halt(null);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _bindUIACBase
+     * @protected
+     */
     _bindUIACBase: function() {
         var instance = this,
             editor;
@@ -149,6 +184,13 @@ Base.prototype = {
         instance.on(DESTROY, instance._destroyUIACBase, instance);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _defaultCursorChangeFn
+     * @param event
+     * @protected
+     */
     _defaultCursorChangeFn: function(event) {
         var instance = this,
             column,
@@ -171,6 +213,12 @@ Base.prototype = {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _destroyUIACBase
+     * @protected
+     */
     _destroyUIACBase: function() {
         var instance = this,
             editor;
@@ -186,12 +234,25 @@ Base.prototype = {
         instance._removeAutoCompleteCommands();
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _getEditor
+     * @protected
+     */
     _getEditor: function() {
         var instance = this;
 
         return instance.get(HOST).getEditor();
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _filterResults
+     * @param content, results
+     * @protected
+     */
     _filterResults: function(content, results) {
         var instance = this,
             filters,
@@ -222,6 +283,13 @@ Base.prototype = {
         return results;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _handleEnter
+     * @param text
+     * @protected
+     */
     _handleEnter: function(text) {
         var instance = this,
             selectedEntry;
@@ -233,6 +301,13 @@ Base.prototype = {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onEditorChange
+     * @param event
+     * @protected
+     */
     _onEditorChange: function(event) {
         var instance = this,
             column,
@@ -269,24 +344,51 @@ Base.prototype = {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onEditorChangeCursor
+     * @param event
+     * @protected
+     */
     _onEditorChangeCursor: function(event) {
         var instance = this;
 
         instance.fire(CURSOR_CHANGE, instance._getEditor().getCursorPosition());
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onResultsError
+     * @param error
+     * @protected
+     */
     _onResultsError: function(error) {
         var instance = this;
 
         instance.fire(RESULTS_ERROR, error);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onResultsSuccess
+     * @param results
+     * @protected
+     */
     _onResultsSuccess: function(results) {
         var instance = this;
 
         instance.set(RESULTS, results);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _overwriteCommands
+     * @protected
+     */
     _overwriteCommands: function() {
         var instance = this,
             commands,
@@ -309,6 +411,13 @@ Base.prototype = {
         );
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _phraseMatch
+     * @param content, results, caseSensitive
+     * @protected
+     */
     _phraseMatch: function (content, results, caseSensitive) {
         if (!content) {
             return results;
@@ -339,6 +448,13 @@ Base.prototype = {
         );
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _processAutoComplete
+     * @param row, column
+     * @protected
+     */
     _processAutoComplete: function(row, column) {
         var instance = this,
             col,
@@ -387,6 +503,12 @@ Base.prototype = {
         );
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _removeAutoCompleteCommands
+     * @protected
+     */
     _removeAutoCompleteCommands: function() {
         var instance = this;
 
@@ -395,6 +517,13 @@ Base.prototype = {
         instance._editorCommands.length = 0;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _sortAscLength
+     * @param content, results, caseSensitive
+     * @protected
+     */
     _sortAscLength: function (content, results, caseSensitive) {
         return results.sort(
             function(item1, item2) {
@@ -432,24 +561,77 @@ Base.prototype = {
         );
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _validateFillMode
+     * @param value
+     * @protected
+     */
     _validateFillMode: function(value) {
         return (value === Base.FILL_MODE_OVERWRITE || value === Base.FILL_MODE_INSERT);
     }
 };
 
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @property Base.FILL_MODE_INSERT
+ * @static
+ */
 Base.FILL_MODE_INSERT = FILL_MODE_INSERT;
+
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @property Base.FILL_MODE_OVERWRITE
+ * @static
+ */
 Base.FILL_MODE_OVERWRITE = FILL_MODE_OVERWRITE;
 
+/**
+ * Static property provides a string to identify the class.
+ *
+ * @property AutoCompleteBase.NAME
+ * @type String
+ * @static
+ */
 Base.NAME = _NAME;
 
+/**
+ * Static property provides a string to identify the namespace.
+ *
+ * @property AutoCompleteBase.NS
+ * @type String
+ * @static
+ */
 Base.NS = _NAME;
 
+/**
+ * Static property used to define the default attribute
+ * configuration for the AutoCompleteBase.
+ *
+ * @property AutoCompleteBase.ATTRS
+ * @type Object
+ * @static
+ */
 Base.ATTRS = {
+
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute fillMode
+     */
     fillMode: {
         validator: '_validateFillMode',
         value: Base.FILL_MODE_OVERWRITE
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute filters
+     */
     filters: {
         valueFn: function() {
             var instance = this;
@@ -460,12 +642,24 @@ Base.ATTRS = {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute processor
+     * @type Object | Function
+     */
     processor: {
         validator: function(value) {
             return Lang.isObject(value) || Lang.isFunction(value);
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute showListKey
+     * @type Object
+     */
     showListKey: {
         validator: Lang.isObject,
         value: {
@@ -474,6 +668,11 @@ Base.ATTRS = {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute sorters
+     */
     sorters: {
         valueFn: function() {
             var instance = this;
