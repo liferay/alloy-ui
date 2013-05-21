@@ -57,8 +57,6 @@ var L = A.Lang,
     TPL_TEXT = '<p></p>';
 
 /**
- * <p><img src="assets/images/aui-progressbar/main.png"/></p>
- *
  * A base class for Progressbar, providing:
  * <ul>
  *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
@@ -68,24 +66,12 @@ var L = A.Lang,
  *    <li>The movement can be enhanced by using the Animation utility</li>
  * </ul>
  *
- * Quick Example:<br/>
- *
- * <pre><code>var progress = new A.ProgressBar({
- *  boundingBox: '#boudingBox',
- *  orientation: 'horizontal',
- *  width: 300
- * })
- * .render();
- * </code></pre>
- *
- * Check the list of <a href="ProgressBar.html#configattributes">Configuration Attributes</a> available for
- * ProgressBar.
- *
- * @param config {Object} Object literal specifying widget configuration properties.
+ * Check the [live demo](http://alloyui.com/examples/progressbar/).
  *
  * @class ProgressBar
- * @constructor
  * @extends Component
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
  */
 var ProgressBar = A.Component.create(
     {
@@ -107,6 +93,15 @@ var ProgressBar = A.Component.create(
          * @static
          */
         ATTRS: {
+
+            /**
+             * Boolean indicating if use of the WAI-ARIA Roles and States
+             * should be enabled.
+             *
+             * @attribute useARIA
+             * @default true
+             * @type Boolean
+             */
             useARIA: {
                 value: true
             },
@@ -131,7 +126,7 @@ var ProgressBar = A.Component.create(
              * used as label.
              *
              * @attribute label
-             * @default ''
+             * @default undefined
              * @type String
              */
             label: {
@@ -144,7 +139,7 @@ var ProgressBar = A.Component.create(
              *
              * @attribute max
              * @default 100
-             * @type int
+             * @type Number
              */
             max: {
                 validator: isNumber,
@@ -158,7 +153,7 @@ var ProgressBar = A.Component.create(
              *
              * @attribute min
              * @default 0
-             * @type int
+             * @type Number
              */
             min: {
                 validator: isNumber,
@@ -227,7 +222,7 @@ var ProgressBar = A.Component.create(
              *
              * @attribute value
              * @default 0
-             * @type int | String
+             * @type Number | String
              */
             value: {
                 setter: toNumber,
@@ -258,9 +253,17 @@ var ProgressBar = A.Component.create(
             textNode: P
         },
 
+        /**
+         * Static property used to define the UI attributes.
+         *
+         * @property ProgressBar.UI_ATTRS
+         * @type Array
+         * @static
+         */
         UI_ATTRS: [LABEL, ORIENTATION, VALUE],
 
         prototype: {
+
             /**
              * Create the DOM structure for the ProgressBar. Lifecycle.
              *
@@ -275,6 +278,12 @@ var ProgressBar = A.Component.create(
                 instance._renderTextNodeIfLabelSet();
             },
 
+            /**
+             * Sync the ProgressBar UI. Lifecycle.
+             *
+             * @method syncUI
+             * @protected
+             */
             syncUI: function() {
                 var instance = this;
 
@@ -299,7 +308,7 @@ var ProgressBar = A.Component.create(
              *
              * @method _getBoundingBoxSize
              * @protected
-             * @return {number}
+             * @return {Number}
              */
             _getBoundingBoxSize: function() {
                 var instance = this;
@@ -317,7 +326,7 @@ var ProgressBar = A.Component.create(
              *
              * @method _getPixelStep
              * @protected
-             * @return {number}
+             * @return {Number}
              */
             _getPixelStep: function() {
                 var instance = this;
@@ -331,7 +340,7 @@ var ProgressBar = A.Component.create(
              *
              * @method _getRatio
              * @protected
-             * @return {number}
+             * @return {Number}
              */
             _getRatio: function() {
                 var instance = this;
@@ -347,7 +356,7 @@ var ProgressBar = A.Component.create(
              *
              * @method _getStep
              * @protected
-             * @return {number}
+             * @return {Number}
              */
             _getStep: function() {
                 return this.get(RATIO) * 100;

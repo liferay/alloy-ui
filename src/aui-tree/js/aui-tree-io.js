@@ -1,3 +1,10 @@
+/**
+ * The TreeViewIO Utility
+ *
+ * @module aui-tree
+ * @submodule aui-tree-io
+ */
+
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
 	isString = Lang.isString,
@@ -16,6 +23,13 @@ var Lang = A.Lang,
 
 	CSS_TREE_NODE_IO_LOADING = getCN(TREE, NODE, IO, LOADING);
 
+/**
+ * A base class for TreeViewIO.
+ *
+ * @class TreeViewIO
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 function TreeViewIO(config) {
 	var instance = this;
 
@@ -27,8 +41,16 @@ function TreeViewIO(config) {
 	);
 }
 
-
+/**
+ * Static property used to define the default attribute
+ * configuration for the TreeViewIO.
+ *
+ * @property TreeViewIO.ATTRS
+ * @type Object
+ * @static
+ */
 TreeViewIO.ATTRS = {
+
 	/**
 	 * IO options for the current TreeNode load the children.
 	 *
@@ -46,6 +68,13 @@ TreeViewIO.ATTRS = {
 };
 
 TreeViewIO.prototype = {
+
+	/**
+	 * Construction logic executed during TreeViewIO instantiation. Lifecycle.
+	 *
+	 * @method initializer
+	 * @protected
+	 */
 	initializer: function() {
 		var instance = this;
 
@@ -164,6 +193,13 @@ TreeViewIO.prototype = {
 		instance.set(LOADED, false);
 	},
 
+	/**
+	 * Fire after IO success default.
+	 *
+	 * @method _onIOSuccessDefault
+	 * @param event
+	 * @protected
+	 */
 	_onIOSuccessDefault: function(event) {
 		var instance = this;
 

@@ -78,7 +78,7 @@ var L = A.Lang,
 	VIEWPORT_REGION = 'viewportRegion',
 	VISIBLE = 'visible',
 	WELL = 'well',
-    OWNER_DOCUMENT = 'ownerDocument',
+	OWNER_DOCUMENT = 'ownerDocument',
 
 	isNodeList = function(v) {
 		return (v instanceof A.NodeList);
@@ -131,8 +131,6 @@ var L = A.Lang,
 	TPL_LOADING = '<div class="' + CSS_ICON_TIME + '"></div>';
 
 /**
- * <p><img src="assets/images/aui-image-viewer-base/main.png"/></p>
- *
  * A base class for ImageViewer, providing:
  * <ul>
  *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
@@ -140,26 +138,12 @@ var L = A.Lang,
  *    <li>Keyboard navigation support</li>
  * </ul>
  *
- * Quick Example:<br/>
- *
- * <pre><code>var instance = new A.ImageViewer({
- *   links: '#gallery1 a',
- *   caption: 'Liferay Champion Soccer',
- *   captionFromTitle: true,
- *   preloadNeighborImages: true,
- *   preloadAllImages: true,
- *   showInfo: true
- * }).render();
- * </code></pre>
- *
- * Check the list of <a href="ImageViewer.html#configattributes">Configuration Attributes</a> available for
- * ImageViewer.
- *
- * @param config {Object} Object literal specifying widget configuration properties.
+ * Check the [live demo](http://alloyui.com/examples/image-viewer/).
  *
  * @class ImageViewer
+ * @extends A.Widget
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
- * @extends Widget
  */
 var ImageViewer = A.Base.create(
 	'aui-image-viewer',
@@ -220,7 +204,7 @@ var ImageViewer = A.Base.create(
 		},
 
 		/**
-		 * Descructor lifecycle implementation for the ImageViewer class.
+		 * Destructor lifecycle implementation for the ImageViewer class.
 		 * Purges events attached to the node (and all child nodes).
 		 *
 		 * @method destructor
@@ -349,7 +333,7 @@ var ImageViewer = A.Base.create(
 		 *
 		 * @method hasLink
 		 * @param {Number} currentIndex
-		 * @return {boolean}
+		 * @return {Boolean}
 		 */
 		hasLink: function(currentIndex) {
 			var instance = this;
@@ -361,7 +345,7 @@ var ImageViewer = A.Base.create(
 		 * Check if there is a next element to navigate.
 		 *
 		 * @method hasNext
-		 * @return {boolean}
+		 * @return {Boolean}
 		 */
 		hasNext: function() {
 			var instance = this;
@@ -375,7 +359,7 @@ var ImageViewer = A.Base.create(
 		 * Check if there is a previous element to navigate.
 		 *
 		 * @method hasPrev
-		 * @return {boolean}
+		 * @return {Boolean}
 		 */
 		hasPrev: function() {
 			var instance = this;
@@ -497,7 +481,7 @@ var ImageViewer = A.Base.create(
 		},
 
 		/**
-		 * Removes the references to the preload images to free up memory
+		 * Removes the references to the preload images to free up memory.
 		 *
 		 * @method _clearPreloadImageFn
 		 * @protected
@@ -522,6 +506,7 @@ var ImageViewer = A.Base.create(
 		 * to the internal pool.
 		 *
 		 * @method _createPreloadImage
+		 * @param src
 		 * @protected
 		 */
 		_createPreloadImage: function(src) {
@@ -939,7 +924,7 @@ var ImageViewer = A.Base.create(
 
 		/**
 		 * Set the size of the image and the overlay respecting the
-         * maxHeight/maxWidth ratio.
+		 * maxHeight/maxWidth ratio.
 		 *
 		 * @method _uiSetImageSize
 		 * @param {HTMLImage} image Image
@@ -981,6 +966,13 @@ var ImageViewer = A.Base.create(
 		 */
 		NAME: IMAGE_VIEWER,
 
+		/**
+		 * Static property provides a string to identify the CSS prefix.
+		 *
+		 * @property ImageViewer.CSS_PREFIX
+		 * @type String
+		 * @static
+		 */
 		CSS_PREFIX: getCN(IMAGE_VIEWER),
 
 		/**
@@ -992,18 +984,25 @@ var ImageViewer = A.Base.create(
 		 * @static
 		 */
 		ATTRS: {
+
 			/**
 			 * If <code>true</code> the navigation is animated.
 			 *
 			 * @attribute anim
 			 * @default true
-			 * @type boolean
+			 * @type Boolean
 			 */
 			anim: {
 				value: true,
 				validator: isBoolean
 			},
 
+			/**
+			 * The content of body.
+			 *
+			 * @attribute bodyContent
+			 * @type String
+			 */
 			bodyContent: {
 				value: NODE_BLANK_TEXT
 			},
@@ -1027,7 +1026,7 @@ var ImageViewer = A.Base.create(
 			 *
 			 * @attribute captionFromTitle
 			 * @default true
-			 * @type boolean
+			 * @type Boolean
 			 */
 			captionFromTitle: {
 				value: true,
@@ -1040,7 +1039,7 @@ var ImageViewer = A.Base.create(
 			 *
 			 * @attribute centered
 			 * @default true
-			 * @type boolean
+			 * @type Boolean
 			 */
 			centered: {
 				value: true
@@ -1139,7 +1138,7 @@ var ImageViewer = A.Base.create(
 			 *
 			 * @attribute loading
 			 * @default false
-			 * @type boolean
+			 * @type Boolean
 			 */
 			loading: {
 				value: false,
@@ -1152,7 +1151,7 @@ var ImageViewer = A.Base.create(
 			 *
 			 * @attribute modal
 			 * @default true
-			 * @type boolean
+			 * @type Boolean
 			 */
 			modal: {
 				value: true
@@ -1164,7 +1163,7 @@ var ImageViewer = A.Base.create(
 			 *
 			 * @attribute preloadAllImages
 			 * @default false
-			 * @type boolean
+			 * @type Boolean
 			 */
 			preloadAllImages: {
 				value: false,
@@ -1177,7 +1176,7 @@ var ImageViewer = A.Base.create(
 			 *
 			 * @attribute preloadAllImages
 			 * @default false
-			 * @type boolean
+			 * @type Boolean
 			 */
 			preloadNeighborImages: {
 				value: true,
@@ -1189,7 +1188,7 @@ var ImageViewer = A.Base.create(
 			 *
 			 * @attribute showClose
 			 * @default true
-			 * @type boolean
+			 * @type Boolean
 			 */
 			showClose: {
 				value: true,
@@ -1201,13 +1200,20 @@ var ImageViewer = A.Base.create(
 			 *
 			 * @attribute showControls
 			 * @default true
-			 * @type boolean
+			 * @type Boolean
 			 */
 			showControls: {
 				value: true,
 				validator: isBoolean
 			},
 
+			/**
+			 * Specify the tab order of elements.
+			 *
+			 * @attribute tabIndex
+			 * @default null
+			 * @type Number
+			 */
 			tabIndex: {
 				value: null
 			},
@@ -1219,7 +1225,7 @@ var ImageViewer = A.Base.create(
 			 * @attribute totalLinks
 			 * @default true
 			 * @readOnly
-			 * @type boolean
+			 * @type Boolean
 			 */
 			totalLinks: {
 				readOnly: true,
@@ -1228,10 +1234,24 @@ var ImageViewer = A.Base.create(
 				}
 			},
 
+			/**
+			 * Determine if the ImageViewer should be visible or not.
+			 *
+			 * @attribute visible
+			 * @default false
+			 * @type Boolean
+			 */
 			visible: {
 				value: false
 			},
 
+			/**
+			 * Specify the stack order of elements.
+			 *
+			 * @attribute zIndex
+			 * @default 3000
+			 * @type Number
+			 */
 			zIndex: {
 				value: 3000,
 				validator: isNumber

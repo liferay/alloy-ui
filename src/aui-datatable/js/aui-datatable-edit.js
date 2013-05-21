@@ -1,3 +1,10 @@
+/**
+ * The Datatable Component
+ *
+ * @module aui-datatable
+ * @submodule aui-datatable-edit
+ */
+
 var Lang = A.Lang,
 	AArray = A.Array,
 	isArray = Lang.isArray,
@@ -118,24 +125,51 @@ var Lang = A.Lang,
 	TPL_BR = '<br/>';
 
 /**
- * An extension for A.DataTable to support Cell Editing:
- *
- * Check the list of <a href="CellEditorSupport.html#configattributes">Configuration Attributes</a> available for
- * CellEditorSupport.
- *
- * @param config {Object} Object literal specifying widget configuration properties.
+ * An extension for A.DataTable to support Cell Editing.
  *
  * @class CellEditorSupport
- * @constructor
  * @extends Base
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
  */
 var CellEditorSupport = function() {};
 
+/**
+ * Static property provides a string to identify the class.
+ *
+ * @property CellEditorSupport.NAME
+ * @type String
+ * @static
+ */
 CellEditorSupport.NAME = 'dataTableCellEditorSupport';
 
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @property CellEditorSupport.EDITOR_ZINDEX
+ * @default 9999
+ * @type Number
+ * @static
+ */
 CellEditorSupport.EDITOR_ZINDEX = 9999;
 
+/**
+ * Static property used to define the default attribute
+ * configuration for the CellEditorSupport.
+ *
+ * @property CellEditorSupport.ATTRS
+ * @type Object
+ * @static
+ */
 CellEditorSupport.ATTRS = {
+
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @attribute editEvent
+	 * @default 'click'
+	 * @type String
+	 */
 	editEvent: {
 		setter: '_setEditEvent',
 		validator: isString,
@@ -144,6 +178,13 @@ CellEditorSupport.ATTRS = {
 };
 
 A.mix(CellEditorSupport.prototype, {
+
+	/**
+	 * Construction logic executed during CellEditorSupport instantiation. Lifecycle.
+	 *
+	 * @method initializer
+	 * @protected
+	 */
 	initializer: function() {
 		var instance = this,
 			editEvent = instance.get(EDIT_EVENT);
@@ -158,6 +199,12 @@ A.mix(CellEditorSupport.prototype, {
 		instance.delegate(editEvent, instance._onEditCell, _DOT+instance.CLASS_NAMES_CELL_EDITOR_SUPPORT.cell, instance);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method getEditor
+	 * @param record, column
+	 */
 	getEditor: function(record, column) {
 		var instance = this,
 			columnEditor = column.editor,
@@ -170,6 +217,12 @@ A.mix(CellEditorSupport.prototype, {
 		return recordEditor || columnEditor;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _afterCellEditorSupportRender
+	 * @protected
+	 */
 	_afterCellEditorSupportRender: function() {
 		var instance = this;
 
@@ -178,6 +231,13 @@ A.mix(CellEditorSupport.prototype, {
 		instance.body.after(A.bind(instance._syncModelsReadOnlyUI, instance), instance.body, RENDER);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _onEditCell
+	 * @param event
+	 * @protected
+	 */
 	_onEditCell: function(event) {
 		var instance = this,
 			activeCell = instance.get(ACTIVE_CELL),
@@ -203,6 +263,13 @@ A.mix(CellEditorSupport.prototype, {
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _onEditorSave
+	 * @param event
+	 * @protected
+	 */
 	_onEditorSave: function(event) {
 		var instance = this,
 			editor = event.currentTarget,
@@ -222,6 +289,13 @@ A.mix(CellEditorSupport.prototype, {
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _onEditorVisibleChange
+	 * @param event
+	 * @protected
+	 */
 	_onEditorVisibleChange: function(event) {
 		var instance = this,
 			editor = event.currentTarget;
@@ -231,6 +305,13 @@ A.mix(CellEditorSupport.prototype, {
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _syncModelReadOnlyUI
+	 * @param model
+	 * @protected
+	 */
 	_syncModelReadOnlyUI: function(model) {
 		var instance = this,
 			row = instance.getRow(model);
@@ -238,6 +319,12 @@ A.mix(CellEditorSupport.prototype, {
 		row.toggleClass(instance.CLASS_NAMES_CELL_EDITOR_SUPPORT[READ_ONLY], model.get(READ_ONLY) === true);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _syncModelsReadOnlyUI
+	 * @protected
+	 */
 	_syncModelsReadOnlyUI: function() {
 		var instance = this;
 
@@ -247,12 +334,23 @@ A.mix(CellEditorSupport.prototype, {
 	},
 
 	// Deprecated methods
-
 	// Use getEditor
+
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method getCellEditor
+	 */
 	getCellEditor: function() {
 		return this.getEditor.apply(this, arguments);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method getRecordColumnValue
+	 * @param record, column
+	 */
 	getRecordColumnValue: function(record, column) {
 		return record.get(column.key);
 	}
@@ -265,38 +363,85 @@ A.Base.mix(A.DataTable, [ CellEditorSupport ]);
 /**
  * Abstract class BaseCellEditor.
  *
- * Check the list of <a href="BaseCellEditor.html#configattributes">Configuration Attributes</a> available for
- * BaseCellEditor.
- *
- * @param config {Object} Object literal specifying widget configuration properties.
- *
  * @class BaseCellEditor
- * @abstract
  * @extends A.Overlay
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @abstract
  */
 var BaseCellEditor = A.Component.create({
+
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property BaseCellEditor.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: BASE_CELL_EDITOR,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the BaseCellEditor.
+	 *
+	 * @property BaseCellEditor.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute editable
+		 * @default false
+		 * @type Boolean
+		 */
 		editable: {
 			value: false,
 			validator: isBoolean
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute elementName
+		 * @default 'value'
+		 * @type String
+		 */
 		elementName: {
 			value: VALUE,
 			validator: isString
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute footerContent
+		 * @default ''
+		 * @type String
+		 */
 		footerContent: {
 			value: _EMPTY_STR
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute hideOnSave
+		 * @default true
+		 * @type Boolean
+		 */
 		hideOnSave: {
 			value: true,
 			validator: isBoolean
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute inputFormatter
+		 * @type Function
+		 */
 		inputFormatter: {
 			value: function(val) {
 				if (isString(val)) {
@@ -307,6 +452,12 @@ var BaseCellEditor = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute outputFormatter
+		 * @type Function
+		 */
 		outputFormatter: {
 			value: function(val) {
 				var instance = this;
@@ -323,11 +474,24 @@ var BaseCellEditor = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute showToolbar
+		 * @default true
+		 * @type Boolean
+		 */
 		showToolbar: {
 			value: true,
 			validator: isBoolean
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute strings
+		 * @type Object
+		 */
 		strings: {
 			value: {
 				edit: 'Edit',
@@ -336,38 +500,94 @@ var BaseCellEditor = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute tabIndex
+		 * @default 1
+		 * @type Number
+		 */
 		tabIndex: {
 			value: 1
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute toolbar
+		 * @default null
+		 * @type Object
+		 */
 		toolbar: {
 			setter: '_setToolbar',
 			validator: isObject,
 			value: null
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute unescapeValue
+		 * @default true
+		 * @type Boolean
+		 */
 		unescapeValue: {
 			value: true,
 			validator: isBoolean
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute validator
+		 * @default null
+		 * @type Object
+		 */
 		validator: {
 			setter: '_setValidator',
 			validator: isObject,
 			value: null
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute value
+		 * @default ''
+		 * @type String
+		 */
 		value: {
 			value: _EMPTY_STR
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute visible
+		 * @default false
+		 * @type Boolean
+		 */
 		visible: {
 			value: false
 		}
 	},
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property BaseCellEditor.EXTENDS
+	 * @type Object
+	 * @static
+	 */
 	EXTENDS: A.Overlay,
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @property BaseCellEditor.UI_ATTRS
+	 * @type Array
+	 * @static
+	 */
 	UI_ATTRS: [ EDITABLE, SHOW_TOOLBAR, VALUE ],
 
 	prototype: {
@@ -379,12 +599,24 @@ var BaseCellEditor = A.Component.create({
 
 		_hDocMouseDownEv: null,
 
+		/**
+		 * Construction logic executed during BaseCellEditor instantiation. Lifecycle.
+		 *
+		 * @method initializer
+		 * @protected
+		 */
 		initializer: function(config) {
 			var instance = this;
 
 			instance._initEvents();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request. Lifecycle.
+		 *
+		 * @method destructor
+		 * @protected
+		 */
 		destructor: function() {
 			var instance = this;
 			var hDocMouseDown = instance._hDocMouseDownEv;
@@ -404,12 +636,24 @@ var BaseCellEditor = A.Component.create({
 			}
 		},
 
+		/**
+		 * Bind the events on the BaseCellEditor UI. Lifecycle.
+		 *
+		 * @method bindUI
+		 * @protected
+		 */
 		bindUI: function() {
 			var instance = this;
 
 			instance.get(BOUNDING_BOX).on(KEY, A.bind(instance._onEscKey, instance), 'down:27');
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method formatValue
+		 * @param formatter, val
+		 */
 		formatValue: function(formatter, val) {
 			var instance = this;
 
@@ -420,6 +664,11 @@ var BaseCellEditor = A.Component.create({
 			return val;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getValue
+		 */
 		getValue: function() {
 			var instance = this;
 
@@ -429,6 +678,12 @@ var BaseCellEditor = A.Component.create({
 			);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _initEvents
+		 * @protected
+		 */
 		_initEvents: function() {
 			var instance = this;
 
@@ -467,6 +722,12 @@ var BaseCellEditor = A.Component.create({
 			});
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterRender
+		 * @protected
+		 */
 		_afterRender: function() {
 			var instance = this;
 
@@ -474,12 +735,26 @@ var BaseCellEditor = A.Component.create({
 			instance._handleInitToolbarEvent();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _defCancelFn
+		 * @param event
+		 * @protected
+		 */
 		_defCancelFn: function(event) {
 			var instance = this;
 
 			instance.hide();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _defInitValidatorFn
+		 * @param event
+		 * @protected
+		 */
 		_defInitValidatorFn: function(event) {
 			var instance = this;
 
@@ -488,6 +763,13 @@ var BaseCellEditor = A.Component.create({
 			);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _defInitToolbarFn
+		 * @param event
+		 * @protected
+		 */
 		_defInitToolbarFn: function(event) {
 			var instance = this;
 			var editable = instance.get(EDITABLE);
@@ -502,6 +784,13 @@ var BaseCellEditor = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _defSaveFn
+		 * @param event
+		 * @protected
+		 */
 		_defSaveFn: function(event) {
 			var instance = this;
 
@@ -510,6 +799,13 @@ var BaseCellEditor = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _debounceVisibleChange
+		 * @param event
+		 * @protected
+		 */
 		_debounceVisibleChange: function(event) {
 			var instance = this;
 			var hDocMouseDown = instance._hDocMouseDownEv;
@@ -525,18 +821,36 @@ var BaseCellEditor = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _handleCancelEvent
+		 * @protected
+		 */
 		_handleCancelEvent: function() {
 			var instance = this;
 
 			instance.fire(CANCEL);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _handleEditEvent
+		 * @protected
+		 */
 		_handleEditEvent: function() {
 			var instance = this;
 
 			instance.fire(EDIT);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _handleInitEditEvent
+		 * @protected
+		 */
 		_handleInitEditEvent: function() {
 			var instance = this;
 
@@ -545,6 +859,12 @@ var BaseCellEditor = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _handleInitValidatorEvent
+		 * @protected
+		 */
 		_handleInitValidatorEvent: function() {
 			var instance = this;
 
@@ -553,6 +873,12 @@ var BaseCellEditor = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _handleInitToolbarEvent
+		 * @protected
+		 */
 		_handleInitToolbarEvent: function() {
 			var instance = this;
 
@@ -561,6 +887,12 @@ var BaseCellEditor = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _handleSaveEvent
+		 * @protected
+		 */
 		_handleSaveEvent: function() {
 			var instance = this;
 
@@ -572,6 +904,13 @@ var BaseCellEditor = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onDocMouseDownExt
+		 * @param event
+		 * @protected
+		 */
 		_onDocMouseDownExt: function(event) {
 			var instance = this;
 			var boundingBox = instance.get(BOUNDING_BOX);
@@ -581,12 +920,26 @@ var BaseCellEditor = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onEscKey
+		 * @param event
+		 * @protected
+		 */
 		_onEscKey: function(event) {
 			var instance = this;
 
 			instance.hide();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onSubmit
+		 * @param event
+		 * @protected
+		 */
 		_onSubmit: function(event) {
 			var instance = this;
 			var validator = event.validator;
@@ -596,6 +949,13 @@ var BaseCellEditor = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _setToolbar
+		 * @param val
+		 * @protected
+		 */
 		_setToolbar: function(val) {
 			var instance = this;
 			var strings = instance.getStrings();
@@ -625,6 +985,13 @@ var BaseCellEditor = A.Component.create({
 			);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _setValidator
+		 * @param val
+		 * @protected
+		 */
 		_setValidator: function(val) {
 			var instance = this;
 
@@ -637,6 +1004,13 @@ var BaseCellEditor = A.Component.create({
 			);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetShowToolbar
+		 * @param val
+		 * @protected
+		 */
 		_uiSetShowToolbar: function(val) {
 			var instance = this;
 			var footerNode = instance.footerNode;
@@ -651,12 +1025,14 @@ var BaseCellEditor = A.Component.create({
 			instance._handleInitToolbarEvent();
 		},
 
-		/*
-		 * NOTE FOR DEVELOPERS:
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
 		 *
-		 * Yoy *may* want to replace the methods from this section on your implementation.
+		 * NOTE FOR DEVELOPERS: Yoy *may* want to replace the methods from
+		 * this section on your implementation.
+		 *
+		 * @method getElementsValue
 		 */
-
 		getElementsValue: function() {
 			var instance = this;
 			var elements = instance.elements;
@@ -668,6 +1044,12 @@ var BaseCellEditor = A.Component.create({
 			return _EMPTY_STR;
 		},
 
+		/**
+		 * Render the BaseCellEditor component instance. Lifecycle.
+		 *
+		 * @method renderUI
+		 * @protected
+		 */
 		renderUI: function() {
 			var instance = this;
 
@@ -680,15 +1062,34 @@ var BaseCellEditor = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _defInitEditFn
+		 * @param event
+		 * @protected
+		 */
 		_defInitEditFn: function(event) {
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _syncElementsFocus
+		 * @protected
+		 */
 		_syncElementsFocus: function() {
 			var instance = this;
 
 			instance.elements.selectText();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _syncElementsName
+		 * @protected
+		 */
 		_syncElementsName: function() {
 			var instance = this;
 
@@ -698,12 +1099,25 @@ var BaseCellEditor = A.Component.create({
 			);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _syncFocus
+		 * @protected
+		 */
 		_syncFocus: function() {
 			var instance = this;
 
 			A.later(0, instance, instance._syncElementsFocus);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetEditable
+		 * @param val
+		 * @protected
+		 */
 		_uiSetEditable: function(val) {
 			var instance = this;
 			var toolbar = instance.toolbar;
@@ -729,6 +1143,13 @@ var BaseCellEditor = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetValue
+		 * @param val
+		 * @protected
+		 */
 		_uiSetValue: function(val) {
 			var instance = this;
 			var elements = instance.elements;
@@ -739,10 +1160,6 @@ var BaseCellEditor = A.Component.create({
 				);
 			}
 		}
-
-		/*
-		 * End of replaceable methods.
-		 */
 	}
 });
 
@@ -751,38 +1168,83 @@ A.BaseCellEditor = BaseCellEditor;
 /**
  * Abstract class BaseOptionsCellEditor for options attribute support.
  *
- * Check the list of <a href="BaseOptionsCellEditor.html#configattributes">Configuration Attributes</a> available for
- * BaseCellEditor.
- *
- * @param config {Object} Object literal specifying widget configuration properties.
- *
  * @class BaseOptionsCellEditor
- * @abstract
  * @extends A.BaseCellEditor
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @abstract
  */
 var BaseOptionsCellEditor = A.Component.create({
+
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property BaseOptionsCellEditor.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: OPTIONS_CELL_EDITOR,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the BaseOptionsCellEditor.
+	 *
+	 * @property BaseOptionsCellEditor.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute inputFormatter
+		 * @default null
+		 */
 		inputFormatter: {
 			value: null
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute options
+		 * @default {}
+		 * @type Object
+		 */
 		options: {
 			setter: '_setOptions',
 			value: {},
 			validator: isObject
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute outputFormatter
+		 * @default null
+		 */
 		outputFormatter: {
 			value: null
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute selectedAttrName
+		 * @default 'selected'
+		 * @type String
+		 */
 		selectedAttrName: {
 			value: SELECTED,
 			validator: isString
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute strings
+		 * @type Object
+		 */
 		strings: {
 			value: {
 				add: 'Add',
@@ -799,8 +1261,22 @@ var BaseOptionsCellEditor = A.Component.create({
 		}
 	},
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property BaseOptionsCellEditor.EXTENDS
+	 * @type Object
+	 * @static
+	 */
 	EXTENDS: A.BaseCellEditor,
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @property BaseOptionsCellEditor.UI_ATTRS
+	 * @type Array
+	 * @static
+	 */
 	UI_ATTRS: [OPTIONS],
 
 	prototype: {
@@ -820,6 +1296,12 @@ var BaseOptionsCellEditor = A.Component.create({
 		editSortable: null,
 		options: null,
 
+		/**
+		 * Construction logic executed during BaseOptionsCellEditor instantiation. Lifecycle.
+		 *
+		 * @method initializer
+		 * @protected
+		 */
 		initializer: function() {
 			var instance = this;
 
@@ -828,6 +1310,12 @@ var BaseOptionsCellEditor = A.Component.create({
 			instance.after(INIT_TOOLBAR, instance._afterInitToolbar);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method addNewOption
+		 * @param name, value
+		 */
 		addNewOption: function(name, value) {
 			var instance = this;
 			var addOptionLink = instance.editContainer.one(_DOT+CSS_CELLEDITOR_EDIT_ADD_OPTION);
@@ -843,10 +1331,21 @@ var BaseOptionsCellEditor = A.Component.create({
 			newRow.one(INPUT).focus();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method removeOption
+		 * @param optionRow
+		 */
 		removeOption: function(optionRow) {
 			optionRow.remove();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method saveOptions
+		 */
 		saveOptions: function() {
 			var instance = this;
 			var editContainer = instance.editContainer;
@@ -875,13 +1374,25 @@ var BaseOptionsCellEditor = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method toggleEdit
+		 */
 		toggleEdit: function() {
 			var instance = this;
 
 			instance.editContainer.toggle();
 		},
 
-		// TODO - rewrite this method
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 * TODO. Rewrite this method.
+		 *
+		 * @method _createOptions
+		 * @param val
+		 * @protected
+		 */
 		_createOptions: function(val) {
 			var instance = this;
 			var elements = instance.elements;
@@ -924,6 +1435,12 @@ var BaseOptionsCellEditor = A.Component.create({
 			instance.options = options;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _createEditBuffer
+		 * @protected
+		 */
 		_createEditBuffer: function() {
 			var instance = this;
 			var strings = instance.getStrings();
@@ -948,6 +1465,13 @@ var BaseOptionsCellEditor = A.Component.create({
 			return buffer.join(_EMPTY_STR);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _createEditOption
+		 * @param name, value
+		 * @protected
+		 */
 		_createEditOption: function(name, value) {
 			var instance = this;
 			var strings = instance.getStrings();
@@ -964,6 +1488,13 @@ var BaseOptionsCellEditor = A.Component.create({
 			);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _defInitEditFn
+		 * @param event
+		 * @protected
+		 */
 		_defInitEditFn: function(event) {
 			var instance = this;
 			var editContainer = A.Node.create(instance.EDIT_TEMPLATE);
@@ -993,6 +1524,12 @@ var BaseOptionsCellEditor = A.Component.create({
 			instance._syncEditOptionsUI();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _getSelectedOptions
+		 * @protected
+		 */
 		_getSelectedOptions: function() {
 			var instance = this;
 			var options = [];
@@ -1006,6 +1543,13 @@ var BaseOptionsCellEditor = A.Component.create({
 			return A.all(options);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onEditEvent
+		 * @param event
+		 * @protected
+		 */
 		_onEditEvent: function(event) {
 			var instance = this;
 
@@ -1016,6 +1560,13 @@ var BaseOptionsCellEditor = A.Component.create({
 			instance._syncEditOptionsUI();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onEditLinkClickEvent
+		 * @param event
+		 * @protected
+		 */
 		_onEditLinkClickEvent: function(event) {
 			var instance = this;
 			var currentTarget = event.currentTarget;
@@ -1035,6 +1586,13 @@ var BaseOptionsCellEditor = A.Component.create({
 			event.halt();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onEditKeyEvent
+		 * @param event
+		 * @protected
+		 */
 		_onEditKeyEvent: function(event) {
 			var instance = this;
 			var currentTarget = event.currentTarget;
@@ -1053,12 +1611,26 @@ var BaseOptionsCellEditor = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onSave
+		 * @param event
+		 * @protected
+		 */
 		_onSave: function(event) {
 			var instance = this;
 
 			instance.saveOptions();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _setOptions
+		 * @param val
+		 * @protected
+		 */
 		_setOptions: function(val) {
 			var options = {};
 
@@ -1074,12 +1646,25 @@ var BaseOptionsCellEditor = A.Component.create({
 			return options;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _syncEditOptionsUI
+		 * @protected
+		 */
 		_syncEditOptionsUI: function() {
 			var instance = this;
 
 			instance.editContainer.setContent(instance._createEditBuffer());
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetOptions
+		 * @param val
+		 * @protected
+		 */
 		_uiSetOptions: function(val) {
 			var instance = this;
 
@@ -1088,6 +1673,13 @@ var BaseOptionsCellEditor = A.Component.create({
 			instance._syncElementsName();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetValue
+		 * @param val
+		 * @protected
+		 */
 		_uiSetValue: function(val) {
 			var instance = this;
 			var options = instance.options;
@@ -1116,18 +1708,29 @@ A.BaseOptionsCellEditor = BaseOptionsCellEditor;
 /**
  * TextCellEditor class.
  *
- * Check the list of <a href="TextCellEditor.html#configattributes">Configuration Attributes</a> available for
- * TextCellEditor.
- *
- * @param config {Object} Object literal specifying widget configuration properties.
- *
  * @class TextCellEditor
- * @constructor
  * @extends A.BaseCellEditor
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
  */
 var TextCellEditor = A.Component.create({
+
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property TextCellEditor.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: TEXT_CELL_EDITOR,
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property TextCellEditor.EXTENDS
+	 * @type Object
+	 * @static
+	 */
 	EXTENDS: A.BaseCellEditor,
 
 	prototype: {
@@ -1140,18 +1743,29 @@ A.TextCellEditor = TextCellEditor;
 /**
  * TextAreaCellEditor class.
  *
- * Check the list of <a href="TextAreaCellEditor.html#configattributes">Configuration Attributes</a> available for
- * TextAreaCellEditor.
- *
- * @param config {Object} Object literal specifying widget configuration properties.
- *
  * @class TextAreaCellEditor
- * @constructor
  * @extends A.TextAreaCellEditor
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
  */
 var TextAreaCellEditor = A.Component.create({
+
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property TextAreaCellEditor.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: TEXT_AREA_CELL_EDITOR,
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property TextAreaCellEditor.EXTENDS
+	 * @type Object
+	 * @static
+	 */
 	EXTENDS: A.BaseCellEditor,
 
 	prototype: {
@@ -1164,33 +1778,72 @@ A.TextAreaCellEditor = TextAreaCellEditor;
 /**
  * DropDownCellEditor class.
  *
- * Check the list of <a href="DropDownCellEditor.html#configattributes">Configuration Attributes</a> available for
- * DropDownCellEditor.
- *
- * @param config {Object} Object literal specifying widget configuration properties.
- *
  * @class DropDownCellEditor
- * @constructor
  * @extends A.DropDownCellEditor
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
  */
 var DropDownCellEditor = A.Component.create({
+
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property DropDownCellEditor.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: DROP_DOWN_CELL_EDITOR,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the DropDownCellEditor.
+	 *
+	 * @property DropDownCellEditor.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute multiple
+		 * @default false
+		 * @type Boolean
+		 */
 		multiple: {
 			value: false,
 			validator: isBoolean
 		}
 	},
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property DropDownCellEditor.EXTENDS
+	 * @type Object
+	 * @static
+	 */
 	EXTENDS: A.BaseOptionsCellEditor,
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @property DropDownCellEditor.UI_ATTRS
+	 * @type Array
+	 * @static
+	 */
 	UI_ATTRS: [MULTIPLE],
 
 	prototype: {
 		ELEMENT_TEMPLATE: '<select class="' + CSS_CELLEDITOR_ELEMENT + '"></select>',
 		OPTION_TEMPLATE: '<option value="{value}">{label}</option>',
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getElementsValue
+		 */
 		getElementsValue: function() {
 			var instance = this;
 
@@ -1201,12 +1854,25 @@ var DropDownCellEditor = A.Component.create({
 			return instance.elements.get(VALUE);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _syncElementsFocus
+		 * @protected
+		 */
 		_syncElementsFocus: function() {
 			var instance = this;
 
 			instance.elements.focus();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetMultiple
+		 * @param val
+		 * @protected
+		 */
 		_uiSetMultiple: function(val) {
 			var instance = this;
 			var elements = instance.elements;
@@ -1226,24 +1892,51 @@ A.DropDownCellEditor = DropDownCellEditor;
 /**
  * CheckboxCellEditor class.
  *
- * Check the list of <a href="DropDownCellEditor.html#configattributes">Configuration Attributes</a> available for
- * CheckboxCellEditor.
- *
- * @param config {Object} Object literal specifying widget configuration properties.
- *
  * @class CheckboxCellEditor
- * @constructor
  * @extends A.CheckboxCellEditor
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
  */
 var CheckboxCellEditor = A.Component.create({
+
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property CheckboxCellEditor.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: CHECKBOX_CELL_EDITOR,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the CheckboxCellEditor.
+	 *
+	 * @property CheckboxCellEditor.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute selectedAttrName
+		 * @default 'checked'
+		 * @type String
+		 */
 		selectedAttrName: {
 			value: CHECKED
 		}
 	},
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property CheckboxCellEditor.EXTENDS
+	 * @type Object
+	 * @static
+	 */
 	EXTENDS: A.BaseOptionsCellEditor,
 
 	prototype: {
@@ -1251,12 +1944,23 @@ var CheckboxCellEditor = A.Component.create({
 		OPTION_TEMPLATE: '<input class="' + CSS_CELLEDITOR_OPTION + '" id="{id}" name="{name}" type="checkbox" value="{value}"/>',
 		OPTION_WRAPPER: '<label class="checkbox" for="{id}"> {label}</label>',
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getElementsValue
+		 */
 		getElementsValue: function() {
 			var instance = this;
 
 			return instance._getSelectedOptions().get(VALUE);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _syncElementsFocus
+		 * @protected
+		 */
 		_syncElementsFocus: function() {
 			var instance = this;
 			var options = instance.options;
@@ -1266,6 +1970,12 @@ var CheckboxCellEditor = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _syncElementsName
+		 * @protected
+		 */
 		_syncElementsName: function() {
 			var instance = this;
 			var options = instance.options;
@@ -1282,24 +1992,40 @@ A.CheckboxCellEditor = CheckboxCellEditor;
 /**
  * RadioCellEditor class.
  *
- * Check the list of <a href="RadioCellEditor.html#configattributes">Configuration Attributes</a> available for
- * RadioCellEditor.
- *
- * @param config {Object} Object literal specifying widget configuration properties.
- *
  * @class RadioCellEditor
- * @constructor
  * @extends A.RadioCellEditor
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
  */
 var RadioCellEditor = A.Component.create({
+
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property RadioCellEditor.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: RADIO_CELL_EDITOR,
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property RadioCellEditor.EXTENDS
+	 * @type Object
+	 * @static
+	 */
 	EXTENDS: A.CheckboxCellEditor,
 
 	prototype: {
 		OPTION_TEMPLATE: '<input class="field-input-choice" id="{id}" name="{name}" type="radio" value="{value}"/>',
 		OPTION_WRAPPER: '<label class="radio" for="{id}"> {label}</label>',
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getElementsValue
+		 */
 		getElementsValue: function() {
 			var instance = this;
 
@@ -1313,36 +2039,83 @@ A.RadioCellEditor = RadioCellEditor;
 /**
  * DateCellEditor class.
  *
- * Check the list of <a href="DateCellEditor.html#configattributes">Configuration Attributes</a> available for
- * DateCellEditor.
- *
- * @param config {Object} Object literal specifying widget configuration properties.
- *
  * @class DateCellEditor
- * @constructor
  * @extends A.DateCellEditor
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
  */
 var DateCellEditor = A.Component.create({
+
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property DateCellEditor.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: DATE_CELL_EDITOR,
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property DateCellEditor.EXTENDS
+	 * @type Object
+	 * @static
+	 */
 	EXTENDS: A.BaseCellEditor,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the DateCellEditor.
+	 *
+	 * @property DateCellEditor.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute bodyContent
+		 * @default ''
+		 * @type String
+		 */
 		bodyContent: {
 			value: _EMPTY_STR
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute calendar
+		 * @default null
+		 * @type Object
+		 */
 		calendar: {
 			setter: '_setCalendar',
 			validator: isObject,
 			value: null
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute dateFormat
+		 * @default '%D'
+		 * @type String
+		 */
 		dateFormat: {
 			value: '%D',
 			validator: isString
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute inputFormatter
+		 * @type Function
+		 */
 		inputFormatter: {
 			value: function(val) {
 				var instance = this,
@@ -1356,6 +2129,12 @@ var DateCellEditor = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute outputFormatter
+		 * @type Function
+		 */
 		outputFormatter: {
 			value: function(val) {
 				var instance = this,
@@ -1373,18 +2152,35 @@ var DateCellEditor = A.Component.create({
 	prototype: {
 		ELEMENT_TEMPLATE: '<input class="' + CSS_CELLEDITOR_ELEMENT + '" type="hidden" />',
 
+		/**
+		 * Construction logic executed during DateCellEditor instantiation. Lifecycle.
+		 *
+		 * @method initializer
+		 * @protected
+		 */
 		initializer: function() {
 			var instance = this;
 
 			instance.after('calendar:dateClick', A.bind(instance._afterDateSelect, instance));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getElementsValue
+		 */
 		getElementsValue: function() {
 			var instance = this;
 
 			return instance.calendar.get('selectedDates');
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method formatDate
+		 * @param date
+		 */
 		formatDate: function(date) {
 			var instance = this,
 				mask = instance.get('dateFormat'),
@@ -1393,6 +2189,13 @@ var DateCellEditor = A.Component.create({
 			return DataType.Date.format(date, { format: mask, locale: locale });
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterDateSelect
+		 * @param event
+		 * @protected
+		 */
 		_afterDateSelect: function(event) {
 			var instance = this,
 				selectedDates = instance.calendar.get('selectedDates');
@@ -1400,6 +2203,12 @@ var DateCellEditor = A.Component.create({
 			instance.elements.val(AArray.invoke(selectedDates, 'getTime').join(_COMMA));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterRender
+		 * @protected
+		 */
 		_afterRender: function() {
 			var instance = this;
 
@@ -1411,6 +2220,13 @@ var DateCellEditor = A.Component.create({
 			.render(instance.bodyNode);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _setCalendar
+		 * @param val
+		 * @protected
+		 */
 		_setCalendar: function(val) {
 			var instance = this;
 
@@ -1422,6 +2238,13 @@ var DateCellEditor = A.Component.create({
 			);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetValue
+		 * @param val
+		 * @protected
+		 */
 		_uiSetValue: function(val) {
 			var instance = this,
 				calendar = instance.calendar,

@@ -1,3 +1,10 @@
+/**
+ * The TreeViewPaginator Utility
+ *
+ * @module aui-tree
+ * @submodule aui-tree-paginator
+ */
+
 var Lang = A.Lang,
 	isObject = Lang.isObject,
 	isValue = Lang.isValue,
@@ -21,8 +28,15 @@ var Lang = A.Lang,
 
 	CSS_TREE_NODE_PAGINATOR = getCN(TREE, NODE, PAGINATOR),
 
-	TPL_PAGINATOR = '<a class="' + CSS_TREE_NODE_PAGINATOR + '" href="javascript:void(0);">{moreResultsLabel}</a>';
+	TPL_PAGINATOR = '<a class="' + CSS_TREE_NODE_PAGINATOR + '" hrsef="javascript:void(0);">{moreResultsLabel}</a>';
 
+/**
+ * A base class for TreeViewPaginator.
+ *
+ * @class TreeViewPaginator
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 function TreeViewPaginator(config) {
 	var instance = this;
 
@@ -31,7 +45,22 @@ function TreeViewPaginator(config) {
 	A.after(instance._syncPaginatorUI, this, 'syncUI');
 }
 
+/**
+ * Static property used to define the default attribute
+ * configuration for the TreeView.
+ *
+ * @property TreeViewPaginator.ATTRS
+ * @type Object
+ * @static
+ */
 TreeViewPaginator.ATTRS = {
+
+	/**
+	 * Paginator.
+	 *
+	 * @attribute paginator
+	 * @type Object
+	 */
 	paginator: {
 		setter: function(value) {
 			var instance = this;
@@ -64,6 +93,7 @@ TreeViewPaginator.ATTRS = {
 
 
 TreeViewPaginator.prototype = {
+
 	/**
 	 * Bind events to the paginator "show more" link.
 	 *

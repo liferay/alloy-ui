@@ -50,19 +50,24 @@ var L = A.Lang,
  *    <li>Indexing management to handle the children nodes</li>
  * </ul>
  *
- * Check the list of <a href="TreeData.html#configattributes">Configuration Attributes</a> available for
- * TreeData.
- *
- * @param config {Object} Object literal specifying widget configuration properties.
- *
  * @class TreeData
- * @constructor
  * @extends Base
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
  */
 
 var TreeData = function () {};
 
+/**
+ * Static property used to define the default attribute
+ * configuration for the TreeData.
+ *
+ * @property TreeData.ATTRS
+ * @type Object
+ * @static
+ */
 TreeData.ATTRS = {
+
 	/**
 	 * Container to nest children nodes. If has cntainer it's not a leaf.
 	 *
@@ -118,7 +123,7 @@ A.mix(TreeData.prototype, {
 	},
 
 	/**
-	 * Descructor lifecycle implementation for the TreeData class.
+	 * Destructor lifecycle implementation for the TreeData class.
 	 * Purges events attached to the node (and all child nodes).
 	 *
 	 * @method destructor
@@ -510,7 +515,7 @@ A.mix(TreeData.prototype, {
 
 	/**
 	 * Index of the passed TreeNode on the <a
-     * href="TreeData.html#config_children">children</a> attribute.
+	 * href="TreeData.html#config_children">children</a> attribute.
 	 *
 	 * @method indexOf
 	 * @param {TreeNode} node

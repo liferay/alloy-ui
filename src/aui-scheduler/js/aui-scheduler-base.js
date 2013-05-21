@@ -1,19 +1,66 @@
+/**
+ * The Scheduler Component
+ *
+ * @module aui-scheduler
+ * @submodule aui-scheduler-base
+ */
+
+/**
+ * A base class for SchedulerEvents.
+ *
+ * @class SchedulerEvents
+ * @extends Base
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 A.SchedulerEvents = A.Base.create('scheduler-events', A.ModelList, [], {
+
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method comparator
+	 * @param model
+	 */
 	comparator: function(model) {
 		var startDateTime = model.get(START_DATE),
 			endDateTime = model.get(END_DATE);
 
 		return startDateTime + 1/(endDateTime - startDateTime);
 	},
+
 	model: A.SchedulerEvent
 }, {
+
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the SchedulerEvents.
+	 *
+	 * @property SchedulerEvents.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
 		scheduler: {}
 	}
 });
 
+/**
+ * A base class for SchedulerEventSupport.
+ *
+ * @class SchedulerEventSupport
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var SchedulerEventSupport = function() {};
 
+/**
+ * Static property used to define the default attribute
+ * configuration for the SchedulerEventSupport.
+ *
+ * @property SchedulerEventSupport.ATTRS
+ * @type Object
+ * @static
+ */
 SchedulerEventSupport.ATTRS = {};
 
 A.mix(SchedulerEventSupport.prototype, {
@@ -23,6 +70,13 @@ A.mix(SchedulerEventSupport.prototype, {
 
 	eventsModel: A.SchedulerEvents,
 
+	/**
+	 * Construction logic executed during SchedulerEventSupport instantiation. Lifecycle.
+	 *
+	 * @method initializer
+	 * @param config
+	 * @protected
+	 */
 	initializer: function(config) {
 		var instance = this;
 
@@ -37,6 +91,12 @@ A.mix(SchedulerEventSupport.prototype, {
 		instance.addEvents(config.items || config.events);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method addEvents
+	 * @param models
+	 */
 	addEvents: function(models) {
 		var instance = this,
 			events = instance._toSchedulerEvents(models);
@@ -44,12 +104,23 @@ A.mix(SchedulerEventSupport.prototype, {
 		return instance._events.add(events);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method eachEvent
+	 * @param fn
+	 */
 	eachEvent: function(fn) {
 		var instance = this;
 
 		return instance._events.each(fn);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method flushEvents
+	 */
 	flushEvents: function() {
 		var instance = this;
 
@@ -58,12 +129,24 @@ A.mix(SchedulerEventSupport.prototype, {
 		});
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method getEventByClientId
+	 * @param clientId
+	 */
 	getEventByClientId: function(clientId) {
 		var instance = this;
 
 		return instance._events.getByClientId(clientId);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method getEvents
+	 * @param filterFn
+	 */
 	getEvents: function(filterFn) {
 		var instance = this,
 			events = instance._events;
@@ -81,6 +164,12 @@ A.mix(SchedulerEventSupport.prototype, {
 		return events;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method getEventsByDay
+	 * @param date, includeOverlap
+	 */
 	getEventsByDay: function(date, includeOverlap) {
 		var instance = this;
 
@@ -92,6 +181,12 @@ A.mix(SchedulerEventSupport.prototype, {
 		});
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method getIntersectEvents
+	 * @param date
+	 */
 	getIntersectEvents: function(date) {
 		var instance = this;
 
@@ -108,6 +203,12 @@ A.mix(SchedulerEventSupport.prototype, {
 		});
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method removeEvents
+	 * @param models
+	 */
 	removeEvents: function(models) {
 		var instance = this,
 			events = instance._toSchedulerEvents(models);
@@ -115,6 +216,12 @@ A.mix(SchedulerEventSupport.prototype, {
 		return instance._events.remove(events);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method resetEvents
+	 * @param models
+	 */
 	resetEvents: function(models) {
 		var instance = this,
 			events = instance._toSchedulerEvents(models);
@@ -122,12 +229,26 @@ A.mix(SchedulerEventSupport.prototype, {
 		return instance._events.reset(events);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _afterAddEvent
+	 * @param event
+	 * @protected
+	 */
 	_afterAddEvent: function(event) {
 		var instance = this;
 
 		event.model.set(SCHEDULER, instance);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _toSchedulerEvents
+	 * @param values
+	 * @protected
+	 */
 	_toSchedulerEvents: function(values) {
 		var instance = this,
 			events = [];
@@ -157,23 +278,71 @@ A.mix(SchedulerEventSupport.prototype, {
 
 A.SchedulerEventSupport = SchedulerEventSupport;
 
+/**
+ * A base class for SchedulerBase.
+ *
+ * @class SchedulerBase
+ * @extends Component
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var SchedulerBase = A.Component.create({
+
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property SchedulerBase.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: SCHEDULER_BASE,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the SchedulerBase.
+	 *
+	 * @property SchedulerBase.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute activeView
+		 * @type SchedulerView
+		 */
 		activeView: {
 			validator: isSchedulerView
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute date
+		 * @type Date
+		 */
 		date: {
 			value: new Date(),
 			validator: isDate
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute eventRecorder
+		 */
 		eventRecorder: {
 			setter: '_setEventRecorder'
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute strings
+		 * @type Object
+		 */
 		strings: {
 			value: {
 				agenda: 'Agenda',
@@ -207,11 +376,23 @@ var SchedulerBase = A.Component.create({
 			validator: isFunction
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute views
+		 * @default []
+		 */
 		views: {
 			setter: '_setViews',
 			value: []
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute viewDate
+		 * @readOnly
+		 */
 		viewDate: {
 			getter: '_getViewDate',
 			readOnly: true
@@ -283,6 +464,13 @@ var SchedulerBase = A.Component.create({
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @property SchedulerBase.HTML_PARSER
+	 * @type Object
+	 * @static
+	 */
 	HTML_PARSER: {
 		controlsNode: _DOT+CSS_SCHEDULER_CONTROLS,
 		viewDateNode: _DOT+CSS_SCHEDULER_VIEW_DATE,
@@ -294,13 +482,33 @@ var SchedulerBase = A.Component.create({
 		viewsNode: _DOT+CSS_SCHEDULER_VIEWS
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @property SchedulerBase.UI_ATTRS
+	 * @type Array
+	 * @static
+	 */
 	UI_ATTRS: [DATE, ACTIVE_VIEW],
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @property SchedulerBase.AUGMENTS
+	 * @type Array
+	 * @static
+	 */
 	AUGMENTS: [A.SchedulerEventSupport, A.WidgetStdMod],
 
 	prototype: {
 		viewStack: null,
 
+		/**
+		 * Construction logic executed during SchedulerBase instantiation. Lifecycle.
+		 *
+		 * @method initializer
+		 * @protected
+		 */
 		initializer: function() {
 			var instance = this;
 
@@ -321,36 +529,71 @@ var SchedulerBase = A.Component.create({
 			});
 		},
 
+		/**
+		 * Bind the events on the SchedulerBase UI. Lifecycle.
+		 *
+		 * @method bindUI
+		 * @protected
+		 */
 		bindUI: function() {
 			var instance = this;
 
 			instance._bindDelegate();
 		},
 
+		/**
+		 * Sync the SchedulerBase UI. Lifecycle.
+		 *
+		 * @method syncUI
+		 * @protected
+		 */
 		syncUI: function() {
 			var instance = this;
 
 			instance.syncStdContent();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getViewByName
+		 * @param name
+		 */
 		getViewByName: function(name) {
 			var instance = this;
 
 			return instance[VIEW_STACK][name];
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getStrings
+		 */
 		getStrings: function() {
 			var instance = this;
 
 			return instance.get(STRINGS);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getString
+		 * @param key
+		 */
 		getString: function(key) {
 			var instance = this;
 
 			return instance.getStrings()[key];
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method renderView
+		 * @param view
+		 */
 		renderView: function(view) {
 			var instance = this;
 
@@ -367,6 +610,12 @@ var SchedulerBase = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method plotViewEvents
+		 * @param view
+		 */
 		plotViewEvents: function(view) {
 			var instance = this;
 
@@ -375,6 +624,11 @@ var SchedulerBase = A.Component.create({
 			);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method syncEventsUI
+		 */
 		syncEventsUI: function() {
 			var instance = this,
 				activeView = instance.get(ACTIVE_VIEW);
@@ -384,6 +638,11 @@ var SchedulerBase = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method renderButtonGroup
+		 */
 		renderButtonGroup: function() {
 			var instance = this;
 
@@ -399,7 +658,6 @@ var SchedulerBase = A.Component.create({
 		 * Sync SchedulerBase StdContent.
 		 *
 		 * @method syncStdContent
-		 * @protected
 		 */
 		syncStdContent: function() {
 			var instance = this;
@@ -422,7 +680,13 @@ var SchedulerBase = A.Component.create({
 			instance.setStdModContent(WidgetStdMod.HEADER, instance[HEADER].getDOM());
 		},
 
-
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterActiveViewChange
+		 * @param event
+		 * @protected
+		 */
 		_afterActiveViewChange: function(event) {
 			var instance = this;
 
@@ -446,6 +710,13 @@ var SchedulerBase = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterRender
+		 * @param event
+		 * @protected
+		 */
 		_afterRender: function(event) {
 			var instance = this,
 				activeView = instance.get(ACTIVE_VIEW);
@@ -457,6 +728,12 @@ var SchedulerBase = A.Component.create({
 			instance._uiSetActiveView(activeView);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _bindDelegate
+		 * @protected
+		 */
 		_bindDelegate: function() {
 			var instance = this;
 
@@ -465,6 +742,13 @@ var SchedulerBase = A.Component.create({
 			instance[CONTROLS_NODE].delegate('click', instance._onClickToday, _DOT+CSS_SCHEDULER_TODAY, instance);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _createViewTriggerNode
+		 * @param view
+		 * @protected
+		 */
 		_createViewTriggerNode: function(view) {
 			var instance = this;
 
@@ -485,6 +769,12 @@ var SchedulerBase = A.Component.create({
 			return view.get(TRIGGER_NODE);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _getViewDate
+		 * @protected
+		 */
 		_getViewDate: function() {
 			var instance = this,
 				date = instance.get(DATE),
@@ -497,6 +787,13 @@ var SchedulerBase = A.Component.create({
 			return date;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onClickToday
+		 * @param event
+		 * @protected
+		 */
 		_onClickToday: function(event) {
 			var instance = this,
 				activeView = instance.get(ACTIVE_VIEW);
@@ -508,6 +805,13 @@ var SchedulerBase = A.Component.create({
 			event.preventDefault();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onClickNextIcon
+		 * @param event
+		 * @protected
+		 */
 		_onClickNextIcon: function(event) {
 			var instance = this,
 				activeView = instance.get(ACTIVE_VIEW);
@@ -519,6 +823,13 @@ var SchedulerBase = A.Component.create({
 			event.preventDefault();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onClickPrevIcon
+		 * @param event
+		 * @protected
+		 */
 		_onClickPrevIcon: function(event) {
 			var instance = this,
 				activeView = instance.get(ACTIVE_VIEW);
@@ -530,6 +841,13 @@ var SchedulerBase = A.Component.create({
 			event.preventDefault();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onButtonGroupSelectionChange
+		 * @param event
+		 * @protected
+		 */
 		_onButtonGroupSelectionChange: function(event) {
 			var instance = this,
 				viewName = event.originEvent.target.attr(DATA_VIEW_NAME);
@@ -539,12 +857,26 @@ var SchedulerBase = A.Component.create({
 			event.preventDefault();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _processTemplate
+		 * @param tpl
+		 * @protected
+		 */
 		_processTemplate: function(tpl) {
 			var instance = this;
 
 			return Lang.sub(tpl, instance.getStrings());
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _setEventRecorder
+		 * @param val
+		 * @protected
+		 */
 		_setEventRecorder: function(val) {
 			var instance = this;
 
@@ -558,6 +890,13 @@ var SchedulerBase = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _setViews
+		 * @param val
+		 * @protected
+		 */
 		_setViews: function(val) {
 			var instance = this;
 			var views = [];
@@ -581,6 +920,13 @@ var SchedulerBase = A.Component.create({
 			return views;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetActiveView
+		 * @param val
+		 * @protected
+		 */
 		_uiSetActiveView: function(val) {
 			var instance = this;
 
@@ -595,6 +941,13 @@ var SchedulerBase = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetDate
+		 * @param val
+		 * @protected
+		 */
 		_uiSetDate: function(val) {
 			var instance = this;
 

@@ -1,4 +1,9 @@
-/* global A*/
+/**
+ * The Color Picker Component
+ *
+ * @module aui-color-picker
+ * @submodule aui-hsv-palette-modal
+ */
 
 var AArray = A.Array,
     AWidget = A.Widget,
@@ -12,7 +17,22 @@ var AArray = A.Array,
 
     EMPTY = '',
 
+/**
+ * A base class for HSVAPaletteModal.
+ *
+ * @class HSVAPaletteModal
+ * @extends A.Modal
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 HSVAPaletteModal = A.Base.create(NAME, A.Modal, [], {
+
+    /**
+     * Construction logic executed during HSVAPaletteModal instantiation. Lifecycle.
+     *
+     * @method initializer
+     * @protected
+     */
     initializer: function() {
         var instance = this;
 
@@ -21,12 +41,25 @@ HSVAPaletteModal = A.Base.create(NAME, A.Modal, [], {
         instance.on('selectedChange', instance._onSelectionChange, instance);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _getSelected
+     * @protected
+     */
     _getSelected: function() {
         var instance = this;
 
         return instance._hsvPalette.get('selected');
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onSelectionChange
+     * @param event
+     * @protected
+     */
     _onSelectionChange: function(event) {
         var instance = this;
 
@@ -35,6 +68,12 @@ HSVAPaletteModal = A.Base.create(NAME, A.Modal, [], {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _renderHSVAPalette
+     * @protected
+     */
     _renderHSVAPalette: function() {
         var instance = this,
             body,
@@ -75,7 +114,23 @@ HSVAPaletteModal = A.Base.create(NAME, A.Modal, [], {
         );
     }
 }, {
+
+    /**
+     * Static property used to define the default attribute
+     * configuration for the HSVAPaletteModal.
+     *
+     * @property HSVAPaletteModal.ATTRS
+     * @type Object
+     * @static
+     */
     ATTRS: {
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute hsv
+         * @type Object
+         */
         hsv: {
             validator: Lang.isObject,
             value: {
@@ -83,6 +138,13 @@ HSVAPaletteModal = A.Base.create(NAME, A.Modal, [], {
             }
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute selected
+         * @default ''
+         * @type String
+         */
         selected: {
             getter: '_getSelected',
             validator: Lang.isString,
@@ -90,10 +152,31 @@ HSVAPaletteModal = A.Base.create(NAME, A.Modal, [], {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @property HSVAPaletteModal.CSS_PREFIX
+     * @type String
+     * @static
+     */
     CSS_PREFIX: getClassName(NAME),
 
+    /**
+     * Static property provides a string to identify the class.
+     *
+     * @property HSVAPaletteModal.NAME
+     * @type String
+     * @static
+     */
     NAME: NAME,
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @property HSVAPaletteModal.NS
+     * @type String
+     * @static
+     */
     NS: NAME
 });
 

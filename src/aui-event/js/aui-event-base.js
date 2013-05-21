@@ -1,3 +1,10 @@
+/**
+ * The Event Base.
+ *
+ * @module aui-event
+ * @submodule aui-event-base
+ */
+
 var Lang = A.Lang,
 	AArray = A.Array,
 	DOMEventFacade = A.DOMEventFacade,
@@ -209,24 +216,46 @@ var KeyMap = {
 A.mix(
 	DOMEventFacadeProto,
 	{
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method hasModifier
+		 */
 		hasModifier: function() {
 			var instance = this;
 
 			return KeyMap.hasModifier(instance);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method isKey
+		 * @param name
+		 */
 		isKey: function(name) {
 			var instance = this;
 
 			return KeyMap.isKey(instance.keyCode, name);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method isKeyInRange
+		 * @param start, end
+		 */
 		isKeyInRange: function(start, end) {
 			var instance = this;
 
 			return KeyMap.isKeyInRange(instance.keyCode, start, end);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method isKeyInSet
+		 */
 		isKeyInSet: function() {
 			var instance = this;
 
@@ -235,12 +264,22 @@ A.mix(
 			return KeyMap._isKeyInSet(instance.keyCode, args);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method isNavKey
+		 */
 		isNavKey: function() {
 			var instance = this;
 
 			return KeyMap.isNavKey(instance.keyCode);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method isSpecialKey
+		 */
 		isSpecialKey: function() {
 			var instance = this;
 

@@ -105,21 +105,12 @@ var Lang = A.Lang,
  *	<li>The node for the TreeView component</li>
  * </ul>
  *
- * Quick Example:<br/>
- *
- * <pre><code>var instance = new A.TreeNode({
-	boundingBox: ''
-}).render();
- * </code></pre>
- *
- * Check the list of <a href="TreeNode.html#configattributes">Configuration Attributes</a> available for
- * TreeNode.
- *
- * @param config {Object} Object literal specifying widget configuration properties.
+ * Check the [live demo](http://alloyui.com/examples/tree/).
  *
  * @class TreeNode
- * @constructor
  * @extends TreeData
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
  */
 var TreeNode = A.Component.create(
 	{
@@ -142,18 +133,35 @@ var TreeNode = A.Component.create(
 		 */
 		ATTRS: {
 
+			/**
+			 * The widget's outermost node, used for sizing and positioning.
+			 *
+			 * @attribute boundingBox
+			 */
 			boundingBox: {
 				valueFn: function() {
 					return A.Node.create(NODE_BOUNDING_TEMPLATE);
 				}
 			},
 
+			/**
+			 * The direct descendant of a widget's
+			 * bounding box and houses its content.
+			 *
+			 * @attribute contentBox
+			 */
 			contentBox: {
 				valueFn: function() {
 					return A.Node.create(NODE_CONTENT_TEMPLATE);
 				}
 			},
 
+			/**
+			 * CSS classes used on TreeNode.
+			 *
+			 * @attribute cssClasses
+			 * @type Object
+			 */
 			cssClasses: {
 				value: {
 					file: {
@@ -181,7 +189,7 @@ var TreeNode = A.Component.create(
 			 *
 			 * @attribute draggable
 			 * @default true
-			 * @type boolean
+			 * @type Boolean
 			 */
 			draggable: {
 				value: true,
@@ -216,7 +224,7 @@ var TreeNode = A.Component.create(
 			 *
 			 * @attribute expanded
 			 * @default false
-			 * @type boolean
+			 * @type Boolean
 			 */
 			expanded: {
 				value: false,
@@ -243,7 +251,7 @@ var TreeNode = A.Component.create(
 			 *
 			 * @attribute leaf
 			 * @default true
-			 * @type boolean
+			 * @type Boolean
 			 */
 			leaf: {
 				value: true,
@@ -333,7 +341,7 @@ var TreeNode = A.Component.create(
 			 *
 			 * @attribute alwaysShowHitArea
 			 * @default true
-			 * @type boolean
+			 * @type Boolean
 			 */
 			alwaysShowHitArea: {
 				value: true,
@@ -353,10 +361,23 @@ var TreeNode = A.Component.create(
 				}
 			},
 
+			/**
+			 * Specify the tab order.
+			 *
+			 * @attribute tabIndex
+			 * @default null
+			 */
 			tabIndex: {
 				value: null
 			},
 
+			/**
+			 * If true the TreeNode is rendered.
+			 *
+			 * @attribute rendered
+			 * @default false
+			 * @type Boolean
+			 */
 			rendered: {
 				validator: isBoolean,
 				value: false
@@ -368,6 +389,7 @@ var TreeNode = A.Component.create(
 		EXTENDS: A.Base,
 
 		prototype: {
+
 			/**
 			 * Replaced BOUNDING_TEMPLATE with NODE_BOUNDING_TEMPLATE.
 			 *
@@ -425,6 +447,12 @@ var TreeNode = A.Component.create(
 				});
 			},
 
+			/**
+			 * Render TreeNode.
+			 *
+			 * @method render
+			 * @param container
+			 */
 			render: function(container) {
 				var instance = this;
 
@@ -473,6 +501,13 @@ var TreeNode = A.Component.create(
 				instance._syncIconUI();
 			},
 
+			/**
+			 * Fire after draggable change.
+			 *
+			 * @method _afterDraggableChange
+			 * @param {EventFacade} event
+			 * @protected
+			 */
 			_afterDraggableChange: function(event) {
 				var instance = this;
 
@@ -480,6 +515,13 @@ var TreeNode = A.Component.create(
 				instance._syncIconUI();
 			},
 
+			/**
+			 * Fire after expanded change.
+			 *
+			 * @method _afterExpandedChange
+			 * @param {EventFacade} event
+			 * @protected
+			 */
 			_afterExpandedChange: function(event) {
 				var instance = this;
 
@@ -487,6 +529,13 @@ var TreeNode = A.Component.create(
 				instance._syncIconUI();
 			},
 
+			/**
+			 * Fire after leaf change.
+			 *
+			 * @method _afterLeafChange
+			 * @param {EventFacade} event
+			 * @protected
+			 */
 			_afterLeafChange: function(event) {
 				var instance = this;
 
@@ -494,6 +543,13 @@ var TreeNode = A.Component.create(
 				instance._syncIconUI();
 			},
 
+			/**
+			 * Fire after loading change.
+			 *
+			 * @method _afterLoadingChange
+			 * @param {EventFacade} event
+			 * @protected
+			 */
 			_afterLoadingChange: function(event) {
 				var instance = this;
 
@@ -501,7 +557,7 @@ var TreeNode = A.Component.create(
 			},
 
 			/**
-			 * Fires after set children.
+			 * Fire after set children.
 			 *
 			 * @method _afterSetChildren
 			 * @param {EventFacade} event
@@ -649,9 +705,11 @@ var TreeNode = A.Component.create(
 				instance._syncHitArea();
 			},
 
-			/*
-			* Methods
-			*/
+			/**
+			 * Append child on TreeNode.
+			 *
+			 * @method appendChild
+			 */
 			appendChild: function() {
 				var instance = this;
 
@@ -671,6 +729,11 @@ var TreeNode = A.Component.create(
 				instance.set(EXPANDED, false);
 			},
 
+			/**
+			 * Collapse all TreeNodes.
+			 *
+			 * @method collapseAll
+			 */
 			collapseAll: function() {
 				var instance = this;
 
@@ -685,7 +748,7 @@ var TreeNode = A.Component.create(
 			 *
 			 * @method contains
 			 * @param {TreeNode} node
-			 * @return {boolean}
+			 * @return {Boolean}
 			 */
 			contains: function(node) {
 				return node.isAncestor(this);
@@ -702,6 +765,11 @@ var TreeNode = A.Component.create(
 				instance.set(EXPANDED, true);
 			},
 
+			/**
+			 * Expand all TreeNodes.
+			 *
+			 * @method expandAll
+			 */
 			expandAll: function() {
 				var instance = this;
 
@@ -732,6 +800,11 @@ var TreeNode = A.Component.create(
 				return depth;
 			},
 
+			/**
+			 * Check if it has child nodes.
+			 *
+			 * @method hasChildNodes
+			 */
 			hasChildNodes: function() {
 				var instance = this;
 
@@ -743,7 +816,7 @@ var TreeNode = A.Component.create(
 			 * Whether the current TreeNode is selected or not.
 			 *
 			 * @method isSelected
-			 * @return {boolean}
+			 * @return {Boolean}
 			 */
 			isSelected: function() {
 				return this.get(CONTENT_BOX).hasClass(CSS_TREE_NODE_SELECTED);
@@ -753,7 +826,7 @@ var TreeNode = A.Component.create(
 			 * Whether the current TreeNode is a leaf or not.
 			 *
 			 * @method isLeaf
-			 * @return {boolean}
+			 * @return {Boolean}
 			 */
 			isLeaf: function() {
 				var instance = this;
@@ -765,7 +838,7 @@ var TreeNode = A.Component.create(
 			 * Whether the current TreeNode is ancestor of the passed <code>node</code> or not.
 			 *
 			 * @method isLeaf
-			 * @return {boolean}
+			 * @return {Boolean}
 			 */
 			isAncestor: function(node) {
 				var instance = this;
@@ -831,7 +904,7 @@ var TreeNode = A.Component.create(
 			},
 
 			/*
-			* Fires when <code>mouseover</code> the current TreeNode.
+			* Fire when <code>mouseover</code> the current TreeNode.
 			*
 			* @method over
 			*/
@@ -840,7 +913,7 @@ var TreeNode = A.Component.create(
 			},
 
 			/*
-			* Fires when <code>mouseout</code> the current TreeNode.
+			* Fire when <code>mouseout</code> the current TreeNode.
 			*
 			* @method over
 			*/
@@ -890,6 +963,13 @@ var TreeNode = A.Component.create(
 				);
 			},
 
+			/**
+			 * Get get sibling.
+			 *
+			 * @method _getSibling
+			 * @param value, attrName
+			 * @protected
+			 */
 			_getSibling: function(value, attrName) {
 				var instance = this;
 
@@ -904,6 +984,13 @@ var TreeNode = A.Component.create(
 				return sibling;
 			},
 
+			/**
+			 * Set <code>draggable</code> attribute on the UI.
+			 *
+			 * @method _uiSetDraggable
+			 * @param val
+			 * @protected
+			 */
 			_uiSetDraggable: function(val) {
 				var instance = this;
 				var contentBox = instance.get(CONTENT_BOX);
@@ -911,6 +998,13 @@ var TreeNode = A.Component.create(
 				contentBox.toggleClass(CSS_TREE_NODE_CONTENT_INVALID, !val);
 			},
 
+			/**
+			 * Set <code>expanded</code> attribute on the UI.
+			 *
+			 * @method _uiSetExpanded
+			 * @param val
+			 * @protected
+			 */
 			_uiSetExpanded: function(val) {
 				var instance = this;
 
@@ -935,6 +1029,13 @@ var TreeNode = A.Component.create(
 				}
 			},
 
+			/**
+			 * Set <code>leaf</code> attribute on the UI.
+			 *
+			 * @method _uiSetLeaf
+			 * @param val
+			 * @protected
+			 */
 			_uiSetLeaf: function(val) {
 				var instance = this;
 
@@ -975,25 +1076,10 @@ var TREE_NODE_IO = 'tree-node-io';
  *	<li>Ajax support to load the children of the current TreeNode</li>
  * </ul>
  *
- * Quick Example:<br/>
- *
- * <pre><code>var treeNodeIO = new A.TreeNodeIO({
- *		label: 'TreeNodeIO',
- *		cache: false,
- *		io: {
- *			url: 'assets/content.html'
- *		}
- *  });
- * </code></pre>
- *
- * Check the list of <a href="TreeNodeIO.html#configattributes">Configuration Attributes</a> available for
- * TreeNodeIO.
- *
- * @param config {Object} Object literal specifying widget configuration properties.
- *
  * @class TreeNodeIO
- * @constructor
  * @extends TreeNode
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
  */
 var TreeNodeIO = A.Component.create(
 	{
@@ -1015,12 +1101,13 @@ var TreeNodeIO = A.Component.create(
 		 * @static
 		 */
 		ATTRS: {
+
 			/**
 			 * Whether the current TreeNode IO transaction is loading.
 			 *
 			 * @attribute loading
 			 * @default false
-			 * @type boolean
+			 * @type Boolean
 			 */
 			loading: {
 				value: false,
@@ -1032,7 +1119,7 @@ var TreeNodeIO = A.Component.create(
 			 *
 			 * @attribute loaded
 			 * @default false
-			 * @type boolean
+			 * @type Boolean
 			 */
 			loaded: {
 				value: false,
@@ -1044,13 +1131,21 @@ var TreeNodeIO = A.Component.create(
 			 *
 			 * @attribute cache
 			 * @default true
-			 * @type boolean
+			 * @type Boolean
 			 */
 			cache: {
 				value: true,
 				validator: isBoolean
 			},
 
+			/**
+			 * Whether the TreeNode could have children or not (i.e. if any
+			 * children is present the TreeNode is a leaf).
+			 *
+			 * @attribute leaf
+			 * @default false
+			 * @type Boolean
+			 */
 			leaf: {
 				value: false,
 				validator: isBoolean
@@ -1062,6 +1157,7 @@ var TreeNodeIO = A.Component.create(
 		EXTENDS: A.TreeNode,
 
 		prototype: {
+
 			/**
 			 * Bind the events on the TreeNodeIO UI. Lifecycle.
 			 *
@@ -1076,15 +1172,24 @@ var TreeNodeIO = A.Component.create(
 				instance.on('ioRequestSuccess', instance._onIOSuccess, instance);
 			},
 
+			/**
+			 * Sync the TreeNodeIO UI. Lifecycle.
+			 *
+			 * @method syncUI
+			 * @protected
+			 */
 			syncUI: function() {
 				var instance = this;
 
 				A.TreeNodeIO.superclass.syncUI.apply(this, arguments);
 			},
 
-			/*
-			* Methods
-			*/
+			/**
+			 * Create nodes.
+			 *
+			 * @method createNodes
+			 * @param nodes
+			 */
 			createNodes: function(nodes) {
 				var instance = this;
 
@@ -1097,6 +1202,11 @@ var TreeNodeIO = A.Component.create(
 				instance._syncPaginatorUI(nodes);
 			},
 
+			/**
+			 * Expand the current TreeNodeIO.
+			 *
+			 * @method expand
+			 */
 			expand: function() {
 				var instance = this;
 
@@ -1167,6 +1277,12 @@ var TreeNodeIO = A.Component.create(
 				}
 			},
 
+			/**
+			 * Fire when IO success.
+			 *
+			 * @method _onIOSuccess
+			 * @param event
+			 */
 			_onIOSuccess: function(event) {
 				var instance = this;
 
@@ -1198,22 +1314,16 @@ var CHECKBOX = 'checkbox',
 	CHECKBOX_TPL = '<input class="'+CSS_TREE_NODE_CHECKBOX+'" type="checkbox" />';
 
 /**
- * <p><img src="assets/images/aui-tree-nod-check/main.png"/></p>
- *
  * A base class for TreeNodeCheck, providing:
  * <ul>
  *	<li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
  *	<li>Checkbox support for the TreeNode</li>
  * </ul>
  *
- * Check the list of <a href="TreeNodeCheck.html#configattributes">Configuration Attributes</a> available for
- * TreeNodeCheck.
- *
- * @param config {Object} Object literal specifying widget configuration properties.
- *
  * @class TreeNodeCheck
- * @constructor
  * @extends TreeNodeIO
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
  */
 var TreeNodeCheck = A.Component.create(
 	{
@@ -1235,12 +1345,13 @@ var TreeNodeCheck = A.Component.create(
 		 * @static
 		 */
 		ATTRS: {
+
 			/**
 			 * Whether the TreeNode is checked or not.
 			 *
 			 * @attribute checked
 			 * @default false
-			 * @type boolean
+			 * @type Boolean
 			 */
 			checked: {
 				value: false,
@@ -1294,15 +1405,24 @@ var TreeNodeCheck = A.Component.create(
 
 		prototype: {
 
+			/**
+			 * Construction logic executed during TreeNodeCheck instantiation. Lifecycle.
+			 *
+			 * @method initializer
+			 * @protected
+			 */
 			initializer: function() {
 				var instance = this;
 
 				instance._uiSetChecked(instance.get(CHECKED));
 			},
 
-			/*
-			* Lifecycle
-			*/
+			/**
+			 * Create the DOM structure for the TreeNodeCheck. Lifecycle.
+			 *
+			 * @method renderUI
+			 * @protected
+			 */
 			renderUI: function() {
 				var instance = this;
 
@@ -1323,6 +1443,12 @@ var TreeNodeCheck = A.Component.create(
 				}
 			},
 
+			/**
+			 * Bind the events on the TreeNodeCheck UI. Lifecycle.
+			 *
+			 * @method bindUI
+			 * @protected
+			 */
 			bindUI: function() {
 				var instance = this;
 
@@ -1385,18 +1511,24 @@ var TreeNodeCheck = A.Component.create(
 				}
 			},
 
-			/*
-			* Whether the current TreeNodeCheck is checked.
-			*
-			* @method isChecked
-			* @return boolean
-			*/
+			/**
+			 * Whether the current TreeNodeCheck is checked.
+			 *
+			 * @method isChecked
+			 * @return Boolean
+			 */
 			isChecked: function() {
 				var instance = this;
 
 				return instance.get(CHECKED);
 			},
 
+			/**
+			 * Sync icon check on the UI.
+			 *
+			 * @method _syncIconCheckUI
+			 * @protected
+			 */
 			_syncIconCheckUI: function() {
 				var instance = this,
 					ownerTree = instance.get(OWNER_TREE);
@@ -1420,12 +1552,26 @@ var TreeNodeCheck = A.Component.create(
 				}
 			},
 
+			/**
+			 * Fire after <code>checked</code> change.
+			 *
+			 * @method _afterCheckedChange
+			 * @param event
+			 * @protected
+			 */
 			_afterCheckedChange: function(event) {
 				var instance = this;
 
 				instance._uiSetChecked(event.newVal);
 			},
 
+			/**
+			 * Set the <code>checked</code> attribute on the UI.
+			 *
+			 * @method _uiSetChecked
+			 * @param val
+			 * @protected
+			 */
 			_uiSetChecked: function(val) {
 				var instance = this;
 
@@ -1453,8 +1599,6 @@ var CHILD = 'child',
 	CSS_TREE_NODE_CHILD_UNCHECKED = getCN(TREE, NODE, CHILD, UNCHECKED);
 
 /**
- * <p><img src="assets/images/aui-treeNodeTask/main.png"/></p>
- *
  * A base class for TreeNodeTask, providing:
  * <ul>
  *	<li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
@@ -1462,14 +1606,10 @@ var CHILD = 'child',
  *	<li>Automatic check/uncheck the parent status based on the children checked status</li>
  * </ul>
  *
- * Check the list of <a href="TreeNodeTask.html#configattributes">Configuration Attributes</a> available for
- * TreeNodeTask.
- *
- * @param config {Object} Object literal specifying widget configuration properties.
- *
  * @class TreeNodeTask
- * @constructor
  * @extends TreeNodeCheck
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
  */
 var TreeNodeTask = A.Component.create(
 	{
@@ -1485,9 +1625,13 @@ var TreeNodeTask = A.Component.create(
 		EXTENDS: A.TreeNodeCheck,
 
 		prototype: {
-			/*
-			* Methods
-			*/
+
+			/**
+			 * Check the current TreeNodeTask.
+			 *
+			 * @method check
+			 * @param originalTarget
+			 */
 			check: function(originalTarget) {
 				var instance = this;
 
@@ -1517,6 +1661,12 @@ var TreeNodeTask = A.Component.create(
 				A.TreeNodeTask.superclass.check.call(this, originalTarget);
 			},
 
+			/**
+			 * Uncheck the current TreeNodeTask.
+			 *
+			 * @method uncheck
+			 * @param originalTarget
+			 */
 			uncheck: function(originalTarget) {
 				var instance = this;
 
@@ -1564,8 +1714,6 @@ var TREE_NODE_RADIO = 'tree-node-radio',
 	CSS_NODE_RADIO = getCN(TREE, NODE, RADIO);
 
 /**
- * <p><img src="assets/images/aui-treeNodeRadio/main.png"/></p>
- *
  * A base class for TreeNodeRadio, providing:
  * <ul>
  *	<li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
@@ -1573,27 +1721,38 @@ var TREE_NODE_RADIO = 'tree-node-radio',
  *	<li>Automatic check/uncheck the parent status based on the children checked status</li>
  * </ul>
  *
- * Check the list of <a href="TreeNodeRadio.html#configattributes">Configuration Attributes</a> available for
- * TreeNodeRadio.
- *
- * @param config {Object} Object literal specifying widget configuration properties.
- *
  * @class TreeNodeRadio
- * @constructor
  * @extends TreeNodeTask
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
  */
 var TreeNodeRadio = A.Component.create(
 	{
 		/**
 		 * Static property provides a string to identify the class.
 		 *
-		 * @property TreeNode.NAME
+		 * @property TreeNodeRadio.NAME
 		 * @type String
 		 * @static
 		 */
 		NAME: TREE_NODE_RADIO,
 
+		/**
+		 * Static property used to define the default attribute
+		 * configuration for the TreeNodeRadio.
+		 *
+		 * @property TreeNodeRadio.ATTRS
+		 * @type Object
+		 * @static
+		 */
 		ATTRS: {
+
+			/**
+			 * CSS classes used on TreeNodeRadio.
+			 *
+			 * @attribute cssClasses
+			 * @type Object
+			 */
 			cssClasses: {
 				value: {
 					file: {
@@ -1620,9 +1779,13 @@ var TreeNodeRadio = A.Component.create(
 		EXTENDS: A.TreeNodeTask,
 
 		prototype: {
-			/*
-			* Methods
-			*/
+
+			/**
+			 * Create the DOM structure for the TreeNodeRadio. Lifecycle.
+			 *
+			 * @method renderUI
+			 * @protected
+			 */
 			renderUI: function() {
 				var instance = this;
 
@@ -1631,6 +1794,11 @@ var TreeNodeRadio = A.Component.create(
 				instance.get(CONTENT_BOX).addClass(CSS_NODE_RADIO);
 			},
 
+			/**
+			 * Check the current TreeNodeRadio.
+			 *
+			 * @method check
+			 */
 			check: function() {
 				var instance = this;
 
@@ -1639,6 +1807,13 @@ var TreeNodeRadio = A.Component.create(
 				A.TreeNodeRadio.superclass.check.apply(this, arguments);
 			},
 
+			/**
+			 * Uncheck radio nodes.
+			 *
+			 * @method _uncheckNodesRadio
+			 * @param node
+			 * @protected
+			 */
 			_uncheckNodesRadio: function(node) {
 				var instance = this;
 

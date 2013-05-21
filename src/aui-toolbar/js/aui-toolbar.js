@@ -1,3 +1,9 @@
+/**
+ * The Toolbar Component
+ *
+ * @module aui-toolbar
+ */
+
 var Lang = A.Lang,
     isArray = Lang.isArray,
     isString = Lang.isString,
@@ -33,14 +39,53 @@ var Lang = A.Lang,
     CSS_BTN_GROUP_RADIO = getCN(BTN, GROUP, RADIO),
     CSS_BTN_GROUP_VERTICAL = getCN(BTN, GROUP, VERTICAL);
 
+/**
+ * A base class for Toolbar.
+ *
+ * Check the [live demo](http://alloyui.com/examples/toolbar/).
+ *
+ * @class Toolbar
+ * @extends Component
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 A.Toolbar = A.Component.create({
+
+    /**
+     * Static property provides a string to identify the class.
+     *
+     * @property Toolbar.NAME
+     * @type String
+     * @static
+     */
     NAME: TOOLBAR,
 
+    /**
+     * Static property used to define the default attribute
+     * configuration for the Toolbar.
+     *
+     * @property Toolbar.ATTRS
+     * @type Object
+     * @static
+     */
     ATTRS: {
+
+        /**
+         * A list of child elements.
+         *
+         * @attribute children
+         * @type Array
+         */
         children: {
             validator: isArray
         },
 
+        /**
+         * Define a new <code>ToolbarRenderer</code>.
+         *
+         * @attribute toolbarRenderer
+         * @value A.ToolbarRenderer
+         */
         toolbarRenderer: {
             valueFn: function() {
                 return new A.ToolbarRenderer();
@@ -48,16 +93,45 @@ A.Toolbar = A.Component.create({
         }
     },
 
+    /**
+     * Static property used to define the UI attributes.
+     *
+     * @property Toolbar.UI_ATTRS
+     * @type Array
+     * @static
+     */
     UI_ATTRS: [CHILDREN],
 
     prototype: {
+
+        /**
+         * Static property provide a content template.
+         *
+         * @property CONTENT_TEMPLATE
+         * @default null
+         * @static
+         */
         CONTENT_TEMPLATE: null,
+
+        /**
+         * Static property provide a group of templates.
+         *
+         * @property TEMPLATES
+         * @type Object
+         * @static
+         */
         TEMPLATES: {
-            button: '<button class="btn">{content}</button>',
-            icon: '<i class="{cssClass}"></i>',
-            group: '<div class="btn-group {cssClass}"></div>'
+            button: '<button class="aui-btn">{content}</button>',
+            icon:   '<i class="{cssClass}"></i>',
+            group:  '<div class="aui-btn-group {cssClass}"></div>'
         },
 
+        /**
+         * Bind the events on the Toolbar UI. Lifecycle.
+         *
+         * @method bindUI
+         * @protected
+         */
         bindUI: function() {
             var instance = this,
                 boundingBox = instance.get(BOUNDING_BOX);
@@ -65,6 +139,12 @@ A.Toolbar = A.Component.create({
             boundingBox.delegate([CLICK, MOUSEMOVE, FOCUS], instance._onUserInitInteraction, _DOT+CSS_BTN, instance);
         },
 
+        /**
+         * Insert children on Toolbar.
+         *
+         * @method add
+         * @param children, where
+         */
         add: function(children, where) {
             var instance = this,
                 boundingBox = instance.get(BOUNDING_BOX),
@@ -73,6 +153,11 @@ A.Toolbar = A.Component.create({
             boundingBox.insert(toolbarRenderer.render(A.Array(children)), where);
         },
 
+        /**
+         * Clear children from Toolbar.
+         *
+         * @method clear
+         */
         clear: function() {
             var instance = this,
                 boundingBox = instance.get(BOUNDING_BOX);
@@ -80,6 +165,12 @@ A.Toolbar = A.Component.create({
             boundingBox.get(CHILDREN).remove();
         },
 
+        /**
+         * Find the first ancestor node that is a widget bounding box.
+         *
+         * @method getEnclosingWidget
+         * @param seed
+         */
         getEnclosingWidget: function(seed) {
             if (A.instanceOf(seed, A.EventFacade)) {
                 seed = seed.domEvent ? seed.domEvent.target : seed.target;
@@ -87,12 +178,24 @@ A.Toolbar = A.Component.create({
             return A.Widget.getByNode(seed);
         },
 
+        /**
+         * Check if type is supported.
+         *
+         * @method isSupportedType
+         * @param o
+         */
         isSupportedType: function(o) {
             return  A.instanceOf(o, A.Button) ||
                     A.instanceOf(o, A.ToggleButton) ||
                     A.instanceOf(o, A.ButtonGroup);
         },
 
+        /**
+         * Get a certain item based on its index.
+         *
+         * @method item
+         * @param index
+         */
         item: function(index) {
             var instance = this,
                 seed = instance.get(BOUNDING_BOX).get(CHILDREN).item(index),
@@ -109,6 +212,12 @@ A.Toolbar = A.Component.create({
             return seed;
         },
 
+        /**
+         * Remove children from Toolbar.
+         *
+         * @method remove
+         * @param where
+         */
         remove: function(where) {
             var instance = this,
                 boundingBox = instance.get(BOUNDING_BOX);
@@ -116,6 +225,13 @@ A.Toolbar = A.Component.create({
             return boundingBox.get(CHILDREN).item(where).remove();
         },
 
+        /**
+         * Fire on user's first interaction.
+         *
+         * @method _onUserInitInteraction
+         * @param event
+         * @protected
+         */
         _onUserInitInteraction: function(event) {
             var instance = this,
                 currentTarget = event.currentTarget;
@@ -123,6 +239,13 @@ A.Toolbar = A.Component.create({
             instance._initEnclosingWidgetIfNeeded(currentTarget);
         },
 
+        /**
+         * Init enclosing widget if needed.
+         *
+         * @method _initEnclosingWidgetIfNeeded
+         * @param seed
+         * @protected
+         */
         _initEnclosingWidgetIfNeeded: function(seed) {
             var instance = this;
 
@@ -171,6 +294,13 @@ A.Toolbar = A.Component.create({
             }
         },
 
+        /**
+         * Set <code>children</code> attribute on the UI.
+         *
+         * @method _uiSetChildren
+         * @param val
+         * @protected
+         */
         _uiSetChildren: function(val) {
             var instance = this;
 
@@ -185,16 +315,48 @@ A.Toolbar = A.Component.create({
     }
 });
 
+/**
+ * A base class for ToolbarRenderer.
+ *
+ * Check the [live demo](http://alloyui.com/examples/toolbar/).
+ *
+ * @class ToolbarRenderer
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var ToolbarRenderer = function() {};
 
 ToolbarRenderer.prototype = {
+
+    /**
+     * Static property provides a set of templates.
+     *
+     * @property ToolbarRenderer.TEMPLATES
+     * @type Object
+     * @static
+     */
     TEMPLATES: {
         button: A.Button.prototype.TEMPLATE,
-        group: '<div class="' + CSS_BTN_GROUP + ' {cssClass}"></div>',
-        icon: '<i class="{cssClass}" />'
+        group:  '<div class="' + CSS_BTN_GROUP + ' {cssClass}"></div>',
+        icon:   '<i class="{cssClass}" />'
     },
 
+    /**
+     * Static property used to define how
+     * things are going to be rendered.
+     *
+     * @property ToolbarRenderer.RENDERER
+     * @type Object
+     * @static
+     */
     RENDERER: {
+
+        /**
+         * Define how a button should be rendered.
+         *
+         * @method button
+         * @param childRenderHints
+         */
         button: function(childRenderHints) {
             var instance = this,
                 value = childRenderHints.value,
@@ -236,6 +398,12 @@ ToolbarRenderer.prototype = {
             return buttonNode;
         },
 
+        /**
+         * Define how a group should be rendered.
+         *
+         * @method group
+         * @param childRenderHints
+         */
         group: function(childRenderHints) {
             var instance = this,
                 value = childRenderHints.value,
@@ -270,7 +438,13 @@ ToolbarRenderer.prototype = {
         }
     },
 
-    render: function(children) {
+    /**
+     * Render children in a document fragment.
+     *
+     * @method render
+     * @param childRenderHints
+     */
+    render: function(childRenderHints) {
         var instance = this;
 
         if (!children) {
@@ -283,6 +457,12 @@ ToolbarRenderer.prototype = {
         return docFrag;
     },
 
+    /**
+     * Render node.
+     *
+     * @method renderNode
+     * @param child
+     */
     renderNode: function(child) {
         var instance = this,
             childRenderHints = instance._getChildRenderHints(child),
@@ -293,6 +473,14 @@ ToolbarRenderer.prototype = {
         }
     },
 
+    /**
+     * Get child render hints.
+     *
+     * @method _getChildRenderHints
+     * @param child
+     * @return Object
+     * @protected
+     */
     _getChildRenderHints: function(child) {
         var instance = this,
             groupType = null,

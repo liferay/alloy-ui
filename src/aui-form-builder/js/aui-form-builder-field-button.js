@@ -1,3 +1,10 @@
+/**
+ * The Form Builder Component
+ *
+ * @module aui-form-builder
+ * @submodule aui-form-builder-field-button
+ */
+
 var L = A.Lang,
 
 	toInitialCap = A.cached(
@@ -33,17 +40,54 @@ var L = A.Lang,
 
 	BUTTON_TYPES = [SUBMIT, RESET, BUTTON];
 
+/**
+ * A base class for FormBuilderButtonField.
+ *
+ * @class FormBuilderButtonField
+ * @extends FormBuilderField
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var FormBuilderButtonField = A.Component.create({
 
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property FormBuilderButtonField.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: FORM_BUILDER_BUTTON_FIELD,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the FormBuilderButtonField.
+	 *
+	 * @property FormBuilderButtonField.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute acceptChildren
+		 * @default false
+		 * @type Boolean
+		 * @readOnly
+		 */
 		acceptChildren: {
 			readOnly: true,
 			value: false
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute buttonType
+		 * @default 'submit'
+		 */
 		buttonType: {
 			validator: function(val) {
 				return A.Array(BUTTON_TYPES).indexOf(val.toLowerCase()) > -1;
@@ -51,14 +95,31 @@ var FormBuilderButtonField = A.Component.create({
 			value: SUBMIT
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute predefinedValue
+		 */
 		predefinedValue: {
 			value: toInitialCap(SUBMIT)
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute showLabel
+		 * @default false
+		 * @type Boolean
+		 */
 		showLabel: {
 			value: false
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute template
+		 */
 		template: {
 			valueFn: function() {
 				return TPL_BUTTON;
@@ -67,14 +128,40 @@ var FormBuilderButtonField = A.Component.create({
 
 	},
 
+	/**
+	 * Static property used to define the UI attributes.
+	 *
+	 * @property FormBuilderButtonField.UI_ATTRS
+	 * @type Array
+	 * @static
+	 */
 	UI_ATTRS: A.FormBuilderField.UI_ATTRS.concat([BUTTON_TYPE]),
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @property FormBuilderButtonField.CSS_PREFIX
+	 * @type String
+	 * @static
+	 */
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property FormBuilderButtonField.EXTENDS
+	 * @type Object
+	 * @static
+	 */
 	EXTENDS: A.FormBuilderField,
 
 	prototype: {
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getHTML
+		 */
 		getHTML: function() {
 			var instance = this;
 
@@ -90,6 +177,11 @@ var FormBuilderButtonField = A.Component.create({
 			);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getPropertyModel
+		 */
 		getPropertyModel: function() {
 			var instance = this,
 				strings = instance.getStrings();
@@ -113,6 +205,13 @@ var FormBuilderButtonField = A.Component.create({
 			return model;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetButtonType
+		 * @param val
+		 * @protected
+		 */
 		_uiSetButtonType: function(val) {
 			var instance = this,
 				templateNode = instance.get(TEMPLATE_NODE);
@@ -120,6 +219,13 @@ var FormBuilderButtonField = A.Component.create({
 			templateNode.setAttribute(TYPE, val);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetPredefinedValue
+		 * @param val
+		 * @protected
+		 */
 		_uiSetPredefinedValue: function(val) {
 			var instance = this,
 				templateNode = instance.get(TEMPLATE_NODE);

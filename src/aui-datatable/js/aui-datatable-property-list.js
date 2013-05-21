@@ -1,3 +1,10 @@
+/**
+ * The Datatable Component
+ *
+ * @module aui-datatable
+ * @submodule aui-datatable-property-list
+ */
+
 var Lang = A.Lang,
     isFunction = Lang.isFunction,
 
@@ -18,7 +25,23 @@ var Lang = A.Lang,
 
     _DOT = '.';
 
+/**
+ * A base class for PropertyList.
+ *
+ * @class PropertyList
+ * @extends A.DataTable
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [], {
+
+    /**
+     * Construction logic executed during PropertyList instantiation. Lifecycle.
+     *
+     * @method initializer
+     * @param config
+     * @protected
+     */
     initializer: function(config) {
         var instance = this;
 
@@ -40,10 +63,21 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [], {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method getDefaultEditor
+     */
     getDefaultEditor: function() {
         return new A.TextCellEditor();
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _afterRenderUI
+     * @protected
+     */
     _afterRenderUI: function() {
         var instance = this;
 
@@ -52,12 +86,25 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [], {
         );
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _afterUITriggerSort
+     * @param event
+     * @protected
+     */
     _afterUITriggerSort: function(event) {
         var instance = this;
 
         instance.highlight.clear();
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _initHighlight
+     * @protected
+     */
     _initHighlight: function() {
         var instance = this;
 
@@ -67,6 +114,13 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [], {
         });
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onActiveCellChange
+     * @param event
+     * @protected
+     */
     _onActiveCellChange: function(event) {
         var instance = this,
             activeCell = event.newVal,
@@ -81,6 +135,13 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [], {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onSelectionKey
+     * @param event
+     * @protected
+     */
     _onSelectionKey: function(event) {
         var instance = this,
             keyCode = event.keyCode;
@@ -94,6 +155,12 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [], {
         instance._syncPropertyListScrollUI();
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _syncPropertyListScrollUI
+     * @protected
+     */
     _syncPropertyListScrollUI: function() {
         var instance = this,
             activeRow = instance.get(ACTIVE_ROW);
@@ -103,9 +170,32 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [], {
         }
     }
 },{
+
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @property PropertyList.CSS_PREFIX
+     * @type String
+     * @static
+     */
     CSS_PREFIX: A.DataTable.CSS_PREFIX,
 
+    /**
+     * Static property used to define the default attribute
+     * configuration for the PropertyList.
+     *
+     * @property PropertyList.ATTRS
+     * @type Object
+     * @static
+     */
     ATTRS: {
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute columns
+         * @type Function
+         */
         columns: {
             valueFn: function() {
                 var instance = this;
@@ -144,21 +234,45 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [], {
             }
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute scrollable
+         * @default true
+         * @type Boolean
+         */
         scrollable: {
             value: true
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute editEvent
+         * @default 'dblclick'
+         * @type String
+         */
         editEvent: {
             value: DBLCLICK
         },
 
-        // DataTable scroll breaks when width value is a number
-        // See http://yuilibrary.com/projects/yui3/ticket/2532600
-
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * DataTable scroll breaks when width value is a number
+         * See http://yuilibrary.com/projects/yui3/ticket/2532600
+         *
+         * @attribute width
+         */
         width: {
             setter: String
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute strings
+         */
         strings: {
             value: {
                 propertyName: 'Property Name',

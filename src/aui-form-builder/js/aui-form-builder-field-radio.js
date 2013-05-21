@@ -1,3 +1,10 @@
+/**
+ * The Form Builder Component
+ *
+ * @module aui-form-builder
+ * @submodule aui-form-builder-field-radio
+ */
+
 var L = A.Lang,
 
 	CHECKED = 'checked',
@@ -30,12 +37,40 @@ var L = A.Lang,
 	TPL_OPTIONS_CONTAINER = '<div class="' + CSS_FORM_BUILDER_FIELD_OPTIONS_CONTAINER + '"></div>',
 	TPL_RADIO = '<div><input id="{id}" class="' + [CSS_FIELD, CSS_FIELD_CHOICE, CSS_FIELD_RADIO, CSS_FORM_BUILDER_FIELD_NODE].join(SPACE) + '" name="{name}" type="radio" value="{value}" {checked} {disabled} /><label class="field-label" for="{id}">{label}</label></div>';
 
+/**
+ * A base class for FormBuilderRadioField.
+ *
+ * @class FormBuilderRadioField
+ * @extends FormBuilderMultipleChoiceField
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var FormBuilderRadioField = A.Component.create({
 
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property FormBuilderRadioField.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: FORM_BUILDER_RADIO_FIELD,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the FormBuilderRadioField.
+	 *
+	 * @property FormBuilderRadioField.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute template
+		 */
 		template: {
 			valueFn: function() {
 				return TPL_RADIO;
@@ -44,16 +79,42 @@ var FormBuilderRadioField = A.Component.create({
 
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @property FormBuilderRadioField.CSS_PREFIX
+	 * @type String
+	 * @static
+	 */
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property FormBuilderRadioField.EXTENDS
+	 * @type Object
+	 * @static
+	 */
 	EXTENDS: A.FormBuilderMultipleChoiceField,
 
 	prototype: {
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getHTML
+		 */
 		getHTML: function() {
 			return TPL_OPTIONS_CONTAINER;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetDisabled
+		 * @param val
+		 * @protected
+		 */
 		_uiSetDisabled: function(val) {
 			var instance = this,
 				templateNode = instance.get(TEMPLATE_NODE);
@@ -68,6 +129,13 @@ var FormBuilderRadioField = A.Component.create({
 			});
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetOptions
+		 * @param val
+		 * @protected
+		 */
 		_uiSetOptions: function(val) {
 			var instance = this,
 				buffer = [],
@@ -99,6 +167,13 @@ var FormBuilderRadioField = A.Component.create({
 			);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetPredefinedValue
+		 * @param val
+		 * @protected
+		 */
 		_uiSetPredefinedValue: function(val) {
 			var instance = this,
 				optionNodes = instance.optionNodes;

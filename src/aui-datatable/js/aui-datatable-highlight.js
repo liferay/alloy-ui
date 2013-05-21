@@ -1,3 +1,10 @@
+/**
+ * The Datatable Component
+ *
+ * @module aui-datatable
+ * @submodule aui-datatable-highlight
+ */
+
 var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isString = Lang.isString,
@@ -45,6 +52,14 @@ var Lang = A.Lang,
 		return A.Array.map(val, parseFloat);
 	};
 
+/**
+ * A base class for DataTableHighlight.
+ *
+ * @class DataTableHighlight
+ * @extends A.Plugin.Base
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var DataTableHighlight = A.Base.create(
 	'datatable-highlight',
 	A.Plugin.Base, [],
@@ -61,6 +76,12 @@ var DataTableHighlight = A.Base.create(
 		_lastActiveRow: null,
 		_nodes: null,
 
+		/**
+		 * Construction logic executed during DataTableHighlight instantiation. Lifecycle.
+		 *
+		 * @method initializer
+		 * @protected
+		 */
 		initializer: function() {
 			var instance = this,
 				host = instance.get(HOST);
@@ -78,6 +99,11 @@ var DataTableHighlight = A.Base.create(
 			instance.afterHostEvent(DATA_CHANGE, instance._afterDataChange);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method clear
+		 */
 		clear: function() {
 			var instance = this,
 				host = instance.get(HOST),
@@ -91,6 +117,11 @@ var DataTableHighlight = A.Base.create(
 			instance._clearHighlights();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getActiveRegion
+		 */
 		getActiveRegion: function() {
 			var instance = this,
 				host = instance.get(HOST),
@@ -112,6 +143,11 @@ var DataTableHighlight = A.Base.create(
 			return region;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getSelectionRegion
+		 */
 		getSelectionRegion: function() {
 			var instance = this,
 				nodes = instance._nodes,
@@ -130,6 +166,13 @@ var DataTableHighlight = A.Base.create(
 			};
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterActiveCoordChange
+		 * @param event
+		 * @protected
+		 */
 		_afterActiveCoordChange: function(event) {
 			var instance = this,
 				host = instance.get(HOST),
@@ -160,12 +203,26 @@ var DataTableHighlight = A.Base.create(
 			instance._lastActiveRow = activeRow;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterDataChange
+		 * @param event
+		 * @protected
+		 */
 		_afterDataChange: function(event) {
 			var instance = this;
 
 			instance.clear();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterSelectionChange
+		 * @param event
+		 * @protected
+		 */
 		_afterSelectionChange: function(event) {
 			var instance = this,
 				nodes,
@@ -191,6 +248,13 @@ var DataTableHighlight = A.Base.create(
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _alignBorder
+		 * @param overlayNode, region, borderWidth
+		 * @protected
+		 */
 		_alignBorder: function(overlayNode, region, borderWidth) {
 			var instance = this,
 				host = instance.get(HOST);
@@ -218,6 +282,13 @@ var DataTableHighlight = A.Base.create(
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _collectNodes
+		 * @param selection
+		 * @protected
+		 */
 		_collectNodes: function(selection) {
 			var instance = this,
 				type = instance.get(TYPE);
@@ -229,6 +300,12 @@ var DataTableHighlight = A.Base.create(
 			return (instance._nodes = selection[type]);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _clearBorders
+		 * @protected
+		 */
 		_clearBorders: function() {
 			var instance = this;
 
@@ -236,6 +313,12 @@ var DataTableHighlight = A.Base.create(
 			instance.get(OVERLAY_ACTIVE_NODE).remove();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _clearHighlights
+		 * @protected
+		 */
 		_clearHighlights: function() {
 			var instance = this;
 
@@ -246,21 +329,64 @@ var DataTableHighlight = A.Base.create(
 			});
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _validateType
+		 * @param val
+		 * @protected
+		 */
 		_validateType: function (val) {
 			return (val === CELLS || val === ROWS || val === null);
 		}
 	},
 	{
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @property DataTableHighlight.NS
+		 * @type String
+		 * @static
+		 */
 		NS: HIGHLIGHT,
 
+		/**
+		 * Static property provides a string to identify the class.
+		 *
+		 * @property DataTableHighlight.NAME
+		 * @type String
+		 * @static
+		 */
 		NAME: 'datatable-highlight',
 
+		/**
+		 * Static property used to define the default attribute
+		 * configuration for the DataTableHighlight.
+		 *
+		 * @property DataTableHighlight.ATTRS
+		 * @type Object
+		 * @static
+		 */
 		ATTRS: {
+
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @attribute activeBorderWidth
+			 * @default 2
+			 * @type Number
+			 */
 			activeBorderWidth: {
 				setter: _setCSSClockwiseRule,
 				value: 2
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @attribute overlayActiveNode
+			 * @default null
+			 */
 			overlayActiveNode: {
 				setter: function(val) {
 					var instance = this,
@@ -277,6 +403,12 @@ var DataTableHighlight = A.Base.create(
 				value: null
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @attribute overlayNode
+			 * @default null
+			 */
 			overlayNode: {
 				setter: function(val) {
 					var instance = this;
@@ -290,16 +422,35 @@ var DataTableHighlight = A.Base.create(
 				value: null
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @attribute highlightRange
+			 * @default true
+			 * @type Boolean
+			 */
 			highlightRange: {
 				validator: isBoolean,
 				value: true
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @attribute rangeBorderWidth
+			 * @default 1
+			 * @type Number
+			 */
 			rangeBorderWidth: {
 				setter: _setCSSClockwiseRule,
 				value: 1
 			},
 
+			/**
+			 * TODO. Wanna help? Please send a Pull Request.
+			 *
+			 * @attribute type
+			 */
 			type: {
 				validator: '_validateType',
 				value: CELLS

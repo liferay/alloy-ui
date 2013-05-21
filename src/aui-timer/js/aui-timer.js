@@ -1,3 +1,9 @@
+/**
+ * Utility for timing logics.
+ *
+ * @module aui-timer
+ */
+
 var Lang = A.Lang,
     now = Lang.now,
     isEmpty = A.Object.isEmpty,
@@ -5,18 +11,37 @@ var Lang = A.Lang,
     AArray = A.Array;
 
 var Timer = {
+
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method clearInterval
+     * @param id
+     */
     clearInterval: function(id) {
         var instance = Timer;
 
         instance.unregister(true, id);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method clearTimeout
+     * @param id
+     */
     clearTimeout: function(id) {
         var instance = Timer;
 
         instance.unregister(false, id);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method intervalTime
+     * @param newInterval
+     */
     intervalTime: function(newInterval) {
         var instance = Timer;
 
@@ -27,12 +52,24 @@ var Timer = {
         return instance._INTERVAL;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method isRepeatable
+     * @param task
+     */
     isRepeatable: function(task) {
         var instance = Timer;
 
         return task.repeats;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method setTimeout
+     * @param fn, ms, context
+     */
     setTimeout: function(fn, ms, context) {
         var instance = Timer;
 
@@ -41,6 +78,12 @@ var Timer = {
         return instance.register(false, fn, ms, context, args);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method setInterval
+     * @param fn, ms, context
+     */
     setInterval: function(fn, ms, context) {
         var instance = Timer;
 
@@ -49,6 +92,12 @@ var Timer = {
         return instance.register(true, fn, ms, context, args);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method register
+     * @param repeats, fn, ms, context, args
+     */
     register: function(repeats, fn, ms, context, args) {
         var instance = Timer;
 
@@ -65,6 +114,12 @@ var Timer = {
         return id;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method run
+     * @param task
+     */
     run: function(task) {
         var instance = Timer;
 
@@ -73,6 +128,12 @@ var Timer = {
         return task.fn();
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method unregister
+     * @param repeats, id
+     */
     unregister: function(repeats, id) {
         var instance = Timer;
 
@@ -85,6 +146,13 @@ var Timer = {
         return task && task.repeats === repeats && delete tasks[id];
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _create
+     * @param repeats, ms, fn
+     * @protected
+     */
     _create: function(repeats, ms, fn) {
         var instance = Timer;
 
@@ -97,12 +165,26 @@ var Timer = {
         };
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _decrementNextRunTime
+     * @param tasks
+     * @protected
+     */
     _decrementNextRunTime: function(task) {
         var instance = Timer;
 
         return task.next = task.timeout - (now() - task.lastRunTime);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _getNearestInterval
+     * @param num
+     * @protected
+     */
     _getNearestInterval: function(num) {
         var instance = Timer;
 
@@ -122,6 +204,12 @@ var Timer = {
         return nearestInterval;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _lazyDestroy
+     * @protected
+     */
     _lazyDestroy: function() {
         var instance = Timer;
 
@@ -132,6 +220,12 @@ var Timer = {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _lazyInit
+     * @protected
+     */
     _lazyInit: function() {
         var instance = Timer;
 
@@ -144,6 +238,13 @@ var Timer = {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _loop
+     * @param i, pendingTasks, length
+     * @protected
+     */
     _loop: function(i, pendingTasks, length) {
         var instance = Timer;
 
@@ -178,6 +279,12 @@ var Timer = {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _runner
+     * @protected
+     */
     _runner: function() {
         var instance = Timer;
 
@@ -188,6 +295,13 @@ var Timer = {
         instance._loop(i, pendingTasks, length);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _resetNextRunTime
+     * @param task
+     * @protected
+     */
     _resetNextRunTime: function(task) {
         var instance = Timer;
 

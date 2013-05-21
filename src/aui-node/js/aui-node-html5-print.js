@@ -1,3 +1,10 @@
+/**
+ * The Node Utility.
+ *
+ * @module aui-node
+ * @submodule aui-node-html5-print
+ */
+
 var CONFIG = A.config,
 	DOC = CONFIG.doc,
 	WIN = CONFIG.win,
@@ -119,6 +126,11 @@ var PrintFix = function() {
 A.mix(
 	PrintFix,
 	{
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method onAfterPrint
+		 */
 		onAfterPrint: function() {
 			var instance = this;
 
@@ -129,6 +141,11 @@ A.mix(
 			styleSheet.styleSheet.cssText = STR_EMPTY;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method onBeforePrint
+		 */
 		onBeforePrint: function() {
 			var instance = this;
 
@@ -140,6 +157,12 @@ A.mix(
 			instance.writeHTML();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method parseCSS
+		 * @param cssText
+		 */
 		parseCSS: function(cssText) {
 			var instance = this;
 
@@ -153,6 +176,11 @@ A.mix(
 			return css;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method restoreHTML
+		 */
 		restoreHTML: function() {
 			var instance = this;
 
@@ -165,6 +193,11 @@ A.mix(
 			HTML.appendChild(bodyEl);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method writeHTML
+		 */
 		writeHTML: function() {
 			var instance = this;
 
@@ -281,6 +314,12 @@ A.mix(
 			bodyClone.innerHTML = bodyHTML;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _getAllCSSText
+		 * @protected
+		 */
 		_getAllCSSText: function() {
 			var instance = this;
 
@@ -308,6 +347,13 @@ A.mix(
 			return buffer.join(STR_BLANK);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _getCSSTextFromRule
+		 * @param rule
+		 * @protected
+		 */
 		_getCSSTextFromRule: function(rule) {
 			var instance = this;
 
@@ -328,6 +374,13 @@ A.mix(
 			return cssText;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _getAllStyleSheets
+		 * @param styleSheet, mediaType, level, buffer
+		 * @protected
+		 */
 		_getAllStyleSheets: function(styleSheet, mediaType, level, buffer) {
 			var instance = this;
 
@@ -382,6 +435,12 @@ A.mix(
 			return buffer;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _getBodyEl
+		 * @protected
+		 */
 		_getBodyEl: function() {
 			var instance = this;
 
@@ -396,6 +455,12 @@ A.mix(
 			return bodyEl;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _getBodyClone
+		 * @protected
+		 */
 		_getBodyClone: function() {
 			var instance = this;
 
@@ -410,6 +475,12 @@ A.mix(
 			return bodyClone;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _getDocFrag
+		 * @protected
+		 */
 		_getDocFrag: function() {
 			var instance = this;
 
@@ -426,6 +497,12 @@ A.mix(
 			return docFrag;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _getStyleSheet
+		 * @protected
+		 */
 		_getStyleSheet: function() {
 			var instance = this;
 

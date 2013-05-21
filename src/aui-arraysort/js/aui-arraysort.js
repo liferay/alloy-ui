@@ -1,8 +1,28 @@
+/**
+ * The A.ArraySort Utility - A set of utility methods to the ArraySort.
+ *
+ * @module aui-arraysort
+ */
+
 ASort = A.ArraySort;
 
+/**
+ * Augment the <a href="ArraySort.html">YUI3 ArraySort</a> with more util methods.
+ *
+ * @class A.ArraySort
+ * @uses ArraySort
+ * @constructor
+ */
 A.mix(
 	ASort,
 	{
+		/**
+		 * Compare two arrays ignoring white spaces.
+		 *
+		 * @method compareIgnoreWhiteSpace
+		 * @param a, b, desc, compareFn
+		 * @return sort
+		 */
 		compareIgnoreWhiteSpace: function(a, b, desc, compareFn) {
 			var sort;
 
@@ -28,6 +48,9 @@ A.mix(
 		 * Sorts an object array keeping the order of equal items. ECMA script
 		 * standard does not specify the behaviour when the compare function
 		 * returns the value 0;
+		 *
+		 * @method stableSort
+		 * @param array, compareFn
 		 */
 		stableSort: function(array, compareFn) {
 			var i, len = array.length;

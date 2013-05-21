@@ -1,3 +1,9 @@
+/**
+ * The Button Component
+ *
+ * @module aui-button
+ */
+
 var Lang = A.Lang,
     isArray = Lang.isArray,
     isNumber = Lang.isNumber,
@@ -39,17 +45,47 @@ var Lang = A.Lang,
         TOGGLE: getClassName(TOGGLEBTN)
     };
 
-// ButtonExt
+/**
+ * A base class for ButtonExt.
+ *
+ * @class ButtonExt
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var ButtonExt = function() {
 };
 
+/**
+ * Static property used to define the default attribute
+ * configuration for the ButtonExt.
+ *
+ * @property ButtonExt.ATTRS
+ * @type Object
+ * @static
+ */
 ButtonExt.ATTRS = {
+
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute cssClass
+     */
     cssClass: {
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute icon
+     */
     icon: {
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute iconElement
+     */
     iconElement: {
         valueFn: function(val) {
             var instance = this;
@@ -57,16 +93,37 @@ ButtonExt.ATTRS = {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute iconAlign
+     * @default 'left'
+     * @type String
+     */
     iconAlign: {
         value: LEFT,
         validator: isString
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute primary
+     * @default false
+     * @type Boolean
+     */
     primary: {
         value: false
     }
 };
 
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @property ButtonExt.HTML_PARSER
+ * @type Object
+ * @static
+ */
 ButtonExt.HTML_PARSER = {
     iconElement: I
 };
@@ -75,6 +132,12 @@ ButtonExt.prototype = {
     ICON_TEMPLATE: '<i></i>',
     iconElement: null,
 
+    /**
+     * Construction logic executed during ButtonExt instantiation. Lifecycle.
+     *
+     * @method initializer
+     * @protected
+     */
     initializer: function() {
         var instance = this;
 
@@ -87,6 +150,11 @@ ButtonExt.prototype = {
         });
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method syncButtonExtUI
+     */
     syncButtonExtUI: function() {
         var instance = this;
 
@@ -95,6 +163,12 @@ ButtonExt.prototype = {
         instance._uiSetCssClass(instance.get(CSS_CLASS));
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method toggle
+     * @param visible
+     */
     toggle: function(visible) {
         var instance = this;
 
@@ -105,30 +179,65 @@ ButtonExt.prototype = {
         return instance.set(VISIBLE, visible);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _afterCssClassChange
+     * @param event
+     * @protected
+     */
     _afterCssClassChange: function(event) {
         var instance = this;
 
         instance._uiSetCssClass(event.newVal, event.prevVal);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _afterIconChange
+     * @param event
+     * @protected
+     */
     _afterIconChange: function(event) {
         var instance = this;
 
         instance._uiSetIcon(event.newVal);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _afterIconAlignChange
+     * @param event
+     * @protected
+     */
     _afterIconAlignChange: function(event) {
         var instance = this;
 
         instance._uiSetIconAlign(event.newVal);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _afterPrimaryChange
+     * @param event
+     * @protected
+     */
     _afterPrimaryChange: function(event) {
         var instance = this;
 
         instance._uiSetPrimary(event.newVal);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _uiSetCssClass
+     * @param val, prevVal
+     * @protected
+     */
     _uiSetCssClass: function(val, prevVal) {
         var instance = this,
             boundingBox = instance.get(BOUNDING_BOX);
@@ -139,12 +248,26 @@ ButtonExt.prototype = {
         boundingBox.addClass(val);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _uiSetPrimary
+     * @param val
+     * @protected
+     */
     _uiSetPrimary: function(val) {
         var instance = this;
 
         instance.get(BOUNDING_BOX).toggleClass(CLASS_NAMES.PRIMARY, val);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _uiSetIcon
+     * @param val
+     * @protected
+     */
     _uiSetIcon: function(val) {
         var instance = this;
 
@@ -156,6 +279,13 @@ ButtonExt.prototype = {
         instance._uiSetIconAlign(instance.get(ICON_ALIGN));
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _uiSetIconAlign
+     * @param val
+     * @protected
+     */
     _uiSetIconAlign: function(val) {
         var instance = this;
 
@@ -164,9 +294,27 @@ ButtonExt.prototype = {
     }
 };
 
-// ButtonCore
+/**
+ * A base class for ButtonCore.
+ *
+ * @class ButtonCore
+ * @constructor
+ */
 var ButtonCore = A.ButtonCore;
+
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @property ButtonCore.CLASS_NAMES
+ * @static
+ */
 ButtonCore.CLASS_NAMES = CLASS_NAMES;
+
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @method _uiSetLabel
+ */
 ButtonCore.prototype._uiSetLabel = (function(original) {
     return function (label) {
         var instance = this,
@@ -178,14 +326,59 @@ ButtonCore.prototype._uiSetLabel = (function(original) {
     };
 }(ButtonCore.prototype._uiSetLabel));
 
-// Button
 var Button = A.Button;
+
+/**
+ * Static property provides a string to identify the class.
+ *
+ * @property Button.NAME
+ * @type String
+ * @static
+ */
 Button.NAME = BTN;
+
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @property Button.CSS_PREFIX
+ * @type String
+ * @static
+ */
 Button.CSS_PREFIX = CLASS_NAMES.BUTTON;
+
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @property Button.CLASS_NAMES
+ * @type String
+ * @static
+ */
 Button.CLASS_NAMES = CLASS_NAMES;
+
+/**
+ * A base class for Button.
+ *
+ * @class Button
+ * @extends Base
+ * @constructor
+ */
 A.Button = A.Base.create(Button.NAME, Button, [ButtonExt], {}, {
+
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @property Button.CSS_PREFIX
+     * @type String
+     * @static
+     */
     CSS_PREFIX: CLASS_NAMES.BUTTON,
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method getWidgetLazyConstructorFromNodeData
+     * @param node
+     */
     getWidgetLazyConstructorFromNodeData: function(node) {
         var instance = this,
             config = node.getData(WIDGET_CONSTRUCTOR) || {};
@@ -194,14 +387,32 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt], {}, {
         return config;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method hasWidgetLazyConstructorData
+     * @param node
+     */
     hasWidgetLazyConstructorData: function(node) {
         return node.getData(WIDGET_CONSTRUCTOR) !== undefined;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method setWidgetLazyConstructorNodeData
+     * @param node, config
+     */
     setWidgetLazyConstructorNodeData: function(node, config) {
         node.setData(WIDGET_CONSTRUCTOR, config);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method syncIconUI
+     * @param buttonElement, iconElement, iconAlign
+     */
     syncIconUI: function(buttonElement, iconElement, iconAlign) {
         var instance = this,
             textNode = A.config.doc.createTextNode(' '),
@@ -216,23 +427,96 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt], {}, {
     }
 });
 
-// ToggleButton
 var ToggleButton = A.ToggleButton;
+
+/**
+ * Static property provides a string to identify the class.
+ *
+ * @property ToggleButton.NAME
+ * @type String
+ * @static
+ */
 ToggleButton.NAME = TOGGLEBTN;
+
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @property ToggleButton.CSS_PREFIX
+ * @default defaultName
+ * @type typeName
+ * @static
+ */
 ToggleButton.CSS_PREFIX = CLASS_NAMES.TOGGLE;
+
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @property ToggleButton.CLASS_NAMES
+ * @default defaultName
+ * @type typeName
+ * @static
+ */
 ToggleButton.CLASS_NAMES = CLASS_NAMES;
+
+/**
+ * A base class for ToggleButton.
+ *
+ * @class ToggleButton
+ * @extends Base
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 A.ToggleButton = A.Base.create(ToggleButton.NAME, ToggleButton, [ButtonExt], {}, {});
 
-// ButtonGroup
 var ButtonGroup = A.ButtonGroup;
+
+/**
+ * Static property provides a string to identify the class.
+ *
+ * @property ButtonGroup.NAME
+ * @type String
+ * @static
+ */
 ButtonGroup.NAME = BTNGROUP;
+
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @property ButtonGroup.CSS_PREFIX
+ * @default defaultName
+ * @type typeName
+ * @static
+ */
 ButtonGroup.CSS_PREFIX = CLASS_NAMES.BUTTON_GROUP;
+
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @property ButtonGroup.CLASS_NAMES
+ * @default defaultName
+ * @type typeName
+ * @static
+ */
 ButtonGroup.CLASS_NAMES = CLASS_NAMES;
 
+/**
+ * A base class for ButtonGroup.
+ *
+ * @class ButtonGroup
+ * @constructor
+ */
 A.mix(ButtonGroup.prototype, {
-    // Bootstrap button group depends on buttons to be a direct children, force one-box widget.
+
+    // Bootstrap button group depends on buttons to be a direct children,
+    // force one-box widget.
     CONTENT_TEMPLATE: null,
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method item
+     * @param index
+     */
     item: function(index) {
         var instance = this,
             node = instance.getButtons().item(index),
@@ -245,6 +529,12 @@ A.mix(ButtonGroup.prototype, {
         return node;
     },
 
+    /**
+     * Render the ButtonGroup component instance. Lifecycle.
+     *
+     * @method renderUI
+     * @protected
+     */
     renderUI: function() {
         var instance = this;
 
@@ -263,12 +553,24 @@ A.mix(ButtonGroup.prototype, {
         });
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method select
+     * @param items
+     */
     select: function(items) {
         var instance = this;
 
         return instance.toggleSelect(items, true);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method toggleSelect
+     * @param items, forceSelection
+     */
     toggleSelect: function(items, forceSelection) {
         var instance = this,
             type = instance.get(TYPE),
@@ -307,6 +609,12 @@ A.mix(ButtonGroup.prototype, {
         });
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method unselect
+     * @param items
+     */
     unselect: function(items) {
         var instance = this;
 

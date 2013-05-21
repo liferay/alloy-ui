@@ -36,6 +36,13 @@ var ACTIVE_ELEMENT = 'activeElement',
 	};
 
 A.Event.define('input', {
+
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method on
+	 * @param node, subscription, notifier
+	 */
 	on: function (node, subscription, notifier) {
 		var instance = this;
 
@@ -43,6 +50,12 @@ A.Event.define('input', {
 			_INPUT_EVENT_TYPE, A.bind(instance._dispatchEvent, instance, notifier));
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method delegate
+	 * @param node, subscription, notifier, filter
+	 */
 	delegate: function (node, subscription, notifier, filter) {
 		var instance = this;
 
@@ -62,10 +75,22 @@ A.Event.define('input', {
 		}, filter);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method detach
+	 * @param node, subscription, notifier
+	 */
 	detach: function (node, subscription, notifier) {
 		subscription._handler.detach();
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method detachDelegate
+	 * @param node, subscription, notifier
+	 */
 	detachDelegate: function (node, subscription, notifier) {
 		A.Array.each(subscription._handles, function(handle) {
 			var element = A.one(handle.evt.el);
@@ -77,6 +102,13 @@ A.Event.define('input', {
 		subscription._handler.detach();
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _dispatchEvent
+	 * @param notifier, event
+	 * @protected
+	 */
 	_dispatchEvent: function(notifier, event) {
 		var instance = this,
 			input = event.target;

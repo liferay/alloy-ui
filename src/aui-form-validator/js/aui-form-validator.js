@@ -1,3 +1,9 @@
+/**
+ * The Form Validator Component
+ *
+ * @module aui-form-validator
+ */
+
 // API inspired on the amazing jQuery Form Validation - http://jquery.bassistance.de/validate/
 
 var Lang = A.Lang,
@@ -187,43 +193,117 @@ A.mix(defaults, {
     }
 });
 
+/**
+ * A base class for FormValidator.
+ *
+ * @class FormValidator
+ * @extends Base
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var FormValidator = A.Component.create({
+
+    /**
+     * Static property provides a string to identify the class.
+     *
+     * @property FormValidator.NAME
+     * @type String
+     * @static
+     */
     NAME: FORM_VALIDATOR,
 
+    /**
+     * Static property used to define the default attribute
+     * configuration for the FormValidator.
+     *
+     * @property FormValidator.ATTRS
+     * @type Object
+     * @static
+     */
     ATTRS: {
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute boundingBox
+         */
         boundingBox: {
             setter: A.one
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute containerErrorClass
+         * @type String
+         */
         containerErrorClass: {
             value: CSS_ERROR,
             validator: isString
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute containerValidClass
+         * @type String
+         */
         containerValidClass: {
             value: CSS_SUCCESS,
             validator: isString
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute errorClass
+         * @type String
+         */
         errorClass: {
             value: CSS_ERROR_FIELD,
             validator: isString
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute extractRules
+         * @default true
+         * @type Boolean
+         */
         extractRules: {
             value: true,
             validator: isBoolean
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute fieldContainer
+         * @type String
+         */
         fieldContainer: {
             value: _DOT+CSS_CONTROL_GROUP
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute fieldStrings
+         * @default {}
+         * @type Object
+         */
         fieldStrings: {
             value: {},
             validator: isObject
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute messageContainer
+         * @default '<div role="alert"></div>'
+         */
         messageContainer: {
             getter: function(val) {
                 return A.Node.create(val).clone();
@@ -231,12 +311,24 @@ var FormValidator = A.Component.create({
             value: TPL_MESSAGE
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute strings
+         */
         strings: {
             valueFn: function() {
                 return defaults.STRINGS;
             }
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute rules
+         * @default {}
+         * @type Object
+         */
         rules: {
             getter: function(val) {
                 var instance = this;
@@ -249,21 +341,47 @@ var FormValidator = A.Component.create({
             value: {}
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute selectText
+         * @default true
+         * @type Boolean
+         */
         selectText: {
             value: true,
             validator: isBoolean
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute showMessages
+         * @default true
+         * @type Boolean
+         */
         showMessages: {
             value: true,
             validator: isBoolean
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute showAllMessages
+         * @default false
+         * @type Boolean
+         */
         showAllMessages: {
             value: false,
             validator: isBoolean
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute stackErrorContainer
+         */
         stackErrorContainer: {
             getter: function(val) {
                 return A.Node.create(val).clone();
@@ -271,31 +389,72 @@ var FormValidator = A.Component.create({
             value: TPL_STACK_ERROR
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute validateOnBlur
+         * @default true
+         * @type Boolean
+         */
         validateOnBlur: {
             value: true,
             validator: isBoolean
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute validateOnInput
+         * @default false
+         * @type Boolean
+         */
         validateOnInput: {
             value: false,
             validator: isBoolean
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute validClass
+         * @type String
+         */
         validClass: {
             value: CSS_SUCCESS_FIELD,
             validator: isString
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method isCheckable
+     * @param node
+     * @private
+     */
     isCheckable: function(node) {
         var nodeType = node.get(TYPE).toLowerCase();
 
         return (nodeType === CHECKBOX || nodeType === RADIO);
     },
 
+    /**
+     * Static property used to define which component it extends.
+     *
+     * @property FormValidator.EXTENDS
+     * @type Object
+     * @static
+     */
     EXTENDS: A.Base,
 
     prototype: {
+
+        /**
+         * Construction logic executed during FormValidator instantiation. Lifecycle.
+         *
+         * @method initializer
+         * @protected
+         */
         initializer: function() {
             var instance = this;
 
@@ -310,6 +469,12 @@ var FormValidator = A.Component.create({
             instance._uiSetValidateOnInput(instance.get(VALIDATE_ON_INPUT));
         },
 
+        /**
+         * Bind the events on the FormValidator UI. Lifecycle.
+         *
+         * @method bindUI
+         * @protected
+         */
         bindUI: function() {
             var instance = this,
                 boundingBox = instance.get(BOUNDING_BOX);
@@ -337,6 +502,12 @@ var FormValidator = A.Component.create({
             });
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method addFieldError
+         * @param field, ruleName
+         */
         addFieldError: function(field, ruleName) {
             var instance = this,
                 errors = instance.errors,
@@ -349,12 +520,24 @@ var FormValidator = A.Component.create({
             errors[name].push(ruleName);
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method clearFieldError
+         * @param field
+         */
         clearFieldError: function(field) {
             var instance = this;
 
             delete instance.errors[field.get(NAME)];
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method eachRule
+         * @param fn
+         */
         eachRule: function(fn) {
             var instance = this;
 
@@ -368,6 +551,12 @@ var FormValidator = A.Component.create({
             );
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method findFieldContainer
+         * @param field
+         */
         findFieldContainer: function(field) {
             var instance = this,
                 fieldContainer = instance.get(FIELD_CONTAINER);
@@ -377,6 +566,11 @@ var FormValidator = A.Component.create({
             }
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method focusInvalidField
+         */
         focusInvalidField: function() {
             var instance = this,
                 boundingBox = instance.get(BOUNDING_BOX),
@@ -391,6 +585,12 @@ var FormValidator = A.Component.create({
             }
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method getField
+         * @param fieldOrFieldName
+         */
         getField: function(fieldOrFieldName) {
             var instance = this;
 
@@ -405,6 +605,12 @@ var FormValidator = A.Component.create({
             return A.one(fieldOrFieldName);
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method getFieldsByName
+         * @param fieldName
+         */
         getFieldsByName: function(fieldName) {
             var instance = this,
                 domBoundingBox = instance.get(BOUNDING_BOX).getDOM();
@@ -412,12 +618,24 @@ var FormValidator = A.Component.create({
             return domBoundingBox.elements[fieldName];
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method getFieldError
+         * @param field
+         */
         getFieldError: function(field) {
             var instance = this;
 
             return instance.errors[field.get(NAME)];
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method getFieldStackErrorContainer
+         * @param field
+         */
         getFieldStackErrorContainer: function(field) {
             var instance = this,
                 name = field.get(NAME),
@@ -430,6 +648,12 @@ var FormValidator = A.Component.create({
             return stackContainers[name];
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method getFieldErrorMessage
+         * @param field, rule
+         */
         getFieldErrorMessage: function(field, rule) {
             var instance = this,
                 fieldName = field.get(NAME),
@@ -454,12 +678,23 @@ var FormValidator = A.Component.create({
             return Lang.sub(message, substituteRulesMap);
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method hasErrors
+         */
         hasErrors: function() {
             var instance = this;
 
             return !isEmpty(instance.errors);
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method highlight
+         * @param field, valid
+         */
         highlight: function(field, valid) {
             var instance = this,
                 fieldContainer = instance.findFieldContainer(field);
@@ -479,18 +714,36 @@ var FormValidator = A.Component.create({
             );
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method normalizeRuleValue
+         * @param ruleValue
+         */
         normalizeRuleValue: function(ruleValue) {
             var instance = this;
 
             return isFunction(ruleValue) ? ruleValue.apply(instance) : ruleValue;
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method unhighlight
+         * @param field
+         */
         unhighlight: function(field) {
             var instance = this;
 
             instance.highlight(field, true);
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method printStackError
+         * @param field, container, errors
+         */
         printStackError: function(field, container, errors) {
             var instance = this;
 
@@ -513,6 +766,11 @@ var FormValidator = A.Component.create({
             );
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method resetAllFields
+         */
         resetAllFields: function() {
             var instance = this;
 
@@ -525,6 +783,12 @@ var FormValidator = A.Component.create({
             );
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method resetField
+         * @param field
+         */
         resetField: function(field) {
             var instance = this,
                 stackContainer = instance.getFieldStackErrorContainer(field);
@@ -534,6 +798,12 @@ var FormValidator = A.Component.create({
             instance.clearFieldError(field);
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method resetFieldCss
+         * @param field
+         */
         resetFieldCss: function(field) {
             var instance = this,
                 fieldContainer = instance.findFieldContainer(field);
@@ -552,6 +822,12 @@ var FormValidator = A.Component.create({
             removeClasses(fieldContainer, [CONTAINER_VALID_CLASS, CONTAINER_ERROR_CLASS]);
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method validatable
+         * @param field
+         */
         validatable: function(field) {
             var instance = this,
                 validatable = false,
@@ -566,6 +842,11 @@ var FormValidator = A.Component.create({
             return !!validatable;
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method validate
+         */
         validate: function() {
             var instance = this;
 
@@ -578,6 +859,12 @@ var FormValidator = A.Component.create({
             instance.focusInvalidField();
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method validateField
+         * @param field
+         */
         validateField: function(field) {
             var instance = this,
                 fieldNode = instance.getField(field);
@@ -597,24 +884,52 @@ var FormValidator = A.Component.create({
             }
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _afterExtractRulesChange
+         * @param event
+         * @protected
+         */
         _afterExtractRulesChange: function(event) {
             var instance = this;
 
             instance._uiSetExtractRules(event.newVal);
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _afterValidateOnInputChange
+         * @param event
+         * @protected
+         */
         _afterValidateOnInputChange: function(event) {
             var instance = this;
 
             instance._uiSetValidateOnInput(event.newVal);
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _afterValidateOnBlurChange
+         * @param event
+         * @protected
+         */
         _afterValidateOnBlurChange: function(event) {
             var instance = this;
 
             instance._uiSetValidateOnBlur(event.newVal);
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _defErrorFieldFn
+         * @param event
+         * @protected
+         */
         _defErrorFieldFn: function(event) {
             var instance = this;
 
@@ -636,6 +951,13 @@ var FormValidator = A.Component.create({
             }
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _defValidFieldFn
+         * @param event
+         * @protected
+         */
         _defValidFieldFn: function(event) {
             var instance = this;
 
@@ -644,6 +966,13 @@ var FormValidator = A.Component.create({
             instance.unhighlight(field);
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _defValidateFieldFn
+         * @param event
+         * @protected
+         */
         _defValidateFieldFn: function(event) {
             var instance = this;
 
@@ -685,6 +1014,13 @@ var FormValidator = A.Component.create({
             }
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _highlightHelper
+         * @param field, errorClass, validClass, valid
+         * @protected
+         */
         _highlightHelper: function(field, errorClass, validClass, valid) {
             if (field) {
                 if (valid) {
@@ -696,6 +1032,13 @@ var FormValidator = A.Component.create({
             }
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _extractRulesFromMarkup
+         * @param rules
+         * @protected
+         */
         _extractRulesFromMarkup: function(rules) {
             var instance = this,
                 domBoundingBox = instance.get(BOUNDING_BOX).getDOM(),
@@ -739,12 +1082,26 @@ var FormValidator = A.Component.create({
             instance._rulesAlreadyExtracted = true;
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _onFieldInput
+         * @param event
+         * @protected
+         */
         _onFieldInput: function(event) {
             var instance = this;
 
             instance.validateField(event.target);
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _onFormSubmit
+         * @param event
+         * @protected
+         */
         _onFormSubmit: function(event) {
             var instance = this;
 
@@ -768,12 +1125,25 @@ var FormValidator = A.Component.create({
             }
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _onFormReset
+         * @param event
+         * @protected
+         */
         _onFormReset: function(event) {
             var instance = this;
 
             instance.resetAllFields();
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _setARIARoles
+         * @protected
+         */
         _setARIARoles: function() {
             var instance = this;
 
@@ -790,6 +1160,13 @@ var FormValidator = A.Component.create({
             );
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _uiSetExtractRules
+         * @param val
+         * @protected
+         */
         _uiSetExtractRules: function(val) {
             var instance = this;
             if (val) {
@@ -797,6 +1174,13 @@ var FormValidator = A.Component.create({
             }
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _uiSetValidateOnInput
+         * @param val
+         * @protected
+         */
         _uiSetValidateOnInput: function(val) {
             var instance = this,
                 boundingBox = instance.get(BOUNDING_BOX);
@@ -813,6 +1197,13 @@ var FormValidator = A.Component.create({
             }
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _uiSetValidateOnBlur
+         * @param val
+         * @protected
+         */
         _uiSetValidateOnBlur: function(val) {
             var instance = this,
                 boundingBox = instance.get(BOUNDING_BOX);
