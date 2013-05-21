@@ -204,7 +204,8 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 	 * TODO. Wanna help? Please send a Pull Request.
 	 *
 	 * @method renderLasso
-	 * @param startPos, endPos
+	 * @param startPos
+	 * @param endPos
 	 */
 	renderLasso: function(startPos, endPos) {
 		var instance = this;

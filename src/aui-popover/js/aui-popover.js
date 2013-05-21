@@ -141,7 +141,8 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
      * Set the <code>boundingBox</code> position on the UI.
      *
      * @method _uiSetPosition
-     * @param val, prevVal
+     * @param val
+     * @param prevVal
      * @protected
      */
     _uiSetPosition: function(val, prevVal) {

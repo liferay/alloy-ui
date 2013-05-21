@@ -1040,7 +1040,8 @@ var SchedulerDayView = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method calculateYDelta
-		 * @param startXY, xy
+		 * @param startXY
+		 * @param xy
 		 */
 		calculateYDelta: function(startXY, xy) {
 			var instance = this;
@@ -1052,7 +1053,8 @@ var SchedulerDayView = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method findEventIntersections
-		 * @param evt, events
+		 * @param evt
+		 * @param events
 		 */
 		findEventIntersections: function(evt, events) {
 			var instance = this;
@@ -1099,7 +1101,8 @@ var SchedulerDayView = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method roundToNearestHour
-		 * @param date, time
+		 * @param date
+		 * @param time
 		 */
 		roundToNearestHour: function(date, time) {
 			var instance = this;

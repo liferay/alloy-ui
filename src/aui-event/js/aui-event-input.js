@@ -41,7 +41,9 @@ A.Event.define('input', {
 	 * TODO. Wanna help? Please send a Pull Request.
 	 *
 	 * @method on
-	 * @param node, subscription, notifier
+	 * @param node
+	 * @param subscription
+	 * @param notifier
 	 */
 	on: function (node, subscription, notifier) {
 		var instance = this;
@@ -54,7 +56,10 @@ A.Event.define('input', {
 	 * TODO. Wanna help? Please send a Pull Request.
 	 *
 	 * @method delegate
-	 * @param node, subscription, notifier, filter
+	 * @param node
+	 * @param subscription
+	 * @param notifier
+	 * @param filter
 	 */
 	delegate: function (node, subscription, notifier, filter) {
 		var instance = this;
@@ -79,7 +84,9 @@ A.Event.define('input', {
 	 * TODO. Wanna help? Please send a Pull Request.
 	 *
 	 * @method detach
-	 * @param node, subscription, notifier
+	 * @param node
+	 * @param subscription
+	 * @param notifier
 	 */
 	detach: function (node, subscription, notifier) {
 		subscription._handler.detach();
@@ -89,7 +96,9 @@ A.Event.define('input', {
 	 * TODO. Wanna help? Please send a Pull Request.
 	 *
 	 * @method detachDelegate
-	 * @param node, subscription, notifier
+	 * @param node
+	 * @param subscription
+	 * @param notifier
 	 */
 	detachDelegate: function (node, subscription, notifier) {
 		A.Array.each(subscription._handles, function(handle) {
@@ -106,7 +115,8 @@ A.Event.define('input', {
 	 * TODO. Wanna help? Please send a Pull Request.
 	 *
 	 * @method _dispatchEvent
-	 * @param notifier, event
+	 * @param notifier
+	 * @param event
 	 * @protected
 	 */
 	_dispatchEvent: function(notifier, event) {

@@ -436,7 +436,9 @@ var SchedulerTableView = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method buildEventsRow
-		 * @param rowStartDate, rowEndDate, rowDisplayIndex
+		 * @param rowStartDate
+		 * @param rowEndDate
+		 * @param rowDisplayIndex
 		 */
 		buildEventsRow: function(rowStartDate, rowEndDate, rowDisplayIndex) {
 			var instance = this;
@@ -500,7 +502,8 @@ var SchedulerTableView = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method buildEventsTable
-		 * @param rowStartDate, rowEndDate
+		 * @param rowStartDate
+		 * @param rowEndDate
 		 */
 		buildEventsTable: function(rowStartDate, rowEndDate) {
 			var instance = this,
@@ -534,7 +537,9 @@ var SchedulerTableView = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method buildEventsTitleRow
-		 * @param tableNode, rowStartDate, rowEndDate
+		 * @param tableNode
+		 * @param rowStartDate
+		 * @param rowEndDate
 		 */
 		buildEventsTitleRow: function(tableNode, rowStartDate, rowEndDate) {
 			var instance = this;
@@ -680,7 +685,11 @@ var SchedulerTableView = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method loopDates
-		 * @param startDate, endDate, fn, incrementBy, factor
+		 * @param startDate
+		 * @param endDate
+		 * @param fn
+		 * @param incrementBy
+		 * @param factor
 		 */
 		loopDates: function(startDate, endDate, fn, incrementBy, factor) {
 			var instance = this;
@@ -897,7 +906,10 @@ var SchedulerTableView = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method _getEvtSplitInfo
-		 * @param evt, celDate, rowStartDate, rowEndDate
+		 * @param evt
+		 * @param celDate
+		 * @param rowStartDate
+		 * @param rowEndDate
 		 * @protected
 		 */
 		_getEvtSplitInfo: function(evt, celDate, rowStartDate, rowEndDate) {
@@ -920,7 +932,10 @@ var SchedulerTableView = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method _getRenderableEvent
-		 * @param events, rowStartDate, rowEndDate, celDate
+		 * @param events
+		 * @param rowStartDate
+		 * @param rowEndDate
+		 * @param celDate
 		 * @protected
 		 */
 		_getRenderableEvent: function(events, rowStartDate, rowEndDate, celDate) {
@@ -1050,7 +1065,9 @@ var SchedulerTableView = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method _syncEventNodeContainerUI
-		 * @param evt, node, evtSplitInfo
+		 * @param evt
+		 * @param node
+		 * @param evtSplitInfo
 		 * @protected
 		 */
 		_syncEventNodeContainerUI: function(evt, node, evtSplitInfo) {
@@ -1071,7 +1088,9 @@ var SchedulerTableView = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method _syncEventNodeUI
-		 * @param evt, container, celDate
+		 * @param evt
+		 * @param container
+		 * @param celDate
 		 * @protected
 		 */
 		_syncEventNodeUI: function(evt, container, celDate) {
@@ -1152,7 +1171,8 @@ var SchedulerTableView = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method _valueNodeList
-		 * @param size, tpl
+		 * @param size
+		 * @param tpl
 		 * @protected
 		 */
 		_valueNodeList: function(size, tpl) {

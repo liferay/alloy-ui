@@ -235,7 +235,8 @@ ButtonExt.prototype = {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _uiSetCssClass
-     * @param val, prevVal
+     * @param val
+     * @param prevVal
      * @protected
      */
     _uiSetCssClass: function(val, prevVal) {
@@ -401,7 +402,8 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt], {}, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method setWidgetLazyConstructorNodeData
-     * @param node, config
+     * @param node
+     * @param config
      */
     setWidgetLazyConstructorNodeData: function(node, config) {
         node.setData(WIDGET_CONSTRUCTOR, config);
@@ -411,7 +413,9 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt], {}, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method syncIconUI
-     * @param buttonElement, iconElement, iconAlign
+     * @param buttonElement
+     * @param iconElement
+     * @param iconAlign
      */
     syncIconUI: function(buttonElement, iconElement, iconAlign) {
         var instance = this,
@@ -569,7 +573,8 @@ A.mix(ButtonGroup.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method toggleSelect
-     * @param items, forceSelection
+     * @param items
+     * @param forceSelection
      */
     toggleSelect: function(items, forceSelection) {
         var instance = this,

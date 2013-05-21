@@ -314,7 +314,8 @@ var SortableList = A.Component.create(
              * TODO. Wanna help? Please send a Pull Request.
              *
              * @method _updatePlaceholder
-             * @param event, cancelAppend
+             * @param event
+             * @param cancelAppend
              * @protected
              */
             _updatePlaceholder: function(event, cancelAppend) {

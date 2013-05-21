@@ -203,7 +203,8 @@ var Toggler = A.Component.create({
      * Handle header events.
      *
      * @method headerEventHandler
-     * @param event, instance
+     * @param event
+     * @param instance
      */
     headerEventHandler: function(event, instance) {
         if (event.type === CLICK || event.isKey(ENTER) || event.isKey(SPACE)) {
@@ -276,7 +277,8 @@ var Toggler = A.Component.create({
          * Expand Toggler with an animation.
          *
          * @method animate
-         * @param config, fn
+         * @param config
+         * @param fn
          */
         animate: function(config, fn) {
             var instance = this;

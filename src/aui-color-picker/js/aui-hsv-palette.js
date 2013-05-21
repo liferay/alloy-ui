@@ -285,7 +285,8 @@ HSVPalette = A.Base.create(NAME, A.Widget, [], {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _afterHSThumbChange
-     * @param x, y
+     * @param x
+     * @param y
      * @protected
      */
     _afterHSThumbChange: function(x, y) {

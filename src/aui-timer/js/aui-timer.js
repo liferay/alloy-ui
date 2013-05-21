@@ -68,7 +68,9 @@ var Timer = {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method setTimeout
-     * @param fn, ms, context
+     * @param fn
+     * @param ms
+     * @param context
      */
     setTimeout: function(fn, ms, context) {
         var instance = Timer;
@@ -82,7 +84,9 @@ var Timer = {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method setInterval
-     * @param fn, ms, context
+     * @param fn
+     * @param ms
+     * @param context
      */
     setInterval: function(fn, ms, context) {
         var instance = Timer;
@@ -96,7 +100,11 @@ var Timer = {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method register
-     * @param repeats, fn, ms, context, args
+     * @param repeats
+     * @param fn
+     * @param ms
+     * @param context
+     * @param args
      */
     register: function(repeats, fn, ms, context, args) {
         var instance = Timer;
@@ -132,7 +140,8 @@ var Timer = {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method unregister
-     * @param repeats, id
+     * @param repeats
+     * @param id
      */
     unregister: function(repeats, id) {
         var instance = Timer;
@@ -150,7 +159,9 @@ var Timer = {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _create
-     * @param repeats, ms, fn
+     * @param repeats
+     * @param ms
+     * @param fn
      * @protected
      */
     _create: function(repeats, ms, fn) {
@@ -242,7 +253,9 @@ var Timer = {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _loop
-     * @param i, pendingTasks, length
+     * @param i
+     * @param pendingTasks
+     * @param length
      * @protected
      */
     _loop: function(i, pendingTasks, length) {

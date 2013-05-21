@@ -403,7 +403,9 @@ A.mix(AutosizeIframe, {
 	 * TODO. Wanna help? Please send a Pull Request.
 	 *
 	 * @method _getContentHeight
-	 * @param iframeWin, iframeDoc, fallbackHeight
+	 * @param iframeWin
+	 * @param iframeDoc
+	 * @param fallbackHeight
 	 * @protected
 	 */
 	_getContentHeight: function(iframeWin, iframeDoc, fallbackHeight) {

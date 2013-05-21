@@ -506,7 +506,8 @@ var FormValidator = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method addFieldError
-         * @param field, ruleName
+         * @param field
+         * @param ruleName
          */
         addFieldError: function(field, ruleName) {
             var instance = this,
@@ -652,7 +653,8 @@ var FormValidator = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getFieldErrorMessage
-         * @param field, rule
+         * @param field
+         * @param rule
          */
         getFieldErrorMessage: function(field, rule) {
             var instance = this,
@@ -693,7 +695,8 @@ var FormValidator = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method highlight
-         * @param field, valid
+         * @param field
+         * @param valid
          */
         highlight: function(field, valid) {
             var instance = this,
@@ -742,7 +745,9 @@ var FormValidator = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method printStackError
-         * @param field, container, errors
+         * @param field
+         * @param container
+         * @param errors
          */
         printStackError: function(field, container, errors) {
             var instance = this;
@@ -1018,7 +1023,10 @@ var FormValidator = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _highlightHelper
-         * @param field, errorClass, validClass, valid
+         * @param field
+         * @param errorClass
+         * @param validClass
+         * @param valid
          * @protected
          */
         _highlightHelper: function(field, errorClass, validClass, valid) {

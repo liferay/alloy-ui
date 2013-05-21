@@ -463,7 +463,9 @@ var DiagramBuilder = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method connect
-		 * @param diagramNode1, diagramNode2, optConnector
+		 * @param diagramNode1
+		 * @param diagramNode2
+		 * @param optConnector
 		 */
 		connect: function(diagramNode1, diagramNode2, optConnector) {
 			var instance = this;
@@ -658,7 +660,8 @@ var DiagramBuilder = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method getNodesByTransitionProperty
-		 * @param property, value
+		 * @param property
+		 * @param value
 		 */
 		getNodesByTransitionProperty: function(property, value) {
 			var instance = this,
@@ -713,7 +716,8 @@ var DiagramBuilder = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method hideSuggestConnetorOverlay
-		 * @param diagramNode, drag
+		 * @param diagramNode
+		 * @param drag
 		 */
 		hideSuggestConnetorOverlay: function(diagramNode, drag) {
 			var instance = this;
@@ -1791,7 +1795,8 @@ var DiagramNode = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method connect
-		 * @param transition, optConnector
+		 * @param transition
+		 * @param optConnector
 		 */
 		connect: function(transition, optConnector) {
 			var instance = this;

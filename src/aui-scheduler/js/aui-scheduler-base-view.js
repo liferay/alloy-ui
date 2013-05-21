@@ -268,7 +268,8 @@ var SchedulerView = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method limitDate
-		 * @param date, maxDate
+		 * @param date
+		 * @param maxDate
 		 */
 		limitDate: function(date, maxDate) {
 			var instance = this;

@@ -79,7 +79,8 @@ var HashMap = A.Base.create('map', A.Base, [],
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method has
-         * @param key, opt_hash
+         * @param key
+         * @param opt_hash
          */
         has: function(key, opt_hash) {
             var instance = this;
@@ -127,7 +128,9 @@ var HashMap = A.Base.create('map', A.Base, [],
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method put
-         * @param key, value, opt_hash
+         * @param key
+         * @param value
+         * @param opt_hash
          */
         put: function(key, value, opt_hash) {
             this.fire('put', {
@@ -155,7 +158,8 @@ var HashMap = A.Base.create('map', A.Base, [],
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method remove
-         * @param key, opt_hash
+         * @param key
+         * @param opt_hash
          */
         remove: function(key, opt_hash) {
             var instance = this,

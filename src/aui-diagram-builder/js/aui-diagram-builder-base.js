@@ -482,7 +482,8 @@ A.mix(FieldSupport.prototype, {
 	 * TODO. Wanna help? Please send a Pull Request.
 	 *
 	 * @method addField
-	 * @param field, index
+	 * @param field
+	 * @param index
 	 */
 	addField: function(field, index) {
 		var instance = this;

@@ -270,7 +270,9 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _handleKey
-     * @param event, obj, keyCode
+     * @param event
+     * @param obj
+     * @param keyCode
      * @protected
      */
     _handleKey: function(event, obj, keyCode) {
@@ -444,7 +446,7 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _onInsertText
-     * @param eventevent
+     * @param event
      * @protected
      */
     _onInsertText: function(event) {

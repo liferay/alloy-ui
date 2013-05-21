@@ -378,7 +378,10 @@ A.mix(
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method _getAllStyleSheets
-		 * @param styleSheet, mediaType, level, buffer
+		 * @param styleSheet
+		 * @param mediaType
+		 * @param level
+		 * @param buffer
 		 * @protected
 		 */
 		_getAllStyleSheets: function(styleSheet, mediaType, level, buffer) {

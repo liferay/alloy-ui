@@ -481,7 +481,11 @@ var Carousel = A.Component.create(
              * Fire when animation ends.
              *
              * @method _onAnimationEnd
-             * @param event, newImage, oldImage, newMenuItem, oldMenuItem
+             * @param event
+             * @param newImage
+             * @param oldImage
+             * @param newMenuItem
+             * @param oldMenuItem
              * @protected
              */
             _onAnimationEnd: function(event, newImage, oldImage, newMenuItem, oldMenuItem) {
@@ -498,7 +502,11 @@ var Carousel = A.Component.create(
              * Fire when animation starts.
              *
              * @method _onAnimationStart
-             * @param event, newImage, oldImage, newMenuItem, oldMenuItem
+             * @param event
+             * @param newImage
+             * @param oldImage
+             * @param newMenuItem
+             * @param oldMenuItem
              * @protected
              */
             _onAnimationStart: function(event, newImage, oldImage, newMenuItem, oldMenuItem) {
@@ -649,7 +657,8 @@ var Carousel = A.Component.create(
              * Set the <code>activeIndex</code> on the UI.
              *
              * @method _uiSetActiveIndex
-             * @param newVal, objOptions
+             * @param newVal
+             * @param objOptions
              * @protected
              */
             _uiSetActiveIndex: function(newVal, objOptions) {

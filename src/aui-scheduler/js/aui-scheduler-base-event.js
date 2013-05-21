@@ -576,7 +576,8 @@ var SchedulerEvent = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method copyDates
-		 * @param evt, options
+		 * @param evt
+		 * @param options
 		 */
 		copyDates: function(evt, options) {
 			var instance = this;
@@ -592,7 +593,9 @@ var SchedulerEvent = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method copyPropagateAttrValues
-		 * @param evt, dontCopyMap, options
+		 * @param evt
+		 * @param dontCopyMap
+		 * @param options
 		 */
 		copyPropagateAttrValues: function(evt, dontCopyMap, options) {
 			var instance = this,
@@ -809,7 +812,8 @@ var SchedulerEvent = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method move
-		 * @param date, options
+		 * @param date
+		 * @param options
 		 */
 		move: function(date, options) {
 			var instance = this;
@@ -1056,7 +1060,8 @@ var SchedulerEvent = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method _formatDate
-		 * @param date, format
+		 * @param date
+		 * @param format
 		 * @protected
 		 */
 		_formatDate: function(date, format) {

@@ -468,7 +468,8 @@ A.Connector = A.Base.create('line', A.Base, [], {
 	 * TODO. Wanna help? Please send a Pull Request.
 	 *
 	 * @method _offsetXY
-	 * @param xy, sign
+	 * @param xy
+	 * @param sign
 	 * @protected
 	 */
 	_offsetXY: function(xy, sign) {
@@ -636,7 +637,8 @@ A.Connector = A.Base.create('line', A.Base, [], {
 	 * TODO. Wanna help? Please send a Pull Request.
 	 *
 	 * @method _uiSetSelected
-	 * @param val, draw
+	 * @param val
+	 * @param draw
 	 * @protected
 	 */
 	_uiSetSelected: function(val, draw) {
@@ -678,7 +680,9 @@ A.Connector = A.Base.create('line', A.Base, [], {
 	 * TODO. Wanna help? Please send a Pull Request.
 	 *
 	 * @method _updateShape
-	 * @param shape, cShape, draw
+	 * @param shape
+	 * @param cShape
+	 * @param draw
 	 * @protected
 	 */
 	_updateShape: function(shape, cShape, draw) {
