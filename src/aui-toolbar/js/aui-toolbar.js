@@ -143,7 +143,8 @@ A.Toolbar = A.Component.create({
          * Insert children on Toolbar.
          *
          * @method add
-         * @param children, where
+         * @param children
+         * @param where
          */
         add: function(children, where) {
             var instance = this,

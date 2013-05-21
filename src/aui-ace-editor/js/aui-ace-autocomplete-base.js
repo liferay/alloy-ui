@@ -250,7 +250,8 @@ Base.prototype = {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _filterResults
-     * @param content, results
+     * @param content
+     * @param results
      * @protected
      */
     _filterResults: function(content, results) {
@@ -415,7 +416,9 @@ Base.prototype = {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _phraseMatch
-     * @param content, results, caseSensitive
+     * @param content
+     * @param results
+     * @param caseSensitive
      * @protected
      */
     _phraseMatch: function (content, results, caseSensitive) {
@@ -452,7 +455,8 @@ Base.prototype = {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _processAutoComplete
-     * @param row, column
+     * @param row
+     * @param column
      * @protected
      */
     _processAutoComplete: function(row, column) {
@@ -521,7 +525,9 @@ Base.prototype = {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _sortAscLength
-     * @param content, results, caseSensitive
+     * @param content
+     * @param results
+     * @param caseSensitive
      * @protected
      */
     _sortAscLength: function (content, results, caseSensitive) {

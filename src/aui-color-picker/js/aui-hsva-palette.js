@@ -184,7 +184,9 @@ HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _calculateRGBArray
-     * @param r, g, b
+     * @param r
+     * @param g
+     * @param b
      * @protected
      */
     _calculateRGBArray: function(r, g, b) {
@@ -200,7 +202,9 @@ HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _calculateRGBColor
-     * @param hue, saturation, value
+     * @param hue
+     * @param saturation
+     * @param value
      * @protected
      */
     _calculateRGBColor: function(hue, saturation, value) {
@@ -214,7 +218,10 @@ HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _calculateRGBA
-     * @param hue, saturation, value, alpha
+     * @param hue
+     * @param saturation
+     * @param value
+     * @param alpha
      * @protected
      */
     _calculateRGBA: function(hue, saturation, value, alpha) {
@@ -244,7 +251,9 @@ HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _convertColor
-     * @param value, from, to
+     * @param value
+     * @param from
+     * @param to
      * @protected
      */
     _convertColor: function(value, from, to) {
@@ -295,7 +304,8 @@ HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _getHexValue
-     * @param hexColor, rgbColorArray
+     * @param hexColor
+     * @param rgbColorArray
      * @protected
      */
     _getHexValue: function(hexColor, rgbColorArray) {

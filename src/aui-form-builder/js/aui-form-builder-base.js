@@ -512,7 +512,9 @@ var FormBuilder = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method insertField
-		 * @param field, index, parent
+		 * @param field
+		 * @param index
+		 * @param parent
 		 */
 		insertField: function(field, index, parent) {
 			var instance = this;
@@ -529,7 +531,8 @@ var FormBuilder = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method plotField
-		 * @param field, container
+		 * @param field
+		 * @param container
 		 */
 		plotField: function(field, container) {
 			var instance = this,
@@ -551,7 +554,8 @@ var FormBuilder = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method plotFields
-		 * @param fields, container
+		 * @param fields
+		 * @param container
 		 */
 		plotFields: function(fields, container) {
 			var instance = this;
@@ -699,7 +703,8 @@ var FormBuilder = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method _cloneField
-		 * @param field, deep
+		 * @param field
+		 * @param deep
 		 * @protected
 		 */
 		_cloneField: function(field, deep) {

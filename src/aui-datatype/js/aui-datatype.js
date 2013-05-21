@@ -351,7 +351,8 @@ A.mix(A.DataType.DateMath, {
 	 * TODO. Wanna help? Please send a Pull Request.
 	 *
 	 * @method copyHours
-	 * @param d1, d2
+	 * @param d1
+	 * @param d2
 	 */
 	copyHours: function(d1, d2) {
 		var instance = this;
@@ -505,7 +506,9 @@ A.mix(A.DataType.DateMath, {
 	 * TODO. Wanna help? Please send a Pull Request.
 	 *
 	 * @method getOffset
-	 * @param d1, d2, constantAmount
+	 * @param d1
+	 * @param d2
+	 * @param constantAmount
 	 */
 	getOffset: function(d1, d2, constantAmount) {
 		var offset = (d1.getTime()-d2.getTime()) / (constantAmount || 0);
@@ -857,7 +860,8 @@ A.mix(A.DataType.DateMath, {
 	 * TODO. Wanna help? Please send a Pull Request.
 	 *
 	 * @method getDaysInMonth
-	 * @param year, month
+	 * @param year
+	 * @param month
 	 */
 	getDaysInMonth: function(year, month) {
 		return this.findMonthEnd(this.getDate(year, month)).getDate();
@@ -867,7 +871,10 @@ A.mix(A.DataType.DateMath, {
 	 * TODO. Wanna help? Please send a Pull Request.
 	 *
 	 * @method toUsTimeString
-	 * @param date, padHours, omitMinutes, hideAmPm
+	 * @param date
+	 * @param padHours
+	 * @param omitMinutes
+	 * @param hideAmPm
 	 */
 	toUsTimeString: function(date, padHours, omitMinutes, hideAmPm) {
 		date = isDate(date) ? date : new Date(0, 0, 0, date);
@@ -905,7 +912,8 @@ A.mix(A.DataType.DateMath, {
 	 * TODO. Wanna help? Please send a Pull Request.
 	 *
 	 * @method toIsoTimeString
-	 * @param date, showSeconds
+	 * @param date
+	 * @param showSeconds
 	 */
 	toIsoTimeString: function(date, showSeconds) {
 		date = isDate(date) ? date : new Date(0, 0, 0, date);

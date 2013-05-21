@@ -20,7 +20,10 @@ A.mix(
 		 * Compare two arrays ignoring white spaces.
 		 *
 		 * @method compareIgnoreWhiteSpace
-		 * @param a, b, desc, compareFn
+		 * @param a
+		 * @param b
+		 * @param desc
+		 * @param compareFn
 		 * @return sort
 		 */
 		compareIgnoreWhiteSpace: function(a, b, desc, compareFn) {
@@ -50,7 +53,8 @@ A.mix(
 		 * returns the value 0;
 		 *
 		 * @method stableSort
-		 * @param array, compareFn
+		 * @param array
+		 * @param compareFn
 		 */
 		stableSort: function(array, compareFn) {
 			var i, len = array.length;

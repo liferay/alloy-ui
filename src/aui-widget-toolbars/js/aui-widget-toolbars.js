@@ -76,7 +76,8 @@ WidgetToolbars.prototype = {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method addToolbar
-     * @param toolbar, section
+     * @param toolbar
+     * @param section
      */
     addToolbar: function(toolbar, section) {
         var instance = this;

@@ -748,7 +748,6 @@ var ImageViewer = A.Base.create(
 		 * Fires after the ImageViewer render phase.
 		 *
 		 * @method _afterRender
-		 * @param {EventFacade} event
 		 * @protected
 		 */
 		_afterRender: function() {

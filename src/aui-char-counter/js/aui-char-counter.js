@@ -233,8 +233,7 @@ var CharCounter = A.Component.create(
 			 * Setter for <a href="CharCounter.html#config_maxLength">maxLength</a>.
 			 *
 			 * @method _setMaxLength
-			 * @param {Number} v Value of the new <a
-			 * href="CharCounter.html#config_maxLenght">maxLenght</a>.
+			 * @param {Number} v Value of the new <a href="CharCounter.html#config_maxLenght">maxLenght</a>.
 			 * @protected
 			 * @return {Number}
 			 */

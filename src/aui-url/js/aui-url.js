@@ -70,7 +70,8 @@ A.mix(Url.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method addParameter
-     * @param key, values
+     * @param key
+     * @param values
      */
     addParameter: function(key, values) {
         var instance = this;
@@ -315,7 +316,8 @@ A.mix(Url.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method setParameter
-     * @param key, opt_values
+     * @param key
+     * @param opt_values
      */
     setParameter: function(key, opt_values) {
         var instance = this;

@@ -223,7 +223,9 @@ var Aria = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method setAttribute
-         * @param attrName, attrValue, node
+         * @param attrName
+         * @param attrValue
+         * @param node
          */
 		setAttribute: function(attrName, attrValue, node) {
 			var instance = this;
@@ -255,7 +257,8 @@ var Aria = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method setRole
-         * @param roleName, node
+         * @param roleName
+         * @param node
          */
 		setRole: function(roleName, node) {
 			var instance = this;
@@ -348,7 +351,8 @@ var Aria = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _getAriaAttribute
-         * @param aria, attrName
+         * @param aria
+         * @param attrName
          * @protected
          */
 		_getAriaAttribute: function(aria, attrName) {

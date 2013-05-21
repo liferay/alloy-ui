@@ -24,7 +24,10 @@ A.Event.define(
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method delegate
-		 * @param node, subscription, notifier, filter
+		 * @param node
+		 * @param subscription
+		 * @param notifier
+		 * @param filter
 		 */
 		delegate: function (node, subscription, notifier, filter) {
 			var instance = this;
@@ -54,7 +57,9 @@ A.Event.define(
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method detach
-		 * @param node, subscription, notifier
+		 * @param node
+		 * @param subscription
+		 * @param notifier
 		 */
 		detach: function (node, subscription, notifier) {
 			var instance = this;
@@ -66,7 +71,9 @@ A.Event.define(
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method detachDelegate
-		 * @param node, subscription, notifier
+		 * @param node
+		 * @param subscription
+		 * @param notifier
 		 */
 		detachDelegate: function (node, subscription, notifier) {
 			var instance = this;
@@ -78,7 +85,9 @@ A.Event.define(
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method on
-		 * @param node, subscription, notifier
+		 * @param node
+		 * @param subscription
+		 * @param notifier
 		 */
 		on: function (node, subscription, notifier) {
 			var instance = this;
@@ -90,7 +99,11 @@ A.Event.define(
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method _attachEvent
-		 * @param form, node, subscription, notifier, filter
+		 * @param form
+		 * @param node
+		 * @param subscription
+		 * @param notifier
+		 * @param filter
 		 * @protected
 		 */
 		_attachEvent: function(form, node, subscription, notifier, filter) {
@@ -146,7 +159,9 @@ A.Event.define(
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method _detachEvents
-		 * @param node, subscription, notifier
+		 * @param node
+		 * @param subscription
+		 * @param notifier
 		 * @protected
 		 */
 		_detachEvents: function(node, subscription, notifier) {
@@ -169,7 +184,8 @@ A.Event.define(
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method _getNodeName
-		 * @param elem, name
+		 * @param elem
+		 * @param name
 		 * @protected
 		 */
 		_getNodeName: function(elem, name) {
@@ -182,7 +198,8 @@ A.Event.define(
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method _hasParent
-		 * @param node, testParentNode
+		 * @param node
+		 * @param testParentNode
 		 * @protected
 		 */
 		_hasParent: function(node, testParentNode) {
@@ -198,7 +215,8 @@ A.Event.define(
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method _prepareHandles
-		 * @param subscription, node
+		 * @param subscription
+		 * @param node
 		 * @protected
 		 */
 		_prepareHandles: function(subscription, node) {

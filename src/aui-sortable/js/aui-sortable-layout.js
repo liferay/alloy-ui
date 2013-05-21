@@ -328,7 +328,8 @@ var SortableLayout = A.Component.create(
              * TODO. Wanna help? Please send a Pull Request.
              *
              * @method addDropNode
-             * @param node, config
+             * @param node
+             * @param config
              */
             addDropNode: function(node, config) {
                 var instance = this;
@@ -372,7 +373,8 @@ var SortableLayout = A.Component.create(
              * TODO. Wanna help? Please send a Pull Request.
              *
              * @method alignPlaceholder
-             * @param region, isTarget
+             * @param region
+             * @param isTarget
              */
             alignPlaceholder: function(region, isTarget) {
                 var instance = this;
@@ -424,7 +426,8 @@ var SortableLayout = A.Component.create(
              * TODO. Wanna help? Please send a Pull Request.
              *
              * @method calculateQuadrant
-             * @param drag, drop
+             * @param drag
+             * @param drop
              */
             calculateQuadrant: function(drag, drop) {
                 var instance = this;
@@ -458,7 +461,8 @@ var SortableLayout = A.Component.create(
              * TODO. Wanna help? Please send a Pull Request.
              *
              * @method getPlaceholderXY
-             * @param region, isTarget
+             * @param region
+             * @param isTarget
              */
             getPlaceholderXY: function(region, isTarget) {
                 var instance = this;

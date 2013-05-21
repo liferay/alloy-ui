@@ -99,7 +99,8 @@ Palette = A.Base.create(_NAME, A.Widget, [], {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method getItem
-     * @param row, col
+     * @param row
+     * @param col
      */
     getItem: function(row, col) {
         var instance = this;
@@ -163,7 +164,8 @@ Palette = A.Base.create(_NAME, A.Widget, [], {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method toggleSelection
-     * @param valueOrIndex, force
+     * @param valueOrIndex
+     * @param force
      */
     toggleSelection: function(valueOrIndex, force) {
         var instance = this,
@@ -286,7 +288,8 @@ Palette = A.Base.create(_NAME, A.Widget, [], {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _getContent
-     * @param items, columns
+     * @param items
+     * @param columns
      * @protected
      */
     _getContent: function(items, columns) {
@@ -365,7 +368,8 @@ Palette = A.Base.create(_NAME, A.Widget, [], {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _getPaletteContent
-     * @param items, content
+     * @param items
+     * @param content
      * @protected
      */
     _getPaletteContent: function(items, content) {
@@ -384,7 +388,10 @@ Palette = A.Base.create(_NAME, A.Widget, [], {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _getRowContent
-     * @param items, index, row, content
+     * @param items
+     * @param index
+     * @param row
+     * @param content
      * @protected
      */
     _getRowContent: function(items, index, row, content) {

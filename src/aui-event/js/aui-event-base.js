@@ -243,7 +243,8 @@ A.mix(
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method isKeyInRange
-		 * @param start, end
+		 * @param start
+		 * @param end
 		 */
 		isKeyInRange: function(start, end) {
 			var instance = this;

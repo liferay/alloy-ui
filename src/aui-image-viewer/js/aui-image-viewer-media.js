@@ -335,7 +335,8 @@ var MediaViewerPlugin = A.Component.create(
 			 * TODO. Wanna help? Please send a Pull Request.
 			 *
 			 * @method _uiSetContainerSize
-			 * @param width, height
+			 * @param width
+			 * @param height
 			 * @protected
 			 */
 			_uiSetContainerSize: function(width, height) {
@@ -359,7 +360,8 @@ var MediaViewerPlugin = A.Component.create(
 			 * TODO. Wanna help? Please send a Pull Request.
 			 *
 			 * @method _updateOptions
-			 * @param source, options
+			 * @param source
+			 * @param options
 			 * @protected
 			 */
 			_updateOptions: function(source, options) {

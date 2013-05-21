@@ -137,7 +137,8 @@ var TernarySearchTree = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method _inOrderTraversal
-		 * @param node, results
+		 * @param node
+		 * @param results
 		 * @protected
 		 */
 		_inOrderTraversal: function(node, results) {
@@ -162,7 +163,9 @@ var TernarySearchTree = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method _insert
-		 * @param node, word, index
+		 * @param node
+		 * @param word
+		 * @param index
 		 * @protected
 		 */
 		_insert: function(node, word, index) {
@@ -205,7 +208,10 @@ var TernarySearchTree = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method _patternMatch
-		 * @param node, pattern, index, results
+		 * @param node
+		 * @param pattern
+		 * @param index
+		 * @param results
 		 * @protected
 		 */
 		_patternMatch: function(node, pattern, index, results) {
@@ -241,7 +247,9 @@ var TernarySearchTree = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method _search
-		 * @param node, word, index
+		 * @param node
+		 * @param word
+		 * @param index
 		 * @protected
 		 */
 		_search: function(node, word, index) {
