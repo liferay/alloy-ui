@@ -1,3 +1,10 @@
+/**
+ * The ACE Editor Component
+ *
+ * @module aui-ace-editor
+ * @submodule aui-ace-autocomplete-templateprocessor
+ */
+
 var Lang = A.Lang,
 	AArray = A.Array,
 	AObject = A.Object,
@@ -20,8 +27,25 @@ var Lang = A.Lang,
 
 	_NAME = 'aui-ace-autocomplete-templateprocessor',
 
+/**
+ * A base class for TemplateProcessor.
+ *
+ * @class TemplateProcessor
+ * @extends A.Base
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 TemplateProcessor = A.Base.create(_NAME, A.Base, [
 ], {
+
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method getResults
+	 * @param match
+	 * @param callbackSuccess
+	 * @param callbackError
+	 */
 	getResults: function(match, callbackSuccess, callbackError) {
 		var instance = this,
 			content,
@@ -52,6 +76,13 @@ TemplateProcessor = A.Base.create(_NAME, A.Base, [
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method getSuggestion
+	 * @param match
+	 * @param selectedSuggestion
+	 */
 	getSuggestion: function(match, selectedSuggestion) {
 		var instance = this,
 			fillMode,
@@ -95,10 +126,25 @@ TemplateProcessor = A.Base.create(_NAME, A.Base, [
 		return result;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _isLastToken
+	 * @param index
+	 * @param tokens
+	 * @protected
+	 */
 	_isLastToken: function(index, tokens) {
 		return index === tokens.length - 1;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _getTokenType
+	 * @param token
+	 * @protected
+	 */
 	_getTokenType: function(token) {
 		var tokenType = TOKEN_UNRECOGNIZED;
 
@@ -114,6 +160,13 @@ TemplateProcessor = A.Base.create(_NAME, A.Base, [
 		return tokenType;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _getVariableMatches
+	 * @param content
+	 * @protected
+	 */
 	_getVariableMatches: function(content) {
 		var instance = this,
 			curVariableData,
@@ -243,6 +296,13 @@ TemplateProcessor = A.Base.create(_NAME, A.Base, [
 		return matches;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _setRegexValue
+	 * @param value
+	 * @protected
+	 */
 	_setRegexValue: function(value) {
 		var result = A.AttributeCore.INVALID_VALUE;
 
@@ -256,19 +316,61 @@ TemplateProcessor = A.Base.create(_NAME, A.Base, [
 		return result;
 	}
 }, {
+
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property TemplateProcessor.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: _NAME,
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @property TemplateProcessor.NS
+	 * @type String
+	 * @static
+	 */
 	NS: _NAME,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the TemplateProcessor.
+	 *
+	 * @property TemplateProcessor.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute directives
+		 * @type Array
+		 */
 		directives: {
 			validator: Lang.isArray
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute host
+		 * @type Object
+		 */
 		host: {
 			validator: Lang.isObject
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute variables
+		 * @type Object
+		 */
 		variables: {
 			validator: Lang.isObject
 		}
