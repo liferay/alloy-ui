@@ -14,6 +14,7 @@
             "dd-constrain",
             "resize-plugin",
             "aui-classnamemanager",
+            "aui-widget-cssclass",
             "aui-widget-toolbars"
         ]
     }

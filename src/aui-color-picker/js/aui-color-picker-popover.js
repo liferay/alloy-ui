@@ -22,7 +22,8 @@ var Lang = A.Lang,
  */
 var ColorPickerPopover = A.Base.create(_NAME, A.Popover, [
     A.ColorPickerBase,
-    A.WidgetAutohide
+    A.WidgetAutohide,
+    A.WidgetCssClass
 ], {
 }, {
     /**

@@ -50,7 +50,7 @@ var Lang = A.Lang,
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
-Palette = A.Base.create(_NAME, A.Widget, [], {
+Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass], {
     CONTAINER_TEMPLATE: '<table class="' + CSS_PALETTE_CONTAINER + '">{content}</table>',
 
     ITEMS_CONTAINER_TEMPLATE: '<tr class="' + CSS_PALETTE_ITEMS_CONTAINER + _SPACE + CSS_PALETTE_ITEMS_CONTAINER_INDEX + '">{content}</tr>',

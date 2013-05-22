@@ -148,8 +148,15 @@ var L = A.Lang,
 var ImageViewer = A.Base.create(
 	'aui-image-viewer',
 	A.Widget,
-	[A.WidgetStdMod, A.WidgetPosition, A.WidgetStack, A.WidgetPositionAlign, A.WidgetPositionConstrain, A.WidgetModality],
-
+	[
+        A.WidgetCssClass,
+        A.WidgetStdMod,
+        A.WidgetPosition,
+        A.WidgetStack,
+        A.WidgetPositionAlign,
+        A.WidgetPositionConstrain,
+        A.WidgetModality
+    ],
 	{
 		/**
 		 * Handler for the key events.

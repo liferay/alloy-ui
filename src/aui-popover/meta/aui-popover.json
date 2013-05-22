@@ -11,7 +11,8 @@
 	        "widget-position-constrain",
 	        "widget-stack",
 	        "widget-stdmod",
-	        "aui-classnamemanager",
+            "aui-classnamemanager",
+	        "aui-widget-cssclass",
 	        "aui-component",
             "aui-node-base"
         ]

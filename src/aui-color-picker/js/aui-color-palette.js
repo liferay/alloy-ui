@@ -28,7 +28,8 @@ var AArray = A.Array,
  * @constructor
  */
 ColorPalette = A.Base.create(_NAME, A.Widget, [
-    A.Palette
+    A.Palette,
+    A.WidgetCssClass
 ], {
     ITEM_TEMPLATE:  '<td class="' + CSS_PALETTE_ITEM + ' {selectedClassName}" data-column={column} data-index={index} data-row={row} data-value="{value}">' +
                         '<a href="" class="' + CSS_PALETTE_ITEM_INNER + '" style="background-color:{value}" onclick="return false;" title="{title}"></a>' +
