@@ -19,6 +19,7 @@ var Lang = A.Lang,
     ENCLOSING_WIDGET_INITIALIZED = 'enclosingWidgetInitialized',
     FOCUS = 'focus',
     GROUP = 'group',
+    ID = 'id',
     MOUSEMOVE = 'mousemove',
     NORMAL = 'normal',
     RADIO = 'radio',
@@ -381,6 +382,11 @@ ToolbarRenderer.prototype = {
             }
             buttonNode.addClass(cssClass.join(_SPACE));
 
+            // Add id support
+            if (value.id) {
+                buttonNode.setAttribute(ID, value.id);
+            }
+
             // Add label support
             if (value.label) {
                 buttonNode.append(value.label);
@@ -443,9 +449,9 @@ ToolbarRenderer.prototype = {
      * Render children in a document fragment.
      *
      * @method render
-     * @param childRenderHints
+     * @param children
      */
-    render: function(childRenderHints) {
+    render: function(children) {
         var instance = this;
 
         if (!children) {
