@@ -110,7 +110,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "button",
             "button-group",
             "button-plugin",
-            "aui-component"
+            "aui-component",
+            "aui-widget-cssclass"
         ]
     },
     "aui-carousel": {
@@ -145,7 +146,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "array-extras",
             "aui-palette",
             "color-base",
-            "node-core"
+            "node-core",
+            "aui-widget-cssclass"
         ],
         "skinnable": true
     },
@@ -160,13 +162,15 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-color-picker-popover": {
         "requires": [
             "aui-color-picker-base",
-            "aui-popover"
+            "aui-popover",
+            "aui-widget-cssclass"
         ],
         "skinnable": true
     },
     "aui-component": {
         "requires": [
             "aui-classnamemanager",
+            "aui-widget-cssclass",
             "base-build",
             "widget-base"
         ]
@@ -213,7 +217,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-datatable-core",
             "aui-datatable-edit",
             "aui-datatable-highlight",
-            "aui-datatable-selection"
+            "aui-datatable-selection",
+            "aui-widget-cssclass"
         ],
         "skinnable": true
     },
@@ -408,6 +413,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-hsv-palette": {
         "requires": [
             "aui-classnamemanager",
+            "aui-widget-cssclass",
             "aui-event-input",
             "base-build",
             "clickable-rail",
@@ -459,7 +465,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "widget-stack",
             "widget-stdmod",
             "aui-event",
-            "aui-node-base"
+            "aui-node-base",
+            "aui-widget-cssclass"
         ],
         "skinnable": true
     },
@@ -524,6 +531,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "dd-constrain",
             "resize-plugin",
             "aui-classnamemanager",
+            "aui-widget-cssclass",
             "aui-widget-toolbars"
         ]
     },
@@ -569,7 +577,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "event-hover",
             "widget",
             "aui-classnamemanager",
-            "aui-base"
+            "aui-base",
+            "aui-widget-cssclass"
         ],
         "skinnable": true
     },
@@ -595,6 +604,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "widget-stack",
             "widget-stdmod",
             "aui-classnamemanager",
+            "aui-widget-cssclass",
             "aui-component",
             "aui-node-base"
         ]
@@ -870,6 +880,22 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-component"
         ]
     },
+    "aui-widget": {
+        "use": [
+            "aui-widget-cssclass",
+            "aui-widget-toolbars"
+        ]
+    },
+    "aui-widget-core": {
+        "use": [
+            "aui-widget-cssclass"
+        ]
+    },
+    "aui-widget-cssclass": {
+        "requires": [
+            "widget-base"
+        ]
+    },
     "aui-widget-toolbars": {
         "requires": [
             "widget-stdmod",
@@ -877,4 +903,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'ab292d3a0bd26ed072056238514d1f0e';
+YUI.Env[Y.version].md5 = '1838b4d7c1fa12f36d8bf9f554cc57f8';
