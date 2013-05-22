@@ -15,7 +15,6 @@ var Lang = A.Lang,
     BTN = 'btn',
     BTNGROUP = 'btngroup',
     CLASS_NAME = 'className',
-    CSS_CLASS = 'cssClass',
     DISABLED = 'disabled',
     GROUP = 'group',
     I = 'i',
@@ -68,14 +67,6 @@ ButtonExt.ATTRS = {
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @attribute cssClass
-     */
-    cssClass: {
-    },
-
-    /**
-     * TODO. Wanna help? Please send a Pull Request.
-     *
      * @attribute icon
      */
     icon: {
@@ -87,7 +78,7 @@ ButtonExt.ATTRS = {
      * @attribute iconElement
      */
     iconElement: {
-        valueFn: function(val) {
+        valueFn: function() {
             var instance = this;
             return A.Node.create(instance.ICON_TEMPLATE);
         }
@@ -143,7 +134,6 @@ ButtonExt.prototype = {
 
         instance.after(instance.syncButtonExtUI, instance, SYNC_UI);
         instance.after({
-            cssClassChange: instance._afterCssClassChange,
             iconChange: instance._afterIconChange,
             iconAlignChange: instance._afterIconAlignChange,
             primaryChange: instance._afterPrimaryChange
@@ -160,7 +150,6 @@ ButtonExt.prototype = {
 
         instance._uiSetIcon(instance.get(ICON));
         instance._uiSetPrimary(instance.get(PRIMARY));
-        instance._uiSetCssClass(instance.get(CSS_CLASS));
     },
 
     /**
@@ -177,19 +166,6 @@ ButtonExt.prototype = {
         }
 
         return instance.set(VISIBLE, visible);
-    },
-
-    /**
-     * TODO. Wanna help? Please send a Pull Request.
-     *
-     * @method _afterCssClassChange
-     * @param event
-     * @protected
-     */
-    _afterCssClassChange: function(event) {
-        var instance = this;
-
-        instance._uiSetCssClass(event.newVal, event.prevVal);
     },
 
     /**
@@ -229,24 +205,6 @@ ButtonExt.prototype = {
         var instance = this;
 
         instance._uiSetPrimary(event.newVal);
-    },
-
-    /**
-     * TODO. Wanna help? Please send a Pull Request.
-     *
-     * @method _uiSetCssClass
-     * @param val
-     * @param prevVal
-     * @protected
-     */
-    _uiSetCssClass: function(val, prevVal) {
-        var instance = this,
-            boundingBox = instance.get(BOUNDING_BOX);
-
-        if (prevVal) {
-            boundingBox.removeClass(prevVal);
-        }
-        boundingBox.addClass(val);
     },
 
     /**
@@ -363,7 +321,7 @@ Button.CLASS_NAMES = CLASS_NAMES;
  * @extends Base
  * @constructor
  */
-A.Button = A.Base.create(Button.NAME, Button, [ButtonExt], {}, {
+A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass], {}, {
 
     /**
      * TODO. Wanna help? Please send a Pull Request.
@@ -470,7 +428,7 @@ ToggleButton.CLASS_NAMES = CLASS_NAMES;
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
-A.ToggleButton = A.Base.create(ToggleButton.NAME, ToggleButton, [ButtonExt], {}, {});
+A.ToggleButton = A.Base.create(ToggleButton.NAME, ToggleButton, [ButtonExt, A.WidgetCssClass], {}, {});
 
 var ButtonGroup = A.ButtonGroup;
 

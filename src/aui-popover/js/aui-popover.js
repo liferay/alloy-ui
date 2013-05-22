@@ -46,6 +46,7 @@ var Lang = A.Lang,
  * @constructor
  */
 A.Popover = A.Base.create(POPOVER, A.Widget, [
+    A.WidgetCssClass,
     A.WidgetPosition,
     A.WidgetStdMod,
     A.WidgetAutohide,

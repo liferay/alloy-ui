@@ -52,7 +52,8 @@
             "aui-datatable-core",
             "aui-datatable-edit",
             "aui-datatable-highlight",
-            "aui-datatable-selection"
+            "aui-datatable-selection",
+            "aui-widget-cssclass"
         ],
         "skinnable": true
     }

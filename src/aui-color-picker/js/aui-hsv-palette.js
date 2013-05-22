@@ -144,7 +144,7 @@ var AColor = A.Color,
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
-HSVPalette = A.Base.create(NAME, A.Widget, [], {
+HSVPalette = A.Base.create(NAME, A.Widget, [A.WidgetCssClass], {
     TPL_CONTAINER:
         '<div class="' + CSS_CONTAINER + ' {subClass}"><div>',
 
