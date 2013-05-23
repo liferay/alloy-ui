@@ -412,7 +412,7 @@ ToggleButton.CLASS_NAMES = CLASS_NAMES;
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
-A.ToggleButton = A.Base.create(ToggleButton.NAME, ToggleButton, [ButtonExt, A.WidgetCssClass, A.WidgetToggle], {}, {});
+A.ToggleButton = A.Base.create(ToggleButton.NAME, ToggleButton, [ButtonExt, A.WidgetCssClass], {}, {});
 
 var ButtonGroup = A.ButtonGroup;
 
