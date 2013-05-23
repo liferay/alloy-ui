@@ -120,16 +120,16 @@ var OptionsEditor = A.Component.create({
 		/**
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
-		 * @method _onSubmit
+		 * @method _handleSaveEvent
 		 * @param event
 		 * @protected
 		 */
-		_onSubmit: function(event) {
+		_handleSaveEvent: function(event) {
 			var instance = this;
 
 			instance.saveOptions();
 
-			OptionsEditor.superclass._onSubmit.apply(this, arguments);
+			OptionsEditor.superclass._handleSaveEvent.apply(this, arguments);
 		}
 	}
 });
