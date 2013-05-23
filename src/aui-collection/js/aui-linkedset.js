@@ -9,7 +9,7 @@
  * A base class for LinkedSet.
  *
  * @class LinkedSet
- * @extends Base
+ * @extends A.Set
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

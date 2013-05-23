@@ -126,7 +126,7 @@ var FormBuilderFieldBase = A.Component.create({
  * A base class for FormBuilderField.
  *
  * @class FormBuilderField
- * @extends FormBuilderFieldBase
+ * @extends A.FormBuilderFieldBase
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

@@ -142,6 +142,7 @@ var L = A.Lang,
  *
  * @class ImageViewer
  * @extends A.Widget
+ * @uses A.WidgetStdMod, A.WidgetPosition, A.WidgetStack, A.WidgetPositionAlign, A.WidgetPositionConstrain, A.WidgetModality
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

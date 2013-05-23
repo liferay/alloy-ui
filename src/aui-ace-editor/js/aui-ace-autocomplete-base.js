@@ -55,7 +55,6 @@ Base = function(){};
  * A base class for AutoCompleteBase.
  *
  * @class AutoCompleteBase
- * @extends Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

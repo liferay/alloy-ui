@@ -36,7 +36,7 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/image-viewer/).
  *
  * @class MediaViewerPlugin
- * @extends Plugin.Base
+ * @extends A.Plugin.Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

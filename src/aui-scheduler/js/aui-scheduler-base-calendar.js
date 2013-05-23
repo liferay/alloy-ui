@@ -9,7 +9,7 @@
  * A base class for SchedulerCalendar.
  *
  * @class SchedulerCalendar
- * @extends Base
+ * @extends A.ModelList
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

@@ -42,10 +42,9 @@ var Lang = A.Lang,
  *
  * Check the [live demo](http://alloyui.com/examples/pagination/).
  *
- * @param config {Object} Object literal specifying widget configuration properties.
- *
  * @class Pagination
- * @extends Widget
+ * @extends Component
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
 var Pagination = A.Component.create(

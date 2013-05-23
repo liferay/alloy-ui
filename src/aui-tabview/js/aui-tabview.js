@@ -64,7 +64,7 @@ A.Tab.NAME = TAB;
  * Check the [live demo](http://alloyui.com/examples/tabview/).
  *
  * @class Tab
- * @extends Component
+ * @extends A.Tab
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

@@ -41,7 +41,7 @@ var L = A.Lang,
  * A base class for FormBuilderRadioField.
  *
  * @class FormBuilderRadioField
- * @extends FormBuilderMultipleChoiceField
+ * @extends A.FormBuilderMultipleChoiceField
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

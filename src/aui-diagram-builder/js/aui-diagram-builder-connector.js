@@ -144,7 +144,7 @@ A.PolygonUtil = {
  * A base class for Connector.
  *
  * @class Connector
- * @extends Base
+ * @extends A.Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

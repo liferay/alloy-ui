@@ -180,7 +180,7 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/diagram-builder/).
  *
  * @class Diagram Builder
- * @extends DiagramBuilderBase
+ * @extends A.DiagramBuilderBase
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -1296,7 +1296,7 @@ A.DiagramBuilder.types = {};
  * A base class for DiagramNodeManagerBase.
  *
  * @class DiagramNodeManagerBase
- * @extends Base
+ * @extends A.Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -1327,7 +1327,7 @@ A.DiagramNodeManager = new DiagramNodeManagerBase();
  * A base class for DiagramNode.
  *
  * @class DiagramNode
- * @extends Overlay
+ * @extends A.Overlay
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -2775,7 +2775,7 @@ A.DiagramBuilder.types[NODE] = A.DiagramNode;
  * A base class for DiagramNodeState.
  *
  * @class DiagramNodeState
- * @extends DiagramNode
+ * @extends A.DiagramNode
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -2891,7 +2891,7 @@ A.DiagramBuilder.types[STATE] = A.DiagramNodeState;
  * A base class for DiagramNodeCondition.
  *
  * @class DiagramNodeCondition
- * @extends DiagramNodeState
+ * @extends A.DiagramNodeState
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -2990,7 +2990,7 @@ A.DiagramBuilder.types[CONDITION] = A.DiagramNodeCondition;
  * A base class for DiagramNodeStart.
  *
  * @class DiagramNodeStart
- * @extends DiagramNodeState
+ * @extends A.DiagramNodeState
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -3043,7 +3043,7 @@ A.DiagramBuilder.types[START] = A.DiagramNodeStart;
  * A base class for DiagramNodeEnd.
  *
  * @class DiagramNodeEnd
- * @extends DiagramNodeState
+ * @extends A.DiagramNodeState
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -3096,7 +3096,7 @@ A.DiagramBuilder.types[END] = A.DiagramNodeEnd;
  * A base class for DiagramNodeJoin.
  *
  * @class DiagramNodeJoin
- * @extends DiagramNodeState
+ * @extends A.DiagramNodeState
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -3179,7 +3179,7 @@ A.DiagramBuilder.types[JOIN] = A.DiagramNodeJoin;
  * A base class for DiagramNodeFork.
  *
  * @class DiagramNodeFork
- * @extends DiagramNodeState
+ * @extends A.DiagramNodeState
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -3262,7 +3262,7 @@ A.DiagramBuilder.types[FORK] = A.DiagramNodeFork;
  * A base class for DiagramNodeTask.
  *
  * @class DiagramNodeTask
- * @extends DiagramNodeState
+ * @extends A.DiagramNodeState
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

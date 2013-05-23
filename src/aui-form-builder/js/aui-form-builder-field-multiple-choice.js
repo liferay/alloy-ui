@@ -54,7 +54,7 @@ var Lang = A.Lang,
  * A base class for OptionsEditor.
  *
  * @class OptionsEditor
- * @extends RadioCellEditor
+ * @extends A.RadioCellEditor
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -138,7 +138,7 @@ var OptionsEditor = A.Component.create({
  * A base class for FormBuilderMultipleChoiceField.
  *
  * @class FormBuilderMultipleChoiceField
- * @extends FormBuilderField
+ * @extends A.FormBuilderField
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

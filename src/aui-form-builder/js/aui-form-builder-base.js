@@ -90,7 +90,7 @@ var L = A.Lang,
  * A base class for FormBuilderAvailableField.
  *
  * @class FormBuilderAvailableField
- * @extends AvailableField
+ * @extends A.AvailableField
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -229,7 +229,7 @@ A.FormBuilderAvailableField = FormBuilderAvailableField;
  * A base class for FormBuilder.
  *
  * @class FormBuilder
- * @extends DiagramBuilderBase
+ * @extends A.DiagramBuilderBase
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

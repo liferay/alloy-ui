@@ -9,7 +9,7 @@
  * A base class for HashSet.
  *
  * @class HashSet
- * @extends Base
+ * @extends A.Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

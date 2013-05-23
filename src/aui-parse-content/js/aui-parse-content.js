@@ -55,7 +55,7 @@ var L = A.Lang,
  * ParseContent.
  *
  * @class ParseContent
- * @extends Plugin.Base
+ * @extends A.Plugin.Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

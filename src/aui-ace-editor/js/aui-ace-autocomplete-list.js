@@ -83,6 +83,7 @@ var Lang = A.Lang,
  *
  * @class AutoCompleteList
  * @extends A.Overlay
+ * @uses A.AceEditor.AutoCompleteBase, A.WidgetAutohide
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
