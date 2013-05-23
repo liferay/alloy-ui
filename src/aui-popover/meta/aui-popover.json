@@ -13,7 +13,8 @@
 	        "widget-stdmod",
             "aui-classnamemanager",
             "aui-widget-cssclass",
-	        "aui-widget-toggle",
+            "aui-widget-toggle",
+            "aui-widget-toolbars",
 	        "aui-component",
             "aui-node-base"
         ]
