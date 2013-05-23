@@ -6,7 +6,8 @@
             "widget",
             "aui-classnamemanager",
             "aui-base",
-            "aui-widget-cssclass"
+            "aui-widget-cssclass",
+            "aui-widget-toggle"
         ],
         "skinnable": true
     }

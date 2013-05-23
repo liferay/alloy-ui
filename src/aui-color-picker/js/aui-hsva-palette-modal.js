@@ -25,7 +25,7 @@ var AArray = A.Array,
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
-HSVAPaletteModal = A.Base.create(NAME, A.Modal, [A.WidgetCssClass], {
+HSVAPaletteModal = A.Base.create(NAME, A.Modal, [A.WidgetCssClass, A.WidgetToggle], {
 
     /**
      * Construction logic executed during HSVAPaletteModal instantiation. Lifecycle.

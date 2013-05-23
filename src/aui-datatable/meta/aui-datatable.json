@@ -53,7 +53,8 @@
             "aui-datatable-edit",
             "aui-datatable-highlight",
             "aui-datatable-selection",
-            "aui-widget-cssclass"
+            "aui-widget-cssclass",
+            "aui-widget-toggle"
         ],
         "skinnable": true
     }

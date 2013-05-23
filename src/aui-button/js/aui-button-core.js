@@ -155,22 +155,6 @@ ButtonExt.prototype = {
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @method toggle
-     * @param visible
-     */
-    toggle: function(visible) {
-        var instance = this;
-
-        if (!Lang.isBoolean(visible)) {
-            visible = !instance.get(VISIBLE);
-        }
-
-        return instance.set(VISIBLE, visible);
-    },
-
-    /**
-     * TODO. Wanna help? Please send a Pull Request.
-     *
      * @method _afterIconChange
      * @param event
      * @protected
@@ -321,7 +305,7 @@ Button.CLASS_NAMES = CLASS_NAMES;
  * @extends Base
  * @constructor
  */
-A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass], {}, {
+A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.WidgetToggle], {}, {
 
     /**
      * TODO. Wanna help? Please send a Pull Request.
@@ -428,7 +412,7 @@ ToggleButton.CLASS_NAMES = CLASS_NAMES;
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
-A.ToggleButton = A.Base.create(ToggleButton.NAME, ToggleButton, [ButtonExt, A.WidgetCssClass], {}, {});
+A.ToggleButton = A.Base.create(ToggleButton.NAME, ToggleButton, [ButtonExt, A.WidgetCssClass, A.WidgetToggle], {}, {});
 
 var ButtonGroup = A.ButtonGroup;
 

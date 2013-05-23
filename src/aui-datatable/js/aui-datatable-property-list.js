@@ -33,7 +33,7 @@ var Lang = A.Lang,
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
-A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass], {
+A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass, A.WidgetToggle], {
 
     /**
      * Construction logic executed during PropertyList instantiation. Lifecycle.
