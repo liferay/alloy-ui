@@ -101,7 +101,8 @@
             "button-group",
             "button-plugin",
             "aui-component",
-            "aui-widget-cssclass"
+            "aui-widget-cssclass",
+            "aui-widget-toggle"
         ]
     },
     "aui-carousel": {
@@ -137,7 +138,8 @@
             "aui-palette",
             "color-base",
             "node-core",
-            "aui-widget-cssclass"
+            "aui-widget-cssclass",
+            "aui-widget-toggle"
         ],
         "skinnable": true
     },
@@ -153,7 +155,8 @@
         "requires": [
             "aui-color-picker-base",
             "aui-popover",
-            "aui-widget-cssclass"
+            "aui-widget-cssclass",
+            "aui-widget-toggle"
         ],
         "skinnable": true
     },
@@ -161,6 +164,7 @@
         "requires": [
             "aui-classnamemanager",
             "aui-widget-cssclass",
+            "aui-widget-toggle",
             "base-build",
             "widget-base"
         ]
@@ -208,7 +212,8 @@
             "aui-datatable-edit",
             "aui-datatable-highlight",
             "aui-datatable-selection",
-            "aui-widget-cssclass"
+            "aui-widget-cssclass",
+            "aui-widget-toggle"
         ],
         "skinnable": true
     },
@@ -390,6 +395,7 @@
         "requires": [
             "aui-classnamemanager",
             "aui-widget-cssclass",
+            "aui-widget-toggle",
             "aui-event-input",
             "base-build",
             "clickable-rail",
@@ -442,7 +448,8 @@
             "widget-stdmod",
             "aui-event",
             "aui-node-base",
-            "aui-widget-cssclass"
+            "aui-widget-cssclass",
+            "aui-widget-toggle"
         ],
         "skinnable": true
     },
@@ -508,6 +515,7 @@
             "resize-plugin",
             "aui-classnamemanager",
             "aui-widget-cssclass",
+            "aui-widget-toggle",
             "aui-widget-toolbars"
         ]
     },
@@ -554,7 +562,8 @@
             "widget",
             "aui-classnamemanager",
             "aui-base",
-            "aui-widget-cssclass"
+            "aui-widget-cssclass",
+            "aui-widget-toggle"
         ],
         "skinnable": true
     },
@@ -581,6 +590,7 @@
             "widget-stdmod",
             "aui-classnamemanager",
             "aui-widget-cssclass",
+            "aui-widget-toggle",
             "aui-component",
             "aui-node-base"
         ]
@@ -872,6 +882,7 @@
             "widget-base"
         ]
     },
+    "aui-widget-toggle": {},
     "aui-widget-toolbars": {
         "requires": [
             "widget-stdmod",
