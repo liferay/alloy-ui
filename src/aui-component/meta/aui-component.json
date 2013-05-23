@@ -3,6 +3,7 @@
         "requires": [
             "aui-classnamemanager",
             "aui-widget-cssclass",
+            "aui-widget-toggle",
             "base-build",
             "widget-base"
         ]

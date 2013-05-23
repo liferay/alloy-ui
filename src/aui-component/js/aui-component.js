@@ -37,7 +37,11 @@ var Lang = A.Lang,
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
-var Component = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass],
+var Component = A.Base.create(_NAME, A.Widget,
+    [
+        A.WidgetCssClass,
+        A.WidgetToggle
+    ],
 	{
 		initializer: function(config) {
 			var instance = this;
@@ -66,23 +70,6 @@ var Component = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass],
 			A.mix(config, instance._originalConfig);
 
 			return new instance.constructor(config);
-		},
-
-		/**
-		 * Toggle the visibility of the Panel toggling the value of the
-		 * <a href="Widget.html#config_visible">visible</a> attribute.
-		 *
-		 * @method toggle
-		 * @param visible Force the visibility of the component to this state.
-		 */
-		toggle: function(visible) {
-			var instance = this;
-
-			if (!Lang.isBoolean(visible)) {
-				visible = !instance.get('visible');
-			}
-
-			return instance.set('visible', visible);
 		},
 
 		/**
