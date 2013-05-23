@@ -139,7 +139,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "button-group",
             "button-plugin",
             "aui-component",
-            "aui-widget-cssclass"
+            "aui-widget-cssclass",
+            "aui-widget-toggle"
         ]
     },
     "aui-button-item-deprecated": {
@@ -190,7 +191,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-palette",
             "color-base",
             "node-core",
-            "aui-widget-cssclass"
+            "aui-widget-cssclass",
+            "aui-widget-toggle"
         ],
         "skinnable": true
     },
@@ -231,7 +233,8 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "aui-color-picker-base",
             "aui-popover",
-            "aui-widget-cssclass"
+            "aui-widget-cssclass",
+            "aui-widget-toggle"
         ],
         "skinnable": true
     },
@@ -242,6 +245,7 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "aui-classnamemanager",
             "aui-widget-cssclass",
+            "aui-widget-toggle",
             "base-build",
             "widget-base"
         ]
@@ -309,7 +313,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-datatable-edit",
             "aui-datatable-highlight",
             "aui-datatable-selection",
-            "aui-widget-cssclass"
+            "aui-widget-cssclass",
+            "aui-widget-toggle"
         ],
         "skinnable": true
     },
@@ -597,6 +602,7 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "aui-classnamemanager",
             "aui-widget-cssclass",
+            "aui-widget-toggle",
             "aui-event-input",
             "base-build",
             "clickable-rail",
@@ -649,7 +655,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "widget-stdmod",
             "aui-event",
             "aui-node-base",
-            "aui-widget-cssclass"
+            "aui-widget-cssclass",
+            "aui-widget-toggle"
         ],
         "skinnable": true
     },
@@ -757,6 +764,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "resize-plugin",
             "aui-classnamemanager",
             "aui-widget-cssclass",
+            "aui-widget-toggle",
             "aui-widget-toolbars"
         ]
     },
@@ -852,7 +860,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "widget",
             "aui-classnamemanager",
             "aui-base",
-            "aui-widget-cssclass"
+            "aui-widget-cssclass",
+            "aui-widget-toggle"
         ],
         "skinnable": true
     },
@@ -879,6 +888,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "widget-stdmod",
             "aui-classnamemanager",
             "aui-widget-cssclass",
+            "aui-widget-toggle",
             "aui-component",
             "aui-node-base"
         ]
@@ -1277,6 +1287,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "widget-base"
         ]
     },
+    "aui-widget-toggle": {},
     "aui-widget-toolbars": {
         "requires": [
             "widget-stdmod",
@@ -1284,4 +1295,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'a63c7bacebd9aa150c3cba2c44d3dc42';
+YUI.Env[Y.version].md5 = '94356ee10a34c498007a75e290465a81';

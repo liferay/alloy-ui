@@ -15,6 +15,7 @@
             "resize-plugin",
             "aui-classnamemanager",
             "aui-widget-cssclass",
+            "aui-widget-toggle",
             "aui-widget-toolbars"
         ]
     }

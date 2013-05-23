@@ -49,6 +49,7 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
     A.WidgetCssClass,
     A.WidgetPosition,
     A.WidgetStdMod,
+    A.WidgetToggle,
     A.WidgetAutohide,
     A.WidgetModality,
     A.WidgetPositionAlign,

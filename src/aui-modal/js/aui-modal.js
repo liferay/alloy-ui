@@ -48,6 +48,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
     A.WidgetCssClass,
     A.WidgetPosition,
     A.WidgetStdMod,
+    A.WidgetToggle,
     A.WidgetAutohide,
     A.WidgetToolbars,
     A.WidgetModality,

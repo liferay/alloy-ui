@@ -151,6 +151,7 @@ var ImageViewer = A.Base.create(
 	[
         A.WidgetCssClass,
         A.WidgetStdMod,
+        A.WidgetToggle,
         A.WidgetPosition,
         A.WidgetStack,
         A.WidgetPositionAlign,
