@@ -71,7 +71,7 @@ var Lang = A.Lang,
 /**
  * A base class for HSVAPalette.
  *
- * @class HSVAPalette
+ * @class A.HSVAPalette
  * @extends A.HSVPalette
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor

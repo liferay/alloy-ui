@@ -139,7 +139,7 @@ var AColor = A.Color,
 /**
  * A base class for HSVPalette.
  *
- * @class HSVPalette
+ * @class A.HSVPalette
  * @extends A.Widget
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor

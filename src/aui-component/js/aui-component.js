@@ -32,8 +32,9 @@ var Lang = A.Lang,
  *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
  * </ul>
  *
- * @class Component
- * @extends Widget
+ * @class A.Component
+ * @extends A.Widget
+ * @uses A.WidgetCssClass, A.WidgetToggle
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

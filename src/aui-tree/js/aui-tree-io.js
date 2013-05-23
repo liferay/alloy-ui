@@ -26,7 +26,7 @@ var Lang = A.Lang,
 /**
  * A base class for TreeViewIO.
  *
- * @class TreeViewIO
+ * @class A.TreeViewIO
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

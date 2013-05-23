@@ -240,7 +240,7 @@ ButtonExt.prototype = {
 /**
  * A base class for ButtonCore.
  *
- * @class ButtonCore
+ * @class A.ButtonCore
  * @constructor
  */
 var ButtonCore = A.ButtonCore;
@@ -301,8 +301,9 @@ Button.CLASS_NAMES = CLASS_NAMES;
 /**
  * A base class for Button.
  *
- * @class Button
- * @extends Base
+ * @class A.Button
+ * @extends Button
+ * @uses ButtonExt, A.WidgetCssClass, A.WidgetToggle
  * @constructor
  */
 A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.WidgetToggle], {}, {
@@ -407,8 +408,9 @@ ToggleButton.CLASS_NAMES = CLASS_NAMES;
 /**
  * A base class for ToggleButton.
  *
- * @class ToggleButton
- * @extends Base
+ * @class A.ToggleButton
+ * @extends A.ToggleButton
+ * @uses ButtonExt, A.WidgetCssClass
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -448,7 +450,7 @@ ButtonGroup.CLASS_NAMES = CLASS_NAMES;
 /**
  * A base class for ButtonGroup.
  *
- * @class ButtonGroup
+ * @class A.ButtonGroup
  * @constructor
  */
 A.mix(ButtonGroup.prototype, {

@@ -196,7 +196,7 @@ A.mix(defaults, {
 /**
  * A base class for FormValidator.
  *
- * @class FormValidator
+ * @class A.FormValidator
  * @extends A.Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor

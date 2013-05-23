@@ -50,8 +50,8 @@ var L = A.Lang,
  *    <li>Indexing management to handle the children nodes</li>
  * </ul>
  *
- * @class TreeData
- * @extends Base
+ * @class A.TreeData
+ * @extends A.Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

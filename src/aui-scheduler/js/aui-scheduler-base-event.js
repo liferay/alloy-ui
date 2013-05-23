@@ -175,7 +175,7 @@ var Lang = A.Lang,
 /**
  * A base class for SchedulerEvent.
  *
- * @class SchedulerEvent
+ * @class A.SchedulerEvent
  * @extends A.Model
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor

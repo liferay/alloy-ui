@@ -30,7 +30,7 @@ var Lang = A.Lang,
 /**
  * A base class for TemplateProcessor.
  *
- * @class TemplateProcessor
+ * @class A.TemplateProcessor
  * @extends A.Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor

@@ -81,7 +81,7 @@ var Lang = A.Lang,
 /**
  * A base class for AutoCompleteList.
  *
- * @class AutoCompleteList
+ * @class A.AutoCompleteList
  * @extends A.Overlay
  * @uses A.AceEditor.AutoCompleteBase, A.WidgetAutohide
  * @param config {Object} Object literal specifying widget configuration properties.

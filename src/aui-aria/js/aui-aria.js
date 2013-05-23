@@ -40,7 +40,7 @@ var Lang = A.Lang,
 /**
  * A base class for Aria.
  *
- * @class Aria
+ * @class A.Aria
  * @extends A.Plugin.Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor

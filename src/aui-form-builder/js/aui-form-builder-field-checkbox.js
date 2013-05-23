@@ -42,7 +42,7 @@ var L = A.Lang,
 /**
  * A base class for FormBuilderCheckBoxField.
  *
- * @class FormBuilderCheckBoxField
+ * @class A.FormBuilderCheckBoxField
  * @extends A.FormBuilderField
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor

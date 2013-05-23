@@ -127,8 +127,7 @@ var Lang = A.Lang,
 /**
  * An extension for A.DataTable to support Cell Editing.
  *
- * @class CellEditorSupport
- * @extends Base
+ * @class A.CellEditorSupport
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -363,7 +362,7 @@ A.Base.mix(A.DataTable, [ CellEditorSupport ]);
 /**
  * Abstract class BaseCellEditor.
  *
- * @class BaseCellEditor
+ * @class A.BaseCellEditor
  * @extends A.Overlay
  * @param config {Object} Object literal specifying widget configuration properties.
  * @abstract
@@ -1168,7 +1167,7 @@ A.BaseCellEditor = BaseCellEditor;
 /**
  * Abstract class BaseOptionsCellEditor for options attribute support.
  *
- * @class BaseOptionsCellEditor
+ * @class A.BaseOptionsCellEditor
  * @extends A.BaseCellEditor
  * @param config {Object} Object literal specifying widget configuration properties.
  * @abstract
@@ -1708,7 +1707,7 @@ A.BaseOptionsCellEditor = BaseOptionsCellEditor;
 /**
  * TextCellEditor class.
  *
- * @class TextCellEditor
+ * @class A.TextCellEditor
  * @extends A.BaseCellEditor
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
@@ -1743,7 +1742,7 @@ A.TextCellEditor = TextCellEditor;
 /**
  * TextAreaCellEditor class.
  *
- * @class TextAreaCellEditor
+ * @class A.TextAreaCellEditor
  * @extends A.TextAreaCellEditor
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
@@ -1778,7 +1777,7 @@ A.TextAreaCellEditor = TextAreaCellEditor;
 /**
  * DropDownCellEditor class.
  *
- * @class DropDownCellEditor
+ * @class A.DropDownCellEditor
  * @extends A.DropDownCellEditor
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
@@ -1892,7 +1891,7 @@ A.DropDownCellEditor = DropDownCellEditor;
 /**
  * CheckboxCellEditor class.
  *
- * @class CheckboxCellEditor
+ * @class A.CheckboxCellEditor
  * @extends A.CheckboxCellEditor
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
@@ -1992,7 +1991,7 @@ A.CheckboxCellEditor = CheckboxCellEditor;
 /**
  * RadioCellEditor class.
  *
- * @class RadioCellEditor
+ * @class A.RadioCellEditor
  * @extends A.RadioCellEditor
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
@@ -2039,7 +2038,7 @@ A.RadioCellEditor = RadioCellEditor;
 /**
  * DateCellEditor class.
  *
- * @class DateCellEditor
+ * @class A.DateCellEditor
  * @extends A.DateCellEditor
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor

@@ -18,7 +18,7 @@ var Lang = A.Lang,
 /**
  * A base class for TernarySearchTree.
  *
- * @class TernarySearchTree
+ * @class A.TernarySearchTree
  * @extends A.Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor

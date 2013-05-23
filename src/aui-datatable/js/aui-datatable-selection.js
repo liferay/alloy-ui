@@ -37,7 +37,7 @@ var Lang = A.Lang,
 /**
  * A base class for DataTableSelection.
  *
- * @class DataTableSelection
+ * @class A.DataTableSelection
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

@@ -96,7 +96,7 @@ var Lang = A.Lang,
 /**
  * A base class for SchedulerEventRecorder.
  *
- * @class SchedulerEventRecorder
+ * @class A.SchedulerEventRecorder
  * @extends A.SchedulerEvent
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor

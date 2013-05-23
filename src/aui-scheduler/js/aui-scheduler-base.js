@@ -8,7 +8,7 @@
 /**
  * A base class for SchedulerEvents.
  *
- * @class SchedulerEvents
+ * @class A.SchedulerEvents
  * @extends A.ModelList
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
@@ -47,7 +47,7 @@ A.SchedulerEvents = A.Base.create('scheduler-events', A.ModelList, [], {
 /**
  * A base class for SchedulerEventSupport.
  *
- * @class SchedulerEventSupport
+ * @class A.SchedulerEventSupport
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -282,8 +282,8 @@ A.SchedulerEventSupport = SchedulerEventSupport;
 /**
  * A base class for SchedulerBase.
  *
- * @class SchedulerBase
- * @extends Component
+ * @class A.SchedulerBase
+ * @extends A.Component
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
