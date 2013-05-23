@@ -135,7 +135,7 @@ A.TabView.CSS_PREFIX = getClassName(TABBABLE);
  * Check the [live demo](http://alloyui.com/examples/tabview/).
  *
  * @class TabView
- * @extends Component
+ * @extends A.TabView
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

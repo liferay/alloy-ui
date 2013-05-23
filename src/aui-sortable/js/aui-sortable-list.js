@@ -52,7 +52,7 @@ var L = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/sortable-list/).
  *
  * @class SortableList
- * @extends Base
+ * @extends A.Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

@@ -38,9 +38,9 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/modal/).
  *
  * @class Modal
- * @extends Widget
- * @uses WidgetPosition,WidgetStdMod,WidgetAutohide,WidgetToolbars,
- * WidgetModality,WidgetPositionAlign,WidgetPositionConstrain,WidgetStack
+ * @extends A.Widget
+ * @uses A.WidgetPosition, A.WidgetStdMod, A.WidgetAutohide, A.WidgetToolbars,
+ * A.WidgetModality, A.WidgetPositionAlign, A.WidgetPositionConstrain, A.WidgetStack
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
