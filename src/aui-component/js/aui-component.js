@@ -224,29 +224,6 @@ var Component = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass],
 					delete config.render;
 				}
 			}
-		},
-
-		/**
-		 * Applies the CSS classes to the <code>boundingBox</code> and
-		 * <code>contentBox</code>.
-		 *
-		 * @method _uiSetCssClass
-		 * @protected
-		 * @param {String} newVal
-		 * @param {String} prevVal
-		 */
-		_uiSetCssClass: function(newVal, prevVal) {
-			var instance = this;
-
-			var prevValContent = prevVal + '-content';
-
-			var newValContent = newVal + '-content';
-
-			var boundingBox = instance.get('boundingBox');
-			var contentBox = instance.get('contentBox');
-
-			boundingBox.replaceClass(prevVal, newVal);
-			contentBox.replaceClass(prevValContent, newValContent);
 		}
 	},
 	{
