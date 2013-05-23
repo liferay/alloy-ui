@@ -23,5 +23,8 @@
             "widget-stdmod",
             "aui-toolbar"
         ]
+    },
+
+    "aui-widget-toggle": {
     }
 }

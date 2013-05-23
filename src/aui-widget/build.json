@@ -7,6 +7,12 @@
             ]
         },
 
+        "aui-widget-toggle": {
+            "jsfiles": [
+                "js/aui-widget-toggle.js"
+            ]
+        },
+
         "aui-widget-toolbars": {
             "jsfiles": [
                 "js/aui-widget-toolbars.js"
