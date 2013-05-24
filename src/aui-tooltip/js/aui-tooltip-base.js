@@ -17,6 +17,8 @@ var BODY_CONTENT = 'bodyContent',
     TRIGGER = 'trigger',
     VISIBLE = 'visible',
 
+    _DATA_TITLE = 'data-title',
+
     getClassName = A.getClassName,
 
     CSS_TOOLTIP_ARROW = getClassName('tooltip-arrow'),
@@ -125,12 +127,17 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
      */
     _loadBodyContentFromTitle: function() {
         var instance = this,
-            trigger = instance.get(TRIGGER);
+            trigger = instance.get(TRIGGER),
+            title;
+
+        title = trigger.getAttribute(TITLE);
+
+        if (!trigger.getAttribute(_DATA_TITLE)) {
+            trigger.removeAttribute(TITLE).setAttribute(_DATA_TITLE, title);
+        }
 
         instance.setStdModContent(
-            A.WidgetStdMod.BODY,
-            trigger && trigger.getAttribute(TITLE) ||
-                instance.get(BODY_CONTENT));
+            A.WidgetStdMod.BODY, trigger && title || instance.get(BODY_CONTENT));
     }
 }, {
 
