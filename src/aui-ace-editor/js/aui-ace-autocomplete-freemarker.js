@@ -19,7 +19,7 @@ var Lang = A.Lang,
 /**
  * A base class for Freemarker.
  *
- * @class Freemarker
+ * @class A.Freemarker
  * @extends A.AceEditor.TemplateProcessor
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor

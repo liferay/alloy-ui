@@ -36,8 +36,8 @@ var CSS_CLASSES = 'cssClasses',
  *
  * Check the [live demo](http://alloyui.com/examples/rating/).
  *
- * @class ThumbRating
- * @extends Rating, Component
+ * @class A.ThumbRating
+ * @extends A.Rating
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

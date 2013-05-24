@@ -22,8 +22,8 @@ var Lang = A.Lang,
  *
  * Check the [live demo](http://alloyui.com/examples/image-cropper/).
  *
- * @class ImageCropper
- * @extends Component
+ * @class A.ImageCropper
+ * @extends A.Component
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

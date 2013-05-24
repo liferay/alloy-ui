@@ -124,8 +124,8 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/node/).
  *
  * @class A.Node
- * @constructor
  * @uses Node
+ * @constructor
  */
 A.mix(NODE_PROTO, {
 

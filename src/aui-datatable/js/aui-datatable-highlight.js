@@ -55,7 +55,7 @@ var Lang = A.Lang,
 /**
  * A base class for DataTableHighlight.
  *
- * @class DataTableHighlight
+ * @class A.DataTableHighlight
  * @extends A.Plugin.Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor

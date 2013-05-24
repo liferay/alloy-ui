@@ -41,7 +41,9 @@ var Lang = A.Lang,
  *
  * @class Popover
  * @extends Widget
- * @uses WidgetStdMod,WidgetPosition,WidgetStack,WidgetPositionAlign,WidgetPositionConstrain
+ * @uses WidgetCssClass, WidgetPosition, WidgetStdMod, WidgetToggle, WidgetAutohide,
+ * WidgetToolbars, WidgetModality, WidgetPositionAlign, WidgetPositionConstrain,
+ * WidgetStack
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -51,6 +53,7 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
     A.WidgetStdMod,
     A.WidgetToggle,
     A.WidgetAutohide,
+    A.WidgetToolbars,
     A.WidgetModality,
     A.WidgetPositionAlign,
     A.WidgetPositionConstrain,

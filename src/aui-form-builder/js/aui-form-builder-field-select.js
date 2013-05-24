@@ -31,8 +31,8 @@ var L = A.Lang,
 /**
  * A base class for FormBuilderSelectField.
  *
- * @class FormBuilderSelectField
- * @extends FormBuilderMultipleChoiceField
+ * @class A.FormBuilderSelectField
+ * @extends A.FormBuilderMultipleChoiceField
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

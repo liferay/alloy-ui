@@ -45,8 +45,8 @@ var Lang = A.Lang,
  *
  * Check the [live demo](http://alloyui.com/examples/toolbar/).
  *
- * @class Toolbar
- * @extends Component
+ * @class A.Toolbar
+ * @extends A.Component
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -322,7 +322,7 @@ A.Toolbar = A.Component.create({
  *
  * Check the [live demo](http://alloyui.com/examples/toolbar/).
  *
- * @class ToolbarRenderer
+ * @class A.ToolbarRenderer
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

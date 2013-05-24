@@ -230,8 +230,8 @@ var Lang = A.Lang,
 /**
  * A base class for SchedulerDayView.
  *
- * @class SchedulerDayView
- * @extends SchedulerView
+ * @class A.SchedulerDayView
+ * @extends A.SchedulerView
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

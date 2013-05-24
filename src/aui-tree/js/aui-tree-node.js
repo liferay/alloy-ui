@@ -107,8 +107,9 @@ var Lang = A.Lang,
  *
  * Check the [live demo](http://alloyui.com/examples/tree/).
  *
- * @class TreeNode
- * @extends TreeData
+ * @class A.TreeNode
+ * @extends A.Base
+ * @uses A.TreeData
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -1076,8 +1077,9 @@ var TREE_NODE_IO = 'tree-node-io';
  *	<li>Ajax support to load the children of the current TreeNode</li>
  * </ul>
  *
- * @class TreeNodeIO
- * @extends TreeNode
+ * @class A.TreeNodeIO
+ * @extends A.TreeNode
+ * @uses A.TreeViewPaginator, A.TreeViewIO
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -1320,8 +1322,8 @@ var CHECKBOX = 'checkbox',
  *	<li>Checkbox support for the TreeNode</li>
  * </ul>
  *
- * @class TreeNodeCheck
- * @extends TreeNodeIO
+ * @class A.TreeNodeCheck
+ * @extends A.TreeNodeIO
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -1606,8 +1608,8 @@ var CHILD = 'child',
  *	<li>Automatic check/uncheck the parent status based on the children checked status</li>
  * </ul>
  *
- * @class TreeNodeTask
- * @extends TreeNodeCheck
+ * @class A.TreeNodeTask
+ * @extends A.TreeNodeCheck
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -1721,8 +1723,8 @@ var TREE_NODE_RADIO = 'tree-node-radio',
  *	<li>Automatic check/uncheck the parent status based on the children checked status</li>
  * </ul>
  *
- * @class TreeNodeRadio
- * @extends TreeNodeTask
+ * @class A.TreeNodeRadio
+ * @extends A.TreeNodeTask
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

@@ -17,6 +17,11 @@ var AArray = A.Array,
 	SUBMIT_DELEGATE = 'submit_delegate',
 	SUBMIT_ON = 'submit_on';
 
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @event submit
+ */
 A.Event.define(
 	EVENT_SUBMIT,
 	{

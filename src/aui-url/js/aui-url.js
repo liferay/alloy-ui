@@ -45,7 +45,7 @@ Url.URI_REGEX_RFC3986 = /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([
 /**
  * A base class for Url.
  *
- * @class Url
+ * @class A.Url
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

@@ -8,8 +8,8 @@
 /**
  * A base class for SchedulerView.
  *
- * @class SchedulerView
- * @extends Component
+ * @class A.SchedulerView
+ * @extends A.Component
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

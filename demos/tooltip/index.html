@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+    <style>
+    .example {
+        margin: 100px;
+    }
+    </style>
+</head>
+<body>
+    <h1>AlloyUI - Tooltip</h1>
+    <div class="example">
+        <button class="btn btn-large btn-primary" id="triggerTop" title="One fine body…">Mouseover to show a top tooltip</button>
+        <button class="btn btn-large btn-primary" id="triggerBottom" title="Another fine body…">Mouseover to show a bottom tooltip</button>
+    </div>
+    <script>
+    YUI({ filter:'raw' }).use('aui-tooltip', function(A) {
+
+         new A.Tooltip({
+            trigger: '#triggerTop',
+            visible: false
+        }).render();
+
+        new A.Tooltip({
+            align: {
+                points:[A.WidgetPositionAlign.TC, A.WidgetPositionAlign.BC]
+            },
+            position: 'bottom',
+            trigger: '#triggerBottom',
+            visible: false
+        }).render();
+
+    });
+    </script>
+</body>
+</html>

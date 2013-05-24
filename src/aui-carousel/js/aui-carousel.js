@@ -54,8 +54,8 @@ var Lang = A.Lang,
  *
  * Check the [live demo](http://alloyui.com/examples/carousel/).
  *
- * @class Carousel
- * @uses AUI-base,AUI-template,anim
+ * @class A.Carousel
+ * @uses A.Component
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

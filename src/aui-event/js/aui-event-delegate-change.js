@@ -12,6 +12,11 @@ var AObject = A.Object,
 	EVENT_BEFOREACTIVATE = 'beforeactivate',
 	EVENT_CHANGE = 'change';
 
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @event change
+ */
 A.Event.define(
 	EVENT_CHANGE,
 	{

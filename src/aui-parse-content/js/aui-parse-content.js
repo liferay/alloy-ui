@@ -54,8 +54,8 @@ var L = A.Lang,
  * Check the list of <a href="ParseContent.html#configattributes">Configuration Attributes</a> available for
  * ParseContent.
  *
- * @class ParseContent
- * @extends Plugin.Base
+ * @class A.ParseContent
+ * @extends A.Plugin.Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

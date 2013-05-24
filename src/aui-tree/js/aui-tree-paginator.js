@@ -33,7 +33,7 @@ var Lang = A.Lang,
 /**
  * A base class for TreeViewPaginator.
  *
- * @class TreeViewPaginator
+ * @class A.TreeViewPaginator
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

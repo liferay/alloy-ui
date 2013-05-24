@@ -25,6 +25,7 @@ Y.mix(YUI.Env.aliases, {
     "aui-search": ["aui-search-tst"],
     "aui-sortable": ["aui-sortable-layout","aui-sortable-list"],
     "aui-toggler": ["aui-toggler-base","aui-toggler-delegate"],
+    "aui-tooltip": ["aui-tooltip-base"],
     "aui-tpl-snippets-deprecated": ["aui-tpl-snippets-base-deprecated","aui-tpl-snippets-checkbox-deprecated","aui-tpl-snippets-input-deprecated","aui-tpl-snippets-select-deprecated","aui-tpl-snippets-textarea-deprecated"],
     "aui-tree": ["aui-tree-data","aui-tree-io","aui-tree-node","aui-tree-paginator","aui-tree-view"],
     "aui-widget": ["aui-widget-cssclass","aui-widget-toolbars"],

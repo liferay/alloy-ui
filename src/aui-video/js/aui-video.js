@@ -25,8 +25,8 @@ var Lang = A.Lang,
  *
  * Check the [live demo](http://alloyui.com/examples/video/).
  *
- * @class Video
- * @extends Component
+ * @class A.Video
+ * @extends A.Component
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

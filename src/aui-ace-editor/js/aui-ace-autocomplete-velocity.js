@@ -20,7 +20,7 @@ var Lang = A.Lang,
 /**
  * A base class for Velocity.
  *
- * @class Velocity
+ * @class A.Velocity
  * @extends A.AceEditor.TemplateProcessor
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor

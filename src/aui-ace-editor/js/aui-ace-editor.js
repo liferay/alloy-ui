@@ -26,8 +26,8 @@ ace.config.set('packaged', true);
  *
  * Check the [live demo](http://alloyui.com/examples/ace-editor/).
  *
- * @class ACE Editor
- * @extends Widget
+ * @class A.AceEditor
+ * @extends A.Widget
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

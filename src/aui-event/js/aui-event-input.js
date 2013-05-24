@@ -5,8 +5,6 @@
  *
  * @module aui-event
  * @submodule aui-event-input
- *
- * @class AUI~event~input
  */
 
 var DOM_EVENTS = A.Node.DOM_EVENTS;
@@ -35,6 +33,11 @@ var ACTIVE_ELEMENT = 'activeElement',
 		paste: 1
 	};
 
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @event input
+ */
 A.Event.define('input', {
 
 	/**

@@ -24,9 +24,8 @@ var L = A.Lang,
  *
  * Check the [live demo](http://alloyui.com/examples/char-counter/).
  *
- * @class CharCounter
- * @extends Base, Component
- * @uses AUI~input~handle
+ * @class A.CharCounter
+ * @extends A.Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

@@ -28,7 +28,7 @@ var Lang = A.Lang,
 /**
  * A base class for PropertyList.
  *
- * @class PropertyList
+ * @class A.PropertyList
  * @extends A.DataTable
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor

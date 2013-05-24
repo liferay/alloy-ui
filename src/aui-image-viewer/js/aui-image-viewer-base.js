@@ -140,8 +140,10 @@ var L = A.Lang,
  *
  * Check the [live demo](http://alloyui.com/examples/image-viewer/).
  *
- * @class ImageViewer
+ * @class A.ImageViewer
  * @extends A.Widget
+ * @uses A.WidgetStdMod, A.WidgetPosition, A.WidgetStack, A.WidgetPositionAlign,
+ * A.WidgetPositionConstrain, A.WidgetModality
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

@@ -45,8 +45,8 @@ var Lang = A.Lang,
 /**
  * A base class for Palette.
  *
- * @class Palette
- * @extends Widget
+ * @class A.Palette
+ * @extends A.Widget
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

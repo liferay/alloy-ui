@@ -14,8 +14,8 @@ var Lang = A.Lang,
 /**
  * A base class for HashMap.
  *
- * @class HashMap
- * @extends Base
+ * @class A.HashMap
+ * @extends A.Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
