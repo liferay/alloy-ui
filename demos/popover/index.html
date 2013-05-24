@@ -20,37 +20,25 @@
     <script>
     YUI({ filter:'raw' }).use('aui-popover', 'widget-anim', function(A) {
 
-        var triggerTop = A.one('#triggerTop');
-
         var popoverTop = new A.Popover({
             align: {
-                node: triggerTop,
-                points:[A.WidgetPositionAlign.BC, A.WidgetPositionAlign.TC]
+                node: triggerTop
             },
             bodyContent: 'One fine body…',
             headerContent: 'Header content',
             plugins: [A.Plugin.WidgetAnim],
-            position: 'top'
+            trigger: '#triggerTop'
         }).render();
-
-        triggerTop.on('click', function() {
-            popoverTop.set('visible', !popoverTop.get('visible'));
-        });
-
-        var triggerBottom = A.one('#triggerBottom');
 
         var popoverBottom = new A.Popover({
             align: {
-                node: triggerBottom,
-                points:[A.WidgetPositionAlign.TC, A.WidgetPositionAlign.BC]
+                node: triggerBottom
             },
-            bodyContent: 'One fine body…',
-            headerContent: 'Header content'
+            bodyContent: 'Another fine body…',
+            headerContent: 'Header content',
+            position: 'bottom',
+            trigger: '#triggerBottom'
         }).render();
-
-        triggerBottom.on('click', function() {
-            popoverBottom.set('visible', !popoverBottom.get('visible'));
-        });
 
     });
     </script>
