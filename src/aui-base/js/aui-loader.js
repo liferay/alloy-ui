@@ -615,6 +615,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-classnamemanager",
             "aui-widget-cssclass",
             "aui-widget-toggle",
+            "aui-widget-toolbars",
             "aui-component",
             "aui-node-base"
         ]
@@ -821,6 +822,29 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-button-core"
         ]
     },
+    "aui-tooltip": {
+        "use": [
+            "aui-tooltip-base"
+        ]
+    },
+    "aui-tooltip-base": {
+        "requires": [
+            "event-mouseenter",
+            "transition",
+            "widget",
+            "widget-autohide",
+            "widget-modality",
+            "widget-position",
+            "widget-position-align",
+            "widget-position-constrain",
+            "widget-stack",
+            "widget-stdmod",
+            "aui-classnamemanager",
+            "aui-widget-cssclass",
+            "aui-widget-toggle",
+            "aui-node-base"
+        ]
+    },
     "aui-tree": {
         "use": [
             "aui-tree-data",
@@ -914,4 +938,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '6276c047ae2e7f41599f115fed94d291';
+YUI.Env[Y.version].md5 = 'f484372f0b565f49a0cba315d7b903e8';
