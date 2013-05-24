@@ -72,7 +72,7 @@ WidgetTrigger.ATTRS = {
     },
 
     /**
-     * DOM event to hide the tooltip.
+     * DOM event to toggle the tooltip.
      *
      * @attribute triggerToggleEvent
      * @type String
