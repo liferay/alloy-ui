@@ -70,7 +70,6 @@ A.TooltipDelegate = A.Base.create(_TOOLTIP_DELEGATE, A.Base, [], {
         var instance = this,
             container,
             trigger;
-
         container = instance.get(CONTAINER);
         trigger = instance.get(TRIGGER);
 
@@ -185,14 +184,9 @@ A.TooltipDelegate = A.Base.create(_TOOLTIP_DELEGATE, A.Base, [], {
             writeOnce: true
         },
 
-        /**
-         * Determine the position of the tooltip.
-         *
-         * @attribute position
-         * @default bottom
-         * @type {String}
-         */
         position: A.WidgetPositionAlignSuggestion.ATTRS.position,
+
+        trigger: A.WidgetPositionAlignSuggestion.ATTRS.trigger,
 
         /**
          * DOM event to hide the tooltip.
