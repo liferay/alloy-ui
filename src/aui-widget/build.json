@@ -17,6 +17,18 @@
             "jsfiles": [
                 "js/aui-widget-toolbars.js"
             ]
+        },
+
+        "aui-widget-position-align-suggestion": {
+            "jsfiles": [
+                "js/aui-widget-position-align-suggestion.js"
+            ]
+        },
+
+        "aui-widget-trigger": {
+            "jsfiles": [
+                "js/aui-widget-trigger.js"
+            ]
         }
     }
 }

@@ -4,31 +4,20 @@
  * @module aui-tooltip
  */
 
-var Lang = A.Lang,
-
-    getClassName = A.getClassName,
-
-    BODY_CONTENT = 'bodyContent',
-    BIND_DOM_EVENTS = 'bindDOMEvents',
-    BOTTOM = 'bottom',
+var BODY_CONTENT = 'bodyContent',
     BOUNDING_BOX = 'boundingBox',
     CONTENT_BOX = 'contentBox',
     DURATION = 'duration',
     IN = 'in',
-    LEFT = 'left',
     MOUSEENTER = 'mouseenter',
     MOUSELEAVE = 'mouseleave',
     OPACITY = 'opacity',
-    POSITION = 'position',
-    POSITION_CHANGE = 'positionChange',
-    RIGHT = 'right',
     TITLE = 'title',
     TOOLTIP = 'tooltip',
-    TOP = 'top',
     TRIGGER = 'trigger',
-    TRIGGER_CHANGE = 'triggerChange',
-    TRIGGER_HIDE_EVENT = 'triggerHideEvent',
-    TRIGGER_SHOW_EVENT = 'triggerShowEvent',
+    VISIBLE = 'visible',
+
+    getClassName = A.getClassName,
 
     CSS_TOOLTIP_ARROW = getClassName('tooltip-arrow'),
     CSS_TOOLTIP_INNER = getClassName('tooltip-inner');
@@ -41,8 +30,8 @@ var Lang = A.Lang,
  * @class Tooltip
  * @extends Widget
  * @uses WidgetCssClass, WidgetPosition, WidgetStdMod, WidgetToggle, WidgetAutohide,
- * WidgetToolbars, WidgetModality, WidgetPositionAlign, WidgetPositionConstrain,
- * WidgetStack
+ * WidgetToolbars, WidgetModality, WidgetPositionAlign, WidgetPositionAlignSuggestion,
+ * WidgetPositionConstrain, WidgetStack
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -54,11 +43,11 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
     A.WidgetAutohide,
     A.WidgetModality,
     A.WidgetPositionAlign,
+    A.WidgetPositionAlignSuggestion,
     A.WidgetPositionConstrain,
-    A.WidgetStack
+    A.WidgetStack,
+    A.WidgetTrigger
 ], {
-    _eventHandles: null,
-
     /**
      * Construction logic executed during Tooltip instantiation. Lifecycle.
      *
@@ -68,21 +57,8 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
     initializer: function() {
         var instance = this;
 
+        A.after(instance._afterUiSetTrigger, instance, '_uiSetTrigger');
         A.after(instance._afterUiSetVisible, instance, '_uiSetVisible');
-        instance.after(POSITION_CHANGE, instance._afterPositionChange);
-        instance.after(TRIGGER_CHANGE, instance._afterTriggerChange);
-    },
-
-    /**
-     * Destructor logic for tooltip.
-     *
-     * @method destructor
-     * @protected
-     */
-    destructor: function() {
-        var instance = this;
-
-        (new A.EventHandle(instance._eventHandles)).detach();
     },
 
     /**
@@ -99,34 +75,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
         contentBox.addClass(CSS_TOOLTIP_INNER);
         boundingBox.append(A.Tooltip.TEMPLATES.arrow);
 
-        instance._uiSetPosition(instance.get(POSITION));
-        instance._uiSetTrigger(instance.get(TRIGGER));
-    },
-
-    /**
-     * Fire after <code>boundingBox</code> position changes.
-     *
-     * @method _afterPositionChange
-     * @param event
-     * @protected
-     */
-    _afterPositionChange: function(event) {
-        var instance = this;
-
-        instance._uiSetPosition(event.newVal, event.prevVal);
-    },
-
-    /**
-     * Fire after <code>trigger</code> changes.
-     *
-     * @method _afterTriggerChange
-     * @param event
-     * @protected
-     */
-    _afterTriggerChange: function(event) {
-        var instance = this;
-
-        instance._uiSetTrigger(event.newVal);
+        instance._afterUiSetVisible(instance.get(VISIBLE));
     },
 
     /**
@@ -141,7 +90,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
             boundingBox = instance.get(BOUNDING_BOX);
 
         if (val) {
-            instance._loadFromTitle();
+            instance._loadBodyContentFromTitle();
         }
 
         boundingBox.transition(
@@ -156,12 +105,25 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
     },
 
     /**
-     * Load tooltip content from trigger title attribute.
+     * Fire after <code>trigger</code> changes.
      *
-     * @method _loadFromTitle
+     * @method _afterUiSetTrigger
+     * @param val
      * @protected
      */
-    _loadFromTitle: function() {
+    _afterUiSetTrigger: function(val) {
+        var instance = this;
+
+        instance.suggestAlignment(val);
+    },
+
+    /**
+     * Load tooltip content from trigger title attribute.
+     *
+     * @method _loadBodyContentFromTitle
+     * @protected
+     */
+    _loadBodyContentFromTitle: function() {
         var instance = this,
             trigger = instance.get(TRIGGER);
 
@@ -169,46 +131,6 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
             A.WidgetStdMod.BODY,
             trigger && trigger.getAttribute(TITLE) ||
                 instance.get(BODY_CONTENT));
-    },
-
-    /**
-     * Set the <code>boundingBox</code> position on the UI.
-     *
-     * @method _uiSetPosition
-     * @param val
-     * @param prevVal
-     * @protected
-     */
-    _uiSetPosition: function(val, prevVal) {
-        var instance = this,
-            boundingBox = instance.get(BOUNDING_BOX);
-
-        if (prevVal) {
-            boundingBox.removeClass(getClassName(prevVal));
-        }
-        boundingBox.addClass(getClassName(val));
-    },
-
-    /**
-     * Set the <code>trigger</code> UI.
-     *
-     * @method _uiSetTrigger
-     * @param val
-     * @protected
-     */
-    _uiSetTrigger: function(val) {
-        var instance = this;
-
-        (new A.EventHandle(instance._eventHandles)).detach();
-
-        if (val && instance.get(BIND_DOM_EVENTS)) {
-            instance._eventHandles = [];
-            instance._eventHandles.push(
-                val.on(instance.get(TRIGGER_SHOW_EVENT), instance.show, instance),
-                val.on(instance.get(TRIGGER_HIDE_EVENT), instance.hide, instance));
-        }
-
-        instance.set('align.node', val);
     }
 }, {
 
@@ -225,38 +147,11 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
      * Static property used to define the default attribute
      * configuration for the Tooltip.
      *
-     * @property Tooltip.ATTRS
+     * @property A.Tooltip.ATTRS
      * @type Object
      * @static
      */
     ATTRS: {
-        /**
-         * The alignment configuration for this widget.
-         *
-         * @attribute align
-         * @default {points:[A.WidgetPositionAlign.BC, A.WidgetPositionAlign.TC]}
-         * @type Object
-         */
-        align: {
-            value: {
-                points:[A.WidgetPositionAlign.BC, A.WidgetPositionAlign.TC]
-            }
-        },
-
-        /**
-         * Determine if the Toggler should bind DOM events or not.
-         *
-         * @attribute bindDOMEvents
-         * @default true
-         * @type Boolean
-         * @writeOnce
-         */
-        bindDOMEvents: {
-            validator: Lang.isBoolean,
-            value: true,
-            writeOnce: true
-        },
-
         /**
          * Determine the duration of the tooltip animation.
          *
@@ -280,37 +175,13 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
         },
 
         /**
-         * Determine the position of the tooltip.
-         *
-         * @attribute position
-         * @default bottom
-         * @type {String}
-         */
-        position: {
-            validator: function(val) {
-                return val === BOTTOM || val === TOP || val === LEFT || val === RIGHT;
-            },
-            value: TOP
-        },
-
-        /**
-         * TODO. Wanna help? Please send a Pull Request.
-         *
-         * @attribute trigger
-         */
-        trigger: {
-            setter: A.one
-        },
-
-        /**
          * DOM event to hide the tooltip.
          *
          * @attribute triggerHideEvent
-         * @default MOUSEENTER
+         * @default mouseleave
          * @type String
          */
         triggerHideEvent: {
-            validator: Lang.isString,
             value: MOUSELEAVE
         },
 
@@ -318,11 +189,10 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
          * DOM event to show the tooltip.
          *
          * @attribute triggerShowEvent
-         * @default MOUSEENTER
+         * @default mouseenter
          * @type String
          */
         triggerShowEvent: {
-            validator: Lang.isString,
             value: MOUSEENTER
         }
     },

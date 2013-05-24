@@ -4,9 +4,7 @@
  * @module aui-popover
  */
 
-var Lang = A.Lang,
-
-    StdMod = A.WidgetStdMod,
+var StdMod = A.WidgetStdMod,
 
     OWNER_DOCUMENT = 'ownerDocument',
 
@@ -16,18 +14,13 @@ var Lang = A.Lang,
 
     ARROW = 'arrow',
     BLOCK = 'block',
-    BOTTOM = 'bottom',
     BOUNDING_BOX = 'boundingBox',
+    CLICK = 'click',
     CONTENT = 'content',
     CONTENT_BOX = 'contentBox',
     DISPLAY = 'display',
-    LEFT = 'left',
     NONE = 'none',
     POPOVER = 'popover',
-    POSITION = 'position',
-    POSITION_CHANGE = 'positionChange',
-    RIGHT = 'right',
-    TOP = 'top',
 
     CSS_ARROW = getClassName(ARROW),
     CSS_POPOVER_BD = getClassName('popover-content'),
@@ -42,8 +35,8 @@ var Lang = A.Lang,
  * @class Popover
  * @extends Widget
  * @uses WidgetCssClass, WidgetPosition, WidgetStdMod, WidgetToggle, WidgetAutohide,
- * WidgetToolbars, WidgetModality, WidgetPositionAlign, WidgetPositionConstrain,
- * WidgetStack
+ * WidgetToolbars, WidgetModality, WidgetPositionAlign, WidgetPositionAlignSuggestion,
+ * WidgetPositionConstrain, WidgetStack
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -56,8 +49,10 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
     A.WidgetToolbars,
     A.WidgetModality,
     A.WidgetPositionAlign,
+    A.WidgetPositionAlignSuggestion,
     A.WidgetPositionConstrain,
-    A.WidgetStack
+    A.WidgetStack,
+    A.WidgetTrigger
 ], {
 
     /**
@@ -68,8 +63,6 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
      */
     initializer: function() {
         var instance = this;
-
-        instance.after(POSITION_CHANGE, instance._afterPositionChange);
 
         A.after(instance._afterUiSetVisible, instance, '_uiSetVisible');
         A.after(instance._afterRenderBoxClassNames, instance, '_renderBoxClassNames');
@@ -87,20 +80,7 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
 
         boundingBox.append(A.Popover.TEMPLATES.arrow);
 
-        instance._uiSetPosition(instance.get(POSITION));
-    },
-
-    /**
-     * Fire after <code>boundingBox</code> position changes.
-     *
-     * @method _afterPositionChange
-     * @param event
-     * @protected
-     */
-    _afterPositionChange: function(event) {
-        var instance = this;
-
-        instance._uiSetPosition(event.newVal, event.prevVal);
+        instance.suggestAlignment();
     },
 
     /**
@@ -110,7 +90,7 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
      * @param event
      * @protected
      */
-    _afterRenderBoxClassNames: function(event) {
+    _afterRenderBoxClassNames: function() {
         var instance = this,
             contentBox = instance.get(CONTENT_BOX);
 
@@ -140,27 +120,8 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
      */
     _getStdModTemplate : function(section) {
         return A.Node.create(A.Popover.TEMPLATES[section], this._stdModNode.get(OWNER_DOCUMENT));
-    },
-
-    /**
-     * Set the <code>boundingBox</code> position on the UI.
-     *
-     * @method _uiSetPosition
-     * @param val
-     * @param prevVal
-     * @protected
-     */
-    _uiSetPosition: function(val, prevVal) {
-        var instance = this,
-            boundingBox = instance.get(BOUNDING_BOX);
-
-        if (prevVal) {
-            boundingBox.removeClass(getClassName(prevVal));
-        }
-        boundingBox.addClass(getClassName(val));
     }
 }, {
-
     /**
      * Static property provides a string to identify the CSS prefix.
      *
@@ -174,24 +135,20 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
      * Static property used to define the default attribute
      * configuration for the Popover.
      *
-     * @property Popover.ATTRS
+     * @property A.Popover.ATTRS
      * @type Object
      * @static
      */
     ATTRS: {
-
         /**
-         * Determine the position of the popover.
+         * DOM event to hide the tooltip.
          *
-         * @attribute position
-         * @default bottom
-         * @type {String}
+         * @attribute triggerToggleEvent
+         * @default click
+         * @type String
          */
-        position: {
-            validator: function(val) {
-                return val === BOTTOM || val === TOP || val === LEFT || val === RIGHT;
-            },
-            value: BOTTOM
+        triggerToggleEvent: {
+            value: CLICK
         }
     },
 

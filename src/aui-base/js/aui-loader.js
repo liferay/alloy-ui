@@ -890,6 +890,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-widget-cssclass",
             "aui-widget-toggle",
             "aui-widget-toolbars",
+            "aui-widget-trigger",
+            "aui-widget-position-align-suggestion",
             "aui-component",
             "aui-node-base"
         ]
@@ -1165,7 +1167,8 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-tooltip": {
         "use": [
-            "aui-tooltip-base"
+            "aui-tooltip-base",
+            "aui-tooltip-delegate"
         ]
     },
     "aui-tooltip-base": {
@@ -1181,9 +1184,18 @@ Y.mix(YUI.Env[Y.version].modules, {
             "widget-stack",
             "widget-stdmod",
             "aui-classnamemanager",
+            "aui-component",
             "aui-widget-cssclass",
             "aui-widget-toggle",
+            "aui-widget-trigger",
+            "aui-widget-position-align-suggestion",
             "aui-node-base"
+        ]
+    },
+    "aui-tooltip-delegate": {
+        "requires": [
+            "node-event-delegate",
+            "aui-tooltip-base"
         ]
     },
     "aui-tooltip-deprecated": {
@@ -1311,12 +1323,23 @@ Y.mix(YUI.Env[Y.version].modules, {
             "widget-base"
         ]
     },
+    "aui-widget-position-align-suggestion": {
+        "requires": [
+            "widget-position-align",
+            "widget-stdmod"
+        ]
+    },
     "aui-widget-toggle": {},
     "aui-widget-toolbars": {
         "requires": [
             "widget-stdmod",
             "aui-toolbar"
         ]
+    },
+    "aui-widget-trigger": {
+        "requires": [
+            "node"
+        ]
     }
 });
-YUI.Env[Y.version].md5 = 'b395e86335dd43140e750ce731977605';
+YUI.Env[Y.version].md5 = 'ff24d685daa17798883f26caae7ba29a';

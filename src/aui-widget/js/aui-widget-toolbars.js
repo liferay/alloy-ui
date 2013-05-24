@@ -21,7 +21,7 @@ var WidgetToolbars = function() {};
 
 /**
  * Static property used to define the default attribute
- * configuration for the TernarySearchNode.
+ * configuration.
  *
  * @property WidgetToolbars.ATTRS
  * @type Object
