@@ -303,9 +303,9 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * DOM event to hide the tooltip.
          *
-         * @attribute triggerShowEvent
+         * @attribute triggerHideEvent
          * @default MOUSEENTER
          * @type String
          */
@@ -315,7 +315,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * DOM event to show the tooltip.
          *
          * @attribute triggerShowEvent
          * @default MOUSEENTER
