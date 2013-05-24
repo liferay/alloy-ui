@@ -26,5 +26,18 @@
     },
 
     "aui-widget-toggle": {
+    },
+
+    "aui-widget-position-align-suggestion": {
+        "requires": [
+            "widget-position-align",
+            "widget-stdmod"
+        ]
+    },
+
+    "aui-widget-trigger": {
+        "requires": [
+            "node"
+        ]
     }
 }
