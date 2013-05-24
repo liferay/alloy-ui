@@ -128,11 +128,13 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
     _loadBodyContentFromTitle: function() {
         var instance = this,
             trigger = instance.get(TRIGGER),
+            dataTitle,
             title;
 
-        title = trigger.getAttribute(TITLE);
+        dataTitle = trigger.getAttribute(_DATA_TITLE);
+        title = trigger.getAttribute(TITLE) || dataTitle;
 
-        if (!trigger.getAttribute(_DATA_TITLE)) {
+        if (!dataTitle) {
             trigger.removeAttribute(TITLE).setAttribute(_DATA_TITLE, title);
         }
 
