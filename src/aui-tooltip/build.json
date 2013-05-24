@@ -1,0 +1,10 @@
+{
+    "name": "aui-tooltip",
+    "builds": {
+        "aui-tooltip-base": {
+            "jsfiles": [
+                "js/aui-tooltip-base.js"
+            ]
+        }
+    }
+}

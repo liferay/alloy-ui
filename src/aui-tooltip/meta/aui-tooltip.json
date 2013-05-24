@@ -1,0 +1,25 @@
+{
+    "aui-tooltip": {
+        "use": [
+            "aui-tooltip-base"
+        ]
+    },
+    "aui-tooltip-base": {
+        "requires": [
+            "event-mouseenter",
+            "transition",
+            "widget",
+            "widget-autohide",
+            "widget-modality",
+            "widget-position",
+            "widget-position-align",
+            "widget-position-constrain",
+            "widget-stack",
+            "widget-stdmod",
+            "aui-classnamemanager",
+            "aui-widget-cssclass",
+            "aui-widget-toggle",
+            "aui-node-base"
+        ]
+    }
+}
