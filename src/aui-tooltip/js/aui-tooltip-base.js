@@ -8,6 +8,7 @@ var BODY_CONTENT = 'bodyContent',
     BOUNDING_BOX = 'boundingBox',
     CONTENT_BOX = 'contentBox',
     DURATION = 'duration',
+    FORMATTER = 'formatter',
     IN = 'in',
     MOUSEENTER = 'mouseenter',
     MOUSELEAVE = 'mouseleave',
@@ -127,12 +128,20 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
      */
     _loadBodyContentFromTitle: function() {
         var instance = this,
-            trigger = instance.get(TRIGGER),
+            trigger,
             dataTitle,
+            formatter,
             title;
+
+        formatter = instance.get(FORMATTER);
+        trigger = instance.get(TRIGGER);
 
         dataTitle = trigger.getAttribute(_DATA_TITLE);
         title = trigger.getAttribute(TITLE) || dataTitle;
+
+        if (formatter) {
+            title = formatter.call(instance, title);
+        }
 
         if (!dataTitle) {
             trigger.removeAttribute(TITLE).setAttribute(_DATA_TITLE, title);
@@ -170,6 +179,16 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
          */
         duration: {
             value: 0.15
+        },
+
+        /**
+         * Format the title attribute before set the content of the tooltip.
+         *
+         * @attribute formatter
+         * @type function
+         */
+        formatter: {
+            validator: A.Lang.isFunction
         },
 
         /**
