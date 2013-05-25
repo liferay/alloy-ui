@@ -12,6 +12,7 @@ var Lang = A.Lang,
     ALIGN = 'align',
     CONTAINER = 'container',
     DURATION = 'duration',
+    FORMATTER = 'formatter',
     MOUSEENTER = 'mouseenter',
     MOUSELEAVE = 'mouseleave',
     OPACITY = 'opacity',
@@ -92,6 +93,7 @@ A.TooltipDelegate = A.Base.create(_TOOLTIP_DELEGATE, A.Base, [], {
                 align: instance.get(ALIGN),
                 bindDOMEvents: false,
                 duration: instance.get(DURATION),
+                formatter: instance.get(FORMATTER),
                 opacity: instance.get(OPACITY),
                 position: instance.get(POSITION),
                 visible: false
@@ -171,6 +173,8 @@ A.TooltipDelegate = A.Base.create(_TOOLTIP_DELEGATE, A.Base, [], {
             value: 0.15,
             writeOnce: true
         },
+
+        formatter: A.Tooltip.ATTRS.formatter,
 
         /**
          * Determine the opacity of the tooltip.
