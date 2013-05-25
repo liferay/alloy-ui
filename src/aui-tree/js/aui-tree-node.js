@@ -470,7 +470,6 @@ var TreeNode = A.Component.create(
 			syncUI: function() {
 				var instance = this;
 
-				instance._syncHitArea( instance.get( CHILDREN ) );
 				instance._syncIconUI();
 			},
 
@@ -511,7 +510,6 @@ var TreeNode = A.Component.create(
 			_afterSetChildren: function(event) {
 				var instance = this;
 
-				instance._syncHitArea(event.newVal);
 				instance._syncIconUI();
 			},
 
@@ -601,10 +599,10 @@ var TreeNode = A.Component.create(
 			 * @param {Array} children
 			 * @protected
 			 */
-			_syncHitArea: function(children) {
+			_syncHitArea: function() {
 				var instance = this;
 
-				if (instance.get(ALWAYS_SHOW_HITAREA) || children.length) {
+				if (instance.get(ALWAYS_SHOW_HITAREA) || instance.getChildrenLength()) {
 					instance.showHitArea();
 				}
 				else {
@@ -650,6 +648,8 @@ var TreeNode = A.Component.create(
 					iconEl.setAttribute('className', icon || BLANK);
 					hitAreaEl.setAttribute('className', iconHitArea || BLANK);
 				}
+
+				instance._syncHitArea();
 			},
 
 			/*
