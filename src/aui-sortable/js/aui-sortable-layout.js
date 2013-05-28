@@ -1,5 +1,5 @@
 /**
- * The SortableLayout Utility - Full documentation coming soon.
+ * The SortableLayout Utility
  *
  * @module aui-sortable-layout
  */
@@ -102,23 +102,12 @@ var Lang = A.Lang,
  *    <li>DragDrop utility for drag lists, portal layouts (portlets)</li>
  * </ul>
  *
- * Quick Example:<br/>
+ * Check the [live demo](http://alloyui.com/examples/sortable-layout/).
  *
- * <pre><code>var SortableLayout = new A.SortableLayout({
- *      dragNodes: '.portlet',
- *      dropNodes: '.column',
- *      proxyNode: A.Node.create('<div class="sortable-layout-proxy"></div>'),
- *      lazyStart: true
- * </code></pre>
- *
- * Check the list of <a href="SortableLayout.html#configattributes">Configuration Attributes</a> available for
- * SortableLayout.
- *
+ * @class A.SortableLayout
+ * @extends A.Base
  * @param config {Object} Object literal specifying widget configuration properties.
- *
- * @class SortableLayout
  * @constructor
- * @extends Base
  */
 var SortableLayout = A.Component.create(
     {
@@ -140,6 +129,14 @@ var SortableLayout = A.Component.create(
          * @static
          */
         ATTRS: {
+
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @attribute delegateConfig
+             * @default null
+             * @type Object
+             */
             delegateConfig: {
                 value: null,
                 setter: function(val) {
@@ -165,16 +162,33 @@ var SortableLayout = A.Component.create(
                 validator: isObject
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @attribute proxyNode
+             */
             proxyNode: {
                 setter: function(val) {
                     return isString(val) ? A.Node.create(val) : val;
                 }
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @attribute dragNodes
+             * @type String
+             */
             dragNodes: {
                 validator: isString
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @attribute dropContainer
+             * @type Function
+             */
             dropContainer: {
                 value: function(dropNode) {
                     return dropNode;
@@ -182,19 +196,41 @@ var SortableLayout = A.Component.create(
                 validator: isFunction
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @attribute dropNodes
+             */
             dropNodes: {
                 setter: '_setDropNodes'
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @attribute groups
+             */
             groups: {
                 value: [SORTABLE_LAYOUT]
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @attribute lazyStart
+             * @default false
+             * @type Boolean
+             */
             lazyStart: {
                 value: false,
                 validator: isBoolean
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @attribute placeholder
+             */
             placeholder: {
                 value: TPL_PLACEHOLDER,
                 setter: function(val) {
@@ -218,6 +254,12 @@ var SortableLayout = A.Component.create(
                 }
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @attribute proxy
+             * @default null
+             */
             proxy: {
                 value: null,
                 setter: function(val) {
@@ -238,9 +280,17 @@ var SortableLayout = A.Component.create(
             }
         },
 
+        /**
+         * Static property used to define which component it extends.
+         *
+         * @property SortableLayout.EXTENDS
+         * @type Object
+         * @static
+         */
         EXTENDS: A.Base,
 
         prototype: {
+
             /**
              * Construction logic executed during SortableLayout instantiation. Lifecycle.
              *
@@ -253,6 +303,12 @@ var SortableLayout = A.Component.create(
                 instance.bindUI();
             },
 
+            /**
+             * Bind the events on the SortableLayout UI. Lifecycle.
+             *
+             * @method bindUI
+             * @protected
+             */
             bindUI: function() {
                 var instance = this;
 
@@ -268,9 +324,13 @@ var SortableLayout = A.Component.create(
                 instance._bindDropZones();
             },
 
-            /*
-            * Methods
-            */
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method addDropNode
+             * @param node
+             * @param config
+             */
             addDropNode: function(node, config) {
                 var instance = this;
 
@@ -295,6 +355,12 @@ var SortableLayout = A.Component.create(
                 }
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method addDropTarget
+             * @param drop
+             */
             addDropTarget: function(drop) {
                 var instance = this;
 
@@ -303,6 +369,13 @@ var SortableLayout = A.Component.create(
                 );
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method alignPlaceholder
+             * @param region
+             * @param isTarget
+             */
             alignPlaceholder: function(region, isTarget) {
                 var instance = this;
                 var placeholder = instance.get(PLACEHOLDER);
@@ -319,6 +392,12 @@ var SortableLayout = A.Component.create(
                 );
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method calculateDirections
+             * @param drag
+             */
             calculateDirections: function(drag) {
                 var instance = this;
                 var lastY = instance.lastY;
@@ -343,6 +422,13 @@ var SortableLayout = A.Component.create(
                 instance.lastY = y;
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method calculateQuadrant
+             * @param drag
+             * @param drop
+             */
             calculateQuadrant: function(drag, drop) {
                 var instance = this;
                 var quadrant = 1;
@@ -371,6 +457,13 @@ var SortableLayout = A.Component.create(
                 return quadrant;
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method getPlaceholderXY
+             * @param region
+             * @param isTarget
+             */
             getPlaceholderXY: function(region, isTarget) {
                 var instance = this;
                 var placeholder = instance.get(PLACEHOLDER);
@@ -399,6 +492,12 @@ var SortableLayout = A.Component.create(
                 return [ x, y ];
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method removeDropTarget
+             * @param drop
+             */
             removeDropTarget: function(drop) {
                 var instance = this;
 
@@ -407,6 +506,12 @@ var SortableLayout = A.Component.create(
                 );
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _alignCondition
+             * @protected
+             */
             _alignCondition: function() {
                 var instance = this;
                 var activeDrag = DDM.activeDrag;
@@ -422,6 +527,12 @@ var SortableLayout = A.Component.create(
                 return true;
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _bindDDEvents
+             * @protected
+             */
             _bindDDEvents: function() {
                 var instance = this;
                 var delegateConfig = instance.get(DELEGATE_CONFIG);
@@ -444,6 +555,12 @@ var SortableLayout = A.Component.create(
                 instance.on(EV_QUADRANT_EXIT, instance._syncPlaceholderUI);
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _bindDropZones
+             * @protected
+             */
             _bindDropZones: function() {
                 var instance = this;
                 var dropNodes = instance.get(DROP_NODES);
@@ -455,6 +572,13 @@ var SortableLayout = A.Component.create(
                 }
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _defPlaceholderAlign
+             * @param event
+             * @protected
+             */
             _defPlaceholderAlign: function(event) {
                 var instance = this;
                 var activeDrop = instance.activeDrop;
@@ -475,6 +599,12 @@ var SortableLayout = A.Component.create(
                 }
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _evOutput
+             * @protected
+             */
             _evOutput: function() {
                 var instance = this;
 
@@ -487,6 +617,12 @@ var SortableLayout = A.Component.create(
                 };
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _fireQuadrantEvents
+             * @protected
+             */
             _fireQuadrantEvents: function() {
                 var instance = this;
                 var evOutput = instance._evOutput();
@@ -527,10 +663,23 @@ var SortableLayout = A.Component.create(
                 instance.lastYDirection = instance.YDirection;
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _getAppendNode
+             * @protected
+             */
             _getAppendNode: function() {
                 return DDM.activeDrag.get(NODE);
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _positionNode
+             * @param event
+             * @protected
+             */
             _positionNode: function(event) {
                 var instance = this;
                 var activeDrop = instance.lastAlignDrop || instance.activeDrop;
@@ -560,6 +709,13 @@ var SortableLayout = A.Component.create(
                 }
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _syncPlaceholderUI
+             * @param event
+             * @protected
+             */
             _syncPlaceholderUI: function(event) {
                 var instance = this;
 
@@ -572,6 +728,12 @@ var SortableLayout = A.Component.create(
                 }
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _syncPlaceholderSize
+             * @protected
+             */
             _syncPlaceholderSize: function() {
                 var instance = this;
                 var node = instance.activeDrop.get(NODE);
@@ -586,6 +748,13 @@ var SortableLayout = A.Component.create(
                 }
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _syncProxyNodeUI
+             * @param event
+             * @protected
+             */
             _syncProxyNodeUI: function(event) {
                 var instance = this;
                 var dragNode = DDM.activeDrag.get(DRAG_NODE);
@@ -598,6 +767,12 @@ var SortableLayout = A.Component.create(
                 }
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _syncProxyNodeSize
+             * @protected
+             */
             _syncProxyNodeSize: function() {
                 var instance = this;
                 var node = DDM.activeDrag.get(NODE);
@@ -616,9 +791,13 @@ var SortableLayout = A.Component.create(
                 }
             },
 
-            /*
-            * Listeners
-            */
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _afterDragStart
+             * @param event
+             * @protected
+             */
             _afterDragStart: function(event) {
                 var instance = this;
 
@@ -627,6 +806,13 @@ var SortableLayout = A.Component.create(
                 }
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _onDragEnd
+             * @param event
+             * @protected
+             */
             _onDragEnd: function(event) {
                 var instance = this;
                 var placeholder = instance.get(PLACEHOLDER);
@@ -650,7 +836,13 @@ var SortableLayout = A.Component.create(
                 instance.lastYDirection = null;
             },
 
-            // fires after drag:start
+            /**
+             * Fire after drag:start.
+             *
+             * @method _onDragEnter
+             * @param event
+             * @protected
+             */
             _onDragEnter: function(event) {
                 var instance = this;
 
@@ -671,6 +863,13 @@ var SortableLayout = A.Component.create(
                 }
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _onDragExit
+             * @param event
+             * @protected
+             */
             _onDragExit: function(event) {
                 var instance = this;
 
@@ -681,6 +880,13 @@ var SortableLayout = A.Component.create(
                 instance.lastActiveDrop = DDM.activeDrop;
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _onDragOver
+             * @param event
+             * @protected
+             */
             _onDragOver: function(event) {
                 var instance = this;
                 var drag = event.drag;
@@ -695,7 +901,13 @@ var SortableLayout = A.Component.create(
                 }
             },
 
-            // fires before drag:enter
+            /**
+             * Fire before drag:enter.
+             *
+             * @method _onDragStart
+             * @param event
+             * @protected
+             */
             _onDragStart: function(event) {
                 var instance = this;
 
@@ -708,6 +920,13 @@ var SortableLayout = A.Component.create(
                 instance.activeDrop = DDM.activeDrop;
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _setDropNodes
+             * @param val
+             * @protected
+             */
             _setDropNodes: function(val) {
                 var instance = this;
 

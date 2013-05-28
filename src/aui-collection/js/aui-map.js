@@ -1,10 +1,25 @@
+/**
+ * The Collection Utility
+ *
+ * @module aui-collection
+ * @submodule aui-map
+ */
+
 var Lang = A.Lang,
     AArray = A.Array,
     AObject = A.Object,
 
-    _UNDERLINE = '_',
+    _UNDERLINE = '_';
 
-    HashMap = A.Base.create('map', A.Base, [],
+/**
+ * A base class for HashMap.
+ *
+ * @class A.HashMap
+ * @extends A.Base
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
+var HashMap = A.Base.create('map', A.Base, [],
     {
         FALSE: A.guid(),
         NAN: A.guid(),
@@ -19,6 +34,12 @@ var Lang = A.Lang,
         _size: 0,
         _values: null,
 
+        /**
+         * Construction logic executed during HashMap instantiation. Lifecycle.
+         *
+         * @method initializer
+         * @protected
+         */
         initializer: function() {
             var instance = this;
 
@@ -33,16 +54,34 @@ var Lang = A.Lang,
             instance._objects = [];
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method clear
+         */
         clear: function() {
             this.fire('clear');
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method getValue
+         * @param key
+         */
         getValue: function(key) {
             var instance = this;
 
             return instance._values[instance._getHash(key)];
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method has
+         * @param key
+         * @param opt_hash
+         */
         has: function(key, opt_hash) {
             var instance = this;
 
@@ -50,6 +89,12 @@ var Lang = A.Lang,
                     opt_hash || instance._getHash(key));
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method hasValue
+         * @param value
+         */
         hasValue: function(value) {
             var found = false;
 
@@ -61,14 +106,32 @@ var Lang = A.Lang,
             return found;
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method keys
+         */
         keys: function() {
             return AObject.values(this._keys);
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method isEmpty
+         */
         isEmpty: function() {
             return this._size === 0;
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method put
+         * @param key
+         * @param value
+         * @param opt_hash
+         */
         put: function(key, value, opt_hash) {
             this.fire('put', {
                 key: key,
@@ -77,6 +140,12 @@ var Lang = A.Lang,
             });
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method putAll
+         * @param map
+         */
         putAll: function(map) {
             var instance = this;
 
@@ -85,6 +154,13 @@ var Lang = A.Lang,
             });
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method remove
+         * @param key
+         * @param opt_hash
+         */
         remove: function(key, opt_hash) {
             var instance = this,
                 oldValue = instance.getValue(key);
@@ -98,14 +174,30 @@ var Lang = A.Lang,
             return oldValue;
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method size
+         */
         size: function() {
             return this._size;
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method values
+         */
         values: function() {
             return AObject.values(this._values);
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _defClearFn
+         * @protected
+         */
         _defClearFn: function() {
             var instance = this;
 
@@ -116,6 +208,13 @@ var Lang = A.Lang,
             instance._size = 0;
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _defPutFn
+         * @param event
+         * @protected
+         */
         _defPutFn: function(event) {
             var instance = this,
                 hash = event.hash;
@@ -131,6 +230,13 @@ var Lang = A.Lang,
             instance._values[hash] = event.value;
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _defRemoveFn
+         * @param event
+         * @protected
+         */
         _defRemoveFn: function(event) {
             var instance = this,
                 key = event.key,
@@ -165,6 +271,13 @@ var Lang = A.Lang,
             event.value = oldValue;
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _getHash
+         * @param value
+         * @protected
+         */
         _getHash: function(value) {
             var instance = this;
 
@@ -199,6 +312,13 @@ var Lang = A.Lang,
             return String(value);
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _getHashForObject
+         * @param value
+         * @protected
+         */
         _getHashForObject: function(value) {
             var instance = this,
                 valueIndex;
@@ -214,6 +334,13 @@ var Lang = A.Lang,
                         instance._objects.push(value) - 1);
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _isObjectWithHashCode
+         * @param value
+         * @protected
+         */
         _isObjectWithHashCode: function(value) {
             if (!Lang.isObject(value)) {
                 return false;

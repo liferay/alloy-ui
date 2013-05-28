@@ -74,7 +74,6 @@ var L = A.Lang,
 	TPL_PLAYER_CONTENT = '<span class="' + CSS_IMAGE_GALLERY_PLAYER_CONTENT + '"></span>';
 
 /**
- * <p><img src="assets/images/aui-image-viewer-gallery/main.png"/></p>
  *
  * A base class for ImageGallery, providing:
  * <ul>
@@ -85,26 +84,12 @@ var L = A.Lang,
  *    <li>Keyboard navigation support</li>
  * </ul>
  *
- * Quick Example:<br/>
+ * Check the [live demo](http://alloyui.com/examples/image-viewer/gallery/).
  *
- * <pre><code>var instance = new A.ImageGallery({
- *   links: '#gallery1 a',
- *   caption: 'Liferay Champion Soccer',
- *   captionFromTitle: true,
- *   preloadNeighborImages: true,
- *   preloadAllImages: true,
- *   showInfo: true
- * }).render();
- * </code></pre>
- *
- * Check the list of <a href="ImageGallery.html#configattributes">Configuration Attributes</a> available for
- * ImageGallery.
- *
+ * @class A.ImageGallery
+ * @extends A.ImageViewer
  * @param config {Object} Object literal specifying widget configuration properties.
- *
- * @class ImageGallery
  * @constructor
- * @extends ImageViewer
  */
 var ImageGallery = A.Component.create(
 	{
@@ -126,13 +111,14 @@ var ImageGallery = A.Component.create(
 		 * @static
 		 */
 		ATTRS: {
+
 			/**
 			 * If <code>true</code> the slide show will be played when the
 			 * ImageGallery is displayed.
 			 *
 			 * @attribute autoPlay
 			 * @default false
-			 * @type boolean
+			 * @type Boolean
 			 */
 			autoPlay: {
 				value: false,
@@ -220,7 +206,7 @@ var ImageGallery = A.Component.create(
 			 *
 			 * @attribute paused
 			 * @default false
-			 * @type boolean
+			 * @type Boolean
 			 */
 			paused: {
 				value: false,
@@ -244,7 +230,7 @@ var ImageGallery = A.Component.create(
 			 *
 			 * @attribute playing
 			 * @default false
-			 * @type boolean
+			 * @type Boolean
 			 */
 			playing: {
 				value: false,
@@ -268,7 +254,7 @@ var ImageGallery = A.Component.create(
 			 *
 			 * @attribute repeat
 			 * @default true
-			 * @type boolean
+			 * @type Boolean
 			 */
 			repeat: {
 				value: true,
@@ -280,7 +266,7 @@ var ImageGallery = A.Component.create(
 			 *
 			 * @attribute showPlayer
 			 * @default true
-			 * @type boolean
+			 * @type Boolean
 			 */
 			showPlayer: {
 				value: true,
@@ -305,7 +291,7 @@ var ImageGallery = A.Component.create(
 			 *
 			 * @attribute useOriginalImage
 			 * @default false
-			 * @type boolean
+			 * @type Boolean
 			 */
 			useOriginalImage: {
 				value: false,
@@ -313,9 +299,17 @@ var ImageGallery = A.Component.create(
 			}
 		},
 
+		/**
+		 * Static property used to define which component it extends.
+		 *
+		 * @property ImageGallery.EXTENDS
+		 * @type Object
+		 * @static
+		 */
 		EXTENDS: A.ImageViewer,
 
 		prototype: {
+
 			/**
 			 * Toolbar instance reference.
 			 *
@@ -371,7 +365,7 @@ var ImageGallery = A.Component.create(
 			},
 
 			/**
-			 * Descructor lifecycle implementation for the ImageGallery class.
+			 * Destructor lifecycle implementation for the ImageGallery class.
 			 * Purges events attached to the node (and all child nodes).
 			 *
 			 * @method destroy
@@ -387,8 +381,8 @@ var ImageGallery = A.Component.create(
 			},
 
 			/**
-			 * Hide the <a href="Pagination.html">Pagination</a> with the thumbnails
-			 * list.
+			 * Hide the <a href="Pagination.html">Pagination</a>
+			 * with the thumbnails list.
 			 *
 			 * @method hidePagination
 			 */
@@ -456,8 +450,8 @@ var ImageGallery = A.Component.create(
 			},
 
 			/**
-			 * Show the <a href="Pagination.html">Pagination</a> with the thumbnails
-			 * list.
+			 * Show the <a href="Pagination.html">Pagination</a>
+			 * with the thumbnails list.
 			 *
 			 * @method showPagination
 			 */
@@ -524,6 +518,13 @@ var ImageGallery = A.Component.create(
 				.render(playerContent);
 			},
 
+			/**
+			 * Set the Toolbar instance.
+			 *
+			 * @method _setToolbar
+			 * @param value
+			 * @protected
+			 */
 			_setToolbar: function(value) {
 				var instance = this;
 
@@ -746,7 +747,7 @@ var ImageGallery = A.Component.create(
 			},
 
 			/**
-			 * Fires after the value of the
+			 * Fire after the value of the
 			 * <a href="ImageViewer.html#config_visible">visible</a> attribute change.
 			 *
 			 * @method _afterVisibleChange
@@ -767,7 +768,7 @@ var ImageGallery = A.Component.create(
 			},
 
 			/**
-			 * Fires before the value of the
+			 * Fire before the value of the
 			 * <a href="ImageGallery.html#config_paused">paused</a> attribute change.
 			 *
 			 * @method _onPausedChange
@@ -783,7 +784,7 @@ var ImageGallery = A.Component.create(
 			},
 
 			/**
-			 * Fires before the value of the
+			 * Fire before the value of the
 			 * <a href="ImageGallery.html#config_playing">playing</a> attribute change.
 			 *
 			 * @method _onPlayingChange

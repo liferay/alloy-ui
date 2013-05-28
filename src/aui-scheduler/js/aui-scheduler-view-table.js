@@ -1,3 +1,10 @@
+/**
+ * The Scheduler Component
+ *
+ * @module aui-scheduler
+ * @submodule aui-scheduler-view-table
+ */
+
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
 	isString = Lang.isString,
@@ -147,30 +154,96 @@ var Lang = A.Lang,
 	TPL_SVT_TABLE_DATA_COL = '<td class="' + CSS_SVT_TABLE_DATA_COL + '"><div></div></td>',
 	TPL_SVT_TABLE_DATA_ROW = '<tr></tr>';
 
+/**
+ * A base class for SchedulerTableView.
+ *
+ * @class A.SchedulerTableView
+ * @extends A.SchedulerView
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var SchedulerTableView = A.Component.create({
+
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property SchedulerTableView.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: SCHEDULER_VIEW_TABLE,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the SchedulerTableView.
+	 *
+	 * @property SchedulerTableView.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute bodyContent
+		 * @default ''
+		 * @type String
+		 */
 		bodyContent: {
 			value: _EMPTY_STR
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute displayDaysInterval
+		 * @default 42
+		 * @type Number
+		 */
 		displayDaysInterval: {
 			value: 42
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute displayRows
+		 * @default 4
+		 * @type Number
+		 */
 		displayRows: {
 			value: 4
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute fixedHeight
+		 * @default true
+		 * @type Boolean
+		 */
 		fixedHeight: {
 			value: true
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute name
+		 * @default 'table'
+		 * @type String
+		 */
 		name: {
 			value: TABLE
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute headerDateFormatter
+		 * @type String
+		 */
 		headerDateFormatter: {
 			value: function(date) {
 				var instance = this;
@@ -187,6 +260,12 @@ var SchedulerTableView = A.Component.create({
 			validator: isString
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute navigationDateFormatter
+		 * @type Function
+		 */
 		navigationDateFormatter: {
 			value: function(date) {
 				var instance = this;
@@ -203,10 +282,22 @@ var SchedulerTableView = A.Component.create({
 			validator: isFunction
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute scrollable
+		 * @default false
+		 * @type Boolean
+		 */
 		scrollable: {
 			value: false
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute strings
+		 */
 		strings: {
 			value: {
 				close: 'Close',
@@ -214,30 +305,54 @@ var SchedulerTableView = A.Component.create({
 			}
 		},
 
-		/*
-		* HTML_PARSER attributes
-		*/
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute headerTableNode
+		 */
 		headerTableNode: {
 			valueFn: function() {
 				return A.Node.create(TPL_SVT_HEADER_TABLE);
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute colHeaderDaysNode
+		 */
 		colHeaderDaysNode: {
 			valueFn: '_valueColHeaderDaysNode'
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute rowsContainerNode
+		 */
 		rowsContainerNode: {
 			valueFn: function() {
 				return A.Node.create(TPL_SVT_CONTAINER);
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute tableGridNode
+		 */
 		tableGridNode: {
 			valueFn: '_valueTableGridNode'
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @property SchedulerTableView.HTML_PARSER
+	 * @type Object
+	 * @static
+	 */
 	HTML_PARSER: {
 		colHeaderDaysNode: getNodeListHTMLParser(_DOT+CSS_SVT_HEADER_DAY, 7),
 		headerTableNode: _DOT+CSS_SVT_HEADER_TABLE,
@@ -245,6 +360,13 @@ var SchedulerTableView = A.Component.create({
 		tableGridNode: getNodeListHTMLParser(_DOT+CSS_SVT_TABLE_GRID, 7)
 	},
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property SchedulerTableView.EXTENDS
+	 * @type Object
+	 * @static
+	 */
 	EXTENDS: A.SchedulerView,
 
 	prototype: {
@@ -252,6 +374,12 @@ var SchedulerTableView = A.Component.create({
 		evtRenderedStack: null,
 		rowDataTableStack: null,
 
+		/**
+		 * Construction logic executed during SchedulerTableView instantiation. Lifecycle.
+		 *
+		 * @method initializer
+		 * @protected
+		 */
 		initializer: function() {
 			var instance = this;
 
@@ -269,12 +397,24 @@ var SchedulerTableView = A.Component.create({
 			instance[TABLE_ROWS] = A.NodeList.create();
 		},
 
+		/**
+		 * Bind the events on the SchedulerTableView UI. Lifecycle.
+		 *
+		 * @method bindUI
+		 * @protected
+		 */
 		bindUI: function() {
 			var instance = this;
 
 			instance[ROWS_CONTAINER_NODE].delegate('click', A.bind(instance._onClickMore, instance), _DOT+CSS_SVT_MORE);
 		},
 
+		/**
+		 * Render the SchedulerTableView component instance. Lifecycle.
+		 *
+		 * @method renderUI
+		 * @protected
+		 */
 		renderUI: function() {
 			var instance = this,
 				displayRowsCount = instance._getDisplayRowsCount(),
@@ -292,6 +432,14 @@ var SchedulerTableView = A.Component.create({
 			instance[TABLE_ROWS].appendTo(instance[TABLE_ROW_CONTAINER]);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method buildEventsRow
+		 * @param rowStartDate
+		 * @param rowEndDate
+		 * @param rowDisplayIndex
+		 */
 		buildEventsRow: function(rowStartDate, rowEndDate, rowDisplayIndex) {
 			var instance = this;
 			var displayRows = instance.get(DISPLAY_ROWS);
@@ -350,6 +498,13 @@ var SchedulerTableView = A.Component.create({
 			return rowNode;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method buildEventsTable
+		 * @param rowStartDate
+		 * @param rowEndDate
+		 */
 		buildEventsTable: function(rowStartDate, rowEndDate) {
 			var instance = this,
 				displayRows = instance.get(DISPLAY_ROWS),
@@ -378,6 +533,14 @@ var SchedulerTableView = A.Component.create({
 			return rowDataTableNode;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method buildEventsTitleRow
+		 * @param tableNode
+		 * @param rowStartDate
+		 * @param rowEndDate
+		 */
 		buildEventsTitleRow: function(tableNode, rowStartDate, rowEndDate) {
 			var instance = this;
 
@@ -413,6 +576,12 @@ var SchedulerTableView = A.Component.create({
 			return titleRowNode;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method buildGridRowNode
+		 * @param rowIndex
+		 */
 		buildGridRowNode: function(rowIndex) {
 			var instance = this;
 
@@ -437,6 +606,11 @@ var SchedulerTableView = A.Component.create({
 			return rowNode;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method flushViewCache
+		 */
 		flushViewCache: function() {
 			var instance = this;
 
@@ -445,6 +619,12 @@ var SchedulerTableView = A.Component.create({
 			instance.rowDataTableStack = {};
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getIntersectEvents
+		 * @param date
+		 */
 		getIntersectEvents: function(date) {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
@@ -462,6 +642,11 @@ var SchedulerTableView = A.Component.create({
 			return instance.evtDateStack[key];
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getNextDate
+		 */
 		getNextDate: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
@@ -471,6 +656,11 @@ var SchedulerTableView = A.Component.create({
 			return DateMath.toLastHour(DateMath.add(viewDate, DateMath.DAY, displayDaysInterval));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getPrevDate
+		 */
 		getPrevDate: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
@@ -480,12 +670,27 @@ var SchedulerTableView = A.Component.create({
 			return DateMath.toMidnight(DateMath.subtract(viewDate, DateMath.DAY, displayDaysInterval));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method hideEventsOverlay
+		 */
 		hideEventsOverlay: function() {
 			var instance = this;
 
 			instance[EVENTS_OVERLAY].set(VISIBLE, false);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method loopDates
+		 * @param startDate
+		 * @param endDate
+		 * @param fn
+		 * @param incrementBy
+		 * @param factor
+		 */
 		loopDates: function(startDate, endDate, fn, incrementBy, factor) {
 			var instance = this;
 			var curDate = DateMath.clone(startDate);
@@ -499,6 +704,11 @@ var SchedulerTableView = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method plotEvents
+		 */
 		plotEvents: function() {
 			var instance = this;
 			var intervalStartDate = instance._findCurrentIntervalStart();
@@ -527,6 +737,11 @@ var SchedulerTableView = A.Component.create({
 			});
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method syncDaysHeaderUI
+		 */
 		syncDaysHeaderUI: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
@@ -544,6 +759,11 @@ var SchedulerTableView = A.Component.create({
 			);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method syncGridUI
+		 */
 		syncGridUI: function() {
 			var instance = this;
 			var today = instance.getToday();
@@ -570,6 +790,11 @@ var SchedulerTableView = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method syncStdContent
+		 */
 		syncStdContent: function() {
 			var instance = this;
 
@@ -580,6 +805,12 @@ var SchedulerTableView = A.Component.create({
 				WidgetStdMod.HEADER, instance[HEADER_TABLE_NODE].getDOM());
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _findCurrentIntervalEnd
+		 * @protected
+		 */
 		_findCurrentIntervalEnd: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
@@ -589,6 +820,12 @@ var SchedulerTableView = A.Component.create({
 			return DateMath.add(viewDate, DateMath.DAY, displayDaysInterval);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _findCurrentIntervalStart
+		 * @protected
+		 */
 		_findCurrentIntervalStart: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
@@ -596,6 +833,13 @@ var SchedulerTableView = A.Component.create({
 			return scheduler.get(VIEW_DATE);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _findFirstDayOfWeek
+		 * @param date
+		 * @protected
+		 */
 		_findFirstDayOfWeek: function(date) {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
@@ -604,12 +848,25 @@ var SchedulerTableView = A.Component.create({
 			return DateMath.getFirstDayOfWeek(date, firstDayOfWeek);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _getCellIndex
+		 * @param position
+		 * @protected
+		 */
 		_getCellIndex: function(position) {
 			var instance = this;
 
 			return position[1] * WEEK_LENGTH + position[0];
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _getDisplayRowsCount
+		 * @protected
+		 */
 		_getDisplayRowsCount: function() {
 			var instance = this;
 			var displayDaysInterval = instance.get(DISPLAY_DAYS_INTERVAL);
@@ -617,6 +874,12 @@ var SchedulerTableView = A.Component.create({
 			return Math.ceil(displayDaysInterval / WEEK_LENGTH);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _getDisplayRowDaysCount
+		 * @protected
+		 */
 		_getDisplayRowDaysCount: function() {
 			var instance = this;
 			var displayDaysInterval = instance.get(DISPLAY_DAYS_INTERVAL);
@@ -624,6 +887,13 @@ var SchedulerTableView = A.Component.create({
 			return Math.min(displayDaysInterval, WEEK_LENGTH);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _getEvtLabel
+		 * @param evt
+		 * @protected
+		 */
 		_getEvtLabel: function(evt) {
 			var instance = this;
 			var endDate = evt.get(END_DATE);
@@ -632,6 +902,16 @@ var SchedulerTableView = A.Component.create({
 			return [ startDate.getHours(), _DASH, endDate.getHours(), _SPACE, evt.get(CONTENT) ].join(_EMPTY_STR);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _getEvtSplitInfo
+		 * @param evt
+		 * @param celDate
+		 * @param rowStartDate
+		 * @param rowEndDate
+		 * @protected
+		 */
 		_getEvtSplitInfo: function(evt, celDate, rowStartDate, rowEndDate) {
 			var instance = this;
 			var startDate = evt.getClearStartDate();
@@ -648,6 +928,16 @@ var SchedulerTableView = A.Component.create({
 			return info;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _getRenderableEvent
+		 * @param events
+		 * @param rowStartDate
+		 * @param rowEndDate
+		 * @param celDate
+		 * @protected
+		 */
 		_getRenderableEvent: function(events, rowStartDate, rowEndDate, celDate) {
 			var instance = this,
 				key = String(celDate.getTime()),
@@ -675,6 +965,13 @@ var SchedulerTableView = A.Component.create({
 			return null;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _getTableGridNode
+		 * @param rowIndex
+		 * @protected
+		 */
 		_getTableGridNode: function(rowIndex) {
 			var instance = this,
 				displayDaysInterval = instance.get(DISPLAY_DAYS_INTERVAL),
@@ -697,6 +994,13 @@ var SchedulerTableView = A.Component.create({
 			return tableGridNode;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onClickMore
+		 * @param event
+		 * @protected
+		 */
 		_onClickMore: function(event) {
 			var instance = this;
 
@@ -728,6 +1032,12 @@ var SchedulerTableView = A.Component.create({
 			});
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _renderEventsOverlay
+		 * @protected
+		 */
 		_renderEventsOverlay: function() {
 			var instance = this;
 			var strings = instance.get(STRINGS);
@@ -751,6 +1061,15 @@ var SchedulerTableView = A.Component.create({
 			instance[EVENTS_OVERLAY].bodyNode.delegate('click', A.bind(instance.hideEventsOverlay, instance), _DOT+CSS_SVT_EVENTS_OVERLAY_NODE_CLOSE);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _syncEventNodeContainerUI
+		 * @param evt
+		 * @param node
+		 * @param evtSplitInfo
+		 * @protected
+		 */
 		_syncEventNodeContainerUI: function(evt, node, evtSplitInfo) {
 			var instance = this;
 
@@ -765,6 +1084,15 @@ var SchedulerTableView = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _syncEventNodeUI
+		 * @param evt
+		 * @param container
+		 * @param celDate
+		 * @protected
+		 */
 		_syncEventNodeUI: function(evt, container, celDate) {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
@@ -795,6 +1123,13 @@ var SchedulerTableView = A.Component.create({
 			evt.syncUI();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetDate
+		 * @param val
+		 * @protected
+		 */
 		_uiSetDate: function(val) {
 			var instance = this;
 
@@ -802,6 +1137,12 @@ var SchedulerTableView = A.Component.create({
 			instance.syncGridUI();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _valueColHeaderDaysNode
+		 * @protected
+		 */
 		_valueColHeaderDaysNode: function() {
 			var instance = this;
 
@@ -811,6 +1152,12 @@ var SchedulerTableView = A.Component.create({
 			return instance._valueNodeList(weekDaysCount, TPL_SVT_HEADER_DAY);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _valueTableGridNode
+		 * @protected
+		 */
 		_valueTableGridNode: function() {
 			var instance = this;
 
@@ -820,6 +1167,14 @@ var SchedulerTableView = A.Component.create({
 			return instance._valueNodeList(weekDaysCount, TPL_SVT_TABLE_GRID);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _valueNodeList
+		 * @param size
+		 * @param tpl
+		 * @protected
+		 */
 		_valueNodeList: function(size, tpl) {
 			var instance = this;
 			var buffer = [];

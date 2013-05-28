@@ -1,0 +1,34 @@
+{
+    "name": "aui-widget-toolbars",
+    "builds": {
+        "aui-widget-cssclass": {
+            "jsfiles": [
+                "js/aui-widget-cssclass.js"
+            ]
+        },
+
+        "aui-widget-toggle": {
+            "jsfiles": [
+                "js/aui-widget-toggle.js"
+            ]
+        },
+
+        "aui-widget-toolbars": {
+            "jsfiles": [
+                "js/aui-widget-toolbars.js"
+            ]
+        },
+
+        "aui-widget-position-align-suggestion": {
+            "jsfiles": [
+                "js/aui-widget-position-align-suggestion.js"
+            ]
+        },
+
+        "aui-widget-trigger": {
+            "jsfiles": [
+                "js/aui-widget-trigger.js"
+            ]
+        }
+    }
+}

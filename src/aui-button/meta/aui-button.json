@@ -10,7 +10,9 @@
             "button",
             "button-group",
             "button-plugin",
-            "aui-component"
+            "aui-component",
+            "aui-widget-cssclass",
+            "aui-widget-toggle"
         ]
     }
 }

@@ -1,5 +1,5 @@
 /**
- * The SortableList Utility - Full documentation coming soon.
+ * The SortableList Utility
  *
  * @module aui-sortable-list
  */
@@ -49,22 +49,12 @@ var L = A.Lang,
  *    <li>Sortable list utility</li>
  * </ul>
  *
- * Quick Example:<br/>
+ * Check the [live demo](http://alloyui.com/examples/sortable-list/).
  *
- * <pre><code>var nl = new A.SortableList({
- *      nodes: '#demo li',
- *      dropContainer: 'ul.droppable'
- *  });
- * </code></pre>
- *
- * Check the list of <a href="SortableList.html#configattributes">Configuration Attributes</a> available for
- * SortableList.
- *
+ * @class A.SortableList
+ * @extends A.Base
  * @param config {Object} Object literal specifying widget configuration properties.
- *
- * @class SortableList
  * @constructor
- * @extends Base
  */
 var SortableList = A.Component.create(
     {
@@ -86,10 +76,23 @@ var SortableList = A.Component.create(
          * @static
          */
         ATTRS: {
+
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @attribute dd
+             * @default null
+             */
             dd: {
                 value: null
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @attribute dropCondition
+             * @type Function
+             */
             dropCondition: {
                 value: function() {
                     return true;
@@ -100,6 +103,12 @@ var SortableList = A.Component.create(
                 validator: isFunction
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @attribute dropContainer
+             * @type Function
+             */
             dropContainer: {
                 value: function(event) {
                     var instance = this;
@@ -112,24 +121,53 @@ var SortableList = A.Component.create(
                 validator: isFunction
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @attribute dropOn
+             * @type String
+             */
             dropOn: {
                 validator: isString
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @attribute helper
+             * @default null
+             */
             helper: {
                 value: null
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @attribute nodes
+             */
             nodes: {
                 setter: function(v) {
                     return this._setNodes(v);
                 }
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @attribute placeholder
+             * @default null
+             */
             placeholder: {
                 value: null
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @attribute proxy
+             * @default null
+             */
             proxy: {
                 value: null,
                 setter: function(val) {
@@ -143,6 +181,12 @@ var SortableList = A.Component.create(
                 }
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @attribute sortCondition
+             * @type Function
+             */
             sortCondition: {
                 value: function() {
                     return true;
@@ -154,9 +198,17 @@ var SortableList = A.Component.create(
             }
         },
 
+        /**
+         * Static property used to define which component it extends.
+         *
+         * @property SortableList.EXTENDS
+         * @type Object
+         * @static
+         */
         EXTENDS: A.Base,
 
         prototype: {
+
             /**
              * Construction logic executed during SortableList instantiation. Lifecycle.
              *
@@ -182,15 +234,24 @@ var SortableList = A.Component.create(
                 }
             },
 
-            /*
-            * Methods
-            */
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method add
+             * @param node
+             */
             add: function(node) {
                 var instance = this;
 
                 instance._createDrag(node);
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method addAll
+             * @param nodes
+             */
             addAll: function(nodes) {
                 var instance = this;
 
@@ -199,6 +260,13 @@ var SortableList = A.Component.create(
                 });
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _createDrag
+             * @param node
+             * @protected
+             */
             _createDrag: function(node) {
                 var instance = this;
                 var helper = instance.get(HELPER);
@@ -224,6 +292,12 @@ var SortableList = A.Component.create(
                 }
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _createHelper
+             * @protected
+             */
             _createHelper: function() {
                 var instance = this;
                 var helper = instance.get(HELPER);
@@ -236,6 +310,14 @@ var SortableList = A.Component.create(
                 }
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _updatePlaceholder
+             * @param event
+             * @param cancelAppend
+             * @protected
+             */
             _updatePlaceholder: function(event, cancelAppend) {
                 var instance = this;
                 var drag = event.target;
@@ -292,9 +374,13 @@ var SortableList = A.Component.create(
                 }
             },
 
-            /*
-            * Listeners
-            */
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _onDragAlign
+             * @param event
+             * @protected
+             */
             _onDragAlign: function(event) {
                 var instance = this;
                 var lastX = instance.lastX;
@@ -320,6 +406,13 @@ var SortableList = A.Component.create(
                 instance.lastY = y;
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _onDragEnd
+             * @param event
+             * @protected
+             */
             _onDragEnd: function(event) {
                 var instance = this;
                 var drag = event.target;
@@ -337,6 +430,13 @@ var SortableList = A.Component.create(
                 }
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _onDragExit
+             * @param event
+             * @protected
+             */
             _onDragExit: function(event) {
                 var instance = this;
                 var sortCondition = instance.get(SORT_CONDITION);
@@ -346,6 +446,13 @@ var SortableList = A.Component.create(
                 }
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _onDragMouseDown
+             * @param event
+             * @protected
+             */
             _onDragMouseDown: function(event) {
                 var instance = this;
                 var drag = event.target;
@@ -357,6 +464,13 @@ var SortableList = A.Component.create(
                 }
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _onDragStart
+             * @param event
+             * @protected
+             */
             _onDragStart: function(event) {
                 var instance = this;
                 var drag = event.target;
@@ -386,6 +500,13 @@ var SortableList = A.Component.create(
                 }
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _onDragOver
+             * @param event
+             * @protected
+             */
             _onDragOver: function(event) {
                 var instance = this;
                 var sortCondition = instance.get(SORT_CONDITION);
@@ -395,9 +516,13 @@ var SortableList = A.Component.create(
                 }
             },
 
-            /*
-            * Setters
-            */
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _setNodes
+             * @param v
+             * @protected
+             */
             _setNodes: function(v) {
                 var instance = this;
 

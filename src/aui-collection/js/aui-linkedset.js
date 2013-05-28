@@ -1,8 +1,29 @@
+/**
+ * The Collection Utility
+ *
+ * @module aui-collection
+ * @submodule aui-linkedset
+ */
+
+/**
+ * A base class for LinkedSet.
+ *
+ * @class A.LinkedSet
+ * @extends A.Set
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var LinkedSet = A.Base.create('linkedset', A.Set, [],
     {
         _header: null,
         _entries: null,
 
+        /**
+         * Construction logic executed during LinkedSet instantiation. Lifecycle.
+         *
+         * @method initializer
+         * @protected
+         */
         initializer: function() {
             var instance = this;
 
@@ -10,6 +31,13 @@ var LinkedSet = A.Base.create('linkedset', A.Set, [],
             instance._entries = {};
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _defAddFn
+         * @param event
+         * @protected
+         */
         _defAddFn: function(event) {
             var instance = this,
                 value = event.value,
@@ -40,6 +68,13 @@ var LinkedSet = A.Base.create('linkedset', A.Set, [],
             A.LinkedSet.superclass._defAddFn.apply(this, arguments);
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _defRemoveFn
+         * @param event
+         * @protected
+         */
         _defRemoveFn: function(event) {
             var instance = this,
                 hash = instance._map._getHash(event.value),
@@ -62,6 +97,11 @@ var LinkedSet = A.Base.create('linkedset', A.Set, [],
             A.LinkedSet.superclass._defRemoveFn.apply(this, arguments);
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method values
+         */
         values: function() {
             var instance = this,
                 entry = instance._header.after,

@@ -1,3 +1,10 @@
+/**
+ * The Datatable Component
+ *
+ * @module aui-datatable
+ * @submodule aui-datatable-selection
+ */
+
 var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isString = Lang.isString,
@@ -27,25 +34,70 @@ var Lang = A.Lang,
 		return Math.min(Math.max(value, min), max);
 	};
 
+/**
+ * A base class for DataTableSelection.
+ *
+ * @class A.DataTableSelection
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var DataTableSelection = function () {};
 
+/**
+ * Static property used to define the default attribute
+ * configuration for the DataTableSelection.
+ *
+ * @property DataTableSelection.ATTRS
+ * @type Object
+ * @static
+ */
 DataTableSelection.ATTRS = {
+
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @attribute activeCell
+	 */
 	activeCell: {
 		getter: '_getActiveCell'
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @attribute activeCoord
+	 * @default [-1, -1]
+	 * @type Array
+	 */
 	activeCoord: {
 		value: [-1, -1]
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @attribute activeRow
+	 */
 	activeRow: {
 		getter: '_getActiveRow'
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @attribute selection
+	 */
 	selection: {
 		setter: '_setSelection'
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @attribute tabIndex
+	 * @default 0
+	 * @type Number
+	 */
 	tabIndex: {
 		value: 0
 	}
@@ -57,6 +109,12 @@ A.mix(DataTableSelection.prototype, {
 	_selectionSeed: null,
 	_selectionStart: null,
 
+	/**
+	 * Construction logic executed during DataTableSelection instantiation. Lifecycle.
+	 *
+	 * @method initializer
+	 * @protected
+	 */
 	initializer: function() {
 		var instance = this,
 			boundingBox = instance.get(BOUNDING_BOX);
@@ -72,12 +130,24 @@ A.mix(DataTableSelection.prototype, {
 
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request. Lifecycle.
+	 *
+	 * @method destroy
+	 * @protected
+	 */
 	destroy: function() {
 		var instance = this;
 
 		instance._selectionKeyHandler.detach();
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method captureSelection
+	 * @param coords
+	 */
 	captureSelection: function(coords) {
 		var instance = this,
 			cells = [],
@@ -112,18 +182,34 @@ A.mix(DataTableSelection.prototype, {
 		};
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method getActiveColumn
+	 */
 	getActiveColumn: function() {
 		var instance = this;
 
 		return instance.getColumn(instance.get(ACTIVE_CELL));
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method getActiveRecord
+	 */
 	getActiveRecord: function() {
 		var instance = this;
 
 		return instance.getRecord(instance.get(ACTIVE_ROW));
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method getCoord
+	 * @param seed
+	 */
 	getCoord: function(seed) {
 		var instance = this,
 			cell = instance.getCell(seed),
@@ -133,6 +219,13 @@ A.mix(DataTableSelection.prototype, {
 		return [ cell.get('parentNode.rowIndex') - rowIndexOffset, cell.get(CELL_INDEX) ];
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _afterActiveCoordChange
+	 * @param event
+	 * @protected
+	 */
 	_afterActiveCoordChange: function(event) {
 		var instance = this,
 			activeCell = instance.getCell(event.newVal);
@@ -142,6 +235,12 @@ A.mix(DataTableSelection.prototype, {
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _bindSelectionUI
+	 * @protected
+	 */
 	_bindSelectionUI: function() {
 		var instance = this,
 			classNames = instance[CLASS_NAMES_SELECTION];
@@ -154,6 +253,12 @@ A.mix(DataTableSelection.prototype, {
 		instance.delegate(MOUSEENTER, A.bind(instance._onSelectionMouseEnter, instance), _DOT+classNames.cell);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _getActiveCell
+	 * @protected
+	 */
 	_getActiveCell: function() {
 		var instance = this,
 			activeCoord = instance.get(ACTIVE_COORD),
@@ -167,6 +272,12 @@ A.mix(DataTableSelection.prototype, {
 		return null;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _getActiveRow
+	 * @protected
+	 */
 	_getActiveRow: function() {
 		var instance = this,
 			activeCoord = instance.get(ACTIVE_COORD),
@@ -179,6 +290,13 @@ A.mix(DataTableSelection.prototype, {
 		return null;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _onSelectionMouseDown
+	 * @param event
+	 * @protected
+	 */
 	_onSelectionMouseDown: function(event) {
 		var instance = this,
 			seed = event.currentTarget,
@@ -194,6 +312,13 @@ A.mix(DataTableSelection.prototype, {
 		instance.set(ACTIVE_COORD, coords);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _onSelectionMouseEnter
+	 * @param event
+	 * @protected
+	 */
 	_onSelectionMouseEnter: function(event) {
 		var instance = this,
 			seed = event.currentTarget;
@@ -211,6 +336,13 @@ A.mix(DataTableSelection.prototype, {
 		});
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _onSelectionMouseUp
+	 * @param event
+	 * @protected
+	 */
 	_onSelectionMouseUp: function(event) {
 		var instance = this,
 			boundingBox = instance.get(BOUNDING_BOX);
@@ -229,6 +361,13 @@ A.mix(DataTableSelection.prototype, {
 		instance._capturing = false;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _onSelectionKey
+	 * @param event
+	 * @protected
+	 */
 	_onSelectionKey: function(event) {
 		var instance = this,
 			body = instance.body,
@@ -271,6 +410,13 @@ A.mix(DataTableSelection.prototype, {
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _parseRange
+	 * @param val
+	 * @protected
+	 */
 	_parseRange: function(val) {
 		var c1 = val[0],
 			c2 = val[1],
@@ -287,6 +433,13 @@ A.mix(DataTableSelection.prototype, {
 		return coords;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _setSelection
+	 * @param val
+	 * @protected
+	 */
 	_setSelection: function(val) {
 		var instance = this;
 
@@ -310,6 +463,11 @@ A.DataTable.Selection = DataTableSelection;
 
 A.Base.mix(A.DataTable, [ DataTableSelection ]);
 
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @method getColumn
+ */
 A.DataTable.prototype.getColumn = (function (original) {
 	return function (seed) {
 		var cell;
@@ -325,9 +483,14 @@ A.DataTable.prototype.getColumn = (function (original) {
 	};
 }(A.DataTable.prototype.getColumn));
 
-// Add support to get a row by seed on DataTable getRow
-// See http://yuilibrary.com/projects/yui3/ticket/2532605
-
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * Add support to get a row by seed on DataTable getRow
+ * See http://yuilibrary.com/projects/yui3/ticket/2532605
+ *
+ * @method getRow
+ */
 A.DataTable.prototype.getRow = (function (original) {
 	return function (seed) {
 		var instance = this,
@@ -347,9 +510,15 @@ A.DataTable.prototype.getRow = (function (original) {
 	};
 }(A.DataTable.prototype.getRow));
 
-// DataTable columns configuration breaks on n-depth cloning complex objects
-// See http://yuilibrary.com/projects/yui3/ticket/2532597
-
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * DataTable columns configuration breaks on n-depth cloning complex objects
+ * See http://yuilibrary.com/projects/yui3/ticket/2532597
+ *
+ * @method _setColumns
+ * @protected
+ */
 A.DataTable.prototype._setColumns = function (val) {
 	var keys = {},
 		known = [],

@@ -1,3 +1,10 @@
+/**
+ * The Scheduler Component
+ *
+ * @module aui-scheduler
+ * @submodule aui-scheduler-view-agenda
+ */
+
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
 
@@ -141,14 +148,52 @@ var Lang = A.Lang,
 					'</div>' +
 				'</div>';
 
+/**
+ * A base class for SchedulerAgendaView.
+ *
+ * @class A.SchedulerAgendaView
+ * @extends A.SchedulerView
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var SchedulerAgendaView = A.Component.create({
+
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property SchedulerAgendaView.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: SCHEDULER_VIEW_AGENDA,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the SchedulerAgendaView.
+	 *
+	 * @property SchedulerAgendaView.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute bodyContent
+		 * @default ''
+		 * @type String
+		 */
 		bodyContent: {
 			value: _EMPTY_STR
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute eventsDateFormatter
+		 * @type Function
+		 */
 		eventsDateFormatter: {
 			value: function(startDate, endDate) {
 				var instance = this,
@@ -190,6 +235,12 @@ var SchedulerAgendaView = A.Component.create({
 			validator: isFunction
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute headerDayDateFormatter
+		 * @type Function
+		 */
 		headerDayDateFormatter: {
 			value: function(date) {
 				var instance = this,
@@ -210,30 +261,66 @@ var SchedulerAgendaView = A.Component.create({
 			validator: isFunction
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute headerExtraDateFormatter
+		 * @type Function
+		 */
 		headerExtraDateFormatter: {
 			validator: isFunction,
 			value: _formatter('%B %e')
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute infoDayDateFormatter
+		 * @type Function
+		 */
 		infoDayDateFormatter: {
 			validator: isFunction,
 			value: _formatter('%e')
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute infoLabelBigDateFormatter
+		 * @type Function
+		 */
 		infoLabelBigDateFormatter: {
 			validator: isFunction,
 			value: _formatter('%A')
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute infoLabelSmallDateFormatter
+		 * @type Function
+		 */
 		infoLabelSmallDateFormatter: {
 			validator: isFunction,
 			value: _formatter('%B %d, %Y')
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute name
+		 * @default 'agenda'
+		 * @type String
+		 */
 		name: {
 			value: AGENDA
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute strings
+		 */
 		strings: {
 			value: {
 				noEvents: 'No future events.'
@@ -241,9 +328,23 @@ var SchedulerAgendaView = A.Component.create({
 		}
 	},
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property SchedulerAgendaView.EXTENDS
+	 * @type Object
+	 * @static
+	 */
 	EXTENDS: A.SchedulerView,
 
 	prototype: {
+
+		/**
+		 * Bind the events on the SchedulerAgendaView UI. Lifecycle.
+		 *
+		 * @method bindUI
+		 * @protected
+		 */
 		bindUI: function() {
 			var instance = this,
 
@@ -253,6 +354,11 @@ var SchedulerAgendaView = A.Component.create({
 			boundingBox.delegate(CLICK, instance._onEventsHeaderClick, _DOT+CSS_HEADER_EXTRA, instance);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getNextDate
+		 */
 		getNextDate: function() {
 			var instance = this,
 
@@ -261,6 +367,11 @@ var SchedulerAgendaView = A.Component.create({
 			return DateMath.toMidnight(DateMath.add(viewDate, DateMath.DAY, 1));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getPrevDate
+		 */
 		getPrevDate: function() {
 			var instance = this,
 
@@ -269,6 +380,11 @@ var SchedulerAgendaView = A.Component.create({
 			return DateMath.toLastHour(DateMath.subtract(viewDate, DateMath.DAY, 1));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method plotEvents
+		 */
 		plotEvents: function() {
 			var instance = this,
 
@@ -368,6 +484,12 @@ var SchedulerAgendaView = A.Component.create({
 			instance.set(BODY_CONTENT, content);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _getDayEventsMap
+		 * @protected
+		 */
 		_getDayEventsMap: function() {
 			var instance = this,
 
@@ -402,6 +524,13 @@ var SchedulerAgendaView = A.Component.create({
 			return eventsMap;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onEventsHeaderClick
+		 * @param event
+		 * @protected
+		 */
 		_onEventsHeaderClick: function(event) {
 			var instance = this,
 
@@ -421,6 +550,13 @@ var SchedulerAgendaView = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onEventsHeaderClick
+		 * @param event
+		 * @protected
+		 */
 		_onSchedulerEventClick: function(event) {
 			var instance = this,
 

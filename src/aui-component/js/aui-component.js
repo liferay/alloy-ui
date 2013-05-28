@@ -11,6 +11,12 @@ var Lang = A.Lang,
 		return (arr || []).concat(arr2 || []);
 	},
 
+	_NAME = 'component',
+
+	_INSTANCES = {},
+	_STR_BLANK = ' ',
+	_CONSTRUCTOR_OBJECT = A.config.win.Object.prototype.constructor,
+
 	ClassNameManager = A.ClassNameManager,
 
 	_getClassName = ClassNameManager.getClassName,
@@ -18,133 +24,34 @@ var Lang = A.Lang,
 
 	getClassName = A.getClassName,
 
-	NAME = 'component',
-
-	CSS_HIDE = getClassName('hide'),
-	CONSTRUCTOR_OBJECT = A.config.win.Object.prototype.constructor;
-	STR_BLANK = ' ';
+	CSS_HIDE = getClassName('hide');
 
 /**
  * A base class for Component, providing:
  * <ul>
  *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li></li>
  * </ul>
  *
- * Check the list of <a href="Component.html#configattributes">Configuration Attributes</a> available for
- * Component.
- *
+ * @class A.Component
+ * @extends A.Widget
+ * @uses A.WidgetCssClass, A.WidgetToggle
  * @param config {Object} Object literal specifying widget configuration properties.
- *
- * @class Component
  * @constructor
- * @extends Widget
  */
-var Component = function(config) {
-	var instance = this;
-
-	instance._originalConfig = config;
-
-	instance._setRender(config);
-
-	Component.superclass.constructor.apply(this, arguments);
-
-	INSTANCES[instance.get('id')] = instance;
-};
-
-var INSTANCES = Component._INSTANCES = {};
-
-/**
- * Static property provides a string to identify the class.
- *
- * @property Component.NAME
- * @type String
- * @static
- */
-Component.NAME = 'component';
-
-/**
- * Static property used to define the default attribute
- * configuration for the Component.
- *
- * @property Component.ATTRS
- * @type Object
- * @static
- */
-Component.ATTRS = {
-	/**
-	* Boolean indicating if use of the WAI-ARIA Roles and States should be
-	* enabled for the Widget.
-	*
-	* @attribute useARIA
-	* @readOnly
-	* @writeOnce
-	* @default true
-	* @type boolean
-	*/
-	useARIA: {
-		writeOnce: true,
-		value: false,
-		validator: Lang.isBoolean
-	},
-
-	/**
-	 * CSS class to be automatically added to the <code>boundingBox</code>.
-	 *
-	 * @attribute cssClass
-	 * @default null
-	 * @type String
-	 */
-	cssClass: {
-		lazyAdd: false,
-		value: null
-	},
-
-	/**
-	 * css class added to hide the <code>boundingBox</code> when
-	 * <a href="Component.html#config_visible">visible</a> is set to
-	 * <code>false</code>.
-	 *
-	 * @attribute hideClass
-	 * @default 'aui-hide'
-	 * @type String
-	 */
-	hideClass: {
-		value: CSS_HIDE
-	},
-
-	/**
-	 * If <code>true</code> the render phase will be autimatically invoked
-	 * preventing the <code>.render()</code> manual call.
-	 *
-	 * @attribute render
-	 * @default false
-	 * @type boolean | Node
-	 */
-	render: {
-		value: false,
-		writeOnce: true
-	}
-};
-
-A.extend(
-	Component,
-	A.Widget,
+var Component = A.Base.create(_NAME, A.Widget,
+    [
+        A.WidgetCssClass,
+        A.WidgetToggle
+    ],
 	{
-		/**
-		 * Construction logic executed during Component instantiation. Lifecycle.
-		 *
-		 * @method initializer
-		 * @protected
-		 */
 		initializer: function(config) {
 			var instance = this;
 
-			if (config && config.cssClass) {
-				instance._uiSetCssClass(config.cssClass);
-			}
+			instance._originalConfig = config;
 
-			instance.after('cssClassChange', instance._afterCssClassChange);
+			instance._setRender(config);
+
+			_INSTANCES[instance.get('id')] = instance;
 		},
 
 		/**
@@ -167,22 +74,12 @@ A.extend(
 		},
 
 		/**
-		 * Toggle the visibility of the Panel toggling the value of the
-		 * <a href="Widget.html#config_visible">visible</a> attribute.
+		 * Set the visibility on the UI.
 		 *
-		 * @method toggle
-		 * @param visible Force the visibility of the component to this state.
+		 * @method _uiSetVisible
+		 * @param value
+		 * @protected
 		 */
-		toggle: function(visible) {
-			var instance = this;
-
-			if (!Lang.isBoolean(visible)) {
-				visible = !instance.get('visible');
-			}
-
-			return instance.set('visible', visible);
-		},
-
 		_uiSetVisible: function(value) {
 			var instance = this;
 
@@ -202,20 +99,6 @@ A.extend(
 		},
 
 		/**
-		 * Fires after the value of the
-		 * <a href="Component.html#config_cssClass">cssClass</a> attribute change.
-		 *
-		 * @method _afterCssClassChange
-		 * @param {EventFacade} event
-		 * @protected
-		 */
-		_afterCssClassChange: function(event) {
-			var instance = this;
-
-			instance._uiSetCssClass(event.newVal, event.prevVal);
-		},
-
-		/**
 		 * Applies standard class names to the boundingBox and contentBox
 		 *
 		 * @method _renderBoxClassNames
@@ -230,8 +113,8 @@ A.extend(
 			var boundingBoxNodeClassName = boundingBoxNode.className;
 			var contentBoxNodeClassName = contentBoxNode.className;
 
-			var boundingBoxBuffer = (boundingBoxNodeClassName) ? boundingBoxNodeClassName.split(STR_BLANK) : [];
-			var contentBoxBuffer = (contentBoxNodeClassName) ? contentBoxNodeClassName.split(STR_BLANK) : [];
+			var boundingBoxBuffer = (boundingBoxNodeClassName) ? boundingBoxNodeClassName.split(_STR_BLANK) : [];
+			var contentBoxBuffer = (contentBoxNodeClassName) ? contentBoxNodeClassName.split(_STR_BLANK) : [];
 
 			var classes = instance._getClasses();
 
@@ -261,12 +144,12 @@ A.extend(
 			contentBoxBuffer.push(instance.getClassName('content'));
 
 			if (boundingBoxNode === contentBoxNode) {
-				contentBoxNodeClassName = AArray.dedupe(contentBoxBuffer.concat(boundingBoxBuffer)).join(STR_BLANK);
+				contentBoxNodeClassName = AArray.dedupe(contentBoxBuffer.concat(boundingBoxBuffer)).join(_STR_BLANK);
 			}
 			else {
-				boundingBoxNode.className = AArray.dedupe(boundingBoxBuffer).join(STR_BLANK);
+				boundingBoxNode.className = AArray.dedupe(boundingBoxBuffer).join(_STR_BLANK);
 
-				contentBoxNodeClassName = AArray.dedupe(contentBoxBuffer).join(STR_BLANK);
+				contentBoxNodeClassName = AArray.dedupe(contentBoxBuffer).join(_STR_BLANK);
 			}
 
 			contentBoxNode.className = contentBoxNodeClassName;
@@ -304,7 +187,7 @@ A.extend(
 
 			var render = config && config.render;
 
-			if (render && render.constructor == CONSTRUCTOR_OBJECT) {
+			if (render && render.constructor === _CONSTRUCTOR_OBJECT) {
 				var eventType = render.eventType || 'mousemove';
 				var parentNode = render.parentNode;
 				var selector = render.selector || parentNode;
@@ -329,41 +212,90 @@ A.extend(
 					delete config.render;
 				}
 			}
-		},
-
+		}
+	},
+	{
 		/**
-		 * Applies the CSS classes to the <code>boundingBox</code> and
-		 * <code>contentBox</code>.
+		 * Static property used to define the default attribute
+		 * configuration for the Component.
 		 *
-		 * @method _uiSetCssClass
-		 * @protected
-		 * @param {String} newVal
-		 * @param {String} prevVal
+		 * @property Component.ATTRS
+		 * @type Object
+		 * @static
 		 */
-		_uiSetCssClass: function(newVal, prevVal) {
-			var instance = this;
+		ATTRS: {
+			/**
+			* Boolean indicating if use of the WAI-ARIA Roles and States should be
+			* enabled for the Widget.
+			*
+			* @attribute useARIA
+			* @default false
+			* @type Boolean
+			* @writeOnce
+			*/
+			useARIA: {
+				writeOnce: true,
+				value: false,
+				validator: Lang.isBoolean
+			},
 
-			var prevValContent = prevVal + '-content';
+			/**
+			 * CSS class added to hide the <code>boundingBox</code> when
+			 * <a href="Component.html#config_visible">visible</a> is set to
+			 * <code>false</code>.
+			 *
+			 * @attribute hideClass
+			 * @default 'aui-hide'
+			 * @type String
+			 */
+			hideClass: {
+				value: CSS_HIDE
+			},
 
-			var newValContent = newVal + '-content';
-
-			var boundingBox = instance.get('boundingBox');
-			var contentBox = instance.get('contentBox');
-
-			boundingBox.replaceClass(prevVal, newVal);
-			contentBox.replaceClass(prevValContent, newValContent);
+			/**
+			 * If <code>true</code> the render phase will be autimatically invoked
+			 * preventing the <code>.render()</code> manual call.
+			 *
+			 * @attribute render
+			 * @default false
+			 * @type Boolean | Node
+			 */
+			render: {
+				value: false,
+				writeOnce: true
+			}
 		}
 	}
 );
 
-Component.getById = function(id) {
-	return INSTANCES[id];
-};
+/**
+* Static property used to define the map to store Component instances by id.
+*
+* @property Component._INSTANCES
+* @type Object
+* @static
+*/
+Component._INSTANCES = _INSTANCES;
 
-var COMP_PROTO = Component.prototype;
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @method getById
+ * @param id
+ */
+Component.getById = function(id) {
+	return _INSTANCES[id];
+};
 
 var DEFAULT_UI_ATTRS = A.Widget.prototype._UI_ATTRS;
 
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @method _applyCssPrefix
+ * @param component
+ * @protected
+ */
 Component._applyCssPrefix = function(component) {
 	if (component && component.NAME && !('CSS_PREFIX' in component)) {
 		component.CSS_PREFIX = A.getClassName(String(component.NAME).toLowerCase());
@@ -372,6 +304,12 @@ Component._applyCssPrefix = function(component) {
 	return component;
 };
 
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @method create
+ * @param config
+ */
 Component.create = function(config) {
 	config = config || {};
 
@@ -435,10 +373,22 @@ Component.create = function(config) {
 	return component;
 };
 
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @property Component.CSS_PREFIX
+ * @type String
+ * @static
+ */
 Component.CSS_PREFIX = getClassName('component');
 
 var Base = A.Base;
 
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @method build
+ */
 Component.build = function() {
 	var component = Base.build.apply(Base, arguments);
 

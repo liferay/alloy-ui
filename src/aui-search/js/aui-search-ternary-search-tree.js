@@ -1,3 +1,10 @@
+/**
+ * The Search Component
+ *
+ * @module aui-search
+ * @submodule aui-search-ternary-search-tree
+ */
+
 var Lang = A.Lang,
 
 	NAME = 'TernarySearchTree',
@@ -8,14 +15,51 @@ var Lang = A.Lang,
 	SMALLER_NODE = 'smallerNode',
 	WORD = 'word';
 
+/**
+ * A base class for TernarySearchTree.
+ *
+ * @class A.TernarySearchTree
+ * @extends A.Base
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var TernarySearchTree = A.Component.create({
+
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property TernarySearchTree.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: NAME,
 
+	/**
+	 * Static property provides a string to identify the namespace.
+	 *
+	 * @property TernarySearchTree.NS
+	 * @type String
+	 * @static
+	 */
 	NS: 'ternarysearchtree',
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property TernarySearchTree.EXTENDS
+	 * @type Object
+	 * @static
+	 */
 	EXTENDS: A.Base,
 
 	prototype: {
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method add
+		 * @param word
+		 */
 		add: function(word) {
 			var instance = this;
 
@@ -28,6 +72,12 @@ var TernarySearchTree = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method contains
+		 * @param word
+		 */
 		contains: function(word) {
 			var instance = this;
 
@@ -36,12 +86,23 @@ var TernarySearchTree = A.Component.create({
 			return !!(Lang.isValue(node) && node.isEndOfWord());
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method empty
+		 */
 		empty: function() {
 			var instance = this;
 
 			instance._root = null;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method patternMatch
+		 * @param pattern
+		 */
 		patternMatch: function(pattern) {
 			var instance = this;
 
@@ -52,6 +113,12 @@ var TernarySearchTree = A.Component.create({
 			return results;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method prefixSearch
+		 * @param prefix
+		 */
 		prefixSearch: function(prefix) {
 			var instance = this;
 
@@ -66,6 +133,14 @@ var TernarySearchTree = A.Component.create({
 			return results;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _inOrderTraversal
+		 * @param node
+		 * @param results
+		 * @protected
+		 */
 		_inOrderTraversal: function(node, results) {
 			var instance = this;
 
@@ -84,6 +159,15 @@ var TernarySearchTree = A.Component.create({
 			instance._inOrderTraversal(node.get(LARGER_NODE), results);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _insert
+		 * @param node
+		 * @param word
+		 * @param index
+		 * @protected
+		 */
 		_insert: function(node, word, index) {
 			var instance = this;
 
@@ -120,6 +204,16 @@ var TernarySearchTree = A.Component.create({
 			return node;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _patternMatch
+		 * @param node
+		 * @param pattern
+		 * @param index
+		 * @param results
+		 * @protected
+		 */
 		_patternMatch: function(node, pattern, index, results) {
 			var instance = this;
 
@@ -149,6 +243,15 @@ var TernarySearchTree = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _search
+		 * @param node
+		 * @param word
+		 * @param index
+		 * @protected
+		 */
 		_search: function(node, word, index) {
 			var instance = this;
 

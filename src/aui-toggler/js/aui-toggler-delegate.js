@@ -1,3 +1,9 @@
+/**
+ * The Toggler Component
+ *
+ * @module aui-toggler
+ */
+
 var Lang = A.Lang,
     isBoolean = Lang.isBoolean,
     isObject = Lang.isObject,
@@ -38,40 +44,112 @@ var Lang = A.Lang,
     CSS_TOGGLER_HEADER_COLLAPSED = getCN(TOGGLER, HEADER, COLLAPSED),
     CSS_TOGGLER_HEADER_EXPANDED = getCN(TOGGLER, HEADER, EXPANDED);
 
+/**
+ * A base class for Toggler Delegate.
+ *
+ * Check the [live demo](http://alloyui.com/examples/toggler/).
+ *
+ * @class A.TogglerDelegate
+ * @extends A.Base
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var TogglerDelegate = A.Component.create({
+
+    /**
+     * Static property provides a string to identify the class.
+     *
+     * @property TogglerDelegate.NAME
+     * @type String
+     * @static
+     */
     NAME: TOGGLER_DELEGATE,
 
+    /**
+     * Static property used to define the default attribute
+     * configuration for the Toggler Delegate.
+     *
+     * @property TogglerDelegate.ATTRS
+     * @type Object
+     * @static
+     */
     ATTRS: {
 
+        /**
+         * Determine if the Toggler Delegate transitions will animate.
+         *
+         * @attribute animated
+         * @default false
+         * @type Boolean
+         * @writeOnce
+         */
         animated: {
             validator: isBoolean,
             value: false,
             writeOnce: true
         },
 
+        /**
+         * Determine if the Toggler Delegate switches
+         * will be set to off when one switch is toggled on.
+         *
+         * @attribute closeAllOnExpand
+         * @default false
+         * @type Boolean
+         */
         closeAllOnExpand: {
             validator: isBoolean,
             value: false
         },
 
+        /**
+         * The container of Toggler Delegate instance.
+         *
+         * @attribute container
+         */
         container: {
             setter: A.one,
             value: DOC
         },
 
+        /**
+         * The content of a Toogler Delegate instance.
+         *
+         * @attribute content
+         * @type String
+         */
         content: {
             validator: isString
         },
 
+        /**
+         * Determine if the content starts as toggled on/off on page load.
+         *
+         * @attribute expanded
+         * @default true
+         * @type Boolean
+         */
         expanded: {
             validator: isBoolean,
             value: true
         },
 
+        /**
+         * The header of a Toogler Delegate instance.
+         *
+         * @attribute header
+         * @type String
+         */
         header: {
             validator: isString
         },
 
+        /**
+         * Transition definitions such as duration and type of easing effect.
+         *
+         * @attribute transition
+         * @type Object
+         */
         transition: {
             validator: isObject,
             value: {
@@ -82,12 +160,25 @@ var TogglerDelegate = A.Component.create({
 
     },
 
+    /**
+     * Static property used to define which component it extends.
+     *
+     * @property TogglerDelegate.EXTENDS
+     * @type Object
+     * @static
+     */
     EXTENDS: A.Base,
 
     prototype: {
 
         items: null,
 
+        /**
+         * Construction logic executed during TogglerDelegate instantiation. Lifecycle.
+         *
+         * @method initializer
+         * @protected
+         */
         initializer: function() {
             var instance = this;
 
@@ -95,6 +186,12 @@ var TogglerDelegate = A.Component.create({
             instance.renderUI();
         },
 
+        /**
+         * Render the TogglerDelegate component instance. Lifecycle.
+         *
+         * @method renderUI
+         * @protected
+         */
         renderUI: function() {
             var instance = this;
 
@@ -109,6 +206,12 @@ var TogglerDelegate = A.Component.create({
             }
         },
 
+        /**
+         * Bind the events on the TogglerDelegate UI. Lifecycle.
+         *
+         * @method bindUI
+         * @protected
+         */
         bindUI: function() {
             var instance = this;
             var container = instance.get(CONTAINER);
@@ -119,6 +222,12 @@ var TogglerDelegate = A.Component.create({
             container.delegate([CLICK, KEYDOWN], A.bind(instance.headerEventHandler, instance), header);
         },
 
+        /**
+         * Return the content node.
+         *
+         * @method headerEventHandler
+         * @param header
+         */
         findContentNode: function(header) {
             var instance = this;
             var content = instance.get(CONTENT);
@@ -136,6 +245,12 @@ var TogglerDelegate = A.Component.create({
             return contentNode;
         },
 
+        /**
+         * Handle header events.
+         *
+         * @method headerEventHandler
+         * @param event
+         */
         headerEventHandler: function(event) {
             var instance = this;
 
@@ -158,6 +273,13 @@ var TogglerDelegate = A.Component.create({
             }
         },
 
+        /**
+         * Create a Toggler instance.
+         *
+         * @method headerEventHandler
+         * @param header
+         * @protected
+         */
         _create: function(header) {
             var instance = this,
                 expanded = instance.get(EXPANDED);
@@ -183,6 +305,13 @@ var TogglerDelegate = A.Component.create({
             return toggler;
         },
 
+        /**
+         * Trigger when the <code>animating</code> attribute change its value.
+         *
+         * @method _onAnimatingChange
+         * @param event
+         * @protected
+         */
         _onAnimatingChange: function(event) {
             var instance = this;
 
