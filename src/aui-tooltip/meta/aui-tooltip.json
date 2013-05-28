@@ -1,0 +1,35 @@
+{
+    "aui-tooltip": {
+        "use": [
+            "aui-tooltip-base",
+            "aui-tooltip-delegate"
+        ]
+    },
+    "aui-tooltip-base": {
+        "requires": [
+            "event-mouseenter",
+            "transition",
+            "widget",
+            "widget-autohide",
+            "widget-modality",
+            "widget-position",
+            "widget-position-align",
+            "widget-position-constrain",
+            "widget-stack",
+            "widget-stdmod",
+            "aui-classnamemanager",
+            "aui-component",
+            "aui-widget-cssclass",
+            "aui-widget-toggle",
+            "aui-widget-trigger",
+            "aui-widget-position-align-suggestion",
+            "aui-node-base"
+        ]
+    },
+    "aui-tooltip-delegate": {
+        "requires": [
+            "node-event-delegate",
+            "aui-tooltip-base"
+        ]
+    }
+}

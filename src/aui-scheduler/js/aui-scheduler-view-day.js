@@ -1,3 +1,10 @@
+/**
+ * The Scheduler Component
+ *
+ * @module aui-scheduler
+ * @submodule aui-scheduler-view-day
+ */
+
 var Lang = A.Lang,
 	isBoolean = Lang.isBoolean,
 	isFunction = Lang.isFunction,
@@ -220,19 +227,65 @@ var Lang = A.Lang,
 	TPL_SCHEDULER_VIEW_DAY_HEADER_DAY_FIRST = '<td class="' + [ CSS_SCHEDULER_VIEW_DAY_HEADER_DAY, CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_FIRST ].join(_SPACE) + '"></td>',
 	TPL_SCHEDULER_VIEW_DAY_HEADER_DAY_PAD_RIGHT = '<th class="' + [ CSS_SCHEDULER_VIEW_DAY_HEADER_DAY, CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_PAD_RIGHT ].join(_SPACE) + '">&nbsp;</th>';
 
+/**
+ * A base class for SchedulerDayView.
+ *
+ * @class A.SchedulerDayView
+ * @extends A.SchedulerView
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var SchedulerDayView = A.Component.create({
+
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property SchedulerDayView.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: SCHEDULER_VIEW_DAY,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the SchedulerDayView.
+	 *
+	 * @property SchedulerDayView.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute bodyContent
+		 * @default ''
+		 * @type String
+		 */
 		bodyContent: {
 			value: _EMPTY_STR
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute days
+		 * @default 1
+		 * @type Number
+		 */
 		days: {
 			value: 1,
 			validator: isNumber
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute delegateConfig
+		 * @default {}
+		 * @type Object
+		 */
 		delegateConfig: {
 			value: {},
 			setter: function(val) {
@@ -254,17 +307,35 @@ var SchedulerDayView = A.Component.create({
 			validator: isObject
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute eventWidth
+		 * @default 95
+		 * @type Number
+		 */
 		eventWidth: {
 			value: 95,
 			validator: isNumber
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute filterFn
+		 */
 		filterFn: {
 			value: function(evt) {
 				return (evt.getHoursDuration() <= 24 && !evt.get(ALL_DAY));
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute headerDateFormatter
+		 * @type String
+		 */
 		headerDateFormatter: {
 			value: function(date) {
 				var instance = this;
@@ -281,11 +352,25 @@ var SchedulerDayView = A.Component.create({
 			validator: isString
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute headerView
+		 * @default true
+		 * @type Boolean
+		 */
 		headerView: {
 			value: true,
 			validator: isBoolean
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute headerViewConfig
+		 * @default {}
+		 * @type Object
+		 */
 		headerViewConfig: {
 			setter: function(val) {
 				var instance = this;
@@ -306,15 +391,35 @@ var SchedulerDayView = A.Component.create({
 			value: {}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute hourHeight
+		 * @default 52
+		 * @type Number
+		 */
 		hourHeight: {
 			value: 52,
 			validator: isNumber
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute name
+		 * @default 'day'
+		 * @type String
+		 */
 		name: {
 			value: DAY
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute navigationDateFormatter
+		 * @type Function
+		 */
 		navigationDateFormatter: {
 			value: function(date) {
 				var instance = this;
@@ -331,21 +436,33 @@ var SchedulerDayView = A.Component.create({
 			validator: isFunction
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute strings
+		 */
 		strings: {
 			value: {
 				allDay: 'All day'
 			}
 		},
 
-		/*
-		* HTML_PARSER attributes
-		*/
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute headerTableNode
+		 */
 		headerTableNode: {
 			valueFn: function() {
 				return A.Node.create(TPL_SCHEDULER_VIEW_DAY_HEADER_TABLE);
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute headerViewLabelNode
+		 */
 		headerViewLabelNode: {
 			valueFn: function() {
 				var instance = this;
@@ -360,35 +477,73 @@ var SchedulerDayView = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute resizerNode
+		 */
 		resizerNode: {
 			valueFn: function() {
 				return A.Node.create(TPL_SCHEDULER_VIEW_DAY_RESIZER);
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute tableNode
+		 */
 		tableNode: {
 			valueFn: function() {
 				return A.Node.create(TPL_SCHEDULER_VIEW_DAY_TABLE);
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute colDaysNode
+		 */
 		colDaysNode: {
 			valueFn: '_valueColDaysNode'
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute colHeaderDaysNode
+		 */
 		colHeaderDaysNode: {
 			valueFn: '_valueColHeaderDaysNode'
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute markercellsNode
+		 */
 		markercellsNode: {
 			valueFn: '_valueMarkercellsNode'
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute timesNode
+		 */
 		timesNode: {
 			valueFn: '_valueTimesNode'
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @property SchedulerDayView.HTML_PARSER
+	 * @default defaultName
+	 * @type typeName
+	 * @static
+	 */
 	HTML_PARSER: {
 		colDaysNode: getNodeListHTMLParser(_DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY, 1),
 		colHeaderDaysNode: getNodeListHTMLParser(_DOT+CSS_SCHEDULER_VIEW_DAY_HEADER_DAY, 2),
@@ -400,9 +555,23 @@ var SchedulerDayView = A.Component.create({
 		timesNode: getNodeListHTMLParser(_DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_TIME, 24)
 	},
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property SchedulerDayView.EXTENDS
+	 * @type Object
+	 * @static
+	 */
 	EXTENDS: A.SchedulerView,
 
 	prototype: {
+
+		/**
+		 * Construction logic executed during SchedulerDayView instantiation. Lifecycle.
+		 *
+		 * @method initializer
+		 * @protected
+		 */
 		initializer: function() {
 			var instance = this;
 
@@ -429,6 +598,12 @@ var SchedulerDayView = A.Component.create({
 			}
 		},
 
+		/**
+		 * Render the SchedulerDayView component instance. Lifecycle.
+		 *
+		 * @method renderUI
+		 * @protected
+		 */
 		renderUI: function() {
 			var instance = this;
 
@@ -444,6 +619,12 @@ var SchedulerDayView = A.Component.create({
 			}
 		},
 
+		/**
+		 * Bind the events on the SchedulerDayView UI. Lifecycle.
+		 *
+		 * @method bindUI
+		 * @protected
+		 */
 		bindUI: function() {
 			var instance = this;
 
@@ -461,6 +642,12 @@ var SchedulerDayView = A.Component.create({
 			instance.after('drag:align', instance._afterDragAlign);
 		},
 
+		/**
+		 * Sync the SchedulerDayView UI. Lifecycle.
+		 *
+		 * @method syncUI
+		 * @protected
+		 */
 		syncUI: function() {
 			var instance = this;
 
@@ -471,6 +658,11 @@ var SchedulerDayView = A.Component.create({
 			instance._setupDragDrop();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method syncStdContent
+		 */
 		syncStdContent: function() {
 			var instance = this;
 
@@ -487,6 +679,12 @@ var SchedulerDayView = A.Component.create({
 			instance.setStdModContent(WidgetStdMod.HEADER, headerNodes);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method calculateEventHeight
+		 * @param duration
+		 */
 		calculateEventHeight: function(duration) {
 			var instance = this;
 			var hourHeight = instance.get(HOUR_HEIGHT);
@@ -494,6 +692,12 @@ var SchedulerDayView = A.Component.create({
 			return Math.max(duration*(hourHeight/60), hourHeight/2);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method calculateTop
+		 * @param date
+		 */
 		calculateTop: function(date) {
 			var instance = this;
 
@@ -501,6 +705,11 @@ var SchedulerDayView = A.Component.create({
 					(date.getSeconds()/60)) * (instance.get(HOUR_HEIGHT)/60);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getNextDate
+		 */
 		getNextDate: function() {
 			var instance = this;
 			var viewDate = instance.get(SCHEDULER).get(VIEW_DATE);
@@ -508,6 +717,11 @@ var SchedulerDayView = A.Component.create({
 			return DateMath.toLastHour(DateMath.add(viewDate, DateMath.DAY, 1));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getPrevDate
+		 */
 		getPrevDate: function() {
 			var instance = this;
 			var viewDate = instance.get(SCHEDULER).get(VIEW_DATE);
@@ -515,18 +729,36 @@ var SchedulerDayView = A.Component.create({
 			return DateMath.toMidnight(DateMath.subtract(viewDate, DateMath.DAY, 1));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getColumnByDate
+		 * @param date
+		 */
 		getColumnByDate: function(date) {
 			var instance = this;
 
 			return instance[COL_DAYS_NODE].item(instance.getDateDaysOffset(date));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getColumnShimByDate
+		 * @param date
+		 */
 		getColumnShimByDate: function(date) {
 			var instance = this;
 
 			return instance[COLUMN_SHIMS].item(instance.getDateDaysOffset(date));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getDateByColumn
+		 * @param colNumber
+		 */
 		getDateByColumn: function(colNumber) {
 			var instance = this;
 			var viewDate = DateMath.safeClearTime(
@@ -535,6 +767,12 @@ var SchedulerDayView = A.Component.create({
 			return DateMath.add(viewDate, DateMath.DAY, colNumber);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getDateDaysOffset
+		 * @param date
+		 */
 		getDateDaysOffset: function(date) {
 			var instance = this;
 
@@ -545,6 +783,12 @@ var SchedulerDayView = A.Component.create({
 				DateMath.safeClearTime(date), viewDate);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getYCoordTime
+		 * @param top
+		 */
 		getYCoordTime: function(top) {
 			var instance = this;
 			var hourHeight = instance.get(HOUR_HEIGHT);
@@ -557,6 +801,12 @@ var SchedulerDayView = A.Component.create({
 			return [ hours, minutes, 0 ];
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method plotEvent
+		 * @param evt
+		 */
 		plotEvent: function(evt) {
 			var instance = this;
 
@@ -604,6 +854,11 @@ var SchedulerDayView = A.Component.create({
 			instance.syncEventHeightUI(evt);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method plotEvents
+		 */
 		plotEvents: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
@@ -631,6 +886,11 @@ var SchedulerDayView = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method syncColumnsUI
+		 */
 		syncColumnsUI: function() {
 			var instance = this;
 
@@ -642,6 +902,11 @@ var SchedulerDayView = A.Component.create({
 			});
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method syncDaysHeaderUI
+		 */
 		syncDaysHeaderUI: function() {
 			var instance = this;
 			var viewDate = instance.get(SCHEDULER).get(VIEW_DATE);
@@ -660,7 +925,12 @@ var SchedulerDayView = A.Component.create({
 			);
 		},
 
-		// TODO
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method syncEventsIntersectionUI
+		 * @param columnEvents
+		 */
 		syncEventsIntersectionUI: function(columnEvents) {
 			var instance = this;
 			var eventWidth = instance.get(EVENT_WIDTH);
@@ -697,6 +967,12 @@ var SchedulerDayView = A.Component.create({
 			});
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method syncEventHeightUI
+		 * @param evt
+		 */
 		syncEventHeightUI: function(evt) {
 			var instance = this;
 			var endDate = evt.get(END_DATE);
@@ -720,6 +996,12 @@ var SchedulerDayView = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method syncEventTopUI
+		 * @param evt
+		 */
 		syncEventTopUI: function(evt) {
 			var instance = this;
 
@@ -728,6 +1010,11 @@ var SchedulerDayView = A.Component.create({
 			evt.get(NODE).item(1).setStyle(TOP, 0);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method syncHeaderViewUI
+		 */
 		syncHeaderViewUI: function() {
 			var instance = this;
 
@@ -749,12 +1036,26 @@ var SchedulerDayView = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method calculateYDelta
+		 * @param startXY
+		 * @param xy
+		 */
 		calculateYDelta: function(startXY, xy) {
 			var instance = this;
 
 			return (xy[1] - startXY[1])/(instance.get(HOUR_HEIGHT)/2)*30;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method findEventIntersections
+		 * @param evt
+		 * @param events
+		 */
 		findEventIntersections: function(evt, events) {
 			var instance = this;
 			var group = [];
@@ -768,6 +1069,12 @@ var SchedulerDayView = A.Component.create({
 			return group;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getXYDelta
+		 * @param event
+		 */
 		getXYDelta: function(event) {
 			var instance = this;
 			var xy = event.currentTarget.getXY(),
@@ -778,6 +1085,11 @@ var SchedulerDayView = A.Component.create({
 			});
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getTickY
+		 */
 		getTickY: function() {
 			var instance = this;
 
@@ -785,6 +1097,13 @@ var SchedulerDayView = A.Component.create({
 				Math.ceil(instance.get(HOUR_HEIGHT) / 2), 10);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method roundToNearestHour
+		 * @param date
+		 * @param time
+		 */
 		roundToNearestHour: function(date, time) {
 			var instance = this;
 
@@ -794,6 +1113,13 @@ var SchedulerDayView = A.Component.create({
 				time[2]);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterDragAlign
+		 * @param event
+		 * @protected
+		 */
 		_afterDragAlign: function(event) {
 			var instance = this;
 			var dd = event.target;
@@ -805,6 +1131,13 @@ var SchedulerDayView = A.Component.create({
 			dd.actXY[0] = null;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _dragTickAlignX
+		 * @param activeColumn
+		 * @protected
+		 */
 		_dragTickAlignX: function(activeColumn) {
 			var instance = this;
 			var draggingEvent = instance[DRAGGING_EVENT];
@@ -825,6 +1158,13 @@ var SchedulerDayView = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _dragTickAlignY
+		 * @param event
+		 * @protected
+		 */
 		_dragTickAlignY: function(event) {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
@@ -854,6 +1194,12 @@ var SchedulerDayView = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _setupDragDrop
+		 * @protected
+		 */
 		_setupDragDrop: function() {
 			var instance = this,
 				placeholder = instance[EVENT_PLACEHOLDER];
@@ -899,6 +1245,13 @@ var SchedulerDayView = A.Component.create({
 			});
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetDate
+		 * @param val
+		 * @protected
+		 */
 		_uiSetDate: function(val) {
 			var instance = this;
 
@@ -906,6 +1259,13 @@ var SchedulerDayView = A.Component.create({
 			instance.syncDaysHeaderUI();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onClickDaysHeader
+		 * @param event
+		 * @protected
+		 */
 		_onClickDaysHeader: function(event) {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
@@ -924,6 +1284,13 @@ var SchedulerDayView = A.Component.create({
 			event.preventDefault();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onEventDragEnd
+		 * @param event
+		 * @protected
+		 */
 		_onEventDragEnd: function(event) {
 			var instance = this;
 			var draggingEvent = instance[DRAGGING_EVENT];
@@ -942,6 +1309,13 @@ var SchedulerDayView = A.Component.create({
 			instance[DRAGGING_EVENT] = null;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onEventDragStart
+		 * @param event
+		 * @protected
+		 */
 		_onEventDragStart: function(event) {
 			var instance = this;
 			var draggingEvent = instance[DRAGGING_EVENT] = instance.delegate.dd.get(NODE).getData(SCHEDULER_EVENT);
@@ -964,6 +1338,13 @@ var SchedulerDayView = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onMouseDownTableCol
+		 * @param event
+		 * @protected
+		 */
 		_onMouseDownTableCol: function(event) {
 			var instance = this;
 			var target = event.target;
@@ -1008,6 +1389,13 @@ var SchedulerDayView = A.Component.create({
 			instance.get(BOUNDING_BOX).unselectable();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onMouseEnterEvent
+		 * @param event
+		 * @protected
+		 */
 		_onMouseEnterEvent: function(event) {
 			var instance = this;
 			var target = event.currentTarget;
@@ -1018,6 +1406,13 @@ var SchedulerDayView = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onMouseLeaveEvent
+		 * @param event
+		 * @protected
+		 */
 		_onMouseLeaveEvent: function(event) {
 			var instance = this;
 
@@ -1026,6 +1421,13 @@ var SchedulerDayView = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onMouseMoveTableCol
+		 * @param event
+		 * @protected
+		 */
 		_onMouseMoveTableCol: function(event) {
 			var instance = this;
 			var activeColumn = event.currentTarget;
@@ -1063,6 +1465,13 @@ var SchedulerDayView = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onMouseUpTableCol
+		 * @param event
+		 * @protected
+		 */
 		_onMouseUpTableCol: function(event) {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
@@ -1084,6 +1493,13 @@ var SchedulerDayView = A.Component.create({
 			instance.get(BOUNDING_BOX).selectable();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onSchedulerChange
+		 * @param event
+		 * @protected
+		 */
 		_onSchedulerChange: function(event) {
 			var instance = this;
 
@@ -1092,12 +1508,24 @@ var SchedulerDayView = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _removeResizer
+		 * @protected
+		 */
 		_removeResizer: function() {
 			var instance = this;
 
 			instance[RESIZER_NODE].remove();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _valueColDaysNode
+		 * @protected
+		 */
 		_valueColDaysNode: function() {
 			var instance = this;
 			var days = instance.get(DAYS);
@@ -1114,6 +1542,12 @@ var SchedulerDayView = A.Component.create({
 			return A.NodeList.create(buffer.join(_EMPTY_STR));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _valueColHeaderDaysNode
+		 * @protected
+		 */
 		_valueColHeaderDaysNode: function() {
 			var instance = this;
 			var days = instance.get(DAYS);
@@ -1134,6 +1568,12 @@ var SchedulerDayView = A.Component.create({
 			return A.NodeList.create(buffer.join(_EMPTY_STR));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _valueMarkercellsNode
+		 * @protected
+		 */
 		_valueMarkercellsNode: function() {
 			var instance = this;
 			var buffer = [], i;
@@ -1145,6 +1585,12 @@ var SchedulerDayView = A.Component.create({
 			return A.NodeList.create(buffer.join(_EMPTY_STR));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _valueTimesNode
+		 * @protected
+		 */
 		_valueTimesNode: function() {
 			var instance = this;
 			var isoTime = instance.get(ISO_TIME);

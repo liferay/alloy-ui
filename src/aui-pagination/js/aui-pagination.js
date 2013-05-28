@@ -1,5 +1,5 @@
 /**
- * The Pagination Utility - The Pagination widget provides a set of controls to navigate through paged data.
+ * The Pagination widget provides a set of controls to navigate through paged data.
  *
  * @module aui-pagination
  */
@@ -33,37 +33,26 @@ var Lang = A.Lang,
     CSS_DISABLED = getCN(DISABLED),
     CSS_PAGINATION_CONTROL = getCN(PAGINATION, CONTROL);
 
-    /**
-     * A base class for Pagination, providing:
-     * <ul>
-     *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
-     *    <li>Set of controls to navigate through paged data</li>
-     * </ul>
-     *
-     * Quick Example:<br/>
-     *
-     * <pre><code>var instance = new A.Pagination({
-     *  boundingBox: '#pagination',
-     *  circular: true,
-     *  total: 10
-     * }).render();
-     * </code></pre>
-     *
-     * Check the list of <a href="Pagination.html#configattributes">Configuration Attributes</a> available for
-     * Pagination.
-     *
-     * @param config {Object} Object literal specifying widget configuration properties.
-     *
-     * @class Pagination
-     * @constructor
-     * @extends Widget
-     */
+/**
+ * A base class for Pagination, providing:
+ * <ul>
+ *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *    <li>Set of controls to navigate through paged data</li>
+ * </ul>
+ *
+ * Check the [live demo](http://alloyui.com/examples/pagination/).
+ *
+ * @class A.Pagination
+ * @extends A.Component
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var Pagination = A.Component.create(
     {
         /**
          * Static property provides a string to identify the class.
          *
-         * @property Paginator.NAME
+         * @property Pagination.NAME
          * @type String
          * @static
          */
@@ -71,13 +60,14 @@ var Pagination = A.Component.create(
 
         /**
          * Static property used to define the default attribute
-         * configuration for the Paginator.
+         * configuration for the Pagination.
          *
-         * @property Paginator.ATTRS
+         * @property Pagination.ATTRS
          * @type Object
          * @static
          */
         ATTRS: {
+
             /**
              * When enabled this property allows the navigation to go back to
              * the beggining when it reaches the last page, the opposite behavior
@@ -87,7 +77,7 @@ var Pagination = A.Component.create(
              *
              * @attribute circular
              * @default true
-             * @type boolean
+             * @type Boolean
              */
             circular: {
                 validator: isBoolean,
@@ -95,7 +85,7 @@ var Pagination = A.Component.create(
             },
 
             /**
-             * A formatter function to format each pagination item
+             * A formatter function to format each pagination item.
              *
              * @attribute formatter
              * @type Function
@@ -108,7 +98,7 @@ var Pagination = A.Component.create(
             /**
              * Holds the page items as a NodeList. The list could be queried
              * from the DOM trough Widget HTML_PARSER or generated if
-             * <a href="Paginator.html#config_total">total</a> is specified.
+             * <a href="Pagination.html#config_total">total</a> is specified.
              *
              * @attribute items
              * @default undefined
@@ -121,7 +111,7 @@ var Pagination = A.Component.create(
              * Initial page offset.
              *
              * @attribute offset
-             * @default 0
+             * @default 1
              * @type Number
              */
             offset: {
@@ -143,7 +133,7 @@ var Pagination = A.Component.create(
 
             /**
              * Total number of page links available. If set, the new
-             * <a href="Paginator.html#config_items">items</a> node list will
+             * <a href="Pagination.html#config_items">items</a> node list will
              * be rendered.
              *
              * @attribute total
@@ -155,6 +145,12 @@ var Pagination = A.Component.create(
                 value: 0
             },
 
+            /**
+             * Text used on Pagination.
+             *
+             * @attribute strings
+             * @type Object
+             */
             strings: {
                 value: {
                     next: 'Next',
@@ -163,6 +159,14 @@ var Pagination = A.Component.create(
             }
         },
 
+        /**
+         * Object hash, defining how attribute values are to be parsed from
+         * markup contained in the widget's content box.
+         *
+         * @property Pagination.HTML_PARSER
+         * @type Object
+         * @static
+         */
         HTML_PARSER: {
             items: function(srcNode) {
                 return this._queryItemsIfNotSet(srcNode);
@@ -172,8 +176,23 @@ var Pagination = A.Component.create(
             }
         },
 
+        /**
+         * Static property used to define the attributes
+         * for the bindUI lifecycle phase.
+         *
+         * @property Pagination.BIND_UI_ATTRS
+         * @type Array
+         * @static
+         */
         BIND_UI_ATTRS: [OFFSET, TOTAL],
 
+        /**
+         * Static property used to define the UI attributes.
+         *
+         * @property Pagination.UI_ATTRS
+         * @type Array
+         * @static
+         */
         UI_ATTRS: [PAGE],
 
         prototype: {
@@ -184,6 +203,12 @@ var Pagination = A.Component.create(
             items: null,
             lastState: null,
 
+            /**
+             * Sync the Pagination UI. Lifecycle.
+             *
+             * @method syncUI
+             * @protected
+             */
             syncUI: function() {
                 var instance = this,
                     page = instance.get(PAGE);
@@ -193,6 +218,12 @@ var Pagination = A.Component.create(
                 }
             },
 
+            /**
+             * Bind the events on the Pagination UI. Lifecycle.
+             *
+             * @method bindUI
+             * @protected
+             */
             bindUI: function() {
                 var instance = this,
                     boundingBox = instance.get(BOUNDING_BOX);
@@ -204,6 +235,12 @@ var Pagination = A.Component.create(
                 boundingBox.delegate(CLICK, instance._onClickItem, LI, instance);
             },
 
+            /**
+             * Render the Pagination component instance. Lifecycle.
+             *
+             * @method renderUI
+             * @protected
+             */
             renderUI: function() {
                 var instance = this;
 
@@ -323,6 +360,7 @@ var Pagination = A.Component.create(
              * containing the page number, e.g. <code>{page:1}</code>.
              *
              * @method setState
+             * @param state
              */
             setState: function(state) {
                 var instance = this;
@@ -331,6 +369,12 @@ var Pagination = A.Component.create(
                 instance.lastState = state;
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _countItemsInDoc
+             * @protected
+             */
             _countItemsInDoc: function() {
                 var instance = this,
                     srcNode = instance.get('srcNode');
@@ -338,12 +382,26 @@ var Pagination = A.Component.create(
                 return Math.max(0, instance._queryItemsIfNotSet(srcNode).size() - instance.TOTAL_CONTROLS);
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _defChangeRequest
+             * @param event
+             * @protected
+             */
             _defChangeRequest: function(event) {
                 var instance = this;
 
                 instance.setState(event.state);
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _dispatchRequest
+             * @param state
+             * @protected
+             */
             _dispatchRequest: function(state) {
                 var instance = this;
 
@@ -353,6 +411,12 @@ var Pagination = A.Component.create(
                 });
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _formatterValueFn
+             * @protected
+             */
             _formatterValueFn: function() {
                 return function(index) {
                     var instance = this;
@@ -367,6 +431,13 @@ var Pagination = A.Component.create(
                 };
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _queryItemsIfNotSet
+             * @param srcNode
+             * @protected
+             */
             _queryItemsIfNotSet: function(srcNode) {
                 var instance = this;
 
@@ -376,6 +447,13 @@ var Pagination = A.Component.create(
                 return instance.items;
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _onClickItem
+             * @param event
+             * @protected
+             */
             _onClickItem: function(event) {
                 var instance = this,
                     item = event.currentTarget;
@@ -403,6 +481,13 @@ var Pagination = A.Component.create(
                 }
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _onPageChange
+             * @param event
+             * @protected
+             */
             _onPageChange: function(event) {
                 var instance = this;
 
@@ -414,6 +499,13 @@ var Pagination = A.Component.create(
                 }
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _renderItemsUI
+             * @param total
+             * @protected
+             */
             _renderItemsUI: function(total) {
                 var instance = this,
                     tpl = instance.ITEM_TEMPLATE,
@@ -441,10 +533,23 @@ var Pagination = A.Component.create(
                 instance.get(CONTENT_BOX).setContent(items);
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _setInt
+             * @param val
+             * @protected
+             */
             _setInt: function(val) {
                 return Lang.toInt(val);
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _syncNavigationUI
+             * @protected
+             */
             _syncNavigationUI: function() {
                 var instance = this,
                     items = instance.get(ITEMS);
@@ -456,12 +561,26 @@ var Pagination = A.Component.create(
                     CSS_DISABLED, instance.get(PAGE) === instance.get(TOTAL));
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _uiSetOffset
+             * @param val
+             * @protected
+             */
             _uiSetOffset: function(val) {
                 var instance = this;
 
                 instance._renderItemsUI(instance.get(TOTAL));
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _uiSetPage
+             * @param val
+             * @protected
+             */
             _uiSetPage: function(val) {
                 var instance = this;
 
@@ -481,6 +600,13 @@ var Pagination = A.Component.create(
                 }
             },
 
+            /**
+             * TODO. Wanna help? Please send a Pull Request.
+             *
+             * @method _uiSetTotal
+             * @param val
+             * @protected
+             */
             _uiSetTotal: function(val) {
                 var instance = this;
 

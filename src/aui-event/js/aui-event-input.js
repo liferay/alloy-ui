@@ -5,8 +5,6 @@
  *
  * @module aui-event
  * @submodule aui-event-input
- *
- * @class AUI~event~input
  */
 
 var DOM_EVENTS = A.Node.DOM_EVENTS;
@@ -35,7 +33,21 @@ var ACTIVE_ELEMENT = 'activeElement',
 		paste: 1
 	};
 
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @event input
+ */
 A.Event.define('input', {
+
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method on
+	 * @param node
+	 * @param subscription
+	 * @param notifier
+	 */
 	on: function (node, subscription, notifier) {
 		var instance = this;
 
@@ -43,6 +55,15 @@ A.Event.define('input', {
 			_INPUT_EVENT_TYPE, A.bind(instance._dispatchEvent, instance, notifier));
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method delegate
+	 * @param node
+	 * @param subscription
+	 * @param notifier
+	 * @param filter
+	 */
 	delegate: function (node, subscription, notifier, filter) {
 		var instance = this;
 
@@ -62,10 +83,26 @@ A.Event.define('input', {
 		}, filter);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method detach
+	 * @param node
+	 * @param subscription
+	 * @param notifier
+	 */
 	detach: function (node, subscription, notifier) {
 		subscription._handler.detach();
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method detachDelegate
+	 * @param node
+	 * @param subscription
+	 * @param notifier
+	 */
 	detachDelegate: function (node, subscription, notifier) {
 		A.Array.each(subscription._handles, function(handle) {
 			var element = A.one(handle.evt.el);
@@ -77,6 +114,14 @@ A.Event.define('input', {
 		subscription._handler.detach();
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _dispatchEvent
+	 * @param notifier
+	 * @param event
+	 * @protected
+	 */
 	_dispatchEvent: function(notifier, event) {
 		var instance = this,
 			input = event.target;

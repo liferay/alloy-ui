@@ -1,3 +1,10 @@
+/**
+ * The Scheduler Component
+ *
+ * @module aui-scheduler
+ * @submodule aui-scheduler-view-month
+ */
+
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
 
@@ -25,19 +32,65 @@ var Lang = A.Lang,
 	CSS_SVM_TABLE_DATA_COL_NOMONTH = getCN(SCHEDULER_VIEW_MONTH, TABLE, DATA, COL, NOMONTH),
 	CSS_SVT_TABLE_DATA_COL_TITLE = getCN(SCHEDULER_VIEW, TABLE, DATA, COL, TITLE);
 
+/**
+ * A base class for SchedulerMonthView.
+ *
+ * @class A.SchedulerMonthView
+ * @extends A.SchedulerTableView
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var SchedulerMonthView = A.Component.create({
+
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property SchedulerMonthView.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: SCHEDULER_VIEW_MONTH,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the SchedulerMonthView.
+	 *
+	 * @property SchedulerMonthView.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute displayDaysInterval
+		 * @default 42
+		 * @type Number
+		 * @readyOnly
+		 */
 		displayDaysInterval: {
 			readOnly: true,
 			value: 42
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute name
+		 * @default 'month'
+		 * @type String
+		 */
 		name: {
 			value: MONTH
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute navigationDateFormatter
+		 * @type Function
+		 */
 		navigationDateFormatter: {
 			value: function(date) {
 				var instance = this;
@@ -55,15 +108,34 @@ var SchedulerMonthView = A.Component.create({
 		}
 	},
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property SchedulerMonthView.EXTENDS
+	 * @type Object
+	 * @static
+	 */
 	EXTENDS: A.SchedulerTableView,
 
 	prototype: {
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getAdjustedViewDate
+		 * @param val
+		 */
 		getAdjustedViewDate: function(val) {
 			var instance = this;
 
 			return DateMath.toMidnight(DateMath.findMonthStart(val));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getNextDate
+		 */
 		getNextDate: function() {
 			var instance = this;
 
@@ -73,6 +145,11 @@ var SchedulerMonthView = A.Component.create({
 			return DateMath.toLastHour(DateMath.add(viewDate, DateMath.MONTH, 1));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getPrevDate
+		 */
 		getPrevDate: function() {
 			var instance = this;
 
@@ -82,6 +159,11 @@ var SchedulerMonthView = A.Component.create({
 			return DateMath.toMidnight(DateMath.subtract(viewDate, DateMath.MONTH, 1));
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method plotEvents
+		 */
 		plotEvents: function() {
 			var instance = this;
 
@@ -106,6 +188,12 @@ var SchedulerMonthView = A.Component.create({
 			});
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _findCurrentIntervalStart
+		 * @protected
+		 */
 		_findCurrentIntervalStart: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
@@ -114,6 +202,13 @@ var SchedulerMonthView = A.Component.create({
 			return instance._findFirstDayOfWeek(viewDate);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _findFirstDayOfWeek
+		 * @param date
+		 * @protected
+		 */
 		_findFirstDayOfWeek: function(date) {
 			var instance = this;
 

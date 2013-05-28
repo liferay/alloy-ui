@@ -1,3 +1,10 @@
+/**
+ * The Form Builder Component
+ *
+ * @module aui-form-builder
+ * @submodule aui-form-builder-field-multiple-choice
+ */
+
 var Lang = A.Lang,
 
 	isArray = Lang.isArray,
@@ -43,10 +50,40 @@ var Lang = A.Lang,
 	CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER, FIELD),
 	CSS_FORM_BUILDER_OPTIONS_EDITOR_HIDDEN = getCN(FORM_BUILDER, OPTIONS, EDITOR, HIDDEN);
 
+/**
+ * A base class for OptionsEditor.
+ *
+ * @class A.OptionsEditor
+ * @extends A.RadioCellEditor
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var OptionsEditor = A.Component.create({
+
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property OptionsEditor.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: FORM_BUILDER_OPTIONS_EDITOR,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the OptionsEditor.
+	 *
+	 * @property OptionsEditor.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute editable
+		 */
 		editable: {
 			setter: function() {
 				return false;
@@ -54,11 +91,24 @@ var OptionsEditor = A.Component.create({
 		}
 	},
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property OptionsEditor.EXTENDS
+	 * @type Object
+	 * @static
+	 */
 	EXTENDS: A.RadioCellEditor,
 
 	prototype: {
 		ELEMENT_TEMPLATE: '<div class="' + CSS_FORM_BUILDER_OPTIONS_EDITOR_HIDDEN + '"></div>',
 
+		/**
+		 * Construction logic executed during OptionsEditor instantiation. Lifecycle.
+		 *
+		 * @method initializer
+		 * @protected
+		 */
 		initializer: function() {
 			var instance = this;
 
@@ -67,25 +117,71 @@ var OptionsEditor = A.Component.create({
 			});
 		},
 
-		_onSubmit: function(event) {
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _handleSaveEvent
+		 * @param event
+		 * @protected
+		 */
+		_handleSaveEvent: function(event) {
 			var instance = this;
 
 			instance.saveOptions();
 
-			OptionsEditor.superclass._onSubmit.apply(this, arguments);
+			OptionsEditor.superclass._handleSaveEvent.apply(this, arguments);
 		}
 	}
 });
 
+/**
+ * A base class for FormBuilderMultipleChoiceField.
+ *
+ * @class A.FormBuilderMultipleChoiceField
+ * @extends A.FormBuilderField
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 var FormBuilderMultipleChoiceField = A.Component.create({
+
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property FormBuilderMultipleChoiceField.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: FORM_BUILDER_MULTIPLE_CHOICE_FIELD,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the FormBuilderMultipleChoiceField.
+	 *
+	 * @property FormBuilderMultipleChoiceField.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute acceptChildren
+		 * @default false
+		 * @type Boolean
+		 * @readOnly
+		 */
 		acceptChildren: {
 			value: false,
 			readOnly: true
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute options
+		 * @type Object
+		 */
 		options: {
 			value: [
 				{
@@ -103,10 +199,22 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 			]
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute optionTemplate
+		 * @default '<option value="{value}">{label}</option>'
+		 * @type String
+		 */
 		optionTemplate: {
 			value: '<option value="{value}">{label}</option>'
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute predefinedValue
+		 */
 		predefinedValue: {
 			setter: function(val) {
 				return isArray(val) ? val : [val];
@@ -114,14 +222,42 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 		}
 	},
 
+	/**
+	 * Static property used to define the UI attributes.
+	 *
+	 * @property FormBuilderMultipleChoiceField.UI_ATTRS
+	 * @type Array
+	 * @static
+	 */
 	UI_ATTRS: [ACCEPT_CHILDREN, LABEL, NAME, OPTIONS, PREDEFINED_VALUE, SHOW_LABEL],
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @property FormBuilderMultipleChoiceField.CSS_PREFIX
+	 * @type String
+	 * @static
+	 */
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property FormBuilderMultipleChoiceField.EXTENDS
+	 * @type Object
+	 * @static
+	 */
 	EXTENDS: A.FormBuilderField,
 
 	prototype: {
 
+		/**
+		 * Construction logic executed during FormBuilderMultipleChoiceField
+		 * instantiation. Lifecycle.
+		 *
+		 * @method initializer
+		 * @protected
+		 */
 		initializer: function() {
 			var instance = this,
 				options = instance.get(OPTIONS);
@@ -131,6 +267,11 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 			});
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method getPropertyModel
+		 */
 		getPropertyModel: function() {
 			var instance = this,
 				options = instance.get(OPTIONS),
@@ -223,6 +364,13 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 			return model;
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetOptions
+		 * @param val
+		 * @protected
+		 */
 		_uiSetOptions: function(val) {
 			var instance = this;
 
@@ -252,6 +400,13 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 			);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetPredefinedValue
+		 * @param val
+		 * @protected
+		 */
 		_uiSetPredefinedValue: function(val) {
 			var instance = this,
 				optionNodes = instance.optionNodes;

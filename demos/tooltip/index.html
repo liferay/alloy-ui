@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+    <style>
+    .example {
+        margin: 100px;
+    }
+
+    #delegate {
+        width: 100px;
+    }
+    </style>
+</head>
+<body>
+    <h1>AlloyUI - Tooltip</h1>
+    <div class="example">
+        <h2>Simple</h2>
+        <br/>
+        <button class="btn btn-large btn-primary" id="triggerTop" title="One fine body…">Mouseover to show a top tooltip</button>
+        <button class="btn btn-large btn-primary" id="triggerBottom" title="Another fine body…">Mouseover to show a bottom tooltip</button>
+        <br/>
+        <br/>
+        <h2>Delegate</h2>
+        <br/>
+        <ul id="delegate">
+            <li title="Apricot">Apricot</li>
+            <li title="Pineapple is my favorite!">Pineapple</li>
+            <li title="Kiwi">Kiwi</li>
+            <li title="Orange">Orange</li>
+            <li title="Pomegranate">Pomegranate</li>
+            <li title="Lime">Lime</li>
+            <li title="Watermelon">Watermelon</li>
+            <li title="Apricot">Apricot</li>
+            <li title="Pineapple">Pineapple</li>
+        </ul>
+    </div>
+    <script>
+    YUI({ filter:'raw' }).use('aui-tooltip', function(A) {
+
+         new A.Tooltip({
+            trigger: '#triggerTop'
+        }).render();
+
+        new A.Tooltip({
+            position: 'bottom',
+            trigger: '#triggerBottom'
+        }).render();
+
+        new A.TooltipDelegate({
+            position: 'right',
+            trigger: '#delegate li'
+        });
+
+    });
+    </script>
+</body>
+</html>

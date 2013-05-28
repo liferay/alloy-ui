@@ -1,3 +1,9 @@
+/**
+ * The Autosize Iframe Utility
+ *
+ * @module aui-autosize-iframe
+ */
+
 var Lang = A.Lang,
 	isString = Lang.isString,
 
@@ -13,25 +19,96 @@ var Lang = A.Lang,
 
 	CSS_AUTOSIZE_IFRAME_MONITORED_HEIGHT = getClassName(AUTOSIZE_IFRAME, 'monitored', HEIGHT);
 
+/**
+ * A base class for AutosizeIframe.
+ *
+ * @class A.AutosizeIframe
+ * @extends A.Plugin.Base
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 AutosizeIframe = A.Component.create({
+
+	/**
+	 * Static property provides a string to identify the class.
+	 *
+	 * @property AutosizeIframe.NAME
+	 * @type String
+	 * @static
+	 */
 	NAME: AUTOSIZE_IFRAME,
+
+	/**
+	 * Static property provides a string to identify the namespace.
+	 *
+	 * @property AutosizeIframe.NS
+	 * @type String
+	 * @static
+	 */
 	NS: AUTOSIZE_IFRAME,
 
+	/**
+	 * Static property used to define which component it extends.
+	 *
+	 * @property AutosizeIframe.EXTENDS
+	 * @type String
+	 * @static
+	 */
 	EXTENDS: A.Plugin.Base,
 
+	/**
+	 * Static property used to define the default attribute
+	 * configuration for the AutosizeIframe.
+	 *
+	 * @property AutosizeIframe.ATTRS
+	 * @type Object
+	 * @static
+	 */
 	ATTRS: {
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute height
+		 * @default 0
+		 * @type Number
+		 */
 		height: {
 			value: 0
 		},
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute monitorHeight
+		 * @default true
+		 * @type Boolean
+		 */
 		monitorHeight: {
 			value: true
 		},
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute width
+		 * @default null
+		 * @type Number
+		 */
 		width: {
 			value: null
 		}
 	},
 
 	prototype: {
+
+		/**
+		 * Construction logic executed during AutosizeIframe instantiation. Lifecycle.
+		 *
+		 * @method initializer
+		 * @param config
+		 * @protected
+		 */
 		initializer: function(config) {
 			var instance = this;
 
@@ -46,6 +123,12 @@ AutosizeIframe = A.Component.create({
 			instance.syncUI();
 		},
 
+		/**
+		 * Bind the events on the AutosizeIframe UI. Lifecycle.
+		 *
+		 * @method bindUI
+		 * @protected
+		 */
 		bindUI: function() {
 			var instance = this;
 
@@ -54,24 +137,46 @@ AutosizeIframe = A.Component.create({
 			instance.after('monitorHeightChange', instance._afterMonitorHeightChange);
 		},
 
+		/**
+		 * Sync the AutosizeIframe UI. Lifecycle.
+		 *
+		 * @method syncUI
+		 * @protected
+		 */
 		syncUI: function() {
 			var instance = this;
 
 			instance._uiSetMonitorHeight(instance.get('monitorHeight'));
 		},
 
+		/**
+		 * Destructor lifecycle implementation for the AutosizeIframe class. Lifecycle.
+		 *
+		 * @method destructor
+		 * @protected
+		 */
 		destructor: function() {
 			var instance = this;
 
 			instance._uiSetMonitorHeight(false);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method pauseMonitor
+		 */
 		pauseMonitor: function() {
 			var instance = this;
 
 			instance._clearInterval();
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method restartMonitor
+		 */
 		restartMonitor: function() {
 			var instance = this;
 
@@ -80,24 +185,51 @@ AutosizeIframe = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterHeightChange
+		 * @param event
+		 * @protected
+		 */
 		_afterHeightChange: function(event) {
 			var instance = this;
 
 			instance._uiSetHeight(event.newVal);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterMonitorHeightChange
+		 * @param event
+		 * @protected
+		 */
 		_afterMonitorHeightChange: function(event) {
 			var instance = this;
 
 			instance._uiSetMonitorHeight(event.newVal);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _afterWidthChange
+		 * @param event
+		 * @protected
+		 */
 		_afterWidthChange: function(event) {
 			var instance = this;
 
 			instance._uiSetWidth(event.newVal);
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _clearInterval
+		 * @protected
+		 */
 		_clearInterval: function() {
 			var instance = this,
 				iframeDoc = instance._iframeDoc;
@@ -117,6 +249,12 @@ AutosizeIframe = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _onResize
+		 * @protected
+		 */
 		_onResize: function() {
 			var instance = this;
 
@@ -149,6 +287,13 @@ AutosizeIframe = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _setInterval
+		 * @param event
+		 * @protected
+		 */
 		_setInterval: function(event) {
 			var instance = this;
 
@@ -159,6 +304,13 @@ AutosizeIframe = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetHeight
+		 * @param value
+		 * @protected
+		 */
 		_uiSetHeight: function(value) {
 			var instance = this;
 
@@ -169,6 +321,13 @@ AutosizeIframe = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetMonitorHeight
+		 * @param monitorHeight
+		 * @protected
+		 */
 		_uiSetMonitorHeight: function(monitorHeight) {
 			var instance = this;
 
@@ -192,6 +351,13 @@ AutosizeIframe = A.Component.create({
 			}
 		},
 
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetWidth
+		 * @param value
+		 * @protected
+		 */
 		_uiSetWidth: function(value) {
 			var instance = this;
 
@@ -203,6 +369,13 @@ AutosizeIframe = A.Component.create({
 });
 
 A.mix(AutosizeIframe, {
+
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method getContentHeight
+	 * @param iframeWin
+	 */
 	getContentHeight: function(iframeWin) {
 		var contentHeight = null;
 
@@ -226,6 +399,15 @@ A.mix(AutosizeIframe, {
 		return contentHeight;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _getContentHeight
+	 * @param iframeWin
+	 * @param iframeDoc
+	 * @param fallbackHeight
+	 * @protected
+	 */
 	_getContentHeight: function(iframeWin, iframeDoc, fallbackHeight) {
 		var contentHeight = null;
 
@@ -252,6 +434,13 @@ A.mix(AutosizeIframe, {
 		return contentHeight;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _getQuirksHeight
+	 * @param iframeWin
+	 * @protected
+	 */
 	_getQuirksHeight: function(iframeWin) {
 		var contentHeight = 0;
 

@@ -10,10 +10,19 @@
             "aui-ace-editor"
         ]
     },
+    "aui-ace-autocomplete-templateprocessor": {
+        "requires": [
+            "aui-ace-autocomplete-base"
+        ]
+    },
     "aui-ace-autocomplete-freemarker": {
     	"requires": [
-            "aui-ace-autocomplete-base",
-            "aui-search-tst"
+            "aui-ace-autocomplete-templateprocessor"
+        ]
+    },
+    "aui-ace-autocomplete-velocity": {
+        "requires": [
+            "aui-ace-autocomplete-templateprocessor"
         ]
     },
     "aui-ace-autocomplete-list": {

@@ -1,252 +1,183 @@
-var Lang = A.Lang,
-    AArray = A.Array,
-    AObject = A.Object,
+/**
+ * The ACE Editor Component
+ *
+ * @module aui-ace-editor
+ * @submodule aui-ace-autocomplete-freemarker
+ */
 
-    DIRECTIVES = [
-        'flush',
-        'recover',
-        'fallback',
-        'local',
-        'break',
-        'lt',
-        'case',
-        'global',
-        'if',
-        'compress',
-        'escape',
-        'assign',
-        'elseif',
-        'noescape',
-        'setting',
-        'list',
-        'else',
-        'switch',
-        'include',
-        'recurse',
-        'rt',
-        'ftl',
-        'macro',
-        'stop',
-        'nt',
-        'visit',
-        'attempt',
-        'nested',
-        'import',
-        'default',
-        'return',
-        't',
-        'function'
-    ],
+var Lang = A.Lang,
+    Base = A.AceEditor.AutoCompleteBase,
 
     MATCH_DIRECTIVES = 0,
     MATCH_VARIABLES = 1,
 
-    REGEX_DIRECTIVES = /<#[\w.]*>?$/,
-    REGEX_VARIABLES = /\$\{[\w., ()"]*\}?$/,
+    _NAME = 'aui-ace-autocomplete-freemarker',
 
-    STATUS_ERROR = -1,
-    STATUS_SUCCESS = 0,
+    DIRECTIVES_MATCHER = 'directivesMatcher',
+    VARIABLES_MATCHER = 'variablesMatcher',
 
-    ALL =  'all',
-    DOT = '.',
-    STR_EMPTY = '',
-    STR_RESPONSE_DATA = 'responseData',
-    VARIABLES = 'variables',
+/**
+ * A base class for Freemarker.
+ *
+ * @class A.Freemarker
+ * @extends A.AceEditor.TemplateProcessor
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
+Freemarker = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [
+], {
 
-    NAME = 'aui-ace-autocomplete-freemarker';
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method getMatch
+     * @param content
+     */
+    getMatch: function(content) {
+        var instance = this,
+            match,
+            matchIndex;
 
-var Freemarker = A.Component.create({
-    NAME: NAME,
+        if ((matchIndex = content.lastIndexOf('<')) >= 0) {
+            content = content.substring(matchIndex);
 
-    NS: NAME,
+            if (instance.get(DIRECTIVES_MATCHER).test(content)) {
+                match = {
+                    content: content.substring(2),
+                    start: matchIndex,
+                    type: MATCH_DIRECTIVES
+                };
+            }
+        }
+        else if ((matchIndex = content.lastIndexOf('$')) >= 0) {
+            content = content.substring(matchIndex);
 
+            if (instance.get(VARIABLES_MATCHER).test(content)) {
+                match = {
+                    content: content.substring(2),
+                    start: matchIndex,
+                    type: MATCH_VARIABLES
+                };
+            }
+        }
+
+        return match;
+    }
+}, {
+
+    /**
+     * Static property provides a string to identify the class.
+     *
+     * @property Freemarker.NAME
+     * @type String
+     * @static
+     */
+    NAME: _NAME,
+
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @property Freemarker.NS
+     * @type String
+     * @static
+     */
+    NS: _NAME,
+
+    /**
+     * Static property used to define the default attribute
+     * configuration for the Freemarker.
+     *
+     * @property Freemarker.ATTRS
+     * @type Object
+     * @static
+     */
     ATTRS: {
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute directives
+         * @type Array
+         */
+        directives: {
+            validator: Lang.isArray,
+            value: [
+                'assign',
+                'attempt',
+                'break',
+                'case',
+                'compress',
+                'default',
+                'else',
+                'elseif',
+                'escape',
+                'fallback',
+                'flush',
+                'ftl',
+                'function',
+                'global',
+                'if',
+                'import',
+                'include',
+                'list',
+                'local',
+                'lt',
+                'macro',
+                'nested',
+                'noescape',
+                'nt',
+                'recover',
+                'recurse',
+                'return',
+                'rt',
+                'setting',
+                'stop',
+                'switch',
+                't',
+                'visit'
+            ]
+        },
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute directivesMatcher
+         */
+        directivesMatcher: {
+            setter: '_setRegexValue',
+            value: /<#[\w]*[^<#]*$/
+        },
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute host
+         * @type Object
+         */
         host: {
             validator: Lang.isObject
         },
 
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute variables
+         * @type Object
+         */
         variables: {
             validator: Lang.isObject
-        }
-    },
-
-    EXTENDS: A.Base,
-
-    prototype: {
-        initializer: function(config) {
-            var instance = this;
-
-            instance._tstree = new A.TernarySearchTree();
         },
 
-        getMatch: function(content) {
-            var instance = this;
-
-            var match;
-
-            var matchIndex;
-
-            if ((matchIndex = content.lastIndexOf('<')) >= 0) {
-                content = content.substring(matchIndex);
-
-                if (REGEX_DIRECTIVES.test(content)) {
-                    match = {
-                        content: content.substring(2),
-                        start: matchIndex,
-                        type: MATCH_DIRECTIVES
-                    };
-                }
-            }
-            else if ((matchIndex = content.lastIndexOf('$')) >= 0) {
-                content = content.substring(matchIndex);
-
-                if (REGEX_VARIABLES.test(content)) {
-                    match = {
-                        content: content.substring(2),
-                        start: matchIndex,
-                        type: MATCH_VARIABLES
-                    };
-                }
-            }
-
-            return match;
-        },
-
-        getResults: function(match, callbackSuccess, callbackError) {
-            var instance = this;
-
-            var tstree = instance._tstree;
-
-            var type = match.type;
-
-            if (type === MATCH_DIRECTIVES) {
-                var matchDirectives = DIRECTIVES;
-
-                var content = match.content;
-
-                if (content.length) {
-                    if (instance._lastTSTLoad !== MATCH_DIRECTIVES) {
-                        instance._addDirectives();
-                    }
-
-                    matchDirectives = tstree.prefixSearch(content);
-                }
-
-                callbackSuccess(matchDirectives);
-            }
-            else if (type === MATCH_VARIABLES) {
-                var matches = instance._getVariableMatches(match.content);
-
-                callbackSuccess(matches);
-            }
-        },
-
-        getSuggestion: function(match, selectedSuggestion) {
-            var instance = this;
-
-            var result = selectedSuggestion || STR_EMPTY;
-
-            if (selectedSuggestion) {
-                var type = match.type;
-
-                if (type === MATCH_DIRECTIVES) {
-                    if (match.content && selectedSuggestion.indexOf(match.content) === 0) {
-                        result = selectedSuggestion.substring(match.content.length);
-                    }
-                }
-                else if (type === MATCH_VARIABLES) {
-                    var variables = match.content.split(DOT);
-
-                    var lastEntry = variables[variables.length - 1];
-
-                    if (lastEntry && selectedSuggestion.indexOf(lastEntry) === 0) {
-                        result = selectedSuggestion.substring(lastEntry.length);
-                    }
-                }
-            }
-
-            return result;
-        },
-
-        _addData: function(data) {
-            var instance = this;
-
-            var tstree = instance._tstree;
-
-            tstree.empty();
-
-            AArray.each(
-                data,
-                function(item, index) {
-                    tstree.add(item);
-                }
-            );
-        },
-
-        _addDirectives: function() {
-            var instance = this;
-
-            instance._addData(DIRECTIVES);
-
-            instance._lastTSTLoad = MATCH_DIRECTIVES;
-        },
-
-        _getVariableMatches: function(content) {
-            var instance = this;
-
-            var variables = content.split(DOT);
-
-            var variableCache = instance.get(VARIABLES);
-
-            var lastEntry = variables[variables.length - 1];
-
-            variables.length -= 1;
-
-            var variable;
-
-            if (variables.length > 0) {
-                for (var i = 0; i < variables.length; i++) {
-                    variable = variables[i];
-
-                    if (Lang.isObject(variableCache)) {
-                        variableCache = variableCache[variable];
-                    }
-                }
-            }
-
-            var matches = [];
-
-            if (Lang.isObject(variableCache)) {
-                AArray.each(
-                    AObject.keys(variableCache),
-                    function(item, index) {
-                        matches.push(item);
-                    }
-                );
-
-                if (lastEntry) {
-                    var tstree = instance._tstree;
-
-                    tstree.empty();
-
-                    AArray.each(
-                        matches,
-                        function(item, index) {
-                            tstree.add(item);
-                        }
-                    );
-
-                    matches = tstree.prefixSearch(lastEntry);
-
-                    instance._lastTSTLoad = MATCH_VARIABLES;
-                }
-            }
-
-            return matches;
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute variablesMatcher
+         */
+        variablesMatcher: {
+            setter: '_setRegexValue',
+            value: /\${[\w., ()"]*(?:[^$]|\\\$)*$/
         }
     }
 });
-
-Freemarker.DIRECTIVES = DIRECTIVES;
 
 A.AceEditor.AutoCompleteFreemarker = Freemarker;

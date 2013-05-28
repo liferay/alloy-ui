@@ -4,7 +4,9 @@
             "array-extras",
             "aui-palette",
             "color-base",
-            "node-core"
+            "node-core",
+            "aui-widget-cssclass",
+            "aui-widget-toggle"
         ],
         "skinnable": true
     },
@@ -12,6 +14,8 @@
     "aui-hsv-palette": {
         "requires": [
             "aui-classnamemanager",
+            "aui-widget-cssclass",
+            "aui-widget-toggle",
             "aui-event-input",
             "base-build",
             "clickable-rail",
@@ -50,7 +54,9 @@
     "aui-color-picker-popover": {
         "requires": [
             "aui-color-picker-base",
-            "aui-popover"
+            "aui-popover",
+            "aui-widget-cssclass",
+            "aui-widget-toggle"
         ],
         "skinnable": true
     }

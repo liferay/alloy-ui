@@ -1,3 +1,10 @@
+/**
+ * The Scheduler Component
+ *
+ * @module aui-scheduler
+ * @submodule aui-scheduler-view-table-dd
+ */
+
 var Lang = A.Lang,
 	isObject = Lang.isObject,
 
@@ -51,10 +58,32 @@ var Lang = A.Lang,
 	TPL_SVT_LASSO = '<div class="' + CSS_SVT_LASSO + '"></div>',
 	TPL_SVT_PROXY_NODE = '<div class="' + CSS_SVT_PROXY_NODE + '"></div>';
 
+/**
+ * A base class for SchedulerTableViewDD.
+ *
+ * @class A.SchedulerTableViewDD
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 A.SchedulerTableViewDD = function() {};
 
+/**
+ * Static property used to define the default attribute
+ * configuration for the SchedulerTableViewDD.
+ *
+ * @property SchedulerTableViewDD.ATTRS
+ * @type Object
+ * @static
+ */
 A.SchedulerTableViewDD.ATTRS = {
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @attribute delegateConfig
+	 * @default {}
+	 * @type Object
+	 */
 	delegateConfig: {
 		value: {},
 		setter: function(val) {
@@ -81,6 +110,12 @@ A.SchedulerTableViewDD.ATTRS = {
 
 A.mix(A.SchedulerTableViewDD.prototype, {
 
+	/**
+	 * Construction logic executed during SchedulerTableViewDD instantiation. Lifecycle.
+	 *
+	 * @method initializer
+	 * @protected
+	 */
 	initializer: function() {
 		var instance = this;
 
@@ -91,6 +126,11 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		instance.after(instance.viewDDSyncUI, instance, 'syncUI');
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method viewDDBindUI
+	 */
 	viewDDBindUI: function() {
 		var instance = this;
 		var recorder = instance.get(SCHEDULER).get(EVENT_RECORDER);
@@ -113,17 +153,32 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		instance.on('drag:start', instance._onEventDragStart);
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method viewDDRenderUI
+	 */
 	viewDDRenderUI: function() {
 		var instance = this;
 
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method viewDDSyncUI
+	 */
 	viewDDSyncUI: function() {
 		var instance = this;
 
 		instance._setupDragDrop();
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method removeLasso
+	 */
 	removeLasso: function() {
 		var instance = this;
 
@@ -132,6 +187,11 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method removeProxy
+	 */
 	removeProxy: function() {
 		var instance = this;
 
@@ -140,6 +200,13 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method renderLasso
+	 * @param startPos
+	 * @param endPos
+	 */
 	renderLasso: function(startPos, endPos) {
 		var instance = this;
 
@@ -192,6 +259,13 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _afterDragAlign
+	 * @param event
+	 * @protected
+	 */
 	_afterDragAlign: function(event) {
 		var instance = this;
 		var dd = event.target;
@@ -226,6 +300,13 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _findPosition
+	 * @param xy
+	 * @protected
+	 */
 	_findPosition: function(xy) {
 		var instance = this;
 
@@ -235,6 +316,13 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		return [i, j];
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _getDatePosition
+	 * @param date
+	 * @protected
+	 */
 	_getDatePosition: function(date) {
 		var instance = this;
 
@@ -249,6 +337,13 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		return position;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _getPositionDate
+	 * @param position
+	 * @protected
+	 */
 	_getPositionDate: function(position) {
 		var instance = this;
 		var intervalStartDate = instance._findCurrentIntervalStart();
@@ -261,6 +356,13 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		return date;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _hasLassoChanged
+	 * @param position
+	 * @protected
+	 */
 	_hasLassoChanged: function(position) {
 		var instance = this;
 
@@ -269,6 +371,13 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		return lassoLastPosition && ((position[0] !== lassoLastPosition[0]) || (position[1] !== lassoLastPosition[1]));
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _offsetXY
+	 * @param xy, sign
+	 * @protected
+	 */
 	_offsetXY: function(xy, sign) {
 		var instance = this;
 		var offsetXY = instance[ROWS_CONTAINER_NODE].getXY();
@@ -276,6 +385,13 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		return [ xy[0] + offsetXY[0]*sign, xy[1] + offsetXY[1]*sign ];
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _onEventDragEnd
+	 * @param event
+	 * @protected
+	 */
 	_onEventDragEnd: function(event) {
 		var instance = this;
 		var draggingEvent = instance[DRAGGING_EVENT];
@@ -300,6 +416,13 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		instance[DRAGGING_EVENT] = null;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _onEventDragStart
+	 * @param event
+	 * @protected
+	 */
 	_onEventDragStart: function(event) {
 		var instance = this;
 		var draggingEvent = instance[DRAGGING_EVENT] = instance[DELEGATE][DD].get(NODE).getData(SCHEDULER_EVENT);
@@ -333,6 +456,13 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _onMouseDownGrid
+	 * @param event
+	 * @protected
+	 */
 	_onMouseDownGrid: function(event) {
 		var instance = this;
 		var scheduler = instance.get(SCHEDULER);
@@ -354,6 +484,13 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _onMouseMoveGrid
+	 * @param event
+	 * @protected
+	 */
 	_onMouseMoveGrid: function(event) {
 		var instance = this;
 		var target = event.currentTarget;
@@ -368,6 +505,13 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _onMouseUpGrid
+	 * @param event
+	 * @protected
+	 */
 	_onMouseUpGrid: function(event) {
 		var instance = this;
 		var scheduler = instance.get(SCHEDULER);
@@ -396,6 +540,12 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		}
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _setupDragDrop
+	 * @protected
+	 */
 	_setupDragDrop: function() {
 		var instance = this;
 
@@ -420,6 +570,12 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		});
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _syncCellDimensions
+	 * @protected
+	 */
 	_syncCellDimensions: function() {
 		var instance = this;
 
@@ -431,6 +587,13 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		instance.gridCellWidth = instance[ROWS_CONTAINER_NODE].get(OFFSET_WIDTH) / weekDaysCount;
 	},
 
+	/**
+	 * TODO. Wanna help? Please send a Pull Request.
+	 *
+	 * @method _syncProxyNodeUI
+	 * @param evt
+	 * @protected
+	 */
 	_syncProxyNodeUI: function(evt) {
 		var instance = this;
 

@@ -1,4 +1,9 @@
-/* global A*/
+/**
+ * The Color Picker Component
+ *
+ * @module aui-color-picker
+ * @submodule aui-hsva-palette
+ */
 
 var Lang = A.Lang,
     AColor = A.Color,
@@ -63,6 +68,14 @@ var Lang = A.Lang,
 
     REGEX_HEX_COLOR_ALPHA = /^([a-f0-9]{6}|[a-f0-9]{8}|[a-f0-9]{3})$/i,
 
+/**
+ * A base class for HSVAPalette.
+ *
+ * @class A.HSVAPalette
+ * @extends A.HSVPalette
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
     TPL_ALPHA_CANVAS: '<span class="' + CSS_ALPHA_CANVAS + '"></span>',
 
@@ -70,6 +83,12 @@ HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
 
     TPL_ALPHA_THUMB: '<span class="' + CSS_ALPHA_THUMB + '"><span class="' + CSS_ALPHA_THUMB_IMAGE + '"></span></span>',
 
+    /**
+     * Construction logic executed during HSVAPalette instantiation. Lifecycle.
+     *
+     * @method initializer
+     * @protected
+     */
     initializer: function() {
         var instance = this;
 
@@ -80,6 +99,13 @@ HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
         instance.after(RGB_INPUT_CHANGE, instance._afterRGBInputChange, instance);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _afterHexInputChange
+     * @param event
+     * @protected
+     */
     _afterHexInputChange: function(event) {
         // YUI Code toHSVA from hex + alpha is broken, will remove the alpha value
         var instance = this,
@@ -104,12 +130,26 @@ HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _afterHsThumbChangeFn
+     * @param event
+     * @protected
+     */
     _afterHsThumbChangeFn: function(event) {
         var instance = this;
 
         instance._alphaSliderContainer.setStyle(BACKGROUND_COLOR, event.hexColor);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _afterHSVAInputChange
+     * @param event
+     * @protected
+     */
     _afterHSVAInputChange: function(event) {
         var instance = this,
             alpha = instance._getFieldValue(instance._aContainer);
@@ -127,12 +167,28 @@ HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
         instance._resultView.setStyle(OPACITY, alpha / MAX_ALPHA);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _afterRGBInputChange
+     * @param event
+     * @protected
+     */
     _afterRGBInputChange: function(event) {
         var instance = this;
 
         instance._alphaSliderContainer.setStyle(BACKGROUND_COLOR, event.hexColor);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _calculateRGBArray
+     * @param r
+     * @param g
+     * @param b
+     * @protected
+     */
     _calculateRGBArray: function(r, g, b) {
         var instance = this,
             alpha;
@@ -142,6 +198,15 @@ HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
         return AColor.fromArray([r, g, b, alpha], COLOR_TYPE_RGBA);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _calculateRGBColor
+     * @param hue
+     * @param saturation
+     * @param value
+     * @protected
+     */
     _calculateRGBColor: function(hue, saturation, value) {
         var instance = this,
             alpha = 255 - instance._alphaSlider.get(VALUE);
@@ -149,6 +214,16 @@ HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
         return instance._calculateRGBA(hue, saturation, value, alpha);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _calculateRGBA
+     * @param hue
+     * @param saturation
+     * @param value
+     * @param alpha
+     * @protected
+     */
     _calculateRGBA: function(hue, saturation, value, alpha) {
         var rgbColor = DEFAULT_RGBA_COLOR,
             hsvColor,
@@ -172,6 +247,15 @@ HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
         return rgbColor;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _convertColor
+     * @param value
+     * @param from
+     * @param to
+     * @protected
+     */
     _convertColor: function(value, from, to) {
         var instance = this,
             out,
@@ -199,6 +283,12 @@ HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
         return out;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _getContainerClassName
+     * @protected
+     */
     _getContainerClassName: function() {
         var instance = this,
             className;
@@ -210,6 +300,14 @@ HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
         return className;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _getHexValue
+     * @param hexColor
+     * @param rgbColorArray
+     * @protected
+     */
     _getHexValue: function(hexColor, rgbColorArray) {
         // YUI doesn't have toRGBA method, we have to add alpha explicitly
         var alpha,
@@ -226,12 +324,25 @@ HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
         return result.substring(1);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _getHSVArray
+     * @param hsv
+     * @protected
+     */
     _getHSVArray: function(hsv) {
         var instance = this;
 
         return AColor.toArray(hsv, COLOR_TYPE_HSVA);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _createAlphaSlider
+     * @protected
+     */
     _createAlphaSlider: function() {
         var instance = this,
             alphaThumbHeight,
@@ -267,6 +378,12 @@ HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
         instance._alphaSlider = slider;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _createSliders
+     * @protected
+     */
     _createSliders: function() {
         var instance = this;
 
@@ -275,6 +392,12 @@ HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
         instance._createAlphaSlider();
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _getHexContainerConfig
+     * @protected
+     */
     _getHexContainerConfig: function() {
         var instance = this;
 
@@ -288,6 +411,13 @@ HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
         };
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _normalizeHexValue
+     * @param hex
+     * @protected
+     */
     _normalizeHexValue: function(hex) {
         var padding = '';
 
@@ -301,6 +431,13 @@ HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
         return (hex += padding);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onAlphaChange
+     * @param event
+     * @protected
+     */
     _onAlphaChange: function(event) {
         var instance = this,
             alpha,
@@ -343,6 +480,12 @@ HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _renderAlphaSliderContainer
+     * @protected
+     */
     _renderAlphaSliderContainer: function() {
         var instance = this;
 
@@ -351,6 +494,12 @@ HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
         );
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _renderFields
+     * @protected
+     */
     _renderFields: function() {
         var instance = this;
 
@@ -369,6 +518,12 @@ HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
         );
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _renderViewContainerContent
+     * @protected
+     */
     _renderViewContainerContent: function() {
         var instance = this;
 
@@ -377,8 +532,23 @@ HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
         instance._renderAlphaSliderContainer();
     }
 }, {
+
+    /**
+     * Static property provides a string to identify the class.
+     *
+     * @property HSVAPalette.NAME
+     * @type String
+     * @static
+     */
     NAME: NAME,
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @property HSVAPalette.NS
+     * @type String
+     * @static
+     */
     NS: NAME
 });
 

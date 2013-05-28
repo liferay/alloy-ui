@@ -18,7 +18,9 @@
             "widget-stack",
             "widget-stdmod",
             "aui-event",
-            "aui-node-base"
+            "aui-node-base",
+            "aui-widget-cssclass",
+            "aui-widget-toggle"
         ],
         "skinnable": true
     },

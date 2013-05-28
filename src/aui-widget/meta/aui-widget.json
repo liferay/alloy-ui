@@ -1,0 +1,43 @@
+{
+    "aui-widget": {
+        "use": [
+            "aui-widget-cssclass",
+            "aui-widget-toolbars"
+        ]
+    },
+
+    "aui-widget-core": {
+        "use": [
+            "aui-widget-cssclass"
+        ]
+    },
+
+    "aui-widget-cssclass": {
+        "requires": [
+            "widget-base"
+        ]
+    },
+
+    "aui-widget-toolbars": {
+        "requires": [
+            "widget-stdmod",
+            "aui-toolbar"
+        ]
+    },
+
+    "aui-widget-toggle": {
+    },
+
+    "aui-widget-position-align-suggestion": {
+        "requires": [
+            "widget-position-align",
+            "widget-stdmod"
+        ]
+    },
+
+    "aui-widget-trigger": {
+        "requires": [
+            "node"
+        ]
+    }
+}
