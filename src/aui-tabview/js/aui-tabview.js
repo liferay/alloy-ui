@@ -8,7 +8,6 @@ var Lang = A.Lang,
     isBoolean = Lang.isBoolean,
 
     _DOT = '.',
-    _SPACE = ' ',
 
     ACTIVE = 'active',
     BOUNDING_BOX = 'boundingBox',
@@ -122,6 +121,25 @@ A.Tab = A.Component.create({
             var instance = this;
 
             instance.get(BOUNDING_BOX).toggleClass(getClassName(DISABLED), val);
+        },
+
+        /**
+         * Render tab panel.
+         *
+         * @method _renderPanel
+         * @protected
+         */
+        _renderPanel: function() {
+            var instance = this,
+                tabPanelNode = instance.get('panelNode'),
+                tabviewPanelNode = instance.get('parent').get('panelNode');
+
+            // Overwrite Y.Tab._renderPanel in order to avoid re-appending tab
+            // panel nodes if they are already in doc. This operation can
+            // potentially steal focus of internal elements.
+            if (!tabviewPanelNode.contains(tabPanelNode)) {
+                tabviewPanelNode.appendChild(tabPanelNode);
+            }
         }
     }
 });
