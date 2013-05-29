@@ -409,7 +409,6 @@ ToggleButton.CLASS_NAMES = CLASS_NAMES;
  * A base class for ToggleButton.
  *
  * @class A.ToggleButton
- * @extends A.ToggleButton
  * @uses ButtonExt, A.WidgetCssClass
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
