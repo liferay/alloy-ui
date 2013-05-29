@@ -165,7 +165,7 @@ var DialogIframePlugin = A.Component.create(
 							A.on(
 								'key',
 								function(event) {
-									instance._host.close();
+									instance._host.hide();
 								},
 								[iframeDoc],
 								'down:27'
