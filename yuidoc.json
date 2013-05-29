@@ -1,9 +1,0 @@
-{
-    "name": "AlloyUI",
-    "description": "AlloyUI",
-    "version": "2.0.0pr4",
-    "options": {
-        "themedir": "../alloy-docs-theme",
-        "helpers": ["../alloy-docs-theme/helpers/helpers.js"]
-    }
-}
