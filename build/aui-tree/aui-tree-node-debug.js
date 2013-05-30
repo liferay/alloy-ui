@@ -435,7 +435,7 @@ var TreeNode = A.Component.create(
 			syncUI: function() {
 				var instance = this;
 
-				instance._syncHitArea(instance.get(CHILDREN));
+				instance._syncIconUI();
 			},
 
 			/*
@@ -667,26 +667,63 @@ var TreeNode = A.Component.create(
 				instance.fire('unselect');
 			},
 
+			/**
+			 * Fire after draggable change.
+			 *
+			 * @method _afterDraggableChange
+			 * @param {EventFacade} event
+			 * @protected
+			 */
 			_afterDraggableChange: function(event) {
 				var instance = this;
 
 				instance._uiSetDraggable(event.newVal);
+				instance._syncIconUI();
 			},
 
+			/**
+			 * Fire after expanded change.
+			 *
+			 * @method _afterExpandedChange
+			 * @param {EventFacade} event
+			 * @protected
+			 */
 			_afterExpandedChange: function(event) {
 				var instance = this;
 
 				instance._uiSetExpanded(event.newVal);
+				instance._syncIconUI();
 			},
 
+			/**
+			 * Fire after leaf change.
+			 *
+			 * @method _afterLeafChange
+			 * @param {EventFacade} event
+			 * @protected
+			 */
 			_afterLeafChange: function(event) {
 				var instance = this;
 
 				instance._uiSetLeaf(event.newVal);
+				instance._syncIconUI();
 			},
 
 			/**
-			 * Fires after set children.
+			 * Fire after loading change.
+			 *
+			 * @method _afterLoadingChange
+			 * @param {EventFacade} event
+			 * @protected
+			 */
+			_afterLoadingChange: function(event) {
+				var instance = this;
+
+				instance._syncIconUI();
+			},
+
+			/**
+			 * Fire after set children.
 			 *
 			 * @method _afterSetChildren
 			 * @param {EventFacade} event
@@ -695,7 +732,7 @@ var TreeNode = A.Component.create(
 			_afterSetChildren: function(event) {
 				var instance = this;
 
-				instance._syncHitArea(event.newVal);
+				instance._syncIconUI();
 			},
 
 			/**
@@ -795,13 +832,12 @@ var TreeNode = A.Component.create(
 			 * Sync the hitarea UI.
 			 *
 			 * @method _syncHitArea
-			 * @param {Array} children
 			 * @protected
 			 */
-			_syncHitArea: function(children) {
+			_syncHitArea: function() {
 				var instance = this;
 
-				if (instance.get(ALWAYS_SHOW_HITAREA) || children.length) {
+				if (instance.get(ALWAYS_SHOW_HITAREA) || instance.getChildrenLength()) {
 					instance.showHitArea();
 				}
 				else {
@@ -809,6 +845,19 @@ var TreeNode = A.Component.create(
 
 					instance.collapse();
 				}
+			},
+
+			/**
+			 * Sync the hitarea UI.
+			 *
+			 * @method _syncIconUI
+			 * @param {Array} children
+			 * @protected
+			 */
+			_syncIconUI: function() {
+				var instance = this;
+
+				instance._syncHitArea();
 			},
 
 			/**
