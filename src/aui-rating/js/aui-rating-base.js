@@ -21,15 +21,11 @@ var Lang = A.Lang,
     ANCHOR = 'a',
     BOUNDING_BOX = 'boundingBox',
     CAN_RESET = 'canReset',
-    CLEARFIX = 'clearfix',
     CONTENT_BOX = 'contentBox',
     DEFAULT_SELECTED = 'defaultSelected',
     DISABLED = 'disabled',
     DOT = '.',
-    ELEMENT = 'element',
     ELEMENTS = 'elements',
-    HELPER = 'helper',
-    HOVER = 'hover',
     HREF = 'href',
     ID = 'id',
     INPUT = 'input',
@@ -38,8 +34,6 @@ var Lang = A.Lang,
     LABEL_NODE = 'labelNode',
     NAME = 'name',
     NODE_NAME = 'nodeName',
-    OFF = 'off',
-    ON = 'on',
     RATING = 'rating',
     SELECTED_INDEX = 'selectedIndex',
     SHOW_TITLE = 'showTitle',
@@ -56,7 +50,6 @@ var Lang = A.Lang,
     getCN = A.getClassName,
 
     CSS_STAR = getCN('icon', 'star'),
-    CSS_HIDE_TEXT = getCN('hide', 'text'),
     CSS_STAR_EMPTY = getCN('icon', 'star', 'empty'),
     CSS_RATING_LABEL = getCN(RATING, LABEL),
 
@@ -320,8 +313,6 @@ var Rating = A.Component.create(
 
                 instance.inputElementsData = {};
 
-                instance.get(BOUNDING_BOX).addClass(CSS_HIDE_TEXT);
-
                 instance.after('labelChange', this._afterSetLabel);
             },
 
@@ -332,8 +323,7 @@ var Rating = A.Component.create(
              * @protected
              */
             renderUI: function() {
-                var instance = this,
-                    contentBox = instance.get(CONTENT_BOX);
+                var instance = this;
 
                 instance._parseInputElements();
                 instance._renderLabel();
@@ -399,7 +389,7 @@ var Rating = A.Component.create(
                     canReset = instance.get(CAN_RESET);
 
                 // clear selection when the selected element is clicked
-                if (canReset && (oldIndex == index)) {
+                if (canReset && (oldIndex === index)) {
                     index = -1;
                 }
 
@@ -439,7 +429,7 @@ var Rating = A.Component.create(
                     instance.get(ELEMENTS).some(function(node, i) {
                         node.addClass(className || cssClasses.on);
                         node.removeClass(cssClasses.element);
-                        return (i == Math.floor(index));
+                        return (i === Math.floor(index));
                     });
                 }
             },
@@ -614,7 +604,7 @@ var Rating = A.Component.create(
              * @param {EventFacade} event itemOut event facade
              * @protected
              */
-            _defRatingItemOutFn: function(event) {
+            _defRatingItemOutFn: function() {
                 var instance = this;
 
                 instance.fillTo(instance.get(SELECTED_INDEX));
@@ -729,16 +719,11 @@ var Rating = A.Component.create(
                             // try to use the pulled title data from the dom, otherwise use the TITLE attr, in the last case use the content
                             title = data.title || instance.get(TITLE) || content;
 
-                        // setting the content
-                        if (content || title) {
-                            // if there is no content use the title as content
-                            element.html(content || title);
-                        }
                         // setting the title
                         if (title && instance.get(SHOW_TITLE)) {
                             element.setAttribute(TITLE, title);
                         }
-                        if (!element.attr(HREF) && (element.get(NODE_NAME).toLowerCase() == ANCHOR)) {
+                        if (!element.attr(HREF) && (element.get(NODE_NAME).toLowerCase() === ANCHOR)) {
                             element.setAttribute('onclick', 'return false;');
                         }
                     }
@@ -852,7 +837,7 @@ var Rating = A.Component.create(
              * @param {EventFacade} event
              * @protected
              */
-            _afterSetLabel: function(event) {
+            _afterSetLabel: function() {
                 this._syncLabelUI();
             }
         }
