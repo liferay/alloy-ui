@@ -1288,7 +1288,7 @@ var TreeNode = A.Component.create(
 			syncUI: function() {
 				var instance = this;
 
-				instance._syncHitArea(instance.get(CHILDREN));
+				instance._syncIconUI();
 			},
 
 			/*
@@ -1520,20 +1520,63 @@ var TreeNode = A.Component.create(
 				instance.fire('unselect');
 			},
 
+			/**
+			 * Fire after draggable change.
+			 *
+			 * @method _afterDraggableChange
+			 * @param {EventFacade} event
+			 * @protected
+			 */
+			_afterDraggableChange: function(event) {
+				var instance = this;
+
+				instance._uiSetDraggable(event.newVal);
+				instance._syncIconUI();
+			},
+
+			/**
+			 * Fire after expanded change.
+			 *
+			 * @method _afterExpandedChange
+			 * @param {EventFacade} event
+			 * @protected
+			 */
 			_afterExpandedChange: function(event) {
 				var instance = this;
 
 				instance._uiSetExpanded(event.newVal);
+				instance._syncIconUI();
 			},
 
+			/**
+			 * Fire after leaf change.
+			 *
+			 * @method _afterLeafChange
+			 * @param {EventFacade} event
+			 * @protected
+			 */
 			_afterLeafChange: function(event) {
 				var instance = this;
 
 				instance._uiSetLeaf(event.newVal);
+				instance._syncIconUI();
 			},
 
 			/**
-			 * Fires after set children.
+			 * Fire after loading change.
+			 *
+			 * @method _afterLoadingChange
+			 * @param {EventFacade} event
+			 * @protected
+			 */
+			_afterLoadingChange: function(event) {
+				var instance = this;
+
+				instance._syncIconUI();
+			},
+
+			/**
+			 * Fire after set children.
 			 *
 			 * @method _afterSetChildren
 			 * @param {EventFacade} event
@@ -1542,7 +1585,7 @@ var TreeNode = A.Component.create(
 			_afterSetChildren: function(event) {
 				var instance = this;
 
-				instance._syncHitArea(event.newVal);
+				instance._syncIconUI();
 			},
 
 			/**
@@ -1594,8 +1637,6 @@ var TreeNode = A.Component.create(
 				var boundingBox = instance.get(BOUNDING_BOX);
 				var contentBox = instance.get(CONTENT_BOX);
 
-				var nodeContainer = null;
-
 				contentBox.append(instance.get(ICON_EL));
 				contentBox.append(instance.get(LABEL_EL));
 
@@ -1646,13 +1687,12 @@ var TreeNode = A.Component.create(
 			 * Sync the hitarea UI.
 			 *
 			 * @method _syncHitArea
-			 * @param {Array} children
 			 * @protected
 			 */
-			_syncHitArea: function(children) {
+			_syncHitArea: function() {
 				var instance = this;
 
-				if (instance.get(ALWAYS_SHOW_HITAREA) || children.length) {
+				if (instance.get(ALWAYS_SHOW_HITAREA) || instance.getChildrenLength()) {
 					instance.showHitArea();
 				}
 				else {
@@ -1661,6 +1701,47 @@ var TreeNode = A.Component.create(
 					instance.collapse();
 				}
 			},
+
+			/**
+			 * Sync the hitarea UI.
+			 *
+			 * @method _syncIconUI
+			 * @param {Array} children
+			 * @protected
+			 */
+			_syncIconUI: function() {
+				var instance = this,
+					ownerTree = instance.get(OWNER_TREE);
+
+				if (ownerTree) {
+					var type = ownerTree.get('type'),
+						cssClasses = instance.get('cssClasses.' + type);
+
+					if (!cssClasses) {
+						return;
+					}
+
+					var expanded = instance.get(EXPANDED),
+						iconEl = instance.get(ICON_EL),
+						hitAreaEl = instance.get(HIT_AREA_EL),
+						icon = instance.isLeaf() ?
+								cssClasses.iconLeaf :
+								(expanded ? cssClasses.iconExpanded : cssClasses.iconCollapsed),
+						iconHitArea = expanded ?
+										cssClasses.iconHitAreaExpanded :
+										cssClasses.iconHitAreaCollapsed;
+
+					if (instance.get(LOADING)) {
+						icon = cssClasses.iconLoading;
+					}
+
+					iconEl.setAttribute('className', icon || BLANK);
+					hitAreaEl.setAttribute('className', iconHitArea || BLANK);
+				}
+
+				instance._syncHitArea();
+			},
+
 			/**
 			 * Set the <code>boundingBox</code> id.
 			 *
