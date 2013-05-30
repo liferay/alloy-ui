@@ -7,14 +7,11 @@
 
 var CSS_CLASSES = 'cssClasses',
     DOWN = 'down',
-    ELEMENT = 'element',
     ELEMENTS = 'elements',
     ICON = 'icon',
-    LABEL = 'Label',
     OFF = 'off',
     ON = 'on',
     RATING = 'rating',
-    THUMB = 'thumb',
     THUMB_RATING = 'ThumbRating',
     THUMBS = 'thumbs',
     UP = 'up',
@@ -131,7 +128,7 @@ var ThumbRating = A.Component.create(
              * @param {Number} index Index to be selected
              * @param {String} className Class name to be applied when fill the Rating elements
              */
-            fillTo: function(index, className) {
+            fillTo: function(index) {
                 var instance = this,
                     cssClasses = instance.get(CSS_CLASSES);
 
