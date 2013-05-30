@@ -434,185 +434,6 @@ var TreeNode = A.Component.create(
 				instance._syncIconUI();
 			},
 
-			_afterDraggableChange: function(event) {
-				var instance = this;
-
-				instance._uiSetDraggable(event.newVal);
-				instance._syncIconUI();
-			},
-
-			_afterExpandedChange: function(event) {
-				var instance = this;
-
-				instance._uiSetExpanded(event.newVal);
-				instance._syncIconUI();
-			},
-
-			_afterLeafChange: function(event) {
-				var instance = this;
-
-				instance._uiSetLeaf(event.newVal);
-				instance._syncIconUI();
-			},
-
-			_afterLoadingChange: function(event) {
-				var instance = this;
-
-				instance._syncIconUI();
-			},
-
-			/**
-			 * Fires after set children.
-			 *
-			 * @method _afterSetChildren
-			 * @param {EventFacade} event
-			 * @protected
-			 */
-			_afterSetChildren: function(event) {
-				var instance = this;
-
-				instance._syncIconUI();
-			},
-
-			/**
-			 * Render the <code>contentBox</code> node.
-			 *
-			 * @method _renderContentBox
-			 * @protected
-			 * @return {Node}
-			 */
-			_renderContentBox: function(v) {
-				var instance = this;
-
-				var contentBox = instance.get(CONTENT_BOX);
-
-				if (!instance.isLeaf()) {
-					var expanded = instance.get(EXPANDED);
-
-					// add folder css classes state
-					contentBox.addClass(
-						expanded ? CSS_TREE_EXPANDED : CSS_TREE_COLLAPSED
-					);
-
-					if (expanded) {
-						instance.expand();
-					}
-				}
-
-				return contentBox;
-			},
-
-			/**
-			 * Render the <code>boundingBox</code> node.
-			 *
-			 * @method _renderBoundingBox
-			 * @protected
-			 * @return {Node}
-			 */
-			_renderBoundingBox: function() {
-				var instance = this;
-
-				var boundingBox = instance.get(BOUNDING_BOX);
-				var contentBox = instance.get(CONTENT_BOX);
-
-				contentBox.append( instance.get(ICON_EL) );
-				contentBox.append( instance.get(LABEL_EL) );
-				boundingBox.append(contentBox);
-
-				var nodeContainer = instance.get(CONTAINER);
-
-				if (nodeContainer) {
-					if (!instance.get(EXPANDED)) {
-						nodeContainer.hide();
-					}
-
-					boundingBox.append(nodeContainer);
-				}
-
-				return boundingBox;
-			},
-
-			/**
-			 * Render the node container.
-			 *
-			 * @method _createNodeContainer
-			 * @protected
-			 * @return {Node}
-			 */
-			_createNodeContainer: function() {
-				var instance = this;
-
-				// creating <ul class="tree-container">
-				var nodeContainer = instance.get(CONTAINER) || A.Node.create(NODE_CONTAINER_TPL);
-
-				nodeContainer.addClass(CSS_TREE_CONTAINER);
-
-				// when it's not a leaf it has a <ul> container
-				instance.set(CONTAINER, nodeContainer);
-
-				return nodeContainer;
-			},
-
-			/**
-			 * Sync the hitarea UI.
-			 *
-			 * @method _syncHitArea
-			 * @param {Array} children
-			 * @protected
-			 */
-			_syncHitArea: function() {
-				var instance = this;
-
-				if (instance.get(ALWAYS_SHOW_HITAREA) || instance.getChildrenLength()) {
-					instance.showHitArea();
-				}
-				else {
-					instance.hideHitArea();
-
-					instance.collapse();
-				}
-			},
-
-			/**
-			 * Sync the hitarea UI.
-			 *
-			 * @method _syncIconUI
-			 * @param {Array} children
-			 * @protected
-			 */
-			_syncIconUI: function() {
-				var instance = this,
-					ownerTree = instance.get(OWNER_TREE);
-
-				if (ownerTree) {
-					var type = ownerTree.get('type'),
-						cssClasses = instance.get('cssClasses.' + type);
-
-					if (!cssClasses) {
-						return;
-					}
-
-					var expanded = instance.get(EXPANDED),
-						iconEl = instance.get(ICON_EL),
-						hitAreaEl = instance.get(HIT_AREA_EL),
-						icon = instance.isLeaf() ?
-								cssClasses.iconLeaf :
-								(expanded ? cssClasses.iconExpanded : cssClasses.iconCollapsed),
-						iconHitArea = expanded ?
-										cssClasses.iconHitAreaExpanded :
-										cssClasses.iconHitAreaCollapsed;
-
-					if (instance.get(LOADING)) {
-						icon = cssClasses.iconLoading;
-					}
-
-					iconEl.setAttribute('className', icon || BLANK);
-					hitAreaEl.setAttribute('className', iconHitArea || BLANK);
-				}
-
-				instance._syncHitArea();
-			},
-
 			/*
 			* Methods
 			*/
@@ -842,20 +663,63 @@ var TreeNode = A.Component.create(
 				instance.fire('unselect');
 			},
 
+			/**
+			 * Fire after draggable change.
+			 *
+			 * @method _afterDraggableChange
+			 * @param {EventFacade} event
+			 * @protected
+			 */
+			_afterDraggableChange: function(event) {
+				var instance = this;
+
+				instance._uiSetDraggable(event.newVal);
+				instance._syncIconUI();
+			},
+
+			/**
+			 * Fire after expanded change.
+			 *
+			 * @method _afterExpandedChange
+			 * @param {EventFacade} event
+			 * @protected
+			 */
 			_afterExpandedChange: function(event) {
 				var instance = this;
 
 				instance._uiSetExpanded(event.newVal);
+				instance._syncIconUI();
 			},
 
+			/**
+			 * Fire after leaf change.
+			 *
+			 * @method _afterLeafChange
+			 * @param {EventFacade} event
+			 * @protected
+			 */
 			_afterLeafChange: function(event) {
 				var instance = this;
 
 				instance._uiSetLeaf(event.newVal);
+				instance._syncIconUI();
 			},
 
 			/**
-			 * Fires after set children.
+			 * Fire after loading change.
+			 *
+			 * @method _afterLoadingChange
+			 * @param {EventFacade} event
+			 * @protected
+			 */
+			_afterLoadingChange: function(event) {
+				var instance = this;
+
+				instance._syncIconUI();
+			},
+
+			/**
+			 * Fire after set children.
 			 *
 			 * @method _afterSetChildren
 			 * @param {EventFacade} event
@@ -864,6 +728,7 @@ var TreeNode = A.Component.create(
 			_afterSetChildren: function(event) {
 				var instance = this;
 
+				instance._syncIconUI();
 			},
 
 			/**
@@ -915,8 +780,6 @@ var TreeNode = A.Component.create(
 				var boundingBox = instance.get(BOUNDING_BOX);
 				var contentBox = instance.get(CONTENT_BOX);
 
-				var nodeContainer = null;
-
 				contentBox.append(instance.get(ICON_EL));
 				contentBox.append(instance.get(LABEL_EL));
 
@@ -967,13 +830,12 @@ var TreeNode = A.Component.create(
 			 * Sync the hitarea UI.
 			 *
 			 * @method _syncHitArea
-			 * @param {Array} children
 			 * @protected
 			 */
-			_syncHitArea: function(children) {
+			_syncHitArea: function() {
 				var instance = this;
 
-				if (instance.get(ALWAYS_SHOW_HITAREA) || children.length) {
+				if (instance.get(ALWAYS_SHOW_HITAREA) || instance.getChildrenLength()) {
 					instance.showHitArea();
 				}
 				else {
@@ -982,6 +844,47 @@ var TreeNode = A.Component.create(
 					instance.collapse();
 				}
 			},
+
+			/**
+			 * Sync the hitarea UI.
+			 *
+			 * @method _syncIconUI
+			 * @param {Array} children
+			 * @protected
+			 */
+			_syncIconUI: function() {
+				var instance = this,
+					ownerTree = instance.get(OWNER_TREE);
+
+				if (ownerTree) {
+					var type = ownerTree.get('type'),
+						cssClasses = instance.get('cssClasses.' + type);
+
+					if (!cssClasses) {
+						return;
+					}
+
+					var expanded = instance.get(EXPANDED),
+						iconEl = instance.get(ICON_EL),
+						hitAreaEl = instance.get(HIT_AREA_EL),
+						icon = instance.isLeaf() ?
+								cssClasses.iconLeaf :
+								(expanded ? cssClasses.iconExpanded : cssClasses.iconCollapsed),
+						iconHitArea = expanded ?
+										cssClasses.iconHitAreaExpanded :
+										cssClasses.iconHitAreaCollapsed;
+
+					if (instance.get(LOADING)) {
+						icon = cssClasses.iconLoading;
+					}
+
+					iconEl.setAttribute('className', icon || BLANK);
+					hitAreaEl.setAttribute('className', iconHitArea || BLANK);
+				}
+
+				instance._syncHitArea();
+			},
+
 			/**
 			 * Set the <code>boundingBox</code> id.
 			 *
