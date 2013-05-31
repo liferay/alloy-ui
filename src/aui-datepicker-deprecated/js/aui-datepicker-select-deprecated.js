@@ -30,25 +30,26 @@ var Lang = A.Lang,
 	BODY = 'body',
 	BOUNDING_BOX = 'boundingBox',
 	BUTTON = 'button',
-	BUTTONITEM = 'buttonitem',
 	BUTTON_NODE = 'buttonNode',
+	BUTTONITEM = 'buttonitem',
 	CALENDAR = 'calendar',
 	CHANGE = 'change',
 	CLEARFIX = 'clearfix',
-	CONTENT_BOX = 'contentBox',
 	CONTENT = 'content',
+	CONTENT_BOX = 'contentBox',
 	DATA_COMPONENT_ID = 'data-auiComponentID',
 	DATEPICKER = 'datepicker',
 	DAY = 'day',
 	DAY_NODE = 'dayNode',
 	DAY_NODE_NAME = 'dayNodeName',
+	DISABLED = 'disabled',
 	DISPLAY = 'display',
 	DOT = '.',
 	HELPER = 'helper',
 	KEY_PRESS = 'keypress',
+	LOCALE = 'locale',
 	MAX_DATE = 'maxDate',
 	MIN_DATE = 'minDate',
-	LOCALE = 'locale',
 	MONTH = 'month',
 	MONTH_NODE = 'monthNode',
 	MONTH_NODE_NAME = 'monthNodeName',
@@ -62,9 +63,9 @@ var Lang = A.Lang,
 	POPULATE_YEAR = 'populateYear',
 	SELECT = 'select',
 	SELECT_MULTIPLE_DATES = 'selectionMode',
+	SELECT_WRAPPER_NODE = 'selectWrapperNode',
 	SELECTED = 'selected',
 	SELECTED_DATES = 'selectedDates',
-	SELECT_WRAPPER_NODE = 'selectWrapperNode',
 	SPACE = ' ',
 	SRC_NODE = 'srcNode',
 	TRIGGER = 'trigger',
@@ -1026,6 +1027,10 @@ var DatePickerSelect = A.Component.create(
 				instance.get(DAY_NODE).set('disabled', disabled);
 				instance.get(MONTH_NODE).set('disabled', disabled);
 				instance.get(YEAR_NODE).set('disabled', disabled);
+
+				instance.datePicker.set(DISABLED, disabled);
+
+				instance._buttonItem.StateInteraction.set(DISABLED, disabled);
 			}
 		}
 	}
