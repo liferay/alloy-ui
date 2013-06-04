@@ -1,4 +1,6 @@
 var Lang = A.Lang,
+	isFunction = Lang.isFunction,
+
 	getClassName = A.getClassName,
 
 	IFRAME = 'iframe',
@@ -20,7 +22,7 @@ var DialogIframePlugin = A.Component.create(
 	{
 		ATTRS: {
 			bindLoadHandler: {
-				validator: Lang.isFunction,
+				validator: isFunction,
 				value: function() {
 					var instance = this;
 
@@ -30,6 +32,29 @@ var DialogIframePlugin = A.Component.create(
 
 			closeOnEscape: {
 				value: true
+			},
+
+			gutter: {
+				setter: function(val) {
+					var instance = this;
+
+					if (isFunction(val)) {
+						val = val.call(instance);
+					}
+
+					return val;
+				},
+				value: function() {
+					var instance = this,
+						bodyNode = instance._host.bodyNode;
+
+					return {
+						bottom: bodyNode.getStyle('paddingBottom'),
+						left: bodyNode.getStyle('paddingLeft'),
+						right: bodyNode.getStyle('paddingRight'),
+						top: bodyNode.getStyle('paddingTop')
+					};
+				}
 			},
 
 			iframeCssClass: {
@@ -72,6 +97,8 @@ var DialogIframePlugin = A.Component.create(
 					A.debounce(instance._afterRenderUI, 50, instance),
 					instance
 				);
+
+				instance._host.after('heightChange', A.bind(instance._afterHostHeightChange, instance));
 			},
 
 			destructor: function() {
@@ -84,16 +111,10 @@ var DialogIframePlugin = A.Component.create(
 				instance.node.remove(true);
 			},
 
-			_afterDialogVisibleChange: function(event) {
+			_afterHostHeightChange: function() {
 				var instance = this;
 
-				instance._uiSetMonitor(event.newVal);
-			},
-
-			_afterMaskVisibleChange: function(event) {
-				var instance = this;
-
-				instance._uiSetMonitor(!event.newVal);
+				instance._setNodeDimensions();
 			},
 
 			_afterRenderUI: function() {
@@ -117,7 +138,7 @@ var DialogIframePlugin = A.Component.create(
 			_afterUriChange: function(event) {
 				var instance = this;
 
-				if (event.src != UI) {
+				if (event.src !== UI) {
 					instance._uiSetUri(event.newVal, event.prevVal);
 				}
 			},
@@ -128,6 +149,8 @@ var DialogIframePlugin = A.Component.create(
 				instance.afterHostEvent('visibleChange', instance._afterDialogVisibleChange);
 
 				instance.after('uriChange', instance._afterUriChange);
+
+				instance.node.on('load', A.bind(instance._onLoadIframe, instance));
 
 				var bindLoadHandler = instance.get('bindLoadHandler');
 
@@ -181,10 +204,16 @@ var DialogIframePlugin = A.Component.create(
 				instance._host._syncUIPosAlign();
 			},
 
-			_plugIframe: function() {
+			_onLoadIframe: function() {
 				var instance = this;
 
-				instance._previousBodyContent = instance._host.get('bodyContent');
+				instance._setIframeContentGutter();
+
+				instance._setNodeDimensions();
+			},
+
+			_plugIframe: function() {
+				var instance = this;
 
 				var iframeTpl = Lang.sub(
 					TPL_IFRAME,
@@ -195,20 +224,36 @@ var DialogIframePlugin = A.Component.create(
 					}
 				);
 
+				var bodyNode = instance._host.bodyNode;
+
 				var node = A.Node.create(iframeTpl);
 
-				node.plug(A.Plugin.AutosizeIframe);
-
-				node.autosizeiframe.addTarget(instance);
-
 				instance._host.set('bodyContent', node);
-
-				var bodyNode = instance._host.bodyNode;
 
 				bodyNode.addClass(CSS_IFRAME_BD);
 
 				instance._bodyNode = bodyNode;
 				instance.node = node;
+			},
+
+			_setIframeContentGutter: function() {
+				var instance = this,
+					bodyNode = instance._host.bodyNode,
+					gutter = instance.get('gutter'),
+					iframeWindow = instance.node.get('contentWindow'),
+					iframeDoc = iframeWindow.get('document');
+
+				iframeDoc.get('documentElement').setStyles({
+					paddingBottom: gutter.bottom,
+					paddingLeft: gutter.left,
+					paddingRight: gutter.right,
+					paddingTop: gutter.top
+				});
+
+				bodyNode.setStyles({
+					height: bodyNode.get('offsetHeight'),
+					padding: '0'
+				});
 			},
 
 			_setIframeCssClass: function(value) {
@@ -217,16 +262,15 @@ var DialogIframePlugin = A.Component.create(
 				return BUFFER_CSS_CLASS.join(' ');
 			},
 
-			_uiSetMonitor: function(value) {
-				var instance = this;
+			_setNodeDimensions: function() {
+				var instance = this,
+					bodyNode = instance._host.bodyNode;
 
-				var resizeIframe = instance.node.autosizeiframe;
-
-				if (value) {
-					resizeIframe.restartMonitor();
-				}
-				else {
-					resizeIframe.pauseMonitor();
+				if (bodyNode) {
+					instance.node.setStyles({
+						height: bodyNode.get('offsetHeight'),
+						width: bodyNode.get('offsetWidth')
+					});
 				}
 			},
 
@@ -238,7 +282,7 @@ var DialogIframePlugin = A.Component.create(
 				var oldUrl = prevVal.split('#');
 				var newUrl = newVal.split('#');
 
-				if (newUrl[0] != oldUrl[0] && loadingMask) {
+				if (newUrl[0] !== oldUrl[0] && loadingMask) {
 					loadingMask.show();
 				}
 
