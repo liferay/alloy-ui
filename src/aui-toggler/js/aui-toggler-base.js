@@ -352,13 +352,16 @@ var Toggler = A.Component.create({
          * @param expand
          */
         toggle: function(expand) {
-            var instance = this;
+            var instance = this,
+                expanded;
+
+            expanded = instance.get(EXPANDED);
 
             if (isUndefined(expand)) {
-                expand = !instance.get(EXPANDED);
+                expand = !expanded;
             }
 
-            if (instance.get(ANIMATED)) {
+            if (instance.get(ANIMATED) && (expand !== expanded)) {
                 if (instance.get(ANIMATING)) {
                     return expand;
                 }
@@ -394,6 +397,7 @@ var Toggler = A.Component.create({
                 );
             }
             else {
+                console.log(expand)
                 instance.set(EXPANDED, expand);
             }
 
