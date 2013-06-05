@@ -1743,7 +1743,6 @@ A.TextCellEditor = TextCellEditor;
  * TextAreaCellEditor class.
  *
  * @class A.TextAreaCellEditor
- * @extends A.TextAreaCellEditor
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -1778,7 +1777,6 @@ A.TextAreaCellEditor = TextAreaCellEditor;
  * DropDownCellEditor class.
  *
  * @class A.DropDownCellEditor
- * @extends A.DropDownCellEditor
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -1892,7 +1890,6 @@ A.DropDownCellEditor = DropDownCellEditor;
  * CheckboxCellEditor class.
  *
  * @class A.CheckboxCellEditor
- * @extends A.CheckboxCellEditor
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -1992,7 +1989,6 @@ A.CheckboxCellEditor = CheckboxCellEditor;
  * RadioCellEditor class.
  *
  * @class A.RadioCellEditor
- * @extends A.RadioCellEditor
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -2039,7 +2035,6 @@ A.RadioCellEditor = RadioCellEditor;
  * DateCellEditor class.
  *
  * @class A.DateCellEditor
- * @extends A.DateCellEditor
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */

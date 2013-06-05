@@ -11,9 +11,6 @@ var Lang = A.Lang,
 
     toInt = Lang.toInt,
 
-    DASH = '-',
-    DOT = '.',
-    EMPTY_STR = '',
     PIXEL = 'px',
     SPACE = ' ',
 
@@ -30,24 +27,17 @@ var Lang = A.Lang,
     EXPANDED = 'expanded',
     EXPANDED_CHANGE = 'expandedChange',
     GET_BOUNDING_CLIENT_RECT = 'getBoundingClientRect',
-    GUTTER = 'gutter',
     HEADER = 'header',
-    HELPER = 'helper',
     KEYDOWN = 'keydown',
     LEFT = 'left',
-    LINEAR = 'linear',
     MARGIN_TOP = 'marginTop',
-    MINUS = 'minus',
     NUM_MINUS = 'num_minus',
     NUM_PLUS = 'num_plus',
-    PARENT_NODE = 'parentNode',
-    PLUS = 'plus',
+    OFFSET_HEIGHT = 'offsetHeight',
     RIGHT = 'right',
     SPACE = 'space',
     TOGGLER = 'toggler',
     TRANSITION = 'transition',
-    TRANSITION_END = 'transitionEnd',
-    TRANSITION_START = 'transitionStart',
     UP = 'up',
     WRAPPER = 'wrapper',
 
@@ -352,13 +342,16 @@ var Toggler = A.Component.create({
          * @param expand
          */
         toggle: function(expand) {
-            var instance = this;
+            var instance = this,
+                expanded;
+
+            expanded = instance.get(EXPANDED);
 
             if (isUndefined(expand)) {
-                expand = !instance.get(EXPANDED);
+                expand = !expanded;
             }
 
-            if (instance.get(ANIMATED)) {
+            if (instance.get(ANIMATED) && (expand !== expanded)) {
                 if (instance.get(ANIMATING)) {
                     return expand;
                 }

@@ -15,10 +15,7 @@ var Lang = A.Lang,
 
     Toggler = A.Toggler,
 
-    DASH = '-',
     DOT = '.',
-    EMPTY_STR = '',
-    SPACE = ' ',
 
     ANIMATED = 'animated',
     CLICK = 'click',
@@ -31,7 +28,6 @@ var Lang = A.Lang,
     FIRST_CHILD = 'firstChild',
     HEADER = 'header',
     KEYDOWN = 'keydown',
-    LINEAR = 'linear',
     TOGGLER = 'toggler',
     TOGGLER_ANIMATING_CHANGE = 'toggler:animatingChange',
     TOGGLER_DELEGATE = 'toggler-delegate',
@@ -182,6 +178,8 @@ var TogglerDelegate = A.Component.create({
         initializer: function() {
             var instance = this;
 
+            instance.items = [];
+
             instance.bindUI();
             instance.renderUI();
         },
@@ -196,13 +194,7 @@ var TogglerDelegate = A.Component.create({
             var instance = this;
 
             if (instance.get(CLOSE_ALL_ON_EXPAND)) {
-                instance.items = [];
-
-                instance.get(CONTAINER).all(instance.get(HEADER)).each(function(header) {
-                    instance.items.push(
-                        instance._create(header)
-                    );
-                });
+                instance.createAll();
             }
         },
 
@@ -220,6 +212,32 @@ var TogglerDelegate = A.Component.create({
             instance.on(TOGGLER_ANIMATING_CHANGE, A.bind(instance._onAnimatingChange, instance));
 
             container.delegate([CLICK, KEYDOWN], A.bind(instance.headerEventHandler, instance), header);
+        },
+
+        collapseAll: function() {
+            var instance = this;
+
+            instance.createAll();
+
+            A.Array.invoke(instance.items, 'collapse', instance);
+        },
+
+        createAll: function() {
+            var instance = this;
+
+            instance.get(CONTAINER).all(instance.get(HEADER)).each(function(header) {
+                if (!header.getData(TOGGLER)) {
+                    instance._create(header);
+                }
+            });
+        },
+
+        expandAll: function() {
+            var instance = this;
+
+            instance.createAll();
+
+            A.Array.invoke(instance.items, 'expand', instance);
         },
 
         /**
@@ -264,7 +282,7 @@ var TogglerDelegate = A.Component.create({
             if (Toggler.headerEventHandler(event, toggler) && instance.get(CLOSE_ALL_ON_EXPAND)) {
                 AArray.each(
                     instance.items,
-                    function(item, index, collection) {
+                    function(item, index) {
                         if (item !== toggler && item.get(EXPANDED)) {
                             item.collapse();
                         }
@@ -301,6 +319,8 @@ var TogglerDelegate = A.Component.create({
                 header: header,
                 transition: instance.get(TRANSITION)
             });
+
+            instance.items.push(toggler);
 
             return toggler;
         },

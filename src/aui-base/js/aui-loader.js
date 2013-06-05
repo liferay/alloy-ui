@@ -1146,6 +1146,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-toggler-base": {
         "requires": [
             "transition",
+            "aui-event-base",
             "aui-node",
             "aui-component"
         ],
@@ -1153,6 +1154,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-toggler-delegate": {
         "requires": [
+            "array-invoke",
             "node-event-delegate",
             "aui-toggler-base"
         ]
@@ -1342,4 +1344,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'ff24d685daa17798883f26caae7ba29a';
+YUI.Env[Y.version].md5 = 'eafbec24fa505a1e34323355e3767b21';

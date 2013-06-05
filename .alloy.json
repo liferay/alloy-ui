@@ -18,9 +18,9 @@
             "repo": "https://github.com/liferay/alloy-twitter-bootstrap.git",
             "version": "master"
         },
-        "alloy-docs-theme": {
-            "folder": "../alloy-docs-theme",
-            "repo": "https://github.com/zenorocha/alloy-docs-theme.git",
+        "alloy-yuidoc-theme": {
+            "folder": "../alloy-yuidoc-theme",
+            "repo": "https://github.com/zenorocha/alloy-yuidoc-theme.git",
             "version": "master"
         }
     },
