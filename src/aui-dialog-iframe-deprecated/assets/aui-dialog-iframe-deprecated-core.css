@@ -1,17 +1,18 @@
-.dialog-iframe-node {
+.modal-content .dialog-iframe-node {
 	border-width: 0;
 	overflow: auto;
 	width: 100%;
 }
 
+.modal-content .dialog-iframe-bd {
+	line-height: 0;
+	overflow: hidden;
+}
+
+.dialog-iframe-root-node {
+	padding: 15px;
+}
+
 .yui3-widget-content-expanded .dialog-iframe-node {
 	height: 100%;
-}
-
-.dialog-iframe-bd {
-	line-height: 0;
-}
-
-.yui3-widget-content-expanded .dialog-iframe-bd {
-	overflow-y: visible;
 }

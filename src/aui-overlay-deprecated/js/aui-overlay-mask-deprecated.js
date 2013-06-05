@@ -15,7 +15,7 @@ var L = A.Lang,
 
 	UA = A.UA,
 
-	IE6 = (UA.ie && UA.version.major <= 6),
+	IE6 = (UA.ie <= 6),
 
 	ABSOLUTE = 'absolute',
 	ALIGN_POINTS = 'alignPoints',
