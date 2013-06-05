@@ -9,6 +9,7 @@
     "aui-toggler-base": {
         "requires": [
             "transition",
+            "aui-event-base",
             "aui-node",
             "aui-component"
         ],
@@ -17,6 +18,7 @@
 
     "aui-toggler-delegate": {
         "requires": [
+            "array-invoke",
             "node-event-delegate",
             "aui-toggler-base"
         ]
