@@ -214,6 +214,11 @@ var TogglerDelegate = A.Component.create({
             container.delegate([CLICK, KEYDOWN], A.bind(instance.headerEventHandler, instance), header);
         },
 
+        /**
+         * Collapse all items.
+         *
+         * @method collapseAll
+         */
         collapseAll: function() {
             var instance = this;
 
@@ -222,6 +227,11 @@ var TogglerDelegate = A.Component.create({
             A.Array.invoke(instance.items, 'collapse', instance);
         },
 
+        /**
+         * Forces toggler creation on delegated header elements.
+         *
+         * @method createAll
+         */
         createAll: function() {
             var instance = this;
 
@@ -232,6 +242,11 @@ var TogglerDelegate = A.Component.create({
             });
         },
 
+        /**
+         * Expand all items.
+         *
+         * @method collapseAll
+         */
         expandAll: function() {
             var instance = this;
 
