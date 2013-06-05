@@ -386,8 +386,7 @@
         "requires": [
             "plugin",
             "aui-base-deprecated",
-            "aui-loading-mask-deprecated",
-            "aui-autosize-iframe"
+            "aui-loading-mask-deprecated"
         ],
         "skinnable": true
     },
