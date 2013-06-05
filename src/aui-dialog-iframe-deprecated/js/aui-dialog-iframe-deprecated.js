@@ -35,26 +35,8 @@ var DialogIframePlugin = A.Component.create(
 			},
 
 			gutter: {
-				setter: function(val) {
-					var instance = this;
-
-					if (isFunction(val)) {
-						val = val.call(instance);
-					}
-
-					return val;
-				},
-				value: function() {
-					var instance = this,
-						bodyNode = instance._host.bodyNode;
-
-					return {
-						bottom: bodyNode.getStyle('paddingBottom'),
-						left: bodyNode.getStyle('paddingLeft'),
-						right: bodyNode.getStyle('paddingRight'),
-						top: bodyNode.getStyle('paddingTop')
-					};
-				}
+				setter: '_setGutter',
+				valueFn: '_gutterValueFn'
 			},
 
 			iframeCssClass: {
@@ -204,6 +186,20 @@ var DialogIframePlugin = A.Component.create(
 				instance._host._syncUIPosAlign();
 			},
 
+            _gutterValueFn: function() {
+                return function() {
+                    var instance = this,
+                        bodyNode = instance._host.bodyNode;
+
+                    return {
+                        bottom: bodyNode.getStyle('paddingBottom'),
+                        left: bodyNode.getStyle('paddingLeft'),
+                        right: bodyNode.getStyle('paddingRight'),
+                        top: bodyNode.getStyle('paddingTop')
+                    };
+                };
+            },
+
 			_onLoadIframe: function() {
 				var instance = this;
 
@@ -235,6 +231,16 @@ var DialogIframePlugin = A.Component.create(
 				instance._bodyNode = bodyNode;
 				instance.node = node;
 			},
+
+            _setGutter: function(val) {
+                var instance = this;
+
+                if (isFunction(val)) {
+                    val = val.call(instance);
+                }
+
+                return val;
+            },
 
 			_setIframeContentGutter: function() {
 				var instance = this,
