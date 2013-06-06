@@ -838,7 +838,6 @@ Y.mix(YUI.Env[Y.version].modules, {
             "transition",
             "widget",
             "widget-autohide",
-            "widget-modality",
             "widget-position",
             "widget-position-align",
             "widget-position-constrain",
@@ -963,4 +962,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'acfc278b61a53fba9c1f7a68c33f62d0';
+YUI.Env[Y.version].md5 = 'f8a503b3868c3c6317c3dfdd0c4050f0';
