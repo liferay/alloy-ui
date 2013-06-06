@@ -16,6 +16,7 @@ var Lang = A.Lang,
     BOUNDING_BOX = 'boundingBox',
     CLICK = 'click',
     COLUMNS = 'columns',
+    CONTAINER_NODE = 'containerNode',
     CONTENT_BOX = 'contentBox',
     ENTER = 'enter',
     FORMATTER = 'formatter',
@@ -484,7 +485,7 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
         }
 
         instance.get(CONTENT_BOX).setHTML(
-            instance._getContent(val, columns));
+            instance.get(CONTAINER_NODE) || instance._getContent(val, columns));
     },
 
     /**
@@ -511,6 +512,10 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     }
 }, {
 
+    HTML_PARSER: {
+        containerNode: _DOT+CSS_PALETTE_CONTAINER
+    },
+
     /**
      * Static property used to define the default attribute
      * configuration for the Palette.
@@ -531,6 +536,16 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
         columns: {
             validator: Lang.isNumber,
             value: -1
+        },
+
+        /**
+         * Container node of the pallete. If found, pallete widget will not
+         * generate content.
+         *
+         * @attribute containerNode
+         * @type Node
+         */
+        containerNode: {
         },
 
         /**
