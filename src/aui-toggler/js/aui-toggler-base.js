@@ -285,10 +285,10 @@ var Toggler = A.Component.create({
          *
          * @method collapse
          */
-        collapse: function() {
+        collapse: function(payload) {
             var instance = this;
 
-            return instance.toggle(false);
+            return instance.toggle(false, payload);
         },
 
         /**
@@ -296,10 +296,10 @@ var Toggler = A.Component.create({
          *
          * @method expand
          */
-        expand: function() {
+        expand: function(payload) {
             var instance = this;
 
-            return instance.toggle(true);
+            return instance.toggle(true, payload);
         },
 
         /**
@@ -341,7 +341,7 @@ var Toggler = A.Component.create({
          * @method toggle
          * @param expand
          */
-        toggle: function(expand) {
+        toggle: function(expand, payload) {
             var instance = this,
                 expanded;
 
@@ -382,12 +382,12 @@ var Toggler = A.Component.create({
                     function() {
                         instance.set(ANIMATING, false);
 
-                        instance.set(EXPANDED, expand);
+                        instance.set(EXPANDED, expand, payload);
                     }
                 );
             }
             else {
-                instance.set(EXPANDED, expand);
+                instance.set(EXPANDED, expand, payload);
             }
 
             return expand;
