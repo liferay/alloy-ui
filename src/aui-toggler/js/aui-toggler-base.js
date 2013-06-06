@@ -11,9 +11,6 @@ var Lang = A.Lang,
 
     toInt = Lang.toInt,
 
-    PIXEL = 'px',
-    SPACE = ' ',
-
     ANIMATED = 'animated',
     ANIMATING = 'animating',
     BIND_DOM_EVENTS = 'bindDOMEvents',
@@ -34,6 +31,7 @@ var Lang = A.Lang,
     NUM_MINUS = 'num_minus',
     NUM_PLUS = 'num_plus',
     OFFSET_HEIGHT = 'offsetHeight',
+    PIXEL = 'px',
     RIGHT = 'right',
     SPACE = 'space',
     TOGGLER = 'toggler',
@@ -285,10 +283,10 @@ var Toggler = A.Component.create({
          *
          * @method collapse
          */
-        collapse: function() {
+        collapse: function(payload) {
             var instance = this;
 
-            return instance.toggle(false);
+            return instance.toggle(false, payload);
         },
 
         /**
@@ -296,10 +294,10 @@ var Toggler = A.Component.create({
          *
          * @method expand
          */
-        expand: function() {
+        expand: function(payload) {
             var instance = this;
 
-            return instance.toggle(true);
+            return instance.toggle(true, payload);
         },
 
         /**
@@ -341,7 +339,7 @@ var Toggler = A.Component.create({
          * @method toggle
          * @param expand
          */
-        toggle: function(expand) {
+        toggle: function(expand, payload) {
             var instance = this,
                 expanded;
 
@@ -359,15 +357,17 @@ var Toggler = A.Component.create({
                 var content = instance.get(CONTENT);
 
                 var height = instance.getContentHeight();
-                var gutter = toInt(content.getStyle(MARGIN_TOP));
+                var gutter = instance.contentGutter;
+
+                if (isUndefined(gutter)) {
+                    gutter = instance.contentGutter = toInt(content.getStyle(MARGIN_TOP));
+                }
 
                 if (!instance.wrapped) {
                     content.wrap(TPL_CONTENT_WRAPPER);
 
                     if (expand) {
-                        gutter = -(height + gutter);
-
-                        content.setStyle(MARGIN_TOP, gutter);
+                        content.setStyle(MARGIN_TOP, -(height + gutter));
                     }
 
                     instance.wrapped = true;
@@ -377,17 +377,17 @@ var Toggler = A.Component.create({
 
                 instance.animate(
                     {
-                        marginTop: -(height + gutter) + PIXEL
+                        marginTop: (expand ? gutter : -(height + gutter)) + PIXEL
                     },
                     function() {
                         instance.set(ANIMATING, false);
 
-                        instance.set(EXPANDED, expand);
+                        instance.set(EXPANDED, expand, payload);
                     }
                 );
             }
             else {
-                instance.set(EXPANDED, expand);
+                instance.set(EXPANDED, expand, payload);
             }
 
             return expand;

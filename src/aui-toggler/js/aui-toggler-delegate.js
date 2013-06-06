@@ -219,12 +219,12 @@ var TogglerDelegate = A.Component.create({
          *
          * @method collapseAll
          */
-        collapseAll: function() {
+        collapseAll: function(payload) {
             var instance = this;
 
             instance.createAll();
 
-            A.Array.invoke(instance.items, 'collapse', instance);
+            A.Array.invoke(instance.items, 'collapse', payload);
         },
 
         /**
@@ -247,12 +247,12 @@ var TogglerDelegate = A.Component.create({
          *
          * @method collapseAll
          */
-        expandAll: function() {
+        expandAll: function(payload) {
             var instance = this;
 
             instance.createAll();
 
-            A.Array.invoke(instance.items, 'expand', instance);
+            A.Array.invoke(instance.items, 'expand', payload);
         },
 
         /**
