@@ -19,7 +19,8 @@ var Lang = A.Lang,
     POSITION = 'position',
     TRIGGER = 'trigger',
     TRIGGER_HIDE_EVENT = 'triggerHideEvent',
-    TRIGGER_SHOW_EVENT = 'triggerShowEvent';
+    TRIGGER_SHOW_EVENT = 'triggerShowEvent',
+    Z_INDEX = 'zIndex';
 
 /**
  * A base class for Toggler Delegate.
@@ -96,7 +97,8 @@ A.TooltipDelegate = A.Base.create(_TOOLTIP_DELEGATE, A.Base, [], {
                 formatter: instance.get(FORMATTER),
                 opacity: instance.get(OPACITY),
                 position: instance.get(POSITION),
-                visible: false
+                visible: false,
+                zIndex: instance.get(Z_INDEX)
             });
         }
 
@@ -216,6 +218,15 @@ A.TooltipDelegate = A.Base.create(_TOOLTIP_DELEGATE, A.Base, [], {
             validator: Lang.isString,
             value: MOUSEENTER,
             writeOnce: true
+        },
+
+        /**
+         * Specify the zIndex for the tooltips.
+         *
+         * @attribute zIndex
+         * @type {Number}
+         */
+        zIndex: {
         }
     }
 });
