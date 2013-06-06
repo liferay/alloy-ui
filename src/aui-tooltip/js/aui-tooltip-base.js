@@ -33,7 +33,7 @@ var BODY_CONTENT = 'bodyContent',
  * @class Tooltip
  * @extends Widget
  * @uses WidgetCssClass, WidgetPosition, WidgetStdMod, WidgetToggle, WidgetAutohide,
- * WidgetToolbars, WidgetModality, WidgetPositionAlign, WidgetPositionAlignSuggestion,
+ * WidgetToolbars, WidgetPositionAlign, WidgetPositionAlignSuggestion,
  * WidgetPositionConstrain, WidgetStack
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
@@ -44,7 +44,6 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
     A.WidgetStdMod,
     A.WidgetToggle,
     A.WidgetAutohide,
-    A.WidgetModality,
     A.WidgetPositionAlign,
     A.WidgetPositionAlignSuggestion,
     A.WidgetPositionConstrain,
