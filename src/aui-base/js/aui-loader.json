@@ -781,6 +781,7 @@
     "aui-toggler-base": {
         "requires": [
             "transition",
+            "aui-selector",
             "aui-event-base",
             "aui-node",
             "aui-component"
