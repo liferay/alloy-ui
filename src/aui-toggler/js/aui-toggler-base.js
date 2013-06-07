@@ -341,7 +341,12 @@ var Toggler = A.Component.create({
          */
         toggle: function(expand, payload) {
             var instance = this,
+                header = instance.get(HEADER),
                 expanded;
+
+            if (!header.test(':visible')) {
+                return;
+            }
 
             expanded = instance.get(EXPANDED);
 
