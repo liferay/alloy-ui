@@ -805,6 +805,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-toggler-base": {
         "requires": [
             "transition",
+            "aui-selector",
             "aui-event-base",
             "aui-node",
             "aui-component"
@@ -962,4 +963,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'f8a503b3868c3c6317c3dfdd0c4050f0';
+YUI.Env[Y.version].md5 = 'fc7eacdf7bb78c2fd98c06af012906c5';
