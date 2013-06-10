@@ -80,7 +80,17 @@ var DialogIframePlugin = A.Component.create(
 					instance
 				);
 
-				instance._host.after('heightChange', A.bind(instance._afterHostHeightChange, instance));
+				instance.afterHostMethod(
+					'_fillHeight',
+					A.bind(instance._setNodeDimensions, instance),
+					instance
+				);
+
+				instance.afterHostMethod(
+					'_uiSetWidth',
+					A.bind(instance._setNodeDimensions, instance),
+					instance
+				);
 			},
 
 			destructor: function() {
@@ -91,12 +101,6 @@ var DialogIframePlugin = A.Component.create(
 				instance._host.set('bodyContent', instance._previousBodyContent);
 
 				instance.node.remove(true);
-			},
-
-			_afterHostHeightChange: function() {
-				var instance = this;
-
-				instance._setNodeDimensions();
 			},
 
 			_afterRenderUI: function() {
@@ -270,10 +274,11 @@ var DialogIframePlugin = A.Component.create(
 
 			_setNodeDimensions: function() {
 				var instance = this,
-					bodyNode = instance._host.bodyNode;
+					bodyNode = instance._host.bodyNode,
+					node = instance.node;
 
-				if (bodyNode) {
-					instance.node.setStyles({
+				if (bodyNode && node) {
+					node.setStyles({
 						height: bodyNode.get('offsetHeight'),
 						width: bodyNode.get('offsetWidth')
 					});
