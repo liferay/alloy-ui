@@ -3,7 +3,33 @@ var Lang = A.Lang,
 
 	getClassName = A.getClassName,
 
-	IFRAME = 'iframe',
+    IFRAME = 'iframe',
+    BIND_LOAD_HANDLER = 'bindLoadHandler',
+    BODY_CONTENT = 'bodyContent',
+    CLOSE_ON_ESCAPE = 'closeOnEscape',
+    CONTENT_WINDOW = 'contentWindow',
+    DETACH = 'detach',
+    DOCUMENT = 'document',
+    DOCUMENT_ELEMENT = 'documentElement',
+    GUTTER = 'gutter',
+    HOST = 'host',
+    IFRAME_CSS_CLASS = 'iframeCssClass',
+    IFRAME_ID = 'iframeId',
+    KEY = 'key',
+    LOAD = 'load',
+    OFFSET_HEIGHT = 'offsetHeight',
+    OFFSET_WIDTH = 'offsetWidth',
+    PADDING_BOTTOM = 'paddingBottom',
+    PADDING_LEFT = 'paddingLeft',
+    PADDING_RIGHT = 'paddingRight',
+    PADDING_TOP = 'paddingTop',
+    RENDER_UI = 'renderUI',
+    RENDERED = 'rendered',
+    SRC = 'src',
+    UNLOAD = 'unload',
+    URI = 'uri',
+    URI_CHANGE = 'uriChange',
+    VISIBLE_CHANGE = 'visibleChange',
 
 	CSS_IFRAME_BD = getClassName('dialog', IFRAME, 'bd'),
 	CSS_IFRAME_NODE = getClassName('dialog', IFRAME, 'node'),
@@ -57,138 +83,131 @@ var DialogIframePlugin = A.Component.create(
 		},
 
 		EXTENDS: A.Plugin.Base,
-		NAME: IFRAME,
-		NS: IFRAME,
-		prototype: {
-			initializer: function(config) {
-				var instance = this;
+        NAME: IFRAME,
+        NS: IFRAME,
+        prototype: {
+            initializer: function(config) {
+                var instance = this;
 
-				instance._host = instance.get('host');
+                instance._host = instance.get(HOST);
 
-				instance._eventHandles = [];
+                instance._eventHandles = [];
 
-				instance.publish(
-					'load',
-					{
-						defaultFn: instance._defaultLoadIframeFn
-					}
-				);
+                instance.publish(
+                    LOAD,
+                    {
+                        defaultFn: instance._defaultLoadIframeFn
+                    }
+                );
 
-				instance.afterHostMethod(
-					'renderUI',
-					A.debounce(instance._afterRenderUI, 50, instance),
-					instance
-				);
+                if (instance._host.get(RENDERED)) {
+                    instance._initializeIframe();
+                }
+                else {
+                    instance.afterHostMethod(
+                        RENDER_UI,
+                        A.debounce(instance._afterRenderUI, 50, instance),
+                        instance
+                    );
+                }
 
-				instance.afterHostMethod(
-					'_fillHeight',
-					A.bind(instance._setNodeDimensions, instance),
-					instance
-				);
+                instance.afterHostMethod(
+                    '_fillHeight',
+                    A.bind(instance._setNodeDimensions, instance),
+                    instance
+                );
 
-				instance.afterHostMethod(
-					'_uiSetWidth',
-					A.bind(instance._setNodeDimensions, instance),
-					instance
-				);
-			},
+                instance.afterHostMethod(
+                    '_uiSetWidth',
+                    A.bind(instance._setNodeDimensions, instance),
+                    instance
+                );
+            },
 
-			destructor: function() {
-				var instance = this;
+            destructor: function() {
+                var instance = this;
 
-				instance._detachEventHandles();
+                instance._detachEventHandles();
 
-				instance._host.set('bodyContent', instance._previousBodyContent);
+                instance._host.set(BODY_CONTENT, instance._previousBodyContent);
 
-				instance.node.remove(true);
-			},
+                instance.node.remove(true);
+            },
 
-			_afterRenderUI: function() {
-				var instance = this;
+            _afterRenderUI: function() {
+                var instance = this;
 
-				instance._plugIframe();
+                instance._initializeIframe();
+            },
 
-				instance._bindEvents();
+            _afterUriChange: function(event) {
+                var instance = this;
 
-				var bodyNode = instance._bodyNode;
+                if (event.src !== UI) {
+                    instance._uiSetUri(event.newVal, event.prevVal);
+                }
+            },
 
-				bodyNode.plug(A.LoadingMask);
+            _bindEvents: function() {
+                var instance = this;
 
-				var loadingMask = bodyNode.loadingmask;
+                instance.afterHostEvent(VISIBLE_CHANGE, instance._afterDialogVisibleChange);
 
-				loadingMask.overlayMask.after('visibleChange', instance._afterMaskVisibleChange, instance);
+                instance.after(URI_CHANGE, instance._afterUriChange);
 
-				loadingMask.show();
-			},
+                instance.node.on(LOAD, A.bind(instance._onLoadIframe, instance));
 
-			_afterUriChange: function(event) {
-				var instance = this;
+                var bindLoadHandler = instance.get(BIND_LOAD_HANDLER);
 
-				if (event.src !== UI) {
-					instance._uiSetUri(event.newVal, event.prevVal);
-				}
-			},
+                bindLoadHandler.call(instance);
+            },
 
-			_bindEvents: function() {
-				var instance = this;
+            _detachEventHandles: function() {
+                var instance = this;
 
-				instance.afterHostEvent('visibleChange', instance._afterDialogVisibleChange);
+                var eventHandles = instance._eventHandles;
 
-				instance.after('uriChange', instance._afterUriChange);
+                A.Array.invoke(eventHandles, DETACH);
 
-				instance.node.on('load', A.bind(instance._onLoadIframe, instance));
+                eventHandles.length = 0;
+            },
 
-				var bindLoadHandler = instance.get('bindLoadHandler');
+            _defaultLoadIframeFn: function(event) {
+                var instance = this;
 
-				bindLoadHandler.call(instance);
-			},
+                var node = instance.node;
 
-			_detachEventHandles: function() {
-				var instance = this;
+                try {
+                    var iframeWindow = node.get(CONTENT_WINDOW);
 
-				var eventHandles = instance._eventHandles;
+                    iframeWindow.once(UNLOAD, instance._detachEventHandles, instance);
 
-				A.Array.invoke(eventHandles, 'detach');
+                    var iframeDoc = iframeWindow.get(DOCUMENT);
 
-				eventHandles.length = 0;
-			},
+                    iframeDoc.get(DOCUMENT_ELEMENT).addClass(CSS_IFRAME_ROOT_NODE);
 
-			_defaultLoadIframeFn: function(event) {
-				var instance = this;
+                    instance.set(URI, iframeDoc.get('location.href'), UI_SRC);
 
-				var node = instance.node;
+                    if (instance.get(CLOSE_ON_ESCAPE)) {
+                        instance._eventHandles.push(
+                            A.on(
+                                KEY,
+                                function(event) {
+                                    instance._host.hide();
+                                },
+                                [iframeDoc],
+                                'down:27'
+                            )
+                        );
+                    }
+                }
+                catch (e) {
+                }
 
-				try {
-					var iframeWindow = node.get('contentWindow');
+                instance._bodyNode.loadingmask.hide();
 
-					iframeWindow.once('unload', instance._detachEventHandles, instance);
-
-					var iframeDoc = iframeWindow.get('document');
-
-					iframeDoc.get('documentElement').addClass(CSS_IFRAME_ROOT_NODE);
-
-					instance.set('uri', iframeDoc.get('location.href'), UI_SRC);
-
-					if (instance.get('closeOnEscape')) {
-						instance._eventHandles.push(
-							A.on(
-								'key',
-								function(event) {
-									instance._host.hide();
-								},
-								[iframeDoc],
-								'down:27'
-							)
-						);
-					}
-				}
-				catch (e) {
-				}
-
-				instance._bodyNode.loadingmask.hide();
-
-				instance._host._syncUIPosAlign();
-			},
+                instance._host._syncUIPosAlign();
+            },
 
             _gutterValueFn: function() {
                 return function() {
@@ -196,45 +215,63 @@ var DialogIframePlugin = A.Component.create(
                         bodyNode = instance._host.bodyNode;
 
                     return {
-                        bottom: bodyNode.getStyle('paddingBottom'),
-                        left: bodyNode.getStyle('paddingLeft'),
-                        right: bodyNode.getStyle('paddingRight'),
-                        top: bodyNode.getStyle('paddingTop')
+                        bottom: bodyNode.getStyle(PADDING_BOTTOM),
+                        left: bodyNode.getStyle(PADDING_LEFT),
+                        right: bodyNode.getStyle(PADDING_RIGHT),
+                        top: bodyNode.getStyle(PADDING_TOP)
                     };
                 };
             },
 
-			_onLoadIframe: function() {
-				var instance = this;
+            _initializeIframe: function() {
+                var instance = this;
 
-				instance._setIframeContentGutter();
+                instance._plugIframe();
 
-				instance._setNodeDimensions();
-			},
+                instance._bindEvents();
 
-			_plugIframe: function() {
-				var instance = this;
+                var bodyNode = instance._bodyNode;
 
-				var iframeTpl = Lang.sub(
-					TPL_IFRAME,
-					{
-						cssClass: instance.get('iframeCssClass'),
-						id: instance.get('iframeId'),
-						uri: instance.get('uri')
-					}
-				);
+                bodyNode.plug(A.LoadingMask);
 
-				var bodyNode = instance._host.bodyNode;
+                var loadingMask = bodyNode.loadingmask;
 
-				var node = A.Node.create(iframeTpl);
+                loadingMask.overlayMask.after(VISIBLE_CHANGE, instance._afterMaskVisibleChange, instance);
 
-				instance._host.set('bodyContent', node);
+                loadingMask.show();
+            },
 
-				bodyNode.addClass(CSS_IFRAME_BD);
+            _onLoadIframe: function() {
+                var instance = this;
 
-				instance._bodyNode = bodyNode;
-				instance.node = node;
-			},
+                instance._setIframeContentGutter();
+
+                instance._setNodeDimensions();
+            },
+
+            _plugIframe: function() {
+                var instance = this;
+
+                var iframeTpl = Lang.sub(
+                    TPL_IFRAME,
+                    {
+                        cssClass: instance.get(IFRAME_CSS_CLASS),
+                        id: instance.get(IFRAME_ID),
+                        uri: instance.get(URI)
+                    }
+                );
+
+                var bodyNode = instance._host.bodyNode;
+
+                var node = A.Node.create(iframeTpl);
+
+                instance._host.set(BODY_CONTENT, node);
+
+                bodyNode.addClass(CSS_IFRAME_BD);
+
+                instance._bodyNode = bodyNode;
+                instance.node = node;
+            },
 
             _setGutter: function(val) {
                 var instance = this;
@@ -246,61 +283,61 @@ var DialogIframePlugin = A.Component.create(
                 return val;
             },
 
-			_setIframeContentGutter: function() {
-				var instance = this,
-					bodyNode = instance._host.bodyNode,
-					gutter = instance.get('gutter'),
-					iframeWindow = instance.node.get('contentWindow'),
-					iframeDoc = iframeWindow.get('document');
+            _setIframeContentGutter: function() {
+                var instance = this,
+                    bodyNode = instance._host.bodyNode,
+                    gutter = instance.get(GUTTER),
+                    iframeWindow = instance.node.get(CONTENT_WINDOW),
+                    iframeDoc = iframeWindow.get(DOCUMENT);
 
-				iframeDoc.get('documentElement').setStyles({
-					paddingBottom: gutter.bottom,
-					paddingLeft: gutter.left,
-					paddingRight: gutter.right,
-					paddingTop: gutter.top
-				});
+                iframeDoc.get(DOCUMENT_ELEMENT).setStyles({
+                    paddingBottom: gutter.bottom,
+                    paddingLeft: gutter.left,
+                    paddingRight: gutter.right,
+                    paddingTop: gutter.top
+                });
 
-				bodyNode.setStyles({
-					height: bodyNode.get('offsetHeight'),
-					padding: '0'
-				});
-			},
+                bodyNode.setStyles({
+                    height: bodyNode.get(OFFSET_HEIGHT),
+                    padding: '0'
+                });
+            },
 
-			_setIframeCssClass: function(value) {
-				BUFFER_CSS_CLASS[1] = value;
+            _setIframeCssClass: function(value) {
+                BUFFER_CSS_CLASS[1] = value;
 
-				return BUFFER_CSS_CLASS.join(' ');
-			},
+                return BUFFER_CSS_CLASS.join(' ');
+            },
 
-			_setNodeDimensions: function() {
-				var instance = this,
-					bodyNode = instance._host.bodyNode,
-					node = instance.node;
+            _setNodeDimensions: function() {
+                var instance = this,
+                    bodyNode = instance._host.bodyNode,
+                    node = instance.node;
 
-				if (bodyNode && node) {
-					node.setStyles({
-						height: bodyNode.get('offsetHeight'),
-						width: bodyNode.get('offsetWidth')
-					});
-				}
-			},
+                if (bodyNode && node) {
+                    node.setStyles({
+                        height: bodyNode.get(OFFSET_HEIGHT),
+                        width: bodyNode.get(OFFSET_WIDTH)
+                    });
+                }
+            },
 
-			_uiSetUri: function(newVal, prevVal) {
-				var instance = this;
+            _uiSetUri: function(newVal, prevVal) {
+                var instance = this;
 
-				var loadingMask = instance._bodyNode.loadingmask;
+                var loadingMask = instance._bodyNode.loadingmask;
 
-				var oldUrl = prevVal.split('#');
-				var newUrl = newVal.split('#');
+                var oldUrl = prevVal.split('#');
+                var newUrl = newVal.split('#');
 
-				if (newUrl[0] !== oldUrl[0] && loadingMask) {
-					loadingMask.show();
-				}
+                if (newUrl[0] !== oldUrl[0] && loadingMask) {
+                    loadingMask.show();
+                }
 
-				instance.node.attr('src', newVal);
-			}
-		}
-	}
+                instance.node.attr(SRC, newVal);
+            }
+        }
+    }
 );
 
 A.Plugin.DialogIframe = DialogIframePlugin;
