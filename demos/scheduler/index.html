@@ -10,7 +10,7 @@
     <h1>AlloyUI - Scheduler</h1>
     <div id="scheduler"></div>
     <script>
-    YUI({ filter: 'raw' }).use('aui-scheduler', function(A) {
+    YUI({ filter: 'raw' }).use('aui-scheduler', function(Y) {
 
         var items = [
             {
@@ -26,16 +26,16 @@
             }
         ];
 
-        new A.Scheduler({
+        new Y.Scheduler({
             boundingBox: '#scheduler',
             items: items,
             views: [
-                new A.SchedulerWeekView(),
-                new A.SchedulerDayView(),
-                new A.SchedulerMonthView(),
-                new A.SchedulerAgendaView()
+                new Y.SchedulerWeekView(),
+                new Y.SchedulerDayView(),
+                new Y.SchedulerMonthView(),
+                new Y.SchedulerAgendaView()
             ],
-            eventRecorder: new A.SchedulerEventRecorder({
+            eventRecorder: new Y.SchedulerEventRecorder({
                 duration: 30
             })
             // firstDayOfWeek: 1,

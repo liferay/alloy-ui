@@ -191,21 +191,21 @@
         </p>
     </form>
     <script>
-    YUI({ filter:'raw' }).use('aui-timer', 'aui-node', function(A) {
+    YUI({ filter:'raw' }).use('aui-timer', 'aui-node', function(Y) {
 
         function getNumTimers () {
-            return Number(A.one("#numTimers").val());
+            return Number(Y.one("#numTimers").val());
         }
 
         function getTaskLength () {
-            return Number(A.one("#taskLength").val());
+            return Number(Y.one("#taskLength").val());
         }
 
         var ids = [];
 
         function stop () {
             ids.forEach(function (id) {
-                A.clearInterval(id);
+                Y.clearInterval(id);
                 window.clearInterval(id);
             });
             ids = [];
@@ -213,7 +213,7 @@
 
         var incrementCounter = (function () {
             var counter = 0;
-            var counterEl = A.one("#counter");
+            var counterEl = Y.one("#counter");
             return function () {
                 counterEl.setContent(counter++);
             };
@@ -237,19 +237,19 @@
         var withChronos = makeTest(A);
         var withoutChronos = makeTest(window);
 
-        A.one("#withAlloy").on("click", function (event) {
+        Y.one("#withAlloy").on("click", function (event) {
             event.preventDefault();
             stop();
             withChronos();
         });
 
-        A.one("#withoutAlloy").on("click", function (event) {
+        Y.one("#withoutAlloy").on("click", function (event) {
             event.preventDefault();
             stop();
             withoutChronos();
         });
 
-        A.one("#stop").on("click", function (event) {
+        Y.one("#stop").on("click", function (event) {
             event.preventDefault();
             stop();
         });

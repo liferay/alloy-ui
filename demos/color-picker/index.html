@@ -36,10 +36,8 @@
 </div>
 
 <script>
-    YUI({ filter:'raw' }).use(
-        'aui-palette',
-        function(A) {
-            var palette = new A.Palette({
+    YUI({ filter:'raw' }).use('aui-palette', function(Y) {
+            var palette = new Y.Palette({
                 items: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ],
                 on: {
                     enter: function(event) {
@@ -63,7 +61,7 @@
     YUI({ filter:'raw' }).use(
         'aui-color-palette',
         function(A) {
-            var colorPalette = new A.ColorPalette({
+            var colorPalette = new Y.ColorPalette({
                 on: {
                     enter: function(event) {
                         console.log(event.type);
@@ -87,18 +85,18 @@
         function(A) {
             var hsvPalette;
 
-            var alphaCheckbox = A.one('#alpha');
-            var controlsCheckbox = A.one('#controls');
+            var alphaCheckbox = Y.one('#alpha');
+            var controlsCheckbox = Y.one('#controls');
 
             function createHSVPalette() {
                 if (hsvPalette) {
                     hsvPalette.destroy();
                 }
 
-                var hsvClass = A.HSVPalette;
+                var hsvClass = Y.HSVPalette;
 
                 if (alphaCheckbox.get('checked')) {
-                    hsvClass = A.HSVAPalette;
+                    hsvClass = Y.HSVAPalette;
                 }
 
                 hsvPalette = new hsvClass(

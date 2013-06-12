@@ -20,16 +20,16 @@
     <button id="long" class="btn">Load long url</button>
     <button id="short" class="btn">Load short url</button>
     <script>
-    YUI({ filter: 'raw' }).use('aui-autosize-iframe', function(A) {
+    YUI({ filter: 'raw' }).use('aui-autosize-iframe', function(Y) {
 
-        var iframe = A.one('#iframe');
+        var iframe = Y.one('#iframe');
 
-        iframe.plug(A.Plugin.AutosizeIframe);
+        iframe.plug(Y.Plugin.AutosizeIframe);
 
-        A.one('#long').on('click', function() {
+        Y.one('#long').on('click', function() {
             iframe.set('src', 'assets/long.html');
         });
-        A.one('#short').on('click', function() {
+        Y.one('#short').on('click', function() {
             iframe.set('src', 'assets/short.html');
         });
 

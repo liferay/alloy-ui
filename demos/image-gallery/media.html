@@ -48,9 +48,9 @@
 </div>
 <script>
 
-YUI({ filter: 'raw' }).use('aui-image-viewer-gallery', 'aui-image-viewer-media', function(A) {
+YUI({ filter: 'raw' }).use('aui-image-viewer-gallery', 'aui-image-viewer-media', function(Y) {
 
-	new A.ImageGallery({
+	new Y.ImageGallery({
 		caption: 'AlloyUI - MediaViewer mixed demo',
 		delay: 3000,
 		links: '#gallery a',
@@ -63,19 +63,19 @@ YUI({ filter: 'raw' }).use('aui-image-viewer-gallery', 'aui-image-viewer-media',
 					'providers.dailymotion': {
 						container: '<iframe frameborder="0" width="{width}" height="{height}" src="http://www.dailymotion.com/embed/video/{media}"></iframe>',
 						matcher: new RegExp(
-							A.Lang.sub(
-								A.MediaViewerPlugin.REGEX_DOMAIN,
+							Y.Lang.sub(
+								Y.MediaViewerPlugin.REGEX_DOMAIN,
 								{
 									domain: 'dailymotion.com'
 								}
 							),
 							'i'
 						),
-						options: A.MediaViewerPlugin.DEFAULT_OPTIONS,
+						options: Y.MediaViewerPlugin.DEFAULT_OPTIONS,
 						mediaRegex: /\/video\/([^&#_]*)/i
 					}
 				},
-				fn: A.MediaViewerPlugin
+				fn: Y.MediaViewerPlugin
 			}
 		],
 		preloadNeighborImages: true

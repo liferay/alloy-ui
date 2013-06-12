@@ -70,15 +70,15 @@
         </div>
     </div>
     <script>
-    YUI({ filter:'raw' }).use('aui-tabview', function(A) {
+    YUI({ filter:'raw' }).use('aui-tabview', function(Y) {
 
         console.time('How long does it takes?');
 
-        new A.TabView({
+        new Y.TabView({
             srcNode: '#markup'
         }).render();
 
-        new A.TabView({
+        new Y.TabView({
             children: [
                 {
                     label: 'foo',
@@ -97,7 +97,7 @@
            stacked: true
         }).render();
 
-        new A.TabView({
+        new Y.TabView({
             children: [
                 {
                     label: 'foo',
@@ -116,7 +116,7 @@
            type: 'pills'
         }).render();
 
-        new A.TabView({
+        new Y.TabView({
             children: [
                 {
                     label: 'foo',
@@ -136,7 +136,7 @@
            type: 'pills'
         }).render();
 
-        tt=new A.TabView({
+        new Y.TabView({
             srcNode: '#list',
             type: 'list'
         }).render();

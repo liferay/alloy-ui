@@ -68,14 +68,14 @@
     </table>
 
     <script>
-    YUI({ filter:'raw' }).use('aui-sortable-layout', function(A) {
+    YUI({ filter:'raw' }).use('aui-sortable-layout', function(Y) {
 
-        new A.SortableLayout({
+        new Y.SortableLayout({
             dragNodes: '.section',
             dropNodes: '.column',
             lazyStart: true,
             // placeholder: '<div class="placeholder"></div>',
-            proxyNode: A.Node.create('<div class="helper"></div>'),
+            proxyNode: Y.Node.create('<div class="helper"></div>'),
             on: {
                 placeholderAlign: function(event) {},
                 quadrantOver: function(event) {},

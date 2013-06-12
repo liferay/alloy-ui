@@ -45,21 +45,21 @@
         </div>
     </form>
     <script>
-    YUI({ filter:'raw' }).use('aui-form-validator', function(A) {
+    YUI({ filter:'raw' }).use('aui-form-validator', function(Y) {
 
-        new A.FormValidator({
-            boundingBox: A.one('#fm1'),
+        new Y.FormValidator({
+            boundingBox: Y.one('#fm1'),
             showAllMessages: true,
             validateOnBlur: false,
             validateOnInput: true
         });
 
-        A.config.FormValidator.STRINGS.gt50 = 'The digit should be >= 50.';
-        A.config.FormValidator.RULES.gt50 = function(val, fieldNode, ruleValue) {
+        Y.config.FormValidator.STRINGS.gt50 = 'The digit should be >= 50.';
+        Y.config.FormValidator.RULES.gt50 = function(val, fieldNode, ruleValue) {
             return (val >= 50);
         };
-        new A.FormValidator({
-            boundingBox: A.one('#fm2'),
+        new Y.FormValidator({
+            boundingBox: Y.one('#fm2'),
             showAllMessages: true,
             rules: {
                 digit2: {

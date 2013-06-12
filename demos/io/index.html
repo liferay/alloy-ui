@@ -9,9 +9,9 @@
 <body>
     <h1>AlloyUI - I/O demo</h1>
     <script>
-    YUI({ filter:'raw' }).use('aui-io', function(A) {
+    YUI({ filter:'raw' }).use('aui-io', function(Y) {
 
-        A.io.request('data/content.html', {
+        Y.io.request('data/content.html', {
             on: {
                 success: function() {
                     var data = this.get('responseData');

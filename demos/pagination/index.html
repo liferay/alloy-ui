@@ -64,11 +64,11 @@
         </ul>
     </div>
     <script>
-    YUI({ filter:'raw' }).use('aui-pagination', function(A) {
+    YUI({ filter:'raw' }).use('aui-pagination', function(Y) {
 
-        var pages = A.all('.content div');
+        var pages = Y.all('.content div');
 
-        new A.Pagination({
+        new Y.Pagination({
             boundingBox: '#jslarge',
             offset: 999,
             total: 5,
@@ -86,17 +86,17 @@
             }
         }).render();
 
-        new A.Pagination({
+        new Y.Pagination({
             boundingBox: '#jssmall',
             total: 15
         }).render();
 
-        new A.Pagination({
+        new Y.Pagination({
             boundingBox: '#jsmini',
             total: 15
         }).render();
 
-        new A.Pagination({
+        new Y.Pagination({
             boundingBox: '#pagination',
             contentBox: '#pagination .pagination-content',
             circular: false,

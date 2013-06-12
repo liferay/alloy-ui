@@ -10,7 +10,7 @@
     <h1>AlloyUI - Diagram builder</h1>
     <div id="diagramBuilder"></div>
     <script>
-    YUI({ filter:'raw' }).use('aui-diagram-builder', function(A) {
+    YUI({ filter:'raw' }).use('aui-diagram-builder', function(Y) {
 
         var availableFields = [
             {
@@ -51,7 +51,7 @@
             }
         ];
 
-        var diagramBuilder = new A.DiagramBuilder({
+        var diagramBuilder = new Y.DiagramBuilder({
             availableFields: availableFields,
             boundingBox: '#diagramBuilder',
             fields: [

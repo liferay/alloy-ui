@@ -10,9 +10,9 @@
     <h1>AlloyUI - Node demo</h1>
     <h2 id="toggleColor" style="cursor: pointer;">Click me!</h2>
     <script>
-    YUI({ filter:'raw' }).use('aui-node', function(A) {
+    YUI({ filter:'raw' }).use('aui-node', function(Y) {
 
-      var node = A.one('#toggleColor');
+      var node = Y.one('#toggleColor');
 
       node.on('click', function() {
         var randomColor = Math.floor(Math.random() * 16777215).toString(16);

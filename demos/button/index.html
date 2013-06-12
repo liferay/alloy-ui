@@ -69,9 +69,9 @@
         <button class="btn btn-large btn-block" type="button">Block level button</button>
     </p>
     <script>
-    YUI({ filter: 'raw' }).use('aui-button', function(A) {
+    YUI({ filter: 'raw' }).use('aui-button', function(Y) {
 
-        new A.Button({
+        new Y.Button({
             label: 'Basic',
             srcNode: '#basic',
             icon: 'icon-print',
@@ -79,19 +79,19 @@
             primary: true
         }).render();
 
-        new A.ToggleButton({
+        new Y.ToggleButton({
             cssClass: 'btn-info',
             label: 'Click to toggle',
             srcNode: '#toggle',
             icon: 'icon-print'
        }).render();
 
-        new A.ButtonGroup({
+        new Y.ButtonGroup({
             boundingBox: '#checkgroup',
             type: 'checkbox'
         }).render();
 
-        new A.ButtonGroup({
+        new Y.ButtonGroup({
             boundingBox: '#radiogroup',
             type: 'radio'
         }).render();

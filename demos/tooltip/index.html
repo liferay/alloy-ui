@@ -39,18 +39,18 @@
         </ul>
     </div>
     <script>
-    YUI({ filter:'raw' }).use('aui-tooltip', function(A) {
+    YUI({ filter:'raw' }).use('aui-tooltip', function(Y) {
 
-         new A.Tooltip({
+         new Y.Tooltip({
             trigger: '#triggerTop'
         }).render();
 
-        new A.Tooltip({
+        new Y.Tooltip({
             position: 'bottom',
             trigger: '#triggerBottom'
         }).render();
 
-        new A.TooltipDelegate({
+        new Y.TooltipDelegate({
             position: 'right',
             trigger: '#delegate li'
         });

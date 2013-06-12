@@ -84,39 +84,39 @@
         </div>
     </div>
     <script>
-    YUI({ filter: 'raw' }).use('aui-toolbar', function(A) {
+    YUI({ filter: 'raw' }).use('aui-toolbar', function(Y) {
 
         console.time('How long does it takes?');
 
-        new A.Toolbar({
+        new Y.Toolbar({
             boundingBox: '#toolbar1',
             on: {
                 click: function(event) {
                     var widget = this.getEnclosingWidget(event);
 
-                    if (A.instanceOf(widget, A.Button)) {
+                    if (Y.instanceOf(widget, Y.Button)) {
                         console.log(widget.getNode());
                     }
-                    else if (A.instanceOf(widget, A.ButtonGroup)) {
+                    else if (Y.instanceOf(widget, Y.ButtonGroup)) {
                         console.log(widget.getSelectedButtons());
                     }
                 }
             }
         }).render();
 
-        new A.Toolbar({
+        new Y.Toolbar({
             boundingBox: '#toolbar2'
         }).render();
 
-        new A.Toolbar({
+        new Y.Toolbar({
             boundingBox: '#toolbar3'
         }).render();
 
-        new A.Toolbar({
+        new Y.Toolbar({
             boundingBox: '#vertical'
         }).render();
 
-        new A.Toolbar({
+        new Y.Toolbar({
             boundingBox: '#toolbarjs1',
             children: [
                 { label: 'Button' },
@@ -159,10 +159,10 @@
             ]
         }).render();
 
-        new A.Toolbar({
+        new Y.Toolbar({
             boundingBox: '#toolbarjs2',
             children: [
-                new A.ButtonGroup({
+                new Y.ButtonGroup({
                     boundingBox: '#btngroupjs',
                     render: true
                 }),
@@ -172,7 +172,7 @@
                     { icon: 'icon-print' }
                 ],
                 [ /*empty button group*/ ],
-                new A.Button({
+                new Y.Button({
                     label: 'From constructor',
                     render: true
                 }),

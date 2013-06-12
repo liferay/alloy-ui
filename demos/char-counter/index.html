@@ -24,9 +24,9 @@
         <span id="counter3"></span> character(s) remaining
     </p>
     <script>
-    YUI({ filter:'raw' }).use('aui-char-counter', function(A) {
+    YUI({ filter:'raw' }).use('aui-char-counter', function(Y) {
 
-        new A.CharCounter({
+        new Y.CharCounter({
             input: '#input1',
             counter: '#counter1',
             maxLength: 10,
@@ -37,16 +37,16 @@
             }
         });
 
-        var charCounter = new A.CharCounter({
+        var charCounter = new Y.CharCounter({
             input: '#input2',
             counter: '#counter2',
             maxLength: 20
         });
 
-        A.on('click', function() { charCounter.set('maxLength', 10); }, '#button2-1');
-        A.on('click', function() { charCounter.set('maxLength', 20); }, '#button2-2');
+        Y.on('click', function() { charCounter.set('maxLength', 10); }, '#button2-1');
+        Y.on('click', function() { charCounter.set('maxLength', 20); }, '#button2-2');
 
-        new A.CharCounter({
+        new Y.CharCounter({
             input: '#input3',
             counter: '#counter3',
             maxLength: 255

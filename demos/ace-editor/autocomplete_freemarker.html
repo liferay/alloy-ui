@@ -23,7 +23,7 @@
 
 <div id="wrapper">
 	<h1>Alloy Ace Editor AutoComplete for Freemarker demo</h1>
-	
+
 	<p>Type &lt;# to see the list of all available Freemarker directives
 	<p>Type ${ to see list of some Freemarker variables
 
@@ -38,16 +38,16 @@
 YUI({
 	combine: false,
 	filter: 'raw'
-}).ready('aui-ace-autocomplete-plugin', 'aui-ace-autocomplete-freemarker', function(A) {
-	var editor = new A.AceEditor(
+}).ready('aui-ace-autocomplete-plugin', 'aui-ace-autocomplete-freemarker', function(Y) {
+	var editor = new Y.AceEditor(
 		{
 			boundingBox: '#editor',
 			mode: 'php',
 			plugins: [
 				{
-					fn: A.Plugin.AceAutoComplete,
+					fn: Y.Plugin.AceAutoComplete,
 					cfg: {
-						processor: new A.AceEditor.AutoCompleteFreemarker(
+						processor: new Y.AceEditor.AutoCompleteFreemarker(
 							{
 								variables: {
 									"types": {
@@ -118,15 +118,15 @@ YUI({
 					'			<#if portlet_display.isShowBackIcon()>\n' +
 					'				<a href="${portlet_back_url}" class="portlet-icon-back"><@liferay.language key="return-to-full-page" /></a>\n' +
 					'			<#else>\n' +
-					'				${theme.iconOptions()}' + 
-					'				${theme.iconMinimize()}' + 
-					'				${theme.iconMaximize()}' + 
-					'				${theme.iconClose()}' + 
+					'				${theme.iconOptions()}' +
+					'				${theme.iconMinimize()}' +
+					'				${theme.iconMaximize()}' +
+					'				${theme.iconClose()}' +
 					'			</#if>\n' +
 					'		</menu>\n' +
 					'	</header>\n' +
 					'	<div class="portlet-content">\n' +
-					'		${portlet_display.writeContent(writer)}' + 
+					'		${portlet_display.writeContent(writer)}' +
 					'	</div>\n' +
 					'</section>'
 		}
