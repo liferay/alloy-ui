@@ -86,7 +86,7 @@ var DialogIframePlugin = A.Component.create(
         NAME: IFRAME,
         NS: IFRAME,
         prototype: {
-            initializer: function(config) {
+            initializer: function() {
                 var instance = this;
 
                 instance._host = instance.get(HOST);
@@ -186,7 +186,7 @@ var DialogIframePlugin = A.Component.create(
                 eventHandles.length = 0;
             },
 
-            _defaultLoadIframeFn: function(event) {
+            _defaultLoadIframeFn: function() {
                 var instance = this;
 
                 var node = instance.node;
@@ -206,7 +206,7 @@ var DialogIframePlugin = A.Component.create(
                         instance._eventHandles.push(
                             A.on(
                                 KEY,
-                                function(event) {
+                                function() {
                                     instance._host.hide();
                                 },
                                 [iframeDoc],
