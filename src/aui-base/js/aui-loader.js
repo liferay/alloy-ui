@@ -920,7 +920,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-node",
             "aui-component",
             "aui-debounce"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-viewport": {
         "requires": [
@@ -963,4 +964,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'fc7eacdf7bb78c2fd98c06af012906c5';
+YUI.Env[Y.version].md5 = 'd5b188c710f60840a4c2f8836338c822';

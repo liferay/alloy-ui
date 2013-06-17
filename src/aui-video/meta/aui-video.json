@@ -5,6 +5,7 @@
             "aui-node",
             "aui-component",
             "aui-debounce"
-        ]
+        ],
+        "skinnable": true
     }
 }
