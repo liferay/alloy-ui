@@ -15,11 +15,11 @@
     <h1>AlloyUI - Datatable property list</h1>
     <div id="simple" class="table-condensed table-striped"></div>
     <script>
-    YUI({ filter: 'raw' }).use('aui-datatable-property-list', function(A) {
+    YUI({ filter: 'raw' }).use('aui-datatable-property-list', function(Y) {
 
         var properties = [
             {
-                editor: new A.CheckboxCellEditor({
+                editor: new Y.CheckboxCellEditor({
                     editable: true,
                     options: [ 'Yes', 'No' ]
                 }),
@@ -27,7 +27,7 @@
                 value: 'Yes'
             },
             {
-                editor: new A.DateCellEditor(),
+                editor: new Y.DateCellEditor(),
                 name: 'Date',
                 value: '10/10/2011'
             },
@@ -47,7 +47,7 @@
                 readOnly: true
             },
             {
-                editor: new A.RadioCellEditor({
+                editor: new Y.RadioCellEditor({
                     editable: true,
                     options: [ 'Yes', 'No' ]
                 }),
@@ -55,7 +55,7 @@
                 value: 'Yes'
             },
             {
-                editor: new A.DropDownCellEditor({
+                editor: new Y.DropDownCellEditor({
                     editable: true,
                     options: {
                         apple: 'Apple',
@@ -68,7 +68,7 @@
                 value: 'Apple'
             },
             {
-                editor: new A.DropDownCellEditor({
+                editor: new Y.DropDownCellEditor({
                     editable: true,
                     multiple: true,
                     options: {
@@ -86,13 +86,13 @@
                 value: 'Text value'
             },
             {
-                editor: new A.TextAreaCellEditor(),
+                editor: new Y.TextAreaCellEditor(),
                 name: 'Text-box',
                 value: 'Text-box value'
             }
         ];
 
-        new A.PropertyList({
+        new Y.PropertyList({
             boundingBox: '#simple',
             data: properties,
             on: {

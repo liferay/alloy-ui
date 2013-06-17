@@ -23,7 +23,7 @@
 
 <div id="wrapper">
 	<h1>Alloy Ace Editor AutoComplete for Velocity demo</h1>
-	
+
 	<p>Type # to see the list of all available Velocity directives
 	<p>Type $ to see list of some Velocity variables
 
@@ -38,16 +38,16 @@
 YUI({
 	combine: false,
 	filter: 'raw'
-}).ready('aui-ace-autocomplete-plugin', 'aui-ace-autocomplete-velocity', function(A) {
-	var editor = new A.AceEditor(
+}).ready('aui-ace-autocomplete-plugin', 'aui-ace-autocomplete-velocity', function(Y) {
+	var editor = new Y.AceEditor(
 		{
 			boundingBox: '#editor',
 			mode: 'php',
 			plugins: [
 				{
-					fn: A.Plugin.AceAutoComplete,
+					fn: Y.Plugin.AceAutoComplete,
 					cfg: {
-						processor: new A.AceEditor.AutoCompleteVelocity(
+						processor: new Y.AceEditor.AutoCompleteVelocity(
 							{
 								variables: {
 									"types": {
@@ -105,7 +105,7 @@ YUI({
 					}
 				}
 			],
-			value: 
+			value:
 				'#set ($theme_display = $themeDisplay)\n' +
 				'#set ($portlet_display = $portletDisplay)\n' +
 				'\n' +

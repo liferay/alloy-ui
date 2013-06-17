@@ -37,26 +37,26 @@
         <input type="radio" name="rating1" value="v2" title="Very bad" />
     </div>
     <script>
-    YUI({ filter: 'raw' }).use('aui-rating', function(A) {
+    YUI({ filter: 'raw' }).use('aui-rating', function(Y) {
 
-        new A.Rating({
+        new Y.Rating({
             boundingBox: '#rating',
             label: 'Label '
         }).render();
 
-        new A.Rating({
+        new Y.Rating({
             boundingBox: '#ratinginput'
         }).render();
 
-        new A.Rating({
+        new Y.Rating({
             boundingBox: '#ratinglabeled'
         }).render();
 
-        new A.ThumbRating({
+        new Y.ThumbRating({
             boundingBox: '#thumbs'
         }).render();
 
-        new A.ThumbRating({
+        new Y.ThumbRating({
             boundingBox: '#thumbsinput'
         }).render();
 

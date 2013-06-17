@@ -20,15 +20,15 @@
     <div id="vertical" class="progress-success"></div>
     <div id="verticalbottom" class="bottom progress-danger"></div>
     <script>
-    YUI({ filter: 'raw' }).use('aui-progressbar', function(A) {
+    YUI({ filter: 'raw' }).use('aui-progressbar', function(Y) {
 
-        new A.ProgressBar({
+        new Y.ProgressBar({
             boundingBox: '#nolabel',
             value: 90,
             width: 500
         }).render();
 
-        new A.ProgressBar({
+        new Y.ProgressBar({
             boundingBox: '#basic',
             label: '40%',
             max: 100,
@@ -45,14 +45,14 @@
             width: 500
         }).render();
 
-        new A.ProgressBar({
+        new Y.ProgressBar({
             boundingBox: '#stripped',
             label: '90%',
             value: 90,
             width: 500
         }).render();
 
-        new A.ProgressBar({
+        new Y.ProgressBar({
             boundingBox: '#vertical',
             orientation: 'vertical',
             label: '60%',
@@ -61,7 +61,7 @@
             height: 200
         }).render();
 
-        new A.ProgressBar({
+        new Y.ProgressBar({
             boundingBox: '#verticalbottom',
             orientation: 'vertical',
             label: '60%',

@@ -16,15 +16,15 @@
 <script>
 	var index = 0;
 
-	var Y = YUI({ filter:'raw' }).use('aui-parse-content', function(A) {
+	YUI({ filter:'raw' }).use('aui-parse-content', function(Y) {
 
-		var node1 = A.one('#temp1');
-		var node2 = A.one('#temp2');
+		var node1 = Y.one('#temp1');
+		var node2 = Y.one('#temp2');
 
-		node1.plug(A.Plugin.ParseContent);
-		node2.plug(A.Plugin.ParseContent);
+		node1.plug(Y.Plugin.ParseContent);
+		node2.plug(Y.Plugin.ParseContent);
 
-		A.io('assets/content.html', {
+		Y.io('assets/content.html', {
 			on: {
 				success: function(id, o) {
 					node1.setContent(o.responseText);
@@ -32,14 +32,14 @@
 			}
 		});
 
-    	A.io('assets/blank-content-script.html', {
+    	Y.io('assets/blank-content-script.html', {
     		on: {
     			success: function(id, o) {
     				node2.setContent(o.responseText);
 
     				setTimeout(function() {
 						if (!window.EMPTY_EL_SCRIPT_LOADED) {
-							A.one('#missing').show();
+							Y.one('#missing').show();
 						}
                     }, 500);
     			}

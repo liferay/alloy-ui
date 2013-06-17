@@ -11,10 +11,10 @@
     <iframe src="http://127.0.0.1/github/alloy/demos/messaging/foreign.html" id="iframe" style="height:200px"></iframe><br>
     <button id="send">Send message</button>
     <script>
-    YUI({filter:'raw'}).use('aui-messaging', 'aui-node', function(A) {
+    YUI({filter:'raw'}).use('aui-messaging', 'aui-node', function(Y) {
 
-        A.one('#send').on('click', function(event) {
-            A.postMessage('message send from another domain.', 'http://127.0.0.1', A.one('iframe'));
+        Y.one('#send').on('click', function(event) {
+            Y.postMessage('message send from another domain.', 'http://127.0.0.1', Y.one('iframe'));
         });
 
     });

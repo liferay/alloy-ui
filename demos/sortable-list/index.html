@@ -88,26 +88,26 @@
         <div id="log"></div>
     </ul>
     <script>
-    YUI({ filter:'raw' }).use('aui-sortable-list', function(A) {
+    YUI({ filter:'raw' }).use('aui-sortable-list', function(Y) {
 
-        var list = new A.SortableList({
+        var list = new Y.SortableList({
             nodes: '.container li',
             dropOn: 'ul.droppable',
             // dropContainer: '.custom-node-inside-droppable',
             dropCondition: function(event) {
                 return true;
             },
-            helper: A.Node.create('<div class="helper"></div>'),
-            placeholder: A.Node.create('<div class="placeholder"></div>')
+            helper: Y.Node.create('<div class="helper"></div>'),
+            placeholder: Y.Node.create('<div class="placeholder"></div>')
         });
 
-        A.one('#placeholder').on('click', function() {
+        Y.one('#placeholder').on('click', function() {
             list.set('placeholder', null);
-            A.one('#log').html('placeholder removed, drag the nodes again.');
+            Y.one('#log').html('placeholder removed, drag the nodes again.');
         });
-        A.one('#helper').on('click', function() {
+        Y.one('#helper').on('click', function() {
             list.set('helper', null);
-            A.one('#log').html('helper removed, drag the nodes again.');
+            Y.one('#log').html('helper removed, drag the nodes again.');
         });
 
     });

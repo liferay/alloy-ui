@@ -33,7 +33,7 @@
         </div>
     </div>
     <script>
-    YUI({ filter:'raw' }).use('aui-diagram-builder', function(A) {
+    YUI({ filter:'raw' }).use('aui-diagram-builder', function(Y) {
 
         var availableFields = [
             {
@@ -74,7 +74,7 @@
             }
         ];
 
-        new A.DiagramBuilder({
+        new Y.DiagramBuilder({
             availableFields: availableFields,
             boundingBox: '#diagrambuilderBB',
             srcNode: '#diagrambuilderCB',

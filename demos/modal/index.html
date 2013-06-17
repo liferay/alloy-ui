@@ -10,11 +10,11 @@
     <h1>AlloyUI - Modal</h1>
     <div id="content"></div>
     <script>
-    YUI({ filter:'raw' }).use('aui-modal', 'resize-proxy', function(A) {
+    YUI({ filter:'raw' }).use('aui-modal', 'resize-proxy', function(Y) {
 
         console.time('How long does it takes?');
 
-        var modal = new A.Modal({
+        var modal = new Y.Modal({
             bodyContent: 'One fine body…',
             centered: true,
             cssClass: 'foo',
@@ -29,7 +29,7 @@
             // resizable: {
             //     handles: 'br, r',
             //     plugins: [
-            //         { fn: A.Plugin.ResizeProxy }
+            //         { fn: Y.Plugin.ResizeProxy }
             //     ]
             // },
             // toolbars: {

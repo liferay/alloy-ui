@@ -47,15 +47,15 @@
     <button id="cropLink">Crop Image to x: 45, y: 5, width: 390, height: 125</button>
     <div class="cropped-image" id="croppedImage"></div>
     <script>
-    YUI({ filter: 'raw' }).use('aui-image-cropper', function(A) {
+    YUI({ filter: 'raw' }).use('aui-image-cropper', function(Y) {
 
-        var imageCropper = new A.ImageCropper({
+        var imageCropper = new Y.ImageCropper({
             srcNode: '#image',
             x: 100,
             y: 100
         }).render();
 
-        var croppedImage = A.one('#croppedImage');
+        var croppedImage = Y.one('#croppedImage');
 
         var updateImage = function() {
             var cropRegion = imageCropper.get('region');
@@ -66,7 +66,7 @@
                 width: cropRegion.width
             });
             croppedImage.html(
-                A.Lang.sub('<b class="x">x: {x}</b><b class="y">y: {y}</b><b class="height">height: {height}</b><b class="width">width: {width}</b>', cropRegion)
+                Y.Lang.sub('<b class="x">x: {x}</b><b class="y">y: {y}</b><b class="height">height: {height}</b><b class="width">width: {width}</b>', cropRegion)
             );
         };
 
@@ -74,7 +74,7 @@
         imageCropper.after('crop', updateImage);
         croppedImage.show();
 
-        A.one('#cropLink').on('click', function (event) {
+        Y.one('#cropLink').on('click', function (event) {
             imageCropper.setAttrs({
                 x: 45,
                 y: 5,

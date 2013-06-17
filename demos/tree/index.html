@@ -13,9 +13,9 @@
     <h2>TreeView normal with drag and drop</h2>
     <div id="treebasic"></div>
     <script>
-    YUI({ filter: 'raw' }).use('aui-tree', function(A) {
+    YUI({ filter: 'raw' }).use('aui-tree', function(Y) {
 
-        new A.TreeViewDD({
+        new Y.TreeViewDD({
             boundingBox: '#treefile',
             children: [
                 {
@@ -82,7 +82,7 @@
             ]
         }).render();
 
-        new A.TreeViewDD({
+        new Y.TreeViewDD({
             boundingBox: '#treebasic',
             children: [
                 {
