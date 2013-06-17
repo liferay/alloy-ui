@@ -149,6 +149,8 @@ var TreeView = A.Component.create(
 				var boundingBox = instance.get(BOUNDING_BOX);
 
 				boundingBox.setData(TREE_VIEW, instance);
+
+				instance.initTreeData();
 			},
 
 			/**
