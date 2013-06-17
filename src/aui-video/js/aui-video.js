@@ -8,16 +8,35 @@ var Lang = A.Lang,
 	UA = A.UA,
 	getClassName = A.getClassName,
 
-	NAME = 'video',
+	_NAME = 'video',
 
-	CSS_VIDEO = getClassName(NAME),
-	CSS_VIDEO_NODE = getClassName(NAME, 'node'),
+	CSS_VIDEO = getClassName(_NAME),
+	CSS_VIDEO_NODE = getClassName(_NAME, 'node'),
 
 	DEFAULT_PLAYER_PATH = A.config.base + 'aui-video/assets/player.swf?t=' + Lang.now(),
 
 	DOC = A.config.doc,
 
-	TPL_VIDEO = '<video id="{0}" controls="controls" class="' + CSS_VIDEO_NODE + '"></video>',
+	_EMPTY = '',
+
+	CONTENT_BOX = 'contentBox',
+	FIXED_ATTRIBUTES = 'fixedAttributes',
+	FLASH_VARS = 'flashVars',
+	HEIGHT = 'height',
+	MOVIE = 'movie',
+	NODE_NAME = 'nodeName',
+	OGV_URL = 'ogvUrl',
+	POSTER = 'poster',
+	SOURCE = 'source',
+	SRC = 'src',
+	SWF_URL = 'swfUrl',
+	TYPE = 'type',
+	URL = 'url',
+	VIDEO = 'video',
+	VIDEO_READY = 'videoReady',
+	WIDTH = 'width',
+
+	TPL_VIDEO = '<video id="{id}" controls="controls" class="' + CSS_VIDEO_NODE + '" {height} {width}></video>',
 	TPL_VIDEO_FALLBACK = '<div class="' + CSS_VIDEO_NODE + '"></div>';
 
 /**
@@ -39,7 +58,7 @@ var Video = A.Component.create(
 		 * @type String
 		 * @static
 		 */
-		NAME: NAME,
+		NAME: _NAME,
 
 		/**
 		 * Static property used to define the default attribute
@@ -165,7 +184,7 @@ var Video = A.Component.create(
 				instance._renderVideoTask = A.debounce(instance._renderVideo, 1, instance);
 				instance._renderSwfTask = A.debounce(instance._renderSwf, 1, instance);
 
-				instance._renderVideo(!instance.get('ogvUrl'));
+				instance._renderVideo(!instance.get(OGV_URL));
 			},
 
 			/**
@@ -178,7 +197,7 @@ var Video = A.Component.create(
 				var instance = this;
 
 				instance.publish(
-					'videoReady',
+					VIDEO_READY,
 					{
 						fireOnce: true
 					}
@@ -196,9 +215,9 @@ var Video = A.Component.create(
 			_createSource: function(type) {
 				var instance = this;
 
-				var sourceNode = new A.Node(DOC.createElement('source'));
+				var sourceNode = new A.Node(DOC.createElement(SOURCE));
 
-				sourceNode.attr('type', type);
+				sourceNode.attr(TYPE, type);
 
 				return sourceNode;
 			},
@@ -212,12 +231,12 @@ var Video = A.Component.create(
 			_renderSwf: function () {
 				var instance = this;
 
-				var swfUrl = instance.get('swfUrl');
+				var swfUrl = instance.get(SWF_URL);
 
 				if (swfUrl) {
-					var videoUrl = instance.get('url');
-					var posterUrl = instance.get('poster');
-					var flashVars = instance.get('flashVars');
+					var videoUrl = instance.get(URL);
+					var posterUrl = instance.get(POSTER);
+					var flashVars = instance.get(FLASH_VARS);
 
 					A.mix(
 						flashVars,
@@ -252,7 +271,7 @@ var Video = A.Component.create(
 						tplObj += '<param name="movie" value="' + swfUrl + '"/>';
 					}
 
-					var fixedAttributes = instance.get('fixedAttributes');
+					var fixedAttributes = instance.get(FIXED_ATTRIBUTES);
 
 					for (var i in fixedAttributes) {
 						tplObj += '<param name="' + i + '" value="' + fixedAttributes[i] + '" />';
@@ -280,19 +299,49 @@ var Video = A.Component.create(
 			 * @protected
 			 */
 			_renderVideo: function(fallback) {
-				var instance = this;
+				var instance = this,
+					attrHeight,
+					attrWidth,
+					height,
+					tpl,
+					tplObj,
+					video,
+					width;
 
-				var tpl = TPL_VIDEO;
+				tpl = TPL_VIDEO;
 
 				if (UA.gecko && fallback) {
 					tpl = TPL_VIDEO_FALLBACK;
 				}
+				else {
+					attrHeight = _EMPTY;
+					attrWidth = _EMPTY;
 
-				var tplObj = Lang.sub(tpl, [A.guid()]);
+					height = instance.get(HEIGHT);
 
-				var video = A.Node.create(tplObj);
+					width = instance.get(WIDTH);
 
-				instance.get('contentBox').append(video);
+					if (height) {
+						attrHeight = 'height="' + height + '"';
+					}
+
+					if (width) {
+						attrWidth = 'width="' + width + '"';
+					}
+				}
+
+				tplObj = Lang.sub(
+					tpl,
+					{
+						height: attrHeight,
+						id: A.guid(),
+						width: attrWidth
+					}
+				);
+
+				video = A.Node.create(tplObj);
+
+				instance.get(CONTENT_BOX).append(video);
 
 				instance._video = video;
 			},
@@ -358,7 +407,7 @@ var Video = A.Component.create(
 							instance._sourceOgv = sourceOgv;
 						}
 
-						sourceOgv.attr('src', val);
+						sourceOgv.attr(SRC, val);
 					}
 				}
 			},
@@ -376,7 +425,7 @@ var Video = A.Component.create(
 				var video = instance._video;
 
 				if (instance._usingVideo()) {
-					video.setAttribute('poster', val);
+					video.setAttribute(POSTER, val);
 				}
 
 				instance._renderSwfTask();
@@ -405,7 +454,7 @@ var Video = A.Component.create(
 			_uiSetUrl: function (val) {
 				var instance = this;
 
-				var ogvUrl = instance.get('ogvUrl');
+				var ogvUrl = instance.get(OGV_URL);
 				var video = instance._video;
 
 				var sourceMp4 = instance._sourceMp4;
@@ -428,7 +477,7 @@ var Video = A.Component.create(
 							instance._sourceMp4 = sourceMp4;
 						}
 
-						sourceMp4.attr('src', val);
+						sourceMp4.attr(SRC, val);
 					}
 				}
 
@@ -444,7 +493,7 @@ var Video = A.Component.create(
 			_usingVideo: function() {
 				var instance = this;
 
-				return (instance._video.get('nodeName').toLowerCase() == 'video');
+				return (instance._video.get(NODE_NAME).toLowerCase() === VIDEO);
 			}
 		}
 	}
