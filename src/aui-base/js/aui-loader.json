@@ -55,7 +55,8 @@
             "aui-node",
             "aui-component",
             "querystring-stringify-simple"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-autosize": {
         "use": [

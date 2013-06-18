@@ -65,7 +65,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-node",
             "aui-component",
             "querystring-stringify-simple"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-autosize": {
         "use": [
@@ -964,4 +965,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'd5b188c710f60840a4c2f8836338c822';
+YUI.Env[Y.version].md5 = 'c266876d61ec6348c91831fca780184b';
