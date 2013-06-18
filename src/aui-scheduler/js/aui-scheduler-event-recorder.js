@@ -17,6 +17,10 @@ var Lang = A.Lang,
 		return Math.min(Math.max(value, min), max);
 	},
 
+	isNodeList = function(v) {
+		return (v instanceof A.NodeList);
+	},
+
 	DateMath = A.DataType.DateMath,
 
 	_DASH = '-',
@@ -28,27 +32,31 @@ var Lang = A.Lang,
 	SCHEDULER_EVENT_RECORDER = 'scheduler-event-recorder',
 
 	ACTIVE_VIEW = 'activeView',
-	ARROW = 'arrow',
 	BODY = 'body',
 	BODY_CONTENT = 'bodyContent',
+	BODY_TEMPLATE = 'bodyTemplate',
+	CONSTRAIN = 'constrain',
 	BOUNDING_BOX = 'boundingBox',
 	CANCEL = 'cancel',
+	CHILDREN = 'children',
 	CLICK = 'click',
+	CLICKOUTSIDE = 'clickoutside',
 	CONTENT = 'content',
+	CONTENT_BOX = 'contentBox',
 	DATE = 'date',
 	DATE_FORMAT = 'dateFormat',
 	DELETE = 'delete',
 	END_DATE = 'endDate',
 	EVENT = 'event',
+	EVENT_CHANGE = 'eventChange',
 	FOOTER_CONTENT = 'footerContent',
 	FORM = 'form',
 	HEADER = 'header',
+	HEADER_TEMPLATE = 'headerTemplate',
 	ISO_TIME = 'isoTime',
 	KEY_DOWN = 'keydown',
 	NODE = 'node',
-	OFFSET_HEIGHT = 'offsetHeight',
-	OFFSET_WIDTH = 'offsetWidth',
-	OVERLAY = 'overlay',
+	POP_OVER = 'popover',
 	RECORDER = 'recorder',
 	RENDERED = 'rendered',
 	SAVE = 'save',
@@ -68,30 +76,16 @@ var Lang = A.Lang,
 	CSS_SCHEDULER_EVENT = getCN(SCHEDULER_EVENT),
 
 	CSS_SCHEDULER_EVENT_RECORDER = getCN(SCHEDULER_EVENT, RECORDER),
-	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY),
-	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, ARROW),
-	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_TOP = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, ARROW, TOP),
-	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_SHADOW = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, ARROW, SHADOW),
-	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_BODY = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, BODY),
-	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_CONTENT = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, CONTENT),
-	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_DATE = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, DATE),
-	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_FORM = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, FORM),
-	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_HEADER = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, HEADER),
+	CSS_SCHEDULER_EVENT_RECORDER_CONTENT = getCN(SCHEDULER_EVENT, RECORDER, CONTENT),
+	CSS_SCHEDULER_EVENT_RECORDER_POP_OVER = getCN(SCHEDULER_EVENT, RECORDER, POP_OVER),
 
-	TPL_OVERLAY_BODY_CONTENT = [
-		'<div class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_SHADOW, ' ', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW, '"></div>',
-		'<div class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW, '"></div>',
-		'<input type="hidden" name="startDate" value="{startDate}" />',
-		'<input type="hidden" name="endDate" value="{endDate}" />',
-		'<div class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_HEADER, '">',
-			'<input class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_CONTENT, '" name="content" value="{content}" />',
-		'</div>',
-		'<div class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_BODY, '">',
-			'<label class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_DATE, '">{date}</label>',
-		'</div>'
-	],
+	TPL_FORM = '<form class="' + 'scheduler-event-recorder-form' + '" id="schedulerEventRecorderForm"></form>',
 
-	TPL_OVERLAY_FORM = '<form class="' + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_FORM + '" id="schedulerEventRecorderForm"></form>';
+	TPL_BODY_CONTENT = '<input type="hidden" name="startDate" value="{startDate}" />' +
+						'<input type="hidden" name="endDate" value="{endDate}" />' +
+						'<label class="' + 'scheduler-event-recorder-date' + '">{date}</label>';
+
+	TPL_HEADER_CONTENT = '<input class="' + CSS_SCHEDULER_EVENT_RECORDER_CONTENT + '" name="content" value="{content}" />';
 
 /**
  * A base class for SchedulerEventRecorder.
@@ -186,6 +180,27 @@ var SchedulerEventRecorder = A.Component.create({
 		/**
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
+		 * @attribute popover
+		 * @type Object
+		 */
+		popover: {
+			validator: isObject,
+			value: {
+				align: {
+					points: [A.WidgetPositionAlign.BC, A.WidgetPositionAlign.TC]
+				},
+				bodyContent: TPL_BODY_CONTENT,
+				headerContent: TPL_HEADER_CONTENT,
+				preventOverlap: true,
+				position: TOP,
+				visible: false,
+				zIndex: 500
+			}
+		},
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
 		 * @attribute strings
 		 * @type Object
 		 */
@@ -211,39 +226,14 @@ var SchedulerEventRecorder = A.Component.create({
 		/**
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
-		 * @attribute overlay
-		 * @type Object
-		 */
-		overlay: {
-			validator: isObject,
-			value: {
-				constrain: true,
-				visible: false,
-				width: 300,
-				zIndex: 500
-			}
-		},
-
-		/**
-		 * TODO. Wanna help? Please send a Pull Request.
-		 * See #2530972
-		 *
-		 * @attribute overlayOffset
-		 * @default [15, -38]
-		 * @type Array
-		 */
-		overlayOffset: {
-			value: [15, -38],
-			validator: isArray
-		},
-
-		/**
-		 * TODO. Wanna help? Please send a Pull Request.
-		 *
 		 * @attribute template
 		 */
-		template: {
-			value: TPL_OVERLAY_BODY_CONTENT
+		bodyTemplate: {
+			value: TPL_BODY_CONTENT
+		},
+
+		headerTemplate: {
+			value: TPL_HEADER_CONTENT
 		},
 
 		/**
@@ -256,31 +246,9 @@ var SchedulerEventRecorder = A.Component.create({
 		toolbar: {
 			setter: function(val) {
 				var instance = this;
-				var strings = instance.get(STRINGS);
 
 				return A.merge({
-					children: [
-						[
-							{
-								label: strings[SAVE],
-								on: {
-									click: A.bind(instance._handleSaveEvent, instance)
-								}
-							},
-							{
-								label: strings[CANCEL],
-								on: {
-									click: A.bind(instance._handleCancelEvent, instance)
-								}
-							},
-							{
-								label: strings[DELETE],
-								on: {
-									click: A.bind(instance._handleDeleteEvent, instance)
-								}
-							}
-						]
-					]
+					children: instance._getToolbarChildren()
 				}, val || {});
 			},
 			validator: isObject,
@@ -327,48 +295,49 @@ var SchedulerEventRecorder = A.Component.create({
 				defaultFn: instance._defSaveEventFn
 			});
 
+			instance.after(EVENT_CHANGE, instance._afterEventChange);
 			instance.after(SCHEDULER_CHANGE, instance._afterSchedulerChange);
 
-			instance[OVERLAY] = new A.Overlay(instance.get(OVERLAY));
+			instance[POP_OVER] = new A.Popover(instance.get(POP_OVER));
 			instance[TOOLBAR] = new A.Toolbar(instance.get(TOOLBAR));
 
-			instance[OVERLAY].on(VISIBLE_CHANGE, A.bind(instance._onOverlayVisibleChange, instance));
+			instance[POP_OVER].after(VISIBLE_CHANGE, A.bind(instance._afterPopoverVisibleChange, instance));
 		},
 
-		/**
-		 * TODO. Wanna help? Please send a Pull Request.
-		 *
-		 * @method getOverlayContentNode
-		 */
-		getOverlayContentNode: function() {
+		_afterEventChange: function(event) {
 			var instance = this;
-			var overlayBB = instance[OVERLAY].get(BOUNDING_BOX);
 
-			return overlayBB.one(_DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_CONTENT);
+			instance[TOOLBAR].set('children', instance._getToolbarChildren());
 		},
 
 		/**
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
-		 * @method getUpdatedSchedulerEvent
-		 * @param optAttrMap
+		 * @method _afterPopoverVisibleChange
+		 * @param event
+		 * @protected
 		 */
-		getUpdatedSchedulerEvent: function(optAttrMap) {
-			var instance = this,
-				schedulerEvent = instance.get(EVENT),
-				options = {
-					silent: !schedulerEvent
-				},
-				formValues = instance.serializeForm();
+		_afterPopoverVisibleChange: function(event) {
+			var instance = this;
 
-			if (!schedulerEvent) {
-				schedulerEvent = instance.clone();
+			if (event.newVal) {
+				instance.populateForm();
+
+				if (!instance.get(EVENT)) {
+					var contentNode = instance.getContentNode();
+
+					if (contentNode) {
+						setTimeout(function() {
+							contentNode.selectText();
+						}, 0);
+					}
+				}
 			}
+			else {
+				instance.set(EVENT, null, { silent: true });
 
-			schedulerEvent.set(SCHEDULER, instance.get(SCHEDULER), { silent: true });
-			schedulerEvent.setAttrs(A.merge(formValues, optAttrMap), options);
-
-			return schedulerEvent;
+				instance.get(NODE).remove();
+			}
 		},
 
 		/**
@@ -398,7 +367,7 @@ var SchedulerEventRecorder = A.Component.create({
 
 			instance.get(NODE).remove();
 
-			instance.hideOverlay();
+			instance.hidePopOver();
 		},
 
 		/**
@@ -414,7 +383,7 @@ var SchedulerEventRecorder = A.Component.create({
 
 			scheduler.removeEvents(instance.get(EVENT));
 
-			instance.hideOverlay();
+			instance.hidePopOver();
 
 			scheduler.syncEventsUI();
 		},
@@ -430,7 +399,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
 
-			instance.hideOverlay();
+			instance.hidePopOver();
 
 			scheduler.syncEventsUI();
 		},
@@ -448,9 +417,42 @@ var SchedulerEventRecorder = A.Component.create({
 
 			scheduler.addEvents(event.newSchedulerEvent);
 
-			instance.hideOverlay();
+			instance.hidePopOver();
 
 			scheduler.syncEventsUI();
+		},
+
+		_getToolbarChildren: function() {
+			var instance = this,
+				event = instance.get(EVENT),
+				strings = instance.get(STRINGS),
+				children = [
+					{
+						label: strings[SAVE],
+						on: {
+							click: A.bind(instance._handleSaveEvent, instance)
+						}
+					},
+					{
+						label: strings[CANCEL],
+						on: {
+							click: A.bind(instance._handleCancelEvent, instance)
+						}
+					}
+				];
+
+			if (event) {
+				children.push(
+					{
+						label: strings[DELETE],
+						on: {
+							click: A.bind(instance._handleDeleteEvent, instance)
+						}
+					}
+				);
+			}
+
+			return [children];
 		},
 
 		/**
@@ -464,6 +466,10 @@ var SchedulerEventRecorder = A.Component.create({
 			var instance = this;
 
 			instance.fire('cancel');
+
+			if (event.domEvent) {
+				event.domEvent.preventDefault();
+			}
 
 			event.preventDefault();
 		},
@@ -495,6 +501,10 @@ var SchedulerEventRecorder = A.Component.create({
 				schedulerEvent: instance.get(EVENT)
 			});
 
+			if (event.domEvent) {
+				event.domEvent.preventDefault();
+			}
+
 			event.preventDefault();
 		},
 
@@ -508,7 +518,7 @@ var SchedulerEventRecorder = A.Component.create({
 		_handleEscapeEvent: function(event) {
 			var instance = this;
 
-			if (instance[OVERLAY].get(RENDERED) && (event.keyCode == A.Event.KeyMap.ESC)) {
+			if (instance[POP_OVER].get(RENDERED) && (event.keyCode === A.Event.KeyMap.ESC)) {
 				instance.fire('cancel');
 
 				event.preventDefault();
@@ -530,6 +540,10 @@ var SchedulerEventRecorder = A.Component.create({
 				newSchedulerEvent: instance.getUpdatedSchedulerEvent()
 			});
 
+			if (event.domEvent) {
+				event.domEvent.preventDefault();
+			}
+
 			event.preventDefault();
 		},
 
@@ -546,37 +560,8 @@ var SchedulerEventRecorder = A.Component.create({
 
 			if (evt) {
 				instance.set(EVENT, evt, { silent: true });
-				instance.showOverlay([event.pageX, event.pageY]);
 
-				instance.get(NODE).remove();
-			}
-		},
-
-		/**
-		 * TODO. Wanna help? Please send a Pull Request.
-		 *
-		 * @method _onOverlayVisibleChange
-		 * @param event
-		 * @protected
-		 */
-		_onOverlayVisibleChange: function(event) {
-			var instance = this;
-
-			if (event.newVal) {
-				instance.populateForm();
-
-				if (!instance.get(EVENT)) {
-					var overlayContentNode = instance.getOverlayContentNode();
-
-					if (overlayContentNode) {
-						setTimeout(function() {
-							overlayContentNode.selectText();
-						}, 0);
-					}
-				}
-			}
-			else {
-				instance.set(EVENT, null, { silent: true });
+				instance.showPopOver(event.currentTarget);
 
 				instance.get(NODE).remove();
 			}
@@ -598,30 +583,36 @@ var SchedulerEventRecorder = A.Component.create({
 		/**
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
-		 * @method _renderOverlay
+		 * @method _renderPopOver
 		 * @protected
 		 */
-		_renderOverlay: function() {
-			var instance = this;
-			var scheduler = instance.get(SCHEDULER);
-			var schedulerBB = scheduler.get(BOUNDING_BOX);
-			var strings = instance.get(STRINGS);
+		_renderPopOver: function() {
+			var instance = this,
+				scheduler = instance.get(SCHEDULER),
+				schedulerBB = scheduler.get(BOUNDING_BOX),
+				strings = instance.get(STRINGS);
 
-			instance[OVERLAY].render(schedulerBB);
+			instance[POP_OVER].render(schedulerBB);
 			instance[TOOLBAR].render(schedulerBB);
 
-			var overlayBB = instance[OVERLAY].get(BOUNDING_BOX);
-			overlayBB.addClass(CSS_SCHEDULER_EVENT_RECORDER_OVERLAY);
-
-			instance[OVERLAY].set(FOOTER_CONTENT, instance[TOOLBAR].get(BOUNDING_BOX));
-
-			instance.formNode = A.Node.create(TPL_OVERLAY_FORM);
-
-			instance[OVERLAY].set(BODY_CONTENT, instance.formNode);
+			instance.formNode = A.Node.create(TPL_FORM);
 
 			instance.formNode.on(SUBMIT, A.bind(instance._onSubmitForm, instance));
 
-			scheduler.get(BOUNDING_BOX).on('clickoutside', A.bind(instance._handleClickOutSide, instance));
+			instance[POP_OVER].get(BOUNDING_BOX).addClass(CSS_SCHEDULER_EVENT_RECORDER_POP_OVER);
+			instance[POP_OVER].get(CONTENT_BOX).wrap(instance.formNode);
+
+			instance[POP_OVER].set(CONSTRAIN, schedulerBB);
+			instance[POP_OVER].set(FOOTER_CONTENT, instance[TOOLBAR].get(BOUNDING_BOX));
+
+			schedulerBB.on(CLICKOUTSIDE, A.bind(instance._handleClickOutSide, instance));
+		},
+
+		getContentNode: function() {
+			var instance = this;
+			var popOverBB = instance[POP_OVER].get(BOUNDING_BOX);
+
+			return popOverBB.one(_DOT + CSS_SCHEDULER_EVENT_RECORDER_CONTENT);
 		},
 
 		/**
@@ -668,12 +659,36 @@ var SchedulerEventRecorder = A.Component.create({
 		/**
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
-		 * @method hideOverlay
+		 * @method getUpdatedSchedulerEvent
+		 * @param optAttrMap
 		 */
-		hideOverlay: function() {
+		getUpdatedSchedulerEvent: function(optAttrMap) {
+			var instance = this,
+				schedulerEvent = instance.get(EVENT),
+				options = {
+					silent: !schedulerEvent
+				},
+				formValues = instance.serializeForm();
+
+			if (!schedulerEvent) {
+				schedulerEvent = instance.clone();
+			}
+
+			schedulerEvent.set(SCHEDULER, instance.get(SCHEDULER), { silent: true });
+			schedulerEvent.setAttrs(A.merge(formValues, optAttrMap), options);
+
+			return schedulerEvent;
+		},
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method hidePopOver
+		 */
+		hidePopOver: function() {
 			var instance = this;
 
-			instance[OVERLAY].hide();
+			instance[POP_OVER].hide();
 		},
 
 		/**
@@ -683,10 +698,12 @@ var SchedulerEventRecorder = A.Component.create({
 		 */
 		populateForm: function() {
 			var instance = this,
-				tpl = instance.get(TEMPLATE).join(_EMPTY);
+				bodyTemplate = instance.get(BODY_TEMPLATE),
+				headerTemplate = instance.get(HEADER_TEMPLATE),
+				templateData = instance.getTemplateData();
 
-			instance.formNode.setContent(
-				A.Lang.sub(tpl, instance.getTemplateData()));
+			instance[POP_OVER].bodyNode.setContent(A.Lang.sub(bodyTemplate, templateData));
+			instance[POP_OVER].headerNode.setContent(A.Lang.sub(headerTemplate, templateData));
 		},
 
 		/**
@@ -700,51 +717,30 @@ var SchedulerEventRecorder = A.Component.create({
 			return A.QueryString.parse(_serialize(instance.formNode.getDOM()));
 		},
 
-		/**
-		 * TODO. Wanna help? Please send a Pull Request.
-		 *
-		 * @method showOverlay
-		 * @param xy
-		 */
-		showOverlay: function(xy) {
+		showPopOver: function(node) {
 			var instance = this,
-				originalXY = xy.concat([]),
-				overlay = instance[OVERLAY],
-				overlayBB = overlay.get(BOUNDING_BOX);
+				event = instance.get(EVENT);
 
-			if (!instance[OVERLAY].get(RENDERED)) {
-				instance._renderOverlay();
+			if (!instance[POP_OVER].get(RENDERED)) {
+				instance._renderPopOver();
 			}
 
-			overlay.show();
-
-			instance.handleEscapeEvent = A.on(KEY_DOWN, A.bind(instance._handleEscapeEvent, instance));
-
-			var arrows = overlayBB.all(_DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW),
-				firstArrow = arrows.item(0),
-				firstArrowHeight = firstArrow.get(OFFSET_HEIGHT),
-				firstArrowWidth = firstArrow.get(OFFSET_WIDTH);
-
-			arrows.removeClass(CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_TOP).show();
-
-			xy[0] -= overlayBB.get(OFFSET_WIDTH)*0.5;
-			xy[1] -= overlayBB.get(OFFSET_HEIGHT) + firstArrowHeight*0.5;
-
-			var constrainedXY = overlay.getConstrainedXY(xy);
-
-			if (constrainedXY[1] !== xy[1]) {
-				xy[1] = originalXY[1] + firstArrowHeight*0.5;
-
-				arrows.addClass(CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_TOP);
+			if (!node) {
+				if (event) {
+					node = event.get(NODE);
+				}
+				else {
+					node = instance.get(NODE);
+				}
 			}
 
-			xy = overlay.getConstrainedXY(xy);
+			if (isNodeList(node)) {
+				node = node.item(0);
+			}
 
-			overlay.set('xy', xy);
+			instance[POP_OVER].set('align.node', node);
 
-			var arrowX = clamp(originalXY[0] - firstArrowWidth*0.5, xy[0], xy[0] + overlayBB.get(OFFSET_WIDTH));
-
-			arrows.setX(arrowX);
+			instance[POP_OVER].show();
 		}
 	}
 });
