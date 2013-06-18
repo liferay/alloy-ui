@@ -682,7 +682,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "io-form",
             "overlay",
             "aui-scheduler-base",
-            "aui-toolbar"
+            "aui-toolbar",
+            "aui-popover"
         ],
         "skinnable": true
     },
@@ -965,4 +966,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'c266876d61ec6348c91831fca780184b';
+YUI.Env[Y.version].md5 = 'fcace786c98ca6abf3d4ee70ffae3d40';
