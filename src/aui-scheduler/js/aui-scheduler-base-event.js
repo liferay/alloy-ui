@@ -518,7 +518,7 @@ var SchedulerEvent = A.Component.create({
 				instance.get(MEETING)
 			);
 			instance._uiSetPast(
-				instance.get(END_DATE).getTime() < new Date().getTime()
+				instance._isPastEvent()
 			);
 			instance._uiSetReminder(
 				instance.get(REMINDER)
@@ -1019,6 +1019,19 @@ var SchedulerEvent = A.Component.create({
 			var instance = this;
 
 			instance._uiSetVisible(event.newVal);
+		},
+
+		/**
+		 * Returns true if the event ends before the current date.
+		 *
+		 * @method _isPastEvent
+		 * @protected
+		 */
+		_isPastEvent: function() {
+			var instance = this,
+				endDate = instance.get(END_DATE);
+
+			return (endDate.getTime() < (new Date()).getTime());
 		},
 
 		/**
