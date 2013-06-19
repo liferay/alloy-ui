@@ -5,6 +5,7 @@
  */
 
 var Lang = A.Lang,
+    UA = A.UA,
 
     StdMod = A.WidgetStdMod,
 
@@ -20,11 +21,13 @@ var Lang = A.Lang,
     CLICK = 'click',
     DESTROY_ON_HIDE = 'destroyOnHide',
     DRAGGABLE = 'draggable',
+    DRAGGABLE_CHANGE = 'draggableChange',
     FILL_HEIGHT = 'fillHeight',
     HEIGHT = 'height',
     MODAL = 'modal',
     MOUSEMOVE = 'mousemove',
     RESIZABLE = 'resizable',
+    RESIZABLE_CHANGE = 'resizableChange',
     VISIBLE_CHANGE = 'visibleChange',
     WIDTH = 'width',
 
@@ -66,10 +69,33 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
     initializer: function() {
         var instance = this;
 
-        A.after(instance._afterFillHeight, instance, FILL_HEIGHT);
-        instance.after('resize:end', A.bind(instance._syncResizeDimensions, instance));
-        instance.after(VISIBLE_CHANGE, instance._afterVisibleChange);
-        instance.once([CLICK, MOUSEMOVE], instance._onUserInitInteraction);
+        var eventHandles = [
+            A.after(instance._afterFillHeight, instance, FILL_HEIGHT),
+            instance.after('resize:end', A.bind(instance._syncResizeDimensions, instance)),
+            instance.after(DRAGGABLE_CHANGE, instance._afterDraggableChange),
+            instance.after(RESIZABLE_CHANGE, instance._afterResizableChange),
+            instance.after(VISIBLE_CHANGE, instance._afterVisibleChange)
+        ]
+
+        instance._applyPlugin(instance._onUserInitInteraction);
+
+        instance._eventHandles = eventHandles;
+    },
+
+    /**
+     * Destructor lifecycle implementation for the Modal class. Lifecycle.
+     *
+     * @method destructor
+     * @protected
+     */
+    destructor: function() {
+        var instance = this;
+
+        (new A.EventHandle(instance._eventHandles)).detach();
+
+        if (instance._userInteractionHandle) {
+            instance._userInteractionHandle.detach();
+        }
     },
 
     /**
@@ -102,6 +128,40 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
     },
 
     /**
+     * Fire after drag changes.
+     *
+     * @method _afterDraggableChange
+     * @param event
+     * @protected
+     */
+    _afterDraggableChange: function(event) {
+        var instance = this;
+
+        if (event.newVal) {
+            instance._applyPlugin(instance._plugDrag);
+        } else {
+            instance.unplug(A.Plugin.Drag);
+        }
+    },
+
+    /**
+     * Fire after resize changes.
+     *
+     * @method _afterResizableChange
+     * @param event
+     * @protected
+     */
+    _afterResizableChange: function(event) {
+        var instance = this;
+
+        if (event.newVal) {
+            instance._applyPlugin(instance._plugResize);
+        } else {
+            instance.unplug(A.Plugin.Resize);
+        }
+    },
+
+    /**
      * Fire after visibility changes.
      *
      * @method _afterVisibleChange
@@ -113,6 +173,24 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
 
         if (!event.newVal && instance.get(DESTROY_ON_HIDE)) {
             instance.destroy();
+        }
+    },
+
+    /**
+     * Applies a plugin to the modal instance.
+     *
+     * @method _applyPlugin
+     * @param pluginFn
+     * @protected
+     */
+    _applyPlugin: function(pluginFn) {
+        var instance = this;
+
+        if (UA.touchEnabled) {
+            pluginFn.apply(instance);
+        }
+        else if (!instance._userInteractionHandle) {
+            instance._userInteractionHandle = instance.once([CLICK, MOUSEMOVE], instance._onUserInitInteraction, instance);
         }
     },
 
@@ -170,14 +248,42 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
             draggable = instance.get(DRAGGABLE),
             resizable = instance.get(RESIZABLE);
 
+        instance._userInteractionHandle = null;
+
         if (draggable) {
-            instance.plug(A.Plugin.Drag, instance._addBubbleTargets(draggable));
+            instance._plugDrag();
         }
 
         if (resizable) {
-            instance.plug(A.Plugin.Resize, instance._addBubbleTargets(resizable));
-            A.before(instance._beforeResizeCorrectDimensions, instance.resize, '_correctDimensions', instance);
+            instance._plugResize();
         }
+    },
+
+    /**
+     * Plug the drag Plugin
+     *
+     * @method _plugDrag
+     * @protected
+     */
+    _plugDrag: function() {
+        var instance = this,
+            draggable = instance.get(DRAGGABLE);
+
+        instance.plug(A.Plugin.Drag, instance._addBubbleTargets(draggable));
+    },
+
+    /**
+     * Plug the resize Plugin
+     *
+     * @method _plugResize
+     * @protected
+     */
+    _plugResize: function() {
+        var instance = this,
+            resizable = instance.get(RESIZABLE);
+
+        instance.plug(A.Plugin.Resize, instance._addBubbleTargets(resizable));
+        A.before(instance._beforeResizeCorrectDimensions, instance.resize, '_correctDimensions', instance);
     },
 
     /**
@@ -254,8 +360,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
                 plugins: [
                     { fn: A.Plugin.DDConstrained }
                 ]
-            },
-            writeOnce: true
+            }
         },
 
         /**
@@ -268,8 +373,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
         resizable: {
             value: {
                 handles: BR
-            },
-            writeOnce: true
+            }
         },
 
         /**
