@@ -1,72 +1,9 @@
-.scheduler-event-recorder-overlay {
-  -moz-border-radius: 6px;
-  -moz-box-shadow: 0 1px 12px rgba(0, 0, 0, 0.3);
-  -webkit-border-radius: 6px;
-  -webkit-box-shadow: 0 1px 12px rgba(0, 0, 0, 0.3);
-  background: #FFFFFF;
-  border: 1px solid #BBB;
-  border-radius: 6px;
-  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.3);
-  font-size: 13px;
-  line-height: 15px;
-  padding: 10px 20px 20px 20px;
+.scheduler-event-recorder-popover .popover-footer {
+  padding: 5px 14px;
 }
 
-.scheduler-event-recorder-overlay-arrow {
-  border-color: #FFFFFF transparent transparent transparent;
-  border-style: solid;
-  border-width: 12px;
-  font-size: 0;
-  bottom: -24px;
-  left: auto;
-  line-height: 0;
-  position: absolute;
-  width: 0;
-}
-
-.scheduler-event-recorder-overlay-arrow {
-  border-color: #FFFFFF transparent transparent transparent;
-}
-
-.scheduler-event-recorder-overlay-arrow-shadow {
-  border-color: #ccc transparent transparent transparent;
-  bottom: -25px;
-}
-
-.scheduler-event-recorder-overlay-arrow.scheduler-event-recorder-overlay-arrow-top {
-  border-color: transparent transparent #F7F7F7 transparent;
-  bottom: auto;
-  top: -24px;
-}
-
-.scheduler-event-recorder-overlay-arrow-shadow.scheduler-event-recorder-overlay-arrow-top {
-  border-color: transparent transparent #CCC transparent;
-  top: -25px;
-}
-
-.scheduler-event-recorder-overlay-header {
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  background-color: #F7F7F7;
-  border-color: #DEDEDE;
-  border-radius: 4px 4px 0 0;
-  border-style: none none solid;
-  border-width: medium medium 1px;
-  box-shadow: none;
-  margin: -10px -20px 0 -20px;
-  padding: 10px 20px;
-}
-
-.scheduler-event-recorder-overlay-content {
-  background-color: transparent;
-  border: none;
-  font-size: 20px;
-  margin: 10px 0;
-  width: 100%;
-}
-
-.scheduler-event-recorder-overlay-body {
-  margin: 10px 0 15px;
+.scheduler-event-recorder-form {
+  margin: 0;
 }
 
 .scheduler-event.scheduler-event-recorder {
@@ -74,12 +11,4 @@
   opacity: .7;
   position: relative;
   width: 99.88%;
-}
-
-.scheduler-event-recorder-form .fieldset-legend {
-  padding-bottom: 1em;
-}
-
-.scheduler-event-recorder-form .button-row {
-  padding: 5px;
 }

@@ -704,7 +704,7 @@ var SchedulerBase = A.Component.create({
 				var eventRecorder = instance.get(EVENT_RECORDER);
 
 				if (eventRecorder) {
-					eventRecorder.hideOverlay();
+					eventRecorder.hidePopover();
 				}
 
 				instance._uiSetDate(instance.get(DATE));

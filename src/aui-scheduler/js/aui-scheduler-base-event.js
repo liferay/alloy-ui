@@ -46,7 +46,7 @@ var Lang = A.Lang,
 		}
 
 		if (date.getHours() >= 12) {
-			format.push('p');
+			format.push('pm');
 		}
 
 		return format.join(_EMPTY_STR);
@@ -96,6 +96,7 @@ var Lang = A.Lang,
 	NODE = 'node',
 	NOSCROLL = 'noscroll',
 	PALLETE = 'pallete',
+	PAST = 'past',
 	PREV = 'prev',
 	PREV_DATE = 'prevDate',
 	REMINDER = 'reminder',
@@ -157,6 +158,7 @@ var Lang = A.Lang,
 	CSS_SCHEDULER_EVENT_ICON_REPEATED = getCN(SCHEDULER_EVENT, ICON, REPEATED),
 	CSS_SCHEDULER_EVENT_ICONS = getCN(SCHEDULER_EVENT, ICONS),
 	CSS_SCHEDULER_EVENT_MEETING = getCN(SCHEDULER_EVENT, MEETING),
+	CSS_SCHEDULER_EVENT_PAST = getCN(SCHEDULER_EVENT, PAST),
 	CSS_SCHEDULER_EVENT_REMINDER = getCN(SCHEDULER_EVENT, REMINDER),
 	CSS_SCHEDULER_EVENT_REPEATED = getCN(SCHEDULER_EVENT, REPEATED),
 	CSS_SCHEDULER_EVENT_SHORT = getCN(SCHEDULER_EVENT, SHORT),
@@ -514,6 +516,9 @@ var SchedulerEvent = A.Component.create({
 			);
 			instance._uiSetMeeting(
 				instance.get(MEETING)
+			);
+			instance._uiSetPast(
+				instance._isPastEvent()
 			);
 			instance._uiSetReminder(
 				instance.get(REMINDER)
@@ -1017,6 +1022,19 @@ var SchedulerEvent = A.Component.create({
 		},
 
 		/**
+		 * Returns true if the event ends before the current date.
+		 *
+		 * @method _isPastEvent
+		 * @protected
+		 */
+		_isPastEvent: function() {
+			var instance = this,
+				endDate = instance.get(END_DATE);
+
+			return (endDate.getTime() < (new Date()).getTime());
+		},
+
+		/**
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @method _setColor
@@ -1172,6 +1190,19 @@ var SchedulerEvent = A.Component.create({
 			var instance = this;
 
 			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_MEETING, !!val);
+		},
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _uiSetPast
+		 * @param val
+		 * @protected
+		 */
+		_uiSetPast: function(val) {
+			var instance = this;
+
+			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_PAST, !!val);
 		},
 
 		/**

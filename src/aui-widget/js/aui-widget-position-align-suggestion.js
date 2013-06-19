@@ -1,9 +1,11 @@
 var ALIGN = 'align',
     BOTTOM = 'bottom',
     BOUNDING_BOX = 'boundingBox',
+    CONSTRAIN = 'constrain',
     LEFT = 'left',
     POSITION = 'position',
     POSITION_CHANGE = 'positionChange',
+    RENDERED = 'rendered',
     RIGHT = 'right',
     TOP = 'top',
 
@@ -12,7 +14,8 @@ var ALIGN = 'align',
 /**
 * Widget extension, which can be used to suggest alignment points based on
 * position attribute to base Widget class, through the
-* <a href="Base.html#method_build">Base.build</a> method.
+* <a href="Base.html#method_build">Base.build</a> method. It also tries to find
+* the best position in case the widget doesn't fit it's constrainment node.
 *
 * @class A.WidgetPositionAlignSuggestion
 * @param {Object} The user configuration object
@@ -61,6 +64,8 @@ A.mix(PositionAlignSuggestion.prototype, {
 
     _hasAlignmentPoints: false,
 
+    _lastPosition: null,
+
     /**
      * Construction logic executed during WidgetPositionAlignSuggestion
      * instantiation. Lifecycle.
@@ -73,6 +78,8 @@ A.mix(PositionAlignSuggestion.prototype, {
         if (config && config.align && config.align.points) {
             instance._hasAlignmentPoints = true;
         }
+
+        A.on(instance._onUISetAlignPAS, instance, '_uiSetAlign');
 
         A.after(instance._afterRenderUIPAS, instance, 'renderUI');
 
@@ -104,17 +111,6 @@ A.mix(PositionAlignSuggestion.prototype, {
     },
 
     /**
-     * Guess alignment points for the <code>position</code>.
-     *
-     * @method _getAlignPointsSuggestion
-     * @attribute position
-     * @protected
-     */
-    _getAlignPointsSuggestion: function(position) {
-        return this.POSITION_ALIGN_SUGGESTION[position];
-    },
-
-    /**
      * Fire after <code>boundingBox</code> position changes.
      *
      * @method _afterPositionChangePAS
@@ -141,6 +137,109 @@ A.mix(PositionAlignSuggestion.prototype, {
     },
 
     /**
+     * Returns true if the widget can fit inside it's constrainment node.
+     *
+     * @method _canWidgetAlignToNode
+     * @param node
+     * @param position
+     * @protected
+     */
+    _canWidgetAlignToNode: function(node, position) {
+        var instance = this,
+            constrainedXY,
+            points = instance._getAlignPointsSuggestion(position),
+            xy;
+
+        xy = instance._getNodePointXY(node, points);
+        xy = instance._getWidgetPointXY(points[0], xy[0], xy[1]);
+
+        constrainedXY = instance.getConstrainedXY(xy);
+
+        return (constrainedXY[0] === xy[0] && constrainedXY[1] === xy[1]);
+    },
+
+    /**
+     * Finds the position in which the widget fits without having to have its
+     * coordinates changed due to its constrainment node.
+     *
+     * @method _findBestPosition
+     * @param node
+     * @protected
+     */
+    _findBestPosition: function(node) {
+        var instance = this,
+            position = instance.get(POSITION),
+            testPositions = [position, TOP, BOTTOM, LEFT, RIGHT];
+
+        testPositions = A.Array.dedupe(testPositions);
+
+        A.Array.some(testPositions, function(testPosition) {
+            if (instance._canWidgetAlignToNode(node, testPosition)) {
+                position = testPosition;
+
+                return true;
+            }
+        });
+
+        return position;
+    },
+
+    /**
+     * Guess alignment points for the <code>position</code>.
+     *
+     * @method _getAlignPointsSuggestion
+     * @attribute position
+     * @protected
+     */
+    _getAlignPointsSuggestion: function(position) {
+        return this.POSITION_ALIGN_SUGGESTION[position];
+    },
+
+    /**
+     * Fire before <code>_uiSetAlign</code> method.
+     *
+     * @method _onUISetAlignPAS
+     * @param node
+     * @protected
+     */
+    _onUISetAlignPAS: function(node) {
+        var instance = this,
+            position;
+
+        if (!instance.get(CONSTRAIN) || !instance.get(RENDERED)) {
+            return;
+        }
+
+        position = instance._findBestPosition(node);
+
+        instance._syncPositionUI(
+            position, instance._lastPosition || instance.get(POSITION));
+
+        instance._lastPosition = position;
+
+        return new A.Do.AlterArgs(
+            null, [node, instance._getAlignPointsSuggestion(position)]);
+    },
+
+    /**
+     * Sync the <code>boundingBox</code> position CSS classes.
+     *
+     * @method _syncPositionUI
+     * @param val
+     * @param prevVal
+     * @protected
+     */
+    _syncPositionUI: function (val, prevVal) {
+        var instance = this,
+            boundingBox = instance.get(BOUNDING_BOX);
+
+        if (prevVal) {
+            boundingBox.removeClass(getClassName(prevVal));
+        }
+        boundingBox.addClass(getClassName(val));
+    },
+
+    /**
      * Set the <code>boundingBox</code> position on the UI.
      *
      * @method _uiSetPosition
@@ -149,13 +248,9 @@ A.mix(PositionAlignSuggestion.prototype, {
      * @protected
      */
     _uiSetPosition: function(val, prevVal) {
-        var instance = this,
-            boundingBox = instance.get(BOUNDING_BOX);
+        var instance = this;
 
-        if (prevVal) {
-            boundingBox.removeClass(getClassName(prevVal));
-        }
-        boundingBox.addClass(getClassName(val));
+        instance._syncPositionUI(val, prevVal);
 
         instance.suggestAlignment();
     }

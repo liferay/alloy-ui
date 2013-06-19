@@ -534,7 +534,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 			},
 			{ silent: true });
 
-			recorder.showOverlay([event.pageX, event.pageY]);
+			recorder.showPopover(instance.lasso);
 
 			instance._recording = false;
 		}
