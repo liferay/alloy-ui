@@ -150,8 +150,8 @@ A.mix(PositionAlignSuggestion.prototype, {
             points = instance._getAlignPointsSuggestion(position),
             xy;
 
-        xy = instance._uiSetAlignXY(node, points);
-        xy = instance._doAlignXY(points[0], xy[0], xy[1]);
+        xy = instance._getNodePointXY(node, points);
+        xy = instance._getWidgetPointXY(points[0], xy[0], xy[1]);
 
         constrainedXY = instance.getConstrainedXY(xy);
 
