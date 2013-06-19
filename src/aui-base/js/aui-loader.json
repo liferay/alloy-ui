@@ -658,7 +658,7 @@
             "io-form",
             "overlay",
             "aui-scheduler-base",
-            "aui-toolbar"
+            "aui-popover"
         ],
         "skinnable": true
     },
