@@ -6,16 +6,11 @@
  */
 
 var Lang = A.Lang,
-	isArray = Lang.isArray,
 	isObject = Lang.isObject,
 	isString = Lang.isString,
 	isUndefined = Lang.isUndefined,
 
 	_serialize = A.IO.prototype._serialize,
-
-	clamp = function(value, min, max) {
-		return Math.min(Math.max(value, min), max);
-	},
 
 	isNodeList = function(v) {
 		return (v instanceof A.NodeList);
@@ -25,36 +20,26 @@ var Lang = A.Lang,
 
 	_DASH = '-',
 	_DOT = '.',
-	_EMPTY = '',
 	_SPACE = ' ',
 
 	SCHEDULER_EVENT = 'scheduler-event',
 	SCHEDULER_EVENT_RECORDER = 'scheduler-event-recorder',
 
 	ACTIVE_VIEW = 'activeView',
-	BODY = 'body',
-	BODY_CONTENT = 'bodyContent',
 	BODY_TEMPLATE = 'bodyTemplate',
-	CONSTRAIN = 'constrain',
 	BOUNDING_BOX = 'boundingBox',
 	CANCEL = 'cancel',
-	CHILDREN = 'children',
 	CLICK = 'click',
 	CLICKOUTSIDE = 'clickoutside',
 	CONTENT = 'content',
 	CONTENT_BOX = 'contentBox',
-	DATE = 'date',
 	DATE_FORMAT = 'dateFormat',
 	DELETE = 'delete',
 	END_DATE = 'endDate',
 	EVENT = 'event',
 	EVENT_CHANGE = 'eventChange',
-	FOOTER_CONTENT = 'footerContent',
-	FORM = 'form',
-	HEADER = 'header',
 	HEADER_TEMPLATE = 'headerTemplate',
 	ISO_TIME = 'isoTime',
-	KEY_DOWN = 'keydown',
 	NODE = 'node',
 	POP_OVER = 'popover',
 	RECORDER = 'recorder',
@@ -62,11 +47,9 @@ var Lang = A.Lang,
 	SAVE = 'save',
 	SCHEDULER = 'scheduler',
 	SCHEDULER_CHANGE = 'schedulerChange',
-	SHADOW = 'shadow',
 	START_DATE = 'startDate',
 	STRINGS = 'strings',
 	SUBMIT = 'submit',
-	TEMPLATE = 'template',
 	TOP = 'top',
 	VISIBLE_CHANGE = 'visibleChange',
 
@@ -82,7 +65,7 @@ var Lang = A.Lang,
 
 	TPL_BODY_CONTENT = '<input type="hidden" name="startDate" value="{startDate}" />' +
 						'<input type="hidden" name="endDate" value="{endDate}" />' +
-						'<label class="' + 'scheduler-event-recorder-date' + '">{date}</label>';
+						'<label class="' + 'scheduler-event-recorder-date' + '">{date}</label>',
 
 	TPL_HEADER_CONTENT = '<input class="' + CSS_SCHEDULER_EVENT_RECORDER_CONTENT + '" name="content" value="{content}" />';
 
@@ -274,7 +257,7 @@ var SchedulerEventRecorder = A.Component.create({
 			instance.popover.after(VISIBLE_CHANGE, A.bind(instance._afterPopoverVisibleChange, instance));
 		},
 
-		_afterEventChange: function(event) {
+		_afterEventChange: function() {
 			var instance = this;
 
 			instance.populateForm();
@@ -332,7 +315,7 @@ var SchedulerEventRecorder = A.Component.create({
 		 * @param event
 		 * @protected
 		 */
-		_defCancelEventFn: function(event) {
+		_defCancelEventFn: function() {
 			var instance = this;
 
 			instance.get(NODE).remove();
@@ -347,7 +330,7 @@ var SchedulerEventRecorder = A.Component.create({
 		 * @param event
 		 * @protected
 		 */
-		_defDeleteEventFn: function(event) {
+		_defDeleteEventFn: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
 
@@ -365,7 +348,7 @@ var SchedulerEventRecorder = A.Component.create({
 		 * @param event
 		 * @protected
 		 */
-		_defEditEventFn: function(event) {
+		_defEditEventFn: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
 
@@ -451,7 +434,7 @@ var SchedulerEventRecorder = A.Component.create({
 		 * @param event
 		 * @protected
 		 */
-		_handleClickOutSide: function(event) {
+		_handleClickOutSide: function() {
 			var instance = this;
 
 			instance.fire('cancel');
@@ -559,8 +542,7 @@ var SchedulerEventRecorder = A.Component.create({
 		_renderPopover: function() {
 			var instance = this,
 				scheduler = instance.get(SCHEDULER),
-				schedulerBB = scheduler.get(BOUNDING_BOX),
-				strings = instance.get(STRINGS);
+				schedulerBB = scheduler.get(BOUNDING_BOX);
 
 			instance.popover.render(schedulerBB);
 
