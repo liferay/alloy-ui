@@ -67,7 +67,6 @@ var Lang = A.Lang,
 	STRINGS = 'strings',
 	SUBMIT = 'submit',
 	TEMPLATE = 'template',
-	TOOLBAR = 'toolbar',
 	TOP = 'top',
 	VISIBLE_CHANGE = 'visibleChange',
 
@@ -225,25 +224,6 @@ var SchedulerEventRecorder = A.Component.create({
 
 		headerTemplate: {
 			value: TPL_HEADER_CONTENT
-		},
-
-		/**
-		 * TODO. Wanna help? Please send a Pull Request.
-		 *
-		 * @attribute toolbar
-		 * @default {}
-		 * @type Object
-		 */
-		toolbar: {
-			setter: function(val) {
-				var instance = this;
-
-				return A.merge({
-					children: instance._getToolbarChildren()
-				}, val || {});
-			},
-			validator: isObject,
-			value: {}
 		}
 	},
 
@@ -290,7 +270,6 @@ var SchedulerEventRecorder = A.Component.create({
 			instance.after(SCHEDULER_CHANGE, instance._afterSchedulerChange);
 
 			instance.popover = new A.Popover(instance.get(POP_OVER));
-			instance.toolbar = new A.Toolbar(instance.get(TOOLBAR));
 
 			instance.popover.after(VISIBLE_CHANGE, A.bind(instance._afterPopoverVisibleChange, instance));
 		},
@@ -298,7 +277,7 @@ var SchedulerEventRecorder = A.Component.create({
 		_afterEventChange: function(event) {
 			var instance = this;
 
-			instance[TOOLBAR].set('children', instance._getToolbarChildren());
+			instance.populateForm();
 		},
 
 		/**
@@ -413,7 +392,7 @@ var SchedulerEventRecorder = A.Component.create({
 			scheduler.syncEventsUI();
 		},
 
-		_getToolbarChildren: function() {
+		_getFooterToolbar: function() {
 			var instance = this,
 				event = instance.get(EVENT),
 				strings = instance.get(STRINGS),
@@ -589,10 +568,8 @@ var SchedulerEventRecorder = A.Component.create({
 
 			instance.formNode.on(SUBMIT, A.bind(instance._onSubmitForm, instance));
 
-			instance[POP_OVER].get(BOUNDING_BOX).addClass(CSS_SCHEDULER_EVENT_RECORDER_POP_OVER);
-			instance[POP_OVER].get(CONTENT_BOX).wrap(instance.formNode);
-
-			instance[POP_OVER].set(FOOTER_CONTENT, instance[TOOLBAR].get(BOUNDING_BOX));
+			instance.popover.get(BOUNDING_BOX).addClass(CSS_SCHEDULER_EVENT_RECORDER_POP_OVER);
+			instance.popover.get(CONTENT_BOX).wrap(instance.formNode);
 
 			schedulerBB.on(CLICKOUTSIDE, A.bind(instance._handleClickOutSide, instance));
 		},
@@ -610,6 +587,9 @@ var SchedulerEventRecorder = A.Component.create({
 					headerContent: TPL_HEADER_CONTENT,
 					preventOverlap: true,
 					position: TOP,
+					toolbars: {
+						footer: instance._getFooterToolbar()
+					},
 					visible: false,
 					zIndex: 500
 				},
@@ -711,8 +691,10 @@ var SchedulerEventRecorder = A.Component.create({
 				headerTemplate = instance.get(HEADER_TEMPLATE),
 				templateData = instance.getTemplateData();
 
-			instance[POP_OVER].bodyNode.setContent(A.Lang.sub(bodyTemplate, templateData));
-			instance[POP_OVER].headerNode.setContent(A.Lang.sub(headerTemplate, templateData));
+			instance.popover.setStdModContent('body', A.Lang.sub(bodyTemplate, templateData));
+			instance.popover.setStdModContent('header', A.Lang.sub(headerTemplate, templateData));
+
+			instance.popover.addToolbar(instance._getFooterToolbar(), 'footer');
 		},
 
 		/**
