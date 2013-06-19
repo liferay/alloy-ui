@@ -184,18 +184,9 @@ var SchedulerEventRecorder = A.Component.create({
 		 * @type Object
 		 */
 		popover: {
+			setter: '_setPopOver',
 			validator: isObject,
-			value: {
-				align: {
-					points: [A.WidgetPositionAlign.BC, A.WidgetPositionAlign.TC]
-				},
-				bodyContent: TPL_BODY_CONTENT,
-				headerContent: TPL_HEADER_CONTENT,
-				preventOverlap: true,
-				position: TOP,
-				visible: false,
-				zIndex: 500
-			}
+			value: {}
 		},
 
 		/**
@@ -602,10 +593,29 @@ var SchedulerEventRecorder = A.Component.create({
 			instance[POP_OVER].get(BOUNDING_BOX).addClass(CSS_SCHEDULER_EVENT_RECORDER_POP_OVER);
 			instance[POP_OVER].get(CONTENT_BOX).wrap(instance.formNode);
 
-			instance[POP_OVER].set(CONSTRAIN, schedulerBB);
 			instance[POP_OVER].set(FOOTER_CONTENT, instance[TOOLBAR].get(BOUNDING_BOX));
 
 			schedulerBB.on(CLICKOUTSIDE, A.bind(instance._handleClickOutSide, instance));
+		},
+
+		_setPopOver: function(val) {
+			var instance = this;
+
+			return A.merge(
+				{
+					align: {
+						points: [A.WidgetPositionAlign.BC, A.WidgetPositionAlign.TC]
+					},
+					bodyContent: TPL_BODY_CONTENT,
+					constrain: true,
+					headerContent: TPL_HEADER_CONTENT,
+					preventOverlap: true,
+					position: TOP,
+					visible: false,
+					zIndex: 500
+				},
+				val
+			);
 		},
 
 		getContentNode: function() {
