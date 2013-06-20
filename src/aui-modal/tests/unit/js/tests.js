@@ -9,13 +9,13 @@ YUI.add('module-tests', function(Y) {
         DRAG_NS = 'dd',
         DRAGGABLE = 'draggable',
 
-        RESIZE_NS = 'resize',
-        RESIZABLE = 'resizable',
-
         ERROR_PLUGIN_AVAILABLE = '{0} plugin should not be available',
         ERROR_PLUGIN_MISSING = '{0} plugin was not plugged',
         ERROR_PLUGIN_OVERRIDEN = '{0} attribute should not be overriden',
-        ERROR_PLUGIN_PLUGGED = '{0} plugin should not be already plugged';
+        ERROR_PLUGIN_PLUGGED = '{0} plugin should not be already plugged',
+
+        RESIZABLE = 'resizable',
+        RESIZE_NS = 'resize';
 
     suite.add(new Y.Test.Case({
 

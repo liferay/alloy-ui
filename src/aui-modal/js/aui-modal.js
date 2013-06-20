@@ -75,7 +75,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
             instance.after(DRAGGABLE_CHANGE, instance._afterDraggableChange),
             instance.after(RESIZABLE_CHANGE, instance._afterResizableChange),
             instance.after(VISIBLE_CHANGE, instance._afterVisibleChange)
-        ]
+        ];
 
         instance._applyPlugin(instance._onUserInitInteraction);
 
@@ -187,7 +187,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
         var instance = this;
 
         if (UA.touchEnabled) {
-            pluginFn.apply(instance);
+            pluginFn.call(instance);
         }
         else if (!instance._userInteractionHandle) {
             instance._userInteractionHandle = instance.once([CLICK, MOUSEMOVE], instance._onUserInitInteraction, instance);
