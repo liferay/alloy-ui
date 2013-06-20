@@ -20,7 +20,7 @@
         },
         "alloy-yuidoc-theme": {
             "folder": "../alloy-yuidoc-theme",
-            "repo": "https://github.com/zenorocha/alloy-yuidoc-theme.git",
+            "repo": "https://github.com/liferay/alloy-yuidoc-theme.git",
             "version": "master"
         }
     },
