@@ -25,7 +25,7 @@ Alloy is a UI framework built on top of YUI3 that provides a simple API for buil
 
 ## Build
 
-To develop and build AlloyUI you need [yogi-alloy](https://github.com/liferay/yogi-alloy), check [how to](https://github.com/liferay/yogi-alloy#1-alloyui).
+To develop and build AlloyUI you need [Yogi Alloy](https://github.com/liferay/yogi-alloy), check [how to](https://github.com/liferay/yogi-alloy#alloyui).
 
 ## Team
 
