@@ -170,6 +170,17 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
      */
     ATTRS: {
         /**
+         * Determine the tooltip constrainment node.
+         *
+         * @attribute constrain
+         * @default true
+         * @type {Boolean|Node}
+         */
+        constrain: {
+            value: true
+        },
+
+        /**
          * Determine the duration of the tooltip animation.
          *
          * @attribute duration

@@ -10,20 +10,20 @@
         },
         "yui3": {
             "folder": "../yui3",
-            "repo": "https://github.com/yui/yui3.git",
-            "version": "dev-master"
+            "repo": "https://github.com/liferay/yui3.git",
+            "version": "patched-v3.11.0pr1"
         },
-        "alloy-twitter-bootstrap": {
-            "folder": "../alloy-twitter-bootstrap",
-            "repo": "https://github.com/liferay/alloy-twitter-bootstrap.git",
+        "alloy-bootstrap": {
+            "folder": "../alloy-bootstrap",
+            "repo": "https://github.com/liferay/alloy-bootstrap.git",
             "version": "master"
         },
-        "alloy-yuidoc-theme": {
-            "folder": "../alloy-yuidoc-theme",
-            "repo": "https://github.com/zenorocha/alloy-yuidoc-theme.git",
+        "alloy-apidocs-theme": {
+            "folder": "../alloy-apidocs-theme",
+            "repo": "https://github.com/liferay/alloy-apidocs-theme.git",
             "version": "master"
         }
     },
-    "yui-version": "3.9.0pr3",
+    "yui-version": "patched-v3.11.0pr1",
     "version": "2.0.0pr5"
 }

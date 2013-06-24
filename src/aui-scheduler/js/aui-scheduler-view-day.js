@@ -1352,7 +1352,7 @@ var SchedulerDayView = A.Component.create({
 			var recorder = scheduler.get(EVENT_RECORDER);
 
 			if (recorder && !scheduler.get(DISABLED)) {
-				recorder.hideOverlay();
+				recorder.hidePopover();
 
 				if (target.test(_DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_COL_SHIM)) {
 					instance[START_XY] = [ event.pageX, event.pageY ];
@@ -1481,7 +1481,7 @@ var SchedulerDayView = A.Component.create({
 				if (instance[CREATION_START_DATE]) {
 					instance.plotEvent(recorder);
 
-					recorder.showOverlay([ event.pageX, event.pageY ]);
+					recorder.showPopover();
 				}
 			}
 

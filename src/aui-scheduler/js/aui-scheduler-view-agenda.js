@@ -577,7 +577,7 @@ var SchedulerAgendaView = A.Component.create({
 
 			if (schedulerEvent && recorder && !scheduler.get(DISABLED)) {
 				recorder.set(EVENT, schedulerEvent, { silent: true });
-				recorder.showOverlay([ event.pageX, event.pageY ]);
+				recorder.showPopover(currentTarget);
 			}
 		}
 	}

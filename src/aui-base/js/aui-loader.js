@@ -65,7 +65,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-node",
             "aui-component",
             "querystring-stringify-simple"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-autosize": {
         "use": [
@@ -681,7 +682,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "io-form",
             "overlay",
             "aui-scheduler-base",
-            "aui-toolbar"
+            "aui-popover"
         ],
         "skinnable": true
     },
@@ -964,4 +965,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'd5b188c710f60840a4c2f8836338c822';
+YUI.Env[Y.version].md5 = '51fafef15cc2f37a320933e06a65d31a';

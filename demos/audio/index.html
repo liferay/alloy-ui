@@ -1,17 +1,31 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>AlloyUI Audio Demo</title>
     <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+
+    <style>
+        #container {
+            height: 40px;
+            margin-left: 10px;
+            position: relative;
+            width: 250px;
+        }
+    </style>
+
     <script src="../../build/aui/aui.js"></script>
 </head>
+
 <body>
     <h1>AlloyUI - Audio demo</h1>
-    <div id="demo"></div>
-    <script>
-    YUI({ filter:'raw' }).use('aui-audio', function(Y) {
+    
+    <div id="container">
+        <div id="demo"></div>
+    </div>
 
+    <script>
+    YUI().use('aui-audio', function(Y) {
         new Y.Audio({
             boundingBox: '#demo',
             fixedAttributes: {
@@ -20,7 +34,6 @@
             oggUrl: '',
             url: 'assets/bc.mp3'
         }).render();
-
     });
     </script>
 </body>
