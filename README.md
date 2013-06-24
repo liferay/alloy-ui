@@ -20,12 +20,21 @@ Alloy is a UI framework built on top of YUI3 that provides a simple API for buil
 
 ## Structure
 
-* [demos/](https://github.com/liferay/alloy-ui/tree/master/demos) - Contains basic examples for each component.
-* [src/](https://github.com/liferay/alloy-ui/tree/master/src) - Source code of the Alloy modules.
+The basic structure of the project is given in the following way:
+
+* `build/` Contains AlloyUI and YUI generated files, once Yogi Alloy's build task has been run. However, this directory is unnecessary for versioning, so it is ignored ([.gitignore](https://github.com/liferay/alloy-ui/tree/2.0.x/.gitignore)).
+* `demos/` Contains basic examples of the AlloyUI modules.
+* `src/` Contains the source code of the AlloyUI modules.
+* `.alloy.json` Specifies all dependencies and some configurations.
+* `.editorconfig` Specifies the coding style for different editors/IDEs.
+* `.shifter.json` Specifies additional configuration used in building AlloyUI.
+* `LICENSE.md` Defines the license agreement for AlloyUI.
+* `README.md` Explains the AlloyUI project.
+* `package.json` Lists all NodeJS dependencies.
 
 ## Build
 
-To develop and build AlloyUI you need [yogi-alloy](https://github.com/liferay/yogi-alloy), check [how to](https://github.com/liferay/yogi-alloy#1-alloyui).
+To develop and build AlloyUI you need [Yogi Alloy](https://github.com/liferay/yogi-alloy), check [how to](https://github.com/liferay/yogi-alloy#alloyui).
 
 ## Team
 
@@ -37,4 +46,4 @@ AlloyUI is maintained by these people and a bunch of awesome [contributors](http
 
 ## License
 
-[BSB license](https://github.com/liferay/alloy-ui/blob/master/LICENSE.md)
+[BSB license](https://github.com/liferay/alloy-ui/tree/2.0.x/LICENSE.md)
