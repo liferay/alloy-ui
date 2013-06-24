@@ -114,7 +114,7 @@ TreeViewPaginator.prototype = {
 		var paginator = instance.get(PAGINATOR);
 
 		if (isValue(paginator.limit)) {
-			paginator.start = instance.childrenLength || 0;
+			paginator.start = instance.getChildrenLength();
 		}
 
 		if (instance.get(IO)) {
