@@ -211,7 +211,7 @@ var TogglerDelegate = A.Component.create({
 
             instance.on(TOGGLER_ANIMATING_CHANGE, A.bind(instance._onAnimatingChange, instance));
 
-            container.delegate([CLICK, KEYDOWN], A.bind(instance.headerEventHandler, instance), header);
+            container.delegate([CLICK, KEYDOWN], A.bind('headerEventHandler', instance), header);
         },
 
         /**
