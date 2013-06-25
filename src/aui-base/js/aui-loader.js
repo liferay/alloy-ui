@@ -775,14 +775,11 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-node-base": {
         "requires": [
-            "node-base",
-            "node-style",
-            "node-pluginhost",
-            "node-screen",
             "array-extras",
             "aui-base-lang",
             "aui-classnamemanager",
-            "aui-debounce"
+            "aui-debounce",
+            "node"
         ]
     },
     "aui-node-html5": {
@@ -1345,4 +1342,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '4c55af6b928bff4b379f78e0976e97c5';
+YUI.Env[Y.version].md5 = 'e27fa2a4410ef4e9a22e3a6411a197b0';

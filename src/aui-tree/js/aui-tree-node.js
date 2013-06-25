@@ -1408,18 +1408,6 @@ var TreeNodeCheck = A.Component.create(
 		prototype: {
 
 			/**
-			 * Construction logic executed during TreeNodeCheck instantiation. Lifecycle.
-			 *
-			 * @method initializer
-			 * @protected
-			 */
-			initializer: function() {
-				var instance = this;
-
-				instance._uiSetChecked(instance.get(CHECKED));
-			},
-
-			/**
 			 * Create the DOM structure for the TreeNodeCheck. Lifecycle.
 			 *
 			 * @method renderUI
@@ -1443,6 +1431,8 @@ var TreeNodeCheck = A.Component.create(
 				if (instance.isChecked()) {
 					instance.check();
 				}
+
+				instance._uiSetChecked(instance.get(CHECKED));
 			},
 
 			/**
