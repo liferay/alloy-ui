@@ -148,10 +148,7 @@ A.mix(PositionAlignSuggestion.prototype, {
         var instance = this,
             constrainedXY,
             points = instance._getAlignPointsSuggestion(position),
-            xy;
-
-        xy = instance._getNodePointXY(node, points);
-        xy = instance._getWidgetPointXY(points[0], xy[0], xy[1]);
+            xy = instance._getAlignedXY(node, points);
 
         constrainedXY = instance.getConstrainedXY(xy);
 
