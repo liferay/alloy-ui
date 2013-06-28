@@ -1229,8 +1229,10 @@ var Calendar = A.Component.create(
 
 				var name = instance._getDayNameShort(weekDay);
 
-				if (name.length > 1) {
-					return name.slice(0, name.length - 1);
+				var length = name.length;
+
+				if (length > 1) {
+					return name.slice(0, length - 1);
 				}
 
 				return name;
