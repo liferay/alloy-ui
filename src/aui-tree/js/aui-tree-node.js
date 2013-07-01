@@ -853,34 +853,7 @@ var TreeNode = A.Component.create(
 			 * @protected
 			 */
 			_syncIconUI: function() {
-				var instance = this,
-					ownerTree = instance.get(OWNER_TREE);
-
-				if (ownerTree) {
-					var type = ownerTree.get('type'),
-						cssClasses = instance.get('cssClasses.' + type);
-
-					if (!cssClasses) {
-						return;
-					}
-
-					var expanded = instance.get(EXPANDED),
-						iconEl = instance.get(ICON_EL),
-						hitAreaEl = instance.get(HIT_AREA_EL),
-						icon = instance.isLeaf() ?
-								cssClasses.iconLeaf :
-								(expanded ? cssClasses.iconExpanded : cssClasses.iconCollapsed),
-						iconHitArea = expanded ?
-										cssClasses.iconHitAreaExpanded :
-										cssClasses.iconHitAreaCollapsed;
-
-					if (instance.get(LOADING)) {
-						icon = cssClasses.iconLoading;
-					}
-
-					iconEl.setAttribute('className', icon || BLANK);
-					hitAreaEl.setAttribute('className', iconHitArea || BLANK);
-				}
+				var instance = this;
 
 				instance._syncHitArea();
 			},
