@@ -1232,7 +1232,7 @@ var Calendar = A.Component.create(
 				var length = name.length;
 
 				if (length > 1) {
-					return name.slice(0, length - 1);
+					name = name.slice(0, length - 1);
 				}
 
 				return name;
