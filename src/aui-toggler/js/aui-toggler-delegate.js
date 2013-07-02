@@ -209,9 +209,31 @@ var TogglerDelegate = A.Component.create({
             var container = instance.get(CONTAINER);
             var header = instance.get(HEADER);
 
-            instance.on(TOGGLER_ANIMATING_CHANGE, A.bind('_onAnimatingChange', instance));
+            instance._eventHandles = [
+                instance.on(TOGGLER_ANIMATING_CHANGE, A.bind('_onAnimatingChange', instance)),
+                container.delegate([CLICK, KEYDOWN], A.bind('headerEventHandler', instance), header)
+            ]
+        },
 
-            container.delegate([CLICK, KEYDOWN], A.bind('headerEventHandler', instance), header);
+        /**
+         * Destructor lifecycle implementation for the TogglerDelegate class. Lifecycle.
+         *
+         * @method destructor
+         * @protected
+         */
+        destructor: function() {
+            var instance = this;
+
+            AArray.each(
+                instance.items,
+                function(item, index, collection) {
+                    item.destroy();
+                }
+            );
+
+            instance.items.length = 0;
+
+            (new A.EventHandle(instance._eventHandles)).detach();
         },
 
         /**
