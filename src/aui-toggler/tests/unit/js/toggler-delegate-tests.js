@@ -3,13 +3,134 @@ YUI.add('module-tests', function(Y) {
     var suite = new Y.Test.Suite('aui-toggler-delegate'),
         togglerDelegate,
 
+        togglerContainer = Y.one('#toggler-container'),
+
+        originalMarkup = togglerContainer.getHTML(),
+
         CSS_CONTENT_SELECTOR = '.content',
         CSS_HEADER_SELECTOR = '.header',
 
         STR_CLICK = 'click',
         STR_CONTENT = 'content',
+        STR_HEADER_EVENT_HANDLER = 'headerEventHandler',
+        STR_KEYDOWN = 'keydown',
         STR_LEVEL = 'level',
+        STR_ON_ANIMATING_CHANGE = '_onAnimatingChange',
         STR_TOGGLER = 'toggler';
+
+    suite.add(new Y.Test.Case({
+
+        name: 'TogglerDelegate.destructor',
+
+        setUp: function() {
+            var instance = this;
+
+            if (togglerDelegate) {
+                togglerDelegate.destroy();
+            }
+
+            togglerContainer.setHTML(originalMarkup);
+
+            togglerDelegate = new Y.TogglerDelegate(
+                {
+                    content: CSS_CONTENT_SELECTOR,
+                    header: CSS_HEADER_SELECTOR
+                }
+            );
+
+            instance.displacedHandlers = [
+                Y.Do.before(instance._spyOn(STR_HEADER_EVENT_HANDLER), togglerDelegate, STR_HEADER_EVENT_HANDLER),
+                Y.Do.before(instance._spyOn(STR_ON_ANIMATING_CHANGE), togglerDelegate, STR_ON_ANIMATING_CHANGE)
+            ]
+        },
+
+        tearDown: function() {
+            togglerDelegate.destroy();
+
+            togglerDelegate = null;
+        },
+
+        _spyOn: function(method) {
+            var instance = this;
+
+            return function(event) {
+                if (!instance.calls) {
+                    instance.calls = {};
+                }
+
+                if (!instance.calls[method]) {
+                    instance.calls[method] = 1;
+                } else {
+                    instance.calls[method]++;
+                }
+            }
+        },
+
+        _toHaveBeenCalled: function(method) {
+            return (this.calls && this.calls[method] !== undefined);
+        },
+
+        _toNotHaveBeenCalled: function(method) {
+            return (!this.calls || !this.calls[method]);
+        },
+
+        /**
+         * Checks that TogglerDelegate properly cleans headerEventHandler
+         * listeners after being destroyed
+         *
+         * @tests AUI-939
+         */
+        'Test detached headerEventHandler': function() {
+            var instance = this;
+
+            togglerDelegate.destroy();
+
+            Y.one(CSS_HEADER_SELECTOR).simulate(STR_CLICK);
+            Y.one(CSS_HEADER_SELECTOR).simulate(STR_KEYDOWN);
+
+            Y.Assert.isTrue(instance._toNotHaveBeenCalled(STR_HEADER_EVENT_HANDLER), '_onAnimatingChange handler should be cleaned and not called after destroyed');
+        },
+
+        /**
+         * Checks that TogglerDelegate properly cleans _onAnimatingChange
+         * listeners after being destroyed
+         *
+         * @tests AUI-939
+         */
+        'Test detached _onAnimatingChange': function() {
+            var instance = this;
+
+            // Force the creation of the togglers
+            togglerDelegate.createAll();
+
+            var toggler = togglerDelegate.items[0];
+
+            togglerDelegate.destroy();
+
+            // Simulate the dispatch of animatingChange
+            toggler.set('animating', true);
+
+            Y.Assert.isTrue(instance._toNotHaveBeenCalled(STR_ON_ANIMATING_CHANGE), '_onAnimatingChange handler should be cleaned and not called after destroyed');
+        },
+
+        /**
+         * Checks that TogglerDelegate properly cleans all toggler
+         * references after being destroyed
+         *
+         * @tests AUI-939
+         */
+        'Test removed toggler references': function() {
+            var instance = this;
+
+            // Force the creation of the togglers
+            togglerDelegate.createAll();
+
+            togglerDelegate.destroy();
+
+            Y.assert(togglerDelegate.items.length === 0, 'Toggler references in TogglerDelegate:items should be cleaned after destroyed');
+        }
+
+    }));
 
     suite.add(new Y.Test.Case({
 
@@ -63,6 +184,8 @@ YUI.add('module-tests', function(Y) {
                 togglerDelegate.destroy();
             }
 
+            togglerContainer.setHTML(originalMarkup);
+
             togglerDelegate = new Y.TogglerDelegate(
                 {
                     closeAllOnExpand: true,
@@ -86,7 +209,7 @@ YUI.add('module-tests', function(Y) {
          * @tests AUI-938
          */
         'Test node path visibility': function() {
-            var instance = this;;
+            var instance = this;
 
             // Expand root node (header_0)
             var headerNode = instance._getHeader();
