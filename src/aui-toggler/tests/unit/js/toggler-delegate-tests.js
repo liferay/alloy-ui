@@ -5,7 +5,7 @@ YUI.add('module-tests', function(Y) {
 
         togglerContainer = Y.one('#toggler-container'),
 
-        originalMarkup = togglerContainer.getHTML(),
+        defaultMarkup = togglerContainer.getHTML(),
 
         CSS_CONTENT_SELECTOR = '.content',
         CSS_HEADER_SELECTOR = '.header',
@@ -29,7 +29,7 @@ YUI.add('module-tests', function(Y) {
                 togglerDelegate.destroy();
             }
 
-            togglerContainer.setHTML(originalMarkup);
+            togglerContainer.setHTML(defaultMarkup);
 
             togglerDelegate = new Y.TogglerDelegate(
                 {
@@ -39,9 +39,9 @@ YUI.add('module-tests', function(Y) {
             );
 
             instance.displacedHandlers = [
-                Y.Do.before(instance._spyOn(STR_HEADER_EVENT_HANDLER), togglerDelegate, STR_HEADER_EVENT_HANDLER),
-                Y.Do.before(instance._spyOn(STR_ON_ANIMATING_CHANGE), togglerDelegate, STR_ON_ANIMATING_CHANGE)
-            ]
+                Y.Do.before(instance._observe(STR_HEADER_EVENT_HANDLER), togglerDelegate, STR_HEADER_EVENT_HANDLER),
+                Y.Do.before(instance._observe(STR_ON_ANIMATING_CHANGE), togglerDelegate, STR_ON_ANIMATING_CHANGE)
+            ];
         },
 
         tearDown: function() {
@@ -50,28 +50,26 @@ YUI.add('module-tests', function(Y) {
             togglerDelegate = null;
         },
 
-        _spyOn: function(method) {
+        _observe: function(method) {
             var instance = this;
 
             return function(event) {
-                if (!instance.calls) {
-                    instance.calls = {};
+                if (!instance._calls) {
+                    instance._calls = {};
                 }
 
-                if (!instance.calls[method]) {
-                    instance.calls[method] = 1;
+                if (!instance._calls[method]) {
+                    instance._calls[method] = 1;
                 } else {
-                    instance.calls[method]++;
+                    instance._calls[method]++;
                 }
-            }
+            };
         },
 
-        _toHaveBeenCalled: function(method) {
-            return (this.calls && this.calls[method] !== undefined);
-        },
+        _notCalled: function(method) {
+            var instance = this;
 
-        _toNotHaveBeenCalled: function(method) {
-            return (!this.calls || !this.calls[method]);
+            return (!instance._calls || !instance._calls[method]);
         },
 
         /**
@@ -88,7 +86,7 @@ YUI.add('module-tests', function(Y) {
             Y.one(CSS_HEADER_SELECTOR).simulate(STR_CLICK);
             Y.one(CSS_HEADER_SELECTOR).simulate(STR_KEYDOWN);
 
-            Y.Assert.isTrue(instance._toNotHaveBeenCalled(STR_HEADER_EVENT_HANDLER), '_onAnimatingChange handler should be cleaned and not called after destroyed');
+            Y.Assert.isTrue(instance._notCalled(STR_HEADER_EVENT_HANDLER), '_onAnimatingChange handler should be cleaned and not called after destroyed');
         },
 
         /**
@@ -110,7 +108,7 @@ YUI.add('module-tests', function(Y) {
             // Simulate the dispatch of animatingChange
             toggler.set('animating', true);
 
-            Y.Assert.isTrue(instance._toNotHaveBeenCalled(STR_ON_ANIMATING_CHANGE), '_onAnimatingChange handler should be cleaned and not called after destroyed');
+            Y.Assert.isTrue(instance._notCalled(STR_ON_ANIMATING_CHANGE), '_onAnimatingChange handler should be cleaned and not called after destroyed');
         },
 
         /**
@@ -173,7 +171,7 @@ YUI.add('module-tests', function(Y) {
             } else {
                 var content = parent.getData(STR_TOGGLER).get(STR_CONTENT);
 
-                header = content.one('[data-level="'+ parent.getData(STR_LEVEL) + '_' + child +'"]');
+                header = content.one('[data-level="' + parent.getData(STR_LEVEL) + '_' + child + '"]');
             }
 
             return header;
@@ -184,7 +182,7 @@ YUI.add('module-tests', function(Y) {
                 togglerDelegate.destroy();
             }
 
-            togglerContainer.setHTML(originalMarkup);
+            togglerContainer.setHTML(defaultMarkup);
 
             togglerDelegate = new Y.TogglerDelegate(
                 {

@@ -1,7 +1,7 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
     <head>
-        <title>aui-toggler</title>
+        <title>AUI Toggler Delegate Unit Tests</title>
         <script src="../../../../build/aui/aui.js"></script>
         <script src="js/toggler-delegate-tests.js"></script>
         <meta charset="utf-8" />
@@ -23,11 +23,10 @@
             YUI({
                 coverage: ['aui-toggler-delegate'],
                 filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-            }).use('test-console', 'test', 'module-tests', 'dd-plugin', function(Y) {
+            }).use('dd-plugin', 'test-console', 'module-tests', 'test', function(Y) {
 
                 (new Y.Console(
                     {
-                        newestOnTop : false,
                         entryTemplate: '<pre class="{entry_class} {cat_class} {src_class}">'+
                                 '<span class="{entry_cat_class}">{label}</span>'+
                                 '<span class="{entry_content_class}">{message}</span>'+
@@ -35,10 +34,15 @@
                         filters:
                         {
                             pass: true
-                        }
+                        },
+                        newestOnTop : false
                     }
-                )).plug(Y.Plugin.Drag, { handles: ['.yui3-console-hd'] })
-                .render('#logger');
+                )).plug(
+                    Y.Plugin.Drag,
+                    {
+                        handles: ['.yui3-console-hd']
+                    }
+                ).render('#logger');
 
                 Y.Test.Runner.setName('aui-toggler-delegate');
                 Y.Test.Runner.run();
@@ -57,13 +61,13 @@
                     </div>
                     <div class="content">
                         <div>
-                            <div>Content 0</div>
+                            <div>Content 0_0</div>
                             <div class="header" data-level="0_0_0">
                                 <a href="#">header_0_0_0</a>
                             </div>
                             <div class="content">
                                 <div>
-                                    <div>Content 0</div>
+                                    <div>Content 0_0_0</div>
                                 </div>
                             </div>
 
@@ -72,7 +76,7 @@
                             </div>
                             <div class="content">
                                 <div>
-                                    <div>Content 1</div>
+                                    <div>Content 0_0_1</div>
                                 </div>
                             </div>
 
@@ -81,7 +85,7 @@
                             </div>
                             <div class="content">
                                 <div>
-                                    <div>Content 2</div>
+                                    <div>Content 0_0_2</div>
                                 </div>
                             </div>
                         </div>
@@ -92,13 +96,13 @@
                     </div>
                     <div class="content">
                         <div>
-                            <div>Content 1</div>
+                            <div>Content 0_1</div>
                             <div class="header" data-level="0_1_0">
                                 <a href="#">header_0_1_0</a>
                             </div>
                             <div class="content">
                                 <div>
-                                    <div>Content 0</div>
+                                    <div>Content 0_1_0</div>
                                 </div>
                             </div>
 
@@ -107,7 +111,7 @@
                             </div>
                             <div class="content">
                                 <div>
-                                    <div>Content 1</div>
+                                    <div>Content 0_1_1</div>
                                 </div>
                             </div>
 
@@ -116,24 +120,24 @@
                             </div>
                             <div class="content">
                                 <div>
-                                    <div>Content 2</div>
+                                    <div>Content 0_1_2</div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="header" data-level="0_2">
-                        <a href="#">header_0_1</a>
+                        <a href="#">header_0_2</a>
                     </div>
                     <div class="content">
                         <div>
                             <div>Content 1</div>
                             <div class="header" data-level="0_2_0">
-                                <a href="#">header_0_1_0</a>
+                                <a href="#">header_0_2_0</a>
                             </div>
                             <div class="content">
                                 <div>
-                                    <div>Content 0</div>
+                                    <div>Content 0_2_0</div>
                                 </div>
                             </div>
 
@@ -142,7 +146,7 @@
                             </div>
                             <div class="content">
                                 <div>
-                                    <div>Content 1</div>
+                                    <div>Content 0_2_1</div>
                                 </div>
                             </div>
 
@@ -151,7 +155,7 @@
                             </div>
                             <div class="content">
                                 <div>
-                                    <div>Content 2</div>
+                                    <div>Content 0_2_2</div>
                                 </div>
                             </div>
                         </div>
