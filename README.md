@@ -2,7 +2,7 @@
 
 ![AlloyUI Robo Suit](http://f.cl.ly/items/292d3K0l3j221n3m0V0D/Alloy-Robo-Suit.jpg)
 
-Alloy is a UI framework built on top of YUI3 that provides a simple API for building high scalable applications.
+AlloyUI is a framework built on top of [YUI3](http://yuilibrary.com) (JavaScript) that uses [Bootstrap](http://liferay.github.io/alloy-bootstrap/) (HTML/CSS) to provide a simple API for building high scalable applications.
 
 * [Official Website](http://alloyui.com/)
 * [Examples](http://alloyui.com/examples/)
