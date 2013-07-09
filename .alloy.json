@@ -11,7 +11,7 @@
         "yui3": {
             "folder": "../yui3",
             "repo": "https://github.com/liferay/yui3.git",
-            "version": "patched-v3.11.0pr1"
+            "version": "patched-dev-3.x"
         },
         "alloy-bootstrap": {
             "folder": "../alloy-bootstrap",
@@ -24,6 +24,6 @@
             "version": "master"
         }
     },
-    "yui-version": "patched-v3.11.0pr1",
+    "yui-version": "patched-dev-3.x",
     "version": "2.0.0pr5"
 }
