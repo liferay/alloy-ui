@@ -826,4 +826,4 @@ A.each(
 
 A.FormValidator = FormValidator;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base','aui-event-input','selector-css3']});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-base','aui-event-input','escape','selector-css3']});
