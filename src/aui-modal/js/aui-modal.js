@@ -392,8 +392,12 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
 						{
 							cssClass: 'close',
 							label: "\u00D7",
-							after: {
-								click: function() { instance.hide(); }
+							on: {
+								click: function(event) {
+									instance.hide();
+
+									event.domEvent.stopPropagation();
+								}
 							},
 							render: true
 						}
