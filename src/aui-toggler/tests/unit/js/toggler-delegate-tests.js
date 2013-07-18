@@ -139,7 +139,7 @@ YUI.add('module-tests', function(Y) {
             togglerDelegate.destroy();
 
             Y.assert(
-                (togglerDelegate.items.length === 0),
+                (togglerDelegate.items === null),
                 'toggler references in TogglerDelegate:items should be cleaned after destroyed');
         }
 
