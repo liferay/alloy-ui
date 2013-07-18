@@ -31,6 +31,9 @@
 		margin: 3px 0;
 	}
 
+	.aui-form-validator-warning {
+		background: lightYellow;
+	}
 	.aui-form-validator-error {
 		background: lightPink;
 	}
@@ -99,6 +102,10 @@
 					</select>
 				</p>
 				<p>
+					<label class="aui-field-label" for="password1">Password:</label>
+					<input class="aui-field-warning" type="text" name="password" id="password1" />
+				</p>
+				<p>
 					<label class="aui-field-label" for="email1">Email:</label>
 					<input type="text" name="email" id="email1" />
 				</p>
@@ -139,7 +146,8 @@
 				YUI.AUI.defaults.FormValidator.STRINGS,
 				{
 					customRule: 'Type the number 55.',
-					anotherRule: 'Message for another rule'
+					anotherRule: 'Message for another rule',
+					warning: 'Passwords longer than 5 characters are recommended'
 				},
 				true
 			);
@@ -153,6 +161,10 @@
 
 					anotherRule: function(val, fieldNode, ruleValue) {
 						return (val == 'another');
+					},
+					
+					warning: function(val, fieldNode, ruleValue) {
+						return (!!val && val.length > 5);
 					}
 				},
 				true
@@ -208,6 +220,10 @@
 						// min: 18,
 						// max: 50
 					},
+					password: {
+					    warning: true,   
+					},
+					
 					email: {
 						required: true,
 						email: true

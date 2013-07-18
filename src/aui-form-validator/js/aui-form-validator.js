@@ -26,6 +26,7 @@ var Lang = A.Lang,
 	EV_SUBMIT_ERROR = 'submitError',
 	EV_VALIDATE_FIELD = 'validateField',
 	EV_VALID_FIELD = 'validField',
+	EV_WARNING_FIELD = 'warningField',
 
 	ARIA_REQUIRED = 'aria-required',
 	BOUNDING_BOX = 'boundingBox',
@@ -33,6 +34,7 @@ var Lang = A.Lang,
 	CONTAINER = 'container',
 	CONTAINER_ERROR_CLASS = 'containerErrorClass',
 	CONTAINER_VALID_CLASS = 'containerValidClass',
+	CONTAINER_WARNING_CLASS = 'containerWarningClass',
 	ERROR = 'error',
 	ERROR_CLASS = 'errorClass',
 	EXTRACT_RULES = 'extractRules',
@@ -57,6 +59,8 @@ var Lang = A.Lang,
 	VALID_CLASS = 'validClass',
 	VALIDATE_ON_BLUR = 'validateOnBlur',
 	VALIDATE_ON_INPUT = 'validateOnInput',
+	WARNING = 'warning',
+	WARNING_CLASS = 'warningClass',
 
 	getCN = A.getClassName,
 
@@ -64,6 +68,8 @@ var Lang = A.Lang,
 	CSS_ERROR_CONTAINER = getCN(FORM_VALIDATOR, ERROR, CONTAINER),
 	CSS_VALID = getCN(FORM_VALIDATOR, VALID),
 	CSS_VALID_CONTAINER = getCN(FORM_VALIDATOR, VALID, CONTAINER),
+	CSS_WARNING = getCN(FORM_VALIDATOR, WARNING),
+	CSS_WARNING_CONTAINER = getCN(FORM_VALIDATOR, WARNING, CONTAINER),
 
 	CSS_FIELD = getCN(FIELD),
 	CSS_MESSAGE = getCN(FORM_VALIDATOR, MESSAGE),
@@ -91,7 +97,8 @@ YUI.AUI.defaults.FormValidator = {
 		range: 'Please enter a value between {0} and {1}.',
 		rangeLength: 'Please enter a value between {0} and {1} characters long.',
 		required: 'This field is required.',
-		url: 'Please enter a valid URL.'
+		url: 'Please enter a valid URL.',
+		warning : 'This value is not recommended.'
 	},
 
 	REGEX: {
@@ -204,9 +211,19 @@ var FormValidator = A.Component.create({
 			validator: isString
 		},
 
+		containerWarningClass : {
+			value : CSS_WARNING_CONTAINER,
+			validator : isString
+		},
+
 		errorClass: {
 			value: CSS_ERROR,
 			validator: isString
+		},
+
+		warningClass : {
+			value : CSS_WARNING,
+			validator : isString
 		},
 
 		extractRules: {
@@ -299,6 +316,7 @@ var FormValidator = A.Component.create({
 			var instance = this;
 
 			instance.errors = {};
+			instance.warnings = {};
 			instance._blurHandlers = null;
 			instance._inputHandlers = null;
 			instance._rulesAlreadyExtracted = false;
@@ -321,6 +339,7 @@ var FormValidator = A.Component.create({
 			instance.publish({
 				errorField: { defaultFn: instance._defErrorFieldFn },
 				validField: { defaultFn: instance._defValidFieldFn },
+				warningField : { defaultFn : instance._defWarningFieldFn },
 				validateField: { defaultFn: instance._defValidateFieldFn }
 			});
 
@@ -346,10 +365,27 @@ var FormValidator = A.Component.create({
 			errors[name].push(ruleName);
 		},
 
+		addFieldWarning : function(field, ruleName) {
+			var instance = this, warnings = instance.warnings, name = field
+					.get(NAME);
+
+			if (!warnings[name]) {
+				warnings[name] = [];
+			}
+
+			warnings[name].push(ruleName);
+		},
+
 		clearFieldError: function(field) {
 			var instance = this;
 
 			delete instance.errors[field.get(NAME)];
+		},
+
+		clearFieldWarning : function(field) {
+			var instance = this;
+
+			delete instance.warnings[field.get(NAME)];
 		},
 
 		eachRule: function(fn) {
@@ -415,6 +451,12 @@ var FormValidator = A.Component.create({
 			return instance.errors[field.get(NAME)];
 		},
 
+		getFieldWarning : function(field) {
+			var instance = this;
+
+			return instance.warnings[field.get(NAME)];
+		},
+
 		getFieldStackErrorContainer: function(field) {
 			var instance = this,
 				name = field.get(NAME),
@@ -457,6 +499,12 @@ var FormValidator = A.Component.create({
 			return !isEmpty(instance.errors);
 		},
 
+		hasWarnings : function() {
+			var instance = this;
+
+			return !isEmpty(instance.warnings);
+		},
+
 		highlight: function(field, valid) {
 			var instance = this,
 				fieldContainer = instance.findFieldContainer(field);
@@ -474,6 +522,19 @@ var FormValidator = A.Component.create({
 				instance.get(CONTAINER_VALID_CLASS),
 				valid
 			);
+		},
+
+		highlightWarning : function(field, valid) {
+			var instance = this, fieldContainer = instance
+					.findFieldContainer(field);
+
+			instance._highlightHelper(field, instance
+					.get(WARNING_CLASS), instance.get(VALID_CLASS),
+					valid);
+
+			instance._highlightHelper(fieldContainer, instance
+					.get(CONTAINER_WARNING_CLASS), instance
+					.get(CONTAINER_VALID_CLASS), valid);
 		},
 
 		normalizeRuleValue: function(ruleValue) {
@@ -529,6 +590,7 @@ var FormValidator = A.Component.create({
 			stackContainer.remove();
 			instance.resetFieldCss(field);
 			instance.clearFieldError(field);
+			instance.clearFieldWarning(field);
 		},
 
 		resetFieldCss: function(field) {
@@ -546,7 +608,7 @@ var FormValidator = A.Component.create({
 			};
 
 			removeClasses(field, [VALID_CLASS, ERROR_CLASS]);
-			removeClasses(fieldContainer, [CONTAINER_VALID_CLASS, CONTAINER_ERROR_CLASS]);
+			removeClasses(fieldContainer, [CONTAINER_VALID_CLASS, CONTAINER_ERROR_CLASS, CONTAINER_WARNING_CLASS]);
 		},
 
 		validatable: function(field) {
@@ -557,7 +619,7 @@ var FormValidator = A.Component.create({
 			if (fieldRules) {
 				var required = instance.normalizeRuleValue(fieldRules.required);
 
-				validatable = (required || (!required && _DEFAULT_MAP.RULES.required.apply(instance, [field.val(), field])) || fieldRules.custom);
+				validatable = (required || (!required && _DEFAULT_MAP.RULES.required.apply(instance, [field.val(), field])) || fieldRules.custom || fieldRules.warning);
 			}
 
 			return !!validatable;
@@ -641,6 +703,26 @@ var FormValidator = A.Component.create({
 			instance.unhighlight(field);
 		},
 
+		_defWarningFieldFn : function(event) {
+			var instance = this;
+
+			var validator = event.validator;
+			var field = validator.field;
+
+			instance.highlightWarning(field);
+
+			if (instance.get(SHOW_MESSAGES)) {
+				var stackContainer = instance
+						.getFieldStackErrorContainer(field);
+
+				field.placeBefore(stackContainer);
+
+				instance.printStackError(field, stackContainer,
+						validator.warnings);
+			}
+		},
+
+
 		_defValidateFieldFn: function(event) {
 			var instance = this;
 
@@ -658,18 +740,30 @@ var FormValidator = A.Component.create({
 					if (isFunction(rule) &&
 						!rule.apply(instance, [fieldValue, field, ruleValue])) {
 
-						instance.addFieldError(field, ruleName);
+						if (WARNING == ruleName) {
+							instance.addFieldWarning(field, ruleName);
+						} else {
+							instance.addFieldError(field, ruleName);
+						}
 					}
 				}
 			);
 
 			var fieldErrors = instance.getFieldError(field);
+			var fieldWarnings = instance.getFieldWarning(field);
 
 			if (fieldErrors) {
 				instance.fire(EV_ERROR_FIELD, {
 					validator: {
 						field: field,
 						errors: fieldErrors
+					}
+				});
+			}else if (fieldWarnings) {
+				instance.fire(EV_WARNING_FIELD, {
+					validator : {
+						field : field,
+						warnings : fieldWarnings
 					}
 				});
 			}
