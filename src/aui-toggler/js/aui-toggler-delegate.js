@@ -210,9 +210,9 @@ var TogglerDelegate = A.Component.create({
             var header = instance.get(HEADER);
 
             instance._eventHandles = [
-                instance.on(TOGGLER_ANIMATING_CHANGE, A.bind('_onAnimatingChange', instance)),
-                container.delegate([CLICK, KEYDOWN], A.bind('headerEventHandler', instance), header)
-            ]
+                container.delegate([CLICK, KEYDOWN], A.bind('headerEventHandler', instance), header),
+                instance.on(TOGGLER_ANIMATING_CHANGE, A.bind('_onAnimatingChange', instance))
+            ];
         },
 
         /**
@@ -224,14 +224,11 @@ var TogglerDelegate = A.Component.create({
         destructor: function() {
             var instance = this;
 
-            AArray.each(
-                instance.items,
-                function(item, index, collection) {
-                    item.destroy();
-                }
-            );
+            AArray.each(instance.items, function(item) {
+                item.destroy();
+            });
 
-            instance.items.length = 0;
+            instance.items = null;
 
             (new A.EventHandle(instance._eventHandles)).detach();
         },
@@ -319,16 +316,13 @@ var TogglerDelegate = A.Component.create({
             if (Toggler.headerEventHandler(event, toggler) && instance.get(CLOSE_ALL_ON_EXPAND)) {
                 var ancestors = toggler.get(CONTENT).ancestors(instance.get(CONTENT));
 
-                AArray.each(
-                    instance.items,
-                    function(item, index) {
-                        var content = item.get(CONTENT);
+                AArray.each(instance.items, function(item) {
+                    var content = item.get(CONTENT);
 
-                        if (item !== toggler && item.get(EXPANDED) && !(ancestors.indexOf(content) > -1)) {
-                            item.collapse();
-                        }
+                    if ((item !== toggler) && item.get(EXPANDED) && !(ancestors.indexOf(content) > -1)) {
+                        item.collapse();
                     }
-                );
+                });
             }
         },
 
