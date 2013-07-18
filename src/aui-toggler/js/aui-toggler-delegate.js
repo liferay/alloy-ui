@@ -209,9 +209,28 @@ var TogglerDelegate = A.Component.create({
             var container = instance.get(CONTAINER);
             var header = instance.get(HEADER);
 
-            instance.on(TOGGLER_ANIMATING_CHANGE, A.bind('_onAnimatingChange', instance));
+            instance._eventHandles = [
+                container.delegate([CLICK, KEYDOWN], A.bind('headerEventHandler', instance), header),
+                instance.on(TOGGLER_ANIMATING_CHANGE, A.bind('_onAnimatingChange', instance))
+            ];
+        },
 
-            container.delegate([CLICK, KEYDOWN], A.bind('headerEventHandler', instance), header);
+        /**
+         * Destructor lifecycle implementation for the TogglerDelegate class. Lifecycle.
+         *
+         * @method destructor
+         * @protected
+         */
+        destructor: function() {
+            var instance = this;
+
+            AArray.each(instance.items, function(item) {
+                item.destroy();
+            });
+
+            instance.items = null;
+
+            (new A.EventHandle(instance._eventHandles)).detach();
         },
 
         /**
@@ -295,14 +314,24 @@ var TogglerDelegate = A.Component.create({
             var toggler = target.getData(TOGGLER) || instance._create(target);
 
             if (Toggler.headerEventHandler(event, toggler) && instance.get(CLOSE_ALL_ON_EXPAND)) {
-                AArray.each(
-                    instance.items,
-                    function(item, index) {
-                        if (item !== toggler && item.get(EXPANDED)) {
+                var wrappingContent = toggler.get(CONTENT).ancestor(instance.get(CONTENT));
+
+                AArray.each(instance.items, function(item) {
+                    if ((item !== toggler) && item.get(EXPANDED)) {
+
+                        if (wrappingContent) {
+                            var itemContent = item.get(CONTENT);
+
+                            if ((itemContent !== wrappingContent) && wrappingContent.contains(itemContent)) {
+                                item.collapse();
+                            }
+                        }
+                        else {
                             item.collapse();
                         }
+
                     }
-                );
+                });
             }
         },
 

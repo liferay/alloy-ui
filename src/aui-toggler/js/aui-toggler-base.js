@@ -241,11 +241,17 @@ var Toggler = A.Component.create({
 
             header.setData(TOGGLER, instance);
 
-            instance.on(EXPANDED_CHANGE, A.bind(instance._onExpandedChange, instance));
+            var eventHandles = [
+                instance.on(EXPANDED_CHANGE, A.bind(instance._onExpandedChange, instance))
+            ];
 
             if (instance.get(BIND_DOM_EVENTS)) {
-                header.on([CLICK, KEYDOWN], A.rbind(Toggler.headerEventHandler, null, instance));
+                eventHandles.push(
+                    header.on([CLICK, KEYDOWN], A.rbind(Toggler.headerEventHandler, null, instance))
+                );
             }
+
+            instance._eventHandles = eventHandles;
         },
 
         /**
@@ -259,6 +265,20 @@ var Toggler = A.Component.create({
 
             instance.get(CONTENT).addClass(CSS_TOGGLER_CONTENT);
             instance.get(HEADER).addClass(CSS_TOGGLER_HEADER);
+        },
+
+        /**
+         * Destructor lifecycle implementation for the Toggler class. Lifecycle.
+         *
+         * @method destructor
+         * @protected
+         */
+        destructor: function() {
+            var instance = this;
+
+            instance.get(HEADER).setData(TOGGLER, null);
+
+            (new A.EventHandle(instance._eventHandles)).detach();
         },
 
         /**

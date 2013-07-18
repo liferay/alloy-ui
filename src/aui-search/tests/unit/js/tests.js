@@ -1,5 +1,9 @@
 YUI.add('module-tests', function(Y) {
 
+    //--------------------------------------------------------------------------
+    // Search Tests
+    //--------------------------------------------------------------------------
+
     var suite = new Y.Test.Suite('aui-search');
 
     var words = [
@@ -52,37 +56,48 @@ YUI.add('module-tests', function(Y) {
 
     var tstree = new Y.TernarySearchTree();
 
+    //--------------------------------------------------------------------------
+    // Test Case for contains
+    //--------------------------------------------------------------------------
+
     suite.add(new Y.Test.Case({
         name: 'test if tst contains everything we\'ve added to it',
 
-        testContains: function() {
-            Y.Array.each(
-                words,
-                function(item, index) {
-                    Y.Assert.isTrue(tstree.contains(item), 'tst does not contain this word: ' + item);
-                }
-            );
+        //----------------------------------------------------------------------
+        // Tests
+        //----------------------------------------------------------------------
+
+        'test contains': function() {
+            Y.Array.each(words, function(item) {
+                Y.Assert.isTrue(tstree.contains(item), 'tst does not contain this word: ' + item);
+            });
         },
 
-        testDoesNotContain: function() {
+        'test does not contain': function() {
             var word = 'NON_EXISTING_WORD';
 
             Y.Assert.isFalse(tstree.contains(word), 'tst does contain this word: ' + word + ' but it shouldn\'t');
         }
     }));
 
+    //--------------------------------------------------------------------------
+    // Test Case for prefixes
+    //--------------------------------------------------------------------------
+
     suite.add(new Y.Test.Case({
         name: 'test tst prefixes',
 
-        assertPrefixEquals: function(prefix, expected) {
-            var instance = this;
+        //----------------------------------------------------------------------
+        // Tests
+        //----------------------------------------------------------------------
 
+        'assert prefix equals': function(prefix, expected) {
             var words = tstree.prefixSearch(prefix);
 
             return checkArrays(expected, words);
         },
 
-        testPrefixSearch: function() {
+        'test prefix search': function() {
             var instance = this;
 
             var prefix = 'el';
@@ -113,18 +128,24 @@ YUI.add('module-tests', function(Y) {
         }
     }));
 
+    //--------------------------------------------------------------------------
+    // Test Case for pattern search
+    //--------------------------------------------------------------------------
+
     suite.add(new Y.Test.Case({
         name: 'test pattern search in tst',
 
-        assertPatternMatch: function(prefix, expected) {
-            var instance = this;
+        //----------------------------------------------------------------------
+        // Tests
+        //----------------------------------------------------------------------
 
+        'assert pattern match': function(prefix, expected) {
             var words = tstree.patternMatch(prefix);
 
             return checkArrays(expected, words);
         },
 
-        testPatternMatch: function() {
+        'test pattern match': function() {
             var instance = this;
 
             var pattern = 're?ur?e';
@@ -164,21 +185,18 @@ YUI.add('module-tests', function(Y) {
         }
     }));
 
-    Y.Test.Runner.on(
-        'testcasebegin',
-        function() {
-            var tmp = words.slice();
+    Y.Test.Runner.on('testcasebegin', function() {
+        var tmp = words.slice();
 
-            do {
-                var index = Math.floor(Math.random() * (length + 1));
+        do {
+            var index = Math.floor(Math.random() * (length + 1));
 
-                tstree.add(tmp[index]);
+            tstree.add(tmp[index]);
 
-                tmp.splice(index, 1);
-            }
-            while(tmp.length);
+            tmp.splice(index, 1);
         }
-    );
+        while(tmp.length);
+    });
 
     Y.Test.Runner.add(suite);
 
