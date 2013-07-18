@@ -1,5 +1,9 @@
 YUI.add('module-tests', function(Y) {
 
+    //--------------------------------------------------------------------------
+    // Node Tests
+    //--------------------------------------------------------------------------
+
 	var suite = new Y.Test.Suite('aui-node');
 
 	var CSS_HIDE = 'hide';
@@ -8,13 +12,10 @@ YUI.add('module-tests', function(Y) {
 
 	var createNewNode = function(visible) {
 		var node = Y.Node.create(
-			Y.Lang.sub(
-				NODE_TPL,
-				{
-					cssClass: visible ? '' : 'class="' + CSS_HIDE + '"',
-					display: visible ? '' : 'display: none'
-				}
-			)
+			Y.Lang.sub(NODE_TPL, {
+				cssClass: visible ? '' : 'class="' + CSS_HIDE + '"',
+				display: visible ? '' : 'display: none'
+			})
 		);
 
 		node.appendTo(document.body);
@@ -22,10 +23,18 @@ YUI.add('module-tests', function(Y) {
 		return node;
 	};
 
+    //--------------------------------------------------------------------------
+    // Test Case Node
+    //--------------------------------------------------------------------------
+
 	suite.add(new Y.Test.Case({
 		name: 'Node',
 
-		'Node.hide unanimated': function() {
+        //----------------------------------------------------------------------
+        // Tests
+        //----------------------------------------------------------------------
+
+		'hide unanimated': function() {
 			var node = createNewNode(true);
 
 			node.hide();
@@ -34,7 +43,7 @@ YUI.add('module-tests', function(Y) {
 			Y.Assert.areSame('none', node.getStyle('display'));
 		},
 
-		'Node.hide animated': function() {
+		'hide animated': function() {
 			var node = createNewNode(true);
 
 			node.hide(true);
@@ -45,7 +54,7 @@ YUI.add('module-tests', function(Y) {
 			}, 1000);
 		},
 
-		'Node.show unanimated': function() {
+		'show unanimated': function() {
 			var node = createNewNode(false);
 
 			node.show();
@@ -54,7 +63,7 @@ YUI.add('module-tests', function(Y) {
 			Y.Assert.areNotSame('none', node.getStyle('display'));
 		},
 
-		'Node.show animated': function() {
+		'show animated': function() {
 			var node = createNewNode(false);
 
 			node.show(true);
@@ -67,6 +76,5 @@ YUI.add('module-tests', function(Y) {
 	}));
 
 	Y.Test.Runner.add(suite);
-
 
 },'', { requires: [ 'aui-node', 'test', 'transition' ] });

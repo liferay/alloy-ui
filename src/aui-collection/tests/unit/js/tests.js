@@ -1,13 +1,21 @@
 YUI.add('module-tests', function(Y) {
 
+    //--------------------------------------------------------------------------
+    // Collection Tests
+    //--------------------------------------------------------------------------
+
     var suite = new Y.Test.Suite('aui-collection');
+
+    //--------------------------------------------------------------------------
+    // Test Case for Map
+    //--------------------------------------------------------------------------
 
     suite.add(new Y.Test.Case({
         name: 'Map',
 
-        //---------------------------------------------
+        //----------------------------------------------------------------------
         // Tests
-        //---------------------------------------------
+        //----------------------------------------------------------------------
 
         'put/get string key': function() {
             var map = new Y.Map();
@@ -228,7 +236,7 @@ YUI.add('module-tests', function(Y) {
                 afterClear = false,
                 map = new Y.Map({
                 on: {
-                    clear: function(event) {
+                    clear: function() {
                         cleared = true;
                     },
 
@@ -249,15 +257,15 @@ YUI.add('module-tests', function(Y) {
                     }
                 },
                 after: {
-                    clear: function(event) {
+                    clear: function() {
                         afterClear = true;
                     },
 
-                    put: function(event) {
+                    put: function() {
                         afterPut = true;
                     },
 
-                    remove: function(event) {
+                    remove: function() {
                         afterRemove = true;
                     }
                 }
@@ -306,15 +314,15 @@ YUI.add('module-tests', function(Y) {
                     }
                 },
                 after: {
-                    clear: function(event) {
+                    clear: function() {
                         afterClear = true;
                     },
 
-                    put: function(event) {
+                    put: function() {
                         afterPut = true;
                     },
 
-                    remove: function(event) {
+                    remove: function() {
                         afterRemove = true;
                     }
                 }
@@ -330,12 +338,16 @@ YUI.add('module-tests', function(Y) {
         }
     }));
 
+    //--------------------------------------------------------------------------
+    // Test Case for Set
+    //--------------------------------------------------------------------------
+
     suite.add(new Y.Test.Case({
         name: 'Set',
 
-        //---------------------------------------------
+        //----------------------------------------------------------------------
         // Tests
-        //---------------------------------------------
+        //----------------------------------------------------------------------
 
         'test add': function() {
             var set = new Y.Set(),
@@ -419,24 +431,24 @@ YUI.add('module-tests', function(Y) {
                 afterClear,
                 set = new Y.Set({
                     on: {
-                        add: function(event) {
+                        add: function() {
                             added = true;
                         },
-                        clear: function(event) {
+                        clear: function() {
                             cleared = true;
                         },
-                        remove: function(event) {
+                        remove: function() {
                             removed = true;
                         }
                     },
                     after: {
-                        add: function(event) {
+                        add: function() {
                             afterAdd = true;
                         },
-                        clear: function(event) {
+                        clear: function() {
                             afterClear = true;
                         },
-                        remove: function(event) {
+                        remove: function() {
                             afterRemove = true;
                         }
                     }
@@ -453,12 +465,16 @@ YUI.add('module-tests', function(Y) {
         }
     }));
 
+    //--------------------------------------------------------------------------
+    // Test Case for LinkedSet
+    //--------------------------------------------------------------------------
+
     suite.add(new Y.Test.Case({
         name: 'LinkedSet',
 
-        //---------------------------------------------
+        //----------------------------------------------------------------------
         // Tests
-        //---------------------------------------------
+        //----------------------------------------------------------------------
 
         'test add': function() {
             var linkedSet = new Y.LinkedSet();
@@ -506,7 +522,7 @@ YUI.add('module-tests', function(Y) {
             linkedSet.add('bar');
             linkedSet.clear();
             Y.Assert.isTrue(linkedSet.isEmpty());
-            Y.Assert.isTrue(Y.Object.isEmpty(linkedSet._entries), 'Internal entries linked list should be empty after removing all elements');
+            Y.Assert.isTrue(Y.Object.isEmpty(linkedSet._entries), 'internal entries linked list should be empty after removing all elements');
         },
 
         'test isEmpty': function() {
@@ -517,7 +533,7 @@ YUI.add('module-tests', function(Y) {
             linkedSet.remove('foo');
             linkedSet.remove('bar');
             Y.Assert.isTrue(linkedSet.isEmpty());
-            Y.Assert.isTrue(Y.Object.isEmpty(linkedSet._entries), 'Internal entries linked list should be empty after removing all elements');
+            Y.Assert.isTrue(Y.Object.isEmpty(linkedSet._entries), 'internal entries linked list should be empty after removing all elements');
         }
     }));
 
