@@ -314,13 +314,22 @@ var TogglerDelegate = A.Component.create({
             var toggler = target.getData(TOGGLER) || instance._create(target);
 
             if (Toggler.headerEventHandler(event, toggler) && instance.get(CLOSE_ALL_ON_EXPAND)) {
-                var ancestors = toggler.get(CONTENT).ancestors(instance.get(CONTENT));
+                var wrappingContent = toggler.get(CONTENT).ancestor(instance.get(CONTENT));
 
                 AArray.each(instance.items, function(item) {
-                    var content = item.get(CONTENT);
+                    if ((item !== toggler) && item.get(EXPANDED)) {
 
-                    if ((item !== toggler) && item.get(EXPANDED) && !(ancestors.indexOf(content) > -1)) {
-                        item.collapse();
+                        if (wrappingContent) {
+                            var itemContent = item.get(CONTENT);
+
+                            if ((itemContent !== wrappingContent) && wrappingContent.contains(itemContent)) {
+                                item.collapse();
+                            }
+                        }
+                        else {
+                            item.collapse();
+                        }
+
                     }
                 });
             }
