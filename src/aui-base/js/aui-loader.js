@@ -239,6 +239,14 @@ Y.mix(YUI.Env[Y.version].modules, {
             "datatype"
         ]
     },
+    "aui-datatype-date-parse": {
+        "requires": [
+            "aui-base-lang",
+            "datatype-date-format",
+            "datatype-date-parse",
+            "intl"
+        ]
+    },
     "aui-debounce": {},
     "aui-diagram-builder": {
         "use": [
@@ -962,4 +970,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '4836ca473f35eb17b0db2f9e719b9fc5';
+YUI.Env[Y.version].md5 = '0708a7ccb6d1b4794e70aaa692b22321';
