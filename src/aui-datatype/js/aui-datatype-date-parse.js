@@ -35,7 +35,7 @@ function DateParser(opt_pattern) {
 /**
  * Static property provides a string to identify the token prefix, e.g. %A.
  *
- * @property Carousel.TOKEN_PREFIX
+ * @property DateParser.TOKEN_PREFIX
  * @type String
  * @static
  */
@@ -45,7 +45,7 @@ DateParser.TOKEN_PREFIX = '%';
  * Static property provides a base year to sum two digit years, e.g. For the
  * mask %Y, "13" will be parsed to 2013.
  *
- * @property Carousel.TWO_DIGIT_YEAR_BASE
+ * @property DateParser.TWO_DIGIT_YEAR_BASE
  * @type Number
  * @static
  */
@@ -627,7 +627,7 @@ A.mix(DateParser.prototype, {
  * Static property provides an object that contains hints information for
  * possible token values, e.g. year, month, day etc.
  *
- * @property Carousel.HINTS
+ * @property DateParser.HINTS
  * @type Object
  * @static
  */
@@ -636,7 +636,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * aggregates tokens.
      *
-     * @property Carousel.HINTS.AGGREGATES
+     * @property DateParser.HINTS.AGGREGATES
      * @type Object
      * @static
      */
@@ -648,7 +648,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * ampm tokens.
      *
-     * @property Carousel.HINTS.AMPM
+     * @property DateParser.HINTS.AMPM
      * @type Object
      * @static
      */
@@ -668,7 +668,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * year tokens.
      *
-     * @property Carousel.HINTS.YEAR
+     * @property DateParser.HINTS.YEAR
      * @type Object
      * @static
      */
@@ -692,7 +692,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * month tokens.
      *
-     * @property Carousel.HINTS.MONTH
+     * @property DateParser.HINTS.MONTH
      * @type Object
      * @static
      */
@@ -721,7 +721,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * day tokens.
      *
-     * @property Carousel.HINTS.DAY
+     * @property DateParser.HINTS.DAY
      * @type Object
      * @static
      */
@@ -737,7 +737,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * hours tokens.
      *
-     * @property Carousel.HINTS.HOURS
+     * @property DateParser.HINTS.HOURS
      * @type Object
      * @static
      */
@@ -758,7 +758,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * minutes tokens.
      *
-     * @property Carousel.HINTS.MINUTES
+     * @property DateParser.HINTS.MINUTES
      * @type Object
      * @static
      */
@@ -774,7 +774,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * seconds tokens.
      *
-     * @property Carousel.HINTS.SECONDS
+     * @property DateParser.HINTS.SECONDS
      * @type Object
      * @static
      */
@@ -790,7 +790,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * timezone tokens.
      *
-     * @property Carousel.HINTS.TZ
+     * @property DateParser.HINTS.TZ
      * @type Object
      * @static
      */
