@@ -1122,10 +1122,11 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-textboxlist-deprecated": {
         "requires": [
             "anim-node-plugin",
-            "node-focusmanager",
+            "aui-autocomplete-deprecated",
             "aui-button-item-deprecated",
             "aui-data-set-deprecated",
-            "aui-autocomplete-deprecated"
+            "escape",
+            "node-focusmanager"
         ],
         "skinnable": true
     },
@@ -1342,4 +1343,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'e27fa2a4410ef4e9a22e3a6411a197b0';
+YUI.Env[Y.version].md5 = 'b1976d8e24769065b0e6ce555c377ee2';
