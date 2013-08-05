@@ -1,7 +1,7 @@
 /**
- * The Pallete Utility
+ * The Palette Utility
  *
- * @module aui-pallete
+ * @module aui-palette
  */
 
 var Lang = A.Lang,
@@ -97,11 +97,12 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns an item in the Palette by row and column.
      *
      * @method getItem
-     * @param row
-     * @param col
+     * @param {Number} row The row in which this item is rendered
+     * @param {Number} col The column on which this item is rendered
+     * @return {Object} The found palette item
      */
     getItem: function(row, col) {
         var instance = this;
@@ -111,10 +112,11 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns an item in the Palette by its index.
      *
      * @method getItemByIndex
-     * @param index
+     * @param {Number} index The index of the item
+     * @return {Object} The palette item
      */
     getItemByIndex: function(index) {
         var instance = this;
@@ -123,10 +125,11 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns an item in the Palette by its value.
      *
      * @method getItemByValue
-     * @param value
+     * @param {Object|Number|String} value If the value is an object, it should contain a property called "value" which will be used to retrieve the item.
+     * @return {Object} The palette item
      */
     getItemByValue: function (value) {
         var instance = this,
@@ -150,10 +153,10 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Selects an item in the Palette.
      *
      * @method select
-     * @param valueOrIndex
+     * @param {Number|Object} valueOrIndex The value or index of the item which should be selected
      */
     select: function(valueOrIndex) {
         var instance = this;
@@ -162,11 +165,11 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Toggles the section of an item. The item must be specified by its value or index. A second param indicates if the selection should be forced.
      *
      * @method toggleSelection
-     * @param valueOrIndex
-     * @param force
+     * @param {Number|Object} valueOrIndex The value or index of the item
+     * @param force If true, forces the selection.
      */
     toggleSelection: function(valueOrIndex, force) {
         var instance = this,
@@ -179,10 +182,10 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Unselects an item. The item must be specified by its value or index.
      *
      * @method unselect
-     * @param valueOrIndex
+     * @param {Number|Object} valueOrIndex The value or index of the item
      */
     unselect: function(valueOrIndex) {
         var instance = this;
@@ -191,10 +194,10 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Updates the UI of the Palette after changing an item.
      *
      * @method _afterItemsChange
-     * @param event
+     * @param {CustomEvent} event The event fired
      * @protected
      */
     _afterItemsChange: function (event) {
@@ -206,10 +209,10 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Unselects the previous item and selects a new one.
      *
      * @method _afterSelectedChange
-     * @param event
+     * @param {CustomEvent} event The event fired. Contains the previous selected element as <code>prevVal</code> property and the new selected item as <code>newVal</code>
      * @protected
      */
     _afterSelectedChange: function (event) {
@@ -220,7 +223,7 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Binds events on the Palette.
      *
      * @method _bindUIPalette
      * @protected
@@ -234,10 +237,11 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * The default function to be executed after <code>enter</code> event.
+     * By default adds HOVER class to the item.
      *
      * @method _defEnterFn
-     * @param event
+     * @param {CustomEvent} event The fired event
      * @protected
      */
     _defEnterFn: function(event) {
@@ -245,10 +249,11 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * The default function to be executed after <code>leave</code> event.
+     * By default removes HOVER class from the item.
      *
      * @method _defLeaveFn
-     * @param event
+     * @param {CustomEvent} event The fired event
      * @protected
      */
     _defLeaveFn: function(event) {
@@ -256,10 +261,11 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * The default function which executes after <code>select</code> event.
+     * By default updates the <code>selected</code> property with the index of the selected item.
      *
      * @method _defSelectFn
-     * @param event
+     * @param {CustomEvent} event The fired event
      * @protected
      */
     _defSelectFn: function(event) {
@@ -271,7 +277,8 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * The default function which executes after <code>unselect</code> event.
+     * By default updates the <code>selected</code> property with -1.
      *
      * @method _defUnselectFn
      * @param event
@@ -286,12 +293,13 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Generates and retrieves the whole content of the Palette. The function uses the Formatter from <code>formatter</code> property to format the content.
      *
      * @method _getContent
-     * @param items
-     * @param columns
+     * @param {Array} items The items in the Palette
+     * @param {Array} columns The columns of the Palette
      * @protected
+     * @return {String} The generated content
      */
     _getContent: function(items, columns) {
         var instance = this,
@@ -325,11 +333,18 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns an Object, which contains the following properties:
+     * column - The current column
+     * item - The current item node
+     * index - The current item index
+     * row - The current row
+     * src - UI_SRC
+     * value - The value of the item.
      *
      * @method _getEventsPayload
-     * @param event
+     * @param {CustomEvent} event The fired event
      * @protected
+      * @return {Object} The event payload
      */
     _getEventsPayload: function(event) {
         var instance = this,
@@ -350,10 +365,11 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns the items in the Palette as an <code>NodeList</code>.
      *
      * @method _getIndexedItems
      * @protected
+     * @return {NodeList} The indexed items
      */
     _getIndexedItems: function () {
         var instance = this;
@@ -366,12 +382,13 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Replaces the Template of the Container with the content.
      *
      * @method _getPaletteContent
-     * @param items
-     * @param content
+     * @param {Array} items Palette items
+     * @param {String} content The generated content
      * @protected
+     * return {String} The final content of the Palette according to the Container Template
      */
     _getPaletteContent: function(items, content) {
         var instance = this;
@@ -386,14 +403,15 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Retrieves the content of a row (the container of the items) in the Palette.
      *
      * @method _getRowContent
-     * @param items
-     * @param index
-     * @param row
-     * @param content
+     * @param {Array} items The items of the Palette
+     * @param {Number} index The index of the item
+     * @param {Number} row The row number
+     * @param {String} content The content of the row
      * @protected
+     * @return {String} The generated content of the row
      */
     _getRowContent: function(items, index, row, content) {
         var instance = this;
@@ -409,10 +427,10 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires <code>select</code> or <code>unselect</code> events together with the payload.
      *
      * @method _onItemClick
-     * @param event
+     * @param {CustomEvent} event The fired event
      * @protected
      */
     _onItemClick: function(event) {
@@ -436,10 +454,10 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires <code>enter</code> event.
      *
      * @method _onItemMouseEnter
-     * @param event
+     * @param {CustomEvent} event
      * @protected
      */
     _onItemMouseEnter: function(event) {
@@ -449,10 +467,10 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires <code>leave</code> event.
      *
      * @method _onItemMouseLeave
-     * @param event
+     * @param {CustomEvent} event The fired event
      * @protected
      */
     _onItemMouseLeave: function(event) {
@@ -462,10 +480,10 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Calculates the needed <code>columns</code>, generates the content and adds the content of the <code>contentBox</code> of the Palette.
      *
      * @method _uiSetItems
-     * @param val
+     * @param {Array} val The items of the Palette
      * @protected
      */
     _uiSetItems: function(val) {
@@ -489,10 +507,11 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Provides a default value (Function) to the <code>formatter</code> property.
      *
      * @method _valueFormatterFn
      * @protected
+     * @return {Function} The formatter function
      */
     _valueFormatterFn: function() {
         return function (items, index, row, column, selected) {
@@ -512,6 +531,14 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     }
 }, {
 
+    /**
+     * Object hash, defining how attribute values have to be parsed from
+     * markup contained in the Palette's content box.
+     *
+     * @property Palette.HTML_PARSER
+     * @type Object
+     * @static
+     */
     HTML_PARSER: {
         containerNode: _DOT+CSS_PALETTE_CONTAINER
     },
@@ -527,10 +554,12 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Specifies how many columns should contain the Palette.
+         * If the value is a positive number, the Palette will generate as many columns as specified in this property and it will fit
+         * the provided <code>items</code> in these columns.
          *
          * @attribute columns
-         * @default -1
+         * @default -1 Value of -1 means the items won't be fit in columns. Otherwise, the items will be rendered in the provided number of columns
          * @type Number
          */
         columns: {
@@ -539,7 +568,7 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
         },
 
         /**
-         * Container node of the pallete. If found, pallete widget will not
+         * Container node of the palette. If found, palette widget will not
          * generate content.
          *
          * @attribute containerNode
@@ -549,7 +578,7 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Provides a function, which will be used to format the content during Palette creation.
          *
          * @attribute formatter
          * @type Function
@@ -560,7 +589,7 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * An array of Palette items. These items will be rendered in the Palette according to the specified <code>columns</code>.
          *
          * @attribute items
          * @default []
@@ -572,7 +601,7 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Provides the index of currently selected item.
          *
          * @attribute selected
          * @type Number
@@ -583,7 +612,7 @@ Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * If true, on user interaction if the user clicks on an already selected element, it will be unselected.
          *
          * @attribute toggleSelection
          * @default true
