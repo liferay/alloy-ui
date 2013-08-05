@@ -2,7 +2,7 @@
  * The Color Picker Component
  *
  * @module aui-color-picker
- * @submodule aui-color-pallete
+ * @submodule aui-color-palette
  */
 
 var AArray = A.Array,
