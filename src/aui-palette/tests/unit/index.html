@@ -1,25 +1,29 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>aui-palette</title>
-    <script src="/build/yui/yui.js"></script>
-    <script src="js/tests.js"></script>
+    <title>AUI Palette Unit Tests</title>
     <meta charset="utf-8" />
+
+    <script src="../../../../build/aui/aui.js"></script>
+    <script src="js/tests.js"></script>
 </head>
 <body class="yui3-skin-sam">
-<div id="logger"></div>
 
-<script>
-YUI({
-    coverage: ['aui-palette'],
-    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-}).use('test-console', 'test', 'module-tests', function(Y) {
-    
-    (new Y.Test.Console()).render('#logger');
+    <div id="logger"></div>
 
-    Y.Test.Runner.setName('aui-palette');
-    Y.Test.Runner.run();
-});
-</script>
+    <div id="palette"></div>
+
+    <script>
+        YUI({
+            coverage: ['aui-palette'],
+            filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+        }).use('test-console', 'test', 'module-tests', function(Y) {
+
+            (new Y.Test.Console()).render('#logger');
+
+            Y.Test.Runner.setName('aui-palette');
+            Y.Test.Runner.run();
+        });
+    </script>
 </body>
 </html>
