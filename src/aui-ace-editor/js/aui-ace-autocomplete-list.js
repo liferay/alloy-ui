@@ -1,5 +1,5 @@
 /**
- * The ACE Editor Component
+ * The ACE Editor AutoCompleteList Overlay
  *
  * @module aui-ace-editor
  * @submodule aui-ace-autocomplete-list
@@ -137,10 +137,11 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     *  Creates the main wrapper for the list of suggestions.
      *
      * @method _createListNode
      * @protected
+     * @return {Node} The created node
      */
     _createListNode: function () {
         var instance = this,
@@ -154,10 +155,11 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns the number of entries which could be fit to the current list viewport (page).
      *
      * @method _getEntriesPerPage
      * @protected
+     * @return {Number} The number of calculated entries per page
      */
     _getEntriesPerPage: function() {
         var instance = this,
@@ -185,10 +187,11 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns the currently selected entry.
      *
      * @method _getSelectedEntry
      * @protected
+     * @return {String} The text of the currently selected entry
      */
     _getSelectedEntry: function() {
         var instance = this,
@@ -205,11 +208,12 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handles the arrows and executes different actions depending on the pressed arrow. For example, pressing key down will scroll the list bottom.
      *
      * @method _handleArrows
-     * @param keyCode
+     * @param {Number} keyCode The code of the currently pressed arrow
      * @protected
+     * @return {Do.Halt} Instance of Do.Halt in order to stop further function execution
      */
     _handleArrows: function(keyCode) {
         var instance = this,
@@ -268,13 +272,14 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handles key pressing and executes different actions depending on key code.
      *
      * @method _handleKey
-     * @param event
-     * @param obj
-     * @param keyCode
+     * @param {CustomEvent} event The fired event
+     * @param {Object} obj An internal object of ACE Editor
+     * @param {Number} keyCode The code of currently pressed key
      * @protected
+     * @return {Do.Halt} If valid code found, returns an instance of Do.Halt in order to stop further function execution
      */
     _handleKey: function(event, obj, keyCode) {
         var instance = this,
@@ -296,11 +301,14 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handles scrolling page up or down.
      *
      * @method _handlePageUpDown
-     * @param keyCode
+     * @param {Number} keyCode The code of currently pressed key. Could be one of:
+     * KEY_PAGE_DOWN = 34,
+     * KEY_PAGE_UP = 33,
      * @protected
+     * @return {Do.Halt} Returns an instance of Do.Halt in order to stop further function execution
      */
     _handlePageUpDown: function(keyCode) {
         var instance = this,
@@ -354,10 +362,10 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handles click on results and adds a suggestion to the editor.
      *
      * @method _handleResultListClick
-     * @param event
+     * @param {CustomEvent} event The fired event
      * @protected
      */
     _handleResultListClick: function(event) {
@@ -389,11 +397,14 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handles moving of the page to its first or last position.
      *
      * @method _handleStartEnd
-     * @param keyCode
+     * @param {Number} keyCode The code of currently pressed key. Could be one of:
+     * KEY_END = 35
+     * KEY_START = 36
      * @protected
+     * @return {Do.Halt} Returns an instance of Do.Halt in order to stop further function execution
      */
     _handleStartEnd: function(keyCode) {
         var instance = this,
@@ -429,10 +440,10 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Prevents the execution of <code>cursorChange</code> defaultFn if the list is not currently visible.
      *
      * @method _onCursorChange
-     * @param event
+     * @param {CustomEvent} event The fired event
      * @protected
      */
     _onCursorChange: function(event) {
@@ -444,10 +455,10 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Hides the list when text is being inserted and start row is different than the end row.
      *
      * @method _onInsertText
-     * @param event
+     * @param {CustomEvent} event The fired event
      * @protected
      */
     _onInsertText: function(event) {
@@ -459,10 +470,10 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Shows and moves the list on the proper position in case of match and available results or hides the list otherwise.
      *
      * @method _onMatch
-     * @param event
+     * @param {CustomEvent} event The fired event
      * @protected
      */
     _onMatch: function(event) {
@@ -495,10 +506,10 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Highlights the current entry in case of mouse enter event.
      *
      * @method _onMouseEnter
-     * @param event
+     * @param {CustomEvent} event The fired event
      * @protected
      */
     _onMouseEnter: function(event) {
@@ -506,10 +517,10 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Removes the highlighting from the current entry in case of mouse leave event.
      *
      * @method _onMouseLeave
-     * @param event
+     * @param {CustomEvent} event The fired event
      * @protected
      */
     _onMouseLeave: function(event) {
@@ -517,10 +528,10 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * On removing text, hides the list, if visible.
      *
      * @method _onRemoveText
-     * @param event
+     * @param {CustomEvent} event The fired event
      * @protected
      */
     _onRemoveText: function(event) {
@@ -532,10 +543,10 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handles <code>resultsChange</code> event. Removes the current list of entries, populates the new ones and selects the first entry.
      *
      * @method _onResultsChange
-     * @param event
+     * @param {CustomEvent} event The fired event
      * @protected
      */
     _onResultsChange: function(event) {
@@ -581,10 +592,10 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Displays a loading message in the list.
      *
      * @method _onShowLoadingMessage
-     * @param event
+     * @param {CustomEvent} event The fired event
      * @protected
      */
     _onShowLoadingMessage: function(event) {
@@ -610,10 +621,10 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Overwrites editor commands before show or restores the original behavior when hiding.
      *
      * @method _onVisibleChange
-     * @param event
+     * @param {CustomEvent} event The fired event
      * @protected
      */
     _onVisibleChange: function(event) {
@@ -628,7 +639,7 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets and empty array as results.
      *
      * @method _setEmptyResults
      * @protected
@@ -657,7 +668,7 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
 }, {
 
     /**
-     * Static property provides a string to identify the class.
+     * Static property which provides a string to identify the class.
      *
      * @property AutoCompleteList.NAME
      * @type String
@@ -666,7 +677,7 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
     NAME: _NAME,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * The namespace of the plugin.
      *
      * @property AutoCompleteList.NS
      * @type String
@@ -685,7 +696,7 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+        * The Editor in which the current instance is plugged.
          *
          * @attribute host
          * @type Object
@@ -695,17 +706,18 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * A Node in which results will be shown.
          *
          * @attribute listNode
          * @default null
+         * @type Node
          */
         listNode: {
             value: null
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * A string, representing the loading message.
          *
          * @attribute loadingMessage
          * @default 'Loading'
@@ -717,7 +729,7 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the current set of results in the list.
          *
          * @attribute results
          * @type Array
@@ -727,7 +739,7 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Provides the currently selected entry.
          *
          * @attribute selectedEntry
          */
@@ -736,7 +748,7 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Collection of strings used to label elements of the UI.
          *
          * @attribute strings
          * @type Object
@@ -750,7 +762,7 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * The prefix of all CSS Classes.
      *
      * @property AutoCompleteList.CSS_PREFIX
      * @type String
@@ -759,7 +771,7 @@ AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
     CSS_PREFIX: CSS_PREFIX,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Object hash, defining how attribute values are to be parsed from markup contained in the widget's content box.
      *
      * @property AutoCompleteList.HTML_PARSER
      * @static

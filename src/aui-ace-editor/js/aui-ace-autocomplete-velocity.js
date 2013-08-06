@@ -1,5 +1,5 @@
 /**
- * The ACE Editor Component
+ * The ACE Editor Velocity Plugin
  *
  * @module aui-ace-editor
  * @submodule aui-ace-autocomplete-velocity
@@ -18,7 +18,7 @@ var Lang = A.Lang,
 	VARIABLES_MATCHER = 'variablesMatcher',
 
 /**
- * A base class for Velocity.
+ * A base class for Velocity plugin.
  *
  * @class A.Velocity
  * @extends A.AceEditor.TemplateProcessor
@@ -28,11 +28,15 @@ var Lang = A.Lang,
 Velocity = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [], {
 
 	/**
-	 * TODO. Wanna help? Please send a Pull Request.
-	 *
-	 * @method getMatch
-	 * @param content
-	 */
+     * Checks if the provided content contains directive or variable.
+     *
+     * @method getMatch
+     * @param {String} content The content which should be traversed for matches
+     * @return {Object} An Object which contains the following properties:
+     * content - the found content
+     * start - the start index of the match
+     * type - match type, could be 0 (DIRECTIVES) or 1 (VARIABLES)
+     */
 	getMatch: function(content) {
 		var instance = this,
 			match,
@@ -66,7 +70,7 @@ Velocity = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [], {
 }, {
 
 	/**
-	 * Static property provides a string to identify the class.
+	 * Static property which provides a string to identify the class.
 	 *
 	 * @property Velocity.NAME
 	 * @type String
@@ -75,7 +79,7 @@ Velocity = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [], {
 	NAME: _NAME,
 
 	/**
-	 * TODO. Wanna help? Please send a Pull Request.
+	 * The namespace of the plugin.
 	 *
 	 * @property Velocity.NS
 	 * @type String
@@ -94,11 +98,23 @@ Velocity = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [], {
 	ATTRS: {
 
 		/**
-		 * TODO. Wanna help? Please send a Pull Request.
-		 *
-		 * @attribute directives
-		 * @type Array
-		 */
+         * Contains the list of supported directives according to Velocity specification.
+         *
+         * @attribute directives
+         * @default
+         * value: [
+		 *  'else',
+		 *  'elseif',
+		 *  'foreach',
+		 *  'if',
+		 *  'include',
+		 *  'macro',
+		 *  'parse',
+		 *  'set',
+		 *  'stop'
+		 *]
+         * @type Array
+         */
 		directives: {
 			validator: Lang.isArray,
 			value: [
@@ -115,9 +131,10 @@ Velocity = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [], {
 		},
 
 		/**
-		 * TODO. Wanna help? Please send a Pull Request.
+		 * Contains the regular expression which checks for directive.
 		 *
 		 * @attribute directivesMatcher
+		 * @default /#[\w]*[^#]*$/
 		 */
 		directivesMatcher: {
 			setter: '_setRegexValue',
@@ -125,7 +142,7 @@ Velocity = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [], {
 		},
 
 		/**
-		 * TODO. Wanna help? Please send a Pull Request.
+		 * he Editor in which the current instance is plugged.
 		 *
 		 * @attribute host
 		 * @type Object
@@ -135,7 +152,7 @@ Velocity = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [], {
 		},
 
 		/**
-		 * TODO. Wanna help? Please send a Pull Request.
+		 * Contains the supported variables.
 		 *
 		 * @attribute variables
 		 * @type Object
@@ -145,9 +162,10 @@ Velocity = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [], {
 		},
 
 		/**
-		 * TODO. Wanna help? Please send a Pull Request.
+		 * Contains the regular expression which will check for variable match.
 		 *
 		 * @attribute variablesMatcher
+		 * @default /\$[\w., ()"]*(?:[^$]|\\\$)*$/
 		 */
 		variablesMatcher: {
 			setter: '_setRegexValue',

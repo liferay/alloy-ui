@@ -1,5 +1,5 @@
 /**
- * The ACE Editor Component
+ * The ACE Editor Freemarker Plugin
  *
  * @module aui-ace-editor
  * @submodule aui-ace-autocomplete-freemarker
@@ -17,21 +17,25 @@ var Lang = A.Lang,
     VARIABLES_MATCHER = 'variablesMatcher',
 
 /**
- * A base class for Freemarker.
+ * A base class for Freemarker plugin.
  *
  * @class A.Freemarker
  * @extends A.AceEditor.TemplateProcessor
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying configuration properties.
  * @constructor
  */
 Freemarker = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [
 ], {
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Checks if the provided content contains directive or variable.
      *
      * @method getMatch
-     * @param content
+     * @param {String} content The content which should be traversed for matches
+     * @return {Object} An Object which contains the following properties:
+     * content - the found content
+     * start - the start index of the match
+     * type - match type, could be 0 (DIRECTIVES) or 1 (VARIABLES)
      */
     getMatch: function(content) {
         var instance = this,
@@ -66,7 +70,7 @@ Freemarker = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [
 }, {
 
     /**
-     * Static property provides a string to identify the class.
+     * Static property which provides a string to identify the class.
      *
      * @property Freemarker.NAME
      * @type String
@@ -75,7 +79,7 @@ Freemarker = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [
     NAME: _NAME,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * The namespace of the plugin.
      *
      * @property Freemarker.NS
      * @type String
@@ -94,9 +98,45 @@ Freemarker = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the list of supported directives according to Freemarker specification.
          *
          * @attribute directives
+         * @default
+         * value: [
+         *  'assign',
+         *  'attempt',
+         *  'break',
+         *  'case',
+         *  'compress',
+         *  'default',
+         *  'else',
+         *  'elseif',
+         *  'escape',
+         *  'fallback',
+         *  'flush',
+         *  'ftl',
+         *  'function',
+         *  'global',
+         *  'if',
+         *  'import',
+         *  'include',
+         *  'list',
+         *  'local',
+         *  'lt',
+         *  'macro',
+         *  'nested',
+         *  'noescape',
+         *  'nt',
+         *  'recover',
+         *  'recurse',
+         *  'return',
+         *  'rt',
+         *  'setting',
+         *  'stop',
+         *  'switch',
+         *  't',
+         *  'visit'
+         *]
          * @type Array
          */
         directives: {
@@ -139,9 +179,10 @@ Freemarker = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the regular expression which checks for directive presence.
          *
          * @attribute directivesMatcher
+         * @default /<#[\w]*[^<#]*$/
          */
         directivesMatcher: {
             setter: '_setRegexValue',
@@ -149,7 +190,7 @@ Freemarker = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The Editor in which the current instance is plugged.
          *
          * @attribute host
          * @type Object
@@ -159,7 +200,7 @@ Freemarker = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the supported variables.
          *
          * @attribute variables
          * @type Object
@@ -169,9 +210,10 @@ Freemarker = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the regular expression which will check for variable match.
          *
          * @attribute variablesMatcher
+         * @default /\${[\w., ()"]*(?:[^$]|\\\$)*$/
          */
         variablesMatcher: {
             setter: '_setRegexValue',
