@@ -401,6 +401,7 @@ var FormBuilder = A.Component.create({
 
 			instance._setupAvailableFieldsSortableList();
 			instance._setupFieldsSortableList();
+			instance._verifyTabs();
 		},
 
 		/**
@@ -469,6 +470,8 @@ var FormBuilder = A.Component.create({
 				instance.editingField = field;
 
 				instance.tabView.selectChild(A.FormBuilder.SETTINGS_TAB);
+				instance.tabView.enableTab(A.FormBuilder.SETTINGS_TAB);
+
 				instance.propertyList.set(DATA, instance.getFieldProperties(field));
 
 				instance.unselectFields();
@@ -1124,6 +1127,20 @@ var FormBuilder = A.Component.create({
 			instance.get(FIELDS).each(function(field) {
 				field._uiSetRequired(field.get(REQUIRED));
 			});
+		},
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @method _verifyTabs
+		 * @protected
+		 */
+		_verifyTabs: function() {
+			var instance = this;
+
+			if (!instance.editingField) {
+				instance.tabView.disableTab(A.FormBuilder.SETTINGS_TAB);
+			}
 		}
 	}
 

@@ -942,6 +942,7 @@ var DiagramBuilderBase = A.Component.create(
 				var instance = this;
 
 				instance.tabView.selectChild(0);
+				instance.tabView.disableTab(1);
 			},
 
 			/**
