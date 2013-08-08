@@ -244,6 +244,7 @@ A.TabView = A.Component.create({
 
             instance.after(instance._afterSyncUI, instance, SYNC_UI);
             instance.after(TYPE_CHANGE, instance._afterTypeChange);
+            instance.on('tab:click', instance._onTabClick);
         },
 
         /**
@@ -307,6 +308,13 @@ A.TabView = A.Component.create({
 
             if (event.prevVal) {
                 listNode.removeClass(getClassName(NAV, event.prevVal));
+            }
+        },
+
+        _onTabClick: function(event) {
+            if (event.target.get(DISABLED)) {
+                event.preventDefault();
+                event.domEvent.preventDefault();
             }
         },
 
