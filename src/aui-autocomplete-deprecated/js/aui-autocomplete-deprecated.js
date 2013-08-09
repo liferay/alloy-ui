@@ -631,7 +631,7 @@ var AutoComplete = A.Component.create(
 			},
 
 			/**
-			 * Descructor lifecycle implementation for the Autocomplete class.
+			 * Destructor lifecycle implementation for the Autocomplete class.
 			 * Purges events attached to the node (and all child nodes).
 			 *
 			 * @method destructor

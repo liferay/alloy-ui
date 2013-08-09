@@ -147,7 +147,7 @@ var DatePicker = A.Component.create({
 		},
 
 		/**
-		 * Descructor lifecycle implementation for the Datepicker class.
+		 * Destructor lifecycle implementation for the Datepicker class.
 		 * Purges events attached to the node (and all child nodes).
 		 *
 		 * @method destructor

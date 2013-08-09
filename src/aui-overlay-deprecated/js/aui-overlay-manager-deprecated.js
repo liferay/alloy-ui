@@ -120,7 +120,7 @@ var Lang = A.Lang,
 				},
 
 				/**
-				 * Descructor lifecycle implementation for the OverlayManager class.
+				 * Destructor lifecycle implementation for the OverlayManager class.
 				 * Purges events attached to the node (and all child nodes).
 				 *
 				 * @method destructor

@@ -276,7 +276,7 @@ var LiveSearch = A.Component.create(
 			},
 
 			/**
-			 * Descructor lifecycle implementation for the LiveSearch class.
+			 * Destructor lifecycle implementation for the LiveSearch class.
 			 * Purges events attached to the node (and all child nodes).
 			 *
 			 * @method destroy

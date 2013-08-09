@@ -544,7 +544,7 @@ var Resize = A.Component.create(
 			},
 
 		    /**
-		     * Descructor lifecycle implementation for the Resize class. Purges events attached
+		     * Destructor lifecycle implementation for the Resize class. Purges events attached
 		     * to the node (and all child nodes) and removes the Resize handles.
 		     *
 		     * @method destructor
