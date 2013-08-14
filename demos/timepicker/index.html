@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+    <style>
+    #delegate, #delegateComplex, #delegateNative {
+        margin: 30px;
+    }
+    </style>
+</head>
+<body class="yui3-skin-sam">
+    <h1>AlloyUI - Timepicker</h1>
+    <div id="delegate">
+        <h2>Input text</h2>
+        <input class="input-large" type="text" placeholder="hh:mm" value="01:30 AM, 06:00 AM">
+        <br>
+        <input class="input-large" type="text" placeholder="hh:mm" value="12:00 AM">
+    </div>
+    <div id="delegateComplex">
+        <h2>Complex masks</h2>
+        <input class="input-large" type="text" placeholder="Dinner at hh:mm">
+    </div>
+    <div id="delegateNative">
+        <h2>HTML5 input time</h2>
+        <input class="input-large" type="time" value="11:47:AM">
+    </div>
+
+    <div id="render"></div>
+
+    <script>
+    YUI({ filter: 'raw' }).use('aui-timepicker', 'aui-timepicker-native', function(Y) {
+        new Y.TimePicker({
+            trigger: '#delegate input',
+            // values: [ '11:00 AM', '12:00 AM' ],
+            on: {
+                selectionChange: function(event) {
+                    console.log(event.newSelection)
+                }
+            }
+        });
+
+        new Y.TimePicker({
+            mask: 'Dinner at %H:%M',
+            trigger: '#delegateComplex input',
+            on: {
+                selectionChange: function(event) {
+                    console.log(event.newSelection)
+                }
+            }
+        });
+
+        new Y.TimePickerNative({
+            mask: 'Dinner at %H:%M',
+            trigger: '#delegateNative input',
+            on: {
+                selectionChange: function(event) {
+                    console.log(event.newSelection)
+                }
+            }
+        });
+    });
+    </script>
+</body>
+</html>
