@@ -226,7 +226,8 @@
     },
     "aui-datatype": {
         "requires": [
-            "datatype"
+            "datatype",
+            "aui-datatype-date-parse"
         ]
     },
     "aui-datatype-date-parse": {
@@ -235,6 +236,38 @@
             "datatype-date-format",
             "datatype-date-parse",
             "intl"
+        ]
+    },
+    "aui-datepicker": {
+        "requires": [
+            "calendar",
+            "base",
+            "base-build",
+            "aui-datepicker-delegate",
+            "aui-datepicker-popover"
+        ],
+        "skinnable": true
+    },
+    "aui-datepicker-delegate": {
+        "requires": [
+            "node-event-delegate",
+            "event-focus",
+            "aui-event-input",
+            "aui-datatype-date-parse"
+        ]
+    },
+    "aui-datepicker-native": {
+        "requires": [
+            "base",
+            "base-build",
+            "aui-node-base",
+            "aui-datepicker-delegate"
+        ]
+    },
+    "aui-datepicker-popover": {
+        "requires": [
+            "aui-classnamemanager",
+            "aui-popover"
         ]
     },
     "aui-debounce": {},
@@ -771,6 +804,24 @@
     "aui-text-unicode": {
         "requires": [
             "aui-text-data-unicode"
+        ]
+    },
+    "aui-timepicker": {
+        "requires": [
+            "autocomplete-list",
+            "autocomplete-list-keys",
+            "aui-datepicker-delegate",
+            "aui-datepicker-popover"
+        ],
+        "skinnable": true
+    },
+    "aui-timepicker-native": {
+        "requires": [
+            "base",
+            "base-build",
+            "aui-node-base",
+            "aui-datepicker-delegate",
+            "aui-datepicker-native"
         ]
     },
     "aui-timer": {

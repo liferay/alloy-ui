@@ -236,7 +236,8 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-datatype": {
         "requires": [
-            "datatype"
+            "datatype",
+            "aui-datatype-date-parse"
         ]
     },
     "aui-datatype-date-parse": {
@@ -245,6 +246,38 @@ Y.mix(YUI.Env[Y.version].modules, {
             "datatype-date-format",
             "datatype-date-parse",
             "intl"
+        ]
+    },
+    "aui-datepicker": {
+        "requires": [
+            "calendar",
+            "base",
+            "base-build",
+            "aui-datepicker-delegate",
+            "aui-datepicker-popover"
+        ],
+        "skinnable": true
+    },
+    "aui-datepicker-delegate": {
+        "requires": [
+            "node-event-delegate",
+            "event-focus",
+            "aui-event-input",
+            "aui-datatype-date-parse"
+        ]
+    },
+    "aui-datepicker-native": {
+        "requires": [
+            "base",
+            "base-build",
+            "aui-node-base",
+            "aui-datepicker-delegate"
+        ]
+    },
+    "aui-datepicker-popover": {
+        "requires": [
+            "aui-classnamemanager",
+            "aui-popover"
         ]
     },
     "aui-debounce": {},
@@ -797,6 +830,24 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-text-data-unicode"
         ]
     },
+    "aui-timepicker": {
+        "requires": [
+            "autocomplete-list",
+            "autocomplete-list-keys",
+            "aui-datepicker-delegate",
+            "aui-datepicker-popover"
+        ],
+        "skinnable": true
+    },
+    "aui-timepicker-native": {
+        "requires": [
+            "base",
+            "base-build",
+            "aui-node-base",
+            "aui-datepicker-delegate",
+            "aui-datepicker-native"
+        ]
+    },
     "aui-timer": {
         "requires": [
             "oop"
@@ -970,4 +1021,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '0708a7ccb6d1b4794e70aaa692b22321';
+YUI.Env[Y.version].md5 = 'c6ed3ea1315019da931d98e072d5e208';
