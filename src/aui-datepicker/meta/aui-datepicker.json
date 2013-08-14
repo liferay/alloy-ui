@@ -1,0 +1,37 @@
+{
+    "aui-datepicker": {
+        "requires": [
+            "calendar",
+            "base",
+            "base-build",
+            "aui-datepicker-delegate",
+            "aui-datepicker-popover"
+        ],
+        "skinnable": true
+    },
+
+    "aui-datepicker-delegate": {
+        "requires": [
+            "node-event-delegate",
+            "event-focus",
+            "aui-event-input",
+            "aui-datatype-date-parse"
+        ]
+    },
+
+    "aui-datepicker-native": {
+        "requires": [
+            "base",
+            "base-build",
+            "aui-node-base",
+            "aui-datepicker-delegate"
+        ]
+    },
+
+    "aui-datepicker-popover": {
+        "requires": [
+            "aui-classnamemanager",
+            "aui-popover"
+        ]
+    }
+}

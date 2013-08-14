@@ -1,0 +1,28 @@
+{
+    "name": "aui-datepicker",
+    "builds": {
+        "aui-datepicker-delegate": {
+            "jsfiles": [
+                "js/aui-datepicker-delegate.js"
+            ]
+        },
+
+        "aui-datepicker": {
+            "jsfiles": [
+                "js/aui-datepicker.js"
+            ]
+        },
+
+        "aui-datepicker-native": {
+            "jsfiles": [
+                "js/aui-datepicker-native.js"
+            ]
+        },
+
+        "aui-datepicker-popover": {
+            "jsfiles": [
+                "js/aui-datepicker-popover.js"
+            ]
+        }
+    }
+}
