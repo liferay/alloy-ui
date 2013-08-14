@@ -1,0 +1,16 @@
+{
+    "name": "aui-timepicker",
+    "builds": {
+        "aui-timepicker": {
+            "jsfiles": [
+                "js/aui-timepicker.js"
+            ]
+        },
+
+        "aui-timepicker-native": {
+            "jsfiles": [
+                "js/aui-timepicker-native.js"
+            ]
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-timepicker",
+    "displayName": "Gallery: aui-timepicker",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "eduardo.lundgren" ],
+    "use"        : [ "aui-timepicker" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

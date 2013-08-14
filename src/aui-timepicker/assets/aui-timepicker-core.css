@@ -1,0 +1,18 @@
+.datepicker-popover .yui3-aclist {
+    position: relative;
+    max-height: 200px;
+}
+
+.datepicker-popover .yui3-aclist-item {
+    text-align: center;
+}
+
+.datepicker-popover.popover {
+    min-width: 150px;
+}
+
+.datepicker-popover .popover-content {
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0;
+}
