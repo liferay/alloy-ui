@@ -107,7 +107,7 @@ var TextboxList = A.Component.create(
 			}
 		},
 
-		EXTENDS: A.AutoComplete,
+		EXTENDS: A.AutoCompleteDeprecated,
 
 		prototype: {
 			/**

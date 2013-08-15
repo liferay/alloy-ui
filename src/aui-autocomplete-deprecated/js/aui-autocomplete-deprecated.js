@@ -69,7 +69,7 @@ var Lang = A.Lang,
  *
  * Quick Example:<br/>
  *
- * <pre><code>var instance = new A.AutoComplete({
+ * <pre><code>var instance = new A.AutoCompleteDeprecated({
  *	dataSource: [['AL', 'Alabama', 'The Heart of Dixie'],
  * 	['AK', 'Alaska', 'The Land of the Midnight Sun'],
  *	['AZ', 'Arizona', 'The Grand Canyon State']],
@@ -2050,4 +2050,4 @@ var AutoComplete = A.Component.create(
 	}
 );
 
-A.AutoComplete = AutoComplete;
+A.AutoCompleteDeprecated = AutoComplete;
