@@ -85,11 +85,12 @@ Base.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Inserts the provided suggestion as a string to the editor. The added text can overwrite the match or to be inserted depending on the <code>fillMode</code> attribute.
      *
      * @method _addSuggestion
-     * @param content
+     * @param {String} content
      * @protected
+     * @return {Do.Halt} Instance of Do.Halt to stop function execution
      */
     _addSuggestion: function(content) {
         var instance = this,
@@ -137,7 +138,7 @@ Base.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Binds editor events.
      *
      * @method _bindUIACBase
      * @protected
@@ -184,10 +185,10 @@ Base.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Checks if the cursor is out of the row/column on the latest match. If so, fires an <code>cursorOut</code> event.
      *
      * @method _defaultCursorChangeFn
-     * @param event
+     * @param {CustomEvent} event The fired event
      * @protected
      */
     _defaultCursorChangeFn: function(event) {
@@ -213,7 +214,7 @@ Base.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Removes the listeners to editor commands.
      *
      * @method _destroyUIACBase
      * @protected
@@ -234,10 +235,11 @@ Base.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns the editor instance.
      *
      * @method _getEditor
      * @protected
+     * @return {Object} Editor instance
      */
     _getEditor: function() {
         var instance = this;
@@ -246,12 +248,13 @@ Base.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Filters and sorts the found suggestions using the existing chain of <code>filters</code> and <code>sorters</code>.
      *
      * @method _filterResults
-     * @param content
-     * @param results
+     * @param {String} content
+     * @param {Array} results
      * @protected
+     * @return {Array} The filtered results
      */
     _filterResults: function(content, results) {
         var instance = this,
@@ -284,11 +287,12 @@ Base.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Checks for new line or tab character and adds a suggestion to the editor if so.
      *
      * @method _handleEnter
-     * @param text
+     * @param {String} text
      * @protected
+     * @return {Do.Halt} If text is new line or tab character, returns an instance of Do.Halt to stop function execution
      */
     _handleEnter: function(text) {
         var instance = this,
@@ -302,10 +306,10 @@ Base.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handles editor change event. If editor is not locked and data action is insert or remove text, process auto complete.
      *
      * @method _onEditorChange
-     * @param event
+     * @param {CustomEvent} event The fired event
      * @protected
      */
     _onEditorChange: function(event) {
@@ -345,10 +349,10 @@ Base.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires cursor change event providing the current position as event payload.
      *
      * @method _onEditorChangeCursor
-     * @param event
+     * @param {CustomEvent} event The fired event
      * @protected
      */
     _onEditorChangeCursor: function(event) {
@@ -358,7 +362,7 @@ Base.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires an <code>resultsError</code> event containing the error.
      *
      * @method _onResultsError
      * @param error
@@ -371,10 +375,10 @@ Base.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Updates <code>results</code> attribute with the provided results.
      *
      * @method _onResultsSuccess
-     * @param results
+     * @param {Array} results
      * @protected
      */
     _onResultsSuccess: function(results) {
@@ -384,7 +388,16 @@ Base.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Overwrites the following editor commands:
+     * onTextInput,
+     * golinedown
+     * golineup
+     * gotoend
+     * gotolineend
+     * gotolinestart
+     * gotopagedown
+     * gotopageup
+     * gotostart
      *
      * @method _overwriteCommands
      * @protected
@@ -412,13 +425,14 @@ Base.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Checks for phrase match.
      *
      * @method _phraseMatch
-     * @param content
-     * @param results
-     * @param caseSensitive
+     * @param {String} content The content to be checked for phrase match
+     * @param {Array} results The results to be filtered
+     * @param {Boolean} caseSensitive Should the check be case sensitive or not
      * @protected
+     * @return {Array} The filtered results
      */
     _phraseMatch: function (content, results, caseSensitive) {
         if (!content) {
@@ -451,11 +465,18 @@ Base.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Invokes the loaded content processor and checks for match. If found, provides the match together with information about
+     * current row and column and invokes processor's <code>getResults</code> function in order to retrieve results.
+     * At the end, fires and <code>match</code> event with the following properties:
+     * column - the current column
+     * coords - the page coordinates of the match
+     * line - the current line
+     * match - the current match
+     * row - the current row
      *
      * @method _processAutoComplete
-     * @param row
-     * @param column
+     * @param {Number} row The row on which match happened
+     * @param {Number} column The column on which match happened
      * @protected
      */
     _processAutoComplete: function(row, column) {
@@ -507,7 +528,7 @@ Base.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Detaches the previously attached editor commands.
      *
      * @method _removeAutoCompleteCommands
      * @protected
@@ -521,13 +542,14 @@ Base.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sorts the results in ascending order, taking in consideration the length of the content.
      *
      * @method _sortAscLength
-     * @param content
-     * @param results
-     * @param caseSensitive
+     * @param {String} content The text content
+     * @param {Array} results The results to be filtered
+     * @param {Boolean} caseSensitive Should we filter these results alphabetically
      * @protected
+     * @return {Array} The sorted results
      */
     _sortAscLength: function (content, results, caseSensitive) {
         return results.sort(
@@ -567,11 +589,12 @@ Base.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Validates the value of <code>fillMode</code> attribute.
      *
      * @method _validateFillMode
      * @param value
      * @protected
+     * @return {Boolean} True if mode is 'overwrite' - value '0' or 'insert' - value '1'
      */
     _validateFillMode: function(value) {
         return (value === Base.FILL_MODE_OVERWRITE || value === Base.FILL_MODE_INSERT);
@@ -579,7 +602,7 @@ Base.prototype = {
 };
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
+ * Exposes a constant for insert fill mode. See <code>fillMode</code> for more information.
  *
  * @property Base.FILL_MODE_INSERT
  * @static
@@ -587,7 +610,7 @@ Base.prototype = {
 Base.FILL_MODE_INSERT = FILL_MODE_INSERT;
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
+ * Exposes a constant for overwrite fill mode. See <code>fillMode</code> for more information.
  *
  * @property Base.FILL_MODE_OVERWRITE
  * @static
@@ -595,7 +618,7 @@ Base.FILL_MODE_INSERT = FILL_MODE_INSERT;
 Base.FILL_MODE_OVERWRITE = FILL_MODE_OVERWRITE;
 
 /**
- * Static property provides a string to identify the class.
+ * Static property which provides a string to identify the class.
  *
  * @property AutoCompleteBase.NAME
  * @type String
@@ -604,7 +627,7 @@ Base.FILL_MODE_OVERWRITE = FILL_MODE_OVERWRITE;
 Base.NAME = _NAME;
 
 /**
- * Static property provides a string to identify the namespace.
+ * Static property which provides a string to identify the namespace.
  *
  * @property AutoCompleteBase.NS
  * @type String
@@ -614,7 +637,7 @@ Base.NS = _NAME;
 
 /**
  * Static property used to define the default attribute
- * configuration for the AutoCompleteBase.
+ * configuration for AutoCompleteBase.
  *
  * @property AutoCompleteBase.ATTRS
  * @type Object
@@ -623,9 +646,14 @@ Base.NS = _NAME;
 Base.ATTRS = {
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * The mode in which the AutoComplete should operate. Can be one of these:
+     * INSERT - value '0' or OVERWRITE - value '1'
+     * In case of INSERT mode, when Editor adds a suggestion, it will be added next to the matched expression.
+     * In case of OVERWRITE mode, the suggestion will overwrite the matched expression.
      *
      * @attribute fillMode
+     * @default 1 - OVERWRITE mode
+     * @type Number
      */
     fillMode: {
         validator: '_validateFillMode',
@@ -633,9 +661,11 @@ Base.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Provides an array of filter functions which will filter the results. By default there is one function which provides phrase match filtering.
      *
      * @attribute filters
+     * @default Array with one function which provides phrase match filtering
+     * @type Array
      */
     filters: {
         valueFn: function() {
@@ -648,7 +678,7 @@ Base.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * The default processor which will be used to process matches.
      *
      * @attribute processor
      * @type Object | Function
@@ -660,9 +690,10 @@ Base.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * The keyboard combination which should be used to show the list with found results.
      *
      * @attribute showListKey
+     * @default 'Alt-Space' for Mac, 'Ctrl-Space' for PC
      * @type Object
      */
     showListKey: {
@@ -674,9 +705,11 @@ Base.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Provides an array of sorter functions which will sort the results. By default there is one function which sorts the results in ascending order.
      *
      * @attribute sorters
+     * @default Array with one function which sorts results in ascending order
+     * @type Array
      */
     sorters: {
         valueFn: function() {

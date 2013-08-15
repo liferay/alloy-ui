@@ -1,5 +1,5 @@
 /**
- * The ACE Editor Component
+ * The ACE Editor TemplateProcessor base
  *
  * @module aui-ace-editor
  * @submodule aui-ace-autocomplete-templateprocessor
@@ -39,12 +39,13 @@ TemplateProcessor = A.Base.create(_NAME, A.Base, [
 ], {
 
 	/**
-	 * TODO. Wanna help? Please send a Pull Request.
+	 * Accepts match and depending on its type processes directives or variables.
+	 * In case of success, calls the provided success callback, or the error callback otherwise.
 	 *
 	 * @method getResults
-	 * @param match
-	 * @param callbackSuccess
-	 * @param callbackError
+	 * @param {Object} match The provided match. It should contain at least type and content properties
+	 * @param {Function} callbackSuccess The function to be called in case of success
+	 * @param {Function} callbackError The function to be called in case of error
 	 */
 	getResults: function(match, callbackSuccess, callbackError) {
 		var instance = this,
@@ -77,11 +78,17 @@ TemplateProcessor = A.Base.create(_NAME, A.Base, [
 	},
 
 	/**
-	 * TODO. Wanna help? Please send a Pull Request.
+	 * Formats the selected suggestion depending on the match type and currently selected editor mode.
+	 * The match type can be one of:
+	 * MATCH_DIRECTOVES or MATCH_VARIABLES.
+	 * The selected editor mode can be one of the following:
+	 * INSERT or OVERWRITE.
+	 * See {{#crossLink "AceEditor.AutoCompleteBase/fillMode:attribute"}}{{/crossLink}}
 	 *
 	 * @method getSuggestion
-	 * @param match
-	 * @param selectedSuggestion
+	 * @param {Object} match The provided match. It should contain at least type and content properties
+	 * @param {String} selectedSuggestion The selected suggestion from the list with suggestions
+	 * @return {String} The final suggestion which should be inserted to the editor
 	 */
 	getSuggestion: function(match, selectedSuggestion) {
 		var instance = this,
@@ -127,23 +134,28 @@ TemplateProcessor = A.Base.create(_NAME, A.Base, [
 	},
 
 	/**
-	 * TODO. Wanna help? Please send a Pull Request.
+	 * Checks if the the provided index is the last token in the list of tokens.
 	 *
 	 * @method _isLastToken
-	 * @param index
-	 * @param tokens
+	 * @param {Number} index The index which should be checked
+	 * @param {Array} tokens The array with tokens
 	 * @protected
+	 * @return {Boolean} True if the provided index is the last token in the list
 	 */
 	_isLastToken: function(index, tokens) {
 		return index === tokens.length - 1;
 	},
 
 	/**
-	 * TODO. Wanna help? Please send a Pull Request.
+	 * Retrieves the type of a token. It can be one of these:
+	 * TOKEN_PUNCTUATOR_DOT = 1
+	 * TOKEN_UNRECOGNIZED = -1
+	 * TOKEN_VARIABLE = 0
 	 *
 	 * @method _getTokenType
-	 * @param token
+	 * @param {Number} token The type of the token
 	 * @protected
+	 * @return {Number} The token type
 	 */
 	_getTokenType: function(token) {
 		var tokenType = TOKEN_UNRECOGNIZED;
@@ -161,11 +173,12 @@ TemplateProcessor = A.Base.create(_NAME, A.Base, [
 	},
 
 	/**
-	 * TODO. Wanna help? Please send a Pull Request.
+	 * Scans the content and extracts variables.
 	 *
 	 * @method _getVariableMatches
-	 * @param content
+	 * @param {String} content The content from which variable matches will be extracted
 	 * @protected
+	 * @return {Array} List with variable matches
 	 */
 	_getVariableMatches: function(content) {
 		var instance = this,
@@ -297,11 +310,12 @@ TemplateProcessor = A.Base.create(_NAME, A.Base, [
 	},
 
 	/**
-	 * TODO. Wanna help? Please send a Pull Request.
+	 * Normalizes a regualr expression value. If the value is String, it will be converted to an RegExp.
 	 *
 	 * @method _setRegexValue
-	 * @param value
+	 * @param {String|RegExp} value The provided regualr expression value
 	 * @protected
+	 * @return {RegExp} The final instance of RegExp object
 	 */
 	_setRegexValue: function(value) {
 		var result = A.AttributeCore.INVALID_VALUE;
@@ -318,7 +332,7 @@ TemplateProcessor = A.Base.create(_NAME, A.Base, [
 }, {
 
 	/**
-	 * Static property provides a string to identify the class.
+	 * Static property which provides a string to identify the class.
 	 *
 	 * @property TemplateProcessor.NAME
 	 * @type String
@@ -327,7 +341,7 @@ TemplateProcessor = A.Base.create(_NAME, A.Base, [
 	NAME: _NAME,
 
 	/**
-	 * TODO. Wanna help? Please send a Pull Request.
+	 * The namespace of the plugin.
 	 *
 	 * @property TemplateProcessor.NS
 	 * @type String
@@ -346,7 +360,7 @@ TemplateProcessor = A.Base.create(_NAME, A.Base, [
 	ATTRS: {
 
 		/**
-		 * TODO. Wanna help? Please send a Pull Request.
+		 * Contains an array of all possible directives for the corresponding language.
 		 *
 		 * @attribute directives
 		 * @type Array
@@ -356,7 +370,7 @@ TemplateProcessor = A.Base.create(_NAME, A.Base, [
 		},
 
 		/**
-		 * TODO. Wanna help? Please send a Pull Request.
+		 * The Editor in which the current instance is plugged.
 		 *
 		 * @attribute host
 		 * @type Object
@@ -366,7 +380,7 @@ TemplateProcessor = A.Base.create(_NAME, A.Base, [
 		},
 
 		/**
-		 * TODO. Wanna help? Please send a Pull Request.
+		 * Contains the supported variables for the corresponding language.
 		 *
 		 * @attribute variables
 		 * @type Object

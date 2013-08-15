@@ -51,6 +51,7 @@ var Lang = A.Lang,
     GROUP = 'group',
     HELP = 'help',
     INLINE = 'inline',
+    LABEL_CSS_CLASS = 'labelCssClass',
     MESSAGE_CONTAINER = 'messageContainer',
     NAME = 'name',
     RADIO = 'radio',
@@ -296,6 +297,17 @@ var FormValidator = A.Component.create({
         fieldStrings: {
             value: {},
             validator: isObject
+        },
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute labelCssClass
+         * @type String
+         */
+        labelCssClass: {
+            validator: isString,
+            value: 'control-label'
         },
 
         /**
@@ -598,7 +610,7 @@ var FormValidator = A.Component.create({
             if (isString(fieldOrFieldName)) {
                 fieldOrFieldName = instance.getFieldsByName(fieldOrFieldName);
 
-                if (fieldOrFieldName && fieldOrFieldName.length) {
+                if (fieldOrFieldName && fieldOrFieldName.length && !fieldOrFieldName.name) {
                     fieldOrFieldName = fieldOrFieldName[0];
                 }
             }
@@ -936,17 +948,35 @@ var FormValidator = A.Component.create({
          * @protected
          */
         _defErrorFieldFn: function(event) {
-            var instance = this;
+            var instance = this,
+                ancestor,
+                field,
+                nextSibling,
+                stackContainer,
+                target,
+                validator;
 
-            var validator = event.validator;
-            var field = validator.field;
+            validator = event.validator;
+            field = validator.field;
 
             instance.highlight(field);
 
             if (instance.get(SHOW_MESSAGES)) {
-                var stackContainer = instance.getFieldStackErrorContainer(field);
+                target = field;
 
-                field.placeAfter(stackContainer);
+                stackContainer = instance.getFieldStackErrorContainer(field);
+
+                nextSibling = field.get('nextSibling');
+
+                if (nextSibling && nextSibling.get('nodeType') === 3) {
+                    ancestor = field.ancestor();
+
+                    if (ancestor && ancestor.hasClass(instance.get(LABEL_CSS_CLASS))) {
+                        target = nextSibling;
+                    }
+                }
+
+                target.placeAfter(stackContainer);
 
                 instance.printStackError(
                     field,
