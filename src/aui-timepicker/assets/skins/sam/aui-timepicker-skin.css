@@ -1,10 +1,10 @@
-.yui3-skin-sam .datepicker-popover .yui3-aclist-item-active,
-.yui3-skin-sam .datepicker-popover .yui3-aclist-item-hover {
+.yui3-skin-sam .timepicker-popover .yui3-aclist-item-active,
+.yui3-skin-sam .timepicker-popover .yui3-aclist-item-hover {
     background: whitesmoke;
     color: #000;
 }
 
-.yui3-skin-sam .datepicker-popover .yui3-aclist-content {
+.yui3-skin-sam .timepicker-popover .yui3-aclist-content {
     background: #fff;
     border: none;
     -moz-box-shadow: none;

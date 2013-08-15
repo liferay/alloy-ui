@@ -11,10 +11,7 @@ var Lang = A.Lang,
     ESC = 'esc',
     KEY = 'key',
     POPOVER = 'popover',
-
-    getCN = A.getClassName,
-
-    CSS_DATEPICKER_POPOVER = getCN('datepicker-popover');
+    POPOVER_CSS_CLASS = 'popoverCssClass';
 
 function DatePickerPopover() {}
 
@@ -28,6 +25,11 @@ DatePickerPopover.ATTRS = {
         setter: '_setPopover',
         value: {},
         writeOnce: true
+    },
+
+    popoverCssClass: {
+        validator: Lang.isString,
+        value: A.getClassName('datepicker-popover')
     }
 };
 
@@ -88,9 +90,11 @@ A.mix(DatePickerPopover.prototype, {
     },
 
     _setPopover: function(val) {
+        var instance = this;
+
         return A.merge({
             bodyContent: '',
-            cssClass: CSS_DATEPICKER_POPOVER,
+            cssClass: instance.get(POPOVER_CSS_CLASS),
             constrain: true,
             hideOn: [
                 {

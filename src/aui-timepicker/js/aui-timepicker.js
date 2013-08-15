@@ -28,6 +28,10 @@ TimePickerBase.ATTRS = {
         value: '%I:%M %p'
     },
 
+    popoverCssClass: {
+        value: A.getClassName('timepicker-popover')
+    },
+
     values: {
         setter: '_setValues',
         value: [
