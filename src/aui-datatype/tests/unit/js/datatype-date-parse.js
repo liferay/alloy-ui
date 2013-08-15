@@ -83,7 +83,8 @@ YUI.add('module-tests', function(Y) {
             testMask('%I:%M %P', '12:00 AM', new Date(2013, 04, 10, 0, 0, 0));
             testMask('%I:%M %P', '01:00 AM', new Date(2013, 04, 10, 1, 0, 0));
             testMask('%I:%M %P', '12:00 PM', new Date(2013, 04, 10, 12, 0, 0));
-            testMask('%I:%M %P', '1:00 PM', new Date(2013, 04, 10, 13, 0, 0));
+            testMask('%I:%M %P', '01:00 PM', new Date(2013, 04, 10, 13, 0, 0));
+            testMask('%l:%M %P', '1:00 PM', new Date(2013, 04, 10, 13, 0, 0));
         },
 
         'test year': function() {
