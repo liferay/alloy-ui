@@ -51,6 +51,7 @@ var Lang = A.Lang,
     GROUP = 'group',
     HELP = 'help',
     INLINE = 'inline',
+    LABEL_CSS_CLASS = 'labelCssClass',
     MESSAGE_CONTAINER = 'messageContainer',
     NAME = 'name',
     RADIO = 'radio',
@@ -296,6 +297,17 @@ var FormValidator = A.Component.create({
         fieldStrings: {
             value: {},
             validator: isObject
+        },
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @attribute labelCssClass
+         * @type String
+         */
+        labelCssClass: {
+            validator: isString,
+            value: 'control-label'
         },
 
         /**
@@ -959,7 +971,7 @@ var FormValidator = A.Component.create({
                 if (nextSibling && nextSibling.get('nodeType') === 3) {
                     ancestor = field.ancestor();
 
-                    if (ancestor && ancestor.hasClass('control-label')) {
+                    if (ancestor && ancestor.hasClass(instance.get(LABEL_CSS_CLASS))) {
                         target = nextSibling;
                     }
                 }
