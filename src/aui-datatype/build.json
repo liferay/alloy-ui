@@ -5,6 +5,12 @@
             "jsfiles": [
                 "js/aui-datatype.js"
             ]
+        },
+
+        "aui-datatype-date-parse": {
+            "jsfiles": [
+                "js/aui-datatype-date-parse.js"
+            ]
         }
     }
 }

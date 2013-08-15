@@ -1,5 +1,5 @@
 {
-    "name": "alloy",
+    "name": "alloy-ui",
     "description": "AlloyUI",
     "version": "2.0.0pr6",
     "author": {
@@ -11,7 +11,7 @@
     "license": "BSD",
     "repository": {
         "type": "git",
-        "url": "git@github.com:eduardolundgren/alloy.git"
+        "url": "git@github.com:liferay/alloy-ui.git"
     },
     "keywords": [
         "alloy", "yui", "external", "commands", "helpers"
@@ -19,6 +19,8 @@
     "dependencies": {
         "fs-extra": "*"
     },
-    "engines": { "node": "*" },
+    "engines": {
+        "node": "*"
+    },
     "preferGlobal": "true"
 }

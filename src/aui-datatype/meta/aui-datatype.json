@@ -1,7 +1,17 @@
 {
     "aui-datatype": {
         "requires": [
-            "datatype"
+            "datatype",
+            "aui-datatype-date-parse"
+        ]
+    },
+
+    "aui-datatype-date-parse": {
+        "requires": [
+            "aui-base-lang",
+            "datatype-date-format",
+            "datatype-date-parse",
+            "intl"
         ]
     }
 }

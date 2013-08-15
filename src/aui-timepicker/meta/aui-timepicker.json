@@ -1,0 +1,21 @@
+{
+    "aui-timepicker": {
+        "requires": [
+            "autocomplete-list",
+            "autocomplete-list-keys",
+            "aui-datepicker-delegate",
+            "aui-datepicker-popover"
+        ],
+        "skinnable": true
+    },
+
+    "aui-timepicker-native": {
+        "requires": [
+            "base",
+            "base-build",
+            "aui-node-base",
+            "aui-datepicker-delegate",
+            "aui-datepicker-native"
+        ]
+    }
+}

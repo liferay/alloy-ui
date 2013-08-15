@@ -327,8 +327,27 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-datatype": {
         "requires": [
-            "datatype"
+            "datatype",
+            "aui-datatype-date-parse"
         ]
+    },
+    "aui-datatype-date-parse": {
+        "requires": [
+            "aui-base-lang",
+            "datatype-date-format",
+            "datatype-date-parse",
+            "intl"
+        ]
+    },
+    "aui-datepicker": {
+        "requires": [
+            "calendar",
+            "base",
+            "base-build",
+            "aui-datepicker-delegate",
+            "aui-datepicker-popover"
+        ],
+        "skinnable": true
     },
     "aui-datepicker-base-deprecated": {
         "requires": [
@@ -338,11 +357,33 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
+    "aui-datepicker-delegate": {
+        "requires": [
+            "node-event-delegate",
+            "event-focus",
+            "aui-event-input",
+            "aui-datatype-date-parse"
+        ]
+    },
     "aui-datepicker-deprecated": {
         "skinnable": true,
         "use": [
             "aui-datepicker-base-deprecated",
             "aui-datepicker-select-deprecated"
+        ]
+    },
+    "aui-datepicker-native": {
+        "requires": [
+            "base",
+            "base-build",
+            "aui-node-base",
+            "aui-datepicker-delegate"
+        ]
+    },
+    "aui-datepicker-popover": {
+        "requires": [
+            "aui-classnamemanager",
+            "aui-popover"
         ]
     },
     "aui-datepicker-select-deprecated": {
@@ -1129,6 +1170,24 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
+    "aui-timepicker": {
+        "requires": [
+            "autocomplete-list",
+            "autocomplete-list-keys",
+            "aui-datepicker-delegate",
+            "aui-datepicker-popover"
+        ],
+        "skinnable": true
+    },
+    "aui-timepicker-native": {
+        "requires": [
+            "base",
+            "base-build",
+            "aui-node-base",
+            "aui-datepicker-delegate",
+            "aui-datepicker-native"
+        ]
+    },
     "aui-timer": {
         "requires": [
             "oop"
@@ -1342,4 +1401,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'e27fa2a4410ef4e9a22e3a6411a197b0';
+YUI.Env[Y.version].md5 = '3de437d5a3384236b5a842f61f531d66';
