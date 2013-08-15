@@ -84,10 +84,10 @@ DatePickerDelegate.prototype = {
         return null;
     },
 
-    getParsedDatesFromInputValue: function() {
+    getParsedDatesFromInputValue: function(opt_value) {
         var instance = this,
             valueExtractor = instance.get(VALUE_EXTRACTOR),
-            parsedDates = valueExtractor.call(instance);
+            parsedDates = valueExtractor.call(instance, opt_value);
 
         if (parsedDates) {
             return A.Array.filter(parsedDates, function(parsed) {
@@ -151,10 +151,10 @@ DatePickerDelegate.prototype = {
     },
 
     _valueExtractorFn: function() {
-        return function() {
+        return function(opt_value) {
             var instance = this,
                 activeInput = instance.get(ACTIVE_INPUT),
-                activeInputValue = Lang.trim(activeInput.val()),
+                activeInputValue = Lang.trim(opt_value || activeInput.val()),
                 dateSeparator = instance.get(DATE_SEPARATOR),
                 mask = instance.get(MASK),
                 dates;

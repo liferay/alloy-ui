@@ -137,10 +137,17 @@ A.mix(TimePickerBase.prototype, {
         instance.selectDates(instance.getParsedDatesFromInputValue());
     },
 
-    _afterAutocompleteSelect: function() {
-        var instance = this;
+    _afterAutocompleteSelect: function(event) {
+        var instance = this,
+            parsed = instance.getParsedDatesFromInputValue(),
+            selected = instance.getParsedDatesFromInputValue(event.result.raw);
 
-        instance.selectDates(instance.getParsedDatesFromInputValue());
+        if (parsed.length && selected.length) {
+            parsed.pop();
+            parsed.push(selected.pop());
+        }
+
+        instance.selectDates(parsed);
 
         if (instance.get(AUTO_HIDE)) {
             instance.hide();
