@@ -28,6 +28,7 @@ var Lang = A.Lang,
     TABS = 'tabs',
     TYPE = 'type',
     TYPE_CHANGE = 'typeChange',
+    SELECTED_CHANGE = 'selectedChange',
 
     getClassName = A.getClassName;
 
@@ -106,6 +107,8 @@ A.Tab = A.Component.create({
         initializer: function() {
             var instance = this;
 
+            instance.on(SELECTED_CHANGE, instance._onTabSelectedChange);
+
             A.after(instance._afterUiSetDisabled, instance, '_uiSetDisabled');
         },
 
@@ -120,6 +123,21 @@ A.Tab = A.Component.create({
             var instance = this;
 
             instance.get(BOUNDING_BOX).toggleClass(getClassName(DISABLED), val);
+        },
+
+        /**
+         * Fire before <code>selected</code> attribute change.
+         *
+         * @method _onTabSelectedChange
+         * @param event
+         * @protected
+         */
+        _onTabSelectedChange: function(event) {
+            var instance = this;
+
+            if (instance.get(DISABLED)) {
+                event.halt();
+            }
         },
 
         /**
@@ -244,7 +262,6 @@ A.TabView = A.Component.create({
 
             instance.after(instance._afterSyncUI, instance, SYNC_UI);
             instance.after(TYPE_CHANGE, instance._afterTypeChange);
-            instance.on('tab:click', instance._onTabClick);
         },
 
         /**
@@ -308,13 +325,6 @@ A.TabView = A.Component.create({
 
             if (event.prevVal) {
                 listNode.removeClass(getClassName(NAV, event.prevVal));
-            }
-        },
-
-        _onTabClick: function(event) {
-            if (event.target.get(DISABLED)) {
-                event.preventDefault();
-                event.domEvent.preventDefault();
             }
         },
 
