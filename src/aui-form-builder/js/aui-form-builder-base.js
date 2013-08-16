@@ -401,7 +401,6 @@ var FormBuilder = A.Component.create({
 
 			instance._setupAvailableFieldsSortableList();
 			instance._setupFieldsSortableList();
-			instance._verifyTabs();
 		},
 
 		/**
@@ -413,6 +412,7 @@ var FormBuilder = A.Component.create({
 			var instance = this;
 
 			instance.tabView.selectChild(A.FormBuilder.FIELDS_TAB);
+            instance.tabView.disableTab(A.FormBuilder.SETTINGS_TAB);
 		},
 
 		/**
@@ -469,11 +469,6 @@ var FormBuilder = A.Component.create({
 			if (isFormBuilderField(field)) {
 				instance.editingField = field;
 
-				instance.tabView.selectChild(A.FormBuilder.SETTINGS_TAB);
-				instance.tabView.enableTab(A.FormBuilder.SETTINGS_TAB);
-
-				instance.propertyList.set(DATA, instance.getFieldProperties(field));
-
 				instance.unselectFields();
 				instance.selectFields(field);
 			}
@@ -486,8 +481,7 @@ var FormBuilder = A.Component.create({
 		 * @param type
 		 */
 		getFieldClass: function(type) {
-			var instance = this,
-				clazz = A.FormBuilder.types[type];
+			var clazz = A.FormBuilder.types[type];
 
 			if (clazz) {
 				return clazz;
@@ -506,8 +500,6 @@ var FormBuilder = A.Component.create({
 		 * @param field
 		 */
 		getFieldProperties: function(field) {
-			var instance = this;
-
 			return field.getProperties();
 		},
 
@@ -529,6 +521,20 @@ var FormBuilder = A.Component.create({
 
 			parent.addField(field, index);
 		},
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method openEditProperties
+         * @param field
+         */
+        openEditProperties: function(field) {
+            var instance = this;
+
+            instance.tabView.enableTab(A.FormBuilder.SETTINGS_TAB);
+            instance.tabView.selectChild(A.FormBuilder.SETTINGS_TAB);
+            instance.propertyList.set(DATA, instance.getFieldProperties(field));
+        },
 
 		/**
 		 * TODO. Wanna help? Please send a Pull Request.
@@ -572,6 +578,14 @@ var FormBuilder = A.Component.create({
 				instance.plotField(field, container);
 			});
 		},
+
+        removeField: function(field) {
+            var instance = this;
+
+            instance.unselectFields(field);
+
+            FormBuilder.superclass.removeField.apply(this, arguments);
+        },
 
 		/**
 		 * TODO. Wanna help? Please send a Pull Request.
@@ -648,8 +662,7 @@ var FormBuilder = A.Component.create({
 		 * @protected
 		 */
 		_afterUniqueFieldsMapAdd: function(event) {
-			var instance = this,
-				availableField = getAvailableFieldById(event.attrName),
+			var availableField = getAvailableFieldById(event.attrName),
 				node;
 
 			if (isAvailableField(availableField)) {
@@ -668,8 +681,7 @@ var FormBuilder = A.Component.create({
 		 * @protected
 		 */
 		_afterUniqueFieldsMapRemove: function(event) {
-			var instance = this,
-				availableField = getAvailableFieldById(event.attrName),
+			var availableField = getAvailableFieldById(event.attrName),
 				node;
 
 			if (isAvailableField(availableField)) {
@@ -688,7 +700,11 @@ var FormBuilder = A.Component.create({
 		 * @protected
 		 */
 		_afterSelectedFieldsSetAdd: function(event) {
+            var instance = this;
+
 			event.value.set(SELECTED, true);
+
+            instance.openEditProperties(event.value);
 		},
 
 		/**
@@ -699,7 +715,11 @@ var FormBuilder = A.Component.create({
 		 * @protected
 		 */
 		_afterSelectedFieldsSetRemove: function(event) {
+            var instance = this;
+
 			event.value.set(SELECTED, false);
+
+            instance.closeEditProperties();
 		},
 
 		/**
@@ -792,8 +812,7 @@ var FormBuilder = A.Component.create({
 		 * @protected
 		 */
 		_getFieldId: function(field) {
-			var instance = this,
-				id = field.get(ID),
+			var id = field.get(ID),
 				prefix;
 
 			if (isAvailableField(field)) {
@@ -814,8 +833,6 @@ var FormBuilder = A.Component.create({
 		 * @protected
 		 */
 		_getFieldNodeIndex: function(fieldNode) {
-			var instance = this;
-
 			return fieldNode.get(PARENT_NODE).all(
 				// prevent the placeholder interference on the index
 				// calculation
@@ -834,6 +851,8 @@ var FormBuilder = A.Component.create({
 			var instance = this;
 
 			instance.unselectFields();
+
+            event.halt();
 		},
 
 		/**
@@ -882,8 +901,7 @@ var FormBuilder = A.Component.create({
 		 * @protected
 		 */
 		_onDragMouseDown: function(event) {
-			var instance = this,
-				dragNode = event.target.get(NODE),
+			var dragNode = event.target.get(NODE),
 				availableField = A.AvailableField.getAvailableFieldByNode(dragNode);
 
 			if (isAvailableField(availableField) && !availableField.get(DRAGGABLE)) {
@@ -937,8 +955,7 @@ var FormBuilder = A.Component.create({
 		 * @protected
 		 */
 		_onMouseOutField: function(event) {
-			var instance = this,
-				field = A.Widget.getByNode(event.currentTarget);
+			var field = A.Widget.getByNode(event.currentTarget);
 
 			field.controlsToolbar.hide();
 			field.get(BOUNDING_BOX).removeClass(CSS_FIELD_HOVER);
@@ -954,8 +971,7 @@ var FormBuilder = A.Component.create({
 		 * @protected
 		 */
 		_onMouseOverField: function(event) {
-			var instance = this,
-				field = A.Widget.getByNode(event.currentTarget);
+			var field = A.Widget.getByNode(event.currentTarget);
 
 			field.controlsToolbar.show();
 			field.get(BOUNDING_BOX).addClass(CSS_FIELD_HOVER);
@@ -970,7 +986,7 @@ var FormBuilder = A.Component.create({
 		 * @param event
 		 * @protected
 		 */
-		_onSave: function(event) {
+		_onSave: function() {
 			var instance = this,
 				editingField = instance.editingField;
 
@@ -993,10 +1009,9 @@ var FormBuilder = A.Component.create({
 		 * @protected
 		 */
 		_setAvailableFields: function(val) {
-			var instance = this,
-				fields = [];
+			var fields = [];
 
-			AArray.each(val, function(field, index) {
+			AArray.each(val, function(field) {
 				fields.push(
 					isAvailableField(field) ? field : new A.FormBuilderAvailableField(field)
 				);
@@ -1121,26 +1136,12 @@ var FormBuilder = A.Component.create({
 		 * @param val
 		 * @protected
 		 */
-		_uiSetAllowRemoveRequiredFields: function(val) {
+		_uiSetAllowRemoveRequiredFields: function() {
 			var instance = this;
 
 			instance.get(FIELDS).each(function(field) {
 				field._uiSetRequired(field.get(REQUIRED));
 			});
-		},
-
-		/**
-		 * TODO. Wanna help? Please send a Pull Request.
-		 *
-		 * @method _verifyTabs
-		 * @protected
-		 */
-		_verifyTabs: function() {
-			var instance = this;
-
-			if (!instance.editingField) {
-				instance.tabView.disableTab(A.FormBuilder.SETTINGS_TAB);
-			}
 		}
 	}
 
