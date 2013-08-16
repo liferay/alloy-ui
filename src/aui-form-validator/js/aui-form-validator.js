@@ -259,31 +259,31 @@ A.mix(defaults, {
                 return false;
 
             // Validate DVs
-            tamanho = val.length - 2
-            numeros = val.substring(0,tamanho);
-            digitos = val.substring(tamanho);
-            soma = 0;
-            pos = tamanho - 7;
-            for (i = tamanho; i >= 1; i--) {
-              soma += numeros.charAt(tamanho - i) * pos--;
+            size = val.length - 2
+            numbers = val.substring(0,size);
+            digits = val.substring(size);
+            sum = 0;
+            pos = size - 7;
+            for (i = size; i >= 1; i--) {
+              sum += numbers.charAt(size - i) * pos--;
               if (pos < 2)
                     pos = 9;
             }
-            resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-            if (resultado != digitos.charAt(0))
+            result = sum % 11 < 2 ? 0 : 11 - sum % 11;
+            if (result != digits.charAt(0))
                 return false;
 
-            tamanho = tamanho + 1;
-            numeros = val.substring(0,tamanho);
-            soma = 0;
-            pos = tamanho - 7;
-            for (i = tamanho; i >= 1; i--) {
-              soma += numeros.charAt(tamanho - i) * pos--;
+            size = size + 1;
+            numbers = val.substring(0,size);
+            sum = 0;
+            pos = size - 7;
+            for (i = size; i >= 1; i--) {
+              sum += numbers.charAt(size - i) * pos--;
               if (pos < 2)
                     pos = 9;
             }
-            resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-            if (resultado != digitos.charAt(1))
+            result = sum % 11 < 2 ? 0 : 11 - sum % 11;
+            if (result != digits.charAt(1))
                   return false;
 
             return true;
