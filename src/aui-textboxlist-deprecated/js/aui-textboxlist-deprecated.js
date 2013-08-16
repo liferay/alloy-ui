@@ -508,7 +508,7 @@ var TextboxListEntry = A.Component.create(
 				var text = A.Node.create(TPL_ENTRY_TEXT);
 				var close = A.Node.create(TPL_ENTRY_CLOSE);
 
-				var labelText = instance.get('labelText');
+				var labelText = A.Escape.html(instance.get('labelText'));
 
 				text.set('innerHTML', labelText);
 
