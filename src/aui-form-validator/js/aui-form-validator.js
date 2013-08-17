@@ -101,7 +101,9 @@ A.mix(defaults, {
         range: 'Please enter a value between {0} and {1}.',
         rangeLength: 'Please enter a value between {0} and {1} characters long.',
         required: 'This field is required.',
-        url: 'Please enter a valid URL.'
+        url: 'Please enter a valid URL.',
+        cpf: 'Please enter a valid CPF.',
+        cnpj: 'Please enter a valid CNPJ.'
     },
 
     REGEX: {
@@ -190,6 +192,102 @@ A.mix(defaults, {
             else {
                 return !!val;
             }
+        },
+
+        cpf: function(val, node, ruleValue) {
+ 
+            val = val.replace(/[^\d]+/g,'');
+         
+            if(val == '') return false;
+         
+            // Eliminate invalid CPFs
+            if (val.length != 11 ||
+            val == "00000000000" ||
+            val == "11111111111" ||
+            val == "22222222222" ||
+            val == "33333333333" ||
+            val == "44444444444" ||
+            val == "55555555555" ||
+            val == "66666666666" ||
+            val == "77777777777" ||
+            val == "88888888888" ||
+            val == "99999999999")
+            return false;
+             
+            // Validate 1st digit
+            add = 0;
+            for (i=0; i < 9; i ++)
+                add += parseInt(val.charAt(i)) * (10 - i);
+            rev = 11 - (add % 11);
+            if (rev == 10 || rev == 11)
+                rev = 0;
+            if (rev != parseInt(val.charAt(9)))
+                return false;
+             
+            // Validate 2nd digit
+            add = 0;
+            for (i = 0; i < 10; i ++)
+                add += parseInt(val.charAt(i)) * (11 - i);
+            rev = 11 - (add % 11);
+            if (rev == 10 || rev == 11)
+                rev = 0;
+            if (rev != parseInt(val.charAt(10)))
+                return false;
+                 
+            return true;
+        },
+
+        cnpj: function (val, node, ruleValue) {
+
+            val = val.replace(/[^\d]+/g,'');
+
+            if(val == '') return false;
+
+            if (val.length != 14)
+                return false;
+
+            // Eliminate invalid CNPJs
+            if (val == "00000000000000" ||
+                val == "11111111111111" ||
+                val == "22222222222222" ||
+                val == "33333333333333" ||
+                val == "44444444444444" ||
+                val == "55555555555555" ||
+                val == "66666666666666" ||
+                val == "77777777777777" ||
+                val == "88888888888888" ||
+                val == "99999999999999")
+                return false;
+
+            // Validate DVs
+            size = val.length - 2
+            numbers = val.substring(0,size);
+            digits = val.substring(size);
+            sum = 0;
+            pos = size - 7;
+            for (i = size; i >= 1; i--) {
+              sum += numbers.charAt(size - i) * pos--;
+              if (pos < 2)
+                    pos = 9;
+            }
+            result = sum % 11 < 2 ? 0 : 11 - sum % 11;
+            if (result != digits.charAt(0))
+                return false;
+
+            size = size + 1;
+            numbers = val.substring(0,size);
+            sum = 0;
+            pos = size - 7;
+            for (i = size; i >= 1; i--) {
+              sum += numbers.charAt(size - i) * pos--;
+              if (pos < 2)
+                    pos = 9;
+            }
+            result = sum % 11 < 2 ? 0 : 11 - sum % 11;
+            if (result != digits.charAt(1))
+                  return false;
+
+            return true;
         }
     }
 });
