@@ -1,7 +1,7 @@
 YUI.add('module-tests', function(Y) {
 
     //--------------------------------------------------------------------------
-    // ACE Editor Form Validator Unit Tests
+    // AUI Form Validator Unit Tests
     //--------------------------------------------------------------------------
 
     var suite = new Y.Test.Suite('aui-form-validator'),
