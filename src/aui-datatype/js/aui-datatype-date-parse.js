@@ -623,7 +623,7 @@ A.mix(DateParser.prototype, {
 
         text = text.substring(textPos[0]);
 
-        match = /\b[A-Z]{3}([+-\s])?(\d{1,2})?:?(\d{1,2})?/.exec(text);
+        match = /\b[A-Z]{3}([+\-\s])?(\d{1,2})?:?(\d{1,2})?/.exec(text);
 
         if (match) {
             tz = match[0];
