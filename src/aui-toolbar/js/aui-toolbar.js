@@ -24,6 +24,7 @@ var Lang = A.Lang,
     NORMAL = 'normal',
     RADIO = 'radio',
     RENDERED = 'rendered',
+    TITLE = 'title',
     TOOLBAR = 'toolbar',
     TOOLBAR_RENDERER = 'toolbarRenderer',
     VERTICAL = 'vertical',
@@ -399,6 +400,11 @@ ToolbarRenderer.prototype = {
                     });
 
                 A.Button.syncIconUI(buttonNode, iconContent, value.iconAlign);
+            }
+
+            // Add title support
+            if (value.title) {
+                buttonNode.setAttribute(TITLE, value.title);
             }
 
             A.Button.setWidgetLazyConstructorNodeData(buttonNode, value);
