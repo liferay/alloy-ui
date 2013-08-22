@@ -579,14 +579,6 @@ var FormBuilder = A.Component.create({
 			});
 		},
 
-        removeField: function(field) {
-            var instance = this;
-
-            instance.unselectFields(field);
-
-            FormBuilder.superclass.removeField.apply(this, arguments);
-        },
-
 		/**
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
