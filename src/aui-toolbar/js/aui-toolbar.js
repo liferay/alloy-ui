@@ -404,7 +404,7 @@ ToolbarRenderer.prototype = {
 
             // Add title support
             if (value.title) {
-                buttonNode.setAttribute(TITLE, value.title);
+                buttonNode.attr(TITLE, value.title);
             }
 
             A.Button.setWidgetLazyConstructorNodeData(buttonNode, value);
