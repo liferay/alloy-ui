@@ -12,6 +12,7 @@
     <p>
         <div id="toolbar1" class="toolbar">
             <button class="btn btn-mini"><i class="icon-print"></i></button>
+            <button class="btn btn-mini" type="button">Typed button</button>
             <div id="checkgroup1" class="btn-group btn-group-checkbox">
                 <button class="btn btn-mini"><i class="icon-bold"></i></button>
                 <button class="btn btn-mini"><i class="icon-italic"></i></button>
@@ -119,8 +120,13 @@
         new Y.Toolbar({
             boundingBox: '#toolbarjs1',
             children: [
-                { label: 'Button' },
-                [ /*empty button group*/ ],
+                [
+                    { label: 'Button' },
+                    {
+                        domType: 'button',
+                        label: 'Typed button'
+                    },
+                ],
                 [
                     {
                         icon: 'icon-camera',

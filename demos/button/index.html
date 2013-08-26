@@ -11,6 +11,7 @@
     <h2>JavaScript buttons</h2>
     <button id="basic"></button>
     <button id="toggle"></button>
+    <span id="typed"></span>
     <h2>JavaScript button group</h2>
     <p>
         <div id="checkgroup">
@@ -85,6 +86,11 @@
             srcNode: '#toggle',
             icon: 'icon-print'
        }).render();
+
+        new Y.Button({
+            label: 'Type button',
+            domType: 'button'
+        }).render('#typed');
 
         new Y.ButtonGroup({
             boundingBox: '#checkgroup',
