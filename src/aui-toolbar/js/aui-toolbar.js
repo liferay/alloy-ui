@@ -23,14 +23,12 @@ var Lang = A.Lang,
     MOUSEMOVE = 'mousemove',
     NORMAL = 'normal',
     RADIO = 'radio',
-    RENDERED = 'rendered',
     TITLE = 'title',
     TOOLBAR = 'toolbar',
     TOOLBAR_RENDERER = 'toolbarRenderer',
     VERTICAL = 'vertical',
 
     _DOT = '.',
-    _EMPTY = '',
     _SPACE = ' ',
 
     getCN = A.getClassName,
@@ -250,8 +248,6 @@ A.Toolbar = A.Component.create({
          * @protected
          */
         _initEnclosingWidgetIfNeeded: function(seed) {
-            var instance = this;
-
             if (!seed || seed.getData(ENCLOSING_WIDGET_INITIALIZED)) {
                 return;
             }
@@ -372,8 +368,19 @@ ToolbarRenderer.prototype = {
 
             // Add node reference support
             buttonNode = A.one(value.boundingBox || value.srcNode);
-            if (!buttonNode) {
-                buttonNode = A.Node.create(instance.TEMPLATES.button);
+            if (buttonNode) {
+                // IE6- fails when setting type on created input elements, try to
+                // silently fails when that happens.
+                try {
+                    // Add type support
+                    buttonNode.setAttribute('type', value.domType || BUTTON);
+                }
+                catch(err) {}
+            }
+            else {
+                buttonNode = A.Node.create(
+                    A.ButtonExt.getTypedButtonTemplate(
+                        instance.TEMPLATES.button, value.domType));
             }
 
             // Add cssClass support
@@ -392,9 +399,6 @@ ToolbarRenderer.prototype = {
             if (value.label) {
                 buttonNode.append(value.label);
             }
-
-            // Add type support
-            buttonNode.setAttribute('type', value.type || BUTTON);
 
             // Add icon support
             if (value.icon) {
@@ -498,8 +502,7 @@ ToolbarRenderer.prototype = {
      * @protected
      */
     _getChildRenderHints: function(child) {
-        var instance = this,
-            groupType = null,
+        var groupType = null,
             orientation = NORMAL,
             renderer;
 

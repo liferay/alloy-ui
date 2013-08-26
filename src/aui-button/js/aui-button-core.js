@@ -14,6 +14,7 @@ var Lang = A.Lang,
     BOUNDING_BOX = 'boundingBox',
     BTN = 'btn',
     BTNGROUP = 'btngroup',
+    BUTTON = 'button',
     CLASS_NAME = 'className',
     DISABLED = 'disabled',
     GROUP = 'group',
@@ -25,11 +26,11 @@ var Lang = A.Lang,
     LEFT = 'left',
     PRIMARY = 'primary',
     RIGHT = 'right',
+    SUBMIT = 'submit',
     SYNC_UI = 'syncUI',
     TOGGLEBTN = 'togglebtn',
     CHECKBOX = 'checkbox',
     TYPE = 'type',
-    VISIBLE = 'visible',
     WIDGET_CONSTRUCTOR = 'widgetConstructor',
 
     getClassName = A.getClassName,
@@ -51,7 +52,10 @@ var Lang = A.Lang,
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
-var ButtonExt = function() {
+var ButtonExt = function(config) {
+    var instance = this;
+
+    instance._setEarlyButtonDomType(config.domType);
 };
 
 /**
@@ -63,6 +67,18 @@ var ButtonExt = function() {
  * @static
  */
 ButtonExt.ATTRS = {
+
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute icon
+     */
+    domType: {
+        writeOnce: true,
+        validator: function(val) {
+            return val.toLowerCase() === BUTTON || val.toLowerCase() === SUBMIT;
+        }
+    },
 
     /**
      * TODO. Wanna help? Please send a Pull Request.
@@ -119,7 +135,21 @@ ButtonExt.HTML_PARSER = {
     iconElement: I
 };
 
+/**
+ * Get typed buttons template.
+ *
+ * @method getTypedButtonTemplate
+ * @param type
+ * @static
+ */
+ButtonExt.getTypedButtonTemplate = function(template, type) {
+    return Lang.sub(template, {
+        type: type ? ' type="' + type + '"' : ''
+    });
+};
+
 ButtonExt.prototype = {
+    TEMPLATE: '<button{type}></button>',
     ICON_TEMPLATE: '<i></i>',
     iconElement: null,
 
@@ -192,6 +222,21 @@ ButtonExt.prototype = {
     },
 
     /**
+     * Set button type on bounding box template before constructor is invoked.
+     * The type should be set before widget creates the bounding box node.
+     *
+     * @method _setEarlyButtonDomType
+     * @param type
+     * @protected
+     */
+    _setEarlyButtonDomType: function(type) {
+        var instance = this;
+
+        instance.BOUNDING_TEMPLATE = A.ButtonExt.getTypedButtonTemplate(
+            ButtonExt.prototype.TEMPLATE, type);
+    },
+
+    /**
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _uiSetPrimary
@@ -236,6 +281,8 @@ ButtonExt.prototype = {
             instance.get(BOUNDING_BOX), instance.get(ICON_ELEMENT), val);
     }
 };
+
+A.ButtonExt = ButtonExt;
 
 /**
  * A base class for ButtonCore.
@@ -324,8 +371,8 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
      * @param node
      */
     getWidgetLazyConstructorFromNodeData: function(node) {
-        var instance = this,
-            config = node.getData(WIDGET_CONSTRUCTOR) || {};
+        var config = node.getData(WIDGET_CONSTRUCTOR) || {};
+
         config.boundingBox = node;
         config.render = true;
         return config;
@@ -361,8 +408,7 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
      * @param iconAlign
      */
     syncIconUI: function(buttonElement, iconElement, iconAlign) {
-        var instance = this,
-            textNode = A.config.doc.createTextNode(' '),
+        var textNode = A.config.doc.createTextNode(' '),
             insertPos = 0;
 
         if (iconAlign === RIGHT) {
