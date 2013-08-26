@@ -2135,7 +2135,7 @@ var DateCellEditor = A.Component.create({
 					values = [];
 
 				AArray.each(val, function(date, index) {
-					values.push(DataType.Date.parse(date));
+					values.push(DataType.Date.parse(instance.get('dateFormat'), date));
 				});
 
 				return values;
