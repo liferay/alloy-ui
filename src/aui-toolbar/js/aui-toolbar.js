@@ -359,6 +359,7 @@ ToolbarRenderer.prototype = {
         button: function(childRenderHints) {
             var instance = this,
                 value = childRenderHints.value,
+                type = value.domType || BUTTON,
                 cssClass,
                 buttonNode;
 
@@ -373,14 +374,14 @@ ToolbarRenderer.prototype = {
                 // silently fails when that happens.
                 try {
                     // Add type support
-                    buttonNode.setAttribute('type', value.domType || BUTTON);
+                    buttonNode.setAttribute('type', type);
                 }
                 catch(err) {}
             }
             else {
                 buttonNode = A.Node.create(
                     A.ButtonExt.getTypedButtonTemplate(
-                        instance.TEMPLATES.button, value.domType));
+                        instance.TEMPLATES.button, type));
             }
 
             // Add cssClass support
