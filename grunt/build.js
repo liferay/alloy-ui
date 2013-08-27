@@ -18,7 +18,7 @@ var fs      = require('fs');
 var path    = require('path');
 
 // -- Globals ------------------------------------------------------------------
-var root = process.cwd();
+var ROOT = process.cwd();
 
 // -- Task ---------------------------------------------------------------------
 module.exports = function(grunt) {
@@ -92,8 +92,8 @@ module.exports = function(grunt) {
 
     exports._checkYuiCache = function(mainCallback, target) {
         var cwd           = grunt.config([TASK.name, target, 'src']);
-        var yuiRoot       = path.join(root, cwd, '..');
-        var yuiCacheFile  = path.join(root, 'build', '.yui-build');
+        var yuiRoot       = path.join(ROOT, cwd, '..');
+        var yuiCacheFile  = path.join(ROOT, 'build', '.yui-build');
         var isYuiBuildUpdated = false;
 
         if (grunt.file.exists(yuiCacheFile)) {
@@ -124,7 +124,7 @@ module.exports = function(grunt) {
         // -- Build Dir
         if (grunt.config([TASK.name, target, 'dist'])) {
             args.push(
-                '--build-dir=' + path.join(root, 'build')
+                '--build-dir=' + path.join(ROOT, 'build')
             );
         }
 
@@ -166,10 +166,10 @@ module.exports = function(grunt) {
 
         // -- Source Dir
         if (target === 'aui') {
-            var auiSrcDir  = path.join(root, 'src');
+            var auiSrcDir  = path.join(ROOT, 'src');
             var auiBaseDir = path.join(auiSrcDir, 'aui-base');
 
-            if (cwd === root || cwd === auiSrcDir) {
+            if (cwd === ROOT || cwd === auiSrcDir) {
                 args.push('--walk');
 
                 stack.push(function(mainCallback) {
@@ -194,7 +194,7 @@ module.exports = function(grunt) {
                 args.push('--walk');
 
                 stack.push(function(mainCallback) {
-                    exports._runShifter(mainCallback, target, args, path.join(root, cwd));
+                    exports._runShifter(mainCallback, target, args, path.join(ROOT, cwd));
                 });
             }
         }
@@ -221,8 +221,8 @@ module.exports = function(grunt) {
 
     exports._setYuiCache = function(mainCallback, target) {
         var cwd          = grunt.config([TASK.name, target, 'src']);
-        var yuiRoot      = path.join(root, cwd, '..');
-        var yuiCacheFile = path.join(root, 'build', '.yui-build');
+        var yuiRoot      = path.join(ROOT, cwd, '..');
+        var yuiCacheFile = path.join(ROOT, 'build', '.yui-build');
 
         command.open(yuiRoot)
             .exec('git', ['rev-parse', 'HEAD'])
