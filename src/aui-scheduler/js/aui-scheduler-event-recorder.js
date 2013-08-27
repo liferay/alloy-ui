@@ -18,6 +18,7 @@ var Lang = A.Lang,
 
 	DateMath = A.DataType.DateMath,
 
+	_COMMA = ',',
 	_DASH = '-',
 	_DOT = '.',
 	_SPACE = ' ',
@@ -25,25 +26,26 @@ var Lang = A.Lang,
 	SCHEDULER_EVENT = 'scheduler-event',
 	SCHEDULER_EVENT_RECORDER = 'scheduler-event-recorder',
 
-	ACTIVE_VIEW = 'activeView',
-	BODY_TEMPLATE = 'bodyTemplate',
-	BOUNDING_BOX = 'boundingBox',
-	CANCEL = 'cancel',
-	CLICK = 'click',
-	CLICKOUTSIDE = 'clickoutside',
-	CONTENT = 'content',
-	CONTENT_BOX = 'contentBox',
-	DATE_FORMAT = 'dateFormat',
-	DELETE = 'delete',
-	END_DATE = 'endDate',
-	EVENT = 'event',
-	EVENT_CHANGE = 'eventChange',
-	HEADER_TEMPLATE = 'headerTemplate',
-	ISO_TIME = 'isoTime',
-	NODE = 'node',
-	POP_OVER = 'popover',
-	RECORDER = 'recorder',
-	RENDERED = 'rendered',
+    ACTIVE_VIEW = 'activeView',
+    ALL_DAY = 'allDay',
+    BODY_TEMPLATE = 'bodyTemplate',
+    BOUNDING_BOX = 'boundingBox',
+    CANCEL = 'cancel',
+    CLICK = 'click',
+    CLICKOUTSIDE = 'clickoutside',
+    CONTENT = 'content',
+    CONTENT_BOX = 'contentBox',
+    DATE_FORMAT = 'dateFormat',
+    DELETE = 'delete',
+    END_DATE = 'endDate',
+    EVENT = 'event',
+    EVENT_CHANGE = 'eventChange',
+    HEADER_TEMPLATE = 'headerTemplate',
+    ISO_TIME = 'isoTime',
+    NODE = 'node',
+    POP_OVER = 'popover',
+    RECORDER = 'recorder',
+    RENDERED = 'rendered',
 	SAVE = 'save',
 	SCHEDULER = 'scheduler',
 	SCHEDULER_CHANGE = 'schedulerChange',
@@ -137,7 +139,7 @@ var SchedulerEventRecorder = A.Component.create({
 		 */
 		dateFormat: {
 			validator: isString,
-			value: '%a, %B %d,'
+			value: '%a, %B %d'
 		},
 
 		/**
@@ -592,16 +594,22 @@ var SchedulerEventRecorder = A.Component.create({
 		 * @method getFormattedDate
 		 */
 		getFormattedDate: function() {
-			var instance = this;
-			var dateFormat = instance.get(DATE_FORMAT);
-			var evt = (instance.get(EVENT) || instance);
+			var instance = this,
+				evt = (instance.get(EVENT) || instance),
+				endDate = evt.get(END_DATE),
+				startDate = evt.get(START_DATE),
+				formattedDate = evt._formatDate(startDate, instance.get(DATE_FORMAT));
 
-			var endDate = evt.get(END_DATE);
-			var scheduler = evt.get(SCHEDULER);
-			var startDate = evt.get(START_DATE);
-			var fmtHourFn = (scheduler.get(ACTIVE_VIEW).get(ISO_TIME) ? DateMath.toIsoTimeString : DateMath.toUsTimeString);
+			if (evt.get(ALL_DAY)) {
+				return formattedDate;
+			}
 
-			return [ evt._formatDate(startDate, dateFormat), fmtHourFn(startDate), _DASH, fmtHourFn(endDate) ].join(_SPACE);
+			formattedDate = formattedDate.concat(_COMMA);
+
+			var scheduler = evt.get(SCHEDULER),
+				fmtHourFn = (scheduler.get(ACTIVE_VIEW).get(ISO_TIME) ? DateMath.toIsoTimeString : DateMath.toUsTimeString);
+
+			return [ formattedDate, fmtHourFn(startDate), _DASH, fmtHourFn(endDate) ].join(_SPACE);
 		},
 
 		/**
