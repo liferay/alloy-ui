@@ -21,7 +21,9 @@
         "command": "0.0.4",
         "fs-extra": "0.6.3",
         "grunt": "0.4.1",
-        "which": "1.0.5"
+        "walkdir": "0.0.5",
+        "which": "1.0.5",
+        "zip-archiver": "0.0.4"
     },
     "engines": {
         "node": ">=0.8.0",
