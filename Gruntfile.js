@@ -41,6 +41,9 @@ module.exports = function(grunt) {
         create: {
             name: 'aui-test'
         },
+        release: {
+            name: 'alloy-<%= pkg["version"] %>'
+        },
         watch: {
             'src': currentDir,
             'replace-yuivar': 'A',
@@ -62,6 +65,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build',  ['default']);
     grunt.registerTask('create', ['default']);
+    grunt.registerTask('release', ['default']);
     grunt.registerTask('watch',  ['default']);
 
     if (grunt.file.exists('node_modules')) {
