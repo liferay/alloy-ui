@@ -4,6 +4,7 @@
  * https://github.com/liferay/alloy-ui/blob/master/LICENSE.md
  *
  * @author Zeno Rocha <zeno.rocha@liferay.com>
+ * @author Eduardo Lundgren <eduardo.lundgren@liferay.com>
  */
 
 var TASK = {
