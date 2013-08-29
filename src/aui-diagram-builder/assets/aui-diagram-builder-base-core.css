@@ -46,7 +46,9 @@
 }
 
 .diagram-builder-fields-container {
+	height: 555px;
 	margin: 5px;
+	overflow: auto;
 }
 
 .diagram-builder-content {
