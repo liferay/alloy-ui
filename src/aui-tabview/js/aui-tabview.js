@@ -47,7 +47,7 @@ A.TabviewBase._classNames = {
 A.TabviewBase._queries = {
     selectedPanel: '> div ' + _DOT + A.TabviewBase._classNames.selectedPanel,
     selectedTab: '> ul > ' + _DOT + A.TabviewBase._classNames.selectedTab,
-    tab: '> ul > li:not(.nav-header):not(.disabled)',
+    tab: '> ul > li:not(.nav-header)',
     tabLabel: '> ul > li:not(.nav-header) > a',
     tabPanel: '> div > div',
     tabview: _DOT + A.TabviewBase._classNames.tabview,
@@ -77,6 +77,16 @@ A.Tab = A.Component.create({
      * @static
      */
     NAME: TAB,
+
+    ATTRS: {
+
+        /**
+         * @attribute disabled
+         */
+        disabled: {
+            valueFn: '_valueDisabled'
+        }
+    },
 
     /**
      * Static property provides a string to identify the CSS prefix.
@@ -157,6 +167,25 @@ A.Tab = A.Component.create({
             if (!tabviewPanelNode.contains(tabPanelNode)) {
                 tabviewPanelNode.appendChild(tabPanelNode);
             }
+        },
+
+        /**
+         * Determines the value of the disabled attribute
+         *
+         * @method _valueDisabled
+         * @protected
+         * @return {Boolean}
+         */
+         _valueDisabled: function() {
+            var instance = this,
+                boundingBox = instance.get(BOUNDING_BOX),
+                disabled = false;
+
+            if (boundingBox.hasClass(DISABLED)) {
+                disabled = true;
+            }
+
+            return disabled;
         }
     }
 });
@@ -286,6 +315,30 @@ A.TabView = A.Component.create({
             var instance = this;
 
             instance.item(i).set(DISABLED, false);
+        },
+
+        /**
+         * Get the active tab.
+         *
+         * @method getActiveTab
+         */
+        getActiveTab: function() {
+            var instance = this,
+                _queries = A.TabviewBase._queries;
+
+            return instance.get(CONTENT_BOX).one(_queries.selectedTab);
+        },
+
+        /**
+         * Get the tabs.
+         *
+         * @method getActiveTab
+         */
+        getTabs: function() {
+            var instance = this,
+                _queries = A.TabviewBase._queries;
+
+            return instance.get(CONTENT_BOX).all(_queries.tab);
         },
 
         /**
