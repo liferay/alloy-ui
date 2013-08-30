@@ -1044,6 +1044,9 @@ var DiagramBuilderBase = A.Component.create(
 					instance.tabView = tabView;
 					instance.fieldsNode = tabView.item(0).get('panelNode');
 					instance.settingsNode = tabView.item(1).get('panelNode');
+
+					instance.fieldsNode.addClass('diagram-builder-tab-pane');
+					instance.settingsNode.addClass('diagram-builder-tab-pane');
 				}
 			},
 

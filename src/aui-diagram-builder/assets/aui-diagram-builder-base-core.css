@@ -45,10 +45,13 @@
 	position: relative;
 }
 
-.diagram-builder-fields-container {
-	height: 555px;
-	margin: 5px;
+.diagram-builder-tab-pane {
+	height: 544px;
 	overflow: auto;
+}
+
+.diagram-builder-fields-container {
+	margin: 5px;
 }
 
 .diagram-builder-content {
