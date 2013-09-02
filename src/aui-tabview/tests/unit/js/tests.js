@@ -56,7 +56,7 @@ YUI.add('module-tests', function(Y) {
             var disabledTabs = [],
                 tabs = myTabView.getTabs();
 
-            tabs.each(function(node, i) {
+            tabs.each(function(node) {
                 if (node.hasClass('disabled')) {
                     disabledTabs.push(node);
                 }
@@ -83,7 +83,7 @@ YUI.add('module-tests', function(Y) {
             var disabledTabs = [],
                 tabs = myOtherTabView.getTabs();
 
-            tabs.each(function(node, i) {
+            tabs.each(function(node) {
                 if (node.hasClass('disabled')) {
                     disabledTabs.push(node);
                 }
