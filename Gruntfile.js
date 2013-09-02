@@ -41,6 +41,9 @@ module.exports = function(grunt) {
         create: {
             name: 'aui-test'
         },
+        init: {
+            dependencies: '<%= pkg.dependencies %>'
+        },
         release: {
             name: 'alloy-<%= pkg["version"] %>'
         },
