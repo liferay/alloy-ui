@@ -46,7 +46,7 @@ YUI.add('module-tests', function(Y) {
             var activeTab = myTabView.getActiveTab(),
                 tabs = myTabView.getTabs();
 
-            Y.Assert.areEqual(1, tabs.indexOf(activeTab));
+            Y.Assert.areEqual(1, tabs.indexOf(activeTab), 'The active tab should be the second one.');
         },
 
         /*
@@ -62,8 +62,8 @@ YUI.add('module-tests', function(Y) {
                 }
             });
 
-            Y.Assert.areEqual(1, disabledTabs.length);
-            Y.Assert.areEqual(2, tabs.indexOf(disabledTabs[0]));
+            Y.Assert.areEqual(1, disabledTabs.length, 'Only one tab marked as disabled is expected.');
+            Y.Assert.areEqual(2, tabs.indexOf(disabledTabs[0]), 'The disabled tab should be the third one.');
         },
 
         /*
@@ -73,7 +73,7 @@ YUI.add('module-tests', function(Y) {
             var activeTab = myOtherTabView.getActiveTab(),
                 tabs = myOtherTabView.getTabs();
 
-            Y.Assert.areEqual(0, tabs.indexOf(activeTab));
+            Y.Assert.areEqual(0, tabs.indexOf(activeTab), 'The active tab should be the first one.');
         },
 
         /*
@@ -89,8 +89,8 @@ YUI.add('module-tests', function(Y) {
                 }
             });
 
-            Y.Assert.areEqual(1, disabledTabs.length);
-            Y.Assert.areEqual(1, tabs.indexOf(disabledTabs[0]));
+            Y.Assert.areEqual(1, disabledTabs.length, 'Only one tab marked as disabled is expected.');
+            Y.Assert.areEqual(1, tabs.indexOf(disabledTabs[0]), 'The disabled tab should be the second one.');
         }
     }));
 
