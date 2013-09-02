@@ -47,17 +47,17 @@ module.exports = function(grunt) {
             var value;
             var valueIndex;
 
-            // -- Normalize option
+            // Normalize option
             option = option.replace(/^--(no-)?/, '');
 
             valueIndex = option.lastIndexOf('=');
 
-            // -- String parameter
+            // String parameter
             if (valueIndex !== -1) {
                 key   = option.substring(0, valueIndex);
                 value = option.substring(valueIndex + 1);
             }
-            // -- Boolean parameter
+            // Boolean parameter
             else {
                 key   = option;
                 value = grunt.option(key);
@@ -73,13 +73,8 @@ module.exports = function(grunt) {
         var args = [];
         var cwd = grunt.config([TASK.name, 'src']);
 
-        // -- Replace YUI var
         args.push('--replace-yuivar=' + grunt.config([TASK.name, 'replace-yuivar']));
-
-        // -- Replace version
         args.push('--replace-version=' + grunt.config([TASK.name, 'replace-version']));
-
-        // -- Watch
         args.push('--watch');
 
         exports._runShifter(mainCallback, args, cwd);

@@ -69,17 +69,17 @@ module.exports = function(grunt) {
             var value;
             var valueIndex;
 
-            // -- Normalize option
+            // Normalize option
             option = option.replace(/^--(no-)?/, '');
 
             valueIndex = option.lastIndexOf('=');
 
-            // -- String parameter
+            // String parameter
             if (valueIndex !== -1) {
                 key   = option.substring(0, valueIndex);
                 value = option.substring(valueIndex + 1);
             }
-            // -- Boolean parameter
+            // Boolean parameter
             else {
                 key   = option;
                 value = grunt.option(key);
@@ -122,14 +122,14 @@ module.exports = function(grunt) {
         var stack = [];
         var cwd   = grunt.config([TASK.name, target, 'src']);
 
-        // -- Build Dir
+        // Build Dir
         if (grunt.config([TASK.name, target, 'dist'])) {
             args.push(
                 '--build-dir=' + path.join(ROOT, 'build')
             );
         }
 
-        // -- Cache
+        // Cache
         if (grunt.config([TASK.name, target, 'cache'])) {
             args.push('--cache');
         }
@@ -137,7 +137,7 @@ module.exports = function(grunt) {
             args.push('--no-cache');
         }
 
-        // -- Coverage
+        // Coverage
         if (grunt.config([TASK.name, target, 'coverage'])) {
             args.push('--coverage');
         }
@@ -145,7 +145,7 @@ module.exports = function(grunt) {
             args.push('--no-coverage');
         }
 
-        // -- Lint
+        // Lint
         if (grunt.config([TASK.name, target, 'lint'])) {
             args.push('--lint');
         }
@@ -153,19 +153,19 @@ module.exports = function(grunt) {
             args.push('--no-lint');
         }
 
-        // -- Replace YUI var
+        // Replace YUI var
         args.push(
             '--replace-yuivar=' +
             grunt.config([TASK.name, target, 'replace-yuivar'])
         );
 
-        // -- Replace version
+        // Replace version
         args.push(
             '--replace-version=' +
             grunt.config([TASK.name, target, 'replace-version'])
         );
 
-        // -- Source Dir
+        // Source Dir
         if (target === 'aui') {
             var auiSrcDir  = path.join(ROOT, 'src');
             var auiBaseDir = path.join(auiSrcDir, 'aui-base');

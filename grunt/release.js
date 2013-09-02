@@ -25,7 +25,7 @@ var ROOT = process.cwd();
 
 // -- Task ---------------------------------------------------------------------
 module.exports = function(grunt) {
-    grunt.registerMultiTask(TASK.name, TASK.description, function() {
+    grunt.registerTask(TASK.name, TASK.description, function() {
         var done = this.async();
         var baseFileName;
         var sha;
@@ -49,8 +49,7 @@ module.exports = function(grunt) {
             },
             function(mainCallback) {
                 exports._zip(mainCallback, baseFileName, sha, zipFileName);
-            }
-            ],
+            }],
             function(err) {
                 if (err) {
                     done(false);
@@ -70,17 +69,17 @@ module.exports = function(grunt) {
             var value;
             var valueIndex;
 
-            // -- Normalize option
+            // Normalize option
             option = option.replace(/^--(no-)?/, '');
 
             valueIndex = option.lastIndexOf('=');
 
-            // -- String parameter
+            // String parameter
             if (valueIndex !== -1) {
                 key   = option.substring(0, valueIndex);
                 value = option.substring(valueIndex + 1);
             }
-            // -- Boolean parameter
+            // Boolean parameter
             else {
                 key   = option;
                 value = grunt.option(key);
