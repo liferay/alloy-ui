@@ -84,6 +84,7 @@ A.Tab = A.Component.create({
          * @attribute disabled
          */
         disabled: {
+            validator: isBoolean,
             valueFn: '_valueDisabled'
         }
     },
@@ -177,15 +178,9 @@ A.Tab = A.Component.create({
          * @return {Boolean}
          */
          _valueDisabled: function() {
-            var instance = this,
-                boundingBox = instance.get(BOUNDING_BOX),
-                disabled = false;
+            var instance = this;
 
-            if (boundingBox.hasClass(DISABLED)) {
-                disabled = true;
-            }
-
-            return disabled;
+            return instance.get(BOUNDING_BOX).hasClass(DISABLED);
         }
     }
 });
