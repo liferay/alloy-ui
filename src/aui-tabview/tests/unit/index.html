@@ -1,25 +1,54 @@
 <!doctype html>
 <html>
 <head>
-    <title>aui-tabview</title>
-    <script src="/build/yui/yui.js"></script>
-    <script src="js/tests.js"></script>
-    <meta charset="utf-8" />
+	<meta charset="utf-8" />
+
+	<title>AUI Tabview Unit Tests</title>
+
+	<link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+
+	<script src="../../../../build/aui/aui.js"></script>
+
+	<script src="js/tests.js"></script>
 </head>
 <body class="yui3-skin-sam">
-<div id="logger"></div>
 
-<script>
-YUI({
-    coverage: ['aui-tabview'],
-    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-}).use('test-console', 'test', 'module-tests', function(Y) {
-    
-    (new Y.Test.Console()).render('#logger');
+	<div id="logger"></div>
 
-    Y.Test.Runner.setName('aui-tabview');
-    Y.Test.Runner.run();
-});
-</script>
+	<br />
+
+	<div id="myTab">
+		<ul class="nav nav-tabs">
+			<li><a href="#tab-1">Tab #1</a></li>
+			<li class="active"><a href="#tab-2">Tab #2</a></li>
+			<li class="disabled"><a href="#tab-3">Tab #3</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div id="tab-1" class="tab-pane">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus dicta aspernatur beatae fuga neque cupiditate laudantium itaque pariatur deleniti tenetur modi voluptatem animi sunt eligendi nisi corporis expedita quaerat facilis.</p>
+		</div>
+		<div id="tab-2" class="tab-pane">
+			<p>Doloremque beatae rem voluptate nulla perspiciatis atque laudantium nihil impedit molestiae fuga veritatis quibusdam nam maiores aliquid. Deserunt dolorum quas temporibus enim ex nihil nemo perspiciatis. Nisi deserunt rem id pariatur in nostrum?</p>
+		</div>
+		<div id="tab-3" class="tab-pane">
+			<p>Aliquid ipsum asperiores alias temporibus autem impedit soluta ut id iure explicabo veritatis consectetur debitis eaque recusandae odit quas nobis maxime saepe. Incidunt amet obcaecati. Ducimus soluta unde repellat laboriosam fuga modi rem itaque!</p>
+		</div>
+	</div>
+
+	<div id="myOtherTab">
+
+	<script>
+		YUI({
+			coverage: ['aui-tabview'],
+			filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+		}).use('test-console', 'test', 'module-tests', function(Y) {
+
+			(new Y.Test.Console()).render('#logger');
+
+			Y.Test.Runner.setName('aui-tabview');
+			Y.Test.Runner.run();
+		});
+	</script>
 </body>
 </html>
