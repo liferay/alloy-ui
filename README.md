@@ -90,6 +90,12 @@ grunt create
 grunt release
     ```
 
+* Run unit tests using Yogi:
+
+    ```
+grunt test
+    ```
+
 * Build and watch for any changes:
 
     ```
