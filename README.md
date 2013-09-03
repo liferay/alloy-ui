@@ -102,6 +102,14 @@ grunt test
 grunt watch
     ```
 
+#### API Docs
+
+* Run docs locally and watch for any changes:
+
+    ```
+grunt api-watch
+    ```
+
 ## Team
 
 AlloyUI is maintained by these people and a bunch of awesome [contributors](https://github.com/liferay/alloy-ui/graphs/contributors).

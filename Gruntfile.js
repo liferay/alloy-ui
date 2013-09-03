@@ -18,6 +18,10 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('.alloy.json'),
+        'api-watch': {
+            'aui-version': '<%= pkg["version"] %>',
+            'theme': '<%= pkg.dependencies["alloy-apidocs-theme"].folder %>'
+        },
         build: {
             yui: {
                 'src': path.join('<%= pkg.dependencies.yui3.folder %>', 'src'),
@@ -68,11 +72,12 @@ module.exports = function(grunt) {
         cmd.on('close', done);
     });
 
-    grunt.registerTask('build',   ['default']);
-    grunt.registerTask('create',  ['default']);
-    grunt.registerTask('release', ['default']);
-    grunt.registerTask('test',    ['default']);
-    grunt.registerTask('watch',   ['default']);
+    grunt.registerTask('api-watch', ['default']);
+    grunt.registerTask('build',     ['default']);
+    grunt.registerTask('create',    ['default']);
+    grunt.registerTask('release',   ['default']);
+    grunt.registerTask('test',      ['default']);
+    grunt.registerTask('watch',     ['default']);
 
     if (grunt.file.exists('node_modules')) {
         grunt.loadTasks('grunt');
