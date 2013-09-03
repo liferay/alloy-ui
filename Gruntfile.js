@@ -47,12 +47,14 @@ module.exports = function(grunt) {
         release: {
             name: 'alloy-<%= pkg["version"] %>'
         },
+        test: {
+            coverage: false
+        },
         watch: {
             'src': currentDir,
             'replace-yuivar': 'A',
             'replace-version': '<%= pkg["version"] %>'
-        },
-        test: {}
+        }
     });
 
     // -- Install --------------------------------------------------------------
@@ -66,10 +68,11 @@ module.exports = function(grunt) {
         cmd.on('close', done);
     });
 
-    grunt.registerTask('build',  ['default']);
-    grunt.registerTask('create', ['default']);
+    grunt.registerTask('build',   ['default']);
+    grunt.registerTask('create',  ['default']);
     grunt.registerTask('release', ['default']);
-    grunt.registerTask('watch',  ['default']);
+    grunt.registerTask('test',    ['default']);
+    grunt.registerTask('watch',   ['default']);
 
     if (grunt.file.exists('node_modules')) {
         grunt.loadTasks('grunt');
