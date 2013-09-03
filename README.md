@@ -104,6 +104,12 @@ grunt watch
 
 #### API Docs
 
+* Build docs locally:
+
+    ```
+grunt api-build
+    ```
+
 * Run docs locally and watch for any changes:
 
     ```
