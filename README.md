@@ -110,6 +110,13 @@ grunt watch
 grunt api-build
     ```
 
+* Build docs locally and deploy it to alloyui.com:
+
+    ```
+grunt api-deploy
+    ```
+
+
 * Run docs locally and watch for any changes:
 
     ```
