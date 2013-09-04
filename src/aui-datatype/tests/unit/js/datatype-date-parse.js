@@ -135,6 +135,9 @@ YUI.add('module-tests', function(Y) {
             testMask('%a, %b %d, %Y %H:%M:%S %p %Z', 'Tue, Jan 01, 2013 15:05:10 BRT', new Date(2013, 0, 01, 15, 05, 10));
         },
 
+        /*
+         * @tests AUI-978
+         */
         'test invalid input': function() {
             testParse('%d', 'test', false, 'The false value is expected when Date parser fails to complete.');
             testParse('%d/%m/%Y', '', false, 'The false value is expected when Date parser fails to complete.');
