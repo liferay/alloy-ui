@@ -2096,11 +2096,11 @@ var DateCellEditor = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @attribute dateFormat
-		 * @default '%D'
+		 * @default '%Y-%m-%d'
 		 * @type String
 		 */
 		dateFormat: {
-			value: '%D',
+			value: '%Y-%m-%d',
 			validator: isString
 		},
 
