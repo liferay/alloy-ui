@@ -62,8 +62,41 @@ module.exports = function(grunt) {
             }
         },
 
+        compass: {
+            dist: {
+                options: {
+                    sassDir: path.join(ROOT, '<%= pkg.dependencies["alloy-bootstrap"].folder %>', 'lib'),
+                    cssDir: 'build/aui-css/css/'
+                }
+            }
+        },
+
+        copy: {
+            dist: {
+                files: [
+                    {
+                        src: path.join(ROOT, '<%= pkg.dependencies["alloy-bootstrap"].folder %>', 'img/glyphicons-halflings-white.png'),
+                        dest: 'build/aui-css/img/glyphicons-halflings-white.png'
+                    },
+                    {
+                        src: path.join(ROOT, '<%= pkg.dependencies["alloy-bootstrap"].folder %>', 'img/glyphicons-halflings.png'),
+                        dest: 'build/aui-css/img/glyphicons-halflings.png'
+                    }
+                ]
+            }
+        },
+
         create: {
             name: 'aui-test'
+        },
+
+        cssmin: {
+            dist: {
+                files: {
+                    'build/aui-css/css/bootstrap.min.css': ['build/aui-css/css/bootstrap.css'],
+                    'build/aui-css/css/responsive.min.css': ['build/aui-css/css/responsive.css']
+                }
+            }
         },
 
         init: {
@@ -86,6 +119,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('api-deploy', ['api-build', 'api-push']);
+    grunt.registerTask('css-build', ['compass', 'cssmin', 'copy']);
 
     // -- Install --------------------------------------------------------------
     grunt.registerTask('default', 'Install local dependencies', function() {
@@ -109,5 +143,8 @@ module.exports = function(grunt) {
 
     if (grunt.file.exists('node_modules')) {
         grunt.loadTasks('grunt');
+        grunt.loadNpmTasks('grunt-contrib-compass');
+        grunt.loadNpmTasks('grunt-contrib-copy');
+        grunt.loadNpmTasks('grunt-contrib-cssmin');
     }
 };

@@ -123,6 +123,16 @@ grunt api-deploy
 grunt api-watch
     ```
 
+#### Bootstrap
+
+* Build Bootstrap's CSS into `aui-css` folder:
+
+    ```
+grunt css-build
+    ```
+
+
+
 ## Team
 
 AlloyUI is maintained by these people and a bunch of awesome [contributors](https://github.com/liferay/alloy-ui/graphs/contributors).
