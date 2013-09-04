@@ -5,6 +5,12 @@
             "jsfiles": [
                 "js/aui-button-core.js"
             ]
+        },
+
+        "aui-button-search-cancel": {
+            "jsfiles": [
+                "js/aui-button-search-cancel.js"
+            ]
         }
     }
 }

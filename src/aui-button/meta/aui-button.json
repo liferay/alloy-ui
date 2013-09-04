@@ -14,5 +14,17 @@
             "aui-widget-cssclass",
             "aui-widget-toggle"
         ]
+    },
+
+    "aui-button-search-cancel": {
+        "requires": [
+            "array-invoke",
+            "event-focus",
+            "node-screen",
+            "node-event-delegate",
+            "aui-node-base",
+            "aui-classnamemanager",
+            "aui-event-input"
+        ]
     }
 }

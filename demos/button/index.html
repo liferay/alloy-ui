@@ -69,8 +69,16 @@
         <button class="btn btn-large btn-block btn-primary" type="button">Block level button</button>
         <button class="btn btn-large btn-block" type="button">Block level button</button>
     </p>
+    <h2>Button search cancel</h2>
+    <p>
+        <input class="clearable" type="text" />
+        <br>
+        <input class="clearable" type="text" value="foo" />
+        <br>
+        <textarea class="clearable" cols="30" rows="5"></textarea>
+    </p>
     <script>
-    YUI({ filter: 'raw' }).use('aui-button', function(Y) {
+    YUI({ filter: 'raw' }).use('aui-button', 'aui-button-search-cancel', function(Y) {
 
         new Y.Button({
             label: 'Basic',
@@ -101,6 +109,10 @@
             boundingBox: '#radiogroup',
             type: 'radio'
         }).render();
+
+        new Y.ButtonSearchCancel({
+            trigger: '.clearable'
+        });
 
     });
     </script>
