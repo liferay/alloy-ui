@@ -109,6 +109,8 @@
     "aui-button-search-cancel": {
         "requires": [
             "array-invoke",
+            "base",
+            "base-build",
             "event-focus",
             "node-screen",
             "node-event-delegate",
