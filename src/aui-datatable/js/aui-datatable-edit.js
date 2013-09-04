@@ -2252,8 +2252,14 @@ var DateCellEditor = A.Component.create({
 				formatedValue = instance.formatValue(instance.get(OUTPUT_FORMATTER), val);
 
 				calendar._clearSelection();
-				calendar.set('date', formatedValue[0]);
-				calendar.selectDates(formatedValue);
+
+				if (formatedValue[0]) {
+					calendar.set('date', formatedValue[0]);
+					calendar.selectDates(formatedValue);
+				}
+				else {
+					calendar.set('date', new Date());
+				}
 			}
 		}
 	}
