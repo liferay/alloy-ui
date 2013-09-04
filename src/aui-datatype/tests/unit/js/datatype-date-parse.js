@@ -23,6 +23,12 @@ YUI.add('module-tests', function(Y) {
             mask + ' [' + opt_text + ', ' + opt_date + ', ' + parsedDate + ' ]');
     }
 
+    function testParse(mask, input, expected, message) {
+        var actual = Y.Date.parse(mask, input);
+
+        Y.Assert.areEqual(expected, actual, message);
+    }
+
     var suite = new Y.Test.Suite('aui-datatype-date-parse');
 
     suite.add(new Y.Test.Case({
@@ -127,6 +133,12 @@ YUI.add('module-tests', function(Y) {
             testMask('foo %d/%m/%Y', 'foo 10/11/2005 bar', new Date(2005, 10, 10));
             testMask('%c', 'Tue, Jan 01, 2013 3:05:10 PM BRT', new Date(2013, 0, 01, 15, 05, 10));
             testMask('%a, %b %d, %Y %H:%M:%S %p %Z', 'Tue, Jan 01, 2013 15:05:10 BRT', new Date(2013, 0, 01, 15, 05, 10));
+        },
+
+        'test invalid input': function() {
+            testParse('%d', 'test', false, 'The false value is expected when Date parser fails to complete.');
+            testParse('%d/%m/%Y', '', false, 'The false value is expected when Date parser fails to complete.');
+            testParse('%d ', 'test 10', false, 'The false value is expected when Date parser fails to complete.');
         }
     }));
 
