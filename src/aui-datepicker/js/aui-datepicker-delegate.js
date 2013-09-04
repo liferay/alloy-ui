@@ -39,7 +39,7 @@ DatePickerDelegate.prototype = {
     destroy: function() {
         var instance = this;
 
-        instance._eventHandles.detach();
+        (new A.EventHandle(instance._eventHandles)).detach();
     },
 
     /**
