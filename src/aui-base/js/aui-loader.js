@@ -155,6 +155,8 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-button-search-cancel": {
         "requires": [
             "array-invoke",
+            "base",
+            "base-build",
             "event-focus",
             "node-screen",
             "node-event-delegate",
@@ -1413,4 +1415,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '44d9d8bacdcaa321295d342721c65945';
+YUI.Env[Y.version].md5 = 'efc9a0893259f8121676a5b54411678c';
