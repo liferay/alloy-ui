@@ -200,11 +200,16 @@ A.mix(DateParser.prototype, {
             length = compiled.length,
             nextPart,
             part,
-            textLength = text.length,
+            textLength,
             textPos = [0],
             value;
 
         text = Lang.trim(text);
+        textLength = text.length;
+
+        if (!textLength) {
+            return false;
+        }
 
         for (i = 0; i < length; i++) {
             part = compiled[i];
@@ -694,7 +699,9 @@ DateParser.HINTS = {
                     +DateParser.TWO_DIGIT_YEAR_BASE;
             }
 
-            calendar.year = year;
+            if (Lang.isNumber(year)) {
+                calendar.year = year;
+            }
         },
         size: 4
     },
@@ -739,7 +746,11 @@ DateParser.HINTS = {
     DAY: {
         numericTokens: 'de',
         setter: function(calendar, val) {
-            calendar.day = _parseInt(val);
+            val = _parseInt(val);
+
+            if (Lang.isNumber(val)) {
+                calendar.day = val;
+            }
         },
         size: 2
     },
@@ -776,7 +787,11 @@ DateParser.HINTS = {
     MINUTES: {
         numericTokens: 'M',
         setter: function(calendar, val) {
-            calendar.minutes = _parseInt(val);
+            val = _parseInt(val);
+
+            if (Lang.isNumber(val)) {
+                calendar.minutes = val;
+            }
         },
         size: 2
     },
@@ -792,7 +807,11 @@ DateParser.HINTS = {
     SECONDS: {
         numericTokens: 'S',
         setter: function(calendar, val) {
-            calendar.seconds = _parseInt(val);
+            val = _parseInt(val);
+
+            if (Lang.isNumber(val)) {
+                calendar.seconds = val;
+            }
         },
         size: 2
     },
@@ -818,6 +837,7 @@ A.Date.dateparser = new A.DateParser();
 
 /**
 * Takes a string mask and a text as input and parses it as a native JavaScript Date.
+* **If only one argument is passed**, the YUI parser will be called for backwards compatibility.
 *
 * @for A.Date
 * @method parse
@@ -892,7 +912,14 @@ A.Date.dateparser = new A.DateParser();
 * @return {Date} native JavaScript Date. Returns <code>false</code> if cannot
 * parse.
 */
+
+var YDateParser = A.Date.parse;
+
 A.Date.parse = function(pattern, text, opt_date) {
+    if (arguments.length === 1) {
+        return YDateParser(arguments[0]);
+    }
+
     A.Date.dateparser.compilePattern(pattern);
 
     return A.Date.dateparser.parse(text, opt_date);
