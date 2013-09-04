@@ -90,10 +90,37 @@ grunt create
 grunt release
     ```
 
+* Run unit tests using Yogi:
+
+    ```
+grunt test
+    ```
+
 * Build and watch for any changes:
 
     ```
 grunt watch
+    ```
+
+#### API Docs
+
+* Build docs locally:
+
+    ```
+grunt api-build
+    ```
+
+* Build docs locally and deploy it to alloyui.com:
+
+    ```
+grunt api-deploy
+    ```
+
+
+* Run docs locally and watch for any changes:
+
+    ```
+grunt api-watch
     ```
 
 ## Team

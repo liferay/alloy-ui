@@ -22,6 +22,11 @@
             "folder": "../alloy-apidocs-theme",
             "repo": "https://github.com/liferay/alloy-apidocs-theme.git",
             "version": "master"
+        },
+        "alloyui.com": {
+            "folder": "../alloyui.com",
+            "repo": "https://github.com/liferay/alloyui.com.git",
+            "version": "master"
         }
     },
     "yui-version": "patched-dev-3.x",
