@@ -8,7 +8,7 @@
  */
 
 var TASK = {
-    name: 'release',
+    name: 'compress',
     description: 'Generate a zip from build, demos and src folders.'
 };
 

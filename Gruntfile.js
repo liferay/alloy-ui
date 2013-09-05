@@ -9,7 +9,6 @@
 
 var path  = require('path');
 var spawn = require('child_process').spawn;
-var which = require('which').sync;
 
 // -- Globals ------------------------------------------------------------------
 var CURRENT_DIR = process.env.PWD;
@@ -103,7 +102,7 @@ module.exports = function(grunt) {
             dependencies: '<%= pkg.dependencies %>'
         },
 
-        release: {
+        compress: {
             name: 'alloy-<%= pkg["version"] %>'
         },
 
@@ -120,12 +119,13 @@ module.exports = function(grunt) {
 
     grunt.registerTask('api-deploy', ['api-build', 'api-push']);
     grunt.registerTask('css-build', ['compass', 'cssmin', 'copy']);
+    grunt.registerTask('release', ['build', 'compress']);
 
     // -- Install --------------------------------------------------------------
     grunt.registerTask('default', 'Install local dependencies', function() {
         var done = this.async();
 
-        var cmd = spawn(which('npm'), ['install'], {
+        var cmd = spawn('npm', ['install'], {
             stdio: 'inherit'
         });
 
@@ -137,7 +137,6 @@ module.exports = function(grunt) {
     grunt.registerTask('api-watch', ['default']);
     grunt.registerTask('build',     ['default']);
     grunt.registerTask('create',    ['default']);
-    grunt.registerTask('release',   ['default']);
     grunt.registerTask('test',      ['default']);
     grunt.registerTask('watch',     ['default']);
 
