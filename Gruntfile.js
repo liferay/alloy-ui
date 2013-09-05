@@ -117,33 +117,13 @@ module.exports = function(grunt) {
         }
     });
 
+    grunt.loadTasks('grunt');
+
+    grunt.loadNpmTasks('grunt-contrib-compass');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+
     grunt.registerTask('api-deploy', ['api-build', 'api-push']);
     grunt.registerTask('css-build', ['compass', 'cssmin', 'copy']);
     grunt.registerTask('release', ['build', 'compress']);
-
-    // -- Install --------------------------------------------------------------
-    grunt.registerTask('default', 'Install local dependencies', function() {
-        var done = this.async();
-
-        var cmd = spawn('npm', ['install'], {
-            stdio: 'inherit'
-        });
-
-        cmd.on('close', done);
-    });
-
-    grunt.registerTask('api-build', ['default']);
-    grunt.registerTask('api-push',  ['default']);
-    grunt.registerTask('api-watch', ['default']);
-    grunt.registerTask('build',     ['default']);
-    grunt.registerTask('create',    ['default']);
-    grunt.registerTask('test',      ['default']);
-    grunt.registerTask('watch',     ['default']);
-
-    if (grunt.file.exists('node_modules')) {
-        grunt.loadTasks('grunt');
-        grunt.loadNpmTasks('grunt-contrib-compass');
-        grunt.loadNpmTasks('grunt-contrib-copy');
-        grunt.loadNpmTasks('grunt-contrib-cssmin');
-    }
 };
