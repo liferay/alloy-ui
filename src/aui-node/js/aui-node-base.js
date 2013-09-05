@@ -199,33 +199,6 @@ A.mix(NODE_PROTO, {
 	},
 
 	/**
-	 * Insert the node instance to the end of the <code>selector</code>
-	 * element.
-	 *
-	 * Example:
-	 *
-	 * <pre><code>var node = A.one('#nodeId');
-	 * // using another Node instance
-	 * var body = A.one('body');
-	 * node.appendTo(body);
-	 * // using a CSS selector
-	 * node.appendTo('#container');
-	 * </code></pre>
-	 *
-	 * @method appendTo
-	 * @chainable
-	 * @param {Node | String} selector A selector, element, HTML string, Node
-	 * @return {String}
-	 */
-	appendTo: function(selector) {
-		var instance = this;
-
-		A.one(selector).append(instance);
-
-		return instance;
-	},
-
-	/**
 	 * Get or Set the value of an attribute for the first element in the
 	 * set of matched elements. If only the <code>name</code> is passed it
 	 * works as a getter.
