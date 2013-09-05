@@ -12,7 +12,8 @@ var Lang = A.Lang,
     INPUT = 'input',
     REGION = 'region',
     REMOVE = 'remove',
-    TRIGGER = 'trigger';
+    TRIGGER = 'trigger',
+    Z_INDEX = 'zIndex';
 
 /**
  *
@@ -38,7 +39,7 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [],
          * @default '<i class="btn-search-cancel icon-remove" />'
          * @protected
          */
-        TEMPLATE: '<i class="' + A.getClassName(_NAME) + ' {iconClass}" style="position: absolute;"></i>',
+        TEMPLATE: '<i class="' + A.getClassName(_NAME) + ' {iconClass}" style="position: absolute; z-index: {zIndex};"></i>',
 
         /**
          * Array that holds the created buttons for each element match from
@@ -120,7 +121,10 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [],
                 button = A.Node.create(
                     A.Lang.sub(
                         instance.TEMPLATE,
-                        { iconClass: instance.get(ICON_CLASS) }));
+                        {
+                            iconClass: instance.get(ICON_CLASS),
+                            zIndex: instance.get(Z_INDEX)
+                        }));
 
                 element.setData(_NAME, button);
                 instance._buttons.push(button.hide());
@@ -232,6 +236,18 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [],
              */
             trigger: {
                 validator: Lang.isString,
+                writeOnce: true
+            },
+
+            /**
+             * Button search cancel z-index.
+             *
+             * @attribute zIndex
+             * @default 2
+             * @type Number
+             */
+            zIndex: {
+                value: 2,
                 writeOnce: true
             }
         }
