@@ -12,29 +12,13 @@ AlloyUI is a framework built on top of [YUI3](http://yuilibrary.com) (JavaScript
 * [Contributing](http://alloyui.com/contributing/)
 * [About](http://alloyui.com/about/)
 
-## Discussion
+## Automated tasks
 
-* [Liferay Forums](http://www.liferay.com/community/forums/-/message_boards/category/8409523)
-* [Google Groups](https://groups.google.com/forum/?fromgroups#!forum/alloyui)
-* [Stack Overflow](http://stackoverflow.com/questions/tagged/alloy-ui)
+Provides a set of util tasks to work with [AlloyUI](http://github.com/liferay/alloy-ui) project.
 
-## Structure
+> To change any default option from a task check [Gruntfile.js](https://github.com/liferay/alloy-ui/blob/master/Gruntfile.js).
 
-The basic structure of the project is given in the following way:
-
-* `build/` Contains AlloyUI and YUI generated files, once Yogi Alloy's build task has been run. However, this directory is unnecessary for versioning, so it is ignored ([.gitignore](https://github.com/liferay/alloy-ui/tree/2.0.x/.gitignore)).
-* `demos/` Contains basic examples of the AlloyUI modules.
-* `src/` Contains the source code of the AlloyUI modules.
-* `.alloy.json` Specifies all dependencies and some configurations.
-* `.editorconfig` Specifies the coding style for different editors/IDEs.
-* `.shifter.json` Specifies additional configuration used in building AlloyUI.
-* `LICENSE.md` Defines the license agreement for AlloyUI.
-* `README.md` Explains the AlloyUI project.
-* `package.json` Lists all NodeJS dependencies.
-
-## Build
-
-### Dependencies
+### Setup
 
 1. Install [NodeJS](https://github.com/bevry/community/wiki/Installing-Node), if you don't have it yet.
 
@@ -50,15 +34,13 @@ The basic structure of the project is given in the following way:
 npm install
     ```
 
-### Grunt
-
-Provides a set of util tasks to work with [AlloyUI](http://github.com/liferay/alloy-ui) project. For any configuration, check [Gruntfile.js](https://github.com/liferay/alloy-ui/blob/master/Gruntfile.js).
-
-* Clone or update dependencies:
+4. Initialize dependencies:
 
     ```
 grunt init
     ```
+
+### Build
 
 * Build YUI and AlloyUI:
 
@@ -78,31 +60,51 @@ grunt build:yui
 grunt build:aui
     ```
 
+* Build and import Bootstrap's CSS:
+
+    ```
+grunt bootstrap
+    ```
+
+### Watch
+
+* Watch and build for any changes:
+
+    ```
+grunt watch
+    ```
+
+### Create
+
 * Create a new module under `src/` folder:
 
     ```
 grunt create
     ```
 
-* Generate a zip file from `build/` folder:
+### Release
+
+* Generate a release zip file:
+
+    ```
+grunt compress
+    ```
+
+* Build modules and generate a release zip file:
 
     ```
 grunt release
     ```
 
-* Run unit tests using Yogi:
+### Test
+
+* Run unit tests:
 
     ```
 grunt test
     ```
 
-* Build and watch for any changes:
-
-    ```
-grunt watch
-    ```
-
-#### API Docs
+### API Docs
 
 * Build docs locally:
 
@@ -123,14 +125,24 @@ grunt api-deploy
 grunt api-watch
     ```
 
-#### Bootstrap
+## Discussion
 
-* Build Bootstrap's CSS into `aui-css` folder:
+* [Liferay Forums](http://www.liferay.com/community/forums/-/message_boards/category/8409523)
+* [Google Groups](https://groups.google.com/forum/?fromgroups#!forum/alloyui)
+* [Stack Overflow](http://stackoverflow.com/questions/tagged/alloy-ui)
 
-    ```
-grunt css-build
-    ```
+## Structure
 
+The basic structure of the project is given in the following way:
+
+* `build/` Contains AlloyUI and YUI generated files, once Yogi Alloy's build task has been run. However, this directory is unnecessary for versioning, so it is ignored ([.gitignore](https://github.com/liferay/alloy-ui/tree/2.0.x/.gitignore)).
+* `demos/` Contains basic examples of the AlloyUI modules.
+* `src/` Contains the source code of the AlloyUI modules.
+* `.alloy.json` Specifies all dependencies and some configurations.
+* `.editorconfig` Specifies the coding style for different editors/IDEs.
+* `LICENSE.md` Defines the license agreement for AlloyUI.
+* `README.md` Explains the AlloyUI project.
+* `package.json` Lists all NodeJS dependencies.
 
 
 ## Team
