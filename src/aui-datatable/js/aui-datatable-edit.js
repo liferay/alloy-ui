@@ -2096,11 +2096,11 @@ var DateCellEditor = A.Component.create({
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
 		 * @attribute dateFormat
-		 * @default '%D'
+		 * @default '%Y-%m-%d'
 		 * @type String
 		 */
 		dateFormat: {
-			value: '%D',
+			value: '%Y-%m-%d',
 			validator: isString
 		},
 
@@ -2252,8 +2252,14 @@ var DateCellEditor = A.Component.create({
 				formatedValue = instance.formatValue(instance.get(OUTPUT_FORMATTER), val);
 
 				calendar._clearSelection();
-				calendar.set('date', formatedValue[0]);
-				calendar.selectDates(formatedValue);
+
+				if (formatedValue[0]) {
+					calendar.set('date', formatedValue[0]);
+					calendar.selectDates(formatedValue);
+				}
+				else {
+					calendar.set('date', new Date());
+				}
 			}
 		}
 	}
