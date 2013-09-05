@@ -9,7 +9,6 @@
 
 var path  = require('path');
 var spawn = require('child_process').spawn;
-var which = require('which').sync;
 
 // -- Globals ------------------------------------------------------------------
 var CURRENT_DIR = process.env.PWD;
@@ -62,15 +61,48 @@ module.exports = function(grunt) {
             }
         },
 
+        compass: {
+            dist: {
+                options: {
+                    sassDir: path.join(ROOT, '<%= pkg.dependencies["alloy-bootstrap"].folder %>', 'lib'),
+                    cssDir: 'build/aui-css/css/'
+                }
+            }
+        },
+
+        copy: {
+            dist: {
+                files: [
+                    {
+                        src: path.join(ROOT, '<%= pkg.dependencies["alloy-bootstrap"].folder %>', 'img/glyphicons-halflings-white.png'),
+                        dest: 'build/aui-css/img/glyphicons-halflings-white.png'
+                    },
+                    {
+                        src: path.join(ROOT, '<%= pkg.dependencies["alloy-bootstrap"].folder %>', 'img/glyphicons-halflings.png'),
+                        dest: 'build/aui-css/img/glyphicons-halflings.png'
+                    }
+                ]
+            }
+        },
+
         create: {
             name: 'aui-test'
+        },
+
+        cssmin: {
+            dist: {
+                files: {
+                    'build/aui-css/css/bootstrap.min.css': ['build/aui-css/css/bootstrap.css'],
+                    'build/aui-css/css/responsive.min.css': ['build/aui-css/css/responsive.css']
+                }
+            }
         },
 
         init: {
             dependencies: '<%= pkg.dependencies %>'
         },
 
-        release: {
+        compress: {
             name: 'alloy-<%= pkg["version"] %>'
         },
 
@@ -86,12 +118,14 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('api-deploy', ['api-build', 'api-push']);
+    grunt.registerTask('css-build', ['compass', 'cssmin', 'copy']);
+    grunt.registerTask('release', ['build', 'compress']);
 
     // -- Install --------------------------------------------------------------
     grunt.registerTask('default', 'Install local dependencies', function() {
         var done = this.async();
 
-        var cmd = spawn(which('npm'), ['install'], {
+        var cmd = spawn('npm', ['install'], {
             stdio: 'inherit'
         });
 
@@ -103,11 +137,13 @@ module.exports = function(grunt) {
     grunt.registerTask('api-watch', ['default']);
     grunt.registerTask('build',     ['default']);
     grunt.registerTask('create',    ['default']);
-    grunt.registerTask('release',   ['default']);
     grunt.registerTask('test',      ['default']);
     grunt.registerTask('watch',     ['default']);
 
     if (grunt.file.exists('node_modules')) {
         grunt.loadTasks('grunt');
+        grunt.loadNpmTasks('grunt-contrib-compass');
+        grunt.loadNpmTasks('grunt-contrib-copy');
+        grunt.loadNpmTasks('grunt-contrib-cssmin');
     }
 };

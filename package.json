@@ -1,7 +1,7 @@
 {
     "name": "alloy",
     "description": "AlloyUI",
-    "version": "2.0.0pr1",
+    "version": "2.0.0pr6",
     "author": {
         "name": "Eduardo Lundgren",
         "email": "eduardo.lundgren@liferay.com",
@@ -21,6 +21,9 @@
         "command": "0.0.4",
         "fs-extra": "0.6.3",
         "grunt": "0.4.1",
+        "grunt-contrib-compass": "0.5.0",
+        "grunt-contrib-copy": "0.4.1",
+        "grunt-contrib-cssmin": "0.6.1",
         "walkdir": "0.0.5",
         "which": "1.0.5",
         "zip-archiver": "0.0.4"
