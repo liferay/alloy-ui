@@ -39,7 +39,9 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [],
          * @default '<i class="btn-search-cancel icon-remove" />'
          * @protected
          */
-        TEMPLATE: '<i class="' + A.getClassName(_NAME) + ' {iconClass}" style="position: absolute; margin: 5px; z-index: {zIndex};"></i>',
+        TEMPLATE: '<div class="' + A.getClassName(_NAME) + '" style="padding: 5px; position: absolute; z-index: {zIndex};">' +
+                    '<i class="{iconClass}"></i>' +
+                  '</div>',
 
         /**
          * Array that holds the created buttons for each element match from
