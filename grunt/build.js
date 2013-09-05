@@ -93,8 +93,8 @@ module.exports = function(grunt) {
 
     exports._checkYuiCache = function(mainCallback, target) {
         var cwd           = grunt.config([TASK.name, target, 'src']);
-        var yuiRoot       = path.join(ROOT, cwd, '..');
-        var yuiCacheFile  = path.join(ROOT, 'build', '.yui-build');
+        var yuiRoot       = path.join(cwd, '..');
+        var yuiCacheFile  = path.join(ROOT, 'build/.yui-build');
         var isYuiBuildUpdated = false;
 
         if (grunt.file.exists(yuiCacheFile)) {
@@ -123,11 +123,7 @@ module.exports = function(grunt) {
         var cwd   = grunt.config([TASK.name, target, 'src']);
 
         // Build Dir
-        if (grunt.config([TASK.name, target, 'dist'])) {
-            args.push(
-                '--build-dir=' + path.join(ROOT, 'build')
-            );
-        }
+        args.push('--build-dir=' + grunt.config([TASK.name, target, 'dist']));
 
         // Cache
         if (grunt.config([TASK.name, target, 'cache'])) {
@@ -156,14 +152,12 @@ module.exports = function(grunt) {
         // Replace YUI var
         args.push(
             '--replace-yuivar=' +
-            grunt.config([TASK.name, target, 'replace-yuivar'])
-        );
+            grunt.config([TASK.name, target, 'replace-yuivar']));
 
         // Replace version
         args.push(
             '--replace-version=' +
-            grunt.config([TASK.name, target, 'replace-version'])
-        );
+            grunt.config([TASK.name, target, 'replace-version']));
 
         // Source Dir
         if (target === 'aui') {
@@ -195,7 +189,7 @@ module.exports = function(grunt) {
                 args.push('--walk');
 
                 stack.push(function(mainCallback) {
-                    exports._runShifter(mainCallback, target, args, path.join(ROOT, cwd));
+                    exports._runShifter(mainCallback, target, args, cwd);
                 });
             }
         }
@@ -222,8 +216,8 @@ module.exports = function(grunt) {
 
     exports._setYuiCache = function(mainCallback, target) {
         var cwd          = grunt.config([TASK.name, target, 'src']);
-        var yuiRoot      = path.join(ROOT, cwd, '..');
-        var yuiCacheFile = path.join(ROOT, 'build', '.yui-build');
+        var yuiRoot      = path.join(cwd, '..');
+        var yuiCacheFile = path.join(ROOT, 'build/.yui-build');
 
         command.open(yuiRoot)
             .exec('git', ['rev-parse', 'HEAD'])
