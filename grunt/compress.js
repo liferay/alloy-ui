@@ -157,11 +157,6 @@ module.exports = function(grunt) {
                 zip.add('.alloy.json', function() {
                     zipCallback();
                 });
-            },
-            function(zipCallback) {
-                zip.add('.shifter.json', function() {
-                    zipCallback();
-                });
             }],
             function() {
                 zip.done(function() {
