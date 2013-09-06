@@ -71,7 +71,15 @@ module.exports = function(grunt) {
         },
 
         copy: {
-            dist: {
+            css: {
+                files: [
+                    {
+                        src: 'build/aui-css/css/responsive.css',
+                        dest: 'build/aui-css/css/bootstrap-responsive.css'
+                    }
+                ]
+            },
+            img: {
                 files: [
                     {
                         src: path.join(ROOT, '<%= pkg.dependencies["alloy-bootstrap"].folder %>', 'img/glyphicons-halflings-white.png'),
@@ -89,11 +97,17 @@ module.exports = function(grunt) {
             name: 'aui-test'
         },
 
+        clean: {
+            css: [
+                'build/aui-css/css/responsive.css',
+            ]
+        },
+
         cssmin: {
             dist: {
                 files: {
                     'build/aui-css/css/bootstrap.min.css': ['build/aui-css/css/bootstrap.css'],
-                    'build/aui-css/css/responsive.min.css': ['build/aui-css/css/responsive.css']
+                    'build/aui-css/css/bootstrap-responsive.min.css': ['build/aui-css/css/bootstrap-responsive.css']
                 }
             }
         },
@@ -121,9 +135,10 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
 
     grunt.registerTask('api-deploy', ['api-build', 'api-push']);
-    grunt.registerTask('bootstrap', ['compass', 'cssmin', 'copy']);
+    grunt.registerTask('bootstrap', ['compass', 'copy:css', 'cssmin', 'copy:img', 'clean']);
     grunt.registerTask('release', ['build', 'bootstrap', 'compress']);
 };
