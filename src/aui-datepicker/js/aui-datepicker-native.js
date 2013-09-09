@@ -106,7 +106,9 @@ DatePickerNativeBase.prototype = {
             }
         }
 
-        node.setAttribute(TYPE, nativeType);
+        if (node.getAttribute(TYPE) !== nativeType) {
+            node.setAttribute(TYPE, nativeType);
+        }
 
         instance._fireSelectionChange();
     },
