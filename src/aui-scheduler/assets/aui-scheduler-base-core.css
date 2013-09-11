@@ -1,16 +1,9 @@
-/* scheduler-base */
 .scheduler-base-content {
-  border-color: #ddd;
-  border-style: solid;
-  border-width: 0 1px 1px;
   overflow: hidden;
 }
 
 .scheduler-base-hd {
   position: relative;
-  border-color: #DDD;
-  border-style: solid;
-  border-width: 0 0 1px 0;
   padding: 5px 0;
 }
 
@@ -75,6 +68,7 @@
 
 .scheduler-view-content {
   position: relative;
+  border: 1px solid #ddd;
 }
 
 .scheduler-view-colgrid {
@@ -178,7 +172,7 @@
   font-weight: bold;
 }
 
-.scheduler-base-content, .scheduler-today-hd, .scheduler-event {
+.scheduler-event {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
