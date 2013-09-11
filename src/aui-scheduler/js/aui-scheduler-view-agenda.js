@@ -53,7 +53,6 @@ var Lang = A.Lang,
 	LABEL = 'label',
 	LAST = 'last',
 	LOCALE = 'locale',
-	METAL = 'metal',
 	NO = 'no',
 	NO_EVENTS = 'noEvents',
 	PAST = 'past',
@@ -119,11 +118,10 @@ var Lang = A.Lang,
 	CSS_HEADER_FIRST = getCN(SCHEDULER_VIEW_AGENDA, HEADER, FIRST),
 	CSS_HEADER_LAST = getCN(SCHEDULER_VIEW_AGENDA, HEADER, LAST),
 	CSS_CLEARFIX = getCN(CLEARFIX),
-	CSS_METAL = getCN(SCHEDULER_VIEW_AGENDA, METAL),
 
 	TPL_CONTAINER = '<div class="' + CSS_CONTAINER + '">{content}</div>',
 
-	TPL_EVENTS_HEADER = '<div class="' + [ CSS_HEADER, CSS_METAL, CSS_CLEARFIX ].join(_SPACE) + ' {firstClassName} {lastClassName}">' +
+	TPL_EVENTS_HEADER = '<div class="' + [ CSS_HEADER, CSS_CLEARFIX ].join(_SPACE) + ' {firstClassName} {lastClassName}">' +
 								'<div class="' + CSS_HEADER_DAY + '">{day}</div>' +
 								'<a href="javascript:;" class="' + CSS_HEADER_EXTRA + '" data-timestamp="{timestamp}">{extra}</a>' +
 							'</div>',
@@ -140,7 +138,7 @@ var Lang = A.Lang,
 
 	TPL_INFO = '<div class="' + CSS_EVENT_INFO_CONTAINER + '">' +
 					'<div class="' + [ CSS_EVENT_INFO, CSS_CLEARFIX ].join(_SPACE) + '">' +
-						'<div class="' + [ CSS_EVENT_INFO_BIGGIE, CSS_METAL ].join(_SPACE) + '">{day}</div>' +
+						'<div class="' + CSS_EVENT_INFO_BIGGIE + '">{day}</div>' +
 						'<div class="' + CSS_EVENT_INFO_LABEL + '">' +
 							'<div class="' + CSS_EVENT_INFO_LABEL_BIGGIE + '">{labelBig}</div>' +
 							'<div class="' + CSS_EVENT_INFO_LABEL_SMALL + '">{labelSmall}</div>' +
