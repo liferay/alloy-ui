@@ -65,7 +65,7 @@
 }
 .scheduler-view-agenda-container .scheduler-view-agenda-events .scheduler-view-agenda-event .scheduler-view-agenda-event-content {
   float: left;
-  padding-left: 18px;
+  padding-left: 16px;
 }
 .scheduler-view-agenda-container .scheduler-view-agenda-events .scheduler-view-agenda-event .scheduler-view-agenda-event-dates {
   float: right;
