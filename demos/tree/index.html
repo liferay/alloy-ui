@@ -8,10 +8,22 @@
 </head>
 <body>
     <h1>AlloyUI - Tree</h1>
-    <h2>TreeView file with drag and drop</h2>
-    <div id="treefile"></div>
-    <h2>TreeView normal with drag and drop</h2>
-    <div id="treebasic"></div>
+    <div class="container pull-left">
+        <div class="row-fluid">
+            <div class="span6">
+                <h2>TreeView file with drag and drop</h2>
+                <div id="treefile"></div>
+                <h2>TreeView normal with drag and drop</h2>
+                <div id="treebasic"></div>
+            </div>
+            <div class="span6">
+                <h2>TreeView file with IO</h2>
+                <div id="treeio"></div>
+                <h2>TreeView task with IO</h2>
+                <div id="treeiotask"></div>
+            </div>
+        </div>
+    </div>
     <script>
     YUI({ filter: 'raw' }).use('aui-tree', function(Y) {
 
@@ -111,6 +123,36 @@
                 }
             ],
             type: 'normal'
+        }).render();
+
+        var solarSystemChildren = [
+            {
+                cache: true,
+                expanded: false,
+                io: 'assets/solar-system.html',
+                label: 'Solar System',
+                type:'io'
+            }
+        ];
+
+        new Y.TreeView({
+            boundingBox: '#treeio',
+            children: solarSystemChildren
+        }).render();
+
+        var rootNode = new Y.TreeNodeTask({
+            alwaysShowHitArea: true,
+            children: solarSystemChildren,
+            draggable: false,
+            expanded: true,
+            label: 'Task',
+            leaf: false
+        });
+
+        var treeview = new Y.TreeView({
+            boundingBox: '#treeiotask',
+            children: [rootNode],
+            type: 'file'
         }).render();
 
     });

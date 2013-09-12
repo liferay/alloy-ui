@@ -35,10 +35,15 @@
 	white-space: nowrap;
 }
 
-.tabbable {
+.diagram-builder .tabbable {
 	margin-left: 10px;
 	position: absolute;
 	width: 270px;
+}
+
+.diagram-builder .tab-pane {
+	height: 544px;
+	overflow: auto;
 }
 
 .diagram-builder-canvas {
@@ -71,7 +76,7 @@
 }
 
 .diagram-builder-drop-container {
-    height: 600px;
+	height: 600px;
 }
 
 .diagram-builder-anchor-node {

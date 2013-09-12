@@ -1,6 +1,6 @@
-.form-builder .diagram-builder-drop-container {
+.form-builder .diagram-builder-drop-container, .form-builder .tab-pane {
 	overflow: auto;
-    padding-bottom: 10px;
+	padding-bottom: 10px;
 }
 
 .form-builder .diagram-builder-fields-container .form-builder-placeholder {
