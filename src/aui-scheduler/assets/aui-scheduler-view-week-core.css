@@ -1,3 +1,7 @@
 .scheduler-view-week-hidden {
   display: none;
 }
+
+.scheduler-view-week .scheduler-view-table .scheduler-view-table-colgrid {
+  background: #f6f6f6;
+}

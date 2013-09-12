@@ -116,11 +116,6 @@
 
 .scheduler-view-table-colgrid {
   border-left: 1px solid #dddddd;
-  background: #f6f6f6;
-}
-
-.scheduler-view-table-colgrid-first {
-    border-left: 0;
 }
 
 .scheduler-view-table-data {

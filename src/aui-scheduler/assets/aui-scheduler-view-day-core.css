@@ -1,3 +1,4 @@
+background: #f6f6f6;
 .scheduler-view-day-hidden {
   display: none;
 }
@@ -93,10 +94,6 @@
   font-weight: bold;
 }
 
-.scheduler-view-day-header-day .scheduler-today-hd span {
-    font-size: 18px;
-}
-
 .scheduler-view-day-header-day a {
   color: #555;
   display: block;
@@ -104,6 +101,10 @@
   font-weight: normal;
   padding: 2px;
   text-decoration: none;
+}
+
+.scheduler-view-day-header-day a span {
+  font-size: 20px;
 }
 
 .scheduler-view-day-header-view-label {
@@ -125,6 +126,8 @@
 
 .scheduler-view-day .scheduler-view-table {
   margin: 0 0 0 62px;
+  border-left: 0;
+  border-right: 0;
 }
 
 .scheduler-view-day .scheduler-view-table .scheduler-view-table-data-col-title {
@@ -137,4 +140,8 @@
 
 .scheduler-view-day .scheduler-view-table .yui3-widget-hd {
   display: none;
+}
+
+.scheduler-view-day .scheduler-view-table .scheduler-view-table-colgrid {
+  background: #f6f6f6;
 }
