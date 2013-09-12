@@ -35,13 +35,13 @@
 	white-space: nowrap;
 }
 
-.tabbable {
+.diagram-builder .tabbable {
 	margin-left: 10px;
 	position: absolute;
 	width: 270px;
 }
 
-.tab-pane {
+.diagram-builder .tab-pane {
 	height: 544px;
 	overflow: auto;
 }
