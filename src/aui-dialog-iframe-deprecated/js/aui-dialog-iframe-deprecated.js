@@ -1,7 +1,7 @@
 var Lang = A.Lang,
-	isFunction = Lang.isFunction,
+    isFunction = Lang.isFunction,
 
-	getClassName = A.getClassName,
+    getClassName = A.getClassName,
 
     IFRAME = 'iframe',
     BIND_LOAD_HANDLER = 'bindLoadHandler',
@@ -31,58 +31,59 @@ var Lang = A.Lang,
     URI_CHANGE = 'uriChange',
     VISIBLE_CHANGE = 'visibleChange',
 
-	CSS_IFRAME_BD = getClassName('dialog', IFRAME, 'bd'),
-	CSS_IFRAME_NODE = getClassName('dialog', IFRAME, 'node'),
-	CSS_IFRAME_ROOT_NODE = getClassName('dialog', IFRAME, 'root', 'node'),
+    CSS_IFRAME_BD = getClassName('dialog', IFRAME, 'bd'),
+    CSS_IFRAME_NODE = getClassName('dialog', IFRAME, 'node'),
+    CSS_IFRAME_ROOT_NODE = getClassName('dialog', IFRAME, 'root', 'node'),
 
-	BUFFER_CSS_CLASS = [CSS_IFRAME_NODE],
+    BUFFER_CSS_CLASS = [CSS_IFRAME_NODE],
 
-	TPL_IFRAME = '<iframe class="{cssClass}" frameborder="0" id="{id}" name="{id}" src="{uri}"></iframe>',
+    TPL_IFRAME = '<iframe class="{cssClass}" frameborder="0" id="{id}" name="{id}" src="{uri}"></iframe>',
 
-	UI = A.Widget.UI_SRC,
-	UI_SRC = {
-		src: UI
-	};
+    UI = A.Widget.UI_SRC,
+    UI_SRC = {
+        src: UI
+    };
 
 var DialogIframePlugin = A.Component.create(
-	{
-		ATTRS: {
-			bindLoadHandler: {
-				validator: isFunction,
-				value: function() {
-					var instance = this;
+    {
+        ATTRS: {
+            bindLoadHandler: {
+                validator: isFunction,
+                value: function() {
+                    var instance = this;
 
-					instance.node.on('load', A.bind(instance.fire, instance, 'load'));
-				}
-			},
+                    instance.node.on('load', A.bind(instance.fire, instance, 'load'));
+                }
+            },
 
-			closeOnEscape: {
-				value: true
-			},
+            closeOnEscape: {
+                validator: Lang.isBoolean,
+                value: true
+            },
 
-			gutter: {
-				setter: '_setGutter',
-				valueFn: '_gutterValueFn'
-			},
+            gutter: {
+                setter: '_setGutter',
+                valueFn: '_gutterValueFn'
+            },
 
-			iframeCssClass: {
-				value: '',
-				setter: '_setIframeCssClass'
-			},
+            iframeCssClass: {
+                value: '',
+                setter: '_setIframeCssClass'
+            },
 
-			iframeId: {
-				valueFn: function() {
-					var instance = this;
+            iframeId: {
+                valueFn: function() {
+                    var instance = this;
 
-					return instance.get('id') || A.guid();
-				}
-			},
+                    return instance.get('id') || A.guid();
+                }
+            },
 
-			uri: {
-			}
-		},
+            uri: {
+            }
+        },
 
-		EXTENDS: A.Plugin.Base,
+        EXTENDS: A.Plugin.Base,
         NAME: IFRAME,
         NS: IFRAME,
         prototype: {
@@ -128,6 +129,8 @@ var DialogIframePlugin = A.Component.create(
                     A.bind(instance._setNodeDimensions, instance),
                     instance
                 );
+
+                instance.after(CLOSE_ON_ESCAPE + 'Change', instance._uiSetCloseOnEscape, instance);
             },
 
             destructor: function() {
@@ -183,6 +186,10 @@ var DialogIframePlugin = A.Component.create(
 
                 A.Array.invoke(eventHandles, DETACH);
 
+                if (instance._eventCloseOnEscapeHandle) {
+                    instance._eventCloseOnEscapeHandle.detach();
+                }
+
                 eventHandles.length = 0;
             },
 
@@ -202,18 +209,7 @@ var DialogIframePlugin = A.Component.create(
 
                     instance.set(URI, iframeDoc.get('location.href'), UI_SRC);
 
-                    if (instance.get(CLOSE_ON_ESCAPE)) {
-                        instance._eventHandles.push(
-                            A.on(
-                                KEY,
-                                function() {
-                                    instance._host.hide();
-                                },
-                                [iframeDoc],
-                                'down:27'
-                            )
-                        );
-                    }
+                    instance._uiSetCloseOnEscape();
                 }
                 catch (e) {
                 }
@@ -333,6 +329,36 @@ var DialogIframePlugin = A.Component.create(
                         height: bodyNode.get(OFFSET_HEIGHT),
                         width: bodyNode.get(OFFSET_WIDTH)
                     });
+                }
+            },
+
+            _uiSetCloseOnEscape: function() {
+                var instance = this;
+
+                if (instance.get(CLOSE_ON_ESCAPE)) {
+                    if (!instance._eventCloseOnEscapeHandle) {
+                        try {
+                            var iframeWindow = instance.node.get(CONTENT_WINDOW);
+
+                            var iframeDoc = iframeWindow.get(DOCUMENT);
+
+                            instance._eventCloseOnEscapeHandle = A.on(
+                                KEY,
+                                function() {
+                                    instance._host.hide();
+                                },
+                                [iframeDoc],
+                                'down:27'
+                            );
+                        }
+                        catch(exception) {
+                        }
+                    }
+                }
+                else if (instance._eventCloseOnEscapeHandle) {
+                    instance._eventCloseOnEscapeHandle.detach();
+
+                    instance._eventCloseOnEscapeHandle = null;
                 }
             },
 
