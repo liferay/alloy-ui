@@ -60,13 +60,8 @@ var Lang = A.Lang,
 	ACTIVE_VIEW = 'activeView',
 	ALL = 'all',
 	ALL_DAY = 'allDay',
-	BORDER_COLOR_RGB = 'borderColorRGB',
-	BORDER_STYLE = 'borderStyle',
-	BORDER_WIDTH = 'borderWidth',
 	BUTTON = 'button',
 	COLOR = 'color',
-	COLOR_BRIGHTNESS_FACTOR = 'colorBrightnessFactor',
-	COLOR_SATURATION_FACTOR = 'colorSaturationFactor',
 	CONTENT = 'content',
 	CONTROLS = 'controls',
 	CONTROLS_NODE = 'controlsNode',
@@ -83,7 +78,6 @@ var Lang = A.Lang,
 	ICON_NEXT_NODE = 'iconNextNode',
 	ICON_PREV_NODE = 'iconPrevNode',
 	ICONS = 'icons',
-	INHERIT = 'inherit',
 	ISO_TIME = 'isoTime',
 	LOCALE = 'locale',
 	MEETING = 'meeting',
@@ -217,54 +211,6 @@ var SchedulerEvent = A.Component.create({
 		/**
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
-		 * @attribute borderStyle
-		 * @default 'solid'
-		 * @type String
-		 */
-		borderStyle: {
-			value: 'solid',
-			validator: isString
-		},
-
-		/**
-		 * TODO. Wanna help? Please send a Pull Request.
-		 *
-		 * @attribute borderWidth
-		 * @default '1px'
-		 * @type String
-		 */
-		borderWidth: {
-			value: '1px',
-			validator: isString
-		},
-
-		/**
-		 * TODO. Wanna help? Please send a Pull Request.
-		 *
-		 * @attribute colorBrightnessFactor
-		 * @default 0.75
-		 * @type Number
-		 */
-		colorBrightnessFactor: {
-			value: 0.75,
-			validator: isNumber
-		},
-
-		/**
-		 * TODO. Wanna help? Please send a Pull Request.
-		 *
-		 * @attribute colorSaturationFactor
-		 * @default 1.5
-		 * @type Number
-		 */
-		colorSaturationFactor: {
-			value: 1.5,
-			validator: isNumber
-		},
-
-		/**
-		 * TODO. Wanna help? Please send a Pull Request.
-		 *
 		 * @attribute content
 		 */
 		content: {
@@ -281,7 +227,6 @@ var SchedulerEvent = A.Component.create({
 		 */
 		color: {
 			lazyAdd: false,
-			setter: '_setColor',
 			value: '#D96666',
 			validator: isString
 		},
@@ -444,7 +389,7 @@ var SchedulerEvent = A.Component.create({
 	 * @type Array
 	 * @static
 	 */
-	PROPAGATE_ATTRS: [ALL_DAY, START_DATE, END_DATE, CONTENT, COLOR, COLOR_BRIGHTNESS_FACTOR, COLOR_SATURATION_FACTOR, BORDER_STYLE, BORDER_WIDTH, TITLE_DATE_FORMAT, VISIBLE, DISABLED],
+	PROPAGATE_ATTRS: [ALL_DAY, START_DATE, END_DATE, CONTENT, COLOR, TITLE_DATE_FORMAT, VISIBLE, DISABLED],
 
 	prototype: {
 		EVENT_NODE_TEMPLATE: '<div class="' + CSS_SCHEDULER_EVENT + '">' +
@@ -618,17 +563,6 @@ var SchedulerEvent = A.Component.create({
 			});
 
 			instance.setAttrs(attrMap, options);
-		},
-
-		/**
-		 * TODO. Wanna help? Please send a Pull Request.
-		 *
-		 * @method getBorderColor
-		 */
-		getBorderColor: function() {
-			var instance = this;
-
-			return instance[BORDER_COLOR_RGB].hex;
 		},
 
 		/**
@@ -1036,29 +970,6 @@ var SchedulerEvent = A.Component.create({
 		/**
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
-		 * @method _setColor
-		 * @param val
-		 * @protected
-		 */
-		_setColor: function(val) {
-			var instance = this;
-
-			var hsl = Color.toArray(Color.toHSL(val)),
-				hslString;
-
-			hsl[1] *= instance.get(COLOR_SATURATION_FACTOR);
-			hsl[2] *= instance.get(COLOR_BRIGHTNESS_FACTOR);
-
-			hslString = 'hsl(' + hsl[0] + ', ' + hsl[1] + '%, ' + hsl[2] + '%)';
-
-			instance[BORDER_COLOR_RGB] = Color.toRGB(hslString);
-
-			return val;
-		},
-
-		/**
-		 * TODO. Wanna help? Please send a Pull Request.
-		 *
 		 * @method _setDate
 		 * @param val
 		 * @protected
@@ -1137,18 +1048,11 @@ var SchedulerEvent = A.Component.create({
 		_uiSetColor: function(val) {
 			var instance = this;
 			var node = instance.get(NODE);
-			var borderColor = instance.getBorderColor();
 
 			if (node) {
-				var styles = {
-					borderWidth: instance.get(BORDER_WIDTH),
-					borderColor: borderColor,
-					backgroundColor: val,
-					borderStyle: instance.get(BORDER_STYLE),
-					color: INHERIT
-				};
-
-				node.setStyles(styles);
+				node.setStyles({
+                    backgroundColor: val
+                });
 			}
 		},
 

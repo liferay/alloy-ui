@@ -151,7 +151,7 @@
 }
 
 .scheduler-event {
-  color: #1D1D1D;
+  color: rgba(0, 0, 0, .5);
   height: 70px;
   left: 0;
   overflow: hidden;
