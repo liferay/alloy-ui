@@ -1,3 +1,4 @@
+/* scheduler-base */
 .scheduler-base-content {
   overflow: hidden;
 }
@@ -52,6 +53,10 @@
 }
 
 /* scheduler-base-view */
+.scheduler-view {
+  border: 1px solid #ddd;
+}
+
 .scheduler-view-scrollable {
   overflow: scroll;
   overflow-x: hidden;
@@ -68,7 +73,6 @@
 
 .scheduler-view-content {
   position: relative;
-  border: 1px solid #ddd;
 }
 
 .scheduler-view-colgrid {
@@ -158,16 +162,14 @@
 }
 
 .scheduler-today {
-  background: #FFF7D7;
-  border: 1px solid #FAD163;
-  border-width: 0 1px;
+  background: #f6f6f6;
 }
 
 .scheduler-today-hd {
-  background: #FAD163;
-  border: 1px solid #FAD163;
-  border-bottom: 0;
+  border: 3px solid #009be6;
   border-top: 0;
+  border-right: 0;
+  border-left: 0;
   color: #333333;
   font-weight: bold;
 }

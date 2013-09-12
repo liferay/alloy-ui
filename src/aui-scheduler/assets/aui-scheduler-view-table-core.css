@@ -56,6 +56,7 @@
 }
 
 .scheduler-view-table-header-day {
+  color: #abaaab;
   text-align: center;
 }
 
@@ -115,6 +116,11 @@
 
 .scheduler-view-table-colgrid {
   border-left: 1px solid #dddddd;
+  background: #f6f6f6;
+}
+
+.scheduler-view-table-colgrid-first {
+    border-left: 0;
 }
 
 .scheduler-view-table-data {
@@ -152,18 +158,20 @@
 }
 
 .scheduler-view-table-data-col-title-down {
-  border-top: 1px solid #fad163;
+  border-top: 1px solid #009be6;
 }
 
 .scheduler-view-table-colgrid-today {
-  background-color: #FFF7D7;
-  border-left: 1px solid #FAD163;
-  border-right: 1px solid #FAD163;
+  background-color: #f2f2f2;
+  border: 1px solid #009be6;
+  border-bottom-width: 0;
 }
 
 .scheduler-view-table-data-col-title-today {
-  background: #FAD163;
-  border: 1px solid #FAD163;
+  color: #14a4e9;
+  font-weight: bold;
+  border: 1px solid #009be6;
+  border-bottom-width: 0;
 }
 
 .scheduler-view-table-data-event {
