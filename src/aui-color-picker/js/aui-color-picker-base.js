@@ -138,32 +138,6 @@ ColorPickerBase.prototype = {
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @method _bindTrigger
-     * @protected
-     */
-    _bindTrigger: function() {
-        var instance = this,
-            trigger,
-            triggerEvent;
-
-        trigger = instance.get(TRIGGER);
-        triggerEvent = instance.get('triggerEvent');
-
-        if (Lang.isString(trigger)) {
-            instance._eventHandles.push(
-                A.getBody().delegate(triggerEvent, instance._onTriggerInteraction, trigger, instance)
-            );
-        }
-        else {
-            instance._eventHandles.push(
-                trigger.on(triggerEvent, instance._onTriggerInteraction, instance)
-            );
-        }
-    },
-
-    /**
-     * TODO. Wanna help? Please send a Pull Request.
-     *
      * @method _bindHSVPalette
      * @protected
      */
@@ -207,7 +181,6 @@ ColorPickerBase.prototype = {
 
         instance._bindNoColor();
         instance._bindHSVPalette();
-        instance._bindTrigger();
 
         instance.on(COLOR_CHANGE, instance._onColorChange, instance);
         instance.on(VISIBLE_CHANGE, instance._onVisibleChange, instance);
@@ -609,7 +582,7 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Displays or hides the ColorPicker after trigger interaction.
      *
      * @method _onTriggerInteraction
      * @param event
@@ -801,6 +774,19 @@ ColorPickerBase.prototype = {
     },
 
     /**
+     * Overwrites the default setter for trigger in WidgetTrigger class which invokes A.one, but
+     * we need to support multiple triggers.
+     *
+     * @method _setTrigger
+     * @param value
+     * @protected
+     */
+
+    _setTrigger: function(value) {
+        return value;
+    },
+
+    /**
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _validateTrigger
@@ -811,7 +797,34 @@ ColorPickerBase.prototype = {
         var instance = this;
 
         return (value instanceof A.Node || value instanceof A.NodeList || Lang.isString(value));
-    }
+    },
+
+    /**
+     * Set the <code>trigger</code> UI.
+     *
+     * @method _uiSetTrigger
+     * @param value
+     * @protected
+     */
+    _uiSetTrigger: function(value) {
+        var instance = this,
+            trigger,
+            triggerEvent;
+
+        trigger = instance.get(TRIGGER);
+        triggerEvent = instance.get('triggerEvent');
+
+        if (Lang.isString(trigger)) {
+            instance._eventHandles.push(
+                A.getBody().delegate(triggerEvent, instance._onTriggerInteraction, trigger, instance)
+            );
+        }
+        else {
+            instance._eventHandles.push(
+                trigger.on(triggerEvent, instance._onTriggerInteraction, instance)
+            );
+        }
+     }
 };
 
 /**
@@ -1036,6 +1049,7 @@ ColorPickerBase.ATTRS = {
      * @attribute trigger
      */
     trigger: {
+        setter: '_setTrigger',
         validator: '_validateTrigger',
         value: _DOT + CSS_TRIGGER
     },

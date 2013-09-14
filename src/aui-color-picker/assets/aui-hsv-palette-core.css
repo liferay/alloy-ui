@@ -90,8 +90,9 @@
     top: 90px;
 }
 
-.hsv-label-value-container .controls {
-    display: inline;
+
+.hsv-label-value-container .input-prepend, .hsv-label-value-container .input-append {
+    display: block;
 }
 
 .hsv-label-value-hsv-container {

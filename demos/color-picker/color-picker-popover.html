@@ -3,6 +3,21 @@
 <html>
 <head>
     <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+
+    <style>
+        #wrapper {
+            margin-left: 50px;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        #container {
+            margin-left: 50px;
+            margin-top: 150px;
+            position: relative;
+        }
+    </style>
+
     <script src="../../build/aui/aui.js"></script>
 </head>
 
@@ -11,23 +26,26 @@
 <div id="wrapper">
     <h1>Alloy - ColorPickerPopover Demo</h1>
 
-    <form>
-        <label>Color trigger #1</label>
-        <input class="color-picker-trigger" type="text">
+    <div id="container">
+        <form>
+            <label>Color trigger #1</label>
+            <input class="color-picker-trigger" type="text">
 
-        <label>Color trigger #2</label>
-        <input class="color-picker-trigger" type="text">
+            <label>Color trigger #2</label>
+            <input class="color-picker-trigger" type="text">
 
-        <label>Color trigger #3</label>
-        <input class="color-picker-trigger" type="text">
-    </form>
+            <label>Color trigger #3</label>
+            <input class="color-picker-trigger" type="text">
+        </form>
+    </div>
 
 </div>
 
 <script>
     YUI({ filter:'raw' }).use('aui-color-picker-popover', function(Y) {
             var colorPicker = new Y.ColorPickerPopover({
-                trigger: '.color-picker-trigger'
+                trigger: '.color-picker-trigger',
+                zIndex: 2
             }).render();
 
             colorPicker.on('select', function(event) {

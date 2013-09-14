@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AUI ColorPicker Unit Tests</title>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+    <script src="../../../../build/aui/aui.js"></script>
+    <script src="js/tests.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+    <div id="logger"></div>
+
+    <div id="wrapper">
+        <h1>Alloy - ColorPickerPopover Demo</h1>
+
+        <form>
+            <label>Color trigger #1</label>
+            <input class="color-picker-trigger" id="trigger1" type="text">
+
+            <label>Color trigger #2</label>
+            <input class="color-picker-trigger" id="trigger2" type="text">
+
+            <label>Color trigger #3</label>
+            <input class="color-picker-trigger" id="trigger3" type="text">
+        </form>
+
+    </div>
+
+    <script>
+        YUI({
+            coverage: ['aui-color-picker-base'],
+            filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+        }).use('test-console', 'test', 'module-tests', function(Y) {
+
+            (new Y.Test.Console()).render('#logger');
+
+            Y.Test.Runner.setName('aui-color-picker');
+            Y.Test.Runner.run();
+        });
+    </script>
+</body>
+</html>
