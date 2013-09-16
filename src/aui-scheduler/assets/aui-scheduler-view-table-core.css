@@ -178,10 +178,6 @@
   white-space: nowrap;
 }
 
-.scheduler-view-table-data-event .scheduler-event-content {
-  font-size: 11px;
-}
-
 .scheduler-view-table-data-event .icon-arrowstop-1-r {
   background-image: url(scheduler-arrows.png);
   background-position: -10px 3px;

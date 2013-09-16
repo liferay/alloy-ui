@@ -1,4 +1,3 @@
-background: #f6f6f6;
 .scheduler-view-day-hidden {
   display: none;
 }
@@ -16,6 +15,14 @@ background: #f6f6f6;
   border-left: 1px solid #ddd;
   padding: 0;
   vertical-align: top;
+}
+
+.scheduler-view-day-table-col-shim .scheduler-event {
+    border: 2px solid #fff;
+}
+
+.scheduler-view-day-table-col-shim .scheduler-event:first-child {
+    border-color: transparent;
 }
 
 .scheduler-view-day-table-col-shim {
