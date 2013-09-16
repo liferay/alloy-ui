@@ -363,7 +363,9 @@ ToolbarRenderer.prototype = {
                 cssClass,
                 buttonNode;
 
-            if (A.instanceOf(value, A.Button)) {
+            if (A.instanceOf(value, A.Button) ||
+                A.instanceOf(value, A.ToggleButton)) {
+
                 return value.get(BOUNDING_BOX);
             }
 
