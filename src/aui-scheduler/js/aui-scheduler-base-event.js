@@ -62,6 +62,8 @@ var Lang = A.Lang,
 	ALL_DAY = 'allDay',
 	BUTTON = 'button',
 	COLOR = 'color',
+	COLOR_BRIGHTNESS_FACTOR = 'colorBrightnessFactor',
+	COLOR_SATURATION_FACTOR = 'colorSaturationFactor',
 	CONTENT = 'content',
 	CONTROLS = 'controls',
 	CONTROLS_NODE = 'controlsNode',
@@ -227,8 +229,32 @@ var SchedulerEvent = A.Component.create({
 		 */
 		color: {
 			lazyAdd: false,
-			value: '#D96666',
+			value: '#376cd9',
 			validator: isString
+		},
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute colorBrightnessFactor
+		 * @default 1.4
+		 * @type Number
+		 */
+		colorBrightnessFactor: {
+			value: 1.4,
+			validator: isNumber
+		},
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute colorSaturationFactor
+		 * @default 0.88
+		 * @type Number
+		 */
+		colorSaturationFactor: {
+			value: 0.88,
+			validator: isNumber
 		},
 
 		/**
@@ -389,7 +415,7 @@ var SchedulerEvent = A.Component.create({
 	 * @type Array
 	 * @static
 	 */
-	PROPAGATE_ATTRS: [ALL_DAY, START_DATE, END_DATE, CONTENT, COLOR, TITLE_DATE_FORMAT, VISIBLE, DISABLED],
+	PROPAGATE_ATTRS: [ALL_DAY, START_DATE, END_DATE, CONTENT, COLOR, COLOR_BRIGHTNESS_FACTOR, COLOR_SATURATION_FACTOR, TITLE_DATE_FORMAT, VISIBLE, DISABLED],
 
 	prototype: {
 		EVENT_NODE_TEMPLATE: '<div class="' + CSS_SCHEDULER_EVENT + '">' +
@@ -1049,10 +1075,18 @@ var SchedulerEvent = A.Component.create({
 			var instance = this;
 			var node = instance.get(NODE);
 
+			var color = Color.toHSL(val);
+			var backgroundColor = Color.toArray(color);
+
+			backgroundColor[1] *= instance.get(COLOR_SATURATION_FACTOR);
+			backgroundColor[2] *= instance.get(COLOR_BRIGHTNESS_FACTOR);
+			backgroundColor = Color.fromArray(backgroundColor, Color.TYPES.HSL);
+
 			if (node) {
 				node.setStyles({
-                    backgroundColor: val
-                });
+					backgroundColor: backgroundColor,
+					color: color
+				});
 			}
 		},
 
