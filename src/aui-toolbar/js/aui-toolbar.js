@@ -102,6 +102,19 @@ A.Toolbar = A.Component.create({
      */
     UI_ATTRS: [CHILDREN],
 
+    /**
+     * Check if type is supported.
+     *
+     * @method A.Toolbar.isSupportedWidget
+     * @param o
+     * @static
+     */
+    isSupportedWidget: function(o) {
+        return  A.instanceOf(o, A.Button) ||
+                A.instanceOf(o, A.ToggleButton) ||
+                A.instanceOf(o, A.ButtonGroup);
+    },
+
     prototype: {
 
         /**
@@ -180,18 +193,6 @@ A.Toolbar = A.Component.create({
         },
 
         /**
-         * Check if type is supported.
-         *
-         * @method isSupportedType
-         * @param o
-         */
-        isSupportedType: function(o) {
-            return  A.instanceOf(o, A.Button) ||
-                    A.instanceOf(o, A.ToggleButton) ||
-                    A.instanceOf(o, A.ButtonGroup);
-        },
-
-        /**
          * Get a certain item based on its index.
          *
          * @method item
@@ -206,7 +207,7 @@ A.Toolbar = A.Component.create({
 
             widget = instance.getEnclosingWidget(seed);
 
-            if (instance.isSupportedType(widget)) {
+            if (A.Toolbar.isSupportedWidget(widget)) {
                 return widget;
             }
 
@@ -454,8 +455,14 @@ ToolbarRenderer.prototype = {
 
             A.Array.each(value, function(child, index) {
                 var childNode = instance.renderNode(child);
+
                 groupNode.appendChild(childNode);
-                A.Button.setWidgetLazyConstructorNodeData(childNode, value[index]);
+
+                // If it is already a supported widget type, do not set lazy
+                // constructor for further initialization.
+                if (!A.Toolbar.isSupportedWidget(child)) {
+                    A.Button.setWidgetLazyConstructorNodeData(childNode, value[index]);
+                }
             });
             return groupNode;
         }
@@ -488,8 +495,15 @@ ToolbarRenderer.prototype = {
      */
     renderNode: function(child) {
         var instance = this,
-            childRenderHints = instance._getChildRenderHints(child),
-            renderer = instance.RENDERER[childRenderHints.renderer];
+            childRenderHints,
+            renderer;
+
+        if (A.Toolbar.isSupportedWidget(child)) {
+            return child.render().get(BOUNDING_BOX);
+        }
+
+        childRenderHints = instance._getChildRenderHints(child);
+        renderer = instance.RENDERER[childRenderHints.renderer];
 
         if (isFunction(renderer)) {
             return renderer.call(instance, childRenderHints);
