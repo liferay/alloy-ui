@@ -48,10 +48,9 @@
 
 .scheduler-view-table-proxy-node {
   border-radius: 3px;
-  border: 1px solid;
-  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 4px;
   overflow: hidden;
-  padding: 0 2px;
   width: 200px;
 }
 

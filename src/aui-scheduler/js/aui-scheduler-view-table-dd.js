@@ -600,7 +600,8 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 		instance[PROXY_NODE].setStyles({
 			backgroundColor: eventNode.getStyle('backgroundColor'),
-			display: 'block'
+            color: eventNode.getStyle('color'),
+            display: 'block'
 		});
 
 		if (!eventNodePadding || !eventNodePadding.test(':visible')) {
