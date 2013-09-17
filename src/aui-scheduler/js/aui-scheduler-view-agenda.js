@@ -122,9 +122,9 @@ var Lang = A.Lang,
 	TPL_CONTAINER = '<div class="' + CSS_CONTAINER + '">{content}</div>',
 
 	TPL_EVENTS_HEADER = '<div class="' + [ CSS_HEADER, CSS_CLEARFIX ].join(_SPACE) + ' {firstClassName} {lastClassName}">' +
-								'<div class="' + CSS_HEADER_DAY + '">{day}</div>' +
-								'<a href="javascript:;" class="' + CSS_HEADER_EXTRA + '" data-timestamp="{timestamp}">{extra}</a>' +
-							'</div>',
+							'<div class="' + CSS_HEADER_DAY + '">{day}</div>' +
+							'<a href="javascript:;" class="' + CSS_HEADER_EXTRA + '" data-timestamp="{timestamp}">{extra}</a>' +
+						'</div>',
 
 	TPL_EVENTS_CONTAINER = '<div class="' + CSS_EVENTS + '">{content}</div>',
 
