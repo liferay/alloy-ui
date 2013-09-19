@@ -76,6 +76,8 @@ var Lang = A.Lang,
 	HEADER = 'header',
 	HEADER_NODE = 'headerNode',
 	HIDDEN = 'hidden',
+	HTML_OPEN_SPAN = '<span>',
+	HTML_CLOSE_SPAN = '</span>',
 	ICON = 'icon',
 	ICON_NEXT_NODE = 'iconNextNode',
 	ICON_PREV_NODE = 'iconPrevNode',
@@ -271,12 +273,12 @@ var SchedulerEvent = A.Component.create({
 					isoTime = scheduler && scheduler.get(ACTIVE_VIEW).get(ISO_TIME),
 
 					format = {
-						endDate: _N_DASH+_SPACE+TITLE_DT_FORMAT_ISO,
+						endDate: HTML_OPEN_SPAN+_N_DASH+_SPACE+TITLE_DT_FORMAT_ISO+HTML_CLOSE_SPAN,
 						startDate: TITLE_DT_FORMAT_ISO
 					};
 
 				if (!isoTime) {
-					format.endDate = _N_DASH+_SPACE+getUSDateFormat(instance.get(END_DATE));
+					format.endDate = HTML_OPEN_SPAN+_N_DASH+_SPACE+getUSDateFormat(instance.get(END_DATE))+HTML_CLOSE_SPAN;
 					format.startDate = getUSDateFormat(instance.get(START_DATE));
 				}
 
