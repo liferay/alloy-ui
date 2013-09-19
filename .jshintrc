@@ -34,7 +34,7 @@
     "noarg": true,
     "node": true,
     "noempty": true,
-    "nomen": true,
+    "nomen": false,
     "onevar": false,
     "passfail": false,
     "plusplus": false,
