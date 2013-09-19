@@ -137,7 +137,8 @@
   white-space: nowrap;
 }
 
-.yui3-dd-proxy .scheduler-event {
+.yui3-dd-proxy .scheduler-event,
+.scheduler-event-past {
   filter: alpha(opacity=70);
   opacity: .7;
 }
