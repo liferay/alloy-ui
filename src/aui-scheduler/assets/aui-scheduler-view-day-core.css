@@ -148,3 +148,12 @@
 .scheduler-view-day .scheduler-view-table .scheduler-view-table-colgrid {
   background: #f6f6f6;
 }
+
+.scheduler-view-day .scheduler-event-title {
+  padding: 0 7px;
+}
+
+.scheduler-view-day .scheduler-event-content {
+  margin-top: -2px;
+  padding: 0 7px;
+}
