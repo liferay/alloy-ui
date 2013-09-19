@@ -62,7 +62,9 @@
 }
 
 .aui-diagram-builder-fields-container {
+	height: 544px;
 	margin: 5px;
+	overflow: auto;
 }
 
 .aui-diagram-builder-content {
