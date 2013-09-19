@@ -855,7 +855,7 @@ var SchedulerEvent = A.Component.create({
 				title.push(instance._formatDate(endDate, format.endDate));
 			}
 
-			instance.setTitle(title.join(_SPACE));
+			instance.setTitle(title.join(''));
 		},
 
 		/**
