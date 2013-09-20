@@ -19,8 +19,8 @@ var Lang = A.Lang,
     MOUSEDOWN = 'mousedown',
     SELECTION_CHANGE = 'selectionChange',
     TRIGGER = 'trigger',
-    FOCUSIN = 'focusin',
-    FOCUSOUT = 'focusout',
+    FOCUSIN = 'focus',
+    FOCUSOUT = 'blur',
     VALUE_EXTRACTOR = 'valueExtractor',
     VALUE_FORMATTER = 'valueFormatter';
 
