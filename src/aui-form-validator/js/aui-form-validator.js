@@ -595,6 +595,8 @@ var FormValidator = A.Component.create({
                 }
 
                 field.focus();
+
+                field.scrollIntoView();
             }
         },
 
