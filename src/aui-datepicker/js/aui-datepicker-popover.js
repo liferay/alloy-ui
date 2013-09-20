@@ -1,3 +1,10 @@
+/**
+ * The DatePicker Component
+ *
+ * @module aui-datepicker
+ * @submodule aui-datepicker-popover
+ */
+
 var Lang = A.Lang,
 
     _DOCUMENT = A.one(A.config.doc),
@@ -13,20 +20,56 @@ var Lang = A.Lang,
     POPOVER = 'popover',
     POPOVER_CSS_CLASS = 'popoverCssClass';
 
+/**
+ * A base class for DatePickerPopover.
+ *
+ * @class A.DatePickerPopover
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 function DatePickerPopover() {}
 
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @property DatePickerPopover.ATTRS
+ * @type Object
+ * @static
+ */
 DatePickerPopover.ATTRS = {
+
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute autoHide
+     * @default true
+     * @type Boolean
+     */
     autoHide: {
         validator: Lang.isBoolean,
         value: true
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute popover
+     * @default {}
+     * @writeOnce
+     */
     popover: {
         setter: '_setPopover',
         value: {},
         writeOnce: true
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute popoverCssClass
+     * @default A.getClassName('datepicker-popover')
+     * @type String
+     */
     popoverCssClass: {
         validator: Lang.isString,
         value: A.getClassName('datepicker-popover')
@@ -36,6 +79,12 @@ DatePickerPopover.ATTRS = {
 A.mix(DatePickerPopover.prototype, {
     popover: null,
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method alignTo
+     * @param node
+     */
     alignTo: function(node) {
         var instance = this,
             popover = instance.getPopover();
@@ -43,6 +92,11 @@ A.mix(DatePickerPopover.prototype, {
         popover.set('align.node', node);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method getPopover
+     */
     getPopover: function() {
         var instance = this,
             popover = instance.popover;
@@ -58,18 +112,34 @@ A.mix(DatePickerPopover.prototype, {
         return popover;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method hide
+     */
     hide: function() {
         var instance = this;
 
         instance.getPopover().hide();
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method show
+     */
     show: function() {
         var instance = this;
 
         instance.getPopover().show();
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _isActiveInputFocused
+     * @protected
+     */
     _isActiveInputFocused: function() {
         var instance = this,
             activeInput = instance.get(ACTIVE_INPUT);
@@ -77,6 +147,13 @@ A.mix(DatePickerPopover.prototype, {
         return (activeInput === _DOCUMENT.get(ACTIVE_ELEMENT));
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onPopoverClickOutside
+     * @param event
+     * @protected
+     */
     _onPopoverClickOutside: function(event) {
         var instance = this,
             target = event.target,
@@ -89,6 +166,13 @@ A.mix(DatePickerPopover.prototype, {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _setPopover
+     * @param val
+     * @protected
+     */
     _setPopover: function(val) {
         var instance = this;
 
