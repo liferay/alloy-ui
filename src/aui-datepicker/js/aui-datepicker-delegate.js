@@ -1,7 +1,8 @@
 /**
- * The DatePickerDelegate Component
+ * The DatePicker Component
  *
- * @module aui-datepicker-delegate
+ * @module aui-datepicker
+ * @submodule aui-datepicker-delegate
  */
 
 var Lang = A.Lang,
@@ -23,6 +24,13 @@ var Lang = A.Lang,
     VALUE_EXTRACTOR = 'valueExtractor',
     VALUE_FORMATTER = 'valueFormatter';
 
+/**
+ * A base class for DatePickerDelegate.
+ *
+ * @class A.DatePickerDelegate
+ * @param config {Object} Object literal specifying widget configuration properties.
+ * @constructor
+ */
 function DatePickerDelegate() {}
 
 DatePickerDelegate.prototype = {
@@ -30,12 +38,24 @@ DatePickerDelegate.prototype = {
 
     _userInteractionInProgress: false,
 
+    /**
+     * Construction logic executed during DatePickerDelegate instantiation. Lifecycle.
+     *
+     * @method initializer
+     * @protected
+     */
     initializer: function() {
         var instance = this;
 
         instance.bindDelegateUI();
     },
 
+    /**
+     * Destructor logic implementation for the AutosizeIframe class. Lifecycle.
+     *
+     * @method destroy
+     * @protected
+     */
     destroy: function() {
         var instance = this;
 
@@ -72,6 +92,12 @@ DatePickerDelegate.prototype = {
             { defaultFn: instance._defSelectionChangeFn });
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method getSelectedDates
+     * @param node
+     */
     getSelectedDates: function(node) {
         var instance = this,
             activeInput = node || instance.get(ACTIVE_INPUT),
@@ -84,6 +110,12 @@ DatePickerDelegate.prototype = {
         return null;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method getParsedDatesFromInputValue
+     * @param opt_value
+     */
     getParsedDatesFromInputValue: function(opt_value) {
         var instance = this,
             valueExtractor = instance.get(VALUE_EXTRACTOR),
@@ -98,8 +130,19 @@ DatePickerDelegate.prototype = {
         return null;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method useInputNode
+     */
     useInputNode: function() {},
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method useInputNodeOnce
+     * @param node
+     */
     useInputNodeOnce: function(node) {
         var instance = this;
 
@@ -108,6 +151,13 @@ DatePickerDelegate.prototype = {
         }
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _defSelectionChangeFn
+     * @param event
+     * @protected
+     */
     _defSelectionChangeFn: function(event) {
         var instance = this,
             selection = event.newSelection,
@@ -119,6 +169,13 @@ DatePickerDelegate.prototype = {
         activeInput.setData(DATEPICKER_SELECTION, selection);
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _formatDate
+     * @param event
+     * @protected
+     */
     _formatDate: function(date) {
         var instance = this,
             mask = instance.get(MASK);
@@ -126,6 +183,13 @@ DatePickerDelegate.prototype = {
         return A.Date.format(date, { format: mask });
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onceUserInteraction
+     * @param event
+     * @protected
+     */
     _onceUserInteraction: function(event) {
         var instance = this;
 
@@ -134,6 +198,13 @@ DatePickerDelegate.prototype = {
         instance._userInteractionInProgress = true;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onceUserInteractionRelease
+     * @param event
+     * @protected
+     */
     _onceUserInteractionRelease: function(event) {
         var instance = this;
 
@@ -142,6 +213,13 @@ DatePickerDelegate.prototype = {
         instance._userInteractionInProgress = false;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onUserInteractionRelease
+     * @param event
+     * @protected
+     */
     _onUserInteractionRelease: function(event) {
         var instance = this;
 
@@ -150,6 +228,12 @@ DatePickerDelegate.prototype = {
         instance._userInteractionInProgress = false;
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _valueExtractorFn
+     * @protected
+     */
     _valueExtractorFn: function() {
         return function(opt_value) {
             var instance = this,
@@ -175,6 +259,12 @@ DatePickerDelegate.prototype = {
         };
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _valueFormatterFn
+     * @protected
+     */
     _valueFormatterFn: function() {
         return function(dates) {
             var instance = this,
@@ -191,7 +281,15 @@ DatePickerDelegate.prototype = {
     }
 };
 
+/**
+ * TODO. Wanna help? Please send a Pull Request.
+ *
+ * @property DatePickerDelegate.ATTRS
+ * @type Object
+ * @static
+ */
 DatePickerDelegate.ATTRS = {
+
     /**
      * The active input element that holds the calendar instance.
      *
@@ -201,9 +299,10 @@ DatePickerDelegate.ATTRS = {
     },
 
     /**
-     * The container of Toggler Delegate instance.
+     * TODO. Wanna help? Please send a Pull Request.
      *
      * @attribute container
+     * @writeOnce
      */
     container: {
         setter: A.one,
@@ -211,18 +310,32 @@ DatePickerDelegate.ATTRS = {
         writeOnce: true
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute dateSeparator
+     * @default ' \u2014 '
+     * @type String
+     */
     dateSeparator: {
         value: ' \u2014 ',
         validator: Lang.isString
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute mask
+     * @default '%m/%d/%Y'
+     * @type String
+     */
     mask: {
         value: '%m/%d/%Y',
         validator: Lang.isString
     },
 
     /**
-     * The content of a Toogler Delegate instance.
+     * TODO. Wanna help? Please send a Pull Request.
      *
      * @attribute content
      * @type String
@@ -232,11 +345,23 @@ DatePickerDelegate.ATTRS = {
         writeOnce: true
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute valueExtractor
+     * @type Function
+     */
     valueExtractor: {
         valueFn: '_valueExtractorFn',
         validator: Lang.isFunction
     },
 
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @attribute valueFormatter
+     * @type Function
+     */
     valueFormatter: {
         valueFn: '_valueFormatterFn',
         validator: Lang.isFunction
