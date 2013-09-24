@@ -644,13 +644,13 @@ var FormBuilderField = A.Component.create({
 		 * @protected
 		 */
 		destructor: function() {
-			var instance = this;
+			var instance = this,
+				builder = instance.get(BUILDER),
+				fieldId = builder._getFieldId(instance);
 
 			instance.get(FIELDS).each(function(field) {
 				field.destroy();
 			});
-
-			var builder = instance.get(BUILDER);
 
 			if (builder.editingField === instance) {
 				delete builder.editingField;
@@ -670,7 +670,7 @@ var FormBuilderField = A.Component.create({
 
 			instance.get(PARENT).removeField(instance);
 
-			builder.uniqueFieldsMap.remove(instance);
+			builder.uniqueFieldsMap.remove(fieldId);
 		},
 
 		/**
