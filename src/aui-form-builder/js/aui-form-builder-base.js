@@ -370,7 +370,7 @@ var FormBuilder = A.Component.create({
 
 			instance.uniqueFieldsMap = new A.Map({
 				after: {
-					add: A.bind(instance._afterUniqueFieldsMapAdd, instance),
+					put: A.bind(instance._afterUniqueFieldsMapPut, instance),
 					remove: A.bind(instance._afterUniqueFieldsMapRemove, instance)
 				}
 			});
@@ -649,12 +649,12 @@ var FormBuilder = A.Component.create({
 		/**
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
-		 * @method _afterUniqueFieldsMapAdd
+		 * @method _afterUniqueFieldsMapPut
 		 * @param event
 		 * @protected
 		 */
-		_afterUniqueFieldsMapAdd: function(event) {
-			var availableField = getAvailableFieldById(event.attrName),
+		_afterUniqueFieldsMapPut: function(event) {
+			var availableField = getAvailableFieldById(event.key),
 				node;
 
 			if (isAvailableField(availableField)) {
@@ -673,7 +673,7 @@ var FormBuilder = A.Component.create({
 		 * @protected
 		 */
 		_afterUniqueFieldsMapRemove: function(event) {
-			var availableField = getAvailableFieldById(event.attrName),
+			var availableField = getAvailableFieldById(event.key),
 				node;
 
 			if (isAvailableField(availableField)) {
