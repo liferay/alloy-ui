@@ -231,7 +231,7 @@ var AudioImpl = A.Component.create(
 				var instance = this;
 
                 if (instance._audio.hasMethod('load')) {
-                    instance._audio.load();
+                    instance._audio.invoke('load');
                 }
 			},
 
@@ -244,7 +244,7 @@ var AudioImpl = A.Component.create(
 				var instance = this;
 
                 if (instance._audio.hasMethod('pause')) {
-                    instance._audio.pause();
+                    instance._audio.invoke('pause');
                 }
 			},
 
@@ -257,7 +257,7 @@ var AudioImpl = A.Component.create(
 				var instance = this;
 
 				if (instance._audio.hasMethod('play')) {
-					instance._audio.play();
+					instance._audio.invoke('play');
 				}
 			},
 
@@ -359,10 +359,10 @@ var AudioImpl = A.Component.create(
 			_renderAudio: function(fallback) {
 				var instance = this;
 
-				var tpl = Audio.TPL_AUDIO;
+				var tpl = AudioImpl.TPL_AUDIO;
 
 				if (UA.gecko && fallback) {
-					tpl = Audio.TPL_AUDIO_FALLBACK;
+					tpl = AudioImpl.TPL_AUDIO_FALLBACK;
 				}
 
 				var tplObj = Lang.sub(tpl, [A.guid()]);
