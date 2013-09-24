@@ -66,6 +66,12 @@ grunt build:aui
 grunt bootstrap
     ```
 
+* Build AlloyUI and import Bootstrap's CSS:
+
+    ```
+grunt all
+    ```
+
 ### Watch
 
 * Watch and build for any changes:
