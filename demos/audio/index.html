@@ -19,21 +19,47 @@
 
 <body>
     <h1>AlloyUI - Audio demo</h1>
-    
+
     <div id="container">
         <div id="demo"></div>
+
+        <a href="#" class="btn" id="play-btn">Play</a>
+        <a href="#" class="btn" id="pause-btn">Pause</a>
+        <a href="#" class="btn" id="change-audio-btn">Change Audio</a>
     </div>
 
     <script>
     YUI().use('aui-audio', function(Y) {
-        new Y.Audio({
+        var audio = new Y.Audio({
             boundingBox: '#demo',
             fixedAttributes: {
                 allowfullscreen: 'true'
             },
-            oggUrl: '',
+            oggUrl: 'assets/bc.ogg',
             url: 'assets/bc.mp3'
         }).render();
+
+        Y.one('#play-btn').on('click', function(e) {
+            e.preventDefault();
+
+            audio.play();
+        });
+
+        Y.one('#pause-btn').on('click', function(e) {
+            e.preventDefault();
+
+            audio.pause();
+        });
+
+        Y.one('#change-audio-btn').on('click', function(e) {
+            e.preventDefault();
+
+            audio.pause();
+            audio.set('oggUrl', 'assets/zelda.ogg');
+            audio.set('url', 'assets/zelda.mp3');
+            audio.load();
+            audio.play();
+        });
     });
     </script>
 </body>
