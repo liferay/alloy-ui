@@ -224,6 +224,48 @@ var Audio = A.Component.create(
 			},
 
 			/**
+			 * Load audio track.
+			 *
+			 * @method load
+			 */
+			load: function () {
+				var instance = this;
+				var audioNode = instance._audio.getDOMNode();
+
+				if (typeof audioNode.load === 'function') {
+					audioNode.load();
+				}
+			},
+
+			/**
+			 * Pause audio track.
+			 *
+			 * @method pause
+			 */
+			pause: function () {
+				var instance = this;
+				var audioNode = instance._audio.getDOMNode();
+
+				if (typeof audioNode.pause === 'function') {
+					audioNode.pause();
+				}
+			},
+
+			/**
+			 * Play audio track.
+			 *
+			 * @method play
+			 */
+			play: function () {
+				var instance = this;
+				var audioNode = instance._audio.getDOMNode();
+
+				if (typeof audioNode.play === 'function') {
+					audioNode.play();
+				}
+			},
+
+			/**
 			 * Create <code>source</code> element
 			 * using passed type attribute.
 			 *
