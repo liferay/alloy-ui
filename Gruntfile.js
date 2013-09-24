@@ -138,6 +138,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
 
+    grunt.registerTask('all', ['bootstrap', 'build']);
     grunt.registerTask('api-deploy', ['api-build', 'api-push']);
     grunt.registerTask('bootstrap', ['compass', 'copy:css', 'cssmin', 'copy:img', 'clean']);
     grunt.registerTask('release', ['build', 'bootstrap', 'compress']);
