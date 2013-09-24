@@ -230,11 +230,10 @@ var Audio = A.Component.create(
 			 */
 			load: function () {
 				var instance = this;
-				var audioNode = instance._audio.getDOMNode();
 
-				if (typeof audioNode.load === 'function') {
-					audioNode.load();
-				}
+                if (instance._audio.hasMethod('load')) {
+                    instance._audio.load();
+                }
 			},
 
 			/**
@@ -244,11 +243,10 @@ var Audio = A.Component.create(
 			 */
 			pause: function () {
 				var instance = this;
-				var audioNode = instance._audio.getDOMNode();
 
-				if (typeof audioNode.pause === 'function') {
-					audioNode.pause();
-				}
+                if (instance._audio.hasMethod('pause')) {
+                    instance._audio.pause();
+                }
 			},
 
 			/**
@@ -258,10 +256,9 @@ var Audio = A.Component.create(
 			 */
 			play: function () {
 				var instance = this;
-				var audioNode = instance._audio.getDOMNode();
 
-				if (typeof audioNode.play === 'function') {
-					audioNode.play();
+				if (instance._audio.hasMethod('play')) {
+					instance._audio.play();
 				}
 			},
 
