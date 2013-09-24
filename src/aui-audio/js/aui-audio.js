@@ -13,7 +13,6 @@ var AObject = A.Object,
 
 	getClassName = A.getClassName,
 
-	CSS_AUDIO = getClassName(NAME),
 	CSS_AUDIO_NODE = getClassName(NAME, 'node'),
 
 	DEFAULT_PLAYER_PATH = A.config.base + 'aui-audio/assets/player.swf',
@@ -37,7 +36,7 @@ var AObject = A.Object,
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
-var Audio = A.Component.create(
+var AudioImpl = A.Component.create(
 	{
 		/**
 		 * Static property provides a string to identify the class.
@@ -224,6 +223,45 @@ var Audio = A.Component.create(
 			},
 
 			/**
+			 * Load audio track.
+			 *
+			 * @method load
+			 */
+			load: function () {
+				var instance = this;
+
+                if (instance._audio.hasMethod('load')) {
+                    instance._audio.invoke('load');
+                }
+			},
+
+			/**
+			 * Pause audio track.
+			 *
+			 * @method pause
+			 */
+			pause: function () {
+				var instance = this;
+
+                if (instance._audio.hasMethod('pause')) {
+                    instance._audio.invoke('pause');
+                }
+			},
+
+			/**
+			 * Play audio track.
+			 *
+			 * @method play
+			 */
+			play: function () {
+				var instance = this;
+
+				if (instance._audio.hasMethod('play')) {
+					instance._audio.invoke('play');
+				}
+			},
+
+			/**
 			 * Create <code>source</code> element
 			 * using passed type attribute.
 			 *
@@ -295,7 +333,7 @@ var Audio = A.Component.create(
 					var width = instance.get('swfWidth');
 
 					var tplObj = Lang.sub(
-						Audio.TPL_FLASH,
+						AudioImpl.TPL_FLASH,
 						{
 							applicationType: applicationType,
 							id: instance._swfId,
@@ -321,10 +359,10 @@ var Audio = A.Component.create(
 			_renderAudio: function(fallback) {
 				var instance = this;
 
-				var tpl = Audio.TPL_AUDIO;
+				var tpl = AudioImpl.TPL_AUDIO;
 
 				if (UA.gecko && fallback) {
-					tpl = Audio.TPL_AUDIO_FALLBACK;
+					tpl = AudioImpl.TPL_AUDIO_FALLBACK;
 				}
 
 				var tplObj = Lang.sub(tpl, [A.guid()]);
@@ -372,7 +410,7 @@ var Audio = A.Component.create(
 			 * @param val
 			 * @protected
 			 */
-			_uiSetFixedAttributes: function (val) {
+			_uiSetFixedAttributes: function() {
 				var instance = this;
 
 				instance._renderSwfTask();
@@ -385,7 +423,7 @@ var Audio = A.Component.create(
 			 * @param val
 			 * @protected
 			 */
-			_uiSetFlashVars: function (val) {
+			_uiSetFlashVars: function() {
 				var instance = this;
 
 				instance._renderSwfTask();
@@ -438,7 +476,7 @@ var Audio = A.Component.create(
 			 * @param val
 			 * @protected
 			 */
-			_uiSetSwfUrl: function (val) {
+			_uiSetSwfUrl: function() {
 				var instance = this;
 
 				instance._renderSwfTask();
@@ -460,7 +498,7 @@ var Audio = A.Component.create(
 				var sourceMp3 = instance._sourceMp3;
 
 				if (UA.gecko && !instance._usingAudio()) {
-					if (sourceMp3 != null) {
+					if (sourceMp3 !== null) {
 						sourceMp3.remove(true);
 
 						instance._sourceMp3 = null;
@@ -493,16 +531,16 @@ var Audio = A.Component.create(
 			_usingAudio: function() {
 				var instance = this;
 
-				return (instance._audio.get('nodeName').toLowerCase() == 'audio');
+				return (instance._audio.get('nodeName').toLowerCase() === 'audio');
 			}
 		}
 	}
 );
 
-Audio.TPL_AUDIO = '<audio id="{0}" controls class="' + CSS_AUDIO_NODE + '"></audio>';
+AudioImpl.TPL_AUDIO = '<audio id="{0}" controls class="' + CSS_AUDIO_NODE + '"></audio>';
 
-Audio.TPL_AUDIO_FALLBACK = '<div class="' + CSS_AUDIO_NODE + '"></div>';
+AudioImpl.TPL_AUDIO_FALLBACK = '<div class="' + CSS_AUDIO_NODE + '"></div>';
 
-Audio.TPL_FLASH = '<object id="{id}" {applicationType} height="{height}" width="{width}">{movie}{fixedAttributes}{flashVars}</object>';
+AudioImpl.TPL_FLASH = '<object id="{id}" {applicationType} height="{height}" width="{width}">{movie}{fixedAttributes}{flashVars}</object>';
 
-A.Audio = Audio;
+A.Audio = AudioImpl;
