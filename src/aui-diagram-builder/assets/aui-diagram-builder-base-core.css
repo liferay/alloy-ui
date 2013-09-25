@@ -52,6 +52,11 @@
 	margin-bottom: 5px;
 }
 
+.aui-diagram-builder-tabs .aui-tabview-content-item {
+	height: 566px;
+	overflow: auto;
+}
+
 .aui-diagram-builder-tabs {
 	position: absolute;
 	width: 260px;
@@ -62,9 +67,7 @@
 }
 
 .aui-diagram-builder-fields-container {
-	height: 544px;
 	margin: 5px;
-	overflow: auto;
 }
 
 .aui-diagram-builder-content {
