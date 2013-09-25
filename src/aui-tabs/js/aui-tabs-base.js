@@ -14,9 +14,14 @@ var Lang = A.Lang,
 	CSS_TAB_LABEL = getClassName(TAB, 'label'),
 	CSS_TAB_DISABLED = getClassName(TAB, 'disabled'),
 	CSS_TAB_ACTIVE = getClassName(TAB, 'active'),
+	CSS_TABVIEW_CONTENT = getClassName(TABVIEW, 'content'),
+	CSS_TABVIEW_CONTENT_ITEM = getClassName(TABVIEW, 'content', 'item'),
+	CSS_TABVIEW_LIST = getClassName(TABVIEW, 'list'),
+	CSS_WIDGET_HEAD = getClassName('widget', 'hd'),
+	CSS_WIDGET_BODY = getClassName('widget', 'bd'),
 
-	CSS_TABVIEW_LIST = [getClassName(TABVIEW, 'list'), getClassName('widget', 'hd')].join(' '),
-	CSS_TABVIEW_CONTENT = [getClassName(TABVIEW, 'content'), getClassName('widget', 'bd')].join(' '),
+	CSS_TABVIEW_LIST_WIDGET = [CSS_TABVIEW_LIST, CSS_WIDGET_HEAD].join(' '),
+	CSS_TABVIEW_CONTENT_WIDGET = [CSS_TABVIEW_CONTENT, CSS_WIDGET_BODY].join(' '),
 
 	CSS_HIDDEN = getClassName('helper-hidden'),
 
@@ -110,9 +115,9 @@ var Tab = A.Component.create(
 						node = instance._createDefaultContentEl();
 
 						instance.get(CONTENT_BOX).prepend(node);
-					}
 
-					node.addClass(CSS_TABVIEW_CONTENT);
+						node.addClass(CSS_TABVIEW_CONTENT_ITEM);
+					}
 
 					var current = instance.get(CONTENT_NODE);
 
@@ -312,7 +317,7 @@ var TabView = A.Component.create(
 
 					instance.get(CONTENT_BOX).prepend(node);
 
-					node.addClass(CSS_TABVIEW_LIST);
+					node.addClass(CSS_TABVIEW_LIST_WIDGET);
 
 					return node;
 				}
@@ -327,11 +332,11 @@ var TabView = A.Component.create(
 
 					if (!node) {
 						node = instance._createDefaultContentContainer();
+
+						instance.get(CONTENT_BOX).appendChild(node);
+
+						node.addClass(CSS_TABVIEW_CONTENT_WIDGET);
 					}
-
-					instance.get(CONTENT_BOX).appendChild(node);
-
-					node.addClass(CSS_TABVIEW_CONTENT);
 
 					return node;
 				}
