@@ -9,7 +9,7 @@
 	height: 63px;
 	list-style: none outside none;
 	margin: 2px;
-	opacity: .5;
+	opacity: 0.5;
 	text-align: center;
 	width: 79px;
 }
@@ -32,7 +32,7 @@
 .aui-diagram-builder-field-label {
 	overflow: hidden;
 	text-overflow: ellipsis;
-	white-space: nowrap;	
+	white-space: nowrap;
 }
 
 .aui-diagram-builder .aui-diagram-builder-field-icon-text {
@@ -44,7 +44,7 @@
 }
 
 .aui-diagram-builder-content {
-	background-color: #f1f1f1;
+	background-color: #F1F1F1;
 	/*padding-left: 260px;*/
 }
 
@@ -96,7 +96,7 @@
 }
 
 .aui-diagram-builder-drop-container {
-    height: 600px;
+	height: 600px;
 }
 
 .aui-diagram-builder-anchor-node {
@@ -128,8 +128,8 @@
 
 .aui-diagram-node-controls-icon {
 	display: inline-block;
-    margin-top: -3px;
-    vertical-align: middle;
+	margin-top: -3px;
+	vertical-align: middle;
 }
 
 .aui-diagram-node-selected {
@@ -145,7 +145,7 @@
 }
 
 .aui-diagram-node-suggest-connector {
-	background-color: #fff;
+	background-color: #FFF;
 	border-radius: 4px 4px 4px 4px;
 	border: 1px solid #F1F1F1;
 	width: 250px;
