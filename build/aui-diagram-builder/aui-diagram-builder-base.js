@@ -181,13 +181,15 @@ var AvailableField = A.Component.create({
 			var instance = this;
 			var node = instance.get(NODE);
 
-			instance.after({
-				draggableChange: instance._afterDraggableChange,
-				idChange: instance._afterIdChange,
-				labelChange: instance._afterLabelChange
-			});
+			instance.after(
+				{
+					draggableChange: instance._afterDraggableChange,
+					idChange: instance._afterIdChange,
+					labelChange: instance._afterLabelChange
+				}
+			);
 
-			instance.labelNode = node.one(_DOT+CSS_DIAGRAM_BUILDER_FIELD_LABEL);
+			instance.labelNode = node.one(_DOT + CSS_DIAGRAM_BUILDER_FIELD_LABEL);
 
 			instance._uiSetDraggable(
 				instance.get(DRAGGABLE)
@@ -246,6 +248,7 @@ var AvailableField = A.Component.create({
 			var instance = this;
 
 			instance.get(NODE).attr(TITLE, val);
+
 			instance.labelNode.setContent(val);
 		}
 	}
