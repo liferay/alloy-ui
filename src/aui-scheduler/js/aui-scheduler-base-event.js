@@ -20,10 +20,10 @@ var Lang = A.Lang,
 	WidgetStdMod = A.WidgetStdMod,
 
 	_COLON = ':',
-	_DOT = '.',
-	_EMPTY_STR = '',
-	_N_DASH = '&ndash;',
-	_SPACE = ' ',
+    _DOT = '.',
+    _EMPTY_STR = '',
+    _N_DASH = '&ndash;',
+    _SPACE = ' ',
 
 	isModelList = function(val) {
 		return val instanceof A.ModelList;
@@ -76,8 +76,6 @@ var Lang = A.Lang,
 	HEADER = 'header',
 	HEADER_NODE = 'headerNode',
 	HIDDEN = 'hidden',
-	HTML_OPEN_SPAN = '<span>',
-	HTML_CLOSE_SPAN = '</span>',
 	ICON = 'icon',
 	ICON_NEXT_NODE = 'iconNextNode',
 	ICON_PREV_NODE = 'iconPrevNode',
@@ -161,6 +159,8 @@ var Lang = A.Lang,
 	CSS_SCHEDULER_EVENT_SHORT = getCN(SCHEDULER_EVENT, SHORT),
 	CSS_SCHEDULER_EVENT_TITLE = getCN(SCHEDULER_EVENT, TITLE),
 
+    TPL_HTML_OPEN_SPAN = '<span>',
+    TPL_HTML_CLOSE_SPAN = '</span>',
 	TPL_SCHEDULER_CONTROLS = '<div class="'+CSS_SCHEDULER_CONTROLS+'"></div>',
 	TPL_SCHEDULER_HD = '<div class="'+CSS_SCHEDULER_HD+'"></div>',
 	TPL_SCHEDULER_ICON_NEXT = '<button type="button" class="'+[ CSS_SCHEDULER_ICON_NEXT, CSS_BTN ].join(_SPACE)+'"><i class="' + CSS_ICON_CHEVRON_RIGHT + '"></i></button>',
@@ -273,12 +273,12 @@ var SchedulerEvent = A.Component.create({
 					isoTime = scheduler && scheduler.get(ACTIVE_VIEW).get(ISO_TIME),
 
 					format = {
-						endDate: HTML_OPEN_SPAN+_N_DASH+_SPACE+TITLE_DT_FORMAT_ISO+HTML_CLOSE_SPAN,
+						endDate: TPL_HTML_OPEN_SPAN+_N_DASH+_SPACE+TITLE_DT_FORMAT_ISO+TPL_HTML_CLOSE_SPAN,
 						startDate: TITLE_DT_FORMAT_ISO
 					};
 
 				if (!isoTime) {
-					format.endDate = HTML_OPEN_SPAN+_N_DASH+_SPACE+getUSDateFormat(instance.get(END_DATE))+HTML_CLOSE_SPAN;
+					format.endDate = TPL_HTML_OPEN_SPAN+_N_DASH+_SPACE+getUSDateFormat(instance.get(END_DATE))+TPL_HTML_CLOSE_SPAN;
 					format.startDate = getUSDateFormat(instance.get(START_DATE));
 				}
 
@@ -855,7 +855,7 @@ var SchedulerEvent = A.Component.create({
 				title.push(instance._formatDate(endDate, format.endDate));
 			}
 
-			instance.setTitle(title.join(''));
+			instance.setTitle(title.join(_EMPTY_STR));
 		},
 
 		/**
