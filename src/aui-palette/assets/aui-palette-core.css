@@ -2,11 +2,9 @@
     border-collapse: separate;
     border-spacing: 0;
 }
-
 .palette-item {
     padding: 0;
 }
-
 .palette-item-inner {
     display: block;
     height: 16px;

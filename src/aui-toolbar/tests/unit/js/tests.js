@@ -32,11 +32,14 @@ YUI.add('module-tests', function(Y) {
                 }]
             }).render();
 
-            Y.Assert.isNotNull(Y.one('#toolbar').one('button[title="' + title + '"]'), 'Title attribute should be set to the button node.');
+            Y.Assert.isNotNull(
+                Y.one('#toolbar').one('button[title="' + title + '"]'),
+                'Title attribute should be set to the button node.');
         }
     }));
 
     Y.Test.Runner.add(suite);
 
-
-},'', { requires: [ 'test', 'aui-toolbar' ] });
+}, '', {
+    requires: ['test', 'aui-toolbar']
+});

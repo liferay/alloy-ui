@@ -357,7 +357,7 @@ var TogglerDelegate = A.Component.create({
             var toggler = new Toggler({
                 animated: instance.get(ANIMATED),
                 bindDOMEvents: false,
-                bubbleTargets: [ instance ],
+                bubbleTargets: [instance],
                 content: instance.findContentNode(header),
                 expanded: expanded,
                 header: header,

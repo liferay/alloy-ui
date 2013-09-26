@@ -1,21 +1,16 @@
 .scheduler-view-month-hidden {
-  display: none;
+    display: none;
 }
-
 .scheduler-view-month .scheduler-view-table-colgrid-first {
-  border-left: 0 none;
+    border-left: 0 none;
 }
-
 .scheduler-view-month-table-data-col-nomonth {
-  color: #ccc;
-  font-size: 14px;
+    color: #ccc;
+    font-size: 14px;
 }
-
-.scheduler-view-month .scheduler-event-title,
-.scheduler-view-month .scheduler-event-content {
-  font-size: 13px;
+.scheduler-view-month .scheduler-event-title, .scheduler-view-month .scheduler-event-content {
+    font-size: 13px;
 }
-
 .scheduler-view-month .scheduler-event-title span {
-  display: none;
+    display: none;
 }

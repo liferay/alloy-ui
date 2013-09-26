@@ -24,6 +24,7 @@ var Lang = A.Lang,
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
+
 function TimePickerBase() {}
 
 /**
@@ -249,7 +250,9 @@ A.mix(TimePickerBase.prototype, {
         var instance = this;
 
         if (selection) {
-            instance.fire(SELECTION_CHANGE, { newSelection: selection });
+            instance.fire(SELECTION_CHANGE, {
+                newSelection: selection
+            });
         }
     },
 
@@ -291,8 +294,9 @@ A.mix(TimePickerBase.prototype, {
         A.Array.each(val, function(timeISOFormat) {
             formatted.push(
                 A.Date.format(
-                    A.Date.parse('%H:%M', timeISOFormat),
-                    { format: instance.get(MASK) }));
+                    A.Date.parse('%H:%M', timeISOFormat), {
+                        format: instance.get(MASK)
+                    }));
         });
 
         return formatted;

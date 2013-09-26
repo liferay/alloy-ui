@@ -7,16 +7,15 @@ YUI.add('module-tests', function(Y) {
     var suite = new Y.Test.Suite('aui-form-validator'),
         formValidator;
 
-    formValidator = new Y.FormValidator(
-      {
+    formValidator = new Y.FormValidator({
         boundingBox: '#myForm',
         fieldStrings: {
-          email: {
-            required: 'Type your email in this field.'
-          },
-          name: {
-            required: 'Please provide your name.'
-          }
+            email: {
+                required: 'Type your email in this field.'
+            },
+            name: {
+                required: 'Please provide your name.'
+            }
         },
         rules: {
             age: {
@@ -51,8 +50,7 @@ YUI.add('module-tests', function(Y) {
             }
         },
         showAllMessages: true
-      }
-    );
+    });
 
     //--------------------------------------------------------------------------
     // Test Case for invalid fields
@@ -104,11 +102,14 @@ YUI.add('module-tests', function(Y) {
 
             Y.Assert.isTrue(textNode.get('nodeType') === 3, 'Next to the input should be a text node');
 
-            Y.Assert.isTrue(textNode.next().hasClass('form-validator-stack'), 'Next to the input should be form validator');
+            Y.Assert.isTrue(
+                textNode.next().hasClass('form-validator-stack'),
+                'Next to the input should be form validator');
         }
     }));
 
     Y.Test.Runner.add(suite);
 
-
-},'', { requires: [ 'test', 'aui-form-validator', 'node-event-simulate' ] });
+}, '', {
+    requires: ['test', 'aui-form-validator', 'node-event-simulate']
+});

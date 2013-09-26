@@ -26,8 +26,7 @@ var ColorPickerPopover = A.Base.create(_NAME, A.Popover, [
     A.WidgetAutohide,
     A.WidgetCssClass,
     A.WidgetToggle
-], {
-}, {
+], {}, {
     /**
      * Static property used to define the default attribute
      * configuration for the ColorPickerPopover.
@@ -47,7 +46,7 @@ var ColorPickerPopover = A.Base.create(_NAME, A.Popover, [
         align: {
             validator: Lang.isObject,
             value: {
-                points:[A.WidgetPositionAlign.TC, A.WidgetPositionAlign.BC]
+                points: [A.WidgetPositionAlign.TC, A.WidgetPositionAlign.BC]
             }
         },
 

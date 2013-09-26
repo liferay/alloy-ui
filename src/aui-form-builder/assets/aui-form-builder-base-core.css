@@ -1,22 +1,18 @@
 .form-builder .diagram-builder-drop-container, .form-builder .tab-pane {
-	overflow: auto;
-	padding-bottom: 10px;
+    overflow: auto;
+    padding-bottom: 10px;
 }
-
 .form-builder .diagram-builder-fields-container .form-builder-placeholder {
-	display: none;
+    display: none;
 }
-
 .form-builder-placeholder {
-	border: 1px dashed #CCCCCC;
-	margin: 5px;
+    border: 1px dashed #CCCCCC;
+    margin: 5px;
 }
-
 .form-builder-options-editor-hidden {
-	display: none;
+    display: none;
 }
-
 /* work around Y.Widget zIndex bug */
-.basecelleditor {
-	z-index: 500 !important;
+ .basecelleditor {
+    z-index: 500 !important;
 }

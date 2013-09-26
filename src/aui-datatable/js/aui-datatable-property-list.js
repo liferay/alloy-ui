@@ -130,7 +130,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
             column = instance.getColumn(activeCell);
 
             if (column && (column.key === NAME)) {
-                event.newVal = activeCell.next(_DOT+instance.CLASS_NAMES_PROPERTY_LIST.cell);
+                event.newVal = activeCell.next(_DOT + instance.CLASS_NAMES_PROPERTY_LIST.cell);
             }
         }
     },
@@ -169,7 +169,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
             instance.scrollTo(activeRow.get(ID));
         }
     }
-},{
+}, {
 
     /**
      * TODO. Wanna help? Please send a Pull Request.
@@ -200,37 +200,34 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
             valueFn: function() {
                 var instance = this;
 
-                return [
-                    {
-                        editor: false,
-                        key: NAME,
-                        label: instance.getString(PROPERTY_NAME),
-                        sortable: true
+                return [{
+                    editor: false,
+                    key: NAME,
+                    label: instance.getString(PROPERTY_NAME),
+                    sortable: true
+                }, {
+                    editor: instance.getDefaultEditor(),
+                    formatter: function(o) {
+                        var instance = this;
+                        var data = o.data;
+
+                        if (!data) {
+                            return;
+                        }
+
+                        var formatter = data.formatter;
+
+                        if (isFunction(formatter)) {
+                            return formatter.apply(instance, arguments);
+                        }
+
+                        return data.value;
                     },
-                    {
-                        editor: instance.getDefaultEditor(),
-                        formatter: function(o) {
-                            var instance = this;
-                            var data = o.data;
-
-                            if (!data) {
-                                return;
-                            }
-
-                            var formatter = data.formatter;
-
-                            if (isFunction(formatter)) {
-                                return formatter.apply(instance, arguments);
-                            }
-
-                            return data.value;
-                        },
-                        key: VALUE,
-                        label: instance.getString(VALUE),
-                        sortable: true,
-                        width: AUTO
-                    }
-                ];
+                    key: VALUE,
+                    label: instance.getString(VALUE),
+                    sortable: true,
+                    width: AUTO
+                }];
             }
         },
 

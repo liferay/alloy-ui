@@ -26,16 +26,16 @@ A.HTML5_ELEMENTS = [
 ];
 
 A.html5shiv = function(frag) {
-	var DOC = frag || A.config.doc;
+    var DOC = frag || A.config.doc;
 
-	if (A.UA.ie && DOC && DOC.createElement) {
-		var elements = A.HTML5_ELEMENTS,
-        length = elements.length;
+    if (A.UA.ie && DOC && DOC.createElement) {
+        var elements = A.HTML5_ELEMENTS,
+            length = elements.length;
 
-		while (length--) {
-			DOC.createElement(elements[length]);
-		}
-	}
+        while (length--) {
+            DOC.createElement(elements[length]);
+        }
+    }
 
-	return frag;
+    return frag;
 };

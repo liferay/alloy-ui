@@ -1,15 +1,16 @@
 /*
-* Copyright (c) 2012, Liferay Inc. All rights reserved.
-* Code licensed under the BSD License:
-* https://github.com/liferay/alloy-ui/blob/master/LICENSE.txt
-*
-* @author Eduardo Lundgren <eduardo.lundgren@liferay.com>
-*/
+ * Copyright (c) 2012, Liferay Inc. All rights reserved.
+ * Code licensed under the BSD License:
+ * https://github.com/liferay/alloy-ui/blob/master/LICENSE.txt
+ *
+ * @author Eduardo Lundgren <eduardo.lundgren@liferay.com>
+ */
 
 // -- Requires -----------------------------------------------------------------
 var fs = require('fs-extra');
 
 // -- Utils --------------------------------------------------------------------
+
 function objectValues(obj) {
     var keys = Object.keys(obj),
         i = 0,

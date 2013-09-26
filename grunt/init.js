@@ -13,7 +13,7 @@ var TASK = {
 };
 
 // -- Dependencies -------------------------------------------------------------
-var async   = require('async');
+var async = require('async');
 var command = require('command');
 
 // -- Globals ------------------------------------------------------------------
@@ -26,10 +26,10 @@ module.exports = function(grunt) {
 
         async.series([
             function(mainCallback) {
-                exports._setGruntConfig(mainCallback);
+                    exports._setGruntConfig(mainCallback);
             },
             function(mainCallback) {
-                exports._initDependencies(mainCallback);
+                    exports._initDependencies(mainCallback);
             }],
             function(err) {
                 if (err) {
@@ -57,12 +57,12 @@ module.exports = function(grunt) {
 
             // String parameter
             if (valueIndex !== -1) {
-                key   = option.substring(0, valueIndex);
+                key = option.substring(0, valueIndex);
                 value = option.substring(valueIndex + 1);
             }
             // Boolean parameter
             else {
-                key   = option;
+                key = option;
                 value = grunt.option(key);
             }
 
@@ -102,35 +102,41 @@ module.exports = function(grunt) {
 
     exports._updateDependency = function(dependency, depCallback) {
         grunt.log.ok('Updating: ' + dependency.repo +
-                ' [' + dependency.version + ']');
+            ' [' + dependency.version + ']');
 
         async.series([
             function(mainCallback) {
-                command.open(ROOT)
-                    .on('stdout', command.writeTo(process.stdout))
-                    .on('stderr', command.writeTo(process.stderr))
-                    .exec('git', ['fetch', dependency.repo, dependency.version, '--progress'], { cwd: dependency.folder })
-                    .then(function() {
-                        mainCallback();
-                    });
+                    command.open(ROOT)
+                        .on('stdout', command.writeTo(process.stdout))
+                        .on('stderr', command.writeTo(process.stderr))
+                        .exec('git', ['fetch', dependency.repo, dependency.version, '--progress'], {
+                            cwd: dependency.folder
+                        })
+                        .then(function() {
+                            mainCallback();
+                        });
             },
             function(mainCallback) {
-                command.open(ROOT)
-                    .on('stdout', command.writeTo(process.stdout))
-                    .on('stderr', command.writeTo(process.stderr))
-                    .exec('git', ['checkout', dependency.version, '-f'], { cwd: dependency.folder })
-                    .then(function() {
-                        mainCallback();
-                    });
+                    command.open(ROOT)
+                        .on('stdout', command.writeTo(process.stdout))
+                        .on('stderr', command.writeTo(process.stderr))
+                        .exec('git', ['checkout', dependency.version, '-f'], {
+                            cwd: dependency.folder
+                        })
+                        .then(function() {
+                            mainCallback();
+                        });
             },
             function(mainCallback) {
-                command.open(ROOT)
-                    .on('stdout', command.writeTo(process.stdout))
-                    .on('stderr', command.writeTo(process.stderr))
-                    .exec('git', ['pull', '--rebase', dependency.repo, dependency.version, '--progress'], { cwd: dependency.folder })
-                    .then(function() {
-                        mainCallback();
-                    });
+                    command.open(ROOT)
+                        .on('stdout', command.writeTo(process.stdout))
+                        .on('stderr', command.writeTo(process.stderr))
+                        .exec('git', ['pull', '--rebase', dependency.repo, dependency.version, '--progress'], {
+                            cwd: dependency.folder
+                        })
+                        .then(function() {
+                            mainCallback();
+                        });
             }],
             function() {
                 depCallback();
@@ -140,12 +146,14 @@ module.exports = function(grunt) {
 
     exports._cloneDependency = function(dependency, depCallback) {
         grunt.log.ok('Cloning: ' + dependency.repo +
-                ' [' + dependency.version + ']');
+            ' [' + dependency.version + ']');
 
         command.open(ROOT)
             .on('stdout', command.writeTo(process.stdout))
             .on('stderr', command.writeTo(process.stderr))
-            .exec('git', ['clone', dependency.repo, '-b', dependency.version, dependency.folder, '--progress'], { cwd: ROOT })
+            .exec('git', ['clone', dependency.repo, '-b', dependency.version, dependency.folder, '--progress'], {
+                cwd: ROOT
+            })
             .then(function() {
                 depCallback();
             });

@@ -110,9 +110,9 @@ A.Toolbar = A.Component.create({
      * @static
      */
     isSupportedWidget: function(o) {
-        return  A.instanceOf(o, A.Button) ||
-                A.instanceOf(o, A.ToggleButton) ||
-                A.instanceOf(o, A.ButtonGroup);
+        return A.instanceOf(o, A.Button) ||
+            A.instanceOf(o, A.ToggleButton) ||
+            A.instanceOf(o, A.ButtonGroup);
     },
 
     prototype: {
@@ -135,8 +135,8 @@ A.Toolbar = A.Component.create({
          */
         TEMPLATES: {
             button: '<button class="aui-btn">{content}</button>',
-            icon:   '<i class="{cssClass}"></i>',
-            group:  '<div class="aui-btn-group {cssClass}"></div>'
+            icon: '<i class="{cssClass}"></i>',
+            group: '<div class="aui-btn-group {cssClass}"></div>'
         },
 
         /**
@@ -149,7 +149,9 @@ A.Toolbar = A.Component.create({
             var instance = this,
                 boundingBox = instance.get(BOUNDING_BOX);
 
-            boundingBox.delegate([CLICK, MOUSEMOVE, FOCUS], instance._onUserInitInteraction, _DOT+CSS_BTN, instance);
+            boundingBox.delegate(
+                [CLICK, MOUSEMOVE, FOCUS], instance._onUserInitInteraction, _DOT + CSS_BTN,
+                instance);
         },
 
         /**
@@ -262,7 +264,7 @@ A.Toolbar = A.Component.create({
                 return;
             }
 
-            var buttonNode = seed.ancestor(_DOT+CSS_BTN, true);
+            var buttonNode = seed.ancestor(_DOT + CSS_BTN, true);
             if (buttonNode) {
                 // Initialize button first since it can be outside a group
                 if (A.Button.hasWidgetLazyConstructorData(seed)) {
@@ -274,7 +276,7 @@ A.Toolbar = A.Component.create({
                 }
             }
 
-            var groupNode = seed.ancestor(_DOT+CSS_BTN_GROUP, true);
+            var groupNode = seed.ancestor(_DOT + CSS_BTN_GROUP, true);
             if (groupNode) {
                 var type;
                 if (groupNode.hasClass(CSS_BTN_GROUP_CHECKBOX)) {
@@ -337,8 +339,8 @@ ToolbarRenderer.prototype = {
      */
     TEMPLATES: {
         button: A.Button.prototype.TEMPLATE,
-        group:  '<div class="' + CSS_BTN_GROUP + ' {cssClass}"></div>',
-        icon:   '<i class="{cssClass}" />'
+        group: '<div class="' + CSS_BTN_GROUP + ' {cssClass}"></div>',
+        icon: '<i class="{cssClass}" />'
     },
 
     /**
@@ -379,7 +381,7 @@ ToolbarRenderer.prototype = {
                     // Add type support
                     buttonNode.setAttribute('type', type);
                 }
-                catch(err) {}
+                catch (err) {}
             }
             else {
                 buttonNode = A.Node.create(
@@ -388,7 +390,7 @@ ToolbarRenderer.prototype = {
             }
 
             // Add cssClass support
-            cssClass = [ CSS_BTN, value.cssClass ];
+            cssClass = [CSS_BTN, value.cssClass];
             if (value.primary) {
                 cssClass.push(A.ButtonCore.CLASS_NAMES.PRIMARY);
             }
@@ -407,8 +409,8 @@ ToolbarRenderer.prototype = {
             // Add icon support
             if (value.icon) {
                 var iconContent = Lang.sub(instance.TEMPLATES.icon, {
-                        cssClass: value.icon
-                    });
+                    cssClass: value.icon
+                });
 
                 A.Button.syncIconUI(buttonNode, iconContent, value.iconAlign);
             }
@@ -451,7 +453,9 @@ ToolbarRenderer.prototype = {
             }
 
             var groupNode = A.Node.create(
-                    Lang.sub(instance.TEMPLATES.group, { cssClass: cssClass.join(_SPACE) }));
+                Lang.sub(instance.TEMPLATES.group, {
+                    cssClass: cssClass.join(_SPACE)
+                }));
 
             A.Array.each(value, function(child, index) {
                 var childNode = instance.renderNode(child);

@@ -35,8 +35,7 @@ WidgetToolbars.ATTRS = {
      * @attribute toolbars
      * @default undefined
      */
-    toolbars: {
-    },
+    toolbars: {},
 
     /**
      * TODO. Wanna help? Please send a Pull Request.

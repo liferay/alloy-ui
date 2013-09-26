@@ -13,11 +13,11 @@ var TASK = {
 };
 
 // -- Dependencies -------------------------------------------------------------
-var async       = require('async');
-var command     = require('command');
-var fs          = require('fs');
-var path        = require('path');
-var walkdir     = require('walkdir');
+var async = require('async');
+var command = require('command');
+var fs = require('fs');
+var path = require('path');
+var walkdir = require('walkdir');
 var zipArchiver = require('zip-archiver').Zip;
 
 // -- Globals ------------------------------------------------------------------
@@ -33,22 +33,22 @@ module.exports = function(grunt) {
 
         async.series([
             function(mainCallback) {
-                exports._setGruntConfig(mainCallback);
+                    exports._setGruntConfig(mainCallback);
             },
             function(mainCallback) {
-                exports._getCurrentGitHashCommit(function(val) {
-                    sha = val;
-                    mainCallback();
-                });
+                    exports._getCurrentGitHashCommit(function(val) {
+                        sha = val;
+                        mainCallback();
+                    });
             },
             function(mainCallback) {
-                baseFileName = grunt.config([TASK.name, 'name']);
-                zipFileName  = baseFileName + '.zip';
+                    baseFileName = grunt.config([TASK.name, 'name']);
+                    zipFileName = baseFileName + '.zip';
 
-                exports._deleteFiles(mainCallback, zipFileName);
+                    exports._deleteFiles(mainCallback, zipFileName);
             },
             function(mainCallback) {
-                exports._zip(mainCallback, baseFileName, sha, zipFileName);
+                    exports._zip(mainCallback, baseFileName, sha, zipFileName);
             }],
             function(err) {
                 if (err) {
@@ -76,12 +76,12 @@ module.exports = function(grunt) {
 
             // String parameter
             if (valueIndex !== -1) {
-                key   = option.substring(0, valueIndex);
+                key = option.substring(0, valueIndex);
                 value = option.substring(valueIndex + 1);
             }
             // Boolean parameter
             else {
-                key   = option;
+                key = option;
                 value = grunt.option(key);
             }
 
@@ -129,34 +129,34 @@ module.exports = function(grunt) {
 
         async.series([
             function(zipCallback) {
-                zip.add('build', function() {
-                    zipCallback();
-                });
+                    zip.add('build', function() {
+                        zipCallback();
+                    });
             },
             function(zipCallback) {
-                zip.add('demos', function() {
-                    zipCallback();
-                });
+                    zip.add('demos', function() {
+                        zipCallback();
+                    });
             },
             function(zipCallback) {
-                zip.add('src', function() {
-                    zipCallback();
-                });
+                    zip.add('src', function() {
+                        zipCallback();
+                    });
             },
             function(zipCallback) {
-                zip.add('LICENSE.md', function() {
-                    zipCallback();
-                });
+                    zip.add('LICENSE.md', function() {
+                        zipCallback();
+                    });
             },
             function(zipCallback) {
-                zip.add('README.md', function() {
-                    zipCallback();
-                });
+                    zip.add('README.md', function() {
+                        zipCallback();
+                    });
             },
             function(zipCallback) {
-                zip.add('.alloy.json', function() {
-                    zipCallback();
-                });
+                    zip.add('.alloy.json', function() {
+                        zipCallback();
+                    });
             }],
             function() {
                 zip.done(function() {

@@ -1,13 +1,10 @@
 /* Fields */
-
-.form-builder-field .field-checkbox,
-.form-builder-field .field-radio {
-	float: left;
-	margin-right: 5px;
+ .form-builder-field .field-checkbox, .form-builder-field .field-radio {
+    float: left;
+    margin-right: 5px;
 }
-
 .form-builder-field .toolbar {
-	position: absolute;
-	right: 10px;
-	top: 10px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }

@@ -5,7 +5,7 @@ YUI.add('module-tests', function(Y) {
     //--------------------------------------------------------------------------
 
     var suite = new Y.Test.Suite('aui-palette'),
-        items = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ],
+        items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         palette;
 
     //--------------------------------------------------------------------------
@@ -151,7 +151,8 @@ YUI.add('module-tests', function(Y) {
 
             selectedItem = selectedItems.item(0);
 
-            Y.Assert.areEqual(2, selectedItem.getAttribute('data-index'), 'The index of selected item must be 2');
+            Y.Assert.areEqual(
+                2, selectedItem.getAttribute('data-index'), 'The index of selected item must be 2');
         },
 
         'select the fourth item': function() {
@@ -166,7 +167,8 @@ YUI.add('module-tests', function(Y) {
 
             selectedItem = selectedItems.item(0);
 
-            Y.Assert.areEqual(3, selectedItem.getAttribute('data-index'), 'The index of selected item must be 3');
+            Y.Assert.areEqual(
+                3, selectedItem.getAttribute('data-index'), 'The index of selected item must be 3');
         },
 
         'test selection of an item when toggleSelection is set to false': function() {
@@ -184,7 +186,8 @@ YUI.add('module-tests', function(Y) {
 
             selectedItem = selectedItems.item(0);
 
-            Y.Assert.areEqual(2, selectedItem.getAttribute('data-index'), 'The index of the selected item must be 2');
+            Y.Assert.areEqual(
+                2, selectedItem.getAttribute('data-index'), 'The index of the selected item must be 2');
         },
 
         'test selection of an item when toggleSelection is set to true': function() {
@@ -259,5 +262,6 @@ YUI.add('module-tests', function(Y) {
 
     Y.Test.Runner.add(suite);
 
-
-},'', { requires: [ 'test', 'aui-palette', 'node-event-simulate' ] });
+}, '', {
+    requires: ['test', 'aui-palette', 'node-event-simulate']
+});

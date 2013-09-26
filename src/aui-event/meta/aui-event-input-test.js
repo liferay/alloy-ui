@@ -1,5 +1,5 @@
-function (A) {
-    var supportsDOMEvent  = A.supportsDOMEvent,
+function(A) {
+    var supportsDOMEvent = A.supportsDOMEvent,
         testFeature = A.Features.test,
         addFeature = A.Features.add;
 

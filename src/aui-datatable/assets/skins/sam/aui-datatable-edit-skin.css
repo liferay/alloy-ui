@@ -1,10 +1,9 @@
 .basecelleditor {
-	background-color: #F2F2F2;
-	border: 1px solid #808080;
-	padding: 6px;
-	text-align: left;
+    background-color: #F2F2F2;
+    border: 1px solid #808080;
+    padding: 6px;
+    text-align: left;
 }
-
 .table-read-only {
-	color: #AAAAAA;
+    color: #AAAAAA;
 }

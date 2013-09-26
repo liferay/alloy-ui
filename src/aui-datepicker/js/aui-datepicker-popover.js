@@ -27,6 +27,7 @@ var Lang = A.Lang,
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
+
 function DatePickerPopover() {}
 
 /**
@@ -159,8 +160,7 @@ A.mix(DatePickerPopover.prototype, {
             target = event.target,
             activeInput = instance.get(ACTIVE_INPUT);
 
-        if (!instance._isActiveInputFocused() &&
-            !activeInput.contains(target)) {
+        if (!instance._isActiveInputFocused() && !activeInput.contains(target)) {
 
             instance.hide();
         }

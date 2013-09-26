@@ -121,7 +121,7 @@ module.exports = function(grunt) {
         },
 
         jsbeautifier: {
-            files: ['src/**/*.js', 'src/**/*.css', 'demos/**/*.html', 'grunt/*.js'],
+            files: ['src/**/*.js', 'src/**/*.css', 'grunt/*.js'],
             options: {
                 config: '.jsbeautifyrc'
             }

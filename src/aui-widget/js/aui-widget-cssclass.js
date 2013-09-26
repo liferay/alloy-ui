@@ -9,23 +9,24 @@ var BOUNDING_BOX = 'boundingBox',
     CSS_CLASS_CHANGE = 'cssClassChange';
 
 /**
-* Widget extension, which can be used to add cssClass support to the
-* base Widget class, through the <a href="Base.html#method_build">Base.build</a>
-* method.
-*
-* @class A.WidgetCssClass
-* @param {Object} The user configuration object
-*/
+ * Widget extension, which can be used to add cssClass support to the
+ * base Widget class, through the <a href="Base.html#method_build">Base.build</a>
+ * method.
+ *
+ * @class A.WidgetCssClass
+ * @param {Object} The user configuration object
+ */
+
 function WidgetCssClass() {}
 
 /**
-* Static property used to define the default attribute
-* configuration for the Component.
-*
-* @property WidgetCssClass.ATTRS
-* @type Object
-* @static
-*/
+ * Static property used to define the default attribute
+ * configuration for the Component.
+ *
+ * @property WidgetCssClass.ATTRS
+ * @type Object
+ * @static
+ */
 WidgetCssClass.ATTRS = {
     /**
      * CSS class to be automatically added to the <code>boundingBox</code>.
@@ -37,13 +38,13 @@ WidgetCssClass.ATTRS = {
 };
 
 /**
-* Static property used to define the default suffix for cssClass attribute value
-* applied on <code>contentBox</code> node.
-*
-* @property WidgetCssClass.CSS_CLASS_CONTENT_SUFFIX
-* @type String
-* @static
-*/
+ * Static property used to define the default suffix for cssClass attribute value
+ * applied on <code>contentBox</code> node.
+ *
+ * @property WidgetCssClass.CSS_CLASS_CONTENT_SUFFIX
+ * @type String
+ * @static
+ */
 WidgetCssClass.CSS_CLASS_CONTENT_SUFFIX = '-content';
 
 WidgetCssClass.prototype = {

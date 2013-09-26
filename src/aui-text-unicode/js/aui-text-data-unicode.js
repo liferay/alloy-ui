@@ -5,7 +5,7 @@
  */
 
 A.namespace('Text.Data').Unicode = {
-	/*
+    /*
 	Character Properties
 
 	L - Letter (the top-level Letter category is included in the Unicode plugin base script)

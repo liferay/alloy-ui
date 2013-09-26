@@ -13,9 +13,9 @@ var TASK = {
 };
 
 // -- Dependencies -------------------------------------------------------------
-var async   = require('async');
+var async = require('async');
 var command = require('command');
-var path    = require('path');
+var path = require('path');
 
 // -- Task ---------------------------------------------------------------------
 module.exports = function(grunt) {
@@ -24,10 +24,10 @@ module.exports = function(grunt) {
 
         async.series([
             function(mainCallback) {
-                exports._setGruntConfig(mainCallback);
+                    exports._setGruntConfig(mainCallback);
             },
             function(mainCallback) {
-                exports._buildYuidoc(mainCallback);
+                    exports._buildYuidoc(mainCallback);
             }],
             function(err) {
                 if (err) {
@@ -55,12 +55,12 @@ module.exports = function(grunt) {
 
             // String parameter
             if (valueIndex !== -1) {
-                key   = option.substring(0, valueIndex);
+                key = option.substring(0, valueIndex);
                 value = option.substring(valueIndex + 1);
             }
             // Boolean parameter
             else {
-                key   = option;
+                key = option;
                 value = grunt.option(key);
             }
 
@@ -71,9 +71,9 @@ module.exports = function(grunt) {
     };
 
     exports._buildYuidoc = function(mainCallback) {
-        var auiVersion     = grunt.config([TASK.name, 'aui-version']);
-        var configFile     = path.join(grunt.config([TASK.name, 'theme']), 'yuidoc.json');
-        var sourceDir      = grunt.config([TASK.name, 'src']);
+        var auiVersion = grunt.config([TASK.name, 'aui-version']);
+        var configFile = path.join(grunt.config([TASK.name, 'theme']), 'yuidoc.json');
+        var sourceDir = grunt.config([TASK.name, 'src']);
         var destinationDir = grunt.config([TASK.name, 'dist']);
 
         command.open(sourceDir)

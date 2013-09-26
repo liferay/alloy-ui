@@ -284,7 +284,7 @@ var FormValidator = A.Component.create({
          * @type String
          */
         fieldContainer: {
-            value: _DOT+CSS_CONTROL_GROUP
+            value: _DOT + CSS_CONTROL_GROUP
         },
 
         /**
@@ -497,9 +497,15 @@ var FormValidator = A.Component.create({
             }, _FORM_ELEMENTS_SELECTOR);
 
             instance.publish({
-                errorField: { defaultFn: instance._defErrorFieldFn },
-                validField: { defaultFn: instance._defValidFieldFn },
-                validateField: { defaultFn: instance._defValidateFieldFn }
+                errorField: {
+                    defaultFn: instance._defErrorFieldFn
+                },
+                validField: {
+                    defaultFn: instance._defValidFieldFn
+                },
+                validateField: {
+                    defaultFn: instance._defValidateFieldFn
+                }
             });
 
             boundingBox.on({
@@ -587,7 +593,7 @@ var FormValidator = A.Component.create({
         focusInvalidField: function() {
             var instance = this,
                 boundingBox = instance.get(BOUNDING_BOX),
-                field = boundingBox.one(_DOT+CSS_ERROR);
+                field = boundingBox.one(_DOT + CSS_ERROR);
 
             if (field) {
                 if (instance.get(SELECT_TEXT)) {
@@ -855,7 +861,8 @@ var FormValidator = A.Component.create({
             if (fieldRules) {
                 var required = instance.normalizeRuleValue(fieldRules.required);
 
-                validatable = (required || (!required && defaults.RULES.required.apply(instance, [field.val(), field])) || fieldRules.custom);
+                validatable = (required || (!required && defaults.RULES.required.apply(instance, [field.val(),
+                    field])) || fieldRules.custom);
             }
 
             return !!validatable;
@@ -1024,8 +1031,7 @@ var FormValidator = A.Component.create({
 
                     ruleValue = instance.normalizeRuleValue(ruleValue);
 
-                    if (isFunction(rule) &&
-                        !rule.apply(instance, [fieldValue, field, ruleValue])) {
+                    if (isFunction(rule) && !rule.apply(instance, [fieldValue, field, ruleValue])) {
 
                         instance.addFieldError(field, ruleName);
                     }
@@ -1227,7 +1233,8 @@ var FormValidator = A.Component.create({
 
             if (val) {
                 if (!instance._inputHandlers) {
-                    instance._inputHandlers = boundingBox.delegate(EV_INPUT, instance._onFieldInput, _FORM_ELEMENTS_SELECTOR, instance);
+                    instance._inputHandlers = boundingBox.delegate(EV_INPUT, instance._onFieldInput,
+                        _FORM_ELEMENTS_SELECTOR, instance);
                 }
             }
             else {
@@ -1250,7 +1257,8 @@ var FormValidator = A.Component.create({
 
             if (val) {
                 if (!instance._blurHandlers) {
-                    instance._blurHandlers = boundingBox.delegate(EV_BLUR, instance._onFieldInput, _FORM_ELEMENTS_SELECTOR, instance);
+                    instance._blurHandlers = boundingBox.delegate(EV_BLUR, instance._onFieldInput,
+                        _FORM_ELEMENTS_SELECTOR, instance);
                 }
             }
             else {

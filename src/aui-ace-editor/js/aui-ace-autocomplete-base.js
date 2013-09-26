@@ -49,7 +49,7 @@ var Lang = A.Lang,
     SHOW_LIST_KEY = 'showListKey',
     SORTERS = 'sorters',
 
-Base = function(){};
+    Base = function() {};
 
 /**
  * A base class for AutoCompleteBase.
@@ -148,8 +148,7 @@ Base.prototype = {
             editor;
 
         instance.publish(
-            CURSOR_CHANGE,
-            {
+            CURSOR_CHANGE, {
                 defaultFn: instance._defaultCursorChangeFn
             }
         );
@@ -160,22 +159,19 @@ Base.prototype = {
 
         editor.on(CHANGE, instance._onChangeFn);
 
-        editor.commands.addCommand(
-            {
-                name: SHOW_AUTO_COMPLETE,
-                bindKey: A.merge(
-                    instance.get(SHOW_LIST_KEY),
-                    {
-                        sender: 'editor|cli'
-                    }
-                ),
-                exec: function(env, args, request) {
-                    var cursorPosition = editor.getCursorPosition();
-
-                    instance._processAutoComplete(cursorPosition.row, cursorPosition.column);
+        editor.commands.addCommand({
+            name: SHOW_AUTO_COMPLETE,
+            bindKey: A.merge(
+                instance.get(SHOW_LIST_KEY), {
+                    sender: 'editor|cli'
                 }
+            ),
+            exec: function(env, args, request) {
+                var cursorPosition = editor.getCursorPosition();
+
+                instance._processAutoComplete(cursorPosition.row, cursorPosition.column);
             }
-        );
+        });
 
         instance._onEditorChangeCursorFn = A.bind('_onEditorChangeCursor', instance);
 
@@ -321,9 +317,9 @@ Base.prototype = {
             endRow,
             startRow;
 
-            data = event.data;
+        data = event.data;
 
-            dataAction = data.action;
+        dataAction = data.action;
 
         if (!instance._lockEditor && (dataAction === INSERT_TEXT || dataAction === REMOVE_TEXT)) {
             dataRange = data.range;
@@ -337,8 +333,7 @@ Base.prototype = {
             }
 
             instance.fire(
-                dataAction,
-                {
+                dataAction, {
                     column: column,
                     dataRange: dataRange,
                     endRow: endRow,
@@ -434,14 +429,14 @@ Base.prototype = {
      * @protected
      * @return {Array} The filtered results
      */
-    _phraseMatch: function (content, results, caseSensitive) {
+    _phraseMatch: function(content, results, caseSensitive) {
         if (!content) {
             return results;
         }
 
         return AArray.filter(
             results,
-            function (item) {
+            function(item) {
                 var result = true;
 
                 if (item === content) {
@@ -516,8 +511,7 @@ Base.prototype = {
         }
 
         instance.fire(
-            MATCH,
-            {
+            MATCH, {
                 column: column,
                 coords: coords,
                 line: line,
@@ -551,7 +545,7 @@ Base.prototype = {
      * @protected
      * @return {Array} The sorted results
      */
-    _sortAscLength: function (content, results, caseSensitive) {
+    _sortAscLength: function(content, results, caseSensitive) {
         return results.sort(
             function(item1, item2) {
                 var index1,
@@ -673,7 +667,7 @@ Base.ATTRS = {
 
             return [
                 instance._phraseMatch
-            ];
+                ];
         }
     },
 
@@ -717,7 +711,7 @@ Base.ATTRS = {
 
             return [
                 instance._sortAscLength
-            ];
+                ];
         }
     }
 };
