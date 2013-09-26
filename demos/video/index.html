@@ -8,22 +8,50 @@
 </head>
 <body>
     <h1>AlloyUI - Video</h1>
-   <div id="pelicula"></div>
+    <div id="container">
+        <div id="demo"></div>
+        <br>
+        <a href="#" class="btn" id="play-btn">Play</a>
+        <a href="#" class="btn" id="pause-btn">Pause</a>
+        <a href="#" class="btn" id="change-video-btn">Change video</a>
+    </div>
     <script>
     YUI({ filter:'raw' }).use('aui-video', function(Y) {
 
-		new Y.Video({
-			boundingBox: '#pelicula',
+		var video = new Y.Video({
+			boundingBox: '#demo',
 			width: 640,
 			height: 368,
 			url: 'http://videos.liferay.com/webinars/2010-08-11.mp4',
-			// ogvUrl: 'http://videos.liferay.com/lifecasts/portal/6.0/106.ogv',
-			// swfUrl: 'http://videos.liferay.com/common/player.swf',
+			ogvUrl: 'http://videos.liferay.com/webinars/2010-08-11.ogv',
+			swfUrl: 'http://videos.liferay.com/common/player.swf',
 			poster: 'assets/sample-jpg.jpg',
 			fixedAttributes: {
 				allowfullscreen: 'true'
 			}
 		}).render();
+
+        Y.one('#play-btn').on('click', function(e) {
+            e.preventDefault();
+
+            video.play();
+        });
+
+        Y.one('#pause-btn').on('click', function(e) {
+            e.preventDefault();
+
+            video.pause();
+        });
+
+        Y.one('#change-video-btn').on('click', function(e) {
+            e.preventDefault();
+
+            video.pause();
+            video.set('ogvUrl', 'assets/movie.ogv');
+            video.set('url', 'assets/movie.mp4');
+            video.load();
+            video.play();
+        });
 
     });
     </script>
