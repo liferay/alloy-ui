@@ -53,7 +53,7 @@ module.exports = function(grunt) {
             aui: {
                 'src': CURRENT_DIR,
                 'dist': path.join(ROOT, 'build'),
-                'cache': true,
+                'cache': false,
                 'coverage': false,
                 'lint': false,
                 'replace-yuivar': 'A',
