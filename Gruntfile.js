@@ -53,7 +53,7 @@ module.exports = function(grunt) {
             aui: {
                 'src': CURRENT_DIR,
                 'dist': path.join(ROOT, 'build'),
-                'cache': true,
+                'cache': false,
                 'coverage': false,
                 'lint': false,
                 'replace-yuivar': 'A',
@@ -93,14 +93,18 @@ module.exports = function(grunt) {
             }
         },
 
-        create: {
-            name: 'aui-test'
+        compress: {
+            name: 'alloy-<%= pkg["version"] %>'
         },
 
         clean: {
             css: [
                 'build/aui-css/css/responsive.css',
             ]
+        },
+
+        create: {
+            name: 'aui-test'
         },
 
         cssmin: {
@@ -116,8 +120,11 @@ module.exports = function(grunt) {
             dependencies: '<%= pkg.dependencies %>'
         },
 
-        compress: {
-            name: 'alloy-<%= pkg["version"] %>'
+        jsbeautifier: {
+            files: ['src/**/*.js', 'src/**/*.css', 'demos/**/*.html', 'grunt/*.js'],
+            options: {
+                config: '.jsbeautifyrc'
+            }
         },
 
         test: {
@@ -137,9 +144,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-jsbeautifier');
 
     grunt.registerTask('all', ['bootstrap', 'build']);
     grunt.registerTask('api-deploy', ['api-build', 'api-push']);
     grunt.registerTask('bootstrap', ['compass', 'copy:css', 'cssmin', 'copy:img', 'clean']);
+    grunt.registerTask('format', ['jsbeautifier']);
     grunt.registerTask('release', ['build', 'bootstrap', 'compress']);
 };

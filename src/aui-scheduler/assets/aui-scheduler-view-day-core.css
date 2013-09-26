@@ -17,6 +17,10 @@
   vertical-align: top;
 }
 
+.scheduler-view-day-table-col-shim .scheduler-event {
+    border: 2px solid #fff;
+}
+
 .scheduler-view-day-table-col-shim {
   height: 1248px;
   margin-bottom: -1248px;
@@ -36,6 +40,7 @@
 
 .scheduler-view-day-table-time {
   border-top: 1px solid #ddd;
+  color: #aba9aa;
   height: 52px;
   margin-top: -1px;
   padding-right: 4px;
@@ -47,7 +52,7 @@
 }
 
 .scheduler-view-day-content .yui3-widget-hd {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 5px solid #ddd;
   color: #555;
   padding-top: 4px;
 }
@@ -76,7 +81,7 @@
 }
 
 .scheduler-view-day-header-day-first {
-  width: 60px;
+  width: 62px;
 }
 
 .scheduler-view-day-header-day-pad-right {
@@ -88,7 +93,7 @@
 }
 
 .scheduler-view-day-header-day .scheduler-today-hd {
-  color: #333333;
+  color: #009be6;
   font-weight: bold;
 }
 
@@ -101,7 +106,12 @@
   text-decoration: none;
 }
 
+.scheduler-view-day-header-day a span {
+  font-size: 20px;
+}
+
 .scheduler-view-day-header-view-label {
+  color: #aba9aa;
   margin: 0 -4px;
   position: absolute;
   text-align: right;
@@ -118,7 +128,9 @@
 }
 
 .scheduler-view-day .scheduler-view-table {
-  margin: 5px 0 5px 62px;
+  margin: 0 0 0 62px;
+  border-left: 0;
+  border-right: 0;
 }
 
 .scheduler-view-day .scheduler-view-table .scheduler-view-table-data-col-title {
@@ -126,10 +138,22 @@
 }
 
 .scheduler-view-day .scheduler-view-table .scheduler-view-table-grid {
-  border: 1px solid #DDDDDD;
-  border-left: none;
+  border: 0;
 }
 
 .scheduler-view-day .scheduler-view-table .yui3-widget-hd {
   display: none;
+}
+
+.scheduler-view-day .scheduler-view-table .scheduler-view-table-colgrid {
+  background: #f6f6f6;
+}
+
+.scheduler-view-day .scheduler-event-title {
+  padding: 0 0 0 7px;
+}
+
+.scheduler-view-day .scheduler-event-content {
+  margin-top: -2px;
+  padding: 0 7px;
 }

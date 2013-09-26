@@ -20,10 +20,10 @@ var Lang = A.Lang,
 	WidgetStdMod = A.WidgetStdMod,
 
 	_COLON = ':',
-	_DOT = '.',
-	_EMPTY_STR = '',
-	_N_DASH = '&ndash;',
-	_SPACE = ' ',
+    _DOT = '.',
+    _EMPTY_STR = '',
+    _N_DASH = '&ndash;',
+    _SPACE = ' ',
 
 	isModelList = function(val) {
 		return val instanceof A.ModelList;
@@ -60,9 +60,6 @@ var Lang = A.Lang,
 	ACTIVE_VIEW = 'activeView',
 	ALL = 'all',
 	ALL_DAY = 'allDay',
-	BORDER_COLOR_RGB = 'borderColorRGB',
-	BORDER_STYLE = 'borderStyle',
-	BORDER_WIDTH = 'borderWidth',
 	BUTTON = 'button',
 	COLOR = 'color',
 	COLOR_BRIGHTNESS_FACTOR = 'colorBrightnessFactor',
@@ -83,7 +80,6 @@ var Lang = A.Lang,
 	ICON_NEXT_NODE = 'iconNextNode',
 	ICON_PREV_NODE = 'iconPrevNode',
 	ICONS = 'icons',
-	INHERIT = 'inherit',
 	ISO_TIME = 'isoTime',
 	LOCALE = 'locale',
 	MEETING = 'meeting',
@@ -120,9 +116,8 @@ var Lang = A.Lang,
 	VIEWS_NODE = 'viewsNode',
 	VISIBLE = 'visible',
 	RIGHT = 'right',
-	ARROW = 'arrow',
 	ACTIVE = 'active',
-	CIRCLE = 'circle',
+	CHEVRON = 'chevron',
 	BTN = 'btn',
 	LEFT = 'left',
 
@@ -143,8 +138,8 @@ var Lang = A.Lang,
 	CSS_SCHEDULER_VIEW_SCROLLABLE = getCN(SCHEDULER_VIEW, SCROLLABLE),
 	CSS_SCHEDULER_VIEW_SELECTED = getCN(ACTIVE),
 	CSS_BTN = getCN(BTN),
-	CSS_ICON_CIRCLE_RIGHT = getCN(ICON, CIRCLE, ARROW, RIGHT),
-	CSS_ICON_CIRCLE_LEFT = getCN(ICON, CIRCLE, ARROW, LEFT),
+	CSS_ICON_CHEVRON_RIGHT = getCN(ICON, CHEVRON, RIGHT),
+	CSS_ICON_CHEVRON_LEFT = getCN(ICON, CHEVRON, LEFT),
 	CSS_SCHEDULER_VIEWS = getCN(SCHEDULER_BASE, VIEWS),
 
 	CSS_SCHEDULER_EVENT = getCN(SCHEDULER_EVENT),
@@ -164,10 +159,12 @@ var Lang = A.Lang,
 	CSS_SCHEDULER_EVENT_SHORT = getCN(SCHEDULER_EVENT, SHORT),
 	CSS_SCHEDULER_EVENT_TITLE = getCN(SCHEDULER_EVENT, TITLE),
 
+    TPL_HTML_OPEN_SPAN = '<span>',
+    TPL_HTML_CLOSE_SPAN = '</span>',
 	TPL_SCHEDULER_CONTROLS = '<div class="'+CSS_SCHEDULER_CONTROLS+'"></div>',
 	TPL_SCHEDULER_HD = '<div class="'+CSS_SCHEDULER_HD+'"></div>',
-	TPL_SCHEDULER_ICON_NEXT = '<button type="button" class="'+[ CSS_SCHEDULER_ICON_NEXT, CSS_BTN ].join(_SPACE)+'">Next <i class="' + CSS_ICON_CIRCLE_RIGHT + '"></i></button>',
-	TPL_SCHEDULER_ICON_PREV = '<button type="button" class="'+[ CSS_SCHEDULER_ICON_PREV, CSS_BTN ].join(_SPACE)+'"><i class="' + CSS_ICON_CIRCLE_LEFT + '"></i> Prev</button>',
+	TPL_SCHEDULER_ICON_NEXT = '<button type="button" class="'+[ CSS_SCHEDULER_ICON_NEXT, CSS_BTN ].join(_SPACE)+'"><i class="' + CSS_ICON_CHEVRON_RIGHT + '"></i></button>',
+	TPL_SCHEDULER_ICON_PREV = '<button type="button" class="'+[ CSS_SCHEDULER_ICON_PREV, CSS_BTN ].join(_SPACE)+'"><i class="' + CSS_ICON_CHEVRON_LEFT + '"></i></button>',
 	TPL_SCHEDULER_NAV = '<div class="btn-group"></div>',
 	TPL_SCHEDULER_TODAY = '<button type="button" class="'+[ CSS_SCHEDULER_TODAY, CSS_BTN ].join(_SPACE)+'">{today}</button>',
 	TPL_SCHEDULER_VIEW = '<button type="button" class="'+[ CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_ ].join(_SPACE)+'{name}" data-view-name="{name}">{label}</button>',
@@ -218,54 +215,6 @@ var SchedulerEvent = A.Component.create({
 		/**
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
-		 * @attribute borderStyle
-		 * @default 'solid'
-		 * @type String
-		 */
-		borderStyle: {
-			value: 'solid',
-			validator: isString
-		},
-
-		/**
-		 * TODO. Wanna help? Please send a Pull Request.
-		 *
-		 * @attribute borderWidth
-		 * @default '1px'
-		 * @type String
-		 */
-		borderWidth: {
-			value: '1px',
-			validator: isString
-		},
-
-		/**
-		 * TODO. Wanna help? Please send a Pull Request.
-		 *
-		 * @attribute colorBrightnessFactor
-		 * @default 0.75
-		 * @type Number
-		 */
-		colorBrightnessFactor: {
-			value: 0.75,
-			validator: isNumber
-		},
-
-		/**
-		 * TODO. Wanna help? Please send a Pull Request.
-		 *
-		 * @attribute colorSaturationFactor
-		 * @default 1.5
-		 * @type Number
-		 */
-		colorSaturationFactor: {
-			value: 1.5,
-			validator: isNumber
-		},
-
-		/**
-		 * TODO. Wanna help? Please send a Pull Request.
-		 *
 		 * @attribute content
 		 */
 		content: {
@@ -282,9 +231,32 @@ var SchedulerEvent = A.Component.create({
 		 */
 		color: {
 			lazyAdd: false,
-			setter: '_setColor',
-			value: '#D96666',
+			value: '#376cd9',
 			validator: isString
+		},
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute colorBrightnessFactor
+		 * @default 1.4
+		 * @type Number
+		 */
+		colorBrightnessFactor: {
+			value: 1.4,
+			validator: isNumber
+		},
+
+		/**
+		 * TODO. Wanna help? Please send a Pull Request.
+		 *
+		 * @attribute colorSaturationFactor
+		 * @default 0.88
+		 * @type Number
+		 */
+		colorSaturationFactor: {
+			value: 0.88,
+			validator: isNumber
 		},
 
 		/**
@@ -301,12 +273,12 @@ var SchedulerEvent = A.Component.create({
 					isoTime = scheduler && scheduler.get(ACTIVE_VIEW).get(ISO_TIME),
 
 					format = {
-						endDate: _N_DASH+_SPACE+TITLE_DT_FORMAT_ISO,
+						endDate: TPL_HTML_OPEN_SPAN+_N_DASH+_SPACE+TITLE_DT_FORMAT_ISO+TPL_HTML_CLOSE_SPAN,
 						startDate: TITLE_DT_FORMAT_ISO
 					};
 
 				if (!isoTime) {
-					format.endDate = _N_DASH+_SPACE+getUSDateFormat(instance.get(END_DATE));
+					format.endDate = TPL_HTML_OPEN_SPAN+_N_DASH+_SPACE+getUSDateFormat(instance.get(END_DATE))+TPL_HTML_CLOSE_SPAN;
 					format.startDate = getUSDateFormat(instance.get(START_DATE));
 				}
 
@@ -445,7 +417,7 @@ var SchedulerEvent = A.Component.create({
 	 * @type Array
 	 * @static
 	 */
-	PROPAGATE_ATTRS: [ALL_DAY, START_DATE, END_DATE, CONTENT, COLOR, COLOR_BRIGHTNESS_FACTOR, COLOR_SATURATION_FACTOR, BORDER_STYLE, BORDER_WIDTH, TITLE_DATE_FORMAT, VISIBLE, DISABLED],
+	PROPAGATE_ATTRS: [ALL_DAY, START_DATE, END_DATE, CONTENT, COLOR, COLOR_BRIGHTNESS_FACTOR, COLOR_SATURATION_FACTOR, TITLE_DATE_FORMAT, VISIBLE, DISABLED],
 
 	prototype: {
 		EVENT_NODE_TEMPLATE: '<div class="' + CSS_SCHEDULER_EVENT + '">' +
@@ -619,17 +591,6 @@ var SchedulerEvent = A.Component.create({
 			});
 
 			instance.setAttrs(attrMap, options);
-		},
-
-		/**
-		 * TODO. Wanna help? Please send a Pull Request.
-		 *
-		 * @method getBorderColor
-		 */
-		getBorderColor: function() {
-			var instance = this;
-
-			return instance[BORDER_COLOR_RGB].hex;
 		},
 
 		/**
@@ -894,7 +855,7 @@ var SchedulerEvent = A.Component.create({
 				title.push(instance._formatDate(endDate, format.endDate));
 			}
 
-			instance.setTitle(title.join(_SPACE));
+			instance.setTitle(title.join(_EMPTY_STR));
 		},
 
 		/**
@@ -1037,29 +998,6 @@ var SchedulerEvent = A.Component.create({
 		/**
 		 * TODO. Wanna help? Please send a Pull Request.
 		 *
-		 * @method _setColor
-		 * @param val
-		 * @protected
-		 */
-		_setColor: function(val) {
-			var instance = this;
-
-			var hsl = Color.toArray(Color.toHSL(val)),
-				hslString;
-
-			hsl[1] *= instance.get(COLOR_SATURATION_FACTOR);
-			hsl[2] *= instance.get(COLOR_BRIGHTNESS_FACTOR);
-
-			hslString = 'hsl(' + hsl[0] + ', ' + hsl[1] + '%, ' + hsl[2] + '%)';
-
-			instance[BORDER_COLOR_RGB] = Color.toRGB(hslString);
-
-			return val;
-		},
-
-		/**
-		 * TODO. Wanna help? Please send a Pull Request.
-		 *
 		 * @method _setDate
 		 * @param val
 		 * @protected
@@ -1138,18 +1076,19 @@ var SchedulerEvent = A.Component.create({
 		_uiSetColor: function(val) {
 			var instance = this;
 			var node = instance.get(NODE);
-			var borderColor = instance.getBorderColor();
+
+			var color = Color.toHSL(val);
+			var backgroundColor = Color.toArray(color);
+
+			backgroundColor[1] *= instance.get(COLOR_SATURATION_FACTOR);
+			backgroundColor[2] *= instance.get(COLOR_BRIGHTNESS_FACTOR);
+			backgroundColor = Color.fromArray(backgroundColor, Color.TYPES.HSL);
 
 			if (node) {
-				var styles = {
-					borderWidth: instance.get(BORDER_WIDTH),
-					borderColor: borderColor,
-					backgroundColor: val,
-					borderStyle: instance.get(BORDER_STYLE),
-					color: INHERIT
-				};
-
-				node.setStyles(styles);
+				node.setStyles({
+					backgroundColor: backgroundColor,
+					color: color
+				});
 			}
 		},
 

@@ -1,0 +1,35 @@
+{
+    "css": {
+        "indentChar": " ",
+        "indentSize": 4
+    },
+    "html": {
+        "braceStyle": "end-expand",
+        "indentChar": " ",
+        "indentScripts": "keep",
+        "indentSize": 4,
+        "maxPreserveNewlines": 2,
+        "preserveNewlines": true,
+        "unformatted": ["a", "sub", "sup", "b", "i", "u"],
+        "wrapLineLength": 100
+    },
+    "js": {
+        "braceStyle": "end-expand",
+        "breakChainedMethods": false,
+        "e4x": false,
+        "evalCode": false,
+        "indentChar": " ",
+        "indentLevel": 0,
+        "indentSize": 4,
+        "indentWithTabs": false,
+        "jslintHappy": false,
+        "keepArrayIndentation": true,
+        "keepFunctionIndentation": true,
+        "maxPreserveNewlines": 2,
+        "preserveNewlines": true,
+        "spaceBeforeConditional": true,
+        "spaceInParen": false,
+        "unescapeStrings": false,
+        "wrapLineLength": 100
+    }
+}

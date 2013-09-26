@@ -7,7 +7,15 @@
 }
 
 .scheduler-view-month-table-data-col-nomonth {
-  background-color: #fff;
   color: #ccc;
-  font-size: 11px;
+  font-size: 14px;
+}
+
+.scheduler-view-month .scheduler-event-title,
+.scheduler-view-month .scheduler-event-content {
+  font-size: 13px;
+}
+
+.scheduler-view-month .scheduler-event-title span {
+  display: none;
 }

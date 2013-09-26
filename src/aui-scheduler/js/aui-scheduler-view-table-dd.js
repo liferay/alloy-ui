@@ -600,6 +600,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 		instance[PROXY_NODE].setStyles({
 			backgroundColor: eventNode.getStyle('backgroundColor'),
+			color: eventNode.getStyle('color'),
 			display: 'block'
 		});
 
