@@ -204,6 +204,45 @@ var Video = A.Component.create(
 				);
 			},
 
+            /**
+             * Load video track.
+             *
+             * @method load
+             */
+            load: function () {
+                var instance = this;
+
+                if (instance._video.hasMethod('load')) {
+                    instance._video.invoke('load');
+                }
+            },
+
+            /**
+             * Pause video track.
+             *
+             * @method pause
+             */
+            pause: function () {
+                var instance = this;
+
+                if (instance._video.hasMethod('pause')) {
+                    instance._video.invoke('pause');
+                }
+            },
+
+            /**
+             * Play video track.
+             *
+             * @method play
+             */
+            play: function () {
+                var instance = this;
+
+                if (instance._video.hasMethod('play')) {
+                    instance._video.invoke('play');
+                }
+            },
+
 			/**
 			 * Create <code>source</code> element
 			 * using passed type attribute.
