@@ -44,7 +44,7 @@ YUI.add('module-tests', function(Y) {
         'visita'
     ];
 
-    var checkArrays = function(array1, array2){
+    var checkArrays = function(array1, array2) {
         var result = false;
 
         if (array1.length === array2.length) {
@@ -76,7 +76,8 @@ YUI.add('module-tests', function(Y) {
         'test does not contain': function() {
             var word = 'NON_EXISTING_WORD';
 
-            Y.Assert.isFalse(tstree.contains(word), 'tst does contain this word: ' + word + ' but it shouldn\'t');
+            Y.Assert.isFalse(
+                tstree.contains(word), 'tst does contain this word: ' + word + ' but it shouldn\'t');
         }
     }));
 
@@ -103,8 +104,7 @@ YUI.add('module-tests', function(Y) {
             var prefix = 'el';
 
             var result = instance.assertPrefixEquals(
-                prefix,
-                [
+                prefix, [
                     'else',
                     'elseif'
                 ]
@@ -115,8 +115,7 @@ YUI.add('module-tests', function(Y) {
             prefix = 're';
 
             result = instance.assertPrefixEquals(
-                prefix,
-                [
+                prefix, [
                     'recover',
                     'recurse',
                     'returne',
@@ -151,8 +150,7 @@ YUI.add('module-tests', function(Y) {
             var pattern = 're?ur?e';
 
             var result = instance.assertPatternMatch(
-                pattern,
-                [
+                pattern, [
                     'recurse',
                     'returne'
                 ]
@@ -163,8 +161,7 @@ YUI.add('module-tests', function(Y) {
             pattern = 'visit?';
 
             result = instance.assertPatternMatch(
-                pattern,
-                [
+                pattern, [
                     'visit',
                     'visita'
                 ]
@@ -175,8 +172,7 @@ YUI.add('module-tests', function(Y) {
             pattern = 'visit?';
 
             result = instance.assertPatternMatch(
-                pattern,
-                [
+                pattern, [
                     'visita'
                 ]
             );
@@ -195,9 +191,11 @@ YUI.add('module-tests', function(Y) {
 
             tmp.splice(index, 1);
         }
-        while(tmp.length);
+        while (tmp.length);
     });
 
     Y.Test.Runner.add(suite);
 
-},'', { requires: [ 'test', 'aui-search' ] });
+}, '', {
+    requires: ['test', 'aui-search']
+});

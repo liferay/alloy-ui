@@ -1,21 +1,17 @@
 .actions-container {
     padding: 5px 0;
 }
-
 .hsv-trigger, .color-picker-nocolor {
-	cursor: pointer;
+    cursor: pointer;
 }
-
 .color-picker-nocolor {
-	padding-right: 5px;
-	text-align: right;
+    padding-right: 5px;
+    text-align: right;
 }
-
 .color-picker-nocolor .btn-link {
-	text-decoration: none;
+    text-decoration: none;
 }
-
 .color-picker-nocolor .color-picker-nocolor-icon {
-	margin-right: 2px;
-	margin-top: 0;
+    margin-right: 2px;
+    margin-top: 0;
 }

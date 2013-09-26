@@ -12,22 +12,22 @@
  * http://alloy.liferay.com/ATTRIBUTION.txt
  */
 
- // Simple version of http://perfectionkills.com/detecting-event-support-without-browser-sniffing/
+// Simple version of http://perfectionkills.com/detecting-event-support-without-browser-sniffing/
 A.supportsDOMEvent = function(domNode, eventName) {
-	eventName = 'on' + eventName;
+    eventName = 'on' + eventName;
 
-	if (!(eventName in domNode)) {
-		if (!domNode.setAttribute) {
-			domNode = A.config.doc.createElement('div');
-		}
+    if (!(eventName in domNode)) {
+        if (!domNode.setAttribute) {
+            domNode = A.config.doc.createElement('div');
+        }
 
-		if (domNode.setAttribute) {
-			domNode.setAttribute(eventName, '');
-			return (typeof domNode[eventName] === 'function');
-		}
-	}
+        if (domNode.setAttribute) {
+            domNode.setAttribute(eventName, '');
+            return (typeof domNode[eventName] === 'function');
+        }
+    }
 
-	domNode = null;
+    domNode = null;
 
-	return true;
+    return true;
 };

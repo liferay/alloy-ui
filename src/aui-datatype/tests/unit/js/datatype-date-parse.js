@@ -2,19 +2,21 @@ YUI.add('module-tests', function(Y) {
 
     function areLikelySameDate(date1, date2) {
         return date2 &&
-                date1.getFullYear() === date2.getFullYear() &&
-                date1.getMonth() === date2.getMonth() &&
-                date1.getDate() === date2.getDate() &&
-                date1.getHours() === date2.getHours() &&
-                date1.getMinutes() === date2.getMinutes() &&
-                date1.getSeconds() === date2.getSeconds();
+            date1.getFullYear() === date2.getFullYear() &&
+            date1.getMonth() === date2.getMonth() &&
+            date1.getDate() === date2.getDate() &&
+            date1.getHours() === date2.getHours() &&
+            date1.getMinutes() === date2.getMinutes() &&
+            date1.getSeconds() === date2.getSeconds();
     }
 
     function testMask(mask, opt_text, opt_date) {
         var parsedDate;
 
         opt_date = opt_date || new Date(2013, 0, 1, 15, 5, 10);
-        opt_text = opt_text || Y.Date.format(opt_date, { format: mask });
+        opt_text = opt_text || Y.Date.format(opt_date, {
+            format: mask
+        });
 
         parsedDate = Y.Date.parse(mask, opt_text, new Date(+opt_date));
 
@@ -132,19 +134,29 @@ YUI.add('module-tests', function(Y) {
             testMask('%d/%m/%Y', '10 / 11 / 2005', new Date(2005, 10, 10));
             testMask('foo %d/%m/%Y', 'foo 10/11/2005 bar', new Date(2005, 10, 10));
             testMask('%c', 'Tue, Jan 01, 2013 3:05:10 PM BRT', new Date(2013, 0, 01, 15, 05, 10));
-            testMask('%a, %b %d, %Y %H:%M:%S %p %Z', 'Tue, Jan 01, 2013 15:05:10 BRT', new Date(2013, 0, 01, 15, 05, 10));
+            testMask(
+                '%a, %b %d, %Y %H:%M:%S %p %Z', 'Tue, Jan 01, 2013 15:05:10 BRT', new Date(2013, 0, 01, 15,
+                    05, 10));
         },
 
         /*
          * @tests AUI-978
          */
         'test invalid input': function() {
-            testParse('%d', 'test', false, 'The false value is expected when Date parser fails to complete.');
-            testParse('%d/%m/%Y', '', false, 'The false value is expected when Date parser fails to complete.');
-            testParse('%d ', 'test 10', false, 'The false value is expected when Date parser fails to complete.');
+            testParse(
+                '%d', 'test', false,
+                'The false value is expected when Date parser fails to complete.');
+            testParse(
+                '%d/%m/%Y', '', false,
+                'The false value is expected when Date parser fails to complete.');
+            testParse(
+                '%d ', 'test 10', false,
+                'The false value is expected when Date parser fails to complete.');
         }
     }));
 
     Y.Test.Runner.add(suite);
 
-},'', { requires: [ 'aui-datatype-date-parse', 'intl', 'test' ] });
+}, '', {
+    requires: ['aui-datatype-date-parse', 'intl', 'test']
+});

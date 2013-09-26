@@ -9,7 +9,7 @@ var Lang = A.Lang,
     WIN = A.config.win,
     LOCATION = WIN.location,
 
-    NATIVE_MSG = !!(WIN.postMessage),
+    NATIVE_MSG = !! (WIN.postMessage),
 
     TOKEN_CLOSE = '_A=',
     TOKEN_OPEN = '=A_',
@@ -31,8 +31,7 @@ fnPostMessage = function(message, targetURI, targetFrame) {
 
             targetFrame = targetFrame && targetFrame.getDOM().contentWindow;
         }
-        catch (e) {
-        }
+        catch (e) {}
 
         targetFrame = targetFrame || WIN.parent;
 

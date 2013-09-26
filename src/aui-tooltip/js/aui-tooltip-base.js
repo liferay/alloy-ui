@@ -95,8 +95,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
             instance._loadBodyContentFromTitle();
         }
 
-        boundingBox.transition(
-            {
+        boundingBox.transition({
                 duration: instance.get(DURATION),
                 opacity: val ? instance.get(OPACITY) : 0
             },
@@ -243,6 +242,6 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
      * @static
      */
     TEMPLATES: {
-        arrow:  '<div class="' + CSS_TOOLTIP_ARROW + '"></div>'
+        arrow: '<div class="' + CSS_TOOLTIP_ARROW + '"></div>'
     }
 });

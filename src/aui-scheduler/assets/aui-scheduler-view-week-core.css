@@ -1,12 +1,9 @@
 .scheduler-view-week-hidden {
-  display: none;
+    display: none;
 }
-
 .scheduler-view-week .scheduler-view-table .scheduler-view-table-colgrid {
-  background: #f6f6f6;
+    background: #f6f6f6;
 }
-
-.scheduler-view-week .scheduler-event-title,
-.scheduler-view-week .scheduler-event-content {
-  font-size: 14px;
+.scheduler-view-week .scheduler-event-title, .scheduler-view-week .scheduler-event-content {
+    font-size: 14px;
 }

@@ -24,10 +24,10 @@ module.exports = function(grunt) {
 
         async.series([
             function(mainCallback) {
-                exports._setGruntConfig(mainCallback);
+                    exports._setGruntConfig(mainCallback);
             },
             function(mainCallback) {
-                exports._runCommand(mainCallback);
+                    exports._runCommand(mainCallback);
             }],
             function(err) {
                 if (err) {

@@ -61,15 +61,15 @@ YUI.add('module-tests', function(Y) {
                                 "type": "java.lang.String"
                             }
                         }
-                    }}
-                ),
+                    }
+                }),
                 render: true,
                 visible: false,
                 width: 250,
                 zIndex: 10000
             }
-        }]}
-    );
+        }]
+    });
 
     //--------------------------------------------------------------------------
     // General tests
@@ -85,7 +85,6 @@ YUI.add('module-tests', function(Y) {
             Y.Test.Assert.isNotNull(editor.hasPlugin('ace-autocomplete-plugin'));
         }
     }));
-
 
     //--------------------------------------------------------------------------
     // Test case for Velocity directives
@@ -122,13 +121,15 @@ YUI.add('module-tests', function(Y) {
         },
 
         'check first directive is selected': function() {
-            Y.Assert.isTrue(elements.item(0).hasClass('selected'), 'The first suggesstion should be selected');
+            Y.Assert.isTrue(elements.item(0).hasClass('selected'),
+                'The first suggesstion should be selected');
         },
 
         'insert directive': function() {
             elements.item(1).simulate('click');
 
-            Y.Assert.areEqual(nativeEditor.getValue(), '<#macro', 'The content must be replaced by "<#macro"');
+            Y.Assert.areEqual(nativeEditor.getValue(), '<#macro',
+                'The content must be replaced by "<#macro"');
 
             // Assert results list is hidden
             Y.Assert.isNotNull(Y.one('.ace-autocomplete-hidden'));
@@ -149,7 +150,8 @@ YUI.add('module-tests', function(Y) {
 
             elements.item(1).simulate('click');
 
-            Y.Assert.areEqual(nativeEditor.getValue(), '<#amacro', 'The content must be replaced by "<#amacro"');
+            Y.Assert.areEqual(nativeEditor.getValue(), '<#amacro',
+                'The content must be replaced by "<#amacro"');
 
             // Restore the overwrite mode on the editor
 
@@ -179,7 +181,9 @@ YUI.add('module-tests', function(Y) {
 
             elements.item(2).simulate('click');
 
-            Y.Assert.areEqual(nativeEditor.getValue(), '$scopeGroupString', 'The content must be replaced by "$scopeGroupString"');
+            Y.Assert.areEqual(
+                nativeEditor.getValue(), '$scopeGroupString',
+                'The content must be replaced by "$scopeGroupString"');
         },
 
         'insert second level of variable': function() {
@@ -198,7 +202,9 @@ YUI.add('module-tests', function(Y) {
 
             elements.item(2).simulate('click');
 
-            Y.Assert.areEqual(nativeEditor.getValue(), '$scopeGroupString.toString(long, String, int)', 'The content must be replaced by "$scopeGroupString.toString(long, String, int)"');
+            Y.Assert.areEqual(
+                nativeEditor.getValue(), '$scopeGroupString.toString(long, String, int)',
+                'The content must be replaced by "$scopeGroupString.toString(long, String, int)"');
         },
 
         'insert third level of variable': function() {
@@ -215,7 +221,10 @@ YUI.add('module-tests', function(Y) {
 
             elements.item(0).simulate('click');
 
-            Y.Assert.areEqual(nativeEditor.getValue(), '$scopeGroupString.toString(long, String, int).field', 'The content must be replaced by "$scopeGroupString.toString(long, String, int).field"');
+            Y.Assert.areEqual(
+                nativeEditor.getValue(),
+                '$scopeGroupString.toString(long, String, int).field',
+                'The content must be replaced by "$scopeGroupString.toString(long, String, int).field"');
         },
 
         'check no more variables': function() {
@@ -243,5 +252,6 @@ YUI.add('module-tests', function(Y) {
 
     Y.Test.Runner.add(suite);
 
-
-},'', { requires: [ 'test', 'aui-ace-autocomplete-plugin', 'aui-ace-autocomplete-velocity', 'node-event-simulate' ] });
+}, '', {
+    requires: ['test', 'aui-ace-autocomplete-plugin', 'aui-ace-autocomplete-velocity', 'node-event-simulate']
+});

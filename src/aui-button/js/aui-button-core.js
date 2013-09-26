@@ -85,8 +85,7 @@ ButtonExt.ATTRS = {
      *
      * @attribute icon
      */
-    icon: {
-    },
+    icon: {},
 
     /**
      * TODO. Wanna help? Please send a Pull Request.
@@ -306,7 +305,7 @@ ButtonCore.CLASS_NAMES = CLASS_NAMES;
  * @method _uiSetLabel
  */
 ButtonCore.prototype._uiSetLabel = (function(original) {
-    return function (label) {
+    return function(label) {
         var instance = this,
             node = instance.getNode();
 
@@ -532,8 +531,7 @@ A.mix(ButtonGroup.prototype, {
         var instance = this;
 
         instance.getButtons().each(function(button) {
-            if (!button.button &&
-                !A.instanceOf(A.Widget.getByNode(button), A.Button)) {
+            if (!button.button && !A.instanceOf(A.Widget.getByNode(button), A.Button)) {
 
                 if (A.Button.hasWidgetLazyConstructorData(button)) {
                     new A.Button(A.Button.getWidgetLazyConstructorFromNodeData(button));
@@ -599,7 +597,9 @@ A.mix(ButtonGroup.prototype, {
                 }
             }
 
-            instance._handleClick({ target: item });
+            instance._handleClick({
+                target: item
+            });
         });
     },
 

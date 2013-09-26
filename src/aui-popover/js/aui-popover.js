@@ -118,7 +118,7 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
      * @param section
      * @protected
      */
-    _getStdModTemplate : function(section) {
+    _getStdModTemplate: function(section) {
         return A.Node.create(A.Popover.TEMPLATES[section], this._stdModNode.get(OWNER_DOCUMENT));
     }
 }, {
@@ -161,8 +161,8 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
      */
     TEMPLATES: {
         header: '<div class="' + StdMod.SECTION_CLASS_NAMES[StdMod.HEADER] + _SPACE + CSS_POPOVER_HD + '"></div>',
-        body:   '<div class="' + StdMod.SECTION_CLASS_NAMES[StdMod.BODY] + _SPACE + CSS_POPOVER_BD + '"></div>',
+        body: '<div class="' + StdMod.SECTION_CLASS_NAMES[StdMod.BODY] + _SPACE + CSS_POPOVER_BD + '"></div>',
         footer: '<div class="' + StdMod.SECTION_CLASS_NAMES[StdMod.FOOTER] + _SPACE + CSS_POPOVER_FT + '"></div>',
-        arrow:  '<div class="' + CSS_ARROW + '"></div>'
+        arrow: '<div class="' + CSS_ARROW + '"></div>'
     }
 });

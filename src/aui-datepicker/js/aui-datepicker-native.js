@@ -28,6 +28,7 @@ var Lang = A.Lang,
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
+
 function DatePickerNativeBase() {}
 
 /**
@@ -232,7 +233,9 @@ DatePickerNativeBase.prototype = {
             parsed = instance._parseDateFromString(activeInput.val());
 
         instance.fire(
-            SELECTION_CHANGE, { newSelection: parsed ? [parsed] : [] });
+            SELECTION_CHANGE, {
+                newSelection: parsed ? [parsed] : []
+            });
     },
 
     /**
@@ -246,7 +249,9 @@ DatePickerNativeBase.prototype = {
         var instance = this,
             nativeMask = instance.get(NATIVE_MASK),
             nativeType = instance.get(NATIVE_TYPE),
-            formatted = A.Date.format(date, { format: nativeMask });
+            formatted = A.Date.format(date, {
+                format: nativeMask
+            });
 
         if (nativeType === DATE) {
             formatted = instance._addFourDigitsYearPadding(formatted);

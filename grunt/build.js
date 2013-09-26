@@ -13,10 +13,10 @@ var TASK = {
 };
 
 // -- Dependencies -------------------------------------------------------------
-var async   = require('async');
+var async = require('async');
 var command = require('command');
-var fs      = require('fs');
-var path    = require('path');
+var fs = require('fs');
+var path = require('path');
 
 // -- Globals ------------------------------------------------------------------
 var ROOT = process.cwd();
@@ -24,31 +24,31 @@ var ROOT = process.cwd();
 // -- Task ---------------------------------------------------------------------
 module.exports = function(grunt) {
     grunt.registerMultiTask(TASK.name, TASK.description, function() {
-        var done   = this.async();
+        var done = this.async();
         var target = this.target;
         var isYuiBuildUpdated = false;
 
         async.series([
             function(mainCallback) {
-                exports._setGruntConfig(mainCallback, target);
+                    exports._setGruntConfig(mainCallback, target);
             },
             function(mainCallback) {
-                // Force YUI build
-                // $ grunt build:yui
-                if (process.argv[2].indexOf('yui') !== -1) {
-                    mainCallback();
-                }
-                // Check if YUI build is updated and skip to AUI build if necessary
-                // $ grunt build
-                else {
-                    exports._checkYuiCache(function(val) {
-                        isYuiBuildUpdated = val;
+                    // Force YUI build
+                    // $ grunt build:yui
+                    if (process.argv[2].indexOf('yui') !== -1) {
                         mainCallback();
-                    }, target);
-                }
+                    }
+                    // Check if YUI build is updated and skip to AUI build if necessary
+                    // $ grunt build
+                    else {
+                        exports._checkYuiCache(function(val) {
+                            isYuiBuildUpdated = val;
+                            mainCallback();
+                        }, target);
+                    }
             },
             function(mainCallback) {
-                exports._setShifterArgs(mainCallback, target, isYuiBuildUpdated);
+                    exports._setShifterArgs(mainCallback, target, isYuiBuildUpdated);
             }],
             function(err) {
                 if (err) {
@@ -76,12 +76,12 @@ module.exports = function(grunt) {
 
             // String parameter
             if (valueIndex !== -1) {
-                key   = option.substring(0, valueIndex);
+                key = option.substring(0, valueIndex);
                 value = option.substring(valueIndex + 1);
             }
             // Boolean parameter
             else {
-                key   = option;
+                key = option;
                 value = grunt.option(key);
             }
 
@@ -92,9 +92,9 @@ module.exports = function(grunt) {
     };
 
     exports._checkYuiCache = function(mainCallback, target) {
-        var cwd           = grunt.config([TASK.name, target, 'src']);
-        var yuiRoot       = path.join(cwd, '..');
-        var yuiCacheFile  = path.join(ROOT, 'build/.yui-build');
+        var cwd = grunt.config([TASK.name, target, 'src']);
+        var yuiRoot = path.join(cwd, '..');
+        var yuiCacheFile = path.join(ROOT, 'build/.yui-build');
         var isYuiBuildUpdated = false;
 
         if (grunt.file.exists(yuiCacheFile)) {
@@ -102,8 +102,8 @@ module.exports = function(grunt) {
                 .exec('git', ['rev-parse', 'HEAD'])
                 .then(function() {
                     var yuiCurrentGitHash = this.lastOutput.stdout.trim();
-                    var yuiCachedGitHash  = fs.readFileSync(yuiCacheFile)
-                                                .toString().trim();
+                    var yuiCachedGitHash = fs.readFileSync(yuiCacheFile)
+                        .toString().trim();
 
                     if (yuiCurrentGitHash === yuiCachedGitHash) {
                         isYuiBuildUpdated = true;
@@ -118,9 +118,9 @@ module.exports = function(grunt) {
     };
 
     exports._setShifterArgs = function(mainCallback, target, isYuiBuildUpdated) {
-        var args  = [];
+        var args = [];
         var stack = [];
-        var cwd   = grunt.config([TASK.name, target, 'src']);
+        var cwd = grunt.config([TASK.name, target, 'src']);
 
         // Build Dir
         args.push('--build-dir=' + grunt.config([TASK.name, target, 'dist']));
@@ -161,7 +161,7 @@ module.exports = function(grunt) {
 
         // Source Dir
         if (target === 'aui') {
-            var auiSrcDir  = path.join(ROOT, 'src');
+            var auiSrcDir = path.join(ROOT, 'src');
             var auiBaseDir = path.join(auiSrcDir, 'aui-base');
 
             if (cwd === ROOT || cwd === auiSrcDir) {
@@ -215,8 +215,8 @@ module.exports = function(grunt) {
     };
 
     exports._setYuiCache = function(mainCallback, target) {
-        var cwd          = grunt.config([TASK.name, target, 'src']);
-        var yuiRoot      = path.join(cwd, '..');
+        var cwd = grunt.config([TASK.name, target, 'src']);
+        var yuiRoot = path.join(cwd, '..');
         var yuiCacheFile = path.join(ROOT, 'build/.yui-build');
 
         command.open(yuiRoot)

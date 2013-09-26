@@ -37,11 +37,11 @@ var Lang = A.Lang,
     TPL_ITEM = '<li><a class="' + CSS_MENU_ITEM + ' {cssClasses}">{index}</a></li>',
 
     TPL_MENU = '<menu>' +
-                    '<li><a class="' + CSS_MENU_ITEM + ' ' + CSS_MENU_PLAY + '"></a></li>' +
-                    '<li><a class="' + CSS_MENU_ITEM + ' ' + CSS_MENU_PREV + '"></a></li>' +
-                    '{items}' +
-                    '<li><a class="' + CSS_MENU_ITEM + ' ' + CSS_MENU_NEXT + '"></a></li>' +
-                '</menu>',
+        '<li><a class="' + CSS_MENU_ITEM + ' ' + CSS_MENU_PLAY + '"></a></li>' +
+        '<li><a class="' + CSS_MENU_ITEM + ' ' + CSS_MENU_PREV + '"></a></li>' +
+        '{items}' +
+        '<li><a class="' + CSS_MENU_ITEM + ' ' + CSS_MENU_NEXT + '"></a></li>' +
+        '</menu>',
 
     UI_SRC = A.Widget.UI_SRC,
 
@@ -59,761 +59,752 @@ var Lang = A.Lang,
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
-var Carousel = A.Component.create(
-    {
+var Carousel = A.Component.create({
+    /**
+     * Static property provides a string to identify the class.
+     *
+     * @property Carousel.NAME
+     * @type String
+     * @static
+     */
+    NAME: CAROUSEL,
+
+    /**
+     * Static property used to define the default attribute
+     * configuration for the Carousel.
+     *
+     * @property Carousel.ATTRS
+     * @type Object
+     * @static
+     */
+    ATTRS: {
+
         /**
-         * Static property provides a string to identify the class.
+         * Index of the first visible item of the carousel.
          *
-         * @property Carousel.NAME
+         * @attribute activeIndex
+         * @default 0
+         * @type Number
+         */
+        activeIndex: {
+            value: 0,
+            setter: '_setActiveIndex'
+        },
+
+        /**
+         * Duration of the animation in seconds when change index on
+         * Carousel.
+         *
+         * @attribute animationTime
+         * @default 0.5
+         * @type Number
+         */
+        animationTime: {
+            value: 0.5
+        },
+
+        /**
+         * Interval time in seconds between an item transition.
+         *
+         * @attribute intervalTime
+         * @default 2
+         * @type Number
+         */
+        intervalTime: {
+            value: 2
+        },
+
+        /**
+         * CSS Selector whitch determines the items to be loaded to the
+         * Carousel.
+         *
+         * @attribute itemSelector
+         * @default >* (All first childs)
          * @type String
-         * @static
          */
-        NAME: CAROUSEL,
+        itemSelector: {
+            value: '>*'
+        },
 
         /**
-         * Static property used to define the default attribute
-         * configuration for the Carousel.
+         * Node container of the navigation items.
          *
-         * @property Carousel.ATTRS
-         * @type Object
-         * @static
+         * @attribute nodeMenu
+         * @default null
+         * @type Node | String
          */
-        ATTRS: {
+        nodeMenu: {
+            value: null,
+            setter: '_setNodeMenu'
+        },
 
-            /**
-             * Index of the first visible item of the carousel.
-             *
-             * @attribute activeIndex
-             * @default 0
-             * @type Number
-             */
-            activeIndex: {
-                value: 0,
-                setter: '_setActiveIndex'
-            },
+        /**
+         * CSS selector to match the navigation items.
+         *
+         * @attribute nodeMenuItemSelector
+         * @default .carousel-menu-item
+         * @type String
+         */
+        nodeMenuItemSelector: {
+            value: DOT + CSS_MENU_ITEM
+        },
 
-            /**
-             * Duration of the animation in seconds when change index on
-             * Carousel.
-             *
-             * @attribute animationTime
-             * @default 0.5
-             * @type Number
-             */
-            animationTime: {
-                value: 0.5
-            },
+        /**
+         * Attributes that determines the status of transitions between
+         * items.
+         *
+         * @attribute playing
+         * @default true
+         * @type Boolean
+         */
+        playing: {
+            value: true
+        }
+    },
 
-            /**
-             * Interval time in seconds between an item transition.
-             *
-             * @attribute intervalTime
-             * @default 2
-             * @type Number
-             */
-            intervalTime: {
-                value: 2
-            },
+    prototype: {
+        animation: null,
+        nodeSelection: null,
+        nodeMenu: null,
 
-            /**
-             * CSS Selector whitch determines the items to be loaded to the
-             * Carousel.
-             *
-             * @attribute itemSelector
-             * @default >* (All first childs)
-             * @type String
-             */
-            itemSelector: {
-                value: '>*'
-            },
+        /**
+         * Construction logic executed during Carousel instantiation. Lifecycle.
+         *
+         * @method initializer
+         * @protected
+         */
+        initializer: function() {
+            var instance = this;
 
-            /**
-             * Node container of the navigation items.
-             *
-             * @attribute nodeMenu
-             * @default null
-             * @type Node | String
-             */
-            nodeMenu: {
-                value: null,
-                setter: '_setNodeMenu'
-            },
+            instance.animation = new A.Anim({
+                duration: instance.get('animationTime'),
+                to: {
+                    opacity: 1
+                }
+            });
+        },
 
-            /**
-             * CSS selector to match the navigation items.
-             *
-             * @attribute nodeMenuItemSelector
-             * @default .carousel-menu-item
-             * @type String
-             */
-            nodeMenuItemSelector: {
-                value: DOT + CSS_MENU_ITEM
-            },
+        /**
+         * Render the Carousel component instance. Lifecycle.
+         *
+         * @method renderUI
+         * @protected
+         */
+        renderUI: function() {
+            var instance = this;
 
-            /**
-             * Attributes that determines the status of transitions between
-             * items.
-             *
-             * @attribute playing
-             * @default true
-             * @type Boolean
-             */
-            playing: {
-                value: true
+            instance._updateNodeSelection();
+            instance.nodeMenu = instance.get('nodeMenu');
+
+            instance._updateMenuNodes();
+        },
+
+        /**
+         * Bind the events on the Carousel UI. Lifecycle.
+         *
+         * @method bindUI
+         * @protected
+         */
+        bindUI: function() {
+            var instance = this;
+
+            instance.after({
+                activeIndexChange: instance._afterActiveIndexChange,
+                animationTimeChange: instance._afterAnimationTimeChange,
+                itemSelectorChange: instance._afterItemSelectorChange,
+                intervalTimeChange: instance._afterIntervalTimeChange,
+                nodeMenuItemSelector: instance._afterNodeMenuItemSelectorChange,
+                playingChange: instance._afterPlayingChange
+            });
+
+            instance._bindMenu();
+
+            if (instance.get('playing') === true) {
+                instance._afterPlayingChange({
+                    prevVal: false,
+                    newVal: true
+                });
             }
         },
 
-        prototype: {
-            animation: null,
-            nodeSelection: null,
-            nodeMenu: null,
+        /**
+         * Sync the Carousel UI. Lifecycle.
+         *
+         * @method syncUI
+         * @protected
+         */
+        syncUI: function() {
+            var instance = this;
 
-            /**
-             * Construction logic executed during Carousel instantiation. Lifecycle.
-             *
-             * @method initializer
-             * @protected
-             */
-            initializer: function() {
-                var instance = this;
+            instance._uiSetActiveIndex(instance.get('activeIndex'));
+        },
 
-                instance.animation = new A.Anim(
-                    {
-                        duration: instance.get('animationTime'),
-                        to: {
-                            opacity: 1
-                        }
-                    }
-                );
-            },
+        /**
+         * Set the <code>activeIndex</code> attribute which
+         * activates a certain item on Carousel based on its index.
+         *
+         * @method item
+         * @param val
+         */
+        item: function(val) {
+            var instance = this;
 
-            /**
-             * Render the Carousel component instance. Lifecycle.
-             *
-             * @method renderUI
-             * @protected
-             */
-            renderUI: function() {
-                var instance = this;
+            instance.set('activeIndex', val);
+        },
 
-                instance._updateNodeSelection();
-                instance.nodeMenu = instance.get('nodeMenu');
+        /**
+         * Go to the next index.
+         *
+         * @method next
+         */
+        next: function() {
+            var instance = this;
 
-                instance._updateMenuNodes();
-            },
+            instance._updateIndexNext();
+        },
 
-            /**
-             * Bind the events on the Carousel UI. Lifecycle.
-             *
-             * @method bindUI
-             * @protected
-             */
-            bindUI: function() {
-                var instance = this;
+        /**
+         * Set the <code>playing</code> attribute
+         * to false which pauses the animation.
+         *
+         * @method pause
+         */
+        pause: function() {
+            var instance = this;
 
-                instance.after(
-                    {
-                        activeIndexChange: instance._afterActiveIndexChange,
-                        animationTimeChange: instance._afterAnimationTimeChange,
-                        itemSelectorChange: instance._afterItemSelectorChange,
-                        intervalTimeChange: instance._afterIntervalTimeChange,
-                        nodeMenuItemSelector: instance._afterNodeMenuItemSelectorChange,
-                        playingChange: instance._afterPlayingChange
-                    }
-                );
+            instance.set('playing', false);
+        },
 
-                instance._bindMenu();
+        /**
+         * Set the <code>playing</code> attribute
+         * to true which starts the animation.
+         *
+         * @method play
+         */
+        play: function() {
+            var instance = this;
 
-                if (instance.get('playing') === true) {
-                    instance._afterPlayingChange(
-                        {
-                            prevVal: false,
-                            newVal: true
-                        }
-                    );
+            instance.set('playing', true);
+        },
+
+        /**
+         * Go to previous index.
+         *
+         * @method prev
+         */
+        prev: function() {
+            var instance = this;
+
+            instance._updateIndexPrev();
+        },
+
+        /**
+         * Fire after <code>activeIndex</code> attribute changes.
+         *
+         * @method _afterActiveIndexChange
+         * @param event
+         * @protected
+         */
+        _afterActiveIndexChange: function(event) {
+            var instance = this;
+
+            instance._uiSetActiveIndex(
+                event.newVal, {
+                    prevVal: event.prevVal,
+                    animate: instance.get('playing'),
+                    src: event.src
                 }
-            },
+            );
+        },
 
-            /**
-             * Sync the Carousel UI. Lifecycle.
-             *
-             * @method syncUI
-             * @protected
-             */
-            syncUI: function() {
-                var instance = this;
+        /**
+         * Fire after <code>animationTime</code> attribute changes.
+         *
+         * @method _afterAnimationTimeChange
+         * @param event
+         * @protected
+         */
+        _afterAnimationTimeChange: function(event) {
+            var instance = this;
 
-                instance._uiSetActiveIndex(instance.get('activeIndex'));
-            },
+            instance.animation.set('duration', event.newVal);
+        },
 
-            /**
-             * Set the <code>activeIndex</code> attribute which
-             * activates a certain item on Carousel based on its index.
-             *
-             * @method item
-             * @param val
-             */
-            item: function(val) {
-                var instance = this;
+        /**
+         * Fire after <code>itemSelector</code> attribute change.
+         *
+         * @method _afterItemSelectorChange
+         * @param event
+         * @protected
+         */
+        _afterItemSelectorChange: function(event) {
+            var instance = this;
 
-                instance.set('activeIndex', val);
-            },
+            instance._updateNodeSelection();
+        },
 
-            /**
-             * Go to the next index.
-             *
-             * @method next
-             */
-            next: function() {
-                var instance = this;
+        /**
+         * Fire after <code>nodeMenuItemSelector</code> attribute change.
+         *
+         * @method _afterNodeMenuItemSelectorChange
+         * @param event
+         * @protected
+         */
+        _afterNodeMenuItemSelectorChange: function(event) {
+            var instance = this;
 
-                instance._updateIndexNext();
-            },
+            instance.nodeMenuItemSelector = event.newVal;
 
-            /**
-             * Set the <code>playing</code> attribute
-             * to false which pauses the animation.
-             *
-             * @method pause
-             */
-            pause: function() {
-                var instance = this;
+            instance._updateMenuNodes();
+        },
 
-                instance.set('playing', false);
-            },
+        /**
+         * Fire after <code>intervalTime</code> attribute changes.
+         *
+         * @method _afterIntervalTimeChange
+         * @param event
+         * @protected
+         */
+        _afterIntervalTimeChange: function(event) {
+            var instance = this;
 
-            /**
-             * Set the <code>playing</code> attribute
-             * to true which starts the animation.
-             *
-             * @method play
-             */
-            play: function() {
-                var instance = this;
+            instance._clearIntervalRotationTask();
+            instance._createIntervalRotationTask();
+        },
 
-                instance.set('playing', true);
-            },
+        /**
+         * Fire after <code>playing</code> attribute changes.
+         *
+         * @method _afterPlayingChange
+         * @param event
+         * @protected
+         */
+        _afterPlayingChange: function(event) {
+            var instance = this;
 
-            /**
-             * Go to previous index.
-             *
-             * @method prev
-             */
-            prev: function() {
-                var instance = this;
+            var menuPlayItem = instance.nodeMenu.one(SELECTOR_MENU_PLAY_OR_PAUSE);
+            var playing = event.newVal;
 
-                instance._updateIndexPrev();
-            },
+            var fromClass = CSS_MENU_PAUSE;
+            var toClass = CSS_MENU_PLAY;
 
-            /**
-             * Fire after <code>activeIndex</code> attribute changes.
-             *
-             * @method _afterActiveIndexChange
-             * @param event
-             * @protected
-             */
-            _afterActiveIndexChange: function(event) {
-                var instance = this;
+            var rotationTaskMethod = '_clearIntervalRotationTask';
 
-                instance._uiSetActiveIndex(
-                    event.newVal,
-                    {
-                        prevVal: event.prevVal,
-                        animate: instance.get('playing'),
-                        src: event.src
-                    }
+            if (playing) {
+                fromClass = CSS_MENU_PLAY;
+                toClass = CSS_MENU_PAUSE;
+
+                rotationTaskMethod = '_createIntervalRotationTask';
+            }
+
+            instance[rotationTaskMethod]();
+
+            if (menuPlayItem) {
+                menuPlayItem.replaceClass(fromClass, toClass);
+            }
+        },
+
+        /**
+         * Attach delegate to the carousel menu.
+         *
+         * @method _bindMenu
+         * @protected
+         */
+        _bindMenu: function() {
+            var instance = this;
+
+            var menu = instance.nodeMenu;
+
+            var nodeMenuItemSelector = instance.get('nodeMenuItemSelector');
+
+            menu.delegate('click', instance._onClickDelegate, nodeMenuItemSelector, instance);
+
+            instance.nodeMenuItemSelector = nodeMenuItemSelector;
+        },
+
+        /**
+         * Clear the rotation task interval.
+         *
+         * @method _clearIntervalRotationTask
+         * @protected
+         */
+        _clearIntervalRotationTask: function() {
+            var instance = this;
+
+            clearInterval(instance._intervalRotationTask);
+        },
+
+        /**
+         * Create an random number to be current index.
+         *
+         * @method _createIndexRandom
+         * @protected
+         */
+        _createIndexRandom: function() {
+            var instance = this;
+
+            return Math.ceil(Math.random() * instance.nodeSelection.size()) - 1;
+        },
+
+        /**
+         * Create an timer for the rotation task.
+         *
+         * @method _createIntervalRotationTask
+         * @protected
+         */
+        _createIntervalRotationTask: function() {
+            var instance = this;
+
+            instance._clearIntervalRotationTask();
+
+            instance._intervalRotationTask = setInterval(
+                function() {
+                    instance._updateIndexNext({
+                        animate: true
+                    });
+                },
+                instance.get('intervalTime') * 1000
+            );
+        },
+
+        /**
+         * Fire when animation ends.
+         *
+         * @method _onAnimationEnd
+         * @param event
+         * @param newImage
+         * @param oldImage
+         * @param newMenuItem
+         * @param oldMenuItem
+         * @protected
+         */
+        _onAnimationEnd: function(event, newImage, oldImage, newMenuItem, oldMenuItem) {
+            var instance = this;
+
+            if (oldImage) {
+                oldImage.removeClass(CSS_ITEM_TRANSITION);
+            }
+
+            newImage.setStyle('opacity', '1');
+        },
+
+        /**
+         * Fire when animation starts.
+         *
+         * @method _onAnimationStart
+         * @param event
+         * @param newImage
+         * @param oldImage
+         * @param newMenuItem
+         * @param oldMenuItem
+         * @protected
+         */
+        _onAnimationStart: function(event, newImage, oldImage, newMenuItem, oldMenuItem) {
+            var instance = this;
+
+            newImage.addClass(CSS_ITEM_ACTIVE);
+
+            if (newMenuItem) {
+                newMenuItem.addClass(CSS_MENU_ACTIVE);
+            }
+
+            if (oldImage) {
+                oldImage.replaceClass(CSS_ITEM_ACTIVE, CSS_ITEM_TRANSITION);
+            }
+
+            if (oldMenuItem) {
+                oldMenuItem.removeClass(CSS_MENU_ACTIVE);
+            }
+        },
+
+        /**
+         * Fire when a click is fired on menu.
+         *
+         * @method _onClickDelegate
+         * @param event
+         * @protected
+         */
+        _onClickDelegate: function(event) {
+            var instance = this;
+
+            event.preventDefault();
+
+            var currentTarget = event.currentTarget;
+
+            var handler;
+
+            if (currentTarget.hasClass(CSS_MENU_INDEX)) {
+                handler = instance._onMenuItemClick;
+            }
+            else if (currentTarget.hasClass(CSS_MENU_PREV)) {
+                handler = instance._updateIndexPrev;
+            }
+            else if (currentTarget.hasClass(CSS_MENU_NEXT)) {
+                handler = instance._updateIndexNext;
+            }
+            else if (currentTarget.test(SELECTOR_MENU_PLAY_OR_PAUSE)) {
+                handler = instance._onMenuPlayClick;
+            }
+
+            if (handler) {
+                handler.apply(instance, arguments);
+            }
+        },
+
+        /**
+         * Execute when delegates handle menuItem click.
+         *
+         * @method _onMenuItemClick
+         * @param event
+         * @protected
+         */
+        _onMenuItemClick: function(event) {
+            var instance = this;
+
+            event.preventDefault();
+
+            var newIndex = instance.menuNodes.indexOf(event.currentTarget);
+
+            instance.set('activeIndex', newIndex, MAP_EVENT_INFO);
+        },
+
+        /**
+         * Execute when delegates handle play click.
+         *
+         * @method _onMenuPlayClick
+         * @param event
+         * @protected
+         */
+        _onMenuPlayClick: function(event) {
+            var instance = this;
+
+            this.set('playing', !this.get('playing'));
+        },
+
+        /**
+         * Render the menu in DOM.
+         *
+         * @method _renderMenu
+         * @protected
+         */
+        _renderMenu: function() {
+            var instance = this,
+                activeIndex = instance.get('activeIndex'),
+                items = [],
+                i,
+                len = instance.nodeSelection.size();
+
+            for (i = 0; i < len; i++) {
+                items.push(
+                    Lang.sub(TPL_ITEM, {
+                        cssClasses: activeIndex === i ? CSS_MENU_ITEM_ACTIVE : CSS_MENU_ITEM_DEFAULT,
+                        index: i
+                    })
                 );
-            },
+            }
 
-            /**
-             * Fire after <code>animationTime</code> attribute changes.
-             *
-             * @method _afterAnimationTimeChange
-             * @param event
-             * @protected
-             */
-            _afterAnimationTimeChange: function(event) {
-                var instance = this;
+            var menu = A.Node.create(Lang.sub(TPL_MENU, {
+                items: items.join(STR_BLANK)
+            }));
 
-                instance.animation.set('duration', event.newVal);
-            },
+            instance.get('contentBox').appendChild(menu);
 
-            /**
-             * Fire after <code>itemSelector</code> attribute change.
-             *
-             * @method _afterItemSelectorChange
-             * @param event
-             * @protected
-             */
-            _afterItemSelectorChange: function(event) {
-                var instance = this;
+            return menu;
+        },
 
-                instance._updateNodeSelection();
-            },
+        /**
+         * Set the <code>activeIndex</code> attribute.
+         *
+         * @method _setActiveIndex
+         * @param val
+         * @protected
+         */
+        _setActiveIndex: function(val) {
+            var instance = this;
 
-            /**
-             * Fire after <code>nodeMenuItemSelector</code> attribute change.
-             *
-             * @method _afterNodeMenuItemSelectorChange
-             * @param event
-             * @protected
-             */
-            _afterNodeMenuItemSelectorChange: function(event) {
-                var instance = this;
+            if (val == 'rand') {
+                val = instance._createIndexRandom();
+            }
+            else {
+                val = Math.max(Math.min(val, instance.nodeSelection.size()), -1);
+            }
 
-                instance.nodeMenuItemSelector = event.newVal;
+            return val;
+        },
 
-                instance._updateMenuNodes();
-            },
+        /**
+         * Set the <code>nodeMenu</code> attribute.
+         *
+         * @method _setNodeMenu
+         * @param val
+         * @protected
+         */
+        _setNodeMenu: function(val) {
+            var instance = this;
 
-            /**
-             * Fire after <code>intervalTime</code> attribute changes.
-             *
-             * @method _afterIntervalTimeChange
-             * @param event
-             * @protected
-             */
-            _afterIntervalTimeChange: function(event) {
-                var instance = this;
+            return A.one(val) || instance._renderMenu();
+        },
 
-                instance._clearIntervalRotationTask();
-                instance._createIntervalRotationTask();
-            },
+        /**
+         * Set the <code>activeIndex</code> on the UI.
+         *
+         * @method _uiSetActiveIndex
+         * @param newVal
+         * @param objOptions
+         * @protected
+         */
+        _uiSetActiveIndex: function(newVal, objOptions) {
+            var instance = this;
 
-            /**
-             * Fire after <code>playing</code> attribute changes.
-             *
-             * @method _afterPlayingChange
-             * @param event
-             * @protected
-             */
-            _afterPlayingChange: function(event) {
-                var instance = this;
+            var oldImage = null;
+            var oldMenuItem = null;
+            var onStart = null;
+            var onEnd = null;
 
-                var menuPlayItem = instance.nodeMenu.one(SELECTOR_MENU_PLAY_OR_PAUSE);
-                var playing = event.newVal;
+            var newImage = instance.nodeSelection.item(newVal);
 
-                var fromClass = CSS_MENU_PAUSE;
-                var toClass = CSS_MENU_PLAY;
+            var menuNodes = instance.menuNodes;
 
-                var rotationTaskMethod = '_clearIntervalRotationTask';
+            var newMenuItem = menuNodes.item(newVal);
 
-                if (playing) {
-                    fromClass = CSS_MENU_PLAY;
-                    toClass = CSS_MENU_PAUSE;
+            instance.animation.set('node', newImage);
 
-                    rotationTaskMethod = '_createIntervalRotationTask';
-                }
+            if (objOptions && !Lang.isUndefined(objOptions.prevVal)) {
+                var prevVal = objOptions.prevVal;
 
-                instance[rotationTaskMethod]();
+                newImage.setStyle('opacity', '0');
 
-                if (menuPlayItem) {
-                    menuPlayItem.replaceClass(fromClass, toClass);
-                }
-            },
+                oldMenuItem = menuNodes.item(prevVal);
+                oldImage = instance.nodeSelection.item(prevVal);
 
-            /**
-             * Attach delegate to the carousel menu.
-             *
-             * @method _bindMenu
-             * @protected
-             */
-            _bindMenu: function() {
-                var instance = this;
+                oldImage.replaceClass(CSS_ITEM_ACTIVE, CSS_ITEM_TRANSITION);
 
-                var menu = instance.nodeMenu;
-
-                var nodeMenuItemSelector = instance.get('nodeMenuItemSelector');
-
-                menu.delegate('click', instance._onClickDelegate, nodeMenuItemSelector, instance);
-
-                instance.nodeMenuItemSelector = nodeMenuItemSelector;
-            },
-
-            /**
-             * Clear the rotation task interval.
-             *
-             * @method _clearIntervalRotationTask
-             * @protected
-             */
-            _clearIntervalRotationTask: function() {
-                var instance = this;
-
-                clearInterval(instance._intervalRotationTask);
-            },
-
-            /**
-             * Create an random number to be current index.
-             *
-             * @method _createIndexRandom
-             * @protected
-             */
-            _createIndexRandom: function() {
-                var instance = this;
-
-                return Math.ceil(Math.random() * instance.nodeSelection.size()) - 1;
-            },
-
-            /**
-             * Create an timer for the rotation task.
-             *
-             * @method _createIntervalRotationTask
-             * @protected
-             */
-            _createIntervalRotationTask: function() {
-                var instance = this;
-
-                instance._clearIntervalRotationTask();
-
-                instance._intervalRotationTask = setInterval(
-                    function() {
-                        instance._updateIndexNext(
-                            {
-                                animate: true
-                            }
-                        );
-                    },
-                    instance.get('intervalTime') * 1000
-                );
-            },
-
-            /**
-             * Fire when animation ends.
-             *
-             * @method _onAnimationEnd
-             * @param event
-             * @param newImage
-             * @param oldImage
-             * @param newMenuItem
-             * @param oldMenuItem
-             * @protected
-             */
-            _onAnimationEnd: function(event, newImage, oldImage, newMenuItem, oldMenuItem) {
-                var instance = this;
-
-                if (oldImage) {
-                    oldImage.removeClass(CSS_ITEM_TRANSITION);
-                }
-
-                newImage.setStyle('opacity', '1');
-            },
-
-            /**
-             * Fire when animation starts.
-             *
-             * @method _onAnimationStart
-             * @param event
-             * @param newImage
-             * @param oldImage
-             * @param newMenuItem
-             * @param oldMenuItem
-             * @protected
-             */
-            _onAnimationStart: function(event, newImage, oldImage, newMenuItem, oldMenuItem) {
-                var instance = this;
-
+                instance.animation.stop();
+            }
+            else {
                 newImage.addClass(CSS_ITEM_ACTIVE);
 
-                if (newMenuItem) {
-                    newMenuItem.addClass(CSS_MENU_ACTIVE);
+                newImage.setStyle('opacity', '1');
+            }
+
+            onStart = instance.animation.on(
+                'start',
+                function(event) {
+                    instance._onAnimationStart(event, newImage, oldImage, newMenuItem, oldMenuItem);
+
+                    onStart.detach();
                 }
+            );
 
-                if (oldImage) {
-                    oldImage.replaceClass(CSS_ITEM_ACTIVE, CSS_ITEM_TRANSITION);
+            onEnd = instance.animation.on(
+                'end',
+                function(event) {
+                    instance._onAnimationEnd(event, newImage, oldImage, newMenuItem, oldMenuItem);
+
+                    onEnd.detach();
                 }
+            );
 
-                if (oldMenuItem) {
-                    oldMenuItem.removeClass(CSS_MENU_ACTIVE);
-                }
-            },
-
-            /**
-             * Fire when a click is fired on menu.
-             *
-             * @method _onClickDelegate
-             * @param event
-             * @protected
-             */
-            _onClickDelegate: function(event) {
-                var instance = this;
-
-                event.preventDefault();
-
-                var currentTarget = event.currentTarget;
-
-                var handler;
-
-                if (currentTarget.hasClass(CSS_MENU_INDEX)) {
-                    handler = instance._onMenuItemClick;
-                }
-                else if (currentTarget.hasClass(CSS_MENU_PREV)) {
-                    handler = instance._updateIndexPrev;
-                }
-                else if (currentTarget.hasClass(CSS_MENU_NEXT)) {
-                    handler = instance._updateIndexNext;
-                }
-                else if (currentTarget.test(SELECTOR_MENU_PLAY_OR_PAUSE)) {
-                    handler = instance._onMenuPlayClick;
-                }
-
-                if (handler) {
-                    handler.apply(instance, arguments);
-                }
-            },
-
-            /**
-             * Execute when delegates handle menuItem click.
-             *
-             * @method _onMenuItemClick
-             * @param event
-             * @protected
-             */
-            _onMenuItemClick: function(event) {
-                var instance = this;
-
-                event.preventDefault();
-
-                var newIndex = instance.menuNodes.indexOf(event.currentTarget);
-
-                instance.set('activeIndex', newIndex, MAP_EVENT_INFO);
-            },
-
-            /**
-             * Execute when delegates handle play click.
-             *
-             * @method _onMenuPlayClick
-             * @param event
-             * @protected
-             */
-            _onMenuPlayClick: function(event) {
-                var instance = this;
-
-                this.set('playing', !this.get('playing'));
-            },
-
-            /**
-             * Render the menu in DOM.
-             *
-             * @method _renderMenu
-             * @protected
-             */
-            _renderMenu: function() {
-                var instance = this,
-                    activeIndex = instance.get('activeIndex'),
-                    items = [],
-                    i,
-                    len = instance.nodeSelection.size();
-
-                for (i = 0; i < len; i++) {
-                    items.push(
-                        Lang.sub(TPL_ITEM, {
-                            cssClasses: activeIndex === i ? CSS_MENU_ITEM_ACTIVE : CSS_MENU_ITEM_DEFAULT,
-                            index: i
-                        })
-                    );
-                }
-
-                var menu = A.Node.create(Lang.sub(TPL_MENU, { items: items.join(STR_BLANK) }));
-
-                instance.get('contentBox').appendChild(menu);
-
-                return menu;
-            },
-
-            /**
-             * Set the <code>activeIndex</code> attribute.
-             *
-             * @method _setActiveIndex
-             * @param val
-             * @protected
-             */
-            _setActiveIndex: function(val) {
-                var instance = this;
-
-                if (val == 'rand') {
-                    val = instance._createIndexRandom();
+            if (objOptions) {
+                if (objOptions.animate) {
+                    instance.animation.run();
                 }
                 else {
-                    val = Math.max(Math.min(val, instance.nodeSelection.size()), -1);
+                    instance.animation.fire('start');
+                    instance.animation.fire('end');
                 }
 
-                return val;
-            },
-
-            /**
-             * Set the <code>nodeMenu</code> attribute.
-             *
-             * @method _setNodeMenu
-             * @param val
-             * @protected
-             */
-            _setNodeMenu: function(val) {
-                var instance = this;
-
-                return A.one(val) || instance._renderMenu();
-            },
-
-            /**
-             * Set the <code>activeIndex</code> on the UI.
-             *
-             * @method _uiSetActiveIndex
-             * @param newVal
-             * @param objOptions
-             * @protected
-             */
-            _uiSetActiveIndex: function(newVal, objOptions) {
-                var instance = this;
-
-                var oldImage = null;
-                var oldMenuItem = null;
-                var onStart = null;
-                var onEnd = null;
-
-                var newImage = instance.nodeSelection.item(newVal);
-
-                var menuNodes = instance.menuNodes;
-
-                var newMenuItem = menuNodes.item(newVal);
-
-                instance.animation.set('node', newImage);
-
-                if (objOptions && !Lang.isUndefined(objOptions.prevVal)) {
-                    var prevVal = objOptions.prevVal;
-
-                    newImage.setStyle('opacity', '0');
-
-                    oldMenuItem = menuNodes.item(prevVal);
-                    oldImage = instance.nodeSelection.item(prevVal);
-
-                    oldImage.replaceClass(CSS_ITEM_ACTIVE, CSS_ITEM_TRANSITION);
-
-                    instance.animation.stop();
+                if (objOptions.src == UI_SRC && objOptions.animate) {
+                    instance._createIntervalRotationTask();
                 }
-                else {
-                    newImage.addClass(CSS_ITEM_ACTIVE);
+            }
+        },
 
-                    newImage.setStyle('opacity', '1');
-                }
+        /**
+         * Set the <code>activeIndex</code> to the next index.
+         *
+         * @method _updateIndexNext
+         * @param options
+         * @protected
+         */
+        _updateIndexNext: function(options) {
+            var instance = this;
 
-                onStart = instance.animation.on(
-                    'start',
-                    function(event) {
-                        instance._onAnimationStart(event, newImage, oldImage, newMenuItem, oldMenuItem);
+            var currentIndex = instance.get('activeIndex');
+            var nodeSelectionSize = instance.nodeSelection.size();
 
-                        onStart.detach();
-                    }
-                );
+            var newIndex = currentIndex + 1;
 
-                onEnd = instance.animation.on(
-                    'end',
-                    function(event) {
-                        instance._onAnimationEnd(event, newImage, oldImage, newMenuItem, oldMenuItem);
+            if (newIndex > (nodeSelectionSize - 1)) {
+                newIndex = 0;
+            }
 
-                        onEnd.detach();
-                    }
-                );
+            if (options) {
+                options.src = UI_SRC;
+            }
 
-                if (objOptions) {
-                    if (objOptions.animate) {
-                        instance.animation.run();
-                    }
-                    else {
-                        instance.animation.fire('start');
-                        instance.animation.fire('end');
-                    }
+            instance.set('activeIndex', newIndex, options);
+        },
 
-                    if (objOptions.src == UI_SRC && objOptions.animate) {
-                        instance._createIntervalRotationTask();
-                    }
-                }
-            },
+        /**
+         * Set the <code>activeIndex</code> to the previous index.
+         *
+         * @method _updateIndexPrev
+         * @param options
+         * @protected
+         */
+        _updateIndexPrev: function(options) {
+            var instance = this;
 
-            /**
-             * Set the <code>activeIndex</code> to the next index.
-             *
-             * @method _updateIndexNext
-             * @param options
-             * @protected
-             */
-            _updateIndexNext: function(options) {
-                var instance = this;
+            var currentIndex = instance.get('activeIndex');
 
-                var currentIndex = instance.get('activeIndex');
-                var nodeSelectionSize = instance.nodeSelection.size();
+            var newIndex = currentIndex - 1;
 
-                var newIndex = currentIndex + 1;
+            if (newIndex < 0) {
+                newIndex = instance.nodeSelection.size() - 1;
+            }
 
-                if (newIndex > (nodeSelectionSize - 1)) {
-                    newIndex = 0;
-                }
+            if (options) {
+                options.src = UI_SRC;
+            }
 
-                if (options) {
-                    options.src = UI_SRC;
-                }
+            instance.set('activeIndex', newIndex, options);
+        },
 
-                instance.set('activeIndex', newIndex, options);
-            },
+        /**
+         * Set the <code>menuNodes</code> attribute based on the selector menu index.
+         *
+         * @method _updateMenuNodes
+         * @param options
+         * @protected
+         */
+        _updateMenuNodes: function() {
+            var instance = this;
 
-            /**
-             * Set the <code>activeIndex</code> to the previous index.
-             *
-             * @method _updateIndexPrev
-             * @param options
-             * @protected
-             */
-            _updateIndexPrev: function(options) {
-                var instance = this;
+            instance.menuNodes = instance.nodeMenu.all(SELECTOR_MENU_INDEX);
+        },
 
-                var currentIndex = instance.get('activeIndex');
+        /**
+         * Update the <code>nodeSelection</code> by adding the CSS_ITEM class.
+         *
+         * @method _updateMenuNodes
+         * @param options
+         * @protected
+         */
+        _updateNodeSelection: function() {
+            var instance = this;
 
-                var newIndex = currentIndex - 1;
+            var itemSelector = instance.get('itemSelector');
 
-                if (newIndex < 0) {
-                    newIndex = instance.nodeSelection.size() - 1;
-                }
+            var nodeSelection = instance.get('contentBox').all(itemSelector);
 
-                if (options) {
-                    options.src = UI_SRC;
-                }
+            nodeSelection.addClass(CSS_ITEM);
 
-                instance.set('activeIndex', newIndex, options);
-            },
+            instance.nodeSelection = nodeSelection;
+        },
 
-            /**
-             * Set the <code>menuNodes</code> attribute based on the selector menu index.
-             *
-             * @method _updateMenuNodes
-             * @param options
-             * @protected
-             */
-            _updateMenuNodes: function() {
-                var instance = this;
-
-                instance.menuNodes = instance.nodeMenu.all(SELECTOR_MENU_INDEX);
-            },
-
-            /**
-             * Update the <code>nodeSelection</code> by adding the CSS_ITEM class.
-             *
-             * @method _updateMenuNodes
-             * @param options
-             * @protected
-             */
-            _updateNodeSelection: function() {
-                var instance = this;
-
-                var itemSelector = instance.get('itemSelector');
-
-                var nodeSelection = instance.get('contentBox').all(itemSelector);
-
-                nodeSelection.addClass(CSS_ITEM);
-
-                instance.nodeSelection = nodeSelection;
-            },
-
-            _intervalRotationTask: null
-        }
+        _intervalRotationTask: null
     }
-);
+});
 
 A.Carousel = Carousel;

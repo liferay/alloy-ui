@@ -10,13 +10,14 @@ var Lang = A.Lang,
     TRIGGER_SHOW_EVENT = 'triggerShowEvent';
 
 /**
-* Widget extension, which can be used to add trigger support to the
-* base Widget class, through the <a href="Base.html#method_build">Base.build</a>
-* method.
-*
-* @class A.WidgetTrigger
-* @param {Object} The user configuration object
-*/
+ * Widget extension, which can be used to add trigger support to the
+ * base Widget class, through the <a href="Base.html#method_build">Base.build</a>
+ * method.
+ *
+ * @class A.WidgetTrigger
+ * @param {Object} The user configuration object
+ */
+
 function WidgetTrigger() {}
 
 /**

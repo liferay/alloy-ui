@@ -177,7 +177,7 @@ A.Tab = A.Component.create({
          * @protected
          * @return {Boolean}
          */
-         _valueDisabled: function() {
+        _valueDisabled: function() {
             var instance = this;
 
             return instance.get(BOUNDING_BOX).hasClass(DISABLED);
@@ -383,13 +383,13 @@ A.TabView = A.Component.create({
          * @method _renderChildren
          * @protected
          */
-        _renderChildren: function () { // TODO: file issue on YUI.
+        _renderChildren: function() { // TODO: file issue on YUI.
             var instance = this,
                 renderTo = instance._childrenContainer || instance.get(CONTENT_BOX);
 
             instance._childrenContainer = renderTo;
 
-            instance.each(function (child) {
+            instance.each(function(child) {
                 if (child.get(BOUNDING_BOX).inDoc()) {
                     renderTo = null;
                 }

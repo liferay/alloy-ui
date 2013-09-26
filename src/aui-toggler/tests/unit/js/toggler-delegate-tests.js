@@ -262,4 +262,6 @@ YUI.add('module-tests', function(Y) {
 
     Y.Test.Runner.add(suite);
 
-},'', { requires: [ 'aui-toggler-delegate', 'node-event-simulate', 'test' ] });
+}, '', {
+    requires: ['aui-toggler-delegate', 'node-event-simulate', 'test']
+});

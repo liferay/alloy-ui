@@ -1,41 +1,28 @@
 .table-editable {
-	cursor: pointer;
+    cursor: pointer;
 }
-
 .basecelleditor .buttonitem-content {
-	margin: 2px 0;
-	padding: 3px 3px 1px 1px;
+    margin: 2px 0;
+    padding: 3px 3px 1px 1px;
 }
-
 .basecelleditor .buttonitem-label-only {
-	padding-bottom: 2px;
+    padding-bottom: 2px;
 }
-
 .webkit .basecelleditor .buttonitem-label-only {
-	padding-bottom: 3px;
+    padding-bottom: 3px;
 }
-
 .celleditor-edit-dd-handle {
-  cursor: move;
-  display: inline-block;
-  margin-top: -3px;
-  vertical-align: middle;
+    cursor: move;
+    display: inline-block;
+    margin-top: -3px;
+    vertical-align: middle;
 }
-
-.basecelleditor-hidden,
-.datecelleditor-hidden,
-.dropdowncelleditor-hidden,
-.textcelleditor-hidden,
-.textareacelleditor-hidden,
-.checkboxcelleditor-hidden,
-.radiocelleditor-hidden {
-  display: none !important;
+.basecelleditor-hidden, .datecelleditor-hidden, .dropdowncelleditor-hidden, .textcelleditor-hidden, .textareacelleditor-hidden, .checkboxcelleditor-hidden, .radiocelleditor-hidden {
+    display: none !important;
 }
-
 .basecelleditor form {
-  margin: 0;
+    margin: 0;
 }
-
 .celleditor-edit-label {
-  padding-bottom: 5px;
+    padding-bottom: 5px;
 }

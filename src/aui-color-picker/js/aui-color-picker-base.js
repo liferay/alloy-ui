@@ -59,6 +59,7 @@ var AArray = A.Array,
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
+
 function ColorPickerBase(config) {}
 
 ColorPickerBase.prototype = {
@@ -68,9 +69,7 @@ ColorPickerBase.prototype = {
 
     TPL_HSV_TRIGGER: '<div class="span6 ' + CSS_HSV_TRIGGER + '">{more}</div>',
 
-    TPL_NO_COLOR:   '<div class="span6 ' + CSS_NO_COLOR + '">' +
-                        '<a href class="btn-link"><i class="' + CSS_NO_COLOR_ICON + ' icon-remove-circle"></i>{none}</a>' +
-                    '</div>',
+    TPL_NO_COLOR: '<div class="span6 ' + CSS_NO_COLOR + '">' + '<a href class="btn-link"><i class="' + CSS_NO_COLOR_ICON + ' icon-remove-circle"></i>{none}</a>' + '</div>',
 
     _currentTrigger: null,
     _eventHandles: null,
@@ -251,8 +250,7 @@ ColorPickerBase.prototype = {
 
         if (color) {
             A.mix(
-                attributeValue,
-                {
+                attributeValue, {
                     selected: color
                 }
             );
@@ -318,42 +316,39 @@ ColorPickerBase.prototype = {
 
             zIndex += 2;
 
-            instance._hsvPaletteModal = new A.HSVAPaletteModal(
-                {
-                    centered: true,
-                    headerContent: Lang.sub(
-                        instance.TPL_HEADER_CONTENT,
+            instance._hsvPaletteModal = new A.HSVAPaletteModal({
+                centered: true,
+                headerContent: Lang.sub(
+                    instance.TPL_HEADER_CONTENT, {
+                        header: strings.header
+                    }
+                ),
+                hsv: instance.get(HSV_PALETTE),
+                modal: true,
+                resizable: false,
+                toolbars: {
+                    footer: [
                         {
-                            header: strings.header
-                        }
-                    ),
-                    hsv: instance.get(HSV_PALETTE),
-                    modal: true,
-                    resizable: false,
-                    toolbars: {
-                        footer: [
-                            {
-                                label: strings.cancel,
-                                on: {
-                                    click: function() {
-                                        instance._hsvPaletteModal.hide();
-                                    }
+                            label: strings.cancel,
+                            on: {
+                                click: function() {
+                                    instance._hsvPaletteModal.hide();
+                                }
+                            }
+                            },
+                        {
+                            label: strings.ok,
+                            on: {
+                                click: function() {
+                                    instance._onHSVPaletteOK();
                                 }
                             },
-                            {
-                                label: strings.ok,
-                                on: {
-                                    click: function() {
-                                        instance._onHSVPaletteOK();
-                                    }
-                                },
-                                primary: true
+                            primary: true
                             }
                         ]
-                    },
-                    zIndex: zIndex
-                }
-            ).render();
+                },
+                zIndex: zIndex
+            }).render();
         }
 
         return instance._hsvPaletteModal;
@@ -530,7 +525,7 @@ ColorPickerBase.prototype = {
             });
 
             if (event.newVal === _INVALID_COLOR_INDEX) {
-                instance.set(COLOR, _EMPTY,{
+                instance.set(COLOR, _EMPTY, {
                     trigger: instance._currentTrigger
                 });
             }
@@ -631,7 +626,8 @@ ColorPickerBase.prototype = {
             instance.reset();
 
             A.later(0, instance, function(event) {
-                instance._clickOutsideHandle = instance.get(BOUNDING_BOX).once(CLICKOUTSIDE, instance.hide, instance);
+                instance._clickOutsideHandle = instance.get(BOUNDING_BOX).once(CLICKOUTSIDE, instance.hide,
+                    instance);
             }, instance);
         }
     },
@@ -688,8 +684,7 @@ ColorPickerBase.prototype = {
 
         instance._hsvTrigger = instance._actionsContainer.appendChild(
             Lang.sub(
-                instance.TPL_HSV_TRIGGER,
-                {
+                instance.TPL_HSV_TRIGGER, {
                     more: strings.more
                 }
             )
@@ -707,8 +702,7 @@ ColorPickerBase.prototype = {
 
         instance._noColorNode = instance._actionsContainer.appendChild(
             Lang.sub(
-                instance.TPL_NO_COLOR,
-                {
+                instance.TPL_NO_COLOR, {
                     none: instance.get('strings').none
                 }
             )
@@ -824,7 +818,7 @@ ColorPickerBase.prototype = {
                 trigger.on(triggerEvent, instance._onTriggerInteraction, instance)
             );
         }
-     }
+    }
 };
 
 /**

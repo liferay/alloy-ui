@@ -28,6 +28,7 @@ var Lang = A.Lang,
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
+
 function DatePickerBase() {}
 
 /**
@@ -229,7 +230,9 @@ A.mix(DatePickerBase.prototype, {
     _afterCalendarSelectionChange: function(event) {
         var instance = this;
 
-        instance.fire(SELECTION_CHANGE, { newSelection: event.newSelection });
+        instance.fire(SELECTION_CHANGE, {
+            newSelection: event.newSelection
+        });
     },
 
     /**

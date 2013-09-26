@@ -13,9 +13,9 @@ var TASK = {
 };
 
 // -- Dependencies -------------------------------------------------------------
-var async   = require('async');
+var async = require('async');
 var command = require('command');
-var path    = require('path');
+var path = require('path');
 
 // -- Globals ------------------------------------------------------------------
 var ROOT = process.cwd();
@@ -27,10 +27,10 @@ module.exports = function(grunt) {
 
         async.series([
             function(mainCallback) {
-                exports._setGruntConfig(mainCallback);
+                    exports._setGruntConfig(mainCallback);
             },
             function(mainCallback) {
-                exports._runYuidoc(mainCallback);
+                    exports._runYuidoc(mainCallback);
             }],
             function(err) {
                 if (err) {
@@ -58,12 +58,12 @@ module.exports = function(grunt) {
 
             // String parameter
             if (valueIndex !== -1) {
-                key   = option.substring(0, valueIndex);
+                key = option.substring(0, valueIndex);
                 value = option.substring(valueIndex + 1);
             }
             // Boolean parameter
             else {
-                key   = option;
+                key = option;
                 value = grunt.option(key);
             }
 

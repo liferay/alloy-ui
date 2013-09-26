@@ -329,7 +329,8 @@ var Toggler = A.Component.create({
         getContentHeight: function() {
             var instance = this;
             var content = instance.get(CONTENT);
-            var expanded = instance.get(EXPANDED), height;
+            var expanded = instance.get(EXPANDED),
+                height;
 
             if (!expanded) {
                 instance._uiSetExpanded(true);
@@ -400,8 +401,7 @@ var Toggler = A.Component.create({
 
                 instance.set(ANIMATING, true);
 
-                instance.animate(
-                    {
+                instance.animate({
                         marginTop: (expand ? gutter : -(height + gutter)) + PIXEL
                     },
                     function() {

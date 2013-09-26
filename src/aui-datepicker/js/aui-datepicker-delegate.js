@@ -31,6 +31,7 @@ var Lang = A.Lang,
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
+
 function DatePickerDelegate() {}
 
 DatePickerDelegate.prototype = {
@@ -88,8 +89,9 @@ DatePickerDelegate.prototype = {
         ];
 
         instance.publish(
-            SELECTION_CHANGE,
-            { defaultFn: instance._defSelectionChangeFn });
+            SELECTION_CHANGE, {
+                defaultFn: instance._defSelectionChangeFn
+            });
     },
 
     /**
@@ -180,7 +182,9 @@ DatePickerDelegate.prototype = {
         var instance = this,
             mask = instance.get(MASK);
 
-        return A.Date.format(date, { format: mask });
+        return A.Date.format(date, {
+            format: mask
+        });
     },
 
     /**
@@ -276,7 +280,7 @@ DatePickerDelegate.prototype = {
                 values.push(instance._formatDate(date));
             });
 
-            activeInput.val( values.join(dateSeparator) );
+            activeInput.val(values.join(dateSeparator));
         };
     }
 };
@@ -295,8 +299,7 @@ DatePickerDelegate.ATTRS = {
      *
      * @attribute activeInput
      */
-    activeInput: {
-    },
+    activeInput: {},
 
     /**
      * TODO. Wanna help? Please send a Pull Request.

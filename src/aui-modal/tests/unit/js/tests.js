@@ -52,7 +52,8 @@ YUI.add('module-tests', function(Y) {
         'toggle resize functionality': function() {
             if (!Y.UA.touchEnabled) {
                 Y.Assert.isUndefined(modal.resize, Y.Lang.sub(ERROR_PLUGIN_OVERRIDEN, [RESIZE_NS]));
-                Y.Assert.isUndefined(modal.hasPlugin(RESIZE_NS), Y.Lang.sub(ERROR_PLUGIN_PLUGGED, [RESIZE_NS]));
+                Y.Assert.isUndefined(
+                    modal.hasPlugin(RESIZE_NS), Y.Lang.sub(ERROR_PLUGIN_PLUGGED, [RESIZE_NS]));
 
                 boundingBox.simulate(CLICK);
             }
@@ -65,7 +66,8 @@ YUI.add('module-tests', function(Y) {
             modal.set(RESIZABLE, true);
 
             if (!Y.UA.touchEnabled) {
-                Y.Assert.isUndefined(modal.hasPlugin(RESIZE_NS), Y.Lang.sub(ERROR_PLUGIN_PLUGGED, [RESIZE_NS]));
+                Y.Assert.isUndefined(
+                    modal.hasPlugin(RESIZE_NS), Y.Lang.sub(ERROR_PLUGIN_PLUGGED, [RESIZE_NS]));
 
                 boundingBox.simulate(CLICK);
             }
@@ -101,4 +103,6 @@ YUI.add('module-tests', function(Y) {
 
     Y.Test.Runner.add(suite);
 
-},'', { requires: [ 'aui-modal', 'node-event-simulate', 'test' ] });
+}, '', {
+    requires: ['aui-modal', 'node-event-simulate', 'test']
+});

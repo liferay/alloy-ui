@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
 /*
-* Copyright (c) 2012, Liferay Inc. All rights reserved.
-* Code licensed under the BSD License:
-* https://github.com/liferay/alloy-ui/blob/master/LICENSE.txt
-*
-* @author Eduardo Lundgren <eduardo.lundgren@liferay.com>
-*/
+ * Copyright (c) 2012, Liferay Inc. All rights reserved.
+ * Code licensed under the BSD License:
+ * https://github.com/liferay/alloy-ui/blob/master/LICENSE.txt
+ *
+ * @author Eduardo Lundgren <eduardo.lundgren@liferay.com>
+ */
 
 // -- Requires -----------------------------------------------------------------
 var file = require('./file'),
@@ -25,9 +25,9 @@ for (var i = 0; i < files.length; i++) {
     var filepath = path.join(auiDir, files[i]);
 
     // Add alloy core files
-    file.append(filepath,   'YUI.Env.core.push.apply(YUI.Env.core, ' +
-                                JSON.stringify(alloyJSON.alloycore) +
-                            ');');
+    file.append(
+        filepath, 'YUI.Env.core.push.apply(YUI.Env.core, ' +
+        JSON.stringify(alloyJSON.alloycore) + ');');
 
     // Replace _BASE_RE
     file.replaceRegex(filepath, /simpleyui\|yui/g, alloyJSON.alloyregex);

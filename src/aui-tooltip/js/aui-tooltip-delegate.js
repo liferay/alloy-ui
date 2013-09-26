@@ -131,8 +131,7 @@ A.TooltipDelegate = A.Base.create(_TOOLTIP_DELEGATE, A.Base, [], {
 
         instance.getTooltip().render().set(TRIGGER, trigger).show();
     }
-},
-{
+}, {
     /**
      * Static property used to define the default attribute
      * configuration for the Toggler Delegate.
@@ -226,7 +225,6 @@ A.TooltipDelegate = A.Base.create(_TOOLTIP_DELEGATE, A.Base, [], {
          * @attribute zIndex
          * @type {Number}
          */
-        zIndex: {
-        }
+        zIndex: {}
     }
 });

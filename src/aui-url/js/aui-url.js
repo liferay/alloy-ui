@@ -40,7 +40,8 @@ function Url(url) {
 
 // Loose implementation of http://tools.ietf.org/html/rfc3986
 // See http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js
-Url.URI_REGEX_RFC3986 = /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/;
+Url.URI_REGEX_RFC3986 =
+    /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/;
 
 /**
  * A base class for Url.
@@ -77,8 +78,8 @@ A.mix(Url.prototype, {
         var instance = this;
 
         instance.setParameter(key, !instance.hasParameter(key) ?
-                                    values :
-                                    A.Array(instance.getParameter(key)).concat(values));
+            values :
+            A.Array(instance.getParameter(key)).concat(values));
     },
 
     /**
@@ -576,10 +577,10 @@ A.mix(Url.prototype, {
         instance._port = parts[URL_PORT];
         instance._relative = parts[URL_RELATIVE];
         instance._path = parts[URL_PATH];
-        instance._directory =  parts[URL_DIRECTORY];
-        instance._file =  parts[URL_FILE];
-        instance._query =  parts[URL_QUERY];
-        instance._anchor =  parts[URL_ANCHOR];
+        instance._directory = parts[URL_DIRECTORY];
+        instance._file = parts[URL_FILE];
+        instance._query = parts[URL_QUERY];
+        instance._anchor = parts[URL_ANCHOR];
     }
 }, true);
 

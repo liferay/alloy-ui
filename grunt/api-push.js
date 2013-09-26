@@ -13,10 +13,10 @@ var TASK = {
 };
 
 // -- Dependencies -------------------------------------------------------------
-var async   = require('async');
+var async = require('async');
 var command = require('command');
-var fs      = require('fs-extra');
-var path    = require('path');
+var fs = require('fs-extra');
+var path = require('path');
 
 // -- Task ---------------------------------------------------------------------
 module.exports = function(grunt) {
@@ -25,27 +25,27 @@ module.exports = function(grunt) {
 
         async.series([
             function(mainCallback) {
-                exports._setGruntConfig(mainCallback);
+                    exports._setGruntConfig(mainCallback);
             },
             function(mainCallback) {
-                grunt.log.ok('Move folder');
-                exports._moveFolder(mainCallback);
+                    grunt.log.ok('Move folder');
+                    exports._moveFolder(mainCallback);
             },
             function(mainCallback) {
-                grunt.log.ok('Go to branch');
-                exports._gitGoToBranch(mainCallback);
+                    grunt.log.ok('Go to branch');
+                    exports._gitGoToBranch(mainCallback);
             },
             function(mainCallback) {
-                grunt.log.ok('Add folder');
-                exports._gitAddFolder(mainCallback);
+                    grunt.log.ok('Add folder');
+                    exports._gitAddFolder(mainCallback);
             },
             function(mainCallback) {
-                grunt.log.ok('Commit changes');
-                exports._gitCommit(mainCallback);
+                    grunt.log.ok('Commit changes');
+                    exports._gitCommit(mainCallback);
             },
             function(mainCallback) {
-                grunt.log.ok('Push changes');
-                exports._gitPushToBranch(mainCallback);
+                    grunt.log.ok('Push changes');
+                    exports._gitPushToBranch(mainCallback);
             }],
             function(err) {
                 if (err) {
@@ -73,12 +73,12 @@ module.exports = function(grunt) {
 
             // String parameter
             if (valueIndex !== -1) {
-                key   = option.substring(0, valueIndex);
+                key = option.substring(0, valueIndex);
                 value = option.substring(valueIndex + 1);
             }
             // Boolean parameter
             else {
-                key   = option;
+                key = option;
                 value = grunt.option(key);
             }
 
@@ -89,7 +89,7 @@ module.exports = function(grunt) {
     };
 
     exports._moveFolder = function(mainCallback) {
-        var src  = grunt.config([TASK.name, 'src']);
+        var src = grunt.config([TASK.name, 'src']);
         var dist = grunt.config([TASK.name, 'dist']);
 
         fs.copy(src, dist, function(err) {
@@ -111,7 +111,7 @@ module.exports = function(grunt) {
 
     exports._gitGoToBranch = function(mainCallback) {
         var branch = grunt.config([TASK.name, 'branch']);
-        var repo   = grunt.config([TASK.name, 'repo']);
+        var repo = grunt.config([TASK.name, 'repo']);
 
         command.open(repo)
             .on('stdout', command.writeTo(process.stdout))
@@ -149,7 +149,7 @@ module.exports = function(grunt) {
 
     exports._gitPushToBranch = function(mainCallback) {
         var branch = grunt.config([TASK.name, 'branch']);
-        var repo   = grunt.config([TASK.name, 'repo']);
+        var repo = grunt.config([TASK.name, 'repo']);
         var remote = grunt.config([TASK.name, 'remote']);
 
         command.open(repo)

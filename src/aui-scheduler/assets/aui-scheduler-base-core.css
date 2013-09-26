@@ -1,181 +1,149 @@
 /* scheduler-base */
-.scheduler-base-content {
-  overflow: hidden;
+ .scheduler-base-content {
+    overflow: hidden;
 }
-
 .scheduler-base-hd {
-  position: relative;
-  padding: 5px 0;
+    position: relative;
+    padding: 5px 0;
 }
-
 .scheduler-base-controls .scheduler-base-current-date {
-  font-weight: bold;
+    font-weight: bold;
 }
-
 .scheduler-base-controls .scheduler-base-view-date {
-  margin-left: 10px;
+    margin-left: 10px;
 }
-
 .scheduler-base-controls .scheduler-base-today {
-  margin-right: 3px;
+    margin-right: 3px;
 }
-
 .scheduler-base-views {
-  position: absolute;
-  top: 5px;
-  right: 5px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
 }
-
 .scheduler-base-views .yui3-button {
-  margin: 0 6px 0 0;
+    margin: 0 6px 0 0;
 }
-
 .scheduler-base-views {
-  line-height: 27px;
-  text-align: right;
+    line-height: 27px;
+    text-align: right;
 }
-
 .yui3-button-selected {
-  background: #f8f8f8;
+    background: #f8f8f8;
 }
-
 .scheduler-base .yui3-widget-hd .yui3-button {
-  padding: 5px 10px 5px 10px;
+    padding: 5px 10px 5px 10px;
 }
-
 .yui3-skin-sam .yui3-button-primary, .yui3-skin-sam .yui3-button-selected {
-  -moz-box-shadow: none;
-  -moz-text-shadow: none;
-  -webkit-box-shadow: none;
-  -webkit-text-shadow: none;
-  box-shadow: none;
-  text-shadow: none;
+    -moz-box-shadow: none;
+    -moz-text-shadow: none;
+    -webkit-box-shadow: none;
+    -webkit-text-shadow: none;
+    box-shadow: none;
+    text-shadow: none;
 }
-
 /* scheduler-base-view */
-.scheduler-view {
-  border: 1px solid #ddd;
+ .scheduler-view {
+    border: 1px solid #ddd;
 }
-
 .scheduler-view-scrollable {
-  overflow: scroll;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  position: relative;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    position: relative;
 }
-
 .scheduler-view-noscroll {
-  overflow: hidden;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  position: relative;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: relative;
 }
-
 .scheduler-view-content {
-  position: relative;
+    position: relative;
 }
-
 .scheduler-view-colgrid {
-  background: #dddddd;
+    background: #dddddd;
 }
-
 .scheduler-view-colgrid td {
-  padding: 0 0 0 1px;
+    padding: 0 0 0 1px;
 }
-
 .scheduler-view-grid {
-  background: #fff;
-  position: relative;
+    background: #fff;
+    position: relative;
 }
-
 .scheduler-view-markers {
-  position: absolute;
-  width: 100%;
-  z-index: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 0;
 }
-
 .scheduler-view-markercell {
-  height: 52px;
+    height: 52px;
 }
-
 .scheduler-view-marker-division {
-  border-bottom: 1px dotted #ddd;
-  border-top: 1px solid #ddd;
-  height: 25px;
+    border-bottom: 1px dotted #ddd;
+    border-top: 1px solid #ddd;
+    height: 25px;
 }
-
 /* scheduler-base-event */
-.scheduler-event-hidden {
-  display: none;
+ .scheduler-event-hidden {
+    display: none;
 }
-
 .scheduler-event-content {
-  font-size: 16px;
-  font-weight: 600;
-  padding: 2px 4px;
-  text-align: left;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 2px 4px;
+    text-align: left;
 }
-
 .scheduler-event-content:hover {
-  cursor: pointer;
-  text-decoration: underline;
+    cursor: pointer;
+    text-decoration: underline;
 }
-
 .scheduler-event-short .scheduler-event-content {
-  display: inline;
-  white-space: nowrap;
+    display: inline;
+    white-space: nowrap;
 }
-
 .scheduler-event-title {
-  display: inline;
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 25px;
-  overflow: hidden;
-  padding: 2px 0 2px 4px;
-  text-align: left;
-  white-space: nowrap;
+    display: inline;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 25px;
+    overflow: hidden;
+    padding: 2px 0 2px 4px;
+    text-align: left;
+    white-space: nowrap;
 }
-
-.yui3-dd-proxy .scheduler-event,
-.scheduler-event-past {
-  filter: alpha(opacity=70);
-  opacity: .7;
+.yui3-dd-proxy .scheduler-event, .scheduler-event-past {
+    filter: alpha(opacity=70);
+    opacity: .7;
 }
-
 .scheduler-event.scheduler-event-proxy {
-  filter: alpha(opacity=70);
-  opacity: .7;
-  position: relative;
-  width: 99.88%;
+    filter: alpha(opacity=70);
+    opacity: .7;
+    position: relative;
+    width: 99.88%;
 }
-
 .scheduler-event {
-  color: rgba(0, 0, 0, .5);
-  height: 70px;
-  left: 0;
-  overflow: hidden;
-  position: absolute;
-  top: 0;
-  width: 95%;
-  z-index: 400;
+    color: rgba(0, 0, 0, .5);
+    height: 70px;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 95%;
+    z-index: 400;
 }
-
 .scheduler-today {
-  background: #f6f6f6;
+    background: #f6f6f6;
 }
-
 .scheduler-today-hd {
-  border: 3px solid #009be6;
-  border-top: 0;
-  border-right: 0;
-  border-left: 0;
-  color: #333333;
-  font-weight: bold;
+    border: 3px solid #009be6;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    color: #333333;
+    font-weight: bold;
 }
-
 .scheduler-event {
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
 }

@@ -10,8 +10,8 @@ add('load', '0', {
 // aui-event-input
 add('load', '1', {
     "name": "aui-event-input",
-    "test": function (A) {
-    var supportsDOMEvent  = A.supportsDOMEvent,
+    "test": function(A) {
+    var supportsDOMEvent = A.supportsDOMEvent,
         testFeature = A.Features.test,
         addFeature = A.Features.add;
 

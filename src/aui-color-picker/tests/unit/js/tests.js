@@ -47,15 +47,19 @@ YUI.add('module-tests', function(Y) {
         },
 
         _assertNotVisible: function() {
-            Y.Test.Assert.isNotNull(Y.one('.yui3-color-picker-popover-hidden'), 'The ColorPicker Popover should be not visible');
+            Y.Test.Assert.isNotNull(
+                Y.one('.yui3-color-picker-popover-hidden'), 'The ColorPicker Popover should be not visible'
+            );
         },
 
         _assertVisible: function() {
-            Y.Test.Assert.isNull(Y.one('.yui3-color-picker-popover-hidden'), 'The ColorPicker Popover should be visible');
+            Y.Test.Assert.isNull(
+                Y.one('.yui3-color-picker-popover-hidden'), 'The ColorPicker Popover should be visible');
         }
     }));
 
     Y.Test.Runner.add(suite);
 
-
-},'', { requires: [ 'test', 'aui-color-picker-popover', 'node-event-simulate' ] });
+}, '', {
+    requires: ['test', 'aui-color-picker-popover', 'node-event-simulate']
+});

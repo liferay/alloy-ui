@@ -1,202 +1,170 @@
 .scheduler-view-table-hidden {
-  display: none;
+    display: none;
 }
-
 .scheduler-view-table-lasso {
-  background: #000;
-  filter: alpha(opacity=4);
-  opacity: 0.04;
-  position: absolute;
+    background: #000;
+    filter: alpha(opacity=4);
+    opacity: 0.04;
+    position: absolute;
 }
-
 .scheduler-view-table-more {
-  display: inline-block;
-  margin-left: 3px;
-  text-decoration: none;
+    display: inline-block;
+    margin-left: 3px;
+    text-decoration: none;
 }
-
 .scheduler-view-table-events-overlay-node {
-  -moz-border-radius: 6px;
-  -moz-box-shadow: 0 1px 12px rgba(0, 0, 0, 0.3);
-  -webkit-border-radius: 6px;
-  -webkit-box-shadow: 0 1px 12px rgba(0, 0, 0, 0.3);
-  background-color: #FFF;
-  border: 1px solid #BBBBBB;
-  border-radius: 6px;
-  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.3);
-  padding: 6px;
+    -moz-border-radius: 6px;
+    -moz-box-shadow: 0 1px 12px rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 6px;
+    -webkit-box-shadow: 0 1px 12px rgba(0, 0, 0, 0.3);
+    background-color: #FFF;
+    border: 1px solid #BBBBBB;
+    border-radius: 6px;
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.3);
+    padding: 6px;
 }
-
 .scheduler-view-table-events-overlay-node .scheduler-event-content {
-  display: inline;
+    display: inline;
 }
-
 .scheduler-view-table-events-overlay-node .scheduler-event {
-  margin: 2px;
+    margin: 2px;
 }
-
 .scheduler-view-table-events-overlay-close {
-  display: block;
-  margin-top: 4px;
-  text-align: center;
-  text-decoration: none;
+    display: block;
+    margin-top: 4px;
+    text-align: center;
+    text-decoration: none;
 }
-
 .scheduler-view-table-dragging .scheduler-view-table-data-event-left .icon, .scheduler-view-table-dragging .scheduler-view-table-data-event-right .icon {
-  display: none;
+    display: none;
 }
-
 .scheduler-view-table-proxy-node {
-  border-radius: 3px;
-  font-weight: bold;
-  padding: 2px 4px;
-  overflow: hidden;
-  width: 200px;
+    border-radius: 3px;
+    font-weight: bold;
+    padding: 2px 4px;
+    overflow: hidden;
+    width: 200px;
 }
-
 .scheduler-view-table-header-day {
-  color: #abaaab;
-  text-align: center;
+    color: #abaaab;
+    text-align: center;
 }
-
 .scheduler-view-table-header-table {
-  table-layout: fixed;
-  width: 100%;
+    table-layout: fixed;
+    width: 100%;
 }
-
 .scheduler-view-table-content .yui3-widget-hd {
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
-  color: #555;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    color: #555;
 }
-
 .scheduler-view-table-header-col .scheduler-view-table-header-day div {
-  font-size: 12px;
-  font-weight: normal;
-  padding: 6px;
+    font-size: 12px;
+    font-weight: normal;
+    padding: 6px;
 }
-
 .scheduler-view-table-container {
-  height: 100%;
-  line-height: 20px;
-  position: relative;
-  white-space: nowrap;
+    height: 100%;
+    line-height: 20px;
+    position: relative;
+    white-space: nowrap;
 }
-
 .scheduler-view-table-row-container {
-  background: #fff;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-  position: absolute;
-  top: 0;
-  width: 100%;
+    background: #fff;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
-
 .scheduler-view-table-row {
-  left: 0;
-  overflow: hidden;
-  position: absolute;
-  width: 100%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
 }
-
 .scheduler-view-table-grid-first {
-  border-top: 0;
+    border-top: 0;
 }
-
 .scheduler-view-table-grid {
-  height: 100%;
-  left: 0;
-  position: absolute;
-  table-layout: fixed;
-  top: 0;
-  width: 100%;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    table-layout: fixed;
+    top: 0;
+    width: 100%;
 }
-
 .scheduler-view-table-colgrid {
-  border-left: 1px solid #dddddd;
+    border-left: 1px solid #dddddd;
 }
-
 .scheduler-view-table-data {
-  position: relative;
-  table-layout: fixed;
-  width: 100%;
+    position: relative;
+    table-layout: fixed;
+    width: 100%;
 }
-
 .scheduler-view-table-data-col {
-  border-left: 0 none;
-  padding: 1px 2px 0;
+    border-left: 0 none;
+    padding: 1px 2px 0;
 }
-
 .scheduler-view-table-data-col .scheduler-event-content {
-  display: inline;
+    display: inline;
 }
-
 .scheduler-view-table-data-col .scheduler-event {
-  height: auto;
-  position: relative;
-  width: auto;
+    height: auto;
+    position: relative;
+    width: auto;
 }
-
 .scheduler-view-table-data-first .scheduler-view-table-data-col-title {
-  border-top: 0;
+    border-top: 0;
 }
-
 .scheduler-view-table-data-col-title {
-  border-top: 1px solid #ddd;
-  color: #666;
-  line-height: 16px;
-  overflow: hidden;
-  padding-right: 2px;
-  text-align: right;
+    border-top: 1px solid #ddd;
+    color: #666;
+    line-height: 16px;
+    overflow: hidden;
+    padding-right: 2px;
+    text-align: right;
 }
-
 .scheduler-view-table-data-col-title-down {
-  border-top: 1px solid #009be6;
+    border-top: 1px solid #009be6;
 }
-
 .scheduler-view-table-colgrid-today {
-  background-color: #f2f2f2;
-  border: 1px solid #009be6;
-  border-bottom-width: 0;
+    background-color: #f2f2f2;
+    border: 1px solid #009be6;
+    border-bottom-width: 0;
 }
-
 .scheduler-view-table-data-col-title-today {
-  color: #14a4e9;
-  font-weight: bold;
-  border: 1px solid #009be6;
-  border-bottom-width: 0;
+    color: #14a4e9;
+    font-weight: bold;
+    border: 1px solid #009be6;
+    border-bottom-width: 0;
 }
-
 .scheduler-view-table-data-event {
-  color: #1D1D1D;
-  cursor: pointer;
-  margin-bottom: 1px;
-  padding: 0 3px 0 3px;
-  position: relative;
-  white-space: nowrap;
+    color: #1D1D1D;
+    cursor: pointer;
+    margin-bottom: 1px;
+    padding: 0 3px 0 3px;
+    position: relative;
+    white-space: nowrap;
 }
-
 .scheduler-view-table-data-event .icon-arrowstop-1-r {
-  background-image: url(scheduler-arrows.png);
-  background-position: -10px 3px;
-  position: absolute;
-  right: 0;
-  top: 0;
+    background-image: url(scheduler-arrows.png);
+    background-position: -10px 3px;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
-
 .scheduler-view-table-data-event .icon-arrowstop-1-l {
-  background-image: url(scheduler-arrows.png);
-  background-position: -4px -17px;
-  left: 0;
-  position: absolute;
-  top: 3px;
+    background-image: url(scheduler-arrows.png);
+    background-position: -4px -17px;
+    left: 0;
+    position: absolute;
+    top: 3px;
 }
-
 .scheduler-view-table-data-event .icon {
-  z-index: 450;
+    z-index: 450;
 }
-
 .scheduler-view-table-data-event.scheduler-view-table-data-event-left .scheduler-event {
-  padding-left: 12px;
+    padding-left: 12px;
 }

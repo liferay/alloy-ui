@@ -20,7 +20,7 @@ YUI.add('module-tests', function(Y) {
             },
             {
                 content: '<br><p>Doloremque beatae rem voluptate nulla perspiciatis atque laudantium nihil impedit molestiae fuga veritatis quibusdam nam maiores aliquid. Deserunt dolorum quas temporibus enim ex nihil nemo perspiciatis. Nisi deserunt rem id pariatur in nostrum?</p>',
-                disabled : true,
+                disabled: true,
                 label: 'Tab #2'
             },
             {
@@ -90,11 +90,13 @@ YUI.add('module-tests', function(Y) {
             });
 
             Y.Assert.areEqual(1, disabledTabs.length, 'Only one tab marked as disabled is expected.');
-            Y.Assert.areEqual(1, tabs.indexOf(disabledTabs[0]), 'The disabled tab should be the second one.');
+            Y.Assert.areEqual(1, tabs.indexOf(disabledTabs[0]),
+                'The disabled tab should be the second one.');
         }
     }));
 
     Y.Test.Runner.add(suite);
 
-
-},'', { requires: [ 'test', 'aui-tabview' ] });
+}, '', {
+    requires: ['test', 'aui-tabview']
+});

@@ -12,14 +12,15 @@ var ALIGN = 'align',
     getClassName = A.getClassName;
 
 /**
-* Widget extension, which can be used to suggest alignment points based on
-* position attribute to base Widget class, through the
-* <a href="Base.html#method_build">Base.build</a> method. It also tries to find
-* the best position in case the widget doesn't fit it's constrainment node.
-*
-* @class A.WidgetPositionAlignSuggestion
-* @param {Object} The user configuration object
-*/
+ * Widget extension, which can be used to suggest alignment points based on
+ * position attribute to base Widget class, through the
+ * <a href="Base.html#method_build">Base.build</a> method. It also tries to find
+ * the best position in case the widget doesn't fit it's constrainment node.
+ *
+ * @class A.WidgetPositionAlignSuggestion
+ * @param {Object} The user configuration object
+ */
+
 function PositionAlignSuggestion() {}
 
 /**
@@ -40,8 +41,8 @@ PositionAlignSuggestion.ATTRS = {
      */
     position: {
         validator: function(val) {
-            return  val === BOTTOM || val === TOP || val === LEFT ||
-                    val === RIGHT;
+            return val === BOTTOM || val === TOP || val === LEFT ||
+                val === RIGHT;
         },
         value: TOP
     }
@@ -56,10 +57,10 @@ A.mix(PositionAlignSuggestion.prototype, {
      * @type {}
      */
     POSITION_ALIGN_SUGGESTION: {
-        bottom: [ A.WidgetPositionAlign.TC, A.WidgetPositionAlign.BC ],
-        left: [ A.WidgetPositionAlign.RC, A.WidgetPositionAlign.LC ],
-        right: [ A.WidgetPositionAlign.LC, A.WidgetPositionAlign.RC ],
-        top: [ A.WidgetPositionAlign.BC, A.WidgetPositionAlign.TC ]
+        bottom: [A.WidgetPositionAlign.TC, A.WidgetPositionAlign.BC],
+        left: [A.WidgetPositionAlign.RC, A.WidgetPositionAlign.LC],
+        right: [A.WidgetPositionAlign.LC, A.WidgetPositionAlign.RC],
+        top: [A.WidgetPositionAlign.BC, A.WidgetPositionAlign.TC]
     },
 
     _hasAlignmentPoints: false,
@@ -226,7 +227,7 @@ A.mix(PositionAlignSuggestion.prototype, {
      * @param prevVal
      * @protected
      */
-    _syncPositionUI: function (val, prevVal) {
+    _syncPositionUI: function(val, prevVal) {
         var instance = this,
             boundingBox = instance.get(BOUNDING_BOX);
 
