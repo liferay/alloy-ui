@@ -40,9 +40,9 @@ var Lang = A.Lang,
 	CSS_CLEARFIX = getClassName('helper', 'clearfix'),
 
 	CSS_ICON = getClassName('icon'),
-	CSS_ICON_CLOSE = getClassName('icon', 'close'),
-	CSS_ICON_CLOSE_HOVER = getClassName(ENTRY_NAME, 'close', 'hover'),
-	CSS_ENTRY_CLOSE = getClassName(ENTRY_NAME, 'close'),
+	CSS_ICON_CLOSE = getClassName('icon', 'remove'),
+	CSS_ICON_CLOSE_HOVER = getClassName(ENTRY_NAME, 'remove', 'hover'),
+	CSS_ENTRY_CLOSE = getClassName(ENTRY_NAME, 'remove'),
 	CSS_ENTRY_HOLDER = getClassName(ENTRY_NAME, 'holder'),
 	CSS_ENTRY_TEXT = getClassName(ENTRY_NAME, 'text'),
 	CSS_ENTRY_ITEM = getClassName(ENTRY_NAME, 'item'),
@@ -54,9 +54,9 @@ var Lang = A.Lang,
 	LEFT = 'LEFT',
 	RIGHT = 'RIGHT',
 
-	TPL_ENTRY_CLOSE = '<span class="' + [CSS_ICON, CSS_ICON_CLOSE, CSS_ENTRY_CLOSE].join(' ') + '"></span>',
+	TPL_ENTRY_CLOSE = '<span class="' + CSS_ENTRY_CLOSE + '"><i class="' + [CSS_ICON, CSS_ICON_CLOSE].join(' ') + '"></i></span>',
 	TPL_ENTRY_TEXT = '<span class="' + CSS_ENTRY_TEXT + '"></span>',
-	TPL_ENTRY_HOLDER = '<ul class="' + [CSS_CLEARFIX, CSS_ENTRY_HOLDER].join(' ') + '"></ul>',
+	TPL_ENTRY_HOLDER = '<ul class="' + [CSS_CLEARFIX, CSS_ENTRY_HOLDER, 'unstyled'].join(' ') + '"></ul>',
 
 	TPL_INPUT_CONTAINER = '<li class="' + CSS_INPUT_CONTAINER + '"></li>';
 
