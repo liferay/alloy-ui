@@ -61,7 +61,7 @@ module.exports = function(grunt) {
         );
     });
 
-    exports._setGruntConfig = function(mainCallback) {
+    exports._setGruntConfig = function(mainCallback, target) {
         var options = grunt.option.flags();
 
         options.forEach(function(option) {
@@ -85,7 +85,7 @@ module.exports = function(grunt) {
                 value = grunt.option(key);
             }
 
-            grunt.config([TASK.name, key], value);
+            grunt.config([TASK.name, target, key], value);
         });
 
         mainCallback();
