@@ -94,7 +94,12 @@ module.exports = function(grunt) {
         },
 
         compress: {
-            name: 'alloy-<%= pkg["version"] %>'
+            cdn: {
+                name: 'cdn-alloy-<%= pkg["version"] %>'
+            },
+            release: {
+                name: 'alloy-<%= pkg["version"] %>'
+            }
         },
 
         clean: {
@@ -149,6 +154,7 @@ module.exports = function(grunt) {
     grunt.registerTask('all', ['bootstrap', 'build']);
     grunt.registerTask('api-deploy', ['api-build', 'api-push']);
     grunt.registerTask('bootstrap', ['compass', 'copy:css', 'cssmin', 'copy:img', 'clean']);
+    grunt.registerTask('cdn', ['all', 'cdn-config', 'compress:cdn', 'build:aui']);
     grunt.registerTask('format', ['jsbeautifier']);
-    grunt.registerTask('release', ['build', 'bootstrap', 'compress']);
+    grunt.registerTask('release', ['all', 'compress:release']);
 };
