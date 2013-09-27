@@ -61,6 +61,13 @@ module.exports = function(grunt) {
             }
         },
 
+        cdn: {
+            combine: true,
+            comboBase: 'http://cdn.alloyui.com/combo/combo.php?',
+            filter: 'min',
+            root: '../<%= pkg["version"] %>'
+        },
+
         compass: {
             dist: {
                 options: {
@@ -154,7 +161,7 @@ module.exports = function(grunt) {
     grunt.registerTask('all', ['bootstrap', 'build']);
     grunt.registerTask('api-deploy', ['api-build', 'api-push']);
     grunt.registerTask('bootstrap', ['compass', 'copy:css', 'cssmin', 'copy:img', 'clean']);
-    grunt.registerTask('cdn', ['all', 'cdn-config', 'compress:cdn', 'build:aui']);
     grunt.registerTask('format', ['jsbeautifier']);
     grunt.registerTask('release', ['all', 'compress:release']);
+    grunt.registerTask('release-cdn', ['all', 'cdn', 'compress:cdn', 'build:aui']);
 };
