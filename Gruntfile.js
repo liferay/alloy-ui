@@ -65,7 +65,7 @@ module.exports = function(grunt) {
             combine: true,
             comboBase: 'http://cdn.alloyui.com/combo/combo.php?',
             filter: 'min',
-            root: '../<%= pkg["version"] %>'
+            root: '../<%= pkg["version"] %>/'
         },
 
         compass: {

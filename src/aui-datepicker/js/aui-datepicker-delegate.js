@@ -11,16 +11,16 @@ var Lang = A.Lang,
     _DOCUMENT = A.one(A.config.doc),
 
     ACTIVE_INPUT = 'activeInput',
+    BLUR = 'blur',
     CLICK = 'click',
     CONTAINER = 'container',
     DATE_SEPARATOR = 'dateSeparator',
     DATEPICKER_SELECTION = 'datepickerSelection',
+    FOCUS = 'focus',
     MASK = 'mask',
     MOUSEDOWN = 'mousedown',
     SELECTION_CHANGE = 'selectionChange',
     TRIGGER = 'trigger',
-    FOCUSIN = 'focusin',
-    FOCUSOUT = 'focusout',
     VALUE_EXTRACTOR = 'valueExtractor',
     VALUE_FORMATTER = 'valueFormatter';
 
@@ -76,11 +76,11 @@ DatePickerDelegate.prototype = {
 
         instance._eventHandles = [
             container.delegate(
-                [FOCUSIN, MOUSEDOWN],
+                [FOCUS, MOUSEDOWN],
                 A.bind('_onceUserInteraction', instance), trigger),
 
             container.delegate(
-                FOCUSOUT,
+                BLUR,
                 A.bind('_onUserInteractionRelease', instance), trigger),
 
             container.delegate(
