@@ -25,30 +25,32 @@ var ROOT = process.cwd();
 
 // -- Task ---------------------------------------------------------------------
 module.exports = function(grunt) {
-    grunt.registerTask(TASK.name, TASK.description, function() {
+    grunt.registerMultiTask(TASK.name, TASK.description, function() {
         var done = this.async();
+        var target = this.target;
+
         var baseFileName;
         var sha;
         var zipFileName;
 
         async.series([
             function(mainCallback) {
-                    exports._setGruntConfig(mainCallback);
+                exports._setGruntConfig(mainCallback, target);
             },
             function(mainCallback) {
-                    exports._getCurrentGitHashCommit(function(val) {
-                        sha = val;
-                        mainCallback();
-                    });
+                exports._getCurrentGitHashCommit(function(val) {
+                    sha = val;
+                    mainCallback();
+                });
             },
             function(mainCallback) {
-                    baseFileName = grunt.config([TASK.name, 'name']);
-                    zipFileName = baseFileName + '.zip';
+                baseFileName = grunt.config([TASK.name, target, 'name']);
+                zipFileName  = baseFileName + '.zip';
 
-                    exports._deleteFiles(mainCallback, zipFileName);
+                exports._deleteFiles(mainCallback, zipFileName);
             },
             function(mainCallback) {
-                    exports._zip(mainCallback, baseFileName, sha, zipFileName);
+                exports._zip(mainCallback, baseFileName, sha, zipFileName);
             }],
             function(err) {
                 if (err) {
@@ -61,7 +63,7 @@ module.exports = function(grunt) {
         );
     });
 
-    exports._setGruntConfig = function(mainCallback) {
+    exports._setGruntConfig = function(mainCallback, target) {
         var options = grunt.option.flags();
 
         options.forEach(function(option) {
@@ -85,7 +87,7 @@ module.exports = function(grunt) {
                 value = grunt.option(key);
             }
 
-            grunt.config([TASK.name, key], value);
+            grunt.config([TASK.name, target, key], value);
         });
 
         mainCallback();
