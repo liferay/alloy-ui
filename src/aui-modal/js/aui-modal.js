@@ -48,16 +48,16 @@ var Lang = A.Lang,
  * @constructor
  */
 A.Modal = A.Base.create(MODAL, A.Widget, [
- A.WidgetCssClass,
- A.WidgetPosition,
- A.WidgetStdMod,
- A.WidgetToggle,
- A.WidgetAutohide,
- A.WidgetToolbars,
- A.WidgetModality,
- A.WidgetPositionAlign,
- A.WidgetPositionConstrain,
- A.WidgetStack
+    A.WidgetCssClass,
+    A.WidgetPosition,
+    A.WidgetStdMod,
+    A.WidgetToggle,
+    A.WidgetAutohide,
+    A.WidgetToolbars,
+    A.WidgetModality,
+    A.WidgetPositionAlign,
+    A.WidgetPositionConstrain,
+    A.WidgetStack
 ], {
 
     /**
@@ -70,12 +70,12 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
         var instance = this;
 
         var eventHandles = [
-   A.after(instance._afterFillHeight, instance, FILL_HEIGHT),
-   instance.after('resize:end', A.bind(instance._syncResizeDimensions, instance)),
-   instance.after(DRAGGABLE_CHANGE, instance._afterDraggableChange),
-   instance.after(RESIZABLE_CHANGE, instance._afterResizableChange),
-   instance.after(VISIBLE_CHANGE, instance._afterVisibleChange)
-  ];
+            A.after(instance._afterFillHeight, instance, FILL_HEIGHT),
+            instance.after('resize:end', A.bind(instance._syncResizeDimensions, instance)),
+            instance.after(DRAGGABLE_CHANGE, instance._afterDraggableChange),
+            instance.after(RESIZABLE_CHANGE, instance._afterResizableChange),
+            instance.after(VISIBLE_CHANGE, instance._afterVisibleChange)
+        ];
 
         instance._applyPlugin(instance._onUserInitInteraction);
 
@@ -194,8 +194,8 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
             pluginFn.call(instance);
         }
         else if (!instance._userInteractionHandle) {
-            instance._userInteractionHandle = instance.once([CLICK, MOUSEMOVE], instance._onUserInitInteraction,
-                instance);
+            instance._userInteractionHandle = instance.once(
+                [CLICK, MOUSEMOVE], instance._onUserInitInteraction, instance);
         }
     },
 
@@ -367,7 +367,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
                     {
                         fn: A.Plugin.DDConstrained
                     }
-    ]
+                ]
             }
         },
 
@@ -398,7 +398,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
                     header: [
                         {
                             cssClass: 'close',
-                            label: "\u00D7",
+                            label: '\u00D7',
                             on: {
                                 click: function(event) {
                                     instance.hide();
