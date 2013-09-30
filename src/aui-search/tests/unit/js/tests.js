@@ -92,18 +92,12 @@ YUI.add('module-tests', function(Y) {
         // Tests
         //----------------------------------------------------------------------
 
-        'assert prefix equals': function(prefix, expected) {
-            var words = tstree.prefixSearch(prefix);
-
-            return checkArrays(expected, words);
-        },
-
         'test prefix search': function() {
             var instance = this;
 
             var prefix = 'el';
 
-            var result = instance.assertPrefixEquals(
+            var result = instance._assertPrefixEquals(
                 prefix, [
                     'else',
                     'elseif'
@@ -114,7 +108,7 @@ YUI.add('module-tests', function(Y) {
 
             prefix = 're';
 
-            result = instance.assertPrefixEquals(
+            result = instance._assertPrefixEquals(
                 prefix, [
                     'recover',
                     'recurse',
@@ -124,6 +118,12 @@ YUI.add('module-tests', function(Y) {
             );
 
             Y.Assert.isTrue(result, 'prefix search on: ' + prefix + ' failed');
+        },
+
+        _assertPrefixEquals: function(prefix, expected) {
+            var words = tstree.prefixSearch(prefix);
+
+            return checkArrays(expected, words);
         }
     }));
 
@@ -138,18 +138,12 @@ YUI.add('module-tests', function(Y) {
         // Tests
         //----------------------------------------------------------------------
 
-        'assert pattern match': function(prefix, expected) {
-            var words = tstree.patternMatch(prefix);
-
-            return checkArrays(expected, words);
-        },
-
         'test pattern match': function() {
             var instance = this;
 
             var pattern = 're?ur?e';
 
-            var result = instance.assertPatternMatch(
+            var result = instance._assertPatternMatch(
                 pattern, [
                     'recurse',
                     'returne'
@@ -160,7 +154,7 @@ YUI.add('module-tests', function(Y) {
 
             pattern = 'visit?';
 
-            result = instance.assertPatternMatch(
+            result = instance._assertPatternMatch(
                 pattern, [
                     'visit',
                     'visita'
@@ -171,13 +165,19 @@ YUI.add('module-tests', function(Y) {
 
             pattern = 'visit?';
 
-            result = instance.assertPatternMatch(
+            result = instance._assertPatternMatch(
                 pattern, [
                     'visita'
                 ]
             );
 
             Y.Assert.isTrue(result, 'pattern match on: ' + pattern + ' failed');
+        },
+
+        _assertPatternMatch: function(prefix, expected) {
+            var words = tstree.patternMatch(prefix);
+
+            return checkArrays(expected, words);
         }
     }));
 
