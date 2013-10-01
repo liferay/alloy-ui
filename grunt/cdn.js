@@ -14,8 +14,8 @@ var TASK = {
 
 // -- Dependencies -------------------------------------------------------------
 var async = require('async');
-var fs    = require('fs-extra');
-var path  = require('path');
+var fs = require('fs-extra');
+var path = require('path');
 
 // -- Globals ------------------------------------------------------------------
 var ROOT = process.cwd();
@@ -87,12 +87,13 @@ module.exports = function(grunt) {
         files.push(path.join(auiBuildDir, 'aui-debug.js'));
 
         files.forEach(function(file) {
-            fs.appendFile(file, '\nYUI_config = {' +
-                                        'combine:' + combine + ',' +
-                                        'filter:"' + filter + '",' +
-                                        'comboBase:"' + comboBase + '",' +
-                                        'root:"' + root + '"' +
-                                    '};');
+            fs.appendFile(
+                file, '\nYUI_config = {' +
+                'combine:' + combine + ',' +
+                'filter:"' + filter + '",' +
+                'comboBase:"' + comboBase + '",' +
+                'root:"' + root + '"' +
+                '};');
         });
 
         mainCallback();
