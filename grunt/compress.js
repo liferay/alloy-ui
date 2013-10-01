@@ -34,24 +34,25 @@ module.exports = function(grunt) {
         var zipFileName;
 
         async.series([
-            function(mainCallback) {
-                exports._setGruntConfig(mainCallback, target);
-            },
-            function(mainCallback) {
-                exports._getCurrentGitHashCommit(function(val) {
-                    sha = val;
-                    mainCallback();
-                });
-            },
-            function(mainCallback) {
-                baseFileName = grunt.config([TASK.name, target, 'name']);
-                zipFileName  = baseFileName + '.zip';
+                function(mainCallback) {
+                    exports._setGruntConfig(mainCallback, target);
+                },
+                function(mainCallback) {
+                    exports._getCurrentGitHashCommit(function(val) {
+                        sha = val;
+                        mainCallback();
+                    });
+                },
+                function(mainCallback) {
+                    baseFileName = grunt.config([TASK.name, target, 'name']);
+                    zipFileName = baseFileName + '.zip';
 
-                exports._deleteFiles(mainCallback, zipFileName);
-            },
-            function(mainCallback) {
-                exports._zip(mainCallback, baseFileName, sha, zipFileName);
-            }],
+                    exports._deleteFiles(mainCallback, zipFileName);
+                },
+                function(mainCallback) {
+                    exports._zip(mainCallback, baseFileName, sha, zipFileName);
+                }
+            ],
             function(err) {
                 if (err) {
                     done(false);
