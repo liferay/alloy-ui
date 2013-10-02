@@ -21,7 +21,7 @@ YUI.add('module-tests', function(Y) {
             ]
     });
 
-    var formBuilder = new Y.FormBuilder({
+    new Y.FormBuilder({
         boundingBox: '#formBuilder',
         availableFields: [
             {
