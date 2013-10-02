@@ -1402,8 +1402,8 @@ var SchedulerDayView = A.Component.create({
                     event.halt();
                 }
                 else if (target.test(
-       [_DOT + CSS_SCHEDULER_VIEW_DAY_RESIZER,
-        _DOT + CSS_SCHEDULER_VIEW_DAY_RESIZER_ICON].join(_COMMA))) {
+                            [_DOT + CSS_SCHEDULER_VIEW_DAY_RESIZER,
+                             _DOT + CSS_SCHEDULER_VIEW_DAY_RESIZER_ICON].join(_COMMA))) {
 
                     instance[RESIZING] = true;
                 }

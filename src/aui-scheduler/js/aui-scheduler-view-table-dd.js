@@ -472,7 +472,9 @@ A.mix(A.SchedulerTableViewDD.prototype, {
         var recorder = scheduler.get(EVENT_RECORDER);
         var target = event.target;
 
-        if (recorder && target.test([_DOT + CSS_SVT_COLGRID, _DOT + CSS_SVT_TABLE_DATA_COL].join())) {
+        if (recorder && !scheduler.get(DISABLED) &&
+            target.test([_DOT + CSS_SVT_COLGRID, _DOT + CSS_SVT_TABLE_DATA_COL].join())) {
+
             instance._recording = true;
 
             instance._syncCellDimensions();
