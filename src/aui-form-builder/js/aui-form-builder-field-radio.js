@@ -70,6 +70,15 @@ var FormBuilderRadioField = A.Component.create({
     ATTRS: {
 
         /**
+         * The predefined value for the radio fields.
+         *
+         * @attribute predefinedValue
+         */
+        predefinedValue: {
+            valueFn: '_valuePredefinedValueFn'
+        },
+
+        /**
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute template
@@ -187,6 +196,24 @@ var FormBuilderRadioField = A.Component.create({
             optionNodes.set(CHECKED, false);
 
             optionNodes.all('input[value="' + val + '"]').set(CHECKED, true);
+        },
+
+        /**
+         * Returns the first option value if no predefined value is specified.
+         *
+         * @method _valuePredefinedValueFn
+         * @protected
+         */
+        _valuePredefinedValueFn: function() {
+            var instance = this,
+                options = instance.get(OPTIONS),
+                predefinedValue;
+
+            if (options.length) {
+                predefinedValue = options[0].value;
+            }
+
+            return predefinedValue;
         }
 
     }
