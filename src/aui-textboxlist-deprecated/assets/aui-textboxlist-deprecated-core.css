@@ -33,21 +33,21 @@
 }
 
 .textboxlistentry {
-	background-color: #dee7f8;
-	border: 1px solid #cad8f3;
+	background-color: #DEE7F8;
+	border: 1px solid #CAD8F3;
 	padding: 7px 11px;
 	position: relative;
 }
 
 .textboxlistentry-focused {
-	background-color: #598bec;
-	border-color: #224fa8;
-	color: #fff;
+	background-color: #598BEC;
+	border-color: #224FA8;
+	color: #FFF;
 	outline-width: 0;
 }
 
 .textboxlistentry-focused .textboxlistentry-remove {
-	background-color: #fff;
+	background-color: #FFF;
 }
 
 .textboxlistentry-remove, .textboxlistentry-text {
@@ -62,10 +62,11 @@
 	padding: 1px;
 	text-align: center;
 }
+
 .textboxlistentry-remove .icon-remove {
 	margin-top: 0;
 }
 
 .textboxlistentry-remove-hover {
-	background-color: #cad8f3;
+	background-color: #CAD8F3;
 }

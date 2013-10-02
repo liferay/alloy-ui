@@ -39,13 +39,13 @@ var Lang = A.Lang,
 
 	CSS_CLEARFIX = getClassName('helper', 'clearfix'),
 
-	CSS_ICON = getClassName('icon'),
-	CSS_ICON_CLOSE = getClassName('icon', 'remove'),
-	CSS_ICON_CLOSE_HOVER = getClassName(ENTRY_NAME, 'remove', 'hover'),
-	CSS_ENTRY_CLOSE = getClassName(ENTRY_NAME, 'remove'),
+	CSS_ENTRY_REMOVE = getClassName(ENTRY_NAME, 'remove'),
 	CSS_ENTRY_HOLDER = getClassName(ENTRY_NAME, 'holder'),
-	CSS_ENTRY_TEXT = getClassName(ENTRY_NAME, 'text'),
 	CSS_ENTRY_ITEM = getClassName(ENTRY_NAME, 'item'),
+	CSS_ENTRY_TEXT = getClassName(ENTRY_NAME, 'text'),
+	CSS_ICON = getClassName('icon'),
+	CSS_ICON_REMOVE = getClassName('icon', 'remove'),
+	CSS_ICON_REMOVE_HOVER = getClassName(ENTRY_NAME, 'remove', 'hover'),
 
 	CSS_INPUT_CONTAINER = getClassName(NAME, 'input','container'),
 
@@ -54,9 +54,9 @@ var Lang = A.Lang,
 	LEFT = 'LEFT',
 	RIGHT = 'RIGHT',
 
-	TPL_ENTRY_CLOSE = '<span class="' + CSS_ENTRY_CLOSE + '"><i class="' + [CSS_ICON, CSS_ICON_CLOSE].join(' ') + '"></i></span>',
-	TPL_ENTRY_TEXT = '<span class="' + CSS_ENTRY_TEXT + '"></span>',
 	TPL_ENTRY_HOLDER = '<ul class="' + [CSS_CLEARFIX, CSS_ENTRY_HOLDER, 'unstyled'].join(' ') + '"></ul>',
+	TPL_ENTRY_REMOVE = '<span class="' + CSS_ENTRY_REMOVE + '"><i class="' + [CSS_ICON, CSS_ICON_REMOVE].join(' ') + '"></i></span>',
+	TPL_ENTRY_TEXT = '<span class="' + CSS_ENTRY_TEXT + '"></span>',
 
 	TPL_INPUT_CONTAINER = '<li class="' + CSS_INPUT_CONTAINER + '"></li>';
 
@@ -167,7 +167,7 @@ var TextboxList = A.Component.create(
 
 				var entries = instance.entries;
 				var entryHolder = instance.entryHolder;
-				var closeSelector = '.' + CSS_ICON_CLOSE;
+				var closeSelector = '.' + CSS_ICON_REMOVE;
 
 				entries.after('add', instance._updateEntryHolder, instance);
 				entries.after('replace', instance._updateEntryHolder, instance);
@@ -245,13 +245,13 @@ var TextboxList = A.Component.create(
 			_onCloseIconMouseOut: function(event) {
 				var instance = this;
 
-				event.currentTarget.removeClass(CSS_ICON_CLOSE_HOVER);
+				event.currentTarget.removeClass(CSS_ICON_REMOVE_HOVER);
 			},
 
 			_onCloseIconMouseOver: function(event) {
 				var instance = this;
 
-				event.currentTarget.addClass(CSS_ICON_CLOSE_HOVER);
+				event.currentTarget.addClass(CSS_ICON_REMOVE_HOVER);
 			},
 
 			_onInputNodeFocus: function(event) {
@@ -506,7 +506,7 @@ var TextboxListEntry = A.Component.create(
 				var contentBox = instance.get(CONTENT_BOX);
 
 				var text = A.Node.create(TPL_ENTRY_TEXT);
-				var close = A.Node.create(TPL_ENTRY_CLOSE);
+				var close = A.Node.create(TPL_ENTRY_REMOVE);
 
 				var labelText = A.Escape.html(instance.get('labelText'));
 
