@@ -2,44 +2,36 @@ YUI.add('module-tests', function(Y) {
 
     var suite = new Y.Test.Suite('aui-form-builder');
 
-    var radioField = new Y.FormBuilderRadioField(
-        {
-            label: 'Colours',
-            type: 'radio',
-            options: [
-                {
-                    label: 'Red',
-                    value: 'red'
+    var radioField = new Y.FormBuilderRadioField({
+        label: 'Colours',
+        type: 'radio',
+        options: [
+            {
+                label: 'Red',
+                value: 'red'
                 },
-                {
-                    label: 'Green',
-                    value: 'green'
+            {
+                label: 'Green',
+                value: 'green'
                 },
-                {
-                    label: 'Blue',
-                    value: 'blue'
+            {
+                label: 'Blue',
+                value: 'blue'
                 }
             ]
-        }
-    );
+    });
 
-    var formBuilder = new Y.FormBuilder(
-        {
-            boundingBox: '#formBuilder',
-            availableFields:
-            [
-                {
-                    iconClass: 'form-builder-field-icon form-builder-field-icon-radio',
-                    label: 'Radio Buttons',
-                    type: 'radio'
-                }
-            ],
-            fields:
-            [
-                radioField
-            ]
-        }
-    ).render();
+    var formBuilder = new Y.FormBuilder({
+        boundingBox: '#formBuilder',
+        availableFields: [
+            {
+                iconClass: 'form-builder-field-icon form-builder-field-icon-radio',
+                label: 'Radio Buttons',
+                type: 'radio'
+            }
+        ],
+        fields: [radioField]
+    }).render();
 
     suite.add(new Y.Test.Case({
         name: 'FormBuilderRadioField',
