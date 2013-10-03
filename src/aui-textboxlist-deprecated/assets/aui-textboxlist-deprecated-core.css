@@ -5,8 +5,6 @@
 }
 
 .textboxlist-content input[type="text"].field-input-text, .textboxlist-content input[type="text"].field-input-text:focus {
-	-moz-box-shadow: none;
-	-webkit-box-shadow: none;
 	box-shadow: none;
 }
 
