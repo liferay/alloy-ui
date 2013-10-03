@@ -432,7 +432,7 @@ var FormBuilder = A.Component.create({
                 config.setAttrs(attrs);
             }
             else {
-                A.map(config, function(value, key) {
+                A.each(config, function(value, key) {
                     if (value === undefined) {
                         delete config[key];
                     }
