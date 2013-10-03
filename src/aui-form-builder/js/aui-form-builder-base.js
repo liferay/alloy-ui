@@ -419,25 +419,31 @@ var FormBuilder = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method createField
-         * @param val
+         * @param config
          */
-        createField: function(val) {
+        createField: function(config) {
             var instance = this,
                 attrs = {
                     builder: instance,
                     parent: instance
                 };
 
-            if (isFormBuilderField(val)) {
-                val.setAttrs(attrs);
+            if (isFormBuilderField(config)) {
+                config.setAttrs(attrs);
             }
             else {
-                val = new(instance.getFieldClass(val.type || FIELD))(A.mix(attrs, val));
+                A.each(config, function(value, key) {
+                    if (value === undefined) {
+                        delete config[key];
+                    }
+                });
+
+                config = new(instance.getFieldClass(config.type || FIELD))(A.mix(attrs, config));
             }
 
-            val.addTarget(instance);
+            config.addTarget(instance);
 
-            return val;
+            return config;
         },
 
         /**
