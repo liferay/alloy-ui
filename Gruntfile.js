@@ -11,8 +11,7 @@ var path  = require('path');
 var spawn = require('child_process').spawn;
 
 // -- Globals ------------------------------------------------------------------
-var CURRENT_DIR = process.env.PWD;
-var ROOT        = process.cwd();
+var ROOT = process.cwd();
 
 // -- Config -------------------------------------------------------------------
 module.exports = function(grunt) {
@@ -51,7 +50,7 @@ module.exports = function(grunt) {
                 'replace-version': '<%= pkg["yui-version"] %>',
             },
             aui: {
-                'src': CURRENT_DIR,
+                'src': path.join(ROOT, 'src'),
                 'dist': path.join(ROOT, 'build'),
                 'cache': false,
                 'coverage': false,
@@ -144,7 +143,7 @@ module.exports = function(grunt) {
         },
 
         watch: {
-            'src': CURRENT_DIR,
+            'src': ROOT,
             'replace-yuivar': 'A',
             'replace-version': '<%= pkg["version"] %>'
         }
