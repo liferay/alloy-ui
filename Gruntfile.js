@@ -11,7 +11,7 @@ var path  = require('path');
 var spawn = require('child_process').spawn;
 
 // -- Globals ------------------------------------------------------------------
-var ROOT        = process.cwd();
+var ROOT = process.cwd();
 
 // -- Config -------------------------------------------------------------------
 module.exports = function(grunt) {
