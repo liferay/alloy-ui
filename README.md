@@ -16,7 +16,11 @@ AlloyUI is a framework built on top of [YUI3](http://yuilibrary.com) (JavaScript
 
 Provides a set of util tasks to work with [AlloyUI](http://github.com/liferay/alloy-ui) project.
 
-> To change any default option from a task check [Gruntfile.js](https://github.com/liferay/alloy-ui/blob/master/Gruntfile.js).
+To change any default option from a task check [Gruntfile.js](https://github.com/liferay/alloy-ui/blob/master/Gruntfile.js). You can also overwrite those options via command-line, for example:
+
+```
+grunt command --option value
+```
 
 ### Setup
 
