@@ -15,10 +15,8 @@
 .scheduler-base-controls .scheduler-base-today {
     margin-right: 3px;
 }
-.scheduler-base-views {
-    position: absolute;
-    top: 5px;
-    right: 5px;
+.scheduler-base-content .scheduler-base-views {
+    white-space: normal;
 }
 .scheduler-base-views .yui3-button {
     margin: 0 6px 0 0;

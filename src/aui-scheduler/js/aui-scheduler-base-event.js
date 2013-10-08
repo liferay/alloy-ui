@@ -161,8 +161,8 @@ var Lang = A.Lang,
 
     TPL_HTML_OPEN_SPAN = '<span>',
     TPL_HTML_CLOSE_SPAN = '</span>',
-    TPL_SCHEDULER_CONTROLS = '<div class="' + CSS_SCHEDULER_CONTROLS + '"></div>',
-    TPL_SCHEDULER_HD = '<div class="' + CSS_SCHEDULER_HD + '"></div>',
+    TPL_SCHEDULER_CONTROLS = '<div class="span7 ' + CSS_SCHEDULER_CONTROLS + '"></div>',
+    TPL_SCHEDULER_HD = '<div class="row-fluid ' + CSS_SCHEDULER_HD + '"></div>',
     TPL_SCHEDULER_ICON_NEXT = '<button type="button" class="' + [CSS_SCHEDULER_ICON_NEXT, CSS_BTN].join(_SPACE) +
         '"><i class="' + CSS_ICON_CHEVRON_RIGHT + '"></i></button>',
     TPL_SCHEDULER_ICON_PREV = '<button type="button" class="' + [CSS_SCHEDULER_ICON_PREV, CSS_BTN].join(_SPACE) +
@@ -173,7 +173,7 @@ var Lang = A.Lang,
     TPL_SCHEDULER_VIEW = '<button type="button" class="' + [CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_].join(_SPACE) +
         '{name}" data-view-name="{name}">{label}</button>',
     TPL_SCHEDULER_VIEW_DATE = '<span class="' + CSS_SCHEDULER_VIEW_DATE + '"></span>',
-    TPL_SCHEDULER_VIEWS = '<div class="' + CSS_SCHEDULER_VIEWS + '"></div>';
+    TPL_SCHEDULER_VIEWS = '<div class="span5 ' + CSS_SCHEDULER_VIEWS + '"></div>';
 
 /**
  * A base class for SchedulerEvent.
