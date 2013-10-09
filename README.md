@@ -24,7 +24,7 @@ grunt command --option value
 
 ### Setup
 
-1. Install [NodeJS](https://github.com/bevry/community/wiki/Installing-Node), if you don't have it yet. 
+1. Install [NodeJS](https://github.com/bevry/community/wiki/Installing-Node) v0.8.11, if you don't have it yet. 
 
 	Some tasks requires you to have [Ruby](http://www.ruby-lang.org/en/downloads/), [Sass](http://sass-lang.com/tutorial.html), and [Compass](http://compass-style.org/install/) installed. If you're on OS X or Linux you probably already have Ruby installed; test with `ruby -v` in your terminal. When you've confirmed you have Ruby installed, run `gem update --system && gem install compass` to install Compass and Sass.
 
