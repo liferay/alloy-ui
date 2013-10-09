@@ -69,7 +69,7 @@ var TreeData = function() {};
 TreeData.ATTRS = {
 
     /**
-     * Container to nest children nodes. If has cntainer it's not a leaf.
+     * Container to nest children nodes. If it has a container it's not a leaf.
      *
      * @attribute container
      * @default null
