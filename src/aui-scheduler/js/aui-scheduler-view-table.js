@@ -68,7 +68,8 @@ var Lang = A.Lang,
     ROWS_CONTAINER_NODE = 'rowsContainerNode',
     SCHEDULER = 'scheduler',
     SCHEDULER_EVENT = 'scheduler-event',
-    SHOW_MORE = 'showMore',
+    SHOW = 'show',
+    MORE = 'more',
     START_DATE = 'startDate',
     STRINGS = 'strings',
     TABLE = 'table',
@@ -134,7 +135,7 @@ var Lang = A.Lang,
         '</tbody>' +
         '</table>',
 
-    TPL_SVT_MORE = '<a href="javascript:;" class="' + CSS_SVT_MORE + '">{label} {count}</a>',
+    TPL_SVT_MORE = '<a href="javascript:;" class="' + CSS_SVT_MORE + '">{labelPrefix} {count} {labelSuffix}</a>',
 
     TPL_SVT_ROW = '<div class="' + CSS_SVT_ROW + '" style="top: {top}%; height: {height}%;"></div>',
 
@@ -213,7 +214,7 @@ var SchedulerTableView = A.Component.create({
          * @type Number
          */
         displayRows: {
-            value: 4
+            value: 2
         },
 
         /**
@@ -299,7 +300,8 @@ var SchedulerTableView = A.Component.create({
         strings: {
             value: {
                 close: 'Close',
-                showMore: 'Show more'
+                show: 'Show',
+                more: 'more'
             }
         },
 
@@ -464,7 +466,8 @@ var SchedulerTableView = A.Component.create({
                         Lang.sub(
                             TPL_SVT_MORE, {
                                 count: (events.length - (displayRows - 1)),
-                                label: strings[SHOW_MORE]
+                                labelPrefix: strings[SHOW],
+                                labelSuffix: strings[MORE]
                             }
                         )
                     );
