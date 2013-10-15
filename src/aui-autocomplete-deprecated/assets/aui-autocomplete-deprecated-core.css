@@ -1,4 +1,6 @@
-.autocomplete-content {
+.autocomplete-content .toolbar {
+	display: inline-block;
+	position: absolute;
 }
 
 .autocomplete-trigger {
@@ -7,7 +9,7 @@
 	float: none;
 }
 
-.autocomplete-results {	
+.autocomplete-results {
 }
 
 .autocomplete-list-item {

@@ -27,7 +27,7 @@ var Lang = A.Lang,
 	RESULTS = 'results',
 	SELECTED = 'selected',
 
-	ICON_DEFAULT = 'circle-triangle-b',
+	ICON_DEFAULT = 'icon-circle-arrow-down',
 	ICON_ERROR = ALERT,
 	ICON_LOADING = LOADING,
 
@@ -454,6 +454,8 @@ var AutoComplete = A.Component.create(
 				var inputNode = instance.inputNode;
 
 				instance.dataSource.on('request', A.bind(button.set, button, ICON, ICON_LOADING));
+
+				button.on('click', instance._onButtonMouseDown, instance);
 
 				inputNode.on('blur', instance._onTextboxBlur, instance);
 				inputNode.on('focus', instance._onTextboxFocus, instance);
@@ -1688,7 +1690,7 @@ var AutoComplete = A.Component.create(
 					},
 					icons: [
 						{
-							icon: 'circle-triangle-b',
+							icon: 'icon-circle-arrow-down',
 							id: 'trigger',
 							handler: {
 								fn: instance._onButtonMouseDown,
@@ -1719,7 +1721,7 @@ var AutoComplete = A.Component.create(
 				}
 
 				instance.inputNode = comboBox.get('node');
-				instance.button = comboBox.icons.item('trigger');
+				instance.button = comboBox.icons.item('#trigger');
 
 				instance.set('uniqueName', A.stamp(instance.inputNode));
 			},
