@@ -68,6 +68,23 @@ YUI.add('module-tests', function(Y) {
             Y.Assert.areSame(0, node.childrenLength, 'node.childrenLength should return 0.');
         },
 
+        'appendChild() should regester the TreeNode in the Parent TreeNode and Owner TreeView index attribute': function() {
+            var treeView = new Y.TreeView();
+
+            var rootTreeNode = new Y.TreeNode({id: 'root'});
+            var childTreeNode = new Y.TreeNode({id: 'child'});
+
+            treeView.appendChild(rootTreeNode);
+            rootTreeNode.appendChild(childTreeNode);
+
+            var treeViewIndex = treeView.get("index");
+            var rootTreeNodeIndex = rootTreeNode.get("index");
+
+            Y.Assert.isTrue(treeViewIndex.hasOwnProperty('root'), 'treeViewIndex object should have a "root" property');
+            Y.Assert.isTrue(treeViewIndex.hasOwnProperty('child'), 'treeViewIndex object should have a "child" property');
+            Y.Assert.isTrue(rootTreeNodeIndex.hasOwnProperty('child'), 'rootTreeNodeIndex object should have a "child" property');
+        },
+
         'removeChild() should remove child TreeNode': function() {
             var tree = createNewTreeView();
 
@@ -102,6 +119,19 @@ YUI.add('module-tests', function(Y) {
             var node = tree.getNodeById('two');
 
             Y.Assert.isTrue(tree.isRegistered(node), 'TreeNode should be registered in TreeView');
+        },
+
+        'isRegistered() should find child TreeNode': function() {
+            var treeView = new Y.TreeView();
+
+            var rootTreeNode = new Y.TreeNode({id: 'root'});
+            var childTreeNode = new Y.TreeNode({id: 'child'});
+
+            treeView.appendChild(rootTreeNode);
+            rootTreeNode.appendChild(childTreeNode);
+
+            Y.Assert.isTrue(treeView.isRegistered(childTreeNode), 'childTreeNode should be registered in treeView');
+            Y.Assert.isTrue(rootTreeNode.isRegistered(childTreeNode), 'childTreeNode should be registered in Parent rootTreeNode');
         },
 
         'isRegistered() should not find TreeNode': function() {
