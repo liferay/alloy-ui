@@ -67,6 +67,12 @@ grunt build:yui
 grunt build:aui
     ```
 
+* Build single AlloyUI module:
+
+    ```
+grunt build:aui --src src/aui-module-name
+    ```
+
 * Build and import Bootstrap's CSS:
 
     ```
@@ -85,6 +91,12 @@ grunt all
 
     ```
 grunt watch
+    ```
+
+* Watch and build for any single module changes:
+
+    ```
+grunt watch --src src/aui-module-name
     ```
 
 ### Create
