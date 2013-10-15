@@ -210,11 +210,11 @@ var SchedulerTableView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute displayRows
-         * @default 4
+         * @default 3
          * @type Number
          */
         displayRows: {
-            value: 2
+            value: 3
         },
 
         /**
