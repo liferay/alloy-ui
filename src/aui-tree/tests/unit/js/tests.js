@@ -7,13 +7,13 @@ YUI.add('module-tests', function(Y) {
         return new Y.TreeView({
             children: [
                {
-                    id: 'one',
                     children: [
                         {id: 'one-one'},
                         {id: 'one-two'},
                         {id: 'one-three'},
                         {id: 'one-four'}
-                    ]
+                    ],
+                    id: 'one'
                 },
                 {id: 'two'},
                 {id: 'three'}
@@ -71,8 +71,8 @@ YUI.add('module-tests', function(Y) {
         'appendChild() should regester the TreeNode in the Parent TreeNode and Owner TreeView index attribute': function() {
             var treeView = new Y.TreeView();
 
-            var rootTreeNode = new Y.TreeNode({id: 'root'});
             var childTreeNode = new Y.TreeNode({id: 'child'});
+            var rootTreeNode = new Y.TreeNode({id: 'root'});
 
             treeView.appendChild(rootTreeNode);
             rootTreeNode.appendChild(childTreeNode);
@@ -124,8 +124,8 @@ YUI.add('module-tests', function(Y) {
         'isRegistered() should find child TreeNode': function() {
             var treeView = new Y.TreeView();
 
-            var rootTreeNode = new Y.TreeNode({id: 'root'});
             var childTreeNode = new Y.TreeNode({id: 'child'});
+            var rootTreeNode = new Y.TreeNode({id: 'root'});
 
             treeView.appendChild(rootTreeNode);
             rootTreeNode.appendChild(childTreeNode);
