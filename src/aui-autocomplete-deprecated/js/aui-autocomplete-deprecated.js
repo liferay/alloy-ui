@@ -1721,7 +1721,7 @@ var AutoComplete = A.Component.create(
 				}
 
 				instance.inputNode = comboBox.get('node');
-				instance.button = comboBox.icons.item('#trigger');
+				instance.button = comboBox.icons.item(0);
 
 				instance.set('uniqueName', A.stamp(instance.inputNode));
 			},
