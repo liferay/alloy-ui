@@ -222,7 +222,7 @@ A.mix(TreeData.prototype, {
 		if (moved) {
 			var output = instance.getEventOutputMap(node);
 
-			if (!oldParent.get('children').length) {
+			if (!oldParent.get(CHILDREN).length) {
 				oldParent.collapse();
 				oldParent.hideHitArea();
 			}
@@ -355,7 +355,7 @@ A.mix(TreeData.prototype, {
 	/**
 	 * Unselect all children of the TreeData.
 	 *
-	 * @method selectAll
+	 * @method unselectAll
 	 */
 	unselectAll: function() {
 		var instance = this;
@@ -386,7 +386,7 @@ A.mix(TreeData.prototype, {
 	/**
 	 * Loop each parent node and execute the <code>fn</code> callback.
 	 *
-	 * @method eachChildren
+	 * @method eachParent
 	 * @param {function} fn callback
 	 */
 	eachParent: function(fn) {
