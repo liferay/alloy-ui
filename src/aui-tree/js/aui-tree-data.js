@@ -100,6 +100,8 @@ TreeData.ATTRS = {
 };
 
 A.mix(TreeData.prototype, {
+	_indexPrimed: false,
+
 	childrenLength: 0,
 
 	/**
@@ -141,6 +143,10 @@ A.mix(TreeData.prototype, {
 	 */
 	getNodeById: function(uid) {
 		var instance = this;
+
+		if (!instance._indexPrimed) {
+				instance.refreshIndex();
+		}
 
 		return instance.get(INDEX)[uid];
 	},
@@ -282,6 +288,8 @@ A.mix(TreeData.prototype, {
 		var instance = this;
 
 		if (index) {
+			instance._indexPrimed = true;
+
 			instance.set(INDEX, index);
 		}
 	},
