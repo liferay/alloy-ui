@@ -841,6 +841,8 @@ A.mix(TreeData.prototype, {
 					}
 				}
 
+				instance.registerNode(node);
+
 				if (hasOwnerTree) {
 					ownerTree.registerNode(node);
 				}
