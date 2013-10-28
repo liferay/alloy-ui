@@ -20,6 +20,7 @@
 .scheduler-view-day-table-col-shim {
     height: 1248px;
     margin-bottom: -1248px;
+    min-width: 10px;
     position: relative;
 }
 .scheduler-view-day-table-colblank {
