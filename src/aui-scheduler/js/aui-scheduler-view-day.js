@@ -212,7 +212,7 @@ var Lang = A.Lang,
 
     TPL_SCHEDULER_VIEW_DAY_TABLE_COLDAY = '<td class="' + [CSS_SCHEDULER_VIEW_DAY_TABLE_COL,
         CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY].join(_SPACE) + '" data-colnumber="{colNumber}">' +
-        '<div class="' + CSS_SCHEDULER_VIEW_DAY_TABLE_COL_SHIM + '"></div>' +
+        '<div class="' + CSS_SCHEDULER_VIEW_DAY_TABLE_COL_SHIM + '">&nbsp;</div>' +
         '</td>',
 
     TPL_SCHEDULER_VIEW_DAY_TABLE_TIME = '<div class="' + CSS_SCHEDULER_VIEW_DAY_TABLE_TIME + '">{hour}</div>',
