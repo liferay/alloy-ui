@@ -902,8 +902,7 @@ var SchedulerDayView = A.Component.create({
                 var columnDate = instance.getDateByColumn(i);
 
                 columnNode.toggleClass(
-                    CSS_SCHEDULER_TODAY,
-                    !DateMath.isDayOverlap(columnDate, todayDate));
+                    CSS_SCHEDULER_TODAY, !DateMath.isDayOverlap(columnDate, todayDate));
             });
         },
 
@@ -924,8 +923,7 @@ var SchedulerDayView = A.Component.create({
                     var columnDate = DateMath.add(viewDate, DateMath.DAY, i);
 
                     columnNode.toggleClass(
-                        CSS_SCHEDULER_TODAY_HD,
-                        !DateMath.isDayOverlap(columnDate, todayDate));
+                        CSS_SCHEDULER_TODAY_HD, !DateMath.isDayOverlap(columnDate, todayDate));
 
                     columnNode.html(formatter.call(instance, columnDate));
                 }

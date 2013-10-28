@@ -557,20 +557,15 @@ var SchedulerTableView = A.Component.create({
                 colTitleNode
                     .addClass(CSS_SVT_TABLE_DATA_COL_TITLE)
                     .toggleClass(
-                        CSS_SVT_TABLE_DATA_COL_TITLE_FIRST, (index === 0)
-                )
+                        CSS_SVT_TABLE_DATA_COL_TITLE_FIRST, (index === 0))
                     .toggleClass(
-                        CSS_SVT_TABLE_DATA_COL_TITLE_TODAY,
-                        !DateMath.isDayOverlap(celDate, todayDate)
-                )
+                        CSS_SVT_TABLE_DATA_COL_TITLE_TODAY, !DateMath.isDayOverlap(celDate, todayDate))
                     .toggleClass(
-                        CSS_SVT_TABLE_DATA_COL_TITLE_NEXT,
-                        !DateMath.isDayOverlap(DateMath.subtract(celDate, DateMath.DAY, 1), todayDate)
-                )
+                        CSS_SVT_TABLE_DATA_COL_TITLE_NEXT, !DateMath.isDayOverlap(
+                            DateMath.subtract(celDate, DateMath.DAY, 1), todayDate))
                     .toggleClass(
-                        CSS_SVT_TABLE_DATA_COL_TITLE_DOWN,
-                        !DateMath.isDayOverlap(DateMath.subtract(celDate, DateMath.WEEK, 1), todayDate)
-                );
+                        CSS_SVT_TABLE_DATA_COL_TITLE_DOWN, !DateMath.isDayOverlap(
+                            DateMath.subtract(celDate, DateMath.WEEK, 1), todayDate));
 
                 titleRowNode.append(
                     colTitleNode.setContent(celDate.getDate())
