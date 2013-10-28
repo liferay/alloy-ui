@@ -154,7 +154,7 @@ A.mix(TreeData.prototype, {
         var instance = this;
 
         if (!instance._indexPrimed) {
-           instance.refreshIndex();
+            instance.refreshIndex();
         }
 
         return instance.get(INDEX)[uid];

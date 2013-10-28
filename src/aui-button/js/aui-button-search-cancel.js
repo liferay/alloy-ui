@@ -177,7 +177,7 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
             return;
         }
 
-        A.one(BODY).append(button.show());
+        A.one(element).insert(button.show(), 'after');
         gutter = instance.get(GUTTER);
         buttonRegion = button.get(REGION);
         elementRegion = element.get(REGION);
