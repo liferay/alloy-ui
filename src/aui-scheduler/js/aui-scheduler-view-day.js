@@ -885,9 +885,7 @@ var SchedulerDayView = A.Component.create({
                 instance.syncEventsIntersectionUI(plottedEvents);
             });
 
-            if (instance.get(HEADER_VIEW)) {
-                instance.syncHeaderViewUI();
-            }
+            instance.syncHeaderViewUI();
         },
 
         /**
@@ -1009,8 +1007,9 @@ var SchedulerDayView = A.Component.create({
         syncEventTopUI: function(evt) {
             var instance = this;
 
-            evt.get(NODE).item(0).setStyle(TOP,
-                instance.calculateTop(evt.get(START_DATE)) + PX);
+            evt.get(NODE).item(0).setStyle(
+                TOP, instance.calculateTop(evt.get(START_DATE)) + PX);
+
             evt.get(NODE).item(1).setStyle(TOP, 0);
         },
 
