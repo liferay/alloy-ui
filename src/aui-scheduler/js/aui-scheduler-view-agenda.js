@@ -64,6 +64,7 @@ var Lang = A.Lang,
     STRINGS = 'strings',
     TIMESTAMP = 'timestamp',
     TODAY = 'today',
+    TODAY_DATE = 'todayDate',
     VIEW_DATE = 'viewDate',
     VISIBLE = 'visible',
 
@@ -243,10 +244,11 @@ var SchedulerAgendaView = A.Component.create({
         headerDayDateFormatter: {
             value: function(date) {
                 var instance = this,
+                    todayDate = instance.get(SCHEDULER).get(TODAY_DATE),
                     mask,
                     formatter;
 
-                if (DateMath.isToday(date)) {
+                if (!DateMath.isDayOverlap(date, todayDate)) {
                     mask = TODAY;
                 }
                 else {

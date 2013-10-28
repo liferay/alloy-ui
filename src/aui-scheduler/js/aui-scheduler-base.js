@@ -451,6 +451,19 @@ var SchedulerBase = A.Component.create({
             }
         },
 
+        /**
+         * Today date representation. This option allows the developer to
+         * specify the date he wants to be used as the today date.
+         *
+         * @attribute todayDate
+         * @default new Date()
+         * @type Date
+         */
+        todayDate: {
+            value: new Date(),
+            validator: isDate
+        },
+
         todayNode: {
             valueFn: function() {
                 return A.Node.create(
@@ -803,7 +816,7 @@ var SchedulerBase = A.Component.create({
                 activeView = instance.get(ACTIVE_VIEW);
 
             if (activeView) {
-                instance.set(DATE, activeView.getToday());
+                instance.set(DATE, instance.get(TODAY_DATE));
             }
 
             event.preventDefault();

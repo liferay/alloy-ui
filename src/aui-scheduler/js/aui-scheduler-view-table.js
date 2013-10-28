@@ -81,6 +81,7 @@ var Lang = A.Lang,
     TITLE = 'title',
     TL = 'tl',
     TODAY = 'today',
+    TODAY_DATE = 'todayDate',
     TR = 'tr',
     VIEW_DATE = 'viewDate',
     VISIBLE = 'visible',
@@ -546,6 +547,8 @@ var SchedulerTableView = A.Component.create({
         buildEventsTitleRow: function(tableNode, rowStartDate, rowEndDate) {
             var instance = this;
 
+            var todayDate = instance.get(SCHEDULER).get(TODAY_DATE);
+
             var titleRowNode = A.Node.create(TPL_SVT_TABLE_DATA_ROW);
 
             instance.loopDates(rowStartDate, rowEndDate, function(celDate, index) {
@@ -554,20 +557,15 @@ var SchedulerTableView = A.Component.create({
                 colTitleNode
                     .addClass(CSS_SVT_TABLE_DATA_COL_TITLE)
                     .toggleClass(
-                        CSS_SVT_TABLE_DATA_COL_TITLE_FIRST, (index === 0)
-                )
+                        CSS_SVT_TABLE_DATA_COL_TITLE_FIRST, (index === 0))
                     .toggleClass(
-                        CSS_SVT_TABLE_DATA_COL_TITLE_TODAY,
-                        DateMath.isToday(celDate)
-                )
+                        CSS_SVT_TABLE_DATA_COL_TITLE_TODAY, !DateMath.isDayOverlap(celDate, todayDate))
                     .toggleClass(
-                        CSS_SVT_TABLE_DATA_COL_TITLE_NEXT,
-                        DateMath.isToday(DateMath.subtract(celDate, DateMath.DAY, 1))
-                )
+                        CSS_SVT_TABLE_DATA_COL_TITLE_NEXT, !DateMath.isDayOverlap(
+                            DateMath.subtract(celDate, DateMath.DAY, 1), todayDate))
                     .toggleClass(
-                        CSS_SVT_TABLE_DATA_COL_TITLE_DOWN,
-                        DateMath.isToday(DateMath.subtract(celDate, DateMath.WEEK, 1))
-                );
+                        CSS_SVT_TABLE_DATA_COL_TITLE_DOWN, !DateMath.isDayOverlap(
+                            DateMath.subtract(celDate, DateMath.WEEK, 1), todayDate));
 
                 titleRowNode.append(
                     colTitleNode.setContent(celDate.getDate())
@@ -766,21 +764,21 @@ var SchedulerTableView = A.Component.create({
          */
         syncGridUI: function() {
             var instance = this;
-            var today = instance.getToday();
             var scheduler = instance.get(SCHEDULER);
+            var todayDate = scheduler.get(TODAY_DATE);
 
             instance[COLUMN_TABLE_GRID].removeClass(CSS_SVT_COLGRID_TODAY);
 
             var intervalStartDate = instance._findCurrentIntervalStart();
             var intervalEndDate = instance._findCurrentIntervalEnd();
 
-            if (DateMath.between(today, intervalStartDate, intervalEndDate)) {
+            if (DateMath.between(todayDate, intervalStartDate, intervalEndDate)) {
                 var firstDayOfWeek = scheduler.get(FIRST_DAY_OF_WEEK);
-                var firstWeekDay = instance._findFirstDayOfWeek(today);
+                var firstWeekDay = instance._findFirstDayOfWeek(todayDate);
 
-                var rowIndex = DateMath.getWeekNumber(today, firstDayOfWeek) - DateMath.getWeekNumber(
+                var rowIndex = DateMath.getWeekNumber(todayDate, firstDayOfWeek) - DateMath.getWeekNumber(
                     intervalStartDate, firstDayOfWeek);
-                var colIndex = (today.getDate() - firstWeekDay.getDate());
+                var colIndex = (todayDate.getDate() - firstWeekDay.getDate());
                 var celIndex = instance._getCellIndex([colIndex, rowIndex]);
 
                 var todayCel = instance[COLUMN_TABLE_GRID].item(celIndex);
