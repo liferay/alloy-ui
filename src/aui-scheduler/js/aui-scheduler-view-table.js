@@ -770,20 +770,20 @@ var SchedulerTableView = A.Component.create({
         syncGridUI: function() {
             var instance = this;
             var scheduler = instance.get(SCHEDULER);
-            var today = scheduler.get(TODAY_DATE);
+            var todayDate = scheduler.get(TODAY_DATE);
 
             instance[COLUMN_TABLE_GRID].removeClass(CSS_SVT_COLGRID_TODAY);
 
             var intervalStartDate = instance._findCurrentIntervalStart();
             var intervalEndDate = instance._findCurrentIntervalEnd();
 
-            if (DateMath.between(today, intervalStartDate, intervalEndDate)) {
+            if (DateMath.between(todayDate, intervalStartDate, intervalEndDate)) {
                 var firstDayOfWeek = scheduler.get(FIRST_DAY_OF_WEEK);
-                var firstWeekDay = instance._findFirstDayOfWeek(today);
+                var firstWeekDay = instance._findFirstDayOfWeek(todayDate);
 
-                var rowIndex = DateMath.getWeekNumber(today, firstDayOfWeek) - DateMath.getWeekNumber(
+                var rowIndex = DateMath.getWeekNumber(todayDate, firstDayOfWeek) - DateMath.getWeekNumber(
                     intervalStartDate, firstDayOfWeek);
-                var colIndex = (today.getDate() - firstWeekDay.getDate());
+                var colIndex = (todayDate.getDate() - firstWeekDay.getDate());
                 var celIndex = instance._getCellIndex([colIndex, rowIndex]);
 
                 var todayCel = instance[COLUMN_TABLE_GRID].item(celIndex);
