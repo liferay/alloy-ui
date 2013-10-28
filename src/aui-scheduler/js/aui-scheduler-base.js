@@ -451,7 +451,14 @@ var SchedulerBase = A.Component.create({
             }
         },
 
-        todayDate {
+        /**
+         * Today date representation. This option allows the developer to
+         * specify the date he wants to be used as the today date.
+         *
+         * @attribute todayDate
+         * @default new Date()
+         * @type Date
+         */
         todayDate: {
             value: new Date(),
             validator: isDate
