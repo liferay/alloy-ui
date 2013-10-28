@@ -96,11 +96,14 @@ YUI.add('module-tests', function(Y) {
             var treeViewIndex = treeView.get("index");
             var rootTreeNodeIndex = rootTreeNode.get("index");
 
-            Y.Assert.isTrue(treeViewIndex.hasOwnProperty('root'),
+            Y.Assert.isTrue(
+                treeViewIndex.hasOwnProperty('root'),
                 'treeViewIndex object should have a "root" property');
-            Y.Assert.isTrue(treeViewIndex.hasOwnProperty('child'),
+            Y.Assert.isTrue(
+                treeViewIndex.hasOwnProperty('child'),
                 'treeViewIndex object should have a "child" property');
-            Y.Assert.isTrue(rootTreeNodeIndex.hasOwnProperty('child'),
+            Y.Assert.isTrue(
+                rootTreeNodeIndex.hasOwnProperty('child'),
                 'rootTreeNodeIndex object should have a "child" property');
         },
 
@@ -153,9 +156,11 @@ YUI.add('module-tests', function(Y) {
             treeView.appendChild(rootTreeNode);
             rootTreeNode.appendChild(childTreeNode);
 
-            Y.Assert.isTrue(treeView.isRegistered(childTreeNode),
+            Y.Assert.isTrue(
+                treeView.isRegistered(childTreeNode),
                 'childTreeNode should be registered in treeView');
-            Y.Assert.isTrue(rootTreeNode.isRegistered(childTreeNode),
+            Y.Assert.isTrue(
+                rootTreeNode.isRegistered(childTreeNode),
                 'childTreeNode should be registered in Parent rootTreeNode');
         },
 
