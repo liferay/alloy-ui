@@ -64,6 +64,7 @@ var Lang = A.Lang,
     STRINGS = 'strings',
     TIMESTAMP = 'timestamp',
     TODAY = 'today',
+    TODAY_DATE = 'todayDate',
     VIEW_DATE = 'viewDate',
     VISIBLE = 'visible',
 
