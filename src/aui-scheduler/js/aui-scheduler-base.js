@@ -452,9 +452,10 @@ var SchedulerBase = A.Component.create({
         },
 
         todayDate {
+        todayDate: {
             value: new Date(),
             validator: isDate
-        }
+        },
 
         todayNode: {
             valueFn: function() {
