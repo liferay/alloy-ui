@@ -546,6 +546,8 @@ var SchedulerTableView = A.Component.create({
         buildEventsTitleRow: function(tableNode, rowStartDate, rowEndDate) {
             var instance = this;
 
+            var todayDate = instance.get(SCHEDULER).get(TODAY_DATE);
+
             var titleRowNode = A.Node.create(TPL_SVT_TABLE_DATA_ROW);
 
             instance.loopDates(rowStartDate, rowEndDate, function(celDate, index) {
@@ -558,15 +560,15 @@ var SchedulerTableView = A.Component.create({
                 )
                     .toggleClass(
                         CSS_SVT_TABLE_DATA_COL_TITLE_TODAY,
-                        DateMath.isToday(celDate)
+                        !DateMath.isDayOverlap(celDate, todayDate)
                 )
                     .toggleClass(
                         CSS_SVT_TABLE_DATA_COL_TITLE_NEXT,
-                        DateMath.isToday(DateMath.subtract(celDate, DateMath.DAY, 1))
+                        !DateMath.isDayOverlap(DateMath.subtract(celDate, DateMath.DAY, 1), todayDate)
                 )
                     .toggleClass(
                         CSS_SVT_TABLE_DATA_COL_TITLE_DOWN,
-                        DateMath.isToday(DateMath.subtract(celDate, DateMath.WEEK, 1))
+                        !DateMath.isDayOverlap(DateMath.subtract(celDate, DateMath.WEEK, 1), todayDate)
                 );
 
                 titleRowNode.append(
@@ -766,8 +768,8 @@ var SchedulerTableView = A.Component.create({
          */
         syncGridUI: function() {
             var instance = this;
-            var today = instance.getToday();
             var scheduler = instance.get(SCHEDULER);
+            var today = scheduler.get(TODAY_DATE);
 
             instance[COLUMN_TABLE_GRID].removeClass(CSS_SVT_COLGRID_TODAY);
 

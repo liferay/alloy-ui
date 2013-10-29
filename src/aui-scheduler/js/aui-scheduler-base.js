@@ -451,6 +451,11 @@ var SchedulerBase = A.Component.create({
             }
         },
 
+        todayDate {
+            value: new Date(),
+            validator: isDate
+        }
+
         todayNode: {
             valueFn: function() {
                 return A.Node.create(
@@ -803,7 +808,7 @@ var SchedulerBase = A.Component.create({
                 activeView = instance.get(ACTIVE_VIEW);
 
             if (activeView) {
-                instance.set(DATE, activeView.getToday());
+                instance.set(DATE, instance.get(TODAY_DATE));
             }
 
             event.preventDefault();
