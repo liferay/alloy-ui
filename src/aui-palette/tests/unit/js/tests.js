@@ -6,6 +6,18 @@ YUI.add('module-tests', function(Y) {
 
     var suite = new Y.Test.Suite('aui-palette'),
         items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        objectItems = [
+            {
+                name: 'item1',
+                value: 1
+            }, {
+                name: 'item2',
+                value: 2
+            }, {
+                name: 'item3',
+                value: 3
+            }
+        ],
         palette;
 
     //--------------------------------------------------------------------------
@@ -22,6 +34,23 @@ YUI.add('module-tests', function(Y) {
 
                 palette = null;
             }
+        },
+
+        /*
+         * Check if an array of objects can be stored and retrieved
+         * @tests AUI-1033
+         */
+        'store and retrieve objects as items': function() {
+            palette = new Y.Palette({
+                columns: 1,
+                items: objectItems
+            }).render('#palette');
+
+            // Assert we can get the palette item by value
+            Y.Assert.areEqual(palette.getItemByValue(2).attr('data-value'), 2, 'Item value should be 2');
+
+            // Assert we can get the palette item by the object itself
+            Y.Assert.areEqual(palette.getItemByValue(objectItems[1]).attr('data-value'), 2, 'Item value should be 2');
         },
 
         'render items in 5 columns': function() {
