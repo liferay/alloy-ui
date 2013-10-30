@@ -129,6 +129,7 @@ var Lang = A.Lang,
     TIME = 'time',
     TIMES_NODE = 'timesNode',
     TODAY = 'today',
+    TODAY_DATE = 'todayDate',
     TOP = 'top',
     VIEW = 'view',
     VIEW_DATE = 'viewDate',
@@ -212,7 +213,7 @@ var Lang = A.Lang,
 
     TPL_SCHEDULER_VIEW_DAY_TABLE_COLDAY = '<td class="' + [CSS_SCHEDULER_VIEW_DAY_TABLE_COL,
         CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY].join(_SPACE) + '" data-colnumber="{colNumber}">' +
-        '<div class="' + CSS_SCHEDULER_VIEW_DAY_TABLE_COL_SHIM + '"></div>' +
+        '<div class="' + CSS_SCHEDULER_VIEW_DAY_TABLE_COL_SHIM + '">&nbsp;</div>' +
         '</td>',
 
     TPL_SCHEDULER_VIEW_DAY_TABLE_TIME = '<div class="' + CSS_SCHEDULER_VIEW_DAY_TABLE_TIME + '">{hour}</div>',
@@ -885,9 +886,7 @@ var SchedulerDayView = A.Component.create({
                 instance.syncEventsIntersectionUI(plottedEvents);
             });
 
-            if (instance.get(HEADER_VIEW)) {
-                instance.syncHeaderViewUI();
-            }
+            instance.syncHeaderViewUI();
         },
 
         /**
@@ -897,12 +896,13 @@ var SchedulerDayView = A.Component.create({
          */
         syncColumnsUI: function() {
             var instance = this;
+            var todayDate = instance.get(SCHEDULER).get(TODAY_DATE);
 
             instance[COL_DAYS_NODE].each(function(columnNode, i) {
                 var columnDate = instance.getDateByColumn(i);
 
                 columnNode.toggleClass(
-                    CSS_SCHEDULER_TODAY, DateMath.isToday(columnDate));
+                    CSS_SCHEDULER_TODAY, !DateMath.isDayOverlap(columnDate, todayDate));
             });
         },
 
@@ -916,13 +916,14 @@ var SchedulerDayView = A.Component.create({
             var viewDate = instance.get(SCHEDULER).get(VIEW_DATE);
             var formatter = instance.get(HEADER_DATE_FORMATTER);
             var locale = instance.get(LOCALE);
+            var todayDate = instance.get(SCHEDULER).get(TODAY_DATE);
 
             instance[COL_HEADER_DAYS_NODE].all(_ANCHOR).each(
                 function(columnNode, i) {
                     var columnDate = DateMath.add(viewDate, DateMath.DAY, i);
 
                     columnNode.toggleClass(
-                        CSS_SCHEDULER_TODAY_HD, DateMath.isToday(columnDate));
+                        CSS_SCHEDULER_TODAY_HD, !DateMath.isDayOverlap(columnDate, todayDate));
 
                     columnNode.html(formatter.call(instance, columnDate));
                 }
@@ -1009,8 +1010,9 @@ var SchedulerDayView = A.Component.create({
         syncEventTopUI: function(evt) {
             var instance = this;
 
-            evt.get(NODE).item(0).setStyle(TOP,
-                instance.calculateTop(evt.get(START_DATE)) + PX);
+            evt.get(NODE).item(0).setStyle(
+                TOP, instance.calculateTop(evt.get(START_DATE)) + PX);
+
             evt.get(NODE).item(1).setStyle(TOP, 0);
         },
 

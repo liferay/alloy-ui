@@ -10,17 +10,19 @@
     <h1>AlloyUI - Tree</h1>
     <div class="container pull-left">
         <div class="row-fluid">
-            <div class="span6">
+            <div class="span4">
                 <h2>TreeView file with drag and drop</h2>
                 <div id="treefile"></div>
                 <h2>TreeView normal with drag and drop</h2>
                 <div id="treebasic"></div>
             </div>
-            <div class="span6">
+            <div class="span4">
                 <h2>TreeView file with IO</h2>
                 <div id="treeio"></div>
-                <h2>TreeView task with IO</h2>
-                <div id="treeiotask"></div>
+            </div>
+            <div class="span4">
+                <h2>TreeViewDD file with IO</h2>
+                <div id="treeioDD"></div>
             </div>
         </div>
     </div>
@@ -149,9 +151,28 @@
             leaf: false
         });
 
-        var treeview = new Y.TreeView({
-            boundingBox: '#treeiotask',
-            children: [rootNode],
+        var dragNode = new Y.TreeNodeTask({
+            alwaysShowHitArea: true,
+            children: [],
+            draggable: true,
+            expanded: false,
+            label: 'Drag',
+            leaf: false
+        });
+
+        var dropNode = new Y.TreeNodeTask({
+            alwaysShowHitArea: true,
+            children: [],
+            draggable: true,
+            expanded: false,
+            io: 'assets/solar-system.html',
+            label: 'Drop',
+            leaf: false
+        });
+
+        var treeViewDD = new Y.TreeViewDD({
+            boundingBox: '#treeioDD',
+            children: [dragNode, dropNode],
             type: 'file'
         }).render();
 

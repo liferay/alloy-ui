@@ -62,6 +62,7 @@ var Lang = A.Lang,
     KEYDOWN = 'keydown',
     LABEL = 'label',
     LOCK = 'lock',
+    MOUSEDOWN = 'mousedown',
     MOUSEENTER = 'mouseenter',
     MOUSELEAVE = 'mouseleave',
     NAME = 'name',
@@ -1020,11 +1021,11 @@ var DiagramBuilder = A.Component.create({
         /**
          * TODO. Wanna help? Please send a Pull Request.
          *
-         * @method _onCanvasClick
+         * @method _onCanvasMouseDown
          * @param event
          * @protected
          */
-        _onCanvasClick: function(event) {
+        _onCanvasMouseDown: function(event) {
             var instance = this;
 
             instance.stopEditing();
@@ -1160,7 +1161,7 @@ var DiagramBuilder = A.Component.create({
             var canvas = instance.get(CANVAS);
 
             graphic.render(canvas);
-            A.one(canvas).on(CLICK, A.bind(instance._onCanvasClick, instance));
+            A.one(canvas).on(MOUSEDOWN, A.bind(instance._onCanvasMouseDown, instance));
         },
 
         /**
