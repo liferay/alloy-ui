@@ -50,7 +50,8 @@ YUI.add('module-tests', function(Y) {
             Y.Assert.areEqual(palette.getItemByValue(2).attr('data-value'), 2, 'Item value should be 2');
 
             // Assert we can get the palette item by the object itself
-            Y.Assert.areEqual(palette.getItemByValue(objectItems[1]).attr('data-value'), 2, 'Item value should be 2');
+            Y.Assert.areEqual(palette.getItemByValue(objectItems[1]).attr('data-value'), 2,
+                'Item value should be 2');
         },
 
         'render items in 5 columns': function() {
@@ -67,24 +68,36 @@ YUI.add('module-tests', function(Y) {
             Y.Assert.isNull(Y.one('.palette-items-container-2'), 'Third row should not exist');
 
             // The first row should contain 5 columns only
-            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="0"]'), 'First column should exist');
-            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="1"]'), 'Second column should exist');
-            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="2"]'), 'Third column should exist');
-            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="3"]'), 'Fourth column should exist');
-            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="4"]'), 'Fifth column should exist');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="0"]'),
+                'First column should exist');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="1"]'),
+                'Second column should exist');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="2"]'),
+                'Third column should exist');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="3"]'),
+                'Fourth column should exist');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="4"]'),
+                'Fifth column should exist');
 
             // Sixth column does not exist
-            Y.Assert.isNull(Y.one('.palette-items-container-0 .palette-item[data-column="5"]'), 'Sixth column should not exist');
+            Y.Assert.isNull(Y.one('.palette-items-container-0 .palette-item[data-column="5"]'),
+                'Sixth column should not exist');
 
             // The second row should contain 5 columns only
-            Y.Assert.isNotNull(Y.one('.palette-items-container-1 .palette-item[data-column="0"]'), 'First column should exist');
-            Y.Assert.isNotNull(Y.one('.palette-items-container-1 .palette-item[data-column="1"]'), 'Second column should exist');
-            Y.Assert.isNotNull(Y.one('.palette-items-container-1 .palette-item[data-column="2"]'), 'Third column should exist');
-            Y.Assert.isNotNull(Y.one('.palette-items-container-1 .palette-item[data-column="3"]'), 'Fourth column should exist');
-            Y.Assert.isNotNull(Y.one('.palette-items-container-1 .palette-item[data-column="4"]'), 'Fifth column should exist');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-1 .palette-item[data-column="0"]'),
+                'First column should exist');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-1 .palette-item[data-column="1"]'),
+                'Second column should exist');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-1 .palette-item[data-column="2"]'),
+                'Third column should exist');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-1 .palette-item[data-column="3"]'),
+                'Fourth column should exist');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-1 .palette-item[data-column="4"]'),
+                'Fifth column should exist');
 
             // Sixth column does not exist
-            Y.Assert.isNull(Y.one('.palette-items-container-1 .palette-item[data-column="5"]'), 'Sixth column should not exist');
+            Y.Assert.isNull(Y.one('.palette-items-container-1 .palette-item[data-column="5"]'),
+                'Sixth column should not exist');
         },
 
         'render items in 1 columns': function() {
@@ -94,38 +107,59 @@ YUI.add('module-tests', function(Y) {
             }).render('#palette');
 
             // Assert there are 10 rows and 1 columns each
-            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="0"]'), 'First row should have one column');
-            Y.Assert.isNull(Y.one('.palette-items-container-0 .palette-item[data-column="1"]'), 'First row should have only one column');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="0"]'),
+                'First row should have one column');
+            Y.Assert.isNull(Y.one('.palette-items-container-0 .palette-item[data-column="1"]'),
+                'First row should have only one column');
 
-            Y.Assert.isNotNull(Y.one('.palette-items-container-1 .palette-item[data-column="0"]'), 'Second row should have one column');
-            Y.Assert.isNull(Y.one('.palette-items-container-1 .palette-item[data-column="1"]'), 'Second row should have only one column');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-1 .palette-item[data-column="0"]'),
+                'Second row should have one column');
+            Y.Assert.isNull(Y.one('.palette-items-container-1 .palette-item[data-column="1"]'),
+                'Second row should have only one column');
 
-            Y.Assert.isNotNull(Y.one('.palette-items-container-2 .palette-item[data-column="0"]'), 'Third row should have one column');
-            Y.Assert.isNull(Y.one('.palette-items-container-2 .palette-item[data-column="1"]'), 'Third row should have only one column');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-2 .palette-item[data-column="0"]'),
+                'Third row should have one column');
+            Y.Assert.isNull(Y.one('.palette-items-container-2 .palette-item[data-column="1"]'),
+                'Third row should have only one column');
 
-            Y.Assert.isNotNull(Y.one('.palette-items-container-3 .palette-item[data-column="0"]'), 'Fourth row should have one column');
-            Y.Assert.isNull(Y.one('.palette-items-container-3 .palette-item[data-column="1"]'), 'Fourth row should have only one column');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-3 .palette-item[data-column="0"]'),
+                'Fourth row should have one column');
+            Y.Assert.isNull(Y.one('.palette-items-container-3 .palette-item[data-column="1"]'),
+                'Fourth row should have only one column');
 
-            Y.Assert.isNotNull(Y.one('.palette-items-container-4 .palette-item[data-column="0"]'), 'Fifth row should have one column');
-            Y.Assert.isNull(Y.one('.palette-items-container-4 .palette-item[data-column="1"]'), 'Fifth row should have only one column');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-4 .palette-item[data-column="0"]'),
+                'Fifth row should have one column');
+            Y.Assert.isNull(Y.one('.palette-items-container-4 .palette-item[data-column="1"]'),
+                'Fifth row should have only one column');
 
-            Y.Assert.isNotNull(Y.one('.palette-items-container-5 .palette-item[data-column="0"]'), 'Sixth row should have one column');
-            Y.Assert.isNull(Y.one('.palette-items-container-5 .palette-item[data-column="1"]'), 'Sixth row should have only one column');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-5 .palette-item[data-column="0"]'),
+                'Sixth row should have one column');
+            Y.Assert.isNull(Y.one('.palette-items-container-5 .palette-item[data-column="1"]'),
+                'Sixth row should have only one column');
 
-            Y.Assert.isNotNull(Y.one('.palette-items-container-6 .palette-item[data-column="0"]'), 'Seventh row should have one column');
-            Y.Assert.isNull(Y.one('.palette-items-container-6 .palette-item[data-column="1"]'), 'Seventh row should have only one column');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-6 .palette-item[data-column="0"]'),
+                'Seventh row should have one column');
+            Y.Assert.isNull(Y.one('.palette-items-container-6 .palette-item[data-column="1"]'),
+                'Seventh row should have only one column');
 
-            Y.Assert.isNotNull(Y.one('.palette-items-container-7 .palette-item[data-column="0"]'), 'Eighth row should have one column');
-            Y.Assert.isNull(Y.one('.palette-items-container-7 .palette-item[data-column="1"]'), 'Eighth row should have only one column');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-7 .palette-item[data-column="0"]'),
+                'Eighth row should have one column');
+            Y.Assert.isNull(Y.one('.palette-items-container-7 .palette-item[data-column="1"]'),
+                'Eighth row should have only one column');
 
-            Y.Assert.isNotNull(Y.one('.palette-items-container-8 .palette-item[data-column="0"]'), 'Ninth row should have one column');
-            Y.Assert.isNull(Y.one('.palette-items-container-8 .palette-item[data-column="1"]'), 'Ninth row should have only one column');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-8 .palette-item[data-column="0"]'),
+                'Ninth row should have one column');
+            Y.Assert.isNull(Y.one('.palette-items-container-8 .palette-item[data-column="1"]'),
+                'Ninth row should have only one column');
 
-            Y.Assert.isNotNull(Y.one('.palette-items-container-9 .palette-item[data-column="0"]'), 'Tenth row should have one column');
-            Y.Assert.isNull(Y.one('.palette-items-container-9 .palette-item[data-column="1"]'), 'Tenth row should have only one column');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-9 .palette-item[data-column="0"]'),
+                'Tenth row should have one column');
+            Y.Assert.isNull(Y.one('.palette-items-container-9 .palette-item[data-column="1"]'),
+                'Tenth row should have only one column');
 
             // Eleventh column does not exist
-            Y.Assert.isNull(Y.one('.palette-items-container-10 .palette-item[data-column="0"]'), 'Eleventh row should have only one column');
+            Y.Assert.isNull(Y.one('.palette-items-container-10 .palette-item[data-column="0"]'),
+                'Eleventh row should have only one column');
         },
 
         'render items without columns': function() {
@@ -138,19 +172,30 @@ YUI.add('module-tests', function(Y) {
             Y.Assert.isNotNull(Y.one('.palette-items-container-0'), 'First row should exist');
             Y.Assert.isNull(Y.one('.palette-items-container-1'), 'Second row should not exist');
 
-            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="0"]'), 'First column should exist');
-            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="1"]'), 'Second column should exist');
-            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="2"]'), 'Third column should exist');
-            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="3"]'), 'Fourth column should exist');
-            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="4"]'), 'Fifth column should exist');
-            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="5"]'), 'Sixth column should exist');
-            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="6"]'), 'Seventh column should exist');
-            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="7"]'), 'Eighth column should exist');
-            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="8"]'), 'Ninth column should exist');
-            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="9"]'), 'Tenth column should exist');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="0"]'),
+                'First column should exist');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="1"]'),
+                'Second column should exist');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="2"]'),
+                'Third column should exist');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="3"]'),
+                'Fourth column should exist');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="4"]'),
+                'Fifth column should exist');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="5"]'),
+                'Sixth column should exist');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="6"]'),
+                'Seventh column should exist');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="7"]'),
+                'Eighth column should exist');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="8"]'),
+                'Ninth column should exist');
+            Y.Assert.isNotNull(Y.one('.palette-items-container-0 .palette-item[data-column="9"]'),
+                'Tenth column should exist');
 
             // Eleventh column does not exist
-            Y.Assert.isNull(Y.one('.palette-items-container-0 .palette-item[data-column="10"]'), 'Eleventh column should not exist');
+            Y.Assert.isNull(Y.one('.palette-items-container-0 .palette-item[data-column="10"]'),
+                'Eleventh column should not exist');
         }
     }));
 
