@@ -71,9 +71,7 @@ YUI.add('module-tests', function(Y) {
 
             form = Y.one('#myForm');
 
-            buttonSubmit = Y.one('.btn[type="submit"]');
-
-            buttonSubmit.simulate('click');
+            form.simulate('submit');
 
             elementWithoutError = Y.one('.control-group:not(.error)');
 
