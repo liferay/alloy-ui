@@ -7,6 +7,7 @@
 
 var L = A.Lang,
 
+    BUILDER = 'builder',
     CHECKED = 'checked',
     CHOICE = 'choice',
     CONTAINER = 'container',
@@ -157,16 +158,12 @@ var FormBuilderRadioField = A.Component.create({
                 templateNode = instance.get(TEMPLATE_NODE);
 
             A.each(val, function(item, index, collection) {
-                var index = A.Array.indexOf(predefinedValue, item.value);
-
-                if (index != -1) {
-                    hasPredefinedValue = true;
-                }
+                var checked = A.Array.indexOf(predefinedValue, item.value) > -1;
 
                 buffer.push(
                     L.sub(
                         TPL_RADIO, {
-                            checked: (index != -1) ? 'checked="checked"' : EMPTY_STR,
+                            checked: checked ? 'checked="checked"' : EMPTY_STR,
                             disabled: instance.get(DISABLED) ? 'disabled="disabled"' : EMPTY_STR,
                             id: instance.get(ID) + counter++,
                             label: item.label,
@@ -175,6 +172,10 @@ var FormBuilderRadioField = A.Component.create({
                         }
                     )
                 );
+
+                 if (checked) {
+                    hasPredefinedValue = true;
+                }
             });
 
             instance.optionNodes = A.NodeList.create(buffer.join(EMPTY_STR));
@@ -184,7 +185,7 @@ var FormBuilderRadioField = A.Component.create({
             if (!hasPredefinedValue) {
                 instance.set(PREDEFINED_VALUE, instance._valuePredefinedValueFn());
 
-                instance.get('builder').editField(instance);
+                instance.get(BUILDER).editField(instance);
             }
         },
 
