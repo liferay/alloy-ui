@@ -418,6 +418,10 @@ A.mix(DateParser.prototype, {
             ch,
             value = '';
 
+        while (textPos[0] < textLength && text.charAt(textPos) === opt_separator) {
+            textPos[0]++;
+        }
+
         while (textPos[0] < textLength) {
             ch = text.charAt(textPos);
 
