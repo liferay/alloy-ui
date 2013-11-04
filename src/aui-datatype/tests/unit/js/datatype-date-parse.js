@@ -127,6 +127,7 @@ YUI.add('module-tests', function(Y) {
             testMask('%e-%m-%Y');
             testMask('%m-%e-%Y');
             testMask('%m-%e-%Y');
+            testMask('%m %e %Y');
         },
 
         'test user input': function() {
@@ -137,6 +138,7 @@ YUI.add('module-tests', function(Y) {
             testMask(
                 '%a, %b %d, %Y %H:%M:%S %p %Z', 'Tue, Jan 01, 2013 15:05:10 BRT', new Date(2013, 0, 01, 15,
                     05, 10));
+            testMask('%m %e %y', '11  4 13', new Date(2013, 10, 4));
         },
 
         /*
