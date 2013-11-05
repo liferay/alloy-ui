@@ -1086,6 +1086,9 @@ var SchedulerEvent = A.Component.create({
             backgroundColor[2] *= instance.get(COLOR_BRIGHTNESS_FACTOR);
             backgroundColor = Color.fromArray(backgroundColor, Color.TYPES.HSL);
 
+            color = Color.toRGB(color);
+            backgroundColor = Color.toRGB(backgroundColor);
+
             if (node) {
                 node.setStyles({
                     backgroundColor: backgroundColor,
