@@ -632,8 +632,8 @@ var SchedulerTableView = A.Component.create({
             if (!instance.evtDateStack[key]) {
                 var events = scheduler.getIntersectEvents(date);
 
-                instance.evtDateStack[key] = events.filter(
-                    instance.get(FILTER_FN)
+                instance.evtDateStack[key] = A.Array.filter(
+                    events, instance.get(FILTER_FN)
                 );
             }
 
