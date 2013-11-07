@@ -149,7 +149,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.loadTasks('grunt');
+    grunt.loadTasks('tasks');
 
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-copy');

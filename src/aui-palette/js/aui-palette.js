@@ -147,12 +147,19 @@ var Lang = A.Lang,
 
             items = instance.get(ITEMS);
 
-            items.some(function(item, index) {
-                if (item.value === value) {
-                    itemIndex = index;
-                    return true;
+            A.Array.some(
+                items,
+                function(item, index) {
+                    if (Lang.isObject(item)) {
+                        item = item.value;
+                    }
+
+                    if (item === value) {
+                        itemIndex = index;
+                        return true;
+                    }
                 }
-            });
+            );
 
             return instance.getItemByIndex(itemIndex);
         },
@@ -521,13 +528,15 @@ var Lang = A.Lang,
             return function(items, index, row, column, selected) {
                 var instance = this;
 
+                var item = items[index];
+
                 return Lang.sub(
                     instance.ITEM_TEMPLATE, {
                         column: column,
                         index: index,
                         row: row,
                         selectedClassName: selected ? CSS_PALETTE_ITEM_SELECTED : _EMPTY,
-                        value: items[index]
+                        value: Lang.isObject(item) ? item.value : item
                     }
                 );
             };
