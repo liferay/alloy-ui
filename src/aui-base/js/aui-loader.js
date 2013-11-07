@@ -829,6 +829,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-tabview": {
         "requires": [
+            "selector-css3",
             "tabview",
             "aui-component"
         ]
@@ -1034,4 +1035,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '627f43396a530ddf385e28d45cac287b';
+YUI.Env[Y.version].md5 = '6a882418dca45cdde6a39a5f1f567549';
