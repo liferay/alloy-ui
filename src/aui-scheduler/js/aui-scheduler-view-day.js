@@ -180,6 +180,8 @@ var Lang = A.Lang,
     CSS_SCHEDULER_VIEW_DAY_TABLE_COLTIME = getCN(SCHEDULER_VIEW, DAY, TABLE, COLTIME),
     CSS_SCHEDULER_VIEW_DAY_TABLE_TIME = getCN(SCHEDULER_VIEW, DAY, TABLE, TIME),
 
+    SELECTOR_DAY_HEADER_ANCHOR = 'a, a span',
+
     TPL_SCHEDULER_VIEW_DAY_RESIZER = '<div class="' + CSS_SCHEDULER_VIEW_DAY_RESIZER + '">' +
         '<div class="' + [CSS_SCHEDULER_VIEW_DAY_ICON_GRIP_HORIZONTAL, CSS_SCHEDULER_VIEW_DAY_RESIZER_ICON].join(_SPACE) +
         '"></div>' +
@@ -1284,7 +1286,7 @@ var SchedulerDayView = A.Component.create({
             var instance = this;
             var scheduler = instance.get(SCHEDULER);
 
-            if (event.target.test(_ANCHOR)) {
+            if (event.target.test(SELECTOR_DAY_HEADER_ANCHOR)) {
                 var dayView = scheduler.getViewByName(DAY);
 
                 if (dayView) {
