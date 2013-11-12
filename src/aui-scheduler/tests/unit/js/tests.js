@@ -15,16 +15,14 @@ YUI.add('module-tests', function(Y) {
         }
     ];
 
-    scheduler = new Y.Scheduler(
-        {
-            activeView: weekView,
-            boundingBox: '#myScheduler',
-            date: new Date(2013, 11, 4),
-            items: events,
-            render: true,
-            views: [weekView]
-        }
-    );
+    scheduler = new Y.Scheduler({
+        activeView: weekView,
+        boundingBox: '#myScheduler',
+        date: new Date(2013, 11, 4),
+        items: events,
+        render: true,
+        views: [weekView]
+    });
 
     suite.add(new Y.Test.Case({
         name: 'Automated Tests',
