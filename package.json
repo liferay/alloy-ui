@@ -21,17 +21,16 @@
         "command": "0.0.4",
         "fs-extra": "0.6.3",
         "grunt": "0.4.1",
-        "grunt-contrib-compass": "0.5.0",
-        "grunt-contrib-copy": "0.4.1",
         "grunt-contrib-clean": "0.5.0",
+        "grunt-contrib-compass": "0.5.0",
+        "grunt-contrib-compress": "~0.5.2",
+        "grunt-contrib-copy": "0.4.1",
         "grunt-contrib-cssmin": "0.6.1",
         "grunt-jsbeautifier": "0.2.2",
         "walkdir": "0.0.5",
-        "which": "1.0.5",
-        "zip-archiver": "0.0.4"
+        "which": "1.0.5"
     },
     "engines": {
-        "node": ">=0.8.0",
-        "npm": ">=1.2.10"
+        "node": ">=0.8 <0.12"
     }
 }
