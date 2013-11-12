@@ -96,7 +96,7 @@ A.mix(DateParser.prototype, {
                         hints: hints,
                         numeric: (hints.numericTokens &&
                             hints.numericTokens.indexOf(chNext) > -1),
-                        token: chNext,
+                        token: chNext
                     };
 
                     last = compiled[compiled.length - 1];
