@@ -1284,7 +1284,7 @@ var SchedulerDayView = A.Component.create({
             var instance = this;
             var scheduler = instance.get(SCHEDULER);
 
-            if (event.target.test(_ANCHOR)) {
+            if (event.target.test('a, a span')) {
                 var dayView = scheduler.getViewByName(DAY);
 
                 if (dayView) {
