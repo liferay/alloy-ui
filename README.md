@@ -24,7 +24,7 @@ grunt command --option value
 
 ### Setup
 
-1. Install [NodeJS](https://github.com/bevry/community/wiki/Installing-Node) v0.8.11, if you don't have it yet. 
+1. Install [NodeJS](http://nodejs.org/download/), if you don't have it yet.
 
 	Some tasks requires you to have [Ruby](http://www.ruby-lang.org/en/downloads/), [Sass](http://sass-lang.com/tutorial.html), and [Compass](http://compass-style.org/install/) installed. If you're on OS X or Linux you probably already have Ruby installed; test with `ruby -v` in your terminal. When you've confirmed you have Ruby installed, run `gem update --system && gem install compass` to install Compass and Sass.
 
@@ -32,7 +32,7 @@ grunt command --option value
 2. Install global dependencies:
 
     ```
-[sudo] npm install -g grunt-cli shifter yogi yuidocjs
+[sudo] npm install -g grunt-cli shifter yogi yuidocjs phantomjs
     ```
 
 3. Install local dependencies:
@@ -107,18 +107,32 @@ grunt watch --src src/aui-module-name
 grunt create
     ```
 
-### Release
+### Format
 
-* Generate a release zip file:
+* Format JavaScript source code:
 
     ```
-grunt compress
+grunt format
+    ```
+
+### Release
+
+* Generate a zip file:
+
+    ```
+grunt zip
     ```
 
 * Build modules and generate a release zip file:
 
     ```
 grunt release
+    ```
+
+* Build modules optimized for CDN and generate a release zip file:
+
+    ```
+grunt release-cdn
     ```
 
 ### Test
@@ -168,7 +182,6 @@ The basic structure of the project is given in the following way:
 * `LICENSE.md` Defines the license agreement for AlloyUI.
 * `README.md` Explains the AlloyUI project.
 * `package.json` Lists all NodeJS dependencies.
-
 
 ## Team
 
