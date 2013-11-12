@@ -19,7 +19,7 @@
     "devDependencies": {
         "async": "0.2.9",
         "command": "0.0.4",
-        "fs-extra": "0.6.3",
+        "fs-extra": "0.6.4",
         "grunt": "0.4.1",
         "grunt-contrib-clean": "0.5.0",
         "grunt-contrib-compass": "0.5.0",
