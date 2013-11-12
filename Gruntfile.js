@@ -7,8 +7,7 @@
  * @author Eduardo Lundgren <eduardo.lundgren@liferay.com>
  */
 
-var path  = require('path');
-var spawn = require('child_process').spawn;
+var path = require('path');
 
 // -- Globals ------------------------------------------------------------------
 var ROOT = process.cwd();
@@ -102,11 +101,21 @@ module.exports = function(grunt) {
         compress: {
             zip: {
                 options: {
-                  mode: 'zip',
-                  pretty: true
+                    mode: 'zip',
+                    pretty: true
                 },
                 files: [
-                  { src: ['build/**', 'demos/**', 'src/**', 'LICENSE.md', 'README.md', '.alloy.json', '!.DS_Store'] }
+                    {
+                        src: [
+                            'build/**',
+                            'demos/**',
+                            'src/**',
+                            'LICENSE.md',
+                            'README.md',
+                            '.alloy.json',
+                            '!.DS_Store'
+                        ]
+                    }
                 ]
             }
         },
@@ -139,7 +148,11 @@ module.exports = function(grunt) {
         },
 
         jsbeautifier: {
-            files: ['src/**/*.js', 'src/**/*.css', 'grunt/*.js'],
+            files: [
+                'src/**/*.js',
+                'src/**/*.css',
+                'grunt/*.js'
+            ],
             options: {
                 config: '.jsbeautifyrc'
             }
@@ -178,6 +191,6 @@ module.exports = function(grunt) {
     grunt.registerTask('api-deploy', ['api-build', 'api-push']);
     grunt.registerTask('bootstrap', ['compass', 'copy:css', 'cssmin', 'copy:img', 'clean:css']);
     grunt.registerTask('format', ['jsbeautifier']);
-    grunt.registerTask('release', ['clean:zip', 'all','zip:release']);
+    grunt.registerTask('release', ['clean:zip', 'all', 'zip:release']);
     grunt.registerTask('release-cdn', ['clean:zip', 'all', 'cdn', 'zip:cdn', 'build:aui']);
 };
