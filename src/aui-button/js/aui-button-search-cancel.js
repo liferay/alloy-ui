@@ -157,8 +157,7 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
     },
 
     /**
-     * Position the cancel search button and aligns it with the passed
-     * <code>element</code>.
+     * Position the cancel search button and aligns it with the passed `element`.
      *
      * @method _syncButtonUI
      * @param {Node} element Input or textarea element align the created

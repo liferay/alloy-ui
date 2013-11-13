@@ -367,7 +367,7 @@ var TreeView = A.Component.create({
         },
 
         /**
-         * Fire on <code>mouseEnter</code> the TreeNode.
+         * Fire on `mouseEnter` the TreeNode.
          *
          * @method _onMouseEnterNodeEl
          * @param {EventFacade} event
@@ -383,7 +383,7 @@ var TreeView = A.Component.create({
         },
 
         /**
-         * Fire on <code>mouseLeave</code> the TreeNode.
+         * Fire on `mouseLeave` the TreeNode.
          *
          * @method _onMouseLeaveNodeEl
          * @param {EventFacade} event
@@ -399,7 +399,7 @@ var TreeView = A.Component.create({
         },
 
         /**
-         * Fire on <code>click</code> the TreeNode hitarea.
+         * Fire on `click` the TreeNode hitarea.
          *
          * @method _onClickHitArea
          * @param {EventFacade} event
@@ -686,7 +686,7 @@ var TreeViewDD = A.Component.create({
         },
 
         /**
-         * Set the append CSS state on the passed <code>nodeContent</code>.
+         * Set the append CSS state on the passed `nodeContent`.
          *
          * @method _appendState
          * @param {Node} nodeContent
@@ -703,7 +703,7 @@ var TreeViewDD = A.Component.create({
         },
 
         /**
-         * Set the going down CSS state on the passed <code>nodeContent</code>.
+         * Set the going down CSS state on the passed `nodeContent`.
          *
          * @method _goingDownState
          * @param {Node} nodeContent
@@ -720,7 +720,7 @@ var TreeViewDD = A.Component.create({
         },
 
         /**
-         * Set the going up CSS state on the passed <code>nodeContent</code>.
+         * Set the going up CSS state on the passed `nodeContent`.
          *
          * @method _goingUpState
          * @param {Node} nodeContent
@@ -737,7 +737,7 @@ var TreeViewDD = A.Component.create({
         },
 
         /**
-         * Set the reset CSS state on the passed <code>nodeContent</code>.
+         * Set the reset CSS state on the passed `nodeContent`.
          *
          * @method _resetState
          * @param {Node} nodeContent

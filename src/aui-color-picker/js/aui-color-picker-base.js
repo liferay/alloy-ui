@@ -794,7 +794,7 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * Set the <code>trigger</code> UI.
+     * Set the `trigger` UI.
      *
      * @method _uiSetTrigger
      * @param value

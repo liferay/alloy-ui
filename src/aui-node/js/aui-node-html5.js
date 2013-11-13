@@ -37,13 +37,13 @@ if (A.UA.ie) {
     A.mix(
         HTML5, {
             /**
-             * Receive a <code>frag</code> and a HTML content. This method
+             * Receive a `frag` and a HTML content. This method
              * shivs the HTML5 nodes appended to a Node or fragment which is not
              * on the document yet.
              *
              * @method IECreateFix
              * @param {Node | DocumentFragment} frag Fragment to be fixed.
-             * @param {String} content HTML to be set (using innerHTML) on the <code>frag</code>.
+             * @param {String} content HTML to be set (using innerHTML) on the `frag`.
              * @return {Node | DocumentFragment}
              */
             IECreateFix: function(frag, content) {

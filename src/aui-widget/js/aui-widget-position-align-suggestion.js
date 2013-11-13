@@ -50,8 +50,7 @@ PositionAlignSuggestion.ATTRS = {
 
 A.mix(PositionAlignSuggestion.prototype, {
     /**
-     * Property defining the align points based on the suggested
-     * <code>position</code>.
+     * Property defining the align points based on the suggested `position`.
      *
      * @property POSITION_ALIGN_SUGGESTION
      * @type {}
@@ -88,7 +87,7 @@ A.mix(PositionAlignSuggestion.prototype, {
     },
 
     /**
-     * Suggest alignment for the node based on the <code>position</code> suggestion.
+     * Suggest alignment for the node based on the `position` suggestion.
      *
      * @method suggestAlignment
      * @attribute alignNode
@@ -112,7 +111,7 @@ A.mix(PositionAlignSuggestion.prototype, {
     },
 
     /**
-     * Fire after <code>boundingBox</code> position changes.
+     * Fire after `boundingBox` position changes.
      *
      * @method _afterPositionChangePAS
      * @param event
@@ -125,7 +124,7 @@ A.mix(PositionAlignSuggestion.prototype, {
     },
 
     /**
-     * Fire after <code>renderUI</code> method.
+     * Fire after `renderUI` method.
      *
      * @method _afterRenderUIPAS
      * @param event
@@ -183,7 +182,7 @@ A.mix(PositionAlignSuggestion.prototype, {
     },
 
     /**
-     * Guess alignment points for the <code>position</code>.
+     * Guess alignment points for the `position`.
      *
      * @method _getAlignPointsSuggestion
      * @attribute position
@@ -194,7 +193,7 @@ A.mix(PositionAlignSuggestion.prototype, {
     },
 
     /**
-     * Fire before <code>_uiSetAlign</code> method.
+     * Fire before `_uiSetAlign` method.
      *
      * @method _onUISetAlignPAS
      * @param node
@@ -220,7 +219,7 @@ A.mix(PositionAlignSuggestion.prototype, {
     },
 
     /**
-     * Sync the <code>boundingBox</code> position CSS classes.
+     * Sync the `boundingBox` position CSS classes.
      *
      * @method _syncPositionUI
      * @param val
@@ -238,7 +237,7 @@ A.mix(PositionAlignSuggestion.prototype, {
     },
 
     /**
-     * Set the <code>boundingBox</code> position on the UI.
+     * Set the `boundingBox` position on the UI.
      *
      * @method _uiSetPosition
      * @param val

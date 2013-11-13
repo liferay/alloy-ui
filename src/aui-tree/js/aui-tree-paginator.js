@@ -129,7 +129,7 @@ TreeViewPaginator.prototype = {
 
     /**
      * Default paginatorClick event handler. Increment the
-     * <code>paginator.start</code> to the next <code>paginator.limit</code>.
+     * `paginator.start` to the next `paginator.limit`.
      *
      * @method _defPaginatorClickFn
      * @param {EventFacade} event The Event object
@@ -168,8 +168,7 @@ TreeViewPaginator.prototype = {
 
     /**
      * Adds two extra IO data parameter to the request to handle the
-     * paginator. By default these parameters are <code>limit</code> and
-     * <code>start</code>.
+     * paginator. By default these parameters are `limit` and `start`.
      *
      * @method _syncPaginatorIOData
      * @protected

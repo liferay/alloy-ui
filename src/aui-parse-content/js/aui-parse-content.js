@@ -49,7 +49,9 @@ var L = A.Lang,
  *
  * Quick Example:<br/>
  *
- * <pre><code>node.plug(A.Plugin.ParseContent);</code></pre>
+ * ```
+ * node.plug(A.Plugin.ParseContent);
+ * ```
  *
  * Check the list of <a href="ParseContent.html#configattributes">Configuration Attributes</a> available for
  * ParseContent.
@@ -153,7 +155,7 @@ var ParseContent = A.Component.create({
         },
 
         /**
-         * Extract the <code>script</code> tags from the string content and
+         * Extract the `script` tags from the string content and
          * evaluate the chunks.
          *
          * @method parseContent
@@ -189,7 +191,7 @@ var ParseContent = A.Component.create({
         },
 
         /**
-         * Bind listeners on the <code>insert</code> and <code>setContent</code>
+         * Bind listeners on the `insert` and `setContent`
          * methods of the Node instance where you are plugging the ParseContent.
          * These listeners are responsible for intercept the HTML passed and parse
          * them.
@@ -273,10 +275,10 @@ var ParseContent = A.Component.create({
         },
 
         /**
-         * Loop trough all extracted <code>script</code> tags and evaluate them.
+         * Loop trough all extracted `script` tags and evaluate them.
          *
          * @method _dispatch
-         * @param {Object} output Object containing the reference for the fragment and the extracted <code>script</code> tags.
+         * @param {Object} output Object containing the reference for the fragment and the extracted `script` tags.
          * @protected
          * @return {String}
          */

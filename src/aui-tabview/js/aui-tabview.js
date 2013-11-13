@@ -124,7 +124,7 @@ A.Tab = A.Component.create({
         },
 
         /**
-         * Fire after <code>disabled</code> class been set on the UI.
+         * Fire after `disabled` class been set on the UI.
          *
          * @method _afterUiSetDisabled
          * @param val
@@ -137,7 +137,7 @@ A.Tab = A.Component.create({
         },
 
         /**
-         * Fire before <code>selected</code> attribute change.
+         * Fire before `selected` attribute change.
          *
          * @method _onTabSelectedChange
          * @param event
@@ -362,7 +362,7 @@ A.TabView = A.Component.create({
         },
 
         /**
-         * Fire after <code>type</code> attribute changes.
+         * Fire after `type` attribute changes.
          *
          * @method _afterTypeChange
          * @param event
@@ -398,7 +398,7 @@ A.TabView = A.Component.create({
         },
 
         /**
-         * Set the <code>type</code> attribute on the UI.
+         * Set the `type` attribute on the UI.
          *
          * @method _uiSetType
          * @param val
@@ -412,7 +412,7 @@ A.TabView = A.Component.create({
         },
 
         /**
-         * Toggle <code>stacked</code> attribute on the UI.
+         * Toggle `stacked` attribute on the UI.
          *
          * @method _uiSetStacked
          * @param val

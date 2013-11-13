@@ -370,7 +370,7 @@ var TogglerDelegate = A.Component.create({
         },
 
         /**
-         * Trigger when the <code>animating</code> attribute change its value.
+         * Trigger when the `animating` attribute change its value.
          *
          * @method _onAnimatingChange
          * @param event

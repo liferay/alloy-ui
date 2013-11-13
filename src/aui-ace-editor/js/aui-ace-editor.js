@@ -276,7 +276,7 @@ var AceEditor = A.Component.create({
         },
 
         /**
-         * Get the <code>highlightActiveLine</code> attribute.
+         * Get the `highlightActiveLine` attribute.
          *
          * @method _getHighlightActiveLine
          * @protected
@@ -288,7 +288,7 @@ var AceEditor = A.Component.create({
         },
 
         /**
-         * Get the <code>mode</code> attribute.
+         * Get the `mode` attribute.
          *
          * @method _getMode
          * @protected
@@ -300,7 +300,7 @@ var AceEditor = A.Component.create({
         },
 
         /**
-         * Get the <code>readOnly</code> attribute.
+         * Get the `readOnly` attribute.
          *
          * @method _getReadOnly
          * @protected
@@ -312,7 +312,7 @@ var AceEditor = A.Component.create({
         },
 
         /**
-         * Get the <code>showPrintMargin</code> attribute.
+         * Get the `showPrintMargin` attribute.
          *
          * @method _getShowPrintMargin
          * @protected
@@ -324,7 +324,7 @@ var AceEditor = A.Component.create({
         },
 
         /**
-         * Get the <code>tabSize</code> attribute.
+         * Get the `tabSize` attribute.
          *
          * @method _getTabSize
          * @protected
@@ -336,7 +336,7 @@ var AceEditor = A.Component.create({
         },
 
         /**
-         * Get the <code>useSoftTabs</code> attribute.
+         * Get the `useSoftTabs` attribute.
          *
          * @method _getUseSoftTabs
          * @protected
@@ -348,7 +348,7 @@ var AceEditor = A.Component.create({
         },
 
         /**
-         * Get the <code>useWrapMode</code> attribute.
+         * Get the `useWrapMode` attribute.
          *
          * @method _getUseWrapMode
          * @protected
@@ -360,7 +360,7 @@ var AceEditor = A.Component.create({
         },
 
         /**
-         * Get the <code>value</code> attribute.
+         * Get the `value` attribute.
          *
          * @method _getValue
          * @protected
@@ -372,7 +372,7 @@ var AceEditor = A.Component.create({
         },
 
         /**
-         * Set the <code>highlightActiveLine</code> attribute.
+         * Set the `highlightActiveLine` attribute.
          *
          * @method _setHighlightActiveLine
          * @param value
@@ -385,7 +385,7 @@ var AceEditor = A.Component.create({
         },
 
         /**
-         * Set the <code>mode</code> attribute.
+         * Set the `mode` attribute.
          *
          * @method _setMode
          * @param value
@@ -400,7 +400,7 @@ var AceEditor = A.Component.create({
         },
 
         /**
-         * Set the <code>readOnly</code> attribute.
+         * Set the `readOnly` attribute.
          *
          * @method _setReadOnly
          * @param value
@@ -413,7 +413,7 @@ var AceEditor = A.Component.create({
         },
 
         /**
-         * Set the <code>showPrintMargin</code> attribute.
+         * Set the `showPrintMargin` attribute.
          *
          * @method _setShowPrintMargin
          * @param value
@@ -426,7 +426,7 @@ var AceEditor = A.Component.create({
         },
 
         /**
-         * Set the <code>tabSize</code> attribute.
+         * Set the `tabSize` attribute.
          *
          * @method _setTabSize
          * @param value
@@ -439,7 +439,7 @@ var AceEditor = A.Component.create({
         },
 
         /**
-         * Set the <code>useSoftTabs</code> attribute.
+         * Set the `useSoftTabs` attribute.
          *
          * @method _setUseSoftTabs
          * @param value
@@ -452,7 +452,7 @@ var AceEditor = A.Component.create({
         },
 
         /**
-         * Set the <code>useWrapMode</code> attribute.
+         * Set the `useWrapMode` attribute.
          *
          * @method _setUseWrapMode
          * @param value
@@ -465,7 +465,7 @@ var AceEditor = A.Component.create({
         },
 
         /**
-         * Set the <code>value</code> attribute.
+         * Set the `value` attribute.
          *
          * @method _setValue
          * @param value
@@ -478,7 +478,7 @@ var AceEditor = A.Component.create({
         },
 
         /**
-         * Set the <code>height</code> attribute on the UI.
+         * Set the `height` attribute on the UI.
          *
          * @method _uiSetHeight
          * @protected
@@ -492,7 +492,7 @@ var AceEditor = A.Component.create({
         },
 
         /**
-         * Set the <code>width</code> attribute on the UI.
+         * Set the `width` attribute on the UI.
          *
          * @method _uiSetWidth
          * @protected

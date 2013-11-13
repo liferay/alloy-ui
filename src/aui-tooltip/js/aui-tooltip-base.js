@@ -81,7 +81,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
     },
 
     /**
-     * Fire after <code>boundingBox</code> style changes.
+     * Fire after `boundingBox` style changes.
      *
      * @method _afterUiSetVisible
      * @param val
@@ -106,7 +106,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
     },
 
     /**
-     * Fire after <code>trigger</code> changes.
+     * Fire after `trigger` changes.
      *
      * @method _afterUiSetTrigger
      * @param val

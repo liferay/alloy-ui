@@ -113,7 +113,7 @@ var ImageGallery = A.Component.create({
     ATTRS: {
 
         /**
-         * If <code>true</code> the slide show will be played when the
+         * If `true` the slide show will be played when the
          * ImageGallery is displayed.
          *
          * @attribute autoPlay
@@ -139,7 +139,7 @@ var ImageGallery = A.Component.create({
 
         /**
          * <a href="Pagination.html">Pagination</a> configuration Object. The
-         * <code>Pagination</code> handles the thumbnails control.
+         * `Pagination` handles the thumbnails control.
          *
          * @attribute pagination
          * @default <a href="Pagination.html">Pagination</a> configuration Object.
@@ -200,7 +200,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * If <code>true</code> the slide show is paused.
+         * If `true` the slide show is paused.
          *
          * @attribute paused
          * @default false
@@ -224,7 +224,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * If <code>true</code> the slide show is playing.
+         * If `true` the slide show is playing.
          *
          * @attribute playing
          * @default false
@@ -285,7 +285,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * If <code>true</code> will use the original image as thumbnails.
+         * If `true` will use the original image as thumbnails.
          *
          * @attribute useOriginalImage
          * @default false
@@ -318,7 +318,7 @@ var ImageGallery = A.Component.create({
         toolbar: null,
 
         /**
-         * Stores the <code>A.later</code> reference.
+         * Stores the `A.later` reference.
          *
          * @property _timer
          * @type Number

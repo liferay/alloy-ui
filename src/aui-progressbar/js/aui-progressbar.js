@@ -121,7 +121,7 @@ var ProgressBar = A.Component.create({
         /**
          * Display label of the progressbar. If not specified try to query
          * using HTML_PARSER an element inside boundingBox which matches
-         * <code>aui-progressbar-text</code> and get its innerHTML to be
+         * `aui-progressbar-text` and get its innerHTML to be
          * used as label.
          *
          * @attribute label
@@ -174,8 +174,7 @@ var ProgressBar = A.Component.create({
         },
 
         /**
-         * Calculate the ratio based on <code>max</code> and
-         * <code>min</code> values.
+         * Calculate the ratio based on `max` and `min` values.
          *
          * @attribute ratio
          * @readOnly
@@ -187,8 +186,7 @@ var ProgressBar = A.Component.create({
         },
 
         /**
-         * Calculate the progressbar step based on <code>ratio</code>
-         * value.
+         * Calculate the progressbar step based on `ratio` value.
          *
          * @attribute step
          * @readOnly
@@ -202,7 +200,7 @@ var ProgressBar = A.Component.create({
         /**
          * DOM Node to display the text of the progressbar. If not
          * specified try to query using HTML_PARSER an element inside
-         * contentBox which matches <code>aui-progressbar-text</code>.
+         * contentBox which matches `aui-progressbar-text`.
          *
          * @attribute textNode
          * @default Generated div element.
@@ -300,7 +298,7 @@ var ProgressBar = A.Component.create({
 
         /**
          * Calculate the boundingBox size based on the
-         * <code>orientation</code> of the progressbar. If the orientation
+         * `orientation` of the progressbar. If the orientation
          * is HORIZONTAL get the width, if the orientation is VERTICAL get
          * the height.
          *
@@ -320,7 +318,7 @@ var ProgressBar = A.Component.create({
         },
 
         /**
-         * Calculate the number of pixels to set the <code>contentBox</code> bar.
+         * Calculate the number of pixels to set the `contentBox` bar.
          *
          * @method _getPixelStep
          * @protected
@@ -333,8 +331,7 @@ var ProgressBar = A.Component.create({
         },
 
         /**
-         * Calculate the ratio based on <code>max</code> and
-         * <code>min</code> values.
+         * Calculate the ratio based on `max` and `min` values.
          *
          * @method _getRatio
          * @protected
@@ -349,8 +346,7 @@ var ProgressBar = A.Component.create({
         },
 
         /**
-         * Calculate the progressbar step based on <code>ratio</code>
-         * value.
+         * Calculate the progressbar step based on `ratio` value.
          *
          * @method _getStep
          * @protected
@@ -361,7 +357,7 @@ var ProgressBar = A.Component.create({
         },
 
         /**
-         * Render the <code>textNode</code> of the progressbar if label is set.
+         * Render the `textNode` of the progressbar if label is set.
          *
          * @method _renderTextNodeIfLabelSet
          * @protected
@@ -376,7 +372,7 @@ var ProgressBar = A.Component.create({
 
         /**
          * Invoked automatically by the UI_ATTRS Widget API when bind or sync the
-         * <code>label</code> attribute.
+         * `label` attribute.
          *
          * @method _uiSetLabel
          * @param {String} val Display label
@@ -395,7 +391,7 @@ var ProgressBar = A.Component.create({
 
         /**
          * Invoked automatically by the UI_ATTRS Widget API when bind or sync the
-         * <code>orientation</code> attribute.
+         * `orientation` attribute.
          *
          * @method _uiSetOrientation
          * @param {String} val Orientation
@@ -415,7 +411,7 @@ var ProgressBar = A.Component.create({
 
         /**
          * Invoked automatically by the UI_ATTRS Widget API when bind or sync the
-         * <code>value</code> attribute.
+         * `value` attribute.
          *
          * @method _uiSetValue
          * @param {String} val Progress value

@@ -94,7 +94,7 @@ var IORequest = A.Component.create({
     ATTRS: {
 
         /**
-         * If <code>true</code> invoke the
+         * If `true` invoke the
          * <a href="IORequest.html#method_start">start</a> method
          * automatically, initializing the IO transaction.
          *
@@ -108,7 +108,7 @@ var IORequest = A.Component.create({
         },
 
         /**
-         * If <code>false</code> the current timestamp will be appended to the
+         * If `false` the current timestamp will be appended to the
          * url, avoiding the url to be cached.
          *
          * @attribute cache
@@ -139,7 +139,7 @@ var IORequest = A.Component.create({
          * This is a normalized attribute for the response data. It's useful
          * to retrieve the correct type for the
          * <a href="IORequest.html#config_dataType">dataType</a> (i.e., in json
-         * requests the <code>responseData</code>) is a JSONObject.
+         * requests the `responseData`) is a JSONObject.
          *
          * @attribute responseData
          * @default null
@@ -184,7 +184,7 @@ var IORequest = A.Component.create({
         /**
          * Object containing all the
          * <a href="io.html#configattributes">IO Configuration Attributes</a>.
-         * This Object is passed to the <code>A.io</code> internally.
+         * This Object is passed to the `A.io` internally.
          *
          * @attribute cfg
          * @default Object containing all the
@@ -419,7 +419,7 @@ var IORequest = A.Component.create({
         },
 
         /**
-         * Applies the <code>YUI.AUI.defaults.io.dataFormatter</code> if
+         * Applies the `YUI.AUI.defaults.io.dataFormatter` if
          * defined and return the formatted data.
          *
          * @method getFormattedData
@@ -480,7 +480,7 @@ var IORequest = A.Component.create({
         },
 
         /**
-         * Invoke the <code>start</code> method (autoLoad attribute).
+         * Invoke the `start` method (autoLoad attribute).
          *
          * @method _autoStart
          * @protected
@@ -496,8 +496,8 @@ var IORequest = A.Component.create({
         /**
          * Parse the <a href="IORequest.html#config_uri">uri</a> to add a
          * timestamp if <a href="IORequest.html#config_cache">cache</a> is
-         * <code>true</code>. Also applies the
-         * <code>YUI.AUI.defaults.io.uriFormatter</code>.
+         * `true`. Also applies the
+         * `YUI.AUI.defaults.io.uriFormatter`.
          *
          * @method _parseURL
          * @param {String} url

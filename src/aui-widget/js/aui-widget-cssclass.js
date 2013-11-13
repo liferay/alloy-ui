@@ -29,7 +29,7 @@ function WidgetCssClass() {}
  */
 WidgetCssClass.ATTRS = {
     /**
-     * CSS class to be automatically added to the <code>boundingBox</code>.
+     * CSS class to be automatically added to the `boundingBox`.
      *
      * @attribute cssClass
      * @type String
@@ -39,7 +39,7 @@ WidgetCssClass.ATTRS = {
 
 /**
  * Static property used to define the default suffix for cssClass attribute value
- * applied on <code>contentBox</code> node.
+ * applied on `contentBox` node.
  *
  * @property WidgetCssClass.CSS_CLASS_CONTENT_SUFFIX
  * @type String
@@ -86,8 +86,7 @@ WidgetCssClass.prototype = {
     },
 
     /**
-     * Applies the CSS classes to the <code>boundingBox</code> and
-     * <code>contentBox</code>.
+     * Applies the CSS classes to the `boundingBox` and `contentBox`.
      *
      * @method _uiSetCssClass
      * @protected

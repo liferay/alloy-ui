@@ -84,7 +84,7 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
     },
 
     /**
-     * Fire after <code>contentBox</code> class names changes.
+     * Fire after `contentBox` class names changes.
      *
      * @method _afterRenderBoxClassNames
      * @param event
@@ -98,7 +98,7 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
     },
 
     /**
-     * Fire after <code>boundingBox</code> style changes.
+     * Fire after `boundingBox` style changes.
      *
      * @method _afterUiSetVisible
      * @param val

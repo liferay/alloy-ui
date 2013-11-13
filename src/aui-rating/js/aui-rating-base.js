@@ -106,7 +106,7 @@ var Rating = A.Component.create({
         },
 
         /**
-         * If <code>true</code> could be reseted
+         * If `true` could be reseted
          * (i.e., have no values selected).
          *
          * @attribute canReset
@@ -200,7 +200,7 @@ var Rating = A.Component.create({
         /**
          * DOM Node to display the text of the StarRating. If not
          * specified try to query using HTML_PARSER an element inside
-         * boundingBox which matches <code>aui-rating-label-element</code>.
+         * boundingBox which matches `aui-rating-label-element`.
          *
          * @attribute labelNode
          * @default Generated div element.
@@ -226,8 +226,8 @@ var Rating = A.Component.create({
         },
 
         /**
-         * If <code>true</code> will extract the value of the
-         * <code>title</code> attribute on the radio, and use it on the
+         * If `true` will extract the value of the
+         * `title` attribute on the radio, and use it on the
          * generated Rating elements.
          *
          * @attribute showTitle
@@ -254,7 +254,7 @@ var Rating = A.Component.create({
         },
 
         /**
-         * If set, will be used when there is no DOM <code>title</code> on the
+         * If set, will be used when there is no DOM `title` on the
          * radio elements.
          *
          * @attribute title
@@ -377,7 +377,7 @@ var Rating = A.Component.create({
         },
 
         /**
-         * Select the <code>index</code> Rating element.
+         * Select the `index` Rating element.
          *
          * @method select
          * @param {Number} index Index to be selected
@@ -411,7 +411,7 @@ var Rating = A.Component.create({
         },
 
         /**
-         * Add the <code>className</code> on the the <code>index</code> element
+         * Add the `className` on the the `index` element
          * and all the previous Rating elements.
          *
          * @method fillTo
@@ -434,7 +434,7 @@ var Rating = A.Component.create({
         },
 
         /**
-         * Find the index of the <code>elem</code>.
+         * Find the index of the `elem`.
          *
          * @method indexOf
          * @param {Node} elem Rating element
@@ -465,7 +465,7 @@ var Rating = A.Component.create({
         },
 
         /**
-         * Create rating elements based on the <code>size</code>
+         * Create rating elements based on the `size`
          * attribute. It's only invoked when the HTML_PARSER does not find
          * nothing.
          *
@@ -758,7 +758,7 @@ var Rating = A.Component.create({
         },
 
         /**
-         * Get the <code>index</code> element input data stored on <a
+         * Get the `index` element input data stored on <a
          * href="Rating.html#property_inputElementsData">inputElementsData</a>.
          *
          * @method _getInputData

@@ -81,7 +81,7 @@ A.Toolbar = A.Component.create({
         },
 
         /**
-         * Define a new <code>ToolbarRenderer</code>.
+         * Define a new `ToolbarRenderer`.
          *
          * @attribute toolbarRenderer
          * @value A.ToolbarRenderer
@@ -297,7 +297,7 @@ A.Toolbar = A.Component.create({
         },
 
         /**
-         * Set <code>children</code> attribute on the UI.
+         * Set `children` attribute on the UI.
          *
          * @method _uiSetChildren
          * @param val

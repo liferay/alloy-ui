@@ -237,9 +237,8 @@ var Component = A.Base.create(_NAME, A.Widget, [
         },
 
         /**
-         * CSS class added to hide the <code>boundingBox</code> when
-         * <a href="Component.html#config_visible">visible</a> is set to
-         * <code>false</code>.
+         * CSS class added to hide the `boundingBox` when
+         * <a href="Component.html#config_visible">visible</a> is set to `false`.
          *
          * @attribute hideClass
          * @default 'aui-hide'
@@ -250,8 +249,8 @@ var Component = A.Base.create(_NAME, A.Widget, [
         },
 
         /**
-         * If <code>true</code> the render phase will be autimatically invoked
-         * preventing the <code>.render()</code> manual call.
+         * If `true` the render phase will be autimatically invoked
+         * preventing the `.render()` manual call.
          *
          * @attribute render
          * @default false

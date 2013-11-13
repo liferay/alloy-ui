@@ -307,7 +307,7 @@ var TreeNode = A.Component.create({
         },
 
         /**
-         * Label element to house the <code>label</code> attribute.
+         * Label element to house the `label` attribute.
          *
          * @attribute labelEl
          * @default Generated DOM element.
@@ -570,7 +570,7 @@ var TreeNode = A.Component.create({
         },
 
         /**
-         * Render the <code>contentBox</code> node.
+         * Render the `contentBox` node.
          *
          * @method _renderContentBox
          * @protected
@@ -598,7 +598,7 @@ var TreeNode = A.Component.create({
         },
 
         /**
-         * Render the <code>boundingBox</code> node.
+         * Render the `boundingBox` node.
          *
          * @method _renderBoundingBox
          * @protected
@@ -744,7 +744,7 @@ var TreeNode = A.Component.create({
         },
 
         /**
-         * Check if the current TreeNode contains the passed <code>node</code>.
+         * Check if the current TreeNode contains the passed `node`.
          *
          * @method contains
          * @param {TreeNode} node
@@ -835,7 +835,7 @@ var TreeNode = A.Component.create({
         },
 
         /**
-         * Whether the current TreeNode is ancestor of the passed <code>node</code> or not.
+         * Whether the current TreeNode is ancestor of the passed `node` or not.
          *
          * @method isLeaf
          * @return {Boolean}
@@ -856,7 +856,7 @@ var TreeNode = A.Component.create({
         },
 
         /**
-         * Toggle the current TreeNode, <code>collapsed</code> or <code>expanded</code>.
+         * Toggle the current TreeNode, `collapsed` or `expanded`.
          *
          * @method toggle
          */
@@ -904,7 +904,7 @@ var TreeNode = A.Component.create({
         },
 
         /*
-         * Fire when <code>mouseover</code> the current TreeNode.
+         * Fire when `mouseover` the current TreeNode.
          *
          * @method over
          */
@@ -913,7 +913,7 @@ var TreeNode = A.Component.create({
         },
 
         /*
-         * Fire when <code>mouseout</code> the current TreeNode.
+         * Fire when `mouseout` the current TreeNode.
          *
          * @method over
          */
@@ -948,7 +948,7 @@ var TreeNode = A.Component.create({
         },
 
         /**
-         * Set the <code>boundingBox</code> id.
+         * Set the `boundingBox` id.
          *
          * @method _syncTreeNodeBBId
          * @param {String} id
@@ -985,7 +985,7 @@ var TreeNode = A.Component.create({
         },
 
         /**
-         * Set <code>draggable</code> attribute on the UI.
+         * Set `draggable` attribute on the UI.
          *
          * @method _uiSetDraggable
          * @param val
@@ -999,7 +999,7 @@ var TreeNode = A.Component.create({
         },
 
         /**
-         * Set <code>expanded</code> attribute on the UI.
+         * Set `expanded` attribute on the UI.
          *
          * @method _uiSetExpanded
          * @param val
@@ -1030,7 +1030,7 @@ var TreeNode = A.Component.create({
         },
 
         /**
-         * Set <code>leaf</code> attribute on the UI.
+         * Set `leaf` attribute on the UI.
          *
          * @method _uiSetLeaf
          * @param val
@@ -1542,7 +1542,7 @@ var TreeNodeCheck = A.Component.create({
         },
 
         /**
-         * Fire after <code>checked</code> change.
+         * Fire after `checked` change.
          *
          * @method _afterCheckedChange
          * @param event
@@ -1555,7 +1555,7 @@ var TreeNodeCheck = A.Component.create({
         },
 
         /**
-         * Set the <code>checked</code> attribute on the UI.
+         * Set the `checked` attribute on the UI.
          *
          * @method _uiSetChecked
          * @param val
@@ -1839,13 +1839,15 @@ A.TreeNodeRadio = TreeNodeRadio;
 /**
  * TreeNode types hash map.
  *
- * <pre><code>A.TreeNode.nodeTypes = {
+ * ```
+ * A.TreeNode.nodeTypes = {
  *  radio: A.TreeNodeRadio,
  *  task: A.TreeNodeTask,
  *  check: A.TreeNodeCheck,
  *  node: A.TreeNode,
  *  io: A.TreeNodeIO
- *};</code></pre>
+ * };
+ * ```
  *
  * @for TreeNode
  * @property A.TreeNode.nodeTypes

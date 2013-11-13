@@ -440,7 +440,7 @@ var Lang = A.Lang,
         },
 
         /**
-         * Prevents the execution of <code>cursorChange</code> defaultFn if the list is not currently visible.
+         * Prevents the execution of `cursorChange` defaultFn if the list is not currently visible.
          *
          * @method _onCursorChange
          * @param {CustomEvent} event The fired event
@@ -543,7 +543,7 @@ var Lang = A.Lang,
         },
 
         /**
-         * Handles <code>resultsChange</code> event. Removes the current list of entries, populates the new ones and selects the first entry.
+         * Handles `resultsChange` event. Removes the current list of entries, populates the new ones and selects the first entry.
          *
          * @method _onResultsChange
          * @param {CustomEvent} event The fired event

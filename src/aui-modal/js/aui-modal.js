@@ -99,7 +99,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
     },
 
     /**
-     * Add <code>bubbleTargets</code> to config object.
+     * Add `bubbleTargets` to config object.
      *
      * @method _addBubbleTargets
      * @param config
@@ -117,7 +117,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
     },
 
     /**
-     * Fire after <code>maxHeight</code> CSS property changes.
+     * Fire after `maxHeight` CSS property changes.
      *
      * @method _afterFillHeight
      * @param event
@@ -200,7 +200,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
     },
 
     /**
-     * Set <code>maxHeight</code> CSS property.
+     * Set `maxHeight` CSS property.
      *
      * @method _fillMaxHeight
      * @param height

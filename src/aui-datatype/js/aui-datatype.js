@@ -13,9 +13,8 @@ var L = A.Lang,
     NUM_TWENTY_FOUR = 24,
 
     /**
-     * DataType.Boolean provides a set of utility to parse <code>falsey</code>
-     * value to <code>false</code> and <code>non-falsey</code> to
-     * <code>true</code>.
+     * DataType.Boolean provides a set of utility to parse `falsey`
+     * value to `false` and `non-falsey` to `true`.
      *
      * @class DataType.Boolean
      * @static
@@ -25,7 +24,7 @@ var L = A.Lang,
     /**
      * DataType.String provides a set of utility to provides a simple function
      * that evaluates a string to a primitive value (if possible). Supports
-     * <code>true</code> and <code>false</code> also.
+     * `true` and `false` also.
      *
      * @class DataType.String
      * @static
@@ -33,8 +32,7 @@ var L = A.Lang,
     DS = A.namespace('DataType.String');
 
 /**
- * Parses any <code>falsey</code> value to <code>false</code> and
- * <code>non-falsey</code> to <code>true</code>.
+ * Parses any `falsey` value to `false` and `non-falsey` to `true`.
  *
  * @for DataType.Boolean
  * @method parse
@@ -49,7 +47,7 @@ DB.parse = function(data) {
 
 /**
  * Evaluates a string to a primitive value (if possible). Supports
- * <code>true</code> and <code>false</code> also. Unrecognized strings are
+ * `true` and `false` also. Unrecognized strings are
  * returned without any modification.
  *
  * @for DataType.String
@@ -995,22 +993,22 @@ A.mix(A.DataType.DateMath, {
      * </ol>
      *
      * With that, you can use your new locales:
-     * <pre>
+     * ```
      *    var d = new Date("2008/04/22");
      *    Y.DataType.Date.format(d, { format: "%A, %d %B == %x", locale: "fr" });
-     * </pre>
+     * ```
      * will return:
-     * <pre>
+     * ```
      *    mardi, 22 avril == 22.04.2008
-     * </pre>
+     * ```
      * And
-     * <pre>
+     * ```
      *    Y.DataType.Date.format(d, {format: "%A, %d %B == %x", locale: "fr-CA" });
-     * </pre>
+     * ```
      * Will return:
-     * <pre>
+     * ```
      *   mardi, 22 avril == 2008-04-22
-     * </pre>
+     * ```
      * @requires oop
      * @class DataType.Date.Locale
      * @static

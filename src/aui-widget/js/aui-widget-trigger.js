@@ -113,7 +113,7 @@ A.mix(WidgetTrigger.prototype, {
     },
 
     /**
-     * Fire after <code>renderUI</code>.
+     * Fire after `renderUI`.
      *
      * @method _afterRenderUIWT
      * @param event
@@ -126,7 +126,7 @@ A.mix(WidgetTrigger.prototype, {
     },
 
     /**
-     * Fire after <code>trigger</code> changes.
+     * Fire after `trigger` changes.
      *
      * @method _afterTriggerChange
      * @param event
@@ -139,7 +139,7 @@ A.mix(WidgetTrigger.prototype, {
     },
 
     /**
-     * Set the <code>trigger</code> UI.
+     * Set the `trigger` UI.
      *
      * @method _uiSetTrigger
      * @param val

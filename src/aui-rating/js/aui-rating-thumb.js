@@ -120,7 +120,7 @@ var ThumbRating = A.Component.create({
         },
 
         /**
-         * Add the <code>className</code> on the the <code>index</code> element
+         * Add the `className` on the the `index` element
          * and all the previous Rating elements.
          *
          * @method fillTo

@@ -71,8 +71,8 @@ var Pagination = A.Component.create({
          * When enabled this property allows the navigation to go back to
          * the beggining when it reaches the last page, the opposite behavior
          * is also true. Incremental page navigation could happen clicking the
-         * control arrows or invoking <code>.next()</code> and
-         * <code>.prev()</code> methods.
+         * control arrows or invoking `.next()` and
+         * `.prev()` methods.
          *
          * @attribute circular
          * @default true
@@ -353,7 +353,7 @@ var Pagination = A.Component.create({
 
         /**
          * Set the new pagination state. The state is a payload object
-         * containing the page number, e.g. <code>{page:1}</code>.
+         * containing the page number, e.g. `{page:1}`.
          *
          * @method setState
          * @param state

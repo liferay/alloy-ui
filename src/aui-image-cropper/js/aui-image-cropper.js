@@ -691,7 +691,7 @@ var ImageCropper = A.Component.create({
         },
 
         /**
-         * Set <code>cropHeight</code> attribute on the UI.
+         * Set `cropHeight` attribute on the UI.
          *
          * @method _uiSetCropHeight
          * @param value
@@ -704,7 +704,7 @@ var ImageCropper = A.Component.create({
         },
 
         /**
-         * Set <code>cropWidth</code> attribute on the UI.
+         * Set `cropWidth` attribute on the UI.
          *
          * @method _uiSetCropWidth
          * @param value
@@ -741,7 +741,7 @@ var ImageCropper = A.Component.create({
         },
 
         /**
-         * Set <code>minHeight</code> attribute on the UI.
+         * Set `minHeight` attribute on the UI.
          *
          * @method _uiSetMinHeight
          * @param value
@@ -758,7 +758,7 @@ var ImageCropper = A.Component.create({
         },
 
         /**
-         * Set <code>minWidth</code> attribute on the UI.
+         * Set `minWidth` attribute on the UI.
          *
          * @method _uiSetMinWidth
          * @param value
@@ -775,7 +775,7 @@ var ImageCropper = A.Component.create({
         },
 
         /**
-         * Set <code>movable</code> attribute on the UI.
+         * Set `movable` attribute on the UI.
          *
          * @method _uiSetMovable
          * @param value
@@ -788,7 +788,7 @@ var ImageCropper = A.Component.create({
         },
 
         /**
-         * Set <code>preserveRatio</code> attribute on the UI.
+         * Set `preserveRatio` attribute on the UI.
          *
          * @method _uiSetPreserveRatio
          * @param value
@@ -805,7 +805,7 @@ var ImageCropper = A.Component.create({
         },
 
         /**
-         * Set <code>resizable</code> attribute on the UI.
+         * Set `resizable` attribute on the UI.
          *
          * @method _uiSetResizable
          * @param value
@@ -830,7 +830,7 @@ var ImageCropper = A.Component.create({
         },
 
         /**
-         * Set <code>x</code> attribute on the UI.
+         * Set `x` attribute on the UI.
          *
          * @method _uiSetX
          * @param value
@@ -846,7 +846,7 @@ var ImageCropper = A.Component.create({
         },
 
         /**
-         * Set <code>y</code> attribute on the UI.
+         * Set `y` attribute on the UI.
          *
          * @method _uiSetY
          * @param value

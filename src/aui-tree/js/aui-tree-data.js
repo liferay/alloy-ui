@@ -374,7 +374,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Loop each children and execute the <code>fn</code> callback.
+     * Loop each children and execute the `fn` callback.
      *
      * @method eachChildren
      * @param {function} fn callback
@@ -392,7 +392,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Loop each parent node and execute the <code>fn</code> callback.
+     * Loop each parent node and execute the `fn` callback.
      *
      * @method eachParent
      * @param {function} fn callback
@@ -599,7 +599,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Remove the passed <code>node</code> from the current TreeData.
+     * Remove the passed `node` from the current TreeData.
      *
      * @method removeChild
      * @param {TreeData} node
@@ -612,7 +612,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Remove the passed <code>node</code> from the current TreeData.
+     * Remove the passed `node` from the current TreeData.
      *
      * @method _removeChild
      * @param {TreeData} node
@@ -670,7 +670,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Insert <code>treeNode</code> before or after the <code>refTreeNode</code>.
+     * Insert `treeNode` before or after the `refTreeNode`.
      *
      * @method insert
      * @param {TreeNode} treeNode
@@ -736,7 +736,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Insert <code>treeNode</code> after the <code>refTreeNode</code>.
+     * Insert `treeNode` after the `refTreeNode`.
      *
      * @method insertAfter
      * @param {TreeNode} treeNode
@@ -749,7 +749,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Insert <code>treeNode</code> before the <code>refTreeNode</code>.
+     * Insert `treeNode` before the `refTreeNode`.
      *
      * @method insertBefore
      * @param {TreeNode} treeNode

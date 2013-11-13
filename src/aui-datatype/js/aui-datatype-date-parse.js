@@ -190,7 +190,7 @@ A.mix(DateParser.prototype, {
      *  </dd>
      * </dl>
      *
-     * @return {Date} native JavaScript Date. Returns <code>false</code> if cannot
+     * @return {Date} native JavaScript Date. Returns `false` if cannot
      * parse.
      */
     parse: function(text, opt_date) {
@@ -292,7 +292,7 @@ A.mix(DateParser.prototype, {
      * @param val {String} Keyword The string to match to.
      * @param data {Array} The string array of matching patterns.
      * @param opt_inverse {Boolean} Inverts the matching test. Instead of test
-     * array values against <code>val</code>, tests <code>val</code> against the
+     * array values against `val`, tests `val` against the
      * array values.
      *
      * @return {Number} Best match index. Returns -1 if doesn't find any match.
@@ -333,7 +333,7 @@ A.mix(DateParser.prototype, {
      * @param data {Array} The string array of matching patterns.
      * @param opt_date {Date} Date object to be filled.
      *
-     * @return {Date} Filled date object. Returns <code>false</code> if have
+     * @return {Date} Filled date object. Returns `false` if have
      * nothing to fill.
      */
     _getCalendarDate: function(calendar, opt_date) {
@@ -399,7 +399,7 @@ A.mix(DateParser.prototype, {
     },
 
     /**
-     * Infer the next value based on <code>textPos</code> position.
+     * Infer the next value based on `textPos` position.
      *
      * @method _getNextValue
      * @protected
@@ -442,7 +442,7 @@ A.mix(DateParser.prototype, {
     },
 
     /**
-     * Infer the next numeric value based on <code>textPos</code> position.
+     * Infer the next numeric value based on `textPos` position.
      *
      * @method _getNextNumericValue
      * @protected
@@ -912,7 +912,7 @@ A.Date.dateparser = new A.DateParser();
  *  </dd>
  * </dl>
  *
- * @return {Date} native JavaScript Date. Returns <code>false</code> if cannot
+ * @return {Date} native JavaScript Date. Returns `false` if cannot
  * parse.
  */
 
