@@ -40,13 +40,13 @@ var L = A.Lang,
  * - After plug ParseContent on a A.Node instance the javascript chunks will be executed (remote and inline scripts)
  * - All the javascripts within a content will be executed according to the order of apparition
  *
- * <p><strong>NOTE:</strong> For performance reasons on DOM manipulation,
+ * **NOTE:** For performance reasons on DOM manipulation,
  * ParseContent only parses the content passed to the
  * <a href="Node.html#method_setContent">setContent</a>,
  * <a href="Node.html#method_prepend">prepend</a> and
- * <a href="Node.html#method_append">append</a> methods.</p>
+ * <a href="Node.html#method_append">append</a> methods.
  *
- * Quick Example:<br/>
+ * Quick Example:
  *
  * ```
  * node.plug(A.Plugin.ParseContent);

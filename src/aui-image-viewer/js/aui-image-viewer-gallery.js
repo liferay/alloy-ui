@@ -420,13 +420,13 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * <p>Show the ImageGallery.</p>
+         * Show the ImageGallery.
          *
-         * <p><strong>NOTE:</strong>Overloads the <a
+         * **NOTE:**Overloads the <a
          * href="ImageViewer.html">ImageViewer</a> show method to not loadImage, the
          * changeRequest now is responsible to do that if we invoke the superclass
          * show method its loading the image, and the changeRequest loads again,
-         * avoiding double request.</p>
+         * avoiding double request.
          *
          * @method show
          */

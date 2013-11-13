@@ -230,10 +230,9 @@ A.mix(A.DataType.DateMath, {
     /**
      * Constant field representing the date in first week of January
      * which identifies the first week of the year.
-     * <p>
+     *
      * In the U.S, Jan 1st is normally used based on a Sunday start of week.
      * ISO 8601, used widely throughout Europe, uses Jan 4th, based on a Monday start of week.
-     * </p>
      *
      * @property WEEK_ONE_JAN_DATE
      * @static
@@ -306,10 +305,9 @@ A.mix(A.DataType.DateMath, {
     /**
      * Private helper method to account for bug in Safari 2 (webkit < 420)
      * when Date.setDate(n) is called with n less than -128 or greater than 127.
-     * <p>
+     *
      * Fix approach and original findings are available here:
      * http://brianary.blogspot.com/2006/03/safari-date-bug.html
-     * </p>
      *
      * @method _addDays
      * @param {Date} d JavaScript date object
@@ -835,7 +833,7 @@ A.mix(A.DataType.DateMath, {
      * year less than 100. "new Date(year, month, date)" implementations
      * set the year to 19xx if a year (xx) which is less than 100 is provided.
      *
-     * <em>NOTE:</em>Validation on argument values is not performed. It is the
+     * **NOTE:** Validation on argument values is not performed. It is the
      * caller's responsibility to ensure arguments are valid as per the
      * ECMAScript-262 Date object specification for the
      * new Date(year, month[, date]) constructor.

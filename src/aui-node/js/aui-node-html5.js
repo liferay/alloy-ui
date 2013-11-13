@@ -8,11 +8,13 @@
 
 if (A.UA.ie) {
     /**
-     * <p>An object that encapsulates util methods for HTML5 shiving.</p>
-     * <h2>What is a "shiv"?</h1>
-     * <p>To the world, a shiv is a slang term for a sharp object used as a
+     * An object that encapsulates util methods for HTML5 shiving.
+     *
+     * **What is a "shiv"?**
+     *
+     * To the world, a shiv is a slang term for a sharp object used as a
      * knife-like weapon. To Internet Explorer, a shiv is a script that, when
-     * executed, forces the browser to recognize HTML5 elements.</p>
+     * executed, forces the browser to recognize HTML5 elements.
      *
      * @class A.HTML5
      */
