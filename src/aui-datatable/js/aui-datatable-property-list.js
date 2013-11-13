@@ -267,9 +267,10 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Colection of strings used to label elements of the UI.
          *
          * @attribute strings
+         * @type Object
          */
         strings: {
             value: {
