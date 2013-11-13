@@ -15,7 +15,6 @@ var L = A.Lang,
     SCROLL_TOP = 'scrollTop';
 
 /**
- *
  * A base class for CharCounter, providing:
  *
  * - Limit the number of characters allowed in an input box
@@ -59,8 +58,7 @@ var CharCounter = A.Component.create({
         },
 
         /**
-         * Max number of characters the <a
-         * href="CharCounter.html#config_input">input</a> can have.
+         * Max number of characters the [input](A.CharCounter.html#attr_input) can have.
          *
          * @attribute maxLength
          * @default Infinity
@@ -99,8 +97,7 @@ var CharCounter = A.Component.create({
     prototype: {
 
         /**
-         * Event handler for the input <a
-         * href="module_aui-event.html">aui-event</a> event.
+         * Event handler for the input [aui-event](../modules/aui-event.html) event.
          *
          * @property handler
          * @type EventHandle
@@ -177,10 +174,9 @@ var CharCounter = A.Component.create({
         },
 
         /**
-         * Check the current value of the <a
-         * href="CharCounter.html#config_input">input</a>, truncate the data if
-         * needed, and re-sync the UI. Fired from <a
-         *  href="CharCounter.html#method__onInputChange">_onInputChange</a>.
+         * Check the current value of the [input](A.CharCounter.html#attr_input),
+         * truncate the data if needed, and re-sync the UI.
+         * Fired from [_onInputChange](A.CharCounter.html#method__onInputChange).
          *
          * @method checkLength
          */
@@ -227,10 +223,10 @@ var CharCounter = A.Component.create({
         },
 
         /**
-         * Setter for <a href="CharCounter.html#config_maxLength">maxLength</a>.
+         * Setter for [maxLength](A.CharCounter.html#attr_maxLength).
          *
          * @method _setMaxLength
-         * @param {Number} v Value of the new <a href="CharCounter.html#config_maxLenght">maxLenght</a>.
+         * @param {Number} v Value of the new [maxLength](A.CharCounter.html#attr_maxLength).
          * @protected
          * @return {Number}
          */

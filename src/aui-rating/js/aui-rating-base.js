@@ -147,7 +147,7 @@ var Rating = A.Component.create({
         },
 
         /**
-         * <a href="NodeList.html">NodeList</a> of elements used on the
+         * [NodeList](NodeList.html) of elements used on the
          * Rating. Each element is one Star.
          *
          * @attribute elements
@@ -171,8 +171,7 @@ var Rating = A.Component.create({
         },
 
         /**
-         * Name of the <a
-         * href="Rating.html#config_hiddenInput">hiddenInput</a> element. If
+         * Name of the [hiddenInput](A.Rating.html#attr_hiddenInput) element. If
          * not specified will use the name of the replaced radio.
          *
          * @attribute inputName
@@ -828,8 +827,7 @@ var Rating = A.Component.create({
         },
 
         /**
-         * Fire after the value of the
-         * <a href="Rating.html#config_label">label</a> attribute change.
+         * Fire after the value of the [label](A.Rating.html#attr_label) attribute change.
          *
          * @method _afterSetLabel
          * @param {EventFacade} event

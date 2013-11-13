@@ -137,11 +137,11 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * <a href="Pagination.html">Pagination</a> configuration Object. The
+         * [Pagination](A.Pagination.html) configuration Object. The
          * `Pagination` handles the thumbnails control.
          *
          * @attribute pagination
-         * @default <a href="Pagination.html">Pagination</a> configuration Object.
+         * @default [Pagination](A.Pagination.html) configuration Object.
          * @type Object
          */
         pagination: {
@@ -172,8 +172,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Element which contains the <a href="Pagination.html">Pagination</a>
-         * with the thumbnails.
+         * Element which contains the [Pagination](A.Pagination.html) with the thumbnails.
          *
          * @attribute paginationEl
          * @default Generated HTML div.
@@ -188,7 +187,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Stores the <a href="Pagination.html">Pagination</a> instance.
+         * Stores the [Pagination](A.Pagination.html) instance.
          *
          * @attribute paginationInstance
          * @default null
@@ -271,7 +270,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * <a href="Toolbar.html">Toolbar</a> with a play, and pause buttons.
+         * [Toolbar](A.Toolbar.html) with a play, and pause buttons.
          *
          * @attribute toolbar
          * @default Generated Toolbar with a play, and pause buttons.
@@ -380,8 +379,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Hide the <a href="Pagination.html">Pagination</a>
-         * with the thumbnails list.
+         * Hide the [Pagination](A.Pagination.html) with the thumbnails list.
          *
          * @method hidePagination
          */
@@ -422,9 +420,8 @@ var ImageGallery = A.Component.create({
         /**
          * Show the ImageGallery.
          *
-         * **NOTE:**Overloads the <a
-         * href="ImageViewer.html">ImageViewer</a> show method to not loadImage, the
-         * changeRequest now is responsible to do that if we invoke the superclass
+         * **NOTE:**Overloads the [ImageViewer](A.ImageViewer.html) show method to not loadImage,
+         * the changeRequest now is responsible to do that if we invoke the superclass
          * show method its loading the image, and the changeRequest loads again,
          * avoiding double request.
          *
@@ -447,8 +444,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Show the <a href="Pagination.html">Pagination</a>
-         * with the thumbnails list.
+         * Show the [Pagination](A.Pagination.html) with the thumbnails list.
          *
          * @method showPagination
          */
@@ -473,7 +469,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Render the <a href="Pagination.html">Pagination</a> with the thumbnails.
+         * Render the [Pagination](A.Pagination.html) with the thumbnails.
          *
          * @method _renderPagination
          * @protected
@@ -679,7 +675,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * See <a href="Pagination.html#method__formatter">_formatter</a>.
+         * See [_formatter](A.Pagination.html#attr_formatter).
          *
          * @method _thumbnailFormatter
          * @param {Number} pageNumber
@@ -716,7 +712,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Get the <a href="ImageViewer.html#config_info">info</a> template.
+         * Get the [infoTemplate](A.ImageViewer.html#attr_infoTemplate) template.
          *
          * @method _getInfoTemplate
          * @param {String} v template
@@ -743,8 +739,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Fire after the value of the
-         * <a href="ImageViewer.html#config_visible">visible</a> attribute change.
+         * Fire after the value of the [visible](A.ImageViewer.html#attr_visible) attribute change.
          *
          * @method _afterVisibleChange
          * @param {EventFacade} event
@@ -764,8 +759,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Fire before the value of the
-         * <a href="ImageGallery.html#config_paused">paused</a> attribute change.
+         * Fire before the value of the [paused](A.ImageGallery.html#attr_paused) attribute change.
          *
          * @method _onPausedChange
          * @param {EventFacade} event
@@ -780,8 +774,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Fire before the value of the
-         * <a href="ImageGallery.html#config_playing">playing</a> attribute change.
+         * Fire before the value of the [playing](A.ImageGallery.html#attr_playing) attribute change.
          *
          * @method _onPlayingChange
          * @param {EventFacade} event

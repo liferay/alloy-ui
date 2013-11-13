@@ -14,7 +14,7 @@ var ALIGN = 'align',
 /**
  * Widget extension, which can be used to suggest alignment points based on
  * position attribute to base Widget class, through the
- * <a href="Base.html#method_build">Base.build</a> method. It also tries to find
+ * [Base.build](Base.html#method_build) method. It also tries to find
  * the best position in case the widget doesn't fit it's constrainment node.
  *
  * @class A.WidgetPositionAlignSuggestion

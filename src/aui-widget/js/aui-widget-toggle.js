@@ -8,7 +8,7 @@ var VISIBLE = 'visible';
 
 /**
  * Widget extension, which can be used to add toggle visibility support to the
- * base Widget class, through the <a href="Base.html#method_build">Base.build</a>
+ * base Widget class, through the [Base.build](Base.html#method_build)
  * method.
  *
  * @class A.WidgetToggle

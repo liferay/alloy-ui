@@ -10,8 +10,7 @@ var BOUNDING_BOX = 'boundingBox',
 
 /**
  * Widget extension, which can be used to add cssClass support to the
- * base Widget class, through the <a href="Base.html#method_build">Base.build</a>
- * method.
+ * base Widget class, through the [Base.build](Base.html#method_build) method.
  *
  * @class A.WidgetCssClass
  * @param {Object} The user configuration object
@@ -63,8 +62,7 @@ WidgetCssClass.prototype = {
     },
 
     /**
-     * Fires after the value of the
-     * <a href="Component.html#config_cssClass">cssClass</a> attribute change.
+     * Fires after the value of the [cssClass](Component.html#attr_cssClass) attribute change.
      *
      * @method _afterCssClassChange
      * @param {EventFacade} event

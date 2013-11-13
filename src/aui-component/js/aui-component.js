@@ -237,7 +237,7 @@ var Component = A.Base.create(_NAME, A.Widget, [
 
         /**
          * CSS class added to hide the `boundingBox` when
-         * <a href="Component.html#config_visible">visible</a> is set to `false`.
+         * [visible](A.Component.html#attr_visible) is set to `false`.
          *
          * @attribute hideClass
          * @default 'aui-hide'

@@ -42,18 +42,15 @@ var L = A.Lang,
  *
  * **NOTE:** For performance reasons on DOM manipulation,
  * ParseContent only parses the content passed to the
- * <a href="Node.html#method_setContent">setContent</a>,
- * <a href="Node.html#method_prepend">prepend</a> and
- * <a href="Node.html#method_append">append</a> methods.
+ * [setContent](Node.html#method_setContent),
+ * [prepend](Node.html#method_prepend) and
+ * [append](Node.html#method_append) methods.
  *
  * Quick Example:
  *
  * ```
  * node.plug(A.Plugin.ParseContent);
  * ```
- *
- * Check the list of <a href="ParseContent.html#configattributes">Configuration Attributes</a> available for
- * ParseContent.
  *
  * @class A.ParseContent
  * @extends A.Plugin.Base

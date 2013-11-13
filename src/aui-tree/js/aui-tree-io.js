@@ -84,8 +84,7 @@ TreeViewIO.prototype = {
     },
 
     /**
-     * Initialize the IO transaction setup on the <a
-     * href="TreeNode.html#config_io">io</a> attribute.
+     * Initialize the IO transaction setup on the [io](A.TreeViewIO.html#attr_io) attribute.
      *
      * @method initIO
      */
@@ -211,7 +210,7 @@ TreeViewIO.prototype = {
     },
 
     /**
-     * Setter for <a href="TreeNodeIO.html#config_io">io</a>.
+     * Setter for [io](A.TreeViewIO.html#attr_io).
      *
      * @method _setIO
      * @protected

@@ -286,7 +286,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Update the <a href="TreeData.html#config_index">index</a> attribute value.
+     * Update the [index](A.TreeData.html#attr_index) attribute value.
      *
      * @method updateIndex
      * @param {Object} index
@@ -525,8 +525,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Index of the passed TreeNode on the <a
-     * href="TreeData.html#config_children">children</a> attribute.
+     * Index of the passed TreeNode on the [children](A.TreeData.html#attr_children) attribute.
      *
      * @method indexOf
      * @param {TreeNode} node
@@ -781,7 +780,7 @@ A.mix(TreeData.prototype, {
     _inheritOwnerTreeAttrs: L.emptyFn,
 
     /**
-     * Setter for <a href="TreeData.html#config_children">children</a>.
+     * Setter for [children](A.TreeData.html#attr_children).
      *
      * @method _setChildren
      * @protected

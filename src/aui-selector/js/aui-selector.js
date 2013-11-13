@@ -45,7 +45,7 @@ var testNodeType = function(type) {
 };
 
 /**
- * Augment the <a href="Selector.html">YUI3 Selector</a> with more util methods.
+ * Augment the [YUI3 Selector](Selector.html) with more util methods.
  *
  * @class A.Selector
  * @uses Selector
