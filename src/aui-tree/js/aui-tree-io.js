@@ -46,14 +46,6 @@ TreeViewIO.ATTRS = {
 };
 
 TreeViewIO.prototype = {
-	initializer: function() {
-		var instance = this;
-
-		instance.publish(
-
-		);
-	},
-
 	/**
 	 * Initialize the IO transaction setup on the <a
 	 * href="TreeNode.html#config_io">io</a> attribute.
