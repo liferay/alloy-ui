@@ -173,9 +173,14 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Collection of strings used to label elements of the UI.
+         * This attribute defaults to `{}` unless the attribute
+         * is set.
+         * When this attribute is set, the passed value merges with a
+         * pseudo-default collection of strings.
          *
          * @attribute strings
+         * @default {}
          * @type Object
          */
         strings: {

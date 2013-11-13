@@ -958,7 +958,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Collection of strings used to label elements of the UI.
      *
      * @property STRINGS
      * @type Object

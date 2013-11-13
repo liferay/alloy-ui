@@ -1506,7 +1506,7 @@ var AColor = A.Color,
             },
 
             /**
-             * TODO. Wanna help? Please send a Pull Request.
+             * Collection of strings used to label elements of the UI.
              *
              * @attribute strings
              * @type Object
