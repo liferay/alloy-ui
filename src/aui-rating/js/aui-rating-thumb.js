@@ -26,10 +26,9 @@ var CSS_CLASSES = 'cssClasses',
 /**
  *
  * A base class for ThumbRating, providing:
- * <ul>
- *    <li>A non-obstrusive star rating control using Thumb up and Thumb down icons</li>
- *    <li>Could be based on a set of radio input boxes</li>
- * </ul>
+ *
+ * - A non-obstrusive star rating control using Thumb up and Thumb down icons
+ * - Could be based on a set of radio input boxes
  *
  * Check the [live demo](http://alloyui.com/examples/rating/).
  *

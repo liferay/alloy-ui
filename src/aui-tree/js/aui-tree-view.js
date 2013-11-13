@@ -55,9 +55,8 @@ var L = A.Lang,
 
 /**
  * A base class for TreeView, providing:
- * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
  *
  * Check the [live demo](http://alloyui.com/examples/tree/).
  *
@@ -469,10 +468,9 @@ var isNumber = L.isNumber,
 
 /**
  * A base class for TreeViewDD, providing:
- * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li>DragDrop support for the TreeNodes</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
+ * - DragDrop support for the TreeNodes
  *
  * @class A.TreeViewDD
  * @extends A.TreeView

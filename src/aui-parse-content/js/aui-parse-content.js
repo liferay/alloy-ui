@@ -36,10 +36,9 @@ var L = A.Lang,
 
 /**
  * A base class for ParseContent, providing:
- * <ul>
- *    <li>After plug ParseContent on a A.Node instance the javascript chunks will be executed (remote and inline scripts)</li>
- *    <li>All the javascripts within a content will be executed according to the order of apparition</li>
- * </ul>
+ *
+ * - After plug ParseContent on a A.Node instance the javascript chunks will be executed (remote and inline scripts)
+ * - All the javascripts within a content will be executed according to the order of apparition
  *
  * <p><strong>NOTE:</strong> For performance reasons on DOM manipulation,
  * ParseContent only parses the content passed to the

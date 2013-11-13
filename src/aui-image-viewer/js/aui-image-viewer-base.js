@@ -134,11 +134,10 @@ var L = A.Lang,
 
 /**
  * A base class for ImageViewer, providing:
- * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li>Displays an image in a Overlay</li>
- *    <li>Keyboard navigation support</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
+ * - Displays an image in a Overlay
+ * - Keyboard navigation support
  *
  * Check the [live demo](http://alloyui.com/examples/image-viewer/).
  *

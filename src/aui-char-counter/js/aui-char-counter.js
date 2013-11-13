@@ -17,10 +17,9 @@ var L = A.Lang,
 /**
  *
  * A base class for CharCounter, providing:
- * <ul>
- *    <li>Limit the number of characters allowed in an input box</li>
- *    <li>Display the number of characters left</li>
- * </ul>
+ *
+ * - Limit the number of characters allowed in an input box
+ * - Display the number of characters left
  *
  * Check the [live demo](http://alloyui.com/examples/char-counter/).
  *

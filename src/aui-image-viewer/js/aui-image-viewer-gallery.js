@@ -77,13 +77,12 @@ var L = A.Lang,
 /**
  *
  * A base class for ImageGallery, providing:
- * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li>Displays an image in a Overlay</li>
- *    <li>Displays list of thumbnails of the images as a control</li>
- *    <li>Slide show functionalities (i.e., play, pause etc)</li>
- *    <li>Keyboard navigation support</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
+ * - Displays an image in a Overlay
+ * - Displays list of thumbnails of the images as a control
+ * - Slide show functionalities (i.e., play, pause etc)
+ * - Keyboard navigation support
  *
  * Check the [live demo](http://alloyui.com/examples/image-viewer/gallery/).
  *

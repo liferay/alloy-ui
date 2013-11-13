@@ -28,9 +28,8 @@ var Lang = A.Lang,
 
 /**
  * A base class for Component, providing:
- * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
  *
  * @class A.Component
  * @extends A.Widget

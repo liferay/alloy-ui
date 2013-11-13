@@ -18,11 +18,10 @@ var Lang = A.Lang,
 /**
  *
  * A base class for ButtonSearchCancel, providing:
- * <ul>
- *    <li>Adds a button search cancel icon in order to clear the text on inputs
- *    and textareas. Similar behavior of the HTML5 search input that contains a
- *    cancel button to clear the current element value.</li>
- * </ul>
+ *
+ * - Adds a button search cancel icon in order to clear the text on inputs
+ * and textareas. Similar behavior of the HTML5 search input that contains a
+ * cancel button to clear the current element value.
  *
  * @class A.ButtonSearchCancel
  * @extends A.Base

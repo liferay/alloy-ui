@@ -59,10 +59,9 @@ var Lang = A.Lang,
 /**
  *
  * A base class for Rating, providing:
- * <ul>
- *    <li>A non-obstrusive star rating control</li>
- *    <li>Could be based on a set of radio input boxes</li>
- * </ul>
+ *
+ * - A non-obstrusive star rating control
+ * - Could be based on a set of radio input boxes
  *
  * Check the [live demo](http://alloyui.com/examples/rating/).
  *

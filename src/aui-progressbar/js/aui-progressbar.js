@@ -58,13 +58,12 @@ var L = A.Lang,
 
 /**
  * A base class for Progressbar, providing:
- * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li>A visual means of showing progress of an ongoing operation</li>
- *    <li>Can be enhanced via CSS styles to provide different colors, shapes and textures</li>
- *    <li>The bar can move horizontally or vertically</li>
- *    <li>The movement can be enhanced by using the Animation utility</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
+ * - A visual means of showing progress of an ongoing operation
+ * - Can be enhanced via CSS styles to provide different colors, shapes and textures
+ * - The bar can move horizontally or vertically
+ * - The movement can be enhanced by using the Animation utility
  *
  * Check the [live demo](http://alloyui.com/examples/progressbar/).
  *

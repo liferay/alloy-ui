@@ -35,10 +35,9 @@ var Lang = A.Lang,
 
 /**
  * A base class for Pagination, providing:
- * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li>Set of controls to navigate through paged data</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
+ * - Set of controls to navigate through paged data
  *
  * Check the [live demo](http://alloyui.com/examples/pagination/).
  *

@@ -43,12 +43,11 @@ var L = A.Lang,
 
 /**
  * A base class for TreeData, providing:
- * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li>Handle the data of the tree</li>
- *    <li>Basic DOM implementation (append/remove/insert)</li>
- *    <li>Indexing management to handle the children nodes</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
+ * - Handle the data of the tree
+ * - Basic DOM implementation (append/remove/insert)
+ * - Indexing management to handle the children nodes
  *
  * @class A.TreeData
  * @extends A.Base

@@ -44,10 +44,9 @@ var L = A.Lang,
 
 /**
  * A base class for SortableList, providing:
- * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li>Sortable list utility</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
+ * - Sortable list utility
  *
  * Check the [live demo](http://alloyui.com/examples/sortable-list/).
  *

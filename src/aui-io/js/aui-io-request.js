@@ -60,10 +60,9 @@ var L = A.Lang,
 
 /**
  * A base class for IORequest, providing:
- * <ul>
- *    <li>Response data normalization for XML, JSON, JavaScript</li>
- *    <li>Cache options</li>
- * </ul>
+ *
+ * - Response data normalization for XML, JSON, JavaScript
+ * - Cache options
  *
  * Check the [live demo](http://alloyui.com/examples/io/).
  *

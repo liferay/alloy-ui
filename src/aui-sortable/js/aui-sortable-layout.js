@@ -99,10 +99,9 @@ var Lang = A.Lang,
 
 /**
  * A base class for SortableLayout, providing:
- * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li>DragDrop utility for drag lists, portal layouts (portlets)</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
+ * - DragDrop utility for drag lists, portal layouts (portlets)
  *
  * Check the [live demo](http://alloyui.com/examples/sortable-layout/).
  *
