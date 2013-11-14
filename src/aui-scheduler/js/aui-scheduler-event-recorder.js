@@ -85,7 +85,7 @@ var SchedulerEventRecorder = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property SchedulerEventRecorder.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -95,7 +95,7 @@ var SchedulerEventRecorder = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the SchedulerEventRecorder.
      *
-     * @property SchedulerEventRecorder.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -213,7 +213,7 @@ var SchedulerEventRecorder = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property SchedulerEventRecorder.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */

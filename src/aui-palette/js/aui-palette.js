@@ -46,7 +46,7 @@ var Lang = A.Lang,
      * A base class for Palette.
      *
      * @class A.Palette
-     * @extends A.Widget
+     * @extends Widget
      * @param config {Object} Object literal specifying widget configuration properties.
      * @constructor
      */
@@ -547,7 +547,7 @@ var Lang = A.Lang,
          * Object hash, defining how attribute values have to be parsed from
          * markup contained in the Palette's content box.
          *
-         * @property Palette.HTML_PARSER
+         * @property HTML_PARSER
          * @type Object
          * @static
          */
@@ -559,7 +559,7 @@ var Lang = A.Lang,
          * Static property used to define the default attribute
          * configuration for the Palette.
          *
-         * @property Palette.ATTRS
+         * @property ATTRS
          * @type Object
          * @static
          */

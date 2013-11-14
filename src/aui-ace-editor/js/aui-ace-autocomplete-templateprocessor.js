@@ -30,8 +30,8 @@ var Lang = A.Lang,
     /**
      * A base class for TemplateProcessor.
      *
-     * @class A.TemplateProcessor
-     * @extends A.Base
+     * @class A.AceEditor.TemplateProcessor
+     * @extends Base
      * @param config {Object} Object literal specifying widget configuration properties.
      * @constructor
      */
@@ -334,7 +334,7 @@ var Lang = A.Lang,
         /**
          * Static property which provides a string to identify the class.
          *
-         * @property TemplateProcessor.NAME
+         * @property NAME
          * @type String
          * @static
          */
@@ -343,7 +343,7 @@ var Lang = A.Lang,
         /**
          * The namespace of the plugin.
          *
-         * @property TemplateProcessor.NS
+         * @property NS
          * @type String
          * @static
          */
@@ -353,7 +353,7 @@ var Lang = A.Lang,
          * Static property used to define the default attribute
          * configuration for the TemplateProcessor.
          *
-         * @property TemplateProcessor.ATTRS
+         * @property ATTRS
          * @type Object
          * @static
          */

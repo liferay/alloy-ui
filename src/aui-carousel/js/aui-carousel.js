@@ -63,7 +63,7 @@ var Carousel = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property Carousel.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -73,7 +73,7 @@ var Carousel = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the Carousel.
      *
-     * @property Carousel.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */

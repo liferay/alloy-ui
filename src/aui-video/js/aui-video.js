@@ -45,7 +45,6 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/video/).
  *
  * @class A.Video
- * @extends A.Component
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -53,7 +52,7 @@ var Video = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property Video.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -63,7 +62,7 @@ var Video = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the Video.
      *
-     * @property Video.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -153,7 +152,7 @@ var Video = A.Component.create({
      * Static property used to define the attributes
      * for the bindUI lifecycle phase.
      *
-     * @property Video.BIND_UI_ATTRS
+     * @property BIND_UI_ATTRS
      * @type Array
      * @static
      */
@@ -163,7 +162,7 @@ var Video = A.Component.create({
      * Static property used to define the attributes
      * for the syncUI lifecycle phase.
      *
-     * @property Video.SYNC_UI_ATTRS
+     * @property SYNC_UI_ATTRS
      * @type Array
      * @static
      */

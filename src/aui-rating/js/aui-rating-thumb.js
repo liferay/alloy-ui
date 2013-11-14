@@ -24,7 +24,6 @@ var CSS_CLASSES = 'cssClasses',
     CSS_RATING_ON = getCN(RATING, ON);
 
 /**
- *
  * A base class for ThumbRating, providing:
  *
  * - A non-obstrusive star rating control using Thumb up and Thumb down icons
@@ -41,7 +40,7 @@ var ThumbRating = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property ThumbRating.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -51,7 +50,7 @@ var ThumbRating = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the ThumbRating.
      *
-     * @property ThumbRating.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -91,7 +90,7 @@ var ThumbRating = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property ThumbRating.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */

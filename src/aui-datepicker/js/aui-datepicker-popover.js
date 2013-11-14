@@ -33,7 +33,7 @@ function DatePickerPopover() {}
 /**
  * TODO. Wanna help? Please send a Pull Request.
  *
- * @property DatePickerPopover.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */

@@ -53,7 +53,7 @@ var L = A.Lang,
  * ```
  *
  * @class A.ParseContent
- * @extends A.Plugin.Base
+ * @extends Plugin.Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -61,7 +61,7 @@ var ParseContent = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property ParseContent.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -70,7 +70,7 @@ var ParseContent = A.Component.create({
     /**
      * Static property provides a string to identify the namespace.
      *
-     * @property ParseContent.NS
+     * @property NS
      * @type String
      * @static
      */
@@ -80,7 +80,7 @@ var ParseContent = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the ParseContent.
      *
-     * @property ParseContent.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -100,7 +100,7 @@ var ParseContent = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property ParseContent.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */

@@ -142,7 +142,7 @@ var L = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/image-viewer/).
  *
  * @class A.ImageViewer
- * @extends A.Widget
+ * @extends Widget
  * @uses A.WidgetStdMod, A.WidgetPosition, A.WidgetStack, A.WidgetPositionAlign,
  * A.WidgetPositionConstrain, A.WidgetModality
  * @param config {Object} Object literal specifying widget configuration properties.
@@ -975,7 +975,7 @@ var ImageViewer = A.Base.create(
         /**
          * Static property provides a string to identify the class.
          *
-         * @property ImageViewer.NAME
+         * @property NAME
          * @type String
          * @static
          */
@@ -984,7 +984,7 @@ var ImageViewer = A.Base.create(
         /**
          * Static property provides a string to identify the CSS prefix.
          *
-         * @property ImageViewer.CSS_PREFIX
+         * @property CSS_PREFIX
          * @type String
          * @static
          */
@@ -994,7 +994,7 @@ var ImageViewer = A.Base.create(
          * Static property used to define the default attribute
          * configuration for the ImageViewer.
          *
-         * @property ImageViewer.ATTRS
+         * @property ATTRS
          * @type Object
          * @static
          */

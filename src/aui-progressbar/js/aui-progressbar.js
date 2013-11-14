@@ -68,7 +68,6 @@ var L = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/progressbar/).
  *
  * @class A.ProgressBar
- * @extends A.Component
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -76,7 +75,7 @@ var ProgressBar = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property ProgressBar.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -86,7 +85,7 @@ var ProgressBar = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the ProgressBar.
      *
-     * @property ProgressBar.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -232,7 +231,7 @@ var ProgressBar = A.Component.create({
      * Object hash, defining how attribute values are to be parsed from
      * markup contained in the widget's bounding box.
      *
-     * @property ProgressBar.HTML_PARSER
+     * @property HTML_PARSER
      * @type Object
      * @static
      */
@@ -251,7 +250,7 @@ var ProgressBar = A.Component.create({
     /**
      * Static property used to define the UI attributes.
      *
-     * @property ProgressBar.UI_ATTRS
+     * @property UI_ATTRS
      * @type Array
      * @static
      */

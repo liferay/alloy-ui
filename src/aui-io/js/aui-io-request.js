@@ -67,7 +67,7 @@ var L = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/io/).
  *
  * @class A.IORequest
- * @extends A.Plugin.Base
+ * @extends Plugin.Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @uses io
  * @constructor
@@ -76,7 +76,7 @@ var IORequest = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property IORequest.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -86,7 +86,7 @@ var IORequest = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the IORequest.
      *
-     * @property IORequest.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -367,7 +367,7 @@ var IORequest = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property IORequest.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */

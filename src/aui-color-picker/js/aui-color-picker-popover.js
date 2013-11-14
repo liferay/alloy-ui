@@ -31,7 +31,7 @@ var ColorPickerPopover = A.Base.create(_NAME, A.Popover, [
      * Static property used to define the default attribute
      * configuration for the ColorPickerPopover.
      *
-     * @property ColorPickerPopover.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -66,7 +66,7 @@ var ColorPickerPopover = A.Base.create(_NAME, A.Popover, [
     /**
      * Static property provides a string to identify the class.
      *
-     * @property ColorPickerPopover.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -75,7 +75,7 @@ var ColorPickerPopover = A.Base.create(_NAME, A.Popover, [
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property ColorPickerPopover.NS
+     * @property NS
      * @type String
      * @static
      */

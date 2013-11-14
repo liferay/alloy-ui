@@ -825,7 +825,7 @@ ColorPickerBase.prototype = {
  * Static property used to define the default attribute
  * configuration for the ColorPickerBase.
  *
- * @property ColorPickerBase.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */
@@ -1064,7 +1064,7 @@ ColorPickerBase.ATTRS = {
 /**
  * TODO. Wanna help? Please send a Pull Request.
  *
- * @property ColorPickerBase.CSS_PREFIX
+ * @property CSS_PREFIX
  * @type String
  * @static
  */
@@ -1073,7 +1073,7 @@ ColorPickerBase.CSS_PREFIX = getClassName(_NAME);
 /**
  * Static property provides a string to identify the class.
  *
- * @property ColorPickerBase.NAME
+ * @property NAME
  * @type String
  * @static
  */

@@ -45,7 +45,6 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/toolbar/).
  *
  * @class A.Toolbar
- * @extends A.Component
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -54,7 +53,7 @@ A.Toolbar = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property Toolbar.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -64,7 +63,7 @@ A.Toolbar = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the Toolbar.
      *
-     * @property Toolbar.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -96,7 +95,7 @@ A.Toolbar = A.Component.create({
     /**
      * Static property used to define the UI attributes.
      *
-     * @property Toolbar.UI_ATTRS
+     * @property UI_ATTRS
      * @type Array
      * @static
      */
@@ -333,7 +332,7 @@ ToolbarRenderer.prototype = {
     /**
      * Static property provides a set of templates.
      *
-     * @property ToolbarRenderer.TEMPLATES
+     * @property TEMPLATES
      * @type Object
      * @static
      */
@@ -347,7 +346,7 @@ ToolbarRenderer.prototype = {
      * Static property used to define how
      * things are going to be rendered.
      *
-     * @property ToolbarRenderer.RENDERER
+     * @property RENDERER
      * @type Object
      * @static
      */

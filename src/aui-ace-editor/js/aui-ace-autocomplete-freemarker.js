@@ -19,7 +19,7 @@ var Lang = A.Lang,
     /**
      * A base class for Freemarker plugin.
      *
-     * @class A.Freemarker
+     * @class A.AceEditor.AutoCompleteFreemarker
      * @extends A.AceEditor.TemplateProcessor
      * @param config {Object} Object literal specifying configuration properties.
      * @constructor
@@ -72,7 +72,7 @@ var Lang = A.Lang,
         /**
          * Static property which provides a string to identify the class.
          *
-         * @property Freemarker.NAME
+         * @property NAME
          * @type String
          * @static
          */
@@ -81,7 +81,7 @@ var Lang = A.Lang,
         /**
          * The namespace of the plugin.
          *
-         * @property Freemarker.NS
+         * @property NS
          * @type String
          * @static
          */
@@ -91,7 +91,7 @@ var Lang = A.Lang,
          * Static property used to define the default attribute
          * configuration for the Freemarker.
          *
-         * @property Freemarker.ATTRS
+         * @property ATTRS
          * @type Object
          * @static
          */

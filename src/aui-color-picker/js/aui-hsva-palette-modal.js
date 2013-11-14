@@ -119,7 +119,7 @@ var AArray = A.Array,
          * Static property used to define the default attribute
          * configuration for the HSVAPaletteModal.
          *
-         * @property HSVAPaletteModal.ATTRS
+         * @property ATTRS
          * @type Object
          * @static
          */
@@ -155,7 +155,7 @@ var AArray = A.Array,
         /**
          * TODO. Wanna help? Please send a Pull Request.
          *
-         * @property HSVAPaletteModal.CSS_PREFIX
+         * @property CSS_PREFIX
          * @type String
          * @static
          */
@@ -164,7 +164,7 @@ var AArray = A.Array,
         /**
          * Static property provides a string to identify the class.
          *
-         * @property HSVAPaletteModal.NAME
+         * @property NAME
          * @type String
          * @static
          */
@@ -173,7 +173,7 @@ var AArray = A.Array,
         /**
          * TODO. Wanna help? Please send a Pull Request.
          *
-         * @property HSVAPaletteModal.NS
+         * @property NS
          * @type String
          * @static
          */

@@ -64,6 +64,7 @@ A.Tab.NAME = TAB;
  * Check the [live demo](http://alloyui.com/examples/tabview/).
  *
  * @class A.Tab
+ * @extends Tab
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -72,16 +73,27 @@ A.Tab = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property Tab.NAME
+     * @property NAME
      * @type String
      * @static
      */
     NAME: TAB,
 
+    /**
+     * Static property used to define the default attribute
+     * configuration for the Tab.
+     *
+     * @property ATTRS
+     * @type Object
+     * @static
+     */
     ATTRS: {
 
         /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
          * @attribute disabled
+         * @type Boolean
          */
         disabled: {
             validator: isBoolean,
@@ -92,7 +104,7 @@ A.Tab = A.Component.create({
     /**
      * Static property provides a string to identify the CSS prefix.
      *
-     * @property Tab.CSS_PREFIX
+     * @property CSS_PREFIX
      * @type String
      * @static
      */
@@ -101,7 +113,7 @@ A.Tab = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property Tab.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -203,7 +215,7 @@ A.TabView = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TabView.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -212,7 +224,7 @@ A.TabView = A.Component.create({
     /**
      * Static property provides a string to identify the CSS prefix.
      *
-     * @property TabView.CSS_PREFIX
+     * @property CSS_PREFIX
      * @type String
      * @static
      */
@@ -222,7 +234,7 @@ A.TabView = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the TabView.
      *
-     * @property TabView.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -259,7 +271,7 @@ A.TabView = A.Component.create({
     /**
      * Static property used to define the UI attributes.
      *
-     * @property TabView.UI_ATTRS
+     * @property UI_ATTRS
      * @type Array
      * @static
      */
@@ -268,7 +280,7 @@ A.TabView = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property TabView.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */

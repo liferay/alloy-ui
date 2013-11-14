@@ -23,7 +23,7 @@ function WidgetTrigger() {}
  * Static property used to define the default attribute
  * configuration.
  *
- * @property WidgetTrigger.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */

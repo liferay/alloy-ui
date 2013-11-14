@@ -47,7 +47,7 @@ var DataTableSelection = function() {};
  * Static property used to define the default attribute
  * configuration for the DataTableSelection.
  *
- * @property DataTableSelection.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */

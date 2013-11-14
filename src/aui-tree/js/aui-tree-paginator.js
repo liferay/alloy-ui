@@ -50,7 +50,7 @@ function TreeViewPaginator(config) {
  * Static property used to define the default attribute
  * configuration for the TreeView.
  *
- * @property TreeViewPaginator.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */

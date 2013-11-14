@@ -31,7 +31,7 @@ function TimePickerBase() {}
  * Static property used to define the default attribute
  * configuration for the TimePickerBase.
  *
- * @property TimePickerBase.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */
@@ -309,7 +309,7 @@ A.TimePickerBase = TimePickerBase;
  * A base class for TimePicker.
  *
  * @class A.TimePicker
- * @extends A.Base
+ * @extends Base
  * @uses A.DatePickerDelegate, A.DatePickerPopover, A.TimePickerBase
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor

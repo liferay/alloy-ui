@@ -54,7 +54,7 @@ var Lang = A.Lang,
 /**
  * A base class for AutoCompleteBase.
  *
- * @class A.AutoCompleteBase
+ * @class A.AceEditor.AutoCompleteBase
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -598,7 +598,7 @@ Base.prototype = {
 /**
  * Exposes a constant for insert fill mode. See `fillMode` for more information.
  *
- * @property Base.FILL_MODE_INSERT
+ * @property FILL_MODE_INSERT
  * @static
  */
 Base.FILL_MODE_INSERT = FILL_MODE_INSERT;
@@ -606,7 +606,7 @@ Base.FILL_MODE_INSERT = FILL_MODE_INSERT;
 /**
  * Exposes a constant for overwrite fill mode. See `fillMode` for more information.
  *
- * @property Base.FILL_MODE_OVERWRITE
+ * @property FILL_MODE_OVERWRITE
  * @static
  */
 Base.FILL_MODE_OVERWRITE = FILL_MODE_OVERWRITE;
@@ -614,7 +614,7 @@ Base.FILL_MODE_OVERWRITE = FILL_MODE_OVERWRITE;
 /**
  * Static property which provides a string to identify the class.
  *
- * @property AutoCompleteBase.NAME
+ * @property NAME
  * @type String
  * @static
  */
@@ -623,7 +623,7 @@ Base.NAME = _NAME;
 /**
  * Static property which provides a string to identify the namespace.
  *
- * @property AutoCompleteBase.NS
+ * @property NS
  * @type String
  * @static
  */
@@ -633,7 +633,7 @@ Base.NS = _NAME;
  * Static property used to define the default attribute
  * configuration for AutoCompleteBase.
  *
- * @property AutoCompleteBase.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */

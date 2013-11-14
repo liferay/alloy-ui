@@ -46,7 +46,7 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/toggler/).
  *
  * @class A.TogglerDelegate
- * @extends A.Base
+ * @extends Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -55,7 +55,7 @@ var TogglerDelegate = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TogglerDelegate.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -65,7 +65,7 @@ var TogglerDelegate = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the Toggler Delegate.
      *
-     * @property TogglerDelegate.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -159,7 +159,7 @@ var TogglerDelegate = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property TogglerDelegate.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */

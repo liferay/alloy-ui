@@ -189,7 +189,7 @@ var SchedulerEvent = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property SchedulerEvent.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -199,7 +199,7 @@ var SchedulerEvent = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the SchedulerEvent.
      *
-     * @property SchedulerEvent.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -409,7 +409,7 @@ var SchedulerEvent = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property SchedulerEvent.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -418,7 +418,7 @@ var SchedulerEvent = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property SchedulerEvent.PROPAGATE_ATTRS
+     * @property PROPAGATE_ATTRS
      * @type Array
      * @static
      */

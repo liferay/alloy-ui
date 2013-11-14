@@ -35,7 +35,7 @@ function DatePickerBase() {}
  * Static property used to define the default attribute
  * configuration for the DatePickerBase.
  *
- * @property DatePickerBase.PANES
+ * @property PANES
  * @type Array
  * @static
  */
@@ -48,7 +48,7 @@ DatePickerBase.PANES = [
 /**
  * TODO. Wanna help? Please send a Pull Request.
  *
- * @property DatePickerBase.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */
@@ -312,7 +312,7 @@ A.DatePickerBase = DatePickerBase;
  * A base class for DatePicker.
  *
  * @class A.DatePicker
- * @extends A.Base
+ * @extends Base
  * @uses A.DatePickerDelegate, A.DatePickerPopover, A.DatePickerBase
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor

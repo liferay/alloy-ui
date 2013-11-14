@@ -27,7 +27,7 @@ ace.config.set('packaged', true);
  * Check the [live demo](http://alloyui.com/examples/ace-editor/).
  *
  * @class A.AceEditor
- * @extends A.Widget
+ * @extends Widget
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -35,7 +35,7 @@ var AceEditor = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property AceEditor.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -44,7 +44,7 @@ var AceEditor = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property AceEditor.EXTENDS
+     * @property EXTENDS
      * @type String
      * @static
      */
@@ -54,7 +54,7 @@ var AceEditor = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the ACE Editor.
      *
-     * @property AceEditor.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -204,7 +204,7 @@ var AceEditor = A.Component.create({
     /**
      * Static property used to define the UI attributes.
      *
-     * @property AceEditor.UI_ATTRS
+     * @property UI_ATTRS
      * @type Array
      * @static
      */

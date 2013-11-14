@@ -14,8 +14,8 @@ var Lang = A.Lang,
 
     CSS_CROP = A.getClassName(NAME, 'crop'),
     CSS_CROP_OUTLINE = A.getClassName(NAME, 'crop', 'outline'),
-    CSS_OVERLAY = A.getClassName(NAME, 'overlay');
-CSS_OVERLAY_HOVER = A.getClassName(NAME, 'crop', 'hover');
+    CSS_OVERLAY = A.getClassName(NAME, 'overlay'),
+    CSS_OVERLAY_HOVER = A.getClassName(NAME, 'crop', 'hover');
 
 /**
  * A base class for Image Cropper.
@@ -23,7 +23,6 @@ CSS_OVERLAY_HOVER = A.getClassName(NAME, 'crop', 'hover');
  * Check the [live demo](http://alloyui.com/examples/image-cropper/).
  *
  * @class A.ImageCropper
- * @extends A.Component
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -31,7 +30,7 @@ var ImageCropper = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property ImageCropper.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -41,7 +40,7 @@ var ImageCropper = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the Image Cropper.
      *
-     * @property ImageCropper.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -172,7 +171,7 @@ var ImageCropper = A.Component.create({
     /**
      * Static property used to define the UI attributes.
      *
-     * @property ImageCropper.UI_ATTRS
+     * @property UI_ATTRS
      * @type Array
      * @static
      */

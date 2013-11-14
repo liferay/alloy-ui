@@ -106,7 +106,7 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/sortable-layout/).
  *
  * @class A.SortableLayout
- * @extends A.Base
+ * @extends Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -114,7 +114,7 @@ var SortableLayout = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property SortableLayout.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -124,7 +124,7 @@ var SortableLayout = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the SortableLayout.
      *
-     * @property SortableLayout.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -282,7 +282,7 @@ var SortableLayout = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property SortableLayout.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */

@@ -57,7 +57,6 @@ var Lang = A.Lang,
     TPL_LABEL = '<span class="' + CSS_RATING_LABEL + '"></span>';
 
 /**
- *
  * A base class for Rating, providing:
  *
  * - A non-obstrusive star rating control
@@ -66,7 +65,6 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/rating/).
  *
  * @class A.Rating
- * @extends A.Component
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -74,7 +72,7 @@ var Rating = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property Rating.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -84,7 +82,7 @@ var Rating = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the Rating.
      *
-     * @property Rating.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -275,7 +273,7 @@ var Rating = A.Component.create({
      * Object hash, defining how attribute values are to be parsed from
      * markup contained in the widget's content box.
      *
-     * @property StarRating.HTML_PARSER
+     * @property HTML_PARSER
      * @type Object
      * @static
      */

@@ -243,7 +243,7 @@ var SchedulerDayView = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property SchedulerDayView.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -253,7 +253,7 @@ var SchedulerDayView = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the SchedulerDayView.
      *
-     * @property SchedulerDayView.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -538,7 +538,7 @@ var SchedulerDayView = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property SchedulerDayView.HTML_PARSER
+     * @property HTML_PARSER
      * @default defaultName
      * @type typeName
      * @static
@@ -557,7 +557,7 @@ var SchedulerDayView = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property SchedulerDayView.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */

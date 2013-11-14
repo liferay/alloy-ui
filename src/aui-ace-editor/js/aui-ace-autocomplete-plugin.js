@@ -4,10 +4,10 @@ var Plugin = A.Plugin;
  * Binds an AutoCompleteList instance to a Node instance.
  *
  * @module aui-ace-editor
- * @submodule ace-autocomplete-plugin
+ * @submodule aui-ace-autocomplete-plugin
  *
- * @class Plugin.AutoComplete
- * @extends AceEditor.AutoCompleteList
+ * @class A.Plugin.AceAutoCompleteList
+ * @extends A.AceEditor.AutoCompleteList
  */
 
 function ACListPlugin(config) {

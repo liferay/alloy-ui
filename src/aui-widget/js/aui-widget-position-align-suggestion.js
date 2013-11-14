@@ -27,7 +27,7 @@ function PositionAlignSuggestion() {}
  * Static property used to define the default attribute
  * configuration.
  *
- * @property WidgetPositionAlignSuggestion.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */

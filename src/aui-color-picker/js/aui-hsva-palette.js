@@ -532,7 +532,7 @@ var Lang = A.Lang,
         /**
          * Static property provides a string to identify the class.
          *
-         * @property HSVAPalette.NAME
+         * @property NAME
          * @type String
          * @static
          */
@@ -541,7 +541,7 @@ var Lang = A.Lang,
         /**
          * TODO. Wanna help? Please send a Pull Request.
          *
-         * @property HSVAPalette.NS
+         * @property NS
          * @type String
          * @static
          */

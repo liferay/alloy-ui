@@ -36,7 +36,7 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/image-viewer/).
  *
  * @class A.MediaViewerPlugin
- * @extends A.Plugin.Base
+ * @extends Plugin.Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -44,7 +44,7 @@ var MediaViewerPlugin = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property MediaViewerPlugin.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -53,7 +53,7 @@ var MediaViewerPlugin = A.Component.create({
     /**
      * Static property provides a string to identify the namespace.
      *
-     * @property MediaViewerPlugin.NS
+     * @property NS
      * @type String
      * @static
      */
@@ -63,7 +63,7 @@ var MediaViewerPlugin = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the MediaViewerPlugin.
      *
-     * @property MediaViewerPlugin.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -117,7 +117,7 @@ var MediaViewerPlugin = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property MediaViewerPlugin.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */

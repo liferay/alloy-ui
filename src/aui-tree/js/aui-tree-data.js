@@ -50,7 +50,7 @@ var L = A.Lang,
  * - Indexing management to handle the children nodes
  *
  * @class A.TreeData
- * @extends A.Base
+ * @extends Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -61,7 +61,7 @@ var TreeData = function() {};
  * Static property used to define the default attribute
  * configuration for the TreeData.
  *
- * @property TreeData.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */

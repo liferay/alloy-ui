@@ -81,8 +81,8 @@ var Lang = A.Lang,
     /**
      * A base class for AutoCompleteList.
      *
-     * @class A.AutoCompleteList
-     * @extends A.Overlay
+     * @class A.AceEditor.AutoCompleteList
+     * @extends Overlay
      * @uses A.AceEditor.AutoCompleteBase, A.WidgetAutohide
      * @param config {Object} Object literal specifying widget configuration properties.
      * @constructor
@@ -660,7 +660,7 @@ var Lang = A.Lang,
         /**
          * Static property which provides a string to identify the class.
          *
-         * @property AutoCompleteList.NAME
+         * @property NAME
          * @type String
          * @static
          */
@@ -669,7 +669,7 @@ var Lang = A.Lang,
         /**
          * The namespace of the plugin.
          *
-         * @property AutoCompleteList.NS
+         * @property NS
          * @type String
          * @static
          */
@@ -679,7 +679,7 @@ var Lang = A.Lang,
          * Static property used to define the default attribute
          * configuration for the AutoCompleteList.
          *
-         * @property AutoCompleteList.ATTRS
+         * @property ATTRS
          * @type Object
          * @static
          */
@@ -754,7 +754,7 @@ var Lang = A.Lang,
         /**
          * The prefix of all CSS Classes.
          *
-         * @property AutoCompleteList.CSS_PREFIX
+         * @property CSS_PREFIX
          * @type String
          * @static
          */
@@ -763,7 +763,7 @@ var Lang = A.Lang,
         /**
          * Object hash, defining how attribute values are to be parsed from markup contained in the widget's content box.
          *
-         * @property AutoCompleteList.HTML_PARSER
+         * @property HTML_PARSER
          * @static
          */
         HTML_PARSER: {

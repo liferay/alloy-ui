@@ -27,7 +27,7 @@ if (A.UA.ie) {
          * reasons. (i.e., all nodes and its HTML5 children appended to this
          * fragment iherits the styles on IE).
          *
-         * @property A.HTML._fragHTML5Shived
+         * @property _fragHTML5Shived
          * @type DocumentFragment (shived)
          * @protected
          */

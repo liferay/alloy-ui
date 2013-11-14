@@ -32,7 +32,6 @@ var AObject = A.Object,
  * Check the [live demo](http://alloyui.com/examples/audio/).
  *
  * @class A.Audio
- * @extends A.Component
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -40,7 +39,7 @@ var AudioImpl = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property Audio.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -50,7 +49,7 @@ var AudioImpl = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the Audio.
      *
-     * @property Audio.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -171,7 +170,7 @@ var AudioImpl = A.Component.create({
      * Static property used to define the attributes
      * for the bindUI lifecycle phase.
      *
-     * @property Audio.BIND_UI_ATTRS
+     * @property BIND_UI_ATTRS
      * @type Array
      * @static
      */
@@ -181,7 +180,7 @@ var AudioImpl = A.Component.create({
      * Static property used to define the attributes
      * for the syncUI lifecycle phase.
      *
-     * @property Audio.SYNC_UI_ATTRS
+     * @property SYNC_UI_ATTRS
      * @type Array
      * @static
      */

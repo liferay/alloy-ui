@@ -14,7 +14,7 @@ var StdMod = A.WidgetStdMod,
 /**
  * A base class for Widget Toolbars.
  *
- * @class WidgetToolbars
+ * @class A.WidgetToolbars
  * @constructor
  */
 var WidgetToolbars = function() {};
@@ -23,7 +23,7 @@ var WidgetToolbars = function() {};
  * Static property used to define the default attribute
  * configuration.
  *
- * @property WidgetToolbars.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */

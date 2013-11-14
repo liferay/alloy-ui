@@ -127,7 +127,7 @@ var Lang = A.Lang,
 /**
  * An extension for A.DataTable to support Cell Editing.
  *
- * @class A.CellEditorSupport
+ * @class A.DataTable.CellEditorSupport
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -136,7 +136,7 @@ var CellEditorSupport = function() {};
 /**
  * Static property provides a string to identify the class.
  *
- * @property CellEditorSupport.NAME
+ * @property NAME
  * @type String
  * @static
  */
@@ -145,7 +145,7 @@ CellEditorSupport.NAME = 'dataTableCellEditorSupport';
 /**
  * TODO. Wanna help? Please send a Pull Request.
  *
- * @property CellEditorSupport.EDITOR_ZINDEX
+ * @property EDITOR_ZINDEX
  * @default 9999
  * @type Number
  * @static
@@ -156,7 +156,7 @@ CellEditorSupport.EDITOR_ZINDEX = 9999;
  * Static property used to define the default attribute
  * configuration for the CellEditorSupport.
  *
- * @property CellEditorSupport.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */
@@ -364,7 +364,7 @@ A.Base.mix(A.DataTable, [CellEditorSupport]);
  * Abstract class BaseCellEditor.
  *
  * @class A.BaseCellEditor
- * @extends A.Overlay
+ * @extends Overlay
  * @param config {Object} Object literal specifying widget configuration properties.
  * @abstract
  */
@@ -373,7 +373,7 @@ var BaseCellEditor = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property BaseCellEditor.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -383,7 +383,7 @@ var BaseCellEditor = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the BaseCellEditor.
      *
-     * @property BaseCellEditor.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -575,7 +575,7 @@ var BaseCellEditor = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property BaseCellEditor.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -584,7 +584,7 @@ var BaseCellEditor = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property BaseCellEditor.UI_ATTRS
+     * @property UI_ATTRS
      * @type Array
      * @static
      */
@@ -1176,7 +1176,7 @@ var BaseOptionsCellEditor = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property BaseOptionsCellEditor.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -1186,7 +1186,7 @@ var BaseOptionsCellEditor = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the BaseOptionsCellEditor.
      *
-     * @property BaseOptionsCellEditor.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -1262,7 +1262,7 @@ var BaseOptionsCellEditor = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property BaseOptionsCellEditor.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -1271,7 +1271,7 @@ var BaseOptionsCellEditor = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property BaseOptionsCellEditor.UI_ATTRS
+     * @property UI_ATTRS
      * @type Array
      * @static
      */
@@ -1715,7 +1715,7 @@ var TextCellEditor = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TextCellEditor.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -1724,7 +1724,7 @@ var TextCellEditor = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property TextCellEditor.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -1741,6 +1741,7 @@ A.TextCellEditor = TextCellEditor;
  * TextAreaCellEditor class.
  *
  * @class A.TextAreaCellEditor
+ * @extends A.BaseCellEditor
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -1749,7 +1750,7 @@ var TextAreaCellEditor = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TextAreaCellEditor.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -1758,7 +1759,7 @@ var TextAreaCellEditor = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property TextAreaCellEditor.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -1775,6 +1776,7 @@ A.TextAreaCellEditor = TextAreaCellEditor;
  * DropDownCellEditor class.
  *
  * @class A.DropDownCellEditor
+ * @extends A.BaseOptionsCellEditor
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -1783,7 +1785,7 @@ var DropDownCellEditor = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property DropDownCellEditor.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -1793,7 +1795,7 @@ var DropDownCellEditor = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the DropDownCellEditor.
      *
-     * @property DropDownCellEditor.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -1815,7 +1817,7 @@ var DropDownCellEditor = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property DropDownCellEditor.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -1824,7 +1826,7 @@ var DropDownCellEditor = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property DropDownCellEditor.UI_ATTRS
+     * @property UI_ATTRS
      * @type Array
      * @static
      */
@@ -1888,6 +1890,7 @@ A.DropDownCellEditor = DropDownCellEditor;
  * CheckboxCellEditor class.
  *
  * @class A.CheckboxCellEditor
+ * @extends A.BaseOptionsCellEditor
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -1896,7 +1899,7 @@ var CheckboxCellEditor = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property CheckboxCellEditor.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -1906,7 +1909,7 @@ var CheckboxCellEditor = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the CheckboxCellEditor.
      *
-     * @property CheckboxCellEditor.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -1927,7 +1930,7 @@ var CheckboxCellEditor = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property CheckboxCellEditor.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -1987,6 +1990,7 @@ A.CheckboxCellEditor = CheckboxCellEditor;
  * RadioCellEditor class.
  *
  * @class A.RadioCellEditor
+ * @extends A.CheckboxCellEditor
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -1995,7 +1999,7 @@ var RadioCellEditor = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property RadioCellEditor.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -2004,7 +2008,7 @@ var RadioCellEditor = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property RadioCellEditor.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -2033,6 +2037,7 @@ A.RadioCellEditor = RadioCellEditor;
  * DateCellEditor class.
  *
  * @class A.DateCellEditor
+ * @extends A.BaseCellEditor
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -2041,7 +2046,7 @@ var DateCellEditor = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property DateCellEditor.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -2050,7 +2055,7 @@ var DateCellEditor = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property DateCellEditor.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -2060,7 +2065,7 @@ var DateCellEditor = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the DateCellEditor.
      *
-     * @property DateCellEditor.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */

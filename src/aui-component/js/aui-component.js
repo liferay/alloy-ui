@@ -32,7 +32,7 @@ var Lang = A.Lang,
  * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
  *
  * @class A.Component
- * @extends A.Widget
+ * @extends Widget
  * @uses A.WidgetCssClass, A.WidgetToggle
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
@@ -215,7 +215,7 @@ var Component = A.Base.create(_NAME, A.Widget, [
      * Static property used to define the default attribute
      * configuration for the Component.
      *
-     * @property Component.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -265,7 +265,7 @@ var Component = A.Base.create(_NAME, A.Widget, [
 /**
  * Static property used to define the map to store Component instances by id.
  *
- * @property Component._INSTANCES
+ * @property _INSTANCES
  * @type Object
  * @static
  */
@@ -372,7 +372,7 @@ Component.create = function(config) {
 /**
  * TODO. Wanna help? Please send a Pull Request.
  *
- * @property Component.CSS_PREFIX
+ * @property CSS_PREFIX
  * @type String
  * @static
  */

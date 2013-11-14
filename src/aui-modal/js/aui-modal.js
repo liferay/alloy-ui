@@ -41,7 +41,7 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/modal/).
  *
  * @class A.Modal
- * @extends A.Widget
+ * @extends Widget
  * @uses A.WidgetPosition, A.WidgetStdMod, A.WidgetAutohide, A.WidgetToolbars,
  * A.WidgetModality, A.WidgetPositionAlign, A.WidgetPositionConstrain, A.WidgetStack
  * @param config {Object} Object literal specifying widget configuration properties.
@@ -311,7 +311,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
     /**
      * Static property provides a string to identify the CSS prefix.
      *
-     * @property Modal.CSS_PREFIX
+     * @property CSS_PREFIX
      * @type String
      * @static
      */
@@ -321,7 +321,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
      * Static property used to define the default attribute
      * configuration for the Modal.
      *
-     * @property Modal.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -417,7 +417,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
     /**
      * Static property provides a set of reusable templates.
      *
-     * @property Modal.TEMPLATES
+     * @property TEMPLATES
      * @type Object
      * @static
      */

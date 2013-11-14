@@ -97,7 +97,7 @@ var L = A.Lang,
  * A base class for FormBuilderFieldBase.
  *
  * @class A.FormBuilderFieldBase
- * @extends Component
+ * @uses A.FieldSupport
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -106,7 +106,7 @@ var FormBuilderFieldBase = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property FormBuilderFieldBase.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -115,7 +115,7 @@ var FormBuilderFieldBase = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property FormBuilderFieldBase.AUGMENTS
+     * @property AUGMENTS
      * @type Array
      * @static
      */
@@ -135,7 +135,7 @@ var FormBuilderField = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property FormBuilderField.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -145,7 +145,7 @@ var FormBuilderField = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the FormBuilderField.
      *
-     * @property FormBuilderField.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -518,7 +518,7 @@ var FormBuilderField = A.Component.create({
     /**
      * Static property used to define the UI attributes.
      *
-     * @property FormBuilderField.UI_ATTRS
+     * @property UI_ATTRS
      * @type Array
      * @static
      */
@@ -528,7 +528,7 @@ var FormBuilderField = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property FormBuilderField.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -559,7 +559,7 @@ var FormBuilderField = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property FormBuilderField.HTML_PARSER
+     * @property HTML_PARSER
      * @type Object
      * @static
      */

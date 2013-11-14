@@ -56,7 +56,7 @@ var Lang = A.Lang,
  * A base class for DataTableHighlight.
  *
  * @class A.DataTableHighlight
- * @extends A.Plugin.Base
+ * @extends Plugin.Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -337,7 +337,7 @@ var DataTableHighlight = A.Base.create(
         /**
          * TODO. Wanna help? Please send a Pull Request.
          *
-         * @property DataTableHighlight.NS
+         * @property NS
          * @type String
          * @static
          */
@@ -346,7 +346,7 @@ var DataTableHighlight = A.Base.create(
         /**
          * Static property provides a string to identify the class.
          *
-         * @property DataTableHighlight.NAME
+         * @property NAME
          * @type String
          * @static
          */
@@ -356,7 +356,7 @@ var DataTableHighlight = A.Base.create(
          * Static property used to define the default attribute
          * configuration for the DataTableHighlight.
          *
-         * @property DataTableHighlight.ATTRS
+         * @property ATTRS
          * @type Object
          * @static
          */

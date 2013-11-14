@@ -39,7 +39,7 @@ var SchedulerWeekView = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property SchedulerWeekView.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -49,7 +49,7 @@ var SchedulerWeekView = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the SchedulerWeekView.
      *
-     * @property SchedulerWeekView.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -116,7 +116,7 @@ var SchedulerWeekView = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property SchedulerWeekView.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */

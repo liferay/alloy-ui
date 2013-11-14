@@ -22,7 +22,7 @@ WidgetToggle.prototype = {
      * Toggles widget visibility.
      *
      * @method toggle
-     * @param {boolean} visible Force the widget to be visible.
+     * @param {Boolean} visible Force the widget to be visible.
      */
     toggle: function(visible) {
         var instance = this;

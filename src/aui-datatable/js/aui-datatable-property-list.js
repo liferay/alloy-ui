@@ -29,7 +29,8 @@ var Lang = A.Lang,
  * A base class for PropertyList.
  *
  * @class A.PropertyList
- * @extends A.DataTable
+ * @extends DataTable
+ * @uses A.WidgetCssClass, A.WidgetToggle
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -174,7 +175,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property PropertyList.CSS_PREFIX
+     * @property CSS_PREFIX
      * @type String
      * @static
      */
@@ -184,7 +185,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
      * Static property used to define the default attribute
      * configuration for the PropertyList.
      *
-     * @property PropertyList.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */

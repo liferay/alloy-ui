@@ -71,7 +71,7 @@ A.SchedulerTableViewDD = function() {};
  * Static property used to define the default attribute
  * configuration for the SchedulerTableViewDD.
  *
- * @property SchedulerTableViewDD.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */

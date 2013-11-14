@@ -48,7 +48,7 @@ var Lang = A.Lang,
 /**
  * A base class for ButtonExt.
  *
- * @class ButtonExt
+ * @class A.ButtonExt
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -62,7 +62,7 @@ var ButtonExt = function(config) {
  * Static property used to define the default attribute
  * configuration for the ButtonExt.
  *
- * @property ButtonExt.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */
@@ -71,7 +71,7 @@ ButtonExt.ATTRS = {
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @attribute icon
+     * @attribute domType
      */
     domType: {
         writeOnce: true,
@@ -126,7 +126,7 @@ ButtonExt.ATTRS = {
 /**
  * TODO. Wanna help? Please send a Pull Request.
  *
- * @property ButtonExt.HTML_PARSER
+ * @property HTML_PARSER
  * @type Object
  * @static
  */
@@ -294,7 +294,7 @@ var ButtonCore = A.ButtonCore;
 /**
  * TODO. Wanna help? Please send a Pull Request.
  *
- * @property ButtonCore.CLASS_NAMES
+ * @property CLASS_NAMES
  * @static
  */
 ButtonCore.CLASS_NAMES = CLASS_NAMES;
@@ -317,31 +317,10 @@ ButtonCore.prototype._uiSetLabel = (function(original) {
 
 var Button = A.Button;
 
-/**
- * Static property provides a string to identify the class.
- *
- * @property Button.NAME
- * @type String
- * @static
- */
 Button.NAME = BTN;
 
-/**
- * TODO. Wanna help? Please send a Pull Request.
- *
- * @property Button.CSS_PREFIX
- * @type String
- * @static
- */
 Button.CSS_PREFIX = CLASS_NAMES.BUTTON;
 
-/**
- * TODO. Wanna help? Please send a Pull Request.
- *
- * @property Button.CLASS_NAMES
- * @type String
- * @static
- */
 Button.CLASS_NAMES = CLASS_NAMES;
 
 /**
@@ -349,7 +328,7 @@ Button.CLASS_NAMES = CLASS_NAMES;
  *
  * @class A.Button
  * @extends Button
- * @uses ButtonExt, A.WidgetCssClass, A.WidgetToggle
+ * @uses A.ButtonExt, A.WidgetCssClass, A.WidgetToggle
  * @constructor
  */
 A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.WidgetToggle], {}, {
@@ -357,7 +336,7 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property Button.CSS_PREFIX
+     * @property CSS_PREFIX
      * @type String
      * @static
      */
@@ -421,40 +400,17 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
 
 var ToggleButton = A.ToggleButton;
 
-/**
- * Static property provides a string to identify the class.
- *
- * @property ToggleButton.NAME
- * @type String
- * @static
- */
 ToggleButton.NAME = TOGGLEBTN;
 
-/**
- * TODO. Wanna help? Please send a Pull Request.
- *
- * @property ToggleButton.CSS_PREFIX
- * @default defaultName
- * @type typeName
- * @static
- */
 ToggleButton.CSS_PREFIX = CLASS_NAMES.TOGGLE;
 
-/**
- * TODO. Wanna help? Please send a Pull Request.
- *
- * @property ToggleButton.CLASS_NAMES
- * @default defaultName
- * @type typeName
- * @static
- */
 ToggleButton.CLASS_NAMES = CLASS_NAMES;
 
 /**
  * A base class for ToggleButton.
  *
  * @class A.ToggleButton
- * @uses ButtonExt, A.WidgetCssClass
+ * @uses A.ButtonExt, A.WidgetCssClass
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -462,33 +418,10 @@ A.ToggleButton = A.Base.create(ToggleButton.NAME, ToggleButton, [ButtonExt, A.Wi
 
 var ButtonGroup = A.ButtonGroup;
 
-/**
- * Static property provides a string to identify the class.
- *
- * @property ButtonGroup.NAME
- * @type String
- * @static
- */
 ButtonGroup.NAME = BTNGROUP;
 
-/**
- * TODO. Wanna help? Please send a Pull Request.
- *
- * @property ButtonGroup.CSS_PREFIX
- * @default defaultName
- * @type typeName
- * @static
- */
 ButtonGroup.CSS_PREFIX = CLASS_NAMES.BUTTON_GROUP;
 
-/**
- * TODO. Wanna help? Please send a Pull Request.
- *
- * @property ButtonGroup.CLASS_NAMES
- * @default defaultName
- * @type typeName
- * @static
- */
 ButtonGroup.CLASS_NAMES = CLASS_NAMES;
 
 /**

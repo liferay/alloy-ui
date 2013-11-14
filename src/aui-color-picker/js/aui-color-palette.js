@@ -23,7 +23,7 @@ var AArray = A.Array,
      * A base class for ColorPalette.
      *
      * @class A.ColorPalette
-     * @extends A.Widget
+     * @extends Widget
      * @uses A.Palette
      * @param config {Object} Object literal specifying widget configuration properties.
      * @constructor
@@ -95,7 +95,7 @@ var AArray = A.Array,
         /**
          * TODO. Wanna help? Please send a Pull Request.
          *
-         * @property ColorPalette.CSS_PREFIX
+         * @property CSS_PREFIX
          * @type String
          * @static
          */
@@ -104,7 +104,7 @@ var AArray = A.Array,
         /**
          * Static property provides a string to identify the class.
          *
-         * @property ColorPalette.NAME
+         * @property NAME
          * @type String
          * @static
          */
@@ -114,7 +114,7 @@ var AArray = A.Array,
          * Static property used to define the default attribute
          * configuration for the ColorPalette.
          *
-         * @property ColorPalette.ATTRS
+         * @property ATTRS
          * @type Object
          * @static
          */

@@ -9,7 +9,7 @@
  * A base class for SchedulerView.
  *
  * @class A.SchedulerView
- * @extends A.Component
+ * @uses A.WidgetStdMod
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -18,7 +18,7 @@ var SchedulerView = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property SchedulerView.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -27,7 +27,7 @@ var SchedulerView = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property SchedulerView.AUGMENTS
+     * @property AUGMENTS
      * @type Array
      * @static
      */
@@ -37,7 +37,7 @@ var SchedulerView = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the SchedulerView.
      *
-     * @property SchedulerView.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -189,7 +189,7 @@ var SchedulerView = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property SchedulerView.BIND_UI_ATTRS
+     * @property BIND_UI_ATTRS
      * @type Array
      * @static
      */
