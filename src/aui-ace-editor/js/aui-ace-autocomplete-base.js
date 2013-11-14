@@ -54,7 +54,7 @@ var Lang = A.Lang,
 /**
  * A base class for AutoCompleteBase.
  *
- * @class A.AutoCompleteBase
+ * @class A.AceEditor.AutoCompleteBase
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -85,7 +85,7 @@ Base.prototype = {
     },
 
     /**
-     * Inserts the provided suggestion as a string to the editor. The added text can overwrite the match or to be inserted depending on the <code>fillMode</code> attribute.
+     * Inserts the provided suggestion as a string to the editor. The added text can overwrite the match or to be inserted depending on the `fillMode` attribute.
      *
      * @method _addSuggestion
      * @param {String} content
@@ -181,7 +181,7 @@ Base.prototype = {
     },
 
     /**
-     * Checks if the cursor is out of the row/column on the latest match. If so, fires an <code>cursorOut</code> event.
+     * Checks if the cursor is out of the row/column on the latest match. If so, fires an `cursorOut` event.
      *
      * @method _defaultCursorChangeFn
      * @param {CustomEvent} event The fired event
@@ -244,7 +244,7 @@ Base.prototype = {
     },
 
     /**
-     * Filters and sorts the found suggestions using the existing chain of <code>filters</code> and <code>sorters</code>.
+     * Filters and sorts the found suggestions using the existing chain of `filters` and `sorters`.
      *
      * @method _filterResults
      * @param {String} content
@@ -357,7 +357,7 @@ Base.prototype = {
     },
 
     /**
-     * Fires an <code>resultsError</code> event containing the error.
+     * Fires an `resultsError` event containing the error.
      *
      * @method _onResultsError
      * @param error
@@ -370,7 +370,7 @@ Base.prototype = {
     },
 
     /**
-     * Updates <code>results</code> attribute with the provided results.
+     * Updates `results` attribute with the provided results.
      *
      * @method _onResultsSuccess
      * @param {Array} results
@@ -461,8 +461,8 @@ Base.prototype = {
 
     /**
      * Invokes the loaded content processor and checks for match. If found, provides the match together with information about
-     * current row and column and invokes processor's <code>getResults</code> function in order to retrieve results.
-     * At the end, fires and <code>match</code> event with the following properties:
+     * current row and column and invokes processor's `getResults` function in order to retrieve results.
+     * At the end, fires and `match` event with the following properties:
      * column - the current column
      * coords - the page coordinates of the match
      * line - the current line
@@ -583,7 +583,7 @@ Base.prototype = {
     },
 
     /**
-     * Validates the value of <code>fillMode</code> attribute.
+     * Validates the value of `fillMode` attribute.
      *
      * @method _validateFillMode
      * @param value
@@ -596,17 +596,17 @@ Base.prototype = {
 };
 
 /**
- * Exposes a constant for insert fill mode. See <code>fillMode</code> for more information.
+ * Exposes a constant for insert fill mode. See `fillMode` for more information.
  *
- * @property Base.FILL_MODE_INSERT
+ * @property FILL_MODE_INSERT
  * @static
  */
 Base.FILL_MODE_INSERT = FILL_MODE_INSERT;
 
 /**
- * Exposes a constant for overwrite fill mode. See <code>fillMode</code> for more information.
+ * Exposes a constant for overwrite fill mode. See `fillMode` for more information.
  *
- * @property Base.FILL_MODE_OVERWRITE
+ * @property FILL_MODE_OVERWRITE
  * @static
  */
 Base.FILL_MODE_OVERWRITE = FILL_MODE_OVERWRITE;
@@ -614,7 +614,7 @@ Base.FILL_MODE_OVERWRITE = FILL_MODE_OVERWRITE;
 /**
  * Static property which provides a string to identify the class.
  *
- * @property AutoCompleteBase.NAME
+ * @property NAME
  * @type String
  * @static
  */
@@ -623,7 +623,7 @@ Base.NAME = _NAME;
 /**
  * Static property which provides a string to identify the namespace.
  *
- * @property AutoCompleteBase.NS
+ * @property NS
  * @type String
  * @static
  */
@@ -633,7 +633,7 @@ Base.NS = _NAME;
  * Static property used to define the default attribute
  * configuration for AutoCompleteBase.
  *
- * @property AutoCompleteBase.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */

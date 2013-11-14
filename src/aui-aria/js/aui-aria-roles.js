@@ -1,6 +1,9 @@
-/*
- * W3C - The Roles Model
- * http://www.w3.org/TR/wai-aria/roles
+/**
+ * Static property used to define [W3C's Roles Model](http://www.w3.org/TR/wai-aria/roles).
+ *
+ * @property W3C_ROLES
+ * @type Object
+ * @static
  */
 A.Plugin.Aria.W3C_ROLES = {
     'alert': 1,

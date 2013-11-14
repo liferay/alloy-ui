@@ -45,7 +45,7 @@ var SchedulerMonthView = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property SchedulerMonthView.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -55,7 +55,7 @@ var SchedulerMonthView = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the SchedulerMonthView.
      *
-     * @property SchedulerMonthView.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -110,7 +110,7 @@ var SchedulerMonthView = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property SchedulerMonthView.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */

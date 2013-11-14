@@ -28,7 +28,7 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/tooltip/).
  *
  * @class A.TooltipDelegate
- * @extends A.Base
+ * @extends Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -136,7 +136,7 @@ A.TooltipDelegate = A.Base.create(_TOOLTIP_DELEGATE, A.Base, [], {
      * Static property used to define the default attribute
      * configuration for the Toggler Delegate.
      *
-     * @property TooltipDelegate.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */

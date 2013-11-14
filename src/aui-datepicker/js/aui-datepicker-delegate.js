@@ -288,7 +288,7 @@ DatePickerDelegate.prototype = {
 /**
  * TODO. Wanna help? Please send a Pull Request.
  *
- * @property DatePickerDelegate.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */

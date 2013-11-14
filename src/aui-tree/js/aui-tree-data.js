@@ -43,15 +43,14 @@ var L = A.Lang,
 
 /**
  * A base class for TreeData, providing:
- * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li>Handle the data of the tree</li>
- *    <li>Basic DOM implementation (append/remove/insert)</li>
- *    <li>Indexing management to handle the children nodes</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
+ * - Handle the data of the tree
+ * - Basic DOM implementation (append/remove/insert)
+ * - Indexing management to handle the children nodes
  *
  * @class A.TreeData
- * @extends A.Base
+ * @extends Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -62,7 +61,7 @@ var TreeData = function() {};
  * Static property used to define the default attribute
  * configuration for the TreeData.
  *
- * @property TreeData.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */
@@ -287,7 +286,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Update the <a href="TreeData.html#config_index">index</a> attribute value.
+     * Update the [index](A.TreeData.html#attr_index) attribute value.
      *
      * @method updateIndex
      * @param {Object} index
@@ -374,7 +373,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Loop each children and execute the <code>fn</code> callback.
+     * Loop each children and execute the `fn` callback.
      *
      * @method eachChildren
      * @param {function} fn callback
@@ -392,7 +391,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Loop each parent node and execute the <code>fn</code> callback.
+     * Loop each parent node and execute the `fn` callback.
      *
      * @method eachParent
      * @param {function} fn callback
@@ -526,8 +525,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Index of the passed TreeNode on the <a
-     * href="TreeData.html#config_children">children</a> attribute.
+     * Index of the passed TreeNode on the [children](A.TreeData.html#attr_children) attribute.
      *
      * @method indexOf
      * @param {TreeNode} node
@@ -599,7 +597,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Remove the passed <code>node</code> from the current TreeData.
+     * Remove the passed `node` from the current TreeData.
      *
      * @method removeChild
      * @param {TreeData} node
@@ -612,7 +610,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Remove the passed <code>node</code> from the current TreeData.
+     * Remove the passed `node` from the current TreeData.
      *
      * @method _removeChild
      * @param {TreeData} node
@@ -670,7 +668,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Insert <code>treeNode</code> before or after the <code>refTreeNode</code>.
+     * Insert `treeNode` before or after the `refTreeNode`.
      *
      * @method insert
      * @param {TreeNode} treeNode
@@ -736,7 +734,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Insert <code>treeNode</code> after the <code>refTreeNode</code>.
+     * Insert `treeNode` after the `refTreeNode`.
      *
      * @method insertAfter
      * @param {TreeNode} treeNode
@@ -749,7 +747,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Insert <code>treeNode</code> before the <code>refTreeNode</code>.
+     * Insert `treeNode` before the `refTreeNode`.
      *
      * @method insertBefore
      * @param {TreeNode} treeNode
@@ -782,7 +780,7 @@ A.mix(TreeData.prototype, {
     _inheritOwnerTreeAttrs: L.emptyFn,
 
     /**
-     * Setter for <a href="TreeData.html#config_children">children</a>.
+     * Setter for [children](A.TreeData.html#attr_children).
      *
      * @method _setChildren
      * @protected

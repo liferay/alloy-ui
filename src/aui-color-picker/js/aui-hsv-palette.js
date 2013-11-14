@@ -140,7 +140,7 @@ var AColor = A.Color,
      * A base class for HSVPalette.
      *
      * @class A.HSVPalette
-     * @extends A.Widget
+     * @extends Widget
      * @param config {Object} Object literal specifying widget configuration properties.
      * @constructor
      */
@@ -1443,7 +1443,7 @@ var AColor = A.Color,
         /**
          * TODO. Wanna help? Please send a Pull Request.
          *
-         * @property HSVPalette.CSS_PREFIX
+         * @property CSS_PREFIX
          * @type String
          * @static
          */
@@ -1453,7 +1453,7 @@ var AColor = A.Color,
          * Static property used to define the default attribute
          * configuration for the HSVPalette.
          *
-         * @property HSVPalette.ATTRS
+         * @property ATTRS
          * @type Object
          * @static
          */
@@ -1528,7 +1528,7 @@ var AColor = A.Color,
         /**
          * Static property provides a string to identify the class.
          *
-         * @property HSVPalette.NAME
+         * @property NAME
          * @type String
          * @static
          */
@@ -1537,7 +1537,7 @@ var AColor = A.Color,
         /**
          * TODO. Wanna help? Please send a Pull Request.
          *
-         * @property HSVPalette.NS
+         * @property NS
          * @type String
          * @static
          */

@@ -53,7 +53,7 @@ var FormBuilderCheckBoxField = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property FormBuilderCheckBoxField.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -63,7 +63,7 @@ var FormBuilderCheckBoxField = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the FormBuilderCheckBoxField.
      *
-     * @property FormBuilderCheckBoxField.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -108,7 +108,7 @@ var FormBuilderCheckBoxField = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property FormBuilderCheckBoxField.CSS_PREFIX
+     * @property CSS_PREFIX
      * @static
      */
     CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
@@ -116,7 +116,7 @@ var FormBuilderCheckBoxField = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property FormBuilderCheckBoxField.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */

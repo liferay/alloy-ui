@@ -20,7 +20,7 @@ var Lang = A.Lang,
     /**
      * A base class for Velocity plugin.
      *
-     * @class A.Velocity
+     * @class A.AceEditor.AutoCompleteVelocity
      * @extends A.AceEditor.TemplateProcessor
      * @param config {Object} Object literal specifying widget configuration properties.
      * @constructor
@@ -72,7 +72,7 @@ var Lang = A.Lang,
         /**
          * Static property which provides a string to identify the class.
          *
-         * @property Velocity.NAME
+         * @property NAME
          * @type String
          * @static
          */
@@ -81,7 +81,7 @@ var Lang = A.Lang,
         /**
          * The namespace of the plugin.
          *
-         * @property Velocity.NS
+         * @property NS
          * @type String
          * @static
          */
@@ -91,7 +91,7 @@ var Lang = A.Lang,
          * Static property used to define the default attribute
          * configuration for the Velocity.
          *
-         * @property Velocity.ATTRS
+         * @property ATTRS
          * @type Object
          * @static
          */

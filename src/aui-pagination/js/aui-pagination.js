@@ -35,15 +35,13 @@ var Lang = A.Lang,
 
 /**
  * A base class for Pagination, providing:
- * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li>Set of controls to navigate through paged data</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
+ * - Set of controls to navigate through paged data
  *
  * Check the [live demo](http://alloyui.com/examples/pagination/).
  *
  * @class A.Pagination
- * @extends A.Component
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -51,7 +49,7 @@ var Pagination = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property Pagination.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -61,7 +59,7 @@ var Pagination = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the Pagination.
      *
-     * @property Pagination.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -71,8 +69,8 @@ var Pagination = A.Component.create({
          * When enabled this property allows the navigation to go back to
          * the beggining when it reaches the last page, the opposite behavior
          * is also true. Incremental page navigation could happen clicking the
-         * control arrows or invoking <code>.next()</code> and
-         * <code>.prev()</code> methods.
+         * control arrows or invoking `.next()` and
+         * `.prev()` methods.
          *
          * @attribute circular
          * @default true
@@ -97,7 +95,7 @@ var Pagination = A.Component.create({
         /**
          * Holds the page items as a NodeList. The list could be queried
          * from the DOM trough Widget HTML_PARSER or generated if
-         * <a href="Pagination.html#config_total">total</a> is specified.
+         * [total](A.Pagination.html#attr_total) is specified.
          *
          * @attribute items
          * @default undefined
@@ -131,7 +129,7 @@ var Pagination = A.Component.create({
 
         /**
          * Total number of page links available. If set, the new
-         * <a href="Pagination.html#config_items">items</a> node list will
+         * [items](A.Pagination.html#attr_items) node list will
          * be rendered.
          *
          * @attribute total
@@ -161,7 +159,7 @@ var Pagination = A.Component.create({
      * Object hash, defining how attribute values are to be parsed from
      * markup contained in the widget's content box.
      *
-     * @property Pagination.HTML_PARSER
+     * @property HTML_PARSER
      * @type Object
      * @static
      */
@@ -178,7 +176,7 @@ var Pagination = A.Component.create({
      * Static property used to define the attributes
      * for the bindUI lifecycle phase.
      *
-     * @property Pagination.BIND_UI_ATTRS
+     * @property BIND_UI_ATTRS
      * @type Array
      * @static
      */
@@ -187,7 +185,7 @@ var Pagination = A.Component.create({
     /**
      * Static property used to define the UI attributes.
      *
-     * @property Pagination.UI_ATTRS
+     * @property UI_ATTRS
      * @type Array
      * @static
      */
@@ -353,7 +351,7 @@ var Pagination = A.Component.create({
 
         /**
          * Set the new pagination state. The state is a payload object
-         * containing the page number, e.g. <code>{page:1}</code>.
+         * containing the page number, e.g. `{page:1}`.
          *
          * @method setState
          * @param state

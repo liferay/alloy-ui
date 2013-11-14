@@ -38,7 +38,7 @@ var FormBuilderFileUploadField = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property FormBuilderFileUploadField.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -48,7 +48,7 @@ var FormBuilderFileUploadField = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the FormBuilderFileUploadField.
      *
-     * @property FormBuilderFileUploadField.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -70,7 +70,7 @@ var FormBuilderFileUploadField = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property FormBuilderFileUploadField.CSS_PREFIX
+     * @property CSS_PREFIX
      * @type String
      * @static
      */
@@ -79,7 +79,7 @@ var FormBuilderFileUploadField = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property FormBuilderFileUploadField.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */

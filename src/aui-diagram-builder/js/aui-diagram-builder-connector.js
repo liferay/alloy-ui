@@ -148,7 +148,7 @@ A.PolygonUtil = {
  * A base class for Connector.
  *
  * @class A.Connector
- * @extends A.Base
+ * @extends Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -706,7 +706,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
      * Static property used to define the default attribute
      * configuration for the Connector.
      *
-     * @property Connector.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -960,7 +960,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property Connector.STRINGS
+     * @property STRINGS
      * @type Object
      * @static
      */

@@ -28,12 +28,11 @@ var Lang = A.Lang,
 
 /**
  * A base class for Component, providing:
- * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
  *
  * @class A.Component
- * @extends A.Widget
+ * @extends Widget
  * @uses A.WidgetCssClass, A.WidgetToggle
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
@@ -216,7 +215,7 @@ var Component = A.Base.create(_NAME, A.Widget, [
      * Static property used to define the default attribute
      * configuration for the Component.
      *
-     * @property Component.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -237,9 +236,8 @@ var Component = A.Base.create(_NAME, A.Widget, [
         },
 
         /**
-         * CSS class added to hide the <code>boundingBox</code> when
-         * <a href="Component.html#config_visible">visible</a> is set to
-         * <code>false</code>.
+         * CSS class added to hide the `boundingBox` when
+         * [visible](A.Component.html#attr_visible) is set to `false`.
          *
          * @attribute hideClass
          * @default 'aui-hide'
@@ -250,8 +248,8 @@ var Component = A.Base.create(_NAME, A.Widget, [
         },
 
         /**
-         * If <code>true</code> the render phase will be autimatically invoked
-         * preventing the <code>.render()</code> manual call.
+         * If `true` the render phase will be autimatically invoked
+         * preventing the `.render()` manual call.
          *
          * @attribute render
          * @default false
@@ -267,7 +265,7 @@ var Component = A.Base.create(_NAME, A.Widget, [
 /**
  * Static property used to define the map to store Component instances by id.
  *
- * @property Component._INSTANCES
+ * @property _INSTANCES
  * @type Object
  * @static
  */
@@ -374,7 +372,7 @@ Component.create = function(config) {
 /**
  * TODO. Wanna help? Please send a Pull Request.
  *
- * @property Component.CSS_PREFIX
+ * @property CSS_PREFIX
  * @type String
  * @static
  */

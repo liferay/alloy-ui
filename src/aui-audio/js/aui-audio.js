@@ -32,7 +32,6 @@ var AObject = A.Object,
  * Check the [live demo](http://alloyui.com/examples/audio/).
  *
  * @class A.Audio
- * @extends A.Component
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -40,7 +39,7 @@ var AudioImpl = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property Audio.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -50,7 +49,7 @@ var AudioImpl = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the Audio.
      *
-     * @property Audio.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -154,8 +153,8 @@ var AudioImpl = A.Component.create({
         },
 
         /**
-         * If <code>true</code> the render phase will be automatically invoked
-         * preventing the <code>.render()</code> manual call.
+         * If `true` the render phase will be automatically invoked
+         * preventing the `.render()` manual call.
          *
          * @attribute render
          * @default true
@@ -171,7 +170,7 @@ var AudioImpl = A.Component.create({
      * Static property used to define the attributes
      * for the bindUI lifecycle phase.
      *
-     * @property Audio.BIND_UI_ATTRS
+     * @property BIND_UI_ATTRS
      * @type Array
      * @static
      */
@@ -181,7 +180,7 @@ var AudioImpl = A.Component.create({
      * Static property used to define the attributes
      * for the syncUI lifecycle phase.
      *
-     * @property Audio.SYNC_UI_ATTRS
+     * @property SYNC_UI_ATTRS
      * @type Array
      * @static
      */
@@ -260,7 +259,7 @@ var AudioImpl = A.Component.create({
         },
 
         /**
-         * Create <code>source</code> element
+         * Create `source` element
          * using passed type attribute.
          *
          * @method _createSource
@@ -375,7 +374,7 @@ var AudioImpl = A.Component.create({
         },
 
         /**
-         * Set media on <code>flashVars</code>.
+         * Set media on `flashVars`.
          *
          * @method _setMedia
          * @param flashVars
@@ -402,7 +401,7 @@ var AudioImpl = A.Component.create({
         },
 
         /**
-         * Set the <code>fixedAttributes</code> on the UI.
+         * Set the `fixedAttributes` on the UI.
          *
          * @method _uiSetFixedAttributes
          * @param val
@@ -415,7 +414,7 @@ var AudioImpl = A.Component.create({
         },
 
         /**
-         * Set the <code>flashVars</code> on the UI.
+         * Set the `flashVars` on the UI.
          *
          * @method _uiSetFlashVars
          * @param val
@@ -428,7 +427,7 @@ var AudioImpl = A.Component.create({
         },
 
         /**
-         * Set the <code>oggUrl</code> on the UI.
+         * Set the `oggUrl` on the UI.
          *
          * @method _uiSetOggUrl
          * @param val
@@ -468,7 +467,7 @@ var AudioImpl = A.Component.create({
         },
 
         /**
-         * Set the <code>swfUrl</code> on the UI.
+         * Set the `swfUrl` on the UI.
          *
          * @method _uiSetSwfUrl
          * @param val
@@ -481,7 +480,7 @@ var AudioImpl = A.Component.create({
         },
 
         /**
-         * Set the <code>url</code> on the UI.
+         * Set the `url` on the UI.
          *
          * @method _uiSetUrl
          * @param val
@@ -520,7 +519,7 @@ var AudioImpl = A.Component.create({
         },
 
         /**
-         * Check if it's a <code>video</code> node.
+         * Check if it's a `video` node.
          *
          * @method _usingVideo
          * @protected

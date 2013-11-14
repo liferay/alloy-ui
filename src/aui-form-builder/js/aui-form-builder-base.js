@@ -100,7 +100,7 @@ var FormBuilderAvailableField = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property FormBuilderAvailableField.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -110,7 +110,7 @@ var FormBuilderAvailableField = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the ModuleName.
      *
-     * @property FormBuilderAvailableField.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -213,7 +213,7 @@ var FormBuilderAvailableField = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property FormBuilderAvailableField.EXTENDS
+     * @property EXTENDS
      * @type String
      * @static
      */
@@ -235,7 +235,7 @@ var FormBuilder = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property FormBuilder.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -245,7 +245,7 @@ var FormBuilder = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the FormBuilder.
      *
-     * @property FormBuilder.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -309,7 +309,7 @@ var FormBuilder = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property FormBuilder.UI_ATTRS
+     * @property UI_ATTRS
      * @type Array
      * @static
      */
@@ -318,7 +318,7 @@ var FormBuilder = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property FormBuilder.EXTENDS
+     * @property EXTENDS
      * @type String
      * @static
      */
@@ -327,7 +327,7 @@ var FormBuilder = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property FormBuilder.FIELDS_TAB
+     * @property FIELDS_TAB
      * @default 0
      * @type Number
      * @static
@@ -337,7 +337,7 @@ var FormBuilder = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property FormBuilder.SETTINGS_TAB
+     * @property SETTINGS_TAB
      * @default 1
      * @type Number
      * @static

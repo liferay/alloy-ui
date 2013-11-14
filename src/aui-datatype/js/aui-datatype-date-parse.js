@@ -36,7 +36,7 @@ function DateParser(opt_pattern) {
 /**
  * Static property provides a string to identify the token prefix, e.g. %A.
  *
- * @property DateParser.TOKEN_PREFIX
+ * @property TOKEN_PREFIX
  * @type String
  * @static
  */
@@ -46,7 +46,7 @@ DateParser.TOKEN_PREFIX = '%';
  * Static property provides a base year to sum two digit years, e.g. For the
  * mask %Y, "13" will be parsed to 2013.
  *
- * @property DateParser.TWO_DIGIT_YEAR_BASE
+ * @property TWO_DIGIT_YEAR_BASE
  * @type Number
  * @static
  */
@@ -190,7 +190,7 @@ A.mix(DateParser.prototype, {
      *  </dd>
      * </dl>
      *
-     * @return {Date} native JavaScript Date. Returns <code>false</code> if cannot
+     * @return {Date} native JavaScript Date. Returns `false` if cannot
      * parse.
      */
     parse: function(text, opt_date) {
@@ -292,7 +292,7 @@ A.mix(DateParser.prototype, {
      * @param val {String} Keyword The string to match to.
      * @param data {Array} The string array of matching patterns.
      * @param opt_inverse {Boolean} Inverts the matching test. Instead of test
-     * array values against <code>val</code>, tests <code>val</code> against the
+     * array values against `val`, tests `val` against the
      * array values.
      *
      * @return {Number} Best match index. Returns -1 if doesn't find any match.
@@ -333,7 +333,7 @@ A.mix(DateParser.prototype, {
      * @param data {Array} The string array of matching patterns.
      * @param opt_date {Date} Date object to be filled.
      *
-     * @return {Date} Filled date object. Returns <code>false</code> if have
+     * @return {Date} Filled date object. Returns `false` if have
      * nothing to fill.
      */
     _getCalendarDate: function(calendar, opt_date) {
@@ -399,7 +399,7 @@ A.mix(DateParser.prototype, {
     },
 
     /**
-     * Infer the next value based on <code>textPos</code> position.
+     * Infer the next value based on `textPos` position.
      *
      * @method _getNextValue
      * @protected
@@ -442,7 +442,7 @@ A.mix(DateParser.prototype, {
     },
 
     /**
-     * Infer the next numeric value based on <code>textPos</code> position.
+     * Infer the next numeric value based on `textPos` position.
      *
      * @method _getNextNumericValue
      * @protected
@@ -648,7 +648,7 @@ A.mix(DateParser.prototype, {
  * Static property provides an object that contains hints information for
  * possible token values, e.g. year, month, day etc.
  *
- * @property DateParser.HINTS
+ * @property HINTS
  * @type Object
  * @static
  */
@@ -657,7 +657,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * aggregates tokens.
      *
-     * @property DateParser.HINTS.AGGREGATES
+     * @property HINTS.AGGREGATES
      * @type Object
      * @static
      */
@@ -669,7 +669,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * ampm tokens.
      *
-     * @property DateParser.HINTS.AMPM
+     * @property HINTS.AMPM
      * @type Object
      * @static
      */
@@ -689,7 +689,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * year tokens.
      *
-     * @property DateParser.HINTS.YEAR
+     * @property HINTS.YEAR
      * @type Object
      * @static
      */
@@ -713,7 +713,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * month tokens.
      *
-     * @property DateParser.HINTS.MONTH
+     * @property HINTS.MONTH
      * @type Object
      * @static
      */
@@ -742,7 +742,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * day tokens.
      *
-     * @property DateParser.HINTS.DAY
+     * @property HINTS.DAY
      * @type Object
      * @static
      */
@@ -762,7 +762,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * hours tokens.
      *
-     * @property DateParser.HINTS.HOURS
+     * @property HINTS.HOURS
      * @type Object
      * @static
      */
@@ -783,7 +783,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * minutes tokens.
      *
-     * @property DateParser.HINTS.MINUTES
+     * @property HINTS.MINUTES
      * @type Object
      * @static
      */
@@ -803,7 +803,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * seconds tokens.
      *
-     * @property DateParser.HINTS.SECONDS
+     * @property HINTS.SECONDS
      * @type Object
      * @static
      */
@@ -823,7 +823,7 @@ DateParser.HINTS = {
      * Static property provides an object that contains hints information for
      * timezone tokens.
      *
-     * @property DateParser.HINTS.TZ
+     * @property HINTS.TZ
      * @type Object
      * @static
      */
@@ -912,7 +912,7 @@ A.Date.dateparser = new A.DateParser();
  *  </dd>
  * </dl>
  *
- * @return {Date} native JavaScript Date. Returns <code>false</code> if cannot
+ * @return {Date} native JavaScript Date. Returns `false` if cannot
  * parse.
  */
 

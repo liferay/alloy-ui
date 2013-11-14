@@ -134,16 +134,15 @@ var L = A.Lang,
 
 /**
  * A base class for ImageViewer, providing:
- * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li>Displays an image in a Overlay</li>
- *    <li>Keyboard navigation support</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
+ * - Displays an image in a Overlay
+ * - Keyboard navigation support
  *
  * Check the [live demo](http://alloyui.com/examples/image-viewer/).
  *
  * @class A.ImageViewer
- * @extends A.Widget
+ * @extends Widget
  * @uses A.WidgetStdMod, A.WidgetPosition, A.WidgetStack, A.WidgetPositionAlign,
  * A.WidgetPositionConstrain, A.WidgetModality
  * @param config {Object} Object literal specifying widget configuration properties.
@@ -251,8 +250,8 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Get the Node reference to the <code>currentIndex</code> element from
-         * the <a href="ImageViewer.html#config_links">links</a>.
+         * Get the Node reference to the `currentIndex` element from
+         * the [links](A.ImageViewer.html#attr_links).
          *
          * @method getLink
          * @param {Number} currentIndex
@@ -279,7 +278,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Load an image <code>src</code> on the ImageViewer.
+         * Load an image `src` on the ImageViewer.
          *
          * @method loadImage
          * @param {String} src Image src.
@@ -341,7 +340,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Check if there is a node reference for the <code>currentIndex</code>.
+         * Check if there is a node reference for the `currentIndex`.
          *
          * @method hasLink
          * @param {Number} currentIndex
@@ -426,7 +425,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Preload an image based on its <code>index</code>.
+         * Preload an image based on its `index`.
          *
          * @method preloadImage
          * @param {Number} currentIndex
@@ -706,7 +705,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Get the <a href="ImageViewer.html#config_info">info</a> template.
+         * Get the [info](A.ImageViewer.html#attr_info) template.
          *
          * @method _getInfoTemplate
          * @param {String} v template
@@ -779,7 +778,7 @@ var ImageViewer = A.Base.create(
 
         /**
          * Fires after the value of the
-         * <a href="ImageViewer.html#config_loading">loading</a> attribute change.
+         * [loading](A.ImageViewer.html#attr_loading) attribute change.
          *
          * @method _afterLoadingChange
          * @param {EventFacade} event
@@ -801,7 +800,7 @@ var ImageViewer = A.Base.create(
 
         /**
          * Fires after the value of the
-         * <a href="ImageViewer.html#config_visible">visible</a> attribute change.
+         * [visible](A.ImageViewer.html#attr_visible) attribute change.
          *
          * @method _afterVisibleChange
          * @param {EventFacade} event
@@ -976,7 +975,7 @@ var ImageViewer = A.Base.create(
         /**
          * Static property provides a string to identify the class.
          *
-         * @property ImageViewer.NAME
+         * @property NAME
          * @type String
          * @static
          */
@@ -985,7 +984,7 @@ var ImageViewer = A.Base.create(
         /**
          * Static property provides a string to identify the CSS prefix.
          *
-         * @property ImageViewer.CSS_PREFIX
+         * @property CSS_PREFIX
          * @type String
          * @static
          */
@@ -995,14 +994,14 @@ var ImageViewer = A.Base.create(
          * Static property used to define the default attribute
          * configuration for the ImageViewer.
          *
-         * @property ImageViewer.ATTRS
+         * @property ATTRS
          * @type Object
          * @static
          */
         ATTRS: {
 
             /**
-             * If <code>true</code> the navigation is animated.
+             * If `true` the navigation is animated.
              *
              * @attribute anim
              * @default true
@@ -1036,8 +1035,7 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * If <code>true</code> the <a
-             * href="ImageViewer.html#config_caption">caption</a> will be pulled
+             * If `true` the [caption](A.ImageViewer.html#attr_caption) will be pulled
              * from the title DOM attribute.
              *
              * @attribute captionFromTitle
@@ -1050,7 +1048,7 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * If <code>true</code> the Overlay with the image will be positioned
+             * If `true` the Overlay with the image will be positioned
              * on the center of the viewport.
              *
              * @attribute centered
@@ -1089,11 +1087,10 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * Configuration attributes passed to the <a href="Anim.html">Anim</a>
-             * class.
+             * Configuration attributes passed to the [Anim](Anim.html) class.
              *
              * @attribute imageAnim
-             * @default Predefined <a href="Anim.html">Anim</a> configuration.
+             * @default Predefined [Anim](Anim.html) configuration.
              * @type Object
              */
             imageAnim: {
@@ -1161,7 +1158,7 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * Displays the modal the viewport. Set to <code>false</code> to
+             * Displays the modal the viewport. Set to `false` to
              * disable.
              *
              * @attribute modal
@@ -1173,8 +1170,7 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * Preload all images grabbed from the <a
-             * href="ImageViewer.html#config_links">links</a> attribute.
+             * Preload all images grabbed from the [links](A.ImageViewer.html#attr_links) attribute.
              *
              * @attribute preloadAllImages
              * @default false
@@ -1234,8 +1230,7 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * Helper attribute to get the <code>size</code> of the <a
-             * href="ImageViewer.html#config_links">links</a> NodeList.
+             * Helper attribute to get the `size` of the [links](A.ImageViewer.html#attr_links) NodeList.
              *
              * @attribute totalLinks
              * @default true
@@ -1348,7 +1343,7 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * HTML element to house the <code>img</code> which is being loaded.
+             * HTML element to house the `img` which is being loaded.
              *
              * @attribute loader
              * @default Generated HTML div element.

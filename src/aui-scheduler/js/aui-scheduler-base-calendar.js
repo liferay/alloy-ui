@@ -9,7 +9,7 @@
  * A base class for SchedulerCalendar.
  *
  * @class A.SchedulerCalendar
- * @extends A.ModelList
+ * @extends ModelList
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -168,7 +168,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      * Static property used to define the default attribute
      * configuration for the SchedulerCalendar.
      *
-     * @property SchedulerCalendar.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */

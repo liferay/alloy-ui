@@ -13,30 +13,28 @@ var L = A.Lang,
     NUM_TWENTY_FOUR = 24,
 
     /**
-     * DataType.Boolean provides a set of utility to parse <code>falsey</code>
-     * value to <code>false</code> and <code>non-falsey</code> to
-     * <code>true</code>.
+     * A.DataType.Boolean provides a set of utility to parse `falsey`
+     * value to `false` and `non-falsey` to `true`.
      *
-     * @class DataType.Boolean
+     * @class A.DataType.Boolean
      * @static
      */
     DB = A.namespace('DataType.Boolean'),
 
     /**
-     * DataType.String provides a set of utility to provides a simple function
+     * A.DataType.String provides a set of utility to provides a simple function
      * that evaluates a string to a primitive value (if possible). Supports
-     * <code>true</code> and <code>false</code> also.
+     * `true` and `false` also.
      *
-     * @class DataType.String
+     * @class A.DataType.String
      * @static
      */
     DS = A.namespace('DataType.String');
 
 /**
- * Parses any <code>falsey</code> value to <code>false</code> and
- * <code>non-falsey</code> to <code>true</code>.
+ * Parses any `falsey` value to `false` and `non-falsey` to `true`.
  *
- * @for DataType.Boolean
+ * @for A.DataType.Boolean
  * @method parse
  * @param {*} data falsey or non-falsey values (i.e., falsey values: null, false, undefined, NaN; non-falsey values: 1, true, 'abc').
  * @return {boolean} Parsed value
@@ -49,10 +47,10 @@ DB.parse = function(data) {
 
 /**
  * Evaluates a string to a primitive value (if possible). Supports
- * <code>true</code> and <code>false</code> also. Unrecognized strings are
+ * `true` and `false` also. Unrecognized strings are
  * returned without any modification.
  *
- * @for DataType.String
+ * @for A.DataType.String
  * @method evaluate
  * @param {*} data Input data to be evaluated.
  * @return {boolean | null | number | String | undefined} Parsed value
@@ -232,10 +230,9 @@ A.mix(A.DataType.DateMath, {
     /**
      * Constant field representing the date in first week of January
      * which identifies the first week of the year.
-     * <p>
+     *
      * In the U.S, Jan 1st is normally used based on a Sunday start of week.
      * ISO 8601, used widely throughout Europe, uses Jan 4th, based on a Monday start of week.
-     * </p>
      *
      * @property WEEK_ONE_JAN_DATE
      * @static
@@ -308,10 +305,9 @@ A.mix(A.DataType.DateMath, {
     /**
      * Private helper method to account for bug in Safari 2 (webkit < 420)
      * when Date.setDate(n) is called with n less than -128 or greater than 127.
-     * <p>
+     *
      * Fix approach and original findings are available here:
      * http://brianary.blogspot.com/2006/03/safari-date-bug.html
-     * </p>
      *
      * @method _addDays
      * @param {Date} d JavaScript date object
@@ -837,7 +833,7 @@ A.mix(A.DataType.DateMath, {
      * year less than 100. "new Date(year, month, date)" implementations
      * set the year to 19xx if a year (xx) which is less than 100 is provided.
      *
-     * <em>NOTE:</em>Validation on argument values is not performed. It is the
+     * **NOTE:** Validation on argument values is not performed. It is the
      * caller's responsibility to ensure arguments are valid as per the
      * ECMAScript-262 Date object specification for the
      * new Date(year, month[, date]) constructor.
@@ -945,77 +941,6 @@ A.mix(A.DataType.DateMath, {
 
 (function(Y) {
     // See http://yuilibrary.com/projects/yui3/ticket/2532862
-
-    /**
-     * @module datatype
-     */
-
-    /**
-     * The Date.Locale class is a container for all localised date strings
-     * used by Y.DataType.Date. It is used internally, but may be extended
-     * to provide new date localisations.
-     *
-     * To create your own Locale, follow these steps:
-     * <ol>
-     *  <li>Find an existing locale that matches closely with your needs</li>
-     *  <li>Use this as your base class.  Use Y.DataType.Date.Locale["en"] if nothing
-     *   matches.</li>
-     *  <li>Create your own class as an extension of the base class using
-     *   Y.merge, and add your own localisations where needed.</li>
-     * </ol>
-     * See the Y.DataType.Date.Locale["en-US"] and Y.DataType.Date.Locale["en-GB"]
-     * classes which extend Y.DataType.Date.Locale["en"].
-     *
-     * For example, to implement locales for French french and Canadian french,
-     * we would do the following:
-     * <ol>
-     *  <li>For French french, we have no existing similar locale, so use
-     *   Y.DataType.Date.Locale["en"] as the base, and extend it:
-     *   <pre>
-     *      Y.DataType.Date.Locale["fr"] = Y.merge(Y.DataType.Date.Locale["en"], {
-     *          a: ["dim", "lun", "mar", "mer", "jeu", "ven", "sam"],
-     *          A: ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"],
-     *          b: ["jan", "f&eacute;v", "mar", "avr", "mai", "jun", "jui", "ao&ucirc;", "sep", "oct", "nov", "d&eacute;c"],
-     *          B: ["janvier", "f&eacute;vrier", "mars", "avril", "mai", "juin", "juillet", "ao&ucirc;t", "septembre", "octobre", "novembre", "d&eacute;cembre"],
-     *          c: "%a %d %b %Y %T %Z",
-     *          p: ["", ""],
-     *          P: ["", ""],
-     *          x: "%d.%m.%Y",
-     *          X: "%T"
-     *      });
-     *   </pre>
-     *  </li>
-     *  <li>For Canadian french, we start with French french and change the meaning of \%x:
-     *   <pre>
-     *      Y.DataType.Date.Locale["fr-CA"] = Y.merge(Y.DataType.Date.Locale["fr"], {
-     *          x: "%Y-%m-%d"
-     *      });
-     *   </pre>
-     *  </li>
-     * </ol>
-     *
-     * With that, you can use your new locales:
-     * <pre>
-     *    var d = new Date("2008/04/22");
-     *    Y.DataType.Date.format(d, { format: "%A, %d %B == %x", locale: "fr" });
-     * </pre>
-     * will return:
-     * <pre>
-     *    mardi, 22 avril == 22.04.2008
-     * </pre>
-     * And
-     * <pre>
-     *    Y.DataType.Date.format(d, {format: "%A, %d %B == %x", locale: "fr-CA" });
-     * </pre>
-     * Will return:
-     * <pre>
-     *   mardi, 22 avril == 2008-04-22
-     * </pre>
-     * @requires oop
-     * @class DataType.Date.Locale
-     * @static
-     * @deprecated - use Y.config.lang to request one of many built-in languages instead.
-     */
     var YDateEn = {
         a: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
         A: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],

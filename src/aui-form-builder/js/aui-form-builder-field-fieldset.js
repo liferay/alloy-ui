@@ -51,7 +51,7 @@ var FormBuilderFieldsetField = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property FormBuilderFieldsetField.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -61,7 +61,7 @@ var FormBuilderFieldsetField = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the FormBuilderFieldsetField.
      *
-     * @property FormBuilderFieldsetField.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -117,7 +117,7 @@ var FormBuilderFieldsetField = A.Component.create({
     /**
      * Static property used to define the UI attributes.
      *
-     * @property FormBuilderFieldsetField.UI_ATTRS
+     * @property UI_ATTRS
      * @type Array
      * @static
      */
@@ -126,7 +126,7 @@ var FormBuilderFieldsetField = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property FormBuilderFieldsetField.CSS_PREFIX
+     * @property CSS_PREFIX
      * @type String
      * @static
      */
@@ -135,7 +135,7 @@ var FormBuilderFieldsetField = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property FormBuilderFieldsetField.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */

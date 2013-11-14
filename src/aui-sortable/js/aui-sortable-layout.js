@@ -99,15 +99,14 @@ var Lang = A.Lang,
 
 /**
  * A base class for SortableLayout, providing:
- * <ul>
- *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
- *    <li>DragDrop utility for drag lists, portal layouts (portlets)</li>
- * </ul>
+ *
+ * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
+ * - DragDrop utility for drag lists, portal layouts (portlets)
  *
  * Check the [live demo](http://alloyui.com/examples/sortable-layout/).
  *
  * @class A.SortableLayout
- * @extends A.Base
+ * @extends Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -115,7 +114,7 @@ var SortableLayout = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property SortableLayout.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -125,7 +124,7 @@ var SortableLayout = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the SortableLayout.
      *
-     * @property SortableLayout.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -283,7 +282,7 @@ var SortableLayout = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property SortableLayout.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */

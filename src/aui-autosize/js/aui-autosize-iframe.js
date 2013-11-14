@@ -23,7 +23,7 @@ var Lang = A.Lang,
  * A base class for AutosizeIframe.
  *
  * @class A.AutosizeIframe
- * @extends A.Plugin.Base
+ * @extends Plugin.Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -32,7 +32,7 @@ AutosizeIframe = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property AutosizeIframe.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -41,7 +41,7 @@ AutosizeIframe = A.Component.create({
     /**
      * Static property provides a string to identify the namespace.
      *
-     * @property AutosizeIframe.NS
+     * @property NS
      * @type String
      * @static
      */
@@ -50,7 +50,7 @@ AutosizeIframe = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property AutosizeIframe.EXTENDS
+     * @property EXTENDS
      * @type String
      * @static
      */
@@ -60,7 +60,7 @@ AutosizeIframe = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the AutosizeIframe.
      *
-     * @property AutosizeIframe.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */

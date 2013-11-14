@@ -34,7 +34,7 @@ function DatePickerNativeBase() {}
 /**
  * TODO. Wanna help? Please send a Pull Request.
  *
- * @property DatePickerNativeBase.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */
@@ -302,7 +302,7 @@ A.DatePickerNativeBase = DatePickerNativeBase;
  * A base class for DatePickerNative.
  *
  * @class A.DatePickerNative
- * @extends A.Base
+ * @extends Base
  * @uses A.DatePickerDelegate, A.DatePickerNativeBase
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor

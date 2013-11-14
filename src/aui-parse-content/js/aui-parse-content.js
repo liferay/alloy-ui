@@ -36,26 +36,24 @@ var L = A.Lang,
 
 /**
  * A base class for ParseContent, providing:
- * <ul>
- *    <li>After plug ParseContent on a A.Node instance the javascript chunks will be executed (remote and inline scripts)</li>
- *    <li>All the javascripts within a content will be executed according to the order of apparition</li>
- * </ul>
  *
- * <p><strong>NOTE:</strong> For performance reasons on DOM manipulation,
+ * - After plug ParseContent on a A.Node instance the javascript chunks will be executed (remote and inline scripts)
+ * - All the javascripts within a content will be executed according to the order of apparition
+ *
+ * **NOTE:** For performance reasons on DOM manipulation,
  * ParseContent only parses the content passed to the
- * <a href="Node.html#method_setContent">setContent</a>,
- * <a href="Node.html#method_prepend">prepend</a> and
- * <a href="Node.html#method_append">append</a> methods.</p>
+ * [setContent](Node.html#method_setContent),
+ * [prepend](Node.html#method_prepend) and
+ * [append](Node.html#method_append) methods.
  *
- * Quick Example:<br/>
+ * Quick Example:
  *
- * <pre><code>node.plug(A.Plugin.ParseContent);</code></pre>
- *
- * Check the list of <a href="ParseContent.html#configattributes">Configuration Attributes</a> available for
- * ParseContent.
+ * ```
+ * node.plug(A.Plugin.ParseContent);
+ * ```
  *
  * @class A.ParseContent
- * @extends A.Plugin.Base
+ * @extends Plugin.Base
  * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
@@ -63,7 +61,7 @@ var ParseContent = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property ParseContent.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -72,7 +70,7 @@ var ParseContent = A.Component.create({
     /**
      * Static property provides a string to identify the namespace.
      *
-     * @property ParseContent.NS
+     * @property NS
      * @type String
      * @static
      */
@@ -82,7 +80,7 @@ var ParseContent = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the ParseContent.
      *
-     * @property ParseContent.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -102,7 +100,7 @@ var ParseContent = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property ParseContent.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
@@ -153,7 +151,7 @@ var ParseContent = A.Component.create({
         },
 
         /**
-         * Extract the <code>script</code> tags from the string content and
+         * Extract the `script` tags from the string content and
          * evaluate the chunks.
          *
          * @method parseContent
@@ -189,7 +187,7 @@ var ParseContent = A.Component.create({
         },
 
         /**
-         * Bind listeners on the <code>insert</code> and <code>setContent</code>
+         * Bind listeners on the `insert` and `setContent`
          * methods of the Node instance where you are plugging the ParseContent.
          * These listeners are responsible for intercept the HTML passed and parse
          * them.
@@ -273,10 +271,10 @@ var ParseContent = A.Component.create({
         },
 
         /**
-         * Loop trough all extracted <code>script</code> tags and evaluate them.
+         * Loop trough all extracted `script` tags and evaluate them.
          *
          * @method _dispatch
-         * @param {Object} output Object containing the reference for the fragment and the extracted <code>script</code> tags.
+         * @param {Object} output Object containing the reference for the fragment and the extracted `script` tags.
          * @protected
          * @return {String}
          */

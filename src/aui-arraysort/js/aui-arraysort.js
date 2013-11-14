@@ -7,7 +7,7 @@
 ASort = A.ArraySort;
 
 /**
- * Augment the <a href="ArraySort.html">YUI3 ArraySort</a> with more util methods.
+ * Augment the [YUI3 ArraySort](ArraySort.html) with more util methods.
  *
  * @class A.ArraySort
  * @uses ArraySort

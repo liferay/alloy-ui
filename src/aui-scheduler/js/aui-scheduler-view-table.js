@@ -170,7 +170,7 @@ var SchedulerTableView = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property SchedulerTableView.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -180,7 +180,7 @@ var SchedulerTableView = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the SchedulerTableView.
      *
-     * @property SchedulerTableView.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -351,7 +351,7 @@ var SchedulerTableView = A.Component.create({
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property SchedulerTableView.HTML_PARSER
+     * @property HTML_PARSER
      * @type Object
      * @static
      */
@@ -365,7 +365,7 @@ var SchedulerTableView = A.Component.create({
     /**
      * Static property used to define which component it extends.
      *
-     * @property SchedulerTableView.EXTENDS
+     * @property EXTENDS
      * @type Object
      * @static
      */
