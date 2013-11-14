@@ -24,6 +24,7 @@ var Lang = A.Lang,
  * @param opt_pattern {String} Mask as strftime string.
  * @constructor
  */
+
 function DateParser(opt_pattern) {
     var instance = this;
 
