@@ -73,17 +73,17 @@ A.SchedulerTableViewDD = function() {};
  * configuration for the SchedulerTableViewDD.
  *
  * @property ATTRS
- * @type Object
+ * @type {Object}
  * @static
  */
 A.SchedulerTableViewDD.ATTRS = {
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Configures this view's DD Delegate.
      *
      * @attribute delegateConfig
      * @default {}
-     * @type Object
+     * @type {Object}
      */
     delegateConfig: {
         value: {},
@@ -128,7 +128,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Binds the scheduler view DD Delegate events on the UI. Lifecycle.
      *
      * @method viewDDBindUI
      */
@@ -155,7 +155,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Renders the scheduler view DD Delegate instance. Lifecycle.
      *
      * @method viewDDRenderUI
      */
@@ -165,7 +165,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Syncs the scheduler view DD Delegate instance. Lifecycle.
      *
      * @method viewDDSyncUI
      */
@@ -176,7 +176,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Removes the table view lasso.
      *
      * @method removeLasso
      */
@@ -189,7 +189,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Removes the table view proxy node.
      *
      * @method removeProxy
      */
@@ -202,11 +202,11 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Renders the table view lasso at the given xy coordinates.
      *
      * @method renderLasso
-     * @param startPos
-     * @param endPos
+     * @param startPos {Number} The starting X/Y posiiton to lasso.
+     * @param endPos {Number} The ending X/Y posiiton to lasso.
      */
     renderLasso: function(startPos, endPos) {
         var instance = this;
@@ -263,10 +263,10 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handles `dragAlign` events.
      *
      * @method _afterDragAlign
-     * @param event
+     * @param {Event.Facade} event Event Facade object
      * @protected
      */
     _afterDragAlign: function(event) {
@@ -304,10 +304,11 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns the grid cell position array for a given XY coordinate.
      *
      * @method _findPosition
-     * @param xy
+     * @param {Array} xy
+     * @return {Array} The grid cell position array for a given XY coordinate.
      * @protected
      */
     _findPosition: function(xy) {
@@ -320,11 +321,12 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Return the position coordinate of a given `Date`.
      *
      * @method _getDatePosition
-     * @param date
+     * @param {Date} date
      * @protected
+     * @return {Array} The position coordinate of a given `Date`.
      */
     _getDatePosition: function(date) {
         var instance = this;
@@ -341,11 +343,12 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Return the `Date` corresponding to a given position coordinate.
      *
      * @method _getPositionDate
-     * @param position
+     * @param {Array} position The XY position coordinate.
      * @protected
+     * @return {Date} The `Date` corresponding to a given position coordinate.
      */
     _getPositionDate: function(position) {
         var instance = this,
@@ -358,11 +361,14 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Indicates whether the lasso value has changed given a XY position
+     * coordinate.
      *
      * @method _hasLassoChanged
      * @param position
      * @protected
+     * @return {Boolean} Whether the lasso value has changed given a XY position
+     * coordinate.
      */
     _hasLassoChanged: function(position) {
         var instance = this;
@@ -373,12 +379,13 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns the offset XY coordinate given an XY coordinate and a sign.
      *
      * @method _offsetXY
-     * @param xy
-     * @param sign
+     * @param {Array} xy
+     * @param {Number} sign
      * @protected
+     * @return {Array} The offset XY coordinate given an XY coordinate and a sign.
      */
     _offsetXY: function(xy, sign) {
         var instance = this;
@@ -388,10 +395,10 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handle `eventDragEnd` events.
      *
      * @method _onEventDragEnd
-     * @param event
+     * @param {Event.Facade} event Event Facade object
      * @protected
      */
     _onEventDragEnd: function(event) {
@@ -421,10 +428,10 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handle `eventDragStart` events.
      *
      * @method _onEventDragStart
-     * @param event
+     * @param {Event.Facade} event Event Facade object
      * @protected
      */
     _onEventDragStart: function(event) {
@@ -463,10 +470,10 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handle `mouseDownGrid` events.
      *
      * @method _onMouseDownGrid
-     * @param event
+     * @param {Event.Facade} event Event Facade object
      * @protected
      */
     _onMouseDownGrid: function(event) {
@@ -493,10 +500,10 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handle `mouseMoveGrid` events.
      *
      * @method _onMouseMoveGrid
-     * @param event
+     * @param {Event.Facade} event Event Facade object
      * @protected
      */
     _onMouseMoveGrid: function(event) {
@@ -514,10 +521,10 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handle `mouseUpGrid` events.
      *
      * @method _onMouseUpGrid
-     * @param event
+     * @param {Event.Facade} event Event Facade object
      * @protected
      */
     _onMouseUpGrid: function(event) {
@@ -550,7 +557,8 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Configures a `DD Delegate` that handles `DD` events for this
+     * `SchedulerTableViewDD`s.
      *
      * @method _setupDragDrop
      * @protected
@@ -580,7 +588,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Updates this `SchedulerTableViewDD`'s grid cell dimension properties.
      *
      * @method _syncCellDimensions
      * @protected
@@ -597,10 +605,10 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Updates this `SchedulerTableViewDD`'s proxyNode UI styles and content.
      *
      * @method _syncProxyNodeUI
-     * @param evt
+     * @param {A.SchedulerEvent} evt A `Scheduler` event.
      * @protected
      */
     _syncProxyNodeUI: function(evt) {
