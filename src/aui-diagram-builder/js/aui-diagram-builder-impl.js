@@ -2555,8 +2555,7 @@ var DiagramNode = A.Component.create({
 
             instance.controlsToolbar = new A.Toolbar(
                 instance.get(CONTROLS_TOOLBAR)
-            )
-                .render(instance.controlsNode);
+            ).render(instance.controlsNode);
 
             instance._uiSetRequired(instance.get(REQUIRED));
         },

@@ -28,14 +28,11 @@ var Lang = A.Lang,
 
     EV_PROCESS_ATTRIBUTE = 'aria:processAttribute',
 
-    _toAriaRole = A.cached(
-        function(str) {
-            return str.replace(STR_REGEX, function() {
-                return EMPTY_STR;
-            })
-                .toLowerCase();
-        }
-    );
+    _toAriaRole = A.cached(function(str) {
+        return str.replace(STR_REGEX, function() {
+            return EMPTY_STR;
+        }).toLowerCase();
+    });
 
 /**
  * A base class for Aria.

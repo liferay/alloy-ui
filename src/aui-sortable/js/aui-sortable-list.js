@@ -284,8 +284,7 @@ var SortableList = A.Component.create({
                 // creating delayed drag instance
                 new A.DD.Drag(
                     A.mix(dragOptions, instance.get(DD))
-                )
-                    .plug(A.Plugin.DDProxy, proxyOptions);
+                ).plug(A.Plugin.DDProxy, proxyOptions);
             }
         },
 

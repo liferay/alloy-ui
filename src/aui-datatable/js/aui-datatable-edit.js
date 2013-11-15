@@ -776,8 +776,7 @@ var BaseCellEditor = A.Component.create({
 
             instance.toolbar = new A.Toolbar(
                 instance.get(TOOLBAR)
-            )
-                .render(instance.footerNode);
+            ).render(instance.footerNode);
 
             if (editable) {
                 instance._uiSetEditable(editable);
@@ -962,27 +961,25 @@ var BaseCellEditor = A.Component.create({
             var strings = instance.getStrings();
 
             return A.merge({
-                    activeState: false,
-                    children: [
-      [
-                            {
-                                on: {
-                                    click: A.bind(instance._handleSaveEvent, instance)
-                                },
-                                label: strings[SAVE],
-                                icon: 'icon-ok-sign'
-       },
-                            {
-                                on: {
-                                    click: A.bind(instance._handleCancelEvent, instance)
-                                },
-                                label: strings[CANCEL]
-       }
-      ]
-     ]
-                },
-                val
-            );
+                activeState: false,
+                children: [
+                    [
+                        {
+                            on: {
+                                click: A.bind(instance._handleSaveEvent, instance)
+                            },
+                            label: strings[SAVE],
+                            icon: 'icon-ok-sign'
+                        },
+                        {
+                            on: {
+                                click: A.bind(instance._handleCancelEvent, instance)
+                            },
+                            label: strings[CANCEL]
+                        }
+                    ]
+                ]
+            }, val);
         },
 
         /**
@@ -1123,16 +1120,15 @@ var BaseCellEditor = A.Component.create({
             if (instance.get(RENDERED) && toolbar) {
                 if (val) {
                     toolbar.add(
-      [
+                        [
                             {
                                 icon: 'icon-edit',
                                 label: instance.getString(EDIT),
                                 on: {
                                     click: A.bind(instance._handleEditEvent, instance)
                                 }
-       }
-      ],
-                        1
+                            }
+                        ], 1
                     );
                 }
                 else {
@@ -1511,11 +1507,10 @@ var BaseOptionsCellEditor = A.Component.create({
                 handles: [_DOT + CSS_CELLEDITOR_EDIT_DD_HANDLE],
                 nodes: _DOT + CSS_CELLEDITOR_EDIT_OPTION_ROW,
                 opacity: '.3'
-            })
-                .delegate.dd.plug(A.Plugin.DDConstrained, {
-                    constrain: editContainer,
-                    stickY: true
-                });
+            }).delegate.dd.plug(A.Plugin.DDConstrained, {
+                constrain: editContainer,
+                stickY: true
+            });
 
             instance._syncEditOptionsUI();
         },
@@ -2216,8 +2211,7 @@ var DateCellEditor = A.Component.create({
 
             instance.calendar = new A.Calendar(
                 instance.get(CALENDAR)
-            )
-                .render(instance.bodyNode);
+            ).render(instance.bodyNode);
         },
 
         /**

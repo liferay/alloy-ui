@@ -483,8 +483,7 @@ var ImageGallery = A.Component.create({
 
             var paginationInstance = new A.Pagination(
                 instance.get(PAGINATION)
-            )
-                .render();
+            ).render();
 
             instance.set(PAGINATION_INSTANCE, paginationInstance);
         },
@@ -506,8 +505,7 @@ var ImageGallery = A.Component.create({
 
             instance.toolbar = new A.Toolbar(
                 instance.get(TOOLBAR)
-            )
-                .render(playerContent);
+            ).render(playerContent);
         },
 
         /**

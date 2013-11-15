@@ -1053,8 +1053,7 @@ var DiagramBuilderBase = A.Component.create({
             if (!instance.toolbar) {
                 instance.toolbar = new A.Toolbar(
                     instance.get(TOOLBAR)
-                )
-                    .render(instance.settingsNode);
+                ).render(instance.settingsNode);
             }
         },
 
