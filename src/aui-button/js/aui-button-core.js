@@ -69,7 +69,8 @@ var ButtonExt = function(config) {
 ButtonExt.ATTRS = {
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Defines html type attribute of element i.e.
+     * `<input type="button">`.
      *
      * @attribute domType
      */
@@ -81,16 +82,20 @@ ButtonExt.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * String containing css class of icon to use. A list of icons
+     * can be found [here](http://liferay.github.io/alloy-bootstrap/base-css.html#icons).
      *
      * @attribute icon
+     * @type String
      */
     icon: {},
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Defines markup template for icon, passed in as
+     * a node e.g. `Y.Node.create('<i></i>')`.
      *
      * @attribute iconElement
+     * @default 'A.Node.create("<i></i>")'
      */
     iconElement: {
         valueFn: function() {
@@ -100,7 +105,7 @@ ButtonExt.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * String that sets position of icon. Values: `left` and `right`.
      *
      * @attribute iconAlign
      * @default 'left'
@@ -112,7 +117,7 @@ ButtonExt.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets button style to primary.
      *
      * @attribute primary
      * @default false
@@ -124,7 +129,8 @@ ButtonExt.ATTRS = {
 };
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
+ * Object hash, defining how attribute values are to be parsed from
+ * markup contained in ButtonExt.
  *
  * @property HTML_PARSER
  * @type Object
@@ -170,7 +176,7 @@ ButtonExt.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Updates icon image, icon alignment, and primary button style.
      *
      * @method syncButtonExtUI
      */
@@ -182,12 +188,13 @@ ButtonExt.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fire after `icon` attribute change.
      *
      * @method _afterIconChange
      * @param event
      * @protected
      */
+
     _afterIconChange: function(event) {
         var instance = this;
 
@@ -195,7 +202,7 @@ ButtonExt.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fire after `iconAlign` attribute change.
      *
      * @method _afterIconAlignChange
      * @param event
@@ -208,7 +215,7 @@ ButtonExt.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fire after `primary` attribute change.
      *
      * @method _afterPrimaryChange
      * @param event
@@ -236,7 +243,7 @@ ButtonExt.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Add primary button class.
      *
      * @method _uiSetPrimary
      * @param val
@@ -249,7 +256,7 @@ ButtonExt.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Add class name for button icon.
      *
      * @method _uiSetIcon
      * @param val
@@ -267,7 +274,7 @@ ButtonExt.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Add alignment for button icon.
      *
      * @method _uiSetIconAlign
      * @param val
@@ -292,7 +299,7 @@ A.ButtonExt = ButtonExt;
 var ButtonCore = A.ButtonCore;
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
+ * Object literal contains css class names to use for ButtonCore.
  *
  * @property CLASS_NAMES
  * @static
@@ -300,7 +307,7 @@ var ButtonCore = A.ButtonCore;
 ButtonCore.CLASS_NAMES = CLASS_NAMES;
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
+ * Sets the button text (either as text or sets the `value` attribute).
  *
  * @method _uiSetLabel
  */
@@ -334,7 +341,7 @@ Button.CLASS_NAMES = CLASS_NAMES;
 A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.WidgetToggle], {}, {
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Static property provides a string to identify the CSS prefix.
      *
      * @property CSS_PREFIX
      * @type String
@@ -343,7 +350,7 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
     CSS_PREFIX: CLASS_NAMES.BUTTON,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns an object literal containing widget constructor data specified in the node.
      *
      * @method getWidgetLazyConstructorFromNodeData
      * @param node
@@ -357,7 +364,7 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns a boolean, true if node has widget constructor data.
      *
      * @method hasWidgetLazyConstructorData
      * @param node
@@ -367,7 +374,8 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Updates node's widget constructor data attribute with
+     * config.
      *
      * @method setWidgetLazyConstructorNodeData
      * @param node
@@ -378,7 +386,7 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Updates icon alignment in button.
      *
      * @method syncIconUI
      * @param buttonElement
@@ -437,7 +445,7 @@ A.mix(ButtonGroup.prototype, {
     CONTENT_TEMPLATE: null,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns `item` or `node` of specified `index`.
      *
      * @method item
      * @param index
@@ -478,7 +486,7 @@ A.mix(ButtonGroup.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Select items by adding the active class name.
      *
      * @method select
      * @param items
@@ -490,7 +498,7 @@ A.mix(ButtonGroup.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Toggles selection by adding or removing the active class name.
      *
      * @method toggleSelect
      * @param items
@@ -537,7 +545,7 @@ A.mix(ButtonGroup.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Select items by adding the active class name.
      *
      * @method unselect
      * @param items
