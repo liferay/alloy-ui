@@ -33,7 +33,6 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
      *
      * @property TEMPLATE
      * @type String
-     * @default '<i class="btn-search-cancel icon-remove" />'
      * @protected
      */
     TEMPLATE: '<div class="' + A.getClassName(_NAME) + '" style="padding: 5px; position: absolute; z-index: {zIndex};">' + '<i class="{iconClass}"></i>' + '</div>',
@@ -59,8 +58,7 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
     _eventHandles: null,
 
     /**
-     * Construction logic executed during CharCounter instantiation.
-     * Lifecycle.
+     * Construction logic executed during CharCounter instantiation. Lifecycle.
      *
      * @method initializer
      */
@@ -73,8 +71,7 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
     },
 
     /**
-     * Destructor lifecycle implementation for the AutosizeIframe class.
-     * Lifecycle.
+     * Destructor lifecycle implementation for the AutosizeIframe class. Lifecycle.
      *
      * @method destroy
      */
@@ -106,8 +103,7 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
      * Delegate events on the UI. Lifecycle.
      *
      * @method getButtonForElement
-     * @param {Node} element Input or textarea element align the created
-     * button.
+     * @param {Node} element Input or textarea element align the created button.
      * @return {Node} Button node.
      */
     getButtonForElement: function(element) {
@@ -134,6 +130,8 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
      * Fires when the user clicks on the cancel search button.
      *
      * @method _onButtonClick
+     * @param event
+     * @param element
      * @protected
      */
     _onButtonClick: function(event, element) {
@@ -146,6 +144,7 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
      * Fires when the user focus or input value on the host element.
      *
      * @method _onUserInteraction
+     * @param event
      * @protected
      */
     _onUserInteraction: function(event) {
@@ -158,8 +157,7 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
      * Position the cancel search button and aligns it with the passed `element`.
      *
      * @method _syncButtonUI
-     * @param {Node} element Input or textarea element align the created
-     * button.
+     * @param {Node} element Input or textarea element align the created button.
      * @protected
      */
     _syncButtonUI: function(element) {
@@ -197,6 +195,7 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
          * The container of Toggler Delegate instance.
          *
          * @attribute container
+         * @writeOnce
          */
         container: {
             setter: A.one,
@@ -205,7 +204,7 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
         },
 
         /**
-         * Gutter values are added to the x and y alignment values of the
+         * Gutter values are added to the X and Y alignment values of the
          * button search cancel. They can be utilized as a padding in case
          * the user needs a different alignment.
          *
@@ -218,7 +217,7 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
         },
 
         /**
-         * Icon css class to be used on the search cancel button.
+         * Icon CSS class to be used on the search cancel button.
          *
          * @attribute iconClass
          * @default 'icon-remove'
@@ -235,6 +234,7 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
          *
          * @attribute trigger
          * @type String
+         * @writeOnce
          */
         trigger: {
             validator: Lang.isString,
@@ -247,6 +247,7 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
          * @attribute zIndex
          * @default 2
          * @type Number
+         * @writeOnce
          */
         zIndex: {
             value: 2,

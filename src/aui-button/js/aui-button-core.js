@@ -69,10 +69,11 @@ var ButtonExt = function(config) {
 ButtonExt.ATTRS = {
 
     /**
-     * Defines html type attribute of element i.e.
+     * Define HTML type attribute of element i.e.
      * `<input type="button">`.
      *
      * @attribute domType
+     * @writeOnce
      */
     domType: {
         writeOnce: true,
@@ -82,7 +83,7 @@ ButtonExt.ATTRS = {
     },
 
     /**
-     * String containing css class of icon to use. A list of icons
+     * String containing CSS class of icon to use. A list of icons
      * can be found [here](http://liferay.github.io/alloy-bootstrap/base-css.html#icons).
      *
      * @attribute icon
@@ -91,7 +92,7 @@ ButtonExt.ATTRS = {
     icon: {},
 
     /**
-     * Defines markup template for icon, passed in as
+     * Define markup template for icon, passed in as
      * a node e.g. `Y.Node.create('<i></i>')`.
      *
      * @attribute iconElement
@@ -105,7 +106,7 @@ ButtonExt.ATTRS = {
     },
 
     /**
-     * String that sets position of icon. Values: `left` and `right`.
+     * String that sets position of icon.
      *
      * @attribute iconAlign
      * @default 'left'
@@ -117,7 +118,7 @@ ButtonExt.ATTRS = {
     },
 
     /**
-     * Sets button style to primary.
+     * Set button style to primary.
      *
      * @attribute primary
      * @default false
@@ -144,6 +145,7 @@ ButtonExt.HTML_PARSER = {
  * Get typed buttons template.
  *
  * @method getTypedButtonTemplate
+ * @param template
  * @param type
  * @static
  */
@@ -176,7 +178,7 @@ ButtonExt.prototype = {
     },
 
     /**
-     * Updates icon image, icon alignment, and primary button style.
+     * Update icon image, icon alignment, and primary button style.
      *
      * @method syncButtonExtUI
      */
@@ -194,7 +196,6 @@ ButtonExt.prototype = {
      * @param event
      * @protected
      */
-
     _afterIconChange: function(event) {
         var instance = this;
 
@@ -307,9 +308,10 @@ var ButtonCore = A.ButtonCore;
 ButtonCore.CLASS_NAMES = CLASS_NAMES;
 
 /**
- * Sets the button text (either as text or sets the `value` attribute).
+ * Set the button text (either as text or sets the `value` attribute).
  *
  * @method _uiSetLabel
+ * @protected
  */
 ButtonCore.prototype._uiSetLabel = (function(original) {
     return function(label) {
@@ -350,7 +352,7 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
     CSS_PREFIX: CLASS_NAMES.BUTTON,
 
     /**
-     * Returns an object literal containing widget constructor data specified in the node.
+     * Return an object literal containing widget constructor data specified in the node.
      *
      * @method getWidgetLazyConstructorFromNodeData
      * @param node
@@ -364,7 +366,7 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
     },
 
     /**
-     * Returns a boolean, true if node has widget constructor data.
+     * Return a boolean, true if node has widget constructor data.
      *
      * @method hasWidgetLazyConstructorData
      * @param node
@@ -374,8 +376,7 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
     },
 
     /**
-     * Updates node's widget constructor data attribute with
-     * config.
+     * Update node's widget constructor data attribute with config.
      *
      * @method setWidgetLazyConstructorNodeData
      * @param node
@@ -386,7 +387,7 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
     },
 
     /**
-     * Updates icon alignment in button.
+     * Update icon alignment in button.
      *
      * @method syncIconUI
      * @param buttonElement
@@ -445,7 +446,7 @@ A.mix(ButtonGroup.prototype, {
     CONTENT_TEMPLATE: null,
 
     /**
-     * Returns `item` or `node` of specified `index`.
+     * Return `item` or `node` of specified `index`.
      *
      * @method item
      * @param index
@@ -498,7 +499,7 @@ A.mix(ButtonGroup.prototype, {
     },
 
     /**
-     * Toggles selection by adding or removing the active class name.
+     * Toggle selection by adding or removing the active class name.
      *
      * @method toggleSelect
      * @param items
