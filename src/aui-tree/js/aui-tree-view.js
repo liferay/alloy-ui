@@ -651,11 +651,10 @@ var TreeViewDD = A.Component.create({
                     moveOnEnd: false,
                     positionProxy: false,
                     borderStyle: null
-                })
-                    .plug(A.Plugin.DDNodeScroll, {
-                        scrollDelay: instance.get(SCROLL_DELAY),
-                        node: boundingBox
-                    });
+                }).plug(A.Plugin.DDNodeScroll, {
+                    scrollDelay: instance.get(SCROLL_DELAY),
+                    node: boundingBox
+                });
 
                 dd.removeInvalid('a');
 

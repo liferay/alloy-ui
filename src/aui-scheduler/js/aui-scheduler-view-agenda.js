@@ -85,13 +85,9 @@ var Lang = A.Lang,
     },
 
     _numericSort = function(arr) {
-        return AArray.map(
-            arr,
-            function(v) {
-                return +v;
-            }
-        )
-            .sort(AArray.numericSort);
+        return AArray.map(arr, function(v) {
+            return +v;
+        }).sort(AArray.numericSort);
     },
 
     getCN = A.getClassName,
@@ -229,8 +225,7 @@ var SchedulerAgendaView = A.Component.create({
                     startDateFormatter.call(instance, startDate),
                     _MDASH,
                     endDateFormatter.call(instance, endDate)
-                    ]
-                    .join(_SPACE);
+                    ].join(_SPACE);
             },
             validator: isFunction
         },
