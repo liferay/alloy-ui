@@ -39,7 +39,8 @@
         "requires": [
             "aui-event-base",
             "event-delegate",
-            "event-synthetic"
+            "event-synthetic",
+            "timers"
         ]
     }
 }

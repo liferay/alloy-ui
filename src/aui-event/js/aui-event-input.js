@@ -131,7 +131,7 @@ A.Event.define('input', {
         if (_SKIP_FOCUS_CHECK_MAP[event.type] ||
             (input.get(OWNER_DOCUMENT).get(ACTIVE_ELEMENT) === input)) {
 
-            notifier.fire(event);
+            A.soon(A.bind('fire', notifier, event));
         }
     }
 });
