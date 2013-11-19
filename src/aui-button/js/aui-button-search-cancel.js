@@ -39,8 +39,8 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
     TEMPLATE: '<div class="' + A.getClassName(_NAME) + '" style="padding: 5px; position: absolute; z-index: {zIndex};">' + '<i class="{iconClass}"></i>' + '</div>',
 
     /**
-     * Array that holds the created buttons for each element match from
-     * the trigger selector.
+     * Holds the created buttons for each element match from the trigger
+     * selector.
      *
      * @property _buttons
      * @type {Array}
@@ -49,8 +49,8 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
     _buttons: null,
 
     /**
-     * Array that holds the event handles for any bind event from the
-     * internal implementation.
+     * Holds the event handles for any bind event from the internal
+     * implementation.
      *
      * @property _eventHandles
      * @type {Array}
@@ -86,7 +86,7 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
     },
 
     /**
-     * Delegate events on the UI. Lifecycle.
+     * Delegates events on the UI. Lifecycle.
      *
      * @method bindDelegateUI
      */
@@ -103,7 +103,7 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
     },
 
     /**
-     * Delegate events on the UI. Lifecycle.
+     * Delegates events on the UI. Lifecycle.
      *
      * @method getButtonForElement
      * @param {Node} element Input or textarea element align the created button.
@@ -196,7 +196,8 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
      */
     ATTRS: {
         /**
-         * The container of Toggler Delegate instance.
+         * Defines the event delegation container of `ButtonSearchCancel`
+         * instance.
          *
          * @attribute container
          * @type {Node}
@@ -234,8 +235,8 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
         },
 
         /**
-         * Selector to the button search cancel be applied. Supports single
-         * or multiple node selector.
+         * Defines the CSS selector for the input elements the button search
+         * cancel renders. Supports single or multiple node selector.
          *
          * @attribute trigger
          * @type {String}
@@ -247,7 +248,7 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
         },
 
         /**
-         * Button search cancel z-index.
+         * Defines the z-index of the button search cancel.
          *
          * @attribute zIndex
          * @default 2

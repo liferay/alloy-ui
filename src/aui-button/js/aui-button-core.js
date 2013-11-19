@@ -83,7 +83,7 @@ ButtonExt.ATTRS = {
     },
 
     /**
-     * String containing CSS class of icon to use. A list of icons
+     * Contains a CSS class of the icon to use. A list of icons
      * can be found [here](http://liferay.github.io/alloy-bootstrap/base-css.html#icons).
      *
      * @attribute icon
@@ -106,7 +106,7 @@ ButtonExt.ATTRS = {
     },
 
     /**
-     * String that sets position of icon.
+     * Sets position of icon.
      *
      * @attribute iconAlign
      * @default 'left'
@@ -118,7 +118,7 @@ ButtonExt.ATTRS = {
     },
 
     /**
-     * Set button style to primary.
+     * Sets button style to primary.
      *
      * @attribute primary
      * @default false
@@ -142,7 +142,8 @@ ButtonExt.HTML_PARSER = {
 };
 
 /**
- * Get typed buttons template.
+ * Updates the HTML markup specified as the `template` argument with the
+ * passed `type`.
  *
  * @method getTypedButtonTemplate
  * @param {String} template
@@ -180,7 +181,7 @@ ButtonExt.prototype = {
     },
 
     /**
-     * Update icon image, icon alignment, and primary button style.
+     * Updates icon image, icon alignment, and primary button style.
      *
      * @method syncButtonExtUI
      */
@@ -192,7 +193,7 @@ ButtonExt.prototype = {
     },
 
     /**
-     * Fire after `icon` attribute change.
+     * Fires after `icon` attribute change.
      *
      * @method _afterIconChange
      * @param {EventFacade} event
@@ -205,7 +206,7 @@ ButtonExt.prototype = {
     },
 
     /**
-     * Fire after `iconAlign` attribute change.
+     * Fires after `iconAlign` attribute change.
      *
      * @method _afterIconAlignChange
      * @param {EventFacade} event
@@ -218,7 +219,7 @@ ButtonExt.prototype = {
     },
 
     /**
-     * Fire after `primary` attribute change.
+     * Fires after `primary` attribute change.
      *
      * @method _afterPrimaryChange
      * @param {EventFacade} event
@@ -246,7 +247,7 @@ ButtonExt.prototype = {
     },
 
     /**
-     * Add primary button class.
+     * Adds primary button class.
      *
      * @method _uiSetPrimary
      * @param {String} val
@@ -259,7 +260,7 @@ ButtonExt.prototype = {
     },
 
     /**
-     * Add class name for button icon.
+     * Adds class name for button icon.
      *
      * @method _uiSetIcon
      * @param {String} val
@@ -277,7 +278,7 @@ ButtonExt.prototype = {
     },
 
     /**
-     * Add alignment for button icon.
+     * Adds alignment for button icon.
      *
      * @method _uiSetIconAlign
      * @param {String} val
@@ -310,7 +311,7 @@ var ButtonCore = A.ButtonCore;
 ButtonCore.CLASS_NAMES = CLASS_NAMES;
 
 /**
- * Set the button text (either as text or sets the `value` attribute).
+ * Sets the button text (either as text or sets the `value` attribute).
  *
  * @method _uiSetLabel
  * @protected
@@ -370,7 +371,7 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
     },
 
     /**
-     * Return a boolean, true if node has widget constructor data.
+     * Returns a boolean, true if node has widget constructor data.
      *
      * @method hasWidgetLazyConstructorData
      * @param {Node} node
@@ -381,7 +382,7 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
     },
 
     /**
-     * Update node's widget constructor data attribute with config.
+     * Updates node's widget constructor data attribute with config.
      *
      * @method setWidgetLazyConstructorNodeData
      * @param {Node} node
@@ -392,7 +393,7 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
     },
 
     /**
-     * Update icon alignment in button.
+     * Updates icon alignment in button.
      *
      * @method syncIconUI
      * @param {Node} buttonElement The button element.
@@ -452,7 +453,7 @@ A.mix(ButtonGroup.prototype, {
     CONTENT_TEMPLATE: null,
 
     /**
-     * Return `item` or `node` of specified `index`.
+     * Returns the `item` or `node` of specified `index`.
      *
      * @method item
      * @param {Number} index
@@ -494,7 +495,7 @@ A.mix(ButtonGroup.prototype, {
     },
 
     /**
-     * Select items by adding the active class name.
+     * Selects items by adding the active class name.
      *
      * @method select
      * @param {Array} items
@@ -506,7 +507,7 @@ A.mix(ButtonGroup.prototype, {
     },
 
     /**
-     * Toggle selection by adding or removing the active class name.
+     * Toggles selection by adding or removing the active class name.
      *
      * @method toggleSelect
      * @param {Array} items
@@ -553,7 +554,7 @@ A.mix(ButtonGroup.prototype, {
     },
 
     /**
-     * Select items by adding the active class name.
+     * Selects items by adding the active class name.
      *
      * @method unselect
      * @param {Array} items
