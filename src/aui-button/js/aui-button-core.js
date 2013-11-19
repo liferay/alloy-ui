@@ -49,7 +49,8 @@ var Lang = A.Lang,
  * A base class for `ButtonExt`.
  *
  * @class A.ButtonExt
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var ButtonExt = function(config) {
@@ -68,8 +69,7 @@ var ButtonExt = function(config) {
 ButtonExt.ATTRS = {
 
     /**
-     * Define HTML type attribute of element i.e.
-     * `<input type="button">`.
+     * Defines the HTML type attribute of element e.g. `<input type="button">`.
      *
      * @attribute domType
      * @writeOnce
@@ -91,8 +91,8 @@ ButtonExt.ATTRS = {
     icon: {},
 
     /**
-     * Define markup template for icon, passed in as
-     * a node e.g. `Y.Node.create('<i></i>')`.
+     * Defines markup template for icon, passed in as a node e.g.
+     * `Y.Node.create('<i></i>')`.
      *
      * @attribute iconElement
      * @default 'A.Node.create("<i></i>")'
@@ -228,8 +228,8 @@ ButtonExt.prototype = {
     },
 
     /**
-     * Set button type on bounding box template before constructor is invoked.
-     * The type should be set before widget creates the bounding box node.
+     * Sets button type on bounding box template before constructor is invoked.
+     * The type is set before widget creates the bounding box node.
      *
      * @method _setEarlyButtonDomType
      * @param type
@@ -351,7 +351,8 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
     CSS_PREFIX: CLASS_NAMES.BUTTON,
 
     /**
-     * Return an object literal containing widget constructor data specified in the node.
+     * Returns an object literal containing widget constructor data specified in
+     * the node.
      *
      * @method getWidgetLazyConstructorFromNodeData
      * @param node
@@ -419,7 +420,8 @@ ToggleButton.CLASS_NAMES = CLASS_NAMES;
  *
  * @class A.ToggleButton
  * @uses A.ButtonExt, A.WidgetCssClass
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 A.ToggleButton = A.Base.create(ToggleButton.NAME, ToggleButton, [ButtonExt, A.WidgetCssClass], {}, {});

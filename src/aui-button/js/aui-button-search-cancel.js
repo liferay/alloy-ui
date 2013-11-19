@@ -18,13 +18,14 @@ var Lang = A.Lang,
 /**
  * A base class for `ButtonSearchCancel`, providing:
  *
- * - Adds a button search cancel icon in order to clear the text on inputs
- * and textareas. Similar behavior of the HTML5 search input that contains a
- * cancel button to clear the current element value.
+ * - Adds a button search cancel icon in order to clear the text on inputs and
+ * textareas. Similar behavior of the HTML5 search input that contains a cancel
+ * button to clear the current element value.
  *
  * @class A.ButtonSearchCancel
  * @extends Base
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
@@ -58,7 +59,8 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
     _eventHandles: null,
 
     /**
-     * Construction logic executed during CharCounter instantiation. Lifecycle.
+     * Construction logic executed during `ButtonSearchCancel` instantiation.
+     * Lifecycle.
      *
      * @method initializer
      */
@@ -155,7 +157,8 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
     },
 
     /**
-     * Position the cancel search button and aligns it with the passed `element`.
+     * Positions the cancel search button and aligns it with the passed
+     * `element`.
      *
      * @method _syncButtonUI
      * @param {Node} element Input or textarea element align the created button.
@@ -205,9 +208,9 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
         },
 
         /**
-         * Gutter values are added to the X and Y alignment values of the
-         * button search cancel. They can be utilized as a padding in case
-         * the user needs a different alignment.
+         * Defines the space surrounding the cancel icon rendered on the input.
+         * Useful when the user needs a different alignment. Gutter values are
+         * added to the X and Y alignment values of the button search cancel.
          *
          * @attribute gutter
          * @default [-5, 0]
