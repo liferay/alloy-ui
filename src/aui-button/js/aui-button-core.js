@@ -147,6 +147,8 @@ ButtonExt.HTML_PARSER = {
  * @method getTypedButtonTemplate
  * @param {String} template
  * @param {String} type
+ * @return {String} The parsed template containing the DOM `type`, e.g.
+ *     `<button {type} />` generates `<button type="button" />`.
  * @static
  */
 ButtonExt.getTypedButtonTemplate = function(template, type) {
@@ -357,6 +359,7 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
      *
      * @method getWidgetLazyConstructorFromNodeData
      * @param {Node} node
+     * @return {Object} The configuration object for the widget.
      */
     getWidgetLazyConstructorFromNodeData: function(node) {
         var config = node.getData(WIDGET_CONSTRUCTOR) || {};
@@ -371,6 +374,7 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
      *
      * @method hasWidgetLazyConstructorData
      * @param {Node} node
+     * @return {Boolean} Whether the node has a cached widget constructor data.
      */
     hasWidgetLazyConstructorData: function(node) {
         return node.getData(WIDGET_CONSTRUCTOR) !== undefined;
