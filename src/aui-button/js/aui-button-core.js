@@ -46,7 +46,7 @@ var Lang = A.Lang,
     };
 
 /**
- * A base class for ButtonExt.
+ * A base class for `ButtonExt`.
  *
  * @class A.ButtonExt
  * @param config {Object} Object literal specifying widget configuration properties.
@@ -59,8 +59,7 @@ var ButtonExt = function(config) {
 };
 
 /**
- * Static property used to define the default attribute
- * configuration for the ButtonExt.
+ * Defines the default attribute configuration for the `ButtonExt`.
  *
  * @property ATTRS
  * @type Object
@@ -130,8 +129,8 @@ ButtonExt.ATTRS = {
 };
 
 /**
- * Object hash, defining how attribute values are to be parsed from
- * markup contained in ButtonExt.
+ * Defines how attribute values are to be parsed from markup contained in
+ * `ButtonExt`.
  *
  * @property HTML_PARSER
  * @type Object
@@ -161,7 +160,7 @@ ButtonExt.prototype = {
     iconElement: null,
 
     /**
-     * Construction logic executed during ButtonExt instantiation. Lifecycle.
+     * Construction logic executed during `ButtonExt` instantiation. Lifecycle.
      *
      * @method initializer
      * @protected
@@ -300,7 +299,7 @@ A.ButtonExt = ButtonExt;
 var ButtonCore = A.ButtonCore;
 
 /**
- * Object literal contains css class names to use for ButtonCore.
+ * Contains CSS class names to use for `ButtonCore`.
  *
  * @property CLASS_NAMES
  * @static
@@ -464,7 +463,7 @@ A.mix(ButtonGroup.prototype, {
     },
 
     /**
-     * Render the ButtonGroup component instance. Lifecycle.
+     * Renders the `ButtonGroup` component instance. Lifecycle.
      *
      * @method renderUI
      * @protected

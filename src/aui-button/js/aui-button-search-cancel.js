@@ -16,7 +16,7 @@ var Lang = A.Lang,
     Z_INDEX = 'zIndex';
 
 /**
- * A base class for ButtonSearchCancel, providing:
+ * A base class for `ButtonSearchCancel`, providing:
  *
  * - Adds a button search cancel icon in order to clear the text on inputs
  * and textareas. Similar behavior of the HTML5 search input that contains a
@@ -71,7 +71,8 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
     },
 
     /**
-     * Destructor lifecycle implementation for the AutosizeIframe class. Lifecycle.
+     * Destructor lifecycle implementation for the `ButtonSearchCancel` class.
+     * Lifecycle.
      *
      * @method destroy
      */
@@ -183,8 +184,8 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
     }
 }, {
     /**
-     * Static property used to define the default attribute
-     * configuration for the ButtonSearchCancel.
+     * Static property used to define the default attribute configuration for
+     * the `ButtonSearchCancel`.
      *
      * @property ATTRS
      * @type Object
