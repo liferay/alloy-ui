@@ -28,55 +28,14 @@ YUI.add('aui-event-tests', function(Y) {
         setUp: function() {
             var instance = this;
 
-            instance._inputObserver = Y.Do.before(instance._observe('input'), instance, '_onInput');
-
             instance._eventHandles = [];
         },
 
         tearDown: function() {
             var instance = this;
 
-            Y.Do.detach(instance._inputObserver);
-
             (new Y.EventHandle(instance._eventHandles)).detach();
-
-            instance._calls = null;
         },
-
-        _called: function(method, times) {
-            var instance = this;
-
-            if (times) {
-                return (instance._calls && instance._calls[method] === times);
-            } else {
-                return (instance._calls && instance._calls[method] > 0);
-            }
-        },
-
-        _notCalled: function(method) {
-            var instance = this;
-
-            return (!instance._calls || !instance._calls[method]);
-        },
-
-        _observe: function(method) {
-            var instance = this;
-
-            return function() {
-                if (!instance._calls) {
-                    instance._calls = {};
-                }
-
-                if (!instance._calls[method]) {
-                    instance._calls[method] = 1;
-                }
-                else {
-                    instance._calls[method]++;
-                }
-            };
-        },
-
-        _onInput: function(event) {},
 
         //----------------------------------------------------------------------
         // Tests
@@ -88,10 +47,19 @@ YUI.add('aui-event-tests', function(Y) {
          * @tests AUI-749
          */
         'input event': function() {
-            var instance = this;
+            var instance = this,
+                mock = new Y.Mock();
+
+            Y.Mock.expect(
+                mock, {
+                    method: 'onInput',
+                    args: [YUITest.Mock.Value.Object],
+                    callCount: 2
+                }
+            );
 
             instance._eventHandles.push(
-                input.on('input', instance._onInput, instance)
+                input.on('input', mock.onInput, instance)
             );
 
             input.focus();
@@ -100,7 +68,7 @@ YUI.add('aui-event-tests', function(Y) {
 
             instance.wait(
                 function() {
-                    Y.Assert.isTrue(instance._called('input', 2), 'Event of type input should have been fired twice');
+                    Y.Mock.verify(mock);
                 },
                 0
             );
@@ -112,33 +80,32 @@ YUI.add('aui-event-tests', function(Y) {
          * @tests AUI-749
          */
         'detach input event': function() {
-            var instance = this;
+            var instance = this,
+                mock = new Y.Mock();
 
-            input.focus();
+            Y.Mock.expect(
+                mock, {
+                    method: 'onInput',
+                    args: [YUITest.Mock.Value.Object],
+                    callCount: 1
+                }
+            );
+
+            var onInput = input.on('input', mock.onInput, instance);
+
             input.simulate('keydown');
 
             instance.wait(
                 function() {
-                    Y.Assert.isTrue(instance._notCalled('input'), 'Event of type input should not have been fired');
+                    Y.Mock.verify(mock);
 
-                    var onInput = input.on('input', instance._onInput, instance);
+                    onInput.detach();
 
                     input.simulate('keydown');
 
                     instance.wait(
                         function() {
-                            Y.Assert.isTrue(instance._called('input', 1), 'Event of type input should have been fired once');
-
-                            onInput.detach();
-
-                            input.simulate('keydown');
-
-                            instance.wait(
-                                function() {
-                                    Y.Assert.isTrue(instance._called('input', 1), 'Event of type input should not have been fired again');
-                                },
-                                0
-                            );
+                            Y.Mock.verify(mock);
                         },
                         0
                     );
