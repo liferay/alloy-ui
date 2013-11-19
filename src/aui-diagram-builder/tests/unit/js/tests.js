@@ -21,7 +21,9 @@ YUI.add('module-tests', function(Y) {
 
     diagramBuilder.connectAll([
         {
-            connector: { name: 'Link0' },
+            connector: {
+                name: 'Link0'
+            },
             source: 'Start0',
             target: 'EndNode0'
         }
@@ -30,22 +32,23 @@ YUI.add('module-tests', function(Y) {
     suite.add(new Y.Test.Case({
         name: 'DiagramBuilder',
         'test connectors offset after introducing changes on the page': function() {
-        	var fields = diagramBuilder.get('fields'),
-        		startNode = fields.item(0),
-        		transition = startNode.get('transitions').values()[0],
-        		connector = startNode.getConnector(transition);
+            var fields = diagramBuilder.get('fields'),
+                startNode = fields.item(0),
+                transition = startNode.get('transitions').values()[0],
+                connector = startNode.getConnector(transition);
 
-        	var startP1 = connector.get('p1'),
-        		startP2 = connector.get('p2');
+            var startP1 = connector.get('p1'),
+                startP2 = connector.get('p2');
 
-        	var largeContent = Y.Node.create('<div style="height: 200px; width: 100px; border: 1px solid">Large Content</div>');
+            var largeContent = Y.Node.create(
+                '<div style="height: 200px; width: 100px; border: 1px solid">Large Content</div>');
 
-        	largeContent.prependTo(document.body);
+            largeContent.prependTo(document.body);
 
-        	diagramBuilder.syncUI();
+            diagramBuilder.syncUI();
 
-        	var endP1 = connector.get('p1'),
-        		endP2 = connector.get('p2');
+            var endP1 = connector.get('p1'),
+                endP2 = connector.get('p2');
 
             Y.Assert.areNotEqual(startP1, endP1);
             Y.Assert.areNotEqual(startP2, endP2);
