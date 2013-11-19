@@ -107,12 +107,18 @@ grunt watch --src src/aui-module-name
 grunt create
     ```
 
-### Format
+### Format/Lint
 
 * Format JavaScript source code:
 
     ```
 grunt format
+    ```
+
+* Lint JavaScript source code using JSHint.
+
+    ```
+grunt jshint
     ```
 
 ### Release
