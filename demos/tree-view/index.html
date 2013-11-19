@@ -96,6 +96,27 @@ AUI().ready('aui-tree-view', 'aui-tooltip', 'datatype-xml', 'dataschema-xml', fu
 					leaf: false
 				},
 				{
+					type: 'radio',
+					checkName: 'customSelectName',
+					label: 'RadioNode',
+					alwaysShowHitArea: false,
+					leaf: false,
+					children: [
+						{
+							type: 'radio',
+							label: 'RadioNode1',
+							leaf: false,
+							children: [
+								{
+									type: 'radio',
+									label: 'RadioNode1',
+									leaf: true
+								}
+							]
+						}
+					]
+				},
+				{
 					type: 'io',
 					label: 'CachedTreeNodeIO',
 					cache: true,
@@ -221,7 +242,7 @@ AUI().ready('aui-tree-view', 'aui-tooltip', 'datatype-xml', 'dataschema-xml', fu
 		},
 		selectOnToggle: false,
 		type: 'file',
-		width: 200,
+		width: 250,
 		height: 400,
 		boundingBox: '#tree1',
 		on: {
