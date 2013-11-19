@@ -63,7 +63,7 @@ var ButtonExt = function(config) {
  * Defines the default attribute configuration for the `ButtonExt`.
  *
  * @property ATTRS
- * @type Object
+ * @type {Object}
  * @static
  */
 ButtonExt.ATTRS = {
@@ -72,6 +72,7 @@ ButtonExt.ATTRS = {
      * Defines the HTML type attribute of element e.g. `<input type="button">`.
      *
      * @attribute domType
+     * @type {String}
      * @writeOnce
      */
     domType: {
@@ -86,7 +87,7 @@ ButtonExt.ATTRS = {
      * can be found [here](http://liferay.github.io/alloy-bootstrap/base-css.html#icons).
      *
      * @attribute icon
-     * @type String
+     * @type {String}
      */
     icon: {},
 
@@ -109,7 +110,7 @@ ButtonExt.ATTRS = {
      *
      * @attribute iconAlign
      * @default 'left'
-     * @type String
+     * @type {String}
      */
     iconAlign: {
         value: LEFT,
@@ -121,7 +122,7 @@ ButtonExt.ATTRS = {
      *
      * @attribute primary
      * @default false
-     * @type Boolean
+     * @type {Boolean}
      */
     primary: {
         value: false
@@ -133,7 +134,7 @@ ButtonExt.ATTRS = {
  * `ButtonExt`.
  *
  * @property HTML_PARSER
- * @type Object
+ * @type {Object}
  * @static
  */
 ButtonExt.HTML_PARSER = {
@@ -144,8 +145,8 @@ ButtonExt.HTML_PARSER = {
  * Get typed buttons template.
  *
  * @method getTypedButtonTemplate
- * @param template
- * @param type
+ * @param {String} template
+ * @param {String} type
  * @static
  */
 ButtonExt.getTypedButtonTemplate = function(template, type) {
@@ -192,7 +193,7 @@ ButtonExt.prototype = {
      * Fire after `icon` attribute change.
      *
      * @method _afterIconChange
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _afterIconChange: function(event) {
@@ -205,7 +206,7 @@ ButtonExt.prototype = {
      * Fire after `iconAlign` attribute change.
      *
      * @method _afterIconAlignChange
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _afterIconAlignChange: function(event) {
@@ -218,7 +219,7 @@ ButtonExt.prototype = {
      * Fire after `primary` attribute change.
      *
      * @method _afterPrimaryChange
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _afterPrimaryChange: function(event) {
@@ -232,7 +233,7 @@ ButtonExt.prototype = {
      * The type is set before widget creates the bounding box node.
      *
      * @method _setEarlyButtonDomType
-     * @param type
+     * @param {String} type
      * @protected
      */
     _setEarlyButtonDomType: function(type) {
@@ -246,7 +247,7 @@ ButtonExt.prototype = {
      * Add primary button class.
      *
      * @method _uiSetPrimary
-     * @param val
+     * @param {String} val
      * @protected
      */
     _uiSetPrimary: function(val) {
@@ -259,7 +260,7 @@ ButtonExt.prototype = {
      * Add class name for button icon.
      *
      * @method _uiSetIcon
-     * @param val
+     * @param {String} val
      * @protected
      */
     _uiSetIcon: function(val) {
@@ -277,7 +278,7 @@ ButtonExt.prototype = {
      * Add alignment for button icon.
      *
      * @method _uiSetIconAlign
-     * @param val
+     * @param {String} val
      * @protected
      */
     _uiSetIconAlign: function(val) {
@@ -345,7 +346,7 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
      * Static property provides a string to identify the CSS prefix.
      *
      * @property CSS_PREFIX
-     * @type String
+     * @type {String}
      * @static
      */
     CSS_PREFIX: CLASS_NAMES.BUTTON,
@@ -355,7 +356,7 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
      * the node.
      *
      * @method getWidgetLazyConstructorFromNodeData
-     * @param node
+     * @param {Node} node
      */
     getWidgetLazyConstructorFromNodeData: function(node) {
         var config = node.getData(WIDGET_CONSTRUCTOR) || {};
@@ -369,7 +370,7 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
      * Return a boolean, true if node has widget constructor data.
      *
      * @method hasWidgetLazyConstructorData
-     * @param node
+     * @param {Node} node
      */
     hasWidgetLazyConstructorData: function(node) {
         return node.getData(WIDGET_CONSTRUCTOR) !== undefined;
@@ -379,8 +380,8 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
      * Update node's widget constructor data attribute with config.
      *
      * @method setWidgetLazyConstructorNodeData
-     * @param node
-     * @param config
+     * @param {Node} node
+     * @param {Object} config
      */
     setWidgetLazyConstructorNodeData: function(node, config) {
         node.setData(WIDGET_CONSTRUCTOR, config);
@@ -390,9 +391,9 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
      * Update icon alignment in button.
      *
      * @method syncIconUI
-     * @param buttonElement
-     * @param iconElement
-     * @param iconAlign
+     * @param {Node} buttonElement The button element.
+     * @param {Node} iconElement The icon element to be aligned.
+     * @param {String} iconAlign The align position, e.g right or left.
      */
     syncIconUI: function(buttonElement, iconElement, iconAlign) {
         var textNode = A.config.doc.createTextNode(' '),
@@ -450,7 +451,8 @@ A.mix(ButtonGroup.prototype, {
      * Return `item` or `node` of specified `index`.
      *
      * @method item
-     * @param index
+     * @param {Number} index
+     * @return {Button | Node} The item as `Button` or `Node` instance.
      */
     item: function(index) {
         var instance = this,
@@ -491,7 +493,7 @@ A.mix(ButtonGroup.prototype, {
      * Select items by adding the active class name.
      *
      * @method select
-     * @param items
+     * @param {Array} items
      */
     select: function(items) {
         var instance = this;
@@ -503,8 +505,8 @@ A.mix(ButtonGroup.prototype, {
      * Toggle selection by adding or removing the active class name.
      *
      * @method toggleSelect
-     * @param items
-     * @param forceSelection
+     * @param {Array} items
+     * @param {Boolean} forceSelection Whether selection should be forced.
      */
     toggleSelect: function(items, forceSelection) {
         var instance = this,
@@ -550,7 +552,7 @@ A.mix(ButtonGroup.prototype, {
      * Select items by adding the active class name.
      *
      * @method unselect
-     * @param items
+     * @param {Array} items
      */
     unselect: function(items) {
         var instance = this;
