@@ -16,15 +16,16 @@ var Lang = A.Lang,
     Z_INDEX = 'zIndex';
 
 /**
- * A base class for ButtonSearchCancel, providing:
+ * A base class for `ButtonSearchCancel`, providing:
  *
- * - Adds a button search cancel icon in order to clear the text on inputs
- * and textareas. Similar behavior of the HTML5 search input that contains a
- * cancel button to clear the current element value.
+ * - Adds a button search cancel icon in order to clear the text on inputs and
+ * textareas. Similar behavior of the HTML5 search input that contains a cancel
+ * button to clear the current element value.
  *
  * @class A.ButtonSearchCancel
  * @extends Base
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
@@ -32,34 +33,33 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
      * HTML template used on the button search cancel.
      *
      * @property TEMPLATE
-     * @type String
-     * @default '<i class="btn-search-cancel icon-remove" />'
+     * @type {String}
      * @protected
      */
     TEMPLATE: '<div class="' + A.getClassName(_NAME) + '" style="padding: 5px; position: absolute; z-index: {zIndex};">' + '<i class="{iconClass}"></i>' + '</div>',
 
     /**
-     * Array that holds the created buttons for each element match from
-     * the trigger selector.
+     * Holds the created buttons for each element match from the trigger
+     * selector.
      *
      * @property _buttons
-     * @type Array
+     * @type {Array}
      * @protected
      */
     _buttons: null,
 
     /**
-     * Array that holds the event handles for any bind event from the
-     * internal implementation.
+     * Holds the event handles for any bind event from the internal
+     * implementation.
      *
      * @property _eventHandles
-     * @type Array
+     * @type {Array}
      * @protected
      */
     _eventHandles: null,
 
     /**
-     * Construction logic executed during CharCounter instantiation.
+     * Construction logic executed during `ButtonSearchCancel` instantiation.
      * Lifecycle.
      *
      * @method initializer
@@ -73,7 +73,7 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
     },
 
     /**
-     * Destructor lifecycle implementation for the AutosizeIframe class.
+     * Destructor lifecycle implementation for the `ButtonSearchCancel` class.
      * Lifecycle.
      *
      * @method destroy
@@ -86,7 +86,7 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
     },
 
     /**
-     * Delegate events on the UI. Lifecycle.
+     * Delegates events on the UI. Lifecycle.
      *
      * @method bindDelegateUI
      */
@@ -103,12 +103,11 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
     },
 
     /**
-     * Delegate events on the UI. Lifecycle.
+     * Delegates events on the UI. Lifecycle.
      *
      * @method getButtonForElement
-     * @param {Node} element Input or textarea element align the created
-     * button.
-     * @return {Node} Button node.
+     * @param {Node} element Input or textarea element align the created button.
+     * @return {Node} The `Button` node for the element.
      */
     getButtonForElement: function(element) {
         var instance = this,
@@ -134,6 +133,8 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
      * Fires when the user clicks on the cancel search button.
      *
      * @method _onButtonClick
+     * @param {EventFacade} event
+     * @param {Node} element Input or textarea element.
      * @protected
      */
     _onButtonClick: function(event, element) {
@@ -146,6 +147,7 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
      * Fires when the user focus or input value on the host element.
      *
      * @method _onUserInteraction
+     * @param {EventFacade} event
      * @protected
      */
     _onUserInteraction: function(event) {
@@ -155,11 +157,11 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
     },
 
     /**
-     * Position the cancel search button and aligns it with the passed `element`.
+     * Positions the cancel search button and aligns it with the passed
+     * `element`.
      *
      * @method _syncButtonUI
-     * @param {Node} element Input or textarea element align the created
-     * button.
+     * @param {Node} element The input or textarea element align the button.
      * @protected
      */
     _syncButtonUI: function(element) {
@@ -185,18 +187,21 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
     }
 }, {
     /**
-     * Static property used to define the default attribute
-     * configuration for the ButtonSearchCancel.
+     * Static property used to define the default attribute configuration for
+     * the `ButtonSearchCancel`.
      *
      * @property ATTRS
-     * @type Object
+     * @type {Object}
      * @static
      */
     ATTRS: {
         /**
-         * The container of Toggler Delegate instance.
+         * Defines the event delegation container of `ButtonSearchCancel`
+         * instance.
          *
          * @attribute container
+         * @type {Node}
+         * @writeOnce
          */
         container: {
             setter: A.one,
@@ -205,24 +210,24 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
         },
 
         /**
-         * Gutter values are added to the x and y alignment values of the
-         * button search cancel. They can be utilized as a padding in case
-         * the user needs a different alignment.
+         * Defines the space surrounding the cancel icon rendered on the input.
+         * Useful when the user needs a different alignment. Gutter values are
+         * added to the X and Y alignment values of the button search cancel.
          *
          * @attribute gutter
          * @default [-5, 0]
-         * @type Array
+         * @type {Array}
          */
         gutter: {
             value: [-5, 0]
         },
 
         /**
-         * Icon css class to be used on the search cancel button.
+         * Icon CSS class to be used on the search cancel button.
          *
          * @attribute iconClass
          * @default 'icon-remove'
-         * @type String
+         * @type {String}
          */
         iconClass: {
             validator: Lang.isString,
@@ -230,11 +235,12 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
         },
 
         /**
-         * Selector to the button search cancel be applied. Supports single
-         * or multiple node selector.
+         * Defines the CSS selector for the input elements the button search
+         * cancel renders. Supports single or multiple node selector.
          *
          * @attribute trigger
-         * @type String
+         * @type {String}
+         * @writeOnce
          */
         trigger: {
             validator: Lang.isString,
@@ -242,11 +248,12 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
         },
 
         /**
-         * Button search cancel z-index.
+         * Defines the z-index of the button search cancel.
          *
          * @attribute zIndex
          * @default 2
          * @type Number
+         * @writeOnce
          */
         zIndex: {
             value: 2,

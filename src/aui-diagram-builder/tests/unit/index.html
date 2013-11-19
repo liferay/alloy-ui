@@ -10,14 +10,17 @@
     <meta charset="utf-8" />
 </head>
 <body class="yui3-skin-sam">
+
 <div id="logger"></div>
+
+<div id="diagramBuilder"></div>
 
 <script>
 YUI({
     coverage: ['aui-diagram-builder'],
     filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-}).use('test-console', 'test', 'module-tests', function(Y) {
-    
+}).use('aui-diagram-builder', 'test-console', 'test', 'module-tests', function(Y) {
+
     (new Y.Test.Console()).render('#logger');
 
     Y.Test.Runner.setName('aui-diagram-builder');

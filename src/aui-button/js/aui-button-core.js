@@ -46,10 +46,11 @@ var Lang = A.Lang,
     };
 
 /**
- * A base class for ButtonExt.
+ * A base class for `ButtonExt`.
  *
  * @class A.ButtonExt
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var ButtonExt = function(config) {
@@ -59,19 +60,20 @@ var ButtonExt = function(config) {
 };
 
 /**
- * Static property used to define the default attribute
- * configuration for the ButtonExt.
+ * Defines the default attribute configuration for the `ButtonExt`.
  *
  * @property ATTRS
- * @type Object
+ * @type {Object}
  * @static
  */
 ButtonExt.ATTRS = {
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Defines the HTML type attribute of element e.g. `<input type="button">`.
      *
      * @attribute domType
+     * @type {String}
+     * @writeOnce
      */
     domType: {
         writeOnce: true,
@@ -81,16 +83,20 @@ ButtonExt.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Contains a CSS class of the icon to use. A list of icons
+     * can be found [here](http://liferay.github.io/alloy-bootstrap/base-css.html#icons).
      *
      * @attribute icon
+     * @type {String}
      */
     icon: {},
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Defines markup template for icon, passed in as a node e.g.
+     * `Y.Node.create('<i></i>')`.
      *
      * @attribute iconElement
+     * @default 'A.Node.create("<i></i>")'
      */
     iconElement: {
         valueFn: function() {
@@ -100,11 +106,11 @@ ButtonExt.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets position of icon.
      *
      * @attribute iconAlign
      * @default 'left'
-     * @type String
+     * @type {String}
      */
     iconAlign: {
         value: LEFT,
@@ -112,11 +118,11 @@ ButtonExt.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets button style to primary.
      *
      * @attribute primary
      * @default false
-     * @type Boolean
+     * @type {Boolean}
      */
     primary: {
         value: false
@@ -124,10 +130,11 @@ ButtonExt.ATTRS = {
 };
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
+ * Defines how attribute values are to be parsed from markup contained in
+ * `ButtonExt`.
  *
  * @property HTML_PARSER
- * @type Object
+ * @type {Object}
  * @static
  */
 ButtonExt.HTML_PARSER = {
@@ -135,10 +142,14 @@ ButtonExt.HTML_PARSER = {
 };
 
 /**
- * Get typed buttons template.
+ * Updates the HTML markup specified as the `template` argument with the
+ * passed `type`.
  *
  * @method getTypedButtonTemplate
- * @param type
+ * @param {String} template
+ * @param {String} type
+ * @return {String} The parsed template containing the DOM `type`, e.g.
+ *     `<button {type} />` generates `<button type="button" />`.
  * @static
  */
 ButtonExt.getTypedButtonTemplate = function(template, type) {
@@ -153,7 +164,7 @@ ButtonExt.prototype = {
     iconElement: null,
 
     /**
-     * Construction logic executed during ButtonExt instantiation. Lifecycle.
+     * Construction logic executed during `ButtonExt` instantiation. Lifecycle.
      *
      * @method initializer
      * @protected
@@ -170,7 +181,7 @@ ButtonExt.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Updates icon image, icon alignment, and primary button style.
      *
      * @method syncButtonExtUI
      */
@@ -182,10 +193,10 @@ ButtonExt.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires after `icon` attribute change.
      *
      * @method _afterIconChange
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _afterIconChange: function(event) {
@@ -195,10 +206,10 @@ ButtonExt.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires after `iconAlign` attribute change.
      *
      * @method _afterIconAlignChange
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _afterIconAlignChange: function(event) {
@@ -208,10 +219,10 @@ ButtonExt.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires after `primary` attribute change.
      *
      * @method _afterPrimaryChange
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _afterPrimaryChange: function(event) {
@@ -221,11 +232,11 @@ ButtonExt.prototype = {
     },
 
     /**
-     * Set button type on bounding box template before constructor is invoked.
-     * The type should be set before widget creates the bounding box node.
+     * Sets button type on bounding box template before constructor is invoked.
+     * The type is set before widget creates the bounding box node.
      *
      * @method _setEarlyButtonDomType
-     * @param type
+     * @param {String} type
      * @protected
      */
     _setEarlyButtonDomType: function(type) {
@@ -236,10 +247,10 @@ ButtonExt.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Adds primary button class.
      *
      * @method _uiSetPrimary
-     * @param val
+     * @param {String} val
      * @protected
      */
     _uiSetPrimary: function(val) {
@@ -249,10 +260,10 @@ ButtonExt.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Adds class name for button icon.
      *
      * @method _uiSetIcon
-     * @param val
+     * @param {String} val
      * @protected
      */
     _uiSetIcon: function(val) {
@@ -267,10 +278,10 @@ ButtonExt.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Adds alignment for button icon.
      *
      * @method _uiSetIconAlign
-     * @param val
+     * @param {String} val
      * @protected
      */
     _uiSetIconAlign: function(val) {
@@ -292,7 +303,7 @@ A.ButtonExt = ButtonExt;
 var ButtonCore = A.ButtonCore;
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
+ * Contains CSS class names to use for `ButtonCore`.
  *
  * @property CLASS_NAMES
  * @static
@@ -300,9 +311,10 @@ var ButtonCore = A.ButtonCore;
 ButtonCore.CLASS_NAMES = CLASS_NAMES;
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
+ * Sets the button text (either as text or sets the `value` attribute).
  *
  * @method _uiSetLabel
+ * @protected
  */
 ButtonCore.prototype._uiSetLabel = (function(original) {
     return function(label) {
@@ -334,19 +346,21 @@ Button.CLASS_NAMES = CLASS_NAMES;
 A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.WidgetToggle], {}, {
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Static property provides a string to identify the CSS prefix.
      *
      * @property CSS_PREFIX
-     * @type String
+     * @type {String}
      * @static
      */
     CSS_PREFIX: CLASS_NAMES.BUTTON,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns an object literal containing widget constructor data specified in
+     * the node.
      *
      * @method getWidgetLazyConstructorFromNodeData
-     * @param node
+     * @param {Node} node
+     * @return {Object} The configuration object for the widget.
      */
     getWidgetLazyConstructorFromNodeData: function(node) {
         var config = node.getData(WIDGET_CONSTRUCTOR) || {};
@@ -357,33 +371,34 @@ A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.Wi
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns a boolean, true if node has widget constructor data.
      *
      * @method hasWidgetLazyConstructorData
-     * @param node
+     * @param {Node} node
+     * @return {Boolean} Whether the node has a cached widget constructor data.
      */
     hasWidgetLazyConstructorData: function(node) {
         return node.getData(WIDGET_CONSTRUCTOR) !== undefined;
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Updates node's widget constructor data attribute with config.
      *
      * @method setWidgetLazyConstructorNodeData
-     * @param node
-     * @param config
+     * @param {Node} node
+     * @param {Object} config
      */
     setWidgetLazyConstructorNodeData: function(node, config) {
         node.setData(WIDGET_CONSTRUCTOR, config);
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Updates icon alignment in button.
      *
      * @method syncIconUI
-     * @param buttonElement
-     * @param iconElement
-     * @param iconAlign
+     * @param {Node} buttonElement The button element.
+     * @param {Node} iconElement The icon element to be aligned.
+     * @param {String} iconAlign The align position, e.g right or left.
      */
     syncIconUI: function(buttonElement, iconElement, iconAlign) {
         var textNode = A.config.doc.createTextNode(' '),
@@ -411,7 +426,8 @@ ToggleButton.CLASS_NAMES = CLASS_NAMES;
  *
  * @class A.ToggleButton
  * @uses A.ButtonExt, A.WidgetCssClass
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param {Object} config Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 A.ToggleButton = A.Base.create(ToggleButton.NAME, ToggleButton, [ButtonExt, A.WidgetCssClass], {}, {});
@@ -437,10 +453,11 @@ A.mix(ButtonGroup.prototype, {
     CONTENT_TEMPLATE: null,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns the `item` or `node` of specified `index`.
      *
      * @method item
-     * @param index
+     * @param {Number} index
+     * @return {Button | Node} The item as `Button` or `Node` instance.
      */
     item: function(index) {
         var instance = this,
@@ -455,7 +472,7 @@ A.mix(ButtonGroup.prototype, {
     },
 
     /**
-     * Render the ButtonGroup component instance. Lifecycle.
+     * Renders the `ButtonGroup` component instance. Lifecycle.
      *
      * @method renderUI
      * @protected
@@ -478,10 +495,10 @@ A.mix(ButtonGroup.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Selects items by adding the active class name.
      *
      * @method select
-     * @param items
+     * @param {Array} items
      */
     select: function(items) {
         var instance = this;
@@ -490,11 +507,11 @@ A.mix(ButtonGroup.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Toggles selection by adding or removing the active class name.
      *
      * @method toggleSelect
-     * @param items
-     * @param forceSelection
+     * @param {Array} items
+     * @param {Boolean} forceSelection Whether selection should be forced.
      */
     toggleSelect: function(items, forceSelection) {
         var instance = this,
@@ -537,10 +554,10 @@ A.mix(ButtonGroup.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Selects items by adding the active class name.
      *
      * @method unselect
-     * @param items
+     * @param {Array} items
      */
     unselect: function(items) {
         var instance = this;
