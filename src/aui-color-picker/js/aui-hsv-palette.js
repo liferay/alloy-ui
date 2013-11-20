@@ -298,7 +298,7 @@ var AColor = A.Color,
             hexValue = instance._getHexValue(hexColor, rgbColorArray);
 
             instance._resultView.setStyle(BACKGROUND_COLOR, hexColor);
-            instance._valueSliderContainer.setStyle(BACKGROUND_COLOR, hexColor);
+            instance._setValueSliderContainerStyle(hue, saturation);
 
             instance._setFieldValue(instance._outputContainer, hexValue);
 
@@ -790,6 +790,7 @@ var AColor = A.Color,
                 hexColor = AColor.toHex(rgbColor);
                 hexValue = instance._getHexValue(hexColor, rgbColorArray);
 
+                instance._resultView.setStyle(BACKGROUND_COLOR, hexColor);
                 instance._setFieldValue(instance._outputContainer, hexValue);
 
                 if (instance.get(CONTROLS)) {
@@ -1164,6 +1165,23 @@ var AColor = A.Color,
         },
 
         /**
+         * Sets background style of value slider container.
+         *
+         * @method _setValueSliderContainerStyle
+         * @param {Number} hue
+         * @param {Number} saturation
+         * @protected
+         */
+        _setValueSliderContainerStyle: function(hue, saturation) {
+            var instance = this,
+                rgbColor;
+
+            rgbColor = instance._calculateRGBColor(Math.round(hue), Math.round(saturation), 100);
+
+            instance._valueSliderContainer.setStyle(BACKGROUND_COLOR, rgbColor);
+        },
+
+        /**
          * Updates X and Y position of thumb selector.
          *
          * @method _updatePaletteThumbPosition
@@ -1242,7 +1260,7 @@ var AColor = A.Color,
             hexValue = instance._getHexValue(hexColor, rgbColorArray);
 
             instance._resultView.setStyle(BACKGROUND_COLOR, hexColor);
-            instance._valueSliderContainer.setStyle(BACKGROUND_COLOR, hexColor);
+            instance._setValueSliderContainerStyle(hue, saturation);
 
             instance._hsContainer.setStyle(OPACITY, 1 - ((MAX_OPACITY_PERC - value) / MAX_OPACITY_PERC));
 
@@ -1323,7 +1341,7 @@ var AColor = A.Color,
             );
 
             instance._resultView.setStyle(BACKGROUND_COLOR, hexColor);
-            instance._valueSliderContainer.setStyle(BACKGROUND_COLOR, hexColor);
+            instance._setValueSliderContainerStyle(hue, saturation);
 
             instance._hsContainer.setStyle(OPACITY, 1 - ((MAX_OPACITY_PERC - value) / MAX_OPACITY_PERC));
 
@@ -1438,7 +1456,7 @@ var AColor = A.Color,
             hexColor = _POUND + hex;
 
             instance._resultView.setStyle(BACKGROUND_COLOR, hexColor);
-            instance._valueSliderContainer.setStyle(BACKGROUND_COLOR, hexColor);
+            instance._setValueSliderContainerStyle(hue, saturation);
 
             instance._hsContainer.setStyle(OPACITY, 1 - ((MAX_OPACITY_PERC - value) / MAX_OPACITY_PERC));
 
