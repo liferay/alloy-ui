@@ -118,7 +118,7 @@ grunt format
 * Lint JavaScript source code using JSHint.
 
     ```
-grunt jshint
+grunt lint
     ```
 
 ### Release
