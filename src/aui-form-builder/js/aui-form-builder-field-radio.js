@@ -173,7 +173,7 @@ var FormBuilderRadioField = A.Component.create({
                     )
                 );
 
-                 if (checked) {
+                if (checked) {
                     hasPredefinedValue = true;
                 }
             });
