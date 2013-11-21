@@ -256,7 +256,7 @@ var SchedulerTableView = A.Component.create({
 
                 return A.DataType.Date.format(
                     date, {
-                        format: '%A',
+                        format: '%a',
                         locale: scheduler.get(LOCALE)
                     }
                 );
