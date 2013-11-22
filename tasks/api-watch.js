@@ -76,11 +76,20 @@ module.exports = function(grunt) {
     exports._runYuidoc = function(mainCallback) {
         var auiVersion = grunt.config([TASK.name, 'aui-version']);
         var configFile = path.join(grunt.config([TASK.name, 'theme']), 'yuidoc.json');
+        var sourceDirs = grunt.config([TASK.name, 'src']);
+
+        var commandArgs = [];
+
+        sourceDirs.forEach(function(srcDir) {
+            commandArgs.push(srcDir);
+        });
+
+        commandArgs.push('-c', configFile, '--project-version', auiVersion, '--server');
 
         command.open(ROOT)
             .on('stdout', command.writeTo(process.stdout))
             .on('stderr', command.writeTo(process.stderr))
-            .exec('yuidoc', ['-c', configFile, '--project-version', auiVersion, '--server'])
+            .exec('yuidoc', commandArgs)
             .then(function() {
                 mainCallback();
             });

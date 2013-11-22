@@ -19,7 +19,7 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('.alloy.json'),
 
         'api-build': {
-            'src': ROOT,
+            'src': [path.join(ROOT, 'src-temp'), path.join(ROOT, '<%= pkg.dependencies.yui3.folder %>', 'src')],
             'dist': path.join(ROOT, 'api'),
             'aui-version': '<%= pkg["version"] %>',
             'theme': path.join(ROOT, '<%= pkg.dependencies["alloy-apidocs-theme"].folder %>')
@@ -36,6 +36,7 @@ module.exports = function(grunt) {
         'api-watch': {
             'aui-version': '<%= pkg["version"] %>',
             'theme': path.join(ROOT, '<%= pkg.dependencies["alloy-apidocs-theme"].folder %>')
+            'src': [path.join(ROOT, 'src'), path.join(ROOT, '<%= pkg.dependencies.yui3.folder %>', 'src')],
         },
 
         build: {
