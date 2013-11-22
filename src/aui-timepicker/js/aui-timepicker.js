@@ -18,7 +18,7 @@ var Lang = A.Lang,
     VALUES = 'values';
 
 /**
- * A base class for TimePickerBase.
+ * A base class for `TimePickerBase`.
  *
  * @class A.TimePickerBase
  * @param {Object} config Object literal specifying widget configuration
@@ -29,20 +29,21 @@ var Lang = A.Lang,
 function TimePickerBase() {}
 
 /**
- * Static property used to define the default attribute
- * configuration for the TimePickerBase.
+ * Static property used to define the default attribute configuration for the
+ * `TimePickerBase`.
  *
  * @property ATTRS
- * @type Object
+ * @type {Object}
  * @static
  */
 TimePickerBase.ATTRS = {
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Default `AutoComplete` configuration options.
      *
      * @attribute autocomplete
      * @default {}
+     * @type {Object}
      * @writeOnce
      */
     autocomplete: {
@@ -52,37 +53,40 @@ TimePickerBase.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Value seperator for `queryDelimiter` attribute of `AutoComplete` class.
      *
      * @attribute dateSeparator
      * @default ', '
+     * @type {String}
      */
     dateSeparator: {
         value: ', '
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Format for displayed time.
      *
      * @attribute mask
      * @default '%I:%M %p'
+     * @type {String}
      */
     mask: {
         value: '%I:%M %p'
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * CSS class for popover.
      *
      * @attribute popoverCssClass
      * @default A.getClassName('timepicker-popover')
+     * @type {String}
      */
     popoverCssClass: {
         value: A.getClassName('timepicker-popover')
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Time values available to `AutoComplete` instance.
      *
      * @attribute values
      * @default ['00:00', '00:30', '01:00', '01:30', '02:00', '02:30', '03:00',
@@ -92,7 +96,7 @@ TimePickerBase.ATTRS = {
      *     '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00',
      *     '17:30', '18:00', '18:30', '19:00', '19:30', '20:00', '20:30',
      *     '21:00', '21:30', '22:00', '22:30', '23:00', '23:30']
-     * @type Array
+     * @type {Array}
      */
     values: {
         setter: '_setValues',
@@ -154,7 +158,7 @@ A.mix(TimePickerBase.prototype, {
     autocomplete: null,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Clears selection.
      *
      * @method clearSelection
      */
@@ -165,10 +169,11 @@ A.mix(TimePickerBase.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Creates and returns a new instance of `AutoComplete`.
      *
      * @method getAutoComplete
-     * @param node
+     * @param {Node} node
+     * @return {Object} `AutoComplete` instance
      */
     getAutoComplete: function(node) {
         var instance = this,
@@ -190,10 +195,10 @@ A.mix(TimePickerBase.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets selected date.
      *
      * @method selectDates
-     * @param dates
+     * @param {Object} dates
      */
     selectDates: function(dates) {
         var instance = this;
@@ -202,10 +207,10 @@ A.mix(TimePickerBase.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Syncs `TimePicker` values to input node value.
      *
      * @method useInputNode
-     * @param node
+     * @param {Node} node
      */
     useInputNode: function(node) {
         var instance = this,
@@ -223,10 +228,10 @@ A.mix(TimePickerBase.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Selects date from `AutoComplete` selection.
      *
      * @method _afterAutocompleteSelect
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _afterAutocompleteSelect: function(event) {
@@ -247,10 +252,10 @@ A.mix(TimePickerBase.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets new selection.
      *
      * @method _handleSelection
-     * @param selection
+     * @param {Object} date selection
      * @protected
      */
     _handleSelection: function(selection) {
@@ -264,10 +269,12 @@ A.mix(TimePickerBase.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Setter for `autoComplete` attribute, provides default configuration for
+     * `AutoComplete` instance.
      *
      * @method _setAutocomplete
-     * @param val
+     * @param {Object} val
+     * @return {Object} autocomplete config options
      * @protected
      */
     _setAutocomplete: function(val) {
@@ -288,10 +295,11 @@ A.mix(TimePickerBase.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets time values for `AutoComplete` instance.
      *
      * @method _setValues
-     * @param val
+     * @param {Array} val
+     * @return {Array} time values
      * @protected
      */
     _setValues: function(val) {
@@ -313,7 +321,7 @@ A.mix(TimePickerBase.prototype, {
 A.TimePickerBase = TimePickerBase;
 
 /**
- * A base class for TimePicker.
+ * A base class for `TimePicker`.
  *
  * @class A.TimePicker
  * @extends Base
