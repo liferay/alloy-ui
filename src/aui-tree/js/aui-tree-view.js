@@ -65,6 +65,8 @@ var L = A.Lang,
  * @param config {Object} Object literal specifying widget configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/tree/basic-markup.html
+ * @include http://alloyui.com/examples/tree/basic.js
  */
 var TreeView = A.Component.create({
     /**

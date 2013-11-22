@@ -38,6 +38,8 @@ var BODY_CONTENT = 'bodyContent',
  * @param config {Object} Object literal specifying widget configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/tooltip/basic-markup.html
+ * @include http://alloyui.com/examples/tooltip/basic.js
  */
 A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
     A.WidgetCssClass,

@@ -66,12 +66,14 @@ var L = A.Lang,
  * - The bar can move horizontally or vertically
  * - The movement can be enhanced by using the Animation utility
  *
- * Check the [live demo](http://alloyui.com/examples/progressbar/).
+ * Check the [live demo](http://alloyui.com/examples/progress-bar/).
  *
  * @class A.ProgressBar
  * @param config {Object} Object literal specifying widget configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/progress-bar/basic-markup.html
+ * @include http://alloyui.com/examples/progress-bar/basic.js
  */
 var ProgressBar = A.Component.create({
     /**

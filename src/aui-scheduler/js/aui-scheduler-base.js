@@ -292,6 +292,8 @@ A.SchedulerEventSupport = SchedulerEventSupport;
  * @param config {Object} Object literal specifying widget configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/scheduler/basic-markup.html
+ * @include http://alloyui.com/examples/scheduler/basic.js
  */
 var SchedulerBase = A.Component.create({
 

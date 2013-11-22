@@ -126,6 +126,8 @@ var _setUnselectable = function(element, unselectable, noRecurse) {
  * @class A.Node
  * @uses Node
  * @constructor
+ * @include http://alloyui.com/examples/node/basic-markup.html
+ * @include http://alloyui.com/examples/node/basic.js
  */
 A.mix(NODE_PROTO, {
 

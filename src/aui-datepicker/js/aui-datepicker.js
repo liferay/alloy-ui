@@ -319,5 +319,7 @@ A.DatePickerBase = DatePickerBase;
  * @param config {Object} Object literal specifying widget configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/datepicker/basic-markup.html
+ * @include http://alloyui.com/examples/datepicker/basic.js
  */
 A.DatePicker = A.Base.create('datepicker', A.Base, [A.DatePickerDelegate, A.DatePickerPopover, A.DatePickerBase]);

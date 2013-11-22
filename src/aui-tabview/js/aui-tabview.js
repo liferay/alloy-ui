@@ -68,6 +68,8 @@ A.Tab.NAME = TAB;
  * @param config {Object} Object literal specifying widget configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/tabview/basic-markup.html
+ * @include http://alloyui.com/examples/tabview/basic.js
  */
 A.Tab = A.Component.create({
 

@@ -206,6 +206,8 @@ A.mix(defaults, {
  * @param config {Object} Object literal specifying widget configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/form-validator/basic-markup.html
+ * @include http://alloyui.com/examples/form-validator/basic.js
  */
 var FormValidator = A.Component.create({
 

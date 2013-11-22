@@ -72,6 +72,7 @@ var L = A.Lang,
  *     properties.
  * @uses io
  * @constructor
+ * @include http://alloyui.com/examples/io/basic.js
  */
 var IORequest = A.Component.create({
     /**

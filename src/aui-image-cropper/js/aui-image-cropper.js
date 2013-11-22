@@ -26,6 +26,8 @@ var Lang = A.Lang,
  * @param config {Object} Object literal specifying widget configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/image-cropper/basic-markup.html
+ * @include http://alloyui.com/examples/image-cropper/basic.js
  */
 var ImageCropper = A.Component.create({
     /**

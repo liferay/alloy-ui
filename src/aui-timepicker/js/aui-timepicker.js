@@ -321,5 +321,7 @@ A.TimePickerBase = TimePickerBase;
  * @param config {Object} Object literal specifying widget configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/timepicker/basic-markup.html
+ * @include http://alloyui.com/examples/timepicker/basic.js
  */
 A.TimePicker = A.Base.create('timepicker', A.Base, [A.DatePickerDelegate, A.DatePickerPopover, A.TimePickerBase]);

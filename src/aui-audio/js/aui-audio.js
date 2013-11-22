@@ -35,6 +35,8 @@ var AObject = A.Object,
  * @param config {Object} Object literal specifying widget configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/audio/basic-markup.html
+ * @include http://alloyui.com/examples/audio/basic.js
  */
 var AudioImpl = A.Component.create({
     /**

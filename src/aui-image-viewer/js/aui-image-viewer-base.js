@@ -148,6 +148,8 @@ var L = A.Lang,
  * @param config {Object} Object literal specifying widget configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/image-viewer/basic-markup.html
+ * @include http://alloyui.com/examples/image-viewer/basic.js
  */
 var ImageViewer = A.Base.create(
     'aui-image-viewer',
