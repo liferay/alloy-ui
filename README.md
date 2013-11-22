@@ -151,23 +151,22 @@ grunt test
 
 ### API Docs
 
-* Build docs locally:
+* Import code examples from alloyui.com and build docs locally:
 
     ```
-grunt api-build
+grunt api
     ```
-
-* Build docs locally and deploy it to alloyui.com:
-
-    ```
-grunt api-deploy
-    ```
-
 
 * Run docs locally and watch for any changes:
 
     ```
 grunt api-watch
+    ```
+
+* Run `grunt api` and deploy it to alloyui.com:
+
+    ```
+grunt api-deploy
     ```
 
 ## Discussion

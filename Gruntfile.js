@@ -25,6 +25,11 @@ module.exports = function(grunt) {
             'theme': path.join(ROOT, '<%= pkg.dependencies["alloy-apidocs-theme"].folder %>')
         },
 
+        'api-include': {
+            'src': path.join(ROOT, 'src-temp'),
+            'repo': path.join(ROOT, '<%= pkg.dependencies["alloyui.com"].folder %>')
+        },
+
         'api-push': {
             'src': path.join(ROOT, 'api'),
             'dist': path.join(ROOT, '<%= pkg.dependencies["alloyui.com"].folder %>', 'api'),
@@ -77,6 +82,12 @@ module.exports = function(grunt) {
         },
 
         copy: {
+            api: {
+                cwd: 'src/',
+                src: '**',
+                dest: 'src-temp/',
+                expand: true
+            },
             css: {
                 files: [
                     {
@@ -123,6 +134,9 @@ module.exports = function(grunt) {
         },
 
         clean: {
+            api: [
+                'src-temp',
+            ],
             css: [
                 'build/aui-css/css/responsive.css',
             ],
@@ -198,7 +212,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-jsbeautifier');
 
     grunt.registerTask('all', ['bootstrap', 'build']);
-    grunt.registerTask('api-deploy', ['api-build', 'api-push']);
+    grunt.registerTask('api', ['copy:api', 'api-include', 'api-build', 'clean:api']);
+    grunt.registerTask('api-deploy', ['api', 'api-push']);
     grunt.registerTask('bootstrap', ['compass', 'copy:css', 'cssmin', 'copy:img', 'clean:css']);
     grunt.registerTask('format', ['jsbeautifier']);
     grunt.registerTask('lint', ['jshint']);
