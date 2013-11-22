@@ -21,8 +21,8 @@ module.exports = function(grunt) {
         'api-build': {
             'src': [path.join(ROOT, 'src-temp'), path.join(ROOT, '<%= pkg.dependencies.yui3.folder %>', 'src')],
             'dist': path.join(ROOT, 'api'),
-            'aui-version': '<%= pkg["version"] %>',
-            'theme': path.join(ROOT, '<%= pkg.dependencies["alloy-apidocs-theme"].folder %>')
+            'theme': path.join(ROOT, '<%= pkg.dependencies["alloy-apidocs-theme"].folder %>'),
+            'aui-version': '<%= pkg["version"] %>'
         },
 
         'api-include': {
@@ -39,9 +39,9 @@ module.exports = function(grunt) {
         },
 
         'api-watch': {
-            'aui-version': '<%= pkg["version"] %>',
-            'theme': path.join(ROOT, '<%= pkg.dependencies["alloy-apidocs-theme"].folder %>')
             'src': [path.join(ROOT, 'src'), path.join(ROOT, '<%= pkg.dependencies.yui3.folder %>', 'src')],
+            'theme': path.join(ROOT, '<%= pkg.dependencies["alloy-apidocs-theme"].folder %>'),
+            'aui-version': '<%= pkg["version"] %>'
         },
 
         build: {
