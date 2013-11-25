@@ -31,7 +31,8 @@ var Lang = A.Lang,
  * @class A.PropertyList
  * @extends DataTable
  * @uses A.WidgetCssClass, A.WidgetToggle
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass, A.WidgetToggle], {
@@ -56,8 +57,8 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
         instance.after(instance._afterUITriggerSort, instance, '_onUITriggerSort');
         instance.on(ACTIVE_CELL_CHANGE, instance._onActiveCellChange);
 
-        // DataTable doesn't allow redefine the columns attribute in extended classes
-        // See http://yuilibrary.com/projects/yui3/ticket/2532599
+        // DataTable doesn't allow redefine the columns attribute in extended
+        // classes See http://yuilibrary.com/projects/yui3/ticket/2532599
 
         if (!config.columns) {
             this.set(COLUMNS, instance._state.get(COLUMNS, INIT_VALUE));

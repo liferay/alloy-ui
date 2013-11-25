@@ -61,14 +61,16 @@ var L = A.Lang,
  *
  * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
  * - A visual means of showing progress of an ongoing operation
- * - Can be enhanced via CSS styles to provide different colors, shapes and textures
+ * - Can be enhanced via CSS styles to provide different colors, shapes and
+ *   textures
  * - The bar can move horizontally or vertically
  * - The movement can be enhanced by using the Animation utility
  *
  * Check the [live demo](http://alloyui.com/examples/progressbar/).
  *
  * @class A.ProgressBar
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var ProgressBar = A.Component.create({
@@ -369,8 +371,8 @@ var ProgressBar = A.Component.create({
         },
 
         /**
-         * Invoked automatically by the UI_ATTRS Widget API when bind or sync the
-         * `label` attribute.
+         * Invoked automatically by the UI_ATTRS Widget API when bind or sync
+         * the `label` attribute.
          *
          * @method _uiSetLabel
          * @param {String} val Display label
@@ -388,8 +390,8 @@ var ProgressBar = A.Component.create({
         },
 
         /**
-         * Invoked automatically by the UI_ATTRS Widget API when bind or sync the
-         * `orientation` attribute.
+         * Invoked automatically by the UI_ATTRS Widget API when bind or sync
+         * the `orientation` attribute.
          *
          * @method _uiSetOrientation
          * @param {String} val Orientation
@@ -408,8 +410,8 @@ var ProgressBar = A.Component.create({
         },
 
         /**
-         * Invoked automatically by the UI_ATTRS Widget API when bind or sync the
-         * `value` attribute.
+         * Invoked automatically by the UI_ATTRS Widget API when bind or sync
+         * the `value` attribute.
          *
          * @method _uiSetValue
          * @param {String} val Progress value

@@ -141,7 +141,8 @@ var AColor = A.Color,
      *
      * @class A.HSVPalette
      * @extends Widget
-     * @param config {Object} Object literal specifying widget configuration properties.
+     * @param config {Object} Object literal specifying widget configuration
+     *     properties.
      * @constructor
      */
     HSVPalette = A.Base.create(NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
@@ -174,7 +175,8 @@ var AColor = A.Color,
         _outputType: TYPE_HEX,
 
         /**
-         * Construction logic executed during HSVPalette instantiation. Lifecycle.
+         * Construction logic executed during HSVPalette instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected

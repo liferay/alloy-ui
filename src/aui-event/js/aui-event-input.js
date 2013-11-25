@@ -126,8 +126,9 @@ A.Event.define('input', {
         var instance = this,
             input = event.target;
 
-        if ( // Since cut, drop and paste events fires before the element is focused, skip focus checking.
-            _SKIP_FOCUS_CHECK_MAP[event.type] ||
+        // Since cut, drop and paste events fires before the element is focused,
+        // skip focus checking.
+        if (_SKIP_FOCUS_CHECK_MAP[event.type] ||
             (input.get(OWNER_DOCUMENT).get(ACTIVE_ELEMENT) === input)) {
 
             notifier.fire(event);

@@ -32,10 +32,11 @@ var BODY_CONTENT = 'bodyContent',
  *
  * @class A.Tooltip
  * @extends Widget
- * @uses A.WidgetCssClass, A.WidgetPosition, A.WidgetStdMod, A.WidgetToggle, A.WidgetAutohide,
- * A.WidgetToolbars, A.WidgetPositionAlign, A.WidgetPositionAlignSuggestion,
- * A.WidgetPositionConstrain, A.WidgetStack
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @uses A.WidgetCssClass, A.WidgetPosition, A.WidgetStdMod, A.WidgetToggle,
+ *     A.WidgetAutohide, A.WidgetToolbars, A.WidgetPositionAlign,
+ *     A.WidgetPositionAlignSuggestion, A.WidgetPositionConstrain, A.WidgetStack
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [

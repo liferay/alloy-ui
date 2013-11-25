@@ -24,7 +24,8 @@ var Lang = A.Lang,
  *
  * @class A.AutosizeIframe
  * @extends Plugin.Base
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 AutosizeIframe = A.Component.create({
@@ -103,7 +104,8 @@ AutosizeIframe = A.Component.create({
     prototype: {
 
         /**
-         * Construction logic executed during AutosizeIframe instantiation. Lifecycle.
+         * Construction logic executed during AutosizeIframe instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @param config
@@ -150,7 +152,8 @@ AutosizeIframe = A.Component.create({
         },
 
         /**
-         * Destructor lifecycle implementation for the AutosizeIframe class. Lifecycle.
+         * Destructor lifecycle implementation for the AutosizeIframe class.
+         * Lifecycle.
          *
          * @method destructor
          * @protected

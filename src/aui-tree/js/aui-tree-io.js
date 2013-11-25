@@ -27,7 +27,8 @@ var Lang = A.Lang,
  * A base class for TreeViewIO.
  *
  * @class A.TreeViewIO
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 
@@ -84,7 +85,8 @@ TreeViewIO.prototype = {
     },
 
     /**
-     * Initialize the IO transaction setup on the [io](A.TreeViewIO.html#attr_io) attribute.
+     * Initialize the IO transaction setup on the
+     * [io](A.TreeViewIO.html#attr_io) attribute.
      *
      * @method initIO
      */
@@ -246,7 +248,8 @@ TreeViewIO.prototype = {
             fn.defaultFn = true;
 
             if (isFunction(userFn)) {
-                // wrapping user callback and default callback, invoking both handlers
+                // wrapping user callback and default callback, invoking both
+                // handlers
                 var wrappedFn = A.bind(
                     function() {
                         fn.apply(instance, arguments);

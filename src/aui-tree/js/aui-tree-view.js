@@ -62,7 +62,8 @@ var L = A.Lang,
  *
  * @class A.TreeView
  * @uses A.TreeData, A.TreeViewPaginator, A.TreeViewIO
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var TreeView = A.Component.create({
@@ -474,7 +475,8 @@ var isNumber = L.isNumber,
  *
  * @class A.TreeViewDD
  * @extends A.TreeView
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var TreeViewDD = A.Component.create({
@@ -664,9 +666,11 @@ var TreeViewDD = A.Component.create({
 
             };
 
-            // Check for mobile devices and execute _createDragInitHandler before events
+            // Check for mobile devices and execute _createDragInitHandler
+            // before events
             if (!UA.touch) {
-                // only create the drag on the init elements if the user mouseover the boundingBox for init performance reasons
+                // only create the drag on the init elements if the user
+                // mouseover the boundingBox for init performance reasons
                 dragInitHandle = boundingBox.on(['focus', 'mousedown', 'mousemove'], instance._createDragInitHandler);
             }
             else {
@@ -777,8 +781,9 @@ var TreeViewDD = A.Component.create({
             // cannot drop the dragged element into any of its children
             // using DOM contains method for performance reason
             if (!dragNode.contains(dropNode)) {
-                // nArea splits the height in 3 areas top/center/bottom
-                // these areas are responsible for defining the state when the mouse is over any of them
+                // nArea splits the height in 3 areas top/center/bottom these
+                // areas are responsible for defining the state when the mouse
+                // is over any of them
                 var nArea = nodeContent.get(OFFSET_HEIGHT) / 3;
                 var yTop = nodeContent.getY();
                 var yCenter = yTop + nArea;
@@ -799,7 +804,8 @@ var TreeViewDD = A.Component.create({
                     if (dropTreeNode && !dropTreeNode.isLeaf()) {
                         instance._appendState(nodeContent);
                     }
-                    // if it's a leaf we need to set the ABOVE or BELOW state instead of append
+                    // if it's a leaf we need to set the ABOVE or BELOW state
+                    // instead of append
                     else {
                         if (instance.direction === UP) {
                             instance._goingUpState(nodeContent);
@@ -912,10 +918,12 @@ var TreeViewDD = A.Component.create({
             var helper = instance.get(HELPER);
             var helperLabel = helper.one(DOT + CSS_TREE_DRAG_HELPER_LABEL);
 
-            // show helper, we need display block here, yui dd hide it with display none
+            // show helper, we need display block here, yui dd hide it with
+            // display none
             helper.setStyle(DISPLAY, BLOCK).show();
 
-            // set the CSS_TREE_DRAG_HELPER_LABEL html with the label of the dragged node
+            // set the CSS_TREE_DRAG_HELPER_LABEL html with the label of the
+            // dragged node
             helperLabel.html(dragTreeNode.get(LABEL));
 
             // update the DRAG_NODE with the new helper

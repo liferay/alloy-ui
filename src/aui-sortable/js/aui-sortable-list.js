@@ -52,7 +52,8 @@ var L = A.Lang,
  *
  * @class A.SortableList
  * @extends Base
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var SortableList = A.Component.create({
@@ -207,7 +208,8 @@ var SortableList = A.Component.create({
     prototype: {
 
         /**
-         * Construction logic executed during SortableList instantiation. Lifecycle.
+         * Construction logic executed during SortableList instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected
@@ -346,7 +348,8 @@ var SortableList = A.Component.create({
                 // check for the user dropCondition
                 var dropCondition = instance.get(DROP_CONDITION);
 
-                // if there is a container waiting for nodes to be appended it's priority
+                // if there is a container waiting for nodes to be appended it's
+                // priority
                 if (container && !cancelAppend && dropCondition(event)) {
                     // this checking avoid the parent bubbling drag:over
                     if (!container.contains(placeholder) && !placeholder.contains(container)) {
@@ -358,11 +361,13 @@ var SortableList = A.Component.create({
                 // or if it's not floating and the yDirection
                 else {
                     if ((floating && (xDirection === LEFT)) || (!floating && (yDirection === UP))) {
-                        // LEFT or UP directions means to place the placeholder before
+                        // LEFT or UP directions means to place the placeholder
+                        // before
                         dropNode.placeBefore(placeholder);
                     }
                     else {
-                        // RIGHT or DOWN directions means to place the placeholder after
+                        // RIGHT or DOWN directions means to place the
+                        // placeholder after
                         dropNode.placeAfter(placeholder);
                     }
                 }
@@ -486,7 +491,8 @@ var SortableList = A.Component.create({
                 node.placeAfter(placeholder);
 
                 if (helper) {
-                    // show helper, we need display block here, yui dd hide it with display none
+                    // show helper, we need display block here, yui dd hide it
+                    // with display none
                     helper.setStyles({
                         display: BLOCK,
                         visibility: VISIBLE

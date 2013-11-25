@@ -12,7 +12,8 @@
  * http://alloy.liferay.com/ATTRIBUTION.txt
  */
 
-// Simple version of http://perfectionkills.com/detecting-event-support-without-browser-sniffing/
+// Simple version of
+// http://perfectionkills.com/detecting-event-support-without-browser-sniffing/
 A.supportsDOMEvent = function(domNode, eventName) {
     eventName = 'on' + eventName;
 

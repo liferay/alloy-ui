@@ -68,7 +68,8 @@ var Lang = A.Lang,
  *
  * @class A.Toggler
  * @extends Base
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var Toggler = A.Component.create({
@@ -107,7 +108,8 @@ var Toggler = A.Component.create({
         },
 
         /**
-         * Determine if the Toggler transitions are being animated in that moment.
+         * Determine if the Toggler transitions are being animated in that
+         * moment.
          *
          * @attribute animating
          * @default false

@@ -47,7 +47,8 @@ Url.URI_REGEX_RFC3986 =
  * A base class for Url.
  *
  * @class A.Url
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 A.mix(Url.prototype, {

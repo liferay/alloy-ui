@@ -28,7 +28,8 @@ ace.config.set('packaged', true);
  *
  * @class A.AceEditor
  * @extends Widget
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var AceEditor = A.Component.create({

@@ -71,10 +71,9 @@ var Lang = A.Lang,
         t: 'paddingTop'
     };
 
-/*
-		Parts of this file are used from jQuery (http://jquery.com)
-		Dual-licensed under MIT/GPL
-	*/
+/* Parts of this file are used from jQuery (http://jquery.com)
+ * Dual-licensed under MIT/GPL
+ */
 var div = DOC.createElement('div');
 
 div.style.display = 'none';
@@ -141,7 +140,8 @@ A.mix(NODE_PROTO, {
      * ```
      *
      * @method ancestors
-     * @param {String} selector A selector to filter the ancestor elements against.
+     * @param {String} selector A selector to filter the ancestor elements
+     *     against.
      * @return {NodeList}
      */
     ancestors: function(selector) {
@@ -169,7 +169,8 @@ A.mix(NODE_PROTO, {
 
     /**
      * Return the current ancestors of the node element filtered by a className.
-     * This is an optimized method for finding ancestors by a specific CSS class name.
+     * This is an optimized method for finding ancestors by a specific CSS class
+     * name.
      *
      * Example:
      *
@@ -178,7 +179,8 @@ A.mix(NODE_PROTO, {
      * ```
      *
      * @method ancestorsByClassName
-     * @param {String} className A selector to filter the ancestor elements against.
+     * @param {String} className A selector to filter the ancestor elements
+     *     against.
      * @return {NodeList}
      */
     ancestorsByClassName: function(className) {
@@ -254,8 +256,8 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Normalizes the behavior of cloning a node, which by default should not clone
-     * the events that are attached to it.
+     * Normalizes the behavior of cloning a node, which by default should not
+     * clone the events that are attached to it.
      *
      * Example:
      *
@@ -313,7 +315,8 @@ A.mix(NODE_PROTO, {
      *
      * @method center
      * @chainable
-     * @param {Array | Node | Region | String} val Array, Node, String, or Region to center with
+     * @param {Array | Node | Region | String} val Array, Node, String, or
+     *     Region to center with
      */
     center: function(val) {
         var instance = this,
@@ -443,7 +446,8 @@ A.mix(NODE_PROTO, {
 
     /**
      * Set the id of the Node instance if the object does not have one. The
-     * generated id is based on a guid created by the [stamp](YUI.html#method_stamp) method.
+     * generated id is based on a guid created by the
+     * [stamp](YUI.html#method_stamp) method.
      *
      * @method guid
      * @return {String} The current id of the node
@@ -520,7 +524,8 @@ A.mix(NODE_PROTO, {
      * ```
      *
      * @method html
-     * @param {string} value A string of html to set as the content of the node instance.
+     * @param {string} value A string of html to set as the content of the node
+     *     instance.
      */
     html: function() {
         var args = arguments,
@@ -705,7 +710,8 @@ A.mix(NODE_PROTO, {
 
         // Some form elements could throw a (NS_ERROR_FAILURE)
         // [nsIDOMNSHTMLInputElement.setSelectionRange] error when invoke the
-        // setSelectionRange on firefox. Wrapping in a try/catch to prevent the error be thrown
+        // setSelectionRange on firefox. Wrapping in a try/catch to prevent the
+        // error be thrown
         try {
             if (textField.setSelectionRange) {
                 textField.setSelectionRange(start, end);
@@ -763,8 +769,10 @@ A.mix(NODE_PROTO, {
      *
      * @method swallowEvent
      * @chainable
-     * @param {String/Array} eventName an event or array of events to stop from bubbling
-     * @param {Boolean} preventDefault (optional) true to prevent the default action too
+     * @param {String/Array} eventName an event or array of events to stop from
+     *     bubbling
+     * @param {Boolean} preventDefault (optional) true to prevent the default
+     *     action too
      */
     swallowEvent: function(eventName, preventDefault) {
         var instance = this;
@@ -814,7 +822,8 @@ A.mix(NODE_PROTO, {
      * ```
      *
      * @method text
-     * @param {String} text A string of text to set as the content of the node instance.
+     * @param {String} text A string of text to set as the content of the node
+     *     instance.
      */
     text: function(text) {
         var instance = this;
@@ -839,7 +848,8 @@ A.mix(NODE_PROTO, {
      * @method toggle
      * @chainable
      * @param {Boolean} on Whether to force the toggle. Optional.
-     * @param {Function} callback A function to run after the visibility change. Optional.
+     * @param {Function} callback A function to run after the visibility change.
+     *     Optional.
      */
     toggle: function(on, callback) {
         var instance = this;
@@ -902,7 +912,8 @@ A.mix(NODE_PROTO, {
      * @method _getBoxStyleAsNumber
      * @param {string} sides Can be t, r, b, l or any combination of
      * those to represent the top, right, bottom, or left sides.
-     * @param {string} map An object mapping mapping the "sides" param to the a CSS value to retrieve
+     * @param {string} map An object mapping mapping the "sides" param to the a
+     *     CSS value to retrieve
      * @return {number}
      * @private
      */
@@ -977,7 +988,8 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * The event handler for the "out" function that is fired for events attached via the hover method.
+     * The event handler for the "out" function that is fired for events
+     * attached via the hover method.
      *
      * @method _hoverOutHandler
      * @private
@@ -992,7 +1004,8 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * The event handler for the "over" function that is fired for events attached via the hover method.
+     * The event handler for the "over" function that is fired for events
+     * attached via the hover method.
      *
      * @method _hoverOverHandler
      * @private
@@ -1007,7 +1020,8 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Cancels the over task, and fires the users custom "out" function for the hover method
+     * Cancels the over task, and fires the users custom "out" function for the
+     * hover method
      *
      * @method _hoverOverHandler
      * @private
@@ -1024,7 +1038,8 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Cancels the out task, and fires the users custom "over" function for the hover method
+     * Cancels the out task, and fires the users custom "over" function for the
+     * hover method
      *
      * @method _hoverOverHandler
      * @private

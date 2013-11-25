@@ -73,7 +73,8 @@ var Lang = A.Lang,
      *
      * @class A.HSVAPalette
      * @extends A.HSVPalette
-     * @param config {Object} Object literal specifying widget configuration properties.
+     * @param config {Object} Object literal specifying widget configuration
+     *     properties.
      * @constructor
      */
     HSVAPalette = A.Base.create(NAME, A.HSVPalette, [], {
@@ -84,7 +85,8 @@ var Lang = A.Lang,
         TPL_ALPHA_THUMB: '<span class="' + CSS_ALPHA_THUMB + '"><span class="' + CSS_ALPHA_THUMB_IMAGE + '"></span></span>',
 
         /**
-         * Construction logic executed during HSVAPalette instantiation. Lifecycle.
+         * Construction logic executed during HSVAPalette instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected
@@ -107,7 +109,8 @@ var Lang = A.Lang,
          * @protected
          */
         _afterHexInputChange: function(event) {
-            // YUI Code toHSVA from hex + alpha is broken, will remove the alpha value
+            // YUI Code toHSVA from hex + alpha is broken, will remove the alpha
+            // value
             var instance = this,
                 hexColor = event.hexColor,
                 alpha = hexColor.substr(6, 2),

@@ -10,14 +10,16 @@
  *
  * @class A.SchedulerCalendar
  * @extends ModelList
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
     model: A.SchedulerEvent,
 
     /**
-     * Construction logic executed during SchedulerCalendar instantiation. Lifecycle.
+     * Construction logic executed during SchedulerCalendar instantiation.
+     * Lifecycle.
      *
      * @method initializer
      * @protected

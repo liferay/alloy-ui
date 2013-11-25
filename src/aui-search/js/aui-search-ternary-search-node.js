@@ -13,7 +13,8 @@ var Lang = A.Lang,
  *
  * @class A.TernarySearchNode
  * @extends Base
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var TernarySearchNode = A.Component.create({

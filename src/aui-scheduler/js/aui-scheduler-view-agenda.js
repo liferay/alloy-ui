@@ -149,7 +149,8 @@ var Lang = A.Lang,
  *
  * @class A.SchedulerAgendaView
  * @extends A.SchedulerView
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var SchedulerAgendaView = A.Component.create({

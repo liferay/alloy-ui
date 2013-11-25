@@ -51,7 +51,8 @@ var L = A.Lang,
  *
  * @class A.TreeData
  * @extends Base
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 
@@ -79,7 +80,8 @@ TreeData.ATTRS = {
     },
 
     /**
-     * Array of children (i.e. could be a JSON metadata object or a TreeNode instance).
+     * Array of children (i.e. could be a JSON metadata object or a TreeNode
+     * instance).
      *
      * @attribute children
      * @default []
@@ -420,15 +422,17 @@ A.mix(TreeData.prototype, {
     bubbleEvent: function(eventType, args, cancelBubbling, stopActionPropagation) {
         var instance = this;
 
-        // event.stopActionPropagation === undefined, invoke the event native action
+        // event.stopActionPropagation === undefined, invoke the event native
+        // action
         instance.fire(eventType, args);
 
         if (!cancelBubbling) {
             var parentNode = instance.get(PARENT_NODE);
 
-            // Avoid execution of the native action (private methods) while propagate
-            // for example: private _appendChild() is invoked only on the first level of the bubbling
-            // the intention is only invoke the user callback on parent nodes.
+            // Avoid execution of the native action (private methods) while
+            // propagate for example: private _appendChild() is invoked only on
+            // the first level of the bubbling the intention is only invoke the
+            // user callback on parent nodes.
             args = args || {};
 
             if (isUndefined(stopActionPropagation)) {
@@ -525,7 +529,8 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Index of the passed TreeNode on the [children](A.TreeData.html#attr_children) attribute.
+     * Index of the passed TreeNode on the
+     * [children](A.TreeData.html#attr_children) attribute.
      *
      * @method indexOf
      * @param {TreeNode} node
@@ -798,9 +803,10 @@ A.mix(TreeData.prototype, {
 
         instance.childrenLength = v.length;
 
-        // before render the node, make sure the PARENT_NODE and OWNER_TREE references are updated
-        // this is required on the render phase of the TreeNode (_createNodeContainer)
-        // to propagate the events callback (appendChild/expand)
+        // before render the node, make sure the PARENT_NODE and OWNER_TREE
+        // references are updated this is required on the render phase of the
+        // TreeNode (_createNodeContainer) to propagate the events callback
+        // (appendChild/expand)
         var ownerTree = instance;
 
         if (isTreeNode(instance)) {

@@ -37,8 +37,8 @@ WidgetCssClass.ATTRS = {
 };
 
 /**
- * Static property used to define the default suffix for cssClass attribute value
- * applied on `contentBox` node.
+ * Static property used to define the default suffix for cssClass attribute
+ * value applied on `contentBox` node.
  *
  * @property CSS_CLASS_CONTENT_SUFFIX
  * @type String
@@ -62,7 +62,8 @@ WidgetCssClass.prototype = {
     },
 
     /**
-     * Fires after the value of the [cssClass](Component.html#attr_cssClass) attribute change.
+     * Fires after the value of the [cssClass](Component.html#attr_cssClass)
+     * attribute change.
      *
      * @method _afterCssClassChange
      * @param {EventFacade} event

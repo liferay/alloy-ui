@@ -32,20 +32,25 @@ var Lang = A.Lang,
      *
      * @class A.AceEditor.TemplateProcessor
      * @extends Base
-     * @param config {Object} Object literal specifying widget configuration properties.
+     * @param config {Object} Object literal specifying widget configuration
+     *     properties.
      * @constructor
      */
     TemplateProcessor = A.Base.create(_NAME, A.Base, [
 ], {
 
         /**
-         * Accepts match and depending on its type processes directives or variables.
-         * In case of success, calls the provided success callback, or the error callback otherwise.
+         * Accepts match and depending on its type processes directives or
+         * variables. In case of success, calls the provided success callback,
+         * or the error callback otherwise.
          *
          * @method getResults
-         * @param {Object} match The provided match. It should contain at least type and content properties
-         * @param {Function} callbackSuccess The function to be called in case of success
-         * @param {Function} callbackError The function to be called in case of error
+         * @param {Object} match The provided match. It should contain at least
+         *     type and content properties
+         * @param {Function} callbackSuccess The function to be called in case
+         *     of success
+         * @param {Function} callbackError The function to be called in case of
+         *     error
          */
         getResults: function(match, callbackSuccess, callbackError) {
             var instance = this,
@@ -78,17 +83,19 @@ var Lang = A.Lang,
         },
 
         /**
-         * Formats the selected suggestion depending on the match type and currently selected editor mode.
-         * The match type can be one of:
-         * MATCH_DIRECTOVES or MATCH_VARIABLES.
-         * The selected editor mode can be one of the following:
-         * INSERT or OVERWRITE.
-         * See {{#crossLink "AceEditor.AutoCompleteBase/fillMode:attribute"}}{{/crossLink}}
+         * Formats the selected suggestion depending on the match type and
+         * currently selected editor mode. The match type can be one of:
+         * MATCH_DIRECTOVES or MATCH_VARIABLES. The selected editor mode can be
+         * one of the following: INSERT or OVERWRITE. See {{#crossLink
+         * "AceEditor.AutoCompleteBase/fillMode:attribute"}}{{/crossLink}}
          *
          * @method getSuggestion
-         * @param {Object} match The provided match. It should contain at least type and content properties
-         * @param {String} selectedSuggestion The selected suggestion from the list with suggestions
-         * @return {String} The final suggestion which should be inserted to the editor
+         * @param {Object} match The provided match. It should contain at least
+         *     type and content properties
+         * @param {String} selectedSuggestion The selected suggestion from the
+         *     list with suggestions
+         * @return {String} The final suggestion which should be inserted to the
+         *     editor
          */
         getSuggestion: function(match, selectedSuggestion) {
             var instance = this,
@@ -134,13 +141,15 @@ var Lang = A.Lang,
         },
 
         /**
-         * Checks if the the provided index is the last token in the list of tokens.
+         * Checks if the the provided index is the last token in the list of
+         * tokens.
          *
          * @method _isLastToken
          * @param {Number} index The index which should be checked
          * @param {Array} tokens The array with tokens
          * @protected
-         * @return {Boolean} True if the provided index is the last token in the list
+         * @return {Boolean} True if the provided index is the last token in the
+         *     list
          */
         _isLastToken: function(index, tokens) {
             return index === tokens.length - 1;
@@ -176,7 +185,8 @@ var Lang = A.Lang,
          * Scans the content and extracts variables.
          *
          * @method _getVariableMatches
-         * @param {String} content The content from which variable matches will be extracted
+         * @param {String} content The content from which variable matches will
+         *     be extracted
          * @protected
          * @return {Array} List with variable matches
          */
@@ -310,7 +320,8 @@ var Lang = A.Lang,
         },
 
         /**
-         * Normalizes a regualr expression value. If the value is String, it will be converted to an RegExp.
+         * Normalizes a regualr expression value. If the value is String, it
+         * will be converted to an RegExp.
          *
          * @method _setRegexValue
          * @param {String|RegExp} value The provided regualr expression value
@@ -360,7 +371,8 @@ var Lang = A.Lang,
         ATTRS: {
 
             /**
-             * Contains an array of all possible directives for the corresponding language.
+             * Contains an array of all possible directives for the
+             * corresponding language.
              *
              * @attribute directives
              * @type Array

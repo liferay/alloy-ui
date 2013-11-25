@@ -102,7 +102,8 @@ var Lang = A.Lang,
  *
  * @class A.AvailableField
  * @extends Base
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var AvailableField = A.Component.create({
@@ -265,7 +266,8 @@ var AvailableField = A.Component.create({
             CSS_DIAGRAM_BUILDER_FIELD_ICON].join(_SPACE) + ' {iconClass}"></span>' + '<div class="' + CSS_DIAGRAM_BUILDER_FIELD_LABEL + '"></div>' + '</li>',
 
         /**
-         * Construction logic executed during AvailableField instantiation. Lifecycle.
+         * Construction logic executed during AvailableField instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected
@@ -554,7 +556,8 @@ A.FieldSupport = FieldSupport;
  *
  * @class A.DiagramBuilderBase
  * @uses A.FieldSupport
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var DiagramBuilderBase = A.Component.create({
@@ -776,7 +779,8 @@ var DiagramBuilderBase = A.Component.create({
         toolbar: null,
 
         /**
-         * Construction logic executed during DiagramBuilderBase instantiation. Lifecycle.
+         * Construction logic executed during DiagramBuilderBase instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected

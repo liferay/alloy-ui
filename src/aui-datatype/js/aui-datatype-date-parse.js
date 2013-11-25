@@ -119,7 +119,8 @@ A.mix(DateParser.prototype, {
     },
 
     /**
-     * Takes a string mask and a text as input and parses it as a native JavaScript Date.
+     * Takes a string mask and a text as input and parses it as a native
+     * JavaScript Date.
      *
      * @method parse
      * @param mask {String} Mask as strftime string.
@@ -630,7 +631,6 @@ A.mix(DateParser.prototype, {
      * number. An array instance is used to keep reference to the position
      * counter, therefore can be passed to different subparse methods.
      * @param {Number} i Token position on the compiled array.
-     *
      * @return {Object} Found timezone.
      */
     _subparseTimeZone: function(text, textPos) {

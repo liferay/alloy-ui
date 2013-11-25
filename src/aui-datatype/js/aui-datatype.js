@@ -36,7 +36,8 @@ var L = A.Lang,
  *
  * @for A.DataType.Boolean
  * @method parse
- * @param {*} data falsey or non-falsey values (i.e., falsey values: null, false, undefined, NaN; non-falsey values: 1, true, 'abc').
+ * @param {*} data falsey or non-falsey values (i.e., falsey values: null,
+ *     false, undefined, NaN; non-falsey values: 1, true, 'abc').
  * @return {boolean} Parsed value
  */
 DB.parse = function(data) {
@@ -78,8 +79,9 @@ DS.evaluate = function(data) {
 };
 
 /**
- * A.DataType.DateMath is used for simple date manipulation. The class is a static utility
- * used for adding, subtracting, and comparing dates. Based on YAHOO.widget.DateMath.
+ * A.DataType.DateMath is used for simple date manipulation. The class is a
+ * static utility used for adding, subtracting, and comparing dates. Based on
+ * YAHOO.widget.DateMath.
  *
  * @class A.DataType.DateMath
  */
@@ -231,8 +233,9 @@ A.mix(A.DataType.DateMath, {
      * Constant field representing the date in first week of January
      * which identifies the first week of the year.
      *
-     * In the U.S, Jan 1st is normally used based on a Sunday start of week.
-     * ISO 8601, used widely throughout Europe, uses Jan 4th, based on a Monday start of week.
+     * In the U.S, Jan 1st is normally used based on a Sunday start of week. ISO
+     * 8601, used widely throughout Europe, uses Jan 4th, based on a Monday
+     * start of week.
      *
      * @property WEEK_ONE_JAN_DATE
      * @static
@@ -244,9 +247,11 @@ A.mix(A.DataType.DateMath, {
      * Adds the specified amount of time to the this instance.
      *
      * @method add
-     * @param {Date} date	The JavaScript Date object to perform addition on
-     * @param {String} field	The field constant to be used for performing addition.
-     * @param {Number} amount	The number of units (measured in the field constant) to add to the date.
+     * @param {Date} date The JavaScript Date object to perform addition on
+     * @param {String} field The field constant to be used for performing
+     *     addition.
+     * @param {Number} amount The number of units (measured in the field
+     *     constant) to add to the date.
      * @return {Date} The resulting Date object
      */
     add: function(date, field, amount) {
@@ -311,13 +316,15 @@ A.mix(A.DataType.DateMath, {
      *
      * @method _addDays
      * @param {Date} d JavaScript date object
-     * @param {Number} nDays The number of days to add to the date object (can be negative)
+     * @param {Number} nDays The number of days to add to the date object (can
+     *     be negative)
      * @private
      */
     _addDays: function(d, nDays) {
         if (A.UA.webkit && A.UA.webkit < 420) {
             if (nDays < 0) {
-                // Ensure we don't go below -128 (getDate() is always 1 to 31, so we won't go above 127)
+                // Ensure we don't go below -128 (getDate() is always 1 to 31,
+                // so we won't go above 127)
                 for (var min = -128; nDays < min; nDays -= min) {
                     d.setDate(d.getDate() + min);
                 }
@@ -365,9 +372,11 @@ A.mix(A.DataType.DateMath, {
      * Subtract the specified amount of time from the this instance.
      *
      * @method subtract
-     * @param {Date} date	The JavaScript Date object to perform subtraction on
-     * @param {Number} field	The this field constant to be used for performing subtraction.
-     * @param {Number} amount	The number of units (measured in the field constant) to subtract from the date.
+     * @param {Date} date The JavaScript Date object to perform subtraction on
+     * @param {Number} field The this field constant to be used for performing
+     *     subtraction.
+     * @param {Number} amount The number of units (measured in the field
+     *     constant) to subtract from the date.
      * @return {Date} The resulting Date object
      */
     subtract: function(date, field, amount) {
@@ -378,9 +387,10 @@ A.mix(A.DataType.DateMath, {
      * Determine whether a given date is before another date on the calendar.
      *
      * @method before
-     * @param {Date} date		The Date object to compare with the compare argument
-     * @param {Date} compareTo	The Date object to use for the comparison
-     * @return {Boolean} true if the date occurs before the compared date; false if not.
+     * @param {Date} date The Date object to compare with the compare argument
+     * @param {Date} compareTo The Date object to use for the comparison
+     * @return {Boolean} true if the date occurs before the compared date; false
+     *     if not.
      */
     before: function(date, compareTo) {
         var ms = compareTo.getTime();
@@ -396,9 +406,11 @@ A.mix(A.DataType.DateMath, {
      * Determine whether a given date is after another date on the calendar.
      *
      * @method after
-     * @param {Date} date		The Date object to compare with the compare argument
-     * @param {Date} compareTo	The Date object to use for the comparison
-     * @return {Boolean} true if the date occurs after the compared date; false if not.
+     * @param {Date} date The Date object to compare with the compare
+     *     argument
+     * @param {Date} compareTo The Date object to use for the comparison
+     * @return {Boolean} true if the date occurs after the compared date; false
+     *     if not.
      */
     after: function(date, compareTo) {
         var ms = compareTo.getTime();
@@ -414,10 +426,11 @@ A.mix(A.DataType.DateMath, {
      * Determine whether a given date is between two other dates on the calendar.
      *
      * @method between
-     * @param {Date} date		The date to check for
-     * @param {Date} dateBegin	The start of the range
-     * @param {Date} dateEnd	The end of the range
-     * @return {Boolean} true if the date occurs between the compared dates; false if not.
+     * @param {Date} date The date to check for
+     * @param {Date} dateBegin The start of the range
+     * @param {Date} dateEnd The end of the range
+     * @return {Boolean} true if the date occurs between the compared dates;
+     *     false if not.
      */
     between: function(date, dateBegin, dateEnd) {
         if (this.after(date, dateBegin) && this.before(date, dateEnd)) {
@@ -429,29 +442,35 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Retrieve a JavaScript Date object representing January 1 of any given year.
+     * Retrieve a JavaScript Date object representing January 1 of any given
+     * year.
      *
      * @method getJan1
-     * @param {Number} calendarYear		The calendar year for which to retrieve January 1
-     * @return {Date}	January 1 of the calendar year specified.
+     * @param {Number} calendarYear The calendar year for which to retrieve
+     *     January 1
+     * @return {Date} January 1 of the calendar year specified.
      */
     getJan1: function(calendarYear) {
         return this.getDate(calendarYear, 0, 1);
     },
 
     /**
-     * Calculate the number of days the specified date is from January 1 of the specified calendar year.
-     * Passing January 1 to this function would return an offset value of zero.
+     * Calculate the number of days the specified date is from January 1 of the
+     * specified calendar year. Passing January 1 to this function would return
+     * an offset value of zero.
      *
      * @method getDayOffset
-     * @param {Date}	date	The JavaScript date for which to find the offset
-     * @param {Number} calendarYear	The calendar year to use for determining the offset
+     * @param {Date} date The JavaScript date for which to find the offset
+     * @param {Number} calendarYear The calendar year to use for determining
+     *     the offset
      * @return {Number}	The number of days since January 1 of the given year
      */
     getDayOffsetYear: function(date, calendarYear) {
-        var beginYear = this.getJan1(calendarYear); // Find the start of the year. This will be in week 1.
+        // Find the start of the year. This will be in week 1.
+        var beginYear = this.getJan1(calendarYear);
 
-        // Find the number of days the passed in date is away from the calendar year start
+        // Find the number of days the passed in date is away from the calendar
+        // year start
         return this.getDayOffset(date, beginYear, calendarYear);
     },
 
@@ -459,8 +478,8 @@ A.mix(A.DataType.DateMath, {
      * Calculate the number of days between the specified dates.
      *
      * @method getDayOffset
-     * @param {Date}	d1 Date 1
-     * @param {Date}	d2 Date 2
+     * @param {Date} d1 Date 1
+     * @param {Date} d2 Date 2
      * @return {Number}	The number of days
      */
     getDayOffset: function(d1, d2) {
@@ -471,8 +490,8 @@ A.mix(A.DataType.DateMath, {
      * Calculate the number of hours between the specified dates.
      *
      * @method getHoursOffset
-     * @param {Date}	d1 Date 1
-     * @param {Date}	d2 Date 2
+     * @param {Date} d1 Date 1
+     * @param {Date} d2 Date 2
      * @return {Number}	The number of hours
      */
     getHoursOffset: function(d1, d2) {
@@ -483,8 +502,8 @@ A.mix(A.DataType.DateMath, {
      * Calculate the number of minutes between the specified dates.
      *
      * @method getMinutesOffset
-     * @param {Date}	d1 Date 1
-     * @param {Date}	d2 Date 2
+     * @param {Date} d1 Date 1
+     * @param {Date} d2 Date 2
      * @return {Number}	The number of minutes
      */
     getMinutesOffset: function(d1, d2) {
@@ -495,8 +514,8 @@ A.mix(A.DataType.DateMath, {
      * Calculate the number of seconds between the specified dates.
      *
      * @method getSecondsOffset
-     * @param {Date}	d1 Date 1
-     * @param {Date}	d2 Date 2
+     * @param {Date} d1 Date 1
+     * @param {Date} d2 Date 2
      * @return {Number}	The number of seconds
      */
     getSecondsOffset: function(d1, d2) {
@@ -540,13 +559,14 @@ A.mix(A.DataType.DateMath, {
      * ISO8601 week numbers, based on Jan 4th defining the 1st week of the year.
      *
      * @method getWeekNumber
-     * @param {Date}	date The JavaScript date for which to find the week number
-     * @param {Number} firstDayOfWeek The index of the first day of the week (0 = Sun, 1 = Mon ... 6 = Sat).
-     * Defaults to 0
-     * @param {Number} janDate The date in the first week of January which defines week one for the year
-     * Defaults to the value of YAHOO.widget.DateMath.WEEK_ONE_JAN_DATE, which is 1 (Jan 1st).
-     * For the U.S, this is normally Jan 1st. ISO8601 uses Jan 4th to define the first week of the year.
-     *
+     * @param {Date} date The JavaScript date for which to find the week number
+     * @param {Number} firstDayOfWeek The index of the first day of the week (0
+     *     = Sun, 1 = Mon ... 6 = Sat). Defaults to 0
+     * @param {Number} janDate The date in the first week of January which
+     *     defines week one for the year Defaults to the value of
+     *     YAHOO.widget.DateMath.WEEK_ONE_JAN_DATE, which is 1 (Jan 1st). For
+     *     the U.S, this is normally Jan 1st. ISO8601 uses Jan 4th to define the
+     *     first week of the year.
      * @return {Number} The number of the week containing the given date.
      */
     getWeekNumber: function(date, firstDayOfWeek, janDate) {
@@ -600,7 +620,8 @@ A.mix(A.DataType.DateMath, {
      *
      * @method getFirstDayOfWeek
      * @param {Date} dt The date in the week for which the first day is required.
-     * @param {Number} startOfWeek The index for the first day of the week, 0 = Sun, 1 = Mon ... 6 = Sat (defaults to 0)
+     * @param {Number} startOfWeek The index for the first day of the week, 0 =
+     *     Sun, 1 = Mon ... 6 = Sat (defaults to 0)
      * @return {Date} The first day of the week
      */
     getFirstDayOfWeek: function(dt, startOfWeek) {
@@ -711,7 +732,8 @@ A.mix(A.DataType.DateMath, {
      * Determine if a given week overlaps two different years.
      *
      * @method isYearOverlapWeek
-     * @param {Date} weekBeginDate The JavaScript Date representing the first day of the week.
+     * @param {Date} weekBeginDate The JavaScript Date representing the first
+     *     day of the week.
      * @return {Boolean} true if the date overlaps two different years.
      */
     isYearOverlapWeek: function(weekBeginDate) {
@@ -727,7 +749,8 @@ A.mix(A.DataType.DateMath, {
      * Determine if a given week overlaps two different months.
      *
      * @method isMonthOverlapWeek
-     * @param {Date} weekBeginDate The JavaScript Date representing the first day of the week.
+     * @param {Date} weekBeginDate The JavaScript Date representing the first
+     *     day of the week.
      * @return {Boolean} true if the date overlaps two different months.
      */
     isMonthOverlapWeek: function(weekBeginDate) {
@@ -744,7 +767,8 @@ A.mix(A.DataType.DateMath, {
      *
      * @method findMonthStart
      * @param {Date} date The JavaScript Date used to calculate the month start
-     * @return {Date} The JavaScript Date representing the first day of the month
+     * @return {Date} The JavaScript Date representing the first day of the
+     *     month
      */
     findMonthStart: function(date) {
         var start = this.getDate(date.getFullYear(), date.getMonth(), 1);
@@ -767,10 +791,12 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Clear the time fields from a given date, effectively setting the time to 12 noon.
+     * Clear the time fields from a given date, effectively setting the time to
+     * 12 noon.
      *
      * @method clearTime
-     * @param {Date} date The JavaScript Date for which the time fields will be cleared
+     * @param {Date} date The JavaScript Date for which the time fields will be
+     *     cleared
      * @return {Date} The JavaScript Date cleared of all time fields
      */
     clearTime: function(date) {
@@ -780,11 +806,12 @@ A.mix(A.DataType.DateMath, {
 
     /**
      * Clear the time fields from a given date, effectively setting the time to
-     * 12 noon. This is "safe" because clones the date before clear, not affecting
-     * the passed reference.
+     * 12 noon. This is "safe" because clones the date before clear, not
+     * affecting the passed reference.
      *
      * @method safeClearTime
-     * @param {Date} date The JavaScript Date for which the time fields will be cleared
+     * @param {Date} date The JavaScript Date for which the time fields will be
+     *     cleared
      * @return {Date} The JavaScript Date cleared of all time fields
      */
     safeClearTime: function(date) {
@@ -795,7 +822,8 @@ A.mix(A.DataType.DateMath, {
      * Set the time fields from a given date to the last possible hour.
      *
      * @method toLastHour
-     * @param {Date} date The JavaScript Date for which the time fields will be set to the last possible hour
+     * @param {Date} date The JavaScript Date for which the time fields will be
+     *     set to the last possible hour
      * @return {Date} The JavaScript Date set to the last possible hour
      */
     toLastHour: function(date) {
@@ -807,7 +835,8 @@ A.mix(A.DataType.DateMath, {
      * Set the time fields from a given date to midnight.
      *
      * @method toMidnight
-     * @param {Date} date The JavaScript Date for which the time fields will be set to midnight
+     * @param {Date} date The JavaScript Date for which the time fields will be
+     *     set to midnight
      * @return {Date} The JavaScript Date set to midnight
      */
     toMidnight: function(date) {
@@ -841,8 +870,10 @@ A.mix(A.DataType.DateMath, {
      * @method getDate
      * @param {Number} y Year.
      * @param {Number} m Month index from 0 (Jan) to 11 (Dec).
-     * @param {Number} d (optional) Date from 1 to 31. If not provided, defaults to 1.
-     * @return {Date} The JavaScript date object with year, month, date set as provided.
+     * @param {Number} d (optional) Date from 1 to 31. If not provided, defaults
+     *     to 1.
+     * @return {Date} The JavaScript date object with year, month, date set as
+     *     provided.
      */
     getDate: function(y, m, d) {
         var dt = null;

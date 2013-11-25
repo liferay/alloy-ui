@@ -35,7 +35,8 @@ var L = A.Lang,
  *
  * @class A.FormBuilderSelectField
  * @extends A.FormBuilderMultipleChoiceField
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var FormBuilderSelectField = A.Component.create({

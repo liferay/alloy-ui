@@ -45,7 +45,8 @@ if (A.UA.ie) {
              *
              * @method IECreateFix
              * @param {Node | DocumentFragment} frag Fragment to be fixed.
-             * @param {String} content HTML to be set (using innerHTML) on the `frag`.
+             * @param {String} content HTML to be set (using innerHTML) on the
+             *     `frag`.
              * @return {Node | DocumentFragment}
              */
             IECreateFix: function(frag, content) {

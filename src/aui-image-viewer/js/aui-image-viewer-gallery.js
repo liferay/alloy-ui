@@ -87,7 +87,8 @@ var L = A.Lang,
  *
  * @class A.ImageGallery
  * @extends A.ImageViewer
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var ImageGallery = A.Component.create({
@@ -152,7 +153,8 @@ var ImageGallery = A.Component.create({
                         formatter: A.bind(instance._thumbnailFormatter, instance),
                         after: {
                             changeRequest: function(event) {
-                                // fire changeRequest from ImageGallery passing the "state" object from Pagination
+                                // fire changeRequest from ImageGallery passing
+                                // the "state" object from Pagination
                                 instance.fire(
                                     'changeRequest', {
                                         lastState: event.lastState,
@@ -171,7 +173,8 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Element which contains the [Pagination](A.Pagination.html) with the thumbnails.
+         * Element which contains the [Pagination](A.Pagination.html) with the
+         * thumbnails.
          *
          * @attribute paginationEl
          * @default Generated HTML div.
@@ -419,10 +422,10 @@ var ImageGallery = A.Component.create({
         /**
          * Show the ImageGallery.
          *
-         * **NOTE:**Overloads the [ImageViewer](A.ImageViewer.html) show method to not loadImage,
-         * the changeRequest now is responsible to do that if we invoke the superclass
-         * show method its loading the image, and the changeRequest loads again,
-         * avoiding double request.
+         * **NOTE:**Overloads the [ImageViewer](A.ImageViewer.html) show method
+         * to not loadImage, the changeRequest now is responsible to do that if
+         * we invoke the superclass show method its loading the image, and the
+         * changeRequest loads again, avoiding double request.
          *
          * @method show
          */
@@ -617,7 +620,8 @@ var ImageGallery = A.Component.create({
                 return false; // NOTE: return
             }
 
-            // check if the lastState page number is different from the newState page number.
+            // check if the lastState page number is different from the newState
+            // page number.
             if (!lastState || (lastState && lastState.page != page)) {
                 instance.set(CURRENT_INDEX, page - 1);
 
@@ -660,7 +664,8 @@ var ImageGallery = A.Component.create({
                 instance.getCurrentLink().attr(HREF)
             );
 
-            // restart the timer if the user change the image, respecting the paused state
+            // restart the timer if the user change the image, respecting the
+            // paused state
             var paused = instance.get(PAUSED);
             var playing = instance.get(PLAYING);
 
@@ -734,7 +739,8 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Fire after the value of the [visible](A.ImageViewer.html#attr_visible) attribute change.
+         * Fire after the value of the
+         * [visible](A.ImageViewer.html#attr_visible) attribute change.
          *
          * @method _afterVisibleChange
          * @param {EventFacade} event
@@ -754,7 +760,8 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Fire before the value of the [paused](A.ImageGallery.html#attr_paused) attribute change.
+         * Fire before the value of the
+         * [paused](A.ImageGallery.html#attr_paused) attribute change.
          *
          * @method _onPausedChange
          * @param {EventFacade} event
@@ -769,7 +776,8 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Fire before the value of the [playing](A.ImageGallery.html#attr_playing) attribute change.
+         * Fire before the value of the
+         * [playing](A.ImageGallery.html#attr_playing) attribute change.
          *
          * @method _onPlayingChange
          * @param {EventFacade} event

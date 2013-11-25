@@ -65,7 +65,8 @@ A.Tab.NAME = TAB;
  *
  * @class A.Tab
  * @extends Tab
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 A.Tab = A.Component.create({
@@ -207,7 +208,8 @@ A.TabView.CSS_PREFIX = getClassName(TABBABLE);
  *
  * @class A.TabView
  * @extends TabView
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 A.TabView = A.Component.create({
@@ -390,7 +392,8 @@ A.TabView = A.Component.create({
         },
 
         /**
-         * Check if the child is already inDoc to avoid be appended to the renderTo node.
+         * Check if the child is already inDoc to avoid be appended to the
+         * renderTo node.
          *
          * @method _renderChildren
          * @protected

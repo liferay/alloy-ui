@@ -57,7 +57,8 @@ var Lang = A.Lang,
  *
  * @class A.DataTableHighlight
  * @extends Plugin.Base
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var DataTableHighlight = A.Base.create(
@@ -71,7 +72,8 @@ var DataTableHighlight = A.Base.create(
         _nodes: null,
 
         /**
-         * Construction logic executed during DataTableHighlight instantiation. Lifecycle.
+         * Construction logic executed during DataTableHighlight instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected

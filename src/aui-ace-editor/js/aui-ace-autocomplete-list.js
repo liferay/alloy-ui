@@ -84,7 +84,8 @@ var Lang = A.Lang,
      * @class A.AceEditor.AutoCompleteList
      * @extends Overlay
      * @uses A.AceEditor.AutoCompleteBase, A.WidgetAutohide
-     * @param config {Object} Object literal specifying widget configuration properties.
+     * @param config {Object} Object literal specifying widget configuration
+     *     properties.
      * @constructor
      */
     AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
@@ -156,7 +157,8 @@ var Lang = A.Lang,
         },
 
         /**
-         * Returns the number of entries which could be fit to the current list viewport (page).
+         * Returns the number of entries which could be fit to the current list
+         * viewport (page).
          *
          * @method _getEntriesPerPage
          * @protected
@@ -208,12 +210,15 @@ var Lang = A.Lang,
         },
 
         /**
-         * Handles the arrows and executes different actions depending on the pressed arrow. For example, pressing key down will scroll the list bottom.
+         * Handles the arrows and executes different actions depending on the
+         * pressed arrow. For example, pressing key down will scroll the list
+         * bottom.
          *
          * @method _handleArrows
          * @param {Number} keyCode The code of the currently pressed arrow
          * @protected
-         * @return {Do.Halt} Instance of Do.Halt in order to stop further function execution
+         * @return {Do.Halt} Instance of Do.Halt in order to stop further
+         *     function execution
          */
         _handleArrows: function(keyCode) {
             var instance = this,
@@ -272,14 +277,16 @@ var Lang = A.Lang,
         },
 
         /**
-         * Handles key pressing and executes different actions depending on key code.
+         * Handles key pressing and executes different actions depending on key
+         * code.
          *
          * @method _handleKey
          * @param {CustomEvent} event The fired event
          * @param {Object} obj An internal object of ACE Editor
          * @param {Number} keyCode The code of currently pressed key
          * @protected
-         * @return {Do.Halt} If valid code found, returns an instance of Do.Halt in order to stop further function execution
+         * @return {Do.Halt} If valid code found, returns an instance of Do.Halt
+         *     in order to stop further function execution
          */
         _handleKey: function(event, obj, keyCode) {
             var instance = this,
@@ -304,11 +311,11 @@ var Lang = A.Lang,
          * Handles scrolling page up or down.
          *
          * @method _handlePageUpDown
-         * @param {Number} keyCode The code of currently pressed key. Could be one of:
-         * KEY_PAGE_DOWN = 34,
-         * KEY_PAGE_UP = 33,
+         * @param {Number} keyCode The code of currently pressed key. Could be
+         *     one of: KEY_PAGE_DOWN = 34, KEY_PAGE_UP = 33,
          * @protected
-         * @return {Do.Halt} Returns an instance of Do.Halt in order to stop further function execution
+         * @return {Do.Halt} Returns an instance of Do.Halt in order to stop
+         *     further function execution
          */
         _handlePageUpDown: function(keyCode) {
             var instance = this,
@@ -400,11 +407,11 @@ var Lang = A.Lang,
          * Handles moving of the page to its first or last position.
          *
          * @method _handleStartEnd
-         * @param {Number} keyCode The code of currently pressed key. Could be one of:
-         * KEY_END = 35
-         * KEY_START = 36
+         * @param {Number} keyCode The code of currently pressed key. Could be
+         *     one of: KEY_END = 35 KEY_START = 36
          * @protected
-         * @return {Do.Halt} Returns an instance of Do.Halt in order to stop further function execution
+         * @return {Do.Halt} Returns an instance of Do.Halt in order to stop
+         *     further function execution
          */
         _handleStartEnd: function(keyCode) {
             var instance = this,
@@ -440,7 +447,8 @@ var Lang = A.Lang,
         },
 
         /**
-         * Prevents the execution of `cursorChange` defaultFn if the list is not currently visible.
+         * Prevents the execution of `cursorChange` defaultFn if the list is not
+         * currently visible.
          *
          * @method _onCursorChange
          * @param {CustomEvent} event The fired event
@@ -455,7 +463,8 @@ var Lang = A.Lang,
         },
 
         /**
-         * Hides the list when text is being inserted and start row is different than the end row.
+         * Hides the list when text is being inserted and start row is different
+         * than the end row.
          *
          * @method _onInsertText
          * @param {CustomEvent} event The fired event
@@ -470,7 +479,8 @@ var Lang = A.Lang,
         },
 
         /**
-         * Shows and moves the list on the proper position in case of match and available results or hides the list otherwise.
+         * Shows and moves the list on the proper position in case of match and
+         * available results or hides the list otherwise.
          *
          * @method _onMatch
          * @param {CustomEvent} event The fired event
@@ -517,7 +527,8 @@ var Lang = A.Lang,
         },
 
         /**
-         * Removes the highlighting from the current entry in case of mouse leave event.
+         * Removes the highlighting from the current entry in case of mouse
+         * leave event.
          *
          * @method _onMouseLeave
          * @param {CustomEvent} event The fired event
@@ -543,7 +554,8 @@ var Lang = A.Lang,
         },
 
         /**
-         * Handles `resultsChange` event. Removes the current list of entries, populates the new ones and selects the first entry.
+         * Handles `resultsChange` event. Removes the current list of entries,
+         * populates the new ones and selects the first entry.
          *
          * @method _onResultsChange
          * @param {CustomEvent} event The fired event
@@ -619,7 +631,8 @@ var Lang = A.Lang,
         },
 
         /**
-         * Overwrites editor commands before show or restores the original behavior when hiding.
+         * Overwrites editor commands before show or restores the original
+         * behavior when hiding.
          *
          * @method _onVisibleChange
          * @param {CustomEvent} event The fired event
@@ -761,7 +774,8 @@ var Lang = A.Lang,
         CSS_PREFIX: CSS_PREFIX,
 
         /**
-         * Object hash, defining how attribute values are to be parsed from markup contained in the widget's content box.
+         * Object hash, defining how attribute values are to be parsed from
+         * markup contained in the widget's content box.
          *
          * @property HTML_PARSER
          * @static
