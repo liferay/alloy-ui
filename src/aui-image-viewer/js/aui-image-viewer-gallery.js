@@ -520,25 +520,23 @@ var ImageGallery = A.Component.create({
 
             if (instance.get(SHOW_PLAYER)) {
                 value = A.merge({
-                        children: [
-        [
-                                {
-                                    icon: CSS_ICON_PLAY,
-                                    on: {
-                                        click: A.bind(instance.play, instance)
-                                    }
-         },
-                                {
-                                    icon: CSS_ICON_PAUSE,
-                                    on: {
-                                        click: A.bind(instance.pause, instance)
-                                    }
-         }
-        ]
-       ]
-                    },
-                    value
-                );
+                    children: [
+                        [
+                            {
+                                icon: CSS_ICON_PLAY,
+                                on: {
+                                    click: A.bind(instance.play, instance)
+                                }
+                            },
+                            {
+                                icon: CSS_ICON_PAUSE,
+                                on: {
+                                    click: A.bind(instance.pause, instance)
+                                }
+                            }
+                        ]
+                    ]
+                }, value);
             }
 
             return value;
