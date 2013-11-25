@@ -754,8 +754,7 @@ var Rating = A.Component.create({
         },
 
         /**
-         * Get the `index` element input data stored on <a
-         * href="Rating.html#property_inputElementsData">inputElementsData</a>.
+         * Get the `index` element input data stored on `inputElementsData`.
          *
          * @method _getInputData
          * @protected
