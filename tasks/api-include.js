@@ -17,29 +17,23 @@ var command = require('command');
 var fs = require('fs');
 var fsExtra = require('fs-extra');
 var path = require('path');
-var walkdir = require('walkdir');
 
 // -- Globals ------------------------------------------------------------------
 var ROOT = process.cwd();
 
 // -- Task ---------------------------------------------------------------------
 module.exports = function(grunt) {
-    grunt.registerTask(TASK.name, TASK.description, function() {
+    grunt.registerMultiTask(TASK.name, TASK.description, function() {
         var done = this.async();
-        var files = [];
+        var files = this.files[0].src;
+        var target = this.target;
 
         async.series([
             function(mainCallback) {
-                exports._setGruntConfig(mainCallback);
+                exports._setGruntConfig(mainCallback, target);
             },
             function(mainCallback) {
-                exports._walkDir(function(val) {
-                    files = val;
-                    mainCallback();
-                });
-            },
-            function(mainCallback) {
-                exports._replaceInclude(mainCallback, files);
+                exports._replaceInclude(mainCallback, target, files);
             }],
             function(err) {
                 if (err) {
@@ -52,7 +46,7 @@ module.exports = function(grunt) {
         );
     });
 
-    exports._setGruntConfig = function(mainCallback) {
+    exports._setGruntConfig = function(mainCallback, target) {
         var options = grunt.option.flags();
 
         options.forEach(function(option) {
@@ -76,29 +70,13 @@ module.exports = function(grunt) {
                 value = grunt.option(key);
             }
 
-            grunt.config([TASK.name, key], value);
+            grunt.config([TASK.name, target, key], value);
         });
 
         mainCallback();
     };
 
-    // TODO - Only walk on 'src/**/js' - only match for '.js'
-    exports._walkDir = function(mainCallback) {
-        var files = [];
-        var finder = walkdir(grunt.config([TASK.name, 'src']));
-
-        finder.on('file', function(filename) {
-            if (filename.match(/^(?:(?!filename\.js$).)*\.js$/)) {
-                files.push(filename);
-            }
-        });
-
-        finder.on('end', function() {
-            mainCallback(files);
-        });
-    };
-
-    exports._replaceInclude = function(mainCallback, files) {
+    exports._replaceInclude = function(mainCallback, target, files) {
         files.forEach(function(file) {
             // Read file
             var fileContent = fs.readFileSync(file, 'utf8');
@@ -112,7 +90,7 @@ module.exports = function(grunt) {
                 tokens.forEach(function(token) {
                     // Get local path from remote url
                     var replacedToken = token.replace(/http:\/\/alloyui.com/g,
-                        path.resolve(grunt.config([TASK.name, 'repo']), 'src/documents'));
+                        path.resolve(grunt.config([TASK.name, target, 'repo']), 'src/documents'));
 
                     // Extract local path
                     var remoteUrl = token.split(' ')[1];

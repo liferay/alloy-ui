@@ -28,7 +28,6 @@
         "grunt-contrib-cssmin": "0.6.1",
         "grunt-contrib-jshint": "0.7.2",
         "grunt-jsbeautifier": "0.2.2",
-        "walkdir": "0.0.5",
         "which": "1.0.5"
     },
     "engines": {

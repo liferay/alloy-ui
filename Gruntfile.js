@@ -26,8 +26,10 @@ module.exports = function(grunt) {
         },
 
         'api-include': {
-            'src': path.join(ROOT, 'src-temp'),
-            'repo': path.join(ROOT, '<%= pkg.dependencies["alloyui.com"].folder %>')
+            'all': {
+                'src': ['src-temp/*/js/*.js'],
+                'repo': path.join(ROOT, '<%= pkg.dependencies["alloyui.com"].folder %>')
+            }
         },
 
         'api-push': {
