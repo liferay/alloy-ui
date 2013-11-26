@@ -18,7 +18,7 @@ var Lang = A.Lang,
  * @class A.ColorPickerPopover
  * @extends A.Popover
  * @uses A.ColorPickerBase, A.WidgetAutohide, A.WidgetCssClass, A.WidgetToggle
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */

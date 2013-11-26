@@ -22,7 +22,7 @@ var AArray = A.Array,
      *
      * @class A.HSVAPaletteModal
      * @extends A.Modal
-     * @param config {Object} Object literal specifying widget configuration
+     * @param {Object} config Object literal specifying widget configuration
      *     properties.
      * @constructor
      */

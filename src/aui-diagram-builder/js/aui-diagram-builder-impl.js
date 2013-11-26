@@ -185,7 +185,7 @@ var Lang = A.Lang,
  *
  * @class A.DiagramBuilder
  * @extends A.DiagramBuilderBase
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -1318,7 +1318,7 @@ A.DiagramBuilder.types = {};
  *
  * @class A.DiagramNodeManagerBase
  * @extends Base
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -1350,7 +1350,7 @@ A.DiagramNodeManager = new DiagramNodeManagerBase();
  *
  * @class A.DiagramNode
  * @extends Overlay
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -2831,7 +2831,7 @@ A.DiagramBuilder.types[NODE] = A.DiagramNode;
  *
  * @class A.DiagramNodeState
  * @extends A.DiagramNode
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -2948,7 +2948,7 @@ A.DiagramBuilder.types[STATE] = A.DiagramNodeState;
  *
  * @class A.DiagramNodeCondition
  * @extends A.DiagramNodeState
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -3048,7 +3048,7 @@ A.DiagramBuilder.types[CONDITION] = A.DiagramNodeCondition;
  *
  * @class A.DiagramNodeStart
  * @extends A.DiagramNodeState
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -3102,7 +3102,7 @@ A.DiagramBuilder.types[START] = A.DiagramNodeStart;
  *
  * @class A.DiagramNodeEnd
  * @extends A.DiagramNodeState
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -3156,7 +3156,7 @@ A.DiagramBuilder.types[END] = A.DiagramNodeEnd;
  *
  * @class A.DiagramNodeJoin
  * @extends A.DiagramNodeState
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -3240,7 +3240,7 @@ A.DiagramBuilder.types[JOIN] = A.DiagramNodeJoin;
  *
  * @class A.DiagramNodeFork
  * @extends A.DiagramNodeState
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -3324,7 +3324,7 @@ A.DiagramBuilder.types[FORK] = A.DiagramNodeFork;
  *
  * @class A.DiagramNodeTask
  * @extends A.DiagramNodeState
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */

@@ -34,7 +34,7 @@ var Lang = A.Lang,
  * @class A.Component
  * @extends Widget
  * @uses A.WidgetCssClass, A.WidgetToggle
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */

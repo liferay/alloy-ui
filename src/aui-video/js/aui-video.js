@@ -45,7 +45,7 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/video/).
  *
  * @class A.Video
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */

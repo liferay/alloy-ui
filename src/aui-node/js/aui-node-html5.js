@@ -44,10 +44,10 @@ if (A.UA.ie) {
              * on the document yet.
              *
              * @method IECreateFix
-             * @param {Node | DocumentFragment} frag Fragment to be fixed.
+             * @param {Node|DocumentFragment} frag Fragment to be fixed.
              * @param {String} content HTML to be set (using innerHTML) on the
              *     `frag`.
-             * @return {Node | DocumentFragment}
+             * @return {Node|DocumentFragment}
              */
             IECreateFix: function(frag, content) {
                 var shivedFrag = HTML5._fragHTML5Shived;

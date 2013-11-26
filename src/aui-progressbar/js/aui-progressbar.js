@@ -69,7 +69,7 @@ var L = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/progressbar/).
  *
  * @class A.ProgressBar
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */

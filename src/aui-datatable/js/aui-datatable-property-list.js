@@ -31,7 +31,7 @@ var Lang = A.Lang,
  * @class A.PropertyList
  * @extends DataTable
  * @uses A.WidgetCssClass, A.WidgetToggle
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */

@@ -21,7 +21,7 @@ var Lang = A.Lang,
  * A base class for DateParser.
  *
  * @class A.DateParser
- * @param opt_pattern {String} Mask as strftime string.
+ * @param {String} opt_pattern Mask as strftime string.
  * @constructor
  */
 
@@ -60,7 +60,7 @@ A.mix(DateParser.prototype, {
      * reused to other "compiled" masks.
      *
      * @method compilePattern
-     * @param pattern {String} Mask as strftime string.
+     * @param {String} pattern Mask as strftime string.
      */
     compilePattern: function(pattern) {
         var instance = this,
@@ -123,9 +123,9 @@ A.mix(DateParser.prototype, {
      * JavaScript Date.
      *
      * @method parse
-     * @param mask {String} Mask as strftime string.
-     * @param text {String} Text input to be parsed.
-     * @param opt_date {Date} Optional Date object to be used a base date for
+     * @param {String} mask Mask as strftime string.
+     * @param {String} text Text input to be parsed.
+     * @param {Date} opt_date Optional Date object to be used a base date for
      *     filling the parsed values.
      *
      *  **parse {HTML} (Optional)**
@@ -197,8 +197,7 @@ A.mix(DateParser.prototype, {
      *    * **%Z** time zone name or abbreviation
      *    * **%%** a literal `%` character
      *
-     * @return {Date} native JavaScript Date. Returns `false` if cannot
-     * parse.
+     * @return {Date} Native JavaScript Date. Returns `false` if cannot parse.
      */
     parse: function(text, opt_date) {
         var instance = this,
@@ -264,11 +263,10 @@ A.mix(DateParser.prototype, {
      *
      * @method _expandPattern
      * @protected
-     * @param pattern {String} Mask as strftime string.
-     * @param pos {Array} One position array that holds the text position
-     * number. An array instance is used to keep reference to the position
-     * counter, therefore can be passed to different subparse methods.
-     *
+     * @param {String} pattern Mask as strftime string.
+     * @param {Array} pos One position array that holds the text position
+     *     number. An array instance is used to keep reference to the position
+     *     counter, therefore can be passed to different subparse methods.
      * @return {String} Expanded patter.
      */
     _expandPattern: function(pattern, pos, token) {
@@ -296,12 +294,10 @@ A.mix(DateParser.prototype, {
      *
      * @method _findBestStringMatch
      * @protected
-     * @param val {String} Keyword The string to match to.
-     * @param data {Array} The string array of matching patterns.
-     * @param opt_inverse {Boolean} Inverts the matching test. Instead of test
-     * array values against `val`, tests `val` against the
-     * array values.
-     *
+     * @param {String} val Keyword The string to match to.
+     * @param {Array} data The string array of matching patterns.
+     * @param {Boolean} opt_inverse Inverts the matching test. Instead of test
+     *     array values against `val`, tests `val` against the array values.
      * @return {Number} Best match index. Returns -1 if doesn't find any match.
      */
     _findBestStringMatch: function(val, data, opt_inverse) {
@@ -337,11 +333,10 @@ A.mix(DateParser.prototype, {
      *
      * @method _getCalendarDate
      * @protected
-     * @param data {Array} The string array of matching patterns.
-     * @param opt_date {Date} Date object to be filled.
-     *
-     * @return {Date} Filled date object. Returns `false` if have
-     * nothing to fill.
+     * @param {Array} data The string array of matching patterns.
+     * @param {Date} opt_date Date object to be filled.
+     * @return {Date} Filled date object. Returns `false` if have nothing to
+     *     fill.
      */
     _getCalendarDate: function(calendar, opt_date) {
         var originalDate;
@@ -410,14 +405,13 @@ A.mix(DateParser.prototype, {
      *
      * @method _getNextValue
      * @protected
-     * @param text {String} Input text.
-     * @param textPos {Array} One position array that holds the text position
-     * number. An array instance is used to keep reference to the position
-     * counter, therefore can be passed to different subparse methods.
-     * @param opt_separator {String} If specified is used as boundary of the
-     * next value.
+     * @param {String} text Input text.
+     * @param {Array} textPos One position array that holds the text position
+     *     number. An array instance is used to keep reference to the position
+     *     counter, therefore can be passed to different subparse methods.
+     * @param {String} opt_separator If specified is used as boundary of the
+     *     next value.
      * @param {Boolean} opt_numeric If specified, find only next numeric values.
-     *
      * @return {String} Inferred next value.
      */
     _getNextValue: function(text, textPos, opt_separator, opt_numeric) {
@@ -453,11 +447,10 @@ A.mix(DateParser.prototype, {
      *
      * @method _getNextNumericValue
      * @protected
-     * @param text {String} Input text.
-     * @param textPos {Array} One position array that holds the text position
-     * number. An array instance is used to keep reference to the position
-     * counter, therefore can be passed to different subparse methods.
-     *
+     * @param {String} text Input text.
+     * @param {Array} textPos One position array that holds the text position
+     *     number. An array instance is used to keep reference to the position
+     *     counter, therefore can be passed to different subparse methods.
      * @return {String} Inferred next value.
      */
     _getNextNumericValue: function(text, textPos) {
@@ -472,8 +465,7 @@ A.mix(DateParser.prototype, {
      *
      * @method _getPatternHints
      * @protected
-     * @param token {String} strftime token.
-     *
+     * @param {String} token Strftime token.
      * @return {Object} Hints object. If token is not supported returns false.
      */
     _getPatternHints: function(token) {
@@ -527,8 +519,7 @@ A.mix(DateParser.prototype, {
      *
      * @method _getLangResource
      * @protected
-     * @param token {String} strftime token.
-     *
+     * @param {String} token Strftime token.
      * @return {Object} Resource object.
      */
     _getLangResource: function(token) {
@@ -543,12 +534,11 @@ A.mix(DateParser.prototype, {
      *
      * @method _subparseNumericBlob
      * @protected
-     * @param blob {String} Ambigous numeric value.
-     * @param textPos {Array} One position array that holds the text position
-     * number. An array instance is used to keep reference to the position
-     * counter, therefore can be passed to different subparse methods.
+     * @param {String} blob Ambigous numeric value.
+     * @param {Array} textPos One position array that holds the text position
+     *     number. An array instance is used to keep reference to the position
+     *     counter, therefore can be passed to different subparse methods.
      * @param {Number} i Token position on the compiled array.
-     *
      * @return {String} Non-ambiguous numeric value.
      */
     _subparseNumericBlob: function(blob, textPos, i) {
@@ -582,12 +572,11 @@ A.mix(DateParser.prototype, {
      *
      * @method _subparseStringBlob
      * @protected
-     * @param blob {String} Ambigous string value.
-     * @param textPos {Array} One position array that holds the text position
-     * number. An array instance is used to keep reference to the position
-     * counter, therefore can be passed to different subparse methods.
+     * @param {String} blob Ambigous string value.
+     * @param {Array} textPos One position array that holds the text position
+     *     number. An array instance is used to keep reference to the position
+     *     counter, therefore can be passed to different subparse methods.
      * @param {Number} i Token position on the compiled array.
-     *
      * @return {String} Non-ambiguous string value.
      */
     _subparseStringBlob: function(blob, textPos, i) {
@@ -626,10 +615,10 @@ A.mix(DateParser.prototype, {
      *
      * @method _subparseTimeZone
      * @protected
-     * @param text {String} Input text.
-     * @param textPos {Array} One position array that holds the text position
-     * number. An array instance is used to keep reference to the position
-     * counter, therefore can be passed to different subparse methods.
+     * @param {String} text Input text.
+     * @param {Array} textPos One position array that holds the text position
+     *     number. An array instance is used to keep reference to the position
+     *     counter, therefore can be passed to different subparse methods.
      * @param {Number} i Token position on the compiled array.
      * @return {Object} Found timezone.
      */
@@ -852,9 +841,9 @@ A.Date.dateparser = new A.DateParser();
  * @for Date
  * @method parse
  * @static
- * @param mask {String} Mask as strftime string.
- * @param text {String} Text input to be parsed.
- * @param opt_date {Date} Optional Date object to be used a base date for
+ * @param {String} mask Mask as strftime string.
+ * @param {String} text Text input to be parsed.
+ * @param {Date} opt_date Optional Date object to be used a base date for
  *     filling the parsed values.
  *
  *  **parse {HTML} (Optional)**
