@@ -77,7 +77,8 @@ var Lang = A.Lang,
  *
  * @class A.SchedulerEventRecorder
  * @extends A.SchedulerEvent
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var SchedulerEventRecorder = A.Component.create({

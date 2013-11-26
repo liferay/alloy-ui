@@ -91,7 +91,8 @@ var L = A.Lang,
  *
  * @class A.FormBuilderAvailableField
  * @extends A.AvailableField
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 
@@ -227,7 +228,8 @@ A.FormBuilderAvailableField = FormBuilderAvailableField;
  *
  * @class A.FormBuilder
  * @extends A.DiagramBuilderBase
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var FormBuilder = A.Component.create({
@@ -350,7 +352,8 @@ var FormBuilder = A.Component.create({
         uniqueFieldsMap: null,
 
         /**
-         * Construction logic executed during FormBuilder instantiation. Lifecycle.
+         * Construction logic executed during FormBuilder instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected

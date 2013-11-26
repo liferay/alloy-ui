@@ -107,12 +107,18 @@ grunt watch --src src/aui-module-name
 grunt create
     ```
 
-### Format
+### Format/Lint
 
 * Format JavaScript source code:
 
     ```
 grunt format
+    ```
+
+* Lint JavaScript source code using JSHint.
+
+    ```
+grunt lint
     ```
 
 ### Release
@@ -174,11 +180,15 @@ grunt api-watch
 
 The basic structure of the project is given in the following way:
 
-* `build/` Contains AlloyUI and YUI generated files, once Yogi Alloy's build task has been run. However, this directory is unnecessary for versioning, so it is ignored ([.gitignore](https://github.com/liferay/alloy-ui/tree/2.0.x/.gitignore)).
+* `build/` Contains AlloyUI and YUI generated files, once build task has been run. However, this directory is unnecessary for versioning, so it is ignored ([.gitignore](https://github.com/liferay/alloy-ui/blob/master/.gitignore)).
 * `demos/` Contains basic examples of the AlloyUI modules.
 * `src/` Contains the source code of the AlloyUI modules.
+* `tasks/` Contains the source code of the [Grunt](http://gruntjs.com/) tasks.
 * `.alloy.json` Specifies all dependencies and some configurations.
 * `.editorconfig` Specifies the coding style for different editors/IDEs.
+* `.jsbeautifyrc` Specifies the coding format rules for [JSBeautify](http://jsbeautifier.org/).
+* `.jshintrc` Specifies the linting configurations for [JSHint](http://www.jshint.com/).
+* `.yeti.json` Specifies the testing configurations for [Yeti](http://yeti.cx/).
 * `LICENSE.md` Defines the license agreement for AlloyUI.
 * `README.md` Explains the AlloyUI project.
 * `package.json` Lists all NodeJS dependencies.
@@ -193,4 +203,4 @@ AlloyUI is maintained by these people and a bunch of awesome [contributors](http
 
 ## License
 
-[BSB license](https://github.com/liferay/alloy-ui/tree/2.0.x/LICENSE.md)
+[BSB License](https://github.com/liferay/alloy-ui/blob/master/LICENSE.md) (c) Liferay, Inc.

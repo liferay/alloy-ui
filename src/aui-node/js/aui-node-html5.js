@@ -45,7 +45,8 @@ if (A.UA.ie) {
              *
              * @method IECreateFix
              * @param {Node | DocumentFragment} frag Fragment to be fixed.
-             * @param {String} content HTML to be set (using innerHTML) on the `frag`.
+             * @param {String} content HTML to be set (using innerHTML) on the
+             *     `frag`.
              * @return {Node | DocumentFragment}
              */
             IECreateFix: function(frag, content) {
@@ -61,12 +62,11 @@ if (A.UA.ie) {
             },
 
             /**
-             * AOP listener to the A.DOM._create method. This method
-             * intercepts all the calls to the A.DOM._create and append the
-             * generated fragment to <a
-             * href="A.HTML5.html#property_A.HTML._fragHTML5Shived">A.HTML._fragHTML5Shived</a>,
-             * this fixes the IE bug for painting the HTML5 nodes on the HTML
-             * fragment.
+             * AOP listener to the A.DOM._create method. This method intercepts
+             * all the calls to the A.DOM._create and append the generated
+             * fragment to [A.HTML._fragHTML5Shived](A.HTML5.html#property__frag
+             * HTML5Shived), this fixes the IE bug for painting the HTML5 nodes
+             * on the HTML fragment.
              *
              * @method _doBeforeCreate
              * @param {String} html HTML content

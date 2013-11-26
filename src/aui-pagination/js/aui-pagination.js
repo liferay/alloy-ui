@@ -1,5 +1,6 @@
 /**
- * The Pagination widget provides a set of controls to navigate through paged data.
+ * The Pagination widget provides a set of controls to navigate through paged
+ * data.
  *
  * @module aui-pagination
  */
@@ -42,7 +43,8 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/pagination/).
  *
  * @class A.Pagination
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var Pagination = A.Component.create({

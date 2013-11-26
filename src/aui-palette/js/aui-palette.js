@@ -47,7 +47,8 @@ var Lang = A.Lang,
      *
      * @class A.Palette
      * @extends Widget
-     * @param config {Object} Object literal specifying widget configuration properties.
+     * @param config {Object} Object literal specifying widget configuration
+     *     properties.
      * @constructor
      */
     Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
@@ -133,7 +134,9 @@ var Lang = A.Lang,
          * Returns an item in the Palette by its value.
          *
          * @method getItemByValue
-         * @param {Object|Number|String} value If the value is an object, it should contain a property called "value" which will be used to retrieve the item.
+         * @param {Object|Number|String} value If the value is an object, it
+         *     should contain a property called "value" which will be used to
+         *     retrieve the item.
          * @return {Object} The palette item
          */
         getItemByValue: function(value) {
@@ -168,7 +171,8 @@ var Lang = A.Lang,
          * Selects an item in the Palette.
          *
          * @method select
-         * @param {Number|Object} valueOrIndex The value or index of the item which should be selected
+         * @param {Number|Object} valueOrIndex The value or index of the item
+         *     which should be selected
          */
         select: function(valueOrIndex) {
             var instance = this;
@@ -177,7 +181,9 @@ var Lang = A.Lang,
         },
 
         /**
-         * Toggles the section of an item. The item must be specified by its value or index. A second param indicates if the selection should be forced.
+         * Toggles the section of an item. The item must be specified by its
+         * value or index. A second param indicates if the selection should be
+         * forced.
          *
          * @method toggleSelection
          * @param {Number|Object} valueOrIndex The value or index of the item
@@ -224,7 +230,9 @@ var Lang = A.Lang,
          * Unselects the previous item and selects a new one.
          *
          * @method _afterSelectedChange
-         * @param {CustomEvent} event The event fired. Contains the previous selected element as `prevVal` property and the new selected item as `newVal`
+         * @param {CustomEvent} event The event fired. Contains the previous
+         *     selected element as `prevVal` property and the new selected item
+         *     as `newVal`
          * @protected
          */
         _afterSelectedChange: function(event) {
@@ -274,8 +282,8 @@ var Lang = A.Lang,
         },
 
         /**
-         * The default function which executes after `select` event.
-         * By default updates the `selected` property with the index of the selected item.
+         * The default function which executes after `select` event. By default
+         * updates the `selected` property with the index of the selected item.
          *
          * @method _defSelectFn
          * @param {CustomEvent} event The fired event
@@ -306,7 +314,9 @@ var Lang = A.Lang,
         },
 
         /**
-         * Generates and retrieves the whole content of the Palette. The function uses the Formatter from `formatter` property to format the content.
+         * Generates and retrieves the whole content of the Palette. The
+         * function uses the Formatter from `formatter` property to format the
+         * content.
          *
          * @method _getContent
          * @param {Array} items The items in the Palette
@@ -400,8 +410,8 @@ var Lang = A.Lang,
          * @method _getPaletteContent
          * @param {Array} items Palette items
          * @param {String} content The generated content
-         * @protected
-         * return {String} The final content of the Palette according to the Container Template
+         * @protected return {String} The final content of the Palette according
+         * to the Container Template
          */
         _getPaletteContent: function(items, content) {
             var instance = this;
@@ -415,7 +425,8 @@ var Lang = A.Lang,
         },
 
         /**
-         * Retrieves the content of a row (the container of the items) in the Palette.
+         * Retrieves the content of a row (the container of the items) in the
+         * Palette.
          *
          * @method _getRowContent
          * @param {Array} items The items of the Palette
@@ -491,7 +502,8 @@ var Lang = A.Lang,
         },
 
         /**
-         * Calculates the needed `columns`, generates the content and adds the content of the `contentBox` of the Palette.
+         * Calculates the needed `columns`, generates the content and adds the
+         * content of the `contentBox` of the Palette.
          *
          * @method _uiSetItems
          * @param {Array} val The items of the Palette
@@ -566,12 +578,15 @@ var Lang = A.Lang,
         ATTRS: {
 
             /**
-             * Specifies how many columns should contain the Palette.
-             * If the value is a positive number, the Palette will generate as many columns as specified in this property and it will fit
-             * the provided `items` in these columns.
+             * Specifies how many columns should contain the Palette. If the
+             * value is a positive number, the Palette will generate as many
+             * columns as specified in this property and it will fit the
+             * provided `items` in these columns.
              *
              * @attribute columns
-             * @default -1 Value of -1 means the items won't be fit in columns. Otherwise, the items will be rendered in the provided number of columns
+             * @default -1 Value of -1 means the items won't be fit in columns.
+             *     Otherwise, the items will be rendered in the provided number
+             *     of columns
              * @type Number
              */
             columns: {
@@ -589,7 +604,8 @@ var Lang = A.Lang,
             containerNode: {},
 
             /**
-             * Provides a function, which will be used to format the content during Palette creation.
+             * Provides a function, which will be used to format the content
+             * during Palette creation.
              *
              * @attribute formatter
              * @type Function
@@ -600,7 +616,8 @@ var Lang = A.Lang,
             },
 
             /**
-             * An array of Palette items. These items will be rendered in the Palette according to the specified `columns`.
+             * An array of Palette items. These items will be rendered in the
+             * Palette according to the specified `columns`.
              *
              * @attribute items
              * @default []
@@ -623,7 +640,8 @@ var Lang = A.Lang,
             },
 
             /**
-             * If true, on user interaction if the user clicks on an already selected element, it will be unselected.
+             * If true, on user interaction if the user clicks on an already
+             * selected element, it will be unselected.
              *
              * @attribute toggleSelection
              * @default true

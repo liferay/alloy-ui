@@ -34,7 +34,8 @@ var Lang = A.Lang,
  * @class A.Component
  * @extends Widget
  * @uses A.WidgetCssClass, A.WidgetToggle
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var Component = A.Base.create(_NAME, A.Widget, [

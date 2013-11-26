@@ -37,7 +37,8 @@ var Lang = A.Lang,
  *
  * @class A.MediaViewerPlugin
  * @extends Plugin.Base
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var MediaViewerPlugin = A.Component.create({
@@ -126,7 +127,8 @@ var MediaViewerPlugin = A.Component.create({
     prototype: {
 
         /**
-         * Construction logic executed during MediaViewerPlugin instantiation. Lifecycle.
+         * Construction logic executed during MediaViewerPlugin instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @param config

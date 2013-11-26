@@ -98,7 +98,8 @@ var L = A.Lang,
  *
  * @class A.FormBuilderFieldBase
  * @uses A.FieldSupport
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var FormBuilderFieldBase = A.Component.create({
@@ -127,7 +128,8 @@ var FormBuilderFieldBase = A.Component.create({
  *
  * @class A.FormBuilderField
  * @extends A.FormBuilderFieldBase
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var FormBuilderField = A.Component.create({
@@ -574,7 +576,8 @@ var FormBuilderField = A.Component.create({
         BOUNDING_TEMPLATE: TPL_BOUNDING_BOX,
 
         /**
-         * Construction logic executed during FormBuilderField instantiation. Lifecycle.
+         * Construction logic executed during FormBuilderField instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected
@@ -638,7 +641,8 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * Destructor lifecycle implementation for the FormBuilderField class. Lifecycle.
+         * Destructor lifecycle implementation for the FormBuilderField class.
+         * Lifecycle.
          *
          * @method destructor
          * @protected
@@ -726,7 +730,8 @@ var FormBuilderField = A.Component.create({
             AArray.each(propertyModel, function(property) {
                 var attribute = property.attributeName;
 
-                // TODO - Change checking to use hashes O(1) instead of indexOf arrays O(N)
+                // TODO - Change checking to use hashes O(1) instead of indexOf
+                // arrays O(N)
                 if (AArray.indexOf(hiddenAttributes, attribute) > -1) {
                     return;
                 }
@@ -740,7 +745,8 @@ var FormBuilderField = A.Component.create({
 
                 property.value = value;
 
-                // TODO - Change checking to use hashes O(1) instead of indexOf arrays O(N)
+                // TODO - Change checking to use hashes O(1) instead of indexOf
+                // arrays O(N)
                 if (AArray.indexOf(readOnlyAttributes, attribute) > -1) {
                     property.readOnly = true;
                 }

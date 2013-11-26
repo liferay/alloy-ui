@@ -83,8 +83,8 @@ ButtonExt.ATTRS = {
     },
 
     /**
-     * Contains a CSS class of the icon to use. A list of icons
-     * can be found [here](http://liferay.github.io/alloy-bootstrap/base-css.html#icons).
+     * Contains a CSS class of the icon to use. A list of icons can be found
+     * [here](http://liferay.github.io/alloy-bootstrap/base-css.html#icons).
      *
      * @attribute icon
      * @type {String}

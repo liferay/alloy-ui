@@ -25,7 +25,8 @@ var Lang = A.Lang,
  * A base class for DatePickerBase.
  *
  * @class A.DatePickerBase
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 
@@ -99,7 +100,8 @@ A.mix(DatePickerBase.prototype, {
     calendar: null,
 
     /**
-     * Construction logic executed during DatePickerBase instantiation. Lifecycle.
+     * Construction logic executed during DatePickerBase instantiation.
+     * Lifecycle.
      *
      * @method initializer
      * @protected
@@ -314,7 +316,8 @@ A.DatePickerBase = DatePickerBase;
  * @class A.DatePicker
  * @extends Base
  * @uses A.DatePickerDelegate, A.DatePickerPopover, A.DatePickerBase
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 A.DatePicker = A.Base.create('datepicker', A.Base, [A.DatePickerDelegate, A.DatePickerPopover, A.DatePickerBase]);

@@ -13,9 +13,12 @@ var Lang = A.Lang,
 
     AArray = A.Array,
 
-    // The first Bernstein basis polynomials (n=3), http://en.wikipedia.org/wiki/B%C3%A9zier_curve
-    // The t in the function for a linear Bézier curve can be thought of as describing how far B(t) is from P0 to P1.
-    // For example when t=0.25, B(t) is one quarter of the way from point P0 to P1. As t varies from 0 to 1, B(t) describes a straight line from P0 to P1.
+    // The first Bernstein basis polynomials (n=3),
+    // http://en.wikipedia.org/wiki/B%C3%A9zier_curve The t in the function for
+    // a linear Bézier curve can be thought of as describing how far B(t) is
+    // from P0 to P1. For example when t=0.25, B(t) is one quarter of the way
+    // from point P0 to P1. As t varies from 0 to 1, B(t) describes a straight
+    // line from P0 to P1.
     B1 = function(t) {
         return (t * t * t);
     },
@@ -29,7 +32,8 @@ var Lang = A.Lang,
         return ((1 - t) * (1 - t) * (1 - t));
     },
 
-    // Find a Cubic Bezier point based on the control points. Consider the first two control points as the start and end point respectively.
+    // Find a Cubic Bezier point based on the control points. Consider the first
+    // two control points as the start and end point respectively.
     getCubicBezier = function(t, startPos, endPos, cp1, cp2) {
         var x = startPos[0] * B1(t) + cp1[0] * B2(t) + cp2[0] * B3(t) + endPos[0] * B4(t);
         var y = startPos[1] * B1(t) + cp1[1] * B2(t) + cp2[1] * B3(t) + endPos[1] * B4(t);
@@ -149,7 +153,8 @@ A.PolygonUtil = {
  *
  * @class A.Connector
  * @extends Base
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 A.Connector = A.Base.create('line', A.Base, [], {
@@ -256,8 +261,9 @@ A.Connector = A.Base.create('line', A.Base, [], {
         shape.curveTo.apply(shape, cp);
         shape.end();
 
-        // Extract the angle from a segment of the current Cubic Bezier curve to rotate the arrow.
-        // The segment should be an extremities for better angle extraction, on this particular case t = [0 to 0.025].
+        // Extract the angle from a segment of the current Cubic Bezier curve to
+        // rotate the arrow. The segment should be an extremities for better
+        // angle extraction, on this particular case t = [0 to 0.025].
         var xy1 = getCubicBezier(0, [x1, y1], [x2, y2], [cp[0], cp[1]], [cp[2], cp[3]]),
             xy2 = getCubicBezier(0.075, [x1, y1], [x2, y2], [cp[0], cp[1]], [cp[2], cp[3]]),
             centerXY = getCubicBezier(0.5, [x1, y1], [x2, y2], [cp[0], cp[1]], [cp[2], cp[3]]);

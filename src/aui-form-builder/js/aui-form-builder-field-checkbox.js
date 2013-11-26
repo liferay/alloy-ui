@@ -45,7 +45,8 @@ var L = A.Lang,
  *
  * @class A.FormBuilderCheckBoxField
  * @extends A.FormBuilderField
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var FormBuilderCheckBoxField = A.Component.create({

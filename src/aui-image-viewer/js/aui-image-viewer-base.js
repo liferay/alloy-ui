@@ -144,8 +144,9 @@ var L = A.Lang,
  * @class A.ImageViewer
  * @extends Widget
  * @uses A.WidgetStdMod, A.WidgetPosition, A.WidgetStack, A.WidgetPositionAlign,
- * A.WidgetPositionConstrain, A.WidgetModality
- * @param config {Object} Object literal specifying widget configuration properties.
+ *     A.WidgetPositionConstrain, A.WidgetModality
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var ImageViewer = A.Base.create(
@@ -301,7 +302,8 @@ var ImageViewer = A.Base.create(
                 var image0 = placeholder.clone();
                 var image1 = placeholder.clone();
 
-                // bind the onLoad handler to the image, this handler should append the loaded image
+                // bind the onLoad handler to the image, this handler should
+                // append the loaded image
                 var onload = A.bind(instance._onLoadImage, instance);
 
                 image0.on('load', onload);
@@ -326,8 +328,8 @@ var ImageViewer = A.Base.create(
             activeImagePool.push(activeImagePool.shift(image));
 
             // set the src of the image to be loaded on the placeholder image.
-            // dataURI allows cached images to refire load event in webkit, and bypass
-            // the MimeType error (c/o Paul Irish & Doug Jones)
+            // dataURI allows cached images to refire load event in webkit, and
+            // bypass the MimeType error (c/o Paul Irish & Doug Jones)
             if (A.UA.webkit) {
                 image.attr(SRC, 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==');
             }
@@ -632,11 +634,13 @@ var ImageViewer = A.Base.create(
 
             if (instance.get(VISIBLE)) {
                 if (instance.get(SHOW_CONTROLS)) {
-                    // get the viewportRegion to centralize the controls on the middle of the window viewport
+                    // get the viewportRegion to centralize the controls on the
+                    // middle of the window viewport
                     var viewportRegion = boundingBox.get(VIEWPORT_REGION);
                     var heightRegion = Math.floor(viewportRegion.height / 2) + viewportRegion.top;
 
-                    // show or hide controls based on the hasPrev/hasNext information
+                    // show or hide controls based on the hasPrev/hasNext
+                    // information
                     controlLeftEl[instance.hasPrev() ? SHOW : HIDE]();
                     controlRightEl[instance.hasNext() ? SHOW : HIDE]();
 
@@ -1035,8 +1039,8 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * If `true` the [caption](A.ImageViewer.html#attr_caption) will be pulled
-             * from the title DOM attribute.
+             * If `true` the [caption](A.ImageViewer.html#attr_caption) will be
+             * pulled from the title DOM attribute.
              *
              * @attribute captionFromTitle
              * @default true
@@ -1170,7 +1174,8 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * Preload all images grabbed from the [links](A.ImageViewer.html#attr_links) attribute.
+             * Preload all images grabbed from the
+             * [links](A.ImageViewer.html#attr_links) attribute.
              *
              * @attribute preloadAllImages
              * @default false
@@ -1182,8 +1187,8 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * Preload the neighbor image (i.e., the previous and next image based
-             * on the current load one).
+             * Preload the neighbor image (i.e., the previous and next image
+             * based on the current load one).
              *
              * @attribute preloadAllImages
              * @default false
@@ -1230,7 +1235,8 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * Helper attribute to get the `size` of the [links](A.ImageViewer.html#attr_links) NodeList.
+             * Helper attribute to get the `size` of the
+             * [links](A.ImageViewer.html#attr_links) NodeList.
              *
              * @attribute totalLinks
              * @default true

@@ -56,7 +56,8 @@ var Lang = A.Lang,
  *
  * @class A.Carousel
  * @uses A.Component
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var Carousel = A.Component.create({

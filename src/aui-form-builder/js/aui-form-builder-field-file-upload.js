@@ -30,7 +30,8 @@ var L = A.Lang,
  *
  * @class A.FormBuilderFileUploadField
  * @extends A.FormBuilderField
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var FormBuilderFileUploadField = A.Component.create({

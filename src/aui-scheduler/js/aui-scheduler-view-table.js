@@ -162,7 +162,8 @@ var Lang = A.Lang,
  *
  * @class A.SchedulerTableView
  * @extends A.SchedulerView
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var SchedulerTableView = A.Component.create({
@@ -378,7 +379,8 @@ var SchedulerTableView = A.Component.create({
         rowDataTableStack: null,
 
         /**
-         * Construction logic executed during SchedulerTableView instantiation. Lifecycle.
+         * Construction logic executed during SchedulerTableView instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected

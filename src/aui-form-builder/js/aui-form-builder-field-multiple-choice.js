@@ -55,7 +55,8 @@ var Lang = A.Lang,
  *
  * @class A.OptionsEditor
  * @extends A.RadioCellEditor
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var OptionsEditor = A.Component.create({
@@ -104,7 +105,8 @@ var OptionsEditor = A.Component.create({
         ELEMENT_TEMPLATE: '<div class="' + CSS_FORM_BUILDER_OPTIONS_EDITOR_HIDDEN + '"></div>',
 
         /**
-         * Construction logic executed during OptionsEditor instantiation. Lifecycle.
+         * Construction logic executed during OptionsEditor instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected
@@ -139,7 +141,8 @@ var OptionsEditor = A.Component.create({
  *
  * @class A.FormBuilderMultipleChoiceField
  * @extends A.FormBuilderField
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var FormBuilderMultipleChoiceField = A.Component.create({

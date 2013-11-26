@@ -29,7 +29,8 @@ var Lang = A.Lang,
  *
  * @class A.TooltipDelegate
  * @extends Base
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 A.TooltipDelegate = A.Base.create(_TOOLTIP_DELEGATE, A.Base, [], {
@@ -38,7 +39,8 @@ A.TooltipDelegate = A.Base.create(_TOOLTIP_DELEGATE, A.Base, [], {
     tooltip: null,
 
     /**
-     * Construction logic executed during TooltipDelegate instantiation. Lifecycle.
+     * Construction logic executed during TooltipDelegate instantiation.
+     * Lifecycle.
      *
      * @method initializer
      * @protected

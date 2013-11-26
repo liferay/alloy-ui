@@ -24,7 +24,8 @@ var L = A.Lang,
  *
  * @class A.CharCounter
  * @extends Base
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var CharCounter = A.Component.create({
@@ -58,7 +59,8 @@ var CharCounter = A.Component.create({
         },
 
         /**
-         * Max number of characters the [input](A.CharCounter.html#attr_input) can have.
+         * Max number of characters the [input](A.CharCounter.html#attr_input)
+         * can have.
          *
          * @attribute maxLength
          * @default Infinity
@@ -97,7 +99,8 @@ var CharCounter = A.Component.create({
     prototype: {
 
         /**
-         * Event handler for the input [aui-event](../modules/aui-event.html) event.
+         * Event handler for the input [aui-event](../modules/aui-event.html)
+         * event.
          *
          * @property handler
          * @type EventHandle
@@ -106,7 +109,8 @@ var CharCounter = A.Component.create({
         handler: null,
 
         /**
-         * Construction logic executed during CharCounter instantiation. Lifecycle.
+         * Construction logic executed during CharCounter instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected
@@ -174,9 +178,10 @@ var CharCounter = A.Component.create({
         },
 
         /**
-         * Check the current value of the [input](A.CharCounter.html#attr_input),
-         * truncate the data if needed, and re-sync the UI.
-         * Fired from [_onInputChange](A.CharCounter.html#method__onInputChange).
+         * Check the current value of the
+         * [input](A.CharCounter.html#attr_input), truncate the data if needed,
+         * and re-sync the UI. Fired from
+         * [_onInputChange](A.CharCounter.html#method__onInputChange).
          *
          * @method checkLength
          */
@@ -226,7 +231,8 @@ var CharCounter = A.Component.create({
          * Setter for [maxLength](A.CharCounter.html#attr_maxLength).
          *
          * @method _setMaxLength
-         * @param {Number} v Value of the new [maxLength](A.CharCounter.html#attr_maxLength).
+         * @param {Number} v Value of the new
+         *     [maxLength](A.CharCounter.html#attr_maxLength).
          * @protected
          * @return {Number}
          */

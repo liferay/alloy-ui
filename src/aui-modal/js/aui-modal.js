@@ -43,8 +43,10 @@ var Lang = A.Lang,
  * @class A.Modal
  * @extends Widget
  * @uses A.WidgetPosition, A.WidgetStdMod, A.WidgetAutohide, A.WidgetToolbars,
- * A.WidgetModality, A.WidgetPositionAlign, A.WidgetPositionConstrain, A.WidgetStack
- * @param config {Object} Object literal specifying widget configuration properties.
+ *     A.WidgetModality, A.WidgetPositionAlign, A.WidgetPositionConstrain,
+ *     A.WidgetStack
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 A.Modal = A.Base.create(MODAL, A.Widget, [
@@ -330,8 +332,9 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
         /**
          * Determine the content of Modal's body section.
          *
-         * Temporary fix for widget-stdmod bug when bodyContent initializes empty.
-         * this._currFillNode is never updated if _uiSetFillHeight is not called.
+         * Temporary fix for widget-stdmod bug when bodyContent initializes
+         * empty. this._currFillNode is never updated if _uiSetFillHeight is not
+         * called.
          *
          * @attribute bodyContent
          * @default ''

@@ -47,7 +47,8 @@ var Lang = A.Lang,
  *
  * @class A.TogglerDelegate
  * @extends Base
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var TogglerDelegate = A.Component.create({
@@ -170,7 +171,8 @@ var TogglerDelegate = A.Component.create({
         items: null,
 
         /**
-         * Construction logic executed during TogglerDelegate instantiation. Lifecycle.
+         * Construction logic executed during TogglerDelegate instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected
@@ -216,7 +218,8 @@ var TogglerDelegate = A.Component.create({
         },
 
         /**
-         * Destructor lifecycle implementation for the TogglerDelegate class. Lifecycle.
+         * Destructor lifecycle implementation for the TogglerDelegate class.
+         * Lifecycle.
          *
          * @method destructor
          * @protected
@@ -346,7 +349,8 @@ var TogglerDelegate = A.Component.create({
             var instance = this,
                 expanded = instance.get(EXPANDED);
 
-            // Prioritize markup information to decide whether it's expanded or not
+            // Prioritize markup information to decide whether it's expanded or
+            // not
             if (header.hasClass(CSS_TOGGLER_HEADER_EXPANDED)) {
                 expanded = true;
             }

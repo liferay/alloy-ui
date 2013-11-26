@@ -10,7 +10,8 @@
  *
  * @class A.SchedulerEvents
  * @extends ModelList
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 A.SchedulerEvents = A.Base.create('scheduler-events', A.ModelList, [], {
@@ -48,7 +49,8 @@ A.SchedulerEvents = A.Base.create('scheduler-events', A.ModelList, [], {
  * A base class for SchedulerEventSupport.
  *
  * @class A.SchedulerEventSupport
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var SchedulerEventSupport = function() {};
@@ -71,7 +73,8 @@ A.mix(SchedulerEventSupport.prototype, {
     eventsModel: A.SchedulerEvents,
 
     /**
-     * Construction logic executed during SchedulerEventSupport instantiation. Lifecycle.
+     * Construction logic executed during SchedulerEventSupport instantiation.
+     * Lifecycle.
      *
      * @method initializer
      * @param config
@@ -286,7 +289,8 @@ A.SchedulerEventSupport = SchedulerEventSupport;
  *
  * @class A.SchedulerBase
  * @uses A.SchedulerEventSupport, A.WidgetStdMod
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var SchedulerBase = A.Component.create({
@@ -519,7 +523,8 @@ var SchedulerBase = A.Component.create({
         viewStack: null,
 
         /**
-         * Construction logic executed during SchedulerBase instantiation. Lifecycle.
+         * Construction logic executed during SchedulerBase instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected

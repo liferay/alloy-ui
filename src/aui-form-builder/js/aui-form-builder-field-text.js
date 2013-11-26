@@ -46,7 +46,8 @@ var L = A.Lang,
  *
  * @class A.FormBuilderTextField
  * @extends A.FormBuilderField
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var FormBuilderTextField = A.Component.create({

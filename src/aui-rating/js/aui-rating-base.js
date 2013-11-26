@@ -65,7 +65,8 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/rating/).
  *
  * @class A.Rating
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var Rating = A.Component.create({
@@ -412,7 +413,8 @@ var Rating = A.Component.create({
          *
          * @method fillTo
          * @param {Number} index Index to be selected
-         * @param {String} className Class name to be applied when fill the Rating elements
+         * @param {String} className Class name to be applied when fill the
+         *     Rating elements
          */
         fillTo: function(index, className) {
             var instance = this,
@@ -455,8 +457,9 @@ var Rating = A.Component.create({
             var instance = this,
                 domTarget = event.domEvent.target;
 
-            // checks if the widget is not disabled and if the dom event is firing with a item as target
-            // do not fire custom events for other elements into the boundingBox
+            // checks if the widget is not disabled and if the dom event is
+            // firing with a item as target do not fire custom events for other
+            // elements into the boundingBox
             return !instance.get(DISABLED) && domTarget.test('a');
         },
 
@@ -651,7 +654,8 @@ var Rating = A.Component.create({
                         var labelEl = labels.filter('[for="' + id + '"]');
 
                         if (labelEl.size()) {
-                            // if there is, extract the content of the label to use as content of the anchors...
+                            // if there is, extract the content of the label to
+                            // use as content of the anchors...
                             label = labelEl.item(0).html();
                         }
                     }
@@ -700,7 +704,8 @@ var Rating = A.Component.create({
                 contentBox = instance.get(CONTENT_BOX),
                 elements = instance.get(ELEMENTS);
 
-            // if there are no elements in the markup, create them based on the size attribute
+            // if there are no elements in the markup, create them based on the
+            // size attribute
             if (!elements || !elements.size()) {
                 elements = instance._createElements();
 
@@ -711,7 +716,9 @@ var Rating = A.Component.create({
                 function(element, i) {
                     var data = instance._getInputData(i),
                         content = data.content,
-                        // try to use the pulled title data from the dom, otherwise use the TITLE attr, in the last case use the content
+                        // try to use the pulled title data from the dom,
+                        // otherwise use the TITLE attr, in the last case use
+                        // the content
                         title = data.title || instance.get(TITLE) || content;
 
                     // setting the title
@@ -754,8 +761,7 @@ var Rating = A.Component.create({
         },
 
         /**
-         * Get the `index` element input data stored on <a
-         * href="Rating.html#property_inputElementsData">inputElementsData</a>.
+         * Get the `index` element input data stored on `inputElementsData`.
          *
          * @method _getInputData
          * @protected
@@ -825,7 +831,8 @@ var Rating = A.Component.create({
         },
 
         /**
-         * Fire after the value of the [label](A.Rating.html#attr_label) attribute change.
+         * Fire after the value of the [label](A.Rating.html#attr_label)
+         * attribute change.
          *
          * @method _afterSetLabel
          * @param {EventFacade} event

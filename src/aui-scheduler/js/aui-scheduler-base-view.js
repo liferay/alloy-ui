@@ -10,7 +10,8 @@
  *
  * @class A.SchedulerView
  * @uses A.WidgetStdMod
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var SchedulerView = A.Component.create({
@@ -198,7 +199,8 @@ var SchedulerView = A.Component.create({
     prototype: {
 
         /**
-         * Construction logic executed during SchedulerView instantiation. Lifecycle.
+         * Construction logic executed during SchedulerView instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected

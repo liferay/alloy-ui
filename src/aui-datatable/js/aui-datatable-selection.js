@@ -38,7 +38,8 @@ var Lang = A.Lang,
  * A base class for DataTableSelection.
  *
  * @class A.DataTableSelection
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var DataTableSelection = function() {};
@@ -110,7 +111,8 @@ A.mix(DataTableSelection.prototype, {
     _selectionStart: null,
 
     /**
-     * Construction logic executed during DataTableSelection instantiation. Lifecycle.
+     * Construction logic executed during DataTableSelection instantiation.
+     * Lifecycle.
      *
      * @method initializer
      * @protected

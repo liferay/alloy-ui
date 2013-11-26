@@ -235,7 +235,8 @@ var Lang = A.Lang,
  *
  * @class A.SchedulerDayView
  * @extends A.SchedulerView
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var SchedulerDayView = A.Component.create({
@@ -567,7 +568,8 @@ var SchedulerDayView = A.Component.create({
     prototype: {
 
         /**
-         * Construction logic executed during SchedulerDayView instantiation. Lifecycle.
+         * Construction logic executed during SchedulerDayView instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected

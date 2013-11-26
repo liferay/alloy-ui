@@ -185,7 +185,8 @@ var Lang = A.Lang,
  *
  * @class A.DiagramBuilder
  * @extends A.DiagramBuilderBase
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var DiagramBuilder = A.Component.create({
@@ -345,7 +346,8 @@ var DiagramBuilder = A.Component.create({
         selectedNode: null,
 
         /**
-         * Construction logic executed during DiagramBuilder instantiation. Lifecycle.
+         * Construction logic executed during DiagramBuilder instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected
@@ -567,7 +569,8 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * Destructor lifecycle implementation for the DiagramBuilder class. Lifecycle.
+         * Destructor lifecycle implementation for the DiagramBuilder class.
+         * Lifecycle.
          *
          * @method destructor
          * @param attribute
@@ -1074,7 +1077,8 @@ var DiagramBuilder = A.Component.create({
         _onNodeEdit: function(event) {
             var instance = this;
 
-            // Only enable editing if the double clicked node is inside the node contentBox.
+            // Only enable editing if the double clicked node is inside the node
+            // contentBox.
             if (!event.target.ancestor(_DOT + CSS_DIAGRAM_NODE_CONTENT, true)) {
                 return;
             }
@@ -1314,7 +1318,8 @@ A.DiagramBuilder.types = {};
  *
  * @class A.DiagramNodeManagerBase
  * @extends Base
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var DiagramNodeManagerBase = A.Component.create({
@@ -1345,7 +1350,8 @@ A.DiagramNodeManager = new DiagramNodeManagerBase();
  *
  * @class A.DiagramNode
  * @extends Overlay
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var DiagramNode = A.Component.create({
@@ -1702,7 +1708,8 @@ var DiagramNode = A.Component.create({
         SERIALIZABLE_ATTRS: [DESCRIPTION, NAME, REQUIRED, TYPE, WIDTH, HEIGHT, Z_INDEX, XY],
 
         /**
-         * Construction logic executed during DiagramNode instantiation. Lifecycle.
+         * Construction logic executed during DiagramNode instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected
@@ -1746,7 +1753,8 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * Destructor lifecycle implementation for the DiagramNode class. Lifecycle.
+         * Destructor lifecycle implementation for the DiagramNode class.
+         * Lifecycle.
          *
          * @method destructor
          * @protected
@@ -2700,7 +2708,8 @@ var DiagramNode = A.Component.create({
                 }
             });
 
-            // Drag _unprep method invoke .detachAll() on the node, so we need to rebind the events.
+            // Drag _unprep method invoke .detachAll() on the node, so we need
+            // to rebind the events.
             A.Do.after(instance._bindBoundaryEvents, instance.boundaryDragDelegate.dd, '_unprep', instance);
         },
 
@@ -2822,7 +2831,8 @@ A.DiagramBuilder.types[NODE] = A.DiagramNode;
  *
  * @class A.DiagramNodeState
  * @extends A.DiagramNode
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 A.DiagramNodeState = A.Component.create({
@@ -2938,7 +2948,8 @@ A.DiagramBuilder.types[STATE] = A.DiagramNodeState;
  *
  * @class A.DiagramNodeCondition
  * @extends A.DiagramNodeState
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 A.DiagramNodeCondition = A.Component.create({
@@ -3037,7 +3048,8 @@ A.DiagramBuilder.types[CONDITION] = A.DiagramNodeCondition;
  *
  * @class A.DiagramNodeStart
  * @extends A.DiagramNodeState
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 A.DiagramNodeStart = A.Component.create({
@@ -3090,7 +3102,8 @@ A.DiagramBuilder.types[START] = A.DiagramNodeStart;
  *
  * @class A.DiagramNodeEnd
  * @extends A.DiagramNodeState
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 A.DiagramNodeEnd = A.Component.create({
@@ -3143,7 +3156,8 @@ A.DiagramBuilder.types[END] = A.DiagramNodeEnd;
  *
  * @class A.DiagramNodeJoin
  * @extends A.DiagramNodeState
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 A.DiagramNodeJoin = A.Component.create({
@@ -3226,7 +3240,8 @@ A.DiagramBuilder.types[JOIN] = A.DiagramNodeJoin;
  *
  * @class A.DiagramNodeFork
  * @extends A.DiagramNodeState
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 A.DiagramNodeFork = A.Component.create({
@@ -3309,7 +3324,8 @@ A.DiagramBuilder.types[FORK] = A.DiagramNodeFork;
  *
  * @class A.DiagramNodeTask
  * @extends A.DiagramNodeState
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 A.DiagramNodeTask = A.Component.create({

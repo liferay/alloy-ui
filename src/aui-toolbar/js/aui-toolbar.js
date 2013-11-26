@@ -45,7 +45,8 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/toolbar/).
  *
  * @class A.Toolbar
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 A.Toolbar = A.Component.create({
@@ -322,7 +323,8 @@ A.Toolbar = A.Component.create({
  * Check the [live demo](http://alloyui.com/examples/toolbar/).
  *
  * @class A.ToolbarRenderer
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var ToolbarRenderer = function() {};
@@ -374,8 +376,8 @@ ToolbarRenderer.prototype = {
             // Add node reference support
             buttonNode = A.one(value.boundingBox || value.srcNode);
             if (buttonNode) {
-                // IE6- fails when setting type on created input elements, try to
-                // silently fails when that happens.
+                // IE6- fails when setting type on created input elements, try
+                // to silently fails when that happens.
                 try {
                     // Add type support
                     buttonNode.setAttribute('type', type);

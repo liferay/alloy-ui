@@ -25,7 +25,8 @@ var Lang = A.Lang,
  * A base class for DatePickerNativeBase.
  *
  * @class A.DatePickerNativeBase
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 
@@ -68,7 +69,8 @@ DatePickerNativeBase.ATTRS = {
 DatePickerNativeBase.prototype = {
 
     /**
-     * Construction logic executed during DatePickerNativeBase instantiation. Lifecycle.
+     * Construction logic executed during DatePickerNativeBase instantiation.
+     * Lifecycle.
      *
      * @method initializer
      * @protected
@@ -304,7 +306,8 @@ A.DatePickerNativeBase = DatePickerNativeBase;
  * @class A.DatePickerNative
  * @extends Base
  * @uses A.DatePickerDelegate, A.DatePickerNativeBase
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 A.DatePickerNative = A.Base.create('datepicker-native', A.Base, [A.DatePickerDelegate, A.DatePickerNativeBase]);

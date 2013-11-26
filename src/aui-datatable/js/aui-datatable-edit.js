@@ -128,7 +128,8 @@ var Lang = A.Lang,
  * An extension for A.DataTable to support Cell Editing.
  *
  * @class A.DataTable.CellEditorSupport
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var CellEditorSupport = function() {};
@@ -179,7 +180,8 @@ CellEditorSupport.ATTRS = {
 A.mix(CellEditorSupport.prototype, {
 
     /**
-     * Construction logic executed during CellEditorSupport instantiation. Lifecycle.
+     * Construction logic executed during CellEditorSupport instantiation.
+     * Lifecycle.
      *
      * @method initializer
      * @protected
@@ -278,7 +280,8 @@ A.mix(CellEditorSupport.prototype, {
 
         editor.set(VALUE, event.newVal);
 
-        // TODO: Memorize the activeCell coordinates to set the focus on it instead
+        // TODO: Memorize the activeCell coordinates to set the focus on it
+        // instead
         instance.set(ACTIVE_CELL, instance.get(ACTIVE_CELL));
 
         record.set(column.key, event.newVal);
@@ -365,7 +368,8 @@ A.Base.mix(A.DataTable, [CellEditorSupport]);
  *
  * @class A.BaseCellEditor
  * @extends Overlay
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @abstract
  */
 var BaseCellEditor = A.Component.create({
@@ -600,7 +604,8 @@ var BaseCellEditor = A.Component.create({
         _hDocMouseDownEv: null,
 
         /**
-         * Construction logic executed during BaseCellEditor instantiation. Lifecycle.
+         * Construction logic executed during BaseCellEditor instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected
@@ -1164,7 +1169,8 @@ A.BaseCellEditor = BaseCellEditor;
  *
  * @class A.BaseOptionsCellEditor
  * @extends A.BaseCellEditor
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @abstract
  */
 var BaseOptionsCellEditor = A.Component.create({
@@ -1289,7 +1295,8 @@ var BaseOptionsCellEditor = A.Component.create({
         options: null,
 
         /**
-         * Construction logic executed during BaseOptionsCellEditor instantiation. Lifecycle.
+         * Construction logic executed during BaseOptionsCellEditor
+         * instantiation. Lifecycle.
          *
          * @method initializer
          * @protected
@@ -1702,7 +1709,8 @@ A.BaseOptionsCellEditor = BaseOptionsCellEditor;
  *
  * @class A.TextCellEditor
  * @extends A.BaseCellEditor
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var TextCellEditor = A.Component.create({
@@ -1737,7 +1745,8 @@ A.TextCellEditor = TextCellEditor;
  *
  * @class A.TextAreaCellEditor
  * @extends A.BaseCellEditor
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var TextAreaCellEditor = A.Component.create({
@@ -1772,7 +1781,8 @@ A.TextAreaCellEditor = TextAreaCellEditor;
  *
  * @class A.DropDownCellEditor
  * @extends A.BaseOptionsCellEditor
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var DropDownCellEditor = A.Component.create({
@@ -1886,7 +1896,8 @@ A.DropDownCellEditor = DropDownCellEditor;
  *
  * @class A.CheckboxCellEditor
  * @extends A.BaseOptionsCellEditor
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var CheckboxCellEditor = A.Component.create({
@@ -1986,7 +1997,8 @@ A.CheckboxCellEditor = CheckboxCellEditor;
  *
  * @class A.RadioCellEditor
  * @extends A.CheckboxCellEditor
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var RadioCellEditor = A.Component.create({
@@ -2033,7 +2045,8 @@ A.RadioCellEditor = RadioCellEditor;
  *
  * @class A.DateCellEditor
  * @extends A.BaseCellEditor
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var DateCellEditor = A.Component.create({
@@ -2145,7 +2158,8 @@ var DateCellEditor = A.Component.create({
         ELEMENT_TEMPLATE: '<input class="' + CSS_CELLEDITOR_ELEMENT + '" type="hidden" />',
 
         /**
-         * Construction logic executed during DateCellEditor instantiation. Lifecycle.
+         * Construction logic executed during DateCellEditor instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected

@@ -34,10 +34,12 @@ var StdMod = A.WidgetStdMod,
  *
  * @class A.Popover
  * @extends Widget
- * @uses A.WidgetCssClass, A.WidgetPosition, A.WidgetStdMod, A.WidgetToggle, A.WidgetAutohide,
- * A.WidgetToolbars, A.WidgetModality, A.WidgetPositionAlign, A.WidgetPositionAlignSuggestion,
- * A.WidgetPositionConstrain, A.WidgetStack
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @uses A.WidgetCssClass, A.WidgetPosition, A.WidgetStdMod, A.WidgetToggle,
+ *     A.WidgetAutohide, A.WidgetToolbars, A.WidgetModality,
+ *     A.WidgetPositionAlign, A.WidgetPositionAlignSuggestion,
+ *     A.WidgetPositionConstrain, A.WidgetStack
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 A.Popover = A.Base.create(POPOVER, A.Widget, [

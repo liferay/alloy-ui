@@ -56,7 +56,8 @@ var AArray = A.Array,
  * A base class for ColorPickerBase.
  *
  * @class A.ColorPickerBase
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 
@@ -76,7 +77,8 @@ ColorPickerBase.prototype = {
     _hsvPaletteModal: null,
 
     /**
-     * Construction logic executed during ColorPickerBase instantiation. Lifecycle.
+     * Construction logic executed during ColorPickerBase instantiation.
+     * Lifecycle.
      *
      * @method initializer
      * @protected
@@ -768,8 +770,8 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * Overwrites the default setter for trigger in WidgetTrigger class which invokes A.one, but
-     * we need to support multiple triggers.
+     * Overwrites the default setter for trigger in WidgetTrigger class which
+     * invokes A.one, but we need to support multiple triggers.
      *
      * @method _setTrigger
      * @param value

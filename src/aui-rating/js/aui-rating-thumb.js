@@ -33,7 +33,8 @@ var CSS_CLASSES = 'cssClasses',
  *
  * @class A.ThumbRating
  * @extends A.Rating
- * @param config {Object} Object literal specifying widget configuration properties.
+ * @param config {Object} Object literal specifying widget configuration
+ *     properties.
  * @constructor
  */
 var ThumbRating = A.Component.create({
@@ -123,7 +124,8 @@ var ThumbRating = A.Component.create({
          *
          * @method fillTo
          * @param {Number} index Index to be selected
-         * @param {String} className Class name to be applied when fill the Rating elements
+         * @param {String} className Class name to be applied when fill the
+         *     Rating elements
          */
         fillTo: function(index) {
             var instance = this,
