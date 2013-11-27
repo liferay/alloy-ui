@@ -20,11 +20,11 @@ var AArray = A.Array,
     CSS_PALETTE_ITEM_SELECTED = getClassName('palette-item-selected'),
 
     /**
-     * A base class for ColorPalette.
+     * A base class for `ColorPalette`.
      *
      * @class A.ColorPalette
      * @extends Widget
-     * @uses A.Palette
+     * @uses A.Palette, A.WidgetCssClass, A.WidgetToggle
      * @param {Object} config Object literal specifying widget configuration
      *     properties.
      * @constructor
@@ -37,9 +37,10 @@ var AArray = A.Array,
         ITEM_TEMPLATE: '<td class="' + CSS_PALETTE_ITEM + ' {selectedClassName}" data-column={column} data-index={index} data-row={row} data-value="{value}">' + '<a href="" class="' + CSS_PALETTE_ITEM_INNER + '" style="background-color:{value}" onclick="return false;" title="{title}"></a>' + '</td>',
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Provides a default value (Function) to the `formatter` property.
          *
          * @method _valueFormatterFn
+         * @return {Function} The formatter function
          * @protected
          */
         _valueFormatterFn: function() {
@@ -61,10 +62,11 @@ var AArray = A.Array,
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets `items` attribute of the `ColorPalette` instance.
          *
          * @method _setItems
-         * @param value
+         * @param {Array} value
+         * @return {Object}
          * @protected
          */
         _setItems: function(value) {
@@ -94,10 +96,10 @@ var AArray = A.Array,
     }, {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Static property provides a string to identify the CSS prefix.
          *
          * @property CSS_PREFIX
-         * @type String
+         * @type {String}
          * @static
          */
         CSS_PREFIX: getClassName(_NAME),
@@ -106,26 +108,26 @@ var AArray = A.Array,
          * Static property provides a string to identify the class.
          *
          * @property NAME
-         * @type String
+         * @type {String}
          * @static
          */
         NAME: _NAME,
 
         /**
          * Static property used to define the default attribute
-         * configuration for the ColorPalette.
+         * configuration for the `ColorPalette`.
          *
          * @property ATTRS
-         * @type Object
+         * @type {Object}
          * @static
          */
         ATTRS: {
 
             /**
-             * TODO. Wanna help? Please send a Pull Request.
+             * Colors available to the `ColorPalette`.
              *
              * @attribute items
-             * @type Array
+             * @type {Array}
              */
             items: {
                 setter: '_setItems',

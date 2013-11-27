@@ -53,7 +53,7 @@ var AArray = A.Array,
     CSS_ACTIONS_CONTAINER = getClassName('actions-container');
 
 /**
- * A base class for ColorPickerBase.
+ * A base class for `ColorPickerBase`.
  *
  * @class A.ColorPickerBase
  * @param {Object} config Object literal specifying widget configuration
@@ -77,7 +77,7 @@ ColorPickerBase.prototype = {
     _hsvPaletteModal: null,
 
     /**
-     * Construction logic executed during ColorPickerBase instantiation.
+     * Construction logic executed during `ColorPickerBase` instantiation.
      * Lifecycle.
      *
      * @method initializer
@@ -92,7 +92,8 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request. Lifecycle.
+     * Destructor lifecycle implementation for the `ColorPickerBase` class.
+     * Lifecycle.
      *
      * @method destructor
      * @protected
@@ -112,7 +113,7 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Resets the `ColorPickerBase` to it's default state.
      *
      * @method reset
      */
@@ -137,7 +138,7 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Binds events to the `HSVPalette`.
      *
      * @method _bindHSVPalette
      * @protected
@@ -158,7 +159,7 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Binds the click event to the NoColor node.
      *
      * @method _bindNoColor
      * @protected
@@ -172,7 +173,7 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Binds base events to the `ColorPickerBase` instance.
      *
      * @method _bindUICPBase
      * @protected
@@ -188,9 +189,10 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Provides the default value for the `recentColors` attribute.
      *
      * @method _defaultValueRecentColors
+     * @return {Object}
      * @protected
      */
     _defaultValueRecentColors: function() {
@@ -223,9 +225,10 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns the current `trigger`.
      *
      * @method _getCurrentTrigger
+     * @return {Node}
      * @protected
      */
     _getCurrentTrigger: function() {
@@ -235,10 +238,11 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns the default value of passed attribute.
      *
      * @method _getDefaultAttributeValue
-     * @param attributeName
+     * @param {String} attributeName
+     * @return {*} The default value of an attribute
      * @protected
      */
     _getDefaultAttributeValue: function(attributeName) {
@@ -262,10 +266,11 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns an empty spot from the `recentColors` palette.
      *
      * @method _findRecentColorEmptySpot
-     * @param items
+     * @param {Array} items
+     * @return {Number} Index of the empty spot
      * @protected
      */
     _findRecentColorEmptySpot: function(items) {
@@ -298,9 +303,10 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns the `HSVAPaletteModal` instance.
      *
      * @method _getHSVPalette
+     * @return {Object} HSV palette modal
      * @protected
      */
     _getHSVPalette: function() {
@@ -357,10 +363,10 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires the select event and hides popover.
      *
      * @method _onColorChange
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _onColorChange: function(event) {
@@ -379,10 +385,10 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the newly selected color from color palette.
      *
      * @method _onColorPaletteSelectChange
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _onColorPaletteSelectChange: function(event) {
@@ -416,10 +422,10 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Selects the custom color from the `HSVAPaletteModal`.
      *
      * @method _onHSVPaletteOK
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _onHSVPaletteOK: function(event) {
@@ -470,7 +476,7 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Opens `HSVAPaletteModal`.
      *
      * @method _onHSVTriggerClick
      * @protected
@@ -493,10 +499,10 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Removes color from the current `trigger`.
      *
      * @method _onNoColorClick
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _onNoColorClick: function(event) {
@@ -510,10 +516,10 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the newly selected color from `recentColors`.
      *
      * @method _onRecentColorPaletteSelectChange
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _onRecentColorPaletteSelectChange: function(event) {
@@ -544,10 +550,10 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the selected color from the `recentColors` palette.
      *
      * @method _onRecentColorClick
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _onRecentColorClick: function(event) {
@@ -579,10 +585,10 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * Displays or hides the ColorPicker after trigger interaction.
+     * Displays or hides the color picker after `trigger` interaction.
      *
      * @method _onTriggerInteraction
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _onTriggerInteraction: function(event) {
@@ -606,10 +612,10 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Syncs clickoutside event and refocuses `trigger` on modal hide.
      *
      * @method _onVisibleChange
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _onVisibleChange: function(event) {
@@ -635,7 +641,7 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Renders and appends actions container to the body.
      *
      * @method _renderActionsContainer
      * @protected
@@ -650,7 +656,8 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Creates new instance of the `ColorPalette` component with `defaultColor`
+     * options.
      *
      * @method _renderColorPalette
      * @protected
@@ -672,7 +679,8 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Renders `trigger` for the `HSVPalette` and appends it to the actions
+     * container.
      *
      * @method _renderHSVTrigger
      * @protected
@@ -694,7 +702,7 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Renders the no color node and appends it to the actions container.
      *
      * @method _renderNoColor
      * @protected
@@ -712,7 +720,7 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Renders the `recentColors` palette.
      *
      * @method _renderRecentColors
      * @protected
@@ -738,7 +746,7 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Renders the elements for the color palette popover.
      *
      * @method _rendererUICPBase
      * @protected
@@ -770,11 +778,12 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * Overwrites the default setter for trigger in WidgetTrigger class which
-     * invokes A.one, but we need to support multiple triggers.
+     * Overwrites the default setter for `trigger` in `WidgetTrigger` class
+     * which invokes `A.one`, but we need to support multiple triggers.
      *
      * @method _setTrigger
-     * @param value
+     * @param {Node | String} value
+     * @return {Node | String}
      * @protected
      */
 
@@ -783,10 +792,11 @@ ColorPickerBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Validates the value of the `trigger` attribute.
      *
      * @method _validateTrigger
-     * @param value
+     * @param {Node | String} value
+     * @return {Boolean} The result of the validation
      * @protected
      */
     _validateTrigger: function(value) {
@@ -799,7 +809,7 @@ ColorPickerBase.prototype = {
      * Set the `trigger` UI.
      *
      * @method _uiSetTrigger
-     * @param value
+     * @param {Node | String} value
      * @protected
      */
     _uiSetTrigger: function(value) {
@@ -825,40 +835,40 @@ ColorPickerBase.prototype = {
 
 /**
  * Static property used to define the default attribute
- * configuration for the ColorPickerBase.
+ * configuration for the `ColorPickerBase`.
  *
  * @property ATTRS
- * @type Object
+ * @type {Object}
  * @static
  */
 ColorPickerBase.ATTRS = {
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * The content of body.
      *
      * @attribute bodyContent
      * @default ''
-     * @type String
+     * @type {String}
      */
     bodyContent: {
         value: _EMPTY
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Currently selected color.
      *
      * @attribute color
-     * @type String
+     * @type {String}
      */
     color: {
         validator: Lang.isString
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Default colors available to the color palette.
      *
      * @attribute colorPalette
-     * @type Object
+     * @type {Object}
      */
     colorPalette: {
         validator: Lang.isObject,
@@ -950,9 +960,10 @@ ColorPickerBase.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Current `trigger` node.
      *
      * @attribute currentTrigger
+     * @type {Node}
      * @readOnly
      */
     currentTrigger: {
@@ -961,11 +972,11 @@ ColorPickerBase.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Provides the default color used for the `recentColors` palette.
      *
      * @attribute defaultColor
      * @default '#FFF'
-     * @type String
+     * @type {String}
      */
     defaultColor: {
         validator: Lang.isString,
@@ -973,10 +984,11 @@ ColorPickerBase.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * `HSVPalette` used for selecting custom colors not present in
+     * `defualtColors`.
      *
      * @attribute hsvPalette
-     * @type Object
+     * @type {Object}
      */
     hsvPalette: {
         validator: Lang.isObject,
@@ -986,10 +998,10 @@ ColorPickerBase.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Colors that have been selected recently from the `HSVPalette`.
      *
      * @attribute recentColors
-     * @type Object
+     * @type {Object}
      */
     recentColors: {
         validator: Lang.isObject,
@@ -997,11 +1009,11 @@ ColorPickerBase.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Determines if the color palette is rendered on load.
      *
      * @attribute renderColorPalette
      * @default true
-     * @type Boolean
+     * @type {Boolean}
      */
     renderColorPalette: {
         validator: Lang.isBoolean,
@@ -1009,11 +1021,11 @@ ColorPickerBase.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Determines if the `HSVPalette` is rendered on load.
      *
      * @attribute renderHSVPalette
      * @default true
-     * @type Boolean
+     * @type {Boolean}
      * @writeOnce
      */
     renderHSVPalette: {
@@ -1026,7 +1038,7 @@ ColorPickerBase.ATTRS = {
      * Collection of strings used to label elements of the UI.
      *
      * @attribute strings
-     * @type Object
+     * @type {Object}
      */
     strings: {
         value: {
@@ -1040,9 +1052,10 @@ ColorPickerBase.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Trigger node that opens the color palette.
      *
      * @attribute trigger
+     * @type {Node | String}
      */
     trigger: {
         setter: '_setTrigger',
@@ -1051,11 +1064,11 @@ ColorPickerBase.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Trigger event that fires on `trigger` click.
      *
      * @attribute triggerEvent
      * @default 'click'
-     * @type String
+     * @type {String}
      */
     triggerEvent: {
         validator: Lang.isString,
@@ -1064,10 +1077,10 @@ ColorPickerBase.ATTRS = {
 };
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
+ * Static property provides a string to identify the CSS prefix.
  *
  * @property CSS_PREFIX
- * @type String
+ * @type {String}
  * @static
  */
 ColorPickerBase.CSS_PREFIX = getClassName(_NAME);
@@ -1076,7 +1089,7 @@ ColorPickerBase.CSS_PREFIX = getClassName(_NAME);
  * Static property provides a string to identify the class.
  *
  * @property NAME
- * @type String
+ * @type {String}
  * @static
  */
 ColorPickerBase.NAME = _NAME;
