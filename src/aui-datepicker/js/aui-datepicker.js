@@ -25,7 +25,7 @@ var Lang = A.Lang,
  * A base class for DatePickerBase.
  *
  * @class A.DatePickerBase
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -316,8 +316,10 @@ A.DatePickerBase = DatePickerBase;
  * @class A.DatePicker
  * @extends Base
  * @uses A.DatePickerDelegate, A.DatePickerPopover, A.DatePickerBase
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/datepicker/basic-markup.html
+ * @include http://alloyui.com/examples/datepicker/basic.js
  */
 A.DatePicker = A.Base.create('datepicker', A.Base, [A.DatePickerDelegate, A.DatePickerPopover, A.DatePickerBase]);

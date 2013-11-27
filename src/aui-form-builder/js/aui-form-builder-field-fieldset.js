@@ -43,7 +43,7 @@ var L = A.Lang,
  *
  * @class A.FormBuilderFieldsetField
  * @extends A.FormBuilderField
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */

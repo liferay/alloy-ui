@@ -145,9 +145,11 @@ var L = A.Lang,
  * @extends Widget
  * @uses A.WidgetStdMod, A.WidgetPosition, A.WidgetStack, A.WidgetPositionAlign,
  *     A.WidgetPositionConstrain, A.WidgetModality
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/image-viewer/basic-markup.html
+ * @include http://alloyui.com/examples/image-viewer/basic.js
  */
 var ImageViewer = A.Base.create(
     'aui-image-viewer',
@@ -820,7 +822,7 @@ var ImageViewer = A.Base.create(
          * Fires the click event on the close icon.
          *
          * @method _onClickCloseEl
-         * @param {EventFacade} event click event facade
+         * @param {EventFacade} event Click event facade
          * @protected
          */
         _onClickCloseEl: function(event) {
@@ -835,7 +837,7 @@ var ImageViewer = A.Base.create(
          * Fires the click event on the left control icon.
          *
          * @method _onClickLeftControl
-         * @param {EventFacade} event click event facade
+         * @param {EventFacade} event Click event facade
          * @protected
          */
         _onClickLeftControl: function(event) {
@@ -850,7 +852,7 @@ var ImageViewer = A.Base.create(
          * Fires the click event on the right control icon.
          *
          * @method _onClickRightControl
-         * @param {EventFacade} event click event facade
+         * @param {EventFacade} event Click event facade
          * @protected
          */
         _onClickRightControl: function(event) {
@@ -865,7 +867,7 @@ var ImageViewer = A.Base.create(
          * Fires the click event on the links.
          *
          * @method _onClickLinks
-         * @param {EventFacade} event click event facade
+         * @param {EventFacade} event Click event facade
          * @protected
          */
         _onClickLinks: function(event) {
@@ -887,7 +889,7 @@ var ImageViewer = A.Base.create(
          * Handles the key interaction (i.e., next, prev etc).
          *
          * @method _onKeyInteraction
-         * @param {EventFacade} event click event facade
+         * @param {EventFacade} event Click event facade
          * @protected
          */
         _onKeyInteraction: function(event) {

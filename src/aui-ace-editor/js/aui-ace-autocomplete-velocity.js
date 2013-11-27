@@ -22,7 +22,7 @@ var Lang = A.Lang,
      *
      * @class A.AceEditor.AutoCompleteVelocity
      * @extends A.AceEditor.TemplateProcessor
-     * @param config {Object} Object literal specifying widget configuration
+     * @param {Object} config Object literal specifying widget configuration
      *     properties.
      * @constructor
      */

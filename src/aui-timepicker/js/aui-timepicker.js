@@ -21,7 +21,7 @@ var Lang = A.Lang,
  * A base class for TimePickerBase.
  *
  * @class A.TimePickerBase
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -318,8 +318,10 @@ A.TimePickerBase = TimePickerBase;
  * @class A.TimePicker
  * @extends Base
  * @uses A.DatePickerDelegate, A.DatePickerPopover, A.TimePickerBase
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/timepicker/basic-markup.html
+ * @include http://alloyui.com/examples/timepicker/basic.js
  */
 A.TimePicker = A.Base.create('timepicker', A.Base, [A.DatePickerDelegate, A.DatePickerPopover, A.TimePickerBase]);

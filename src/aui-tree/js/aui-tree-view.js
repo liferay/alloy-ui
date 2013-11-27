@@ -62,9 +62,11 @@ var L = A.Lang,
  *
  * @class A.TreeView
  * @uses A.TreeData, A.TreeViewPaginator, A.TreeViewIO
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/tree/basic-markup.html
+ * @include http://alloyui.com/examples/tree/basic.js
  */
 var TreeView = A.Component.create({
     /**
@@ -475,7 +477,7 @@ var isNumber = L.isNumber,
  *
  * @class A.TreeViewDD
  * @extends A.TreeView
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -824,7 +826,7 @@ var TreeViewDD = A.Component.create({
          * Fire after the drop hit event.
          *
          * @method _afterDropHit
-         * @param {EventFacade} event drop hit event facade
+         * @param {EventFacade} event Drop hit event facade
          * @protected
          */
         _afterDropHit: function(event) {
@@ -876,7 +878,7 @@ var TreeViewDD = A.Component.create({
          * Fire on drag align event.
          *
          * @method _onDragAlign
-         * @param {EventFacade} event append event facade
+         * @param {EventFacade} event Append event facade
          * @protected
          */
         _onDragAlign: function(event) {
@@ -897,7 +899,7 @@ var TreeViewDD = A.Component.create({
          * Fire on drag start event.
          *
          * @method _onDragStart
-         * @param {EventFacade} event append event facade
+         * @param {EventFacade} event Append event facade
          * @protected
          */
         _onDragStart: function(event) {
@@ -934,7 +936,7 @@ var TreeViewDD = A.Component.create({
          * Fire on drop over event.
          *
          * @method _onDropOver
-         * @param {EventFacade} event append event facade
+         * @param {EventFacade} event Append event facade
          * @protected
          */
         _onDropOver: function(event) {
@@ -947,7 +949,7 @@ var TreeViewDD = A.Component.create({
          * Fire on drop hit event.
          *
          * @method _onDropHit
-         * @param {EventFacade} event append event facade
+         * @param {EventFacade} event Append event facade
          * @protected
          */
         _onDropHit: function(event) {
@@ -963,7 +965,7 @@ var TreeViewDD = A.Component.create({
          * Fire on drop exit event.
          *
          * @method _onDropExit
-         * @param {EventFacade} event append event facade
+         * @param {EventFacade} event Append event facade
          * @protected
          */
         _onDropExit: function() {

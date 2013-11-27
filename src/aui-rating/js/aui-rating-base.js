@@ -65,9 +65,11 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/rating/).
  *
  * @class A.Rating
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/rating/basic-markup.html
+ * @include http://alloyui.com/examples/rating/basic.js
  */
 var Rating = A.Component.create({
     /**
@@ -513,8 +515,8 @@ var Rating = A.Component.create({
              *
              * @event itemClick
              * @preventable _defRatingItemClickFn
-             * @param {Event.Facade} event The itemClick event.
-             * @type {Event.Custom}
+             * @param {EventFacade} event The itemClick event.
+             * @type {EventCustom}
              */
             publish(
                 EV_RATING_ITEM_CLICK,
@@ -526,8 +528,8 @@ var Rating = A.Component.create({
              *
              * @event itemSelect
              * @preventable _defRatingItemSelectFn
-             * @param {Event.Facade} event The itemSelect event.
-             * @type {Event.Custom}
+             * @param {EventFacade} event The itemSelect event.
+             * @type {EventCustom}
              */
             publish(
                 EV_RATING_ITEM_SELECT,
@@ -539,8 +541,8 @@ var Rating = A.Component.create({
              *
              * @event itemSelect
              * @preventable _defRatingItemOverFn
-             * @param {Event.Facade} event The itemOver event.
-             * @type {Event.Custom}
+             * @param {EventFacade} event The itemOver event.
+             * @type {EventCustom}
              */
             publish(
                 EV_RATING_ITEM_OVER,
@@ -552,8 +554,8 @@ var Rating = A.Component.create({
              *
              * @event itemOut
              * @preventable _defRatingItemOutFn
-             * @param {Event.Facade} event The itemOut event.
-             * @type {Event.Custom}
+             * @param {EventFacade} event The itemOut event.
+             * @type {EventCustom}
              */
             publish(
                 EV_RATING_ITEM_OUT,
@@ -776,7 +778,7 @@ var Rating = A.Component.create({
          * Fire the click event.
          *
          * @method _handleClickEvent
-         * @param {EventFacade} event click event facade
+         * @param {EventFacade} event Click event facade
          * @protected
          */
         _handleClickEvent: function(event) {

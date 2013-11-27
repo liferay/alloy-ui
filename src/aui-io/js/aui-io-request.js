@@ -68,10 +68,11 @@ var L = A.Lang,
  *
  * @class A.IORequest
  * @extends Plugin.Base
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @uses io
  * @constructor
+ * @include http://alloyui.com/examples/io/basic.js
  */
 var IORequest = A.Component.create({
     /**

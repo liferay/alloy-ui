@@ -33,7 +33,7 @@ var CSS_CLASSES = 'cssClasses',
  *
  * @class A.ThumbRating
  * @extends A.Rating
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */

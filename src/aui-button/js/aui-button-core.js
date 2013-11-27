@@ -342,6 +342,8 @@ Button.CLASS_NAMES = CLASS_NAMES;
  * @extends Button
  * @uses A.ButtonExt, A.WidgetCssClass, A.WidgetToggle
  * @constructor
+ * @include http://alloyui.com/examples/button/basic-markup.html
+ * @include http://alloyui.com/examples/button/basic.js
  */
 A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.WidgetToggle], {}, {
 

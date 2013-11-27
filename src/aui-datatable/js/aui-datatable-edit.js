@@ -128,7 +128,7 @@ var Lang = A.Lang,
  * An extension for A.DataTable to support Cell Editing.
  *
  * @class A.DataTable.CellEditorSupport
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -205,7 +205,8 @@ A.mix(CellEditorSupport.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method getEditor
-     * @param record, column
+     * @param record
+     * @param column
      */
     getEditor: function(record, column) {
         var instance = this,
@@ -352,7 +353,8 @@ A.mix(CellEditorSupport.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method getRecordColumnValue
-     * @param record, column
+     * @param record
+     * @param column
      */
     getRecordColumnValue: function(record, column) {
         return record.get(column.key);
@@ -368,7 +370,7 @@ A.Base.mix(A.DataTable, [CellEditorSupport]);
  *
  * @class A.BaseCellEditor
  * @extends Overlay
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @abstract
  */
@@ -657,7 +659,8 @@ var BaseCellEditor = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method formatValue
-         * @param formatter, val
+         * @param formatter
+         * @param val
          */
         formatValue: function(formatter, val) {
             var instance = this;
@@ -1169,7 +1172,7 @@ A.BaseCellEditor = BaseCellEditor;
  *
  * @class A.BaseOptionsCellEditor
  * @extends A.BaseCellEditor
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @abstract
  */
@@ -1313,7 +1316,8 @@ var BaseOptionsCellEditor = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method addNewOption
-         * @param name, value
+         * @param name
+         * @param value
          */
         addNewOption: function(name, value) {
             var instance = this;
@@ -1468,7 +1472,8 @@ var BaseOptionsCellEditor = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _createEditOption
-         * @param name, value
+         * @param name
+         * @param value
          * @protected
          */
         _createEditOption: function(name, value) {
@@ -1709,7 +1714,7 @@ A.BaseOptionsCellEditor = BaseOptionsCellEditor;
  *
  * @class A.TextCellEditor
  * @extends A.BaseCellEditor
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -1745,7 +1750,7 @@ A.TextCellEditor = TextCellEditor;
  *
  * @class A.TextAreaCellEditor
  * @extends A.BaseCellEditor
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -1781,7 +1786,7 @@ A.TextAreaCellEditor = TextAreaCellEditor;
  *
  * @class A.DropDownCellEditor
  * @extends A.BaseOptionsCellEditor
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -1896,7 +1901,7 @@ A.DropDownCellEditor = DropDownCellEditor;
  *
  * @class A.CheckboxCellEditor
  * @extends A.BaseOptionsCellEditor
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -1997,7 +2002,7 @@ A.CheckboxCellEditor = CheckboxCellEditor;
  *
  * @class A.RadioCellEditor
  * @extends A.CheckboxCellEditor
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -2045,7 +2050,7 @@ A.RadioCellEditor = RadioCellEditor;
  *
  * @class A.DateCellEditor
  * @extends A.BaseCellEditor
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */

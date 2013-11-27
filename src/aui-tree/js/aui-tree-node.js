@@ -109,7 +109,7 @@ var Lang = A.Lang,
  * @class A.TreeNode
  * @extends Base
  * @uses A.TreeData
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -1077,7 +1077,7 @@ var TREE_NODE_IO = 'tree-node-io';
  * @class A.TreeNodeIO
  * @extends A.TreeNode
  * @uses A.TreeViewPaginator, A.TreeViewIO
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -1321,7 +1321,7 @@ var CHECKBOX = 'checkbox',
  *
  * @class A.TreeNodeCheck
  * @extends A.TreeNodeIO
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -1597,7 +1597,7 @@ var CHILD = 'child',
  *
  * @class A.TreeNodeTask
  * @extends A.TreeNodeCheck
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -1711,7 +1711,7 @@ var TREE_NODE_RADIO = 'tree-node-radio',
  *
  * @class A.TreeNodeRadio
  * @extends A.TreeNodeTask
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */

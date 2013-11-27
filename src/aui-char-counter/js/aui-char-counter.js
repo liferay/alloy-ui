@@ -24,9 +24,11 @@ var L = A.Lang,
  *
  * @class A.CharCounter
  * @extends Base
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/char-counter/basic-markup.html
+ * @include http://alloyui.com/examples/char-counter/basic.js
  */
 var CharCounter = A.Component.create({
     /**

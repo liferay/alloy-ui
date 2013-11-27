@@ -126,6 +126,8 @@ var _setUnselectable = function(element, unselectable, noRecurse) {
  * @class A.Node
  * @uses Node
  * @constructor
+ * @include http://alloyui.com/examples/node/basic-markup.html
+ * @include http://alloyui.com/examples/node/basic.js
  */
 A.mix(NODE_PROTO, {
 
@@ -315,8 +317,8 @@ A.mix(NODE_PROTO, {
      *
      * @method center
      * @chainable
-     * @param {Array | Node | Region | String} val Array, Node, String, or
-     *     Region to center with
+     * @param {Array|Node|Region|String} val Array, Node, String, or Region to
+     *     center with.
      */
     center: function(val) {
         var instance = this,
@@ -392,9 +394,9 @@ A.mix(NODE_PROTO, {
      * Return the combined width of the border for the specified sides.
      *
      * @method getBorderWidth
-     * @param {string} sides Can be t, r, b, l or any combination of
-     * those to represent the top, right, bottom, or left sides.
-     * @return {number}
+     * @param {String} sides Can be t, r, b, l or any combination of those to
+     *     represent the top, right, bottom, or left sides.
+     * @return {Number}
      */
     getBorderWidth: function(sides) {
         var instance = this;
@@ -420,9 +422,9 @@ A.mix(NODE_PROTO, {
      * Return the combined size of the margin for the specified sides.
      *
      * @method getMargin
-     * @param {string} sides Can be t, r, b, l or any combination of
-     * those to represent the top, right, bottom, or left sides.
-     * @return {number}
+     * @param {String} sides Can be t, r, b, l or any combination of those to
+     *     represent the top, right, bottom, or left sides.
+     * @return {Number}
      */
     getMargin: function(sides) {
         var instance = this;
@@ -434,9 +436,9 @@ A.mix(NODE_PROTO, {
      * Return the combined width of the border for the specified sides.
      *
      * @method getPadding
-     * @param {string} sides Can be t, r, b, l or any combination of
-     * those to represent the top, right, bottom, or left sides.
-     * @return {number}
+     * @param {String} sides Can be t, r, b, l or any combination of those to
+     *     represent the top, right, bottom, or left sides.
+     * @return {Number}
      */
     getPadding: function(sides) {
         var instance = this;
@@ -469,8 +471,8 @@ A.mix(NODE_PROTO, {
      * Create a hover interaction.
      *
      * @method hover
-     * @param {string} overFn
-     * @param {string} outFn
+     * @param {String} overFn
+     * @param {String} outFn
      * @return {Node} The current Node instance
      */
     hover: function(overFn, outFn) {
@@ -524,7 +526,7 @@ A.mix(NODE_PROTO, {
      * ```
      *
      * @method html
-     * @param {string} value A string of html to set as the content of the node
+     * @param {String} value A string of html to set as the content of the node
      *     instance.
      */
     html: function() {
@@ -630,7 +632,7 @@ A.mix(NODE_PROTO, {
      *
      * @method prependTo
      * @chainable
-     * @param {Node | String} selector A selector, element, HTML string, Node
+     * @param {Node|String} selector A selector, element, HTML string, Node
      */
     prependTo: function(selector) {
         var instance = this;
@@ -769,7 +771,7 @@ A.mix(NODE_PROTO, {
      *
      * @method swallowEvent
      * @chainable
-     * @param {String/Array} eventName an event or array of events to stop from
+     * @param {String|Array} eventName An event or array of events to stop from
      *     bubbling
      * @param {Boolean} preventDefault (optional) true to prevent the default
      *     action too
@@ -893,7 +895,7 @@ A.mix(NODE_PROTO, {
      * ```
      *
      * @method val
-     * @param {string} value Value to be set. Optional.
+     * @param {String} value Value to be set. Optional.
      */
     val: function(value) {
         var instance = this;
@@ -910,11 +912,11 @@ A.mix(NODE_PROTO, {
      * Return the combined size of the box style for the specified sides.
      *
      * @method _getBoxStyleAsNumber
-     * @param {string} sides Can be t, r, b, l or any combination of
+     * @param {String} sides Can be t, r, b, l or any combination of
      * those to represent the top, right, bottom, or left sides.
-     * @param {string} map An object mapping mapping the "sides" param to the a
+     * @param {String} map An object mapping mapping the "sides" param to the a
      *     CSS value to retrieve
-     * @return {number}
+     * @return {Number}
      * @private
      */
     _getBoxStyleAsNumber: function(sides, map) {

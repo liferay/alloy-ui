@@ -35,9 +35,11 @@ var BODY_CONTENT = 'bodyContent',
  * @uses A.WidgetCssClass, A.WidgetPosition, A.WidgetStdMod, A.WidgetToggle,
  *     A.WidgetAutohide, A.WidgetToolbars, A.WidgetPositionAlign,
  *     A.WidgetPositionAlignSuggestion, A.WidgetPositionConstrain, A.WidgetStack
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/tooltip/basic-markup.html
+ * @include http://alloyui.com/examples/tooltip/basic.js
  */
 A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
     A.WidgetCssClass,

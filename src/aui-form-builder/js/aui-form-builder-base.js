@@ -91,7 +91,7 @@ var L = A.Lang,
  *
  * @class A.FormBuilderAvailableField
  * @extends A.AvailableField
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -228,9 +228,11 @@ A.FormBuilderAvailableField = FormBuilderAvailableField;
  *
  * @class A.FormBuilder
  * @extends A.DiagramBuilderBase
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/form-builder/basic-markup.html
+ * @include http://alloyui.com/examples/form-builder/basic.js
  */
 var FormBuilder = A.Component.create({
 

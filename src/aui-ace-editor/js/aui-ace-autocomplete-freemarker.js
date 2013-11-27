@@ -21,7 +21,7 @@ var Lang = A.Lang,
      *
      * @class A.AceEditor.AutoCompleteFreemarker
      * @extends A.AceEditor.TemplateProcessor
-     * @param config {Object} Object literal specifying configuration
+     * @param {Object} config Object literal specifying configuration
      *     properties.
      * @constructor
      */

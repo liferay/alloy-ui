@@ -43,9 +43,11 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/pagination/).
  *
  * @class A.Pagination
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/pagination/basic-markup.html
+ * @include http://alloyui.com/examples/pagination/basic.js
  */
 var Pagination = A.Component.create({
     /**
@@ -252,7 +254,7 @@ var Pagination = A.Component.create({
          * If passed item is a node instead of the index returns itself.
          *
          * @method getItem
-         * @param {Node | Number} i Index or Node reference.
+         * @param {Node|Number} i Index or Node reference.
          * @return {Node}
          */
         getItem: function(i) {
