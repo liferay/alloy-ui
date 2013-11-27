@@ -24,8 +24,8 @@ var AArray = A.Array,
      *
      * @class A.ColorPalette
      * @extends Widget
-     * @uses A.Palette
-     * @param config {Object} Object literal specifying widget configuration
+     * @uses A.Palette, A.WidgetCssClass, A.WidgetToggle
+     * @param {Object} config Object literal specifying widget configuration
      *     properties.
      * @constructor
      */
@@ -66,6 +66,7 @@ var AArray = A.Array,
          *
          * @method _setItems
          * @param {Array} value
+         * @return {Object}
          * @protected
          */
         _setItems: function(value) {

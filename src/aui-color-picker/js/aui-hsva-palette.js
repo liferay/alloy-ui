@@ -73,7 +73,7 @@ var Lang = A.Lang,
      *
      * @class A.HSVAPalette
      * @extends A.HSVPalette
-     * @param config {Object} Object literal specifying widget configuration
+     * @param {Object} config Object literal specifying widget configuration
      *      properties.
      * @constructor
      */

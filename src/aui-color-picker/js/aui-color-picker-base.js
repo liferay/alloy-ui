@@ -56,7 +56,7 @@ var AArray = A.Array,
  * A base class for `ColorPickerBase`.
  *
  * @class A.ColorPickerBase
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -192,6 +192,7 @@ ColorPickerBase.prototype = {
      * Provides the default value for the `recentColors` attribute.
      *
      * @method _defaultValueRecentColors
+     * @return {Object}
      * @protected
      */
     _defaultValueRecentColors: function() {
@@ -227,6 +228,7 @@ ColorPickerBase.prototype = {
      * Returns the current `trigger`.
      *
      * @method _getCurrentTrigger
+     * @return {Node}
      * @protected
      */
     _getCurrentTrigger: function() {
@@ -240,6 +242,7 @@ ColorPickerBase.prototype = {
      *
      * @method _getDefaultAttributeValue
      * @param {String} attributeName
+     * @return {*} The default value of an attribute
      * @protected
      */
     _getDefaultAttributeValue: function(attributeName) {
@@ -267,7 +270,7 @@ ColorPickerBase.prototype = {
      *
      * @method _findRecentColorEmptySpot
      * @param {Array} items
-     * @return {Number} index of the empty spot
+     * @return {Number} Index of the empty spot
      * @protected
      */
     _findRecentColorEmptySpot: function(items) {
@@ -776,10 +779,11 @@ ColorPickerBase.prototype = {
 
     /**
      * Overwrites the default setter for `trigger` in `WidgetTrigger` class
-     * which invokes A.one, but we need to support multiple triggers.
+     * which invokes `A.one`, but we need to support multiple triggers.
      *
      * @method _setTrigger
      * @param {Node | String} value
+     * @return {Node | String}
      * @protected
      */
 
@@ -792,6 +796,7 @@ ColorPickerBase.prototype = {
      *
      * @method _validateTrigger
      * @param {Node | String} value
+     * @return {Boolean} The result of the validation
      * @protected
      */
     _validateTrigger: function(value) {

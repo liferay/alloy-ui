@@ -141,7 +141,8 @@ var AColor = A.Color,
      *
      * @class A.HSVPalette
      * @extends Widget
-     * @param config {Object} Object literal specifying widget configuration
+     * @uses A.WidgetCssClass, A.WidgetToggle
+     * @param {Object} config Object literal specifying widget configuration
      *     properties.
      * @constructor
      */
@@ -1447,6 +1448,7 @@ var AColor = A.Color,
          * @method _validateFieldValue
          * @param {Node} fieldNode
          * @param {Boolean} field validation
+         * @return {Boolean} The result of the validation
          * @protected
          */
         _validateFieldValue: function(fieldNode) {
