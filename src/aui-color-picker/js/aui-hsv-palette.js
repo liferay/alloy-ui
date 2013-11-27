@@ -1368,19 +1368,31 @@ var AColor = A.Color,
                     fieldNode: fieldNode
                 }
             );
+
+            instance.set(SELECTED, hex, {
+                src: AWidget.UI_SRC
+            });
         },
 
         /**
-         * Updates results view from hexadecimal color values.
+         * Update the HSV Palette view according to the provided HEX value.
+         *
+         * The function normalizes and extracts the hue, saturation, value, also
+         * r, g and b and updates their representatives - the sliders, the
+         * image, etc. Also, it updates the text fields (if the "controls"
+         * attribute is set to true) with the extracted values.
          *
          * @method _updateViewByHEX
-         * @param {String} hex
+         * @param hexValue
          * @protected
          */
-        _updateViewByHEX: function(hex) {
+
+        _updateViewByHEX: function(hexValue) {
             var instance = this,
                 b,
+                currentHexValue,
                 g,
+                hex,
                 hexColor,
                 hsvColor,
                 hsvColorArray,
@@ -1392,7 +1404,7 @@ var AColor = A.Color,
                 saturation,
                 value;
 
-            hex = instance._normalizeHexValue(hex);
+            hex = instance._normalizeHexValue(hexValue);
 
             hex = hex.substr(0, 6);
 
@@ -1432,6 +1444,12 @@ var AColor = A.Color,
             instance._hsContainer.setStyle(OPACITY, 1 - ((MAX_OPACITY_PERC - value) / MAX_OPACITY_PERC));
 
             if (instance.get(CONTROLS)) {
+                currentHexValue = instance._getFieldValue(instance._outputContainer);
+
+                if (hexValue.toLowerCase() !== currentHexValue.toLowerCase()) {
+                    instance._setFieldValue(instance._outputContainer, hexValue);
+                }
+
                 instance._setFieldValue(instance._hContainer, hue);
                 instance._setFieldValue(instance._sContainer, saturation);
                 instance._setFieldValue(instance._vContainer, value);
