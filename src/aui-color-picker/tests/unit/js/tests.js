@@ -58,6 +58,33 @@ YUI.add('module-tests', function(Y) {
         }
     }));
 
+    suite.add(new Y.Test.Case({
+
+        name: 'ColorPicker value change tests',
+
+        /**
+         * @tests AUI-1091
+         */
+        'assert changing the HEX value field changes selected attribute': function() {
+            var field;
+
+            Y.one('.palette-item[data-index="0"][data-value="#FFF"] .palette-item-inner').simulate('click');
+
+            field = Y.one('.hsv-value[data-type="hex"]');
+
+            Y.one('.hsv-value[data-type="hex"]').val('FABADA');
+
+            colorPicker._hsvPaletteModal._hsvPalette._afterInputChange({
+                currentTarget: field
+            });
+
+            Y.Test.Assert.areEqual('FABADA', colorPicker._hsvPaletteModal.get('selected'),
+                'The stored value in ColorPicker must be FABADA');
+
+            colorPicker._hsvPaletteModal.hide();
+        }
+    }));
+
     Y.Test.Runner.add(suite);
 
 }, '', {
