@@ -38,7 +38,7 @@ var StdMod = A.WidgetStdMod,
  *     A.WidgetAutohide, A.WidgetToolbars, A.WidgetModality,
  *     A.WidgetPositionAlign, A.WidgetPositionAlignSuggestion,
  *     A.WidgetPositionConstrain, A.WidgetStack
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  * @include http://alloyui.com/examples/popover/basic-markup.html

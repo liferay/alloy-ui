@@ -65,7 +65,7 @@ A.Tab.NAME = TAB;
  *
  * @class A.Tab
  * @extends Tab
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  * @include http://alloyui.com/examples/tabview/basic-markup.html
@@ -210,7 +210,7 @@ A.TabView.CSS_PREFIX = getClassName(TABBABLE);
  *
  * @class A.TabView
  * @extends TabView
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */

@@ -37,7 +37,7 @@ var Lang = A.Lang,
  *
  * @class A.SchedulerMonthView
  * @extends A.SchedulerTableView
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */

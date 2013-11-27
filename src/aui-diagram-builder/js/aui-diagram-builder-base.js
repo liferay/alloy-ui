@@ -102,7 +102,7 @@ var Lang = A.Lang,
  *
  * @class A.AvailableField
  * @extends Base
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -556,7 +556,7 @@ A.FieldSupport = FieldSupport;
  *
  * @class A.DiagramBuilderBase
  * @uses A.FieldSupport
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */

@@ -57,7 +57,7 @@ var Lang = A.Lang,
  *
  * @class A.DataTableHighlight
  * @extends Plugin.Base
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -248,7 +248,9 @@ var DataTableHighlight = A.Base.create(
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _alignBorder
-         * @param overlayNode, region, borderWidth
+         * @param overlayNode
+         * @param region
+         * @param borderWidth
          * @protected
          */
         _alignBorder: function(overlayNode, region, borderWidth) {

@@ -10,7 +10,7 @@
  *
  * @class A.SchedulerEvents
  * @extends ModelList
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -49,7 +49,7 @@ A.SchedulerEvents = A.Base.create('scheduler-events', A.ModelList, [], {
  * A base class for SchedulerEventSupport.
  *
  * @class A.SchedulerEventSupport
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -289,7 +289,7 @@ A.SchedulerEventSupport = SchedulerEventSupport;
  *
  * @class A.SchedulerBase
  * @uses A.SchedulerEventSupport, A.WidgetStdMod
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  * @include http://alloyui.com/examples/scheduler/basic-markup.html

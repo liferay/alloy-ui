@@ -98,7 +98,7 @@ var L = A.Lang,
  *
  * @class A.FormBuilderFieldBase
  * @uses A.FieldSupport
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -128,7 +128,7 @@ var FormBuilderFieldBase = A.Component.create({
  *
  * @class A.FormBuilderField
  * @extends A.FormBuilderFieldBase
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */

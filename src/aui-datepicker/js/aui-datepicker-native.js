@@ -25,7 +25,7 @@ var Lang = A.Lang,
  * A base class for DatePickerNativeBase.
  *
  * @class A.DatePickerNativeBase
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -306,7 +306,7 @@ A.DatePickerNativeBase = DatePickerNativeBase;
  * @class A.DatePickerNative
  * @extends Base
  * @uses A.DatePickerDelegate, A.DatePickerNativeBase
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */

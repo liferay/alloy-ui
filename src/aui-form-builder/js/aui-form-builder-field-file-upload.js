@@ -30,7 +30,7 @@ var L = A.Lang,
  *
  * @class A.FormBuilderFileUploadField
  * @extends A.FormBuilderField
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */

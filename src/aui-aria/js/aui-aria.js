@@ -39,7 +39,7 @@ var Lang = A.Lang,
  *
  * @class A.Plugin.Aria
  * @extends Plugin.Base
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */

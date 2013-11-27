@@ -46,7 +46,7 @@ var L = A.Lang,
  *
  * @class A.FormBuilderRadioField
  * @extends A.FormBuilderMultipleChoiceField
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */

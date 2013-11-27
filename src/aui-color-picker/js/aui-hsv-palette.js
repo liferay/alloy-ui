@@ -141,7 +141,7 @@ var AColor = A.Color,
      *
      * @class A.HSVPalette
      * @extends Widget
-     * @param config {Object} Object literal specifying widget configuration
+     * @param {Object} config Object literal specifying widget configuration
      *     properties.
      * @constructor
      */
@@ -408,7 +408,9 @@ var AColor = A.Color,
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _calculateRGBColor
-         * @param hue, saturation, value
+         * @param hue
+         * @param saturation
+         * @param value
          * @protected
          */
         _calculateRGBColor: function(hue, saturation, value) {
@@ -445,7 +447,9 @@ var AColor = A.Color,
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _calculateRGB
-         * @param hue, saturation, value
+         * @param hue
+         * @param saturation
+         * @param value
          * @protected
          */
         _calculateRGB: function(hue, saturation, value) {
@@ -466,7 +470,9 @@ var AColor = A.Color,
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _calculateRGBArray
-         * @param r, g, b
+         * @param r
+         * @param g
+         * @param b
          * @protected
          */
         _calculateRGBArray: function(r, g, b) {
@@ -632,7 +638,8 @@ var AColor = A.Color,
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _getHexValue
-         * @param hexColor, rgbColorArray
+         * @param hexColor
+         * @param rgbColorArray
          * @protected
          */
         _getHexValue: function(hexColor, rgbColorArray) {
@@ -674,7 +681,8 @@ var AColor = A.Color,
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _getXYFromHueSaturation
-         * @param hue, saturation
+         * @param hue
+         * @param saturation
          * @protected
          */
         _getXYFromHueSaturation: function(hue, saturation) {
@@ -858,7 +866,8 @@ var AColor = A.Color,
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _renderField
-         * @param container, data
+         * @param container
+         * @param data
          * @protected
          */
         _renderField: function(container, data) {
@@ -882,7 +891,8 @@ var AColor = A.Color,
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _renderOutputField
-         * @param container, data
+         * @param container
+         * @param data
          * @protected
          */
         _renderOutputField: function(container, data) {
@@ -1124,7 +1134,8 @@ var AColor = A.Color,
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _setFieldValue
-         * @param fieldNode, value
+         * @param fieldNode
+         * @param value
          * @protected
          */
         _setFieldValue: function(fieldNode, value) {

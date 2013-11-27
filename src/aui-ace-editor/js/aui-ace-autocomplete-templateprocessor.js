@@ -32,7 +32,7 @@ var Lang = A.Lang,
      *
      * @class A.AceEditor.TemplateProcessor
      * @extends Base
-     * @param config {Object} Object literal specifying widget configuration
+     * @param {Object} config Object literal specifying widget configuration
      *     properties.
      * @constructor
      */

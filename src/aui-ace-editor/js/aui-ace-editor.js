@@ -28,7 +28,7 @@ ace.config.set('packaged', true);
  *
  * @class A.AceEditor
  * @extends Widget
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  * @include http://alloyui.com/examples/ace-editor/basic-markup.html

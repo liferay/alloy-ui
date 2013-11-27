@@ -56,7 +56,7 @@ var AArray = A.Array,
  * A base class for ColorPickerBase.
  *
  * @class A.ColorPickerBase
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */

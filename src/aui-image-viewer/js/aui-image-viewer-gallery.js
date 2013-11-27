@@ -87,7 +87,7 @@ var L = A.Lang,
  *
  * @class A.ImageGallery
  * @extends A.ImageViewer
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */

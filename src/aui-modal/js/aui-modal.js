@@ -45,7 +45,7 @@ var Lang = A.Lang,
  * @uses A.WidgetPosition, A.WidgetStdMod, A.WidgetAutohide, A.WidgetToolbars,
  *     A.WidgetModality, A.WidgetPositionAlign, A.WidgetPositionConstrain,
  *     A.WidgetStack
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  * @include http://alloyui.com/examples/modal/basic-markup.html

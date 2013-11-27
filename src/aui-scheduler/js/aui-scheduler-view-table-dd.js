@@ -62,7 +62,7 @@ var Lang = A.Lang,
  * A base class for SchedulerTableViewDD.
  *
  * @class A.SchedulerTableViewDD
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -376,7 +376,8 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _offsetXY
-     * @param xy, sign
+     * @param xy
+     * @param sign
      * @protected
      */
     _offsetXY: function(xy, sign) {

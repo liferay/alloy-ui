@@ -51,7 +51,7 @@ var L = A.Lang,
  *
  * @class A.TreeData
  * @extends Base
- * @param config {Object} Object literal specifying widget configuration
+ * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
@@ -166,7 +166,7 @@ A.mix(TreeData.prototype, {
      *
      * @method isRegistered
      * @param {TreeNode} node
-     * @return {boolean}
+     * @return {Boolean}
      */
     isRegistered: function(node) {
         var instance = this;
@@ -178,9 +178,9 @@ A.mix(TreeData.prototype, {
      * Update the references of the passed TreeNode.
      *
      * @method updateReferences
-     * @param {node} TreeNode
-     * @param {parentNode} TreeNode
-     * @param {ownerTree} TreeView
+     * @param {TreeNode} node
+     * @param {TreeNode} parentNode
+     * @param {TreeView} ownerTree
      */
     updateReferences: function(node, parentNode, ownerTree) {
         var instance = this;
@@ -378,8 +378,8 @@ A.mix(TreeData.prototype, {
      * Loop each children and execute the `fn` callback.
      *
      * @method eachChildren
-     * @param {function} fn callback
-     * @param {boolean} fn recursive
+     * @param {Function} fn Callback
+     * @param {Boolean} deep Recursive
      */
     eachChildren: function(fn, deep) {
         var instance = this;
@@ -396,7 +396,7 @@ A.mix(TreeData.prototype, {
      * Loop each parent node and execute the `fn` callback.
      *
      * @method eachParent
-     * @param {function} fn callback
+     * @param {Function} fn Callback
      */
     eachParent: function(fn) {
         var instance = this;
@@ -416,8 +416,8 @@ A.mix(TreeData.prototype, {
      * @method bubbleEvent
      * @param {String} eventType
      * @param {Array} args
-     * @param {boolean} cancelBubbling
-     * @param {boolean} stopActionPropagation
+     * @param {Boolean} cancelBubbling
+     * @param {Boolean} stopActionPropagation
      */
     bubbleEvent: function(eventType, args, cancelBubbling, stopActionPropagation) {
         var instance = this;
@@ -469,7 +469,7 @@ A.mix(TreeData.prototype, {
      *
      * @method appendChild
      * @param {TreeNode} node
-     * @param {boolean} cancelBubbling
+     * @param {Boolean} cancelBubbling
      */
     appendChild: function(node, cancelBubbling) {
         var instance = this;
@@ -483,7 +483,7 @@ A.mix(TreeData.prototype, {
      *
      * @method _appendChild
      * @param {TreeNode} node
-     * @param {boolean} cancelBubbling
+     * @param {Boolean} cancelBubbling
      * @protected
      */
     _appendChild: function(event) {
@@ -546,7 +546,7 @@ A.mix(TreeData.prototype, {
      * Whether the TreeData contains children or not.
      *
      * @method hasChildNodes
-     * @return {boolean}
+     * @return {Boolean}
      */
     hasChildNodes: function() {
         var instance = this;
@@ -558,7 +558,7 @@ A.mix(TreeData.prototype, {
      * Get an Array of the children nodes of the current TreeData.
      *
      * @method getChildren
-     * @param {boolean} deep
+     * @param {Boolean} deep
      * @return {Array}
      */
     getChildren: function(deep) {
