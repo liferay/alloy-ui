@@ -59,7 +59,7 @@ var Lang = A.Lang,
     TPL_SVT_PROXY_NODE = '<div class="' + CSS_SVT_PROXY_NODE + '"></div>';
 
 /**
- * A base class for SchedulerTableViewDD.
+ * A base class for `SchedulerTableViewDD`.
  *
  * @class A.SchedulerTableViewDD
  * @param {Object} config Object literal specifying widget configuration
@@ -70,7 +70,7 @@ A.SchedulerTableViewDD = function() {};
 
 /**
  * Static property used to define the default attribute
- * configuration for the SchedulerTableViewDD.
+ * configuration for the `SchedulerTableViewDD`.
  *
  * @property ATTRS
  * @type {Object}
@@ -111,7 +111,7 @@ A.SchedulerTableViewDD.ATTRS = {
 A.mix(A.SchedulerTableViewDD.prototype, {
 
     /**
-     * Construction logic executed during SchedulerTableViewDD instantiation.
+     * Construction logic executed during `SchedulerTableViewDD` instantiation.
      * Lifecycle.
      *
      * @method initializer
@@ -266,7 +266,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * Handles `dragAlign` events.
      *
      * @method _afterDragAlign
-     * @param {Event.Facade} event Event Facade object
+     * @param {EventFacade} event Event Facade object
      * @protected
      */
     _afterDragAlign: function(event) {
@@ -398,7 +398,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * Handle `eventDragEnd` events.
      *
      * @method _onEventDragEnd
-     * @param {Event.Facade} event Event Facade object
+     * @param {EventFacade} event Event Facade object
      * @protected
      */
     _onEventDragEnd: function(event) {
@@ -431,7 +431,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * Handle `eventDragStart` events.
      *
      * @method _onEventDragStart
-     * @param {Event.Facade} event Event Facade object
+     * @param {EventFacade} event Event Facade object
      * @protected
      */
     _onEventDragStart: function(event) {
@@ -473,7 +473,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * Handle `mouseDownGrid` events.
      *
      * @method _onMouseDownGrid
-     * @param {Event.Facade} event Event Facade object
+     * @param {EventFacade} event Event Facade object
      * @protected
      */
     _onMouseDownGrid: function(event) {
@@ -503,7 +503,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * Handle `mouseMoveGrid` events.
      *
      * @method _onMouseMoveGrid
-     * @param {Event.Facade} event Event Facade object
+     * @param {EventFacade} event Event Facade object
      * @protected
      */
     _onMouseMoveGrid: function(event) {
@@ -524,7 +524,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * Handle `mouseUpGrid` events.
      *
      * @method _onMouseUpGrid
-     * @param {Event.Facade} event Event Facade object
+     * @param {EventFacade} event Event Facade object
      * @protected
      */
     _onMouseUpGrid: function(event) {

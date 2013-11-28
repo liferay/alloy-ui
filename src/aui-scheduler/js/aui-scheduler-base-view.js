@@ -6,7 +6,7 @@
  */
 
 /**
- * A base class for SchedulerView.
+ * A base class for `SchedulerView`.
  *
  * @class A.SchedulerView
  * @uses A.WidgetStdMod
@@ -26,7 +26,7 @@ var SchedulerView = A.Component.create({
     NAME: SCHEDULER_VIEW,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Static property used to define the augmented classes.
      *
      * @property AUGMENTS
      * @type {Array}
@@ -207,7 +207,7 @@ var SchedulerView = A.Component.create({
     prototype: {
 
         /**
-         * Construction logic executed during SchedulerView instantiation.
+         * Construction logic executed during `SchedulerView` instantiation.
          * Lifecycle.
          *
          * @method initializer
@@ -236,7 +236,8 @@ var SchedulerView = A.Component.create({
          * to midnight.
          *
          * @method getAdjustedViewDate
-         * @param val {Any} The value of the property.
+         * @param {*} val The value of the property.
+         * @return {Date}
          */
         getAdjustedViewDate: function(val) {
             var instance = this;
@@ -307,7 +308,7 @@ var SchedulerView = A.Component.create({
         plotEvents: function() {},
 
         /**
-         * Sync SchedulerView StdContent.
+         * Sync `SchedulerView` StdContent.
          *
          * @method syncStdContent
          */
@@ -325,7 +326,7 @@ var SchedulerView = A.Component.create({
          * Sets `date` on the UI.
          *
          * @method _uiSetDate
-         * @param val {Any} The value of the property.
+         * @param {*} val The value of the property.
          * @protected
          */
         _uiSetDate: function(val) {},
@@ -334,7 +335,7 @@ var SchedulerView = A.Component.create({
          * Handles `render` events.
          *
          * @method _afterRender
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _afterRender: function(event) {
@@ -350,8 +351,9 @@ var SchedulerView = A.Component.create({
          * Sets this `SchedulerView`'s `scheduler` object to the given value.
          *
          * @method _setScheduler
-         * @param val {Any} The value of the property.
+         * @param {*} val The value of the property.
          * @protected
+         * @return {Object}
          */
         _setScheduler: function(val) {
             var instance = this;
@@ -374,7 +376,7 @@ var SchedulerView = A.Component.create({
          * Sets `scrollable` on the UI.
          *
          * @method _uiSetScrollable
-         * @param val {Any} The value of the property.
+         * @param {*} val The value of the property.
          * @protected
          */
         _uiSetScrollable: function(val) {

@@ -145,7 +145,7 @@ var Lang = A.Lang,
         '</div>';
 
 /**
- * A base class for SchedulerAgendaView.
+ * A base class for `SchedulerAgendaView`.
  *
  * @class A.SchedulerAgendaView
  * @extends A.SchedulerView
@@ -317,7 +317,7 @@ var SchedulerAgendaView = A.Component.create({
          * Contains the collection of strings used to label elements of the UI.
          *
          * @attribute strings
-         * @type {typeName}
+         * @type {Object}
          */
         strings: {
             value: {
@@ -338,7 +338,7 @@ var SchedulerAgendaView = A.Component.create({
     prototype: {
 
         /**
-         * Binds the events on the SchedulerAgendaView UI. Lifecycle.
+         * Binds the events on the `SchedulerAgendaView` UI. Lifecycle.
          *
          * @method bindUI
          * @protected
@@ -530,7 +530,7 @@ var SchedulerAgendaView = A.Component.create({
          * Handles `eventsHeader` click events.
          *
          * @method _onEventsHeaderClick
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _onEventsHeaderClick: function(event) {
@@ -556,7 +556,7 @@ var SchedulerAgendaView = A.Component.create({
          * Handles `scheduler` click events.
          *
          * @method _onEventsHeaderClick
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _onSchedulerEventClick: function(event) {

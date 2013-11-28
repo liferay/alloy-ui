@@ -158,7 +158,7 @@ var Lang = A.Lang,
     TPL_SVT_TABLE_DATA_ROW = '<tr></tr>';
 
 /**
- * A base class for SchedulerTableView.
+ * A base class for `SchedulerTableView`.
  *
  * @class A.SchedulerTableView
  * @extends A.SchedulerView
@@ -179,7 +179,7 @@ var SchedulerTableView = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the SchedulerTableView.
+     * configuration for the `SchedulerTableView`.
      *
      * @property ATTRS
      * @type {Object}
@@ -300,7 +300,7 @@ var SchedulerTableView = A.Component.create({
          * Contains the collection of strings used to label elements of the UI.
          *
          * @attribute strings
-         * @type {typeName}
+         * @type {Object}
          */
         strings: {
             value: {
@@ -360,7 +360,7 @@ var SchedulerTableView = A.Component.create({
      * from markup contained in the widget's bounding box.
      *
      * @property HTML_PARSER
-     * @type {typeName}
+     * @type {Object}
      * @static
      */
     HTML_PARSER: {
@@ -385,7 +385,7 @@ var SchedulerTableView = A.Component.create({
         rowDataTableStack: null,
 
         /**
-         * Construction logic executed during SchedulerTableView instantiation.
+         * Construction logic executed during `SchedulerTableView` instantiation.
          * Lifecycle.
          *
          * @method initializer
@@ -409,7 +409,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * Binds the events on the SchedulerTableView UI. Lifecycle.
+         * Binds the events on the `SchedulerTableView` UI. Lifecycle.
          *
          * @method bindUI
          * @protected
@@ -422,7 +422,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * Renders the SchedulerTableView component instance. Lifecycle.
+         * Renders the `SchedulerTableView` component instance. Lifecycle.
          *
          * @method renderUI
          * @protected
@@ -971,7 +971,7 @@ var SchedulerTableView = A.Component.create({
          * a continuation of an existing event.
          *
          * @method _getRenderableEvent
-         * @param {Event.Facade} event Event Facade objects
+         * @param {EventFacade} event Event Facade objects
          * @param {Date} rowStartDate
          * @param {Date} rowEndDate
          * @param {Date} celDate
@@ -1043,7 +1043,7 @@ var SchedulerTableView = A.Component.create({
          * Handles `SchedulerEvent` `click` events for the `SchedulerViewTable`.
          *
          * @method _onClickMore
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _onClickMore: function(event) {
@@ -1179,7 +1179,7 @@ var SchedulerTableView = A.Component.create({
          * Sets `date` on the UI.
          *
          * @method _uiSetDate
-         * @param val {Any} The value of the property.
+         * @param {*} val The value of the property.
          * @protected
          */
         _uiSetDate: function(val) {

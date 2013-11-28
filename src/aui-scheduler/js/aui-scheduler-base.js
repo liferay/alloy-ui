@@ -6,7 +6,7 @@
  */
 
 /**
- * A base class for SchedulerEvents.
+ * A base class for `SchedulerEvents`.
  *
  * @class A.SchedulerEvents
  * @extends ModelList
@@ -60,7 +60,7 @@ var SchedulerEventSupport = function() {};
 
 /**
  * Static property used to define the default attribute
- * configuration for the SchedulerEventSupport.
+ * configuration for the `SchedulerEventSupport`.
  *
  * @property ATTRS
  * @type {Object}
@@ -76,7 +76,7 @@ A.mix(SchedulerEventSupport.prototype, {
     eventsModel: A.SchedulerEvents,
 
     /**
-     * Construction logic executed during SchedulerEventSupport instantiation.
+     * Construction logic executed during `SchedulerEventSupport` instantiation.
      * Lifecycle.
      *
      * @method initializer
@@ -155,7 +155,7 @@ A.mix(SchedulerEventSupport.prototype, {
      *
      * @method getEvents
      * @param {Function} filterFn (optional) Filters `events` and returns a list
-     * of events.
+     *     of events.
      * @return {Array}
      */
     getEvents: function(filterFn) {
@@ -236,7 +236,7 @@ A.mix(SchedulerEventSupport.prototype, {
     },
 
     /**
-     * * Completely replaces all `SchedulerEvents` in the list with the given
+     * Completely replaces all `SchedulerEvents` in the list with the given
      * `SchedulerEvents`.
      *
      * @method resetEvents
@@ -254,7 +254,7 @@ A.mix(SchedulerEventSupport.prototype, {
      * Handles `add` events.
      *
      * @method _afterAddEvent
-     * @param {Event.Facade} event Event Facade object
+     * @param {EventFacade} event Event Facade object
      * @protected
      */
     _afterAddEvent: function(event) {
@@ -267,8 +267,8 @@ A.mix(SchedulerEventSupport.prototype, {
      * Converts given values to `SchedulerEvents`.
      *
      * @method _toSchedulerEvents
-     * @param val {Any} The value of the property.ues
-     * @returns {A.SchedulerEvents} The values converted to `SchedulerEvents`.
+     * @param {*} val The value of the property
+     * @return {A.SchedulerEvents} The values converted to `SchedulerEvents`.
      * @protected
      */
     _toSchedulerEvents: function(values) {
@@ -301,7 +301,7 @@ A.mix(SchedulerEventSupport.prototype, {
 A.SchedulerEventSupport = SchedulerEventSupport;
 
 /**
- * A base class for SchedulerBase.
+ * A base class for `SchedulerBase`.
  *
  * @class A.SchedulerBase
  * @uses A.SchedulerEventSupport, A.WidgetStdMod
@@ -368,7 +368,7 @@ var SchedulerBase = A.Component.create({
          * Contains the collection of strings used to label elements of the UI.
          *
          * @attribute strings
-         * @type {typeName}
+         * @type {Object}
          */
         strings: {
             value: {
@@ -537,10 +537,10 @@ var SchedulerBase = A.Component.create({
     UI_ATTRS: [DATE, ACTIVE_VIEW],
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Static property used to define the augmented classes.
      *
      * @property AUGMENTS
-     * @type Array
+     * @type {Array}
      * @static
      */
     AUGMENTS: [A.SchedulerEventSupport, A.WidgetStdMod],
@@ -549,7 +549,7 @@ var SchedulerBase = A.Component.create({
         viewStack: null,
 
         /**
-         * Construction logic executed during SchedulerBase instantiation.
+         * Construction logic executed during `SchedulerBase` instantiation.
          * Lifecycle.
          *
          * @method initializer
@@ -576,7 +576,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Binds the events on the SchedulerBase UI. Lifecycle.
+         * Binds the events on the `SchedulerBase` UI. Lifecycle.
          *
          * @method bindUI
          * @protected
@@ -588,7 +588,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Syncs the SchedulerBase UI. Lifecycle.
+         * Syncs the `SchedulerBase` UI. Lifecycle.
          *
          * @method syncUI
          * @protected
@@ -707,7 +707,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Sync SchedulerBase StdContent.
+         * Sync `SchedulerBase` StdContent.
          *
          * @method syncStdContent
          */
@@ -736,7 +736,7 @@ var SchedulerBase = A.Component.create({
          * Handles `activeView` events.
          *
          * @method _afterActiveViewChange
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _afterActiveViewChange: function(event) {
@@ -766,7 +766,7 @@ var SchedulerBase = A.Component.create({
          * Handles `render` events.
          *
          * @method _afterRender
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _afterRender: function(event) {
@@ -847,7 +847,7 @@ var SchedulerBase = A.Component.create({
          * Handles `clickToday` events.
          *
          * @method _onClickToday
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _onClickToday: function(event) {
@@ -865,7 +865,7 @@ var SchedulerBase = A.Component.create({
          * Handles `clickNextIcon` events.
          *
          * @method _onClickNextIcon
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _onClickNextIcon: function(event) {
@@ -883,7 +883,7 @@ var SchedulerBase = A.Component.create({
          * Handles `clickPrevIcon` events.
          *
          * @method _onClickPrevIcon
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _onClickPrevIcon: function(event) {
@@ -901,7 +901,7 @@ var SchedulerBase = A.Component.create({
          * Handles `buttonGroupSelectionChange` events.
          *
          * @method _onButtonGroupSelectionChange
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _onButtonGroupSelectionChange: function(event) {
@@ -931,7 +931,7 @@ var SchedulerBase = A.Component.create({
          * `eventRecorder` value.
          *
          * @method _setEventRecorder
-         * @param val {Any} The value of the property.
+         * @param {*} val The value of the property.
          * @protected
          */
         _setEventRecorder: function(val) {
@@ -952,7 +952,7 @@ var SchedulerBase = A.Component.create({
          * Replaces this `SchedulerBase`'s `views` with the given `views` value.
          *
          * @method _setViews
-         * @param val {Any} The value of the property.
+         * @param {*} val The value of the property.
          * @protected
          * @return The replaces `SchedulerBase`'s `views`.
          */
@@ -983,7 +983,7 @@ var SchedulerBase = A.Component.create({
          * Sets `activeView` on the UI.
          *
          * @method _uiSetActiveView
-         * @param val {Any} The value of the property.
+         * @param {*} val The value of the property.
          * @protected
          */
         _uiSetActiveView: function(val) {
@@ -1004,7 +1004,7 @@ var SchedulerBase = A.Component.create({
          * Sets `date` on the UI.
          *
          * @method _uiSetDate
-         * @param val {Any} The value of the property.
+         * @param {*} val The value of the property.
          * @protected
          */
         _uiSetDate: function(val) {

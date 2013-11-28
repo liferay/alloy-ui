@@ -27,7 +27,7 @@ var Lang = A.Lang,
     WEEK = 'week';
 
 /**
- * A base class for SchedulerWeekView.
+ * A base class for `SchedulerWeekView`.
  *
  * @class A.SchedulerWeekView
  * @extends A.SchedulerDayView
@@ -48,7 +48,7 @@ var SchedulerWeekView = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the SchedulerWeekView.
+     * configuration for the `SchedulerWeekView`.
      *
      * @property ATTRS
      * @type {Object}
@@ -130,7 +130,8 @@ var SchedulerWeekView = A.Component.create({
          * adjusted to midnight.
          *
          * @method getAdjustedViewDate
-         * @param val {Any} The value of the property.
+         * @param {*} val The value of the property.
+         * @return {Date}
          */
         getAdjustedViewDate: function(val) {
             var instance = this;

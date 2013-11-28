@@ -231,7 +231,7 @@ var Lang = A.Lang,
         CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_FIRST].join(_SPACE) + '"></td>';
 
 /**
- * A base class for SchedulerDayView.
+ * A base class for `SchedulerDayView`.
  *
  * @class A.SchedulerDayView
  * @extends A.SchedulerView
@@ -252,7 +252,7 @@ var SchedulerDayView = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the SchedulerDayView.
+     * configuration for the `SchedulerDayView`.
      *
      * @property ATTRS
      * @type {Object}
@@ -441,7 +441,7 @@ var SchedulerDayView = A.Component.create({
          * Contains the collection of strings used to label elements of the UI.
          *
          * @attribute strings
-         * @type {typeName}
+         * @type {Object}
          */
         strings: {
             value: {
@@ -552,7 +552,7 @@ var SchedulerDayView = A.Component.create({
      *
      * @property HTML_PARSER
      * @default defaultName
-     * @type {typeName}
+     * @type {Object}
      * @static
      */
     HTML_PARSER: {
@@ -578,7 +578,7 @@ var SchedulerDayView = A.Component.create({
     prototype: {
 
         /**
-         * Construction logic executed during SchedulerDayView instantiation.
+         * Construction logic executed during `SchedulerDayView` instantiation.
          * Lifecycle.
          *
          * @method initializer
@@ -611,7 +611,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Renders the SchedulerDayView component instance. Lifecycle.
+         * Renders the `SchedulerDayView` component instance. Lifecycle.
          *
          * @method renderUI
          * @protected
@@ -632,7 +632,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Binds the events on the SchedulerDayView UI. Lifecycle.
+         * Binds the events on the `SchedulerDayView` UI. Lifecycle.
          *
          * @method bindUI
          * @protected
@@ -661,7 +661,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Syncs the SchedulerDayView UI. Lifecycle.
+         * Syncs the `SchedulerDayView` UI. Lifecycle.
          *
          * @method syncUI
          * @protected
@@ -719,7 +719,7 @@ var SchedulerDayView = A.Component.create({
          * @method calculateTop
          * @param {Date} date
          * @return {Number} The value needed to get the `top` property give a
-         * `date`.
+         *     `date`.
          */
         calculateTop: function(date) {
             var instance = this;
@@ -1109,7 +1109,7 @@ var SchedulerDayView = A.Component.create({
          * coordinates as well as the XY coordinates from the event page.
          *
          * @method getXYDelta
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          */
         getXYDelta: function(event) {
             var instance = this;
@@ -1137,7 +1137,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Rounds a given Date to a given hour represented as time.
+         * Rounds a given `Date` to a given hour represented as time.
          *
          * @method roundToNearestHour
          * @param {Date} date
@@ -1156,7 +1156,7 @@ var SchedulerDayView = A.Component.create({
          * Handles `dragAlign` events.
          *
          * @method _afterDragAlign
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _afterDragAlign: function(event) {
@@ -1206,7 +1206,7 @@ var SchedulerDayView = A.Component.create({
          * otherwise.
          *
          * @method _dragTickAlignY
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _dragTickAlignY: function(event) {
@@ -1300,7 +1300,7 @@ var SchedulerDayView = A.Component.create({
          * Sets `date` on the UI.
          *
          * @method _uiSetDate
-         * @param val {Any} The value of the property.
+         * @param {*} val The value of the property.
          * @protected
          */
         _uiSetDate: function(val) {
@@ -1314,7 +1314,7 @@ var SchedulerDayView = A.Component.create({
          * Handles `clickDays` events.
          *
          * @method _onClickDaysHeader
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _onClickDaysHeader: function(event) {
@@ -1339,7 +1339,7 @@ var SchedulerDayView = A.Component.create({
          * Handles `eventDrag` events.
          *
          * @method _onEventDragEnd
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _onEventDragEnd: function(event) {
@@ -1368,7 +1368,7 @@ var SchedulerDayView = A.Component.create({
          * Handles `eventDrag` events.
          *
          * @method _onEventDragStart
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _onEventDragStart: function(event) {
@@ -1401,7 +1401,7 @@ var SchedulerDayView = A.Component.create({
          * Handles `mouseDownTableCol` events.
          *
          * @method _onMouseDownTableCol
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _onMouseDownTableCol: function(event) {
@@ -1455,7 +1455,7 @@ var SchedulerDayView = A.Component.create({
          * Handles `mouseEnter` events.
          *
          * @method _onMouseEnterEvent
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _onMouseEnterEvent: function(event) {
@@ -1472,7 +1472,7 @@ var SchedulerDayView = A.Component.create({
          * Handles `mouseLeave` events.
          *
          * @method _onMouseLeaveEvent
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _onMouseLeaveEvent: function(event) {
@@ -1487,7 +1487,7 @@ var SchedulerDayView = A.Component.create({
          * Handles `mouseMoveTableCol` events.
          *
          * @method _onMouseMoveTableCol
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _onMouseMoveTableCol: function(event) {
@@ -1535,7 +1535,7 @@ var SchedulerDayView = A.Component.create({
          * Handles `mouseUpTableCol` events.
          *
          * @method _onMouseUpTableCol
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _onMouseUpTableCol: function(event) {
@@ -1563,7 +1563,7 @@ var SchedulerDayView = A.Component.create({
          * Handles `scheduler` value change.
          *
          * @method _onSchedulerChange
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _onSchedulerChange: function(event) {

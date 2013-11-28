@@ -33,7 +33,7 @@ var Lang = A.Lang,
     CSS_SVT_TABLE_DATA_COL_TITLE = getCN(SCHEDULER_VIEW, TABLE, DATA, COL, TITLE);
 
 /**
- * A base class for SchedulerMonthView.
+ * A base class for `SchedulerMonthView`.
  *
  * @class A.SchedulerMonthView
  * @extends A.SchedulerTableView
@@ -54,7 +54,7 @@ var SchedulerMonthView = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the SchedulerMonthView.
+     * configuration for the `SchedulerMonthView`.
      *
      * @property ATTRS
      * @type {Object}
@@ -124,7 +124,8 @@ var SchedulerMonthView = A.Component.create({
          * adjusted to midnight.
          *
          * @method getAdjustedViewDate
-         * @param val {Any} The value of the property.
+         * @param {*} val The value of the property.
+         * @return {Date}
          */
         getAdjustedViewDate: function(val) {
             var instance = this;

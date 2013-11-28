@@ -6,7 +6,7 @@
  */
 
 /**
- * A base class for SchedulerCalendar.
+ * A base class for `SchedulerCalendar`.
  *
  * @class A.SchedulerCalendar
  * @extends ModelList
@@ -18,7 +18,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
     model: A.SchedulerEvent,
 
     /**
-     * Construction logic executed during SchedulerCalendar instantiation.
+     * Construction logic executed during `SchedulerCalendar` instantiation.
      * Lifecycle.
      *
      * @method initializer
@@ -48,7 +48,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      * Handles `color` events.
      *
      * @method _afterColorChange
-     * @param {Event.Facade} event Event Facade object
+     * @param {EventFacade} event Event Facade object
      * @protected
      */
     _afterColorChange: function(event) {
@@ -65,7 +65,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      * Handles `disabled` events.
      *
      * @method _afterDisabledChange
-     * @param {Event.Facade} event Event Facade object
+     * @param {EventFacade} event Event Facade object
      * @protected
      */
     _afterDisabledChange: function(event) {
@@ -82,7 +82,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      * Handles `events` events.
      *
      * @method _afterEventsChange
-     * @param {Event.Facade} event Event Facade object
+     * @param {EventFacade} event Event Facade object
      * @protected
      */
     _afterEventsChange: function(event) {
@@ -103,7 +103,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      * Handles `visible` events.
      *
      * @method _afterVisibleChange
-     * @param {Event.Facade} event Event Facade object
+     * @param {EventFacade} event Event Facade object
      * @protected
      */
     _afterVisibleChange: function(event) {
@@ -120,7 +120,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      * Handles `remove` events.
      *
      * @method _onRemoveEvents
-     * @param {Event.Facade} event Event Facade object
+     * @param {EventFacade} event Event Facade object
      * @protected
      */
     _onRemoveEvents: function(event) {
@@ -136,8 +136,8 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      * Sets the model attributes for the base calendar.
      *
      * @method _setModelsAttrs
-     * @param attrMap
-     * @param [options] {Object} Zero or more options.
+     * @param {Object} attrMap
+     * @param {Object} options Zero or more options.
      * @protected
      */
     _setModelsAttrs: function(attrMap, options) {
@@ -152,7 +152,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      * Sets the `events` on the UI.
      *
      * @method _uiSetEvents
-     * @param val {Any} The value of the property.
+     * @param {*} val The value of the property.
      * @protected
      */
     _uiSetEvents: function(val) {
@@ -168,7 +168,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
 
     /**
      * Static property used to define the default attribute
-     * configuration for the SchedulerCalendar.
+     * configuration for the `SchedulerCalendar`.
      *
      * @property ATTRS
      * @type {Object}
@@ -194,7 +194,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
         },
 
         /**
-         * Determines if the calender is enbabled.
+         * Determines if the calender is enabled.
          *
          * @attribute disabled
          * @default false

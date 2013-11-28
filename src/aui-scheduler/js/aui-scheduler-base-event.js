@@ -177,7 +177,7 @@ var Lang = A.Lang,
     TPL_SCHEDULER_VIEWS = '<div class="span5 ' + CSS_SCHEDULER_VIEWS + '"></div>';
 
 /**
- * A base class for SchedulerEvent.
+ * A base class for `SchedulerEvent`.
  *
  * @class A.SchedulerEvent
  * @extends A.Model
@@ -197,7 +197,7 @@ var SchedulerEvent = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the SchedulerEvent.
+     * configuration for the `SchedulerEvent`.
      *
      * @property ATTRS
      * @type {Object}
@@ -305,9 +305,9 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Contains the date corresponding to the current ending date of a scheduled
-         * event. By default, the value is one hour after the date set on the
-         * user's computer.
+         * Contains the date corresponding to the current ending date of a
+         * scheduled event. By default, the value is one hour after the date
+         * set on the user's computer.
          *
          * @attribute endDate
          * @type {Date}
@@ -446,7 +446,8 @@ var SchedulerEvent = A.Component.create({
             CSS_SCHEDULER_EVENT_ICON_REPEATED].join(_SPACE) + '"></span>' + '</div>' + '</div>',
 
         /**
-         * Construction logic executed during SchedulerEvent instantiation. Lifecycle.
+         * Construction logic executed during `SchedulerEvent` instantiation.
+         * Lifecycle.
          *
          * @method initializer
          * @protected
@@ -459,7 +460,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Binds the events on the SchedulerEvent UI. Lifecycle.
+         * Binds the events on the `SchedulerEvent` UI. Lifecycle.
          *
          * @method bindUI
          * @protected
@@ -480,7 +481,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Syncs the SchedulerEvent UI. Lifecycle.
+         * Syncs the `SchedulerEvent` UI. Lifecycle.
          *
          * @method syncUI
          * @protected
@@ -555,6 +556,7 @@ var SchedulerEvent = A.Component.create({
          * Clones the scheduler `event`.
          *
          * @method clone
+         * @return {Object} Scheduler's event model
          */
         clone: function() {
             var instance = this,
@@ -575,8 +577,8 @@ var SchedulerEvent = A.Component.create({
          * Copies the dates from the `event` parameter to the instance `event`.
          *
          * @method copyDates
-         * @param {A.SchedulerEvent} evt A `Scheduler` event. Scheduler event.
-         * @param [options] {Object} Zero or more options.
+         * @param {A.SchedulerEvent} evt A `Scheduler` event.
+         * @param {Object} options Zero or more options.
          */
         copyDates: function(evt, options) {
             var instance = this;
@@ -594,7 +596,7 @@ var SchedulerEvent = A.Component.create({
          * @method copyPropagateAttrValues
          * @param {A.SchedulerEvent} evt A `Scheduler` event.
          * @param {Boolean} dontCopyMap
-         * @param [options] {Object} Zero or more options.
+         * @param {Object} options Zero or more options.
          */
         copyPropagateAttrValues: function(evt, dontCopyMap, options) {
             var instance = this,
@@ -820,7 +822,7 @@ var SchedulerEvent = A.Component.create({
          *
          * @method move
          * @param {Date} date
-         * @param [options] {Object} Zero or more options.
+         * @param {Object} options Zero or more options.
          */
         move: function(date, options) {
             var instance = this;
@@ -926,7 +928,7 @@ var SchedulerEvent = A.Component.create({
          * Handles `allday` events.
          *
          * @method _afterAllDayChange
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _afterAllDayChange: function(event) {
@@ -939,7 +941,7 @@ var SchedulerEvent = A.Component.create({
          * Handles `color` events.
          *
          * @method _afterColorChange
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _afterColorChange: function(event) {
@@ -952,7 +954,7 @@ var SchedulerEvent = A.Component.create({
          * Handles `disabled` events.
          *
          * @method _afterDisabledChange
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _afterDisabledChange: function(event) {
@@ -965,7 +967,7 @@ var SchedulerEvent = A.Component.create({
          * Handles `enddate` events.
          *
          * @method _afterEndDateChange
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _afterEndDateChange: function(event) {
@@ -978,7 +980,7 @@ var SchedulerEvent = A.Component.create({
          * Handles `meeting` events.
          *
          * @method _afterMeetingChange
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _afterMeetingChange: function(event) {
@@ -991,7 +993,7 @@ var SchedulerEvent = A.Component.create({
          * Handles `reminder` events.
          *
          * @method _afterReminderChange
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _afterReminderChange: function(event) {
@@ -1004,7 +1006,7 @@ var SchedulerEvent = A.Component.create({
          * Handles `repeated` events.
          *
          * @method _afterRepeatedChange
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _afterRepeatedChange: function(event) {
@@ -1017,7 +1019,7 @@ var SchedulerEvent = A.Component.create({
          * Handles `visible` events.
          *
          * @method _afterVisibleChange
-         * @param {Event.Facade} event Event Facade object
+         * @param {EventFacade} event Event Facade object
          * @protected
          */
         _afterVisibleChange: function(event) {
@@ -1027,7 +1029,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Returns true if the event ends before the current date.
+         * Returns `true` if the event ends before the current date.
          *
          * @method _isPastEvent
          * @protected
@@ -1044,7 +1046,7 @@ var SchedulerEvent = A.Component.create({
          * Sets the date to the given value.
          *
          * @method _setDate
-         * @param val {Any} The value of the property.
+         * @param {*} val The value of the property.
          * @protected
          */
         _setDate: function(val) {
@@ -1080,7 +1082,7 @@ var SchedulerEvent = A.Component.create({
          *
          * @method _getTitleDateFormat
          * @param {String|Function} val
-         * @return {Mixed}
+         * @return {Object|Function}
          * @protected
          */
         _getTitleDateFormat: function(val) {
@@ -1103,7 +1105,7 @@ var SchedulerEvent = A.Component.create({
          * Sets `allDay` on the UI.
          *
          * @method _uiSetAllDay
-         * @param val {Any} The value of the property.
+         * @param {*} val The value of the property.
          * @protected
          */
         _uiSetAllDay: function(val) {
@@ -1116,7 +1118,7 @@ var SchedulerEvent = A.Component.create({
          * Sets `color` on the UI.
          *
          * @method _uiSetColor
-         * @param val {Any} The value of the property.
+         * @param {*} val The value of the property.
          * @protected
          */
         _uiSetColor: function(val) {
@@ -1147,7 +1149,7 @@ var SchedulerEvent = A.Component.create({
          * Sets `disabled` on the UI.
          *
          * @method _uiSetDisabled
-         * @param val {Any} The value of the property.
+         * @param {*} val The value of the property.
          * @protected
          */
         _uiSetDisabled: function(val) {
@@ -1160,7 +1162,7 @@ var SchedulerEvent = A.Component.create({
          * Sets `endDate` on the UI.
          *
          * @method _uiSetEndDate
-         * @param val {Any} The value of the property.
+         * @param {*} val The value of the property.
          * @protected
          */
         _uiSetEndDate: function(val) {
@@ -1173,7 +1175,7 @@ var SchedulerEvent = A.Component.create({
          * Sets `meeting` on the UI.
          *
          * @method _uiSetMeeting
-         * @param val {Any} The value of the property.
+         * @param {*} val The value of the property.
          * @protected
          */
         _uiSetMeeting: function(val) {
@@ -1186,7 +1188,7 @@ var SchedulerEvent = A.Component.create({
          * Sets `past` on the UI.
          *
          * @method _uiSetPast
-         * @param val {Any} The value of the property.
+         * @param {*} val The value of the property.
          * @protected
          */
         _uiSetPast: function(val) {
@@ -1199,7 +1201,7 @@ var SchedulerEvent = A.Component.create({
          * Sets `reminder` on the UI.
          *
          * @method _uiSetReminder
-         * @param val {Any} The value of the property.
+         * @param {*} val The value of the property.
          * @protected
          */
         _uiSetReminder: function(val) {
@@ -1212,7 +1214,7 @@ var SchedulerEvent = A.Component.create({
          * Sets `repeated` on the UI.
          *
          * @method _uiSetRepeated
-         * @param val {Any} The value of the property.
+         * @param {*} val The value of the property.
          * @protected
          */
         _uiSetRepeated: function(val) {
@@ -1225,7 +1227,7 @@ var SchedulerEvent = A.Component.create({
          * Sets `visible` on the UI.
          *
          * @method _uiSetVisible
-         * @param val {Any} The value of the property.
+         * @param {*} val The value of the property.
          * @protected
          */
         _uiSetVisible: function(val) {
