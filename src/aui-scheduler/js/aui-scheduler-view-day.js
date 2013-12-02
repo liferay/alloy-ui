@@ -284,7 +284,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Configures this view's DD Delegate.
+         * Configures this view's `DD.Delegate`.
          *
          * @attribute delegateConfig
          * @default {}
@@ -1088,7 +1088,7 @@ var SchedulerDayView = A.Component.create({
          *
          * @method findEventIntersections
          * @param {A.SchedulerEvent} evt A `Scheduler` event.
-         * @param {A.SchedulerEvent[]} A collections of `SchedulerEvent`s.
+         * @param {Array} Array of intersecting `SchedulerEvent`s.
          * @return {Array}
          */
         findEventIntersections: function(evt, events) {
@@ -1109,7 +1109,7 @@ var SchedulerDayView = A.Component.create({
          * coordinates as well as the XY coordinates from the event page.
          *
          * @method getXYDelta
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          */
         getXYDelta: function(event) {
             var instance = this;
@@ -1156,7 +1156,7 @@ var SchedulerDayView = A.Component.create({
          * Handles `dragAlign` events.
          *
          * @method _afterDragAlign
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _afterDragAlign: function(event) {
@@ -1206,7 +1206,7 @@ var SchedulerDayView = A.Component.create({
          * otherwise.
          *
          * @method _dragTickAlignY
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _dragTickAlignY: function(event) {
@@ -1243,7 +1243,7 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Configures a `DD Delegate` that handles `DD` events for this
+         * Configures a `DD.Delegate` that handles `DD` events for this
          * `SchedulerDayView`.
          *
          * @method _setupDragDrop
@@ -1300,10 +1300,9 @@ var SchedulerDayView = A.Component.create({
          * Sets `date` on the UI.
          *
          * @method _uiSetDate
-         * @param {*} val The value of the property.
          * @protected
          */
-        _uiSetDate: function(val) {
+        _uiSetDate: function() {
             var instance = this;
 
             instance.syncColumnsUI();
@@ -1314,7 +1313,7 @@ var SchedulerDayView = A.Component.create({
          * Handles `clickDays` events.
          *
          * @method _onClickDaysHeader
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _onClickDaysHeader: function(event) {
@@ -1339,7 +1338,7 @@ var SchedulerDayView = A.Component.create({
          * Handles `eventDrag` events.
          *
          * @method _onEventDragEnd
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _onEventDragEnd: function(event) {
@@ -1368,7 +1367,7 @@ var SchedulerDayView = A.Component.create({
          * Handles `eventDrag` events.
          *
          * @method _onEventDragStart
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _onEventDragStart: function(event) {
@@ -1401,7 +1400,7 @@ var SchedulerDayView = A.Component.create({
          * Handles `mouseDownTableCol` events.
          *
          * @method _onMouseDownTableCol
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _onMouseDownTableCol: function(event) {
@@ -1455,7 +1454,7 @@ var SchedulerDayView = A.Component.create({
          * Handles `mouseEnter` events.
          *
          * @method _onMouseEnterEvent
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _onMouseEnterEvent: function(event) {
@@ -1472,7 +1471,7 @@ var SchedulerDayView = A.Component.create({
          * Handles `mouseLeave` events.
          *
          * @method _onMouseLeaveEvent
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _onMouseLeaveEvent: function(event) {
@@ -1487,7 +1486,7 @@ var SchedulerDayView = A.Component.create({
          * Handles `mouseMoveTableCol` events.
          *
          * @method _onMouseMoveTableCol
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _onMouseMoveTableCol: function(event) {
@@ -1535,7 +1534,7 @@ var SchedulerDayView = A.Component.create({
          * Handles `mouseUpTableCol` events.
          *
          * @method _onMouseUpTableCol
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _onMouseUpTableCol: function(event) {
@@ -1563,7 +1562,7 @@ var SchedulerDayView = A.Component.create({
          * Handles `scheduler` value change.
          *
          * @method _onSchedulerChange
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _onSchedulerChange: function(event) {

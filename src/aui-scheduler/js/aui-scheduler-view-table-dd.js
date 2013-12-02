@@ -79,7 +79,7 @@ A.SchedulerTableViewDD = function() {};
 A.SchedulerTableViewDD.ATTRS = {
 
     /**
-     * Configures this view's DD Delegate.
+     * Configures this view's `DD.Delegate`.
      *
      * @attribute delegateConfig
      * @default {}
@@ -128,7 +128,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * Binds the scheduler view DD Delegate events on the UI. Lifecycle.
+     * Binds the scheduler view `DD.Delegate` events on the UI. Lifecycle.
      *
      * @method viewDDBindUI
      */
@@ -155,7 +155,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * Renders the scheduler view DD Delegate instance. Lifecycle.
+     * Renders the scheduler view `DD.Delegate` instance. Lifecycle.
      *
      * @method viewDDRenderUI
      */
@@ -165,7 +165,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * Syncs the scheduler view DD Delegate instance. Lifecycle.
+     * Syncs the scheduler view `DD.Delegate` instance. Lifecycle.
      *
      * @method viewDDSyncUI
      */
@@ -202,11 +202,15 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * Renders the table view lasso at the given xy coordinates.
+     * Renders the table view lasso at the given `ij` coordinates for the table
+     * matrix. It represents the selection for the table view, e.g. `j`
+     * represents a row and `i` a column, for `startPos` being `[0,0]` and
+     * `endPos` being `[0,3]`, this method will render three nodes representing
+     * the selected lasso.
      *
      * @method renderLasso
-     * @param startPos {Number} The starting X/Y posiiton to lasso.
-     * @param endPos {Number} The ending X/Y posiiton to lasso.
+     * @param startPos {Array} Contains starting i, j posiiton to lasso.
+     * @param endPos {Array} Contains ending i, j posiiton to lasso.
      */
     renderLasso: function(startPos, endPos) {
         var instance = this;
@@ -266,7 +270,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * Handles `dragAlign` events.
      *
      * @method _afterDragAlign
-     * @param {EventFacade} event Event Facade object
+     * @param {EventFacade} event
      * @protected
      */
     _afterDragAlign: function(event) {
@@ -398,7 +402,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * Handle `eventDragEnd` events.
      *
      * @method _onEventDragEnd
-     * @param {EventFacade} event Event Facade object
+     * @param {EventFacade} event
      * @protected
      */
     _onEventDragEnd: function(event) {
@@ -431,7 +435,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * Handle `eventDragStart` events.
      *
      * @method _onEventDragStart
-     * @param {EventFacade} event Event Facade object
+     * @param {EventFacade} event
      * @protected
      */
     _onEventDragStart: function(event) {
@@ -473,7 +477,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * Handle `mouseDownGrid` events.
      *
      * @method _onMouseDownGrid
-     * @param {EventFacade} event Event Facade object
+     * @param {EventFacade} event
      * @protected
      */
     _onMouseDownGrid: function(event) {
@@ -503,7 +507,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * Handle `mouseMoveGrid` events.
      *
      * @method _onMouseMoveGrid
-     * @param {EventFacade} event Event Facade object
+     * @param {EventFacade} event
      * @protected
      */
     _onMouseMoveGrid: function(event) {
@@ -524,7 +528,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * Handle `mouseUpGrid` events.
      *
      * @method _onMouseUpGrid
-     * @param {EventFacade} event Event Facade object
+     * @param {EventFacade} event
      * @protected
      */
     _onMouseUpGrid: function(event) {
@@ -557,7 +561,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     },
 
     /**
-     * Configures a `DD Delegate` that handles `DD` events for this
+     * Configures a `DD.Delegate` that handles `DD` events for this
      * `SchedulerTableViewDD`s.
      *
      * @method _setupDragDrop

@@ -818,7 +818,7 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * Sync SchedulerView StdContent.
+         * Sync SchedulerView content.
          *
          * @method syncStdContent
          */
@@ -971,13 +971,13 @@ var SchedulerTableView = A.Component.create({
          * a continuation of an existing event.
          *
          * @method _getRenderableEvent
-         * @param {EventFacade} event Event Facade objects
+         * @param {EventFacade} event
          * @param {Date} rowStartDate
          * @param {Date} rowEndDate
          * @param {Date} celDate
          * @return {A.SchedulerEvent|null} Either a `SchedulerEvent` that is not
-         * * yet rendered and has a`startDate` that does not overlap with with a
-         * given `celDate` or is a continuation of an existing event.
+         *     yet rendered and has a`startDate` that does not overlap with with
+         *     a given `celDate` or is a continuation of an existing event.
          * @protected
          */
         _getRenderableEvent: function(events, rowStartDate, rowEndDate, celDate) {
@@ -1014,7 +1014,7 @@ var SchedulerTableView = A.Component.create({
          * @method _getTableGridNode
          * @param {Number} rowIndex
          * @return {Node} tableGridNode The table grid `Node` from a given
-         * `rowIndex`.
+         *     `rowIndex`.
          * @protected
          */
         _getTableGridNode: function(rowIndex) {
@@ -1043,7 +1043,7 @@ var SchedulerTableView = A.Component.create({
          * Handles `SchedulerEvent` `click` events for the `SchedulerViewTable`.
          *
          * @method _onClickMore
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _onClickMore: function(event) {
@@ -1116,8 +1116,8 @@ var SchedulerTableView = A.Component.create({
          * @param {A.SchedulerEvent} evt A `Scheduler` event.
          * @param node
          * @param {Object} evtSplitInfo An object containing the `colspan`,
-         * `left` and `right` values that determine a `SchedulerEvent`'s split
-         * information.
+         *     `left` and `right` values that determine a `SchedulerEvent`'s
+         *     split information.
          * @protected
          */
         _syncEventNodeContainerUI: function(evt, node, evtSplitInfo) {
@@ -1179,10 +1179,9 @@ var SchedulerTableView = A.Component.create({
          * Sets `date` on the UI.
          *
          * @method _uiSetDate
-         * @param {*} val The value of the property.
          * @protected
          */
-        _uiSetDate: function(val) {
+        _uiSetDate: function() {
             var instance = this;
 
             instance.syncDaysHeaderUI();

@@ -130,15 +130,15 @@ var SchedulerWeekView = A.Component.create({
          * adjusted to midnight.
          *
          * @method getAdjustedViewDate
-         * @param {*} val The value of the property.
+         * @param {Date} date
          * @return {Date}
          */
-        getAdjustedViewDate: function(val) {
+        getAdjustedViewDate: function(date) {
             var instance = this;
             var scheduler = instance.get(SCHEDULER);
             var firstDayOfWeek = scheduler.get(FIRST_DAY_OF_WEEK);
 
-            return DateMath.toMidnight(DateMath.getFirstDayOfWeek(val, firstDayOfWeek));
+            return DateMath.toMidnight(DateMath.getFirstDayOfWeek(date, firstDayOfWeek));
         },
 
         /**

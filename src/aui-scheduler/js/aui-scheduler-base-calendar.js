@@ -48,7 +48,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      * Handles `color` events.
      *
      * @method _afterColorChange
-     * @param {EventFacade} event Event Facade object
+     * @param {EventFacade} event
      * @protected
      */
     _afterColorChange: function(event) {
@@ -65,7 +65,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      * Handles `disabled` events.
      *
      * @method _afterDisabledChange
-     * @param {EventFacade} event Event Facade object
+     * @param {EventFacade} event
      * @protected
      */
     _afterDisabledChange: function(event) {
@@ -82,7 +82,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      * Handles `events` events.
      *
      * @method _afterEventsChange
-     * @param {EventFacade} event Event Facade object
+     * @param {EventFacade} event
      * @protected
      */
     _afterEventsChange: function(event) {
@@ -103,7 +103,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      * Handles `visible` events.
      *
      * @method _afterVisibleChange
-     * @param {EventFacade} event Event Facade object
+     * @param {EventFacade} event
      * @protected
      */
     _afterVisibleChange: function(event) {
@@ -120,7 +120,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      * Handles `remove` events.
      *
      * @method _onRemoveEvents
-     * @param {EventFacade} event Event Facade object
+     * @param {EventFacade} event
      * @protected
      */
     _onRemoveEvents: function(event) {
@@ -152,7 +152,8 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      * Sets the `events` on the UI.
      *
      * @method _uiSetEvents
-     * @param {*} val The value of the property.
+     * @param {Array | ModelList | Model | SchedulerEvent} val The value of the
+     *     property.
      * @protected
      */
     _uiSetEvents: function(val) {

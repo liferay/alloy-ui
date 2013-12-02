@@ -101,8 +101,8 @@ A.mix(SchedulerEventSupport.prototype, {
      * Adds and returns the collection of events for this `Scheduler`.
      *
      * @method addEvents
-     * @param {Object} models
-     * @return {SchedulerEvents}
+     * @param {Array | ModelList | Model | A.SchedulerEvent} models
+     * @return {A.SchedulerEvents}
      */
     addEvents: function(models) {
         var instance = this,
@@ -116,7 +116,7 @@ A.mix(SchedulerEventSupport.prototype, {
      *
      * @method eachEvent
      * @param {Function} fn
-     * @return {SchedulerEvents}
+     * @return {A.SchedulerEvents}
      */
     eachEvent: function(fn) {
         var instance = this;
@@ -225,7 +225,7 @@ A.mix(SchedulerEventSupport.prototype, {
      * Removes given `SchedulerEvents` from the scheduler.
      *
      * @method removeEvents
-     * @param {Object} models
+     * @param {Array | ModelList | Model | A.SchedulerEvent} models
      * @return {A.SchedulerEvents} Removed SchedulerEvents.
      */
     removeEvents: function(models) {
@@ -240,7 +240,7 @@ A.mix(SchedulerEventSupport.prototype, {
      * `SchedulerEvents`.
      *
      * @method resetEvents
-     * @param {Object} models
+     * @param {Array | ModelList | Model | A.SchedulerEvent} models
      * @return {A.SchedulerEvents} Reset SchedulerEvents.
      */
     resetEvents: function(models) {
@@ -254,7 +254,7 @@ A.mix(SchedulerEventSupport.prototype, {
      * Handles `add` events.
      *
      * @method _afterAddEvent
-     * @param {EventFacade} event Event Facade object
+     * @param {EventFacade} event
      * @protected
      */
     _afterAddEvent: function(event) {
@@ -267,7 +267,8 @@ A.mix(SchedulerEventSupport.prototype, {
      * Converts given values to `SchedulerEvents`.
      *
      * @method _toSchedulerEvents
-     * @param {*} val The value of the property
+     * @param {Array | ModelList | Model | A.SchedulerEvent} values Values to be
+     *     used or converted to `SchedulerEvent` instances.
      * @return {A.SchedulerEvents} The values converted to `SchedulerEvents`.
      * @protected
      */
@@ -736,7 +737,7 @@ var SchedulerBase = A.Component.create({
          * Handles `activeView` events.
          *
          * @method _afterActiveViewChange
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _afterActiveViewChange: function(event) {
@@ -766,7 +767,7 @@ var SchedulerBase = A.Component.create({
          * Handles `render` events.
          *
          * @method _afterRender
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _afterRender: function(event) {
@@ -847,7 +848,7 @@ var SchedulerBase = A.Component.create({
          * Handles `clickToday` events.
          *
          * @method _onClickToday
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _onClickToday: function(event) {
@@ -865,7 +866,7 @@ var SchedulerBase = A.Component.create({
          * Handles `clickNextIcon` events.
          *
          * @method _onClickNextIcon
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _onClickNextIcon: function(event) {
@@ -883,7 +884,7 @@ var SchedulerBase = A.Component.create({
          * Handles `clickPrevIcon` events.
          *
          * @method _onClickPrevIcon
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _onClickPrevIcon: function(event) {
@@ -901,7 +902,7 @@ var SchedulerBase = A.Component.create({
          * Handles `buttonGroupSelectionChange` events.
          *
          * @method _onButtonGroupSelectionChange
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _onButtonGroupSelectionChange: function(event) {
@@ -931,7 +932,8 @@ var SchedulerBase = A.Component.create({
          * `eventRecorder` value.
          *
          * @method _setEventRecorder
-         * @param {*} val The value of the property.
+         * @param {A.SchedulerEventRecorder} val A `SchedulerEventRecorder`
+         *     instance.
          * @protected
          */
         _setEventRecorder: function(val) {
@@ -952,9 +954,9 @@ var SchedulerBase = A.Component.create({
          * Replaces this `SchedulerBase`'s `views` with the given `views` value.
          *
          * @method _setViews
-         * @param {*} val The value of the property.
+         * @param {Array} val Array of `SchedulerView` instances.
          * @protected
-         * @return The replaces `SchedulerBase`'s `views`.
+         * @return {Array} The replaced `SchedulerBase`'s `views`.
          */
         _setViews: function(val) {
             var instance = this;
@@ -983,7 +985,7 @@ var SchedulerBase = A.Component.create({
          * Sets `activeView` on the UI.
          *
          * @method _uiSetActiveView
-         * @param {*} val The value of the property.
+         * @param {SchedulerView} val A `SchedulerView` instance.
          * @protected
          */
         _uiSetActiveView: function(val) {
@@ -1004,23 +1006,23 @@ var SchedulerBase = A.Component.create({
          * Sets `date` on the UI.
          *
          * @method _uiSetDate
-         * @param {*} val The value of the property.
+         * @param {Date} date
          * @protected
          */
-        _uiSetDate: function(val) {
+        _uiSetDate: function(date) {
             var instance = this;
 
             var formatter = instance.get(NAVIGATION_DATE_FORMATTER);
-            var navigationTitle = formatter.call(instance, val);
+            var navigationTitle = formatter.call(instance, date);
 
             if (instance.get(RENDERED)) {
                 var activeView = instance.get(ACTIVE_VIEW);
 
                 if (activeView) {
-                    activeView._uiSetDate(val);
+                    activeView._uiSetDate(date);
 
                     formatter = activeView.get(NAVIGATION_DATE_FORMATTER);
-                    navigationTitle = formatter.call(activeView, val);
+                    navigationTitle = formatter.call(activeView, date);
                 }
 
                 instance[VIEW_DATE_NODE].html(navigationTitle);

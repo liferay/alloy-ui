@@ -172,7 +172,7 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * Contains the `Node` that triggers
+         * Contains the `Node` that triggers.
          *
          * @attribute triggerNode
          */
@@ -236,13 +236,13 @@ var SchedulerView = A.Component.create({
          * to midnight.
          *
          * @method getAdjustedViewDate
-         * @param {*} val The value of the property.
+         * @param {Date} date The value of the property.
          * @return {Date}
          */
-        getAdjustedViewDate: function(val) {
+        getAdjustedViewDate: function(date) {
             var instance = this;
 
-            return DateMath.toMidnight(val);
+            return DateMath.toMidnight(date);
         },
 
         /**
@@ -326,16 +326,15 @@ var SchedulerView = A.Component.create({
          * Sets `date` on the UI.
          *
          * @method _uiSetDate
-         * @param {*} val The value of the property.
          * @protected
          */
-        _uiSetDate: function(val) {},
+        _uiSetDate: function() {},
 
         /**
          * Handles `render` events.
          *
          * @method _afterRender
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _afterRender: function(event) {
@@ -351,7 +350,7 @@ var SchedulerView = A.Component.create({
          * Sets this `SchedulerView`'s `scheduler` object to the given value.
          *
          * @method _setScheduler
-         * @param {*} val The value of the property.
+         * @param {Scheduler} val A `Scheduler` instance.
          * @protected
          * @return {Object}
          */
@@ -376,7 +375,7 @@ var SchedulerView = A.Component.create({
          * Sets `scrollable` on the UI.
          *
          * @method _uiSetScrollable
-         * @param {*} val The value of the property.
+         * @param {Boolean} val The value of the property.
          * @protected
          */
         _uiSetScrollable: function(val) {

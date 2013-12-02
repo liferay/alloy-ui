@@ -269,7 +269,7 @@ var SchedulerEvent = A.Component.create({
 
         /**
          * Contains the formatted title date for this scheduler event, taking
-         * into account ISO time. The value will not contain and `endDate` if
+         * into account ISO time. The value will not contain an `endDate` if
          * this event is `allDay`.
          *
          * @attribute titleDateFormat
@@ -306,8 +306,8 @@ var SchedulerEvent = A.Component.create({
 
         /**
          * Contains the date corresponding to the current ending date of a
-         * scheduled event. By default, the value is one hour after the date
-         * set on the user's computer.
+         * scheduled event. By default, the value is one hour after the
+         * `startDate`.
          *
          * @attribute endDate
          * @type {Date}
@@ -673,7 +673,7 @@ var SchedulerEvent = A.Component.create({
          * Determines if an `event`'s end date is this same as this `event`.
          *
          * @method sameEndDate
-         * @param {A.SchedulerEvent} evt A `Scheduler` event. Scheduler Event
+         * @param {A.SchedulerEvent} evt A `Scheduler` event.
          * @return {Boolean}
          */
         sameEndDate: function(evt) {
@@ -925,10 +925,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Handles `allday` events.
+         * Handles `allDay` events.
          *
          * @method _afterAllDayChange
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _afterAllDayChange: function(event) {
@@ -941,7 +941,7 @@ var SchedulerEvent = A.Component.create({
          * Handles `color` events.
          *
          * @method _afterColorChange
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _afterColorChange: function(event) {
@@ -954,7 +954,7 @@ var SchedulerEvent = A.Component.create({
          * Handles `disabled` events.
          *
          * @method _afterDisabledChange
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _afterDisabledChange: function(event) {
@@ -964,10 +964,10 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * Handles `enddate` events.
+         * Handles `endDate` events.
          *
          * @method _afterEndDateChange
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _afterEndDateChange: function(event) {
@@ -980,7 +980,7 @@ var SchedulerEvent = A.Component.create({
          * Handles `meeting` events.
          *
          * @method _afterMeetingChange
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _afterMeetingChange: function(event) {
@@ -993,7 +993,7 @@ var SchedulerEvent = A.Component.create({
          * Handles `reminder` events.
          *
          * @method _afterReminderChange
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _afterReminderChange: function(event) {
@@ -1006,7 +1006,7 @@ var SchedulerEvent = A.Component.create({
          * Handles `repeated` events.
          *
          * @method _afterRepeatedChange
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _afterRepeatedChange: function(event) {
@@ -1019,7 +1019,7 @@ var SchedulerEvent = A.Component.create({
          * Handles `visible` events.
          *
          * @method _afterVisibleChange
-         * @param {EventFacade} event Event Facade object
+         * @param {EventFacade} event
          * @protected
          */
         _afterVisibleChange: function(event) {
@@ -1046,7 +1046,7 @@ var SchedulerEvent = A.Component.create({
          * Sets the date to the given value.
          *
          * @method _setDate
-         * @param {*} val The value of the property.
+         * @param {Date | Number} val The value of the property.
          * @protected
          */
         _setDate: function(val) {
@@ -1105,7 +1105,7 @@ var SchedulerEvent = A.Component.create({
          * Sets `allDay` on the UI.
          *
          * @method _uiSetAllDay
-         * @param {*} val The value of the property.
+         * @param {Boolean} val The value of the property.
          * @protected
          */
         _uiSetAllDay: function(val) {
@@ -1118,7 +1118,7 @@ var SchedulerEvent = A.Component.create({
          * Sets `color` on the UI.
          *
          * @method _uiSetColor
-         * @param {*} val The value of the property.
+         * @param {String} val The value of the property.
          * @protected
          */
         _uiSetColor: function(val) {
@@ -1149,7 +1149,7 @@ var SchedulerEvent = A.Component.create({
          * Sets `disabled` on the UI.
          *
          * @method _uiSetDisabled
-         * @param {*} val The value of the property.
+         * @param {Boolean} val The value of the property.
          * @protected
          */
         _uiSetDisabled: function(val) {
@@ -1162,10 +1162,9 @@ var SchedulerEvent = A.Component.create({
          * Sets `endDate` on the UI.
          *
          * @method _uiSetEndDate
-         * @param {*} val The value of the property.
          * @protected
          */
-        _uiSetEndDate: function(val) {
+        _uiSetEndDate: function() {
             var instance = this;
 
             instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_SHORT, instance.getMinutesDuration() <= 30);
@@ -1175,7 +1174,7 @@ var SchedulerEvent = A.Component.create({
          * Sets `meeting` on the UI.
          *
          * @method _uiSetMeeting
-         * @param {*} val The value of the property.
+         * @param {Boolean} val The value of the property.
          * @protected
          */
         _uiSetMeeting: function(val) {
@@ -1188,7 +1187,7 @@ var SchedulerEvent = A.Component.create({
          * Sets `past` on the UI.
          *
          * @method _uiSetPast
-         * @param {*} val The value of the property.
+         * @param {Boolean} val The value of the property.
          * @protected
          */
         _uiSetPast: function(val) {
@@ -1201,7 +1200,7 @@ var SchedulerEvent = A.Component.create({
          * Sets `reminder` on the UI.
          *
          * @method _uiSetReminder
-         * @param {*} val The value of the property.
+         * @param {Boolean} val The value of the property.
          * @protected
          */
         _uiSetReminder: function(val) {
@@ -1214,7 +1213,7 @@ var SchedulerEvent = A.Component.create({
          * Sets `repeated` on the UI.
          *
          * @method _uiSetRepeated
-         * @param {*} val The value of the property.
+         * @param {Boolean} val The value of the property.
          * @protected
          */
         _uiSetRepeated: function(val) {
@@ -1227,7 +1226,7 @@ var SchedulerEvent = A.Component.create({
          * Sets `visible` on the UI.
          *
          * @method _uiSetVisible
-         * @param {*} val The value of the property.
+         * @param {Boolean} val The value of the property.
          * @protected
          */
         _uiSetVisible: function(val) {
