@@ -80,12 +80,13 @@ YUI.add('module-tests', function(Y) {
             Y.Assert.areSame(0, node.childrenLength, 'node.childrenLength should return 0.');
         },
 
-        'appendChild() should regester the TreeNode in the Parent TreeNode and Owner TreeView index attribute': function() {
+        'appendChild() should register the TreeNode in the Parent TreeNode and Owner TreeView index attribute': function() {
             var treeView = new Y.TreeView();
 
             var childTreeNode = new Y.TreeNode({
                 id: 'child'
             });
+
             var rootTreeNode = new Y.TreeNode({
                 id: 'root'
             });
@@ -149,6 +150,7 @@ YUI.add('module-tests', function(Y) {
             var childTreeNode = new Y.TreeNode({
                 id: 'child'
             });
+
             var rootTreeNode = new Y.TreeNode({
                 id: 'root'
             });
@@ -170,6 +172,56 @@ YUI.add('module-tests', function(Y) {
             var node = new Y.TreeNode();
 
             Y.Assert.isFalse(tree.isRegistered(node), 'TreeNode should be registered in TreeView');
+        },
+
+        'TreeNodeRadio should only have one treeNode selected': function() {
+            var treeView = new Y.TreeView();
+
+            var childTreeNode = new Y.TreeNodeRadio({
+                id: 'one'
+            });
+
+            var rootTreeNode = new Y.TreeNodeRadio({
+                id: 'root'
+            });
+
+            treeView.appendChild(rootTreeNode);
+            rootTreeNode.appendChild(childTreeNode);
+
+            rootTreeNode.check();
+
+            Y.Assert.isTrue(
+                rootTreeNode.isChecked(),
+                'rootTreeNode should be checked.');
+
+            Y.Assert.isFalse(
+                childTreeNode.isChecked(),
+                'childTreeNode should not be checked.');
+        },
+
+        'TreeNodeTask should select all child treeNode': function() {
+             var treeView = new Y.TreeView();
+
+            var childTreeNode = new Y.TreeNodeTask({
+                id: 'one'
+            });
+
+            var rootTreeNode = new Y.TreeNodeTask({
+                id: 'root'
+            });
+
+            treeView.appendChild(rootTreeNode);
+            rootTreeNode.appendChild(childTreeNode);
+
+            rootTreeNode.check();
+
+            Y.Assert.isTrue(
+                rootTreeNode.isChecked(),
+                'rootTreeNode should be checked.');
+
+            Y.Assert.isTrue(
+                childTreeNode.isChecked(),
+                'childTreeNode should be checked.');
         }
     }));
 
