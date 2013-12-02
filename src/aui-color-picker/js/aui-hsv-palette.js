@@ -1383,10 +1383,9 @@ var AColor = A.Color,
          * attribute is set to true) with the extracted values.
          *
          * @method _updateViewByHEX
-         * @param hexValue
+         * @param {String} hexValue
          * @protected
          */
-
         _updateViewByHEX: function(hexValue) {
             var instance = this,
                 b,
