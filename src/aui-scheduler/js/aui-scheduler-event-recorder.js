@@ -73,7 +73,7 @@ var Lang = A.Lang,
         '" name="content" value="{content}" />';
 
 /**
- * A base class for SchedulerEventRecorder.
+ * A base class for `SchedulerEventRecorder`.
  *
  * @class A.SchedulerEventRecorder
  * @extends A.SchedulerEvent
@@ -87,56 +87,58 @@ var SchedulerEventRecorder = A.Component.create({
      * Static property provides a string to identify the class.
      *
      * @property NAME
-     * @type String
+     * @type {String}
      * @static
      */
     NAME: SCHEDULER_EVENT_RECORDER,
 
     /**
      * Static property used to define the default attribute
-     * configuration for the SchedulerEventRecorder.
+     * configuration for the `SchedulerEventRecorder`.
      *
      * @property ATTRS
-     * @type Object
+     * @type {Object}
      * @static
      */
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines whether a new event will take place all day. When enabled,
+         * the event will not contain 24-hour clock date inputs.
          *
          * @attribute allDay
          * @default false
-         * @type Boolean
+         * @type {Boolean}
          */
         allDay: {
             value: false
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines the content of this Scheduler event recorder's body
+         * section.
          *
          * @attribute content
          */
         content: {},
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the duration of an `event` in minutes.
          *
          * @attribute duration
          * @default 60
-         * @type Number
+         * @type {Number}
          */
         duration: {
             value: 60
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the default date format for an `event`.
          *
          * @attribute dateFormat
          * @default '%a, %B %d,'
-         * @type String
+         * @type {String}
          */
         dateFormat: {
             validator: isString,
@@ -144,28 +146,18 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * A scheduler `event` is the wrapper object that contains an `event`
+         * title, start and end times and a description.
          *
          * @attribute event
          */
         event: {},
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
-         *
-         * @attribute eventClass
-         */
-        eventClass: {
-            valueFn: function() {
-                return A.SchedulerEvent;
-            }
-        },
-
-        /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the scheduler event recorder's `popover` instance.
          *
          * @attribute popover
-         * @type Object
+         * @type {Object}
          */
         popover: {
             setter: '_setPopover',
@@ -181,7 +173,7 @@ var SchedulerEventRecorder = A.Component.create({
          *
          * @attribute strings
          * @default {}
-         * @type Object
+         * @type {Object}
          */
         strings: {
             value: {},
@@ -202,14 +194,22 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the `SchedulerEventRecorder`'s body template.
          *
-         * @attribute template
+         * @attribute bodyTemplate
+         * @default ''
+         * @type {String}
          */
         bodyTemplate: {
             value: TPL_BODY_CONTENT
         },
 
+        /**
+         * Contains the `SchedulerEventRecorder`'s header template.
+         *
+         * @attribute headerTemplate
+         * @type {String}
+         */
         headerTemplate: {
             value: TPL_HEADER_CONTENT
         }
@@ -219,7 +219,7 @@ var SchedulerEventRecorder = A.Component.create({
      * Static property used to define which component it extends.
      *
      * @property EXTENDS
-     * @type Object
+     * @type {Object}
      * @static
      */
     EXTENDS: A.SchedulerEvent,
@@ -227,7 +227,7 @@ var SchedulerEventRecorder = A.Component.create({
     prototype: {
 
         /**
-         * Construction logic executed during SchedulerEventRecorder
+         * Construction logic executed during `SchedulerEventRecorder`
          * instantiation. Lifecycle.
          *
          * @method initializer
@@ -262,17 +262,188 @@ var SchedulerEventRecorder = A.Component.create({
             instance.popover.after(VISIBLE_CHANGE, A.bind(instance._afterPopoverVisibleChange, instance));
         },
 
-        _afterEventChange: function() {
+        /**
+         * Gets the content node belonging to the `popover`.
+         *
+         * @method getContentNode
+         * @return {Node} The content `Node` reference.
+         */
+        getContentNode: function() {
+            var instance = this;
+            var popoverBB = instance.popover.get(BOUNDING_BOX);
+
+            return popoverBB.one(_DOT + CSS_SCHEDULER_EVENT_RECORDER_CONTENT);
+        },
+
+        /**
+         * Returns the formatted date including start and end hours if the event
+         * is not `allDay`.
+         *
+         * @method getFormattedDate
+         * @return {String} Formated date including start and end hours if the
+         *     event is not `allDay`.
+         */
+        getFormattedDate: function() {
+            var instance = this,
+                evt = (instance.get(EVENT) || instance),
+                endDate = evt.get(END_DATE),
+                startDate = evt.get(START_DATE),
+                formattedDate = evt._formatDate(startDate, instance.get(DATE_FORMAT));
+
+            if (evt.get(ALL_DAY)) {
+                return formattedDate;
+            }
+
+            formattedDate = formattedDate.concat(_COMMA);
+
+            var scheduler = evt.get(SCHEDULER),
+                fmtHourFn = (scheduler.get(ACTIVE_VIEW).get(ISO_TIME) ? DateMath.toIsoTimeString : DateMath.toUsTimeString);
+
+            return [formattedDate, fmtHourFn(startDate), _DASH, fmtHourFn(endDate)].join(_SPACE);
+        },
+
+        /**
+         * Returns this Scheduler event recorder's `content`, and dates.
+         *
+         * @method getTemplateData
+         * @return {Object} Copy of this events `content`, `date`, `endDate` and
+         *     `startDate`.
+         */
+        getTemplateData: function() {
+            var instance = this,
+                strings = instance.get(STRINGS),
+                evt = instance.get(EVENT) || instance,
+                content = evt.get(CONTENT);
+
+            if (isUndefined(content)) {
+                content = strings['description-hint'];
+            }
+
+            return {
+                content: content,
+                date: instance.getFormattedDate(),
+                endDate: evt.get(END_DATE).getTime(),
+                startDate: evt.get(START_DATE).getTime()
+            };
+        },
+
+        /**
+         * Returns an updated event and also merges in any additional attributes
+         * passed in as `optAttrMap`.
+         *
+         * @method getUpdatedSchedulerEvent
+         * @param {Object} optAttrMap (optional) Attributes map.
+         * @return {Object} schedulerEvent (optional) Attributes map.
+         */
+        getUpdatedSchedulerEvent: function(optAttrMap) {
+            var instance = this,
+                schedulerEvent = instance.get(EVENT),
+                options = {
+                    silent: !schedulerEvent
+                },
+                formValues = instance.serializeForm();
+
+            if (!schedulerEvent) {
+                schedulerEvent = instance.clone();
+            }
+
+            schedulerEvent.set(SCHEDULER, instance.get(SCHEDULER), {
+                silent: true
+            });
+            schedulerEvent.setAttrs(A.merge(formValues, optAttrMap), options);
+
+            return schedulerEvent;
+        },
+
+        /**
+         * Hides this Scheduler event recorder's `popover` component.
+         *
+         * @method hidePopover
+         */
+        hidePopover: function() {
+            var instance = this;
+
+            instance.popover.hide();
+        },
+
+        /**
+         * Loads template data into the Scheduler event recorder's form.
+         *
+         * @method populateForm
+         */
+        populateForm: function() {
+            var instance = this,
+                bodyTemplate = instance.get(BODY_TEMPLATE),
+                headerTemplate = instance.get(HEADER_TEMPLATE),
+                templateData = instance.getTemplateData();
+
+            instance.popover.setStdModContent('body', A.Lang.sub(bodyTemplate, templateData));
+            instance.popover.setStdModContent('header', A.Lang.sub(headerTemplate, templateData));
+
+            instance.popover.addToolbar(instance._getFooterToolbar(), 'footer');
+        },
+
+        /**
+         * Converts this event recorder's form node object to a string.
+         *
+         * @method serializeForm
+         * @return {String} A stringified copy of this event recorder's form.
+         */
+        serializeForm: function() {
+            var instance = this;
+
+            return A.QueryString.parse(_serialize(instance.formNode.getDOM()));
+        },
+
+        /**
+         * Hides this Scheduler event recorder's `popover` component.
+         *
+         * @method showPopover
+         */
+        showPopover: function(node) {
+            var instance = this,
+                event = instance.get(EVENT);
+
+            if (!instance.popover.get(RENDERED)) {
+                instance._renderPopover();
+            }
+
+            if (!node) {
+                if (event) {
+                    node = event.get(NODE);
+                }
+                else {
+                    node = instance.get(NODE);
+                }
+            }
+
+            if (isNodeList(node)) {
+                node = node.item(0);
+            }
+
+            instance.popover.set('align.node', node);
+
+            instance.popover.show();
+        },
+
+        /**
+         * Handles `event` events.
+         *
+         * @method _afterEventChange
+         * @param {EventFacade} event
+         * @protected
+         */
+        _afterEventChange: function(event) {
             var instance = this;
 
             instance.populateForm();
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `popoverVisible` events.
          *
          * @method _afterPopoverVisibleChange
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _afterPopoverVisibleChange: function(event) {
@@ -301,10 +472,10 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `scheduler` events.
          *
          * @method _afterSchedulerChange
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _afterSchedulerChange: function(event) {
@@ -317,10 +488,10 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `cancel` events.
          *
          * @method _defCancelEventFn
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _defCancelEventFn: function() {
@@ -332,10 +503,10 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `delete` events.
          *
          * @method _defDeleteEventFn
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _defDeleteEventFn: function() {
@@ -350,10 +521,10 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `edit` events.
          *
          * @method _defEditEventFn
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _defEditEventFn: function() {
@@ -366,10 +537,10 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `save` events.
          *
          * @method _defSaveEventFn
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _defSaveEventFn: function(event) {
@@ -383,6 +554,13 @@ var SchedulerEventRecorder = A.Component.create({
             scheduler.syncEventsUI();
         },
 
+        /**
+         * Returns the `toolbar` belonging to the event recorder `footer`.
+         *
+         * @method _getFooterToolbar
+         * @protected
+         * @return {Array} Footer toolbar
+         */
         _getFooterToolbar: function() {
             var instance = this,
                 event = instance.get(EVENT),
@@ -393,14 +571,14 @@ var SchedulerEventRecorder = A.Component.create({
                         on: {
                             click: A.bind(instance._handleSaveEvent, instance)
                         }
-     },
+                    },
                     {
                         label: strings[CANCEL],
                         on: {
                             click: A.bind(instance._handleCancelEvent, instance)
                         }
-     }
-    ];
+                    }
+                ];
 
             if (event) {
                 children.push({
@@ -415,10 +593,10 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `cancel` events.
          *
          * @method _handleCancelEvent
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _handleCancelEvent: function(event) {
@@ -434,23 +612,23 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `clickOutSide` events.
          *
          * @method _handleClickOutSide
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
-        _handleClickOutSide: function() {
+        _handleClickOutSide: function(event) {
             var instance = this;
 
             instance.fire('cancel');
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `delete` events.
          *
          * @method _handleDeleteEvent
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _handleDeleteEvent: function(event) {
@@ -468,10 +646,10 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `escape` events.
          *
          * @method _handleEscapeEvent
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _handleEscapeEvent: function(event) {
@@ -485,10 +663,10 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `save` events.
          *
          * @method _handleSaveEvent
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _handleSaveEvent: function(event) {
@@ -507,10 +685,10 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `click` event on the scheduler.
          *
          * @method _onClickSchedulerEvent
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _onClickSchedulerEvent: function(event) {
@@ -529,10 +707,10 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `submitForm` events.
          *
          * @method _onSubmitForm
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _onSubmitForm: function(event) {
@@ -542,7 +720,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Renders this `EventRecorder`'s `popover` component.
          *
          * @method _renderPopover
          * @protected
@@ -564,6 +742,16 @@ var SchedulerEventRecorder = A.Component.create({
             schedulerBB.on(CLICKOUTSIDE, A.bind(instance._handleClickOutSide, instance));
         },
 
+        /**
+         * Replaces this `SchedulerEventRecorder`'s `popover` component with the
+         * given 'popover' value.
+         *
+         * @method _renderPopover
+         * @protected
+         * @param {Object} val The new `popover`.
+         * @return {Object} The new `popover` value merged some default popover
+         *     configuration properties.
+         */
         _setPopover: function(val) {
             var instance = this;
 
@@ -584,151 +772,6 @@ var SchedulerEventRecorder = A.Component.create({
                 },
                 val
             );
-        },
-
-        getContentNode: function() {
-            var instance = this;
-            var popoverBB = instance.popover.get(BOUNDING_BOX);
-
-            return popoverBB.one(_DOT + CSS_SCHEDULER_EVENT_RECORDER_CONTENT);
-        },
-
-        /**
-         * TODO. Wanna help? Please send a Pull Request.
-         *
-         * @method getFormattedDate
-         */
-        getFormattedDate: function() {
-            var instance = this,
-                evt = (instance.get(EVENT) || instance),
-                endDate = evt.get(END_DATE),
-                startDate = evt.get(START_DATE),
-                formattedDate = evt._formatDate(startDate, instance.get(DATE_FORMAT));
-
-            if (evt.get(ALL_DAY)) {
-                return formattedDate;
-            }
-
-            formattedDate = formattedDate.concat(_COMMA);
-
-            var scheduler = evt.get(SCHEDULER),
-                fmtHourFn = (scheduler.get(ACTIVE_VIEW).get(ISO_TIME) ? DateMath.toIsoTimeString : DateMath.toUsTimeString);
-
-            return [formattedDate, fmtHourFn(startDate), _DASH, fmtHourFn(endDate)].join(_SPACE);
-        },
-
-        /**
-         * TODO. Wanna help? Please send a Pull Request.
-         *
-         * @method getTemplateData
-         */
-        getTemplateData: function() {
-            var instance = this,
-                strings = instance.get(STRINGS),
-                evt = instance.get(EVENT) || instance,
-                content = evt.get(CONTENT);
-
-            if (isUndefined(content)) {
-                content = strings['description-hint'];
-            }
-
-            return {
-                content: content,
-                date: instance.getFormattedDate(),
-                endDate: evt.get(END_DATE).getTime(),
-                startDate: evt.get(START_DATE).getTime()
-            };
-        },
-
-        /**
-         * TODO. Wanna help? Please send a Pull Request.
-         *
-         * @method getUpdatedSchedulerEvent
-         * @param optAttrMap
-         */
-        getUpdatedSchedulerEvent: function(optAttrMap) {
-            var instance = this,
-                schedulerEvent = instance.get(EVENT),
-                options = {
-                    silent: !schedulerEvent
-                },
-                formValues = instance.serializeForm();
-
-            if (!schedulerEvent) {
-                schedulerEvent = instance.clone();
-            }
-
-            schedulerEvent.set(SCHEDULER, instance.get(SCHEDULER), {
-                silent: true
-            });
-            schedulerEvent.setAttrs(A.merge(formValues, optAttrMap), options);
-
-            return schedulerEvent;
-        },
-
-        /**
-         * TODO. Wanna help? Please send a Pull Request.
-         *
-         * @method hidePopover
-         */
-        hidePopover: function() {
-            var instance = this;
-
-            instance.popover.hide();
-        },
-
-        /**
-         * TODO. Wanna help? Please send a Pull Request.
-         *
-         * @method populateForm
-         */
-        populateForm: function() {
-            var instance = this,
-                bodyTemplate = instance.get(BODY_TEMPLATE),
-                headerTemplate = instance.get(HEADER_TEMPLATE),
-                templateData = instance.getTemplateData();
-
-            instance.popover.setStdModContent('body', A.Lang.sub(bodyTemplate, templateData));
-            instance.popover.setStdModContent('header', A.Lang.sub(headerTemplate, templateData));
-
-            instance.popover.addToolbar(instance._getFooterToolbar(), 'footer');
-        },
-
-        /**
-         * TODO. Wanna help? Please send a Pull Request.
-         *
-         * @method serializeForm
-         */
-        serializeForm: function() {
-            var instance = this;
-
-            return A.QueryString.parse(_serialize(instance.formNode.getDOM()));
-        },
-
-        showPopover: function(node) {
-            var instance = this,
-                event = instance.get(EVENT);
-
-            if (!instance.popover.get(RENDERED)) {
-                instance._renderPopover();
-            }
-
-            if (!node) {
-                if (event) {
-                    node = event.get(NODE);
-                }
-                else {
-                    node = instance.get(NODE);
-                }
-            }
-
-            if (isNodeList(node)) {
-                node = node.item(0);
-            }
-
-            instance.popover.set('align.node', node);
-
-            instance.popover.show();
         }
     }
 });

@@ -1,12 +1,12 @@
 /**
- * The Scheduler Component
+ * Contains the Scheduler Component
  *
  * @module aui-scheduler
  * @submodule aui-scheduler-base-view
  */
 
 /**
- * A base class for SchedulerView.
+ * A base class for `SchedulerView`.
  *
  * @class A.SchedulerView
  * @uses A.WidgetStdMod
@@ -20,45 +20,46 @@ var SchedulerView = A.Component.create({
      * Static property provides a string to identify the class.
      *
      * @property NAME
-     * @type String
+     * @type {String}
      * @static
      */
     NAME: SCHEDULER_VIEW,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Static property used to define the augmented classes.
      *
      * @property AUGMENTS
-     * @type Array
+     * @type {Array}
      * @static
      */
     AUGMENTS: [A.WidgetStdMod],
 
     /**
      * Static property used to define the default attribute
-     * configuration for the SchedulerView.
+     * configuration for the `SchedulerView`.
      *
      * @property ATTRS
-     * @type Object
+     * @type {Object}
      * @static
      */
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines the content of Scheduler view's body section.
          *
          * @attribute bodyContent
          * @default ''
-         * @type String
+         * @type {String}
          */
         bodyContent: {
             value: _EMPTY_STR
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Applies a filter to `SchedulerEvent`s.
          *
          * @attribute filterFn
+         * @type {Function} The function to filter a `SchedulerEvent`.
          */
         filterFn: {
             validator: isFunction,
@@ -68,22 +69,23 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the height of a `SchedulerView` in pixels.
          *
          * @attribute height
          * @default 600
-         * @type Number
+         * @type {Number}
          */
         height: {
             value: 600
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates whether this `SchedulerView` should use international
+         * standard time.
          *
          * @attribute isoTime
          * @default false
-         * @type Boolean
+         * @type {Boolean}
          */
         isoTime: {
             value: false,
@@ -91,11 +93,11 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines the name for this view.
          *
          * @attribute name
          * @default ''
-         * @type String
+         * @type {String}
          */
         name: {
             value: _EMPTY_STR,
@@ -103,11 +105,11 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * The function to format the navigation header date.
+         * Contains the function that formats the navigation date.
          *
          * @attribute navigationDateFormatter
          * @default %A - %d %b %Y
-         * @type Function
+         * @type {Function}
          */
         navigationDateFormatter: {
             value: function(date) {
@@ -123,9 +125,10 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the next `Date` in the `SchedulerView`.
          *
          * @attribute nextDate
+         * @type {Date}
          * @readOnly
          */
         nextDate: {
@@ -134,9 +137,10 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the previous `Date` in the `SchedulerView`.
          *
          * @attribute prevDate
+         * @type {Date}
          * @readOnly
          */
         prevDate: {
@@ -145,9 +149,10 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains this `SchedulerView`'s `SchedulerBase' object.
          *
          * @attribute scheduler
+         * @type {A.SchedulerBase}
          */
         scheduler: {
             lazyAdd: false,
@@ -155,11 +160,11 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates whether this `SchedulerView` is scrollable.
          *
          * @attribute scrollable
          * @default true
-         * @type Boolean
+         * @type {Boolean}
          */
         scrollable: {
             value: true,
@@ -167,7 +172,7 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the `Node` that triggers.
          *
          * @attribute triggerNode
          */
@@ -176,22 +181,25 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates whether the calendar is visible.
          *
          * @attribute visible
          * @default false
-         * @type Boolean
+         * @type {Boolean}
          */
         visible: {
             value: false
         }
     },
 
+    AUGMENTS: [A.WidgetStdMod],
+
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Static property used to define the attributes
+     * for the bindUI lifecycle phase.
      *
      * @property BIND_UI_ATTRS
-     * @type Array
+     * @type {Array}
      * @static
      */
     BIND_UI_ATTRS: [SCROLLABLE],
@@ -199,7 +207,7 @@ var SchedulerView = A.Component.create({
     prototype: {
 
         /**
-         * Construction logic executed during SchedulerView instantiation.
+         * Construction logic executed during `SchedulerView` instantiation.
          * Lifecycle.
          *
          * @method initializer
@@ -212,7 +220,7 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * Sync the SchedulerView UI. Lifecycle.
+         * Syncs the `SchedulerView` UI. Lifecycle.
          *
          * @method syncUI
          * @protected
@@ -224,53 +232,63 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a date value of the date with its time adjusted
+         * to midnight.
          *
          * @method getAdjustedViewDate
-         * @param val
+         * @param {Date} date The value of the property.
+         * @return {Date}
          */
-        getAdjustedViewDate: function(val) {
+        getAdjustedViewDate: function(date) {
             var instance = this;
 
-            return DateMath.toMidnight(val);
+            return DateMath.toMidnight(date);
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Removes all data from `evtDateStack`, `evtRenderedStack` and
+         * `rowDateTableStack`.
          *
          * @method flushViewCache
          */
         flushViewCache: function() {},
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the value of the date that follows the view's current
+         * date.
          *
          * @method getNextDate
+         * @return {Date}
          */
         getNextDate: function() {},
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the value of the date that preceeds the view's current
+         * date.
          *
          * @method getPrevDate
+         * @return {Date}
          */
         getPrevDate: function() {},
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the value of the current date.
          *
          * @method getToday
+         * @return {Date}
          */
         getToday: function() {
             return DateMath.clearTime(new Date());
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a clone of a given `date` that will adjust to the `maxDate`
+         * if it occurs after `maxDate`.
          *
          * @method limitDate
-         * @param date
-         * @param maxDate
+         * @param {Date} date
+         * @param {Date} maxDate
+         * @return {Date}
          */
         limitDate: function(date, maxDate) {
             var instance = this;
@@ -283,41 +301,40 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Plots all events in the current view.
          *
          * @method plotEvents
          */
         plotEvents: function() {},
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sync `SchedulerView` StdContent.
          *
          * @method syncStdContent
          */
         syncStdContent: function() {},
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sync `event` on the UI.
          *
          * @method syncEventUI
-         * @param evt
+         * @param {A.SchedulerEvent} evt A `Scheduler` event.
          */
         syncEventUI: function(evt) {},
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets `date` on the UI.
          *
          * @method _uiSetDate
-         * @param val
          * @protected
          */
-        _uiSetDate: function(val) {},
+        _uiSetDate: function() {},
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `render` events.
          *
          * @method _afterRender
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _afterRender: function(event) {
@@ -330,11 +347,12 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets this `SchedulerView`'s `scheduler` object to the given value.
          *
          * @method _setScheduler
-         * @param val
+         * @param {Scheduler} val A `Scheduler` instance.
          * @protected
+         * @return {Object}
          */
         _setScheduler: function(val) {
             var instance = this;
@@ -354,10 +372,10 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets `scrollable` on the UI.
          *
          * @method _uiSetScrollable
-         * @param val
+         * @param {Boolean} val The value of the property.
          * @protected
          */
         _uiSetScrollable: function(val) {

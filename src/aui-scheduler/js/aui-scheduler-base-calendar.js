@@ -6,7 +6,7 @@
  */
 
 /**
- * A base class for SchedulerCalendar.
+ * A base class for `SchedulerCalendar`.
  *
  * @class A.SchedulerCalendar
  * @extends ModelList
@@ -18,7 +18,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
     model: A.SchedulerEvent,
 
     /**
-     * Construction logic executed during SchedulerCalendar instantiation.
+     * Construction logic executed during `SchedulerCalendar` instantiation.
      * Lifecycle.
      *
      * @method initializer
@@ -45,10 +45,10 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handles `color` events.
      *
      * @method _afterColorChange
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _afterColorChange: function(event) {
@@ -62,10 +62,10 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handles `disabled` events.
      *
      * @method _afterDisabledChange
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _afterDisabledChange: function(event) {
@@ -79,10 +79,10 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handles `events` events.
      *
      * @method _afterEventsChange
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _afterEventsChange: function(event) {
@@ -100,10 +100,10 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handles `visible` events.
      *
      * @method _afterVisibleChange
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _afterVisibleChange: function(event) {
@@ -117,10 +117,10 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Handles `remove` events.
      *
      * @method _onRemoveEvents
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _onRemoveEvents: function(event) {
@@ -133,11 +133,11 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the model attributes for the base calendar.
      *
      * @method _setModelsAttrs
-     * @param attrMap
-     * @param options
+     * @param {Object} attrMap
+     * @param {Object} options Zero or more options.
      * @protected
      */
     _setModelsAttrs: function(attrMap, options) {
@@ -149,10 +149,11 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the `events` on the UI.
      *
      * @method _uiSetEvents
-     * @param val
+     * @param {Array | ModelList | Model | SchedulerEvent} val The value of the
+     *     property.
      * @protected
      */
     _uiSetEvents: function(val) {
@@ -168,19 +169,19 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
 
     /**
      * Static property used to define the default attribute
-     * configuration for the SchedulerCalendar.
+     * configuration for the `SchedulerCalendar`.
      *
      * @property ATTRS
-     * @type Object
+     * @type {Object}
      * @static
      */
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the `color` of the scheduler calendar.
          *
          * @attribute color
-         * @type String
+         * @type {String}
          */
         color: {
             valueFn: function() {
@@ -194,11 +195,11 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines if the calender is enabled.
          *
          * @attribute disabled
          * @default false
-         * @type Boolean
+         * @type {Boolean}
          */
         disabled: {
             value: false,
@@ -206,11 +207,11 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines the name for this calendar.
          *
          * @attribute name
          * @default '(no name)'
-         * @type String
+         * @type {String}
          */
         name: {
             value: '(no name)',
@@ -218,10 +219,10 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains a list of colors for the calendar.
          *
          * @attribute palette
-         * @type Array
+         * @type {Array}
          */
         palette: {
             value: ['#d93636', '#e63973', '#b22eb3', '#6e36d9', '#2d70b3', '#376cd9', '#25998c', '#249960',
@@ -231,18 +232,19 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains this `SchedulerCalendar`'s `SchedulerBase' object.
          *
          * @attribute scheduler
+         * @type {A.SchedulerBase}
          */
         scheduler: {},
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates whether the calendar is visible.
          *
          * @attribute visible
          * @default true
-         * @type Boolean
+         * @type {Boolean}
          */
         visible: {
             value: true,

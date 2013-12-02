@@ -27,7 +27,7 @@ var Lang = A.Lang,
     WEEK = 'week';
 
 /**
- * A base class for SchedulerWeekView.
+ * A base class for `SchedulerWeekView`.
  *
  * @class A.SchedulerWeekView
  * @extends A.SchedulerDayView
@@ -41,45 +41,45 @@ var SchedulerWeekView = A.Component.create({
      * Static property provides a string to identify the class.
      *
      * @property NAME
-     * @type String
+     * @type {String}
      * @static
      */
     NAME: SCHEDULER_VIEW_WEEK,
 
     /**
      * Static property used to define the default attribute
-     * configuration for the SchedulerWeekView.
+     * configuration for the `SchedulerWeekView`.
      *
      * @property ATTRS
-     * @type Object
+     * @type {Object}
      * @static
      */
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines the content of Scheduler week view's body section.
          *
          * @attribute bodyContent
          * @default ''
-         * @type String
+         * @type {String}
          */
         bodyContent: {
             value: _EMPTY_STR
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the number of days in a week.
          *
          * @attribute days
          * @default 7
-         * @type Number
+         * @type {Number}
          */
         days: {
             value: 7
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Configures the header week view.
          *
          * @attribute headerViewConfig
          */
@@ -90,21 +90,21 @@ var SchedulerWeekView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines the name for this week view.
          *
          * @attribute name
          * @default 'week'
-         * @type String
+         * @type {String}
          */
         name: {
             value: WEEK
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the formatted navigation date formatter for this week view.
          *
          * @attribute navigationDateFormatter
-         * @type Function
+         * @type {Function}
          */
         navigationDateFormatter: {
             valueFn: function() {
@@ -118,7 +118,7 @@ var SchedulerWeekView = A.Component.create({
      * Static property used to define which component it extends.
      *
      * @property EXTENDS
-     * @type Object
+     * @type {Object}
      * @static
      */
     EXTENDS: A.SchedulerDayView,
@@ -126,23 +126,27 @@ var SchedulerWeekView = A.Component.create({
     prototype: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a date value of the first day of the week with its time
+         * adjusted to midnight.
          *
          * @method getAdjustedViewDate
-         * @param val
+         * @param {Date} date
+         * @return {Date}
          */
-        getAdjustedViewDate: function(val) {
+        getAdjustedViewDate: function(date) {
             var instance = this;
             var scheduler = instance.get(SCHEDULER);
             var firstDayOfWeek = scheduler.get(FIRST_DAY_OF_WEEK);
 
-            return DateMath.toMidnight(DateMath.getFirstDayOfWeek(val, firstDayOfWeek));
+            return DateMath.toMidnight(DateMath.getFirstDayOfWeek(date, firstDayOfWeek));
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the value of the date that follows the week view's current
+         * date.
          *
          * @method getNextDate
+         * @return {Date}
          */
         getNextDate: function() {
             var instance = this;
@@ -153,9 +157,11 @@ var SchedulerWeekView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the value of the date that preceeds the week view's current
+         * date.
          *
          * @method getPrevDate
+         * @return {Date}
          */
         getPrevDate: function() {
             var instance = this;
@@ -166,9 +172,10 @@ var SchedulerWeekView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the value of the week view's current date.
          *
          * @method getToday
+         * @return {Date}
          */
         getToday: function() {
             var instance = this;
@@ -178,10 +185,11 @@ var SchedulerWeekView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the value of the first day of week in this view.
          *
          * @method _firstDayOfWeek
-         * @param date
+         * @param {Date} date
+         * @return {Date}
          * @protected
          */
         _firstDayOfWeek: function(date) {
@@ -193,10 +201,11 @@ var SchedulerWeekView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a formatted navigation date formatter for this week view.
          *
          * @method _valueNavigationDateFormatter
-         * @param date
+         * @param {Date} date
+         * @return {Date}
          * @protected
          */
         _valueNavigationDateFormatter: function(date) {

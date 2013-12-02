@@ -1719,7 +1719,7 @@ var TreeNodeRadio = A.Component.create({
     /**
      * Static property provides a string to identify the class.
      *
-     * @property TreeNodeRadio.NAME
+     * @property NAME
      * @type String
      * @static
      */
@@ -1729,7 +1729,7 @@ var TreeNodeRadio = A.Component.create({
      * Static property used to define the default attribute
      * configuration for the TreeNodeRadio.
      *
-     * @property TreeNodeRadio.ATTRS
+     * @property ATTRS
      * @type Object
      * @static
      */
@@ -1853,7 +1853,7 @@ A.TreeNodeRadio = TreeNodeRadio;
  * ```
  *
  * @for TreeNode
- * @property A.TreeNode.nodeTypes
+ * @property nodeTypes
  * @type Object
  */
 A.TreeNode.nodeTypes = {
