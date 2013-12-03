@@ -1764,7 +1764,7 @@ var TreeNodeRadio = A.Component.create({
         }
     },
 
-    EXTENDS: A.TreeNodeTask,
+    EXTENDS: A.TreeNodeCheck,
 
     prototype: {
 
