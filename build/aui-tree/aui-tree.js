@@ -2433,7 +2433,7 @@ var TreeNodeRadio = A.Component.create(
 		 */
 		NAME: TREE_NODE_RADIO,
 
-		EXTENDS: A.TreeNodeTask,
+		EXTENDS: A.TreeNodeCheck,
 
 		prototype: {
 			/*

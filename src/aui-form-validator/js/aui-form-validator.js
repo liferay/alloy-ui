@@ -794,21 +794,36 @@ var FormValidator = A.Component.create({
 			}
 		},
 
-		_uiSetValidateOnInput: function(bind) {
+		_uiSetValidateOnInput: function(val) {
 			var instance = this,
 				boundingBox = instance.get(BOUNDING_BOX);
 
-			if (!instance._inputHandlers) {
-				instance._inputHandlers = boundingBox.delegate(EV_INPUT, instance._onFieldInput, _FORM_ELEMENTS_SELECTOR, instance);
+			if (val) {
+				if (!instance._inputHandlers) {
+					instance._inputHandlers = boundingBox.delegate(EV_INPUT, instance._onFieldInput, _FORM_ELEMENTS_SELECTOR, instance);
+				}
+			}
+			else {
+				if (instance._inputHandlers) {
+					instance._inputHandlers.detach();
+				}
 			}
 		},
 
-		_uiSetValidateOnBlur: function(bind) {
+
+		_uiSetValidateOnBlur: function(val) {
 			var instance = this,
 				boundingBox = instance.get(BOUNDING_BOX);
 
-			if (!instance._blurHandlers) {
-				instance._blurHandlers = boundingBox.delegate(EV_BLUR, instance._onFieldInput, _FORM_ELEMENTS_SELECTOR, instance);
+			if (val) {
+				if (!instance._blurHandlers) {
+					instance._blurHandlers = boundingBox.delegate(EV_BLUR, instance._onFieldInput, _FORM_ELEMENTS_SELECTOR, instance);
+				}
+			}
+			else {
+				if (instance._blurHandlers) {
+					instance._blurHandlers.detach();
+				}
 			}
 		}
 	}
