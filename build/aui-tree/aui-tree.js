@@ -101,6 +101,8 @@ TreeData.ATTRS = {
 };
 
 A.mix(TreeData.prototype, {
+	_indexPrimed: false,
+
 	childrenLength: 0,
 
 	/**
@@ -142,6 +144,10 @@ A.mix(TreeData.prototype, {
 	 */
 	getNodeById: function(uid) {
 		var instance = this;
+
+		if (!instance._indexPrimed) {
+			instance.refreshIndex();
+		}
 
 		return instance.get(INDEX)[uid];
 	},
@@ -217,7 +223,7 @@ A.mix(TreeData.prototype, {
 		if (moved) {
 			var output = instance.getEventOutputMap(node);
 
-			if (!oldParent.get('children').length) {
+			if (!oldParent.get(CHILDREN).length) {
 				oldParent.collapse();
 				oldParent.hideHitArea();
 			}
@@ -283,6 +289,8 @@ A.mix(TreeData.prototype, {
 		var instance = this;
 
 		if (index) {
+			instance._indexPrimed = true;
+
 			instance.set(INDEX, index);
 		}
 	},
@@ -348,7 +356,7 @@ A.mix(TreeData.prototype, {
 	/**
 	 * Unselect all children of the TreeData.
 	 *
-	 * @method selectAll
+	 * @method unselectAll
 	 */
 	unselectAll: function() {
 		var instance = this;
@@ -379,7 +387,7 @@ A.mix(TreeData.prototype, {
 	/**
 	 * Loop each parent node and execute the <code>fn</code> callback.
 	 *
-	 * @method eachChildren
+	 * @method eachParent
 	 * @param {function} fn callback
 	 */
 	eachParent: function(fn) {
@@ -833,6 +841,8 @@ A.mix(TreeData.prototype, {
 						}, 50);
 					}
 				}
+
+				instance.registerNode(node);
 
 				if (hasOwnerTree) {
 					ownerTree.registerNode(node);
@@ -3563,12 +3573,12 @@ var TreeViewDD = A.Component.create(
 				}
 				else if (dropAction === APPEND) {
 					if (dropTreeNode && !dropTreeNode.isLeaf()) {
-						dropTreeNode.appendChild(dragTreeNode);
-
 						if (!dropTreeNode.get(EXPANDED)) {
 							// expand node when drop a child on it
 							dropTreeNode.expand();
 						}
+
+						dropTreeNode.appendChild(dragTreeNode);
 
 						instance.bubbleEvent('dropAppend', output);
 					}

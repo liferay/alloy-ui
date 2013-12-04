@@ -828,12 +828,12 @@ var TreeViewDD = A.Component.create(
 				}
 				else if (dropAction === APPEND) {
 					if (dropTreeNode && !dropTreeNode.isLeaf()) {
-						dropTreeNode.appendChild(dragTreeNode);
-
 						if (!dropTreeNode.get(EXPANDED)) {
 							// expand node when drop a child on it
 							dropTreeNode.expand();
 						}
+
+						dropTreeNode.appendChild(dragTreeNode);
 
 						instance.bubbleEvent('dropAppend', output);
 					}
