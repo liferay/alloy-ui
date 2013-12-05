@@ -12,6 +12,10 @@ YUI.add('module-tests', function(Y) {
         zIndex: 2
     }).render();
 
+    var HSVPalette = new Y.HSVPalette().render('#HSVPalette');
+
+    var IE = Y.UA.ie;
+
     //--------------------------------------------------------------------------
     // Test Case for ColorPicker
     //--------------------------------------------------------------------------
@@ -55,6 +59,91 @@ YUI.add('module-tests', function(Y) {
         _assertVisible: function() {
             Y.Test.Assert.isNull(
                 Y.one('.yui3-color-picker-popover-hidden'), 'The ColorPicker Popover should be visible');
+        },
+    }));
+
+    suite.add(new Y.Test.Case({
+
+        name: 'HSV Palette Value tests',
+
+        _should: {
+            // Ignore IE 10 due to unrelated issues
+            ignore: {
+                'assert results view color changes with value slider change': (IE === 10),
+                'assert value slider background and results view are synced correctly with selected palette color': (IE === 10)
+            }
+        },
+
+        /**
+         * @tests AUI-1083
+         */
+        'assert results view color changes with value slider change': function() {
+            var instance = this,
+                HSVPaletteContainer = Y.one('#HSVPalette'),
+                valueSlider = HSVPaletteContainer.one('.hsv-value-canvas'),
+                valueSliderY = valueSlider.getY();
+
+            valueSlider.simulate('mousedown', {
+                clientY: (valueSliderY + 200)
+            });
+
+            valueSlider.simulate('mouseup');
+
+            // for IE9 and below
+            if ((IE > 0) && (IE < 10)) {
+                valueSlider.simulate('mousemove');
+                HSVPalette._valueSlider.set('value', 50);
+            }
+
+            instance._assertSelectedColorResultsViewEquality();
+            instance._assertSliderBackgroundColorAfterValueChange();
+        },
+
+        'assert value slider background and results view are synced correctly with selected palette color': function() {
+            var instance = this,
+                HSVPaletteContainer = Y.one('#HSVPalette'),
+                HSVCanvas = HSVPaletteContainer.one('.hsv-hs-container'),
+                HSVCanvasXY = HSVCanvas.getXY();
+
+            HSVCanvas.simulate('mousedown', {
+                clientX: (HSVCanvasXY[0] + 100),
+                clientY: (HSVCanvasXY[1] + 100)
+            });
+
+            HSVCanvas.simulate('mouseup');
+
+            instance._assertSelectedColorResultsViewEquality();
+            instance._assertSliderBackgroundColorAfterValueChange();
+        },
+
+        _assertSelectedColorResultsViewEquality: function() {
+            var HSVPaletteContainer = Y.one('#HSVPalette'),
+                resultsView = HSVPaletteContainer.one('.hsv-result-view'),
+                hexInput = HSVPaletteContainer.one('.hsv-value[data-type=hex]');
+
+            var hexValue = hexInput.val();
+            hexValue = '#' + hexValue;
+
+            var resultsViewColor = resultsView.getStyle('backgroundColor');
+            resultsViewColor = Y.Color.toHex(resultsViewColor);
+
+            Y.Test.Assert.areEqual(hexValue.toUpperCase(), resultsViewColor.toUpperCase(), 'selected color should be equal to background color of results view');
+        },
+
+        _assertSliderBackgroundColorAfterValueChange: function() {
+            var HSVPaletteContainer = Y.one('#HSVPalette'),
+                sliderContainerColor = HSVPaletteContainer.one('.hsv-value-slider-container').getStyle('backgroundColor'),
+                resultsViewColor = HSVPaletteContainer.one('.hsv-result-view').getStyle('backgroundColor'),
+                hueInputVal = HSVPaletteContainer.one('.hsv-value[data-type=hue]').val(),
+                saturationInputVal = HSVPaletteContainer.one('.hsv-value[data-type=saturation]').val();
+
+            var hsva = 'hsva(' + hueInputVal + ',' + saturationInputVal + '%,' + '100%)';
+            var rgbColor = Y.Color.toHex(hsva);
+
+            Y.Test.Assert.areEqual(rgbColor, Y.Color.toHex(sliderContainerColor), 'Slider container background color should equal currently selected color with a value of 100');
+
+            // should only pass when value is less than 100
+            Y.Test.Assert.areNotEqual(sliderContainerColor, resultsViewColor, 'Slider container background color should not equal resutls view');
         }
     }));
 
