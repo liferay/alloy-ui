@@ -118,32 +118,38 @@ YUI.add('module-tests', function(Y) {
 
         _assertSelectedColorResultsViewEquality: function() {
             var HSVPaletteContainer = Y.one('#HSVPalette'),
-                resultsView = HSVPaletteContainer.one('.hsv-result-view'),
-                hexInput = HSVPaletteContainer.one('.hsv-value[data-type=hex]');
+                hexInput = HSVPaletteContainer.one('.hsv-value[data-type=hex]'),
+                resultsView = HSVPaletteContainer.one('.hsv-result-view');
 
             var hexValue = hexInput.val();
+
             hexValue = '#' + hexValue;
 
             var resultsViewColor = resultsView.getStyle('backgroundColor');
+
             resultsViewColor = Y.Color.toHex(resultsViewColor);
 
-            Y.Test.Assert.areEqual(hexValue.toUpperCase(), resultsViewColor.toUpperCase(), 'selected color should be equal to background color of results view');
+            Y.Test.Assert.areEqual(hexValue.toUpperCase(), resultsViewColor.toUpperCase(),
+                'selected color should be equal to background color of results view');
         },
 
         _assertSliderBackgroundColorAfterValueChange: function() {
             var HSVPaletteContainer = Y.one('#HSVPalette'),
-                sliderContainerColor = HSVPaletteContainer.one('.hsv-value-slider-container').getStyle('backgroundColor'),
-                resultsViewColor = HSVPaletteContainer.one('.hsv-result-view').getStyle('backgroundColor'),
                 hueInputVal = HSVPaletteContainer.one('.hsv-value[data-type=hue]').val(),
-                saturationInputVal = HSVPaletteContainer.one('.hsv-value[data-type=saturation]').val();
+                resultsViewColor = HSVPaletteContainer.one('.hsv-result-view').getStyle('backgroundColor'),
+                saturationInputVal = HSVPaletteContainer.one('.hsv-value[data-type=saturation]').val(),
+                sliderContainerColor = HSVPaletteContainer.one('.hsv-value-slider-container').getStyle(
+                    'backgroundColor'),
+                hsva = 'hsva(' + hueInputVal + ',' + saturationInputVal + '%,' + '100%)',
+                rgbColor = Y.Color.toHex(hsva);
 
-            var hsva = 'hsva(' + hueInputVal + ',' + saturationInputVal + '%,' + '100%)';
-            var rgbColor = Y.Color.toHex(hsva);
-
-            Y.Test.Assert.areEqual(rgbColor, Y.Color.toHex(sliderContainerColor), 'Slider container background color should equal currently selected color with a value of 100');
+            Y.Test.Assert.areEqual(rgbColor, Y.Color.toHex(sliderContainerColor),
+                'Slider container background color should equal currently selected color with a value of 100'
+            );
 
             // should only pass when value is less than 100
-            Y.Test.Assert.areNotEqual(sliderContainerColor, resultsViewColor, 'Slider container background color should not equal resutls view');
+            Y.Test.Assert.areNotEqual(sliderContainerColor, resultsViewColor,
+                'Slider container background color should not equal results view');
         }
     }));
 
