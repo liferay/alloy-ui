@@ -247,9 +247,7 @@ var DiagramBuilder = A.Component.create({
 		initializer: function() {
 			var instance = this;
 
-			instance.after({
-				render: instance.syncConnectionsUI
-			});
+			var canvas = instance.get(CANVAS);
 
 			instance.on({
 				cancel: instance._onCancel,
@@ -265,6 +263,8 @@ var DiagramBuilder = A.Component.create({
 					instance.publishedSource = event.publishedSource;
 				}
 			});
+
+			canvas.on(MOUSEENTER, A.bind(instance._onCanvasMouseEnter, instance));
 
 			instance.handlerKeyDown = A.getDoc().on(KEYDOWN, A.bind(instance._afterKeyEvent, instance));
 
@@ -287,6 +287,8 @@ var DiagramBuilder = A.Component.create({
 			A.DiagramBuilder.superclass.syncUI.apply(this, arguments);
 
 			instance._setupFieldsDrag();
+
+			instance.syncConnectionsUI();
 
 			instance.connector = instance.get(CONNECTOR);
 		},
@@ -629,6 +631,12 @@ var DiagramBuilder = A.Component.create({
 			var instance = this;
 
 			instance.closeEditProperties();
+		},
+
+		_onCanvasMouseEnter: function() {
+			var instance = this;
+
+			instance.syncUI();
 		},
 
 		_onDeleteKey: function(event) {
