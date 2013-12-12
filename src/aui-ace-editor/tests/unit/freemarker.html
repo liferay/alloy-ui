@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AUI ACE AutoComplete Unit Tests</title>
+    <title>AUI ACE AutoComplete Freemarker Unit Tests</title>
     <meta charset="utf-8" />
 
     <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
@@ -17,13 +17,13 @@
 
     <script>
         YUI({
-            coverage: ['aui-ace-editor', 'ace-autocomplete-base', 'aui-ace-autocomplete-freemarker', 'ace-autocomplete-list', 'ace-autocomplete-plugin', 'aui-ace-autocomplete-templateprocessor', 'aui-ace-autocomplete-velocity'],
+            coverage: ['aui-ace-editor', 'ace-autocomplete-base', 'aui-ace-autocomplete-freemarker', 'ace-autocomplete-list', 'ace-autocomplete-plugin', 'aui-ace-autocomplete-templateprocessor'],
             filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
         }).use('test-console', 'test', 'module-tests', function(Y) {
 
             (new Y.Test.Console()).render('#logger');
 
-            Y.Test.Runner.setName('aui-palette');
+            Y.Test.Runner.setName('aui-ace-editor');
             Y.Test.Runner.run();
         });
     </script>
