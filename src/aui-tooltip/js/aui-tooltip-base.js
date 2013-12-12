@@ -62,6 +62,8 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
     initializer: function() {
         var instance = this;
 
+        instance._makeTooltipSticky(instance);
+
         A.after(instance._afterUiSetTrigger, instance, '_uiSetTrigger');
         A.after(instance._afterUiSetVisible, instance, '_uiSetVisible');
     },
@@ -150,6 +152,30 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
 
         instance.setStdModContent(
             A.WidgetStdMod.BODY, trigger && title || instance.get(BODY_CONTENT));
+    },
+
+    _makeTooltipSticky: function(tooltip) {
+        if (tooltip.get('stickyTooltip')) {
+            var tooltipTimeout;
+
+            tooltip.hide = function() {
+                tooltipTimeout = setTimeout(function() {
+                    tooltip.set('visible', false);
+                }, 25);
+
+                tooltip._posNode.on('tooltip|mouseenter', function() {
+                    clearTimeout(tooltipTimeout);
+
+                    this.detach('tooltip|mouseenter');
+                });
+
+                tooltip._posNode.on('tooltip|mouseleave', function() {
+                    tooltip.set('visible', false);
+
+                    this.detach('tooltip|mouseleave');
+                });
+            };
+        }
     }
 }, {
 
@@ -212,6 +238,10 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
          */
         opacity: {
             value: 0.8
+        },
+
+        stickyTooltip: {
+            value: false
         },
 
         /**
