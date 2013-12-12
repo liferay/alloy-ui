@@ -21,7 +21,7 @@ var Lang = A.Lang,
     POPOVER_CSS_CLASS = 'popoverCssClass';
 
 /**
- * A base class for DatePickerPopover.
+ * A base class for `DatePickerPopover`.
  *
  * @class A.DatePickerPopover
  * @param {Object} config Object literal specifying widget configuration
@@ -32,20 +32,21 @@ var Lang = A.Lang,
 function DatePickerPopover() {}
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
+ * Static property used to define the default attribute configuration for the
+ * `DatePickerPopover`.
  *
  * @property ATTRS
- * @type Object
+ * @type {Object}
  * @static
  */
 DatePickerPopover.ATTRS = {
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the initial visibility.
      *
      * @attribute autoHide
      * @default true
-     * @type Boolean
+     * @type {Boolean}
      */
     autoHide: {
         validator: Lang.isBoolean,
@@ -53,7 +54,7 @@ DatePickerPopover.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Stores the configuration of the `Popover` instance.
      *
      * @attribute popover
      * @default {}
@@ -66,11 +67,11 @@ DatePickerPopover.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Defines the CSS classname of the `Popover`.
      *
      * @attribute popoverCssClass
      * @default A.getClassName('datepicker-popover')
-     * @type String
+     * @type {String}
      */
     popoverCssClass: {
         validator: Lang.isString,
@@ -82,7 +83,7 @@ A.mix(DatePickerPopover.prototype, {
     popover: null,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the `Popover` alignment.
      *
      * @method alignTo
      * @param node
@@ -95,9 +96,11 @@ A.mix(DatePickerPopover.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns an existent `Popover` instance or creates a new one if it
+     * doesn't exists.
      *
      * @method getPopover
+     * @return {Popover}
      */
     getPopover: function() {
         var instance = this,
@@ -115,7 +118,7 @@ A.mix(DatePickerPopover.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Hides the `Popover`.
      *
      * @method hide
      */
@@ -126,7 +129,7 @@ A.mix(DatePickerPopover.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Shows the `Popover`.
      *
      * @method show
      */
@@ -137,10 +140,11 @@ A.mix(DatePickerPopover.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Checks if the active input is focused.
      *
      * @method _isActiveInputFocused
      * @protected
+     * @return {Boolean}
      */
     _isActiveInputFocused: function() {
         var instance = this,
@@ -150,7 +154,7 @@ A.mix(DatePickerPopover.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires when there's a click outside of the `Popover`.
      *
      * @method _onPopoverClickOutside
      * @param event
@@ -168,7 +172,7 @@ A.mix(DatePickerPopover.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the `popover` value by merging its object with another properties.
      *
      * @method _setPopover
      * @param val

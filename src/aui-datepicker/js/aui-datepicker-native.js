@@ -22,7 +22,7 @@ var Lang = A.Lang,
     TYPE = 'type';
 
 /**
- * A base class for DatePickerNativeBase.
+ * A base class for `DatePickerNativeBase`.
  *
  * @class A.DatePickerNativeBase
  * @param {Object} config Object literal specifying widget configuration
@@ -33,20 +33,21 @@ var Lang = A.Lang,
 function DatePickerNativeBase() {}
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
+ * Static property used to define the default attribute configuration for the
+ * `DatePickerNativeBase`.
  *
  * @property ATTRS
- * @type Object
+ * @type {Object}
  * @static
  */
 DatePickerNativeBase.ATTRS = {
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Defines the native date mask.
      *
      * @attribute nativeMask
      * @default '%Y-%m-%d'
-     * @type String
+     * @type {String}
      */
     nativeMask: {
         validator: Lang.isString,
@@ -54,11 +55,11 @@ DatePickerNativeBase.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Defines the type attribute in an HTML element.
      *
      * @attribute nativeType
      * @default 'date'
-     * @type String
+     * @type {String}
      */
     nativeType: {
         validator: Lang.isString,
@@ -69,7 +70,7 @@ DatePickerNativeBase.ATTRS = {
 DatePickerNativeBase.prototype = {
 
     /**
-     * Construction logic executed during DatePickerNativeBase instantiation.
+     * Construction logic executed during `DatePickerNativeBase` instantiation.
      * Lifecycle.
      *
      * @method initializer
@@ -82,7 +83,7 @@ DatePickerNativeBase.prototype = {
     },
 
     /**
-     * Bind the events on the DatePickerNativeBase UI. Lifecycle.
+     * Bind the events on the `DatePickerNativeBase` UI. Lifecycle.
      *
      * @method bindNativeUI
      */
@@ -103,7 +104,7 @@ DatePickerNativeBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Clears selected dates in the native calendar.
      *
      * @method clearSelection
      */
@@ -115,7 +116,7 @@ DatePickerNativeBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Deselects dates in the native calendar.
      *
      * @method deselectDates
      */
@@ -126,7 +127,7 @@ DatePickerNativeBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Blurs native calendar.
      *
      * @method hide
      */
@@ -138,7 +139,7 @@ DatePickerNativeBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Focus native calendar.
      *
      * @method show
      */
@@ -150,7 +151,7 @@ DatePickerNativeBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Selects a date in the native calendar.
      *
      * @method selectDates
      * @param dates
@@ -169,7 +170,7 @@ DatePickerNativeBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Renders the widget in an `<input>` node.
      *
      * @method useInputNode
      * @param node
@@ -197,18 +198,19 @@ DatePickerNativeBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Adds four digits as a padding for the year value.
      *
      * @method _addFourDigitsYearPadding
      * @param text
      * @protected
+     * @return {String} The result of the string manipulation.
      */
     _addFourDigitsYearPadding: function(text) {
         return A.Lang.String.repeat('0', 4 - text.indexOf(_DASH)) + text;
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires after a selection change in the native calendar.
      *
      * @method _afterNativeSelectionChange
      * @param event
@@ -224,7 +226,7 @@ DatePickerNativeBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires a selection change.
      *
      * @method _fireSelectionChange
      * @protected
@@ -241,11 +243,12 @@ DatePickerNativeBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Formats native date.
      *
      * @method _formatDate
      * @param date
      * @protected
+     * @return {Date}
      */
     _formatDate: function(date) {
         var instance = this,
@@ -263,11 +266,12 @@ DatePickerNativeBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Checks if type attribute is supported.
      *
      * @method _isTypeSupported
      * @param type
      * @protected
+     * @return {Boolean}
      */
     _isTypeSupported: function(type) {
         switch (type.toLowerCase()) {
@@ -280,11 +284,12 @@ DatePickerNativeBase.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Parses a date from a string.
      *
      * @method _parseDateFromString
      * @param text
      * @protected
+     * @return {Date}
      */
     _parseDateFromString: function(text) {
         var instance = this,
@@ -301,7 +306,7 @@ DatePickerNativeBase.prototype = {
 A.DatePickerNativeBase = DatePickerNativeBase;
 
 /**
- * A base class for DatePickerNative.
+ * A base class for `DatePickerNative`.
  *
  * @class A.DatePickerNative
  * @extends Base
