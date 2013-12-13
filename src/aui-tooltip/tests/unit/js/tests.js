@@ -65,7 +65,7 @@ YUI.add('module-tests', function(Y) {
             var tooltip = new Y.Tooltip({
                 cssClass: 'tooltip-help',
                 position: 'right',
-                stickyTooltip: true,
+                stickDuration: 25,
                 trigger: '#triggerTooltipHelp'
             }).render();
 
@@ -102,7 +102,7 @@ YUI.add('module-tests', function(Y) {
                 tooltip = Y.one('.tooltip'),
                 triggerTooltipHelp = Y.one('#triggerTooltipHelp');
 
-            triggerTooltipHelp.once('mouseover', function(e){
+            triggerTooltipHelp.once('mouseover', function(e) {
                 setTimeout(function() {
                     test.resume(function() {
                         Y.Assert.isFalse(
@@ -124,7 +124,7 @@ YUI.add('module-tests', function(Y) {
                 tooltip = Y.one('.tooltip'),
                 triggerTooltipHelp = Y.one('#triggerTooltipHelp');
 
-            tooltip.once('mouseover', function(e){
+            tooltip.once('mouseover', function(e) {
                 setTimeout(function() {
                     test.resume(function() {
                         Y.Assert.isFalse(
