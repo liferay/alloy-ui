@@ -56,6 +56,15 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
     A.WidgetTrigger
 ], {
     /**
+     * Stores the `Y.later` context object.
+     *
+     * @property _hideTimer
+     * @type {Object}
+     * @protected
+     */
+    _hideTimer: null,
+
+    /**
      * Construction logic executed during Tooltip instantiation. Lifecycle.
      *
      * @method initializer
