@@ -22,7 +22,7 @@ var Lang = A.Lang,
     TRIGGER = 'trigger';
 
 /**
- * A base class for DatePickerBase.
+ * A base class for `DatePickerBase`.
  *
  * @class A.DatePickerBase
  * @param {Object} config Object literal specifying widget configuration
@@ -33,11 +33,10 @@ var Lang = A.Lang,
 function DatePickerBase() {}
 
 /**
- * Static property used to define the default attribute
- * configuration for the DatePickerBase.
+ * Lists `CalendarBase` pane templates.
  *
  * @property PANES
- * @type Array
+ * @type {Array}
  * @static
  */
 DatePickerBase.PANES = [
@@ -47,16 +46,17 @@ DatePickerBase.PANES = [
 ];
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
+ * Static property used to define the default attribute configuration for the
+ * `DatePickerBase`.
  *
  * @property ATTRS
- * @type Object
+ * @type {Object}
  * @static
  */
 DatePickerBase.ATTRS = {
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Stores the configuration of the `Calendar` instance.
      *
      * @attribute calendar
      * @default {}
@@ -69,11 +69,11 @@ DatePickerBase.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the initial visibility.
      *
      * @attribute autoHide
      * @default true
-     * @type Boolean
+     * @type {Boolean}
      */
     autoHide: {
         validator: Lang.isBoolean,
@@ -81,11 +81,11 @@ DatePickerBase.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Defines how many panes should be rendered.
      *
      * @attribute panes
      * @default 1
-     * @type Number
+     * @type {Number}
      * @writeOnce
      */
     panes: {
@@ -100,7 +100,7 @@ A.mix(DatePickerBase.prototype, {
     calendar: null,
 
     /**
-     * Construction logic executed during DatePickerBase instantiation.
+     * Construction logic executed during `DatePickerBase` instantiation.
      * Lifecycle.
      *
      * @method initializer
@@ -113,7 +113,7 @@ A.mix(DatePickerBase.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Clears a selection in the `Calendar`.
      *
      * @method clearSelection
      * @param silent
@@ -125,7 +125,7 @@ A.mix(DatePickerBase.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Deselects a date in the `Calendar`.
      *
      * @method deselectDates
      * @param dates
@@ -137,9 +137,11 @@ A.mix(DatePickerBase.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns an existent `Calendar` instance or creates a new one if it
+     * doesn't exists.
      *
      * @method getCalendar
+     * @return {Calendar}
      */
     getCalendar: function() {
         var instance = this,
@@ -155,7 +157,7 @@ A.mix(DatePickerBase.prototype, {
                 DatePickerBase.PANES[instance.get(PANES) - 1];
 
             // Initialize the popover instance before calendar renders since it
-            // will use popober.bodyNode as render node.
+            // will use popover.bodyNode as render node.
             instance.getPopover();
 
             calendar = new A.Calendar(instance.get(CALENDAR));
@@ -177,7 +179,7 @@ A.mix(DatePickerBase.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Selects a date in the `Calendar`.
      *
      * @method selectDates
      * @param dates
@@ -189,7 +191,7 @@ A.mix(DatePickerBase.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Renders the widget in an `<input>` node.
      *
      * @method useInputNode
      * @param node
@@ -207,7 +209,7 @@ A.mix(DatePickerBase.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires after a click in the `Calendar` date.
      *
      * @method _afterCalendarDateClick
      * @protected
@@ -223,7 +225,7 @@ A.mix(DatePickerBase.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires after a selection change in the `Calendar`.
      *
      * @method _afterCalendarSelectionChange
      * @param event
@@ -238,7 +240,7 @@ A.mix(DatePickerBase.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires when a selection change in the `DatePicker`.
      *
      * @method _afterDatePickerSelectionChange
      * @protected
@@ -250,7 +252,7 @@ A.mix(DatePickerBase.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the first selected date in the `Calendar`.
      *
      * @method _setCalendarToFirstSelectedDate
      * @protected
@@ -266,7 +268,7 @@ A.mix(DatePickerBase.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires when the user's first interaction happens.
      *
      * @method _onceUserInteractionRelease
      * @param event
@@ -283,7 +285,7 @@ A.mix(DatePickerBase.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the `calendar` value by merging its object with another properties.
      *
      * @method _setCalendar
      * @param val
@@ -297,11 +299,12 @@ A.mix(DatePickerBase.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the `pane` value between 1 and 3.
      *
      * @method _setPanes
      * @param val
      * @protected
+     * @return {Number} Clamped number of panes.
      */
     _setPanes: function(val) {
         return clamp(val, 1, 3);
@@ -311,7 +314,7 @@ A.mix(DatePickerBase.prototype, {
 A.DatePickerBase = DatePickerBase;
 
 /**
- * A base class for DatePicker.
+ * A base class for `DatePicker`.
  *
  * @class A.DatePicker
  * @extends Base

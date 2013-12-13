@@ -25,7 +25,7 @@ var Lang = A.Lang,
     VALUE_FORMATTER = 'valueFormatter';
 
 /**
- * A base class for DatePickerDelegate.
+ * A base class for `DatePickerDelegate`.
  *
  * @class A.DatePickerDelegate
  * @param {Object} config Object literal specifying widget configuration
@@ -41,7 +41,7 @@ DatePickerDelegate.prototype = {
     _userInteractionInProgress: false,
 
     /**
-     * Construction logic executed during DatePickerDelegate instantiation.
+     * Construction logic executed during `DatePickerDelegate` instantiation.
      * Lifecycle.
      *
      * @method initializer
@@ -54,7 +54,8 @@ DatePickerDelegate.prototype = {
     },
 
     /**
-     * Destructor logic implementation for the AutosizeIframe class. Lifecycle.
+     * Destructor logic implementation for the `DatePickerDelegate` class.
+     * Lifecycle.
      *
      * @method destroy
      * @protected
@@ -66,7 +67,7 @@ DatePickerDelegate.prototype = {
     },
 
     /**
-     * Bind the events on the DatePickerDelegate UI. Lifecycle.
+     * Bind the events on the `DatePickerDelegate` UI. Lifecycle.
      *
      * @method bindDelegateUI
      * @protected
@@ -97,10 +98,11 @@ DatePickerDelegate.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the selected dates.
      *
      * @method getSelectedDates
      * @param node
+     * @return {Object | null}
      */
     getSelectedDates: function(node) {
         var instance = this,
@@ -115,10 +117,11 @@ DatePickerDelegate.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets parsed dates from input value.
      *
      * @method getParsedDatesFromInputValue
      * @param opt_value
+     * @return {Object | null}
      */
     getParsedDatesFromInputValue: function(opt_value) {
         var instance = this,
@@ -135,14 +138,14 @@ DatePickerDelegate.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Method not implemented.
      *
      * @method useInputNode
      */
     useInputNode: function() {},
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Triggers `useInputNode` method once.
      *
      * @method useInputNodeOnce
      * @param node
@@ -156,7 +159,7 @@ DatePickerDelegate.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Default behavior for selection change.
      *
      * @method _defSelectionChangeFn
      * @param event
@@ -174,11 +177,12 @@ DatePickerDelegate.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Formats a date according to a mask.
      *
      * @method _formatDate
      * @param event
      * @protected
+     * @return {Date}
      */
     _formatDate: function(date) {
         var instance = this,
@@ -190,7 +194,7 @@ DatePickerDelegate.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires once user interacts.
      *
      * @method _onceUserInteraction
      * @param event
@@ -205,7 +209,7 @@ DatePickerDelegate.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires once user interaction releases.
      *
      * @method _onceUserInteractionRelease
      * @param event
@@ -220,7 +224,7 @@ DatePickerDelegate.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires when user interaction releases.
      *
      * @method _onUserInteractionRelease
      * @param event
@@ -235,7 +239,7 @@ DatePickerDelegate.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Extracts the input value.
      *
      * @method _valueExtractorFn
      * @protected
@@ -266,10 +270,11 @@ DatePickerDelegate.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Formats a date value.
      *
      * @method _valueFormatterFn
      * @protected
+     * @return {Function}
      */
     _valueFormatterFn: function() {
         return function(dates) {
@@ -288,10 +293,11 @@ DatePickerDelegate.prototype = {
 };
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
+ * Static property used to define the default attribute configuration for the
+ * `DatePickerDelegate`.
  *
  * @property ATTRS
- * @type Object
+ * @type {Object}
  * @static
  */
 DatePickerDelegate.ATTRS = {
@@ -304,7 +310,7 @@ DatePickerDelegate.ATTRS = {
     activeInput: {},
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Contains an element.
      *
      * @attribute container
      * @writeOnce
@@ -316,11 +322,11 @@ DatePickerDelegate.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Character that separate dates.
      *
      * @attribute dateSeparator
      * @default ' \u2014 '
-     * @type String
+     * @type {String}
      */
     dateSeparator: {
         value: ' \u2014 ',
@@ -328,11 +334,11 @@ DatePickerDelegate.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Defines the date format.
      *
      * @attribute mask
      * @default '%m/%d/%Y'
-     * @type String
+     * @type {String}
      */
     mask: {
         value: '%m/%d/%Y',
@@ -340,10 +346,11 @@ DatePickerDelegate.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Stores a trigger.
      *
-     * @attribute content
-     * @type String
+     * @attribute trigger
+     * @type {String}
+     * @writeOnce
      */
     trigger: {
         validator: isString,
@@ -351,10 +358,10 @@ DatePickerDelegate.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Extracts a value from a function.
      *
      * @attribute valueExtractor
-     * @type Function
+     * @type {Function}
      */
     valueExtractor: {
         valueFn: '_valueExtractorFn',
@@ -362,10 +369,10 @@ DatePickerDelegate.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Formats a value from a function.
      *
      * @attribute valueFormatter
-     * @type Function
+     * @type {Function}
      */
     valueFormatter: {
         valueFn: '_valueFormatterFn',
