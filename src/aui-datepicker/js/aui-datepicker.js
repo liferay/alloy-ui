@@ -304,7 +304,7 @@ A.mix(DatePickerBase.prototype, {
      * @method _setPanes
      * @param val
      * @protected
-     * @return {Number} Clamps a number.
+     * @return {Number} Clamped number of panes.
      */
     _setPanes: function(val) {
         return clamp(val, 1, 3);

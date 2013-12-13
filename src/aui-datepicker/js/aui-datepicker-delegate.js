@@ -102,7 +102,7 @@ DatePickerDelegate.prototype = {
      *
      * @method getSelectedDates
      * @param node
-     * @return {Object | Null}
+     * @return {Object | null}
      */
     getSelectedDates: function(node) {
         var instance = this,
@@ -121,7 +121,7 @@ DatePickerDelegate.prototype = {
      *
      * @method getParsedDatesFromInputValue
      * @param opt_value
-     * @return {Object | Null}
+     * @return {Object | null}
      */
     getParsedDatesFromInputValue: function(opt_value) {
         var instance = this,
