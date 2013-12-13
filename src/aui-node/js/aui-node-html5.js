@@ -1,6 +1,6 @@
 /**
- * Provides support for HTML shiv natively on the Alloy DOM
- * methods. The HTML5 shiv just affects IE.
+ * Provides support for HTML shiv natively on the Alloy DOM methods. The HTML5
+ * shiv just affects IE.
  *
  * @module aui-node
  * @submodule aui-node-html5
@@ -28,7 +28,7 @@ if (A.UA.ie) {
          * fragment iherits the styles on IE).
          *
          * @property _fragHTML5Shived
-         * @type DocumentFragment (shived)
+         * @type {DocumentFragment}
          * @protected
          */
         HTML5._fragHTML5Shived = A.html5shiv(
@@ -39,9 +39,9 @@ if (A.UA.ie) {
     A.mix(
         HTML5, {
             /**
-             * Receive a `frag` and a HTML content. This method
-             * shivs the HTML5 nodes appended to a Node or fragment which is not
-             * on the document yet.
+             * Receives a `frag` and a HTML content. This method shivs the HTML5
+             * nodes appended to a Node or fragment which is not on the document
+             * yet.
              *
              * @method IECreateFix
              * @param {Node|DocumentFragment} frag Fragment to be fixed.

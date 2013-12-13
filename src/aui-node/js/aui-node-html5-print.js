@@ -126,7 +126,7 @@ var PrintFix = function() {
 A.mix(
     PrintFix, {
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after a print.
          *
          * @method onAfterPrint
          */
@@ -141,7 +141,7 @@ A.mix(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires before a print.
          *
          * @method onBeforePrint
          */
@@ -157,10 +157,11 @@ A.mix(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Navigates through the CSS joining rules and replacing content.
          *
          * @method parseCSS
          * @param cssText
+         * @return {String}
          */
         parseCSS: function(cssText) {
             var instance = this;
@@ -176,7 +177,7 @@ A.mix(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Restores the HTML from the `bodyClone` and `bodyEl` attributes.
          *
          * @method restoreHTML
          */
@@ -193,7 +194,7 @@ A.mix(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Generates the HTML for print.
          *
          * @method writeHTML
          */
@@ -316,10 +317,11 @@ A.mix(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets all CSS text from all stylesheets.
          *
          * @method _getAllCSSText
          * @protected
+         * @return {Array}
          */
         _getAllCSSText: function() {
             var instance = this;
@@ -349,11 +351,12 @@ A.mix(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Extracts the CSS text from a rule.
          *
          * @method _getCSSTextFromRule
          * @param rule
          * @protected
+         * @return {String}
          */
         _getCSSTextFromRule: function(rule) {
             var instance = this;
@@ -377,14 +380,12 @@ A.mix(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets all stylesheets from a page.
          *
          * @method _getAllStyleSheets
-         * @param styleSheet
-         * @param mediaType
-         * @param level
-         * @param buffer
+         * @param styleSheet, mediaType, level, buffer
          * @protected
+         * @return {Array}
          */
         _getAllStyleSheets: function(styleSheet, mediaType, level, buffer) {
             var instance = this;
@@ -441,10 +442,11 @@ A.mix(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the `<body>` element.
          *
          * @method _getBodyEl
          * @protected
+         * @return {Element}
          */
         _getBodyEl: function() {
             var instance = this;
@@ -461,10 +463,11 @@ A.mix(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets a clone of the `<body>` element.
          *
          * @method _getBodyClone
          * @protected
+         * @return {Element}
          */
         _getBodyClone: function() {
             var instance = this;
@@ -481,10 +484,11 @@ A.mix(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets a document fragment object.
          *
          * @method _getDocFrag
          * @protected
+         * @return {DocumentFragment}
          */
         _getDocFrag: function() {
             var instance = this;
@@ -503,10 +507,11 @@ A.mix(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the stylesheet from the DOM.
          *
          * @method _getStyleSheet
          * @protected
+         * @return {Node}
          */
         _getStyleSheet: function() {
             var instance = this;
