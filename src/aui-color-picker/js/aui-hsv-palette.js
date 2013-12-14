@@ -445,7 +445,7 @@ var AColor = A.Color,
                 hue = x / instance._hsContainerWidth * MAX_HUE;
             }
 
-            return hue;
+            return Math.round(hue);
         },
 
         /**
@@ -510,7 +510,7 @@ var AColor = A.Color,
                 saturation = MAX_SATURATION - (y / instance._hsContainerHeight * MAX_SATURATION);
             }
 
-            return saturation;
+            return Math.round(saturation);
         },
 
         /**
@@ -1176,7 +1176,7 @@ var AColor = A.Color,
             var instance = this,
                 rgbColor;
 
-            rgbColor = instance._calculateRGBColor(Math.round(hue), Math.round(saturation), 100);
+            rgbColor = instance._calculateRGBColor(hue, saturation, 100);
 
             instance._valueSliderContainer.setStyle(BACKGROUND_COLOR, rgbColor);
         },

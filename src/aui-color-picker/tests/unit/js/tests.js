@@ -1,20 +1,24 @@
 YUI.add('module-tests', function(Y) {
 
     //--------------------------------------------------------------------------
-    // ColorPicker Freemarker Tests
+    // ColorPicker Tests
     //--------------------------------------------------------------------------
 
-    var suite = new Y.Test.Suite('aui-color-picker'),
-        colorPicker;
+    var IE,
+        colorPicker,
+        hsvPalette,
+        suite;
+
+    suite = new Y.Test.Suite('aui-color-picker');
 
     colorPicker = new Y.ColorPickerPopover({
         trigger: '.color-picker-trigger',
         zIndex: 2
     }).render();
 
-    var HSVPalette = new Y.HSVPalette().render('#HSVPalette');
+    hsvPalette = new Y.HSVPalette().render('#hsvPalette');
 
-    var IE = Y.UA.ie;
+    IE = Y.UA.ie;
 
     //--------------------------------------------------------------------------
     // Test Case for ColorPicker
@@ -70,7 +74,8 @@ YUI.add('module-tests', function(Y) {
             // Ignore IE 10 due to unrelated issues
             ignore: {
                 'assert results view color changes with value slider change': (IE === 10),
-                'assert value slider background and results view are synced correctly with selected palette color': (IE === 10)
+                'assert value slider background and results view are synced correctly with selected palette color': (
+                    IE === 10)
             }
         },
 
@@ -79,9 +84,15 @@ YUI.add('module-tests', function(Y) {
          */
         'assert results view color changes with value slider change': function() {
             var instance = this,
-                HSVPaletteContainer = Y.one('#HSVPalette'),
-                valueSlider = HSVPaletteContainer.one('.hsv-value-canvas'),
-                valueSliderY = valueSlider.getY();
+                hsvPaletteContainer,
+                valueSlider,
+                valueSliderY;
+
+            hsvPaletteContainer = Y.one('#hsvPalette');
+
+            valueSlider = hsvPaletteContainer.one('.hsv-value-canvas');
+
+            valueSliderY = valueSlider.getY();
 
             valueSlider.simulate('mousedown', {
                 clientY: (valueSliderY + 200)
@@ -89,10 +100,10 @@ YUI.add('module-tests', function(Y) {
 
             valueSlider.simulate('mouseup');
 
-            // for IE9 and below
             if ((IE > 0) && (IE < 10)) {
                 valueSlider.simulate('mousemove');
-                HSVPalette._valueSlider.set('value', 50);
+
+                hsvPalette._valueSlider.set('value', 50);
             }
 
             instance._assertSelectedColorResultsViewEquality();
@@ -101,31 +112,45 @@ YUI.add('module-tests', function(Y) {
 
         'assert value slider background and results view are synced correctly with selected palette color': function() {
             var instance = this,
-                HSVPaletteContainer = Y.one('#HSVPalette'),
-                HSVCanvas = HSVPaletteContainer.one('.hsv-hs-container'),
-                HSVCanvasXY = HSVCanvas.getXY();
+                hsvPaletteContainer,
+                hsvCanvas,
+                hsvCanvasXY;
 
-            HSVCanvas.simulate('mousedown', {
-                clientX: (HSVCanvasXY[0] + 100),
-                clientY: (HSVCanvasXY[1] + 100)
+            hsvPaletteContainer = Y.one('#hsvPalette');
+
+            hsvCanvas = hsvPaletteContainer.one('.hsv-hs-container');
+
+            hsvCanvasXY = hsvCanvas.getXY();
+
+            hsvCanvas.simulate('mousedown', {
+                clientX: (hsvCanvasXY[0] + 100),
+                clientY: (hsvCanvasXY[1] + 100)
             });
 
-            HSVCanvas.simulate('mouseup');
+            hsvCanvas.simulate('mouseup');
 
             instance._assertSelectedColorResultsViewEquality();
             instance._assertSliderBackgroundColorAfterValueChange();
         },
 
         _assertSelectedColorResultsViewEquality: function() {
-            var HSVPaletteContainer = Y.one('#HSVPalette'),
-                hexInput = HSVPaletteContainer.one('.hsv-value[data-type=hex]'),
-                resultsView = HSVPaletteContainer.one('.hsv-result-view');
+            var hexInput,
+                hexValue,
+                hsvPaletteContainer,
+                resultsView,
+                resultsViewColor;
 
-            var hexValue = hexInput.val();
+            hsvPaletteContainer = Y.one('#hsvPalette');
+
+            hexInput = hsvPaletteContainer.one('.hsv-value[data-type=hex]');
+
+            resultsView = hsvPaletteContainer.one('.hsv-result-view');
+
+            hexValue = hexInput.val();
 
             hexValue = '#' + hexValue;
 
-            var resultsViewColor = resultsView.getStyle('backgroundColor');
+            resultsViewColor = resultsView.getStyle('backgroundColor');
 
             resultsViewColor = Y.Color.toHex(resultsViewColor);
 
@@ -134,14 +159,28 @@ YUI.add('module-tests', function(Y) {
         },
 
         _assertSliderBackgroundColorAfterValueChange: function() {
-            var HSVPaletteContainer = Y.one('#HSVPalette'),
-                hueInputVal = HSVPaletteContainer.one('.hsv-value[data-type=hue]').val(),
-                resultsViewColor = HSVPaletteContainer.one('.hsv-result-view').getStyle('backgroundColor'),
-                saturationInputVal = HSVPaletteContainer.one('.hsv-value[data-type=saturation]').val(),
-                sliderContainerColor = HSVPaletteContainer.one('.hsv-value-slider-container').getStyle(
-                    'backgroundColor'),
-                hsva = 'hsva(' + hueInputVal + ',' + saturationInputVal + '%,' + '100%)',
-                rgbColor = Y.Color.toHex(hsva);
+            var hsv,
+                hsvPaletteContainer,
+                hueInputVal,
+                resultsViewColor,
+                rgbColor,
+                saturationInputVal,
+                sliderContainerColor;
+
+            hsvPaletteContainer = Y.one('#hsvPalette');
+
+            hueInputVal = hsvPaletteContainer.one('.hsv-value[data-type=hue]').val();
+
+            resultsViewColor = hsvPaletteContainer.one('.hsv-result-view').getStyle('backgroundColor');
+
+            saturationInputVal = hsvPaletteContainer.one('.hsv-value[data-type=saturation]').val();
+
+            sliderContainerColor = hsvPaletteContainer.one('.hsv-value-slider-container').getStyle(
+                'backgroundColor');
+
+            hsv = 'hsv(' + hueInputVal + ',' + saturationInputVal + '%,' + '100%)';
+
+            rgbColor = Y.Color.toHex(hsv);
 
             Y.Test.Assert.areEqual(rgbColor, Y.Color.toHex(sliderContainerColor),
                 'Slider container background color should equal currently selected color with a value of 100'
