@@ -106,6 +106,11 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
         // Do not bind the synthetic hover event to the widget dom events
         // wrapper api. Hover bind method has a different method signature which
         // is not handled by widget yet. Bind to the `boundingBox` instead.
+        instance.get(TRIGGER).on(
+            HOVER,
+            A.bind(this._onBoundingBoxMouseenter, this)
+        );
+
         instance.get(BOUNDING_BOX).on(
             HOVER,
             A.bind(instance._onBoundingBoxMouseenter, instance),
