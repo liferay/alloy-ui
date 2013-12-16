@@ -61,10 +61,10 @@ var Pagination = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the Pagination.
+     * configuration for the `Pagination`.
      *
      * @property ATTRS
-     * @type Object
+     * @type {Object}
      * @static
      */
     ATTRS: {
@@ -78,7 +78,7 @@ var Pagination = A.Component.create({
          *
          * @attribute circular
          * @default true
-         * @type Boolean
+         * @type {Boolean}
          */
         circular: {
             validator: isBoolean,
@@ -89,7 +89,7 @@ var Pagination = A.Component.create({
          * A formatter function to format each pagination item.
          *
          * @attribute formatter
-         * @type Function
+         * @type {Function}
          */
         formatter: {
             validator: isFunction,
@@ -103,7 +103,7 @@ var Pagination = A.Component.create({
          *
          * @attribute items
          * @default undefined
-         * @type NodeList
+         * @type {NodeList}
          */
         items: {},
 
@@ -112,7 +112,7 @@ var Pagination = A.Component.create({
          *
          * @attribute offset
          * @default 1
-         * @type Number
+         * @type {Number}
          */
         offset: {
             setter: '_setInt',
@@ -124,7 +124,7 @@ var Pagination = A.Component.create({
          *
          * @attribute page
          * @default 0
-         * @type Number
+         * @type {Number}
          */
         page: {
             setter: '_setInt',
@@ -138,7 +138,7 @@ var Pagination = A.Component.create({
          *
          * @attribute total
          * @default 0
-         * @type Number
+         * @type {Number}
          */
         total: {
             setter: '_setInt',
@@ -149,7 +149,7 @@ var Pagination = A.Component.create({
          * Colection of strings used to label elements of the UI.
          *
          * @attribute strings
-         * @type Object
+         * @type {Object}
          */
         strings: {
             value: {
@@ -164,7 +164,7 @@ var Pagination = A.Component.create({
      * markup contained in the widget's content box.
      *
      * @property HTML_PARSER
-     * @type Object
+     * @type {Object}
      * @static
      */
     HTML_PARSER: {
@@ -181,7 +181,7 @@ var Pagination = A.Component.create({
      * for the bindUI lifecycle phase.
      *
      * @property BIND_UI_ATTRS
-     * @type Array
+     * @type {Array}
      * @static
      */
     BIND_UI_ATTRS: [OFFSET, TOTAL],
@@ -190,7 +190,7 @@ var Pagination = A.Component.create({
      * Static property used to define the UI attributes.
      *
      * @property UI_ATTRS
-     * @type Array
+     * @type {Array}
      * @static
      */
     UI_ATTRS: [PAGE],
@@ -255,7 +255,7 @@ var Pagination = A.Component.create({
          *
          * @method getItem
          * @param {Node|Number} i Index or Node reference.
-         * @return {Node}
+         * @return {Node} pagination item
          */
         getItem: function(i) {
             var instance = this;
@@ -271,11 +271,11 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * Retrieve page number inclusing offset e.g., if offset
+         * Retrieve page number including offset e.g., if offset
          * is 100 and active page is 5, this method returns 105.
          *
          * @method getOffsetPageNumber
-         * @return {Number}
+         * @return {Number} current page number plus offset
          */
         getOffsetPageNumber: function() {
             var instance = this;
@@ -288,7 +288,7 @@ var Pagination = A.Component.create({
          * is 100 and total 10, this method returns 110.
          *
          * @method getOffsetTotalPages
-         * @return {Number}
+         * @return {Number} total page number plus offset
          */
         getOffsetTotalPages: function() {
             var instance = this;
@@ -301,7 +301,7 @@ var Pagination = A.Component.create({
          * including the arrow control items. Do not include the offset.
          *
          * @method getTotalItems
-         * @return {Number}
+         * @return {Number} number of pagination items
          */
         getTotalItems: function() {
             var instance = this;
@@ -358,7 +358,7 @@ var Pagination = A.Component.create({
          * containing the page number, e.g. `{page:1}`.
          *
          * @method setState
-         * @param state
+         * @param {Object} state
          */
         setState: function(state) {
             var instance = this;
@@ -368,10 +368,11 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns number of items in doc.
          *
          * @method _countItemsInDoc
          * @protected
+         * @return {Number} amount of items in doc
          */
         _countItemsInDoc: function() {
             var instance = this,
@@ -381,10 +382,10 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Default changeRequest function, sets new state of pagination.
          *
          * @method _defChangeRequest
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _defChangeRequest: function(event) {
@@ -394,10 +395,10 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires changeRequest event.
          *
          * @method _dispatchRequest
-         * @param state
+         * @param {Object} state
          * @protected
          */
         _dispatchRequest: function(state) {
@@ -410,10 +411,11 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Formatter function that formats each pagination item.
          *
          * @method _formatterValueFn
          * @protected
+         * @return {String} item template
          */
         _formatterValueFn: function() {
             return function(index) {
@@ -429,11 +431,12 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns all child list items of `srcNode`.
          *
          * @method _queryItemsIfNotSet
-         * @param srcNode
+         * @param {Node} srcNode
          * @protected
+         * @return {NodeList} list items
          */
         _queryItemsIfNotSet: function(srcNode) {
             var instance = this;
@@ -445,10 +448,10 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * onClick handler for pagination items.
          *
          * @method _onClickItem
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _onClickItem: function(event) {
@@ -481,10 +484,10 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Removes active class from previously selected item on page change.
          *
          * @method _onPageChange
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _onPageChange: function(event) {
@@ -499,10 +502,10 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Renders pagination items UI.
          *
          * @method _renderItemsUI
-         * @param total
+         * @param {Number} total
          * @protected
          */
         _renderItemsUI: function(total) {
@@ -533,10 +536,10 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Setter for `offset`, `page`, and `total` attributes.
          *
          * @method _setInt
-         * @param val
+         * @param {Number} val
          * @protected
          */
         _setInt: function(val) {
@@ -544,7 +547,7 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Enables and disables next and prev items.
          *
          * @method _syncNavigationUI
          * @protected
@@ -561,10 +564,10 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Renders items UI based off current `total`.
          *
          * @method _uiSetOffset
-         * @param val
+         * @param {Number} val
          * @protected
          */
         _uiSetOffset: function(val) {
@@ -574,10 +577,10 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets current page and syncs navigation UI.
          *
          * @method _uiSetPage
-         * @param val
+         * @param {Number} val
          * @protected
          */
         _uiSetPage: function(val) {
@@ -600,10 +603,10 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Setter for `total` attribute, renders pagination items UI.
          *
          * @method _uiSetTotal
-         * @param val
+         * @param {Number} val
          * @protected
          */
         _uiSetTotal: function(val) {
