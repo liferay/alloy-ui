@@ -82,9 +82,9 @@ YUI.add('module-tests', function(Y) {
             triggerTooltipHelp.once('mouseout', function(e) {
                 setTimeout(function() {
                     test.resume(function() {
-                        Y.Assert.isTrue(
-                            tooltip.hasClass('tooltip-hidden'),
-                            '.tooltip does not have class tooltip-hidden');
+                        Y.Assert.isFalse(
+                            Y.one('.tooltip').getStyle('opacity') > 0,
+                            '.tooltip is not hidden.');
                     });
                 }, 800);
             });
@@ -105,9 +105,9 @@ YUI.add('module-tests', function(Y) {
             triggerTooltipHelp.once('mouseover', function(e) {
                 setTimeout(function() {
                     test.resume(function() {
-                        Y.Assert.isFalse(
-                            tooltip.hasClass('.tooltip-hidden'),
-                            '.tooltip has class tooltip-hidden.');
+                        Y.Assert.isTrue(
+                            Y.one('.tooltip').getStyle('opacity') > 0,
+                            '.tooltip is hidden.');
                     });
                 }, 800);
             });
@@ -127,9 +127,9 @@ YUI.add('module-tests', function(Y) {
             tooltip.once('mouseover', function(e) {
                 setTimeout(function() {
                     test.resume(function() {
-                        Y.Assert.isFalse(
-                            Y.one('.tooltip').hasClass('tooltip-hidden'),
-                            '.tooltip has class tooltip-hidden.');
+                        Y.Assert.isTrue(
+                            Y.one('.tooltip').getStyle('opacity') > 0,
+                            '.tooltip is visible.');
                     });
                 }, 800);
             });
@@ -150,9 +150,9 @@ YUI.add('module-tests', function(Y) {
             tooltip.once('mouseout', function(e) {
                 setTimeout(function() {
                     test.resume(function() {
-                        Y.Assert.isTrue(
-                            tooltip.hasClass('tooltip-hidden'),
-                            '.tooltip does not have class tooltip-hidden');
+                        Y.Assert.isFalse(
+                            Y.one('.tooltip').getStyle('opacity') > 0,
+                            '.tooltip is visible.');
                     });
                 }, 800);
             });
@@ -172,9 +172,9 @@ YUI.add('module-tests', function(Y) {
             tooltip.once('mouseout', function(e) {
                 setTimeout(function() {
                     test.resume(function() {
-                        Y.Assert.isFalse(
-                            tooltip.hasClass('tooltip-hidden'),
-                            '.tooltip has class tooltip-hidden.');
+                        Y.Assert.isTrue(
+                            Y.one('.tooltip').getStyle('opacity') > 0,
+                            '.tooltip is hidden.');
                     });
                 }, 800);
             });
