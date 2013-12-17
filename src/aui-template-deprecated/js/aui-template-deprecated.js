@@ -1,616 +1,614 @@
 var Lang = A.Lang,
-	UA = A.UA,
-	LString = Lang.String,
-	isArray = Lang.isArray,
-	isDate = Lang.isDate,
-	isString = Lang.isString,
-	isObject = Lang.isObject,
-	isValue = Lang.isValue,
-	isUndefined = Lang.isUndefined,
-
-	REGEX_TPL = /<tpl\b[^>]*?((for|if|exec)="([^"]+)")*?>((?:(?=([^<]+))\5|<(?!tpl\b[^>]*>))*?)<\/tpl>/,
-	REGEX_NEWLINE = /\r\n|\n/g,
-	REGEX_QUOTE = /'/g,
-	REGEX_QUOTE_ESCAPED = /\\'/g,
-	REGEX_PREFIX_GLOBAL_REPLACE = /^(?!\$)/,
-
-	REGEX_TPL_VAR = /\{([\w-.#$]+)(?:\:([\w.]*)(?:\((.*?)?\))?)?(\s?[+\-*\/]\s?[\d.+\-*\/()]+)?\}/g,
-	REGEX_TPL_SCRIPTLET = /\{\[((?:\\\]|.|\n)*?)\]\}/g,
-
-	STR_BLANK = '',
-	STR_COLON = ':',
-	STR_COMMA = ',',
-	STR_DOT = '.',
-	STR_FOR = 'for',
-	STR_EXEC = 'exec',
-	STR_IF = 'if',
-	STR_QUOTE = '\'',
-	STR_BRACE_OPEN = '{',
-	STR_BRACE_CLOSE = '}',
-	STR_PAREN_OPEN = '(',
-	STR_PAREN_CLOSE = ')',
-	STR_GLOBAL_SYMBOL = '$',
-
-	STR_JOIN_OPEN = STR_QUOTE + STR_COMMA,
-	STR_JOIN_CLOSE = STR_COMMA + STR_QUOTE,
-
-	STR_JOIN_GROUP_OPEN = STR_JOIN_OPEN + STR_PAREN_OPEN,
-	STR_JOIN_GROUP_CLOSE = STR_PAREN_CLOSE + STR_JOIN_CLOSE,
-
-	STR_COMPILE_TPL_ARGS = 'values, parent, $index, $i, $count, $last, $ns, $ans, $yns',
-
-	BUFFER_HTML = ['<tpl>', null, '</tpl>'],
-
-	BUFFER_STR_COMPILE_SUB_TPL = [
-		STR_JOIN_OPEN + 'this._compileSubTpl(',
-		null,
-		STR_COMMA + STR_COMPILE_TPL_ARGS + STR_PAREN_CLOSE + STR_JOIN_CLOSE
-	],
-
-	BUFFER_COMPILED_TPL_FN = [
-		'compiledTplFn = function(' + STR_COMPILE_TPL_ARGS + ') { return [' + STR_QUOTE,
-		null,
-		STR_QUOTE + '].join("");};'
-	],
-
-	BUFFER_GLOBAL_PROP = ['MAP_GLOBALS["', null, '"]'],
-
-	BUFFER_VALUES_LOOKUP = [
-		'values["',
-		null,
-		'"]'
-	],
-
-	STR_INVOKE_METHOD_NAME_OPEN = 'this._invokeMethod("',
-	STR_INVOKE_METHOD_NAME_CLOSE = '"' + STR_COMMA,
-
-	STR_UNDEFINED_OUT = ' === undefined ? "" : ',
-
-	STR_REPLACE_NEWLINE = '\\n',
-	STR_REPLACE_QUOTE =  "\\'",
-
-	STR_VALUES = 'values',
-	STR_PARENT = 'parent',
-	STR_SPECIAL_I = '$i',
-	STR_SPECIAL_INDEX = '$index',
-	STR_SPECIAL_COUNT = '$count',
-	STR_SPECIAL_LAST = '$last',
-	STR_SPECIAL_ANS = '$ans',
-	STR_SPECIAL_NS = '$ns',
-	STR_SPECIAL_YNS = '$yns',
-	STR_RETURN = 'return ',
-	STR_WITHVALUES = 'with(values){ ',
-	STR_WITHCLOSE = '; }',
-
-	STR_LANGSTRING_VAR = 'LString.',
-
-	TOKEN_TPL = 'AUITPL',
-	TOKEN_TPL_LENGTH = TOKEN_TPL.length,
-	TOKEN_PARENT_PROP = STR_PARENT + STR_DOT,
-	TOKEN_THIS_PROP = 'this.',
-	TOKEN_THIS_PROP_LENGTH = TOKEN_THIS_PROP.length,
-	TOKEN_VALUES_PROP = STR_VALUES + STR_DOT,
-
-	MAP_TPL_FN = {
-		'.': new Function(
-			STR_VALUES,
-			STR_PARENT,
-			STR_WITHVALUES + STR_RETURN + STR_VALUES + STR_WITHCLOSE
-		),
-		'..': new Function(
-			STR_VALUES,
-			STR_PARENT,
-			STR_WITHVALUES + STR_RETURN + STR_PARENT + STR_WITHCLOSE
-		)
-	},
+    UA = A.UA,
+    LString = Lang.String,
+    isArray = Lang.isArray,
+    isDate = Lang.isDate,
+    isString = Lang.isString,
+    isObject = Lang.isObject,
+    isValue = Lang.isValue,
+    isUndefined = Lang.isUndefined,
+
+    REGEX_TPL = /<tpl\b[^>]*?((for|if|exec)="([^"]+)")*?>((?:(?=([^<]+))\5|<(?!tpl\b[^>]*>))*?)<\/tpl>/,
+    REGEX_NEWLINE = /\r\n|\n/g,
+    REGEX_QUOTE = /'/g,
+    REGEX_QUOTE_ESCAPED = /\\'/g,
+    REGEX_PREFIX_GLOBAL_REPLACE = /^(?!\$)/,
+
+    REGEX_TPL_VAR = /\{([\w-.#$]+)(?:\:([\w.]*)(?:\((.*?)?\))?)?(\s?[+\-*\/]\s?[\d.+\-*\/()]+)?\}/g,
+    REGEX_TPL_SCRIPTLET = /\{\[((?:\\\]|.|\n)*?)\]\}/g,
+
+    STR_BLANK = '',
+    STR_COLON = ':',
+    STR_COMMA = ',',
+    STR_DOT = '.',
+    STR_FOR = 'for',
+    STR_EXEC = 'exec',
+    STR_IF = 'if',
+    STR_QUOTE = '\'',
+    STR_BRACE_OPEN = '{',
+    STR_BRACE_CLOSE = '}',
+    STR_PAREN_OPEN = '(',
+    STR_PAREN_CLOSE = ')',
+    STR_GLOBAL_SYMBOL = '$',
+
+    STR_JOIN_OPEN = STR_QUOTE + STR_COMMA,
+    STR_JOIN_CLOSE = STR_COMMA + STR_QUOTE,
+
+    STR_JOIN_GROUP_OPEN = STR_JOIN_OPEN + STR_PAREN_OPEN,
+    STR_JOIN_GROUP_CLOSE = STR_PAREN_CLOSE + STR_JOIN_CLOSE,
+
+    STR_COMPILE_TPL_ARGS = 'values, parent, $index, $i, $count, $last, $ns, $ans, $yns',
+
+    BUFFER_HTML = ['<tpl>', null, '</tpl>'],
+
+    BUFFER_STR_COMPILE_SUB_TPL = [
+  STR_JOIN_OPEN + 'this._compileSubTpl(',
+  null,
+  STR_COMMA + STR_COMPILE_TPL_ARGS + STR_PAREN_CLOSE + STR_JOIN_CLOSE
+ ],
+
+    BUFFER_COMPILED_TPL_FN = [
+  'compiledTplFn = function(' + STR_COMPILE_TPL_ARGS + ') { return [' + STR_QUOTE,
+  null,
+  STR_QUOTE + '].join("");};'
+ ],
+
+    BUFFER_GLOBAL_PROP = ['MAP_GLOBALS["', null, '"]'],
+
+    BUFFER_VALUES_LOOKUP = [
+  'values["',
+  null,
+  '"]'
+ ],
+
+    STR_INVOKE_METHOD_NAME_OPEN = 'this._invokeMethod("',
+    STR_INVOKE_METHOD_NAME_CLOSE = '"' + STR_COMMA,
+
+    STR_UNDEFINED_OUT = ' === undefined ? "" : ',
+
+    STR_REPLACE_NEWLINE = '\\n',
+    STR_REPLACE_QUOTE = "\\'",
+
+    STR_VALUES = 'values',
+    STR_PARENT = 'parent',
+    STR_SPECIAL_I = '$i',
+    STR_SPECIAL_INDEX = '$index',
+    STR_SPECIAL_COUNT = '$count',
+    STR_SPECIAL_LAST = '$last',
+    STR_SPECIAL_ANS = '$ans',
+    STR_SPECIAL_NS = '$ns',
+    STR_SPECIAL_YNS = '$yns',
+    STR_RETURN = 'return ',
+    STR_WITHVALUES = 'with(values){ ',
+    STR_WITHCLOSE = '; }',
+
+    STR_LANGSTRING_VAR = 'LString.',
+
+    TOKEN_TPL = 'AUITPL',
+    TOKEN_TPL_LENGTH = TOKEN_TPL.length,
+    TOKEN_PARENT_PROP = STR_PARENT + STR_DOT,
+    TOKEN_THIS_PROP = 'this.',
+    TOKEN_THIS_PROP_LENGTH = TOKEN_THIS_PROP.length,
+    TOKEN_VALUES_PROP = STR_VALUES + STR_DOT,
+
+    MAP_TPL_FN = {
+        '.': new Function(
+            STR_VALUES,
+            STR_PARENT,
+            STR_WITHVALUES + STR_RETURN + STR_VALUES + STR_WITHCLOSE
+        ),
+        '..': new Function(
+            STR_VALUES,
+            STR_PARENT,
+            STR_WITHVALUES + STR_RETURN + STR_PARENT + STR_WITHCLOSE
+        )
+    },
 
-	MAP_TPL_FILTERED_TYPES = {
-		'boolean': true,
-		'number': true,
-		'string': true
-	},
+    MAP_TPL_FILTERED_TYPES = {
+        'boolean': true,
+        'number': true,
+        'string': true
+    },
 
-	MAP_TPL_VALUES = {
-		'.': 'this._getValidValues(values)',
-		'#': STR_SPECIAL_INDEX,
-		'$index': STR_SPECIAL_INDEX,
-		'$i': STR_SPECIAL_I,
-		'$count': STR_SPECIAL_COUNT,
-		'$last': STR_SPECIAL_LAST,
-		'$ans': STR_SPECIAL_ANS,
-		'$ns': STR_SPECIAL_NS,
-		'$yns': STR_SPECIAL_YNS
-	},
+    MAP_TPL_VALUES = {
+        '.': 'this._getValidValues(values)',
+        '#': STR_SPECIAL_INDEX,
+        '$index': STR_SPECIAL_INDEX,
+        '$i': STR_SPECIAL_I,
+        '$count': STR_SPECIAL_COUNT,
+        '$last': STR_SPECIAL_LAST,
+        '$ans': STR_SPECIAL_ANS,
+        '$ns': STR_SPECIAL_NS,
+        '$yns': STR_SPECIAL_YNS
+    },
 
-	MAP_GLOBALS = {},
+    MAP_GLOBALS = {},
 
-	SRC_CREATE = {},
+    SRC_CREATE = {},
 
-	AUI_NS = A.getClassName(STR_BLANK),
-	YUI_NS = A.ClassNameManager.getClassName(STR_BLANK),
+    AUI_NS = A.getClassName(STR_BLANK),
+    YUI_NS = A.ClassNameManager.getClassName(STR_BLANK),
 
-	_INSTANCES = {};
+    _INSTANCES = {};
 
-	var Template = function(html, src) {
-		var instance = this;
+var Template = function(html, src) {
+    var instance = this;
 
-		var tpl;
-		var fromStaticCall = (src === SRC_CREATE);
+    var tpl;
+    var fromStaticCall = (src === SRC_CREATE);
 
-		if (fromStaticCall || A.instanceOf(instance, Template)) {
-			if (!fromStaticCall) {
-				html = instance._parseArgs(arguments);
-			}
+    if (fromStaticCall || A.instanceOf(instance, Template)) {
+        if (!fromStaticCall) {
+            html = instance._parseArgs(arguments);
+        }
 
-			tpl = instance._parse(html);
-		}
-		else {
-			html = Template.prototype._parseArgs(arguments);
+        tpl = instance._parse(html);
+    }
+    else {
+        html = Template.prototype._parseArgs(arguments);
 
-			tpl = new Template(html, SRC_CREATE);
-		}
+        tpl = new Template(html, SRC_CREATE);
+    }
 
-		return tpl;
-	};
+    return tpl;
+};
 
-	Template.prototype = {
-		html: function(tpl) {
-			var instance = this;
+Template.prototype = {
+    html: function(tpl) {
+        var instance = this;
 
-			var retVal = instance;
+        var retVal = instance;
 
-			if (isValue(tpl)) {
-				instance._parse(instance._parseArgs(arguments));
-			}
-			else {
-				retVal = instance._html;
-			}
+        if (isValue(tpl)) {
+            instance._parse(instance._parseArgs(arguments));
+        }
+        else {
+            retVal = instance._html;
+        }
 
-			return retVal;
-		},
+        return retVal;
+    },
 
-		parse: function(values) {
-			var instance = this;
+    parse: function(values) {
+        var instance = this;
 
-			return instance._parentTpl.compiled.call(instance, values, {}, 1, 1, 1);
-		},
+        return instance._parentTpl.compiled.call(instance, values, {}, 1, 1, 1);
+    },
 
-		render: function(values, node) {
-			var instance = this;
+    render: function(values, node) {
+        var instance = this;
 
-			var rendered = A.Node.create(instance.parse(values));
+        var rendered = A.Node.create(instance.parse(values));
 
-			node = node && A.one(node);
+        node = node && A.one(node);
 
-			if (node) {
-				node.setContent(rendered);
-			}
+        if (node) {
+            node.setContent(rendered);
+        }
 
-			return rendered;
-		},
+        return rendered;
+    },
 
-		_compile: function(tpl) {
-			var instance = this;
+    _compile: function(tpl) {
+        var instance = this;
 
-			var compiledTplFn;
+        var compiledTplFn;
 
-			var fnBody = tpl.tplBody;
+        var fnBody = tpl.tplBody;
 
-			fnBody = fnBody.replace(REGEX_NEWLINE, STR_REPLACE_NEWLINE);
-			fnBody = fnBody.replace(REGEX_QUOTE, STR_REPLACE_QUOTE);
-			fnBody = fnBody.replace(REGEX_TPL_VAR, instance._compileTpl);
-			fnBody = fnBody.replace(REGEX_TPL_SCRIPTLET, instance._compileCode);
+        fnBody = fnBody.replace(REGEX_NEWLINE, STR_REPLACE_NEWLINE);
+        fnBody = fnBody.replace(REGEX_QUOTE, STR_REPLACE_QUOTE);
+        fnBody = fnBody.replace(REGEX_TPL_VAR, instance._compileTpl);
+        fnBody = fnBody.replace(REGEX_TPL_SCRIPTLET, instance._compileCode);
 
-			BUFFER_COMPILED_TPL_FN[1] = fnBody;
+        BUFFER_COMPILED_TPL_FN[1] = fnBody;
 
-			var body = BUFFER_COMPILED_TPL_FN.join(STR_BLANK);
+        var body = BUFFER_COMPILED_TPL_FN.join(STR_BLANK);
 
-			var $yns = instance.$yns;
-			var $ans = instance.$ans;
-			var $ns = instance.$ns;
+        var $yns = instance.$yns;
+        var $ans = instance.$ans;
+        var $ns = instance.$ns;
 
-			eval(body);
+        eval(body);
 
-			tpl.compiled = function(values, parent, $index, $i, $count, $last) {
-				var buffer = [];
+        tpl.compiled = function(values, parent, $index, $i, $count, $last) {
+            var buffer = [];
 
-				var subTpl = STR_BLANK;
+            var subTpl = STR_BLANK;
 
-				var testFn = tpl.testFn;
+            var testFn = tpl.testFn;
 
-				if (!testFn || testFn.call(instance, values, parent, $index, $i, $count, $last, $ns, $ans, $yns)) {
-					var subValues = values;
+            if (!testFn || testFn.call(instance, values, parent, $index, $i, $count, $last, $ns, $ans, $yns)) {
+                var subValues = values;
 
-					var tplFn = tpl.tplFn;
+                var tplFn = tpl.tplFn;
 
-					if (tplFn) {
-						subValues = tplFn.call(instance, values, parent);
-						parent = values;
-					}
+                if (tplFn) {
+                    subValues = tplFn.call(instance, values, parent);
+                    parent = values;
+                }
 
-					if (tplFn && isArray(subValues)) {
-						var length = subValues.length;
+                if (tplFn && isArray(subValues)) {
+                    var length = subValues.length;
 
-						var execFn = tpl.execFn;
+                    var execFn = tpl.execFn;
 
-						for (var i = 0; i < length; i++) {
-							var index = i + 1;
-							var last = (index == length);
-							var subValue = subValues[i];
+                    for (var i = 0; i < length; i++) {
+                        var index = i + 1;
+                        var last = (index == length);
+                        var subValue = subValues[i];
 
-							buffer[buffer.length] = compiledTplFn.call(instance, subValue, parent, index, i, length, last, $ns, $ans, $yns);
+                        buffer[buffer.length] = compiledTplFn.call(instance, subValue, parent, index, i, length, last,
+                            $ns, $ans, $yns);
 
-							if (execFn) {
-								execFn.call(instance, subValues[i]);
-							}
-						}
+                        if (execFn) {
+                            execFn.call(instance, subValues[i]);
+                        }
+                    }
 
-						subTpl = buffer.join(STR_BLANK);
-					}
-					else {
-						subTpl = compiledTplFn.call(instance, subValues, parent, $index, $i, $count, $last, $ns, $ans, $yns);
-					}
-				}
+                    subTpl = buffer.join(STR_BLANK);
+                }
+                else {
+                    subTpl = compiledTplFn.call(instance, subValues, parent, $index, $i, $count, $last, $ns, $ans, $yns);
+                }
+            }
 
-				return subTpl;
-			};
+            return subTpl;
+        };
 
-			return instance;
-		},
+        return instance;
+    },
 
-		_compileCode: function(match, code) {
-			return STR_JOIN_GROUP_OPEN + code.replace(REGEX_QUOTE_ESCAPED, STR_QUOTE) + STR_JOIN_GROUP_CLOSE;
-		},
+    _compileCode: function(match, code) {
+        return STR_JOIN_GROUP_OPEN + code.replace(REGEX_QUOTE_ESCAPED, STR_QUOTE) + STR_JOIN_GROUP_CLOSE;
+    },
 
-		_compileSubTpl: function(id, values, parent, $index, $i, $count, $last, $ns, $ans, $yns) {
-			var instance = this;
+    _compileSubTpl: function(id, values, parent, $index, $i, $count, $last, $ns, $ans, $yns) {
+        var instance = this;
 
-			var length;
-			var tpl = instance.tpls[id];
+        var length;
+        var tpl = instance.tpls[id];
 
-			return tpl.compiled.call(instance, values, parent, $index, $i, $count, $last, $ns, $ans, $yns);
-		},
+        return tpl.compiled.call(instance, values, parent, $index, $i, $count, $last, $ns, $ans, $yns);
+    },
 
-		_compileTpl: function(match, name, methodName, args, math, offset, str) {
-			var compiled;
+    _compileTpl: function(match, name, methodName, args, math, offset, str) {
+        var compiled;
 
-			if (name.indexOf(TOKEN_TPL) === 0) {
-				BUFFER_STR_COMPILE_SUB_TPL[1] = name.substr(TOKEN_TPL_LENGTH);
+        if (name.indexOf(TOKEN_TPL) === 0) {
+            BUFFER_STR_COMPILE_SUB_TPL[1] = name.substr(TOKEN_TPL_LENGTH);
 
-				compiled = BUFFER_STR_COMPILE_SUB_TPL.join(STR_BLANK);
-			}
-			else {
-				var value = MAP_TPL_VALUES[name];
+            compiled = BUFFER_STR_COMPILE_SUB_TPL.join(STR_BLANK);
+        }
+        else {
+            var value = MAP_TPL_VALUES[name];
 
-				if (!value) {
-					if (name.indexOf(TOKEN_PARENT_PROP) === 0) {
-						value = name;
-					}
-					else if (name.indexOf(STR_DOT) > -1) {
-						value = TOKEN_VALUES_PROP + name;
-					}
-					else if (name.indexOf(STR_GLOBAL_SYMBOL) === 0 && (name in MAP_GLOBALS)) {
-						BUFFER_GLOBAL_PROP[1] = name;
+            if (!value) {
+                if (name.indexOf(TOKEN_PARENT_PROP) === 0) {
+                    value = name;
+                }
+                else if (name.indexOf(STR_DOT) > -1) {
+                    value = TOKEN_VALUES_PROP + name;
+                }
+                else if (name.indexOf(STR_GLOBAL_SYMBOL) === 0 && (name in MAP_GLOBALS)) {
+                    BUFFER_GLOBAL_PROP[1] = name;
 
-						value = BUFFER_GLOBAL_PROP.join(STR_BLANK);
+                    value = BUFFER_GLOBAL_PROP.join(STR_BLANK);
 
-					}
-					else {
-						BUFFER_VALUES_LOOKUP[1] = name;
+                }
+                else {
+                    BUFFER_VALUES_LOOKUP[1] = name;
 
-						value = BUFFER_VALUES_LOOKUP.join(STR_BLANK);
-					}
-				}
+                    value = BUFFER_VALUES_LOOKUP.join(STR_BLANK);
+                }
+            }
 
-				if (math) {
-					value = STR_PAREN_OPEN + value + math + STR_PAREN_CLOSE;
-				}
+            if (math) {
+                value = STR_PAREN_OPEN + value + math + STR_PAREN_CLOSE;
+            }
 
-				if (methodName) {
-					args = args ? STR_COMMA + args : STR_BLANK;
-
-					if (methodName.indexOf(TOKEN_THIS_PROP) !== 0) {
-						methodName = STR_LANGSTRING_VAR + methodName + STR_PAREN_OPEN;
-					}
-					else {
-						methodName = STR_INVOKE_METHOD_NAME_OPEN + methodName.substr(TOKEN_THIS_PROP_LENGTH) + STR_INVOKE_METHOD_NAME_CLOSE;
+            if (methodName) {
+                args = args ? STR_COMMA + args : STR_BLANK;
+
+                if (methodName.indexOf(TOKEN_THIS_PROP) !== 0) {
+                    methodName = STR_LANGSTRING_VAR + methodName + STR_PAREN_OPEN;
+                }
+                else {
+                    methodName = STR_INVOKE_METHOD_NAME_OPEN + methodName.substr(TOKEN_THIS_PROP_LENGTH) +
+                        STR_INVOKE_METHOD_NAME_CLOSE;
 
-						args = STR_COMMA + STR_VALUES;
-					}
-				}
-				else {
-					args = STR_BLANK;
-
-					methodName = STR_PAREN_OPEN + value + STR_UNDEFINED_OUT;
-				}
-
-				compiled = STR_JOIN_OPEN + methodName + value + args + STR_JOIN_GROUP_CLOSE;
-			}
-
-			return compiled;
-		},
-
-		_getValidValues: function(values) {
-			var instance = this;
-
-			var val = STR_BLANK;
+                    args = STR_COMMA + STR_VALUES;
+                }
+            }
+            else {
+                args = STR_BLANK;
+
+                methodName = STR_PAREN_OPEN + value + STR_UNDEFINED_OUT;
+            }
+
+            compiled = STR_JOIN_OPEN + methodName + value + args + STR_JOIN_GROUP_CLOSE;
+        }
+
+        return compiled;
+    },
 
-			if (MAP_TPL_FILTERED_TYPES[typeof values] || isDate(values)) {
-				val = values;
-			}
+    _getValidValues: function(values) {
+        var instance = this;
 
-			return val;
-		},
+        var val = STR_BLANK;
 
-		_invokeMethod: function(methodName, value, allValues) {
-			var instance = this;
+        if (MAP_TPL_FILTERED_TYPES[typeof values] || isDate(values)) {
+            val = values;
+        }
 
-			return instance[methodName](value, allValues);
-		},
+        return val;
+    },
 
-		_parse: function(html) {
-			var instance = this;
+    _invokeMethod: function(methodName, value, allValues) {
+        var instance = this;
 
-			instance._html = html;
+        return instance[methodName](value, allValues);
+    },
 
-			var match;
-			var id = 0;
-			var tpls = [];
+    _parse: function(html) {
+        var instance = this;
 
-			BUFFER_HTML[1] = html;
+        instance._html = html;
 
-			html = BUFFER_HTML.join(STR_BLANK);
+        var match;
+        var id = 0;
+        var tpls = [];
 
-			while (match = html.match(REGEX_TPL)) {
-				var testFn = null;
-				var execFn = null;
-				var tplFn = null;
-				var expression = match[2];
-				var expressionValue = match[3];
+        BUFFER_HTML[1] = html;
 
-				if (expressionValue) {
-					if (expression == STR_FOR) {
-						tplFn = MAP_TPL_FN[expressionValue] || new Function(
-							STR_VALUES,
-							STR_PARENT,
-							STR_WITHVALUES + STR_RETURN + expressionValue + STR_WITHCLOSE
-						);
-					}
-					else {
-						expressionValue = LString.unescapeEntities(expressionValue);
+        html = BUFFER_HTML.join(STR_BLANK);
 
-						if (expression == STR_IF) {
-							testFn = new Function(
-								STR_VALUES,
-								STR_PARENT,
-								STR_SPECIAL_INDEX,
-								STR_SPECIAL_I,
-								STR_SPECIAL_COUNT,
-								STR_SPECIAL_LAST,
-								STR_SPECIAL_NS,
-								STR_SPECIAL_ANS,
-								STR_SPECIAL_YNS,
-								STR_WITHVALUES + STR_RETURN + expressionValue + STR_WITHCLOSE
-							);
-						}
-						else if (expression == STR_EXEC) {
-							execFn = new Function(
-								STR_VALUES,
-								STR_PARENT,
-								STR_SPECIAL_INDEX,
-								STR_SPECIAL_I,
-								STR_SPECIAL_COUNT,
-								STR_SPECIAL_LAST,
-								STR_SPECIAL_NS,
-								STR_SPECIAL_ANS,
-								STR_SPECIAL_YNS,
-								STR_WITHVALUES + expressionValue + STR_WITHCLOSE
-							);
-						}
-					}
-				}
+        while (match = html.match(REGEX_TPL)) {
+            var testFn = null;
+            var execFn = null;
+            var tplFn = null;
+            var expression = match[2];
+            var expressionValue = match[3];
 
-				var tplBody = match[4] || STR_BLANK;
+            if (expressionValue) {
+                if (expression == STR_FOR) {
+                    tplFn = MAP_TPL_FN[expressionValue] || new Function(
+                        STR_VALUES,
+                        STR_PARENT,
+                        STR_WITHVALUES + STR_RETURN + expressionValue + STR_WITHCLOSE
+                    );
+                }
+                else {
+                    expressionValue = LString.unescapeEntities(expressionValue);
 
-				html = html.replace(match[0], STR_BRACE_OPEN + TOKEN_TPL + id + STR_BRACE_CLOSE);
+                    if (expression == STR_IF) {
+                        testFn = new Function(
+                            STR_VALUES,
+                            STR_PARENT,
+                            STR_SPECIAL_INDEX,
+                            STR_SPECIAL_I,
+                            STR_SPECIAL_COUNT,
+                            STR_SPECIAL_LAST,
+                            STR_SPECIAL_NS,
+                            STR_SPECIAL_ANS,
+                            STR_SPECIAL_YNS,
+                            STR_WITHVALUES + STR_RETURN + expressionValue + STR_WITHCLOSE
+                        );
+                    }
+                    else if (expression == STR_EXEC) {
+                        execFn = new Function(
+                            STR_VALUES,
+                            STR_PARENT,
+                            STR_SPECIAL_INDEX,
+                            STR_SPECIAL_I,
+                            STR_SPECIAL_COUNT,
+                            STR_SPECIAL_LAST,
+                            STR_SPECIAL_NS,
+                            STR_SPECIAL_ANS,
+                            STR_SPECIAL_YNS,
+                            STR_WITHVALUES + expressionValue + STR_WITHCLOSE
+                        );
+                    }
+                }
+            }
 
-				id = tpls.push(
-					{
-						execFn: execFn,
-						id: id,
-						testFn: testFn,
-						tplBody: tplBody,
-						tplFn: tplFn
-					}
-				);
-			}
+            var tplBody = match[4] || STR_BLANK;
 
-			var lastIndex = id - 1;
+            html = html.replace(match[0], STR_BRACE_OPEN + TOKEN_TPL + id + STR_BRACE_CLOSE);
 
-			while (id--) {
-				instance._compile(tpls[id]);
-			}
+            id = tpls.push({
+                execFn: execFn,
+                id: id,
+                testFn: testFn,
+                tplBody: tplBody,
+                tplFn: tplFn
+            });
+        }
 
-			instance._parentTpl = tpls[lastIndex];
+        var lastIndex = id - 1;
 
-			instance.tpls = tpls;
+        while (id--) {
+            instance._compile(tpls[id]);
+        }
 
-			return instance;
-		},
+        instance._parentTpl = tpls[lastIndex];
 
-		_parseArgs: function(args) {
-			var instance = this;
+        instance.tpls = tpls;
 
-			var config;
+        return instance;
+    },
 
-			var tpl = args[0];
+    _parseArgs: function(args) {
+        var instance = this;
 
-			if (isArray(tpl)) {
-				if (isObject(tpl[tpl.length - 1])) {
-					config = tpl.pop();
-				}
-				else if (isObject(args[1])) {
-					config = args[1];
-				}
+        var config;
 
-				tpl = tpl.join(STR_BLANK);
-			}
-			else if (args.length > 1) {
-				var buffer = [];
+        var tpl = args[0];
 
-				args = A.Array(args, 0, true);
+        if (isArray(tpl)) {
+            if (isObject(tpl[tpl.length - 1])) {
+                config = tpl.pop();
+            }
+            else if (isObject(args[1])) {
+                config = args[1];
+            }
 
-				var length = args.length;
-				var item;
+            tpl = tpl.join(STR_BLANK);
+        }
+        else if (args.length > 1) {
+            var buffer = [];
 
-				var lastItem = args[length - 1];
+            args = A.Array(args, 0, true);
 
-				if (isObject(lastItem)) {
-					config = args.pop();
-				}
+            var length = args.length;
+            var item;
 
-				for (var i = 0; i < length; i++) {
-					item = args[i];
+            var lastItem = args[length - 1];
 
-					buffer.push(item);
-				}
+            if (isObject(lastItem)) {
+                config = args.pop();
+            }
 
-				tpl = buffer.join(STR_BLANK);
-			}
+            for (var i = 0; i < length; i++) {
+                item = args[i];
 
-			if (config) {
-				A.mix(instance, config, true);
-			}
+                buffer.push(item);
+            }
 
-			return tpl;
-		},
+            tpl = buffer.join(STR_BLANK);
+        }
 
-		$ans: AUI_NS,
-		$yns: YUI_NS
-	};
+        if (config) {
+            A.mix(instance, config, true);
+        }
 
-	var TEMPLATE_PROTO = Template.prototype;
+        return tpl;
+    },
 
-	TEMPLATE_PROTO.$ns = AUI_NS;
+    $ans: AUI_NS,
+    $yns: YUI_NS
+};
 
-	var globalVar = function(key, value) {
-		var retVal = null;
+var TEMPLATE_PROTO = Template.prototype;
 
-		if (isUndefined(value) && key) {
-			retVal = MAP_GLOBALS[key];
-		}
-		else {
-			if (key) {
-				key = String(key).replace(REGEX_PREFIX_GLOBAL_REPLACE, STR_GLOBAL_SYMBOL);
+TEMPLATE_PROTO.$ns = AUI_NS;
 
-				if (value !== null) {
-					MAP_GLOBALS[key] = value;
-					retVal = value;
-				}
-				else {
-					delete MAP_GLOBALS[key];
-				}
-			}
-		}
+var globalVar = function(key, value) {
+    var retVal = null;
 
-		return retVal;
-	};
+    if (isUndefined(value) && key) {
+        retVal = MAP_GLOBALS[key];
+    }
+    else {
+        if (key) {
+            key = String(key).replace(REGEX_PREFIX_GLOBAL_REPLACE, STR_GLOBAL_SYMBOL);
 
-	Template.globalVar = TEMPLATE_PROTO.globalVar = globalVar;
+            if (value !== null) {
+                MAP_GLOBALS[key] = value;
+                retVal = value;
+            }
+            else {
+                delete MAP_GLOBALS[key];
+            }
+        }
+    }
 
-	Template._GLOBALS = MAP_GLOBALS;
+    return retVal;
+};
 
-	var NODE_PROTO = A.Node.prototype;
+Template.globalVar = TEMPLATE_PROTO.globalVar = globalVar;
 
-	NODE_PROTO.toTPL = function() {
-		return Template.from(this);
-	};
+Template._GLOBALS = MAP_GLOBALS;
 
-	NODE_PROTO.renderTPL = function(tpl, data) {
-		var instance = this;
+var NODE_PROTO = A.Node.prototype;
 
-		if (isString(tpl) || isArray(tpl)) {
-			tpl = new Template(tpl);
-		}
+NODE_PROTO.toTPL = function() {
+    return Template.from(this);
+};
 
-		if (tpl && data) {
-			tpl.render(instance, data);
-		}
+NODE_PROTO.renderTPL = function(tpl, data) {
+    var instance = this;
 
-		return instance;
-	};
+    if (isString(tpl) || isArray(tpl)) {
+        tpl = new Template(tpl);
+    }
 
-	A.NodeList.importMethod(
-		NODE_PROTO,
-		[
-			'renderTPL'
-		]
-	);
+    if (tpl && data) {
+        tpl.render(instance, data);
+    }
 
-	A.mix(
-		Template,
-		{
-			from: function(node) {
-				node = A.one(node);
+    return instance;
+};
 
-				var content = STR_BLANK;
+A.NodeList.importMethod(
+    NODE_PROTO, [
+   'renderTPL'
+  ]
+);
 
-				if (node) {
-					node = node.getDOM();
+A.mix(
+    Template, {
+        from: function(node) {
+            node = A.one(node);
 
-					var nodeName = String(node && node.nodeName).toLowerCase();
+            var content = STR_BLANK;
 
-					if (nodeName != 'script') {
-						content = node.value || node.innerHTML;
-					}
-					else {
-						content = node.text || node.textContent || node.innerHTML;
-					}
-				}
+            if (node) {
+                node = node.getDOM();
 
-				return new Template(content);
-			},
+                var nodeName = String(node && node.nodeName).toLowerCase();
 
-			get: function(key) {
-				var template = _INSTANCES[key];
+                if (nodeName != 'script') {
+                    content = node.value || node.innerHTML;
+                }
+                else {
+                    content = node.text || node.textContent || node.innerHTML;
+                }
+            }
 
-				if (template && !A.instanceOf(template, Template)) {
-					template = new Template(template);
+            return new Template(content);
+        },
 
-					_INSTANCES[key] = template;
-				}
+        get: function(key) {
+            var template = _INSTANCES[key];
 
-				return template;
-			},
+            if (template && !A.instanceOf(template, Template)) {
+                template = new Template(template);
 
-			parse: function(key, data) {
-				var template = Template.get(key);
+                _INSTANCES[key] = template;
+            }
 
-				return template && template.parse(data);
-			},
+            return template;
+        },
 
-			register: function(key, value) {
-				var instance = this;
+        parse: function(key, data) {
+            var template = Template.get(key);
 
-				var tpl = value;
+            return template && template.parse(data);
+        },
 
-				if (!(key in _INSTANCES) &&
-					(Lang.isArray(value) || A.instanceOf(value, Template))) {
+        register: function(key, value) {
+            var instance = this;
 
-					_INSTANCES[key] = value;
-				}
+            var tpl = value;
 
-				return value;
-			},
+            if (!(key in _INSTANCES) &&
+                (Lang.isArray(value) || A.instanceOf(value, Template))) {
 
-			render: function(key, data, node) {
-				var template = Template.get(key);
+                _INSTANCES[key] = value;
+            }
 
-				return template && template.render(data, node);
-			},
+            return value;
+        },
 
-			_INSTANCES: _INSTANCES
-		}
-	);
+        render: function(key, data, node) {
+            var template = Template.get(key);
 
-	A.Template = Template;
+            return template && template.render(data, node);
+        },
+
+        _INSTANCES: _INSTANCES
+    }
+);
+
+A.Template = Template;

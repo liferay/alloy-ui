@@ -1,226 +1,222 @@
 var Lang = A.Lang,
 
-	DOC = A.config.doc,
+    DOC = A.config.doc,
 
-	AUTOSIZE = 'autosize',
+    AUTOSIZE = 'autosize',
 
-	getClassName = A.getClassName,
+    getClassName = A.getClassName,
 
-	ADJUSTSIZE = 'adjustSize',
-	HEIGHT = 'height',
-	HOST = 'host',
-	INNERHTML = 'innerHTML',
-	MAXHEIGHT = 'maxHeight',
-	MINHEIGHT = 'minHeight',
-	WIDTH = 'width',
+    ADJUSTSIZE = 'adjustSize',
+    HEIGHT = 'height',
+    HOST = 'host',
+    INNERHTML = 'innerHTML',
+    MAXHEIGHT = 'maxHeight',
+    MINHEIGHT = 'minHeight',
+    WIDTH = 'width',
 
-	CSS_HEIGHT_MONITOR = [
-		getClassName(AUTOSIZE, HEIGHT, 'monitor'),
-		getClassName('field', 'text', 'input'),
-		getClassName('helper', 'hidden', 'accessible')
-	].join(' '),
+    CSS_HEIGHT_MONITOR = [
+  getClassName(AUTOSIZE, HEIGHT, 'monitor'),
+  getClassName('field', 'text', 'input'),
+  getClassName('helper', 'hidden', 'accessible')
+ ].join(' '),
 
-	DEFAULT_APPEND_CONTENT = '&nbsp;\n&nbsp;',
-
-	TPL_HEIGHT_MONITOR = '<pre class="' + CSS_HEIGHT_MONITOR + '">' + DEFAULT_APPEND_CONTENT + '</pre>',
+    DEFAULT_APPEND_CONTENT = '&nbsp;\n&nbsp;',
 
-	UI_SRC = {
-		src: 'ui'
-	};
+    TPL_HEIGHT_MONITOR = '<pre class="' + CSS_HEIGHT_MONITOR + '">' + DEFAULT_APPEND_CONTENT + '</pre>',
 
-Autosize = A.Component.create(
-	{
-		NAME: AUTOSIZE,
+    UI_SRC = {
+        src: 'ui'
+    };
 
-		NS: AUTOSIZE,
+Autosize = A.Component.create({
+    NAME: AUTOSIZE,
 
-		ATTRS: {
-			maxHeight: {
-				value: 1000,
-				setter: '_setAutoDimension'
-			},
+    NS: AUTOSIZE,
 
-			minHeight: {
-				value: 45,
-				setter: '_setAutoDimension'
-			}
-		},
+    ATTRS: {
+        maxHeight: {
+            value: 1000,
+            setter: '_setAutoDimension'
+        },
 
-		EXTENDS: A.Plugin.Base,
+        minHeight: {
+            value: 45,
+            setter: '_setAutoDimension'
+        }
+    },
 
-		prototype: {
-			initializer: function() {
-				var instance = this;
+    EXTENDS: A.Plugin.Base,
 
-				instance._renderUI();
-				instance._bindUI();
-				instance._syncUI();
-			},
+    prototype: {
+        initializer: function() {
+            var instance = this;
 
-			_bindUI: function() {
-				var instance = this;
+            instance._renderUI();
+            instance._bindUI();
+            instance._syncUI();
+        },
 
-				instance.onHostEvent('valuechange', instance._onValueChange, instance);
+        _bindUI: function() {
+            var instance = this;
 
-				instance.after(['maxHeightChange', 'minHeightChange'], instance._syncHeight);
+            instance.onHostEvent('valuechange', instance._onValueChange, instance);
 
-				instance.after(ADJUSTSIZE, instance._uiAutoSize);
-			},
+            instance.after(['maxHeightChange', 'minHeightChange'], instance._syncHeight);
 
-			_onValueChange: function(event) {
-				var instance = this;
+            instance.after(ADJUSTSIZE, instance._uiAutoSize);
+        },
 
-				instance.fire(ADJUSTSIZE);
-			},
+        _onValueChange: function(event) {
+            var instance = this;
 
-			_renderUI: function() {
-				var instance = this;
+            instance.fire(ADJUSTSIZE);
+        },
 
-				var heightMonitor = A.Node.create(TPL_HEIGHT_MONITOR);
+        _renderUI: function() {
+            var instance = this;
 
-				var node = instance.get(HOST);
+            var heightMonitor = A.Node.create(TPL_HEIGHT_MONITOR);
 
-				A.getBody().append(heightMonitor);
+            var node = instance.get(HOST);
 
-				// Calculating this value gives us the base height that
-				// an empty textarea will have.
-				// We do this because we need to append a new line to match
-				// the height of the textarea, and we don't want the size to shift
-				// the first time the value of the textarea changes
-				instance._defaultMinHeight = heightMonitor.height();
+            A.getBody().append(heightMonitor);
 
-				instance._heightMonitor = heightMonitor;
+            // Calculating this value gives us the base height that
+            // an empty textarea will have.
+            // We do this because we need to append a new line to match
+            // the height of the textarea, and we don't want the size to shift
+            // the first time the value of the textarea changes
+            instance._defaultMinHeight = heightMonitor.height();
 
-				var fontFamily = node.getComputedStyle('fontFamily');
-				var fontSize = node.getComputedStyle('fontSize');
-				var fontStyle = node.getComputedStyle('fontStyle');
-				var fontWeight = node.getComputedStyle('fontWeight');
-				var lineHeight = node.getComputedStyle('lineHeight');
-				var letterSpacing = node.getComputedStyle('letterSpacing');
-				var textTransform = node.getComputedStyle('textTransform');
+            instance._heightMonitor = heightMonitor;
 
-				heightMonitor.setStyles(
-					{
-						fontFamily: fontFamily,
-						fontSize: fontSize,
-						fontStyle: fontStyle,
-						fontWeight: fontWeight,
-						lineHeight: lineHeight,
-						letterSpacing: letterSpacing,
-						textTransform: textTransform
-					}
-				);
+            var fontFamily = node.getComputedStyle('fontFamily');
+            var fontSize = node.getComputedStyle('fontSize');
+            var fontStyle = node.getComputedStyle('fontStyle');
+            var fontWeight = node.getComputedStyle('fontWeight');
+            var lineHeight = node.getComputedStyle('lineHeight');
+            var letterSpacing = node.getComputedStyle('letterSpacing');
+            var textTransform = node.getComputedStyle('textTransform');
 
-				if ('outerHTML' in heightMonitor.getDOM()) {
-					instance._updateContent = instance._updateOuterContent;
-				}
-				else {
-					instance._updateContent = instance._updateInnerContent;
-				}
-			},
+            heightMonitor.setStyles({
+                fontFamily: fontFamily,
+                fontSize: fontSize,
+                fontStyle: fontStyle,
+                fontWeight: fontWeight,
+                lineHeight: lineHeight,
+                letterSpacing: letterSpacing,
+                textTransform: textTransform
+            });
 
-			_setAutoDimension: function(value, key) {
-				var instance = this;
+            if ('outerHTML' in heightMonitor.getDOM()) {
+                instance._updateContent = instance._updateOuterContent;
+            }
+            else {
+                instance._updateContent = instance._updateInnerContent;
+            }
+        },
 
-				instance['_' + key] = value;
-			},
+        _setAutoDimension: function(value, key) {
+            var instance = this;
 
-			_syncUI: function() {
-				var instance = this;
+            instance['_' + key] = value;
+        },
 
-				instance._syncHeight();
-			},
+        _syncUI: function() {
+            var instance = this;
 
-			_syncHeight: function(event) {
-				var instance = this;
+            instance._syncHeight();
+        },
 
-				var node = instance.get(HOST);
+        _syncHeight: function(event) {
+            var instance = this;
 
-				var heightMonitor = instance._heightMonitor;
+            var node = instance.get(HOST);
 
-				var height = heightMonitor.height();
+            var heightMonitor = instance._heightMonitor;
 
-				// This converts non-PX values such as 1em to a PX value
-				var defMaxHeight = heightMonitor.height(instance.get(MAXHEIGHT)).height();
-				var defMinHeight = heightMonitor.height(instance.get(MINHEIGHT)).height();
+            var height = heightMonitor.height();
 
-				heightMonitor.height('');
+            // This converts non-PX values such as 1em to a PX value
+            var defMaxHeight = heightMonitor.height(instance.get(MAXHEIGHT)).height();
+            var defMinHeight = heightMonitor.height(instance.get(MINHEIGHT)).height();
 
-				var minHeight = Math.max(instance._defaultMinHeight, defMinHeight);
-				var maxHeight = defMaxHeight;
+            heightMonitor.height('');
 
-				// We also need to handle if min/max heights are
-				// being set to non-sensical range, like min: 100, max: 50
-				if (minHeight > maxHeight) {
-					if (event && event.attrName == 'maxHeight') {
-						minHeight = maxHeight;
-					}
-					else {
-						maxHeight = minHeight;
-					}
-				}
+            var minHeight = Math.max(instance._defaultMinHeight, defMinHeight);
+            var maxHeight = defMaxHeight;
 
-				instance._setAutoDimension(minHeight, HEIGHT);
+            // We also need to handle if min/max heights are
+            // being set to non-sensical range, like min: 100, max: 50
+            if (minHeight > maxHeight) {
+                if (event && event.attrName == 'maxHeight') {
+                    minHeight = maxHeight;
+                }
+                else {
+                    maxHeight = minHeight;
+                }
+            }
 
-				instance.set(MINHEIGHT, minHeight, UI_SRC);
-				instance.set(MAXHEIGHT, maxHeight, UI_SRC);
+            instance._setAutoDimension(minHeight, HEIGHT);
 
-				node.height(Lang.constrain(height, minHeight, maxHeight));
-			},
+            instance.set(MINHEIGHT, minHeight, UI_SRC);
+            instance.set(MAXHEIGHT, maxHeight, UI_SRC);
 
-			_uiAutoSize: function() {
-				var instance = this;
+            node.height(Lang.constrain(height, minHeight, maxHeight));
+        },
 
-				var node = instance.get(HOST);
-				var heightMonitor = instance._heightMonitor;
+        _uiAutoSize: function() {
+            var instance = this;
 
-				var minHeight = instance._minHeight;
-				var maxHeight = instance._maxHeight;
+            var node = instance.get(HOST);
+            var heightMonitor = instance._heightMonitor;
 
-				var content = node.val();
+            var minHeight = instance._minHeight;
+            var maxHeight = instance._maxHeight;
 
-				heightMonitor.set(INNERHTML, '');
+            var content = node.val();
 
-				heightMonitor.appendChild(DOC.createTextNode(content));
+            heightMonitor.set(INNERHTML, '');
 
-				heightMonitor.setStyle(WIDTH, node.getComputedStyle(WIDTH));
+            heightMonitor.appendChild(DOC.createTextNode(content));
 
-				content = heightMonitor.get(INNERHTML) + DEFAULT_APPEND_CONTENT;
+            heightMonitor.setStyle(WIDTH, node.getComputedStyle(WIDTH));
 
-				instance._updateContent(content);
+            content = heightMonitor.get(INNERHTML) + DEFAULT_APPEND_CONTENT;
 
-				var height = Lang.constrain(heightMonitor.height(), minHeight, maxHeight);
+            instance._updateContent(content);
 
-				if (height != instance._lastHeight) {
-					instance._lastHeight = height;
+            var height = Lang.constrain(heightMonitor.height(), minHeight, maxHeight);
 
-					instance._uiSetDim(HEIGHT, height);
-				}
-			},
+            if (height != instance._lastHeight) {
+                instance._lastHeight = height;
 
-			_uiSetDim: function(key, newVal) {
-				var instance = this;
+                instance._uiSetDim(HEIGHT, height);
+            }
+        },
 
-				var node = instance.get(HOST);
+        _uiSetDim: function(key, newVal) {
+            var instance = this;
 
-				node.setStyle(key, newVal);
-			},
+            var node = instance.get(HOST);
 
-			_updateInnerContent: function(content) {
-				var instance = this;
+            node.setStyle(key, newVal);
+        },
 
-				return instance._heightMonitor.set(INNERHTML, content);
-			},
+        _updateInnerContent: function(content) {
+            var instance = this;
 
-			_updateOuterContent: function(content) {
-				var instance = this;
+            return instance._heightMonitor.set(INNERHTML, content);
+        },
 
-				content = content.replace(/\n/g, '<br />');
+        _updateOuterContent: function(content) {
+            var instance = this;
 
-				return instance._updateInnerContent(content);
-			}
-		}
-	}
-);
+            content = content.replace(/\n/g, '<br />');
+
+            return instance._updateInnerContent(content);
+        }
+    }
+});
 
 A.Plugin.Autosize = Autosize;

@@ -11,5 +11,6 @@ YUI.add('module-tests', function(Y) {
 
     Y.Test.Runner.add(suite);
 
-
-},'', { requires: [ 'test' ] });
+}, '', {
+    requires: ['test']
+});
