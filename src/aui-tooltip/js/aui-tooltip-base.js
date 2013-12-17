@@ -105,7 +105,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
         // is not handled by widget yet. Bind to the `boundingBox` instead.
         instance.get(TRIGGER).on(
             HOVER,
-            A.bind(this._onBoundingBoxMouseenter, this)
+            A.bind(instance._onBoundingBoxMouseenter, this)
         );
 
         instance.get(BOUNDING_BOX).on(
@@ -166,9 +166,11 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
      * @protected
      */
     _clearHideTimer: function() {
-        if (this._hideTimer) {
-            this._hideTimer.cancel();
-            this._hideTimer = null;
+        var instance = this;
+
+        if (instance._hideTimer) {
+            instance._hideTimer.cancel();
+            instance._hideTimer = null;
         }
     },
 
@@ -231,7 +233,9 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
      * @protected
      */
     _maybeShow: function() {
-        this._transition(true);
+        var instance = this;
+
+        instance._transition(true);
     },
 
     /**
@@ -242,7 +246,9 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
      * @protected
      */
     _onBoundingBoxMouseenter: function() {
-        this._clearHideTimer();
+        var instance = this;
+
+        instance._clearHideTimer();
     },
 
     /**
@@ -253,7 +259,9 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
      * @protected
      */
     _onBoundingBoxMouseleave: function() {
-        this._maybeHide();
+        var instance = this;
+
+        instance._maybeHide();
     },
 
     /**
