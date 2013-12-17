@@ -22,14 +22,12 @@
  * @uses WidgetPositionConstrain
  * @param {Object} object The user configuration for the instance.
  */
-A.OverlayBase = A.Component.create(
-	{
-		NAME: 'overlay',
-		ATTRS: {
-			hideClass: {
-				value: false
-			}
-		},
-		AUGMENTS: [A.WidgetPosition, A.WidgetStack, A.WidgetPositionAlign, A.WidgetPositionConstrain, A.WidgetStdMod]
-	}
-);
+A.OverlayBase = A.Component.create({
+    NAME: 'overlay',
+    ATTRS: {
+        hideClass: {
+            value: false
+        }
+    },
+    AUGMENTS: [A.WidgetPosition, A.WidgetStack, A.WidgetPositionAlign, A.WidgetPositionConstrain, A.WidgetStdMod]
+});

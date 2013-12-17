@@ -1,533 +1,522 @@
 var Lang = A.Lang,
 
-	getClassName = A.getClassName,
-
-	_serialize = A.IO.prototype._serialize,
+    getClassName = A.getClassName,
+
+    _serialize = A.IO.prototype._serialize,
 
-	NAME = 'form',
-
-	CSS_FORM = getClassName(NAME),
-	CSS_LABELS = getClassName('field', 'labels'),
-	CSS_LABELS_INLINE = getClassName('field', 'labels', 'inline'),
-
-	CSS_LABEL_ALIGN = {
-		left: [CSS_LABELS, 'left'].join('-'),
-		right: [CSS_LABELS, 'right'].join('-'),
-		top: [CSS_LABELS, 'top'].join('-')
-	};
-
-var Form = A.Component.create(
-	{
-		NAME: NAME,
+    NAME = 'form',
 
-		ATTRS: {
-			action: {
-				value: location.href,
-				getter: '_attributeGetter',
-				setter: '_attributeSetter'
-			},
-			id: {},
-			method: {
-				value: 'POST',
-				getter: '_attributeGetter',
-				setter: '_attributeSetter'
-			},
-			monitorChanges: {
-				value: false
-			},
-			nativeSubmit: {
-				value: false
-			},
+    CSS_FORM = getClassName(NAME),
+    CSS_LABELS = getClassName('field', 'labels'),
+    CSS_LABELS_INLINE = getClassName('field', 'labels', 'inline'),
+
+    CSS_LABEL_ALIGN = {
+        left: [CSS_LABELS, 'left'].join('-'),
+        right: [CSS_LABELS, 'right'].join('-'),
+        top: [CSS_LABELS, 'top'].join('-')
+    };
 
-			values: {
-				getter: function(value) {
-					var instance = this;
+var Form = A.Component.create({
+    NAME: NAME,
 
-					var values = _serialize(instance.get('contentBox').getDOM());
+    ATTRS: {
+        action: {
+            value: location.href,
+            getter: '_attributeGetter',
+            setter: '_attributeSetter'
+        },
+        id: {},
+        method: {
+            value: 'POST',
+            getter: '_attributeGetter',
+            setter: '_attributeSetter'
+        },
+        monitorChanges: {
+            value: false
+        },
+        nativeSubmit: {
+            value: false
+        },
 
-					return A.QueryString.parse(values);
-				},
+        values: {
+            getter: function(value) {
+                var instance = this;
 
-				setter: function(value) {
-					var instance = this;
+                var values = _serialize(instance.get('contentBox').getDOM());
 
-					var setFields = instance._setFieldsObject;
+                return A.QueryString.parse(values);
+            },
 
-					var monitorChanges = instance.get('monitorChanges');
+            setter: function(value) {
+                var instance = this;
 
-					if (Lang.isArray(value)) {
-						setFields = instance._setFieldsArray;
-					}
+                var setFields = instance._setFieldsObject;
 
-					A.each(value, A.rbind(setFields, instance, monitorChanges));
+                var monitorChanges = instance.get('monitorChanges');
 
-					return A.Attribute.INVALID_VALUE;
-				}
-			},
+                if (Lang.isArray(value)) {
+                    setFields = instance._setFieldsArray;
+                }
 
-			fieldValues: {
-				getter: function(value) {
-					var instance = this;
+                A.each(value, A.rbind(setFields, instance, monitorChanges));
 
-					var obj = {};
+                return A.Attribute.INVALID_VALUE;
+            }
+        },
 
-					instance.fields.each(
-						function(item, index, collection) {
-							obj[item.get('name')] = item.get('value');
-						}
-					);
+        fieldValues: {
+            getter: function(value) {
+                var instance = this;
 
-					return obj;
-				}
-			},
+                var obj = {};
 
-			labelAlign: {
-				value: ''
-			}
-		},
+                instance.fields.each(
+                    function(item, index, collection) {
+                        obj[item.get('name')] = item.get('value');
+                    }
+                );
 
-		HTML_PARSER: {
-			action: function(contentBox) {
-				var instance = this;
+                return obj;
+            }
+        },
 
-				return instance._attributeGetter(null, 'action');
-			},
+        labelAlign: {
+            value: ''
+        }
+    },
 
-			method: function(contentBox) {
-				var instance = this;
+    HTML_PARSER: {
+        action: function(contentBox) {
+            var instance = this;
 
-				return instance._attributeGetter(null, 'method');
-			}
-		},
+            return instance._attributeGetter(null, 'action');
+        },
 
-		prototype: {
-			CONTENT_TEMPLATE: '<form></form>',
+        method: function(contentBox) {
+            var instance = this;
 
-			initializer: function() {
-				var instance = this;
+            return instance._attributeGetter(null, 'method');
+        }
+    },
 
-				instance.fields = new A.DataSet(
-					{
-						getKey: instance._getNodeId
-					}
-				);
-			},
+    prototype: {
+        CONTENT_TEMPLATE: '<form></form>',
 
-			renderUI: function() {
-				var instance = this;
+        initializer: function() {
+            var instance = this;
 
-				instance._renderForm();
-			},
+            instance.fields = new A.DataSet({
+                getKey: instance._getNodeId
+            });
+        },
 
-			bindUI: function() {
-				var instance = this;
+        renderUI: function() {
+            var instance = this;
 
-				var nativeSubmit = instance.get('nativeSubmit');
+            instance._renderForm();
+        },
 
-				if (!nativeSubmit) {
-					instance.get('contentBox').on('submit', instance._onSubmit);
-				}
+        bindUI: function() {
+            var instance = this;
 
-				instance.after('disabledChange', instance._afterDisabledChange);
-				instance.after('labelAlignChange', instance._afterLabelAlignChange);
-				instance.after('nativeSubmitChange', instance._afterNativeSubmitChange);
-			},
+            var nativeSubmit = instance.get('nativeSubmit');
 
-			syncUI: function() {
-				var instance = this;
+            if (!nativeSubmit) {
+                instance.get('contentBox').on('submit', instance._onSubmit);
+            }
 
-				var node = instance.get('contentBox');
+            instance.after('disabledChange', instance._afterDisabledChange);
+            instance.after('labelAlignChange', instance._afterLabelAlignChange);
+            instance.after('nativeSubmitChange', instance._afterNativeSubmitChange);
+        },
 
-				instance.set('id', node.guid());
+        syncUI: function() {
+            var instance = this;
 
-				instance._uiSetLabelAlign(instance.get('labelAlign'));
-			},
+            var node = instance.get('contentBox');
 
-			add: function(fields, render) {
-				var instance = this;
+            instance.set('id', node.guid());
 
-				var args = A.Array(fields);
-				var length = args.length;
-				var field;
+            instance._uiSetLabelAlign(instance.get('labelAlign'));
+        },
 
-				var fields = instance.fields;
+        add: function(fields, render) {
+            var instance = this;
 
-				var contentBox = instance.get('contentBox');
+            var args = A.Array(fields);
+            var length = args.length;
+            var field;
 
-				for (var i = 0; i < args.length; i++) {
-					field = args[i];
+            var fields = instance.fields;
 
-					field = A.Field.getField(field);
+            var contentBox = instance.get('contentBox');
 
-					if (field && fields.indexOf(field) == -1) {
-						fields.add(field);
+            for (var i = 0; i < args.length; i++) {
+                field = args[i];
 
-						if (render && !field.get('rendered')) {
-							var node = field.get('node');
+                field = A.Field.getField(field);
 
-							var location = null;
+                if (field && fields.indexOf(field) == -1) {
+                    fields.add(field);
 
-							if (!node.inDoc()) {
-								location = contentBox;
-							}
+                    if (render && !field.get('rendered')) {
+                        var node = field.get('node');
 
-							field.render(location);
-						}
-					}
-				}
-			},
+                        var location = null;
 
-			clearInvalid: function() {
-				var instance = this;
+                        if (!node.inDoc()) {
+                            location = contentBox;
+                        }
 
-				instance.fields.each(
-					function(item, index, collection) {
-						item.clearInvalid();
-					}
-				);
-			},
+                        field.render(location);
+                    }
+                }
+            }
+        },
 
-			getField: function(id) {
-				var instance = this;
+        clearInvalid: function() {
+            var instance = this;
 
-				var field;
+            instance.fields.each(
+                function(item, index, collection) {
+                    item.clearInvalid();
+                }
+            );
+        },
 
-				if (id) {
-					var fields = instance.fields;
+        getField: function(id) {
+            var instance = this;
 
-					field = fields.item(id);
+            var field;
 
-					if (!Lang.isObject(field)) {
-						fields.each(
-							function(item, index, collection) {
-								if (item.get('id') == id || item.get('name') == id) {
-									field = item;
+            if (id) {
+                var fields = instance.fields;
 
-									return false;
-								}
-							}
-						);
-					}
-				}
+                field = fields.item(id);
 
-				return field;
-			},
+                if (!Lang.isObject(field)) {
+                    fields.each(
+                        function(item, index, collection) {
+                            if (item.get('id') == id || item.get('name') == id) {
+                                field = item;
 
-			invoke: function(method, args) {
-				var instance = this;
+                                return false;
+                            }
+                        }
+                    );
+                }
+            }
 
-				return instance.fields.invoke(method, args);
-			},
+            return field;
+        },
 
-			isDirty: function() {
-				var instance = this;
+        invoke: function(method, args) {
+            var instance = this;
 
-				var dirty = false;
+            return instance.fields.invoke(method, args);
+        },
 
-				instance.fields.each(
-					function(item, index, collection) {
-						if (item.isDirty()) {
-							dirty = true;
+        isDirty: function() {
+            var instance = this;
 
-							return false;
-						}
-					}
-				);
+            var dirty = false;
 
-				return dirty;
-			},
+            instance.fields.each(
+                function(item, index, collection) {
+                    if (item.isDirty()) {
+                        dirty = true;
 
-			isValid: function() {
-				var instance = this;
+                        return false;
+                    }
+                }
+            );
 
-				var valid = true;
+            return dirty;
+        },
 
-				instance.fields.each(
-					function(item, index, collection) {
-						if (!item.isValid()) {
-							valid = false;
+        isValid: function() {
+            var instance = this;
 
-							return false;
-						}
-					}
-				);
+            var valid = true;
 
-				return valid;
-			},
+            instance.fields.each(
+                function(item, index, collection) {
+                    if (!item.isValid()) {
+                        valid = false;
 
-			markInvalid: function(value) {
-				var instance = this;
+                        return false;
+                    }
+                }
+            );
 
-				var markFields = instance._markInvalidObject;
+            return valid;
+        },
 
-				if (Lang.isArray(value)) {
-					markFields = instance._markInvalidArray;
-				}
+        markInvalid: function(value) {
+            var instance = this;
 
-				A.each(value, markFields, instance);
+            var markFields = instance._markInvalidObject;
 
-				return instance;
-			},
+            if (Lang.isArray(value)) {
+                markFields = instance._markInvalidArray;
+            }
 
-			remove: function(field, fromMarkup) {
-				var instance = this;
+            A.each(value, markFields, instance);
 
-				instance.fields.remove(field);
+            return instance;
+        },
 
-				if (fromMarkup) {
-					field = instance.getField(field);
+        remove: function(field, fromMarkup) {
+            var instance = this;
 
-					if (field) {
-						field.destroy();
-					}
-				}
+            instance.fields.remove(field);
 
-				return instance;
-			},
+            if (fromMarkup) {
+                field = instance.getField(field);
 
-			resetValues: function() {
-				var instance = this;
+                if (field) {
+                    field.destroy();
+                }
+            }
 
-				instance.fields.each(
-					function(item, index, collection) {
-						item.resetValue();
-					}
-				);
-			},
+            return instance;
+        },
 
-			submit: function(config) {
-				var instance = this;
+        resetValues: function() {
+            var instance = this;
 
-				var valid = instance.isValid();
+            instance.fields.each(
+                function(item, index, collection) {
+                    item.resetValue();
+                }
+            );
+        },
 
-				if (valid) {
-					if (instance.get('nativeSubmit')) {
-						instance.get('contentBox').submit();
-					}
-					else {
-						config = config || {};
+        submit: function(config) {
+            var instance = this;
 
-						A.mix(
-							config,
-							{
-								id: instance.get('id')
-							}
-						);
+            var valid = instance.isValid();
 
-						A.io(
-							instance.get('action'),
-							{
-								form: config,
-								method: instance.get('method'),
-								on: {
-									complete: A.bind(instance._onSubmitComplete, instance),
-									end: A.bind(instance._onSubmitEnd, instance),
-									failure: A.bind(instance._onSubmitFailure, instance),
-									start: A.bind(instance._onSubmitStart, instance),
-									success: A.bind(instance._onSubmitSuccess, instance)
-								}
-							}
-						);
-					}
-				}
+            if (valid) {
+                if (instance.get('nativeSubmit')) {
+                    instance.get('contentBox').submit();
+                }
+                else {
+                    config = config || {};
 
-				return valid;
-			},
+                    A.mix(
+                        config, {
+                            id: instance.get('id')
+                        }
+                    );
 
-			_afterDisabledChange: function(event) {
-				var instance = this;
+                    A.io(
+                        instance.get('action'), {
+                            form: config,
+                            method: instance.get('method'),
+                            on: {
+                                complete: A.bind(instance._onSubmitComplete, instance),
+                                end: A.bind(instance._onSubmitEnd, instance),
+                                failure: A.bind(instance._onSubmitFailure, instance),
+                                start: A.bind(instance._onSubmitStart, instance),
+                                success: A.bind(instance._onSubmitSuccess, instance)
+                            }
+                        }
+                    );
+                }
+            }
 
-				var action = 'disable';
+            return valid;
+        },
 
-				if (event.newVal) {
-					action = 'enable';
-				}
+        _afterDisabledChange: function(event) {
+            var instance = this;
 
-				instance.fields.each(
-					function(item, index, collection) {
-						item[action];
-					}
-				);
-			},
+            var action = 'disable';
 
-			_afterLabelAlignChange: function(event) {
-				var instance = this;
+            if (event.newVal) {
+                action = 'enable';
+            }
 
-				instance._uiSetLabelAlign(event.newVal, event.prevVal)
-			},
+            instance.fields.each(
+                function(item, index, collection) {
+                    item[action];
+                }
+            );
+        },
 
-			_afterNativeSubmitChange: function(event) {
-				var instance = this;
+        _afterLabelAlignChange: function(event) {
+            var instance = this;
 
-				var contentBox = instance.get('contentBox');
+            instance._uiSetLabelAlign(event.newVal, event.prevVal)
+        },
 
-				var action = 'on';
+        _afterNativeSubmitChange: function(event) {
+            var instance = this;
 
-				if (event.newVal) {
-					action = 'detach';
-				}
+            var contentBox = instance.get('contentBox');
 
-				contentBox[action]('submit', instance._onSubmit);
-			},
+            var action = 'on';
 
-			_attributeGetter: function(value, key) {
-				var instance = this;
+            if (event.newVal) {
+                action = 'detach';
+            }
 
-				return instance.get('contentBox').attr(key);
-			},
+            contentBox[action]('submit', instance._onSubmit);
+        },
 
-			_attributeSetter: function(value, key) {
-				var instance = this;
+        _attributeGetter: function(value, key) {
+            var instance = this;
 
-				instance.get('contentBox').attr(key, value);
+            return instance.get('contentBox').attr(key);
+        },
 
-				return value;
-			},
+        _attributeSetter: function(value, key) {
+            var instance = this;
 
-			_getNodeId: function(obj) {
-				var node;
+            instance.get('contentBox').attr(key, value);
 
-				if (obj instanceof A.Field) {
-					node = obj.get('node');
-				}
-				else {
-					node = A.one(obj);
-				}
-				var guid = node && node.guid();
+            return value;
+        },
 
-				return guid;
-			},
+        _getNodeId: function(obj) {
+            var node;
 
-			_onSubmit: function(event) {
-				event.halt();
-			},
+            if (obj instanceof A.Field) {
+                node = obj.get('node');
+            }
+            else {
+                node = A.one(obj);
+            }
+            var guid = node && node.guid();
 
-			_onSubmitComplete: function(event) {
-				var instance = this;
+            return guid;
+        },
 
-				instance.fire(
-					'complete',
-					 {
-					 	ioEvent: event
-					 }
-				);
-			},
+        _onSubmit: function(event) {
+            event.halt();
+        },
 
-			_onSubmitEnd: function(event) {
-				var instance = this;
+        _onSubmitComplete: function(event) {
+            var instance = this;
 
-				instance.fire(
-					'end',
-					 {
-					 	ioEvent: event
-					 }
-				);
-			},
+            instance.fire(
+                'complete', {
+                    ioEvent: event
+                }
+            );
+        },
 
-			_onSubmitFailure: function(event) {
-				var instance = this;
+        _onSubmitEnd: function(event) {
+            var instance = this;
 
-				instance.fire(
-					'failure',
-					 {
-					 	ioEvent: event
-					 }
-				);
-			},
+            instance.fire(
+                'end', {
+                    ioEvent: event
+                }
+            );
+        },
 
-			_onSubmitStart: function(event) {
-				var instance = this;
+        _onSubmitFailure: function(event) {
+            var instance = this;
 
-				instance.fire(
-					'start',
-					 {
-					 	ioEvent: event
-					 }
-				);
-			},
+            instance.fire(
+                'failure', {
+                    ioEvent: event
+                }
+            );
+        },
 
-			_onSubmitSuccess: function(event) {
-				var instance = this;
+        _onSubmitStart: function(event) {
+            var instance = this;
 
-				instance.fire(
-					'success',
-					 {
-					 	ioEvent: event
-					 }
-				);
-			},
+            instance.fire(
+                'start', {
+                    ioEvent: event
+                }
+            );
+        },
 
-			_renderForm: function() {
-				var instance = this;
+        _onSubmitSuccess: function(event) {
+            var instance = this;
 
-				instance.get('contentBox').removeClass(CSS_FORM);
-			},
+            instance.fire(
+                'success', {
+                    ioEvent: event
+                }
+            );
+        },
 
-			_markInvalidArray: function(item, index, collection) {
-				var instance = this;
+        _renderForm: function() {
+            var instance = this;
 
-				var field = instance.getField(item.id);
+            instance.get('contentBox').removeClass(CSS_FORM);
+        },
 
-				if (field) {
-					field.markInvalid(item.message);
-				}
-			},
+        _markInvalidArray: function(item, index, collection) {
+            var instance = this;
 
-			_markInvalidObject: function(item, index, collection) {
-				var instance = this;
+            var field = instance.getField(item.id);
 
-				var field = (!Lang.isFunction(item)) && instance.getField(index);
+            if (field) {
+                field.markInvalid(item.message);
+            }
+        },
 
-				if (field) {
-					field.markInvalid(item);
-				}
-			},
+        _markInvalidObject: function(item, index, collection) {
+            var instance = this;
 
-			_setFieldsArray: function(item, index, collection, monitorChanges) {
-				var instance = this;
+            var field = (!Lang.isFunction(item)) && instance.getField(index);
 
-				var field = instance.getField(item.id);
+            if (field) {
+                field.markInvalid(item);
+            }
+        },
 
-				if (field) {
-					field.set('value', item.value);
+        _setFieldsArray: function(item, index, collection, monitorChanges) {
+            var instance = this;
 
-					if (monitorChanges) {
-						field.set('prevVal', field.get('value'));
-					}
-				}
-			},
+            var field = instance.getField(item.id);
 
-			_setFieldsObject: function(item, index, collection, monitorChanges) {
-				var instance = this;
+            if (field) {
+                field.set('value', item.value);
 
-				var field = (!Lang.isFunction(item)) && instance.getField(index);
+                if (monitorChanges) {
+                    field.set('prevVal', field.get('value'));
+                }
+            }
+        },
 
-				if (field) {
-					field.set('value', item);
+        _setFieldsObject: function(item, index, collection, monitorChanges) {
+            var instance = this;
 
-					if (monitorChanges) {
-						field.set('prevVal', field.get('value'));
-					}
-				}
-			},
+            var field = (!Lang.isFunction(item)) && instance.getField(index);
 
-			_uiSetLabelAlign: function(newVal, prevVal) {
-				var instance = this;
+            if (field) {
+                field.set('value', item);
 
-				var contentBox = instance.get('contentBox');
+                if (monitorChanges) {
+                    field.set('prevVal', field.get('value'));
+                }
+            }
+        },
 
-				contentBox.replaceClass(CSS_LABEL_ALIGN[prevVal], CSS_LABEL_ALIGN[newVal]);
+        _uiSetLabelAlign: function(newVal, prevVal) {
+            var instance = this;
 
-				var action = 'removeClass';
+            var contentBox = instance.get('contentBox');
 
-				if (/right|left/.test(newVal)) {
-					action = 'addClass';
-				}
+            contentBox.replaceClass(CSS_LABEL_ALIGN[prevVal], CSS_LABEL_ALIGN[newVal]);
 
-				contentBox[action](CSS_LABELS_INLINE);
-			}
-		}
-	}
-);
+            var action = 'removeClass';
+
+            if (/right|left/.test(newVal)) {
+                action = 'addClass';
+            }
+
+            contentBox[action](CSS_LABELS_INLINE);
+        }
+    }
+});
 
 A.Form = Form;
