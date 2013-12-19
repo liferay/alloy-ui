@@ -60,8 +60,8 @@ var Pagination = A.Component.create({
     NAME: PAGINATION,
 
     /**
-     * Static property used to define the default attribute
-     * configuration for the `Pagination`.
+     * Static property used to define the default attribute configuration for
+     * the `A.Pagination`.
      *
      * @property ATTRS
      * @type {Object}
@@ -70,11 +70,10 @@ var Pagination = A.Component.create({
     ATTRS: {
 
         /**
-         * When enabled this property allows the navigation to go back to
-         * the beggining when it reaches the last page, the opposite behavior
-         * is also true. Incremental page navigation could happen clicking the
-         * control arrows or invoking `.next()` and
-         * `.prev()` methods.
+         * When enabled this property allows the navigation to go back to the
+         * beggining when it reaches the last page, the opposite behavior is
+         * also true. Incremental page navigation could happen clicking the
+         * control arrows or invoking `.next()` and `.prev()` methods.
          *
          * @attribute circular
          * @default true
@@ -97,8 +96,8 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * Holds the page items as a NodeList. The list could be queried
-         * from the DOM trough Widget HTML_PARSER or generated if
+         * Holds the page items as a `NodeList`. The list could be queried from
+         * the DOM trough Widget `HTML_PARSER` or generated if
          * [total](A.Pagination.html#attr_total) is specified.
          *
          * @attribute items
@@ -133,8 +132,7 @@ var Pagination = A.Component.create({
 
         /**
          * Total number of page links available. If set, the new
-         * [items](A.Pagination.html#attr_items) node list will
-         * be rendered.
+         * [items](A.Pagination.html#attr_items) node list will be rendered.
          *
          * @attribute total
          * @default 0
@@ -146,7 +144,7 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * Colection of strings used to label elements of the UI.
+         * Collection of strings used to label elements of the UI.
          *
          * @attribute strings
          * @type {Object}
@@ -160,8 +158,8 @@ var Pagination = A.Component.create({
     },
 
     /**
-     * Object hash, defining how attribute values are to be parsed from
-     * markup contained in the widget's content box.
+     * Object hash, defining how attribute values are to be parsed from markup
+     * contained in the widget's content box.
      *
      * @property HTML_PARSER
      * @type {Object}
@@ -177,8 +175,8 @@ var Pagination = A.Component.create({
     },
 
     /**
-     * Static property used to define the attributes
-     * for the bindUI lifecycle phase.
+     * Static property used to define the attributes for the bindUI lifecycle
+     * phase.
      *
      * @property BIND_UI_ATTRS
      * @type {Array}
@@ -204,7 +202,7 @@ var Pagination = A.Component.create({
         lastState: null,
 
         /**
-         * Sync the Pagination UI. Lifecycle.
+         * Sync the `A.Pagination` UI. Lifecycle.
          *
          * @method syncUI
          * @protected
@@ -221,7 +219,7 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * Bind the events on the Pagination UI. Lifecycle.
+         * Bind the events on the `A.Pagination` UI. Lifecycle.
          *
          * @method bindUI
          * @protected
@@ -238,7 +236,7 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * Render the Pagination component instance. Lifecycle.
+         * Render the `A.Pagination` component instance. Lifecycle.
          *
          * @method renderUI
          * @protected
@@ -382,7 +380,7 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * Default changeRequest function, sets new state of pagination.
+         * Default `changeRequest` function, sets new state of pagination.
          *
          * @method _defChangeRequest
          * @param {EventFacade} event
@@ -395,7 +393,7 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * Fires changeRequest event.
+         * Fires `changeRequest` event.
          *
          * @method _dispatchRequest
          * @param {Object} state
@@ -448,7 +446,7 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * onClick handler for pagination items.
+         * `onClick` handler for pagination items.
          *
          * @method _onClickItem
          * @param {EventFacade} event
