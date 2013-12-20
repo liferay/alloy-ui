@@ -208,6 +208,13 @@ var ImageViewer = A.Base.create(
             // NOTE: using keydown to avoid keyCode bug on IE
             A.getDoc().on('keydown', instance._keyHandler);
 
+            A.getWin().on(
+                'resize',
+                function() {
+                    instance._setAlignCenter(true);
+                }
+            );
+
             instance.after('render', instance._afterRender);
             instance.after('loadingChange', instance._afterLoadingChange);
             instance.after('visibleChange', instance._afterVisibleChange);
