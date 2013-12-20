@@ -164,7 +164,7 @@ var ImageGallery = A.Component.create({
                             }
                         },
                         render: instance.get(PAGINATION_EL),
-                        showNavigation: false
+                        showControls: false
                     },
                     value
                 );
