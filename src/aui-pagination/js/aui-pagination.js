@@ -269,8 +269,8 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * Retrieve page number including offset e.g., if offset
-         * is 100 and active page is 5, this method returns 105.
+         * Retrieve page number including offset e.g., if offset is 100 and
+         * active page is 5, this method returns 105.
          *
          * @method getOffsetPageNumber
          * @return {Number} current page number plus offset
@@ -282,8 +282,8 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * Retrieve total number of pages including offset e.g., if offset
-         * is 100 and total 10, this method returns 110.
+         * Retrieve total number of pages including offset e.g., if offset is
+         * 100 and total 10, this method returns 110.
          *
          * @method getOffsetTotalPages
          * @return {Number} total page number plus offset
@@ -295,8 +295,8 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * Retrieve total number of dom items representing the links,
-         * including the arrow control items. Do not include the offset.
+         * Retrieve total number of dom items representing the links, including
+         * the arrow control items. Do not include the offset.
          *
          * @method getTotalItems
          * @return {Number} number of pagination items
