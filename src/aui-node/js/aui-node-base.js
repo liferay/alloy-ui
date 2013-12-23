@@ -119,7 +119,7 @@ var _setUnselectable = function(element, unselectable, noRecurse) {
 };
 
 /**
- * Augment the [YUI3 Node](Node.html) with more util methods.
+ * Augments the [YUI3 Node](Node.html) with more util methods.
  *
  * Check the [live demo](http://alloyui.com/examples/node/).
  *
@@ -132,7 +132,7 @@ var _setUnselectable = function(element, unselectable, noRecurse) {
 A.mix(NODE_PROTO, {
 
     /**
-     * Return the current ancestors of the node element. If a selector is
+     * Returns the current ancestors of the node element. If a selector is
      * specified, the ancestors are filtered to match the selector.
      *
      * Example:
@@ -170,9 +170,9 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Return the current ancestors of the node element filtered by a className.
-     * This is an optimized method for finding ancestors by a specific CSS class
-     * name.
+     * Returns the current ancestors of the node element filtered by a
+     * className. This is an optimized method for finding ancestors by a
+     * specific CSS class name.
      *
      * Example:
      *
@@ -204,9 +204,8 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Get or Set the value of an attribute for the first element in the
-     * set of matched elements. If only the `name` is passed it
-     * works as a getter.
+     * Gets or sets the value of an attribute for the first element in the set
+     * of matched elements. If only the `name` is passed it works as a getter.
      *
      * Example:
      *
@@ -304,8 +303,8 @@ A.mix(NODE_PROTO, {
     }()),
 
     /**
-     * Centralize the current Node instance with the passed `val`
-     * Array, Node, String, or Region, if not specified, the body will be used.
+     * Centralizes the current Node instance with the passed `val` Array, Node,
+     * String, or Region, if not specified, the body will be used.
      *
      * Example:
      *
@@ -348,10 +347,10 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * This method removes not only child (and other descendant) elements,
-     * but also any text within the set of matched elements. This is because,
-     * according to the DOM specification, any string of text within an element
-     * is considered a child node of that element.
+     * Removes not only child (and other descendant) elements, but also any text
+     * within the set of matched elements. This is because, according to the DOM
+     * specification, any string of text within an element is considered a child
+     * node of that element.
      *
      * Example:
      *
@@ -378,8 +377,8 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Retrieves the DOM node bound to a Node instance.
-     * See [getDOMNode](Node.html#method_getDOMNode).
+     * Retrieves the DOM node bound to a Node instance. See
+     * [getDOMNode](Node.html#method_getDOMNode).
      *
      * @method getDOM
      * @return {HTMLNode} The DOM node bound to the Node instance.
@@ -391,7 +390,7 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Return the combined width of the border for the specified sides.
+     * Returns the combined width of the border for the specified sides.
      *
      * @method getBorderWidth
      * @param {String} sides Can be t, r, b, l or any combination of those to
@@ -405,7 +404,7 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Get the current center position of the node in page coordinates.
+     * Gets the current center position of the node in page coordinates.
      *
      * @method getCenterXY
      * @for Node
@@ -419,7 +418,7 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Return the combined size of the margin for the specified sides.
+     * Returns the combined size of the margin for the specified sides.
      *
      * @method getMargin
      * @param {String} sides Can be t, r, b, l or any combination of those to
@@ -433,7 +432,7 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Return the combined width of the border for the specified sides.
+     * Returns the combined width of the border for the specified sides.
      *
      * @method getPadding
      * @param {String} sides Can be t, r, b, l or any combination of those to
@@ -447,7 +446,7 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Set the id of the Node instance if the object does not have one. The
+     * Sets the id of the Node instance if the object does not have one. The
      * generated id is based on a guid created by the
      * [stamp](YUI.html#method_stamp) method.
      *
@@ -468,7 +467,7 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Create a hover interaction.
+     * Creates a hover interaction.
      *
      * @method hover
      * @param {String} overFn
@@ -512,9 +511,9 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Get or Set the HTML contents of the node. If the `value`
-     * is passed it's set the content of the element, otherwise it works as a
-     * getter for the current content.
+     * Gets or sets the HTML contents of the node. If the `value` is passed it's
+     * set the content of the element, otherwise it works as a getter for the
+     * current content.
      *
      * Example:
      *
@@ -544,7 +543,7 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Get the outerHTML of a node, which islike innerHTML, except that it
+     * Gets the outerHTML of a node, which islike innerHTML, except that it
      * actually contains the HTML of the node itself.
      *
      * @method outerHTML
@@ -573,8 +572,8 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Inserts a `newNode` after the node instance (i.e., as the next
-     * sibling). If the reference node has no parent, then does nothing.
+     * Inserts a `newNode` after the node instance (i.e., as the next sibling).
+     * If the reference node has no parent, then does nothing.
      *
      * Example:
      *
@@ -619,9 +618,8 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Inserts the node instance to the begining of the `selector`
-     * node (i.e., insert before the `firstChild` of the
-     * `selector`).
+     * Inserts the node instance to the begining of the `selector` node (i.e.,
+     * insert before the `firstChild` of the `selector`).
      *
      * Example:
      *
@@ -643,8 +641,8 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Add one or more CSS classes to an element and remove the class(es)
-     * from the siblings of the element.
+     * Adds one or more CSS classes to an element and remove the class(es) from
+     * the siblings of the element.
      *
      * @method radioClass
      * @chainable
@@ -679,7 +677,7 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Generate an unique identifier and reset the id attribute of the node
+     * Generates an unique identifier and reset the id attribute of the node
      * instance using the new value. Invokes the [guid](Node.html#method_guid).
      *
      * @method resetId
@@ -695,7 +693,7 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Select a substring of text inside of the input element.
+     * Selects a substring of text inside of the input element.
      *
      * @method selectText
      * @param {Number} start The index to start the selection range from
@@ -740,7 +738,7 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Enable text selection for this element (normalized across browsers).
+     * Enables text selection for this element (normalized across browsers).
      *
      * @method selectable
      * @param noRecurse
@@ -759,7 +757,7 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Stop the specified event(s) from bubbling and optionally prevents the
+     * Stops the specified event(s) from bubbling and optionally prevents the
      * default action.
      *
      * Example:
@@ -809,10 +807,9 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Get or Set the combined text contents of the node instance,
-     * including it's descendants. If the `text`
-     * is passed it's set the content of the element, otherwise it works as a
-     * getter for the current content.
+     * Gets or sets the combined text contents of the node instance, including
+     * it's descendants. If the `text` is passed it's set the content of the
+     * element, otherwise it works as a getter for the current content.
      *
      * Example:
      *
@@ -843,9 +840,9 @@ A.mix(NODE_PROTO, {
     /**
      * Displays or hide the node instance.
      *
-     * NOTE: This method assume that your node were hidden
-     * because of the 'aui-hide' css class were being used. This won't
-     * manipulate the inline `style.display` property.
+     * NOTE: This method assume that your node were hidden because of the
+     * 'aui-hide' css class were being used. This won't manipulate the inline
+     * `style.display` property.
      *
      * @method toggle
      * @chainable
@@ -862,7 +859,7 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Disable text selection for this element (normalized across browsers).
+     * Disables text selection for this element (normalized across browsers).
      *
      * @method unselectable
      * @param noRecurse
@@ -881,9 +878,9 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Get or Set the value attribute of the node instance. If the
-     * `value` is passed it's set the value of the element,
-     * otherwise it works as a getter for the current value.
+     * Gets or sets the value attribute of the node instance. If the `value` is
+     * passed it's set the value of the element, otherwise it works as a getter
+     * for the current value.
      *
      * Example:
      *
@@ -909,7 +906,7 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Return the combined size of the box style for the specified sides.
+     * Returns the combined size of the box style for the specified sides.
      *
      * @method _getBoxStyleAsNumber
      * @param {String} sides Can be t, r, b, l or any combination of
@@ -944,7 +941,7 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Extract text content from the passed nodes.
+     * Extracts text content from the passed nodes.
      *
      * @method _getText
      * @private
@@ -1058,7 +1055,7 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Place a node or html string at a specific location
+     * Places a node or html string at a specific location
      *
      * @method _place
      * @private
@@ -1114,9 +1111,8 @@ NODE_PROTO._isHidden = function() {
 };
 
 /**
- * Return the width of the content, not including
- * the padding, border or margin. If a width is passed,
- * the node's overall width is set to that size.
+ * Returns the width of the content, not including the padding, border or
+ * margin. If a width is passed, the node's overall width is set to that size.
  *
  * Example:
  *
@@ -1131,9 +1127,8 @@ NODE_PROTO._isHidden = function() {
  */
 
 /**
- * Return the height of the content, not including
- * the padding, border or margin. If a height is passed,
- * the node's overall height is set to that size.
+ * Returns the height of the content, not including the padding, border or
+ * margin. If a height is passed, the node's overall height is set to that size.
  *
  * Example:
  *
@@ -1148,8 +1143,8 @@ NODE_PROTO._isHidden = function() {
  */
 
 /**
- * Return the size of the box from inside of the border,
- * which is the offsetWidth plus the padding on the left and right.
+ * Returns the size of the box from inside of the border, which is the
+ * `offsetWidth` plus the padding on the left and right.
  *
  * Example:
  *
@@ -1163,8 +1158,8 @@ NODE_PROTO._isHidden = function() {
  */
 
 /**
- * Return the size of the box from inside of the border,
- * which is offsetHeight plus the padding on the top and bottom.
+ * Returns the size of the box from inside of the border, which is offsetHeight
+ * plus the padding on the top and bottom.
  *
  * Example:
  *
@@ -1178,8 +1173,8 @@ NODE_PROTO._isHidden = function() {
  */
 
 /**
- * Return the outer width of the box including the border,
- * if true is passed as the first argument, the margin is included.
+ * Returns the outer width of the box including the border, if true is passed as
+ * the first argument, the margin is included.
  *
  * Example:
  *
@@ -1194,8 +1189,8 @@ NODE_PROTO._isHidden = function() {
  */
 
 /**
- * Return the outer height of the box including the border,
- * if true is passed as the first argument, the margin is included.
+ * Returns the outer height of the box including the border, if true is passed
+ * as the first argument, the margin is included.
  *
  * Example:
  *
@@ -1318,10 +1313,10 @@ if (!SUPPORT_OPTIONAL_TBODY) {
 }
 
 /**
- * Augment the [YUI3 NodeList](NodeList.html) with more util methods.
+ * Augments the [YUI3 NodeList](NodeList.html) with more util methods.
  *
- * Check the list of [Methods](NodeList.html#methods) available for
- * AUI NodeList.
+ * Checks the list of [Methods](NodeList.html#methods) available for AUI
+ * NodeList.
  *
  * @class A.NodeList
  * @constructor
@@ -1414,7 +1409,7 @@ A.mix(
         },
 
         /**
-         * Return the first element in the node list collection.
+         * Returns the first element in the node list collection.
          *
          * @method first
          * @return {Node}
@@ -1437,7 +1432,7 @@ A.mix(
         },
 
         /**
-         * Return the last element in the node list collection.
+         * Returns the last element in the node list collection.
          *
          * @method last
          * @return {Node}
@@ -1515,7 +1510,7 @@ A.mix(
 A.mix(
     A, {
         /**
-         * Get the body node. Shortcut to `A.one('body')`.
+         * Gets the body node. Shortcut to `A.one('body')`.
          *
          * @method getBody
          */
@@ -1530,7 +1525,7 @@ A.mix(
         },
 
         /**
-         * Get the document node. Shortcut to `A.one(document)`.
+         * Gets the document node. Shortcut to `A.one(document)`.
          *
          * @method getDoc
          */
@@ -1545,7 +1540,7 @@ A.mix(
         },
 
         /**
-         * Get the window node. Shortcut to `A.one(window)`.
+         * Gets the window node. Shortcut to `A.one(window)`.
          *
          * @method getWin
          */

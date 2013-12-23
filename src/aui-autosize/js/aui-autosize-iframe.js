@@ -20,7 +20,7 @@ var Lang = A.Lang,
     CSS_AUTOSIZE_IFRAME_MONITORED_HEIGHT = getClassName(AUTOSIZE_IFRAME, 'monitored', HEIGHT);
 
 /**
- * A base class for AutosizeIframe.
+ * A base class for `A.AutosizeIframe`.
  *
  * @class A.AutosizeIframe
  * @extends Plugin.Base
@@ -34,7 +34,7 @@ AutosizeIframe = A.Component.create({
      * Static property provides a string to identify the class.
      *
      * @property NAME
-     * @type String
+     * @type {String}
      * @static
      */
     NAME: AUTOSIZE_IFRAME,
@@ -43,7 +43,7 @@ AutosizeIframe = A.Component.create({
      * Static property provides a string to identify the namespace.
      *
      * @property NS
-     * @type String
+     * @type {String}
      * @static
      */
     NS: AUTOSIZE_IFRAME,
@@ -52,49 +52,49 @@ AutosizeIframe = A.Component.create({
      * Static property used to define which component it extends.
      *
      * @property EXTENDS
-     * @type String
+     * @type {String}
      * @static
      */
     EXTENDS: A.Plugin.Base,
 
     /**
      * Static property used to define the default attribute
-     * configuration for the AutosizeIframe.
+     * configuration for the `A.AutosizeIframe`.
      *
      * @property ATTRS
-     * @type Object
+     * @type {Object}
      * @static
      */
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The height of the iframe.
          *
          * @attribute height
          * @default 0
-         * @type Number
+         * @type {Number}
          */
         height: {
             value: 0
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates if the height should be monitored.
          *
          * @attribute monitorHeight
          * @default true
-         * @type Boolean
+         * @type {Boolean}
          */
         monitorHeight: {
             value: true
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The width of the iframe.
          *
          * @attribute width
          * @default null
-         * @type Number
+         * @type {Number}
          */
         width: {
             value: null
@@ -104,7 +104,7 @@ AutosizeIframe = A.Component.create({
     prototype: {
 
         /**
-         * Construction logic executed during AutosizeIframe instantiation.
+         * Construction logic executed during `A.AutosizeIframe` instantiation.
          * Lifecycle.
          *
          * @method initializer
@@ -126,7 +126,7 @@ AutosizeIframe = A.Component.create({
         },
 
         /**
-         * Bind the events on the AutosizeIframe UI. Lifecycle.
+         * Binds the events on the `A.AutosizeIframe` UI. Lifecycle.
          *
          * @method bindUI
          * @protected
@@ -140,7 +140,7 @@ AutosizeIframe = A.Component.create({
         },
 
         /**
-         * Sync the AutosizeIframe UI. Lifecycle.
+         * Syncs the `A.AutosizeIframe` UI. Lifecycle.
          *
          * @method syncUI
          * @protected
@@ -152,7 +152,7 @@ AutosizeIframe = A.Component.create({
         },
 
         /**
-         * Destructor lifecycle implementation for the AutosizeIframe class.
+         * Destructor lifecycle implementation for the `A.AutosizeIframe` class.
          * Lifecycle.
          *
          * @method destructor
@@ -165,7 +165,7 @@ AutosizeIframe = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Stops to monitor the height.
          *
          * @method pauseMonitor
          */
@@ -176,7 +176,7 @@ AutosizeIframe = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Restarts to monitor the height.
          *
          * @method restartMonitor
          */
@@ -189,7 +189,7 @@ AutosizeIframe = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after `height` attribute changes.
          *
          * @method _afterHeightChange
          * @param event
@@ -202,7 +202,7 @@ AutosizeIframe = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after `monitorHeight` attribute changes.
          *
          * @method _afterMonitorHeightChange
          * @param event
@@ -215,7 +215,7 @@ AutosizeIframe = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after `width` attribute changes.
          *
          * @method _afterWidthChange
          * @param event
@@ -228,7 +228,7 @@ AutosizeIframe = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Cancels repeated action which was set up using `setInterval`.
          *
          * @method _clearInterval
          * @protected
@@ -253,7 +253,7 @@ AutosizeIframe = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires when a window resize happens.
          *
          * @method _onResize
          * @protected
@@ -290,7 +290,8 @@ AutosizeIframe = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Calls a function repeatedly, with a fixed time delay between each
+         * call to that function.
          *
          * @method _setInterval
          * @param event
@@ -307,7 +308,7 @@ AutosizeIframe = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the iframe height in the UI.
          *
          * @method _uiSetHeight
          * @param value
@@ -324,7 +325,7 @@ AutosizeIframe = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the monitor height in the UI.
          *
          * @method _uiSetMonitorHeight
          * @param monitorHeight
@@ -354,7 +355,7 @@ AutosizeIframe = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the iframe width in the UI.
          *
          * @method _uiSetWidth
          * @param value
@@ -373,10 +374,11 @@ AutosizeIframe = A.Component.create({
 A.mix(AutosizeIframe, {
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns the content height of a window.
      *
      * @method getContentHeight
      * @param iframeWin
+     * @return {Number | null}
      */
     getContentHeight: function(iframeWin) {
         var contentHeight = null;
@@ -401,13 +403,12 @@ A.mix(AutosizeIframe, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns the content height of a window.
      *
      * @method _getContentHeight
-     * @param iframeWin
-     * @param iframeDoc
-     * @param fallbackHeight
+     * @param iframeWin, iframeDoc, fallbackHeight
      * @protected
+     * @return {Number | null}
      */
     _getContentHeight: function(iframeWin, iframeDoc, fallbackHeight) {
         var contentHeight = null;
@@ -436,11 +437,12 @@ A.mix(AutosizeIframe, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns the quirks content height of a window.
      *
      * @method _getQuirksHeight
      * @param iframeWin
      * @protected
+     * @return {Number}
      */
     _getQuirksHeight: function(iframeWin) {
         var contentHeight = 0;

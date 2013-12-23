@@ -9,10 +9,12 @@ var BODY_CONTENT = 'bodyContent',
     CONTENT_BOX = 'contentBox',
     DURATION = 'duration',
     FORMATTER = 'formatter',
+    HOVER = 'hover',
     IN = 'in',
     MOUSEENTER = 'mouseenter',
     MOUSELEAVE = 'mouseleave',
     OPACITY = 'opacity',
+    STICK_DURATION = 'stickDuration',
     TITLE = 'title',
     TOOLTIP = 'tooltip',
     TRIGGER = 'trigger',
@@ -54,6 +56,15 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
     A.WidgetTrigger
 ], {
     /**
+     * Stores the `Y.later` context object.
+     *
+     * @property _hideTimer
+     * @type {Object}
+     * @protected
+     */
+    _hideTimer: null,
+
+    /**
      * Construction logic executed during Tooltip instantiation. Lifecycle.
      *
      * @method initializer
@@ -84,6 +95,42 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
     },
 
     /**
+     * Binds the events on the `Tooltip` UI. Lifecycle.
+     *
+     * @method bindUI
+     * @protected
+     */
+    bindUI: function() {
+        var instance = this;
+
+        // Do not bind the synthetic hover event to the widget dom events
+        // wrapper api. Hover bind method has a different method signature which
+        // is not handled by widget yet. Bind to the `boundingBox` instead.
+        instance.get(TRIGGER).on(
+            HOVER,
+            A.bind(instance._onBoundingBoxMouseenter, this)
+        );
+
+        instance.get(BOUNDING_BOX).on(
+            HOVER,
+            A.bind(instance._onBoundingBoxMouseenter, instance),
+            A.bind(instance._onBoundingBoxMouseleave, instance));
+    },
+
+    /**
+     * Destructor lifecycle implementation for the Tooltip class.
+     * Lifecycle.
+     *
+     * @method destructor
+     * @protected
+     */
+    destructor: function() {
+        var instance = this;
+
+        instance._clearHideTimer();
+    },
+
+    /**
      * Fire after `boundingBox` style changes.
      *
      * @method _afterUiSetVisible
@@ -91,21 +138,15 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
      * @protected
      */
     _afterUiSetVisible: function(val) {
-        var instance = this,
-            boundingBox = instance.get(BOUNDING_BOX);
+        var instance = this;
 
         if (val) {
             instance._loadBodyContentFromTitle();
+            instance._maybeShow();
         }
-
-        boundingBox.transition({
-                duration: instance.get(DURATION),
-                opacity: val ? instance.get(OPACITY) : 0
-            },
-            function() {
-                boundingBox.toggleClass(IN, val);
-            }
-        );
+        else {
+            instance._maybeHide();
+        }
     },
 
     /**
@@ -119,6 +160,21 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
         var instance = this;
 
         instance.suggestAlignment(val);
+    },
+
+    /**
+     * Helper method called to clear the close timer.
+     *
+     * @method _clearHideTimer
+     * @protected
+     */
+    _clearHideTimer: function() {
+        var instance = this;
+
+        if (instance._hideTimer) {
+            instance._hideTimer.cancel();
+            instance._hideTimer = null;
+        }
     },
 
     /**
@@ -150,6 +206,88 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
 
         instance.setStdModContent(
             A.WidgetStdMod.BODY, trigger && title || instance.get(BODY_CONTENT));
+    },
+
+    /**
+     * Maybe hides the tooltip if `stickDuration` do not prevent.
+     *
+     * @method _maybeHide
+     * @protected
+     */
+    _maybeHide: function() {
+        var instance = this,
+            stickDuration;
+
+        stickDuration = instance.get(STICK_DURATION);
+
+        if (A.Lang.isNumber(stickDuration)) {
+            instance._hideTimer = A.later(
+                stickDuration, instance, instance._transition);
+        }
+        else {
+            instance._transition();
+        }
+    },
+
+    /**
+     * Maybe shows the tooltip if `stickDuration` do not prevents.
+     *
+     * @method _maybeShow
+     * @protected
+     */
+    _maybeShow: function() {
+        var instance = this;
+
+        instance._transition(true);
+    },
+
+    /**
+     * Handles `boundingBox` `mouseenter` events.
+     *
+     * @method _onBoundingBoxMouseenter
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onBoundingBoxMouseenter: function() {
+        var instance = this;
+
+        instance._clearHideTimer();
+    },
+
+    /**
+     * Handles `boundingBox` `mouseleave` events.
+     *
+     * @method _onBoundingBoxMouseleave
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onBoundingBoxMouseleave: function() {
+        var instance = this;
+
+        instance._maybeHide();
+    },
+
+    /**
+     * Shows or hides the tooltip depending on the passed parameter, when
+     * no parameter is specified the default behavior is to hide the tooltip.
+     *
+     * @method _transition
+     * @param  {Boolean} fadeIn When `true`, fades in the tooltip, otherwise
+     *     fades out.
+     * @protected
+     */
+    _transition: function(fadeIn) {
+        var instance = this,
+            boundingBox = instance.get(BOUNDING_BOX);
+
+        boundingBox.transition({
+                duration: instance.get(DURATION),
+                opacity: fadeIn ? instance.get(OPACITY) : 0
+            },
+            function() {
+                boundingBox.toggleClass(IN, fadeIn);
+            }
+        );
     }
 }, {
 
@@ -172,7 +310,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
      */
     ATTRS: {
         /**
-         * Determine the tooltip constrainment node.
+         * Determine the tooltip constrain node.
          *
          * @attribute constrain
          * @default true
@@ -212,6 +350,19 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
          */
         opacity: {
             value: 0.8
+        },
+
+        /**
+         * Determine the duration for the tooltip to stick visibility after
+         * the mouse leaves the trigger element. By default the stick duration
+         * is not specified, therefore the tooltip starts the hide transition
+         * synchronously.
+         *
+         * @attribute stickDuration
+         * @type {Number}
+         */
+        stickDuration: {
+            validator: A.Lang.isNumber
         },
 
         /**
