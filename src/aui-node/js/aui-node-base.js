@@ -303,8 +303,8 @@ A.mix(NODE_PROTO, {
     }()),
 
     /**
-     * Centralizes the current Node instance with the passed `val`
-     * Array, Node, String, or Region, if not specified, the body will be used.
+     * Centralizes the current Node instance with the passed `val` Array, Node,
+     * String, or Region, if not specified, the body will be used.
      *
      * Example:
      *
@@ -377,8 +377,8 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Retrieves the DOM node bound to a Node instance.
-     * See [getDOMNode](Node.html#method_getDOMNode).
+     * Retrieves the DOM node bound to a Node instance. See
+     * [getDOMNode](Node.html#method_getDOMNode).
      *
      * @method getDOM
      * @return {HTMLNode} The DOM node bound to the Node instance.
@@ -572,8 +572,8 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Inserts a `newNode` after the node instance (i.e., as the next
-     * sibling). If the reference node has no parent, then does nothing.
+     * Inserts a `newNode` after the node instance (i.e., as the next sibling).
+     * If the reference node has no parent, then does nothing.
      *
      * Example:
      *
@@ -618,9 +618,8 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Inserts the node instance to the begining of the `selector`
-     * node (i.e., insert before the `firstChild` of the
-     * `selector`).
+     * Inserts the node instance to the begining of the `selector` node (i.e.,
+     * insert before the `firstChild` of the `selector`).
      *
      * Example:
      *
@@ -642,8 +641,8 @@ A.mix(NODE_PROTO, {
     },
 
     /**
-     * Adds one or more CSS classes to an element and remove the class(es)
-     * from the siblings of the element.
+     * Adds one or more CSS classes to an element and remove the class(es) from
+     * the siblings of the element.
      *
      * @method radioClass
      * @chainable
@@ -841,9 +840,9 @@ A.mix(NODE_PROTO, {
     /**
      * Displays or hide the node instance.
      *
-     * NOTE: This method assume that your node were hidden
-     * because of the 'aui-hide' css class were being used. This won't
-     * manipulate the inline `style.display` property.
+     * NOTE: This method assume that your node were hidden because of the
+     * 'aui-hide' css class were being used. This won't manipulate the inline
+     * `style.display` property.
      *
      * @method toggle
      * @chainable
@@ -1112,9 +1111,8 @@ NODE_PROTO._isHidden = function() {
 };
 
 /**
- * Returns the width of the content, not including
- * the padding, border or margin. If a width is passed,
- * the node's overall width is set to that size.
+ * Returns the width of the content, not including the padding, border or
+ * margin. If a width is passed, the node's overall width is set to that size.
  *
  * Example:
  *
@@ -1129,9 +1127,8 @@ NODE_PROTO._isHidden = function() {
  */
 
 /**
- * Returns the height of the content, not including
- * the padding, border or margin. If a height is passed,
- * the node's overall height is set to that size.
+ * Returns the height of the content, not including the padding, border or
+ * margin. If a height is passed, the node's overall height is set to that size.
  *
  * Example:
  *
@@ -1146,8 +1143,8 @@ NODE_PROTO._isHidden = function() {
  */
 
 /**
- * Returns the size of the box from inside of the border,
- * which is the offsetWidth plus the padding on the left and right.
+ * Returns the size of the box from inside of the border, which is the
+ * `offsetWidth` plus the padding on the left and right.
  *
  * Example:
  *
@@ -1161,8 +1158,8 @@ NODE_PROTO._isHidden = function() {
  */
 
 /**
- * Returns the size of the box from inside of the border,
- * which is offsetHeight plus the padding on the top and bottom.
+ * Returns the size of the box from inside of the border, which is offsetHeight
+ * plus the padding on the top and bottom.
  *
  * Example:
  *
@@ -1176,8 +1173,8 @@ NODE_PROTO._isHidden = function() {
  */
 
 /**
- * Returns the outer width of the box including the border,
- * if true is passed as the first argument, the margin is included.
+ * Returns the outer width of the box including the border, if true is passed as
+ * the first argument, the margin is included.
  *
  * Example:
  *
@@ -1192,8 +1189,8 @@ NODE_PROTO._isHidden = function() {
  */
 
 /**
- * Returns the outer height of the box including the border,
- * if true is passed as the first argument, the margin is included.
+ * Returns the outer height of the box including the border, if true is passed
+ * as the first argument, the margin is included.
  *
  * Example:
  *
