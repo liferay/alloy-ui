@@ -19,7 +19,7 @@
 YUI({
     coverage: ['aui-diagram-builder'],
     filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-}).use('aui-diagram-builder', 'test-console', 'test', 'module-tests', function(Y) {
+}).use('aui-diagram-builder', 'test-console', 'test', 'aui-diagram-builder-tests', function(Y) {
 
     (new Y.Test.Console()).render('#logger');
 

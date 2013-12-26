@@ -1,4 +1,4 @@
-YUI.add('module-tests', function(Y) {
+YUI.add('aui-modal-tests', function(Y) {
 
     //--------------------------------------------------------------------------
     // Modal Tests

@@ -37,7 +37,7 @@
         YUI({
             coverage: ['aui-color-picker-base'],
             filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-        }).use('test-console', 'test', 'module-tests', function(Y) {
+        }).use('test-console', 'test', 'aui-color-picker-base-tests', function(Y) {
 
             (new Y.Test.Console()).render('#logger');
 

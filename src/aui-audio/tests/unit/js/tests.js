@@ -1,4 +1,4 @@
-YUI.add('module-tests', function(Y) {
+YUI.add('aui-audio-tests', function(Y) {
 
     var suite = new Y.Test.Suite('aui-audio');
 

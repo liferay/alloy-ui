@@ -23,7 +23,7 @@
             YUI({
                 coverage: ['aui-toggler-delegate'],
                 filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-            }).use('dd-plugin', 'test-console', 'module-tests', 'test', function(Y) {
+            }).use('dd-plugin', 'test-console', 'aui-toggler-delegate-tests', 'test', function(Y) {
 
                 (new Y.Console(
                     {

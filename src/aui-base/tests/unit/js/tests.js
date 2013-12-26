@@ -1,4 +1,4 @@
-YUI.add('module-tests', function(Y) {
+YUI.add('aui-base-tests', function(Y) {
 
     var suite = new Y.Test.Suite('aui-base');
 
@@ -12,5 +12,5 @@ YUI.add('module-tests', function(Y) {
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['test']
+    requires: ['test', 'aui-base']
 });

@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>aui-arraysort</title>
-    
+
     <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
 
     <script src="../../../../build/aui/aui.js"></script>
@@ -16,8 +16,8 @@
 YUI({
     coverage: ['aui-arraysort'],
     filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-}).use('test-console', 'test', 'module-tests', function(Y) {
-    
+}).use('test-console', 'test', 'aui-arraysort-tests', function(Y) {
+
     (new Y.Test.Console()).render('#logger');
 
     Y.Test.Runner.setName('aui-arraysort');

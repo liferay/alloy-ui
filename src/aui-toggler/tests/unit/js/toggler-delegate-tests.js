@@ -1,4 +1,4 @@
-YUI.add('module-tests', function(Y) {
+YUI.add('aui-toggler-delegate-tests', function(Y) {
 
     //--------------------------------------------------------------------------
     // TogglerDelegate Tests

@@ -1,4 +1,4 @@
-YUI.add('module-tests', function(Y) {
+YUI.add('aui-search-tests', function(Y) {
 
     //--------------------------------------------------------------------------
     // Search Tests

@@ -1,4 +1,4 @@
-YUI.add('module-tests', function(Y) {
+YUI.add('aui-color-picker-tests', function(Y) {
 
     //--------------------------------------------------------------------------
     // ColorPicker Tests

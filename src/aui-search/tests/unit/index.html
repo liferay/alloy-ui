@@ -16,7 +16,7 @@
 YUI({
     coverage: ['aui-search'],
     filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-}).use('test-console', 'test', 'module-tests', function(Y) {
+}).use('test-console', 'test', 'aui-search-tests', function(Y) {
 
     (new Y.Test.Console()).render('#logger');
 

@@ -1,4 +1,4 @@
-YUI.add('module-tests', function(Y) {
+YUI.add('aui-debounce-tests', function(Y) {
 
     var suite = new Y.Test.Suite('aui-debounce');
 

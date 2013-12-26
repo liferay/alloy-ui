@@ -1,10 +1,10 @@
-YUI.add('module-tests', function(Y) {
+YUI.add('aui-ace-autocomplete-velocity-tests', function(Y) {
 
     //--------------------------------------------------------------------------
     // ACE Editor AutoComplete Velocity Tests
     //--------------------------------------------------------------------------
 
-    var suite = new Y.Test.Suite('aui-ace-editor'),
+    var suite = new Y.Test.Suite('aui-ace-autocomplete-velocity'),
         editor,
         elements,
         nativeEditor;

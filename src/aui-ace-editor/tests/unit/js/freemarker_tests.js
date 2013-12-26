@@ -1,10 +1,10 @@
-YUI.add('module-tests', function(Y) {
+YUI.add('aui-ace-autocomplete-freemarker-tests', function(Y) {
 
     //--------------------------------------------------------------------------
     // ACE Editor AutoComplete Freemarker Tests
     //--------------------------------------------------------------------------
 
-    var suite = new Y.Test.Suite('aui-ace-editor'),
+    var suite = new Y.Test.Suite('aui-ace-autocomplete-freemarker'),
         editor,
         elements,
         nativeEditor;

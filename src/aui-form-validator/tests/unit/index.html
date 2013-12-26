@@ -85,7 +85,7 @@
         YUI({
             coverage: ['aui-form-validator'],
             filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-        }).use('aui-form-validator', 'test-console', 'test', 'module-tests', function(Y) {
+        }).use('aui-form-validator', 'test-console', 'test', 'aui-form-validator-tests', function(Y) {
 
             (new Y.Test.Console()).render('#logger');
 

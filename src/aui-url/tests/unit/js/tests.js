@@ -1,4 +1,4 @@
-YUI.add('module-tests', function(Y) {
+YUI.add('aui-url-tests', function(Y) {
 
     //--------------------------------------------------------------------------
     // URL Tests
