@@ -141,6 +141,13 @@ module.exports = function(grunt) {
             args.push('--no-coverage');
         }
 
+        if (grunt.config([TASK.name, target, 'istanbul'])) {
+            args.push('--istanbul');
+        }
+        else {
+            args.push('--no-istanbul');
+        }
+
         // Lint
         if (grunt.config([TASK.name, target, 'lint'])) {
             args.push('--lint');
