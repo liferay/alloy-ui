@@ -180,7 +180,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
         var instance = this;
 
         if (!event.newVal && instance.get(DESTROY_ON_HIDE)) {
-            instance.destroy();
+            A.soon(A.bind('destroy', instance));
         }
     },
 

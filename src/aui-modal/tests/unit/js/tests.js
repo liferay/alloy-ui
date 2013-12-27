@@ -10,6 +10,8 @@ YUI.add('aui-modal-tests', function(Y) {
 
         CLICK = 'click',
 
+        DESTROY_ON_HIDE = 'destroyOnHide',
+
         DRAG_NS = 'dd',
         DRAGGABLE = 'draggable',
 
@@ -19,7 +21,9 @@ YUI.add('aui-modal-tests', function(Y) {
         ERROR_PLUGIN_PLUGGED = '{0} plugin should not be already plugged',
 
         RESIZABLE = 'resizable',
-        RESIZE_NS = 'resize';
+        RESIZE_NS = 'resize',
+
+        VISIBLE_CHANGE = 'visibleChange';
 
     //--------------------------------------------------------------------------
     // Test Case for Plug/Unplug
@@ -97,6 +101,59 @@ YUI.add('aui-modal-tests', function(Y) {
             }
 
             Y.Assert.isNotUndefined(modal.hasPlugin(DRAG_NS), Y.Lang.sub(ERROR_PLUGIN_MISSING, [DRAG_NS]));
+        }
+
+    }));
+
+    //--------------------------------------------------------------------------
+    // Test Case for Events
+    //--------------------------------------------------------------------------
+
+    suite.add(new Y.Test.Case({
+
+        name: 'Events',
+
+        setUp: function() {
+            if (modal) {
+                modal.destroy();
+            }
+
+            modal = new Y.Modal().render('#modal');
+
+            boundingBox = modal.get('boundingBox');
+        },
+
+        tearDown: function() {
+            modal.destroy();
+
+            modal = null;
+            boundingBox = null;
+        },
+
+        //----------------------------------------------------------------------
+        // Tests
+        //----------------------------------------------------------------------
+
+        /**
+         * @tests AUI-1107
+         */
+        'listen after visibleChange with destroyOnHide enabled': function() {
+            var instance = this,
+                mock = new Y.Mock();
+
+            Y.Mock.expect(
+                mock, {
+                    method: 'afterVisibleChange',
+                    args: [YUITest.Mock.Value.Object]
+                }
+            );
+
+            modal.after(VISIBLE_CHANGE, mock.afterVisibleChange);
+
+            modal.set(DESTROY_ON_HIDE, true);
+            modal.hide();
+
+            Y.Mock.verify(mock);
         }
 
     }));
