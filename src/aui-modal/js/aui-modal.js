@@ -71,9 +71,10 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
      * @protected
      */
     initializer: function() {
-        var instance = this;
+        var instance = this,
+            eventHandles;
 
-        var eventHandles = [
+        eventHandles = [
             A.after(instance._afterFillHeight, instance, FILL_HEIGHT),
             instance.after('resize:end', A.bind(instance._syncResizeDimensions, instance)),
             instance.after(DRAGGABLE_CHANGE, instance._afterDraggableChange),
@@ -127,7 +128,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
      * @param event
      * @protected
      */
-    _afterFillHeight: function(event) {
+    _afterFillHeight: function() {
         var instance = this;
 
         instance._fillMaxHeight(instance.get(HEIGHT));
@@ -238,7 +239,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
      * @param event
      * @protected
      */
-    _beforeResizeCorrectDimensions: function(event) {
+    _beforeResizeCorrectDimensions: function() {
         var instance = this;
 
         if (instance.resize.proxy) {
