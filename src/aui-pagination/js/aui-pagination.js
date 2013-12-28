@@ -72,7 +72,7 @@ var Pagination = A.Component.create({
 
         /**
          * When enabled this property allows the navigation to go back to the
-         * beggining when it reaches the last page, the opposite behavior is
+         * beginning when it reaches the last page, the opposite behavior is
          * also true. Incremental page navigation could happen clicking the
          * control arrows or invoking `.next()` and `.prev()` methods.
          *
@@ -481,11 +481,13 @@ var Pagination = A.Component.create({
                 index = items.indexOf(item),
                 lastIndex = items.size() - 1;
 
-            if ((index === 0) && showControls) {
-                instance.prev();
-            }
-            else if ((index === lastIndex) && showControls) {
-                instance.next();
+            if (showControls) {
+                if (index === 0) {
+                    instance.prev();
+                }
+                else if (index === lastIndex) {
+                    instance.next();
+                }
             }
             else {
                 instance._dispatchRequest({
@@ -603,13 +605,15 @@ var Pagination = A.Component.create({
             var instance = this,
                 showControls = instance.get(SHOW_CONTROLS);
 
-            if (showControls && !instance.get(CIRCULAR)) {
-                instance._syncNavigationUI();
-            }
+            if (showControls) {
+                if (!instance.get(CIRCULAR)) {
+                    instance._syncNavigationUI();
+                }
 
-            // Do not activate first and last items, they are used for controls.
-            if (showControls && (val === 0 || val === instance.getTotalItems())) {
-                return;
+                // Do not activate first and last items, they are used for controls.
+                if (val === 0 || val === instance.getTotalItems()) {
+                    return;
+                }
             }
 
             var item = instance.getItem(val);

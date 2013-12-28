@@ -21,24 +21,24 @@ YUI.add('aui-pagination-tests', function(Y) {
          * @tests AUI-1106
          */
         'assert that pagination controls do not render': function() {
-        	var instance = this,
-        		paginationContent,
-        		paginationItems;
+            var instance = this,
+                paginationContent,
+                paginationItems;
 
-        	paginationContent = Y.one('#pagination .pagination-content');
-        	paginationItems = paginationContent.all('li');
+            paginationContent = Y.one('#pagination .pagination-content');
+            paginationItems = paginationContent.all('li');
 
-        	Y.Test.Assert.isNull(paginationContent.one('.pagination-control'));
+            Y.Test.Assert.isNull(paginationContent.one('.pagination-control'));
 
-        	instance._assertItemsCanBeSelectedWhenControlsAreDisabled(paginationItems.item(1));
+            instance._assertItemsCanBeSelectedWhenControlsAreDisabled(paginationItems.item(1));
 
-        	instance._assertItemsCanBeSelectedWhenControlsAreDisabled(paginationItems.item(0));
+            instance._assertItemsCanBeSelectedWhenControlsAreDisabled(paginationItems.item(0));
         },
 
         _assertItemsCanBeSelectedWhenControlsAreDisabled: function(item) {
-        	item.simulate('click');
+            item.simulate('click');
 
-        	Y.Test.Assert.isTrue(item.hasClass('active'));
+            Y.Test.Assert.isTrue(item.hasClass('active'));
         }
     }));
 
