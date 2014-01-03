@@ -94,7 +94,7 @@ var FormBuilderRadioField = A.Component.create({
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Static property provides a string to identify the CSS prefix.
      *
      * @property CSS_PREFIX
      * @type String
