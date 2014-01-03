@@ -7,7 +7,7 @@ var CSS_CELLEDITOR_ELEMENT = A.getClassName('celleditor', 'element'),
  * @class A.DateCellEditor
  * @extends A.BaseCellEditor
  * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * properties.
  * @constructor
  */
 DateCellEditor = A.Component.create({
@@ -32,7 +32,7 @@ DateCellEditor = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the DateCellEditor.
+     * configuration for the `DateCellEditor`.
      *
      * @property ATTRS
      * @type Object
@@ -41,7 +41,7 @@ DateCellEditor = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the content of body.
          *
          * @attribute bodyContent
          * @default ''
@@ -52,7 +52,7 @@ DateCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the `Calendar` object used for the `DateCellEditor` input.
          *
          * @attribute calendar
          * @default null
@@ -65,7 +65,8 @@ DateCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the `DataType.Date` format used in input and output methods
+         * of the `DateCellEditor` input.
          *
          * @attribute dateFormat
          * @default '%Y-%m-%d'
@@ -77,7 +78,11 @@ DateCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the Function which is used in `formatValue` to modify values
+         * for the `DateCellEditor` input.
+         *
+         * Default Function iterates and formats values using the `dateFormat`
+         * attribute.
          *
          * @attribute inputFormatter
          * @type Function
@@ -96,7 +101,11 @@ DateCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the Function which is used in `formatValue` to modify values
+         * for the `DateCellEditor` input.
+         *
+         * Default Function iterates and formats values using the `dateFormat`
+         * attribute.
          *
          * @attribute outputFormatter
          * @type Function
@@ -119,7 +128,7 @@ DateCellEditor = A.Component.create({
         ELEMENT_TEMPLATE: '<input class="' + CSS_CELLEDITOR_ELEMENT + '" type="hidden" />',
 
         /**
-         * Construction logic executed during DateCellEditor instantiation.
+         * Construction logic executed during `DateCellEditor` instantiation.
          * Lifecycle.
          *
          * @method initializer
@@ -132,9 +141,10 @@ DateCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the `DateCellEditor` input value.
          *
          * @method getElementsValue
+         * @return {String} Input value.
          */
         getElementsValue: function() {
             var instance = this;
@@ -143,10 +153,12 @@ DateCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Formats the passed `date` using the format define in the `dateFormat`
+         * attribute.
          *
          * @method formatDate
-         * @param date
+         * @param {String} date
+         * @return {String} HTML formatted for display.
          */
         formatDate: function(date) {
             var instance = this,
@@ -163,7 +175,7 @@ DateCellEditor = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _afterDateSelect
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _afterDateSelect: function() {
@@ -193,8 +205,9 @@ DateCellEditor = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _setCalendar
-         * @param val
+         * @param {Object} val
          * @protected
+         * @return {Object} Merged `Calendar` object.
          */
         _setCalendar: function(val) {
             var instance = this;
@@ -207,10 +220,10 @@ DateCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets and formats the `DateCellEditor` `Calendar` `date` attribute.
          *
          * @method _uiSetValue
-         * @param val
+         * @param {Array} val
          * @protected
          */
         _uiSetValue: function(val) {

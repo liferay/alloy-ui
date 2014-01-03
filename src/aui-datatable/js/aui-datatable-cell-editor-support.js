@@ -10,7 +10,7 @@ isBaseEditor = function(val) {
  *
  * @class A.DataTable.CellEditorSupport
  * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * properties.
  * @constructor
  */
 CellEditorSupport = function() {};
@@ -25,7 +25,7 @@ CellEditorSupport = function() {};
 CellEditorSupport.NAME = 'dataTableCellEditorSupport';
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
+ * Number which provides a `z-index` style value for the `BaseCellEditor`.
  *
  * @property EDITOR_ZINDEX
  * @default 9999
@@ -45,7 +45,7 @@ CellEditorSupport.EDITOR_ZINDEX = 9999;
 CellEditorSupport.ATTRS = {
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Defines the event which displays the `BaseCellEditor`.
      *
      * @attribute editEvent
      * @default 'click'
@@ -83,11 +83,15 @@ A.mix(CellEditorSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Return the `BaseCellEditor` instance for the given `record` and `column`
+     * arguments.
      *
-     * @method getEditor
-     * @param record
-     * @param column
+     * @param {Model} record
+     * @param {Object} column Column configuration.
+     * @static
+     * @return {BaseCellEditor} The `BaseCellEditor` instance.
+     *
+     * Will return `null` if both `column` and `record` editors are not found.
      */
     getEditor: function(record, column) {
         var columnEditor = column.editor,
@@ -101,7 +105,8 @@ A.mix(CellEditorSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires after the `CellEditorSupport` has rendered, and calls
+     * `_syncModelsReadOnlyUI`.
      *
      * @method _afterCellEditorSupportRender
      * @protected
@@ -115,10 +120,12 @@ A.mix(CellEditorSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * `render()` and `show()` the `BaseCellEditor`, of the active table cell.
+     *
+     * Called when active table cell is clicked (default).
      *
      * @method _onEditCell
-     * @param event
+     * @param {EventFacade} event The event defined in attribute `editEvent`.
      * @protected
      */
     _onEditCell: function(event) {
@@ -147,10 +154,11 @@ A.mix(CellEditorSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Saves the new value from the `BaseCellEditor` input to the `Model`, on
+     * the `save` event of the `BaseCellEditor`.
      *
      * @method _onEditorSave
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _onEditorSave: function(event) {
@@ -174,10 +182,12 @@ A.mix(CellEditorSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Calls `_syncFocus` if the `BaseCellEditor` input has a new value.
+     *
+     * Called on the `visibleChange` event.
      *
      * @method _onEditorVisibleChange
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _onEditorVisibleChange: function(event) {
@@ -189,10 +199,11 @@ A.mix(CellEditorSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Toggles the row's `read-only` class. Toggle determined by the `readOnly`
+     * attribute of the `Model`.
      *
      * @method _syncModelReadOnlyUI
-     * @param model
+     * @param {Model} model
      * @protected
      */
     _syncModelReadOnlyUI: function(model) {
@@ -203,7 +214,7 @@ A.mix(CellEditorSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Calls `_syncModelReadOnlyUI` for each `Model` in the `data` attribute.
      *
      * @method _syncModelsReadOnlyUI
      * @protected
@@ -220,20 +231,25 @@ A.mix(CellEditorSupport.prototype, {
     // Use getEditor
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Forwards method call to `getEditor`.
      *
+     * @deprecated  Use `getEditor` instead.
      * @method getCellEditor
+     * @return {BaseCellEditor} See `getEditor`
+     * @static
      */
     getCellEditor: function() {
         return this.getEditor.apply(this, arguments);
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Syntactic sugar for `record.get(column.key)`.
      *
+     * @deprecated
      * @method getRecordColumnValue
-     * @param record
-     * @param column
+     * @param {Model} record
+     * @param {Object} column Column configuration.
+     * @return {String} Record column key.
      */
     getRecordColumnValue: function(record, column) {
         return record.get(column.key);

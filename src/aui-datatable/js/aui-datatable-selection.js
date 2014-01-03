@@ -19,14 +19,14 @@ var Lang = A.Lang,
  *
  * @class A.DataTableSelection
  * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * properties.
  * @constructor
  */
 var DataTableSelection = function() {};
 
 /**
  * Static property used to define the default attribute
- * configuration for the DataTableSelection.
+ * configuration for the `DataTableSelection`.
  *
  * @property ATTRS
  * @type Object
@@ -35,16 +35,18 @@ var DataTableSelection = function() {};
 DataTableSelection.ATTRS = {
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Defines the active cell of the `DataTableSelection`.
      *
      * @attribute activeCell
+     * @type Node
      */
     activeCell: {
         getter: '_getActiveCell'
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Defines and stores the active cell coordinates, `[row, cell]`, of the
+     * `DataTableSelection`.
      *
      * @attribute activeCoord
      * @default [-1, -1]
@@ -55,25 +57,27 @@ DataTableSelection.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Defines the active row of the `DataTableSelection`.
      *
      * @attribute activeRow
+     * @type Node
      */
     activeRow: {
         getter: '_getActiveRow'
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Defines the selected cells and rows of the `DataTableSelection`.
      *
      * @attribute selection
+     * @type Object
      */
     selection: {
         setter: '_setSelection'
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Defines and stores the `tabIndex` of the `activeCell`.
      *
      * @attribute tabIndex
      * @default 0
@@ -91,7 +95,7 @@ A.mix(DataTableSelection.prototype, {
     _selectionStart: null,
 
     /**
-     * Construction logic executed during DataTableSelection instantiation.
+     * Construction logic executed during `DataTableSelection` instantiation.
      * Lifecycle.
      *
      * @method initializer
@@ -113,7 +117,8 @@ A.mix(DataTableSelection.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request. Lifecycle.
+     * Destructor lifecycle implementation for the `DataTableSelection` class.
+     * Detaches `_selectionKeyHandler` event listener.
      *
      * @method destroy
      * @protected
@@ -125,10 +130,12 @@ A.mix(DataTableSelection.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Determins and returns the selected cells and rows from the passed
+     * cell coordinates `coords`.
      *
      * @method captureSelection
-     * @param coords
+     * @param {Object} coords Cell coordinates.
+     * @return {Object} Selected cells and rows.
      */
     captureSelection: function(coords) {
         var instance = this,
@@ -165,9 +172,10 @@ A.mix(DataTableSelection.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the active column based off the `activeCell` attribute.
      *
      * @method getActiveColumn
+     * @return {Object} Active column.
      */
     getActiveColumn: function() {
         var instance = this;
@@ -176,9 +184,10 @@ A.mix(DataTableSelection.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the active record based odd the `activeRow` attribute.
      *
      * @method getActiveRecord
+     * @return {Object} Active record.
      */
     getActiveRecord: function() {
         var instance = this;
@@ -187,10 +196,11 @@ A.mix(DataTableSelection.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the cell coordinates of the passed `seed`.
      *
      * @method getCoord
-     * @param seed
+     * @param {Node} seed
+     * @return {Array} Cell coordinates.
      */
     getCoord: function(seed) {
         var instance = this,
@@ -205,7 +215,7 @@ A.mix(DataTableSelection.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _afterActiveCoordChange
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _afterActiveCoordChange: function(event) {
@@ -277,7 +287,7 @@ A.mix(DataTableSelection.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _onSelectionMouseDown
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _onSelectionMouseDown: function(event) {
@@ -299,7 +309,7 @@ A.mix(DataTableSelection.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _onSelectionMouseEnter
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _onSelectionMouseEnter: function(event) {
@@ -323,7 +333,7 @@ A.mix(DataTableSelection.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _onSelectionMouseUp
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _onSelectionMouseUp: function() {
@@ -348,7 +358,7 @@ A.mix(DataTableSelection.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _onSelectionKey
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _onSelectionKey: function(event) {
@@ -397,7 +407,7 @@ A.mix(DataTableSelection.prototype, {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _parseRange
-     * @param val
+     * @param {Array} val
      * @protected
      */
     _parseRange: function(val) {
@@ -447,9 +457,11 @@ A.DataTable.Selection = DataTableSelection;
 A.Base.mix(A.DataTable, [DataTableSelection]);
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
+ * Determins and return the column based on the passed `seed`.
  *
  * @method getColumn
+ * @param {Node} seed
+ * @return {Object} Column.
  */
 A.DataTable.prototype.getColumn = (function(original) {
     return function(seed) {
@@ -467,12 +479,14 @@ A.DataTable.prototype.getColumn = (function(original) {
 }(A.DataTable.prototype.getColumn));
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
+ * Determins and return the row based on the passed `seed`.
  *
  * Add support to get a row by seed on DataTable getRow
  * See http://yuilibrary.com/projects/yui3/ticket/2532605
  *
  * @method getRow
+ * @param {Node} seed
+ * @return {Object} Row.
  */
 A.DataTable.prototype.getRow = (function(original) {
     return function(seed) {

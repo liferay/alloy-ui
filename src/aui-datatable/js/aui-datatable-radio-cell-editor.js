@@ -4,7 +4,7 @@
  * @class A.RadioCellEditor
  * @extends A.CheckboxCellEditor
  * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * properties.
  * @constructor
  */
 var RadioCellEditor = A.Component.create({
@@ -35,6 +35,7 @@ var RadioCellEditor = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getElementsValue
+         * @return {String} Input value.
          */
         getElementsValue: function() {
             var instance = this;

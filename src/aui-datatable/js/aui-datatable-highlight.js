@@ -34,7 +34,7 @@ var Lang = A.Lang,
  * @class A.DataTableHighlight
  * @extends Plugin.Base
  * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * properties.
  * @constructor
  */
 var DataTableHighlight = A.Base.create(
@@ -77,7 +77,7 @@ var DataTableHighlight = A.Base.create(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Removes visual highlights from the active cell.
          *
          * @method clear
          */
@@ -95,9 +95,10 @@ var DataTableHighlight = A.Base.create(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the active node's region.
          *
          * @method getActiveRegion
+         * @return {Object} Active node's region.
          */
         getActiveRegion: function() {
             var instance = this,
@@ -121,9 +122,10 @@ var DataTableHighlight = A.Base.create(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the selection region.
          *
          * @method getSelectionRegion
+         * @return {Object} Selection region.
          */
         getSelectionRegion: function() {
             var instance = this,
@@ -147,7 +149,7 @@ var DataTableHighlight = A.Base.create(
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _afterActiveCoordChange
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _afterActiveCoordChange: function() {
@@ -184,7 +186,7 @@ var DataTableHighlight = A.Base.create(
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _afterBlur
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _afterBlur: function() {
@@ -195,7 +197,7 @@ var DataTableHighlight = A.Base.create(
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _afterDataChange
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _afterDataChange: function() {
@@ -208,7 +210,7 @@ var DataTableHighlight = A.Base.create(
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _afterSelectionChange
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _afterSelectionChange: function(event) {
@@ -302,6 +304,7 @@ var DataTableHighlight = A.Base.create(
          * @method _collectNodes
          * @param selection
          * @protected
+         * @return {null|Boolean}
          */
         _collectNodes: function(selection) {
             var instance = this,
@@ -349,13 +352,14 @@ var DataTableHighlight = A.Base.create(
          * @method _validateType
          * @param val
          * @protected
+         * @return {Boolean}
          */
         _validateType: function(val) {
             return (val === 'cells' || val === 'rows' || val === null);
         }
     }, {
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Static property provides a string to identify the namespace.
          *
          * @property NS
          * @type String
@@ -383,7 +387,7 @@ var DataTableHighlight = A.Base.create(
         ATTRS: {
 
             /**
-             * TODO. Wanna help? Please send a Pull Request.
+             * Defines the border width of the active node.
              *
              * @attribute activeBorderWidth
              * @default 2
@@ -395,7 +399,7 @@ var DataTableHighlight = A.Base.create(
             },
 
             /**
-             * TODO. Wanna help? Please send a Pull Request.
+             * Defines the `Node` used to overlay the active node.
              *
              * @attribute overlayActiveNode
              * @default null
@@ -417,7 +421,7 @@ var DataTableHighlight = A.Base.create(
             },
 
             /**
-             * TODO. Wanna help? Please send a Pull Request.
+             * Defines the `Node` used to overlay the node.
              *
              * @attribute overlayNode
              * @default null
@@ -436,7 +440,7 @@ var DataTableHighlight = A.Base.create(
             },
 
             /**
-             * TODO. Wanna help? Please send a Pull Request.
+             * Determins whether a range of elements are highlighted.
              *
              * @attribute highlightRange
              * @default true
@@ -448,7 +452,7 @@ var DataTableHighlight = A.Base.create(
             },
 
             /**
-             * TODO. Wanna help? Please send a Pull Request.
+             * Defines the border width of the range selection.
              *
              * @attribute rangeBorderWidth
              * @default 1
@@ -460,7 +464,7 @@ var DataTableHighlight = A.Base.create(
             },
 
             /**
-             * TODO. Wanna help? Please send a Pull Request.
+             * Defines the type of highlight (cells or rows).
              *
              * @attribute type
              */

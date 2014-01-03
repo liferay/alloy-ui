@@ -18,12 +18,12 @@ var BaseOptionsCellEditor,
     CSS_ICON_GRIP_DOTTED_VERTICAL = A.getClassName('glyphicon', 'resize', 'vertical');
 
 /**
- * Abstract class BaseOptionsCellEditor for options attribute support.
+ * Abstract class `BaseOptionsCellEditor` for options attribute support.
  *
  * @class A.BaseOptionsCellEditor
  * @extends A.BaseCellEditor
  * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * properties.
  * @constructor
  */
 BaseOptionsCellEditor = A.Component.create({
@@ -38,8 +38,8 @@ BaseOptionsCellEditor = A.Component.create({
     NAME: 'optionsCellEditor',
 
     /**
-     * Static property used to define the default attribute
-     * configuration for the BaseOptionsCellEditor.
+     * Static property used to define the default attribute configuration
+     * for the `BaseOptionsCellEditor`.
      *
      * @property ATTRS
      * @type Object
@@ -48,7 +48,9 @@ BaseOptionsCellEditor = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Function which modifies data values for UI display.
+         *
+         * Default `null` Function will not modify the value.
          *
          * @attribute inputFormatter
          * @default null
@@ -58,11 +60,12 @@ BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Array or Object which defines the available options for the
+         * `BaseOptionsCellEditor`.
          *
          * @attribute options
          * @default {}
-         * @type Object
+         * @type Object|Array
          */
         options: {
             setter: '_setOptions',
@@ -71,7 +74,9 @@ BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Function which modifies input values for data storage.
+         *
+         * Default `null` Function will not modify the value.
          *
          * @attribute outputFormatter
          * @default null
@@ -81,7 +86,7 @@ BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the selected state of an option.
          *
          * @attribute selectedAttrName
          * @default 'selected'
@@ -154,7 +159,7 @@ BaseOptionsCellEditor = A.Component.create({
         options: null,
 
         /**
-         * Construction logic executed during BaseOptionsCellEditor
+         * Construction logic executed during `BaseOptionsCellEditor`
          * instantiation. Lifecycle.
          *
          * @method initializer
@@ -169,7 +174,10 @@ BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Adds a new option to the `BaseOptionsCellEditor`.
+         *
+         * If `name` or `value` is omitted, a blank string is used in it's
+         * place.
          *
          * @method addNewOption
          * @param name
@@ -191,7 +199,7 @@ BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Removes the given `optionRow` Node from the `BaseOptionsCellEditor`.
          *
          * @method removeOption
          * @param optionRow
@@ -201,7 +209,7 @@ BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Saves the `BaseOptionsCellEditor` options.
          *
          * @method saveOptions
          */
@@ -232,7 +240,7 @@ BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Toggles the display of the `BaseOptionsCellEditor`.
          *
          * @method toggleEdit
          */
@@ -247,7 +255,7 @@ BaseOptionsCellEditor = A.Component.create({
          * TODO. Rewrite this method.
          *
          * @method _createOptions
-         * @param val
+         * @param {Array} val
          * @protected
          */
         _createOptions: function(val) {
@@ -297,6 +305,7 @@ BaseOptionsCellEditor = A.Component.create({
          *
          * @method _createEditBuffer
          * @protected
+         * @return {String} HTML string for the `BaseOptionsCellEditor`.
          */
         _createEditBuffer: function() {
             var instance = this;
@@ -326,9 +335,11 @@ BaseOptionsCellEditor = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _createEditOption
-         * @param name
-         * @param value
+         * @param {String} name
+         * @param {String} value
          * @protected
+         * @return {String} HTML string for a `BaseOptionsCellEditor` input
+         * option.
          */
         _createEditOption: function(name, value) {
             var instance = this;
@@ -349,7 +360,7 @@ BaseOptionsCellEditor = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _defInitEditFn
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _defInitEditFn: function() {
@@ -386,6 +397,7 @@ BaseOptionsCellEditor = A.Component.create({
          *
          * @method _getSelectedOptions
          * @protected
+         * @return {NodeList} Selected options.
          */
         _getSelectedOptions: function() {
             var instance = this;
@@ -404,7 +416,7 @@ BaseOptionsCellEditor = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onEditEvent
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _onEditEvent: function() {
@@ -421,7 +433,7 @@ BaseOptionsCellEditor = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onEditLinkClickEvent
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _onEditLinkClickEvent: function(event) {
@@ -447,7 +459,7 @@ BaseOptionsCellEditor = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onEditKeyEvent
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _onEditKeyEvent: function(event) {
@@ -472,7 +484,7 @@ BaseOptionsCellEditor = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onSave
-         * @param event
+         * @param {EventFacade} event
          * @protected
          */
         _onSave: function() {
@@ -482,10 +494,10 @@ BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determins the proper format for the `options` attribute.
          *
          * @method _setOptions
-         * @param val
+         * @param {Array} val
          * @protected
          */
         _setOptions: function(val) {
@@ -531,11 +543,12 @@ BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the `BaseOptionsCellEditor` option values.
          *
          * @method _uiSetValue
-         * @param val
+         * @param {Array} val
          * @protected
+         * @return {Array} Resulting new values.
          */
         _uiSetValue: function(val) {
             var instance = this;
