@@ -208,7 +208,6 @@ var AColor = A.Color,
 
         /**
          * Destructor lifecycle implementation for the `HSVPalette` class.
-         * Lifecycle.
          *
          * @method destructor
          * @protected

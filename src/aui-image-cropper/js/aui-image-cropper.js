@@ -265,7 +265,7 @@ var ImageCropper = A.Component.create({
         },
 
         /**
-         * Destroy the Image Cropper. Lifecycle.
+         * Destructor lifecycle implementation for the `ImageCropper` class.
          *
          * @method syncUI
          * @protected

@@ -196,7 +196,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * Destructor lifecycle implementation for the Connector class. Lifecycle.
+     * Destructor lifecycle implementation for the `Connector` class.
      *
      * @method destructor
      * @protected

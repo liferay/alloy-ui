@@ -218,8 +218,7 @@ var TogglerDelegate = A.Component.create({
         },
 
         /**
-         * Destructor lifecycle implementation for the TogglerDelegate class.
-         * Lifecycle.
+         * Destructor lifecycle implementation for the `TogglerDelegate` class.
          *
          * @method destructor
          * @protected

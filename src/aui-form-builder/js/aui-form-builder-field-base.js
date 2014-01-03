@@ -641,8 +641,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * Destructor lifecycle implementation for the FormBuilderField class.
-         * Lifecycle.
+         * Destructor lifecycle implementation for the `FormBuilderField` class.
          *
          * @method destructor
          * @protected

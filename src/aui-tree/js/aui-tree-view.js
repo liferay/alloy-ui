@@ -573,7 +573,7 @@ var TreeViewDD = A.Component.create({
         nodeContent: null,
 
         /**
-         * Destructor lifecycle implementation for the TreeViewDD class.
+         * Destructor lifecycle implementation for the `TreeViewDD` class.
          * Purges events attached to the node (and all child nodes).
          *
          * @method destructor

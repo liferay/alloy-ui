@@ -88,7 +88,7 @@ A.Modal = A.Base.create(MODAL, A.Widget, [
     },
 
     /**
-     * Destructor lifecycle implementation for the Modal class. Lifecycle.
+     * Destructor lifecycle implementation for the `Modal` class.
      *
      * @method destructor
      * @protected

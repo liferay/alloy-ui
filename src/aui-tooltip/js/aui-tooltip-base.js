@@ -118,8 +118,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
     },
 
     /**
-     * Destructor lifecycle implementation for the Tooltip class.
-     * Lifecycle.
+     * Destructor lifecycle implementation for the `Tooltip` class.
      *
      * @method destructor
      * @protected

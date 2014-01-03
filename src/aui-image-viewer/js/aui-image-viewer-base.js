@@ -223,7 +223,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Destructor lifecycle implementation for the ImageViewer class.
+         * Destructor lifecycle implementation for the `ImageViewer` class.
          * Purges events attached to the node (and all child nodes).
          *
          * @method destructor

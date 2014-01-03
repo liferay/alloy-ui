@@ -93,7 +93,6 @@ ColorPickerBase.prototype = {
 
     /**
      * Destructor lifecycle implementation for the `ColorPickerBase` class.
-     * Lifecycle.
      *
      * @method destructor
      * @protected
