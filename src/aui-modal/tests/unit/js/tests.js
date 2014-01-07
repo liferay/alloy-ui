@@ -143,8 +143,8 @@ YUI.add('aui-modal-tests', function(Y) {
 
             Y.Mock.expect(
                 mock, {
-                    method: 'afterVisibleChange',
-                    args: [YUITest.Mock.Value.Object]
+                    args: [YUITest.Mock.Value.Object],
+                    method: 'afterVisibleChange'
                 }
             );
 
