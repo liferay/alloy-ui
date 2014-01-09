@@ -1,5 +1,5 @@
-.image-viewer, .image-viewer-control {
-    position: absolute;
+.image-viewer, .image-viewer-control.carousel-control {
+    position: fixed;
     z-index: 3000;
 }
 .image-viewer-control {
