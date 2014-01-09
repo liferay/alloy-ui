@@ -521,31 +521,36 @@ var Pagination = A.Component.create({
         _renderItemsUI: function(total) {
             var instance = this,
                 i,
-                buffer = '',
+                buffer = [],
                 formatter = instance.get(FORMATTER),
                 offset = instance.get(OFFSET),
                 showControls = instance.get(SHOW_CONTROLS),
                 tpl = instance.ITEM_TEMPLATE;
 
             if (showControls) {
-                buffer += Lang.sub(tpl, {
-                    content: instance.getString(PREV),
-                    cssClass: CSS_PAGINATION_CONTROL
-                });
+                buffer.push(
+                    Lang.sub(tpl, {
+                        content: instance.getString(PREV),
+                        cssClass: CSS_PAGINATION_CONTROL
+                    })
+                );
             }
 
             for (i = offset; i <= (offset + total - 1); i++) {
-                buffer += formatter.apply(instance, [i]);
+                buffer.push(formatter.apply(instance, [i]));
             }
 
             if (showControls) {
-                buffer += Lang.sub(tpl, {
-                    content: instance.getString(NEXT),
-                    cssClass: CSS_PAGINATION_CONTROL
-                });
+                buffer.push(
+                    Lang.sub(tpl, {
+                        content: instance.getString(NEXT),
+                        cssClass: CSS_PAGINATION_CONTROL
+                    })
+                );
             }
 
-            var items = A.NodeList.create(buffer);
+            var items = A.NodeList.create(buffer.join(''));
+
             instance.set(ITEMS, items);
             instance.get(CONTENT_BOX).setContent(items);
         },
