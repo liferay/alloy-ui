@@ -781,8 +781,9 @@ var TreeViewDD = A.Component.create({
             instance._resetState(instance.nodeContent);
 
             // cannot drop the dragged element into any of its children
+            // nor above an undraggable element
             // using DOM contains method for performance reason
-            if (!dragNode.contains(dropNode)) {
+            if (!dragNode.contains(dropNode) && !!dropTreeNode.get(DRAGGABLE)) {
                 // nArea splits the height in 3 areas top/center/bottom these
                 // areas are responsible for defining the state when the mouse
                 // is over any of them
