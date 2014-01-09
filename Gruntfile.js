@@ -121,7 +121,6 @@ module.exports = function(grunt) {
                 },
                 files: [
                     {
-                        dest: 'alloy-<%= pkg["version"] %>/',
                         src: [
                             'build/**',
                             'demos/**',
