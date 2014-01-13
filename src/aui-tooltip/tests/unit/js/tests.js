@@ -1,4 +1,4 @@
-YUI.add('module-tests', function(Y) {
+YUI.add('aui-tooltip-tests', function(Y) {
 
     //--------------------------------------------------------------------------
     // AUI Tooltip Unit Tests

@@ -16,8 +16,8 @@
 YUI({
     coverage: ['aui-parse-content'],
     filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-}).use('test-console', 'test', 'module-tests', function(Y) {
-    
+}).use('test-console', 'test', 'aui-parse-content-tests', function(Y) {
+
     (new Y.Test.Console()).render('#logger');
 
     Y.Test.Runner.setName('aui-parse-content');

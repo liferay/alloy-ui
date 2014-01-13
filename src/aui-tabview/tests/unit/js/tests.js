@@ -1,4 +1,4 @@
-YUI.add('module-tests', function(Y) {
+YUI.add('aui-tabview-tests', function(Y) {
 
     //--------------------------------------------------------------------------
     // AUI TabView Unit Tests

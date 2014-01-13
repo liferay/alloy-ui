@@ -40,7 +40,7 @@ grunt command --option value
 2. Install global dependencies:
 
     ```
-[sudo] npm install -g grunt-cli shifter yogi yuidocjs phantomjs
+[sudo] npm install -g grunt-cli shifter yogi yuidocjs phantomjs grover istanbul
     ```
 
 3. Install local dependencies:
@@ -155,6 +155,12 @@ grunt release-cdn
 
     ```
 grunt test
+    ```
+
+* Run code coverage:
+
+    ```
+grunt test --coverage
     ```
 
 ### API Docs

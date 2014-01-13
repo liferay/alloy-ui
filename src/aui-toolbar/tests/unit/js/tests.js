@@ -1,4 +1,4 @@
-YUI.add('module-tests', function(Y) {
+YUI.add('aui-toolbar-tests', function(Y) {
 
     //--------------------------------------------------------------------------
     // AUI Toolbar Unit Tests

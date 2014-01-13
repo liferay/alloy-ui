@@ -12,12 +12,14 @@
 <body class="yui3-skin-sam">
 <div id="logger"></div>
 
+<div id="pagination"></div>
+
 <script>
 YUI({
     coverage: ['aui-pagination'],
     filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-}).use('test-console', 'test', 'module-tests', function(Y) {
-    
+}).use('test-console', 'test', 'aui-pagination-tests', function(Y) {
+
     (new Y.Test.Console()).render('#logger');
 
     Y.Test.Runner.setName('aui-pagination');

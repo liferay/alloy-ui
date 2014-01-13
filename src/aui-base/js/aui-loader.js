@@ -1247,7 +1247,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-tooltip-base": {
         "requires": [
-            "event-mouseenter",
+            "event-hover",
             "transition",
             "widget",
             "widget-autohide",
@@ -1416,4 +1416,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'b686029fbc7b1029267a057f36ea552f';
+YUI.Env[Y.version].md5 = 'c77776d14bbdde607eb0d53aeffc212b';

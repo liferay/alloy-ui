@@ -60,7 +60,8 @@ module.exports = function(grunt) {
                 'src': path.join(ROOT, 'src'),
                 'dist': path.join(ROOT, 'build'),
                 'cache': false,
-                'coverage': false,
+                'coverage': true,
+                'istanbul': true,
                 'lint': false,
                 'replace-yuivar': 'A',
                 'replace-version': '<%= pkg["version"] %>',
@@ -120,7 +121,6 @@ module.exports = function(grunt) {
                 },
                 files: [
                     {
-                        dest: 'alloy-<%= pkg["version"] %>/',
                         src: [
                             'build/**',
                             'demos/**',

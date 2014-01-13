@@ -19,11 +19,11 @@
         YUI({
             coverage: ['aui-ace-editor', 'ace-autocomplete-base', 'aui-ace-autocomplete-freemarker', 'ace-autocomplete-list', 'ace-autocomplete-plugin', 'aui-ace-autocomplete-templateprocessor'],
             filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-        }).use('test-console', 'test', 'module-tests', function(Y) {
+        }).use('test-console', 'test', 'aui-ace-autocomplete-freemarker-tests', function(Y) {
 
             (new Y.Test.Console()).render('#logger');
 
-            Y.Test.Runner.setName('aui-ace-editor');
+            Y.Test.Runner.setName('aui-ace-autocomplete-freemarker');
             Y.Test.Runner.run();
         });
     </script>

@@ -1,6 +1,6 @@
-YUI.add('module-tests', function(Y) {
+YUI.add('aui-widget-tests', function(Y) {
 
-    var suite = new Y.Test.Suite('aui-widget-toolbars');
+    var suite = new Y.Test.Suite('aui-widget');
 
     suite.add(new Y.Test.Case({
         name: 'Automated Tests',

@@ -21,7 +21,7 @@
 YUI({
     coverage: ['aui-toolbar'],
     filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-}).use('aui-toolbar', 'test-console', 'test', 'module-tests', function(Y) {
+}).use('aui-toolbar', 'test-console', 'test', 'aui-toolbar-tests', function(Y) {
 
     (new Y.Test.Console()).render('#logger');
 

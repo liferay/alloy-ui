@@ -1,6 +1,6 @@
-YUI.add('module-tests', function(Y) {
+YUI.add('aui-diagram-builder-tests', function(Y) {
 
-    var suite = new Y.Test.Suite('aui-form-builder');
+    var suite = new Y.Test.Suite('aui-diagram-builder');
 
     var diagramBuilder = new Y.DiagramBuilder({
         availableFields: [],

@@ -1,4 +1,4 @@
-YUI.add('module-tests', function(Y) {
+YUI.add('aui-datatype-date-parse-tests', function(Y) {
 
     function areLikelySameDate(date1, date2) {
         return date2 &&

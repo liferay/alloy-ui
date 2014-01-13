@@ -1,4 +1,4 @@
-YUI.add('module-tests', function(Y) {
+YUI.add('aui-form-validator-tests', function(Y) {
 
     //--------------------------------------------------------------------------
     // AUI Form Validator Unit Tests

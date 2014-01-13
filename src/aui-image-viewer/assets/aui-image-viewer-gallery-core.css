@@ -43,9 +43,6 @@
     border: 3px solid #fff;
     padding: 0;
 }
-.image-gallery-pagination .pagination-control {
-    display: none;
-}
 .image-gallery-pagination-links {
     text-align: center;
 }
