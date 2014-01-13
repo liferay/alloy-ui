@@ -1,16 +1,64 @@
 YUI.add('module-tests', function(Y) {
 
-    var suite = new Y.Test.Suite('aui-popover');
+    //--------------------------------------------------------------------------
+    // AUI Popover Tests
+    //--------------------------------------------------------------------------
+
+    var suite = new Y.Test.Suite('aui-popover'),
+        popoverBottom;
+
+    //--------------------------------------------------------------------------
+    // Test Case for aligning the Popover
+    //--------------------------------------------------------------------------
 
     suite.add(new Y.Test.Case({
-        name: 'Automated Tests',
-        'test is empty': function() {
-            Y.Assert.pass('No Tests Provided For This Module');
+
+        name: 'Test Popover appearance after toggling visibility',
+
+        'assert popover appears on the same position after toggling visibility': function() {
+            var equal,
+                newPosition,
+                oldPosition,
+                popoverBottom,
+                popoverTop,
+
+            popoverTop = new Y.Popover({
+                align: {
+                    node: triggerTop
+                },
+                bodyContent: 'One fine body…',
+                headerContent: 'Header content',
+                plugins: [Y.Plugin.WidgetAnim],
+                trigger: '#triggerTop'
+            }).render();
+
+            popoverBottom = new Y.Popover({
+                align: {
+                    node: triggerBottom
+                },
+                bodyContent: 'Another fine body…',
+                headerContent: 'Header content',
+                position: 'bottom',
+                trigger: '#triggerBottom'
+            }).render();
+
+            oldPosition = Y.one('.popover').get('offsetLeft');
+
+            popoverBottom.set('visible', false);
+
+            popoverBottom.set('visible', true);
+
+            newPosition = Y.one('.popover').get('offsetLeft');
+
+            // Firefox shows widget the second time with one pixel difference, ignore it for now
+            equal = (newPosition - oldPosition) <= 1 ? true : false;
+
+            Y.Test.Assert.isTrue(equal, 'The old and new widget position should be equal.');
         }
     }));
 
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['test']
+    requires: ['test', 'aui-popover', 'widget-anim']
 });
