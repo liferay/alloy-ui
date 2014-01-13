@@ -114,7 +114,7 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
 
         boundingBox.setStyle(DISPLAY, val ? BLOCK : NONE);
 
-        instance.centered(instance.get('trigger')).suggestAlignment();
+        instance.suggestAlignment();
     },
 
     /**
