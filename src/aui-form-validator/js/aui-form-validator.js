@@ -199,7 +199,7 @@ A.mix(defaults, {
 });
 
 /**
- * A base class for FormValidator.
+ * A base class for `A.FormValidator`.
  *
  * @class A.FormValidator
  * @extends Base
@@ -222,7 +222,7 @@ var FormValidator = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the FormValidator.
+     * configuration for the `A.FormValidator`.
      *
      * @property ATTRS
      * @type Object
@@ -231,7 +231,7 @@ var FormValidator = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The widget's outermost node, used for sizing and positioning.
          *
          * @attribute boundingBox
          */
@@ -240,7 +240,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Container for the CSS error class.
          *
          * @attribute containerErrorClass
          * @type String
@@ -251,7 +251,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Container for the CSS valid class.
          *
          * @attribute containerValidClass
          * @type String
@@ -262,7 +262,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the CSS error class.
          *
          * @attribute errorClass
          * @type String
@@ -273,7 +273,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * If `true` the validation rules are extracted from the DOM.
          *
          * @attribute extractRules
          * @default true
@@ -285,7 +285,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Container for a field.
          *
          * @attribute fieldContainer
          * @type String
@@ -295,7 +295,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Collection of strings used on a field.
          *
          * @attribute fieldStrings
          * @default {}
@@ -307,9 +307,10 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The CSS class for `<label>`.
          *
          * @attribute labelCssClass
+         * @default 'control-label'
          * @type String
          */
         labelCssClass: {
@@ -318,7 +319,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Container for the form message.
          *
          * @attribute messageContainer
          * @default '<div role="alert"></div>'
@@ -331,7 +332,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * Colection of strings used to label elements of the UI.
+         * Collection of strings used to label elements of the UI.
          *
          * @attribute strings
          * @type Object
@@ -343,7 +344,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Collection of rules to validate fields.
          *
          * @attribute rules
          * @default {}
@@ -362,7 +363,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines if the text will be selected or not after validation.
          *
          * @attribute selectText
          * @default true
@@ -374,7 +375,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines if the validation messages will be showed or not.
          *
          * @attribute showMessages
          * @default true
@@ -386,7 +387,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines if all validation messages will be showed or not.
          *
          * @attribute showAllMessages
          * @default false
@@ -398,7 +399,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines a container for the stack errors.
          *
          * @attribute stackErrorContainer
          */
@@ -410,7 +411,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * If `true` the field will be validated on blur event.
          *
          * @attribute validateOnBlur
          * @default true
@@ -422,7 +423,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * If `true` the field will be validated on input event.
          *
          * @attribute validateOnInput
          * @default false
@@ -434,7 +435,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the CSS valid class.
          *
          * @attribute validClass
          * @type String
@@ -446,11 +447,12 @@ var FormValidator = A.Component.create({
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Checks if a node is a checkbox or radio input.
      *
      * @method isCheckable
      * @param node
      * @private
+     * @return {Boolean}
      */
     isCheckable: function(node) {
         var nodeType = node.get(TYPE).toLowerCase();
@@ -470,7 +472,7 @@ var FormValidator = A.Component.create({
     prototype: {
 
         /**
-         * Construction logic executed during FormValidator instantiation.
+         * Construction logic executed during `A.FormValidator` instantiation.
          * Lifecycle.
          *
          * @method initializer
@@ -491,7 +493,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * Bind the events on the FormValidator UI. Lifecycle.
+         * Bind the events on the `A.FormValidator` UI. Lifecycle.
          *
          * @method bindUI
          * @protected
@@ -530,7 +532,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Adds a validation error in the field.
          *
          * @method addFieldError
          * @param field
@@ -549,7 +551,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Removes a validation error in the field.
          *
          * @method clearFieldError
          * @param field
@@ -561,7 +563,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Executes a function to each rule.
          *
          * @method eachRule
          * @param fn
@@ -580,10 +582,11 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the ancestor of a given field.
          *
          * @method findFieldContainer
          * @param field
+         * @return {Node}
          */
         findFieldContainer: function(field) {
             var instance = this,
@@ -595,7 +598,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Focus on the invalid field.
          *
          * @method focusInvalidField
          */
@@ -616,10 +619,11 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets a field from the form.
          *
          * @method getField
          * @param fieldOrFieldName
+         * @return {Node}
          */
         getField: function(fieldOrFieldName) {
             var instance = this;
@@ -636,10 +640,11 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets a list of fields based on its name.
          *
          * @method getFieldsByName
          * @param fieldName
+         * @return {NodeList}
          */
         getFieldsByName: function(fieldName) {
             var instance = this,
@@ -649,10 +654,11 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets a list of fields with errors.
          *
          * @method getFieldError
          * @param field
+         * @return {String}
          */
         getFieldError: function(field) {
             var instance = this;
@@ -661,7 +667,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the stack error container of a field.
          *
          * @method getFieldStackErrorContainer
          * @param field
@@ -679,11 +685,12 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the error message of a field.
          *
          * @method getFieldErrorMessage
          * @param field
          * @param rule
+         * @return {String}
          */
         getFieldErrorMessage: function(field, rule) {
             var instance = this,
@@ -710,9 +717,10 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns `true` if there are errors.
          *
          * @method hasErrors
+         * @return {Boolean}
          */
         hasErrors: function() {
             var instance = this;
@@ -721,7 +729,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Highlights a field with error or success.
          *
          * @method highlight
          * @param field
@@ -747,7 +755,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Normalizes rule value.
          *
          * @method normalizeRuleValue
          * @param ruleValue
@@ -759,7 +767,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Removes the highlight of a field.
          *
          * @method unhighlight
          * @param field
@@ -771,7 +779,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Prints the stack error messages into a container.
          *
          * @method printStackError
          * @param field
@@ -801,7 +809,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Resets the CSS class and content of all fields.
          *
          * @method resetAllFields
          */
@@ -818,7 +826,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Resets the CSS class and content of a field.
          *
          * @method resetField
          * @param field
@@ -833,7 +841,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Removes the CSS classes of a field.
          *
          * @method resetFieldCss
          * @param field
@@ -857,10 +865,11 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if a field can be validated or not.
          *
          * @method validatable
          * @param field
+         * @return {Boolean}
          */
         validatable: function(field) {
             var instance = this,
@@ -878,7 +887,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Validates all fields.
          *
          * @method validate
          */
@@ -895,7 +904,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Validates a single field.
          *
          * @method validateField
          * @param field
@@ -920,7 +929,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after `extractRules` attribute change.
          *
          * @method _afterExtractRulesChange
          * @param event
@@ -933,7 +942,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after `validateOnInput` attribute change.
          *
          * @method _afterValidateOnInputChange
          * @param event
@@ -946,7 +955,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after `validateOnBlur` attribute change.
          *
          * @method _afterValidateOnBlurChange
          * @param event
@@ -959,7 +968,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines an error field.
          *
          * @method _defErrorFieldFn
          * @param event
@@ -1005,7 +1014,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines a valid field.
          *
          * @method _defValidFieldFn
          * @param event
@@ -1020,7 +1029,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the validation of a field.
          *
          * @method _defValidateFieldFn
          * @param event
@@ -1067,7 +1076,8 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the error/success CSS classes based on the validation of a
+         * field.
          *
          * @method _highlightHelper
          * @param field
@@ -1088,7 +1098,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Extracts form rules from the DOM.
          *
          * @method _extractRulesFromMarkup
          * @param rules
@@ -1138,7 +1148,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers when there's an input in the field.
          *
          * @method _onFieldInput
          * @param event
@@ -1151,7 +1161,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers when the form is submitted.
          *
          * @method _onFormSubmit
          * @param event
@@ -1181,7 +1191,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers when the form is reseted.
          *
          * @method _onFormReset
          * @param event
@@ -1194,7 +1204,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the aria roles.
          *
          * @method _setARIARoles
          * @protected
@@ -1216,7 +1226,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the `extractRules` attribute on the UI.
          *
          * @method _uiSetExtractRules
          * @param val
@@ -1230,7 +1240,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the `validateOnInput` attribute on the UI.
          *
          * @method _uiSetValidateOnInput
          * @param val
@@ -1254,7 +1264,7 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the `validateOnBlur` attribute on the UI.
          *
          * @method _uiSetValidateOnBlur
          * @param val
