@@ -130,45 +130,34 @@
         }).render();
 
         new Y.TreeViewDD({
-        boundingBox: '#treebasic-undrag',
-        children: [
-            {
-                label: 'Fruits',
-                expanded: true,
-                children: [
-                    { label: 'Apricot - cannot move/drop' , 'draggable':false },
-                    { label: 'Pineapple - cannot move/drop' , 'draggable':false },
-                    { label: 'Kiwi - cannot move/drop' , 'draggable':false },
-                    { label: 'Orange' },
-                    { label: 'Pomegranate' },
-                    { label: 'Lime' },
-                ]
-            },
-            {
-                label: 'More fruits',
-                expanded: true,
-                children: [
-                    { label: 'Watermelon' },
-                    { label: 'Apricot' },
-                    { label: 'Pineapple' },
-                    { label: 'Kiwi' },
-                    { label: 'Orange' },
-                    { label: 'Pomegranate' }
-                ]
-            }
-        ],
-        type: 'normal',
-        on: {
-                'drop:hit': function(event) {
-                    var dropNode = event.drop.get('node').get('parentNode');
-
-                    var dropTreeNode = dropNode.getData('tree-node');
-
-                    if (!dropTreeNode.get('draggable')) {
-                        event.halt();
-                    }
+            boundingBox: '#treebasic-undrag',
+            children: [
+                {
+                    label: 'Fruits',
+                    expanded: true,
+                    children: [
+                        { label: 'Apricot - cannot move/drop' , 'draggable':false },
+                        { label: 'Pineapple - cannot move/drop' , 'draggable':false },
+                        { label: 'Kiwi - cannot move/drop' , 'draggable':false },
+                        { label: 'Orange' },
+                        { label: 'Pomegranate' },
+                        { label: 'Lime' },
+                    ]
+                },
+                {
+                    label: 'More fruits',
+                    expanded: true,
+                    children: [
+                        { label: 'Watermelon' },
+                        { label: 'Apricot' },
+                        { label: 'Pineapple' },
+                        { label: 'Kiwi' },
+                        { label: 'Orange' },
+                        { label: 'Pomegranate' }
+                    ]
                 }
-            }
+            ],
+            type: 'normal'
         }).render();
 
         var solarSystemChildren = [
