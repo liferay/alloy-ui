@@ -20,7 +20,7 @@ YUI.add('module-tests', function(Y) {
                 newPosition,
                 oldPosition,
                 popoverBottom,
-                popoverTop,
+                popoverTop;
 
             popoverTop = new Y.Popover({
                 align: {
