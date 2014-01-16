@@ -44,7 +44,16 @@ Url.URI_REGEX_RFC3986 =
     /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/;
 
 /**
- * A base class for Url.
+ * A base class for `A.Url`.
+ *
+ * In order to understand what each attribute/method does,
+ * you need to see the anatomy of a URL:
+ *
+ * ```
+ *  foo://example.com:8042/over/there?name=ferret#nose
+ *  \_/   \______________/\_________/ \_________/ \__/
+ * Scheme     Authority       Path       Query   Anchor
+ * ```
  *
  * @class A.Url
  * @param {Object} config Object literal specifying widget configuration
@@ -69,7 +78,7 @@ A.mix(Url.prototype, {
     _parameters: undefined,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Adds a single parameter in the URL.
      *
      * @method addParameter
      * @param key
@@ -84,7 +93,7 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Adds a list of parameters in the URL.
      *
      * @method addParameters
      * @param parameters
@@ -98,10 +107,11 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Checks if the URL has a parameter.
      *
      * @method hasParameter
      * @param key
+     * @return {Boolean}
      */
     hasParameter: function(key) {
         var instance = this;
@@ -110,10 +120,11 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets a single parameter.
      *
      * @method getParameter
      * @param key
+     * @return {String}
      */
     getParameter: function(key) {
         var instance = this;
@@ -122,9 +133,10 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets a list of parameters.
      *
      * @method getParameters
+     * @return {Array}
      */
     getParameters: function() {
         var instance = this;
@@ -133,9 +145,10 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the anchor.
      *
      * @method getAnchor
+     * @return {String}
      */
     getAnchor: function() {
         var instance = this;
@@ -144,9 +157,10 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the authority.
      *
      * @method getAuthority
+     * @return {String}
      */
     getAuthority: function() {
         var instance = this;
@@ -155,9 +169,10 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the directory.
      *
      * @method getDirectory
+     * @return {String}
      */
     getDirectory: function() {
         var instance = this;
@@ -166,9 +181,10 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the file.
      *
      * @method getFile
+     * @return {String}
      */
     getFile: function() {
         var instance = this;
@@ -177,9 +193,10 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the host.
      *
      * @method getHost
+     * @return {String}
      */
     getHost: function() {
         var instance = this;
@@ -188,9 +205,10 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the password.
      *
      * @method getPassword
+     * @return {String}
      */
     getPassword: function() {
         var instance = this;
@@ -199,9 +217,10 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the path.
      *
      * @method getPath
+     * @return {String}
      */
     getPath: function() {
         var instance = this;
@@ -210,9 +229,10 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the port.
      *
      * @method getPort
+     * @return {String}
      */
     getPort: function() {
         var instance = this;
@@ -221,9 +241,10 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the protocol.
      *
      * @method getProtocol
+     * @return {String}
      */
     getProtocol: function() {
         var instance = this;
@@ -232,9 +253,10 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the query.
      *
      * @method getQuery
+     * @return {String}
      */
     getQuery: function() {
         var instance = this;
@@ -243,9 +265,10 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the relative.
      *
      * @method getRelative
+     * @return {String}
      */
     getRelative: function() {
         var instance = this;
@@ -254,9 +277,10 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the source.
      *
      * @method getSource
+     * @return {String}
      */
     getSource: function() {
         var instance = this;
@@ -265,9 +289,10 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the user.
      *
      * @method getUser
+     * @return {String}
      */
     getUser: function() {
         var instance = this;
@@ -276,9 +301,10 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the user info.
      *
      * @method getUserInfo
+     * @return {String}
      */
     getUserInfo: function() {
         var instance = this;
@@ -287,7 +313,7 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Removes a single parameter from the parameters list.
      *
      * @method removeParameter
      * @param key
@@ -301,7 +327,7 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Removes a list of parameters from the parameters list.
      *
      * @method removeParameters
      * @param parameters
@@ -315,7 +341,7 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets a single parameter.
      *
      * @method setParameter
      * @param key
@@ -330,7 +356,7 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets a list of parameters.
      *
      * @method setParameters
      * @param parameters
@@ -344,7 +370,7 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the anchor.
      *
      * @method setAnchor
      * @param val
@@ -356,7 +382,7 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the authority.
      *
      * @method setAuthority
      * @param val
@@ -368,7 +394,7 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the directory.
      *
      * @method setDirectory
      * @param val
@@ -380,7 +406,7 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the file.
      *
      * @method setFile
      * @param val
@@ -392,7 +418,7 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the host.
      *
      * @method setHost
      * @param val
@@ -404,7 +430,7 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the password.
      *
      * @method setPassword
      * @param val
@@ -416,7 +442,7 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the path.
      *
      * @method setPath
      * @param val
@@ -428,7 +454,7 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the port.
      *
      * @method setPort
      * @param val
@@ -440,7 +466,7 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the protocol.
      *
      * @method setProtocol
      * @param val
@@ -452,7 +478,7 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the relative.
      *
      * @method setRelative
      * @param val
@@ -464,7 +490,7 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the source.
      *
      * @method setSource
      * @param val
@@ -476,7 +502,7 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the user.
      *
      * @method setUser
      * @param val
@@ -488,7 +514,7 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the user info.
      *
      * @method setUserInfo
      * @param val
@@ -500,9 +526,10 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Generates the entire URL based on each attribute.
      *
      * @method toString
+     * @return {String}
      */
     toString: function() {
         var instance = this,
@@ -510,7 +537,7 @@ A.mix(Url.prototype, {
 
         //   foo://example.com:8042/over/there?name=ferret#nose
         //   \_/   \______________/\_________/ \_________/ \__/
-        // scheme     authority       path        query   fragment
+        // scheme     authority       path        query   anchor
 
         if (instance._protocol) {
             url.push(
@@ -542,7 +569,7 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Indexes all parameters into the query.
      *
      * @method _indexParameters
      * @protected
@@ -558,7 +585,7 @@ A.mix(Url.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Indexes all URL parts to its private attributes.
      *
      * @method _indexParts
      * @param url
