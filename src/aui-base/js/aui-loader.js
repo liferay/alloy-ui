@@ -592,6 +592,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "dd-plugin",
             "dd-constrain",
             "resize-plugin",
+            "timers",
             "aui-classnamemanager",
             "aui-widget-cssclass",
             "aui-widget-toggle",
@@ -1035,4 +1036,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'e18e95a3258202170b70f82d9f97c62c';
+YUI.Env[Y.version].md5 = '30eecce044d2cf133d5f4f24795b1a1c';
