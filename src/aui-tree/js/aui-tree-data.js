@@ -130,7 +130,7 @@ A.mix(TreeData.prototype, {
     },
 
     /**
-     * Destructor lifecycle implementation for the TreeData class.
+     * Destructor lifecycle implementation for the `TreeData` class.
      * Purges events attached to the node (and all child nodes).
      *
      * @method destructor

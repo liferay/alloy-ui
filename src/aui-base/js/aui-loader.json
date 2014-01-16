@@ -792,6 +792,7 @@
             "dd-plugin",
             "dd-constrain",
             "resize-plugin",
+            "timers",
             "aui-classnamemanager",
             "aui-widget-cssclass",
             "aui-widget-toggle",

@@ -16,7 +16,6 @@ var TASK = {
 var async = require('async');
 var command = require('command');
 var fs = require('fs-extra');
-var path = require('path');
 
 // -- Task ---------------------------------------------------------------------
 module.exports = function(grunt) {

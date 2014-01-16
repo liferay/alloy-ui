@@ -55,7 +55,6 @@ DatePickerDelegate.prototype = {
 
     /**
      * Destructor logic implementation for the `DatePickerDelegate` class.
-     * Lifecycle.
      *
      * @method destroy
      * @protected

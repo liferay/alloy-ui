@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>aui-popover</title>
+    <meta charset="utf-8" />
+    <title>AUI Popover Unit Test</title>
 
     <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
 
     <script src="../../../../build/aui/aui.js"></script>
     <script src="js/tests.js"></script>
-    <meta charset="utf-8" />
+
+    <style>
+        .example {
+            margin: 100px;
+        }
+    </style>
 </head>
+
 <body class="yui3-skin-sam">
-<div id="logger"></div>
+    <div id="logger"></div>
 
-<script>
-YUI({
-    coverage: ['aui-popover'],
-    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-}).use('test-console', 'test', 'aui-popover-tests', function(Y) {
+    <div class="example">
+        <button class="btn btn-large btn-primary" id="triggerTop">Click here to toggle a top popover</button>
+        <button class="btn btn-large btn-primary" id="triggerBottom">Click here to toggle a bottom popover</button>
+    </div>
 
-    (new Y.Test.Console()).render('#logger');
+    <script>
+        YUI({
+            coverage: ['aui-popover'],
+            filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+        }).use('test-console', 'test', 'aui-popover-tests', function(Y) {
 
-    Y.Test.Runner.setName('aui-popover');
-    Y.Test.Runner.run();
-});
-</script>
-</body>
+            (new Y.Test.Console()).render('#logger');
+
+            Y.Test.Runner.setName('aui-popover');
+            Y.Test.Runner.run();
+        });
+    </script>
+    </body>
 </html>

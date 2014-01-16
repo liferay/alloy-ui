@@ -311,7 +311,7 @@ var FormBuilder = A.Component.create({
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Static property used to define the UI attributes.
      *
      * @property UI_ATTRS
      * @type Array

@@ -208,7 +208,6 @@ var AColor = A.Color,
 
         /**
          * Destructor lifecycle implementation for the `HSVPalette` class.
-         * Lifecycle.
          *
          * @method destructor
          * @protected
@@ -1604,7 +1603,7 @@ var AColor = A.Color,
         NAME: NAME,
 
         /**
-         * The namespace of the plugin.
+         * Static property provides a string to identify the namespace.
          *
          * @property NS
          * @type {String}

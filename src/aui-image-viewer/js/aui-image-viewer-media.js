@@ -31,7 +31,7 @@ var Lang = A.Lang,
     REGEX_PARAM = '(?:[\\?&]|^){param}=([^&#]*)';
 
 /**
- * A base class for MediaViewerPlugin.
+ * A base class for `A.MediaViewerPlugin`.
  *
  * Check the [live demo](http://alloyui.com/examples/image-viewer/).
  *
@@ -62,7 +62,7 @@ var MediaViewerPlugin = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the MediaViewerPlugin.
+     * configuration for the `A.MediaViewerPlugin`.
      *
      * @property ATTRS
      * @type Object
@@ -71,7 +71,8 @@ var MediaViewerPlugin = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Contains the templates, options and definitions for each provider
+         * (Flash, Youtube, Vimeo).
          *
          * @attribute providers
          * @type Object
@@ -127,7 +128,7 @@ var MediaViewerPlugin = A.Component.create({
     prototype: {
 
         /**
-         * Construction logic executed during MediaViewerPlugin instantiation.
+         * Construction logic executed during `A.MediaViewerPlugin` instantiation.
          * Lifecycle.
          *
          * @method initializer
@@ -146,7 +147,7 @@ var MediaViewerPlugin = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if the media type is an image, if not empty the content.
          *
          * @method close
          */
@@ -167,7 +168,7 @@ var MediaViewerPlugin = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Loads a media based on the `providers` and include it on a container.
          *
          * @method loadMedia
          * @param linkHref
@@ -234,7 +235,7 @@ var MediaViewerPlugin = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Preloads an image.
          *
          * @method preloadImage
          * @param index
@@ -262,7 +263,7 @@ var MediaViewerPlugin = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the media type from the `providers`.
          *
          * @method _getMediaType
          * @param source
@@ -286,7 +287,7 @@ var MediaViewerPlugin = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the `src` attribute in the iframe.
          *
          * @method _redirectIframe
          * @param source
@@ -307,7 +308,7 @@ var MediaViewerPlugin = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Restores a media.
          *
          * @method _restoreMedia
          * @param event
@@ -330,7 +331,7 @@ var MediaViewerPlugin = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the container width and height in the UI.
          *
          * @method _uiSetContainerSize
          * @param width
@@ -353,7 +354,7 @@ var MediaViewerPlugin = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Goes through the options and update its value.
          *
          * @method _updateOptions
          * @param source

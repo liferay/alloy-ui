@@ -270,7 +270,7 @@ var Toggler = A.Component.create({
         },
 
         /**
-         * Destructor lifecycle implementation for the Toggler class. Lifecycle.
+         * Destructor lifecycle implementation for the `Toggler` class.
          *
          * @method destructor
          * @protected

@@ -165,7 +165,7 @@ var CharCounter = A.Component.create({
         },
 
         /**
-         * Destructor lifecycle implementation for the CharCounter class.
+         * Destructor lifecycle implementation for the `CharCounter` class.
          * Purges events attached to the node (and all child nodes).
          *
          * @method destroy

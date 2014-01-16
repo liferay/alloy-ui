@@ -153,7 +153,6 @@ AutosizeIframe = A.Component.create({
 
         /**
          * Destructor lifecycle implementation for the `A.AutosizeIframe` class.
-         * Lifecycle.
          *
          * @method destructor
          * @protected
