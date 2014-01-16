@@ -13,8 +13,8 @@ var L = A.Lang,
     NUM_TWENTY_FOUR = 24,
 
     /**
-     * A.DataType.Boolean provides a set of utility to parse `falsey`
-     * value to `false` and `non-falsey` to `true`.
+     * `A.DataType.Boolean` provides a set of utility to parse `falsey` value to
+     * `false` and `non-falsey` to `true`.
      *
      * @class A.DataType.Boolean
      * @static
@@ -22,9 +22,9 @@ var L = A.Lang,
     DB = A.namespace('DataType.Boolean'),
 
     /**
-     * A.DataType.String provides a set of utility to provides a simple function
-     * that evaluates a string to a primitive value (if possible). Supports
-     * `true` and `false` also.
+     * `A.DataType.String` provides a set of utility to provides a simple
+     * function that evaluates a string to a primitive value (if possible).
+     * Supports `true` and `false` also.
      *
      * @class A.DataType.String
      * @static
@@ -79,9 +79,9 @@ DS.evaluate = function(data) {
 };
 
 /**
- * A.DataType.DateMath is used for simple date manipulation. The class is a
+ * `A.DataType.DateMath` is used for simple date manipulation. The class is a
  * static utility used for adding, subtracting, and comparing dates. Based on
- * YAHOO.widget.DateMath.
+ * `YAHOO.widget.DateMath`.
  *
  * @class A.DataType.DateMath
  */
@@ -353,7 +353,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Copies hours, minutes, seconds and milliseconds.
      *
      * @method copyHours
      * @param d1
@@ -369,7 +369,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Subtract the specified amount of time from the this instance.
+     * Subtracts the specified amount of time from the this instance.
      *
      * @method subtract
      * @param {Date} date The JavaScript Date object to perform subtraction on
@@ -384,7 +384,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Determine whether a given date is before another date on the calendar.
+     * Determines whether a given date is before another date on the calendar.
      *
      * @method before
      * @param {Date} date The Date object to compare with the compare argument
@@ -403,7 +403,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Determine whether a given date is after another date on the calendar.
+     * Determines whether a given date is after another date on the calendar.
      *
      * @method after
      * @param {Date} date The Date object to compare with the compare
@@ -423,7 +423,8 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Determine whether a given date is between two other dates on the calendar.
+     * Determines whether a given date is between two other dates on the
+     * calendar.
      *
      * @method between
      * @param {Date} date The date to check for
@@ -442,7 +443,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Retrieve a JavaScript Date object representing January 1 of any given
+     * Retrieves a JavaScript Date object representing January 1 of any given
      * year.
      *
      * @method getJan1
@@ -455,7 +456,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Calculate the number of days the specified date is from January 1 of the
+     * Calculates the number of days the specified date is from January 1 of the
      * specified calendar year. Passing January 1 to this function would return
      * an offset value of zero.
      *
@@ -475,7 +476,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Calculate the number of days between the specified dates.
+     * Calculates the number of days between the specified dates.
      *
      * @method getDayOffset
      * @param {Date} d1 Date 1
@@ -487,7 +488,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Calculate the number of hours between the specified dates.
+     * Calculates the number of hours between the specified dates.
      *
      * @method getHoursOffset
      * @param {Date} d1 Date 1
@@ -499,7 +500,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Calculate the number of minutes between the specified dates.
+     * Calculates the number of minutes between the specified dates.
      *
      * @method getMinutesOffset
      * @param {Date} d1 Date 1
@@ -511,7 +512,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Calculate the number of seconds between the specified dates.
+     * Calculates the number of seconds between the specified dates.
      *
      * @method getSecondsOffset
      * @param {Date} d1 Date 1
@@ -523,7 +524,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns the amount of time subtracted.
      *
      * @method getOffset
      * @param d1
@@ -537,7 +538,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns the largest absolute integer less than or equal to a number.
      *
      * @method _absFloor
      * @param n
@@ -554,7 +555,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Calculate the week number for the given date. Can currently support standard
+     * Calculates the week number for the given date. Can currently support standard
      * U.S. week numbers, based on Jan 1st defining the 1st week of the year, and
      * ISO8601 week numbers, based on Jan 4th defining the 1st week of the year.
      *
@@ -616,7 +617,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Get the first day of the week, for the give date.
+     * Gets the first day of the week, for the give date.
      *
      * @method getFirstDayOfWeek
      * @param {Date} dt The date in the week for which the first day is required.
@@ -633,7 +634,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Check if the passed date is a week day.
+     * Checks if the passed date is a week day.
      *
      * @method isWeekDay
      * @param {Date} date Date
@@ -646,7 +647,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Check if the passed date is a Tuesday or Thursday.
+     * Checks if the passed date is a Tuesday or Thursday.
      *
      * @method isTueOrThu
      * @param {Date} date Date
@@ -657,7 +658,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Check if the passed date is a Monday, Wednesday or Friday.
+     * Checks if the passed date is a Monday, Wednesday or Friday.
      *
      * @method isMonWedOrFri
      * @param {Date} date Date
@@ -668,7 +669,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Check if the {date2} is the next day.
+     * Checks if the {date2} is the next day.
      *
      * @method isNextDay
      * @param {Date} date1 Date
@@ -680,7 +681,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Check if the {date2} is the next day at 00:00:00.
+     * Checks if the {date2} is the next day at 00:00:00.
      *
      * @method isNextDayBoundary
      * @param {Date} date1 Date
@@ -693,7 +694,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Check if the passed date is between two days.
+     * Checks if the passed date is between two days.
      *
      * @method isDayOverlap
      * @param {Date} date1 Date
@@ -706,7 +707,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Check if the passed date is today.
+     * Checks if the passed date is today.
      *
      * @method isToday
      * @param {Date} date Date
@@ -717,7 +718,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Check if the passed dates are in the same month.
+     * Checks if the passed dates are in the same month.
      *
      * @method isSameMonth
      * @param {Date} d1 Date
@@ -729,7 +730,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Determine if a given week overlaps two different years.
+     * Determines if a given week overlaps two different years.
      *
      * @method isYearOverlapWeek
      * @param {Date} weekBeginDate The JavaScript Date representing the first
@@ -746,7 +747,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Determine if a given week overlaps two different months.
+     * Determines if a given week overlaps two different months.
      *
      * @method isMonthOverlapWeek
      * @param {Date} weekBeginDate The JavaScript Date representing the first
@@ -763,7 +764,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Get the first day of a month containing a given date.
+     * Getss the first day of a month containing a given date.
      *
      * @method findMonthStart
      * @param {Date} date The JavaScript Date used to calculate the month start
@@ -776,7 +777,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Get the last day of a month containing a given date.
+     * Gets the last day of a month containing a given date.
      *
      * @method findMonthEnd
      * @param {Date} date The JavaScript Date used to calculate the month end
@@ -791,7 +792,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Clear the time fields from a given date, effectively setting the time to
+     * Clears the time fields from a given date, effectively setting the time to
      * 12 noon.
      *
      * @method clearTime
@@ -805,7 +806,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Clear the time fields from a given date, effectively setting the time to
+     * Clears the time fields from a given date, effectively setting the time to
      * 12 noon. This is "safe" because clones the date before clear, not
      * affecting the passed reference.
      *
@@ -819,7 +820,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Set the time fields from a given date to the last possible hour.
+     * Sets the time fields from a given date to the last possible hour.
      *
      * @method toLastHour
      * @param {Date} date The JavaScript Date for which the time fields will be
@@ -832,7 +833,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Set the time fields from a given date to midnight.
+     * Sets the time fields from a given date to midnight.
      *
      * @method toMidnight
      * @param {Date} date The JavaScript Date for which the time fields will be
@@ -845,7 +846,7 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Clone the passed date object.
+     * Clones the passed date object.
      *
      * @method clone
      * @param {Date} date The JavaScript Date to clone
@@ -856,8 +857,8 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Return a new JavaScript Date object, representing the given year,
-     * month and date.Time fields (hr, min, sec, ms) on the new Date object
+     * Returns a new JavaScript Date object, representing the given year,
+     * month and date. Time fields (hr, min, sec, ms) on the new Date object
      * are set to 0. The method allows Date instances to be created with the a
      * year less than 100. "new Date(year, month, date)" implementations
      * set the year to 19xx if a year (xx) which is less than 100 is provided.
@@ -894,24 +895,26 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets date from a given month and year.
      *
      * @method getDaysInMonth
      * @param year
      * @param month
+     * @return {Date}
      */
     getDaysInMonth: function(year, month) {
         return this.findMonthEnd(this.getDate(year, month)).getDate();
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Converts a date to US time format.
      *
      * @method toUsTimeString
      * @param date
      * @param padHours
      * @param omitMinutes
      * @param hideAmPm
+     * @return {String} time
      */
     toUsTimeString: function(date, padHours, omitMinutes, hideAmPm) {
         date = isDate(date) ? date : new Date(0, 0, 0, date);
@@ -946,11 +949,12 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Converts a date to ISO time format.
      *
      * @method toIsoTimeString
      * @param date
      * @param showSeconds
+     * @return {String} time
      */
     toIsoTimeString: function(date, showSeconds) {
         date = isDate(date) ? date : new Date(0, 0, 0, date);
