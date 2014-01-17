@@ -26,7 +26,6 @@ var Lang = A.Lang,
     PAGE = 'page',
     PAGINATION = 'pagination',
     PREV = 'prev',
-    SHOW_CONTROLS = 'showControls',
     TOTAL = 'total',
 
     getCN = A.getClassName,
@@ -72,7 +71,7 @@ var Pagination = A.Component.create({
 
         /**
          * When enabled this property allows the navigation to go back to the
-         * beginning when it reaches the last page, the opposite behavior is
+         * beggining when it reaches the last page, the opposite behavior is
          * also true. Incremental page navigation could happen clicking the
          * control arrows or invoking `.next()` and `.prev()` methods.
          *
@@ -129,19 +128,6 @@ var Pagination = A.Component.create({
         page: {
             setter: '_setInt',
             value: 0
-        },
-
-        /**
-         * Determines if pagination controls (Next and Prev) are rendered.
-         *
-         * @attribute page
-         * @default true
-         * @type {boolean}
-         *
-         */
-        showControls: {
-            validator: isBoolean,
-            value: true
         },
 
         /**
@@ -468,8 +454,7 @@ var Pagination = A.Component.create({
          */
         _onClickItem: function(event) {
             var instance = this,
-                item = event.currentTarget,
-                showControls = instance.get(SHOW_CONTROLS);
+                item = event.currentTarget;
 
             event.preventDefault();
 
@@ -481,18 +466,18 @@ var Pagination = A.Component.create({
                 index = items.indexOf(item),
                 lastIndex = items.size() - 1;
 
-            if (showControls) {
-                if (index === 0) {
+            switch (index) {
+                case 0:
                     instance.prev();
-                }
-                else if (index === lastIndex) {
+                    break;
+                case lastIndex:
                     instance.next();
-                }
-            }
-            else {
-                instance._dispatchRequest({
-                    page: index
-                });
+                    break;
+                default:
+                    instance._dispatchRequest({
+                        page: index
+                    });
+                    break;
             }
         },
 
@@ -523,37 +508,27 @@ var Pagination = A.Component.create({
          */
         _renderItemsUI: function(total) {
             var instance = this,
-                i,
-                buffer = [],
+                tpl = instance.ITEM_TEMPLATE,
                 formatter = instance.get(FORMATTER),
                 offset = instance.get(OFFSET),
-                showControls = instance.get(SHOW_CONTROLS),
-                tpl = instance.ITEM_TEMPLATE;
+                i,
+                buffer = '';
 
-            if (showControls) {
-                buffer.push(
-                    Lang.sub(tpl, {
-                        content: instance.getString(PREV),
-                        cssClass: CSS_PAGINATION_CONTROL
-                    })
-                );
-            }
+            buffer += Lang.sub(tpl, {
+                content: instance.getString(PREV),
+                cssClass: CSS_PAGINATION_CONTROL
+            });
 
             for (i = offset; i <= (offset + total - 1); i++) {
-                buffer.push(formatter.apply(instance, [i]));
+                buffer += formatter.apply(instance, [i]);
             }
 
-            if (showControls) {
-                buffer.push(
-                    Lang.sub(tpl, {
-                        content: instance.getString(NEXT),
-                        cssClass: CSS_PAGINATION_CONTROL
-                    })
-                );
-            }
+            buffer += Lang.sub(tpl, {
+                content: instance.getString(NEXT),
+                cssClass: CSS_PAGINATION_CONTROL
+            });
 
-            var items = A.NodeList.create(buffer.join(''));
-
+            var items = A.NodeList.create(buffer);
             instance.set(ITEMS, items);
             instance.get(CONTENT_BOX).setContent(items);
         },
@@ -607,18 +582,15 @@ var Pagination = A.Component.create({
          * @protected
          */
         _uiSetPage: function(val) {
-            var instance = this,
-                showControls = instance.get(SHOW_CONTROLS);
+            var instance = this;
 
-            if (showControls) {
-                if (!instance.get(CIRCULAR)) {
-                    instance._syncNavigationUI();
-                }
+            if (!instance.get(CIRCULAR)) {
+                instance._syncNavigationUI();
+            }
 
-                // Do not activate first and last items, they are used for controls.
-                if (val === 0 || val === instance.getTotalItems()) {
-                    return;
-                }
+            // Do not activate first and last items, they are used for controls.
+            if (val === 0 || val === instance.getTotalItems()) {
+                return;
             }
 
             var item = instance.getItem(val);
