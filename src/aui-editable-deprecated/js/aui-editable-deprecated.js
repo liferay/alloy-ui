@@ -19,9 +19,9 @@ var Lang = A.Lang,
     CSS_EDITING = getClassName(NAME, 'editing'),
     CSS_HOVER = getClassName(NAME, HOVER),
     CSS_ICON_OK = getClassName(ICON, 'ok'),
-    CSS_ICON_REMOVE = getClassName(ICON, 'remove');
+    CSS_ICON_REMOVE = getClassName(ICON, 'remove'),
 
-CONTENT_BOX = 'contentBox';
+    CONTENT_BOX = 'contentBox';
 
 /**
  * <p><img src="assets/images/aui-editable/main.png"/></p>
