@@ -18,6 +18,7 @@ var Lang = A.Lang,
     CONTROL = 'control',
     DISABLED = 'disabled',
     FORMATTER = 'formatter',
+    HIDE = 'hide',
     ITEMS = 'items',
     LI = 'li',
     NEXT = 'next',
@@ -25,12 +26,14 @@ var Lang = A.Lang,
     PAGE = 'page',
     PAGINATION = 'pagination',
     PREV = 'prev',
+    SHOW_CONTROLS = 'showControls',
     TOTAL = 'total',
 
     getCN = A.getClassName,
 
     CSS_ACTIVE = getCN(ACTIVE),
     CSS_DISABLED = getCN(DISABLED),
+    CSS_HIDE = getCN(HIDE),
     CSS_PAGINATION_CONTROL = getCN(PAGINATION, CONTROL);
 
 /**
@@ -144,7 +147,20 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * Text used on Pagination.
+         * Determines if pagination controls (Next and Prev) are rendered.
+         *
+         * @attribute page
+         * @default true
+         * @type {boolean}
+         *
+         */
+        showControls: {
+            validator: isBoolean,
+            value: true
+        },
+
+        /**
+         * Collection of strings used to label elements of the UI.
          *
          * @attribute strings
          * @type Object
@@ -528,6 +544,15 @@ var Pagination = A.Component.create({
             var items = A.NodeList.create(buffer);
             instance.set(ITEMS, items);
             instance.get(CONTENT_BOX).setContent(items);
+
+            // When show controls is false, remove the first and last items from
+            // the DOM in order to hide the controls, but keep the references
+            // inside items NodeList in order to handle the items index the same
+            // way when they are visible.
+            if (!instance.get(SHOW_CONTROLS)) {
+                items.first().remove();
+                items.last().remove();
+            }
         },
 
         /**
