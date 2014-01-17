@@ -152,7 +152,6 @@ var Pagination = A.Component.create({
          * @attribute page
          * @default true
          * @type {boolean}
-         *
          */
         showControls: {
             validator: isBoolean,
