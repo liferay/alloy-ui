@@ -176,8 +176,8 @@ var Component = A.Base.create(_NAME, A.Widget, [
     },
 
     /**
-     * Sets the interaction and render behavior based upon an object
-     * (intercepts the default rendering behavior).
+     * Sets the interaction and render behavior based upon an object (intercepts
+     * the default rendering behavior).
      *
      * @method _setRender
      * @param config
@@ -216,8 +216,8 @@ var Component = A.Base.create(_NAME, A.Widget, [
     }
 }, {
     /**
-     * Static property used to define the default attribute
-     * configuration for the Component.
+     * Static property used to define the default attribute configuration for
+     * the Component.
      *
      * @property ATTRS
      * @type Object
@@ -225,8 +225,8 @@ var Component = A.Base.create(_NAME, A.Widget, [
      */
     ATTRS: {
         /**
-         * Indicates if use of the WAI-ARIA Roles and States should be
-         * enabled for the Widget.
+         * Indicates if use of the WAI-ARIA Roles and States should be enabled
+         * for the Widget.
          *
          * @attribute useARIA
          * @default false
@@ -252,8 +252,8 @@ var Component = A.Base.create(_NAME, A.Widget, [
         },
 
         /**
-         * If `true` the render phase will be autimatically invoked
-         * preventing the `.render()` manual call.
+         * If `true` the render phase will be autimatically invoked preventing
+         * the `.render()` manual call.
          *
          * @attribute render
          * @default false
