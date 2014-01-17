@@ -197,7 +197,7 @@ var Pagination = A.Component.create({
      * @type {Array}
      * @static
      */
-    BIND_UI_ATTRS: [OFFSET, TOTAL],
+    BIND_UI_ATTRS: [OFFSET, SHOW_CONTROLS, TOTAL],
 
     /**
      * Static property used to define the UI attributes.
@@ -622,6 +622,19 @@ var Pagination = A.Component.create({
             if (item) {
                 item.addClass(CSS_ACTIVE);
             }
+        },
+
+        /**
+         * Setter for `showControls` attribute.
+         *
+         * @method _uiSetShowControls
+         * @param {Boolean} val
+         * @protected
+         */
+        _uiSetShowControls: function(val) {
+            var instance = this;
+
+            instance._renderItemsUI(instance.get(TOTAL));
         },
 
         /**
