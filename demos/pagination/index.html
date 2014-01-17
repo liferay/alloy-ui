@@ -20,6 +20,7 @@
     <div id="jslarge" class="pagination pagination-large"></div>
     <div id="jssmall" class="pagination pagination-small"></div>
     <div id="jsmini" class="pagination pagination-mini"></div>
+    <div id="jsnocontrol" class="pagination pagination-mini"></div>
     <h2>Create from markup</h2>
     <div class="content">
         <div>
@@ -95,6 +96,13 @@
             boundingBox: '#jsmini',
             total: 15
         }).render();
+
+        new Y.Pagination({
+            boundingBox: '#jsnocontrol',
+            showControls: false,
+            total: 15
+        }).render();
+
 
         new Y.Pagination({
             boundingBox: '#pagination',
