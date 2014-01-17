@@ -20,8 +20,7 @@ var StdMod = A.WidgetStdMod,
 var WidgetToolbars = function() {};
 
 /**
- * Static property used to define the default attribute
- * configuration.
+ * Static property used to define the default attribute configuration.
  *
  * @property ATTRS
  * @type Object
@@ -30,15 +29,16 @@ var WidgetToolbars = function() {};
 WidgetToolbars.ATTRS = {
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Collection of `A.Toolbar` instances.
      *
      * @attribute toolbars
-     * @default undefined
+     * @default {}
+     * @type Object
      */
     toolbars: {},
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Collection of toolbar's header, body, and footer positions.
      *
      * @attribute toolbarPosition
      * @type Object
@@ -56,7 +56,8 @@ WidgetToolbars.prototype = {
     toolbars: null,
 
     /**
-     * Construction logic executed during WidgetToolbars instantiation. Lifecycle.
+     * Construction logic executed during WidgetToolbars instantiation.
+     * Lifecycle.
      *
      * @method initializer
      * @protected
@@ -72,11 +73,12 @@ WidgetToolbars.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Includes a `A.Toolbar` instance into the widget.
      *
      * @method addToolbar
      * @param toolbar
      * @param section
+     * @return {A.Toolbar}
      */
     addToolbar: function(toolbar, section) {
         var instance = this;
@@ -107,10 +109,11 @@ WidgetToolbars.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the `A.Toolbar` instance based on its section.
      *
      * @method getToolbar
      * @param section
+     * @return {A.Toolbar}
      */
     getToolbar: function(section) {
         var instance = this;
@@ -119,17 +122,20 @@ WidgetToolbars.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the toolbar's section. If no argument is passed, returns the
+     * `StdMod.FOOTER`.
      *
      * @method getToolbarSection
      * @param section
+     * @return {String}
+     *
      */
     getToolbarSection: function(section) {
         return section || StdMod.FOOTER;
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Destroys the `A.Toolbar` instance based on its section.
      *
      * @method removeToolbar
      * @param section
@@ -146,7 +152,7 @@ WidgetToolbars.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sync the primary button on the UI.
      *
      * @method _syncPrimaryButtonUI
      * @protected
@@ -163,7 +169,7 @@ WidgetToolbars.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sync `A.Toolbar` instances on the UI.
      *
      * @method _syncUIToolbars
      * @protected
@@ -175,7 +181,7 @@ WidgetToolbars.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Set `A.Toolbar` instances.
      *
      * @method _uiSetToolbars
      * @protected

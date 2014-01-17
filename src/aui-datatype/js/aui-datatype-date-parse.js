@@ -18,7 +18,7 @@ var Lang = A.Lang,
     LOCALE = 'locale';
 
 /**
- * A base class for DateParser.
+ * A base class for `A.DateParser`.
  *
  * @class A.DateParser
  * @param {String} opt_pattern Mask as strftime string.
@@ -258,7 +258,7 @@ A.mix(DateParser.prototype, {
     },
 
     /**
-     * Expand the so called "aggregates" from the strftime pattern, e.g. %X
+     * Expands the so called "aggregates" from the strftime pattern, e.g. %X
      * represents expanded %Hh%Mmin%Ss pattern.
      *
      * @method _expandPattern
@@ -267,7 +267,7 @@ A.mix(DateParser.prototype, {
      * @param {Array} pos One position array that holds the text position
      *     number. An array instance is used to keep reference to the position
      *     counter, therefore can be passed to different subparse methods.
-     * @return {String} Expanded patter.
+     * @return {String} Expanded pattern.
      */
     _expandPattern: function(pattern, pos, token) {
         var instance = this,
@@ -287,7 +287,7 @@ A.mix(DateParser.prototype, {
     },
 
     /**
-     * Attempt to match the text at a given position against an array of
+     * Attempts to match the text at a given position against an array of
      * strings. The longer match is classified as best match, e.g if the data
      * array contains ["f", "fo", "foo", ...] all positions will match "foobar".
      * The longest match is "foobar".
@@ -515,7 +515,7 @@ A.mix(DateParser.prototype, {
     },
 
     /**
-     * Get resource object with tokens information for the loaded language.
+     * Gets resource object with tokens information for the loaded language.
      *
      * @method _getLangResource
      * @protected
