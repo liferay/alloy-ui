@@ -20,8 +20,7 @@ var StdMod = A.WidgetStdMod,
 var WidgetToolbars = function() {};
 
 /**
- * Static property used to define the default attribute
- * configuration.
+ * Static property used to define the default attribute configuration.
  *
  * @property ATTRS
  * @type Object
