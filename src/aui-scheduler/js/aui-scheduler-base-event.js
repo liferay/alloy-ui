@@ -521,6 +521,7 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
+         * Destructor lifecycle implementation for the `SchedulerEvent` class.
          * Removes the `node` from DOM.
          *
          * @method destroy

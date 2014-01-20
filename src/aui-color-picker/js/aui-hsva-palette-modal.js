@@ -174,7 +174,7 @@ var AArray = A.Array,
         NAME: NAME,
 
         /**
-         * The namespace of the plugin.
+         * Static property provides a string to identify the namespace.
          *
          * @property NS
          * @type {String}

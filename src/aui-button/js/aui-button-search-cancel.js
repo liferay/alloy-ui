@@ -74,9 +74,9 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
 
     /**
      * Destructor lifecycle implementation for the `ButtonSearchCancel` class.
-     * Lifecycle.
      *
      * @method destroy
+     * @protected
      */
     destroy: function() {
         var instance = this;

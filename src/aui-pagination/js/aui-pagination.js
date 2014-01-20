@@ -19,6 +19,7 @@ var Lang = A.Lang,
     CONTROL = 'control',
     DISABLED = 'disabled',
     FORMATTER = 'formatter',
+    HIDE = 'hide',
     ITEMS = 'items',
     LI = 'li',
     NEXT = 'next',
@@ -33,6 +34,7 @@ var Lang = A.Lang,
 
     CSS_ACTIVE = getCN(ACTIVE),
     CSS_DISABLED = getCN(DISABLED),
+    CSS_HIDE = getCN(HIDE),
     CSS_PAGINATION_CONTROL = getCN(PAGINATION, CONTROL);
 
 /**
@@ -72,7 +74,7 @@ var Pagination = A.Component.create({
 
         /**
          * When enabled this property allows the navigation to go back to the
-         * beginning when it reaches the last page, the opposite behavior is
+         * beggining when it reaches the last page, the opposite behavior is
          * also true. Incremental page navigation could happen clicking the
          * control arrows or invoking `.next()` and `.prev()` methods.
          *
@@ -132,19 +134,6 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * Determines if pagination controls (Next and Prev) are rendered.
-         *
-         * @attribute page
-         * @default true
-         * @type {boolean}
-         *
-         */
-        showControls: {
-            validator: isBoolean,
-            value: true
-        },
-
-        /**
          * Total number of page links available. If set, the new
          * [items](A.Pagination.html#attr_items) node list will be rendered.
          *
@@ -155,6 +144,18 @@ var Pagination = A.Component.create({
         total: {
             setter: '_setInt',
             value: 0
+        },
+
+        /**
+         * Determines if pagination controls (Next and Prev) are rendered.
+         *
+         * @attribute page
+         * @default true
+         * @type {boolean}
+         */
+        showControls: {
+            validator: isBoolean,
+            value: true
         },
 
         /**
@@ -196,7 +197,7 @@ var Pagination = A.Component.create({
      * @type {Array}
      * @static
      */
-    BIND_UI_ATTRS: [OFFSET, TOTAL],
+    BIND_UI_ATTRS: [OFFSET, SHOW_CONTROLS, TOTAL],
 
     /**
      * Static property used to define the UI attributes.
@@ -468,8 +469,7 @@ var Pagination = A.Component.create({
          */
         _onClickItem: function(event) {
             var instance = this,
-                item = event.currentTarget,
-                showControls = instance.get(SHOW_CONTROLS);
+                item = event.currentTarget;
 
             event.preventDefault();
 
@@ -481,18 +481,18 @@ var Pagination = A.Component.create({
                 index = items.indexOf(item),
                 lastIndex = items.size() - 1;
 
-            if (showControls) {
-                if (index === 0) {
+            switch (index) {
+                case 0:
                     instance.prev();
-                }
-                else if (index === lastIndex) {
+                    break;
+                case lastIndex:
                     instance.next();
-                }
-            }
-            else {
-                instance._dispatchRequest({
-                    page: index
-                });
+                    break;
+                default:
+                    instance._dispatchRequest({
+                        page: index
+                    });
+                    break;
             }
         },
 
@@ -523,39 +523,38 @@ var Pagination = A.Component.create({
          */
         _renderItemsUI: function(total) {
             var instance = this,
-                i,
-                buffer = [],
+                tpl = instance.ITEM_TEMPLATE,
                 formatter = instance.get(FORMATTER),
                 offset = instance.get(OFFSET),
-                showControls = instance.get(SHOW_CONTROLS),
-                tpl = instance.ITEM_TEMPLATE;
+                i,
+                buffer = '';
 
-            if (showControls) {
-                buffer.push(
-                    Lang.sub(tpl, {
-                        content: instance.getString(PREV),
-                        cssClass: CSS_PAGINATION_CONTROL
-                    })
-                );
-            }
+            buffer += Lang.sub(tpl, {
+                content: instance.getString(PREV),
+                cssClass: CSS_PAGINATION_CONTROL
+            });
 
             for (i = offset; i <= (offset + total - 1); i++) {
-                buffer.push(formatter.apply(instance, [i]));
+                buffer += formatter.apply(instance, [i]);
             }
 
-            if (showControls) {
-                buffer.push(
-                    Lang.sub(tpl, {
-                        content: instance.getString(NEXT),
-                        cssClass: CSS_PAGINATION_CONTROL
-                    })
-                );
-            }
+            buffer += Lang.sub(tpl, {
+                content: instance.getString(NEXT),
+                cssClass: CSS_PAGINATION_CONTROL
+            });
 
-            var items = A.NodeList.create(buffer.join(''));
-
+            var items = A.NodeList.create(buffer);
             instance.set(ITEMS, items);
             instance.get(CONTENT_BOX).setContent(items);
+
+            // When show controls is false, remove the first and last items from
+            // the DOM in order to hide the controls, but keep the references
+            // inside items NodeList in order to handle the items index the same
+            // way when they are visible.
+            if (!instance.get(SHOW_CONTROLS)) {
+                items.first().remove();
+                items.last().remove();
+            }
         },
 
         /**
@@ -607,18 +606,15 @@ var Pagination = A.Component.create({
          * @protected
          */
         _uiSetPage: function(val) {
-            var instance = this,
-                showControls = instance.get(SHOW_CONTROLS);
+            var instance = this;
 
-            if (showControls) {
-                if (!instance.get(CIRCULAR)) {
-                    instance._syncNavigationUI();
-                }
+            if (!instance.get(CIRCULAR)) {
+                instance._syncNavigationUI();
+            }
 
-                // Do not activate first and last items, they are used for controls.
-                if (val === 0 || val === instance.getTotalItems()) {
-                    return;
-                }
+            // Do not activate first and last items, they are used for controls.
+            if (val === 0 || val === instance.getTotalItems()) {
+                return;
             }
 
             var item = instance.getItem(val);
@@ -626,6 +622,19 @@ var Pagination = A.Component.create({
             if (item) {
                 item.addClass(CSS_ACTIVE);
             }
+        },
+
+        /**
+         * Setter for `showControls` attribute.
+         *
+         * @method _uiSetShowControls
+         * @param {Boolean} val
+         * @protected
+         */
+        _uiSetShowControls: function(val) {
+            var instance = this;
+
+            instance._renderItemsUI(instance.get(TOTAL));
         },
 
         /**

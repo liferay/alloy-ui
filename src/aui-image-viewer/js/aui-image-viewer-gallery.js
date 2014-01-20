@@ -75,7 +75,7 @@ var L = A.Lang,
     TPL_PLAYER_CONTENT = '<span class="' + CSS_IMAGE_GALLERY_PLAYER_CONTENT + '"></span>';
 
 /**
- * A base class for ImageGallery, providing:
+ * A base class for `A.ImageGallery`, providing:
  *
  * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
  * - Displays an image in a Overlay
@@ -103,7 +103,7 @@ var ImageGallery = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the ImageGallery.
+     * configuration for the `A.ImageGallery`.
      *
      * @property ATTRS
      * @type Object
@@ -113,7 +113,7 @@ var ImageGallery = A.Component.create({
 
         /**
          * If `true` the slide show will be played when the
-         * ImageGallery is displayed.
+         * `A.ImageGallery` is displayed.
          *
          * @attribute autoPlay
          * @default false
@@ -137,11 +137,11 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * [Pagination](A.Pagination.html) configuration Object. The
-         * `Pagination` handles the thumbnails control.
+         * [A.Pagination](A.Pagination.html) configuration Object. The
+         * `A.Pagination` handles the thumbnails control.
          *
          * @attribute pagination
-         * @default [Pagination](A.Pagination.html) configuration Object.
+         * @default [A.Pagination](A.Pagination.html) configuration Object.
          * @type Object
          */
         pagination: {
@@ -153,7 +153,7 @@ var ImageGallery = A.Component.create({
                         formatter: A.bind(instance._thumbnailFormatter, instance),
                         after: {
                             changeRequest: function(event) {
-                                // fire changeRequest from ImageGallery passing
+                                // fire changeRequest from `A.ImageGallery` passing
                                 // the "state" object from Pagination
                                 instance.fire(
                                     'changeRequest', {
@@ -173,7 +173,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Element which contains the [Pagination](A.Pagination.html) with the
+         * Element which contains the [A.Pagination](A.Pagination.html) with the
          * thumbnails.
          *
          * @attribute paginationEl
@@ -189,11 +189,11 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Stores the [Pagination](A.Pagination.html) instance.
+         * Stores the [A.Pagination](A.Pagination.html) instance.
          *
          * @attribute paginationInstance
          * @default null
-         * @type Pagination
+         * @type A.Pagination
          */
         paginationInstance: {
             value: null
@@ -260,7 +260,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Show the player controls (i.e., pause and show buttons).
+         * Shows the player controls (i.e., pause and show buttons).
          *
          * @attribute showPlayer
          * @default true
@@ -272,7 +272,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * [Toolbar](A.Toolbar.html) with a play, and pause buttons.
+         * [A.Toolbar](A.Toolbar.html) with a play, and pause buttons.
          *
          * @attribute toolbar
          * @default Generated Toolbar with a play, and pause buttons.
@@ -327,7 +327,7 @@ var ImageGallery = A.Component.create({
         _timer: null,
 
         /**
-         * Create the DOM structure for the ImageGallery. Lifecycle.
+         * Creates the DOM structure for the `A.ImageGallery`. Lifecycle.
          *
          * @method renderUI
          * @protected
@@ -345,7 +345,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Bind the events on the ImageGallery UI. Lifecycle.
+         * Bind the events on the `A.ImageGallery` UI. Lifecycle.
          *
          * @method bindUI
          * @protected
@@ -365,7 +365,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Destructor lifecycle implementation for the ImageGallery class.
+         * Destructor lifecycle implementation for the `A.ImageGallery` class.
          * Purges events attached to the node (and all child nodes).
          *
          * @method destroy
@@ -381,7 +381,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Hide the [Pagination](A.Pagination.html) with the thumbnails list.
+         * Hides the [A.Pagination](A.Pagination.html) with the thumbnails list.
          *
          * @method hidePagination
          */
@@ -392,7 +392,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Pause the slide show.
+         * Pauses the slide show.
          *
          * @method pause
          */
@@ -406,7 +406,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Play the slide show.
+         * Plays the slide show.
          *
          * @method play
          */
@@ -420,7 +420,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Show the ImageGallery.
+         * Shows the `A.ImageGallery`.
          *
          * **NOTE:**Overloads the [ImageViewer](A.ImageViewer.html) show method
          * to not loadImage, the changeRequest now is responsible to do that if
@@ -446,7 +446,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Show the [Pagination](A.Pagination.html) with the thumbnails list.
+         * Shows the [A.Pagination](A.Pagination.html) with the thumbnails list.
          *
          * @method showPagination
          */
@@ -457,7 +457,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Cancel the timer between slides.
+         * Cancels the timer between slides.
          *
          * @method _cancelTimer
          * @protected
@@ -471,7 +471,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Render the [Pagination](A.Pagination.html) with the thumbnails.
+         * Render the [A.Pagination](A.Pagination.html) with the thumbnails.
          *
          * @method _renderPagination
          * @protected
@@ -512,7 +512,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Set the Toolbar instance.
+         * Sets the `A.Toolbar` instance.
          *
          * @method _setToolbar
          * @param value
@@ -546,7 +546,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Start the timer between slides.
+         * Starts the timer between slides.
          *
          * @method _startTimer
          * @protected
@@ -603,7 +603,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Change the UI when click on a thumbnail.
+         * Changes the UI when click on a thumbnail.
          *
          * @method _changeRequest
          * @param {EventFacade} event
@@ -712,7 +712,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Get the [infoTemplate](A.ImageViewer.html#attr_infoTemplate) template.
+         * Gets the [infoTemplate](A.ImageViewer.html#attr_infoTemplate) template.
          *
          * @method _getInfoTemplate
          * @param {String} v template
@@ -739,7 +739,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Fire after the value of the
+         * Fires after the value of the
          * [visible](A.ImageViewer.html#attr_visible) attribute change.
          *
          * @method _afterVisibleChange
@@ -760,7 +760,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Fire before the value of the
+         * Fires before the value of the
          * [paused](A.ImageGallery.html#attr_paused) attribute change.
          *
          * @method _onPausedChange
@@ -776,7 +776,7 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Fire before the value of the
+         * Fires before the value of the
          * [playing](A.ImageGallery.html#attr_playing) attribute change.
          *
          * @method _onPlayingChange

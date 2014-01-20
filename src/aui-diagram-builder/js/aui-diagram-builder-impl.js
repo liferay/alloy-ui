@@ -571,8 +571,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * Destructor lifecycle implementation for the DiagramBuilder class.
-         * Lifecycle.
+         * Destructor lifecycle implementation for the `DiagramBuilder` class.
          *
          * @method destructor
          * @param attribute
@@ -1755,7 +1754,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * Destructor lifecycle implementation for the DiagramNode class.
+         * Destructor lifecycle implementation for the `DiagramNode` class.
          * Lifecycle.
          *
          * @method destructor

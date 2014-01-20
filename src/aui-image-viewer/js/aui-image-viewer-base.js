@@ -133,7 +133,7 @@ var L = A.Lang,
     TPL_LOADING = '<div class="' + CSS_ICON_TIME + '"></div>';
 
 /**
- * A base class for ImageViewer, providing:
+ * A base class for `A.ImageViewer`, providing:
  *
  * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
  * - Displays an image in a Overlay
@@ -173,7 +173,7 @@ var ImageViewer = A.Base.create(
         _keyHandler: null,
 
         /**
-         * Create the DOM structure for the ImageViewer. Lifecycle.
+         * Create the DOM structure for the `A.ImageViewer`. Lifecycle.
          *
          * @method renderUI
          * @protected
@@ -188,7 +188,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Bind the events on the ImageViewer UI. Lifecycle.
+         * Bind the events on the `A.ImageViewer` UI. Lifecycle.
          *
          * @method bindUI
          * @protected
@@ -223,7 +223,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Destructor lifecycle implementation for the ImageViewer class.
+         * Destructor lifecycle implementation for the `A.ImageViewer` class.
          * Purges events attached to the node (and all child nodes).
          *
          * @method destructor
@@ -249,7 +249,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Close the ImageViewer.
+         * Hides the `A.ImageViewer` instance.
          *
          * @method close
          */
@@ -260,7 +260,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Get the Node reference to the `currentIndex` element from
+         * Gets the `Node` reference to the `currentIndex` element from
          * the [links](A.ImageViewer.html#attr_links).
          *
          * @method getLink
@@ -274,7 +274,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Get the current loaded node link reference.
+         * Gets the current loaded node link reference.
          *
          * @method getCurrentLink
          * @return {Node}
@@ -288,7 +288,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Load an image `src` on the ImageViewer.
+         * Loads an image `src` on the `A.ImageViewer`.
          *
          * @method loadImage
          * @param {String} src Image src.
@@ -351,7 +351,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Check if there is a node reference for the `currentIndex`.
+         * Checks if there is a node reference for the `currentIndex`.
          *
          * @method hasLink
          * @param {Number} currentIndex
@@ -364,7 +364,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Check if there is a next element to navigate.
+         * Checks if there is a next element to navigate.
          *
          * @method hasNext
          * @return {Boolean}
@@ -378,7 +378,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Check if there is a previous element to navigate.
+         * Checks if there is a previous element to navigate.
          *
          * @method hasPrev
          * @return {Boolean}
@@ -405,7 +405,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Load the next image.
+         * Loads the next image.
          *
          * @method next
          */
@@ -423,7 +423,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Preload all images.
+         * Preloads all images.
          *
          * @method preloadAllImages
          */
@@ -436,7 +436,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Preload an image based on its `index`.
+         * Preloads an image based on its `index`.
          *
          * @method preloadImage
          * @param {Number} currentIndex
@@ -453,7 +453,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Load the previous image.
+         * Loads the previous image.
          *
          * @method next
          */
@@ -471,7 +471,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Show the loading icon.
+         * Shows the loading icon.
          *
          * @method showLoading
          */
@@ -485,7 +485,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Show the ImageViewer UI.
+         * Shows the `A.ImageViewer` UI.
          *
          * @method show
          */
@@ -524,8 +524,8 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Creates the preload image instance, and add's it
-         * to the internal pool.
+         * Creates the preload image instance, and add's it to the internal
+         * pool.
          *
          * @method _createPreloadImage
          * @param src
@@ -553,7 +553,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Render the controls UI.
+         * Renders the controls UI.
          *
          * @method _renderControls
          * @protected
@@ -576,7 +576,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Render the footer UI.
+         * Renders the footer UI.
          *
          * @method _renderFooter
          * @protected
@@ -663,7 +663,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Sync the ImageViewer UI.
+         * Sync the `A.ImageViewer` UI.
          *
          * @method _syncImageViewerUI
          * @protected
@@ -692,7 +692,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Calculate the resize ratio for the loaded image.
+         * Calculates the resize ratio for the loaded image.
          *
          * @method _getRatio
          * @param {Number} width Image width
@@ -718,7 +718,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Get the [info](A.ImageViewer.html#attr_info) template.
+         * Gets the [info](A.ImageViewer.html#attr_info) template.
          *
          * @method _getInfoTemplate
          * @param {String} v template
@@ -737,7 +737,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Display the image once it's been loaded.
+         * Displays the image once it's been loaded.
          *
          * @method _displayLoadedImage
          * @param {Node} image The loaded image
@@ -771,7 +771,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Fires after the ImageViewer render phase.
+         * Fires after the `A.ImageViewer` render phase.
          *
          * @method _afterRender
          * @protected
@@ -951,7 +951,7 @@ var ImageViewer = A.Base.create(
         },
 
         /**
-         * Set the size of the image and the overlay respecting the
+         * Sets the size of the image and the overlay respecting the
          * maxHeight/maxWidth ratio.
          *
          * @method _uiSetImageSize
@@ -1005,7 +1005,7 @@ var ImageViewer = A.Base.create(
 
         /**
          * Static property used to define the default attribute
-         * configuration for the ImageViewer.
+         * configuration for the `A.ImageViewer`.
          *
          * @property ATTRS
          * @type Object
@@ -1137,8 +1137,9 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * Selector or NodeList containing the links where the ImageViewer
-             * extracts the information to generate the thumbnails.
+             * Selector or NodeList containing the links where the
+             * `A.ImageViewer` extracts the information to generate the
+             * thumbnails.
              *
              * @attribute links
              * @type String | NodeList
@@ -1171,8 +1172,7 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * Displays the modal the viewport. Set to `false` to
-             * disable.
+             * Displays the modal the viewport. Set to `false` to disable.
              *
              * @attribute modal
              * @default true
@@ -1183,7 +1183,7 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * Preload all images grabbed from the
+             * Preloads all images grabbed from the
              * [links](A.ImageViewer.html#attr_links) attribute.
              *
              * @attribute preloadAllImages
@@ -1196,7 +1196,7 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * Preload the neighbor image (i.e., the previous and next image
+             * Preloads the neighbor image (i.e., the previous and next image
              * based on the current load one).
              *
              * @attribute preloadAllImages
@@ -1209,7 +1209,7 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * Show close icon control.
+             * Shows close icon control.
              *
              * @attribute showClose
              * @default true
@@ -1221,7 +1221,7 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * Show the controls.
+             * Shows the controls.
              *
              * @attribute showControls
              * @default true
@@ -1260,7 +1260,7 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * Determine if the ImageViewer should be visible or not.
+             * Determines if the `A.ImageViewer` should be visible or not.
              *
              * @attribute visible
              * @default false
@@ -1358,7 +1358,7 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * HTML element to house the `img` which is being loaded.
+             * HTML element to contain the `img` which is being loaded.
              *
              * @attribute loader
              * @default Generated HTML div element.
@@ -1385,7 +1385,7 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * The maximum height of the element
+             * The maximum height of the element.
              *
              * @attribute maxHeight
              * @default Infinity
@@ -1397,7 +1397,7 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * The maximum width of the element
+             * The maximum width of the element.
              *
              * @attribute maxWidth
              * @default Infinity

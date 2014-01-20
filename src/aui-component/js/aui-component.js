@@ -27,7 +27,7 @@ var Lang = A.Lang,
     CSS_HIDE = getClassName('hide');
 
 /**
- * A base class for Component, providing:
+ * A base class for `A.Component`, providing:
  *
  * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
  *
@@ -53,7 +53,7 @@ var Component = A.Base.create(_NAME, A.Widget, [
     },
 
     /**
-     * Clone the current Component.
+     * Clone the current `A.Component`.
      *
      * @method clone
      * @param {Object} config
@@ -97,7 +97,7 @@ var Component = A.Base.create(_NAME, A.Widget, [
     },
 
     /**
-     * Applies standard class names to the boundingBox and contentBox
+     * Applies standard class names to the `boundingBox` and `contentBox`.
      *
      * @method _renderBoxClassNames
      * @protected
@@ -154,9 +154,11 @@ var Component = A.Base.create(_NAME, A.Widget, [
     },
 
     /**
-     * Renders the Component based upon a passed in interaction.
+     * Renders the `A.Component` based upon a passed in interaction.
      *
      * @method _renderInteraction
+     * @param event
+     * @param parentNode
      * @protected
      */
     _renderInteraction: function(event, parentNode) {
@@ -174,10 +176,11 @@ var Component = A.Base.create(_NAME, A.Widget, [
     },
 
     /**
-     * Set the interaction and render behavior based upon an object
-     * (intercepts the default rendering behavior).
+     * Sets the interaction and render behavior based upon an object (intercepts
+     * the default rendering behavior).
      *
      * @method _setRender
+     * @param config
      * @protected
      */
     _setRender: function(config) {
@@ -213,8 +216,8 @@ var Component = A.Base.create(_NAME, A.Widget, [
     }
 }, {
     /**
-     * Static property used to define the default attribute
-     * configuration for the Component.
+     * Static property used to define the default attribute configuration for
+     * the Component.
      *
      * @property ATTRS
      * @type Object
@@ -222,8 +225,8 @@ var Component = A.Base.create(_NAME, A.Widget, [
      */
     ATTRS: {
         /**
-         * Boolean indicating if use of the WAI-ARIA Roles and States should be
-         * enabled for the Widget.
+         * Indicates if use of the WAI-ARIA Roles and States should be enabled
+         * for the Widget.
          *
          * @attribute useARIA
          * @default false
@@ -249,12 +252,13 @@ var Component = A.Base.create(_NAME, A.Widget, [
         },
 
         /**
-         * If `true` the render phase will be autimatically invoked
-         * preventing the `.render()` manual call.
+         * If `true` the render phase will be autimatically invoked preventing
+         * the `.render()` manual call.
          *
          * @attribute render
          * @default false
          * @type Boolean | Node
+         * @writeOnce
          */
         render: {
             value: false,
@@ -273,7 +277,7 @@ var Component = A.Base.create(_NAME, A.Widget, [
 Component._INSTANCES = _INSTANCES;
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
+ * Gets component's instance by id.
  *
  * @method getById
  * @param id
@@ -285,7 +289,7 @@ Component.getById = function(id) {
 var DEFAULT_UI_ATTRS = A.Widget.prototype._UI_ATTRS;
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
+ * Applies a CSS prefix on a component.
  *
  * @method _applyCssPrefix
  * @param component
@@ -300,7 +304,8 @@ Component._applyCssPrefix = function(component) {
 };
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
+ * Applies standard extensions from a given config to create a new class using
+ * the static `Base.build` method.
  *
  * @method create
  * @param config
@@ -371,7 +376,7 @@ Component.create = function(config) {
 };
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
+ * Static property provides a string to identify the CSS prefix.
  *
  * @property CSS_PREFIX
  * @type String
@@ -382,7 +387,7 @@ Component.CSS_PREFIX = getClassName('component');
 var Base = A.Base;
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
+ * Applies extensions to a class using the static `Base.build` method.
  *
  * @method build
  */

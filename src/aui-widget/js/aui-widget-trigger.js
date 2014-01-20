@@ -100,7 +100,7 @@ A.mix(WidgetTrigger.prototype, {
     },
 
     /**
-     * Destructor logic for tooltip.
+     * Destructor lifecycle implementation for the `WidgetTrigger` class.
      *
      * @method destructor
      * @protected

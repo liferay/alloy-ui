@@ -140,7 +140,7 @@ var FormBuilderButtonField = A.Component.create({
     UI_ATTRS: A.FormBuilderField.UI_ATTRS.concat([BUTTON_TYPE]),
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Static property provides a string to identify the CSS prefix.
      *
      * @property CSS_PREFIX
      * @type String

@@ -53,7 +53,7 @@ A.TooltipDelegate = A.Base.create(_TOOLTIP_DELEGATE, A.Base, [], {
     },
 
     /**
-     * Destructor logic for tooltip delegate.
+     * Destructor lifecycle implementation for the `TooltipDelegate` class.
      *
      * @method destructor
      * @protected

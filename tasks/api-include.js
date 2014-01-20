@@ -13,9 +13,7 @@ var TASK = {
 
 // -- Dependencies -------------------------------------------------------------
 var async = require('async');
-var command = require('command');
 var fs = require('fs');
-var fsExtra = require('fs-extra');
 var path = require('path');
 
 // -- Globals ------------------------------------------------------------------
