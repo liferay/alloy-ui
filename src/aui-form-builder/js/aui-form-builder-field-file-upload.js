@@ -26,7 +26,7 @@ var L = A.Lang,
         '" name="{name}" type="file" value="{value}" />';
 
 /**
- * A base class for FormBuilderFileUploadField.
+ * A base class for `A.FormBuilderFileUploadField`.
  *
  * @class A.FormBuilderFileUploadField
  * @extends A.FormBuilderField
@@ -47,7 +47,7 @@ var FormBuilderFileUploadField = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the FormBuilderFileUploadField.
+     * configuration for the `A.FormBuilderFileUploadField`.
      *
      * @property ATTRS
      * @type Object
@@ -56,7 +56,7 @@ var FormBuilderFileUploadField = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Reusable block of markup used to generate the field.
          *
          * @attribute template
          */
@@ -89,9 +89,10 @@ var FormBuilderFileUploadField = A.Component.create({
     prototype: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Injects data into the template and returns the HTML result.
          *
          * @method getHTML
+         * @return {String}
          */
         getHTML: function() {
             var instance = this;

@@ -31,7 +31,7 @@ var L = A.Lang,
         '" name="{name}" value="{value}"></select>';
 
 /**
- * A base class for FormBuilderSelectField.
+ * A base class for `A.FormBuilderSelectField`.
  *
  * @class A.FormBuilderSelectField
  * @extends A.FormBuilderMultipleChoiceField
@@ -52,7 +52,7 @@ var FormBuilderSelectField = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the FormBuilderSelectField.
+     * configuration for the `A.FormBuilderSelectField`.
      *
      * @property ATTRS
      * @type Object
@@ -61,7 +61,7 @@ var FormBuilderSelectField = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if the drop-down list allows multiple selections.
          *
          * @attribute multiple
          * @default false
@@ -73,7 +73,7 @@ var FormBuilderSelectField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Reusable block of markup used to generate the field.
          *
          * @attribute template
          */
@@ -115,9 +115,10 @@ var FormBuilderSelectField = A.Component.create({
     prototype: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Injects data into the template and returns the HTML result.
          *
          * @method getHTML
+         * @return {String}
          */
         getHTML: function() {
             var instance = this;
@@ -133,7 +134,8 @@ var FormBuilderSelectField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a list of property models including the `A.RadioCellEditor`
+         * model.
          *
          * @method getPropertyModel
          */
@@ -159,7 +161,7 @@ var FormBuilderSelectField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `multiple` attribute in the UI.
          *
          * @method _uiSetMultiple
          * @param val

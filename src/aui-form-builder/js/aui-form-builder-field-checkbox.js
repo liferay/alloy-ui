@@ -41,7 +41,7 @@ var L = A.Lang,
         CSS_FIELD_CHOICE].join(SPACE) + '" name="{name}" type="checkbox" value="{value}" {checked} />';
 
 /**
- * A base class for FormBuilderCheckBoxField.
+ * A base class for `A.FormBuilderCheckBoxField`.
  *
  * @class A.FormBuilderCheckBoxField
  * @extends A.FormBuilderField
@@ -62,7 +62,7 @@ var FormBuilderCheckBoxField = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the FormBuilderCheckBoxField.
+     * configuration for the `A.FormBuilderCheckBoxField`.
      *
      * @property ATTRS
      * @type Object
@@ -71,7 +71,7 @@ var FormBuilderCheckBoxField = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates which is the type of data for the input field.
          *
          * @attribute dataType
          * @default 'boolean'
@@ -82,7 +82,7 @@ var FormBuilderCheckBoxField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Specifies a predefined value for the checkbox field.
          *
          * @attribute predefinedValue
          * @default false
@@ -94,7 +94,7 @@ var FormBuilderCheckBoxField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Reusable block of markup used to generate the field.
          *
          * @attribute template
          */
@@ -127,7 +127,8 @@ var FormBuilderCheckBoxField = A.Component.create({
     prototype: {
 
         /**
-         * Render the FormBuilderCheckBoxField component instance. Lifecycle.
+         * Render the `A.FormBuilderCheckBoxField` component instance.
+         * Lifecycle.
          *
          * @method renderUI
          * @protected
@@ -143,7 +144,8 @@ var FormBuilderCheckBoxField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a list of property models including the `A.RadioCellEditor`
+         * model.
          *
          * @method getPropertyModel
          */
@@ -173,9 +175,10 @@ var FormBuilderCheckBoxField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Injects data into the template and returns the HTML result.
          *
          * @method getHTML
+         * @return {String}
          */
         getHTML: function() {
             var instance = this,
@@ -193,7 +196,7 @@ var FormBuilderCheckBoxField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `predefinedValue` attribute on the UI.
          *
          * @method _uiSetPredefinedValue
          * @param val

@@ -51,7 +51,7 @@ var Lang = A.Lang,
     CSS_FORM_BUILDER_OPTIONS_EDITOR_HIDDEN = getCN(FORM_BUILDER, OPTIONS, EDITOR, HIDDEN);
 
 /**
- * A base class for OptionsEditor.
+ * A base class for `A.OptionsEditor`.
  *
  * @class A.OptionsEditor
  * @extends A.RadioCellEditor
@@ -72,7 +72,7 @@ var OptionsEditor = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the OptionsEditor.
+     * configuration for the `A.OptionsEditor`.
      *
      * @property ATTRS
      * @type Object
@@ -81,7 +81,7 @@ var OptionsEditor = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines if a field is editable.
          *
          * @attribute editable
          */
@@ -105,7 +105,7 @@ var OptionsEditor = A.Component.create({
         ELEMENT_TEMPLATE: '<div class="' + CSS_FORM_BUILDER_OPTIONS_EDITOR_HIDDEN + '"></div>',
 
         /**
-         * Construction logic executed during OptionsEditor instantiation.
+         * Construction logic executed during `A.OptionsEditor` instantiation.
          * Lifecycle.
          *
          * @method initializer
@@ -120,7 +120,7 @@ var OptionsEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles the logic to save an event.
          *
          * @method _handleSaveEvent
          * @param event
@@ -137,7 +137,7 @@ var OptionsEditor = A.Component.create({
 });
 
 /**
- * A base class for FormBuilderMultipleChoiceField.
+ * A base class for `A.FormBuilderMultipleChoiceField`.
  *
  * @class A.FormBuilderMultipleChoiceField
  * @extends A.FormBuilderField
@@ -158,7 +158,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the FormBuilderMultipleChoiceField.
+     * configuration for the `A.FormBuilderMultipleChoiceField`.
      *
      * @property ATTRS
      * @type Object
@@ -167,7 +167,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * If `true` children are accepted.
          *
          * @attribute acceptChildren
          * @default false
@@ -180,7 +180,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Collection of options. Each option is made of a label and value.
          *
          * @attribute options
          * @type Object
@@ -190,20 +190,20 @@ var FormBuilderMultipleChoiceField = A.Component.create({
                 {
                     label: 'option 1',
                     value: 'value 1'
-    },
+                },
                 {
                     label: 'option 2',
                     value: 'value 2'
-    },
+                },
                 {
                     label: 'option 3',
                     value: 'value 3'
-    }
-   ]
+                }
+            ]
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Markup used to generate each item from `options` attribute.
          *
          * @attribute optionTemplate
          * @default '<option value="{value}">{label}</option>'
@@ -214,7 +214,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Specifies a predefined value for the multiple choice field.
          *
          * @attribute predefinedValue
          */
@@ -255,7 +255,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
     prototype: {
 
         /**
-         * Construction logic executed during FormBuilderMultipleChoiceField
+         * Construction logic executed during `A.FormBuilderMultipleChoiceField`
          * instantiation. Lifecycle.
          *
          * @method initializer
@@ -271,7 +271,8 @@ var FormBuilderMultipleChoiceField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a list of property models including the `A.RadioCellEditor`
+         * model.
          *
          * @method getPropertyModel
          */
@@ -365,7 +366,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `options` attribute on the UI.
          *
          * @method _uiSetOptions
          * @param val
@@ -400,7 +401,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `predefinedValue` attribute on the UI.
          *
          * @method _uiSetPredefinedValue
          * @param val

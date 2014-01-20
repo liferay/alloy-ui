@@ -42,7 +42,7 @@ var L = A.Lang,
         '" name="{name}" type="radio" value="{value}" {checked} {disabled} /><label class="field-label" for="{id}">{label}</label></div>';
 
 /**
- * A base class for FormBuilderRadioField.
+ * A base class for `A.FormBuilderRadioField`.
  *
  * @class A.FormBuilderRadioField
  * @extends A.FormBuilderMultipleChoiceField
@@ -63,7 +63,7 @@ var FormBuilderRadioField = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the FormBuilderRadioField.
+     * configuration for the `A.FormBuilderRadioField`.
      *
      * @property ATTRS
      * @type Object
@@ -72,7 +72,7 @@ var FormBuilderRadioField = A.Component.create({
     ATTRS: {
 
         /**
-         * The predefined value for the radio fields.
+         * Specifies a predefined value for the radio field.
          *
          * @attribute predefinedValue
          */
@@ -81,7 +81,7 @@ var FormBuilderRadioField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Reusable block of markup used to generate the field.
          *
          * @attribute template
          */
@@ -114,16 +114,17 @@ var FormBuilderRadioField = A.Component.create({
     prototype: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the HTML template.
          *
          * @method getHTML
+         * @return {String}
          */
         getHTML: function() {
             return TPL_OPTIONS_CONTAINER;
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `disabled` attribute in the UI.
          *
          * @method _uiSetDisabled
          * @param val
@@ -144,7 +145,7 @@ var FormBuilderRadioField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `options` attribute in the UI.
          *
          * @method _uiSetOptions
          * @param val
@@ -191,7 +192,7 @@ var FormBuilderRadioField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `predefinedValue` attribute in the UI.
          *
          * @method _uiSetPredefinedValue
          * @param val

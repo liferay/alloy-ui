@@ -39,7 +39,7 @@ var L = A.Lang,
     TPL_LEGEND = '<legend class="' + CSS_FIELD_LABEL + '"></legend>';
 
 /**
- * A base class for FormBuilderFieldsetField.
+ * A base class for `A.FormBuilderFieldsetField`.
  *
  * @class A.FormBuilderFieldsetField
  * @extends A.FormBuilderField
@@ -60,7 +60,7 @@ var FormBuilderFieldsetField = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the FormBuilderFieldsetField.
+     * configuration for the `A.FormBuilderFieldsetField`.
      *
      * @property ATTRS
      * @type Object
@@ -69,7 +69,7 @@ var FormBuilderFieldsetField = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * If `true` children are accepted.
          *
          * @attribute acceptChildren
          * @default true
@@ -82,7 +82,7 @@ var FormBuilderFieldsetField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates which is the type of data for the input field.
          *
          * @attribute dataType
          * @default undefined
@@ -92,7 +92,7 @@ var FormBuilderFieldsetField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Markup used to generate a label.
          *
          * @attribute labelNode
          */
@@ -103,7 +103,7 @@ var FormBuilderFieldsetField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Reusable block of markup used to generate the field.
          *
          * @attribute template
          */
@@ -146,9 +146,10 @@ var FormBuilderFieldsetField = A.Component.create({
         CONTENT_TEMPLATE: TPL_FIELDSET,
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Injects data into the template and returns the HTML result.
          *
          * @method getHTML
+         * @return {String}
          */
         getHTML: function() {
             var instance = this;
@@ -161,7 +162,8 @@ var FormBuilderFieldsetField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a list of property models including the `A.TextCellEditor()`
+         * and `A.RadioCellEditor` models.
          *
          * @method getPropertyModel
          */
@@ -191,7 +193,7 @@ var FormBuilderFieldsetField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `acceptChildren` attribute on the UI.
          *
          * @method _uiSetAcceptChildren
          * @param val
