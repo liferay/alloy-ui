@@ -1,5 +1,6 @@
 /**
- * Utility for timing logics.
+ * Utility for timing logics used to manage [JavaScript Timer
+ * Congestion](http://fitzgeraldnick.com/weblog/40/) problems.
  *
  * @module aui-timer
  */
@@ -10,10 +11,16 @@ var Lang = A.Lang,
 
     AArray = A.Array;
 
+/**
+ * A base class for Timer.
+ *
+ * @class A.Timer
+ * @constructor
+ */
 var Timer = {
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Cancels repeated action which was set up using `setInterval` function.
      *
      * @method clearInterval
      * @param id
@@ -25,7 +32,7 @@ var Timer = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Clears the delay set by `setTimeout` function.
      *
      * @method clearTimeout
      * @param id
@@ -37,10 +44,11 @@ var Timer = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Defines the fixed time delay between each interval.
      *
      * @method intervalTime
      * @param newInterval
+     * @return {Number}
      */
     intervalTime: function(newInterval) {
         var instance = Timer;
@@ -53,10 +61,11 @@ var Timer = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Checks if the task is repeatable or not.
      *
      * @method isRepeatable
      * @param task
+     * @return {Boolean}
      */
     isRepeatable: function(task) {
         var instance = Timer;
@@ -65,7 +74,7 @@ var Timer = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Calls a function after a specified delay.
      *
      * @method setTimeout
      * @param fn
@@ -81,7 +90,8 @@ var Timer = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Calls a function repeatedly, with a fixed time delay between each call to
+     * that function.
      *
      * @method setInterval
      * @param fn
@@ -97,7 +107,7 @@ var Timer = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Adds a new task to the timer.
      *
      * @method register
      * @param repeats
@@ -115,7 +125,9 @@ var Timer = {
 
         args.unshift(fn, context);
 
-        instance._TASKS[id] = instance._create(repeats, instance._getNearestInterval(ms), A.rbind.apply(A, args));
+        instance._TASKS[id] = instance._create(
+            repeats, instance._getNearestInterval(ms), A.rbind.apply(A, args)
+        );
 
         instance._lazyInit();
 
@@ -123,7 +135,7 @@ var Timer = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Runs the task function.
      *
      * @method run
      * @param task
@@ -137,7 +149,7 @@ var Timer = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Removes a task from the timer.
      *
      * @method unregister
      * @param repeats
@@ -156,13 +168,14 @@ var Timer = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Creates a collection of timer definitions.
      *
      * @method _create
      * @param repeats
      * @param ms
      * @param fn
      * @protected
+     * @return {Object}
      */
     _create: function(repeats, ms, fn) {
         var instance = Timer;
@@ -177,7 +190,8 @@ var Timer = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Subtracts the current time with the last run time. The result of this
+     * operation is subtracted with the task timeout.
      *
      * @method _decrementNextRunTime
      * @param tasks
@@ -190,11 +204,13 @@ var Timer = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Calculates the nearest interval by using the modulus of the argument with
+     * the interval as reference.
      *
      * @method _getNearestInterval
      * @param num
      * @protected
+     * @return {Number}
      */
     _getNearestInterval: function(num) {
         var instance = Timer;
@@ -216,7 +232,8 @@ var Timer = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Checks if the timer is initialized and empty, then calls the
+     * `clearTimeout` function using the global interval id.
      *
      * @method _lazyDestroy
      * @protected
@@ -232,7 +249,8 @@ var Timer = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Checks if the timer is initialized and contains a task, then calls the
+     * `setTimeout` function and stores the global interval id.
      *
      * @method _lazyInit
      * @protected
@@ -243,14 +261,17 @@ var Timer = {
         if (!instance._initialized && !isEmpty(instance._TASKS)) {
             instance._lastRunTime = now();
 
-            instance._globalIntervalId = setTimeout(instance._runner, instance._INTERVAL);
+            instance._globalIntervalId = setTimeout(
+                instance._runner, instance._INTERVAL
+            );
 
             instance._initialized = true;
         }
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Goes through all pending tasks and initializes its timer or unregisters
+     * it depending on the task status.
      *
      * @method _loop
      * @param i
@@ -287,13 +308,15 @@ var Timer = {
                 instance._globalIntervalId = setTimeout(instance._loop, 10);
             }
             else {
-                instance._globalIntervalId = setTimeout(instance._runner, interval);
+                instance._globalIntervalId = setTimeout(
+                    instance._runner, interval
+                );
             }
         }
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the arguments to call the `_loop` method.
      *
      * @method _runner
      * @protected
@@ -309,7 +332,7 @@ var Timer = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Resets the next run time.
      *
      * @method _resetNextRunTime
      * @param task
