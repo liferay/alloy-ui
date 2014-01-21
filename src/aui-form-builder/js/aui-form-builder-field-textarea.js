@@ -30,7 +30,7 @@ var L = A.Lang,
         CSS_FIELD_TEXTAREA].join(SPACE) + '" name="{name}">{value}</textarea>';
 
 /**
- * A base class for FormBuilderTextAreaField.
+ * A base class for `A.FormBuilderTextAreaField`.
  *
  * @class A.FormBuilderTextAreaField
  * @extends A.FormBuilderTextField
@@ -51,7 +51,7 @@ var FormBuilderTextAreaField = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the FormBuilderTextAreaField.
+     * configuration for the `A.FormBuilderTextAreaField`.
      *
      * @property ATTRS
      * @type Object
@@ -60,7 +60,7 @@ var FormBuilderTextAreaField = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Reusable block of markup used to generate the field.
          *
          * @attribute template
          */
@@ -93,7 +93,8 @@ var FormBuilderTextAreaField = A.Component.create({
     prototype: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a list of property models including the
+         * `A.TextAreaCellEditor` model.
          *
          * @method getPropertyModel
          */

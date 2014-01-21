@@ -42,7 +42,7 @@ var L = A.Lang,
     BUTTON_TYPES = [SUBMIT, RESET, BUTTON];
 
 /**
- * A base class for FormBuilderButtonField.
+ * A base class for `A.FormBuilderButtonField`.
  *
  * @class A.FormBuilderButtonField
  * @extends A.FormBuilderField
@@ -63,7 +63,7 @@ var FormBuilderButtonField = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the FormBuilderButtonField.
+     * configuration for the `A.FormBuilderButtonField`.
      *
      * @property ATTRS
      * @type Object
@@ -72,7 +72,7 @@ var FormBuilderButtonField = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * If `true` children are accepted.
          *
          * @attribute acceptChildren
          * @default false
@@ -85,7 +85,7 @@ var FormBuilderButtonField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the button type attribute, e.g. `type="reset"`.
          *
          * @attribute buttonType
          * @default 'submit'
@@ -98,7 +98,7 @@ var FormBuilderButtonField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Specifies a predefined value for the button field.
          *
          * @attribute predefinedValue
          */
@@ -107,7 +107,7 @@ var FormBuilderButtonField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * If `true` the label is showed.
          *
          * @attribute showLabel
          * @default false
@@ -118,7 +118,7 @@ var FormBuilderButtonField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Reusable block of markup used to generate the field.
          *
          * @attribute template
          */
@@ -160,9 +160,10 @@ var FormBuilderButtonField = A.Component.create({
     prototype: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Injects data into the template and returns the HTML result.
          *
          * @method getHTML
+         * @return {String}
          */
         getHTML: function() {
             var instance = this;
@@ -179,9 +180,11 @@ var FormBuilderButtonField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a list of property models including the `A.RadioCellEditor`
+         * model.
          *
          * @method getPropertyModel
+         * @return {Array}
          */
         getPropertyModel: function() {
             var instance = this,
@@ -205,7 +208,7 @@ var FormBuilderButtonField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `buttonType` attribute on the UI.
          *
          * @method _uiSetButtonType
          * @param val
@@ -219,7 +222,7 @@ var FormBuilderButtonField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `predefinedValue` attribute on the UI.
          *
          * @method _uiSetPredefinedValue
          * @param val

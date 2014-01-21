@@ -87,7 +87,7 @@ var L = A.Lang,
     TPL_PLACEHOLDER = '<div class="' + CSS_FORM_BUILDER_PLACEHOLDER + '"></div>';
 
 /**
- * A base class for FormBuilderAvailableField.
+ * A base class for `A.FormBuilderAvailableField`.
  *
  * @class A.FormBuilderAvailableField
  * @extends A.AvailableField
@@ -109,7 +109,7 @@ var FormBuilderAvailableField = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the ModuleName.
+     * configuration for the `A.FormBuilderAvailableField`.
      *
      * @property ATTRS
      * @type Object
@@ -118,7 +118,7 @@ var FormBuilderAvailableField = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * List of hidden attributes.
          *
          * @attribute hiddenAttributes
          * @type Array
@@ -128,14 +128,14 @@ var FormBuilderAvailableField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The name of the input field.
          *
          * @attribute name
          */
         name: {},
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Collection of options.
          *
          * @attribute options
          * @type Object
@@ -145,14 +145,14 @@ var FormBuilderAvailableField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Specifies a predefined value for the input field.
          *
          * @attribute predefinedValue
          */
         predefinedValue: {},
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * List of read-only input fields.
          *
          * @attribute readOnlyAttributes
          * @type Array
@@ -162,7 +162,8 @@ var FormBuilderAvailableField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if an input field is required. In other words, it needs
+         * content to be valid.
          *
          * @attribute required
          * @type Boolean
@@ -172,7 +173,7 @@ var FormBuilderAvailableField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * If `true` the label is showed.
          *
          * @attribute showLabel
          * @default true
@@ -184,7 +185,7 @@ var FormBuilderAvailableField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Hint to help the user to fill the input field.
          *
          * @attribute tip
          * @type String
@@ -194,7 +195,7 @@ var FormBuilderAvailableField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if the input field is unique or not.
          *
          * @attribute unique
          * @type Boolean
@@ -204,7 +205,7 @@ var FormBuilderAvailableField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The width of the input field.
          *
          * @attribute width
          */
@@ -224,7 +225,7 @@ var FormBuilderAvailableField = A.Component.create({
 A.FormBuilderAvailableField = FormBuilderAvailableField;
 
 /**
- * A base class for FormBuilder.
+ * A base class for `A.FormBuilder`.
  *
  * @class A.FormBuilder
  * @extends A.DiagramBuilderBase
@@ -247,7 +248,7 @@ var FormBuilder = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the FormBuilder.
+     * configuration for the `A.FormBuilder`.
      *
      * @property ATTRS
      * @type Object
@@ -256,7 +257,7 @@ var FormBuilder = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if removing required fields is permitted or not.
          *
          * @attribute allowRemoveRequiredFields
          * @default false
@@ -268,7 +269,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Enables a field to be editable.
          *
          * @attribute enableEditing
          * @default true
@@ -279,7 +280,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Collection of sortable fields.
          *
          * @attribute fieldsSortableListConfig
          * @default null
@@ -329,7 +330,7 @@ var FormBuilder = A.Component.create({
     EXTENDS: A.DiagramBuilderBase,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Static property used to define the fields tab.
      *
      * @property FIELDS_TAB
      * @default 0
@@ -339,7 +340,7 @@ var FormBuilder = A.Component.create({
     FIELDS_TAB: 0,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Static property used to define the settings tab.
      *
      * @property SETTINGS_TAB
      * @default 1
@@ -354,7 +355,7 @@ var FormBuilder = A.Component.create({
         uniqueFieldsMap: null,
 
         /**
-         * Construction logic executed during FormBuilder instantiation.
+         * Construction logic executed during `A.FormBuilder` instantiation.
          * Lifecycle.
          *
          * @method initializer
@@ -396,7 +397,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * Sync the FormBuilder UI. Lifecycle.
+         * Sync the `A.FormBuilder` UI. Lifecycle.
          *
          * @method syncUI
          * @protected
@@ -409,7 +410,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Selects the field tab and disables the setting tabs.
          *
          * @method closeEditProperties
          */
@@ -421,10 +422,11 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Creates a field and returns its configuration.
          *
          * @method createField
          * @param config
+         * @return {Object}
          */
         createField: function(config) {
             var instance = this,
@@ -452,7 +454,9 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the current field index and then clones the field. Inserts the
+         * new one after the current field index, inside of the current field
+         * parent.
          *
          * @method duplicateField
          * @param field
@@ -469,7 +473,8 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if the current field is a `A.FormBuilderField` instance and
+         * selects it.
          *
          * @method editField
          * @param field
@@ -486,10 +491,12 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the field class based on the `A.FormBuilder` type. If the type
+         * doesn't exist, logs an error message.
          *
          * @method getFieldClass
          * @param type
+         * @return {Object | null}
          */
         getFieldClass: function(type) {
             var clazz = A.FormBuilder.types[type];
@@ -505,17 +512,18 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets a list of properties from the field.
          *
          * @method getFieldProperties
          * @param field
+         * @return {Array}
          */
         getFieldProperties: function(field) {
             return field.getProperties();
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Removes field from previous parent and inserts into the new parent.
          *
          * @method insertField
          * @param field
@@ -534,7 +542,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Enables the settings tab.
          *
          * @method openEditProperties
          * @param field
@@ -548,7 +556,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Renders a field in the container.
          *
          * @method plotField
          * @param field
@@ -571,7 +579,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Renders a list of fields in the container.
          *
          * @method plotFields
          * @param fields
@@ -591,7 +599,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Adds fields to a `A.LinkedSet` instance.
          *
          * @method selectFields
          * @param fields
@@ -606,7 +614,8 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers a focus event in the current field and a blur event in the
+         * last focused field.
          *
          * @method simulateFocusField
          * @param field
@@ -623,7 +632,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Removes fields from the `A.LinkedSet` instance.
          *
          * @method unselectFields
          * @param fields
@@ -642,7 +651,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers after field focused change.
          *
          * @method _afterFieldFocusedChange
          * @param event
@@ -658,7 +667,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers after adding unique fields to a `A.Map` instance.
          *
          * @method _afterUniqueFieldsMapPut
          * @param event
@@ -677,7 +686,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers after removing unique fields from the `A.Map` instance.
          *
          * @method _afterUniqueFieldsMapRemove
          * @param event
@@ -696,7 +705,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers after adding selected fields to a `A.LinkedSet` instance.
          *
          * @method _afterSelectedFieldsSetAdd
          * @param event
@@ -711,7 +720,8 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers after removing selected fields from the `A.LinkedSet`
+         * instance.
          *
          * @method _afterSelectedFieldsSetRemove
          * @param event
@@ -726,12 +736,13 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Clones a field.
          *
          * @method _cloneField
          * @param field
          * @param deep
          * @protected
+         * @return {Object}
          */
         _cloneField: function(field, deep) {
             var instance = this,
@@ -759,7 +770,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Executes when the field is dropped.
          *
          * @method _dropField
          * @param dragNode
@@ -808,11 +819,12 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the field id.
          *
          * @method _getFieldId
          * @param field
          * @protected
+         * @return {String}
          */
         _getFieldId: function(field) {
             var id = field.get(ID),
@@ -829,7 +841,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the index from the field node.
          *
          * @method _getFieldNodeIndex
          * @param fieldNode
@@ -844,7 +856,8 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers on cancel. Unselect fields, stops the event propagation and
+         * prevents the default event behavior.
          *
          * @method _onCancel
          * @param event
@@ -859,7 +872,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers when the drag ends.
          *
          * @method _onDragEnd
          * @param event
@@ -881,7 +894,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers when a field is clicked.
          *
          * @method _onClickField
          * @param event
@@ -897,7 +910,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers when the drag mouse down.
          *
          * @method _onDragMouseDown
          * @param event
@@ -913,7 +926,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers when the drag starts.
          *
          * @method _onDragStart
          * @param event
@@ -951,7 +964,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers when the mouse is out a field.
          *
          * @method _onMouseOutField
          * @param event
@@ -967,7 +980,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers when the mouse is over a field.
          *
          * @method _onMouseOverField
          * @param event
@@ -983,7 +996,8 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers on saving a field. First checks if the field is being
+         * edited, if it is then sets the data and syncs on the UI.
          *
          * @method _onSave
          * @param event
@@ -1005,11 +1019,14 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set list of available fields by checking if a field is a
+         * `A.AvailableField` instance. If not creates a new instance of
+         * `A.FormBuilderAvailableField`.
          *
          * @method _setAvailableFields
          * @param val
          * @protected
+         * @return {Array}
          */
         _setAvailableFields: function(val) {
             var fields = [];
@@ -1024,7 +1041,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `fieldsSortableListConfig` attribute.
          *
          * @method _setFieldsSortableListConfig
          * @param val
@@ -1045,8 +1062,8 @@ var FormBuilder = A.Component.create({
                                     scrollDelay: 150
                                 },
                                 fn: A.Plugin.DDWinScroll
-       }
-      ]
+                            }
+                        ]
                     },
                     dropCondition: function(event) {
                         var dropNode = event.drop.get(NODE),
@@ -1072,7 +1089,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Setup a `A.SortableList` of available fields.
          *
          * @method _setupAvailableFieldsSortableList
          * @protected
@@ -1096,7 +1113,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Setup a `A.SortableList` of fields.
          *
          * @method _setupFieldsSortableList
          * @protected
@@ -1112,7 +1129,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sync unique fields.
          *
          * @method _syncUniqueField
          * @param field
@@ -1131,7 +1148,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `allowRemoveRequiredFields` attribute on the UI.
          *
          * @method _uiSetAllowRemoveRequiredFields
          * @param val

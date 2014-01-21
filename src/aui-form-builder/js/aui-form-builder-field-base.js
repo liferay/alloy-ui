@@ -94,7 +94,7 @@ var L = A.Lang,
     TPL_LABEL = '<label for="{id}">{label}</label>';
 
 /**
- * A base class for FormBuilderFieldBase.
+ * A base class for `A.FormBuilderFieldBase`.
  *
  * @class A.FormBuilderFieldBase
  * @uses A.FieldSupport
@@ -114,7 +114,7 @@ var FormBuilderFieldBase = A.Component.create({
     NAME: FORM_BUILDER_FIELD,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Static property used to define the augmented classes.
      *
      * @property AUGMENTS
      * @type Array
@@ -124,7 +124,7 @@ var FormBuilderFieldBase = A.Component.create({
 });
 
 /**
- * A base class for FormBuilderField.
+ * A base class for `A.FormBuilderField`.
  *
  * @class A.FormBuilderField
  * @extends A.FormBuilderFieldBase
@@ -145,7 +145,7 @@ var FormBuilderField = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the FormBuilderField.
+     * configuration for the `A.FormBuilderField`.
      *
      * @property ATTRS
      * @type Object
@@ -154,7 +154,7 @@ var FormBuilderField = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * If `true` children are accepted.
          *
          * @attribute acceptChildren
          * @default true
@@ -165,18 +165,17 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The `A.FormBuilder` instance.
          *
          * @attribute builder
          * @default null
-         * @type Boolean
          */
         builder: {
             value: null
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Collection of toolbar controls.
          *
          * @attribute controlsToolbar
          * @type Object
@@ -194,7 +193,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates which is the type of data for the input field.
          *
          * @attribute dataType
          * @default 'string'
@@ -205,7 +204,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if the input field is disabled or not.
          *
          * @attribute disabled
          * @default false
@@ -216,7 +215,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if the input field is selected or not.
          *
          * @attribute selected
          * @default false
@@ -227,7 +226,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * List of hidden attributes.
          *
          * @attribute hiddenAttributes
          * @default []
@@ -239,7 +238,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The id of the input field.
          *
          * @attribute id
          */
@@ -248,7 +247,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The label of the input field.
          *
          * @attribute label
          * @default ''
@@ -259,7 +258,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Collection for content localization.
          *
          * @attribute localizationMap
          * @default {}
@@ -270,7 +269,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The name of the input field.
          *
          * @attribute name
          */
@@ -284,7 +283,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Container for the field parent.
          *
          * @attribute parent
          * @default null
@@ -294,7 +293,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Specifies a predefined value for the input field.
          *
          * @attribute predefinedValue
          * @default ''
@@ -305,7 +304,8 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if an input field is read-only.
+         * In other words, it cannot be modified.
          *
          * @attribute readOnly
          * @default false
@@ -317,7 +317,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * List of read-only input fields.
          *
          * @attribute readOnlyAttributes
          * @default []
@@ -329,7 +329,8 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if an input field is required.
+         * In other words, it needs content to be valid.
          *
          * @attribute required
          * @default false
@@ -341,7 +342,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * If `true` the label is showed.
          *
          * @attribute showLabel
          * @default true
@@ -387,7 +388,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Specify the tab order.
          *
          * @attribute tabIndex
          * @default 0
@@ -398,7 +399,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Reusable block of markup used to generate the field.
          *
          * @attribute template
          * @default ''
@@ -409,7 +410,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Hint to help the user to fill the input field.
          *
          * @attribute tip
          * @default ''
@@ -420,7 +421,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the type of field.
          *
          * @attribute type
          * @default ''
@@ -431,7 +432,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if the input field is unique or not.
          *
          * @attribute unique
          * @default false
@@ -443,7 +444,8 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Stack order of the field. An element with greater stack order is
+         * always in front of an element with a lower stack order.
          *
          * @attribute zIndex
          * @default 100
@@ -454,7 +456,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Node used to generate the drop zone.
          *
          * @attribute dropZoneNode
          */
@@ -465,7 +467,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Node used to generate a label.
          *
          * @attribute labelNode
          */
@@ -485,7 +487,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Node used to generate the required flag.
          *
          * @attribute requiredFlagNode
          */
@@ -496,7 +498,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Node used to generate a template.
          *
          * @attribute templateNode
          */
@@ -505,7 +507,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Node used to generate a tip.
          *
          * @attribute tipFlagNode
          */
@@ -537,29 +539,31 @@ var FormBuilderField = A.Component.create({
     EXTENDS: FormBuilderFieldBase,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Creates the field id.
      *
      * @method buildFieldId
      * @param id
      * @private
+     * @return {String}
      */
     buildFieldId: function(id) {
         return FIELDS + _UNDERLINE + FIELD + _UNDERLINE + id;
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Creates the field name.
      *
      * @method buildFieldName
      * @param type
      * @private
+     * @return {String}
      */
     buildFieldName: function(type) {
         return type + (++A.Env._uidx);
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Object hash, defining how attribute values have to be parsed from markup.
      *
      * @property HTML_PARSER
      * @type Object
@@ -576,7 +580,7 @@ var FormBuilderField = A.Component.create({
         BOUNDING_TEMPLATE: TPL_BOUNDING_BOX,
 
         /**
-         * Construction logic executed during FormBuilderField instantiation.
+         * Construction logic executed during `A.FormBuilderField` instantiation.
          * Lifecycle.
          *
          * @method initializer
@@ -601,7 +605,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * Bind the events on the FormBuilderField UI. Lifecycle.
+         * Bind the events on the `A.FormBuilderField` UI. Lifecycle.
          *
          * @method bindUI
          * @protected
@@ -615,7 +619,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * Render the FormBuilderField component instance. Lifecycle.
+         * Render the `A.FormBuilderField` component instance. Lifecycle.
          *
          * @method renderUI
          * @protected
@@ -641,7 +645,8 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * Destructor lifecycle implementation for the `FormBuilderField` class.
+         * Destructor lifecycle implementation for the `A.FormBuilderField`
+         * class.
          *
          * @method destructor
          * @protected
@@ -677,10 +682,12 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Creates the field using the `createField` method from
+         * `A.FormBuilder`.
          *
          * @method createField
          * @param val
+         * @return {Object}
          */
         createField: function(val) {
             var instance = this,
@@ -694,19 +701,22 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the field markup.
+         *
          * To developer: Implement this
          *
          * @method getHTML
+         * @return {String}
          */
         getHTML: function() {
             return EMPTY_STR;
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Creates a `Node` from the HTML string.
          *
          * @method getNode
+         * @return {Node}
          */
         getNode: function() {
             var instance = this;
@@ -715,9 +725,10 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets properties from the property model.
          *
          * @method getProperties
+         * @return {Array}
          */
         getProperties: function() {
             var instance = this,
@@ -757,9 +768,11 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a list of property models. Each property model is made of a
+         * name, attribute, editor, and formatter.
          *
          * @method getPropertyModel
+         * @return {Array}
          */
         getPropertyModel: function() {
             var instance = this,
@@ -827,7 +840,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Transforms a `Boolean` value into "yes" or "no" string.
          *
          * @method _booleanFormatter
          * @param o
@@ -841,9 +854,10 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets a list of toolbar items.
          *
          * @method _getToolbarItems
+         * @return {Array}
          */
         _getToolbarItems: function() {
             var instance = this,
@@ -854,8 +868,8 @@ var FormBuilderField = A.Component.create({
                         on: {
                             click: A.bind(instance._handleEditEvent, instance)
                         }
-     }
-    ];
+                    }
+                ];
 
             if (!instance.get(UNIQUE)) {
                 items.push({
@@ -879,7 +893,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if the field isn't unique. If not, duplicates the instance.
          *
          * @method _handleDuplicateEvent
          * @param event
@@ -896,7 +910,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles the edit event.
          *
          * @method _handleEditEvent
          * @param event
@@ -911,7 +925,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Popups a dialog to confirm deletion. If "yes", destroys the instance.
          *
          * @method _handleDeleteEvent
          * @param event
@@ -929,7 +943,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers when the mouse is out a tip flag node. Hides the tooltip.
          *
          * @method _onMouseOutTipFlagNode
          * @protected
@@ -943,7 +957,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers when the mouse is over a tip flag node. Shows the tooltip.
          *
          * @method _onMouseOverTipFlagNode
          * @protected
@@ -957,7 +971,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `id` attribute on the UI.
          *
          * @method _setId
          * @param val
@@ -968,7 +982,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `acceptChildren` attribute on the UI.
          *
          * @method _uiSetAcceptChildren
          * @param val
@@ -992,7 +1006,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `selected` attribute on the UI.
          *
          * @method _uiSetSelected
          * @param val
@@ -1005,7 +1019,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `disabled` attribute on the UI.
          *
          * @method _uiSetSelected
          * @param val
@@ -1024,7 +1038,8 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the fields on the UI using the `plotFields` method from
+         * `A.FormBuilder`.
          *
          * @method _uiSetFields
          * @param val
@@ -1038,7 +1053,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the label content on the UI.
          *
          * @method _uiSetLabel
          * @param val
@@ -1052,7 +1067,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `name` attribute on the UI.
          *
          * @method _uiSetName
          * @param val
@@ -1066,7 +1081,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `predefinedValue` attribute on the UI.
          *
          * @method _uiSetPredefinedValue
          * @param val
@@ -1080,7 +1095,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `required` attribute on the UI.
          *
          * @method _uiSetRequired
          * @param val
@@ -1102,7 +1117,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `showLabel` attribute on the UI.
          *
          * @method _uiSetShowLabel
          * @param val
@@ -1121,7 +1136,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `tip` attribute on the UI.
          *
          * @method _uiSetTip
          * @param val
@@ -1142,7 +1157,7 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `unique` attribute on the UI.
          *
          * @method _uiSetUnique
          * @param val

@@ -42,7 +42,7 @@ var L = A.Lang,
     };
 
 /**
- * A base class for FormBuilderTextField.
+ * A base class for `A.FormBuilderTextField`.
  *
  * @class A.FormBuilderTextField
  * @extends A.FormBuilderField
@@ -63,7 +63,7 @@ var FormBuilderTextField = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the FormBuilderTextField.
+     * configuration for the `A.FormBuilderTextField`.
      *
      * @property ATTRS
      * @type Object
@@ -72,7 +72,7 @@ var FormBuilderTextField = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Reusable block of markup used to generate the field.
          *
          * @attribute template
          */
@@ -83,7 +83,7 @@ var FormBuilderTextField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The width of the input field.
          *
          * @attribute width
          * @default 'small'
@@ -115,9 +115,10 @@ var FormBuilderTextField = A.Component.create({
     prototype: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Injects data into the template and returns the HTML result.
          *
          * @method getHTML
+         * @return {String}
          */
         getHTML: function() {
             var instance = this;
@@ -134,7 +135,8 @@ var FormBuilderTextField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a list of property models including the `A.RadioCellEditor`
+         * model.
          *
          * @method getPropertyModel
          */
@@ -163,7 +165,7 @@ var FormBuilderTextField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `width` attribute in the UI.
          *
          * @method _uiSetWidth
          * @param val
