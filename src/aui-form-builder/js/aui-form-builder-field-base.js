@@ -444,10 +444,8 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
-         * Stack order of the field.
-         *
-         * An element with greater stack order is always in front of an element
-         * with a lower stack order.
+         * Stack order of the field. An element with greater stack order is
+         * always in front of an element with a lower stack order.
          *
          * @attribute zIndex
          * @default 100

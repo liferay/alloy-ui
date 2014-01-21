@@ -162,8 +162,8 @@ var FormBuilderAvailableField = A.Component.create({
         },
 
         /**
-         * Checks if an input field is required.
-         * In other words, it needs content to be valid.
+         * Checks if an input field is required. In other words, it needs
+         * content to be valid.
          *
          * @attribute required
          * @type Boolean
@@ -454,9 +454,9 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * Gets the current field index and then clones the field.
-         * Inserts the new one after the current field index, inside of the
-         * current field parent.
+         * Gets the current field index and then clones the field. Inserts the
+         * new one after the current field index, inside of the current field
+         * parent.
          *
          * @method duplicateField
          * @param field
