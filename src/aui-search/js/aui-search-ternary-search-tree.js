@@ -56,7 +56,7 @@ var TernarySearchTree = A.Component.create({
     prototype: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Adds a word in the tree.
          *
          * @method add
          * @param word
@@ -74,10 +74,11 @@ var TernarySearchTree = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if the argument is part of the tree.
          *
          * @method contains
          * @param word
+         * @return {Boolean}
          */
         contains: function(word) {
             var instance = this;
@@ -88,7 +89,7 @@ var TernarySearchTree = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set tree's root to `null`.
          *
          * @method empty
          */
@@ -99,10 +100,11 @@ var TernarySearchTree = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if a pattern match.
          *
          * @method patternMatch
          * @param pattern
+         * @return {Array}
          */
         patternMatch: function(pattern) {
             var instance = this;
@@ -115,10 +117,11 @@ var TernarySearchTree = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Searches for a prefix in the tree.
          *
          * @method prefixSearch
          * @param prefix
+         * @return {Array}
          */
         prefixSearch: function(prefix) {
             var instance = this;
@@ -135,7 +138,7 @@ var TernarySearchTree = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Traversals a tree.
          *
          * @method _inOrderTraversal
          * @param node
@@ -161,7 +164,7 @@ var TernarySearchTree = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Insert a node in the tree.
          *
          * @method _insert
          * @param node
@@ -204,7 +207,7 @@ var TernarySearchTree = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Recursive search for a pattern in the tree.
          *
          * @method _patternMatch
          * @param node
@@ -243,7 +246,7 @@ var TernarySearchTree = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Recursive search for a node in the tree.
          *
          * @method _search
          * @param node

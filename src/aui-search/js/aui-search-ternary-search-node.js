@@ -39,7 +39,7 @@ var TernarySearchNode = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the TernarySearchNode.
+     * configuration for the `A.TernarySearchNode`.
      *
      * @property ATTRS
      * @type Object
@@ -48,7 +48,7 @@ var TernarySearchNode = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * String formed by a single letter.
          *
          * @attribute character
          * @type String
@@ -60,7 +60,7 @@ var TernarySearchNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The child node in the tree.
          *
          * @attribute child
          */
@@ -69,27 +69,27 @@ var TernarySearchNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The larger node in the tree.
          *
          * @attribute largerNode
-         * @type TernarySearchNode
+         * @type A.TernarySearchNode
          */
         largerNode: {
             validator: '_isInstanceOfNode'
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The smaller node in the tree.
          *
          * @attribute smallerNode
-         * @type TernarySearchNode
+         * @type A.TernarySearchNode
          */
         smallerNode: {
             validator: '_isInstanceOfNode'
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * String formed by a group of letters.
          *
          * @attribute word
          * @type String
@@ -111,7 +111,8 @@ var TernarySearchNode = A.Component.create({
     prototype: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Converts the `word` attribute value to a `Boolean` and ensures a
+         * `Boolean` type.
          *
          * @method isEndOfWord
          */
@@ -120,22 +121,24 @@ var TernarySearchNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if the argument is an instance of `A.TernarySearchNode`.
          *
          * @method _isInstanceOfNode
          * @param value
          * @protected
+         * @return {Boolean}
          */
         _isInstanceOfNode: function(value) {
             return value instanceof A.TernarySearchNode;
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if the argument is a `String` and contains only one character.
          *
          * @method _validateCharacter
          * @param value
          * @protected
+         * @return {Boolean}
          */
         _validateCharacter: function(value) {
             return Lang.isString(value) && value.length === 1;
