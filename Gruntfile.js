@@ -7,7 +7,8 @@
  * @author Eduardo Lundgren <eduardo.lundgren@liferay.com>
  */
 
-var path = require('path');
+var path  = require('path');
+var spawn = require('child_process').spawn;
 
 // -- Globals ------------------------------------------------------------------
 var ROOT = process.cwd();
@@ -99,34 +100,17 @@ module.exports = function(grunt) {
         },
 
         compress: {
-            zip: {
-                options: {
-                    mode: 'zip',
-                    pretty: true
-                },
-                files: [
-                    {
-                        src: [
-                            'build/**',
-                            'demos/**',
-                            'src/**',
-                            'LICENSE.md',
-                            'README.md',
-                            '.alloy.json',
-                            '!.DS_Store'
-                        ]
-                    }
-                ]
+            cdn: {
+                name: 'cdn-alloy-<%= pkg["version"] %>'
+            },
+            release: {
+                name: 'alloy-<%= pkg["version"] %>'
             }
         },
 
         clean: {
             css: [
                 'build/aui-css/css/responsive.css',
-            ],
-            zip: [
-                'alloy-<%= pkg["version"] %>.zip',
-                'cdn-alloy-<%= pkg["version"] %>.zip'
             ]
         },
 
@@ -148,11 +132,7 @@ module.exports = function(grunt) {
         },
 
         jsbeautifier: {
-            files: [
-                'src/**/*.js',
-                'src/**/*.css',
-                'grunt/*.js'
-            ],
+            files: ['src/**/*.js', 'src/**/*.css', 'grunt/*.js'],
             options: {
                 config: '.jsbeautifyrc'
             }
@@ -166,31 +146,21 @@ module.exports = function(grunt) {
             'src': ROOT,
             'replace-yuivar': 'A',
             'replace-version': '<%= pkg["version"] %>'
-        },
-
-        zip: {
-            cdn: {
-                name: 'cdn-alloy-<%= pkg["version"] %>.zip'
-            },
-            release: {
-                name: 'alloy-<%= pkg["version"] %>.zip'
-            }
         }
     });
 
-    grunt.loadTasks('tasks');
+    grunt.loadTasks('grunt');
 
-    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-compass');
-    grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-jsbeautifier');
 
     grunt.registerTask('all', ['bootstrap', 'build']);
     grunt.registerTask('api-deploy', ['api-build', 'api-push']);
-    grunt.registerTask('bootstrap', ['compass', 'copy:css', 'cssmin', 'copy:img', 'clean:css']);
+    grunt.registerTask('bootstrap', ['compass', 'copy:css', 'cssmin', 'copy:img', 'clean']);
     grunt.registerTask('format', ['jsbeautifier']);
-    grunt.registerTask('release', ['clean:zip', 'all', 'zip:release']);
-    grunt.registerTask('release-cdn', ['clean:zip', 'all', 'cdn', 'zip:cdn', 'build:aui']);
+    grunt.registerTask('release', ['all', 'compress:release']);
+    grunt.registerTask('release-cdn', ['all', 'cdn', 'compress:cdn', 'build:aui']);
 };
