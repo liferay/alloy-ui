@@ -19,6 +19,8 @@ var Lang = A.Lang,
 
 	APPEND = 'append',
 	CIRCLE = 'circle',
+	COLUMN_CLASS = 'portlet-column',
+	COLUMN_ITEM_CLASS = 'portlet-boundary',
 	DELEGATE_CONFIG = 'delegateConfig',
 	DOT = '.',
 	DOWN = 'down',
@@ -38,11 +40,9 @@ var Lang = A.Lang,
 	NODE = 'node',
 	OFFSET_HEIGHT = 'offsetHeight',
 	OFFSET_WIDTH = 'offsetWidth',
-	PLACEHOLDER = 'placeholder',
 	PLACE_AFTER = 'placeAfter',
 	PLACE_BEFORE = 'placeBefore',
-	COLUMN_CLASS = 'portlet-column',
-	COLUMN_ITEM_CLASS = '.portlet-boundary',
+	PLACEHOLDER = 'placeholder',
 	PORTAL_LAYOUT = 'portal-layout',
 	PREPEND = 'prepend',
 	PROXY = 'proxy',
@@ -361,8 +361,8 @@ var PortalLayout = A.Component.create(
 				if (dropNode.hasClass(COLUMN_CLASS)) {
 					var portletsInColumn = dropNode.all(DOT + COLUMN_ITEM_CLASS);
 
-					if (portletsInColumn && !portletsInColumn.isEmpty()) {
-						var lastPortletInColumn = portletsInColumn.slice(-1).item(0);
+					if (!portletsInColumn.isEmpty()) {
+						var lastPortletInColumn = portletsInColumn.item(portletsInColumn.size() - 1);
 
 						region.bottom = lastPortletInColumn.get(REGION).bottom;
 					}
