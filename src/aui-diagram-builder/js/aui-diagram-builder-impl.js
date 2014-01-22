@@ -981,9 +981,7 @@ var DiagramBuilder = A.Component.create({
         _onDeleteKey: function(event) {
             var instance = this;
 
-            var target = event.target;
-
-            if (isDiagramNode(A.Widget.getByNode(target))) {
+            if (isDiagramNode(A.Widget.getByNode(event.target))) {
                 instance._deleteSelectedNode(event);
             }
         },
