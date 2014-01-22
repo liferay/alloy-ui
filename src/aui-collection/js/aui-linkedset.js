@@ -19,7 +19,8 @@ var LinkedSet = A.Base.create('linkedset', A.Set, [], {
     _entries: null,
 
     /**
-     * Construction logic executed during LinkedSet instantiation. Lifecycle.
+     * Construction logic executed during `A.LinkedSet` instantiation.
+     * Lifecycle.
      *
      * @method initializer
      * @protected
@@ -32,7 +33,8 @@ var LinkedSet = A.Base.create('linkedset', A.Set, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Implements the `add` custom event behavior. Appends the specified element
+     * to the end of this linked set.
      *
      * @method _defAddFn
      * @param event
@@ -69,7 +71,8 @@ var LinkedSet = A.Base.create('linkedset', A.Set, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Implements the `remove` custom event behavior. Removes the element and
+     * reorders the linked set.
      *
      * @method _defRemoveFn
      * @param event
@@ -98,9 +101,10 @@ var LinkedSet = A.Base.create('linkedset', A.Set, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets a list view of the values contained in this linked set.
      *
      * @method values
+     * @return {Array}
      */
     values: function() {
         var instance = this,
