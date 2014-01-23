@@ -378,7 +378,8 @@ var DiagramBuilder = A.Component.create({
             instance.handlerKeyDown = A.getDoc().on(KEYDOWN, A.bind(instance._afterKeyEvent, instance));
 
             instance.dropContainer.delegate(CLICK, A.bind(instance._onNodeClick, instance), _DOT + CSS_DIAGRAM_NODE);
-            instance.dropContainer.delegate(MOUSEDOWN, A.bind(instance._onCloseButtonMouseDown, instance), '.diagram-builder-controls button');
+            instance.dropContainer.delegate(MOUSEDOWN, A.bind(instance._onCloseButtonMouseDown, instance),
+                '.diagram-builder-controls button');
             instance.dropContainer.delegate(MOUSEENTER, A.bind(instance._onNodeMouseEnter, instance), _DOT +
                 CSS_DIAGRAM_NODE);
             instance.dropContainer.delegate(MOUSELEAVE, A.bind(instance._onNodeMouseLeave, instance), _DOT +
