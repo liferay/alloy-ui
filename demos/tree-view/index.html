@@ -52,6 +52,9 @@
 <h1>A.TreeView Simple Style</h1>
 <div id="tree2"></div>
 
+<h1>TreeView normal with drag and drop and undraggable elements</h1>
+<div id="treebasic-undrag"></div>
+
 <script type="text/javascript" charset="utf-8">
 
 AUI().ready('aui-tree-view', 'aui-tooltip', 'datatype-xml', 'dataschema-xml', function(A) {
@@ -301,6 +304,36 @@ AUI().ready('aui-tree-view', 'aui-tooltip', 'datatype-xml', 'dataschema-xml', fu
 	})
 	.render();
 
+	new A.TreeViewDD({
+        boundingBox: '#treebasic-undrag',
+        children: [
+            {
+                label: 'Fruits',
+                expanded: true,
+                children: [
+                    { label: 'Apricot - cannot move/drop' , 'draggable':false },
+                    { label: 'Pineapple - cannot move/drop' , 'draggable':false },
+                    { label: 'Kiwi - cannot move/drop' , 'draggable':false },
+                    { label: 'Orange' },
+                    { label: 'Pomegranate' },
+                    { label: 'Lime' },
+                ]
+            },
+            {
+                label: 'More fruits',
+                expanded: true,
+                children: [
+                    { label: 'Watermelon' },
+                    { label: 'Apricot' },
+                    { label: 'Pineapple' },
+                    { label: 'Kiwi' },
+                    { label: 'Orange' },
+                    { label: 'Pomegranate' }
+                ]
+            }
+        ],
+        type: 'normal'
+    }).render();
 
 	// Extras tree1
 

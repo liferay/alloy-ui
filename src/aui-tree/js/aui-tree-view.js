@@ -20,6 +20,7 @@ var L = A.Lang,
 	FILE = 'file',
 	HITAREA = 'hitarea',
 	ICON = 'icon',
+	INVALID = 'invalid',
 	LABEL = 'label',
 	LAST_SELECTED = 'lastSelected',
 	LEAF = 'leaf',
@@ -48,6 +49,7 @@ var L = A.Lang,
 	CSS_TREE_ICON = getCN(TREE, ICON),
 	CSS_TREE_LABEL = getCN(TREE, LABEL),
 	CSS_TREE_NODE_CONTENT = getCN(TREE, NODE, CONTENT),
+	CSS_TREE_NODE_CONTENT_INVALID = getCN(TREE, NODE, CONTENT, INVALID),
 	CSS_TREE_ROOT_CONTAINER = getCN(TREE, ROOT, CONTAINER),
 	CSS_TREE_VIEW_CONTENT = getCN(TREE, VIEW, CONTENT);
 
@@ -620,6 +622,7 @@ var TreeViewDD = A.Component.create(
 						{
 							bubbleTargets: instance,
 							container: boundingBox,
+							invalid: DOT+CSS_TREE_NODE_CONTENT_INVALID,
 							nodes: DOT+CSS_TREE_NODE_CONTENT,
 							target: true
 						}
@@ -756,8 +759,9 @@ var TreeViewDD = A.Component.create(
 				instance._resetState(instance.nodeContent);
 
 				// cannot drop the dragged element into any of its children
+				// nor above an undraggable element
 				// using DOM contains method for performance reason
-				if ( !dragNode.contains(dropNode) ) {
+				if ( !! dropTreeNode.get(DRAGGABLE) && !dragNode.contains(dropNode)) {
 					// nArea splits the height in 3 areas top/center/bottom
 					// these areas are responsible for defining the state when the mouse is over any of them
 					var nArea = nodeContent.get(OFFSET_HEIGHT) / 3;
