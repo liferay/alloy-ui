@@ -4,7 +4,9 @@
  * @module aui-tooltip
  */
 
-var BODY_CONTENT = 'bodyContent',
+var Lang = A.Lang,
+
+    BODY_CONTENT = 'bodyContent',
     BOUNDING_BOX = 'boundingBox',
     CONTENT_BOX = 'contentBox',
     DURATION = 'duration',
@@ -12,7 +14,6 @@ var BODY_CONTENT = 'bodyContent',
     HOVER = 'hover',
     IN = 'in',
     MOUSEENTER = 'mouseenter',
-    MOUSELEAVE = 'mouseleave',
     OPACITY = 'opacity',
     STICK_DURATION = 'stickDuration',
     TITLE = 'title',
@@ -337,6 +338,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
          * @type {Number}
          */
         duration: {
+            validator: Lang.isNumber,
             value: 0.15
         },
 
@@ -358,6 +360,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
          * @type {Number}
          */
         opacity: {
+            validator: Lang.isNumber,
             value: 0.8
         },
 
@@ -382,6 +385,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
          * @type String
          */
         triggerShowEvent: {
+            validator: Lang.isString,
             value: MOUSEENTER
         }
     },
