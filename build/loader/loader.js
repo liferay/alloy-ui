@@ -2780,6 +2780,11 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
             }
         }
     }, 
+    "escape": {
+        "requires": [
+            "yui-base"
+        ]
+    }, 
     "event": {
         "after": "node-base", 
         "plugins": {
@@ -3482,7 +3487,7 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
         }
     }
 };
-YUI.Env[Y.version].md5 = 'cfc09bca4dc5b23b5387d4608439061c';
+YUI.Env[Y.version].md5 = 'c2d8c704241e031cf28ead04709400df';
 
 
 }, '3.2.0' ,{requires:['loader-base']});
