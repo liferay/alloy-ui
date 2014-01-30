@@ -23,7 +23,8 @@ YUI.add('aui-event-tests', function(Y) {
         _should: {
             ignore: {
                 'input event': hasNativeInput,
-                'detach input event': hasNativeInput
+                'detach input event': hasNativeInput,
+                'do not dispatch on not modifying keys': hasNativeInput
             }
         },
 
@@ -57,9 +58,9 @@ YUI.add('aui-event-tests', function(Y) {
 
             Y.Mock.expect(
                 mock, {
-                    method: 'onInput',
                     args: [YUITest.Mock.Value.Object],
-                    callCount: 1
+                    callCount: 1,
+                    method: 'onInput'
                 }
             );
 
@@ -92,9 +93,9 @@ YUI.add('aui-event-tests', function(Y) {
 
             Y.Mock.expect(
                 mock, {
-                    method: 'onInput',
                     args: [YUITest.Mock.Value.Object],
-                    callCount: 1
+                    callCount: 1,
+                    method: 'onInput'
                 }
             );
 
@@ -138,9 +139,9 @@ YUI.add('aui-event-tests', function(Y) {
 
             Y.Mock.expect(
                 mock, {
-                    method: 'onInput',
                     args: [YUITest.Mock.Value.Object],
-                    callCount: 0
+                    callCount: 0,
+                    method: 'onInput'
                 }
             );
 
@@ -149,22 +150,16 @@ YUI.add('aui-event-tests', function(Y) {
             );
 
             nonModifyingKeys = [
-                KeyMap.SHIFT,
-                KeyMap.CTRL,
                 KeyMap.ALT,
-                KeyMap.PAUSE,
                 KeyMap.CAPS_LOCK,
-                KeyMap.ESC,
-                KeyMap.PAGE_UP,
-                KeyMap.PAGE_DOWN,
-                KeyMap.END,
-                KeyMap.HOME,
-                KeyMap.LEFT,
-                KeyMap.UP,
-                KeyMap.RIGHT,
+                KeyMap.CTRL,
                 KeyMap.DOWN,
-                KeyMap.PRINT_SCREEN,
+                KeyMap.END,
+                KeyMap.ESC,
                 KeyMap.F1,
+                KeyMap.F10,
+                KeyMap.F11,
+                KeyMap.F12,
                 KeyMap.F2,
                 KeyMap.F3,
                 KeyMap.F4,
@@ -173,10 +168,16 @@ YUI.add('aui-event-tests', function(Y) {
                 KeyMap.F7,
                 KeyMap.F8,
                 KeyMap.F9,
-                KeyMap.F10,
-                KeyMap.F11,
-                KeyMap.F12,
+                KeyMap.HOME,
+                KeyMap.LEFT,
                 KeyMap.NUM_LOCK,
+                KeyMap.PAGE_DOWN,
+                KeyMap.PAGE_UP,
+                KeyMap.PAUSE,
+                KeyMap.PRINT_SCREEN,
+                KeyMap.RIGHT,
+                KeyMap.SHIFT,
+                KeyMap.UP,
                 KeyMap.WIN_KEY
             ];
 

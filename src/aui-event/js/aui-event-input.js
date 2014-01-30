@@ -129,8 +129,10 @@ A.Event.define('input', {
      */
     _dispatchEvent: function(subscription, notifier, event) {
         var instance = this,
-            input = event.target,
+            input,
             valueBeforeKey;
+
+        input = event.target;
 
         // Since cut, drop and paste events fires before the element is focused,
         // skip focus checking.
@@ -146,14 +148,7 @@ A.Event.define('input', {
                 valueBeforeKey = KeyMap.isKey(event.keyCode, 'WIN_IME') ? null : input.get(STR_VALUE);
 
                 subscription._timer = A.soon(
-                    A.bind(
-                        '_fireEvent',
-                        instance,
-                        subscription,
-                        notifier,
-                        event,
-                        valueBeforeKey
-                    )
+                    A.bind('_fireEvent', instance, subscription, notifier, event, valueBeforeKey)
                 );
             }
         }
@@ -173,10 +168,10 @@ A.Event.define('input', {
         var instance = this,
             input = event.target;
 
+        subscription._timer = null;
+
         if (input.get(STR_VALUE) !== valueBeforeKey) {
             notifier.fire(event);
         }
-
-        subscription._timer = null;
     }
 });
