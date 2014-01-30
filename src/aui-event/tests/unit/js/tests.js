@@ -6,6 +6,8 @@ YUI.add('aui-event-tests', function(Y) {
 
     var suite = new Y.Test.Suite('aui-event'),
 
+        KeyMap = Y.Event.KeyMap,
+
         input = Y.one('input'),
 
         hasNativeInput = Y.Features.test('event', 'input');
@@ -28,6 +30,8 @@ YUI.add('aui-event-tests', function(Y) {
         setUp: function() {
             var instance = this;
 
+            input.val('');
+
             instance._eventHandles = [];
         },
 
@@ -42,7 +46,8 @@ YUI.add('aui-event-tests', function(Y) {
         //----------------------------------------------------------------------
 
         /**
-         * Checks that the synthetic input event is fired as expected
+         * Checks that the synthetic input event is fired as expected when input
+         * content changes.
          *
          * @tests AUI-749
          */
@@ -54,7 +59,7 @@ YUI.add('aui-event-tests', function(Y) {
                 mock, {
                     method: 'onInput',
                     args: [YUITest.Mock.Value.Object],
-                    callCount: 2
+                    callCount: 1
                 }
             );
 
@@ -62,9 +67,11 @@ YUI.add('aui-event-tests', function(Y) {
                 input.on('input', mock.onInput, instance)
             );
 
+            // Simulating keydown events does not update the input value. Need
+            // to do it manually to mimic browser behaviour properly.
             input.focus();
-            input.simulate('keydown');
-            input.simulate('keydown');
+            input.simulate('keydown', { keyCode: KeyMap.A });
+            input.val('a');
 
             instance.wait(
                 function() {
@@ -75,7 +82,7 @@ YUI.add('aui-event-tests', function(Y) {
         },
 
         /**
-         * Checks that the synthetic input event is detached properly
+         * Checks that the synthetic input event is detached properly.
          *
          * @tests AUI-749
          */
@@ -93,7 +100,11 @@ YUI.add('aui-event-tests', function(Y) {
 
             var onInput = input.on('input', mock.onInput, instance);
 
-            input.simulate('keydown');
+            // Simulating keydown events does not update the input value. Need
+            // to do it manually to mimic browser behaviour properly.
+            input.focus();
+            input.simulate('keydown', { keyCode: KeyMap.A });
+            input.val('a');
 
             instance.wait(
                 function() {
@@ -112,12 +123,83 @@ YUI.add('aui-event-tests', function(Y) {
                 },
                 0
             );
-        }
+        },
 
+        /**
+         * Checks that keys that can't cause an input modification don't fire
+         * an input event.
+         *
+         * @tests AUI-749
+         */
+        'do not dispatch on not modifying keys': function() {
+            var instance = this,
+                nonModifyingKeys,
+                mock = new Y.Mock();
+
+            Y.Mock.expect(
+                mock, {
+                    method: 'onInput',
+                    args: [YUITest.Mock.Value.Object],
+                    callCount: 0
+                }
+            );
+
+            instance._eventHandles.push(
+                input.on('input', mock.onInput, instance)
+            );
+
+            nonModifyingKeys = [
+                KeyMap.SHIFT,
+                KeyMap.CTRL,
+                KeyMap.ALT,
+                KeyMap.PAUSE,
+                KeyMap.CAPS_LOCK,
+                KeyMap.ESC,
+                KeyMap.PAGE_UP,
+                KeyMap.PAGE_DOWN,
+                KeyMap.END,
+                KeyMap.HOME,
+                KeyMap.LEFT,
+                KeyMap.UP,
+                KeyMap.RIGHT,
+                KeyMap.DOWN,
+                KeyMap.PRINT_SCREEN,
+                KeyMap.F1,
+                KeyMap.F2,
+                KeyMap.F3,
+                KeyMap.F4,
+                KeyMap.F5,
+                KeyMap.F6,
+                KeyMap.F7,
+                KeyMap.F8,
+                KeyMap.F9,
+                KeyMap.F10,
+                KeyMap.F11,
+                KeyMap.F12,
+                KeyMap.NUM_LOCK,
+                KeyMap.WIN_KEY
+            ];
+
+            input.focus();
+
+            Y.Array.each(
+                nonModifyingKeys,
+                function(item) {
+                    input.simulate('keydown', { keyCode: item });
+                }
+            );
+
+            instance.wait(
+                function() {
+                    Y.Mock.verify(mock);
+                },
+                0
+            );
+        }
     }));
 
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['aui-event', 'node-event-simulate', 'test']
+    requires: ['aui-event', 'aui-node-base', 'node-event-simulate', 'test']
 });

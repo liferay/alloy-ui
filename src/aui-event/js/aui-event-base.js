@@ -131,6 +131,39 @@ var KeyMap = {
     WIN_KEY: 224,
     WIN_IME: 229,
 
+    NON_MODIFYING_KEYS: [
+        'ALT',
+        'CAPS_LOCK',
+        'CTRL',
+        'DOWN',
+        'END',
+        'ESC',
+        'F1',
+        'F10',
+        'F11',
+        'F12',
+        'F2',
+        'F3',
+        'F4',
+        'F5',
+        'F6',
+        'F7',
+        'F8',
+        'F9',
+        'HOME',
+        'LEFT',
+        'NUM_LOCK',
+        'PAGE_DOWN',
+        'PAGE_UP',
+        'PAUSE',
+        'PRINT_SCREEN',
+        'RIGHT',
+        'SHIFT',
+        'SPACE',
+        'UP',
+        'WIN_KEY'
+    ],
+
     hasModifier: function(event) {
         var instance = this;
 
@@ -186,6 +219,12 @@ var KeyMap = {
             instance.isNavKey(keyCode) ||
             instance.isKeyInRange(keyCode, SHIFT, CAPS_LOCK) ||
             instance.isKeyInSet(keyCode, BACKSPACE, PRINT_SCREEN, INSERT, WIN_IME);
+    },
+
+    isModifyingKey: function(keyCode) {
+        var instance = this;
+
+        return !instance._isKeyInSet(keyCode, instance.NON_MODIFYING_KEYS);
     },
 
     _isKeyInSet: function(keyCode, arr) {
@@ -262,6 +301,17 @@ A.mix(
             var args = AArray(arguments, 0, true);
 
             return KeyMap._isKeyInSet(instance.keyCode, args);
+        },
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method isModifyingKey
+         */
+        isModifyingKey: function() {
+            var instance = this;
+
+            return KeyMap.isModifyingKey(instance.keyCode);
         },
 
         /**

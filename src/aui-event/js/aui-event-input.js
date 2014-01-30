@@ -22,8 +22,12 @@ DOM_EVENTS.cut = 1;
 DOM_EVENTS.dragend = 1;
 DOM_EVENTS.paste = 1;
 
-var ACTIVE_ELEMENT = 'activeElement',
+var KeyMap = A.Event.KeyMap,
+
+    ACTIVE_ELEMENT = 'activeElement',
     OWNER_DOCUMENT = 'ownerDocument',
+
+    STR_VALUE = 'value',
 
     _HANDLER_DATA_KEY = '~~aui|input|event~~',
     _INPUT_EVENT_TYPE = ['keydown', 'paste', 'drop', 'cut'],
@@ -52,7 +56,7 @@ A.Event.define('input', {
         var instance = this;
 
         subscription._handler = node.on(
-            _INPUT_EVENT_TYPE, A.bind(instance._dispatchEvent, instance, notifier));
+            _INPUT_EVENT_TYPE, A.bind(instance._dispatchEvent, instance, subscription, notifier));
     },
 
     /**
@@ -75,7 +79,7 @@ A.Event.define('input', {
             if (!handler) {
                 handler = element.on(
                     _INPUT_EVENT_TYPE,
-                    A.bind(instance._dispatchEvent, instance, notifier));
+                    A.bind(instance._dispatchEvent, instance, subscription, notifier));
 
                 subscription._handles.push(handler);
                 element.setData(_HANDLER_DATA_KEY, handler);
@@ -118,20 +122,61 @@ A.Event.define('input', {
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _dispatchEvent
+     * @param subscription
      * @param notifier
      * @param event
      * @protected
      */
-    _dispatchEvent: function(notifier, event) {
+    _dispatchEvent: function(subscription, notifier, event) {
         var instance = this,
-            input = event.target;
+            input = event.target,
+            valueBeforeKey;
 
         // Since cut, drop and paste events fires before the element is focused,
         // skip focus checking.
         if (_SKIP_FOCUS_CHECK_MAP[event.type] ||
             (input.get(OWNER_DOCUMENT).get(ACTIVE_ELEMENT) === input)) {
 
-            A.soon(A.bind('fire', notifier, event));
+            if (KeyMap.isModifyingKey(event.keyCode)) {
+                if (subscription._timer) {
+                    subscription._timer.cancel();
+                    subscription._timer = null;
+                }
+
+                valueBeforeKey = KeyMap.isKey(event.keyCode, 'WIN_IME') ? null : input.get(STR_VALUE);
+
+                subscription._timer = A.soon(
+                    A.bind(
+                        '_fireEvent',
+                        instance,
+                        subscription,
+                        notifier,
+                        event,
+                        valueBeforeKey
+                    )
+                );
+            }
         }
+    },
+
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _fireEvent
+     * @param subscription
+     * @param notifier
+     * @param event
+     * @param valueBeforeKey
+     * @protected
+     */
+    _fireEvent: function(subscription, notifier, event, valueBeforeKey) {
+        var instance = this,
+            input = event.target;
+
+        if (input.get(STR_VALUE) !== valueBeforeKey) {
+            notifier.fire(event);
+        }
+
+        subscription._timer = null;
     }
 });
