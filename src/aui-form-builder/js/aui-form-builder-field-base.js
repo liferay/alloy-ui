@@ -1063,7 +1063,7 @@ var FormBuilderField = A.Component.create({
             var instance = this,
                 labelNode = instance.get(LABEL_NODE);
 
-            labelNode.setContent(val);
+            labelNode.setContent(A.Escape.html(val));
         },
 
         /**
