@@ -1,29 +1,36 @@
 .editable-content-wrapper {
-    border: 1px solid transparent;
-    padding: 3px;
+	border: 1px solid transparent;
+	padding: 3px;
 }
+
 .editable-ctrl-holder {
 }
+
 .editable {
-    position: absolute;
+	position: absolute;
 }
+
 .editable-editing {
-    visibility: hidden;
+	visibility: hidden;
 }
+
 .editable-hidden {
-    display: none;
+	display: none;
 }
+
 .editable-form-triggers {
-    background-color: transparent;
-    border-width: 0;
-    padding: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
+	background-color: transparent;
+	border-width: 0;
+	padding: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
 }
+
 .editable-input {
-    width: 100%;
+	width: 100%;
 }
+
 .editable-content {
-    padding-right: 60px;
+	padding-right: 60px;
 }

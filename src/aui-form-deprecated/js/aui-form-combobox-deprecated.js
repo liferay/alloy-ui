@@ -1,79 +1,84 @@
 var Lang = A.Lang,
 
-    getClassName = A.getClassName,
+	getClassName = A.getClassName,
 
-    ARROW = 'arrow',
-    CIRCLE = 'circle',
-    DOWN = 'down',
-    ICON = 'icon',
-    NAME = 'combobox',
+	ARROW = 'arrow',
+	CIRCLE = 'circle',
+	DOWN = 'down',
+	ICON = 'icon',
+	NAME = 'combobox',
 
-    CSS_COMBOBOX = getClassName(NAME),
-    CSS_ICON_CIRCLE_ARROW_DOWN = getClassName(ICON, CIRCLE, ARROW, DOWN);
+	CSS_COMBOBOX = getClassName(NAME),
+	CSS_ICON_CIRCLE_ARROW_DOWN = getClassName(ICON, CIRCLE, ARROW, DOWN);
 
-var Combobox = A.Component.create({
-    NAME: NAME,
+var Combobox = A.Component.create(
+	{
+		NAME: NAME,
 
-    ATTRS: {
-        field: {},
+		ATTRS: {
+			field: {
+			},
 
-        fieldWidget: {
-            value: A.Textfield
-        },
+			fieldWidget: {
+				value: A.Textfield
+			},
 
-        node: {
-            getter: function() {
-                var instance = this;
+			node: {
+				getter: function() {
+					var instance = this;
 
-                if (instance._field) {
-                    return instance._field.get('node');
-                }
-            }
-        },
+					if (instance._field) {
+						return instance._field.get('node');
+					}
+				}
+			},
 
-        icons: {
-            value: [CSS_ICON_CIRCLE_ARROW_DOWN],
-            validator: Lang.isArray
-        }
-    },
+			icons: {
+				value: [CSS_ICON_CIRCLE_ARROW_DOWN],
+				validator: Lang.isArray
+			}
+		},
 
-    prototype: {
-        renderUI: function() {
-            var instance = this;
+		prototype: {
+			renderUI: function() {
+				var instance = this;
 
-            Combobox.superclass.renderUI.call(instance);
+				Combobox.superclass.renderUI.call(instance);
 
-            instance._renderField();
-            instance._renderIcons();
-        },
+				instance._renderField();
+				instance._renderIcons();
+			},
 
-        _renderField: function() {
-            var instance = this;
+			_renderField: function() {
+				var instance = this;
 
-            var contentBox = instance.get('contentBox');
+				var contentBox = instance.get('contentBox');
 
-            var field = instance.get('field');
-            var fieldWidget = instance.get('fieldWidget');
+				var field = instance.get('field');
+				var fieldWidget = instance.get('fieldWidget');
 
-            instance._field = new fieldWidget(field).render();
+				instance._field = new fieldWidget(field).render();
 
-            contentBox.appendChild(instance._field.get('boundingBox'));
-        },
+				contentBox.appendChild(instance._field.get('boundingBox'));
+			},
 
-        _renderIcons: function() {
-            var instance = this;
+			_renderIcons: function() {
+				var instance = this;
 
-            var icons = instance.get('icons');
+				var icons = instance.get('icons');
 
-            if (icons.length) {
-                var toolbar = new A.Toolbar({
-                    children: [icons]
-                }).render(instance.get('contentBox'));
+				if (icons.length) {
+					var toolbar = new A.Toolbar(
+						{
+							children: [icons]
+						}
+					).render(instance.get('contentBox'));
 
-                instance.icons = toolbar;
-            }
-        }
-    }
-});
+					instance.icons = toolbar;
+				}
+			}
+		}
+	}
+);
 
 A.Combobox = Combobox;

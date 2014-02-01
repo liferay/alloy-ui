@@ -1,20 +1,25 @@
 .combobox-content .field-content {
-    float: none;
+	float: none;
 }
+
 .combobox-content {
-    white-space: nowrap;
-    vertical-align: middle;
+	white-space: nowrap;
+	vertical-align: middle;
 }
+
 .combobox-content .field-content {
-    display: inline-block;
+	display: inline-block;
 }
+
 .combobox-content .field-input {
-    display: block;
+	display: block;
 }
+
 .editable .btn-group {
-    margin-top: -3px;
+	margin-top: -3px;
 }
+
 .editable .toolbar {
-    display: inline-block;
-    margin-left: 1px;
+	display: inline-block;
+	margin-left: 1px;
 }

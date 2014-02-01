@@ -1,265 +1,269 @@
 var Lang = A.Lang,
-    UA = A.UA,
-    getClassName = A.getClassName,
+	UA = A.UA,
+	getClassName = A.getClassName,
 
-    NAME = 'swf',
+	NAME = 'swf',
 
-    ATTR_VERSION = '10.22',
-    ATTR_EXPRESS_INSTALL_URL = 'http://fpdownload.macromedia.com/pub/flashplayer/update/current/swf/autoUpdater.swf?' +
-        (+new Date),
-    ATTR_TYPE = 'application/x-shockwave-flash',
-    ATTR_CLSID = 'clsid:d27cdb6e-ae6d-11cf-96b8-444553540000',
-    ATTR_EVENT_HANDLER = 'YUI.SWF.eventHandler',
+	ATTR_VERSION = '10.22',
+	ATTR_EXPRESS_INSTALL_URL = 'http://fpdownload.macromedia.com/pub/flashplayer/update/current/swf/autoUpdater.swf?' + (+ new Date),
+	ATTR_TYPE = 'application/x-shockwave-flash',
+	ATTR_CLSID = 'clsid:d27cdb6e-ae6d-11cf-96b8-444553540000',
+	ATTR_EVENT_HANDLER = 'YUI.SWF.eventHandler',
 
-    SF = 'ShockwaveFlash',
-    VERSION = 0,
+	SF = 'ShockwaveFlash',
+	VERSION = 0,
 
-    SWF_INSTANCES = YUI.namespace('SWF.instances'),
+	SWF_INSTANCES = YUI.namespace('SWF.instances'),
 
-    CSS_SWF = getClassName(NAME);
+	CSS_SWF = getClassName(NAME);
 
 YUI.SWF.eventHandler = function(id, event) {
-    SWF_INSTANCES[id]._eventHandler(event);
+	SWF_INSTANCES[id]._eventHandler(event);
 };
 
 if (UA.gecko || UA.webkit || UA.opera) {
-    var flashMimeType = navigator.mimeTypes[ATTR_TYPE];
+	var flashMimeType = navigator.mimeTypes[ATTR_TYPE];
 
-    if (flashMimeType) {
-        var enabledPlugin = flashMimeType.enabledPlugin;
+	if (flashMimeType) {
+		var enabledPlugin = flashMimeType.enabledPlugin;
 
-        var versions = [];
-        versions = enabledPlugin.description.replace(/\s[rd]/g, '.');
-        versions = versions.replace(/[A-Za-z\s]+/g, '');
-        versions = versions.split('.');
+		var versions = [];
+		versions = enabledPlugin.description.replace(/\s[rd]/g, '.');
+		versions = versions.replace(/[A-Za-z\s]+/g, '');
+		versions = versions.split('.');
 
-        VERSION = versions[0] + '.';
+		VERSION = versions[0] + '.';
 
-        switch ((versions[2].toString()).length) {
-            case 1:
-                VERSION += '00';
-                break;
+		switch ((versions[2].toString()).length) {
+			case 1:
+				VERSION += '00';
+			break;
 
-            case 2:
-                VERSION += '0';
-                break;
-        }
+			case 2:
+				VERSION += '0';
+			break;
+		}
 
-        VERSION += versions[2];
-        VERSION = parseFloat(VERSION);
-    }
+		VERSION += versions[2];
+		VERSION = parseFloat(VERSION);
+	}
 }
 else if (UA.ie) {
-    try {
-        var activeX6 = new ActiveXObject(SF + '.' + '6');
-        activeX6.AllowScriptAccess = 'always';
-    }
-    catch (e) {
-        if (activeX6 != null) {
-            VERSION = 6.0;
-        }
-    }
+	try {
+		var activeX6 = new ActiveXObject(SF + '.' + '6');
+		activeX6.AllowScriptAccess = 'always';
+	}
+	catch (e) {
+		if (activeX6 != null) {
+			VERSION = 6.0;
+		}
+	}
 
-    if (VERSION == 0) {
-        try {
-            var activeX = new ActiveXObject(SF + '.' + SF);
-            var versions = [];
+	if (VERSION == 0) {
+		try {
+			var activeX = new ActiveXObject(SF + '.' + SF);
+			var versions = [];
 
-            versions = activeX.GetVariable('$version');
-            versions = versions.replace(/[A-Za-z\s]+/g, '');
-            versions = versions.split(',');
+			versions = activeX.GetVariable('$version');
+			versions = versions.replace(/[A-Za-z\s]+/g, '');
+			versions = versions.split(',');
 
-            VERSION = versions[0] + '.';
+			VERSION = versions[0] + '.';
 
-            switch ((versions[2].toString()).length) {
-                case 1:
-                    VERSION += '00';
-                    break;
+			switch ((versions[2].toString()).length) {
+				case 1:
+					VERSION += '00';
+				break;
 
-                case 2:
-                    VERSION += '0';
-                    break;
-            }
-        }
-        catch (e) {}
-    }
+				case 2:
+					VERSION += '0';
+				break;
+			}
+		}
+		catch (e) {
+		}
+	}
 }
 
 UA.flash = VERSION;
 
-var SWF = A.Component.create({
-    NAME: NAME,
+var SWF = A.Component.create(
+	{
+		NAME: NAME,
 
-    ATTRS: {
-        url: {
-            value: ''
-        },
-        version: {
-            value: VERSION
-        },
-        useExpressInstall: {
-            value: false
-        },
-        fixedAttributes: {
-            value: {}
-        },
-        flashVars: {
-            setter: '_setFlashVars',
-            value: {}
-        },
-        render: {
-            value: true
-        }
-    },
+		ATTRS: {
+			url: {
+				value: ''
+			},
+			version: {
+				value: VERSION
+			},
+			useExpressInstall: {
+				value: false
+			},
+			fixedAttributes: {
+				value: {}
+			},
+			flashVars: {
+				setter: '_setFlashVars',
+				value: {}
+			},
+			render: {
+				value: true
+			}
+		},
 
-    constructor: function(config) {
-        var instance = this;
+		constructor: function(config) {
+			var instance = this;
 
-        if (arguments.length > 1) {
-            var boundingBox = arguments[0];
-            var url = arguments[1];
-            var params = arguments[2] || {};
+			if (arguments.length > 1) {
+				var boundingBox = arguments[0];
+				var url = arguments[1];
+				var params = arguments[2] || {};
 
-            config = {
-                boundingBox: boundingBox,
-                url: url,
-                fixedAttributes: params.fixedAttributes,
-                flashVars: params.flashVars
-            };
-        }
+				config = {
+					boundingBox: boundingBox,
+					url: url,
+					fixedAttributes: params.fixedAttributes,
+					flashVars: params.flashVars
+				};
+			}
 
-        SWF.superclass.constructor.call(this, config);
-    },
+			SWF.superclass.constructor.call(this, config);
+		},
 
-    getFlashVersion: function() {
-        return VERSION;
-    },
+		getFlashVersion: function() {
+			return VERSION;
+		},
 
-    isFlashVersionAtLeast: function(ver) {
-        return VERSION >= ver;
-    },
+		isFlashVersionAtLeast: function(ver) {
+			return VERSION >= ver;
+		},
 
-    prototype: {
-        CONTENT_TEMPLATE: null,
+		prototype: {
+			CONTENT_TEMPLATE: null,
 
-        renderUI: function() {
-            var instance = this;
+			renderUI: function() {
+				var instance = this;
 
-            var properFlashVersion = SWF.isFlashVersionAtLeast(instance.get('version'));
-            var canExpressInstall = (UA.flash >= 8.0);
+				var properFlashVersion = SWF.isFlashVersionAtLeast(instance.get('version'));
+				var canExpressInstall = (UA.flash >= 8.0);
 
-            var shouldExpressInstall = canExpressInstall && !properFlashVersion && instance.get('useExpressInstall');
+				var shouldExpressInstall = canExpressInstall && !properFlashVersion && instance.get('useExpressInstall');
 
-            var flashURL = instance.get('url');
+				var flashURL = instance.get('url');
 
-            if (shouldExpressInstall) {
-                flashURL = ATTR_EXPRESS_INSTALL_URL;
-            }
+				if (shouldExpressInstall) {
+					flashURL = ATTR_EXPRESS_INSTALL_URL;
+				}
 
-            var swfId = A.guid();
+				var swfId = A.guid();
 
-            SWF_INSTANCES[swfId] = this;
+				SWF_INSTANCES[swfId] = this;
 
-            instance._swfId = swfId;
+				instance._swfId = swfId;
 
-            var contentBox = instance.get('contentBox');
-            var flashVars = instance.get('flashVars');
+				var contentBox = instance.get('contentBox');
+				var flashVars = instance.get('flashVars');
 
-            A.mix(
-                flashVars, {
-                    YUISwfId: swfId,
-                    YUIBridgeCallback: ATTR_EVENT_HANDLER
-                }
-            );
+				A.mix(
+					flashVars,
+					{
+						YUISwfId: swfId,
+						YUIBridgeCallback: ATTR_EVENT_HANDLER
+					}
+				);
 
-            var flashVarString = A.QueryString.stringify(flashVars);
+				var flashVarString = A.QueryString.stringify(flashVars);
 
-            var tplObj = '<object ';
+				var tplObj = '<object ';
 
-            if ((properFlashVersion || shouldExpressInstall) && flashURL) {
-                tplObj += 'id="' + swfId + '" ';
+				if ((properFlashVersion || shouldExpressInstall) && flashURL) {
+					tplObj += 'id="' + swfId + '" ';
 
-                if (UA.ie) {
-                    tplObj += 'classid="' + ATTR_CLSID + '" ';
-                }
-                else {
-                    tplObj += 'type="' + ATTR_TYPE + '" data="' + flashURL + '" ';
-                }
+					if (UA.ie) {
+						tplObj += 'classid="' + ATTR_CLSID + '" ';
+					}
+					else {
+						tplObj += 'type="' + ATTR_TYPE + '" data="' + flashURL + '" ';
+					}
 
-                tplObj += 'height="100%" width="100%">';
+					tplObj += 'height="100%" width="100%">';
 
-                if (UA.ie) {
-                    tplObj += '<param name="movie" value="' + flashURL + '"/>';
-                }
+					if (UA.ie) {
+						tplObj += '<param name="movie" value="' + flashURL + '"/>';
+					}
 
-                var fixedAttributes = instance.get('fixedAttributes');
+					var fixedAttributes = instance.get('fixedAttributes');
 
-                for (var i in fixedAttributes) {
-                    tplObj += '<param name="' + i + '" value="' + fixedAttributes[i] + '" />';
-                }
+					for (var i in fixedAttributes) {
+						tplObj += '<param name="' + i + '" value="' + fixedAttributes[i] + '" />';
+					}
 
-                if (flashVarString) {
-                    tplObj += '<param name="flashVars" value="' + flashVarString + '" />';
-                }
+					if (flashVarString) {
+						tplObj += '<param name="flashVars" value="' + flashVarString + '" />';
+					}
 
-                tplObj += '</object>';
+					tplObj += '</object>';
 
-                contentBox.set('innerHTML', tplObj);
-            }
+					contentBox.set('innerHTML', tplObj);
+				}
 
-            instance._swf = A.one('#' + swfId);
-        },
+				instance._swf = A.one('#' + swfId);
+			},
 
-        bindUI: function() {
-            var instance = this;
+			bindUI: function() {
+				var instance = this;
 
-            instance.publish(
-                'swfReady', {
-                    fireOnce: true
-                }
-            );
-        },
+				instance.publish(
+					'swfReady',
+					{
+						fireOnce: true
+					}
+				);
+			},
 
-        callSWF: function(fn, args) {
-            var instance = this;
+			callSWF: function(fn, args) {
+				var instance = this;
 
-            args = args || [];
+				args = args || [];
 
-            var swf = instance._swf.getDOM();
+				var swf = instance._swf.getDOM();
 
-            if (swf[fn]) {
-                return swf[fn].apply(swf, args);
-            }
+				if (swf[fn]) {
+					return swf[fn].apply(swf, args);
+				}
 
-            return null;
-        },
+				return null;
+			},
 
-        toString: function() {
-            var instance = this;
+			toString: function() {
+				var instance = this;
 
-            return 'SWF' + instance._swfId;
-        },
+				return 'SWF' + instance._swfId;
+			},
 
-        _eventHandler: function(event) {
-            var instance = this;
+			_eventHandler: function(event) {
+				var instance = this;
 
-            var eventType = event.type.replace(/Event$/, '');
+				var eventType = event.type.replace(/Event$/, '');
 
-            if (eventType != 'log') {
-                instance.fire(eventType, event);
-            }
-        },
+				if (eventType != 'log') {
+					instance.fire(eventType, event);
+				}
+			},
 
-        _setFlashVars: function(value) {
-            var instance = this;
+			_setFlashVars: function(value) {
+				var instance = this;
 
-            if (Lang.isString(value)) {
-                value = A.QueryString.parse(value);
-            }
+				if (Lang.isString(value)) {
+					value = A.QueryString.parse(value);
+				}
 
-            return value;
-        }
-    }
-});
+				return value;
+			}
+		}
+	}
+);
 
 A.SWF = SWF;

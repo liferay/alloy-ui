@@ -1,691 +1,705 @@
 var Lang = A.Lang;
 
 var DataSet = function() {
-    DataSet.superclass.constructor.apply(this, arguments);
+	DataSet.superclass.constructor.apply(this, arguments);
 };
 
 DataSet.NAME = 'dataset';
 
 DataSet.ATTRS = {
-    keys: {
-        getter: function(value) {
-            var instance = this;
+	keys: {
+		getter: function(value) {
+			var instance = this;
 
-            return instance.keys;
-        }
-    },
+			return instance.keys;
+		}
+	},
 
-    first: {
-        getter: function() {
-            var instance = this;
+	first: {
+		getter: function() {
+			var instance = this;
 
-            var values = instance.values;
+			var values = instance.values;
 
-            return values[0];
-        }
-    },
+			return values[0];
+		}
+	},
 
-    includeFunctions: {
-        value: false
-    },
+	includeFunctions: {
+		value: false
+	},
 
-    items: {
-        value: null,
-        getter: function() {
-            var instance = this;
+	items: {
+		value: null,
+		getter: function() {
+			var instance = this;
 
-            return instance.collection || {};
-        }
-    },
+			return instance.collection || {};
+		}
+	},
 
-    last: {
-        getter: function() {
-            var instance = this;
+	last: {
+		getter: function() {
+			var instance = this;
 
-            var values = instance.values;
+			var values = instance.values;
 
-            return values[values.length - 1];
-        }
-    },
+			return values[values.length - 1];
+		}
+	},
 
-    getKey: {
-        lazyAdd: false,
-        value: null,
-        getter: function(value) {
-            var instance = this;
+	getKey: {
+		lazyAdd: false,
+		value: null,
+		getter: function(value) {
+			var instance = this;
 
-            return value || instance.getKey;
-        },
-        setter: function(value) {
-            var instance = this;
+			return value || instance.getKey;
+		},
+		setter: function(value) {
+			var instance = this;
 
-            if (Lang.isFunction(value)) {
-                instance.getKey = value;
-            }
+			if (Lang.isFunction(value)) {
+				instance.getKey = value;
+			}
 
-            return instance.getKey;
-        }
-    },
+			return instance.getKey;
+		}
+	},
 
-    values: {
-        getter: function(value) {
-            var instance = this;
+	values: {
+		getter: function(value) {
+			var instance = this;
 
-            return instance.values;
-        },
-        readOnly: true
-    }
+			return instance.values;
+		},
+		readOnly: true
+	}
 };
 
 A.extend(
-    DataSet,
-    A.Base, {
-        initializer: function() {
-            var instance = this;
-
-            instance.collection = {};
-            instance.keys = [];
-            instance.values = [];
-
-            instance.length = 0;
-
-            instance.publish(
-                'add', {
-                    defaultFn: instance._defaultAddFn
-                }
-            );
-
-            instance.publish(
-                'clear', {
-                    defaultFn: instance._defaultClearFn
-                }
-            );
-
-            instance.publish(
-                'remove', {
-                    defaultFn: instance._defaultRemoveFn
-                }
-            );
-
-            instance.publish(
-                'replace', {
-                    defaultFn: instance._defaultReplaceFn
-                }
-            );
-
-            instance.publish(
-                'sort', {
-                    defaultFn: instance._defaultSortFn
-                }
-            );
-        },
-
-        add: function(key, obj) {
-            var instance = this;
+	DataSet,
+	A.Base,
+	{
+		initializer: function() {
+			var instance = this;
+
+			instance.collection = {};
+			instance.keys = [];
+			instance.values = [];
+
+			instance.length = 0;
+
+			instance.publish(
+				'add',
+				{
+					defaultFn: instance._defaultAddFn
+				}
+			);
+
+			instance.publish(
+				'clear',
+				{
+					defaultFn: instance._defaultClearFn
+				}
+			);
+
+			instance.publish(
+				'remove',
+				{
+					defaultFn: instance._defaultRemoveFn
+				}
+			);
+
+			instance.publish(
+				'replace',
+				{
+					defaultFn: instance._defaultReplaceFn
+				}
+			);
+
+			instance.publish(
+				'sort',
+				{
+					defaultFn: instance._defaultSortFn
+				}
+			);
+		},
+
+		add: function(key, obj) {
+			var instance = this;
+
+			if (arguments.length == 1) {
+				obj = key;
+				key = instance.getKey(obj);
+			}
+
+			if (!Lang.isNull(key) && !Lang.isUndefined(key)) {
+				var prevVal = instance.collection[key];
+
+				if (!Lang.isUndefined(prevVal)) {
+					return instance.replace(key, obj);
+				}
+			}
 
-            if (arguments.length == 1) {
-                obj = key;
-                key = instance.getKey(obj);
-            }
+			var length = instance.length;
 
-            if (!Lang.isNull(key) && !Lang.isUndefined(key)) {
-                var prevVal = instance.collection[key];
+			instance.fire(
+				'add',
+				{
+					index: length,
+					attrName: key,
+					item: obj,
+					newVal: obj
+				}
+			);
+		},
 
-                if (!Lang.isUndefined(prevVal)) {
-                    return instance.replace(key, obj);
-                }
-            }
+		addAll: function(obj) {
+			var instance = this;
 
-            var length = instance.length;
+			var args = arguments;
+			var length = args.length;
 
-            instance.fire(
-                'add', {
-                    index: length,
-                    attrName: key,
-                    item: obj,
-                    newVal: obj
-                }
-            );
-        },
+			if (length == 1) {
+				args = obj;
+			}
 
-        addAll: function(obj) {
-            var instance = this;
+			if (length > 1 || Lang.isArray(obj)) {
+				length = args.length;
 
-            var args = arguments;
-            var length = args.length;
+				for (var i = 0; i < length; i++) {
+					instance.add(args[i]);
+				}
+			}
+			else {
+				for (var i in obj) {
+					var item = obj[i];
 
-            if (length == 1) {
-                args = obj;
-            }
+					instance.add(i, item);
+				}
+			}
+		},
 
-            if (length > 1 || Lang.isArray(obj)) {
-                length = args.length;
+		clear: function() {
+			var instance = this;
 
-                for (var i = 0; i < length; i++) {
-                    instance.add(args[i]);
-                }
-            }
-            else {
-                for (var i in obj) {
-                    var item = obj[i];
+			instance.fire('clear');
+		},
 
-                    instance.add(i, item);
-                }
-            }
-        },
+		clone: function() {
+			var instance = this;
 
-        clear: function() {
-            var instance = this;
+			var clone = new DataSet();
 
-            instance.fire('clear');
-        },
+			var keys = instance.keys;
+			var values = instance.values;
 
-        clone: function() {
-            var instance = this;
+			var length = values.length;
 
-            var clone = new DataSet();
+			for (var i = 0; i < length; i++) {
+				clone.add(keys[i], values[i]);
+			}
 
-            var keys = instance.keys;
-            var values = instance.values;
+			clone.set('getKey', instance.get('getKey'));
 
-            var length = values.length;
+			return clone;
+		},
 
-            for (var i = 0; i < length; i++) {
-                clone.add(keys[i], values[i]);
-            }
+		contains: function(obj) {
+			var instance = this;
 
-            clone.set('getKey', instance.get('getKey'));
+			return instance.indexOf(obj) > -1;
+		},
 
-            return clone;
-        },
+		containsKey: function(key) {
+			var instance = this;
 
-        contains: function(obj) {
-            var instance = this;
+			return !(Lang.isUndefined(instance.collection[key]));
+		},
 
-            return instance.indexOf(obj) > -1;
-        },
+		each: function(fn, context) {
+			var instance = this;
 
-        containsKey: function(key) {
-            var instance = this;
+			return instance._each(instance.values, fn, context);
+		},
 
-            return !(Lang.isUndefined(instance.collection[key]));
-        },
+		eachKey: function(fn, context) {
+			var instance = this;
 
-        each: function(fn, context) {
-            var instance = this;
+			var keys = instance.keys;
 
-            return instance._each(instance.values, fn, context);
-        },
+			return instance._each(keys, fn, context);
+		},
 
-        eachKey: function(fn, context) {
-            var instance = this;
+		filter: function(fn, context) {
+			var instance = this;
 
-            var keys = instance.keys;
+			var filtered = new DataSet();
 
-            return instance._each(keys, fn, context);
-        },
+			filtered.set('getKey', instance.get('getKey'));
 
-        filter: function(fn, context) {
-            var instance = this;
+			var collection = instance.collection;
+			var keys = instance.keys;
+			var values = instance.values;
 
-            var filtered = new DataSet();
+			context = context || instance;
 
-            filtered.set('getKey', instance.get('getKey'));
+			var filteredDataSet = filtered.collection;
+			var filteredValues = filtered.values;
 
-            var collection = instance.collection;
-            var keys = instance.keys;
-            var values = instance.values;
+			var length = values.length;
+			var item;
 
-            context = context || instance;
+			for (var i = 0; i < length; i++) {
+				item = values[i];
 
-            var filteredDataSet = filtered.collection;
-            var filteredValues = filtered.values;
+				if (fn.call(context, item, i, collection)) {
+					filtered.add(keys[i], item);
+				}
+			}
 
-            var length = values.length;
-            var item;
+			filtered.length = filteredValues.length;
 
-            for (var i = 0; i < length; i++) {
-                item = values[i];
+			return filtered;
+		},
 
-                if (fn.call(context, item, i, collection)) {
-                    filtered.add(keys[i], item);
-                }
-            }
+		filterBy: function(key, value, startsWith, caseSensitive) {
+			var instance = this;
 
-            filtered.length = filteredValues.length;
+			if (Lang.isUndefined(value) ||
+			 	Lang.isNull(value) ||
+				((Lang.isArray(value) ||
+					Lang.isString(value)) && !value.length)) {
 
-            return filtered;
-        },
+				return instance.clone();
+			}
 
-        filterBy: function(key, value, startsWith, caseSensitive) {
-            var instance = this;
+			value = instance._generateRegEx(value, startsWith, caseSensitive);
 
-            if (Lang.isUndefined(value) ||
-                Lang.isNull(value) ||
-                ((Lang.isArray(value) ||
-                    Lang.isString(value)) && !value.length)) {
+			var keyFilter = A.bind(instance._keyFilter, instance, key, value);
 
-                return instance.clone();
-            }
+			return instance.filter(keyFilter);
+		},
 
-            value = instance._generateRegEx(value, startsWith, caseSensitive);
+		find: function(fn, context) {
+			var instance = this;
 
-            var keyFilter = A.bind(instance._keyFilter, instance, key, value);
+			return A.Array.find(instance.values, fn, context);
+		},
 
-            return instance.filter(keyFilter);
-        },
+		findIndex: function(fn, context, start) {
+			var instance = this;
 
-        find: function(fn, context) {
-            var instance = this;
+			var collection = instance.collection;
+			var values = instance.values;
+			var length = instance.length;
 
-            return A.Array.find(instance.values, fn, context);
-        },
+			start = start || 0;
 
-        findIndex: function(fn, context, start) {
-            var instance = this;
+			for (var i = start; i < length; i++) {
+				if (fn.call(context, values[i], i, collection)) {
+					return i;
+				}
+			}
 
-            var collection = instance.collection;
-            var values = instance.values;
-            var length = instance.length;
+			return -1;
+		},
 
-            start = start || 0;
+		findIndexBy: function(key, value, start, startsWith, caseSensitive) {
+			var instance = this;
 
-            for (var i = start; i < length; i++) {
-                if (fn.call(context, values[i], i, collection)) {
-                    return i;
-                }
-            }
+			if (Lang.isUndefined(value) ||
+			 	Lang.isNull(value) ||
+				((Lang.isArray(value) ||
+					Lang.isString(value)) && !value.length)) {
 
-            return -1;
-        },
+				return -1;
+			}
 
-        findIndexBy: function(key, value, start, startsWith, caseSensitive) {
-            var instance = this;
+			value = instance._generateRegEx(value, startsWith, caseSensitive);
 
-            if (Lang.isUndefined(value) ||
-                Lang.isNull(value) ||
-                ((Lang.isArray(value) ||
-                    Lang.isString(value)) && !value.length)) {
+			var keyFilter = A.bind(instance._keyFilter, instance, key, value);
 
-                return -1;
-            }
+			return instance.findIndex(keyFilter, null, start);
+		},
 
-            value = instance._generateRegEx(value, startsWith, caseSensitive);
+		getKey: function(obj) {
+			var instance = this;
 
-            var keyFilter = A.bind(instance._keyFilter, instance, key, value);
+			return (obj.get && obj.get('id')) || obj.id;
+		},
 
-            return instance.findIndex(keyFilter, null, start);
-        },
+		indexOf: function(obj) {
+			var instance = this;
 
-        getKey: function(obj) {
-            var instance = this;
+			return A.Array.indexOf(instance.values, obj);
+		},
 
-            return (obj.get && obj.get('id')) || obj.id;
-        },
+		indexOfKey: function(key) {
+			var instance = this;
 
-        indexOf: function(obj) {
-            var instance = this;
+			return A.Array.indexOf(instance.keys, key);
+		},
 
-            return A.Array.indexOf(instance.values, obj);
-        },
+		insert: function(index, key, obj) {
+			var instance = this;
 
-        indexOfKey: function(key) {
-            var instance = this;
+			if (arguments.length == 2) {
+				obj = arguments[1];
+				key = instance.getKey(obj);
+			}
 
-            return A.Array.indexOf(instance.keys, key);
-        },
+			if (instance.containsKey(key)) {
+				instance.removeKey(key);
+			}
 
-        insert: function(index, key, obj) {
-            var instance = this;
+			instance.fire(
+				'add',
+				{
+					index: index,
+					attrName: key,
+					item: obj,
+					newVal: obj
+				}
+			);
+		},
 
-            if (arguments.length == 2) {
-                obj = arguments[1];
-                key = instance.getKey(obj);
-            }
+		invoke: function(method, args) {
+			var instance = this;
 
-            if (instance.containsKey(key)) {
-                instance.removeKey(key);
-            }
+			var values = instance.values;
+			var length = values.length;
 
-            instance.fire(
-                'add', {
-                    index: index,
-                    attrName: key,
-                    item: obj,
-                    newVal: obj
-                }
-            );
-        },
+			if (!args) {
+				args = [];
+			}
+			else {
+				args = [].concat(args);
+			}
 
-        invoke: function(method, args) {
-            var instance = this;
+			for (var i = 0; i < length; i++) {
+				var item = values[i];
+				var itemMethod = item && item[method];
 
-            var values = instance.values;
-            var length = values.length;
+				if (Lang.isFunction(itemMethod)) {
+					itemMethod.apply(item, args);
+				}
+			}
 
-            if (!args) {
-                args = [];
-            }
-            else {
-                args = [].concat(args);
-            }
+			return instance;
+		},
 
-            for (var i = 0; i < length; i++) {
-                var item = values[i];
-                var itemMethod = item && item[method];
+		item: function(key) {
+			var instance = this;
 
-                if (Lang.isFunction(itemMethod)) {
-                    itemMethod.apply(item, args);
-                }
-            }
+			var item;
 
-            return instance;
-        },
+			if (Lang.isNumber(key)) {
+				var values = instance.values;
 
-        item: function(key) {
-            var instance = this;
+				item = values[key];
+			}
+			else {
+				item = instance.collection[key];
+			}
 
-            var item;
+			return item;
+		},
 
-            if (Lang.isNumber(key)) {
-                var values = instance.values;
+		keySort: function(direction, fn) {
+			var instance = this;
 
-                item = values[key];
-            }
-            else {
-                item = instance.collection[key];
-            }
+			instance.fire(
+				'sort',
+				{
+					direction: direction,
+					fn: fn || instance._keySorter,
+					type: 'key'
+				}
+			);
+		},
 
-            return item;
-        },
+		remove: function(obj) {
+			var instance = this;
 
-        keySort: function(direction, fn) {
-            var instance = this;
+			var index = instance.indexOf(obj);
 
-            instance.fire(
-                'sort', {
-                    direction: direction,
-                    fn: fn || instance._keySorter,
-                    type: 'key'
-                }
-            );
-        },
+			return instance.removeAt(index);
+		},
 
-        remove: function(obj) {
-            var instance = this;
+		removeAt: function(index) {
+			var instance = this;
 
-            var index = instance.indexOf(obj);
+			if (index < instance.length && index >= 0) {
+				var obj = instance.values[index];
+				var key = instance.keys[index];
 
-            return instance.removeAt(index);
-        },
+				instance.fire(
+					'remove',
+					{
+						index: index,
+						attrName: key,
+						item: obj,
+						prevVal: obj
+					}
+				);
+			}
+		},
 
-        removeAt: function(index) {
-            var instance = this;
+		removeKey: function(key) {
+			var instance = this;
 
-            if (index < instance.length && index >= 0) {
-                var obj = instance.values[index];
-                var key = instance.keys[index];
+			var index = instance.indexOfKey(key);
 
-                instance.fire(
-                    'remove', {
-                        index: index,
-                        attrName: key,
-                        item: obj,
-                        prevVal: obj
-                    }
-                );
-            }
-        },
+			return instance.removeAt(index);
+		},
 
-        removeKey: function(key) {
-            var instance = this;
+		replace: function(key, obj) {
+			var instance = this;
 
-            var index = instance.indexOfKey(key);
+			if (arguments.length == 1) {
+				obj = key;
+				key = instance.getKey(obj);
+			}
 
-            return instance.removeAt(index);
-        },
+			var prevVal = instance.collection[key];
 
-        replace: function(key, obj) {
-            var instance = this;
+			if (Lang.isUndefined(key) || Lang.isNull(key) || Lang.isUndefined(prevVal)) {
+				return instance.add(key, obj);
+			}
 
-            if (arguments.length == 1) {
-                obj = key;
-                key = instance.getKey(obj);
-            }
+			var index = instance.indexOfKey(key);
 
-            var prevVal = instance.collection[key];
+			instance.fire(
+				'replace',
+				{
+					attrName: key,
+					index: index,
+					item: obj,
+					prevVal: prevVal,
+					newVal: obj
+				}
+			);
+		},
 
-            if (Lang.isUndefined(key) || Lang.isNull(key) || Lang.isUndefined(prevVal)) {
-                return instance.add(key, obj);
-            }
+		size: function() {
+			var instance = this;
 
-            var index = instance.indexOfKey(key);
+			return instance.length;
+		},
 
-            instance.fire(
-                'replace', {
-                    attrName: key,
-                    index: index,
-                    item: obj,
-                    prevVal: prevVal,
-                    newVal: obj
-                }
-            );
-        },
+		slice: function(start, end) {
+			var instance = this;
 
-        size: function() {
-            var instance = this;
+			var values = instance.values;
 
-            return instance.length;
-        },
+			return values.slice.apply(values, arguments);
+		},
 
-        slice: function(start, end) {
-            var instance = this;
+		sort: function(direction, fn) {
+			var instance = this;
 
-            var values = instance.values;
+			instance.fire(
+				'sort',
+				{
+					direction: direction,
+					fn: fn,
+					type: 'value'
+				}
+			);
+		},
 
-            return values.slice.apply(values, arguments);
-        },
+		_defaultAddFn: function(event) {
+			var instance = this;
 
-        sort: function(direction, fn) {
-            var instance = this;
+			var key = event.attrName;
+			var obj = event.item;
+			var index = event.index;
 
-            instance.fire(
-                'sort', {
-                    direction: direction,
-                    fn: fn,
-                    type: 'value'
-                }
-            );
-        },
+			if (!Lang.isNull(key) && !Lang.isUndefined(key)) {
+				if (instance.get('includeFunctions') || !Lang.isFunction(obj)) {
+					instance.collection[key] = obj;
+				}
+			}
 
-        _defaultAddFn: function(event) {
-            var instance = this;
+			instance.keys.splice(index, 0, key);
+			instance.values.splice(index, 0, obj);
 
-            var key = event.attrName;
-            var obj = event.item;
-            var index = event.index;
+			++instance.length;
+		},
 
-            if (!Lang.isNull(key) && !Lang.isUndefined(key)) {
-                if (instance.get('includeFunctions') || !Lang.isFunction(obj)) {
-                    instance.collection[key] = obj;
-                }
-            }
+		_defaultClearFn: function(event) {
+			var instance = this;
 
-            instance.keys.splice(index, 0, key);
-            instance.values.splice(index, 0, obj);
+			instance.collection = {};
+			instance.keys = [];
+			instance.values = [];
+			instance.length = 0;
+		},
 
-            ++instance.length;
-        },
+		_defaultRemoveFn: function(event) {
+			var instance = this;
 
-        _defaultClearFn: function(event) {
-            var instance = this;
+			var index = event.index;
+			var obj = event.item;
+			var key = event.attrName;
 
-            instance.collection = {};
-            instance.keys = [];
-            instance.values = [];
-            instance.length = 0;
-        },
+			var collection = instance.collection;
+			var keys = instance.keys;
 
-        _defaultRemoveFn: function(event) {
-            var instance = this;
+			instance.values.splice(index, 1);
 
-            var index = event.index;
-            var obj = event.item;
-            var key = event.attrName;
+			if (!Lang.isUndefined(key)) {
+				delete collection[key];
+			}
 
-            var collection = instance.collection;
-            var keys = instance.keys;
+			keys.splice(index, 1);
 
-            instance.values.splice(index, 1);
+			instance.length--;
+		},
 
-            if (!Lang.isUndefined(key)) {
-                delete collection[key];
-            }
+		_defaultReplaceFn: function(event) {
+			var instance = this;
 
-            keys.splice(index, 1);
+			var key = event.attrName;
+			var obj = event.item;
 
-            instance.length--;
-        },
+			instance.collection[key] = obj;
+		},
 
-        _defaultReplaceFn: function(event) {
-            var instance = this;
+		_defaultSortFn: function(event) {
+			var instance = this;
 
-            var key = event.attrName;
-            var obj = event.item;
+			instance._sortBy(event.type, event.direction, event.fn);
+		},
 
-            instance.collection[key] = obj;
-        },
+		_each: function(arr, fn, context) {
+			var instance = this;
 
-        _defaultSortFn: function(event) {
-            var instance = this;
+			var values = arr.slice(0);
+			var length = values.length;
 
-            instance._sortBy(event.type, event.direction, event.fn);
-        },
+			context = context || instance;
 
-        _each: function(arr, fn, context) {
-            var instance = this;
+			for (var i = 0; i < length; i++) {
+				if (fn.call(context, values[i], i, values) === false) {
+					return false;
+				}
+			}
 
-            var values = arr.slice(0);
-            var length = values.length;
+			return true;
+		},
 
-            context = context || instance;
+		_generateRegEx: function(value, startsWith, caseSensitive) {
+			var instance = this;
 
-            for (var i = 0; i < length; i++) {
-                if (fn.call(context, values[i], i, values) === false) {
-                    return false;
-                }
-            }
+			if (!(value instanceof RegExp)) {
+				value = String(value);
 
-            return true;
-        },
+				var regExBuffer = [];
 
-        _generateRegEx: function(value, startsWith, caseSensitive) {
-            var instance = this;
+				if (startsWith !== false) {
+					regExBuffer.push('^');
+				}
 
-            if (!(value instanceof RegExp)) {
-                value = String(value);
+				regExBuffer.push(value);
 
-                var regExBuffer = [];
+				var options;
 
-                if (startsWith !== false) {
-                    regExBuffer.push('^');
-                }
+				if (!caseSensitive) {
+					options = 'i';
+				}
 
-                regExBuffer.push(value);
+				value = new RegExp(regExBuffer.join(''), options);
+			}
 
-                var options;
+			return value;
+		},
 
-                if (!caseSensitive) {
-                    options = 'i';
-                }
+		_keyFilter: function(key, value, item, index, collection) {
+			var instance = this;
 
-                value = new RegExp(regExBuffer.join(''), options);
-            }
+			return item && value.test(item[key]);
+		},
 
-            return value;
-        },
+		_keySorter: function(a, b) {
+			var instance = this;
 
-        _keyFilter: function(key, value, item, index, collection) {
-            var instance = this;
+			var keyA = String(a).toLowerCase();
+			var keyB = String(b).toLowerCase();
 
-            return item && value.test(item[key]);
-        },
+			var returnValue = 0;
 
-        _keySorter: function(a, b) {
-            var instance = this;
+			if (keyA > keyB) {
+				returnValue = 1;
+			}
+			else if (keyA < keyB) {
+				returnValue = -1;
+			}
 
-            var keyA = String(a).toLowerCase();
-            var keyB = String(b).toLowerCase();
+			return returnValue;
+		},
 
-            var returnValue = 0;
+		_sortBy: function(property, direction, fn) {
+			var instance = this;
 
-            if (keyA > keyB) {
-                returnValue = 1;
-            }
-            else if (keyA < keyB) {
-                returnValue = -1;
-            }
+			var asc = 1;
+			var tempValues = [];
+			var keys = instance.keys;
+			var values = instance.values;
 
-            return returnValue;
-        },
+			var length = values.length;
 
-        _sortBy: function(property, direction, fn) {
-            var instance = this;
+			fn = fn || A.Array.numericSort;
 
-            var asc = 1;
-            var tempValues = [];
-            var keys = instance.keys;
-            var values = instance.values;
+			if (String(direction).toLowerCase() == 'desc') {
+				asc = -1;
+			}
 
-            var length = values.length;
+			for (var i = 0; i < length; i++) {
+				tempValues.push(
+					{
+						key: keys[i],
+						value: values[i],
+						index: i
+					}
+				);
+			}
 
-            fn = fn || A.Array.numericSort;
+			tempValues.sort(
+				function(a, b) {
+					var value = fn(a[property], b[property]) * asc;
 
-            if (String(direction).toLowerCase() == 'desc') {
-                asc = -1;
-            }
+					if (value === 0) {
+						value = 1;
 
-            for (var i = 0; i < length; i++) {
-                tempValues.push({
-                    key: keys[i],
-                    value: values[i],
-                    index: i
-                });
-            }
+						if (a.index < b.index) {
+							value = -1;
+						}
+					}
 
-            tempValues.sort(
-                function(a, b) {
-                    var value = fn(a[property], b[property]) * asc;
+					return value;
+				}
+			);
 
-                    if (value === 0) {
-                        value = 1;
+			length = tempValues.length;
 
-                        if (a.index < b.index) {
-                            value = -1;
-                        }
-                    }
+			var collection = {};
 
-                    return value;
-                }
-            );
+			for (var i = 0; i < length; i++) {
+				var item = tempValues[i];
+				var key = item.key;
+				var value = item.value;
 
-            length = tempValues.length;
+				collection[key] = value;
+				keys[i] = key;
+				values[i] = value;
+			}
 
-            var collection = {};
-
-            for (var i = 0; i < length; i++) {
-                var item = tempValues[i];
-                var key = item.key;
-                var value = item.value;
-
-                collection[key] = value;
-                keys[i] = key;
-                values[i] = value;
-            }
-
-            instance.collection = collection;
-        }
-    }
+			instance.collection = collection;
+		}
+	}
 );
 
 A.DataSet = DataSet;

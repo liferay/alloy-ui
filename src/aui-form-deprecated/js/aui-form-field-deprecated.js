@@ -1,579 +1,584 @@
 var Lang = A.Lang,
 
-    getClassName = A.getClassName,
+	getClassName = A.getClassName,
 
-    NAME = 'field',
+	NAME = 'field',
 
-    SPACE = ' ',
+	SPACE = ' ',
 
-    getTypeClassName = A.cached(
-        function(type, prefix) {
-            var base = ['field'];
+	getTypeClassName = A.cached(
+		function(type, prefix) {
+			var base = ['field'];
 
-            if (prefix) {
-                base.push(prefix);
-            }
+			if (prefix) {
+				base.push(prefix);
+			}
 
-            base = base.join('-');
+			base = base.join('-');
 
-            var className = [getClassName(base, type)];
+			var className = [getClassName(base, type)];
 
-            if (type == 'password') {
-                className.push(getClassName(base, 'text'));
-            }
+			if (type == 'password') {
+				className.push(getClassName(base, 'text'));
+			}
 
-            return className.join(' ');
-        }
-    ),
+			return className.join(' ');
+		}
+	),
 
-    CSS_FIELD = getClassName(NAME),
+	CSS_FIELD = getClassName(NAME),
 
-    CSS_FIELD_CHECKBOX = getClassName(NAME, 'checkbox'),
-    CSS_FIELD_CHOICE = getClassName(NAME, 'choice'),
+	CSS_FIELD_CHECKBOX = getClassName(NAME, 'checkbox'),
+	CSS_FIELD_CHOICE = getClassName(NAME, 'choice'),
 
-    CSS_FIELD_CONTENT = getClassName(NAME, 'content'),
-    CSS_FIELD_INPUT = getClassName(NAME, 'input'),
-    CSS_FIELD_HINT = getClassName(NAME, 'hint'),
-    CSS_FIELD_INVALID = getClassName(NAME, 'invalid'),
-    CSS_FIELD_LABEL = getClassName(NAME, 'label'),
+	CSS_FIELD_CONTENT = getClassName(NAME, 'content'),
+	CSS_FIELD_INPUT = getClassName(NAME, 'input'),
+	CSS_FIELD_HINT = getClassName(NAME, 'hint'),
+	CSS_FIELD_INVALID = getClassName(NAME, 'invalid'),
+	CSS_FIELD_LABEL = getClassName(NAME, 'label'),
 
-    CSS_FIELD_RADIO = getClassName(NAME, 'radio'),
+	CSS_FIELD_RADIO = getClassName(NAME, 'radio'),
 
-    CSS_LABELS = getClassName(NAME, 'labels'),
-    CSS_LABELS_INLINE = getClassName(NAME, 'labels', 'inline'),
+	CSS_LABELS = getClassName(NAME, 'labels'),
+	CSS_LABELS_INLINE = getClassName(NAME, 'labels', 'inline'),
 
-    CSS_LABEL_ALIGN = {
-        left: [CSS_LABELS, 'left'].join('-'),
-        right: [CSS_LABELS, 'right'].join('-'),
-        top: [CSS_LABELS, 'top'].join('-')
-    },
+	CSS_LABEL_ALIGN = {
+		left: [CSS_LABELS, 'left'].join('-'),
+		right: [CSS_LABELS, 'right'].join('-'),
+		top: [CSS_LABELS, 'top'].join('-')
+	},
 
-    MAP_CSS_FIELD_TYPES = {
-        radio: CSS_FIELD_RADIO,
-        checkbox: CSS_FIELD_CHECKBOX
-    },
+	MAP_CSS_FIELD_TYPES = {
+		radio: CSS_FIELD_RADIO,
+		checkbox: CSS_FIELD_CHECKBOX
+	},
 
-    REGEX_INLINE_LABEL = /left|right/,
+	REGEX_INLINE_LABEL = /left|right/,
 
-    TPL_BOUNDING_BOX = '<span class="' + CSS_FIELD + '"></span>',
-    TPL_CONTENT_BOX = '<span class="' + CSS_FIELD_CONTENT + '"></span>',
-    TPL_FIELD_HINT = '<span class="' + CSS_FIELD_HINT + '"></span>',
-    TPL_INPUT = '<input autocomplete="off" class="{cssClass}" id="{id}" name="{name}" type="{type}" />',
-    TPL_LABEL = '<label class="' + CSS_FIELD_LABEL + '"></label>',
+	TPL_BOUNDING_BOX = '<span class="' + CSS_FIELD + '"></span>',
+	TPL_CONTENT_BOX = '<span class="' + CSS_FIELD_CONTENT + '"></span>',
+	TPL_FIELD_HINT = '<span class="' + CSS_FIELD_HINT + '"></span>',
+	TPL_INPUT = '<input autocomplete="off" class="{cssClass}" id="{id}" name="{name}" type="{type}" />',
+	TPL_LABEL = '<label class="' + CSS_FIELD_LABEL + '"></label>',
 
-    _FIELD_INSTANCES = {};
+	_FIELD_INSTANCES = {};
 
-var Field = A.Component.create({
-    NAME: NAME,
+var Field = A.Component.create(
+	{
+		NAME: NAME,
 
-    ATTRS: {
-        readOnly: {
-            value: false
-        },
+		ATTRS: {
+			readOnly: {
+				value: false
+			},
 
-        name: {
-            value: '',
-            getter: function(value) {
-                var instance = this;
+			name: {
+				value: '',
+				getter: function(value) {
+					var instance = this;
 
-                return value || instance.get('id');
-            }
-        },
+					return value || instance.get('id');
+				}
+			},
 
-        disabled: {
-            value: false,
-            validator: Lang.isBoolean
-        },
+			disabled: {
+				value: false,
+				validator: Lang.isBoolean
+			},
 
-        id: {
-            getter: function(value) {
-                var instance = this;
+			id: {
+				getter: function(value) {
+					var instance = this;
 
-                var node = this.get('node');
+					var node = this.get('node');
 
-                if (node) {
-                    value = node.get('id');
-                }
+					if (node) {
+						value = node.get('id');
+					}
 
-                if (!value) {
-                    value = A.guid();
-                }
+					if (!value) {
+						value = A.guid();
+					}
 
-                return value;
-            }
-        },
+					return value;
+				}
+			},
 
-        type: {
-            value: 'text',
-            validator: Lang.isString,
-            writeOnce: true
-        },
+			type: {
+				value: 'text',
+				validator: Lang.isString,
+				writeOnce: true
+			},
+
+			labelAlign: {
+				valueFn: function() {
+					var instance = this;
+
+					return instance._getChoiceCss() ? 'left' : null;
+				}
+			},
+
+			labelNode: {
+				valueFn: function() {
+					var instance = this;
+
+					return A.Node.create(TPL_LABEL);
+				}
+			},
+
+			labelText: {
+				valueFn: function() {
+					var instance = this;
+
+					return instance.get('labelNode').get('innerHTML');
+				},
+
+				setter: function(value) {
+					var instance = this;
+
+					instance.get('labelNode').set('innerHTML', value);
+
+					return value;
+				}
+			},
+
+			node: {
+				value: null,
+				setter: function(value) {
+					var instance = this;
+
+					return A.one(value) || instance._createFieldNode();
+				}
+			},
+
+			fieldHint: {
+				value: ''
+			},
+
+			fieldHintNode: {
+				value: null,
+				setter: function(value) {
+					var instance = this;
+
+					return A.one(value) || instance._createFieldHint();
+				}
+			},
+
+			prevVal: {
+				value: ''
+			},
+
+			valid: {
+				value: true,
+				getter: function(value) {
+					var instance = this;
+
+					var validator = instance.get('validator');
+
+					var valid = instance.get('disabled') || validator(instance.get('value'));
+
+					return valid;
+				}
+			},
+
+			dirty: {
+				value: false,
+				getter: function(value) {
+					var instance = this;
+
+					if (instance.get('disabled')) {
+						value = false;
+					}
+					else {
+						var currentVal = String(instance.get('value'));
+						var prevVal = String(instance.get('prevVal'));
+
+						value = (currentVal !== prevVal);
+					}
+
+					return value;
+				}
+			},
+
+			size: {},
+
+			validator: {
+				valueFn: function() {
+					var instance = this;
+
+					return instance.fieldValidator;
+				},
+				validator: Lang.isFunction
+			},
+
+			value: {
+				getter: '_getNodeValue',
+				setter: '_setNodeValue',
+				validator: 'fieldValidator'
+			}
+		},
+
+		HTML_PARSER: {
+			labelNode: 'label',
+			node: 'input, textarea, select'
+		},
+
+		BIND_UI_ATTRS: [
+			'disabled',
+			'id',
+			'readOnly',
+			'name',
+			'size',
+			'tabIndex',
+			'type',
+			'value'
+		],
+
+		getTypeClassName: getTypeClassName,
 
-        labelAlign: {
-            valueFn: function() {
-                var instance = this;
+		getField: function(field) {
+			var fieldWidget = null;
 
-                return instance._getChoiceCss() ? 'left' : null;
-            }
-        },
-
-        labelNode: {
-            valueFn: function() {
-                var instance = this;
-
-                return A.Node.create(TPL_LABEL);
-            }
-        },
-
-        labelText: {
-            valueFn: function() {
-                var instance = this;
-
-                return instance.get('labelNode').get('innerHTML');
-            },
-
-            setter: function(value) {
-                var instance = this;
-
-                instance.get('labelNode').set('innerHTML', value);
-
-                return value;
-            }
-        },
-
-        node: {
-            value: null,
-            setter: function(value) {
-                var instance = this;
-
-                return A.one(value) || instance._createFieldNode();
-            }
-        },
-
-        fieldHint: {
-            value: ''
-        },
-
-        fieldHintNode: {
-            value: null,
-            setter: function(value) {
-                var instance = this;
-
-                return A.one(value) || instance._createFieldHint();
-            }
-        },
-
-        prevVal: {
-            value: ''
-        },
-
-        valid: {
-            value: true,
-            getter: function(value) {
-                var instance = this;
-
-                var validator = instance.get('validator');
-
-                var valid = instance.get('disabled') || validator(instance.get('value'));
-
-                return valid;
-            }
-        },
-
-        dirty: {
-            value: false,
-            getter: function(value) {
-                var instance = this;
-
-                if (instance.get('disabled')) {
-                    value = false;
-                }
-                else {
-                    var currentVal = String(instance.get('value'));
-                    var prevVal = String(instance.get('prevVal'));
-
-                    value = (currentVal !== prevVal);
-                }
-
-                return value;
-            }
-        },
-
-        size: {},
-
-        validator: {
-            valueFn: function() {
-                var instance = this;
-
-                return instance.fieldValidator;
-            },
-            validator: Lang.isFunction
-        },
-
-        value: {
-            getter: '_getNodeValue',
-            setter: '_setNodeValue',
-            validator: 'fieldValidator'
-        }
-    },
-
-    HTML_PARSER: {
-        labelNode: 'label',
-        node: 'input, textarea, select'
-    },
-
-    BIND_UI_ATTRS: [
-   'disabled',
-   'id',
-   'readOnly',
-   'name',
-   'size',
-   'tabIndex',
-   'type',
-   'value'
-  ],
+			if (field instanceof A.Field) {
+				fieldWidget = field;
+			}
+			else if (field && (Lang.isString(field) || field instanceof A.Node || field.nodeName)) {
+				var fieldId = A.one(field).get('id');
 
-    getTypeClassName: getTypeClassName,
+				fieldWidget = _FIELD_INSTANCES[fieldId];
 
-    getField: function(field) {
-        var fieldWidget = null;
+				if (!fieldWidget) {
+					var boundingBox = field.ancestor('.field');
+					var contentBox = field.ancestor('.field-content');
 
-        if (field instanceof A.Field) {
-            fieldWidget = field;
-        }
-        else if (field && (Lang.isString(field) || field instanceof A.Node || field.nodeName)) {
-            var fieldId = A.one(field).get('id');
+					fieldWidget = new Field(
+						{
+							boundingBox: boundingBox,
+							contentBox: contentBox,
+							node: field
+						}
+					);
+				}
+			}
+			else if (Lang.isObject(field)) {
+				fieldWidget = new Field(field);
+			}
 
-            fieldWidget = _FIELD_INSTANCES[fieldId];
+			return fieldWidget;
+		},
 
-            if (!fieldWidget) {
-                var boundingBox = field.ancestor('.field');
-                var contentBox = field.ancestor('.field-content');
+		prototype: {
+			BOUNDING_TEMPLATE: TPL_BOUNDING_BOX,
+			CONTENT_TEMPLATE: TPL_CONTENT_BOX,
+			FIELD_TEMPLATE: TPL_INPUT,
+			FIELD_TYPE: 'text',
 
-                fieldWidget = new Field({
-                    boundingBox: boundingBox,
-                    contentBox: contentBox,
-                    node: field
-                });
-            }
-        }
-        else if (Lang.isObject(field)) {
-            fieldWidget = new Field(field);
-        }
+			initializer: function() {
+				var instance = this;
 
-        return fieldWidget;
-    },
+				var id = instance.get('node').guid();
 
-    prototype: {
-        BOUNDING_TEMPLATE: TPL_BOUNDING_BOX,
-        CONTENT_TEMPLATE: TPL_CONTENT_BOX,
-        FIELD_TEMPLATE: TPL_INPUT,
-        FIELD_TYPE: 'text',
+				_FIELD_INSTANCES[id] = instance;
+			},
 
-        initializer: function() {
-            var instance = this;
+			renderUI: function() {
+				var instance = this;
 
-            var id = instance.get('node').guid();
+				instance._renderField();
+				instance._renderLabel();
+				instance._renderFieldHint();
+			},
 
-            _FIELD_INSTANCES[id] = instance;
-        },
+			bindUI: function() {
+				var instance = this;
 
-        renderUI: function() {
-            var instance = this;
+				instance.after('labelAlignChange', instance._afterLabelAlignChange);
+				instance.after('fieldHintChange', instance._afterFieldHintChange);
+			},
 
-            instance._renderField();
-            instance._renderLabel();
-            instance._renderFieldHint();
-        },
+			syncUI: function() {
+				var instance = this;
 
-        bindUI: function() {
-            var instance = this;
+				instance.set('prevVal', instance.get('value'));
+			},
 
-            instance.after('labelAlignChange', instance._afterLabelAlignChange);
-            instance.after('fieldHintChange', instance._afterFieldHintChange);
-        },
+			fieldValidator: function(value) {
+				var instance = this;
 
-        syncUI: function() {
-            var instance = this;
+				return true;
+			},
 
-            instance.set('prevVal', instance.get('value'));
-        },
+			isValid: function() {
+				var instance = this;
 
-        fieldValidator: function(value) {
-            var instance = this;
+				return instance.get('valid');
+			},
 
-            return true;
-        },
+			isDirty: function() {
+				var instance = this;
 
-        isValid: function() {
-            var instance = this;
+				return instance.get('dirty');
+			},
 
-            return instance.get('valid');
-        },
+			resetValue: function() {
+				var instance = this;
 
-        isDirty: function() {
-            var instance = this;
+				instance.set('value', instance.get('prevVal'));
 
-            return instance.get('dirty');
-        },
+				instance.clearInvalid();
+			},
 
-        resetValue: function() {
-            var instance = this;
+			markInvalid: function(message) {
+				var instance = this;
 
-            instance.set('value', instance.get('prevVal'));
+				instance.set('fieldHint', message);
+				instance.get('fieldHintNode').show();
 
-            instance.clearInvalid();
-        },
+				instance.get('boundingBox').addClass(CSS_FIELD_INVALID);
+			},
 
-        markInvalid: function(message) {
-            var instance = this;
+			clearInvalid: function() {
+				var instance = this;
 
-            instance.set('fieldHint', message);
-            instance.get('fieldHintNode').show();
+				instance.reset('fieldHint');
 
-            instance.get('boundingBox').addClass(CSS_FIELD_INVALID);
-        },
+				if (!instance.get('fieldHint')) {
+					instance.get('fieldHintNode').hide();
+				}
 
-        clearInvalid: function() {
-            var instance = this;
+				instance.get('boundingBox').removeClass(CSS_FIELD_INVALID);
+			},
 
-            instance.reset('fieldHint');
+			validate: function() {
+				var instance = this;
 
-            if (!instance.get('fieldHint')) {
-                instance.get('fieldHintNode').hide();
-            }
+				var valid = instance.get('valid');
 
-            instance.get('boundingBox').removeClass(CSS_FIELD_INVALID);
-        },
+				if (valid) {
+					instance.clearInvalid();
+				}
 
-        validate: function() {
-            var instance = this;
+				return valid;
+			},
 
-            var valid = instance.get('valid');
+			_afterFieldHintChange: function(event) {
+				var instance = this;
 
-            if (valid) {
-                instance.clearInvalid();
-            }
+				instance._uiSetFieldHint(event.newVal, event.prevVal);
+			},
 
-            return valid;
-        },
+			_afterLabelAlignChange: function(event) {
+				var instance = this;
 
-        _afterFieldHintChange: function(event) {
-            var instance = this;
+				instance._uiSetLabelAlign(event.newVal, event.prevVal);
+			},
 
-            instance._uiSetFieldHint(event.newVal, event.prevVal);
-        },
+			_createFieldHint: function() {
+				var instance = this;
 
-        _afterLabelAlignChange: function(event) {
-            var instance = this;
+				var fieldHint = A.Node.create(TPL_FIELD_HINT);
 
-            instance._uiSetLabelAlign(event.newVal, event.prevVal);
-        },
+				instance.get('contentBox').append(fieldHint);
 
-        _createFieldHint: function() {
-            var instance = this;
+				return fieldHint;
+			},
 
-            var fieldHint = A.Node.create(TPL_FIELD_HINT);
+			_createFieldNode: function() {
+				var instance = this;
 
-            instance.get('contentBox').append(fieldHint);
+				var fieldTemplate = instance.FIELD_TEMPLATE;
 
-            return fieldHint;
-        },
+				instance.FIELD_TEMPLATE = Lang.sub(
+					fieldTemplate,
+					{
+						cssClass: CSS_FIELD_INPUT,
+						id: instance.get('id'),
+						name: instance.get('name'),
+						type: instance.get('type')
+					}
+				);
 
-        _createFieldNode: function() {
-            var instance = this;
+				return A.Node.create(instance.FIELD_TEMPLATE);
+			},
 
-            var fieldTemplate = instance.FIELD_TEMPLATE;
+			_getChoiceCss: function() {
+				var instance = this;
 
-            instance.FIELD_TEMPLATE = Lang.sub(
-                fieldTemplate, {
-                    cssClass: CSS_FIELD_INPUT,
-                    id: instance.get('id'),
-                    name: instance.get('name'),
-                    type: instance.get('type')
-                }
-            );
+				var type = instance.get('type');
 
-            return A.Node.create(instance.FIELD_TEMPLATE);
-        },
+				return MAP_CSS_FIELD_TYPES[type];
+			},
 
-        _getChoiceCss: function() {
-            var instance = this;
+			_getNodeValue: function() {
+				var instance = this;
 
-            var type = instance.get('type');
+				return instance.get('node').val();
+			},
 
-            return MAP_CSS_FIELD_TYPES[type];
-        },
+			_renderField: function() {
+				var instance = this;
 
-        _getNodeValue: function() {
-            var instance = this;
+				var node = instance.get('node');
 
-            return instance.get('node').val();
-        },
+				node.val(instance.get('value'));
 
-        _renderField: function() {
-            var instance = this;
+				var boundingBox = instance.get('boundingBox');
+				var contentBox = instance.get('contentBox');
 
-            var node = instance.get('node');
+				var type = instance.get('type');
 
-            node.val(instance.get('value'));
+				var cssClass = [getTypeClassName(type)];
 
-            var boundingBox = instance.get('boundingBox');
-            var contentBox = instance.get('contentBox');
+				var choiceCss = instance._getChoiceCss();
 
-            var type = instance.get('type');
+				if (choiceCss) {
+					cssClass.push(CSS_FIELD_CHOICE);
+					cssClass.push(choiceCss);
+				}
 
-            var cssClass = [getTypeClassName(type)];
+				boundingBox.addClass(cssClass.join(SPACE));
+				node.addClass(getTypeClassName(type, 'input'));
 
-            var choiceCss = instance._getChoiceCss();
+				if (!contentBox.contains(node)) {
+					if (node.inDoc()) {
+						node.placeBefore(boundingBox);
 
-            if (choiceCss) {
-                cssClass.push(CSS_FIELD_CHOICE);
-                cssClass.push(choiceCss);
-            }
+						contentBox.appendChild(node);
+					}
+					else {
+						contentBox.appendChild(node);
+					}
+				}
 
-            boundingBox.addClass(cssClass.join(SPACE));
-            node.addClass(getTypeClassName(type, 'input'));
+				boundingBox.removeAttribute('tabIndex');
+			},
 
-            if (!contentBox.contains(node)) {
-                if (node.inDoc()) {
-                    node.placeBefore(boundingBox);
+			_renderFieldHint: function() {
+				var instance = this;
 
-                    contentBox.appendChild(node);
-                }
-                else {
-                    contentBox.appendChild(node);
-                }
-            }
+				var fieldHint = instance.get('fieldHint');
 
-            boundingBox.removeAttribute('tabIndex');
-        },
+				if (fieldHint) {
+					instance._uiSetFieldHint(fieldHint);
+				}
+			},
 
-        _renderFieldHint: function() {
-            var instance = this;
+			_renderLabel: function() {
+				var instance = this;
 
-            var fieldHint = instance.get('fieldHint');
+				var labelText = instance.get('labelText');
 
-            if (fieldHint) {
-                instance._uiSetFieldHint(fieldHint);
-            }
-        },
+				if (labelText !== false) {
+					var node = instance.get('node');
+					var id = node.guid();
 
-        _renderLabel: function() {
-            var instance = this;
+					labelText = instance.get('labelText');
 
-            var labelText = instance.get('labelText');
+					var labelNode = instance.get('labelNode');
 
-            if (labelText !== false) {
-                var node = instance.get('node');
-                var id = node.guid();
+					labelNode.addClass(getClassName(instance.name, 'label'));
+					labelNode.setAttribute('for', id);
+					labelNode.set('innerHTML', labelText);
 
-                labelText = instance.get('labelText');
+					instance._uiSetLabelAlign(instance.get('labelAlign'));
 
-                var labelNode = instance.get('labelNode');
+					var contentBox = instance.get('contentBox');
+					var labelAlign = instance.get('labelAlign');
+					var type = instance.get('type').toLowerCase();
 
-                labelNode.addClass(getClassName(instance.name, 'label'));
-                labelNode.setAttribute('for', id);
-                labelNode.set('innerHTML', labelText);
+					var isLabelInline = REGEX_INLINE_LABEL.test(labelAlign);
 
-                instance._uiSetLabelAlign(instance.get('labelAlign'));
+					var action = 'prepend';
 
-                var contentBox = instance.get('contentBox');
-                var labelAlign = instance.get('labelAlign');
-                var type = instance.get('type').toLowerCase();
+					if (isLabelInline && instance._getChoiceCss()) {
+						action = 'append';
+					}
 
-                var isLabelInline = REGEX_INLINE_LABEL.test(labelAlign);
+					contentBox[action](labelNode);
+				}
+			},
 
-                var action = 'prepend';
+			_setNodeValue: function(value) {
+				var instance = this;
 
-                if (isLabelInline && instance._getChoiceCss()) {
-                    action = 'append';
-                }
+				instance._uiSetValue(value);
 
-                contentBox[action](labelNode);
-            }
-        },
+				return value;
+			},
 
-        _setNodeValue: function(value) {
-            var instance = this;
+			_uiSetDisabled: function(val) {
+				var instance = this;
+				var node = instance.get('node');
 
-            instance._uiSetValue(value);
+				if (val) {
+					node.setAttribute('disabled', val);
+				}
+				else {
+					node.removeAttribute('disabled');
+				}
+			},
 
-            return value;
-        },
+			_uiSetFieldHint: function(newVal, prevVal) {
+				var instance = this;
 
-        _uiSetDisabled: function(val) {
-            var instance = this;
-            var node = instance.get('node');
+				instance.get('fieldHintNode').set('innerHTML', newVal);
+			},
 
-            if (val) {
-                node.setAttribute('disabled', val);
-            }
-            else {
-                node.removeAttribute('disabled');
-            }
-        },
+			_uiSetId: function(newVal, src) {
+				var instance = this;
 
-        _uiSetFieldHint: function(newVal, prevVal) {
-            var instance = this;
+				instance.get('node').set('id', newVal);
+			},
 
-            instance.get('fieldHintNode').set('innerHTML', newVal);
-        },
+			_uiSetLabelAlign: function(newVal, prevVal) {
+				var instance = this;
 
-        _uiSetId: function(newVal, src) {
-            var instance = this;
+				var boundingBox = instance.get('boundingBox');
 
-            instance.get('node').set('id', newVal);
-        },
+				boundingBox.replaceClass(CSS_LABEL_ALIGN[prevVal], CSS_LABEL_ALIGN[newVal]);
 
-        _uiSetLabelAlign: function(newVal, prevVal) {
-            var instance = this;
+				var action = 'removeClass';
 
-            var boundingBox = instance.get('boundingBox');
+				if (REGEX_INLINE_LABEL.test(newVal)) {
+					action = 'addClass';
+				}
 
-            boundingBox.replaceClass(CSS_LABEL_ALIGN[prevVal], CSS_LABEL_ALIGN[newVal]);
+				boundingBox[action](CSS_LABELS_INLINE);
+			},
 
-            var action = 'removeClass';
+			_uiSetName: function(newVal, src) {
+				var instance = this;
 
-            if (REGEX_INLINE_LABEL.test(newVal)) {
-                action = 'addClass';
-            }
+				instance.get('node').setAttribute('name', newVal);
+			},
 
-            boundingBox[action](CSS_LABELS_INLINE);
-        },
+			_uiSetReadOnly: function(newVal, src) {
+				var instance = this;
 
-        _uiSetName: function(newVal, src) {
-            var instance = this;
+				instance.get('node').setAttribute('readOnly', newVal);
+			},
 
-            instance.get('node').setAttribute('name', newVal);
-        },
+			_uiSetSize: function(newVal, src) {
+				var instance = this;
 
-        _uiSetReadOnly: function(newVal, src) {
-            var instance = this;
+				instance.get('node').setAttribute('size', newVal);
+			},
 
-            instance.get('node').setAttribute('readOnly', newVal);
-        },
+			_uiSetTabIndex: function(newVal, src) {
+				var instance = this;
 
-        _uiSetSize: function(newVal, src) {
-            var instance = this;
+				instance.get('node').setAttribute('tabIndex', newVal);
+			},
 
-            instance.get('node').setAttribute('size', newVal);
-        },
+			_uiSetValue: function(newVal, src) {
+				var instance = this;
 
-        _uiSetTabIndex: function(newVal, src) {
-            var instance = this;
+				instance.get('node').val(newVal);
+			},
 
-            instance.get('node').setAttribute('tabIndex', newVal);
-        },
-
-        _uiSetValue: function(newVal, src) {
-            var instance = this;
-
-            instance.get('node').val(newVal);
-        },
-
-        _requireAddAttr: false
-    }
-});
+			_requireAddAttr: false
+		}
+	}
+);
 
 A.Field = Field;

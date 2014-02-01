@@ -1,8 +1,9 @@
 .tooltip {
-    max-width: 600px;
+	max-width: 600px;
 }
+
 .tooltip-content {
-    border-width: 2px;
-    padding: 8px;
-    position: relative;
+	border-width: 2px;
+	padding: 8px;
+	position: relative;
 }

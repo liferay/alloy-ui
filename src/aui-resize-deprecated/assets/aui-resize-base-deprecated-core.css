@@ -1,96 +1,119 @@
 .resize, .resize-wrapper {
-    z-index: 0;
-    zoom: 1;
+	z-index: 0;
+	zoom: 1;
 }
+
 .resize-handle {
-    /*	background: #eee;*/
-    position: absolute;
-    display: block;
-    z-index: 100;
-    zoom: 1;
+/*	background: #eee;*/
+	position: absolute;
+	display: block;
+	z-index: 100;
+	zoom: 1;
 }
+
 .resize-proxy {
-    position: absolute;
-    border: 1px dashed #000;
+	position: absolute;
+	border: 1px dashed #000;
     position: absolute;
     z-index: 10000;
 }
+
 .resize-hidden-handles .resize-handle {
-    opacity: 0;
+	opacity: 0;
+
     filter: alpha(opacity=0);
 }
+
 .resize-handle-t, .resize-handle-b {
-    width: 100%;
-    left: 0;
-    height: 6px;
+	width: 100%;
+	left: 0;
+	height: 6px;
 }
+
 .resize-handle-l, .resize-handle-r {
-    height: 100%;
-    top: 0;
-    width: 6px;
+	height: 100%;
+	top: 0;
+	width: 6px;
 }
+
 .resize-handle-t {
-    cursor: n-resize;
-    top: 0;
+	cursor: n-resize;
+	top: 0;
 }
+
 .resize-handle-b {
-    cursor: s-resize;
-    bottom: 0;
+	cursor: s-resize;
+	bottom: 0;
 }
+
 .resize-handle-l {
-    cursor: w-resize;
-    left: 0;
+	cursor: w-resize;
+	left: 0;
 }
+
 .resize-handle-r {
-    cursor: e-resize;
-    right: 0;
+	cursor: e-resize;
+	right: 0;
 }
+
 .resize-handle-inner {
-    position: absolute;
-    zoom: 1;
+	position: absolute;
+	zoom: 1;
 }
+
 .resize-handle-inner-t, .resize-handle-inner-b {
-    margin-left: -8px;
-    left: 50%;
+	margin-left: -8px;
+	left: 50%;
 }
+
 .resize-handle-inner-l, .resize-handle-inner-r {
-    margin-top: -8px;
-    top: 50%;
+	margin-top: -8px;
+	top: 50%;
 }
+
 .resize-handle-inner-t {
-    top: -5px;
+	top: -5px;
 }
+
 .resize-handle-inner-b {
-    bottom: -4px;
+	bottom: -4px;
 }
+
 .resize-handle-inner-l {
-    left: -4px;
+	left: -4px;
 }
+
 .resize-handle-inner-r {
-    right: -5px;
+	right: -5px;
 }
+
+
 .resize-handle-tr, .resize-handle-br, .resize-handle-tl, .resize-handle-bl {
-    height: 16px;
-    width: 16px;
-    z-index: 200;
+	height: 16px;
+	width: 16px;
+	z-index: 200;
 }
+
 .resize-handle-tr {
-    cursor: ne-resize;
-    top: 0;
-    right: 0;
+	cursor: ne-resize;
+	top: 0;
+	right: 0;
 }
+
 .resize-handle-tl {
-    cursor: nw-resize;
-    top: 0;
-    left: 0;
+	cursor: nw-resize;
+	top: 0;
+	left: 0;
 }
+
 .resize-handle-br {
-    cursor: se-resize;
-    bottom: 0;
-    right: 0;
+	cursor: se-resize;
+	bottom: 0;
+	right: 0;
 }
+
 .resize-handle-bl {
-    cursor: sw-resize;
-    bottom: 0;
-    left: 0;
+	cursor: sw-resize;
+	bottom: 0;
+	left: 0;
 }
