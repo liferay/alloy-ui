@@ -255,9 +255,11 @@ var KeyMap = {
 A.mix(
     DOMEventFacadeProto, {
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if an event is triggered by a keyboard key like `CTRL`, `ALT`
+         * or `SHIFT`.
          *
          * @method hasModifier
+         * @return {Boolean}
          */
         hasModifier: function() {
             var instance = this;
@@ -266,10 +268,11 @@ A.mix(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if an event is triggered by a keyboard key.
          *
          * @method isKey
          * @param name
+         * @return {Boolean}
          */
         isKey: function(name) {
             var instance = this;
@@ -278,11 +281,13 @@ A.mix(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if an event is triggered by a keyboard key located between two
+         * other keys.
          *
          * @method isKeyInRange
          * @param start
          * @param end
+         * @return {Boolean}
          */
         isKeyInRange: function(start, end) {
             var instance = this;
@@ -291,9 +296,11 @@ A.mix(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if an event is triggered by a keyboard key contained in the
+         * key set.
          *
          * @method isKeyInSet
+         * @return {Boolean}
          */
         isKeyInSet: function() {
             var instance = this;
@@ -304,7 +311,8 @@ A.mix(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if an event is triggered by `ENTER`, `TAB`, `ESC` keyboard
+         * keys or by a key located between `PAGE UP` and `DOWN`.
          *
          * @method isModifyingKey
          */
@@ -318,6 +326,7 @@ A.mix(
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method isNavKey
+         * @return {Boolean}
          */
         isNavKey: function() {
             var instance = this;
@@ -326,9 +335,11 @@ A.mix(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if an event is triggered by a special keyboard key like
+         * `SHIFT`, `CAPS LOCK`, etc.
          *
          * @method isSpecialKey
+         * @return {Boolean}
          */
         isSpecialKey: function() {
             var instance = this;

@@ -18,14 +18,14 @@ var AArray = A.Array,
     SUBMIT_ON = 'submit_on';
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
+ * Defines a new `submit` event in the DOM event system.
  *
  * @event submit
  */
 A.Event.define(
     EVENT_SUBMIT, {
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Implementation logic for subscription via `node.delegate`.
          *
          * @method delegate
          * @param node
@@ -59,7 +59,7 @@ A.Event.define(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Implementation logic for cleaning up a detached subscription.
          *
          * @method detach
          * @param node
@@ -73,7 +73,8 @@ A.Event.define(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Implementation logic for cleaning up a detached delegate
+         * subscription.
          *
          * @method detachDelegate
          * @param node
@@ -87,7 +88,7 @@ A.Event.define(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Implementation logic for event subscription.
          *
          * @method on
          * @param node
@@ -101,7 +102,7 @@ A.Event.define(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Adds an event subscription.
          *
          * @method _attachEvent
          * @param form
@@ -162,7 +163,7 @@ A.Event.define(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Deletes a group of event subscriptions.
          *
          * @method _detachEvents
          * @param node
@@ -187,7 +188,7 @@ A.Event.define(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets a node name.
          *
          * @method _getNodeName
          * @param elem
@@ -201,7 +202,7 @@ A.Event.define(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if a node has parent.
          *
          * @method _hasParent
          * @param node
@@ -218,7 +219,7 @@ A.Event.define(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Prepares event handles.
          *
          * @method _prepareHandles
          * @param subscription

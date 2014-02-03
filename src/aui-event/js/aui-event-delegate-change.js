@@ -13,14 +13,14 @@ var AObject = A.Object,
     EVENT_CHANGE = 'change';
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
+ * Defines a new `change` event in the DOM event system.
  *
  * @event change
  */
 A.Event.define(
     EVENT_CHANGE, {
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Implementation logic for subscription via `node.delegate`.
          *
          * @method delegate
          * @param node
@@ -35,7 +35,7 @@ A.Event.define(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Implementation logic for cleaning up a detached subscription.
          *
          * @method detach
          * @param node
@@ -49,7 +49,8 @@ A.Event.define(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Implementation logic for cleaning up a detached delegate
+         * subscription.
          *
          * @method detachDelegate
          * @param node
@@ -63,7 +64,7 @@ A.Event.define(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Implementation logic for event subscription.
          *
          * @method on
          * @param node
@@ -77,7 +78,7 @@ A.Event.define(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Adds an event subscription.
          *
          * @method _attachEvent
          * @param node
@@ -128,7 +129,7 @@ A.Event.define(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Adds an event subscription.
          *
          * @method _attachEvents
          * @param node
@@ -154,7 +155,7 @@ A.Event.define(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Deletes a group of event subscriptions.
          *
          * @method _detachEvents
          * @param node
@@ -179,7 +180,7 @@ A.Event.define(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets an event name.
          *
          * @method _getEventName
          * @protected
@@ -201,7 +202,7 @@ A.Event.define(
         ),
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Prepares event handles.
          *
          * @method _prepareHandles
          * @param subscription
