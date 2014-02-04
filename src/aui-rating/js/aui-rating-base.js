@@ -26,6 +26,7 @@ var Lang = A.Lang,
     DISABLED = 'disabled',
     DOT = '.',
     ELEMENTS = 'elements',
+    ENTER = 13,
     HREF = 'href',
     ID = 'id',
     INPUT = 'input',
@@ -53,7 +54,7 @@ var Lang = A.Lang,
     CSS_STAR_EMPTY = getCN('icon', 'star', 'empty'),
     CSS_RATING_LABEL = getCN(RATING, LABEL),
 
-    TPL_ELEMENT = '<a class="{cssClasses}"></a>',
+    TPL_ELEMENT = '<a class="{cssClasses}" tabindex="0"></a>',
     TPL_LABEL = '<span class="' + CSS_RATING_LABEL + '"></span>';
 
 /**
@@ -341,6 +342,7 @@ var Rating = A.Component.create({
 
             instance.on({
                 click: instance._handleClickEvent,
+                keypress: instance._handleKeyPressEvent,
                 mouseover: instance._handleMouseOverEvent,
                 mouseout: instance._handleMouseOutEvent
             });
@@ -623,6 +625,25 @@ var Rating = A.Component.create({
                 index = instance.indexOf(event.domEvent.target);
 
             instance.fillTo(index, cssClasses.hover);
+        },
+
+        /**
+         * Handle the keypress event. If the pressed key is Enter, fires `itemClick` event,
+         * i.e. does the same as if the user has clicked with the mouse.
+         *
+         * @method _handleKeyPressEvent
+         * @param {EventFacade} event
+         * @protected
+         */
+        _handleKeyPressEvent: function(event) {
+            var instance = this,
+                domEvent;
+
+            domEvent = event.domEvent;
+
+            if (domEvent.charCode === ENTER) {
+                instance._handleClickEvent(event);
+            }
         },
 
         /**
