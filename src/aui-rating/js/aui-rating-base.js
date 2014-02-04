@@ -54,7 +54,7 @@ var Lang = A.Lang,
     CSS_STAR_EMPTY = getCN('icon', 'star', 'empty'),
     CSS_RATING_LABEL = getCN(RATING, LABEL),
 
-    TPL_ELEMENT = '<a class="{cssClasses}" tabindex="0"></a>',
+    TPL_ELEMENT = '<a class="{cssClasses}" tabindex="{tabindex}"></a>',
     TPL_LABEL = '<span class="' + CSS_RATING_LABEL + '"></span>';
 
 /**
@@ -479,13 +479,17 @@ var Rating = A.Component.create({
         _createElements: function() {
             var instance = this,
                 cssClasses = instance.get('cssClasses'),
-                size = this.get(SIZE),
-                elements = [];
+                disabled,
+                elements = [],
+                size = this.get(SIZE);
+
+            disabled = instance.get(DISABLED);
 
             for (var i = 0; i < size; i++) {
                 elements.push(
                     Lang.sub(TPL_ELEMENT, {
-                        cssClasses: cssClasses.element
+                        cssClasses: cssClasses.element,
+                        tabindex: disabled ? -1 : 0
                     })
                 );
             }
