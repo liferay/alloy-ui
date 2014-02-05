@@ -352,9 +352,45 @@ var Timer = {
     _initialized: false
 };
 
+/**
+ * Cancels repeated action which was set up using `setInterval` function.
+ *
+ * @method A.clearInterval
+ * @static
+ * @param id
+ */
 A.clearInterval = Timer.clearInterval;
+
+/**
+ * Clears the delay set by `setTimeout` function.
+ *
+ * @method A.clearTimeout
+ * @static
+ * @param id
+ */
 A.clearTimeout = Timer.clearTimeout;
+
+/**
+ * Calls a function repeatedly, with a fixed time delay between each call to
+ * that function.
+ *
+ * @method A.setInterval
+ * @static
+ * @param fn
+ * @param ms
+ * @param context
+ */
 A.setInterval = Timer.setInterval;
+
+/**
+ * Calls a function after a specified delay.
+ *
+ * @method A.setTimeout
+ * @static
+ * @param fn
+ * @param ms
+ * @param context
+ */
 A.setTimeout = Timer.setTimeout;
 
 A.Timer = Timer;
