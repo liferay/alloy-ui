@@ -42,11 +42,6 @@ YUI.add('aui-toggler-delegate-tests', function(Y) {
                 content: _SELECTOR_CSS_CONTENT,
                 header: _SELECTOR_CSS_HEADER
             });
-
-            instance.displacedHandlers = [
-                Y.Do.before(instance._observe(HEADER_EVENT_HANDLER), togglerDelegate, HEADER_EVENT_HANDLER),
-                Y.Do.before(instance._observe(ON_ANIMATING_CHANGE), togglerDelegate, ON_ANIMATING_CHANGE)
-            ];
         },
 
         tearDown: function() {
@@ -55,25 +50,15 @@ YUI.add('aui-toggler-delegate-tests', function(Y) {
             togglerDelegate = null;
         },
 
-        _notCalled: function(method) {
-            var instance = this;
-
-            return (!instance._calls || !instance._calls[method]);
-        },
-
-        _observe: function(method) {
+        _wrapMockFn: function(mockFn, mockErrors) {
             var instance = this;
 
             return function() {
-                if (!instance._calls) {
-                    instance._calls = {};
+                try {
+                    mockFn.apply(instance);
                 }
-
-                if (!instance._calls[method]) {
-                    instance._calls[method] = 1;
-                }
-                else {
-                    instance._calls[method]++;
+                catch (err) {
+                    mockErrors.push(err.message);
                 }
             };
         },
@@ -89,16 +74,31 @@ YUI.add('aui-toggler-delegate-tests', function(Y) {
          * @tests AUI-939
          */
         'detached headerEventHandler': function() {
-            var instance = this;
+            var instance = this,
+                mock = new Y.Mock(),
+                mockErrors = [];
+
+            Y.Mock.expect(
+                mock, {
+                    method: HEADER_EVENT_HANDLER,
+                    callCount: 0
+                }
+            );
+
+            // Workaround for https://github.com/yui/yui3/issues/1421
+            var mockWrapper = instance._wrapMockFn(mock[HEADER_EVENT_HANDLER], mockErrors);
+
+            var headerHandler = Y.Do.before(mockWrapper, togglerDelegate, HEADER_EVENT_HANDLER);
 
             togglerDelegate.destroy();
 
             Y.one(_SELECTOR_CSS_HEADER).simulate(CLICK);
             Y.one(_SELECTOR_CSS_HEADER).simulate(KEYDOWN);
 
-            Y.Assert.isTrue(
-                instance._notCalled(HEADER_EVENT_HANDLER),
-                '_onAnimatingChange handler should be cleaned and not called after destroyed');
+            Y.Mock.verify(mock);
+
+            Y.Assert.areEqual(mockErrors.length, 0,
+                'headerEventHandler handlers should be cleaned and not called after destroyed');
         },
 
         /**
@@ -109,7 +109,21 @@ YUI.add('aui-toggler-delegate-tests', function(Y) {
          */
         'detached _onAnimatingChange': function() {
             var instance = this,
+                mock = new Y.Mock(),
+                mockErrors = [],
                 toggler;
+
+            Y.Mock.expect(
+                mock, {
+                    method: ON_ANIMATING_CHANGE,
+                    callCount: 0
+                }
+            );
+
+            // Workaround for https://github.com/yui/yui3/issues/1421
+            var mockWrapper = instance._wrapMockFn(mock[ON_ANIMATING_CHANGE], mockErrors);
+
+            var animationChange = Y.Do.before(mockWrapper, togglerDelegate, ON_ANIMATING_CHANGE);
 
             // Force the creation of the togglers
             togglerDelegate.createAll();
@@ -121,8 +135,9 @@ YUI.add('aui-toggler-delegate-tests', function(Y) {
             // Simulate the dispatch of animatingChange
             toggler.set('animating', true);
 
-            Y.Assert.isTrue(
-                instance._notCalled(ON_ANIMATING_CHANGE),
+            Y.Mock.verify(mock);
+
+            Y.Assert.areEqual(mockErrors.length, 0,
                 '_onAnimatingChange handler should be cleaned and not called after destroyed');
         },
 

@@ -4,7 +4,9 @@
  * @module aui-tooltip
  */
 
-var BODY_CONTENT = 'bodyContent',
+var Lang = A.Lang,
+
+    BODY_CONTENT = 'bodyContent',
     BOUNDING_BOX = 'boundingBox',
     CONTENT_BOX = 'contentBox',
     DURATION = 'duration',
@@ -12,7 +14,6 @@ var BODY_CONTENT = 'bodyContent',
     HOVER = 'hover',
     IN = 'in',
     MOUSEENTER = 'mouseenter',
-    MOUSELEAVE = 'mouseleave',
     OPACITY = 'opacity',
     STICK_DURATION = 'stickDuration',
     TITLE = 'title',
@@ -52,7 +53,6 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
     A.WidgetPositionAlign,
     A.WidgetPositionAlignSuggestion,
     A.WidgetPositionConstrain,
-    A.WidgetStack,
     A.WidgetTrigger
 ], {
     /**
@@ -101,15 +101,18 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
      * @protected
      */
     bindUI: function() {
-        var instance = this;
+        var instance = this,
+            trigger = instance.get(TRIGGER);
 
         // Do not bind the synthetic hover event to the widget dom events
         // wrapper api. Hover bind method has a different method signature which
         // is not handled by widget yet. Bind to the `boundingBox` instead.
-        instance.get(TRIGGER).on(
-            HOVER,
-            A.bind(instance._onBoundingBoxMouseenter, this)
-        );
+        if (trigger) {
+            trigger.on(
+                HOVER,
+                A.bind(instance._onBoundingBoxMouseenter, instance),
+                A.bind(instance._onBoundingBoxMouseleave, instance));
+        }
 
         instance.get(BOUNDING_BOX).on(
             HOVER,
@@ -137,14 +140,17 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
      * @protected
      */
     _afterUiSetVisible: function(val) {
-        var instance = this;
+        var instance = this,
+            stickDuration = instance.get(STICK_DURATION);
 
         if (val) {
             instance._loadBodyContentFromTitle();
             instance._maybeShow();
         }
         else {
-            instance._maybeHide();
+            if (!A.Lang.isNumber(stickDuration)) {
+                instance._maybeHide();
+            }
         }
     },
 
@@ -225,6 +231,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
         }
         else {
             instance._transition();
+            instance.hide();
         }
     },
 
@@ -285,6 +292,10 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
             },
             function() {
                 boundingBox.toggleClass(IN, fadeIn);
+
+                if (!fadeIn) {
+                    instance.hide();
+                }
             }
         );
     }
@@ -327,6 +338,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
          * @type {Number}
          */
         duration: {
+            validator: Lang.isNumber,
             value: 0.15
         },
 
@@ -348,6 +360,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
          * @type {Number}
          */
         opacity: {
+            validator: Lang.isNumber,
             value: 0.8
         },
 
@@ -365,17 +378,6 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
         },
 
         /**
-         * DOM event to hide the tooltip.
-         *
-         * @attribute triggerHideEvent
-         * @default mouseleave
-         * @type String
-         */
-        triggerHideEvent: {
-            value: MOUSELEAVE
-        },
-
-        /**
          * DOM event to show the tooltip.
          *
          * @attribute triggerShowEvent
@@ -383,6 +385,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
          * @type String
          */
         triggerShowEvent: {
+            validator: Lang.isString,
             value: MOUSEENTER
         }
     },

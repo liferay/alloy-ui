@@ -487,7 +487,8 @@
         "requires": [
             "aui-event-base",
             "event-delegate",
-            "event-synthetic"
+            "event-synthetic",
+            "timers"
         ]
     },
     "aui-form-base-deprecated": {
@@ -517,6 +518,7 @@
     },
     "aui-form-builder-base": {
         "requires": [
+            "escape",
             "transition",
             "aui-button",
             "aui-collection",
@@ -939,10 +941,10 @@
     },
     "aui-rating-base": {
         "requires": [
-            "widget-htmlparser",
-            "widget-uievents",
             "aui-component",
-            "aui-node-base"
+            "aui-node-base",
+            "widget-htmlparser",
+            "widget-uievents"
         ],
         "skinnable": true
     },

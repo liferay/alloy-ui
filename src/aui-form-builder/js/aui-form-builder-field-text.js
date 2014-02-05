@@ -36,9 +36,9 @@ var L = A.Lang,
         SPACE) + '" name="{name}" type="text" value="{value}" />',
 
     WIDTH_VALUES_MAP = {
-        small: 'large',
-        medium: 'xlarge',
-        large: 'xxlarge'
+        small: 'small',
+        medium: 'medium',
+        large: 'large'
     };
 
 /**

@@ -63,7 +63,7 @@ YUI.add('aui-color-picker-tests', function(Y) {
         _assertVisible: function() {
             Y.Test.Assert.isNull(
                 Y.one('.yui3-color-picker-popover-hidden'), 'The ColorPicker Popover should be visible');
-        },
+        }
     }));
 
     suite.add(new Y.Test.Case({

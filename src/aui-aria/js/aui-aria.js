@@ -64,8 +64,8 @@ var Aria = A.Component.create({
     NS: ARIA,
 
     /**
-     * Static property used to define the default attribute
-     * configuration for the Aria.
+     * Static property used to define the default attribute configuration for
+     * the `A.Aria`.
      *
      * @property ATTRS
      * @type Object
@@ -74,7 +74,7 @@ var Aria = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The ARIA attributes collection.
          *
          * @attribute attributes
          * @default {}
@@ -86,7 +86,7 @@ var Aria = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The ARIA attribute value format.
          *
          * @attribute attributeValueFormat
          * @type Function
@@ -99,7 +99,7 @@ var Aria = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Node container for the ARIA attribute.
          *
          * @attribute attributeNode
          * @writeOnce
@@ -113,7 +113,7 @@ var Aria = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The ARIA role name.
          *
          * @attribute roleName
          * @type String
@@ -130,7 +130,7 @@ var Aria = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Node container for the ARIA role.
          *
          * @attribute roleNode
          * @writeOnce
@@ -144,7 +144,7 @@ var Aria = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if the attribute is valid with W3C rules.
          *
          * @attribute validateW3C
          * @default true
@@ -194,10 +194,11 @@ var Aria = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if the ARIA attribute is valid.
          *
          * @method isValidAttribute
          * @param attrName
+         * @return {Boolean}
          */
         isValidAttribute: function(attrName) {
             var instance = this;
@@ -206,10 +207,11 @@ var Aria = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if the ARIA role is valid.
          *
          * @method isValidRole
          * @param roleName
+         * @return {Boolean}
          */
         isValidRole: function(roleName) {
             var instance = this;
@@ -218,12 +220,13 @@ var Aria = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set a single ARIA attribute.
          *
          * @method setAttribute
          * @param attrName
          * @param attrValue
          * @param node
+         * @return {Boolean}
          */
         setAttribute: function(attrName, attrValue, node) {
             var instance = this;
@@ -238,7 +241,7 @@ var Aria = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set a list of ARIA attributes.
          *
          * @method setAttributes
          * @param attributes
@@ -252,11 +255,12 @@ var Aria = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set a single ARIA role.
          *
          * @method setRole
          * @param roleName
          * @param node
+         * @return {Boolean}
          */
         setRole: function(roleName, node) {
             var instance = this;
@@ -271,7 +275,7 @@ var Aria = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set a list of ARIA roles.
          *
          * @method setRoles
          * @param roles
@@ -285,7 +289,7 @@ var Aria = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after a host attribute change.
          *
          * @method _afterHostAttributeChange
          * @param event
@@ -298,7 +302,7 @@ var Aria = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers after `roleName` attribute change.
          *
          * @method _afterRoleNameChange
          * @param event
@@ -311,7 +315,7 @@ var Aria = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Bind the list of host attributes.
          *
          * @method _bindHostAttributes
          * @protected
@@ -335,7 +339,7 @@ var Aria = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Calls the `_setAttribute` method.
          *
          * @method _defProcessFn
          * @param event
@@ -348,12 +352,13 @@ var Aria = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Get the ARIA attribute.
          *
          * @method _getAriaAttribute
          * @param aria
          * @param attrName
          * @protected
+         * @return {Object}
          */
         _getAriaAttribute: function(aria, attrName) {
             var instance = this;
@@ -381,7 +386,7 @@ var Aria = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires ARIA process attribute event handle.
          *
          * @method _handleProcessAttribute
          * @param event
@@ -396,7 +401,7 @@ var Aria = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the attribute in the DOM.
          *
          * @method _setAttribute
          * @param ariaAttr
@@ -420,7 +425,7 @@ var Aria = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `roleName` attribute on the UI.
          *
          * @method _uiSetRoleName
          * @param val

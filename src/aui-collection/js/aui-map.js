@@ -35,7 +35,7 @@ var HashMap = A.Base.create('map', A.Base, [], {
     _values: null,
 
     /**
-     * Construction logic executed during HashMap instantiation. Lifecycle.
+     * Construction logic executed during `A.HashMap` instantiation. Lifecycle.
      *
      * @method initializer
      * @protected
@@ -61,7 +61,7 @@ var HashMap = A.Base.create('map', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires the `clear` custom event.
      *
      * @method clear
      */
@@ -70,10 +70,11 @@ var HashMap = A.Base.create('map', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns the value from a key in this map.
      *
      * @method getValue
      * @param key
+     * @return {Object}
      */
     getValue: function(key) {
         var instance = this;
@@ -82,11 +83,12 @@ var HashMap = A.Base.create('map', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Checks if this map has the specified key.
      *
      * @method has
      * @param key
      * @param opt_hash
+     * @return {Boolean}
      */
     has: function(key, opt_hash) {
         var instance = this;
@@ -96,10 +98,11 @@ var HashMap = A.Base.create('map', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns `true` if this map contains a certain value.
      *
      * @method hasValue
      * @param value
+     * @return {Boolean}
      */
     hasValue: function(value) {
         var found = false;
@@ -113,25 +116,27 @@ var HashMap = A.Base.create('map', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns a collection of the keys contained in this map.
      *
      * @method keys
+     * @return {Object}
      */
     keys: function() {
         return AObject.values(this._keys);
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns `true` if this map contains no key-value mappings.
      *
      * @method isEmpty
+     * @return {Boolean}
      */
     isEmpty: function() {
         return this._size === 0;
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires the `put` custom event.
      *
      * @method put
      * @param key
@@ -147,7 +152,7 @@ var HashMap = A.Base.create('map', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Copies all of the mappings from the specified map to this map.
      *
      * @method putAll
      * @param map
@@ -161,11 +166,12 @@ var HashMap = A.Base.create('map', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires the `remove` custom event.
      *
      * @method remove
      * @param key
      * @param opt_hash
+     * @return {Object}
      */
     remove: function(key, opt_hash) {
         var instance = this,
@@ -181,25 +187,28 @@ var HashMap = A.Base.create('map', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns the number of key-value mappings in this map.
      *
      * @method size
+     * @return {Number}
      */
     size: function() {
         return this._size;
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns a collection of the values contained in this map.
      *
      * @method values
+     * @return {Object}
      */
     values: function() {
         return AObject.values(this._values);
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Implements the `clear` custom event behavior. Removes all of the mappings
+     * from this map.
      *
      * @method _defClearFn
      * @protected
@@ -215,7 +224,8 @@ var HashMap = A.Base.create('map', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Implements the `put` custom event behavior. Associates the specified
+     * value with the specified key in this map.
      *
      * @method _defPutFn
      * @param event
@@ -237,7 +247,8 @@ var HashMap = A.Base.create('map', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Implements the `remove` custom event behavior. Removes the mapping for a
+     * key from this map if it is present.
      *
      * @method _defRemoveFn
      * @param event
@@ -277,11 +288,12 @@ var HashMap = A.Base.create('map', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns a hash in `String` format based in the function argument.
      *
      * @method _getHash
      * @param value
      * @protected
+     * @return {String}
      */
     _getHash: function(value) {
         var instance = this;
@@ -318,7 +330,7 @@ var HashMap = A.Base.create('map', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns a hash from an `Object`.
      *
      * @method _getHashForObject
      * @param value
@@ -340,11 +352,12 @@ var HashMap = A.Base.create('map', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns `true` if the argument's hash code is a `Function`.
      *
      * @method _isObjectWithHashCode
      * @param value
      * @protected
+     * @return {Boolean}
      */
     _isObjectWithHashCode: function(value) {
         if (!Lang.isObject(value)) {

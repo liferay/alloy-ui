@@ -131,6 +131,39 @@ var KeyMap = {
     WIN_KEY: 224,
     WIN_IME: 229,
 
+    NON_MODIFYING_KEYS: [
+        'ALT',
+        'CAPS_LOCK',
+        'CTRL',
+        'DOWN',
+        'END',
+        'ESC',
+        'F1',
+        'F10',
+        'F11',
+        'F12',
+        'F2',
+        'F3',
+        'F4',
+        'F5',
+        'F6',
+        'F7',
+        'F8',
+        'F9',
+        'HOME',
+        'LEFT',
+        'NUM_LOCK',
+        'PAGE_DOWN',
+        'PAGE_UP',
+        'PAUSE',
+        'PRINT_SCREEN',
+        'RIGHT',
+        'SHIFT',
+        'SPACE',
+        'UP',
+        'WIN_KEY'
+    ],
+
     hasModifier: function(event) {
         var instance = this;
 
@@ -188,6 +221,12 @@ var KeyMap = {
             instance.isKeyInSet(keyCode, BACKSPACE, PRINT_SCREEN, INSERT, WIN_IME);
     },
 
+    isModifyingKey: function(keyCode) {
+        var instance = this;
+
+        return !instance._isKeyInSet(keyCode, instance.NON_MODIFYING_KEYS);
+    },
+
     _isKeyInSet: function(keyCode, arr) {
         var instance = this;
 
@@ -216,9 +255,11 @@ var KeyMap = {
 A.mix(
     DOMEventFacadeProto, {
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if an event is triggered by a keyboard key like `CTRL`, `ALT`
+         * or `SHIFT`.
          *
          * @method hasModifier
+         * @return {Boolean}
          */
         hasModifier: function() {
             var instance = this;
@@ -227,10 +268,11 @@ A.mix(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if an event is triggered by a keyboard key.
          *
          * @method isKey
          * @param name
+         * @return {Boolean}
          */
         isKey: function(name) {
             var instance = this;
@@ -239,11 +281,13 @@ A.mix(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if an event is triggered by a keyboard key located between two
+         * other keys.
          *
          * @method isKeyInRange
          * @param start
          * @param end
+         * @return {Boolean}
          */
         isKeyInRange: function(start, end) {
             var instance = this;
@@ -252,9 +296,11 @@ A.mix(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if an event is triggered by a keyboard key contained in the
+         * key set.
          *
          * @method isKeyInSet
+         * @return {Boolean}
          */
         isKeyInSet: function() {
             var instance = this;
@@ -265,9 +311,22 @@ A.mix(
         },
 
         /**
+         * Checks if an event is triggered by `ENTER`, `TAB`, `ESC` keyboard
+         * keys or by a key located between `PAGE UP` and `DOWN`.
+         *
+         * @method isModifyingKey
+         */
+        isModifyingKey: function() {
+            var instance = this;
+
+            return KeyMap.isModifyingKey(instance.keyCode);
+        },
+
+        /**
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method isNavKey
+         * @return {Boolean}
          */
         isNavKey: function() {
             var instance = this;
@@ -276,9 +335,11 @@ A.mix(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if an event is triggered by a special keyboard key like
+         * `SHIFT`, `CAPS LOCK`, etc.
          *
          * @method isSpecialKey
+         * @return {Boolean}
          */
         isSpecialKey: function() {
             var instance = this;

@@ -18,6 +18,7 @@
 
     "aui-form-builder-base": {
         "requires": [
+            "escape",
             "transition",
             "aui-button",
             "aui-collection",

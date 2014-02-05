@@ -18,7 +18,7 @@ var HashSet = A.Base.create('set', A.Base, [], {
     _map: null,
 
     /**
-     * Construction logic executed during HashSet instantiation. Lifecycle.
+     * Construction logic executed during `A.HashSet` instantiation. Lifecycle.
      *
      * @method initializer
      * @protected
@@ -41,7 +41,7 @@ var HashSet = A.Base.create('set', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires the `add` custom event.
      *
      * @method add
      * @param value
@@ -53,7 +53,7 @@ var HashSet = A.Base.create('set', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires the `clear` custom event.
      *
      * @method clear
      */
@@ -62,18 +62,19 @@ var HashSet = A.Base.create('set', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Checks if this set has the specified key.
      *
      * @method has
      * @param value
      * @param opt_hash
+     * @return {Boolean}
      */
     has: function(value, opt_hash) {
         return this._map.has(value, opt_hash);
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Returns `true` if this set contains no elements.
      *
      * @method isEmpty
      */
@@ -82,7 +83,7 @@ var HashSet = A.Base.create('set', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires the `remove` custom event with an argument.
      *
      * @method remove
      * @param value
@@ -94,7 +95,7 @@ var HashSet = A.Base.create('set', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Get the size of the map.
      *
      * @method size
      */
@@ -103,7 +104,7 @@ var HashSet = A.Base.create('set', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Get the keys of the map.
      *
      * @method values
      */
@@ -112,7 +113,8 @@ var HashSet = A.Base.create('set', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Implements the `add` custom event behavior. Adds the specified element to
+     * this set.
      *
      * @method _defAddFn
      * @param event
@@ -123,7 +125,8 @@ var HashSet = A.Base.create('set', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Implements the `clear` custom event behavior. Removes all of the elements
+     * from this set.
      *
      * @method _defClearFn
      * @protected
@@ -137,7 +140,8 @@ var HashSet = A.Base.create('set', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Implements the `remove` custom event behavior. Removes the specified
+     * element from this set if it is present.
      *
      * @method _defRemoveFn
      * @param event
