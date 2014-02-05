@@ -84,7 +84,7 @@ YUI.add('aui-ace-autocomplete-freemarker-tests', function(Y) {
             editor.render();
 
             Y.Test.Assert.isNotNull(editor.hasPlugin('ace-autocomplete-plugin'));
-        },
+        }
     }));
 
     //--------------------------------------------------------------------------
