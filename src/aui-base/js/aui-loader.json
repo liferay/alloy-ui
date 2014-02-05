@@ -354,7 +354,8 @@
         "requires": [
             "aui-event-base",
             "event-delegate",
-            "event-synthetic"
+            "event-synthetic",
+            "timers"
         ]
     },
     "aui-form-builder": {
@@ -375,6 +376,7 @@
     },
     "aui-form-builder-base": {
         "requires": [
+            "escape",
             "transition",
             "aui-button",
             "aui-collection",

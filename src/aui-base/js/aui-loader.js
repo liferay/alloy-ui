@@ -366,7 +366,8 @@ Y.mix(YUI.Env[Y.version].modules, {
                 if (testFeature('event', 'input') === undefined) {
                     addFeature('event', 'input', {
                         test: function() {
-                            return supportsDOMEvent(document.createElement('textarea'), 'input');
+                            return supportsDOMEvent(document.createElement('textarea'), 'input') && (!A.UA.ie ||
+                                A.UA.ie > 9);
                         }
                     });
                 }
@@ -378,7 +379,8 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "aui-event-base",
             "event-delegate",
-            "event-synthetic"
+            "event-synthetic",
+            "timers"
         ]
     },
     "aui-form-builder": {
@@ -399,6 +401,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-form-builder-base": {
         "requires": [
+            "escape",
             "transition",
             "aui-button",
             "aui-collection",
@@ -1036,4 +1039,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '30eecce044d2cf133d5f4f24795b1a1c';
+YUI.Env[Y.version].md5 = '68ffb915c5271edbe942ae90b8067070';

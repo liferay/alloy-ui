@@ -71,7 +71,9 @@ YUI.add('aui-event-tests', function(Y) {
             // Simulating keydown events does not update the input value. Need
             // to do it manually to mimic browser behaviour properly.
             input.focus();
-            input.simulate('keydown', { keyCode: KeyMap.A });
+            input.simulate('keydown', {
+                keyCode: KeyMap.A
+            });
             input.val('a');
 
             instance.wait(
@@ -104,7 +106,9 @@ YUI.add('aui-event-tests', function(Y) {
             // Simulating keydown events does not update the input value. Need
             // to do it manually to mimic browser behaviour properly.
             input.focus();
-            input.simulate('keydown', { keyCode: KeyMap.A });
+            input.simulate('keydown', {
+                keyCode: KeyMap.A
+            });
             input.val('a');
 
             instance.wait(
@@ -186,7 +190,9 @@ YUI.add('aui-event-tests', function(Y) {
             Y.Array.each(
                 nonModifyingKeys,
                 function(item) {
-                    input.simulate('keydown', { keyCode: item });
+                    input.simulate('keydown', {
+                        keyCode: item
+                    });
                 }
             );
 
