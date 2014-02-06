@@ -444,6 +444,40 @@ YUI.add('module-tests', function(Y) {
             rootNode.expand();
 
             test.wait();
+        },
+
+        'TreeNodeTask should add a state for when one of its children is unchecked': function() {
+            var childTreeNode,
+                rootTreeNode,
+                treeView;
+
+            treeView = new Y.TreeView();
+
+            childTreeNode = new Y.TreeNodeTask({
+                id: 'one'
+            });
+
+            rootTreeNode = new Y.TreeNodeTask({
+                id: 'root'
+            });
+
+            treeView.appendChild(rootTreeNode);
+            rootTreeNode.appendChild(childTreeNode);
+
+            rootTreeNode.check();
+            childTreeNode.uncheck();
+
+            var rootTreeNodeCB = rootTreeNode.get('contentBox');
+
+            Y.Assert.isTrue(
+                rootTreeNodeCB.hasClass('tree-node-child-unchecked'),
+                'rootTreeNode has an unchecked child.');
+
+            childTreeNode.check();
+
+            Y.Assert.isFalse(
+                rootTreeNodeCB.hasClass('tree-node-child-unchecked'),
+                'rootTreeNode does not have unchecked child.');
         }
     }));
 
