@@ -1627,8 +1627,18 @@ var TreeNodeTask = A.Component.create({
 
             instance.eachParent(
                 function(parentNode) {
-                    if (isTreeNodeTask(parentNode) && !parentNode.isChecked()) {
-                        parentNode.get(CONTENT_BOX).addClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+                    if (isTreeNodeTask(parentNode)) {
+                        var hasUncheckedChild = false;
+
+                        parentNode.eachChildren(function(child) {
+                            if ((child !== instance) && !child.isChecked()) {
+                                hasUncheckedChild = true;
+                            }
+                        });
+
+                        if (!hasUncheckedChild) {
+                            parentNode.get(CONTENT_BOX).removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+                        }
                     }
                 }
             );
@@ -1662,8 +1672,8 @@ var TreeNodeTask = A.Component.create({
 
             instance.eachParent(
                 function(parentNode) {
-                    if (isTreeNodeTask(parentNode) && !parentNode.isChecked()) {
-                        parentNode.get(CONTENT_BOX).removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+                    if (isTreeNodeTask(parentNode) && parentNode.isChecked()) {
+                        parentNode.get(CONTENT_BOX).addClass(CSS_TREE_NODE_CHILD_UNCHECKED);
                     }
                 }
             );
