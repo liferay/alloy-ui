@@ -222,9 +222,9 @@ YUI.add('aui-tooltip-tests', function(Y) {
                 setTimeout(function() {
                     test.resume(function() {
                         Y.Assert.isTrue(
-                            ((Y.one('.tooltip.left') === null) || (Y.one('.tooltip.left').getStyle('zIndex') < 0)),
+                            (tooltipLeft === null || tooltipLeft.getStyle('zIndex') < 0),
                             '.tooltip.left does not have a z-index less than 0');
-                    })
+                    });
                 }, 800);
             });
 
