@@ -446,6 +446,9 @@ YUI.add('module-tests', function(Y) {
             test.wait();
         },
 
+        /**
+         * @tests AUI-1138
+         */
         'TreeNodeTask should add a state for when one of its children is unchecked': function() {
             var childTreeNode,
                 rootTreeNode,
