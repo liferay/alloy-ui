@@ -261,7 +261,7 @@ A.DatepickerManager = new A.OverlayManager({
 	zIndexBase: 1000
 });
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-calendar','aui-overlay-context']});
+}, '@VERSION@' ,{requires:['aui-calendar','aui-overlay-context'], skinnable:true});
 AUI.add('aui-datepicker-select', function(A) {
 /**
  * The DatePickerSelect Utility
@@ -807,7 +807,8 @@ var DatePickerSelect = A.Component.create(
 
 				var target = event.currentTarget || event.target;
 
-				var monthChanged = target.test(DOT+CSS_DATEPICKER_MONTH);
+				var monthChanged = target.test(DOT + CSS_DATEPICKER_MONTH);
+				var yearChanged = target.test(DOT + CSS_DATEPICKER_YEAR);
 
 				var currentDay = instance.get(DAY_NODE).val();
 				var currentMonth = instance.get(MONTH_NODE).val();
@@ -829,7 +830,7 @@ var DatePickerSelect = A.Component.create(
 					instance.calendar.set(CURRENT_YEAR, currentYear);
 				}
 
-				if (monthChanged) {
+				if (monthChanged || yearChanged) {
 					instance._uiSetCurrentMonth();
 
 					if (validDay) {
@@ -1183,7 +1184,7 @@ var DatePickerSelect = A.Component.create(
 
 A.DatePickerSelect = DatePickerSelect;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-datepicker-base','aui-button-item']});
+}, '@VERSION@' ,{requires:['aui-datepicker-base','aui-button-item'], skinnable:true});
 
 
 AUI.add('aui-datepicker', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-datepicker-base','aui-datepicker-select']});
