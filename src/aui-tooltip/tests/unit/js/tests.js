@@ -221,12 +221,8 @@ YUI.add('aui-tooltip-tests', function(Y) {
             tooltipLeft.once('mouseout', function(event) {
                 setTimeout(function() {
                     test.resume(function() {
-                        if (window.getComputedStyle) {
-                            condition = ((tooltipLeft === null) || (tooltipLeft.getStyle('zIndex') < 0));
-                        }
-                        else {
-                            condition = ((tooltipLeft === null) || (tooltipLeft._node.currentStyle.zIndex < 0));
-                        }
+                        condition = (tooltipLeft === null ||
+                            tooltipLeft.getStyle('zIndex') < 0 || tooltipLeft.getComputedStyle('zIndex') < 0);
 
                         Y.Assert.isTrue(
                             condition,
