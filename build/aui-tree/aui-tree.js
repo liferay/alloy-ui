@@ -1308,7 +1308,7 @@ var TreeNode = A.Component.create(
 			syncUI: function() {
 				var instance = this;
 
-				instance._syncHitArea( instance.get( CHILDREN ) );
+				instance._syncHitArea();
 			},
 
 			_afterDraggableChange: function(event) {
@@ -1339,7 +1339,7 @@ var TreeNode = A.Component.create(
 			_afterSetChildren: function(event) {
 				var instance = this;
 
-				instance._syncHitArea(event.newVal);
+				instance._syncHitArea();
 			},
 
 			/**
@@ -1429,10 +1429,10 @@ var TreeNode = A.Component.create(
 			 * @param {Array} children
 			 * @protected
 			 */
-			_syncHitArea: function(children) {
+			_syncHitArea: function() {
 				var instance = this;
 
-				if (instance.get(ALWAYS_SHOW_HITAREA) || children.length) {
+				if (instance.get(ALWAYS_SHOW_HITAREA) || instance.getChildrenLength()) {
 					instance.showHitArea();
 				}
 				else {
