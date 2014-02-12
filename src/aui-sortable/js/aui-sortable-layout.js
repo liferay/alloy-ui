@@ -123,7 +123,7 @@ var SortableLayout = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the SortableLayout.
+     * configuration for the `A.SortableLayout`.
      *
      * @property ATTRS
      * @type Object
@@ -132,7 +132,7 @@ var SortableLayout = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Configuration object for delegate.
          *
          * @attribute delegateConfig
          * @default null
@@ -163,7 +163,7 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Proxy drag node used instead of dragging the original node.
          *
          * @attribute proxyNode
          */
@@ -174,7 +174,7 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The CSS class name used to define which nodes are draggable.
          *
          * @attribute dragNodes
          * @type String
@@ -184,7 +184,7 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The container which serves to host dropped elements.
          *
          * @attribute dropContainer
          * @type Function
@@ -197,7 +197,8 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The CSS class name used to define which nodes serve as container to
+         * be dropped.
          *
          * @attribute dropNodes
          */
@@ -206,16 +207,17 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * List of elements to add this sortable layout into.
          *
          * @attribute groups
+         * @type Array
          */
         groups: {
             value: [SORTABLE_LAYOUT]
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Specifies if the start should be delayed.
          *
          * @attribute lazyStart
          * @default false
@@ -227,7 +229,7 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Simulates the position of the dragged element.
          *
          * @attribute placeholder
          */
@@ -255,7 +257,7 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Proxy element to be used when dragging.
          *
          * @attribute proxy
          * @default null
@@ -292,7 +294,7 @@ var SortableLayout = A.Component.create({
     prototype: {
 
         /**
-         * Construction logic executed during SortableLayout instantiation.
+         * Construction logic executed during `A.SortableLayout` instantiation.
          * Lifecycle.
          *
          * @method initializer
@@ -305,7 +307,7 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * Bind the events on the SortableLayout UI. Lifecycle.
+         * Bind the events on the `A.SortableLayout` UI. Lifecycle.
          *
          * @method bindUI
          * @protected
@@ -326,7 +328,8 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if the `Node` isn't a drop node. If not, creates a new Drop
+         * instance and adds to drop target group.
          *
          * @method addDropNode
          * @param node
@@ -356,7 +359,7 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Adds a Drop instance to a group.
          *
          * @method addDropTarget
          * @param drop
@@ -370,7 +373,7 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sync placeholder size and set its X and Y positions.
          *
          * @method alignPlaceholder
          * @param region
@@ -393,7 +396,7 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Calculates drag's X and Y directions.
          *
          * @method calculateDirections
          * @param drag
@@ -423,11 +426,12 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Calculates quadrant position.
          *
          * @method calculateQuadrant
          * @param drag
          * @param drop
+         * @return {Number}
          */
         calculateQuadrant: function(drag, drop) {
             var instance = this;
@@ -458,11 +462,12 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets placeholder X and Y positions.
          *
          * @method getPlaceholderXY
          * @param region
          * @param isTarget
+         * @return {Array}
          */
         getPlaceholderXY: function(region, isTarget) {
             var instance = this;
@@ -496,7 +501,7 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Removes a Drop instance from group.
          *
          * @method removeDropTarget
          * @param drop
@@ -510,10 +515,11 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if active drag and active drop satisfies the align condition.
          *
          * @method _alignCondition
          * @protected
+         * @return {Boolean}
          */
         _alignCondition: function() {
             var instance = this;
@@ -531,7 +537,8 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Creates `DD.Delegate` instance, plugs it to the `DDProxy`, and binds
+         * Drag and Drop events.
          *
          * @method _bindDDEvents
          * @protected
@@ -559,7 +566,7 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Bind drop zones.
          *
          * @method _bindDropZones
          * @protected
@@ -576,7 +583,7 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines `placeholder` alignment.
          *
          * @method _defPlaceholderAlign
          * @param event
@@ -605,10 +612,12 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets a collection formed by `drag`, `drop`, `quadrant`, `XDirection`,
+         * and `YDirection` instances.
          *
          * @method _evOutput
          * @protected
+         * @return {Object}
          */
         _evOutput: function() {
             var instance = this;
@@ -623,7 +632,7 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fire quadrant events and updates "last" informations.
          *
          * @method _fireQuadrantEvents
          * @protected
@@ -669,17 +678,18 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets node from the currently active draggable object.
          *
          * @method _getAppendNode
          * @protected
+         * @return {Node}
          */
         _getAppendNode: function() {
             return DDM.activeDrag.get(NODE);
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the position of drag/drop nodes.
          *
          * @method _positionNode
          * @param event
@@ -718,7 +728,7 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sync `placeholder` attribute in the UI.
          *
          * @method _syncPlaceholderUI
          * @param event
@@ -737,7 +747,7 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sync `placeholder` node size.
          *
          * @method _syncPlaceholderSize
          * @protected
@@ -757,7 +767,7 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sync `proxyNode` attribute in the UI.
          *
          * @method _syncProxyNodeUI
          * @param event
@@ -776,7 +786,7 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sync `proxyNode` height and width.
          *
          * @method _syncProxyNodeSize
          * @protected
@@ -800,7 +810,7 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers after drag event starts.
          *
          * @method _afterDragStart
          * @param event
@@ -815,7 +825,7 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers when the drag event ends.
          *
          * @method _onDragEnd
          * @param event
@@ -845,7 +855,8 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * Fire after drag:start.
+         * Triggers when the dragged object first interacts with another
+         * targettable drag and drop object.
          *
          * @method _onDragEnter
          * @param event
@@ -873,7 +884,7 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers when the drag event exits.
          *
          * @method _onDragExit
          * @param event
@@ -890,7 +901,7 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers when an element is being dragged over a valid drop target.
          *
          * @method _onDragOver
          * @param event
@@ -911,7 +922,7 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * Fire before drag:enter.
+         * Triggers when the drag event starts.
          *
          * @method _onDragStart
          * @param event
@@ -930,11 +941,12 @@ var SortableLayout = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets group of drop nodes.
          *
          * @method _setDropNodes
          * @param val
          * @protected
+         * @return {NodeList}
          */
         _setDropNodes: function(val) {
             var instance = this;
