@@ -1011,9 +1011,15 @@ var TreeNode = A.Component.create({
             if (!instance.isLeaf()) {
                 var container = instance.get(CONTAINER);
                 var contentBox = instance.get(CONTENT_BOX);
+                var ownerTree = instance.get(OWNER_TREE);
+                var treeHitArea = contentBox.one(DOT + CSS_TREE_HITAREA);
 
                 if (val) {
                     contentBox.replaceClass(CSS_TREE_COLLAPSED, CSS_TREE_EXPANDED);
+
+                    if (!ownerTree && treeHitArea) {
+                        treeHitArea.replaceClass(CSS_ICON_ICON_PLUS, CSS_ICON_ICON_MINUS);
+                    }
 
                     if (container) {
                         container.show();
@@ -1021,6 +1027,10 @@ var TreeNode = A.Component.create({
                 }
                 else {
                     contentBox.replaceClass(CSS_TREE_EXPANDED, CSS_TREE_COLLAPSED);
+
+                    if (!ownerTree && treeHitArea) {
+                        treeHitArea.replaceClass(CSS_ICON_ICON_MINUS, CSS_ICON_ICON_PLUS);
+                    }
 
                     if (container) {
                         container.hide();
