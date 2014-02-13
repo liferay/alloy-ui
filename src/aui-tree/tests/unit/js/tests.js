@@ -301,11 +301,87 @@ YUI.add('aui-tree-tests', function(Y) {
             Y.Assert.isFalse(
                 rootTreeNodeCB.hasClass('tree-node-child-unchecked'),
                 'rootTreeNode does not have unchecked child.');
+        },
+
+        /**
+         * @tests AUI-1141
+         */
+        'TreeNodeView created from HTML Markup should display icon-minus when expanded': function() {
+            var test = this;
+
+            var treeView = new Y.TreeView(
+                {
+                    boundingBox: treeViewComponent,
+                    contentBox: Y.one('#createFromHTMLMarkupTest > ul'),
+                    type: 'normal'
+                }
+            ).render();
+
+            var treeViewComponent = Y.one('#createFromHTMLMarkupTest');
+            var allHitareas = treeViewComponent.all('.tree-container .tree-hitarea');
+
+            setTimeout(function() {
+                test.resume(function() {
+                    Y.each(
+                        allHitareas,
+                        function(hitarea) {
+                            Y.Assert.isTrue(
+                                hitarea.hasClass('icon-minus'),
+                                hitarea + ' does not have class icon-minus.');
+                        }
+                    );
+                });
+            }, 800);
+
+            setTimeout(function() {
+                treeViewComponent.one('.tree-root-container .tree-hitarea').simulate('click');
+
+                Y.each(
+                    allHitareas,
+                    function(hitarea) {
+                        hitarea.simulate('click');
+                    }
+                );
+            });
+
+            test.wait(1000);
+        },
+
+        'TreeNodeView created from HTML Markup should display icon-plus when collapsed': function() {
+            var test = this;
+            var treeViewComponent = Y.one('#createFromHTMLMarkupTest');
+
+            var allTreeHitareas = treeViewComponent.all('.tree-container .tree-hitarea');
+            var treeHitareasArray = [];
+
+            Y.each(
+                allTreeHitareas,
+                function(hitarea) {
+                    treeHitareasArray.push(hitarea);
+                }
+            );
+
+            setTimeout(function() {
+                test.resume(function() {
+                    for (var i=treeHitareasArray.length; i--;) {
+                        Y.Assert.isTrue(treeHitareasArray[i].hasClass('icon-plus'),
+                            treeHitareasArray[i] + ' does not have class icon-plus');
+                    }
+                });
+            }, 800);
+
+            setTimeout(function() {
+                for (var i=treeHitareasArray.length; i--;) {
+                    treeHitareasArray[i].simulate('click');
+                }
+            });
+
+            test.wait(1000);
         }
     }));
 
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['aui-tree', 'test']
+    requires: ['aui-tree', 'node-event-simulate', 'test']
 });
