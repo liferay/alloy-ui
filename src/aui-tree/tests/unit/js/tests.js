@@ -309,13 +309,11 @@ YUI.add('aui-tree-tests', function(Y) {
         'TreeNodeView created from HTML Markup should display icon-minus when expanded': function() {
             var test = this;
 
-            var treeView = new Y.TreeView(
-                {
-                    boundingBox: treeViewComponent,
-                    contentBox: Y.one('#createFromHTMLMarkupTest > ul'),
-                    type: 'normal'
-                }
-            ).render();
+            var treeView = new Y.TreeView({
+                boundingBox: treeViewComponent,
+                contentBox: Y.one('#createFromHTMLMarkupTest > ul'),
+                type: 'normal'
+            }).render();
 
             var treeViewComponent = Y.one('#createFromHTMLMarkupTest');
             var allHitareas = treeViewComponent.all('.tree-container .tree-hitarea');
@@ -363,7 +361,7 @@ YUI.add('aui-tree-tests', function(Y) {
 
             setTimeout(function() {
                 test.resume(function() {
-                    for (var i=treeHitareasArray.length; i--;) {
+                    for (var i = treeHitareasArray.length; i--;) {
                         Y.Assert.isTrue(treeHitareasArray[i].hasClass('icon-plus'),
                             treeHitareasArray[i] + ' does not have class icon-plus');
                     }
@@ -371,7 +369,7 @@ YUI.add('aui-tree-tests', function(Y) {
             }, 800);
 
             setTimeout(function() {
-                for (var i=treeHitareasArray.length; i--;) {
+                for (var i = treeHitareasArray.length; i--;) {
                     treeHitareasArray[i].simulate('click');
                 }
             });

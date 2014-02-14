@@ -222,7 +222,8 @@ YUI.add('aui-tooltip-tests', function(Y) {
                 setTimeout(function() {
                     test.resume(function() {
                         condition = (tooltipLeft === null ||
-                            tooltipLeft.getStyle('zIndex') < 0 || tooltipLeft.getComputedStyle('zIndex') < 0);
+                            tooltipLeft.getStyle('zIndex') < 0 || tooltipLeft.getComputedStyle(
+                                'zIndex') < 0);
 
                         Y.Assert.isTrue(
                             condition,
