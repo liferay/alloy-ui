@@ -221,10 +221,13 @@ YUI.add('aui-tooltip-tests', function(Y) {
             tooltipLeft.once('mouseout', function(event) {
                 setTimeout(function() {
                     test.resume(function() {
+                        condition = (tooltipLeft === null ||
+                            tooltipLeft.getStyle('zIndex') < 0 || tooltipLeft.getComputedStyle('zIndex') < 0);
+
                         Y.Assert.isTrue(
-                            Y.one('.tooltip.left').getStyle('zIndex') < 0,
+                            condition,
                             '.tooltip.left does not have a z-index less than 0');
-                    })
+                    });
                 }, 800);
             });
 
@@ -237,7 +240,6 @@ YUI.add('aui-tooltip-tests', function(Y) {
             test.wait(1000);
         }
     }));
-
     Y.Test.Runner.add(suite);
 
 }, '', {
