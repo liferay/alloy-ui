@@ -1149,8 +1149,8 @@ var DiagramBuilderBase = A.Component.create({
                                     moveOnEnd: false
                                 },
                                 fn: A.Plugin.DDProxy
-        }
-       ]
+                            }
+                        ]
                     },
                     nodes: _DOT + CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE
                 },
@@ -1214,7 +1214,7 @@ var DiagramBuilderBase = A.Component.create({
                         label: strings[SETTINGS],
                         disabled: true
                     }
-     ];
+                ];
             }
 
             return A.merge(defaultValue, val);
@@ -1239,8 +1239,8 @@ var DiagramBuilderBase = A.Component.create({
                                 click: A.bind(instance._handleCancelEvent, instance)
                             },
                             label: strings[CLOSE]
-       }
-      ]
+                        }
+                    ]
                 },
                 val
             );

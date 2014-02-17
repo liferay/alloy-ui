@@ -1267,14 +1267,14 @@ var DiagramBuilder = A.Component.create({
                                     constrain: dropContainer
                                 },
                                 fn: A.Plugin.DDConstrained
-       },
+                            },
                             {
                                 cfg: {
                                     scrollDelay: 150
                                 },
                                 fn: A.Plugin.DDWinScroll
-       }
-      ]
+                            }
+                        ]
                     },
                     nodes: _DOT + CSS_DIAGRAM_NODE
                 },
@@ -2381,8 +2381,8 @@ var DiagramNode = A.Component.create({
                         on: {
                             click: A.bind(instance._handleCloseEvent, instance)
                         }
-     }
-    ]
+                    }
+                ]
             };
         },
 

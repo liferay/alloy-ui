@@ -237,21 +237,21 @@ A.Connector = A.Base.create('line', A.Base, [], {
 
         if (sign(angle) < 0) {
             curveArgs = [
-    [x1 + dx, y1, x2 - dx, y2, x2, y2], //3,6
-    [x1 + dx, y1, x2, y1 - dy, x2, y2], //3,5
-    [x1, y1 - dy, x2, y1 - dy, x2, y2], //0,5
-    [x1 - dx, y1, x2, y1 - dy, x2, y2], //2,5
-    [x1 - dx, y1, x2 + dx, y2, x2, y2] //2,7
-   ];
+                [x1 + dx, y1, x2 - dx, y2, x2, y2], // 3,6
+                [x1 + dx, y1, x2, y1 - dy, x2, y2], // 3,5
+                [x1, y1 - dy, x2, y1 - dy, x2, y2], // 0,5
+                [x1 - dx, y1, x2, y1 - dy, x2, y2], // 2,5
+                [x1 - dx, y1, x2 + dx, y2, x2, y2]  // 2,7
+            ];
         }
         else {
             curveArgs = [
-    [x1 + dx, y1, x2 - dx, y2, x2, y2], //3,6
-    [x1 + dx, y1, x2, y1 + dy, x2, y2], //3,4
-    [x1, y1 + dy, x2, y1 + dy, x2, y2], //1,4
-    [x1 - dx, y1, x2, y1 + dy, x2, y2], //2,4
-    [x1 - dx, y1, x2 + dx, y2, x2, y2] //2,7
-   ];
+                [x1 + dx, y1, x2 - dx, y2, x2, y2], // 3,6
+                [x1 + dx, y1, x2, y1 + dy, x2, y2], // 3,4
+                [x1, y1 + dy, x2, y1 + dy, x2, y2], // 1,4
+                [x1 - dx, y1, x2, y1 + dy, x2, y2], // 2,4
+                [x1 - dx, y1, x2 + dx, y2, x2, y2]  // 2,7
+            ];
         }
 
         var cp = curveArgs[pseudoQuadrant];
