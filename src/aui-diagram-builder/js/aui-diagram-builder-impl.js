@@ -728,11 +728,11 @@ var DiagramBuilder = A.Component.create({
         /**
          * TODO. Wanna help? Please send a Pull Request.
          *
-         * @method hideSuggestConnetorOverlay
+         * @method hideSuggestConnectorOverlay
          * @param diagramNode
          * @param drag
          */
-        hideSuggestConnetorOverlay: function(diagramNode, drag) {
+        hideSuggestConnectorOverlay: function(diagramNode, drag) {
             var instance = this;
 
             instance.connector.hide();
@@ -1063,7 +1063,7 @@ var DiagramBuilder = A.Component.create({
         _onEscKey: function(event) {
             var instance = this;
 
-            instance.hideSuggestConnetorOverlay();
+            instance.hideSuggestConnectorOverlay();
             instance.stopEditing();
             event.halt();
         },
@@ -1079,7 +1079,7 @@ var DiagramBuilder = A.Component.create({
             var instance = this;
 
             instance.stopEditing();
-            instance.hideSuggestConnetorOverlay();
+            instance.hideSuggestConnectorOverlay();
         },
 
         /**
@@ -1196,7 +1196,7 @@ var DiagramBuilder = A.Component.create({
                 xy: connector.toCoordinate(connector.get(P2))
             });
 
-            instance.hideSuggestConnetorOverlay();
+            instance.hideSuggestConnectorOverlay();
             instance.publishedSource.connectNode(node);
         },
 
