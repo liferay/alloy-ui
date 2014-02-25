@@ -164,7 +164,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     shapeArrow: null,
 
     /**
-     * Construction logic executed during Connector instantiation. Lifecycle.
+     * Construction logic executed during `A.Connector` instantiation. Lifecycle.
      *
      * @method initializer
      * @param config
@@ -196,7 +196,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * Destructor lifecycle implementation for the `Connector` class.
+     * Destructor lifecycle implementation for the `A.Connector` class.
      *
      * @method destructor
      * @protected
@@ -210,7 +210,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Responsible for drawing the connectors.
      *
      * @method draw
      */
@@ -280,9 +280,10 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the list of properties from the property model.
      *
      * @method getProperties
+     * @return {Array}
      */
     getProperties: function() {
         var instance = this;
@@ -296,9 +297,10 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the model defition of a property.
      *
      * @method getPropertyModel
+     * @return {Array}
      */
     getPropertyModel: function() {
         var instance = this;
@@ -320,7 +322,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the collection of strings used to label elements of the UI.
      *
      * @method getStrings
      */
@@ -329,7 +331,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the visibility to `false`.
      *
      * @method hide
      */
@@ -342,7 +344,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the visibility to `true`.
      *
      * @method show
      */
@@ -355,7 +357,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Converts X and Y positions to a coordinate.
      *
      * @method toCoordinate
      * @attribute coord
@@ -367,9 +369,10 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Converts serializable attributes to JSON format.
      *
      * @method toJSON
+     * @return {Object}
      */
     toJSON: function() {
         var instance = this;
@@ -383,7 +386,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Converts a coordinate to X and Y positions.
      *
      * @method toXY
      * @attribute coord
@@ -395,7 +398,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires after `name` attribute value change.
      *
      * @method _afterNameChange
      * @param event
@@ -410,7 +413,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires after `selected` attribute value change.
      *
      * @method _afterSelectedChange
      * @param event
@@ -423,7 +426,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires after `showName` attribute value change.
      *
      * @method _afterShowNameChange
      * @param event
@@ -436,7 +439,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires after `visible` attribute value change.
      *
      * @method _afterVisibleChange
      * @param event
@@ -449,7 +452,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Adds shapes in the UI and bind its events.
      *
      * @method _initShapes
      * @protected
@@ -473,7 +476,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Calculates the distance relative to the graphic.
      *
      * @method _offsetXY
      * @param xy
@@ -488,7 +491,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires when shape is clicked.
      *
      * @method _onShapeClick
      * @param event
@@ -521,7 +524,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires when mouse enters a shape.
      *
      * @method _onShapeMouseEnter
      * @param event
@@ -545,7 +548,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires when mouse leaves a shape.
      *
      * @method _onShapeMouseLeave
      * @param event
@@ -561,7 +564,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Set the `nodeName` attribute.
      *
      * @method _setNodeName
      * @param val
@@ -579,7 +582,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Set the `shape` attribute.
      *
      * @method _setShape
      * @param val
@@ -601,7 +604,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Set the `shapeArrow` attribute.
      *
      * @method _setShapeArrow
      * @param val
@@ -627,7 +630,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the `name` attribute in the UI.
      *
      * @method _uiSetName
      * @param val
@@ -640,7 +643,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the `selected` attribute in the UI.
      *
      * @method _uiSetSelected
      * @param val
@@ -656,7 +659,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the `showName` attribute in the UI.
      *
      * @method _uiSetShowName
      * @param val
@@ -669,7 +672,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the `visible` attribute in the UI.
      *
      * @method _uiSetVisible
      * @param val
@@ -684,7 +687,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Updates shape's fill and stroke.
      *
      * @method _updateShape
      * @param shape
@@ -710,7 +713,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 }, {
     /**
      * Static property used to define the default attribute
-     * configuration for the Connector.
+     * configuration for the `A.Connector`.
      *
      * @property ATTRS
      * @type Object
@@ -719,7 +722,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Arrow points from `A.PolygonUtil` instance.
          *
          * @attribute arrowPoints
          * @default 'arrowPoints'
@@ -730,14 +733,14 @@ A.Connector = A.Base.create('line', A.Base, [], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Stores an instance of `A.DiagramBuilder`.
          *
          * @attribute builder
          */
         builder: {},
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The color used in the connector.
          *
          * @attribute color
          * @default '#27aae1'
@@ -749,7 +752,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Graphic used to represent the connector.
          *
          * @attribute graphic
          * @type Graphic
@@ -759,7 +762,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determine if the draw should be delayed or not.
          *
          * @attribute lazyDraw
          * @default false
@@ -771,7 +774,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The name of the connector.
          *
          * @attribute name
          * @type String
@@ -786,7 +789,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The connector node name.
          *
          * @attribute nodeName
          * @type String
@@ -799,7 +802,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Origin connector position.
          *
          * @attribute p1
          * @default [0, 0]
@@ -811,7 +814,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Destination connector position.
          *
          * @attribute p2
          * @default [0, 0]
@@ -823,7 +826,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if a connector is selected or not.
          *
          * @attribute selected
          * @default false
@@ -835,7 +838,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Graphic used to represent the connector's shape.
          *
          * @attribute shape
          * @default null
@@ -846,7 +849,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Graphic used to represent the connector's shape arrow.
          *
          * @attribute shapeArrow
          * @default null
@@ -857,7 +860,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Collection of styles applied when mouse is over the shape arrow.
          *
          * @attribute shapeArrowHover
          * @type Object
@@ -876,7 +879,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Collection of styles applied when shape arrow is selected.
          *
          * @attribute shapeArrowSelected
          * @type Object
@@ -895,7 +898,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Collection of styles applied when mouse is over the shape.
          *
          * @attribute shapeHover
          * @type Object
@@ -911,7 +914,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Collection of styles applied when shape is selected.
          *
          * @attribute shapeSelected
          * @type Object
@@ -927,7 +930,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the visibility of the connector name.
          *
          * @attribute showName
          * @default true
@@ -939,7 +942,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Stores the uid, source and target data from a connector.
          *
          * @attribute transition
          * @default {}
@@ -951,7 +954,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates whether or not the connector is visible.
          *
          * @attribute visible
          * @default true
