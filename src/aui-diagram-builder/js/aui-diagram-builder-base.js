@@ -119,7 +119,7 @@ var AvailableField = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the AvailableField.
+     * configuration for the `A.AvailableField`.
      *
      * @property ATTRS
      * @type Object
@@ -128,7 +128,7 @@ var AvailableField = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines if the field is draggable or not.
          *
          * @attribute draggable
          * @default true
@@ -140,7 +140,7 @@ var AvailableField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The descriptor of a field.
          *
          * @attribute label
          * @type String
@@ -150,7 +150,7 @@ var AvailableField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The CSS class name used in the icon.
          *
          * @attribute iconClass
          * @type String
@@ -160,7 +160,7 @@ var AvailableField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The identifier of a field.
          *
          * @attribute id
          * @type String
@@ -172,7 +172,7 @@ var AvailableField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The node used in a field.
          *
          * @attribute node
          * @type Node
@@ -201,7 +201,7 @@ var AvailableField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The type of a field.
          *
          * @attribute type
          * @default 'node'
@@ -223,18 +223,19 @@ var AvailableField = A.Component.create({
     EXTENDS: A.Base,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Constructs the node id string.
      *
      * @method buildNodeId
      * @param id
      * @private
+     * @return {String}
      */
     buildNodeId: function(id) {
         return AVAILABLE_FIELDS + _UNDERLINE + FIELD + _UNDERLINE + id;
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the `availableField` instance by its id.
      *
      * @method getAvailableFieldById
      * @param id
@@ -245,7 +246,7 @@ var AvailableField = A.Component.create({
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets the `availableField` instance by its node.
      *
      * @method getAvailableFieldById
      * @param node
@@ -266,7 +267,7 @@ var AvailableField = A.Component.create({
             CSS_DIAGRAM_BUILDER_FIELD_ICON].join(_SPACE) + ' {iconClass}"></span>' + '<div class="' + CSS_DIAGRAM_BUILDER_FIELD_LABEL + '"></div>' + '</li>',
 
         /**
-         * Construction logic executed during AvailableField instantiation.
+         * Construction logic executed during `A.AvailableField` instantiation.
          * Lifecycle.
          *
          * @method initializer
@@ -298,7 +299,7 @@ var AvailableField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after `draggable` attribute value change.
          *
          * @method _afterDraggableChange
          * @param event
@@ -313,7 +314,7 @@ var AvailableField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after `id` attribute value change.
          *
          * @method _afterIdChange
          * @param event
@@ -328,7 +329,7 @@ var AvailableField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after `label` attribute value change.
          *
          * @method _afterLabelChange
          * @param event
@@ -343,7 +344,7 @@ var AvailableField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the `id` attribute.
          *
          * @method _setId
          * @param val
@@ -354,7 +355,7 @@ var AvailableField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the `draggable` attribute in the UI.
          *
          * @method _uiSetDraggable
          * @param val
@@ -367,7 +368,7 @@ var AvailableField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the `id` attribute in the UI.
          *
          * @method _uiSetId
          * @param val
@@ -380,7 +381,7 @@ var AvailableField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the `label` attribute in the UI.
          *
          * @method _uiSetLabel
          * @param val
@@ -398,7 +399,7 @@ var AvailableField = A.Component.create({
 A.AvailableField = AvailableField;
 
 /**
- * A base class for FieldSupport.
+ * A base class for `A.FieldSupport`.
  *
  * @class A.FieldSupport
  * @constructor
@@ -407,7 +408,7 @@ var FieldSupport = function() {};
 
 /**
  * Static property used to define the default attribute
- * configuration for the FieldSupport.
+ * configuration for the `A.FieldSupport`.
  *
  * @property ATTRS
  * @type Object
@@ -416,7 +417,7 @@ var FieldSupport = function() {};
 FieldSupport.ATTRS = {
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * The collection of fields.
      *
      * @attribute fields
      * @default []
@@ -431,7 +432,7 @@ FieldSupport.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Defines the maximum number of fields.
      *
      * @attribute maxFields
      * @default Infinity
@@ -446,7 +447,7 @@ FieldSupport.ATTRS = {
 A.mix(FieldSupport.prototype, {
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the `fields` attribute.
      *
      * @method _setFields
      * @param val
@@ -464,7 +465,7 @@ A.mix(FieldSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Updates the collection of fields.
      *
      * @method _updateFields
      * @param fields
@@ -477,7 +478,7 @@ A.mix(FieldSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Adds a single field in the field list.
      *
      * @method addField
      * @param field
@@ -502,10 +503,11 @@ A.mix(FieldSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Creates a collection of fields.
      *
      * @method createFields
      * @param val
+     * @return {A.ArrayList}
      */
     createFields: function(val) {
         var instance = this;
@@ -521,7 +523,7 @@ A.mix(FieldSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Removes a single field from the field list.
      *
      * @method removeField
      * @param field
@@ -535,7 +537,7 @@ A.mix(FieldSupport.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Creates a single field.
      *
      * NOTE FOR DEVELOPERS: Yoy *may* want to replace the
      * methods from this section on your implementation.
@@ -572,7 +574,7 @@ var DiagramBuilderBase = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the DiagramBuilderBase.
+     * configuration for the `A.DiagramBuilderBase`.
      *
      * @property ATTRS
      * @type Object
@@ -581,7 +583,7 @@ var DiagramBuilderBase = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * List of available fields.
          *
          * @attribute availableFields
          * @type Array
@@ -592,10 +594,10 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The configuration object for draggable available fields.
          *
          * @attribute availableFieldsDragConfig
-         * @type null
+         * @default null
          * @type Object
          */
         availableFieldsDragConfig: {
@@ -605,7 +607,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * A node created using the `CANVAS_TEMPLATE` template.
          *
          * @attribute canvas
          */
@@ -616,7 +618,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The configuration object for drop container node.
          *
          * @attribute dropConfig
          * @default null
@@ -629,7 +631,8 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Host node for content created using the `CONTENT_CONTAINER_TEMPLATE`
+         * template.
          *
          * @attribute contentContainer
          */
@@ -640,7 +643,8 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Host node for drop created using the `DROP_CONTAINER_TEMPLATE`
+         * template.
          *
          * @attribute dropContainer
          */
@@ -651,7 +655,8 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Host node for fields created using the `FIELDS_CONTAINER_TEMPLATE`
+         * template.
          *
          * @attribute fieldsContainer
          */
@@ -662,7 +667,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Stores an instance of `A.PropertyList`.
          *
          * @attribute propertyList
          * @default null
@@ -693,7 +698,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Stores an instance of `A.TabView`.
          *
          * @attribute tabView
          * @default null
@@ -708,7 +713,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Stores an instance of `A.Toolbar`.
          *
          * @attribute toolbar
          * @default null
@@ -721,7 +726,8 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Host node for toolbar created using the `TOOLBAR_CONTAINER_TEMPLATE`
+         * template.
          *
          * @attribute toolbarContainer
          */
@@ -733,7 +739,7 @@ var DiagramBuilderBase = A.Component.create({
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Object hash, defining how attribute values have to be parsed from markup.
      *
      * @property HTML_PARSER
      * @type Object
@@ -757,7 +763,7 @@ var DiagramBuilderBase = A.Component.create({
     UI_ATTRS: [AVAILABLE_FIELDS, FIELDS],
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Static property used to define the augmented classes.
      *
      * @property AUGMENTS
      * @type Array
@@ -779,8 +785,8 @@ var DiagramBuilderBase = A.Component.create({
         toolbar: null,
 
         /**
-         * Construction logic executed during DiagramBuilderBase instantiation.
-         * Lifecycle.
+         * Construction logic executed during `A.DiagramBuilderBase`
+         * instantiation. Lifecycle.
          *
          * @method initializer
          * @protected
@@ -809,10 +815,11 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if the `availableFields` are draggable.
          *
          * @method isAvailableFieldsDrag
          * @param drag
+         * @return {Boolean}
          */
         isAvailableFieldsDrag: function(drag) {
             var instance = this;
@@ -822,7 +829,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Plots a collection of fields.
          *
          * @method plotFields
          */
@@ -836,7 +843,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * Render the DiagramBuilderBase component instance. Lifecycle.
+         * Render the `A.DiagramBuilderBase` component instance. Lifecycle.
          *
          * @method renderUI
          * @protected
@@ -853,7 +860,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * Sync the DiagramBuilderBase UI. Lifecycle.
+         * Sync the `A.DiagramBuilderBase` UI. Lifecycle.
          *
          * @method syncUI
          * @protected
@@ -869,7 +876,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after one or more attributes on the model are changed.
          *
          * @method _afterModelChange
          * @param event
@@ -882,7 +889,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after `A.DiagramBuilderBase` instance is rendered.
          *
          * @method _afterRender
          * @param event
@@ -895,7 +902,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after `tabView` selection change.
          *
          * @method _afterSelectionChange
          * @param event
@@ -916,7 +923,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after setting height in the UI.
          *
          * @method _afterUiSetHeight
          * @param val
@@ -930,7 +937,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Selects the `tabView` child at index zero.
          *
          * @method _defCancelFn
          * @param event
@@ -943,7 +950,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires a cancel event.
          *
          * @method _handleCancelEvent
          * @protected
@@ -955,7 +962,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires a save event.
          *
          * @method _handleSaveEvent
          * @protected
@@ -967,7 +974,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Renders the `canvas` attribute.
          *
          * @method _renderCanvas
          * @protected
@@ -996,7 +1003,8 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Creates an instance of `A.PropertyList` in `propertyList` attribute
+         * and renders it.
          *
          * @method _renderPropertyList
          * @protected
@@ -1014,7 +1022,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Calls the `_renderPropertyList` and `_renderToolbar` functions.
          *
          * @method _renderSettings
          * @protected
@@ -1028,7 +1036,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Creates an instance of `A.TabView` in `tabView` attribute.
          *
          * @method _renderTabs
          * @protected
@@ -1046,7 +1054,8 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Creates an instance of `A.Toolbar` in `toolbar` attribute and renders
+         * it.
          *
          * @method _renderToolbar
          * @protected
@@ -1062,7 +1071,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Creates a new instance of `A.DD.Drop` in `drop` attribute.
          *
          * @method _setupDrop
          * @protected
@@ -1076,7 +1085,8 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Creates a new instance of `A.DD.Delegate` in `availableFieldsDrag`
+         * attribute.
          *
          * @method _setupAvailableFieldsDrag
          * @protected
@@ -1090,7 +1100,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the `availableFields` attribute.
          *
          * @method _setAvailableFields
          * @param val
@@ -1110,7 +1120,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `dropConfig` attribute.
          *
          * @method _setDropConfig
          * @param val
@@ -1129,7 +1139,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `availableFieldsDragConfig` attribute.
          *
          * @method _setAvailableFieldsDragConfig
          * @param val
@@ -1159,7 +1169,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the `propertyList` attribute.
          *
          * @method _setPropertyList
          * @param val
@@ -1181,7 +1191,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the `tabView` attribute.
          *
          * @method _setTabView
          * @param val
@@ -1221,7 +1231,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the `toolbar` attribute.
          *
          * @method _setToolbar
          * @param val
@@ -1247,7 +1257,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the `availableFields` attribute in the UI.
          *
          * @method _uiSetAvailableFields
          * @param val
@@ -1271,7 +1281,7 @@ var DiagramBuilderBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the `fields` attribute in the UI.
          *
          * @method _uiSetFields
          * @param event
