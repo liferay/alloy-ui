@@ -66,6 +66,7 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/rating/).
  *
  * @class A.Rating
+ * @extends A.Component
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor

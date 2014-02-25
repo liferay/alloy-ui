@@ -45,6 +45,7 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/toolbar/).
  *
  * @class A.Toolbar
+ * @extends A.Component
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor

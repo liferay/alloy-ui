@@ -557,6 +557,7 @@ A.FieldSupport = FieldSupport;
  * A base class for DiagramBuilderBase.
  *
  * @class A.DiagramBuilderBase
+ * @extends A.Component
  * @uses A.FieldSupport
  * @param {Object} config Object literal specifying widget configuration
  *     properties.

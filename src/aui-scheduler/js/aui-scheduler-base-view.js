@@ -9,7 +9,8 @@
  * A base class for `SchedulerView`.
  *
  * @class A.SchedulerView
- * @uses A.WidgetStdMod
+ * @extends A.Component
+ * @uses WidgetStdMod
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
