@@ -507,8 +507,6 @@ var SchedulerBase = A.Component.create({
         }
     },
 
-    AUGMENTS: [A.SchedulerEventSupport, A.WidgetStdMod],
-
     /**
      * Contains an object hash, defining how attribute values are to be parsed
      * from markup contained in the widget's bounding box.

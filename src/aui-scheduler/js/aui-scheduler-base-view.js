@@ -192,8 +192,6 @@ var SchedulerView = A.Component.create({
         }
     },
 
-    AUGMENTS: [A.WidgetStdMod],
-
     /**
      * Static property used to define the attributes
      * for the bindUI lifecycle phase.
