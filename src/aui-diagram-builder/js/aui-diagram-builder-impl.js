@@ -804,17 +804,17 @@ var DiagramBuilder = A.Component.create({
         /**
          * Shows the suggest connector overlay in a certain X and Y position.
          *
-         * @method showSuggestConnetorOverlay
+         * @method showSuggestConnectorOverlay
          * @param xy
          */
-        showSuggestConnetorOverlay: function(xy) {
+        showSuggestConnectorOverlay: function(xy) {
             var instance = this,
-                showSuggestConnetorOverlay = instance.get(SUGGEST_CONNECTOR_OVERLAY),
-                boundingBox = showSuggestConnetorOverlay.get(BOUNDING_BOX);
+                showSuggestConnectorOverlay = instance.get(SUGGEST_CONNECTOR_OVERLAY),
+                boundingBox = showSuggestConnectorOverlay.get(BOUNDING_BOX);
 
-            showSuggestConnetorOverlay.get(BOUNDING_BOX).addClass(CSS_DIAGRAM_SUGGEST_CONNECTOR);
+            showSuggestConnectorOverlay.get(BOUNDING_BOX).addClass(CSS_DIAGRAM_SUGGEST_CONNECTOR);
 
-            showSuggestConnetorOverlay.set(
+            showSuggestConnectorOverlay.set(
                 XY, xy || instance.connector.get(P2)).show();
 
             try {
@@ -1948,7 +1948,7 @@ var DiagramNode = A.Component.create({
             var publishedSource = builder.publishedSource;
 
             if (!builder.isAbleToConnect() && builder.get(SHOW_SUGGEST_CONNECTOR) && builder.connector.get(VISIBLE)) {
-                builder.showSuggestConnetorOverlay();
+                builder.showSuggestConnectorOverlay();
             }
             else {
                 builder.connector.hide();
