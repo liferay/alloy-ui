@@ -43,7 +43,10 @@
     YUI({ filter:'raw' }).use('aui-tooltip', function(Y) {
 
          new Y.Tooltip({
-            trigger: '#triggerTop'
+            trigger: '#triggerTop',
+            animated: true,
+            duration: 0.5, // in seconds
+            stickDuration: 1000 // in milliseconds
         }).render();
 
         new Y.Tooltip({

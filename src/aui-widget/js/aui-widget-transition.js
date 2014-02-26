@@ -1,8 +1,9 @@
- /**
-     * Provides a Class Extension which can be used to animate widget 
-     * visibility changes.
-     * @module widget-transition
-     */
+/**
+ * Provides a class extension which can be used to animate widget visibility
+ * changes.
+ *
+ * @module aui-widget-transition
+ */
 
 var Lang = A.Lang;
 
@@ -12,8 +13,8 @@ var Lang = A.Lang;
  * method.
  *
  * @class A.WidgetTransition
+ * @constructor
  */
-
 function WidgetTransition() {
     var instance = this;
 
@@ -21,13 +22,21 @@ function WidgetTransition() {
     instance._uiSetVisibleHost = instance._uiSetVisible;
 }
 
+/**
+ * Static property used to define the default attribute configuration.
+ *
+ * @property ATTRS
+ * @type Object
+ * @static
+ */
 WidgetTransition.ATTRS = {
+
     /**
-     * Determine the duration of the animation.
+     * Determine the duration of the transition.
      *
      * @attribute duration
      * @default 0.15
-     * @type {Number}
+     * @type Number
      */
     duration: {
         validator: Lang.isNumber,
@@ -39,7 +48,7 @@ WidgetTransition.ATTRS = {
      *
      * @attribute opacity
      * @default 1
-     * @type {Number}
+     * @type Number
      */
     opacity: {
         validator: Lang.isNumber,
@@ -47,7 +56,7 @@ WidgetTransition.ATTRS = {
     },
 
     /**
-     * Determine if the Augmented Element transitions will animate.
+     * Determine if the transitions will animate or not.
      *
      * @attribute animated
      * @default false
@@ -60,10 +69,12 @@ WidgetTransition.ATTRS = {
     },
 
     /**
-     * Determine the duration for the widget to stick visibility after
-     * the trigger element. By default the stick duration is not specified.
+     * Determine the duration (in milliseconds) for the widget to stick
+     * visibility after the trigger element. By default the stick duration is
+     * not specified.
+     *
      * @attribute stickDuration
-     * @type {Number} In milliseconds.
+     * @type Number
      */
     stickDuration: {
         validator: Lang.isNumber,
@@ -72,20 +83,21 @@ WidgetTransition.ATTRS = {
 };
 
 WidgetTransition.prototype = {
+
     /**
      * Stores the `Y.later` context object.
      *
      * @property _hideTimer
-     * @type {Object}
+     * @type Object
      * @protected
      */
     _hideTimer: null,
 
     /**
-     * The initializer destructor implementation. Responsible for destroying the configured
-     * transition instances.
+     * Destructor lifecycle implementation for the `A.WidgetTransition` class.
      *
      * @method destructor
+     * @protected
      */
     destructor: function() {
         var instance = this;
@@ -94,9 +106,11 @@ WidgetTransition.prototype = {
     },
 
     /**
-     * The initializer lifecycle implementation.
+     * Construction logic executed during `A.WidgetTransition` instantiation.
+     * Lifecycle.
      *
      * @method initializer
+     * @protected
      */
     initializer: function() {
         var instance = this;
@@ -120,7 +134,7 @@ WidgetTransition.prototype = {
     },
 
     /**
-     * Maybe hides the Augmented Element if `stickDuration` do not prevent.
+     * Maybe hides if `stickDuration` do not prevent.
      *
      * @method _maybeHide
      * @protected
@@ -133,7 +147,7 @@ WidgetTransition.prototype = {
     },
 
     /**
-     * Maybe shows the Augmented Element if `stickDuration` do not prevents.
+     * Maybe shows if `stickDuration` do not prevent.
      *
      * @method _maybeShow
      * @protected
@@ -166,12 +180,12 @@ WidgetTransition.prototype = {
     },
 
     /**
-     * Shows or hides the Augmented Element depending on the passed parameter,
-     * when no parameter is specified the default behavior is to hide the
-     * Augmented Element.
+     * Shows or hides depending on the passed parameter, when no parameter is
+     * specified the default behavior is to hide the element.
+     *
      * @method _transition
-     * @param  {Boolean} visible When `true`, fades in the Augmented Element, 
-     *     otherwise fades out.
+     * @param {Boolean} visible When `true`, fade in the element, otherwise
+     *     fades out.
      * @protected
      */
     _transition: function(visible) {
