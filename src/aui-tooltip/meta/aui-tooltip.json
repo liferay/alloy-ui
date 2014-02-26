@@ -8,7 +8,6 @@
     "aui-tooltip-base": {
         "requires": [
             "event-hover",
-            "transition",
             "widget",
             "widget-autohide",
             "widget-position",
@@ -20,6 +19,7 @@
             "aui-component",
             "aui-widget-cssclass",
             "aui-widget-toggle",
+            "aui-widget-transition",
             "aui-widget-trigger",
             "aui-widget-position-align-suggestion",
             "aui-node-base"

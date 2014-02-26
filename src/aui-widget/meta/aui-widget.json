@@ -35,6 +35,12 @@
         ]
     },
 
+    "aui-widget-transition": {
+        "requires": [
+            "transition"
+        ]
+    },
+
     "aui-widget-trigger": {
         "requires": [
             "node"

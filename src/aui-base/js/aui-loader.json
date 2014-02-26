@@ -633,7 +633,6 @@
     },
     "aui-popover": {
         "requires": [
-            "transition",
             "widget",
             "widget-autohide",
             "widget-buttons",
@@ -647,6 +646,7 @@
             "aui-widget-cssclass",
             "aui-widget-toggle",
             "aui-widget-toolbars",
+            "aui-widget-transition",
             "aui-widget-trigger",
             "aui-widget-position-align-suggestion",
             "aui-component",
@@ -886,7 +886,6 @@
     "aui-tooltip-base": {
         "requires": [
             "event-hover",
-            "transition",
             "widget",
             "widget-autohide",
             "widget-position",
@@ -898,6 +897,7 @@
             "aui-component",
             "aui-widget-cssclass",
             "aui-widget-toggle",
+            "aui-widget-transition",
             "aui-widget-trigger",
             "aui-widget-position-align-suggestion",
             "aui-node-base"
@@ -1006,6 +1006,11 @@
         "requires": [
             "widget-stdmod",
             "aui-toolbar"
+        ]
+    },
+    "aui-widget-transition": {
+        "requires": [
+            "transition"
         ]
     },
     "aui-widget-trigger": {

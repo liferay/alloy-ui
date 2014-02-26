@@ -658,7 +658,6 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-popover": {
         "requires": [
-            "transition",
             "widget",
             "widget-autohide",
             "widget-buttons",
@@ -672,6 +671,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-widget-cssclass",
             "aui-widget-toggle",
             "aui-widget-toolbars",
+            "aui-widget-transition",
             "aui-widget-trigger",
             "aui-widget-position-align-suggestion",
             "aui-component",
@@ -911,7 +911,6 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-tooltip-base": {
         "requires": [
             "event-hover",
-            "transition",
             "widget",
             "widget-autohide",
             "widget-position",
@@ -923,6 +922,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-component",
             "aui-widget-cssclass",
             "aui-widget-toggle",
+            "aui-widget-transition",
             "aui-widget-trigger",
             "aui-widget-position-align-suggestion",
             "aui-node-base"
@@ -1033,10 +1033,15 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-toolbar"
         ]
     },
+    "aui-widget-transition": {
+        "requires": [
+            "transition"
+        ]
+    },
     "aui-widget-trigger": {
         "requires": [
             "node"
         ]
     }
 });
-YUI.Env[Y.version].md5 = '68ffb915c5271edbe942ae90b8067070';
+YUI.Env[Y.version].md5 = 'f326ce03b2a4ffc92fe74456931c87d6';
