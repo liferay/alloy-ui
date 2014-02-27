@@ -3,6 +3,7 @@ var Lang = A.Lang,
     _DOCUMENT = A.one(A.config.doc),
     _NAME = 'btn-search-cancel',
 
+    AFTER = 'after',
     BODY = 'body',
     CLICK = 'click',
     CONTAINER = 'container',
@@ -10,10 +11,15 @@ var Lang = A.Lang,
     GUTTER = 'gutter',
     ICON_CLASS = 'iconClass',
     INPUT = 'input',
+    POSITION = 'position',
     REGION = 'region',
+    RELATIVE = 'relative',
     REMOVE = 'remove',
     TRIGGER = 'trigger',
-    Z_INDEX = 'zIndex';
+    WINDOW_RESIZE = 'windowresize',
+    Z_INDEX = 'zIndex',
+
+    CSS_SEARCH_BTN_CANCEL_ACTIVE = 'search-btn-cancel-active';
 
 /**
  * A base class for `ButtonSearchCancel`, providing:
@@ -123,6 +129,15 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
 
             element.setData(_NAME, button);
             instance._buttons.push(button.hide());
+
+            A.on(WINDOW_RESIZE, function(event) {
+                A.each(A.all(INPUT + '.' + CSS_SEARCH_BTN_CANCEL_ACTIVE), function(searchButtonCancelInput) {
+                    if (searchButtonCancelInput.val()) {
+                        instance._syncButtonUI(searchButtonCancelInput);
+                    }
+                });
+            });
+
             button.on(CLICK, instance._onButtonClick, instance, element);
         }
 
@@ -167,16 +182,20 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
     _syncButtonUI: function(element) {
         var instance = this,
             button = instance.getButtonForElement(element),
+            element = A.one(element),
             gutter,
             buttonRegion,
             elementRegion;
 
         if (!element.val()) {
             button.hide();
+            element.removeClass(CSS_SEARCH_BTN_CANCEL_ACTIVE);
             return;
         }
 
-        A.one(element).insert(button.show(), 'after');
+        element.ancestor().setStyle(POSITION, RELATIVE);
+        element.insert(button.show(), AFTER);
+        element.addClass(CSS_SEARCH_BTN_CANCEL_ACTIVE);
         gutter = instance.get(GUTTER);
         buttonRegion = button.get(REGION);
         elementRegion = element.get(REGION);
