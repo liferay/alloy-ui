@@ -112,7 +112,7 @@ grunt watch --src src/aui-module-name
 * Create a new module under `src/` folder:
 
     ```
-grunt create
+grunt create --name aui-module-name
     ```
 
 ### Format/Lint
