@@ -1,14 +1,16 @@
 var Lang = A.Lang,
+    AArray = A.Array,
 
     _DOCUMENT = A.one(A.config.doc),
     _NAME = 'btn-search-cancel',
 
     AFTER = 'after',
-    BODY = 'body',
+    BTN_SEARCH = 'btn-search',
     CLICK = 'click',
     CONTAINER = 'container',
     FOCUS = 'focus',
     GUTTER = 'gutter',
+    HIDE = 'hide',
     ICON_CLASS = 'iconClass',
     INPUT = 'input',
     POSITION = 'position',
@@ -17,9 +19,7 @@ var Lang = A.Lang,
     REMOVE = 'remove',
     TRIGGER = 'trigger',
     WINDOW_RESIZE = 'windowresize',
-    Z_INDEX = 'zIndex',
-
-    CSS_SEARCH_BTN_CANCEL_ACTIVE = 'search-btn-cancel-active';
+    Z_INDEX = 'zIndex';
 
 /**
  * A base class for `ButtonSearchCancel`, providing:
@@ -102,10 +102,10 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
             trigger = instance.get(TRIGGER);
 
         instance._eventHandles = [
-                container.delegate(
-                    [FOCUS, INPUT],
+            container.delegate(
+                [FOCUS, INPUT],
                 A.debounce(instance._onUserInteraction, 50, instance), trigger)
-            ];
+        ];
     },
 
     /**
@@ -127,18 +127,18 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
                         zIndex: instance.get(Z_INDEX)
                     }));
 
+            element.ancestor().setStyle(POSITION, RELATIVE);
+
             element.setData(_NAME, button);
+            button.setData(BTN_SEARCH, element);
+
             instance._buttons.push(button.hide());
 
-            A.on(WINDOW_RESIZE, function(event) {
-                A.each(A.all(INPUT + '.' + CSS_SEARCH_BTN_CANCEL_ACTIVE), function(searchButtonCancelInput) {
-                    if (searchButtonCancelInput.val()) {
-                        instance._syncButtonUI(searchButtonCancelInput);
-                    }
-                });
-            });
-
             button.on(CLICK, instance._onButtonClick, instance, element);
+
+            instance._eventHandles.push(
+                A.on(WINDOW_RESIZE, instance._onWindowResize, instance)
+            );
         }
 
         return button;
@@ -172,6 +172,23 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
     },
 
     /**
+     * Fires when the user resizes the browser window.
+     *
+     * @method _onWindowResize
+     * @param event
+     * @Protected
+     */
+    _onWindowResize: function() {
+        var instance = this;
+
+        AArray.each(instance._buttons, function(searchButtonCancel) {
+            if (!searchButtonCancel.hasClass(HIDE)) {
+                instance._syncButtonUI(searchButtonCancel.getData(BTN_SEARCH));
+            }
+        });
+    },
+
+    /**
      * Positions the cancel search button and aligns it with the passed
      * `element`.
      *
@@ -182,20 +199,16 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
     _syncButtonUI: function(element) {
         var instance = this,
             button = instance.getButtonForElement(element),
-            element = A.one(element),
             gutter,
             buttonRegion,
             elementRegion;
 
         if (!element.val()) {
             button.hide();
-            element.removeClass(CSS_SEARCH_BTN_CANCEL_ACTIVE);
             return;
         }
 
-        element.ancestor().setStyle(POSITION, RELATIVE);
         element.insert(button.show(), AFTER);
-        element.addClass(CSS_SEARCH_BTN_CANCEL_ACTIVE);
         gutter = instance.get(GUTTER);
         buttonRegion = button.get(REGION);
         elementRegion = element.get(REGION);
