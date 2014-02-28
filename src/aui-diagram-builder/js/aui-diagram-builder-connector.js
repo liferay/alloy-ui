@@ -241,7 +241,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
                 [x1 + dx, y1, x2, y1 - dy, x2, y2], // 3,5
                 [x1, y1 - dy, x2, y1 - dy, x2, y2], // 0,5
                 [x1 - dx, y1, x2, y1 - dy, x2, y2], // 2,5
-                [x1 - dx, y1, x2 + dx, y2, x2, y2]  // 2,7
+                [x1 - dx, y1, x2 + dx, y2, x2, y2] // 2,7
             ];
         }
         else {
@@ -250,7 +250,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
                 [x1 + dx, y1, x2, y1 + dy, x2, y2], // 3,4
                 [x1, y1 + dy, x2, y1 + dy, x2, y2], // 1,4
                 [x1 - dx, y1, x2, y1 + dy, x2, y2], // 2,4
-                [x1 - dx, y1, x2 + dx, y2, x2, y2]  // 2,7
+                [x1 - dx, y1, x2 + dx, y2, x2, y2] // 2,7
             ];
         }
 
@@ -653,8 +653,11 @@ A.Connector = A.Base.create('line', A.Base, [], {
     _uiSetSelected: function(val, draw) {
         var instance = this;
 
-        instance._updateShape(instance.shape, val ? instance.get(SHAPE_SELECTED) : instance.get(SHAPE), draw);
-        instance._updateShape(instance.shapeArrow, val ? instance.get(SHAPE_ARROW_SELECTED) : instance.get(SHAPE_ARROW), draw);
+        instance._updateShape(
+            instance.shape, val ? instance.get(SHAPE_SELECTED) : instance.get(SHAPE), draw);
+
+        instance._updateShape(
+            instance.shapeArrow, val ? instance.get(SHAPE_ARROW_SELECTED) : instance.get(SHAPE_ARROW), draw);
     },
 
     /**
