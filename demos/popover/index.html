@@ -18,7 +18,7 @@
         <button class="btn btn-large btn-primary" id="triggerBottom">Click here to toggle a bottom popover</button>
     </div>
     <script>
-    YUI({ filter:'raw' }).use('aui-popover', 'widget-anim', function(Y) {
+    YUI({ filter:'raw' }).use('aui-popover', function(Y) {
 
         var popoverTop = new Y.Popover({
             align: {
@@ -26,8 +26,10 @@
             },
             bodyContent: 'One fine body…',
             headerContent: 'Header content',
-            plugins: [Y.Plugin.WidgetAnim],
-            trigger: '#triggerTop'
+            trigger: '#triggerTop',
+            animated: true,
+            duration: 0.5, // in seconds
+            stickDuration: 1000 // in milliseconds
         }).render();
 
         var popoverBottom = new Y.Popover({

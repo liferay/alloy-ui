@@ -3,7 +3,6 @@ YUI.add('aui-tree-tests', function(Y) {
     var suite = new Y.Test.Suite('aui-tree');
 
     var createNewTreeView = function() {
-
         return new Y.TreeView({
             children: [
                 {
@@ -117,13 +116,13 @@ YUI.add('aui-tree-tests', function(Y) {
 
             Y.Assert.isTrue(
                 treeViewIndex.hasOwnProperty('root'),
-                'treeViewIndex object should have a "root" property');
+                'treeViewIndex object should have a \'root\' property');
             Y.Assert.isTrue(
                 treeViewIndex.hasOwnProperty('child'),
-                'treeViewIndex object should have a "child" property');
+                'treeViewIndex object should have a \'child\' property');
             Y.Assert.isTrue(
                 rootTreeNodeIndex.hasOwnProperty('child'),
-                'rootTreeNodeIndex object should have a "child" property');
+                'rootTreeNodeIndex object should have a \'child\' property');
         },
 
         'removeChild() should remove child TreeNode': function() {
@@ -375,6 +374,97 @@ YUI.add('aui-tree-tests', function(Y) {
             });
 
             test.wait(1000);
+        },
+
+        /**
+         * @tests AUI-1156
+         */
+        'Display \'Load More Results\' link for TreeNodes': function() {
+            var childTreeNode,
+                hitAreaNodeList,
+                rootHitArea,
+                rootTreeNode,
+                rootTreeNodeBB,
+                treeView;
+
+            treeView = new Y.TreeView();
+
+            childTreeNode = [
+                {
+                    id: 'child-one',
+                    io: 'assets/pages.html',
+                    label: 'child-one',
+                    paginator: {
+                        limit: 3,
+                        offsetParam: 'start',
+                        start: 0,
+                        total: 6
+                    },
+                    type: 'io'
+                },
+                {
+                    label: 'child-two'
+                },
+                {
+                    label: 'child-three'
+                },
+                {
+                    label: 'child-four'
+                }
+            ];
+
+            rootTreeNode = new Y.TreeNode({
+                children: childTreeNode,
+                id: 'root-one',
+                label: 'root-one'
+            });
+
+            treeView.appendChild(rootTreeNode);
+
+            treeView.render();
+
+            rootTreeNodeBB = rootTreeNode.get('boundingBox');
+
+            debugger;
+
+            rootHitArea = rootTreeNodeBB.one('.tree-hitarea');
+
+            rootHitArea.simulate('click');
+
+            hitAreaNodeList = rootTreeNodeBB.all('.tree-hitarea');
+
+            Y.Assert.areEqual(2, hitAreaNodeList.size(), 'There must be two hit-area elements');
+
+            /*
+             * We can Mock the AJAX request here, but this is not we want to test. We want to test
+             * if paginator link will appear, so we will invoke the success handler directly here,
+             * assumming that server returned correct response. Clicking on hit area was proved to work above.
+             */
+            rootTreeNode.get('children')[0].ioSuccessHandler(null, null, {
+                responseText: '[ \
+                    { \
+                        "label": "subchild-one", \
+                        "leaf": true, \
+                        "type": "node" \
+                    }, \
+                    { \
+                        "label": "subchild-two", \
+                        "leaf": true, \
+                        "type": "node" \
+                    }, \
+                    { \
+                        "label": "subchild-three", \
+                        "leaf": true, \
+                        "type": "node" \
+                    } \
+                ]'
+            });
+
+            var paginatorLink = rootTreeNodeBB.one('a');
+
+            Y.Assert.isTrue(
+                paginatorLink.hasClass('tree-node-paginator'),
+                'childTreeNode has a paginator link');
         }
     }));
 

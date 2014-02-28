@@ -56,6 +56,7 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
     A.WidgetPositionAlignSuggestion,
     A.WidgetPositionConstrain,
     A.WidgetStack,
+    A.WidgetTransition,
     A.WidgetTrigger
 ], {
 
@@ -68,7 +69,6 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
     initializer: function() {
         var instance = this;
 
-        A.after(instance._afterUiSetVisible, instance, '_uiSetVisible');
         A.after(instance._afterRenderBoxClassNames, instance, '_renderBoxClassNames');
     },
 
@@ -104,17 +104,21 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
     /**
      * Fire after `boundingBox` style changes.
      *
-     * @method _afterUiSetVisible
+     * @method _uiSetVisible
      * @param val
      * @protected
      */
-    _afterUiSetVisible: function(val) {
+    _uiSetVisible: function(val) {
         var instance = this,
             boundingBox = instance.get(BOUNDING_BOX);
 
+        instance._widgetUiSetVisible(val);
+
         boundingBox.setStyle(DISPLAY, val ? BLOCK : NONE);
 
-        instance.suggestAlignment();
+        if (val) {
+            instance.suggestAlignment();
+        }
     },
 
     /**
@@ -126,7 +130,9 @@ A.Popover = A.Base.create(POPOVER, A.Widget, [
      */
     _getStdModTemplate: function(section) {
         return A.Node.create(A.Popover.TEMPLATES[section], this._stdModNode.get(OWNER_DOCUMENT));
-    }
+    },
+
+    _widgetUiSetVisible: A.Widget.prototype._uiSetVisible
 }, {
     /**
      * Static property provides a string to identify the CSS prefix.

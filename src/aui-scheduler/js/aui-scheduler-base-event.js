@@ -180,7 +180,7 @@ var Lang = A.Lang,
  * A base class for `SchedulerEvent`.
  *
  * @class A.SchedulerEvent
- * @extends A.Model
+ * @extends Model
  * @param {Object} config Object literal specifying widget configuration properties.
  * @constructor
  */

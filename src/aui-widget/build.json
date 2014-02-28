@@ -25,6 +25,12 @@
             ]
         },
 
+        "aui-widget-transition": {
+            "jsfiles": [
+                "js/aui-widget-transition.js"
+            ]
+        },
+
         "aui-widget-trigger": {
             "jsfiles": [
                 "js/aui-widget-trigger.js"

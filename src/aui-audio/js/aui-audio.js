@@ -32,6 +32,7 @@ var AObject = A.Object,
  * Check the [live demo](http://alloyui.com/examples/audio/).
  *
  * @class A.Audio
+ * @extends A.Component
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor

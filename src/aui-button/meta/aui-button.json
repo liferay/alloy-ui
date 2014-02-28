@@ -22,6 +22,7 @@
             "base",
             "base-build",
             "event-focus",
+            "event-resize",
             "node-screen",
             "node-event-delegate",
             "aui-node-base",

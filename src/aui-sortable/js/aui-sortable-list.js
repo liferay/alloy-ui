@@ -68,7 +68,7 @@ var SortableList = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the SortableList.
+     * configuration for the `A.SortableList`.
      *
      * @property ATTRS
      * @type Object
@@ -77,7 +77,7 @@ var SortableList = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Drag & Drop plugin attached to the widget.
          *
          * @attribute dd
          * @default null
@@ -87,7 +87,7 @@ var SortableList = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Validates the condition for an element to be dropped.
          *
          * @attribute dropCondition
          * @type Function
@@ -103,7 +103,7 @@ var SortableList = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The container which serves to host dropped elements.
          *
          * @attribute dropContainer
          * @type Function
@@ -121,7 +121,8 @@ var SortableList = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The CSS class name used to define which nodes serve as container to
+         * be dropped.
          *
          * @attribute dropOn
          * @type String
@@ -131,7 +132,7 @@ var SortableList = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates that the element is being dragged.
          *
          * @attribute helper
          * @default null
@@ -141,7 +142,7 @@ var SortableList = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The CSS class name used to define which nodes are draggable.
          *
          * @attribute nodes
          */
@@ -152,7 +153,7 @@ var SortableList = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Simulates the position of the dragged element.
          *
          * @attribute placeholder
          * @default null
@@ -162,7 +163,7 @@ var SortableList = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Proxy element to be used when dragging.
          *
          * @attribute proxy
          * @default null
@@ -180,7 +181,7 @@ var SortableList = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Validates the condition for an element to be sorted.
          *
          * @attribute sortCondition
          * @type Function
@@ -208,7 +209,7 @@ var SortableList = A.Component.create({
     prototype: {
 
         /**
-         * Construction logic executed during SortableList instantiation.
+         * Construction logic executed during `A.SortableList` instantiation.
          * Lifecycle.
          *
          * @method initializer
@@ -234,7 +235,7 @@ var SortableList = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Creates a drag instance from a single node.
          *
          * @method add
          * @param node
@@ -246,7 +247,7 @@ var SortableList = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Creates drag instances from a list of nodes.
          *
          * @method addAll
          * @param nodes
@@ -260,7 +261,7 @@ var SortableList = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Creates delayed drag instance.
          *
          * @method _createDrag
          * @param node
@@ -291,7 +292,7 @@ var SortableList = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Generates the `helper` node in the UI.
          *
          * @method _createHelper
          * @protected
@@ -309,7 +310,7 @@ var SortableList = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Syncs the `placeholder` position in the UI.
          *
          * @method _updatePlaceholder
          * @param event
@@ -375,7 +376,7 @@ var SortableList = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers when the drag position aligns.
          *
          * @method _onDragAlign
          * @param event
@@ -407,7 +408,7 @@ var SortableList = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers when the drag event ends.
          *
          * @method _onDragEnd
          * @param event
@@ -431,7 +432,7 @@ var SortableList = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers when the drag event exits.
          *
          * @method _onDragExit
          * @param event
@@ -447,7 +448,7 @@ var SortableList = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers when the drag mouse down.
          *
          * @method _onDragMouseDown
          * @param event
@@ -465,7 +466,7 @@ var SortableList = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers when the drag eventstarts.
          *
          * @method _onDragStart
          * @param event
@@ -502,7 +503,7 @@ var SortableList = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers when an element is being dragged over a valid drop target.
          *
          * @method _onDragOver
          * @param event
@@ -518,11 +519,12 @@ var SortableList = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets node based in its type.
          *
          * @method _setNodes
          * @param v
          * @protected
+         * @return {NodeList}
          */
         _setNodes: function(v) {
             var instance = this;

@@ -1,7 +1,6 @@
 {
     "aui-popover": {
         "requires": [
-        	"transition",
 	        "widget",
 	        "widget-autohide",
 	        "widget-buttons",
@@ -15,6 +14,7 @@
             "aui-widget-cssclass",
             "aui-widget-toggle",
             "aui-widget-toolbars",
+            "aui-widget-transition",
             "aui-widget-trigger",
 	        "aui-widget-position-align-suggestion",
 	        "aui-component",

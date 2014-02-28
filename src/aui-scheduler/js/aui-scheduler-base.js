@@ -305,7 +305,8 @@ A.SchedulerEventSupport = SchedulerEventSupport;
  * A base class for `SchedulerBase`.
  *
  * @class A.SchedulerBase
- * @uses A.SchedulerEventSupport, A.WidgetStdMod
+ * @extends A.Component
+ * @uses A.SchedulerEventSupport, WidgetStdMod
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
@@ -506,8 +507,6 @@ var SchedulerBase = A.Component.create({
             }
         }
     },
-
-    AUGMENTS: [A.SchedulerEventSupport, A.WidgetStdMod],
 
     /**
      * Contains an object hash, defining how attribute values are to be parsed

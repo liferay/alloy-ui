@@ -384,7 +384,7 @@ var TreeNode = A.Component.create({
         }
     },
 
-    AUGMENTS: [A.TreeData],
+    AUGMENTS: [A.TreeData, A.TreeViewIO, A.TreeViewPaginator],
 
     EXTENDS: A.Base,
 
@@ -752,6 +752,24 @@ var TreeNode = A.Component.create({
          */
         contains: function(node) {
             return node.isAncestor(this);
+        },
+
+        /**
+         * Create nodes.
+         *
+         * @method createNodes
+         * @param nodes
+         */
+        createNodes: function(nodes) {
+            var instance = this;
+
+            A.Array.each(A.Array(nodes), function(node) {
+                var newNode = instance.createNode(node);
+
+                instance.appendChild(newNode);
+            });
+
+            instance._syncPaginatorUI(nodes);
         },
 
         /**

@@ -61,6 +61,7 @@ var L = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/tree/).
  *
  * @class A.TreeView
+ * @extends A.Component
  * @uses A.TreeData, A.TreeViewPaginator, A.TreeViewIO
  * @param {Object} config Object literal specifying widget configuration
  *     properties.

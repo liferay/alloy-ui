@@ -158,6 +158,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "base",
             "base-build",
             "event-focus",
+            "event-resize",
             "node-screen",
             "node-event-delegate",
             "aui-node-base",
@@ -931,7 +932,6 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-popover": {
         "requires": [
-            "transition",
             "widget",
             "widget-autohide",
             "widget-buttons",
@@ -945,6 +945,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-widget-cssclass",
             "aui-widget-toggle",
             "aui-widget-toolbars",
+            "aui-widget-transition",
             "aui-widget-trigger",
             "aui-widget-position-align-suggestion",
             "aui-component",
@@ -1252,7 +1253,6 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-tooltip-base": {
         "requires": [
             "event-hover",
-            "transition",
             "widget",
             "widget-autohide",
             "widget-position",
@@ -1264,6 +1264,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-component",
             "aui-widget-cssclass",
             "aui-widget-toggle",
+            "aui-widget-transition",
             "aui-widget-trigger",
             "aui-widget-position-align-suggestion",
             "aui-node-base"
@@ -1414,10 +1415,15 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-toolbar"
         ]
     },
+    "aui-widget-transition": {
+        "requires": [
+            "transition"
+        ]
+    },
     "aui-widget-trigger": {
         "requires": [
             "node"
         ]
     }
 });
-YUI.Env[Y.version].md5 = '92e5f6a1d18bcc3ef2778dbd34d0799a';
+YUI.Env[Y.version].md5 = '1d916d5947773a4c8cc425fb8ceaf283';

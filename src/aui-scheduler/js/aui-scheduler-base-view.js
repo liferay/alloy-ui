@@ -9,7 +9,8 @@
  * A base class for `SchedulerView`.
  *
  * @class A.SchedulerView
- * @uses A.WidgetStdMod
+ * @extends A.Component
+ * @uses WidgetStdMod
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
@@ -191,8 +192,6 @@ var SchedulerView = A.Component.create({
             value: false
         }
     },
-
-    AUGMENTS: [A.WidgetStdMod],
 
     /**
      * Static property used to define the attributes

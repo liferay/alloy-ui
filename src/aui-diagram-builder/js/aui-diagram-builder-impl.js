@@ -204,7 +204,7 @@ var DiagramBuilder = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the DiagramBuilder.
+     * configuration for the `A.DiagramBuilder`.
      *
      * @property ATTRS
      * @type Object
@@ -213,7 +213,7 @@ var DiagramBuilder = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Stores an instance of `A.Connector`.
          *
          * @attribute connector
          * @default null
@@ -224,7 +224,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Configuration object for draggable fields.
          *
          * @attribute fieldsDragConfig
          * @default null
@@ -237,7 +237,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Stores an instance of `A.Graphic`.
          *
          * @attribute graphic
          * @type Object
@@ -250,7 +250,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if the drop zones should be highlighted or not.
          *
          * @attribute highlightDropZones
          * @default true
@@ -282,7 +282,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if a connector suggestion is visible or not.
          *
          * @attribute showSuggestConnector
          * @default true
@@ -294,7 +294,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Stores an instance of `A.Overlay` used in the connector suggestion.
          *
          * @attribute suggestConnectorOverlay
          * @default null
@@ -315,7 +315,7 @@ var DiagramBuilder = A.Component.create({
     EXTENDS: A.DiagramBuilderBase,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * The index of the fields tab.
      *
      * @property FIELDS_TAB
      * @default 0
@@ -325,7 +325,7 @@ var DiagramBuilder = A.Component.create({
     FIELDS_TAB: 0,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * The index of the settings tab.
      *
      * @property SETTINGS_TAB
      * @default 1
@@ -348,7 +348,7 @@ var DiagramBuilder = A.Component.create({
         selectedNode: null,
 
         /**
-         * Construction logic executed during DiagramBuilder instantiation.
+         * Construction logic executed during `A.DiagramBuilder` instantiation.
          * Lifecycle.
          *
          * @method initializer
@@ -387,7 +387,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * Render the DiagramBuilder component instance. Lifecycle.
+         * Render the `A.DiagramBuilder` component instance. Lifecycle.
          *
          * @method renderUI
          * @protected
@@ -401,7 +401,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * Sync the DiagramBuilder UI. Lifecycle.
+         * Sync the `A.DiagramBuilder` UI. Lifecycle.
          *
          * @method syncUI
          * @protected
@@ -419,7 +419,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Syncs the connections in the UI.
          *
          * @method syncConnectionsUI
          */
@@ -432,7 +432,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fetches all fields and destroys each instance of it.
          *
          * @method clearFields
          */
@@ -453,7 +453,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Disables the settings tab and selects the field tab.
          *
          * @method closeEditProperties
          */
@@ -473,7 +473,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets two `A.DiagramNode` instances and connect them.
          *
          * @method connect
          * @param diagramNode1
@@ -499,7 +499,8 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Creates a connector for each node that has source and target
+         * properties.
          *
          * @method connectAll
          * @param nodes
@@ -517,7 +518,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Creates a new field based on the field class type.
          *
          * @method createField
          * @param val
@@ -535,7 +536,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fetches all selected connectors and disconnect them.
          *
          * @method deleteSelectedConnectors
          */
@@ -556,7 +557,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fetches the selected node and delete it.
          *
          * @method deleteSelectedNode
          */
@@ -573,7 +574,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * Destructor lifecycle implementation for the `DiagramBuilder` class.
+         * Destructor lifecycle implementation for the `A.DiagramBuilder` class.
          *
          * @method destructor
          * @param attribute
@@ -586,7 +587,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * An utility function to loop through all connectors.
          *
          * @method eachConnector
          * @param fn
@@ -604,7 +605,9 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Enables the settings tab, sets the connector properties in the
+         * property list, and stores the connector in the `editingConnector` and
+         * `selectedConnector` attributes.
          *
          * @method editConnector
          * @param connector
@@ -626,7 +629,9 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Enables the settings tab, sets the node properties in the property
+         * list, and stores the node in the `editingNode` and `selectedNode`
+         * attributes.
          *
          * @method editNode
          * @param diagramNode
@@ -650,7 +655,8 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the field class based on the `A.DiagramBuilder` type. If the type
+         * doesn't exist, logs an error message.
          *
          * @method getFieldClass
          * @param type
@@ -670,7 +676,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a collection of nodes by its transition property.
          *
          * @method getNodesByTransitionProperty
          * @param property
@@ -696,7 +702,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a collection of selected connectors.
          *
          * @method getSelectedConnectors
          */
@@ -714,7 +720,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a collection of source nodes.
          *
          * @method getSourceNodes
          * @param diagramNode
@@ -726,13 +732,13 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Hides the suggest connector overlay.
          *
-         * @method hideSuggestConnetorOverlay
+         * @method hideSuggestConnectorOverlay
          * @param diagramNode
          * @param drag
          */
-        hideSuggestConnetorOverlay: function(diagramNode, drag) {
+        hideSuggestConnectorOverlay: function(diagramNode, drag) {
             var instance = this;
 
             instance.connector.hide();
@@ -745,7 +751,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if a node is able to connect with another.
          *
          * @method isAbleToConnect
          */
@@ -756,7 +762,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if the field is draggable.
          *
          * @method isFieldsDrag
          * @param drag
@@ -768,7 +774,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Renders a field in the `dropContainer`.
          *
          * @method plotField
          * @param field
@@ -782,7 +788,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Selects and focus a certain node.
          *
          * @method select
          * @param diagramNode
@@ -796,19 +802,19 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Shows the suggest connector overlay in a certain X and Y position.
          *
-         * @method showSuggestConnetorOverlay
+         * @method showSuggestConnectorOverlay
          * @param xy
          */
-        showSuggestConnetorOverlay: function(xy) {
+        showSuggestConnectorOverlay: function(xy) {
             var instance = this,
-                showSuggestConnetorOverlay = instance.get(SUGGEST_CONNECTOR_OVERLAY),
-                boundingBox = showSuggestConnetorOverlay.get(BOUNDING_BOX);
+                showSuggestConnectorOverlay = instance.get(SUGGEST_CONNECTOR_OVERLAY),
+                boundingBox = showSuggestConnectorOverlay.get(BOUNDING_BOX);
 
-            showSuggestConnetorOverlay.get(BOUNDING_BOX).addClass(CSS_DIAGRAM_SUGGEST_CONNECTOR);
+            showSuggestConnectorOverlay.get(BOUNDING_BOX).addClass(CSS_DIAGRAM_SUGGEST_CONNECTOR);
 
-            showSuggestConnetorOverlay.set(
+            showSuggestConnectorOverlay.set(
                 XY, xy || instance.connector.get(P2)).show();
 
             try {
@@ -818,7 +824,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Clears node/connectors selections and close edit properties.
          *
          * @method stopEditing
          */
@@ -831,9 +837,10 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Converts fields to JSON format.
          *
          * @method toJSON
+         * @return {Object}
          */
         toJSON: function() {
             var instance = this;
@@ -867,7 +874,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Clears connectors selection.
          *
          * @method unselectConnectors
          */
@@ -880,7 +887,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Clears nodes selection.
          *
          * @method unselectNodes
          */
@@ -896,7 +903,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after a key event is dispatched.
          *
          * @method _afterKeyEvent
          * @param event
@@ -934,7 +941,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires on cancel event.
          *
          * @method _onCancel
          * @param event
@@ -947,7 +954,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * SyncUI after entering mouse in the canvas node.
+         * Sync UI after entering mouse in the canvas node.
          *
          * @method _onCanvasMouseEnter
          * @param event
@@ -977,7 +984,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires when delete key is pressed.
          *
          * @method _onDeleteKey
          * @param event
@@ -992,7 +999,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers when the drag occurs.
          *
          * @method _onDrag
          * @param event
@@ -1014,7 +1021,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers when the drag ends.
          *
          * @method _onDragEnd
          * @param event
@@ -1031,7 +1038,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Triggers when drop is hit.
          *
          * @method _onDropHit
          * @param event
@@ -1054,7 +1061,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires when the esc key is pressed.
          *
          * @method _onEscKey
          * @param event
@@ -1063,13 +1070,13 @@ var DiagramBuilder = A.Component.create({
         _onEscKey: function(event) {
             var instance = this;
 
-            instance.hideSuggestConnetorOverlay();
+            instance.hideSuggestConnectorOverlay();
             instance.stopEditing();
             event.halt();
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Stops editing after mouse down in the canvas node.
          *
          * @method _onCanvasMouseDown
          * @param event
@@ -1079,11 +1086,11 @@ var DiagramBuilder = A.Component.create({
             var instance = this;
 
             instance.stopEditing();
-            instance.hideSuggestConnetorOverlay();
+            instance.hideSuggestConnectorOverlay();
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires when the node gets clicked.
          *
          * @method _onNodeClick
          * @param event
@@ -1101,7 +1108,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires when the node is edited.
          *
          * @method _onNodeEdit
          * @param event
@@ -1124,7 +1131,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires when mouse enters the node.
          *
          * @method _onNodeMouseEnter
          * @param event
@@ -1138,7 +1145,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires when mouse leaves the node.
          *
          * @method _onNodeMouseLeave
          * @param event
@@ -1155,7 +1162,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles save event for editing node and connector.
          *
          * @method _onSave
          * @param event
@@ -1180,7 +1187,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires when suggest connector node is clicked.
          *
          * @method _onSuggestConnectorNodeClick
          * @param event
@@ -1196,12 +1203,12 @@ var DiagramBuilder = A.Component.create({
                 xy: connector.toCoordinate(connector.get(P2))
             });
 
-            instance.hideSuggestConnetorOverlay();
+            instance.hideSuggestConnectorOverlay();
             instance.publishedSource.connectNode(node);
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Renders the `graphic` attribute.
          *
          * @method _renderGraphic
          * @protected
@@ -1216,7 +1223,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `connector` attribute.
          *
          * @method _setConnector
          * @param val
@@ -1247,7 +1254,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `fieldsDragConfig` attribute.
          *
          * @method _setFieldsDragConfig
          * @param val
@@ -1267,14 +1274,14 @@ var DiagramBuilder = A.Component.create({
                                     constrain: dropContainer
                                 },
                                 fn: A.Plugin.DDConstrained
-       },
+                            },
                             {
                                 cfg: {
                                     scrollDelay: 150
                                 },
                                 fn: A.Plugin.DDWinScroll
-       }
-      ]
+                            }
+                        ]
                     },
                     nodes: _DOT + CSS_DIAGRAM_NODE
                 },
@@ -1283,7 +1290,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `suggestConnectorOverlay` attribute.
          *
          * @method _setSuggestConnectorOverlay
          * @param val
@@ -1327,7 +1334,7 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Creates a new instance of `A.DD.Delegate` in `fieldsDrag` attribute.
          *
          * @method _setupFieldsDrag
          * @protected
@@ -1409,7 +1416,7 @@ var DiagramNode = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the DiagramNode.
+     * configuration for the `A.DiagramNode`.
      *
      * @property ATTRS
      * @type Object
@@ -1418,7 +1425,7 @@ var DiagramNode = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Stores an instance of `A.DiagramBuilderBase`.
          *
          * @attribute builder
          * @type DiagramBuilder
@@ -1428,7 +1435,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * A map of connectors.
          *
          * @attribute connectors
          * @writeOnce
@@ -1439,7 +1446,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * A toolbar to represent controls.
          *
          * @attribute controlsToolbar
          * @type Object
@@ -1450,7 +1457,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The description of the node.
          *
          * @attribute description
          * @default ''
@@ -1462,7 +1469,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Stores an instance of `A.Graphic`.
          *
          * @attribute graphic
          * @type Object
@@ -1474,7 +1481,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The height of the node.
          *
          * @attribute height
          * @default 60
@@ -1485,7 +1492,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if a node is highlighted or not.
          *
          * @attribute highlighted
          * @default false
@@ -1497,7 +1504,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The name of the node.
          *
          * @attribute name
          * @type String
@@ -1512,7 +1519,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if a node is required or not.
          *
          * @attribute required
          * @default false
@@ -1524,7 +1531,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if a node is selected or not.
          *
          * @attribute selected
          * @default false
@@ -1536,7 +1543,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * A graphic shape to represent a boundary.
          *
          * @attribute shapeBoundary
          * @type Object
@@ -1547,7 +1554,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Represents a stroke to highlight a boundary.
          *
          * @attribute highlightBoundaryStroke
          * @type Object
@@ -1562,7 +1569,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Configuration object to generate the shape invite graphic.
          *
          * @attribute shapeInvite
          * @type Object
@@ -1602,7 +1609,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Specify the tab order of elements.
          *
          * @attribute tabIndex
          * @default 1
@@ -1613,7 +1620,8 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Map of transitions that stores the uid, source and target data from
+         * connectors.
          *
          * @attribute transitions
          * @default null
@@ -1626,7 +1634,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The type of the node.
          *
          * @attribute type
          * @default 'node'
@@ -1638,7 +1646,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The width of the node.
          *
          * @attribute width
          * @default 60
@@ -1649,7 +1657,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Specify the stack order of elements.
          *
          * @attribute zIndex
          * @default 100
@@ -1670,7 +1678,7 @@ var DiagramNode = A.Component.create({
     EXTENDS: A.Overlay,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Coordinates to generate a circle graphic.
      *
      * @property CIRCLE_POINTS
      * @type Array
@@ -1685,7 +1693,7 @@ var DiagramNode = A.Component.create({
         12, 32], [5, 20], [12, 7], [27, 7], [35, 18], [29, 32], [15, 34]],
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Coordinates to generate a diamond graphic.
      *
      * @property DIAMOND_POINTS
      * @type Array
@@ -1695,7 +1703,7 @@ var DiagramNode = A.Component.create({
         50], [30, 55], [25, 50], [20, 45], [15, 40], [10, 35], [5, 30], [10, 25], [15, 20], [20, 15], [25, 10]],
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Coordinates to generate a square graphic.
      *
      * @property SQUARE_POINTS
      * @type Array
@@ -1708,7 +1716,7 @@ var DiagramNode = A.Component.create({
         25], [5, 20], [5, 15], [5, 10]],
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Gets a node by its name.
      *
      * @method getNodeByName
      * @param name
@@ -1719,7 +1727,7 @@ var DiagramNode = A.Component.create({
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Constructs the node id string.
      *
      * @method buildNodeId
      * @param id
@@ -1805,7 +1813,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Adds a transition into the node.
          *
          * @method addTransition
          * @param transition
@@ -1825,7 +1833,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Aligns a single transition.
          *
          * @method alignTransition
          * @param transition
@@ -1850,7 +1858,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Aligns a collection of transitions.
          *
          * @method alignTransitions
          */
@@ -1862,7 +1870,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Destroys this instance.
          *
          * @method close
          */
@@ -1873,7 +1881,8 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if a transition is connected, if not creates a new
+         * `A.Connector` instance.
          *
          * @method connect
          * @param transition
@@ -1915,7 +1924,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Calls the `connectNode` method with `publishedTarget` parameter.
          *
          * @method connectDrop
          * @param event
@@ -1927,7 +1936,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles the `connectEnd` event.
          *
          * @method connectEnd
          * @param event
@@ -1939,7 +1948,7 @@ var DiagramNode = A.Component.create({
             var publishedSource = builder.publishedSource;
 
             if (!builder.isAbleToConnect() && builder.get(SHOW_SUGGEST_CONNECTOR) && builder.connector.get(VISIBLE)) {
-                builder.showSuggestConnetorOverlay();
+                builder.showSuggestConnectorOverlay();
             }
             else {
                 builder.connector.hide();
@@ -1954,7 +1963,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the connector position based on the mouse X and Y positions.
          *
          * @method connectMove
          * @param event
@@ -1979,7 +1988,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Prepares the transition and connects a node.
          *
          * @method connectNode
          * @param diagramNode
@@ -1998,7 +2007,8 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the `publishedTarget` attribute to null and hiddes the
+         * `publishedSource`'s invite.
          *
          * @method connectOutTarget
          * @param event
@@ -2012,7 +2022,8 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * If `publishedSource` is different from the current instance, sets the
+         * `publishedTarget` to the current instance.
          *
          * @method connectOverTarget
          * @param event
@@ -2027,7 +2038,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Highlights each diagram node and fires a `publishedSource` event.
          *
          * @method connectStart
          * @param event
@@ -2051,7 +2062,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if a transition is connected, if yes removes the transition.
          *
          * @method disconnect
          * @param transition
@@ -2065,7 +2076,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * An utility function to loop through all connectors.
          *
          * @method eachConnector
          * @param fn
@@ -2097,7 +2108,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a connector based on the transition uid.
          *
          * @method getConnector
          * @param transition
@@ -2109,7 +2120,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the `dropContainer` or bounding box's parent node.
          *
          * @method getContainer
          */
@@ -2120,7 +2131,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns the left and top positions of a node based in its container.
          *
          * @method getLeftTop
          */
@@ -2131,9 +2142,10 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the list of properties from the property model.
          *
          * @method getProperties
+         * @return {Array}
          */
         getProperties: function() {
             var instance = this;
@@ -2154,9 +2166,10 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the model defition of a property.
          *
          * @method getPropertyModel
+         * @return {Array}
          */
         getPropertyModel: function() {
             var instance = this;
@@ -2186,10 +2199,11 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if boundary is draggable.
          *
          * @method isBoundaryDrag
          * @param drag
+         * @return {Boolean}
          */
         isBoundaryDrag: function(drag) {
             var instance = this;
@@ -2198,7 +2212,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if a connector has an transition uid property.
          *
          * @method isTransitionConnected
          * @param transition
@@ -2210,7 +2224,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Builds the transition configuration object.
          *
          * @method prepareTransition
          * @param val
@@ -2235,7 +2249,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Removes the transition uid from a transition.
          *
          * @method removeTransition
          * @param transition
@@ -2247,7 +2261,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Renders the `shapeBoundary` attribute.
          *
          * @method renderShapeBoundary
          */
@@ -2260,7 +2274,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Renders the `shapeInvite` attribute.
          *
          * @method renderShapeInvite
          */
@@ -2275,7 +2289,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Syncs the connections in the UI.
          *
          * @method syncConnectionsUI
          */
@@ -2289,7 +2303,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after a connector has been removed.
          *
          * @method _afterConnectorRemove
          * @param event
@@ -2302,7 +2316,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after render is executed.
          *
          * @method _afterRender
          * @param event
@@ -2319,7 +2333,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after a transition has been removed.
          *
          * @method _afterTransitionsRemove
          * @param event
@@ -2332,7 +2346,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Binds mouse enter and mouse leave events in boundary.
          *
          * @method _bindBoundaryEvents
          * @protected
@@ -2347,7 +2361,8 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a new instance of `A.Map` and bind the after connector remove
+         * event.
          *
          * @method _connectorsValueFn
          * @param val
@@ -2364,7 +2379,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a configuration object for the toolbar.
          *
          * @method _controlsToolbarValueFn
          * @param val
@@ -2381,13 +2396,13 @@ var DiagramNode = A.Component.create({
                         on: {
                             click: A.bind(instance._handleCloseEvent, instance)
                         }
-     }
-    ]
+                    }
+                ]
             };
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires when a close event is dispatched.
          *
          * @method _handleCloseEvent
          * @param event
@@ -2400,7 +2415,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires a `connectStart` event with `startXY` parameter.
          *
          * @method _handleConnectStart
          * @param startXY
@@ -2415,7 +2430,8 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires a `connectMove` event with `startXY` and `publishedSource`
+         * parameters.
          *
          * @method _handleConnectMove
          * @param mouseXY
@@ -2432,7 +2448,9 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if source and target are published, if yes a `connectDrop`
+         * event is fired with `publishedSource` and `publishedTarget`
+         * parameters. Also fires a `connectEnd` event.
          *
          * @method _handleConnectEnd
          * @protected
@@ -2456,7 +2474,8 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if source is published, if yes a `connectOutTarget` event is
+         * fired with `publishedSource` parameter.
          *
          * @method _handleConnectOutTarget
          * @protected
@@ -2474,7 +2493,8 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if source is published, if yes a `connectOverTarget` event is
+         * fired with `publishedSource` parameter.
          *
          * @method _handleConnectOverTarget
          * @protected
@@ -2492,7 +2512,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires when there's drag event happening in the boundary.
          *
          * @method _onBoundaryDrag
          * @param event
@@ -2506,7 +2526,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires when a drag event ends in the boundary.
          *
          * @method _onBoundaryDragEnd
          * @param event
@@ -2520,7 +2540,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires when a drag event starts in the boundary.
          *
          * @method _onBoundaryDragStart
          * @param event
@@ -2534,7 +2554,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires when mouse enters boundary.
          *
          * @method _onBoundaryMouseEnter
          * @param event
@@ -2551,7 +2571,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires when mouse leaves boundary.
          *
          * @method _onBoundaryMouseLeave
          * @param event
@@ -2568,7 +2588,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires when the name is changed.
          *
          * @method _onNameChange
          * @param event
@@ -2586,7 +2606,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Creates a node for the controls and append it to the bounding box.
          *
          * @method _renderControls
          * @protected
@@ -2599,7 +2619,8 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Creates an instance of `A.Toolbar` in `controlsToolbar` attribute and
+         * renders it.
          *
          * @method _renderControlsToolbar
          * @param event
@@ -2616,7 +2637,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Renders the `graphic` attribute.
          *
          * @method _renderGraphic
          * @protected
@@ -2641,7 +2662,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Creates a node for the label and place it after the content box.
          *
          * @method _renderLabel
          * @protected
@@ -2659,11 +2680,12 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `transition` attribute.
          *
          * @method _setTransitions
          * @param val
          * @protected
+         * @return {Array}
          */
         _setTransitions: function(val) {
             var instance = this;
@@ -2695,7 +2717,8 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Creates a new instance of `A.DD.Delegate` in `boundaryDragDelegate`
+         * attribute.
          *
          * @method _setupBoundaryDrag
          * @protected
@@ -2747,7 +2770,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `highlighted` attribute in the UI.
          *
          * @method _uiSetHighlighted
          * @param val
@@ -2767,7 +2790,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `name` attribute in the UI.
          *
          * @method _uiSetName
          * @param val
@@ -2785,7 +2808,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `required` attribute in the UI.
          *
          * @method _uiSetRequired
          * @param val
@@ -2802,7 +2825,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `selected` attribute in the UI.
          *
          * @method _uiSetSelected
          * @param val
@@ -2819,7 +2842,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the X and Y position in the UI.
          *
          * @method _uiSetXY
          * @param val
@@ -2833,7 +2856,7 @@ var DiagramNode = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the shape boundary definitions.
          *
          * @method _valueShapeBoundary
          * @protected
@@ -2881,7 +2904,7 @@ A.DiagramNodeState = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the DiagramNodeState.
+     * configuration for the `A.DiagramNodeState`.
      *
      * @property ATTRS
      * @type Object
@@ -2890,7 +2913,7 @@ A.DiagramNodeState = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The height of the node.
          *
          * @attribute height
          * @default 40
@@ -2901,7 +2924,7 @@ A.DiagramNodeState = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The type of the node.
          *
          * @attribute type
          * @default 'state'
@@ -2912,7 +2935,7 @@ A.DiagramNodeState = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The width of the node.
          *
          * @attribute width
          * @default 40
@@ -2936,7 +2959,7 @@ A.DiagramNodeState = A.Component.create({
         hotPoints: A.DiagramNode.CIRCLE_POINTS,
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Renders the shape boundary.
          *
          * @method renderShapeBoundary
          */
@@ -2953,7 +2976,7 @@ A.DiagramNodeState = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the shape boundary definitions.
          *
          * @method _valueShapeBoundary
          * @protected
@@ -2998,7 +3021,7 @@ A.DiagramNodeCondition = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the DiagramNodeCondition.
+     * configuration for the `A.DiagramNodeCondition`.
      *
      * @property ATTRS
      * @type Object
@@ -3007,7 +3030,7 @@ A.DiagramNodeCondition = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The height of the node.
          *
          * @attribute height
          * @default 60
@@ -3018,7 +3041,7 @@ A.DiagramNodeCondition = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The type of the node.
          *
          * @attribute type
          * @default 'condition'
@@ -3029,7 +3052,7 @@ A.DiagramNodeCondition = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The width of the node.
          *
          * @attribute width
          * @default 60
@@ -3053,7 +3076,7 @@ A.DiagramNodeCondition = A.Component.create({
         hotPoints: A.DiagramNode.DIAMOND_POINTS,
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Renders the shape boundary.
          *
          * @method renderShapeBoundary
          */
@@ -3098,7 +3121,7 @@ A.DiagramNodeStart = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the DiagramNodeStart.
+     * configuration for the `A.DiagramNodeStart`.
      *
      * @property ATTRS
      * @type Object
@@ -3107,7 +3130,7 @@ A.DiagramNodeStart = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The type of the node.
          *
          * @attribute type
          * @default 'start'
@@ -3152,7 +3175,7 @@ A.DiagramNodeEnd = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the DiagramNodeEnd.
+     * configuration for the `A.DiagramNodeEnd`.
      *
      * @property ATTRS
      * @type Object
@@ -3161,7 +3184,7 @@ A.DiagramNodeEnd = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The type of the node.
          *
          * @attribute type
          * @default 'end'
@@ -3206,7 +3229,7 @@ A.DiagramNodeJoin = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the DiagramNodeJoin.
+     * configuration for the `A.DiagramNodeJoin`.
      *
      * @property ATTRS
      * @type Object
@@ -3215,7 +3238,7 @@ A.DiagramNodeJoin = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The height of the node.
          *
          * @attribute height
          * @default 60
@@ -3226,7 +3249,7 @@ A.DiagramNodeJoin = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The type of the node.
          *
          * @attribute type
          * @default 'join'
@@ -3237,7 +3260,7 @@ A.DiagramNodeJoin = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The width of the node.
          *
          * @attribute width
          * @default 60
@@ -3290,7 +3313,7 @@ A.DiagramNodeFork = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the DiagramNodeFork.
+     * configuration for the `A.DiagramNodeFork`.
      *
      * @property ATTRS
      * @type Object
@@ -3299,7 +3322,7 @@ A.DiagramNodeFork = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The height of the node.
          *
          * @attribute height
          * @default 60
@@ -3310,7 +3333,7 @@ A.DiagramNodeFork = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The type of the node.
          *
          * @attribute type
          * @default 'fork'
@@ -3321,7 +3344,7 @@ A.DiagramNodeFork = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The width of the node.
          *
          * @attribute width
          * @default 60
@@ -3353,7 +3376,7 @@ A.DiagramNodeFork = A.Component.create({
 A.DiagramBuilder.types[FORK] = A.DiagramNodeFork;
 
 /**
- * A base class for DiagramNodeTask.
+ * A base class for `A.DiagramNodeTask`.
  *
  * @class A.DiagramNodeTask
  * @extends A.DiagramNodeState
@@ -3374,7 +3397,7 @@ A.DiagramNodeTask = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the DiagramNodeTask.
+     * configuration for the `A.DiagramNodeTask`.
      *
      * @property ATTRS
      * @type Object
@@ -3383,7 +3406,7 @@ A.DiagramNodeTask = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The height of the node.
          *
          * @attribute height
          * @default 70
@@ -3394,7 +3417,7 @@ A.DiagramNodeTask = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The type of the node.
          *
          * @attribute type
          * @default 'task'
@@ -3405,7 +3428,7 @@ A.DiagramNodeTask = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The width of the node.
          *
          * @attribute width
          * @default 70
@@ -3429,7 +3452,7 @@ A.DiagramNodeTask = A.Component.create({
         hotPoints: A.DiagramNode.SQUARE_POINTS,
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Renders the shape boundary.
          *
          * @method renderShapeBoundary
          */
@@ -3446,10 +3469,11 @@ A.DiagramNodeTask = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the shape boundary definitions.
          *
          * @method _valueShapeBoundary
          * @protected
+         * @return {Object}
          */
         _valueShapeBoundary: function() {
             var instance = this;
