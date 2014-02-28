@@ -5,7 +5,6 @@ var Lang = A.Lang,
     _NAME = 'btn-search-cancel',
 
     AFTER = 'after',
-    BTN_SEARCH = 'btn-search',
     CLICK = 'click',
     CONTAINER = 'container',
     FOCUS = 'focus',
@@ -18,7 +17,7 @@ var Lang = A.Lang,
     RELATIVE = 'relative',
     REMOVE = 'remove',
     TRIGGER = 'trigger',
-    WINDOW_RESIZE = 'windowresize',
+    WINDOWRESIZE = 'windowresize',
     Z_INDEX = 'zIndex';
 
 /**
@@ -75,7 +74,7 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
 
         instance._buttons = [];
 
-        instance.bindDelegateUI();
+        instance.bindUI();
     },
 
     /**
@@ -87,16 +86,22 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
     destroy: function() {
         var instance = this;
 
-        A.Array.invoke(instance._buttons, REMOVE);
+        AArray.each(instance._buttons, function(button) {
+            // To avoid memory leak caused by ghost button references, clear
+            // its reference from the input element first
+            button.getData(_NAME).unwrap().clearData(_NAME);
+            button.remove();
+        });
+
         (new A.EventHandle(instance._eventHandles)).detach();
     },
 
     /**
-     * Delegates events on the UI. Lifecycle.
+     * Bind events on the UI. Lifecycle.
      *
-     * @method bindDelegateUI
+     * @method bindUI
      */
-    bindDelegateUI: function() {
+    bindUI: function() {
         var instance = this,
             container = instance.get(CONTAINER),
             trigger = instance.get(TRIGGER);
@@ -104,7 +109,11 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
         instance._eventHandles = [
             container.delegate(
                 [FOCUS, INPUT],
-                A.debounce(instance._onUserInteraction, 50, instance), trigger)
+                A.debounce(instance._onUserInteraction, 50, instance), trigger),
+            // YUI implementation for the windowresize synthetic event do not
+            // support Y.on('windowresize', fn, context) binding, therefore
+            // should be wrapped using Y.bind.
+            A.on(WINDOWRESIZE, A.bind(instance._onWindowResize, instance))
         ];
     },
 
@@ -120,6 +129,8 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
             button = element.getData(_NAME);
 
         if (!button) {
+            element.wrap('<span/>').ancestor().setStyle(POSITION, RELATIVE);
+
             button = A.Node.create(
                 A.Lang.sub(
                     instance.TEMPLATE, {
@@ -127,18 +138,12 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
                         zIndex: instance.get(Z_INDEX)
                     }));
 
-            element.ancestor().setStyle(POSITION, RELATIVE);
-
-            element.setData(_NAME, button);
-            button.setData(BTN_SEARCH, element);
-
             instance._buttons.push(button.hide());
 
-            button.on(CLICK, instance._onButtonClick, instance, element);
+            button.setData(_NAME, element);
+            element.setData(_NAME, button);
 
-            instance._eventHandles.push(
-                A.on(WINDOW_RESIZE, instance._onWindowResize, instance)
-            );
+            button.on(CLICK, instance._onButtonClick, instance, element);
         }
 
         return button;
@@ -181,9 +186,9 @@ var ButtonSearchCancel = A.Base.create(_NAME, A.Base, [], {
     _onWindowResize: function() {
         var instance = this;
 
-        AArray.each(instance._buttons, function(searchButtonCancel) {
-            if (!searchButtonCancel.hasClass(HIDE)) {
-                instance._syncButtonUI(searchButtonCancel.getData(BTN_SEARCH));
+        AArray.each(instance._buttons, function(button) {
+            if (!button.hasClass(HIDE)) {
+                instance._syncButtonUI(button.getData(_NAME));
             }
         });
     },
