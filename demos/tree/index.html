@@ -213,11 +213,9 @@
 
          var treeViewPaginator = new Y.TreeView({
             boundingBox: '#treepaginator',
-        }).render();
-
-        var rootTreeNodePaginator = new Y.TreeNode(
-            {
-                children: [
+            children: [
+                {
+                    children: [
                     {
                         id: 'child-one',
                         io: 'assets/pages.html',
@@ -234,12 +232,10 @@
                     { label: 'child-three' },
                     { label: 'child-four' }
                 ],
-                label: 'root-one',
-                id: 'root-one'
-            }
-        );
-
-         treeViewPaginator.appendChild(rootTreeNodePaginator);
+                id: 'root-one',
+                label: 'root-one'
+            }]
+        }).render();
     });
     </script>
 </body>
