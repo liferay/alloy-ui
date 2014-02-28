@@ -693,10 +693,10 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-rating-base": {
         "requires": [
-            "widget-htmlparser",
-            "widget-uievents",
             "aui-component",
-            "aui-node-base"
+            "aui-node-base",
+            "widget-htmlparser",
+            "widget-uievents"
         ],
         "skinnable": true
     },
