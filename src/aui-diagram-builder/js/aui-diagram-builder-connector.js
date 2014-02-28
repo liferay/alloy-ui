@@ -654,8 +654,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
         var instance = this;
 
         instance._updateShape(instance.shape, val ? instance.get(SHAPE_SELECTED) : instance.get(SHAPE), draw);
-        instance._updateShape(instance.shapeArrow, val ? instance.get(SHAPE_ARROW_SELECTED) : instance.get(
-            SHAPE_ARROW), draw);
+        instance._updateShape(instance.shapeArrow, val ? instance.get(SHAPE_ARROW_SELECTED) : instance.get(SHAPE_ARROW), draw);
     },
 
     /**
