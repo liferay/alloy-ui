@@ -375,6 +375,75 @@ YUI.add('aui-tree-tests', function(Y) {
             });
 
             test.wait(1000);
+        },
+
+        /**
+         * @tests AUI-1156
+         */
+        'Display "Load More Results" link for TreeNodes': function() {
+            var childTreeNode,
+                rootTreeNode,
+                treeView;
+
+             treeView = new Y.TreeView();
+
+            childTreeNode = [
+                {
+                    id: 'child-one',
+                    io: 'assets/pages.html',
+                    label: 'child-one',
+                    paginator: {
+                        limit: 3,
+                        offsetParam: 'start',
+                        start: 0,
+                        total: 6
+                    },
+                    type: 'io'
+                },
+                { label: 'child-two' },
+                { label: 'child-three' },
+                { label: 'child-four' }
+            ];
+
+            rootTreeNode = new Y.TreeNode(
+                {
+                    children: childTreeNode,
+                    id: 'root-one',
+                    label: 'root-one',
+                }
+            );
+
+            treeView.appendChild(rootTreeNode);
+
+            var rootTreeNodeCB = rootTreeNode.get('contentBox');
+
+            var allTreeHitareas = rootTreeNodeCB.all('.tree-container .tree-hitarea');
+            var treeHitareasArray = [];
+
+            Y.each(
+                allTreeHitareas,
+                function(hitarea) {
+                    treeHitareasArray.push(hitarea);
+                }
+            );
+
+            setTimeout(function() {
+                for (var i = treeHitareasArray.length; i--;) {
+                    treeHitareasArray[i].simulate('click');
+                }
+            });
+
+            var paginatorLink = allTreeHitareas.one('a');
+
+            Y.Assert.isTrue(
+                paginatorLink.hasClass('tree-node-paginator'),
+                'childTreeNode has a paginator link');
+
+            paginatorLink.simulate('click');
+
+            var childTreeNodes = rootTreeNodeCB.all('.tree-container .tree-container li');
+
+            Y.Assert.areSame(6, childTreeNodes.size(), 'childTreeNodes should have 6 children');
         }
     }));
 
