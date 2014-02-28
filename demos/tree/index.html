@@ -21,10 +21,12 @@
             <div class="span4">
                 <h2>TreeView file with IO</h2>
                 <div id="treeio"></div>
-            </div>
-            <div class="span4">
                 <h2>TreeViewDD file with IO</h2>
                 <div id="treeioDD"></div>
+            </div>
+            <div class="span4">
+                <h2>TreeView with Tree Paginator</h2>
+                <div id="treepaginator"></div>
             </div>
         </div>
     </div>
@@ -209,6 +211,35 @@
             type: 'file'
         }).render();
 
+         var treeViewPaginator = new Y.TreeView({
+            boundingBox: '#treepaginator',
+        }).render();
+
+        var rootTreeNodePaginator = new Y.TreeNode(
+            {
+                children: [
+                    {
+                        id: 'child-one',
+                        io: 'assets/pages.html',
+                        label: 'child-one',
+                        paginator: {
+                            limit: 3,
+                            offsetParam: 'start',
+                            start: 0,
+                            total: 6
+                        },
+                        type: 'io'
+                    },
+                    { label: 'child-two' },
+                    { label: 'child-three' },
+                    { label: 'child-four' }
+                ],
+                label: 'root-one',
+                id: 'root-one'
+            }
+        );
+
+         treeViewPaginator.appendChild(rootTreeNodePaginator);
     });
     </script>
 </body>
