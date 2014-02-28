@@ -222,6 +222,18 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
      */
     ATTRS: {
         /**
+         * Determine if the transitions will animate or not.
+         *
+         * @attribute animated
+         * @default true
+         * @type Boolean
+         * @writeOnce
+         */
+        animated: {
+            value: true
+        },
+
+        /**
          * Determine the tooltip constrain node.
          *
          * @attribute constrain
@@ -250,8 +262,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
          * @type {Number}
          */
         opacity: {
-            value: 0.8,
-            validator: Lang.isNumber
+            value: 0.8
         },
 
         /**

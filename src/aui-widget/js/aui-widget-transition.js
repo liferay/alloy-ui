@@ -15,6 +15,7 @@ var Lang = A.Lang;
  * @class A.WidgetTransition
  * @constructor
  */
+
 function WidgetTransition() {
     var instance = this;
 
@@ -30,6 +31,18 @@ function WidgetTransition() {
  * @static
  */
 WidgetTransition.ATTRS = {
+    /**
+     * Determine if the transitions will animate or not.
+     *
+     * @attribute animated
+     * @default false
+     * @type Boolean
+     * @writeOnce
+     */
+    animated: {
+        validator: Lang.isBoolean,
+        value: false
+    },
 
     /**
      * Determine the duration of the transition.
@@ -53,19 +66,6 @@ WidgetTransition.ATTRS = {
     opacity: {
         validator: Lang.isNumber,
         value: 1
-    },
-
-    /**
-     * Determine if the transitions will animate or not.
-     *
-     * @attribute animated
-     * @default false
-     * @type Boolean
-     * @writeOnce
-     */
-    animated: {
-        validator: Lang.isBoolean,
-        value: false
     },
 
     /**
