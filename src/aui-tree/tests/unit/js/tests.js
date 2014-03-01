@@ -244,6 +244,7 @@ YUI.add('module-tests', function(Y) {
         'Display \'Load More Results\' link for TreeNodes': function() {
             var childTreeNode,
                 hitAreaNodeList,
+                paginatorLink,
                 rootHitArea,
                 rootTreeNode,
                 rootTreeNodeBB,
@@ -287,8 +288,6 @@ YUI.add('module-tests', function(Y) {
 
             rootTreeNodeBB = rootTreeNode.get('boundingBox');
 
-            debugger;
-
             rootHitArea = rootTreeNodeBB.one('.tree-hitarea');
 
             rootHitArea.simulate('click');
@@ -298,7 +297,7 @@ YUI.add('module-tests', function(Y) {
             Y.Assert.areEqual(2, hitAreaNodeList.size(), 'There must be two hit-area elements');
 
             /*
-             * We can Mock the AJAX request here, but this is not we want to test. We want to test
+             * We can Mock the AJAX request here, but this is not what we want to test. We want to test
              * if paginator link will appear, so we will invoke the success handler directly here,
              * assumming that server returned correct response. Clicking on hit area was proved to work above.
              */
@@ -322,7 +321,7 @@ YUI.add('module-tests', function(Y) {
                 ]'
             });
 
-            var paginatorLink = rootTreeNodeBB.one('a');
+            paginatorLink = rootTreeNodeBB.one('a');
 
             Y.Assert.isTrue(
                 paginatorLink.hasClass('tree-node-paginator'),
