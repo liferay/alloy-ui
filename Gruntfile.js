@@ -54,7 +54,7 @@ module.exports = function(grunt) {
                 'coverage': false,
                 'lint': false,
                 'replace-yuivar': 'Y',
-                'replace-version': '<%= pkg["yui-version"] %>',
+                'replace-version': '<%= pkg["yuiversion"] %>',
             },
             aui: {
                 'src': path.join(ROOT, 'src'),

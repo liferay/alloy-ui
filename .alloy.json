@@ -28,6 +28,6 @@
             "version": "master"
         }
     },
-    "yui-version": "patched-v3.11.0",
+    "yuiversion": "patched-v3.11.0",
     "version": "2.0.0"
 }
