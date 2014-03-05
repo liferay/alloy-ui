@@ -578,6 +578,12 @@
             "aui-widget-toolbars"
         ]
     },
+    "aui-multi-letter-char-counter": {
+        "requires": [
+            "yui-base",
+            "aui-char-counter"
+        ]
+    },
     "aui-node": {
         "use": [
             "aui-node-base"

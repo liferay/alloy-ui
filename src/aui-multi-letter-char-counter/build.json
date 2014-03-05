@@ -1,0 +1,10 @@
+{
+    "name": "aui-multi-letter-char-counter",
+    "builds": {
+        "aui-multi-letter-char-counter": {
+            "jsfiles": [
+                "js/aui-multi-letter-char-counter.js"
+            ]
+        }
+    }
+}
