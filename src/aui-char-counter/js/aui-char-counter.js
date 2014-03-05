@@ -4,7 +4,8 @@
  * @module aui-char-counter
  */
 
-var L = A.Lang,
+var E = A.Env,
+    L = A.Lang,
     isNumber = L.isNumber,
 
     CHAR_COUNTER = 'char-counter',
@@ -87,6 +88,7 @@ var CharCounter = A.Component.create({
         input: {
             setter: A.one
         }
+
     },
 
     /**
@@ -99,6 +101,25 @@ var CharCounter = A.Component.create({
     EXTENDS: A.Base,
 
     prototype: {
+
+        /**
+         * Boolean value to indicate if we want to correct the character counting with multiple letters.
+         *
+         * @attribute multiLettersCorrection
+         * @default false
+         * @type {Boolean}
+         */
+        multiLettersCorrection: false,
+
+        /**
+         * Configuration array for multi letters characters to display real-world alphabetical characters instead of
+         * the computer characters.
+         *
+         * @property multiLetters
+         * @type Array
+         * @protected
+         */
+        multiLetters: null,
 
         /**
          * Event handler for the input [aui-event](../modules/aui-event.html)
@@ -115,11 +136,15 @@ var CharCounter = A.Component.create({
          * Lifecycle.
          *
          * @method initializer
+         * @param config
          * @protected
          */
-        initializer: function() {
+        initializer: function(config) {
             var instance = this;
-
+            instance.multiLetters = config.multiLetters || (E.lang[A.config.lang] && E.lang[A.config.lang].multiLetters);
+            if (config.multiLetters) {
+                instance.multiLettersCorrection = true;
+            }
             instance.bindUI();
 
             instance.checkLength();
@@ -146,6 +171,51 @@ var CharCounter = A.Component.create({
         },
 
         /**
+         *
+         * @method _getMultiLettersLength
+         * @param {String} v A string to check the length and correct with the muliple-letters.
+         * @returns {Number}
+         * @private
+         */
+        _getMultiLettersLength: function (v) {
+            var instance = this;
+            var multiLetters = instance.multiLetters;
+            var i = multiLetters && multiLetters.length;
+            var len;
+            var m;
+
+            v = v || instance.get(INPUT).val();
+            len = v.length;
+
+            while (i) {
+                i-=1;
+                if (multiLetters[i]) {
+                    m = v.match(multiLetters[i]);
+                    if (m) {
+                        len -= (i * m.length);
+                        v = v.replace(multiLetters[i], '');
+                    }
+                }
+            }
+            return len;
+        },
+
+        /**
+         * Return with the length of the input value. If the multiLettersCorrection is on (TRUE) then the real length
+         * will be corrected with the multi-letters.
+         *
+         * @method getValueLength
+         * @param {String} v A string to check the length.
+         * @protected
+         */
+        getValueLength: function (v) {
+            var instance = this;
+
+            v = v || instance.get(INPUT).val();
+            return instance.multiLettersCorrection ? instance._getMultiLettersLength(v) : v.length;
+        },
+
+        /**
          * Sync the CharCounter UI. Lifecycle.
          *
          * @method syncUI
@@ -154,12 +224,12 @@ var CharCounter = A.Component.create({
         syncUI: function() {
             var instance = this;
             var counter = instance.get(COUNTER);
+            var length;
 
             if (counter) {
-                var value = instance.get(INPUT).val();
-
+                length = instance.getValueLength();
                 counter.html(
-                    instance.get(MAX_LENGTH) - value.length
+                    instance.get(MAX_LENGTH) - length
                 );
             }
         },
@@ -199,14 +269,15 @@ var CharCounter = A.Component.create({
             var value = input.val();
             var scrollTop = input.get(SCROLL_TOP);
             var scrollLeft = input.get(SCROLL_LEFT);
+            var length = instance.getValueLength();
 
-            if (value.length > maxLength) {
+            if (length > maxLength) {
                 input.val(
                     value.substring(0, maxLength)
                 );
             }
 
-            if (value.length == maxLength) {
+            if (length == maxLength) {
                 instance.fire('maxLength');
             }
 
