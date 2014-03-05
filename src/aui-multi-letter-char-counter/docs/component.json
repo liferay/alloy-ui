@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-multi-letter-char-counter",
+    "displayName": "Gallery: aui-multi-letter-char-counter",
+    "description": "Multiletter support for the CharCounter class.",
+    "author"     : [ "tobias-istvan" ],
+    "use"        : [ "aui-multi-letter-char-counter" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}
