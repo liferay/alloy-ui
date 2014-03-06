@@ -7,19 +7,6 @@
 var Lang = A.Lang,
     Do = A.Do,
 
-    STR_ABOUT_BLANK = 'about:blank',
-    STR_BODY = 'body',
-    STR_HREF = 'href',
-    STR_IFRAME = 'iframe',
-    STR_IMAGE = 'image',
-    STR_LOADING = 'loading',
-    STR_PROVIDERS = 'providers',
-    STR_SRC = 'src',
-
-    NAME = 'mediaViewerPlugin',
-
-    DATA_OPTIONS = 'data-options',
-
     DEFAULT_OPTIONS = {
         height: 360,
         width: 640,
@@ -49,7 +36,7 @@ var MediaViewerPlugin = A.Component.create({
      * @type String
      * @static
      */
-    NAME: NAME,
+    NAME: 'mediaViewerPlugin',
 
     /**
      * Static property provides a string to identify the namespace.
@@ -160,10 +147,10 @@ var MediaViewerPlugin = A.Component.create({
 
             var mediaType = instance._getMediaType(source.attr('href'));
 
-            if (mediaType != STR_IMAGE) {
-                instance._redirectIframe(STR_ABOUT_BLANK);
+            if (mediaType != 'image') {
+                instance._redirectIframe('about:blank');
 
-                host.setStdModContent(STR_BODY, '');
+                host.setStdModContent('body', '');
             }
         },
 
@@ -182,10 +169,10 @@ var MediaViewerPlugin = A.Component.create({
 
             var result = true;
 
-            instance._redirectIframe(STR_ABOUT_BLANK);
+            instance._redirectIframe('about:blank');
 
-            if (mediaType != STR_IMAGE) {
-                var providers = instance.get(STR_PROVIDERS)[mediaType];
+            if (mediaType != 'image') {
+                var providers = instance.get('providers')[mediaType];
 
                 var source = host.getCurrentLink();
 
@@ -205,7 +192,7 @@ var MediaViewerPlugin = A.Component.create({
                     options
                 );
 
-                host.setStdModContent(STR_BODY, container);
+                host.setStdModContent('body', container);
 
                 host._syncImageViewerUI();
 
@@ -213,7 +200,7 @@ var MediaViewerPlugin = A.Component.create({
 
                 host._setAlignCenter(true);
 
-                host.set(STR_LOADING, false);
+                host.set('loading', false);
 
                 host.fire(
                     'load', {
@@ -250,11 +237,11 @@ var MediaViewerPlugin = A.Component.create({
             var result = new Do.Prevent();
 
             if (currentLink) {
-                var linkHref = currentLink.attr(STR_HREF);
+                var linkHref = currentLink.attr('href');
 
                 var mediaType = instance._getMediaType(linkHref);
 
-                if (mediaType == STR_IMAGE) {
+                if (mediaType == 'image') {
                     result = true;
                 }
             }
@@ -272,9 +259,9 @@ var MediaViewerPlugin = A.Component.create({
         _getMediaType: function(source) {
             var instance = this;
 
-            var providers = instance.get(STR_PROVIDERS);
+            var providers = instance.get('providers');
 
-            var mediaType = STR_IMAGE;
+            var mediaType = 'image';
 
             A.some(
                 providers,
@@ -299,10 +286,10 @@ var MediaViewerPlugin = A.Component.create({
             var bodyNode = instance.get('host.bodyNode');
 
             if (bodyNode) {
-                var iframe = bodyNode.one(STR_IFRAME);
+                var iframe = bodyNode.one('iframe');
 
                 if (iframe) {
-                    iframe.attr(STR_SRC, source);
+                    iframe.attr('src', source);
                 }
             }
         },
@@ -325,7 +312,7 @@ var MediaViewerPlugin = A.Component.create({
 
             var mediaType = instance._getMediaType(href);
 
-            if (mediaType != STR_IMAGE && !host.getStdModNode(STR_BODY).html()) {
+            if (mediaType != 'image' && !host.getStdModNode('body').html()) {
                 host._processChangeRequest();
             }
         },
@@ -362,8 +349,8 @@ var MediaViewerPlugin = A.Component.create({
          * @protected
          */
         _updateOptions: function(source, options) {
-            var dataOptions = source.attr(DATA_OPTIONS);
-            var linkHref = source.attr(STR_HREF);
+            var dataOptions = source.attr('data-options');
+            var linkHref = source.attr('href');
 
             A.each(
                 options,
@@ -390,7 +377,7 @@ var MediaViewerPlugin = A.Component.create({
         _handles: {}
     },
 
-    DATA_OPTIONS: DATA_OPTIONS,
+    DATA_OPTIONS: 'data-options',
 
     DEFAULT_OPTIONS: DEFAULT_OPTIONS,
 

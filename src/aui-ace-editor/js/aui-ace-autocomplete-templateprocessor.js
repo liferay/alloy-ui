@@ -10,22 +10,12 @@ var Lang = A.Lang,
     AObject = A.Object,
     Base = A.AceEditor.AutoCompleteBase,
 
-    _DOT = '.',
-    _STR_EMPTY = '',
-    DIRECTIVES = 'directives',
-    FILL_MODE = 'fillMode',
-    HOST = 'host',
-    METHOD = 'Method',
-    VARIABLES = 'variables',
-
     MATCH_DIRECTIVES = 0,
     MATCH_VARIABLES = 1,
 
     TOKEN_PUNCTUATOR_DOT = 1,
     TOKEN_UNRECOGNIZED = -1,
     TOKEN_VARIABLE = 0,
-
-    _NAME = 'aui-ace-autocomplete-templateprocessor',
 
     /**
      * A base class for TemplateProcessor.
@@ -36,7 +26,7 @@ var Lang = A.Lang,
      *     properties.
      * @constructor
      */
-    TemplateProcessor = A.Base.create(_NAME, A.Base, [
+    TemplateProcessor = A.Base.create('aui-ace-autocomplete-templateprocessor', A.Base, [
 ], {
 
         /**
@@ -63,12 +53,12 @@ var Lang = A.Lang,
             type = match.type;
 
             if (type === MATCH_DIRECTIVES) {
-                matchDirectives = instance.get(DIRECTIVES);
+                matchDirectives = instance.get('directives');
 
                 content = match.content.toLowerCase();
 
                 if (content.length) {
-                    host = instance.get(HOST);
+                    host = instance.get('host');
 
                     matchDirectives = host._filterResults(content, matchDirectives);
                 }
@@ -105,10 +95,10 @@ var Lang = A.Lang,
                 type,
                 variables;
 
-            result = selectedSuggestion || _STR_EMPTY;
+            result = selectedSuggestion || '';
 
             if (selectedSuggestion) {
-                fillMode = instance.get(HOST).get(FILL_MODE);
+                fillMode = instance.get('host').get('fillMode');
 
                 type = match.type;
 
@@ -119,7 +109,7 @@ var Lang = A.Lang,
                         }
                     }
                     else if (type === MATCH_VARIABLES) {
-                        variables = match.content.split(_DOT);
+                        variables = match.content.split('.');
 
                         lastEntry = variables[variables.length - 1];
 
@@ -129,11 +119,11 @@ var Lang = A.Lang,
                     }
                 }
                 else if (type === MATCH_VARIABLES) {
-                    variables = match.content.split(_DOT);
+                    variables = match.content.split('.');
 
                     variables[variables.length - 1] = selectedSuggestion;
 
-                    result = variables.join(_DOT);
+                    result = variables.join('.');
                 }
             }
 
@@ -210,14 +200,14 @@ var Lang = A.Lang,
 
             results = [];
 
-            data = instance.get(VARIABLES);
+            data = instance.get('variables');
 
             resultsData = {};
 
             curVariableData = data.variables;
 
             if (content) {
-                tokens = content.split(_DOT);
+                tokens = content.split('.');
 
                 lastEntry = tokens[tokens.length - 1];
 
@@ -283,7 +273,7 @@ var Lang = A.Lang,
             matches = results.sort();
 
             if (lastEntry) {
-                host = instance.get(HOST);
+                host = instance.get('host');
 
                 matches = host._filterResults(lastEntry, matches);
             }
@@ -297,7 +287,7 @@ var Lang = A.Lang,
 
                         data = resultsData[item];
 
-                        if (data.type === METHOD) {
+                        if (data.type === 'Method') {
                             args = AArray.map(
                                 data.argumentTypes,
                                 function(item, index) {
@@ -349,7 +339,7 @@ var Lang = A.Lang,
          * @type String
          * @static
          */
-        NAME: _NAME,
+        NAME: 'aui-ace-autocomplete-templateprocessor',
 
         /**
          * Static property provides a string to identify the namespace.
@@ -358,7 +348,7 @@ var Lang = A.Lang,
          * @type String
          * @static
          */
-        NS: _NAME,
+        NS: 'aui-ace-autocomplete-templateprocessor',
 
         /**
          * Static property used to define the default attribute

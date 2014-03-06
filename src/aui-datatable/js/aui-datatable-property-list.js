@@ -6,24 +6,7 @@
  */
 
 var Lang = A.Lang,
-    isFunction = Lang.isFunction,
-
-    ACTIVE_CELL_CHANGE = 'activeCellChange',
-    ACTIVE_ROW = 'activeRow',
-    AUTO = 'auto',
-    BOUNDING_BOX = 'boundingBox',
-    CELL = 'cell',
-    COLUMNS = 'columns',
-    DBLCLICK = 'dblclick',
-    ID = 'id',
-    INIT_VALUE = 'initValue',
-    NAME = 'name',
-    PROPERTY_LIST = 'property-list',
-    PROPERTY_NAME = 'propertyName',
-    ROWS = 'rows',
-    VALUE = 'value',
-
-    _DOT = '.';
+    isFunction = Lang.isFunction;
 
 /**
  * A base class for PropertyList.
@@ -48,20 +31,20 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
         var instance = this;
 
         instance.CLASS_NAMES_PROPERTY_LIST = {
-            cell: instance.getClassName(CELL)
+            cell: instance.getClassName('cell')
         };
 
         instance._initHighlight();
 
         instance.after(instance._afterRenderUI, instance, 'renderUI');
         instance.after(instance._afterUITriggerSort, instance, '_onUITriggerSort');
-        instance.on(ACTIVE_CELL_CHANGE, instance._onActiveCellChange);
+        instance.on('activeCellChange', instance._onActiveCellChange);
 
         // DataTable doesn't allow redefine the columns attribute in extended
         // classes See http://yuilibrary.com/projects/yui3/ticket/2532599
 
         if (!config.columns) {
-            this.set(COLUMNS, instance._state.get(COLUMNS, INIT_VALUE));
+            this.set('columns', instance._state.get('columns', 'initValue'));
         }
     },
 
@@ -83,8 +66,8 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
     _afterRenderUI: function() {
         var instance = this;
 
-        instance.get(BOUNDING_BOX).addClass(
-            instance.getClassName(PROPERTY_LIST)
+        instance.get('boundingBox').addClass(
+            instance.getClassName('property-list')
         );
     },
 
@@ -112,7 +95,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
 
         instance.plug(A.Plugin.DataTableHighlight, {
             highlightRange: false,
-            type: ROWS
+            type: 'rows'
         });
     },
 
@@ -131,8 +114,8 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
         if (activeCell) {
             column = instance.getColumn(activeCell);
 
-            if (column && (column.key === NAME)) {
-                event.newVal = activeCell.next(_DOT + instance.CLASS_NAMES_PROPERTY_LIST.cell);
+            if (column && (column.key === 'name')) {
+                event.newVal = activeCell.next('.' + instance.CLASS_NAMES_PROPERTY_LIST.cell);
             }
         }
     },
@@ -165,10 +148,10 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
      */
     _syncPropertyListScrollUI: function() {
         var instance = this,
-            activeRow = instance.get(ACTIVE_ROW);
+            activeRow = instance.get('activeRow');
 
         if (activeRow && instance.scrollTo) {
-            instance.scrollTo(activeRow.get(ID));
+            instance.scrollTo(activeRow.get('id'));
         }
     }
 }, {
@@ -204,8 +187,8 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
 
                 return [{
                     editor: false,
-                    key: NAME,
-                    label: instance.getString(PROPERTY_NAME),
+                    key: 'name',
+                    label: instance.getString('propertyName'),
                     sortable: true
                 }, {
                     editor: instance.getDefaultEditor(),
@@ -225,10 +208,10 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
 
                         return data.value;
                     },
-                    key: VALUE,
-                    label: instance.getString(VALUE),
+                    key: 'value',
+                    label: instance.getString('value'),
                     sortable: true,
-                    width: AUTO
+                    width: 'auto'
                 }];
             }
         },
@@ -252,7 +235,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
          * @type String
          */
         editEvent: {
-            value: DBLCLICK
+            value: 'dblclick'
         },
 
         /**

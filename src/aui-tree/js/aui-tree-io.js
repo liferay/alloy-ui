@@ -9,19 +9,9 @@ var Lang = A.Lang,
     isFunction = Lang.isFunction,
     isString = Lang.isString,
 
-    EVENT_IO_REQUEST_SUCCESS = 'ioRequestSuccess',
-
-    CONTENT_BOX = 'contentBox',
-    IO = 'io',
-    OWNER_TREE = 'ownerTree',
-    LOADED = 'loaded',
-    LOADING = 'loading',
-    NODE = 'node',
-    TREE = 'tree',
-
     getCN = A.getClassName,
 
-    CSS_TREE_NODE_IO_LOADING = getCN(TREE, NODE, IO, LOADING);
+    CSS_TREE_NODE_IO_LOADING = getCN('tree', 'node', 'io', 'loading');
 
 /**
  * A base class for TreeViewIO.
@@ -36,7 +26,7 @@ function TreeViewIO(config) {
     var instance = this;
 
     instance.publish(
-        EVENT_IO_REQUEST_SUCCESS, {
+        'ioRequestSuccess', {
             defaultFn: instance._onIOSuccessDefault
         }
     );
@@ -93,7 +83,7 @@ TreeViewIO.prototype = {
     initIO: function() {
         var instance = this;
 
-        var io = instance.get(IO);
+        var io = instance.get('io');
 
         if (isFunction(io.cfg.data)) {
             io.cfg.data = io.cfg.data.call(instance, instance);
@@ -120,9 +110,9 @@ TreeViewIO.prototype = {
     ioStartHandler: function() {
         var instance = this;
 
-        var contentBox = instance.get(CONTENT_BOX);
+        var contentBox = instance.get('contentBox');
 
-        instance.set(LOADING, true);
+        instance.set('loading', true);
 
         contentBox.addClass(CSS_TREE_NODE_IO_LOADING);
     },
@@ -135,10 +125,10 @@ TreeViewIO.prototype = {
     ioCompleteHandler: function() {
         var instance = this;
 
-        var contentBox = instance.get(CONTENT_BOX);
+        var contentBox = instance.get('contentBox');
 
-        instance.set(LOADING, false);
-        instance.set(LOADED, true);
+        instance.set('loading', false);
+        instance.set('loaded', true);
 
         contentBox.removeClass(CSS_TREE_NODE_IO_LOADING);
     },
@@ -151,7 +141,7 @@ TreeViewIO.prototype = {
     ioSuccessHandler: function() {
         var instance = this;
 
-        var io = instance.get(IO);
+        var io = instance.get('io');
 
         var args = Array.prototype.slice.call(arguments);
         var length = args.length;
@@ -177,7 +167,7 @@ TreeViewIO.prototype = {
 
         instance.createNodes(nodes);
 
-        instance.fire(EVENT_IO_REQUEST_SUCCESS, nodes);
+        instance.fire('ioRequestSuccess', nodes);
     },
 
     /**
@@ -190,8 +180,8 @@ TreeViewIO.prototype = {
 
         instance.fire('ioRequestFailure');
 
-        instance.set(LOADING, false);
-        instance.set(LOADED, false);
+        instance.set('loading', false);
+        instance.set('loaded', false);
     },
 
     /**
@@ -204,7 +194,7 @@ TreeViewIO.prototype = {
     _onIOSuccessDefault: function(event) {
         var instance = this;
 
-        var ownerTree = instance.get(OWNER_TREE);
+        var ownerTree = instance.get('ownerTree');
 
         if (ownerTree && ownerTree.ddDelegate) {
             ownerTree.ddDelegate.syncTargets();

@@ -10,44 +10,11 @@ var Lang = A.Lang,
     Do = A.Do,
     ADOM = A.DOM,
 
-    EXEC = 'exec',
-    FILL_MODE = 'fillMode',
-    HOST = 'host',
-    INSERT_TEXT = 'insertText',
-    PROCESSOR = 'processor',
-
     FILL_MODE_INSERT = 1,
     FILL_MODE_OVERWRITE = 0,
 
     STATUS_ERROR = -1,
     STATUS_SUCCESS = 0,
-
-    _NAME = 'ace-autocomplete-base',
-
-    ADD_SUGGESTION = 'addSuggestion',
-    CHANGE = 'change',
-    CHANGE_CURSOR = 'changeCursor',
-    CURSOR_CHANGE = 'cursorChange',
-    CURSOR_OUT = 'cursorOut',
-    DESTROY = 'destroy',
-    FILTERS = 'filters',
-    GOLINEDOWN = 'golinedown',
-    GOLINEUP = 'golineup',
-    GOTOEND = 'gotoend',
-    GOTOLINEEND = 'gotolineend',
-    GOTOLINESTART = 'gotolinestart',
-    GOTOPAGEDOWN = 'gotopagedown',
-    GOTOPAGEUP = 'gotopageup',
-    GOTOSTART = 'gotostart',
-    MATCH = 'match',
-    ON_TEXT_INPUT = 'onTextInput',
-    REMOVE_TEXT = 'removeText',
-    RENDER_UI = 'renderUI',
-    RESULTS = 'results',
-    RESULTS_ERROR = 'resultsError',
-    SHOW_AUTO_COMPLETE = 'showAutoComplete',
-    SHOW_LIST_KEY = 'showListKey',
-    SORTERS = 'sorters',
 
     Base = function() {};
 
@@ -74,12 +41,12 @@ Base.prototype = {
 
         instance._editorCommands = [];
 
-        A.after(instance._bindUIACBase, instance, RENDER_UI);
+        A.after(instance._bindUIACBase, instance, 'renderUI');
 
-        processor = instance.get(PROCESSOR);
+        processor = instance.get('processor');
 
-        if (processor && !processor.get(HOST)) {
-            processor.set(HOST, instance);
+        if (processor && !processor.get('host')) {
+            processor.set('host', instance);
         }
 
         instance._onResultsErrorFn = A.bind('_onResultsError', instance);
@@ -111,9 +78,9 @@ Base.prototype = {
 
         editor = instance._getEditor();
 
-        data = instance.get(PROCESSOR).getSuggestion(instance._matchParams.match, content);
+        data = instance.get('processor').getSuggestion(instance._matchParams.match, content);
 
-        if (instance.get(FILL_MODE) === Base.FILL_MODE_OVERWRITE) {
+        if (instance.get('fillMode') === Base.FILL_MODE_OVERWRITE) {
             matchParams = instance._matchParams;
 
             startRow = matchParams.row;
@@ -136,7 +103,7 @@ Base.prototype = {
 
         instance._lockEditor = false;
 
-        instance.fire(ADD_SUGGESTION, data);
+        instance.fire('addSuggestion', data);
 
         return new Do.Halt(null);
     },
@@ -152,7 +119,7 @@ Base.prototype = {
             editor;
 
         instance.publish(
-            CURSOR_CHANGE, {
+            'cursorChange', {
                 defaultFn: instance._defaultCursorChangeFn
             }
         );
@@ -161,12 +128,12 @@ Base.prototype = {
 
         instance._onChangeFn = A.bind('_onEditorChange', instance);
 
-        editor.on(CHANGE, instance._onChangeFn);
+        editor.on('change', instance._onChangeFn);
 
         editor.commands.addCommand({
-            name: SHOW_AUTO_COMPLETE,
+            name: 'showAutoComplete',
             bindKey: A.merge(
-                instance.get(SHOW_LIST_KEY), {
+                instance.get('showListKey'), {
                     sender: 'editor|cli'
                 }
             ),
@@ -179,9 +146,9 @@ Base.prototype = {
 
         instance._onEditorChangeCursorFn = A.bind('_onEditorChangeCursor', instance);
 
-        editor.getSelection().on(CHANGE_CURSOR, instance._onEditorChangeCursorFn);
+        editor.getSelection().on('changeCursor', instance._onEditorChangeCursorFn);
 
-        instance.on(DESTROY, instance._destroyUIACBase, instance);
+        instance.on('destroy', instance._destroyUIACBase, instance);
     },
 
     /**
@@ -210,7 +177,7 @@ Base.prototype = {
         matchParams = instance._matchParams;
 
         if (row !== matchParams.row || column < matchParams.match.start) {
-            instance.fire(CURSOR_OUT);
+            instance.fire('cursorOut');
         }
     },
 
@@ -226,11 +193,11 @@ Base.prototype = {
 
         editor = instance._getEditor();
 
-        editor.commands.removeCommand(SHOW_AUTO_COMPLETE);
+        editor.commands.removeCommand('showAutoComplete');
 
-        editor.removeListener(CHANGE, instance._onChangeFn);
+        editor.removeListener('change', instance._onChangeFn);
 
-        editor.getSelection().removeListener(CHANGE_CURSOR, instance._onEditorChangeCursorFn);
+        editor.getSelection().removeListener('changeCursor', instance._onEditorChangeCursorFn);
 
         instance._removeAutoCompleteCommands();
     },
@@ -245,7 +212,7 @@ Base.prototype = {
     _getEditor: function() {
         var instance = this;
 
-        return instance.get(HOST).getEditor();
+        return instance.get('host').getEditor();
     },
 
     /**
@@ -265,7 +232,7 @@ Base.prototype = {
             length,
             sorters;
 
-        filters = instance.get(FILTERS);
+        filters = instance.get('filters');
 
         for (i = 0, length = filters.length; i < length; ++i) {
             results = filters[i].call(instance, content, results.concat());
@@ -275,7 +242,7 @@ Base.prototype = {
             }
         }
 
-        sorters = instance.get(SORTERS);
+        sorters = instance.get('sorters');
 
         for (i = 0, length = sorters.length; i < length; ++i) {
             results = sorters[i].call(instance, content, results.concat());
@@ -330,14 +297,14 @@ Base.prototype = {
 
         dataAction = data.action;
 
-        if (!instance._lockEditor && (dataAction === INSERT_TEXT || dataAction === REMOVE_TEXT)) {
+        if (!instance._lockEditor && (dataAction === 'insertText' || dataAction === 'removeText')) {
             dataRange = data.range;
 
             column = dataRange.start.column;
             endRow = dataRange.end.row;
             startRow = dataRange.start.row;
 
-            if (dataAction === INSERT_TEXT && startRow === endRow) {
+            if (dataAction === 'insertText' && startRow === endRow) {
                 instance._processAutoComplete(startRow, column + 1);
             }
 
@@ -363,7 +330,7 @@ Base.prototype = {
     _onEditorChangeCursor: function(event) {
         var instance = this;
 
-        instance.fire(CURSOR_CHANGE, instance._getEditor().getCursorPosition());
+        instance.fire('cursorChange', instance._getEditor().getCursorPosition());
     },
 
     /**
@@ -376,7 +343,7 @@ Base.prototype = {
     _onResultsError: function(error) {
         var instance = this;
 
-        instance.fire(RESULTS_ERROR, error);
+        instance.fire('resultsError', error);
     },
 
     /**
@@ -389,7 +356,7 @@ Base.prototype = {
     _onResultsSuccess: function(results) {
         var instance = this;
 
-        instance.set(RESULTS, results);
+        instance.set('results', results);
     },
 
     /**
@@ -417,15 +384,15 @@ Base.prototype = {
         commands = editor.commands.commands;
 
         instance._editorCommands.push(
-            Do.before(instance._handleEnter, editor, ON_TEXT_INPUT, instance),
-            Do.before(instance._handleKey, commands[GOLINEDOWN], EXEC, instance, 40),
-            Do.before(instance._handleKey, commands[GOLINEUP], EXEC, instance, 38),
-            Do.before(instance._handleKey, commands[GOTOEND], EXEC, instance, 35),
-            Do.before(instance._handleKey, commands[GOTOLINEEND], EXEC, instance, 35),
-            Do.before(instance._handleKey, commands[GOTOLINESTART], EXEC, instance, 36),
-            Do.before(instance._handleKey, commands[GOTOPAGEDOWN], EXEC, instance, 34),
-            Do.before(instance._handleKey, commands[GOTOPAGEUP], EXEC, instance, 33),
-            Do.before(instance._handleKey, commands[GOTOSTART], EXEC, instance, 36)
+            Do.before(instance._handleEnter, editor, 'onTextInput', instance),
+            Do.before(instance._handleKey, commands['golinedown'], 'exec', instance, 40),
+            Do.before(instance._handleKey, commands['golineup'], 'exec', instance, 38),
+            Do.before(instance._handleKey, commands['gotoend'], 'exec', instance, 35),
+            Do.before(instance._handleKey, commands['gotolineend'], 'exec', instance, 35),
+            Do.before(instance._handleKey, commands['gotolinestart'], 'exec', instance, 36),
+            Do.before(instance._handleKey, commands['gotopagedown'], 'exec', instance, 34),
+            Do.before(instance._handleKey, commands['gotopageup'], 'exec', instance, 33),
+            Do.before(instance._handleKey, commands['gotostart'], 'exec', instance, 36)
         );
     },
 
@@ -500,7 +467,7 @@ Base.prototype = {
 
         line = line.substring(0, column);
 
-        processor = instance.get(PROCESSOR);
+        processor = instance.get('processor');
 
         match = processor.getMatch(line);
 
@@ -520,7 +487,7 @@ Base.prototype = {
         }
 
         instance.fire(
-            MATCH, {
+            'match', {
                 column: column,
                 coords: coords,
                 line: line,
@@ -631,7 +598,7 @@ Base.FILL_MODE_OVERWRITE = FILL_MODE_OVERWRITE;
  * @type String
  * @static
  */
-Base.NAME = _NAME;
+Base.NAME = 'ace-autocomplete-base';
 
 /**
  * Static property which provides a string to identify the namespace.
@@ -640,7 +607,7 @@ Base.NAME = _NAME;
  * @type String
  * @static
  */
-Base.NS = _NAME;
+Base.NS = 'ace-autocomplete-base';
 
 /**
  * Static property used to define the default attribute

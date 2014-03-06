@@ -7,9 +7,7 @@
 
 var Lang = A.Lang,
     AArray = A.Array,
-    AObject = A.Object,
-
-    _UNDERLINE = '_';
+    AObject = A.Object;
 
 /**
  * A base class for HashMap.
@@ -323,7 +321,7 @@ var HashMap = A.Base.create('map', A.Base, [], {
             value === Number.POSITIVE_INFINITY ||
             value === Number.NEGATIVE_INFINITY) {
 
-            value = instance.NUMBER + _UNDERLINE + value;
+            value = instance.NUMBER + '_' + value;
         }
 
         return String(value);
@@ -346,7 +344,7 @@ var HashMap = A.Base.create('map', A.Base, [], {
         // When object hash code is missing, falls back to O(N) implementation
         valueIndex = AArray.indexOf(instance._objects, value);
 
-        return instance.OBJECT + _UNDERLINE +
+        return instance.OBJECT + '_' +
             ((valueIndex > -1) ? valueIndex :
             instance._objects.push(value) - 1);
     },

@@ -3,9 +3,7 @@ var Lang = A.Lang,
 
     defaults = A.namespace('config.viewport'),
 
-    NAME = 'view',
-
-    CSS_PREFIX = getClassName(NAME) + A.config.classNameDelimiter,
+    CSS_PREFIX = getClassName('view') + A.config.classNameDelimiter,
 
     DEFAULTS_COLUMNS = defaults.columns || (defaults.columns = {
         12: 960,
@@ -20,18 +18,12 @@ var Lang = A.Lang,
 
     WIN = A.getWin(),
 
-    REGEX_CLASSNAMES = new RegExp('(\\s|\\b)+' + CSS_PREFIX + '(lt|gt)*\\d+(\\b|\\s)+', 'g'),
-
-    STR_BLANK = ' ',
-    STR_EMPTY = '',
-
-    STR_GT = 'gt',
-    STR_LT = 'lt';
+    REGEX_CLASSNAMES = new RegExp('(\\s|\\b)+' + CSS_PREFIX + '(lt|gt)*\\d+(\\b|\\s)+', 'g');
 
 var viewportChange = function(event) {
     var buffer = [];
 
-    var oldClassNames = DOC_EL.className.replace(REGEX_CLASSNAMES, STR_EMPTY);
+    var oldClassNames = DOC_EL.className.replace(REGEX_CLASSNAMES, '');
     var classNames = oldClassNames;
     var viewportWidth = DOC_EL.clientWidth;
 
@@ -44,12 +36,12 @@ var viewportChange = function(event) {
         col = DEFAULTS_COLUMNS[i];
 
         if (viewportWidth >= col) {
-            gtLt = STR_GT;
+            gtLt = 'gt';
 
             viewportMaxColumns = Math.max(viewportMaxColumns, col);
         }
         else {
-            gtLt = STR_LT;
+            gtLt = 'lt';
         }
 
         buffer.push(CSS_PREFIX + gtLt + col);
@@ -57,7 +49,7 @@ var viewportChange = function(event) {
 
     buffer.push(CSS_PREFIX + viewportMaxColumns);
 
-    classNames += STR_BLANK + buffer.join(STR_BLANK);
+    classNames += ' ' + buffer.join(' ');
 
     if (oldClassNames != classNames) {
         DOC_EL.className = classNames;

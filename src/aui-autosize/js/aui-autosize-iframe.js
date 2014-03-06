@@ -7,17 +7,9 @@
 var Lang = A.Lang,
     isString = Lang.isString,
 
-    AUTOSIZE_IFRAME = 'autosizeiframe',
-
     getClassName = A.getClassName,
 
-    HEIGHT = 'height',
-    HIDDEN = 'hidden',
-    NO = 'no',
-    SCROLLING = 'scrolling',
-    WIDTH = 'width',
-
-    CSS_AUTOSIZE_IFRAME_MONITORED_HEIGHT = getClassName(AUTOSIZE_IFRAME, 'monitored', HEIGHT);
+    CSS_AUTOSIZE_IFRAME_MONITORED_HEIGHT = getClassName('autosizeiframe', 'monitored', 'height');
 
 /**
  * A base class for `A.AutosizeIframe`.
@@ -37,7 +29,7 @@ AutosizeIframe = A.Component.create({
      * @type {String}
      * @static
      */
-    NAME: AUTOSIZE_IFRAME,
+    NAME: 'autosizeiframe',
 
     /**
      * Static property provides a string to identify the namespace.
@@ -46,7 +38,7 @@ AutosizeIframe = A.Component.create({
      * @type {String}
      * @static
      */
-    NS: AUTOSIZE_IFRAME,
+    NS: 'autosizeiframe',
 
     /**
      * Static property used to define which component it extends.
@@ -319,7 +311,7 @@ AutosizeIframe = A.Component.create({
             if (instance._iframeHeight != value) {
                 instance._iframeHeight = value;
 
-                instance.node.setStyle(HEIGHT, value);
+                instance.node.setStyle('height', value);
             }
         },
 
@@ -363,7 +355,7 @@ AutosizeIframe = A.Component.create({
         _uiSetWidth: function(value) {
             var instance = this;
 
-            instance.node.setStyle(WIDTH, value);
+            instance.node.setStyle('width', value);
         },
 
         _iframeHeight: 0
@@ -417,7 +409,7 @@ A.mix(AutosizeIframe, {
             var iframeBody = iframeDoc.body;
 
             if (docEl) {
-                docEl.style.overflowY = HIDDEN;
+                docEl.style.overflowY = 'hidden';
             }
 
             var docOffsetHeight = (iframeBody && iframeBody.offsetHeight) || 0;

@@ -1,6 +1,4 @@
-var Lang = A.Lang,
-
-    TIME = 'time';
+var Lang = A.Lang;
 
 function TimePickerNativeBase() {}
 
@@ -12,7 +10,7 @@ TimePickerNativeBase.ATTRS = {
 
     nativeType: {
         validator: Lang.isString,
-        value: TIME
+        value: 'time'
     }
 };
 

@@ -5,8 +5,7 @@
  * @submodule aui-search-ternary-search-node
  */
 
-var Lang = A.Lang,
-    NAME = 'TernarySearchNode';
+var Lang = A.Lang;
 
 /**
  * A base class for TernarySearchNode.
@@ -26,7 +25,7 @@ var TernarySearchNode = A.Component.create({
      * @type String
      * @static
      */
-    NAME: NAME,
+    NAME: 'TernarySearchNode',
 
     /**
      * Static property provides a string to identify the namespace.

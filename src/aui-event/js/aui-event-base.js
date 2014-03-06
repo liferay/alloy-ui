@@ -8,21 +8,7 @@
 var Lang = A.Lang,
     AArray = A.Array,
     DOMEventFacade = A.DOMEventFacade,
-    DOMEventFacadeProto = DOMEventFacade.prototype,
-
-    BACKSPACE = 'BACKSPACE',
-    CAPS_LOCK = 'CAPS_LOCK',
-    DOWN = 'DOWN',
-    ENTER = 'ENTER',
-    ESC = 'ESC',
-    INSERT = 'INSERT',
-    PAGE_UP = 'PAGE_UP',
-    PRINT_SCREEN = 'PRINT_SCREEN',
-    SHIFT = 'SHIFT',
-    TAB = 'TAB',
-    WIN_IME = 'WIN_IME',
-
-    STR_EMPTY = '';
+    DOMEventFacadeProto = DOMEventFacade.prototype;
 
 var KeyMap = {
     BACKSPACE: 8,
@@ -207,7 +193,7 @@ var KeyMap = {
     isNavKey: function(keyCode) {
         var instance = this;
 
-        return instance.isKeyInRange(keyCode, PAGE_UP, DOWN) || instance.isKeyInSet(keyCode, ENTER, TAB, ESC);
+        return instance.isKeyInRange(keyCode, 'PAGE_UP', 'DOWN') || instance.isKeyInSet(keyCode, 'ENTER', 'TAB', 'ESC');
     },
 
     isSpecialKey: function(keyCode, eventType) {
@@ -217,8 +203,8 @@ var KeyMap = {
 
         return isCtrlPress ||
             instance.isNavKey(keyCode) ||
-            instance.isKeyInRange(keyCode, SHIFT, CAPS_LOCK) ||
-            instance.isKeyInSet(keyCode, BACKSPACE, PRINT_SCREEN, INSERT, WIN_IME);
+            instance.isKeyInRange(keyCode, 'SHIFT', 'CAPS_LOCK') ||
+            instance.isKeyInSet(keyCode, 'BACKSPACE', 'PRINT_SCREEN', 'INSERT', 'WIN_IME');
     },
 
     isModifyingKey: function(keyCode) {

@@ -11,15 +11,7 @@ YUI.add('aui-toggler-delegate-tests', function(Y) {
         defaultMarkup = togglerContainer.getHTML(),
 
         _SELECTOR_CSS_CONTENT = '.content',
-        _SELECTOR_CSS_HEADER = '.header',
-
-        CLICK = 'click',
-        CONTENT = 'content',
-        HEADER_EVENT_HANDLER = 'headerEventHandler',
-        KEYDOWN = 'keydown',
-        LEVEL = 'level',
-        ON_ANIMATING_CHANGE = '_onAnimatingChange',
-        TOGGLER = 'toggler';
+        _SELECTOR_CSS_HEADER = '.header';
 
     //--------------------------------------------------------------------------
     // Test Case for TogglerDelegate.destructor
@@ -80,20 +72,20 @@ YUI.add('aui-toggler-delegate-tests', function(Y) {
 
             Y.Mock.expect(
                 mock, {
-                    method: HEADER_EVENT_HANDLER,
+                    method: 'headerEventHandler',
                     callCount: 0
                 }
             );
 
             // Workaround for https://github.com/yui/yui3/issues/1421
-            var mockWrapper = instance._wrapMockFn(mock[HEADER_EVENT_HANDLER], mockErrors);
+            var mockWrapper = instance._wrapMockFn(mock['headerEventHandler'], mockErrors);
 
-            var headerHandler = Y.Do.before(mockWrapper, togglerDelegate, HEADER_EVENT_HANDLER);
+            var headerHandler = Y.Do.before(mockWrapper, togglerDelegate, 'headerEventHandler');
 
             togglerDelegate.destroy();
 
-            Y.one(_SELECTOR_CSS_HEADER).simulate(CLICK);
-            Y.one(_SELECTOR_CSS_HEADER).simulate(KEYDOWN);
+            Y.one(_SELECTOR_CSS_HEADER).simulate('click');
+            Y.one(_SELECTOR_CSS_HEADER).simulate('keydown');
 
             Y.Mock.verify(mock);
 
@@ -115,15 +107,15 @@ YUI.add('aui-toggler-delegate-tests', function(Y) {
 
             Y.Mock.expect(
                 mock, {
-                    method: ON_ANIMATING_CHANGE,
+                    method: '_onAnimatingChange',
                     callCount: 0
                 }
             );
 
             // Workaround for https://github.com/yui/yui3/issues/1421
-            var mockWrapper = instance._wrapMockFn(mock[ON_ANIMATING_CHANGE], mockErrors);
+            var mockWrapper = instance._wrapMockFn(mock['_onAnimatingChange'], mockErrors);
 
-            var animationChange = Y.Do.before(mockWrapper, togglerDelegate, ON_ANIMATING_CHANGE);
+            var animationChange = Y.Do.before(mockWrapper, togglerDelegate, '_onAnimatingChange');
 
             // Force the creation of the togglers
             togglerDelegate.createAll();
@@ -183,7 +175,7 @@ YUI.add('aui-toggler-delegate-tests', function(Y) {
 
             Y.all(_SELECTOR_CSS_HEADER).each(function(item) {
                 if (item !== node) {
-                    var itemContent = item.getData(TOGGLER).get(CONTENT);
+                    var itemContent = item.getData('toggler').get('content');
 
                     if (itemContent.contains(node)) {
                         instance._assertHeaderExpanded(item);
@@ -202,9 +194,9 @@ YUI.add('aui-toggler-delegate-tests', function(Y) {
                 header = Y.one(_SELECTOR_CSS_HEADER);
             }
             else {
-                var content = parent.getData(TOGGLER).get(CONTENT);
+                var content = parent.getData('toggler').get('content');
 
-                header = content.one('[data-level="' + parent.getData(LEVEL) + '_' + child + '"]');
+                header = content.one('[data-level="' + parent.getData('level') + '_' + child + '"]');
             }
 
             return header;
@@ -249,27 +241,27 @@ YUI.add('aui-toggler-delegate-tests', function(Y) {
 
             // Expand root node (header_0)
             headerNode = instance._getHeader();
-            headerNode.simulate(CLICK);
+            headerNode.simulate('click');
             instance._assertHeaderExpandedPath(headerNode);
 
             // Expand first nested child (header_0_0)
             nestedNode = instance._getHeader(headerNode, 0);
-            nestedNode.simulate(CLICK);
+            nestedNode.simulate('click');
             instance._assertHeaderExpandedPath(nestedNode);
 
             // Expand second nested child (header_0_1)
             nestedNode = instance._getHeader(headerNode, 1);
-            nestedNode.simulate(CLICK);
+            nestedNode.simulate('click');
             instance._assertHeaderExpandedPath(nestedNode);
 
             // Expand third child inside the second nested child (header_0_1_2)
             deeplyNestedNode = instance._getHeader(nestedNode, 2);
-            deeplyNestedNode.simulate(CLICK);
+            deeplyNestedNode.simulate('click');
             instance._assertHeaderExpandedPath(deeplyNestedNode);
 
             // Expand first child inside the second nested child (header_0_1_0)
             deeplyNestedNode = instance._getHeader(nestedNode, 0);
-            deeplyNestedNode.simulate(CLICK);
+            deeplyNestedNode.simulate('click');
             instance._assertHeaderExpandedPath(deeplyNestedNode);
         }
 

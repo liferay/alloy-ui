@@ -8,30 +8,6 @@ var Lang = A.Lang,
 
     UI_SRC = A.Widget.UI_SRC,
 
-    _NAME = 'palette',
-    _DOT = '.',
-    _EMPTY = '',
-    _SPACE = ' ',
-
-    BOUNDING_BOX = 'boundingBox',
-    CLICK = 'click',
-    COLUMNS = 'columns',
-    CONTAINER_NODE = 'containerNode',
-    CONTENT_BOX = 'contentBox',
-    ENTER = 'enter',
-    FORMATTER = 'formatter',
-    HOVER = 'hover',
-    ITEMS = 'items',
-    ITEMS_CHANGE = 'itemsChange',
-    LEAVE = 'leave',
-    RENDER_UI = 'renderUI',
-    SELECT = 'select',
-    SELECTED = 'selected',
-    SELECTED_CHANGE = 'selectedChange',
-    TOGGLE_SELECTION = 'toggleSelection',
-    UNSELECT = 'unselect',
-    WIDTH = 'width',
-
     getClassName = A.getClassName,
 
     CSS_PALETTE_CONTAINER = getClassName('palette-container'),
@@ -51,10 +27,10 @@ var Lang = A.Lang,
      *     properties.
      * @constructor
      */
-    Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
+    Palette = A.Base.create('palette', A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
         CONTAINER_TEMPLATE: '<table class="' + CSS_PALETTE_CONTAINER + '">{content}</table>',
 
-        ITEMS_CONTAINER_TEMPLATE: '<tr class="' + CSS_PALETTE_ITEMS_CONTAINER + _SPACE + CSS_PALETTE_ITEMS_CONTAINER_INDEX + '">{content}</tr>',
+        ITEMS_CONTAINER_TEMPLATE: '<tr class="' + CSS_PALETTE_ITEMS_CONTAINER + ' ' + CSS_PALETTE_ITEMS_CONTAINER_INDEX + '">{content}</tr>',
 
         ITEM_TEMPLATE: '<td class="' + CSS_PALETTE_ITEM + ' {selectedClassName}" data-column={column} data-index={index} data-row={row} data-value="{value}">' + '<a href="" class="' + CSS_PALETTE_ITEM_INNER + '" onclick="return false;"></a>' + '</td>',
 
@@ -69,10 +45,10 @@ var Lang = A.Lang,
         initializer: function() {
             var instance = this;
 
-            instance.after(ITEMS_CHANGE, instance._afterItemsChange, instance);
-            instance.after(SELECTED_CHANGE, instance._afterSelectedChange, instance);
+            instance.after('itemsChange', instance._afterItemsChange, instance);
+            instance.after('selectedChange', instance._afterSelectedChange, instance);
 
-            A.after(instance._bindUIPalette, instance, RENDER_UI);
+            A.after(instance._bindUIPalette, instance, 'renderUI');
 
             instance.publish({
                 enter: {
@@ -99,7 +75,7 @@ var Lang = A.Lang,
         renderUI: function() {
             var instance = this;
 
-            instance._uiSetItems(instance.get(ITEMS));
+            instance._uiSetItems(instance.get('items'));
         },
 
         /**
@@ -114,7 +90,7 @@ var Lang = A.Lang,
             var instance = this;
 
             return instance.getItemByIndex(
-                row * instance.get(COLUMNS) + col);
+                row * instance.get('columns') + col);
         },
 
         /**
@@ -148,7 +124,7 @@ var Lang = A.Lang,
                 value = value.value;
             }
 
-            items = instance.get(ITEMS);
+            items = instance.get('items');
 
             A.Array.some(
                 items,
@@ -250,10 +226,10 @@ var Lang = A.Lang,
          */
         _bindUIPalette: function() {
             var instance = this,
-                boundingBox = instance.get(BOUNDING_BOX);
+                boundingBox = instance.get('boundingBox');
 
-            boundingBox.delegate(CLICK, instance._onItemClick, _DOT + CSS_PALETTE_ITEM, instance);
-            boundingBox.delegate(HOVER, instance._onItemMouseEnter, instance._onItemMouseLeave, _DOT +
+            boundingBox.delegate('click', instance._onItemClick, '.' + CSS_PALETTE_ITEM, instance);
+            boundingBox.delegate('hover', instance._onItemMouseEnter, instance._onItemMouseLeave, '.' +
                 CSS_PALETTE_ITEM, instance);
         },
 
@@ -293,7 +269,7 @@ var Lang = A.Lang,
             var instance = this;
 
             if (event.src === UI_SRC) {
-                instance.set(SELECTED, event.index);
+                instance.set('selected', event.index);
             }
         },
 
@@ -309,7 +285,7 @@ var Lang = A.Lang,
             var instance = this;
 
             if (event.src === UI_SRC) {
-                instance.set(SELECTED, -1);
+                instance.set('selected', -1);
             }
         },
 
@@ -326,18 +302,18 @@ var Lang = A.Lang,
          */
         _getContent: function(items, columns) {
             var instance = this,
-                formatter = instance.get(FORMATTER),
-                selected = instance.get(SELECTED),
+                formatter = instance.get('formatter'),
+                selected = instance.get('selected'),
                 column,
                 content,
                 index = 0,
-                result = _EMPTY,
+                result = '',
                 total = items.length,
                 row,
                 rows = Math.ceil(total / columns);
 
             for (row = 0; row < rows; row++) {
-                content = _EMPTY;
+                content = '';
 
                 for (column = 0; column < columns; column++) {
                     index = (row * columns + column);
@@ -371,7 +347,7 @@ var Lang = A.Lang,
          */
         _getEventsPayload: function(event) {
             var instance = this,
-                items = instance.get(ITEMS),
+                items = instance.get('items'),
                 index,
                 itemNode = event.currentTarget;
 
@@ -398,7 +374,7 @@ var Lang = A.Lang,
             var instance = this;
 
             if (!instance._items) {
-                instance._items = instance.get(CONTENT_BOX).all(_DOT + CSS_PALETTE_ITEM);
+                instance._items = instance.get('contentBox').all('.' + CSS_PALETTE_ITEM);
             }
 
             return instance._items;
@@ -457,17 +433,17 @@ var Lang = A.Lang,
          */
         _onItemClick: function(event) {
             var instance = this,
-                selected = instance.get(SELECTED),
-                toggleSelection = instance.get(TOGGLE_SELECTION),
+                selected = instance.get('selected'),
+                toggleSelection = instance.get('toggleSelection'),
                 eventName,
                 itemNode = event.currentTarget,
                 index = Lang.toInt(itemNode.getAttribute('data-index'));
 
             if (index !== selected) {
-                eventName = SELECT;
+                eventName = 'select';
             }
             else if (toggleSelection) {
-                eventName = UNSELECT;
+                eventName = 'unselect';
             }
 
             if (eventName) {
@@ -485,7 +461,7 @@ var Lang = A.Lang,
         _onItemMouseEnter: function(event) {
             var instance = this;
 
-            instance.fire(ENTER, instance._getEventsPayload(event));
+            instance.fire('enter', instance._getEventsPayload(event));
         },
 
         /**
@@ -498,7 +474,7 @@ var Lang = A.Lang,
         _onItemMouseLeave: function(event) {
             var instance = this;
 
-            instance.fire(LEAVE, instance._getEventsPayload(event));
+            instance.fire('leave', instance._getEventsPayload(event));
         },
 
         /**
@@ -512,21 +488,21 @@ var Lang = A.Lang,
         _uiSetItems: function(val) {
             var instance = this,
                 columns,
-                width = instance.get(WIDTH);
+                width = instance.get('width');
 
             if (width) {
                 columns = val.length;
             }
             else {
-                columns = instance.get(COLUMNS);
+                columns = instance.get('columns');
 
                 if (columns === -1) {
                     columns = val.length;
                 }
             }
 
-            instance.get(CONTENT_BOX).setHTML(
-                instance.get(CONTAINER_NODE) || instance._getContent(val, columns));
+            instance.get('contentBox').setHTML(
+                instance.get('containerNode') || instance._getContent(val, columns));
         },
 
         /**
@@ -547,7 +523,7 @@ var Lang = A.Lang,
                         column: column,
                         index: index,
                         row: row,
-                        selectedClassName: selected ? CSS_PALETTE_ITEM_SELECTED : _EMPTY,
+                        selectedClassName: selected ? CSS_PALETTE_ITEM_SELECTED : '',
                         value: Lang.isObject(item) ? item.value : item
                     }
                 );
@@ -564,7 +540,7 @@ var Lang = A.Lang,
          * @static
          */
         HTML_PARSER: {
-            containerNode: _DOT + CSS_PALETTE_CONTAINER
+            containerNode: '.' + CSS_PALETTE_CONTAINER
         },
 
         /**

@@ -21,9 +21,6 @@ if (!IE || IE >= 9 || isShivDisabled()) {
 
 var BUFFER_CSS_TEXT = [],
 
-    CSS_PRINTFIX = 'printfix',
-    CSS_PRINTFIX_PREFIX = 'printfix-',
-
     LOCATION = WIN.location,
 
     DOMAIN = LOCATION.protocol + '//' + LOCATION.host,
@@ -43,25 +40,8 @@ var BUFFER_CSS_TEXT = [],
     REGEX_RULE = new RegExp('(^|[^\\n{}]*?\\s)(' + HTML5_ELEMENTS_LIST + ').*?{([^}]*)}', 'gim'),
     REGEX_TAG = new RegExp('<(\/*)(' + HTML5_ELEMENTS_LIST + ')', 'gi'),
 
-    SELECTOR_REPLACE_RULE = '.' + CSS_PRINTFIX_PREFIX + '$1',
-
-    STR_ALL = 'all',
-    STR_BLANK = ' ',
-    STR_EMPTY = '',
-
-    STR_BRACKET_OPEN = '{',
-    STR_BRACKET_CLOSE = '}',
-
-    STR_CHECKBOX = 'checkbox',
-    STR_CHECKED = 'checked',
-    STR_HTTPS = 'https',
-    STR_INPUT = 'INPUT',
-    STR_OPTION = 'OPTION',
-    STR_RADIO = 'radio',
-    STR_SELECTED = 'selected',
-    STR_STAR = '*',
-    STR_URL = 'url(',
-    STR_URL_DOMAIN = STR_URL + DOMAIN,
+    SELECTOR_REPLACE_RULE = '.' + 'printfix-' + '$1',
+    STR_URL_DOMAIN = 'url(' + DOMAIN,
 
     TAG_REPLACE_ORIGINAL = '<$1$2',
     TAG_REPLACE_FONT = '<$1font';
@@ -137,7 +117,7 @@ A.mix(
 
             var styleSheet = instance._getStyleSheet();
 
-            styleSheet.styleSheet.cssText = STR_EMPTY;
+            styleSheet.styleSheet.cssText = '';
         },
 
         /**
@@ -166,7 +146,7 @@ A.mix(
         parseCSS: function(cssText) {
             var instance = this;
 
-            var css = STR_EMPTY;
+            var css = '';
             var rules = cssText.match(REGEX_RULE);
 
             if (rules) {
@@ -187,7 +167,7 @@ A.mix(
             var bodyClone = instance._getBodyClone();
             var bodyEl = instance._getBodyEl();
 
-            bodyClone.innerHTML = STR_EMPTY;
+            bodyClone.innerHTML = '';
 
             HTML.removeChild(bodyClone);
             HTML.appendChild(bodyEl);
@@ -228,11 +208,11 @@ A.mix(
 
                     cssClass = node.className;
 
-                    if (cssClass.indexOf(CSS_PRINTFIX_PREFIX) == -1) {
-                        buffer[0] = CSS_PRINTFIX_PREFIX + html5Element;
+                    if (cssClass.indexOf('printfix-') == -1) {
+                        buffer[0] = 'printfix-' + html5Element;
                         buffer[1] = cssClass;
 
-                        node.className = buffer.join(STR_BLANK);
+                        node.className = buffer.join(' ');
                     }
                 }
             }
@@ -246,7 +226,7 @@ A.mix(
             bodyClone.className = bodyEl.className;
             bodyClone.id = bodyEl.id;
 
-            var originalNodes = bodyEl.getElementsByTagName(STR_STAR);
+            var originalNodes = bodyEl.getElementsByTagName('*');
             var length = originalNodes.length;
 
             // IE will throw a mixed content warning when using https
@@ -266,38 +246,38 @@ A.mix(
                     backgroundImage = elStyle.backgroundImage;
 
                     if (backgroundImage &&
-                        backgroundImage.indexOf(STR_URL) > -1 &&
-                        backgroundImage.indexOf(STR_HTTPS) == -1) {
+                        backgroundImage.indexOf('url(') > -1 &&
+                        backgroundImage.indexOf('https') == -1) {
 
-                        elStyle.backgroundImage = backgroundImage.replace(STR_URL, STR_URL_DOMAIN);
+                        elStyle.backgroundImage = backgroundImage.replace('url(', STR_URL_DOMAIN);
                     }
                 }
 
-                bodyElStyle.display = STR_EMPTY;
+                bodyElStyle.display = '';
             }
 
             var bodyElClone = bodyEl.cloneNode(true);
 
-            var newNodes = bodyElClone.getElementsByTagName(STR_STAR);
+            var newNodes = bodyElClone.getElementsByTagName('*');
 
             if (length == newNodes.length) {
                 while (length--) {
                     var newNode = newNodes[length];
                     var newNodeName = newNode.nodeName;
 
-                    if (newNodeName == STR_INPUT || newNodeName == STR_OPTION) {
+                    if (newNodeName == 'INPUT' || newNodeName == 'OPTION') {
                         var originalNode = originalNodes[length];
                         var originalNodeName = originalNode.nodeName;
 
                         if (originalNodeName == newNodeName) {
                             var prop = null;
 
-                            if (newNodeName == STR_OPTION) {
-                                prop = STR_SELECTED;
+                            if (newNodeName == 'OPTION') {
+                                prop = 'selected';
                             }
-                            else if (newNodeName == STR_INPUT && (newNode.type == STR_CHECKBOX || newNode.type ==
-                                STR_RADIO)) {
-                                prop = STR_CHECKED;
+                            else if (newNodeName == 'INPUT' && (newNode.type == 'checkbox' || newNode.type ==
+                                'radio')) {
+                                prop = 'checked';
                             }
 
                             if (prop !== null) {
@@ -327,7 +307,7 @@ A.mix(
             var instance = this;
 
             var buffer = [];
-            var styleSheets = instance._getAllStyleSheets(DOC.styleSheets, STR_ALL);
+            var styleSheets = instance._getAllStyleSheets(DOC.styleSheets, 'all');
             var rule;
             var cssText;
 
@@ -347,7 +327,7 @@ A.mix(
                 }
             }
 
-            return buffer.join(STR_BLANK);
+            return buffer.join(' ');
         },
 
         /**
@@ -361,7 +341,7 @@ A.mix(
         _getCSSTextFromRule: function(rule) {
             var instance = this;
 
-            var cssText = STR_EMPTY;
+            var cssText = '';
 
             var ruleStyle = rule.style;
             var ruleCSSText;
@@ -371,9 +351,9 @@ A.mix(
                 REGEX_ELEMENTS_FAST.test(ruleSelectorText)) {
                 BUFFER_CSS_TEXT.length = 0;
 
-                BUFFER_CSS_TEXT.push(ruleSelectorText, STR_BRACKET_OPEN, ruleCSSText, STR_BRACKET_CLOSE);
+                BUFFER_CSS_TEXT.push(ruleSelectorText, '{', ruleCSSText, '}');
 
-                cssText = BUFFER_CSS_TEXT.join(STR_BLANK);
+                cssText = BUFFER_CSS_TEXT.join(' ');
             }
 
             return cssText;
@@ -436,7 +416,7 @@ A.mix(
                 }
             }
 
-            mediaType = STR_ALL;
+            mediaType = 'all';
 
             return buffer;
         },
@@ -526,7 +506,7 @@ A.mix(
                 head.insertBefore(styleSheet, head.firstChild);
 
                 styleSheet.media = 'print';
-                styleSheet.className = CSS_PRINTFIX;
+                styleSheet.className = 'printfix';
 
                 instance._styleSheet = styleSheet;
             }

@@ -15,7 +15,7 @@ var Lang = A.Lang,
 
     // The first Bernstein basis polynomials (n=3),
     // http://en.wikipedia.org/wiki/B%C3%A9zier_curve The t in the function for
-    // a linear Bézier curve can be thought of as describing how far B(t) is
+    // a linear B?zier curve can be thought of as describing how far B(t) is
     // from P0 to P1. For example when t=0.25, B(t) is one quarter of the way
     // from point P0 to P1. As t varies from 0 to 1, B(t) describes a straight
     // line from P0 to P1.
@@ -51,32 +51,6 @@ var Lang = A.Lang,
     sign = function(x) {
         return x === 0 ? 0 : (x < 0 ? -1 : 1);
     },
-
-    ARROW_POINTS = 'arrowPoints',
-    BUILDER = 'builder',
-    CLICK = 'click',
-    COLOR = 'color',
-    CONNECTOR = 'connector',
-    FILL = 'fill',
-    GRAPHIC = 'graphic',
-    LAZY_DRAW = 'lazyDraw',
-    MOUSEENTER = 'mouseenter',
-    MOUSELEAVE = 'mouseleave',
-    NAME = 'name',
-    NODE_NAME = 'nodeName',
-    P1 = 'p1',
-    P2 = 'p2',
-    PATH = 'path',
-    SELECTED = 'selected',
-    SHAPE = 'shape',
-    SHAPE_ARROW = 'shapeArrow',
-    SHAPE_ARROW_HOVER = 'shapeArrowHover',
-    SHAPE_ARROW_SELECTED = 'shapeArrowSelected',
-    SHAPE_HOVER = 'shapeHover',
-    SHAPE_SELECTED = 'shapeSelected',
-    SHOW_NAME = 'showName',
-    STROKE = 'stroke',
-    VISIBLE = 'visible',
 
     getCN = A.getClassName,
 
@@ -158,7 +132,7 @@ A.PolygonUtil = {
  * @constructor
  */
 A.Connector = A.Base.create('line', A.Base, [], {
-    SERIALIZABLE_ATTRS: [COLOR, LAZY_DRAW, NAME, SHAPE_SELECTED, SHAPE_HOVER, /*SHAPE,*/ P1, P2],
+    SERIALIZABLE_ATTRS: ['color', 'lazyDraw', 'name', 'shapeSelected', 'shapeHover', /*SHAPE,*/ 'p1', 'p2'],
 
     shape: null,
     shapeArrow: null,
@@ -172,7 +146,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
      */
     initializer: function(config) {
         var instance = this;
-        var lazyDraw = instance.get(LAZY_DRAW);
+        var lazyDraw = instance.get('lazyDraw');
 
         instance.after({
             nameChange: instance._afterNameChange,
@@ -189,10 +163,10 @@ A.Connector = A.Base.create('line', A.Base, [], {
             instance.draw();
         }
 
-        instance._uiSetVisible(instance.get(VISIBLE));
-        instance._uiSetName(instance.get(NAME));
-        instance._uiSetSelected(instance.get(SELECTED), !lazyDraw);
-        instance._uiSetShowName(instance.get(SHOW_NAME));
+        instance._uiSetVisible(instance.get('visible'));
+        instance._uiSetName(instance.get('name'));
+        instance._uiSetSelected(instance.get('selected'), !lazyDraw);
+        instance._uiSetShowName(instance.get('showName'));
     },
 
     /**
@@ -206,7 +180,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 
         instance.shape.destroy();
         instance.shapeArrow.destroy();
-        instance.get(NODE_NAME).remove();
+        instance.get('nodeName').remove();
     },
 
     /**
@@ -219,8 +193,8 @@ A.Connector = A.Base.create('line', A.Base, [], {
         var shape = instance.shape;
         var shapeArrow = instance.shapeArrow;
 
-        var p1 = instance.get(P1),
-            p2 = instance.get(P2),
+        var p1 = instance.get('p1'),
+            p2 = instance.get('p2'),
             c1 = instance.toCoordinate(p1),
             c2 = instance.toCoordinate(p2),
             x1 = c1[0],
@@ -269,11 +243,11 @@ A.Connector = A.Base.create('line', A.Base, [], {
             centerXY = getCubicBezier(0.5, [x1, y1], [x2, y2], [cp[0], cp[1]], [cp[2], cp[3]]);
 
         shapeArrow.clear();
-        A.PolygonUtil.drawArrow(shapeArrow, xy2[0], xy2[1], xy1[0], xy1[1], instance.get(ARROW_POINTS));
+        A.PolygonUtil.drawArrow(shapeArrow, xy2[0], xy2[1], xy1[0], xy1[1], instance.get('arrowPoints'));
         shapeArrow.end();
 
-        if (instance.get(SHOW_NAME)) {
-            instance.get(NODE_NAME).center(instance.toXY(centerXY));
+        if (instance.get('showName')) {
+            instance.get('nodeName').center(instance.toXY(centerXY));
         }
 
         return instance;
@@ -307,7 +281,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
         var strings = instance.getStrings();
 
         return [{
-            attributeName: NAME,
+            attributeName: 'name',
             editor: new A.TextCellEditor({
                 validator: {
                     rules: {
@@ -317,7 +291,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
                     }
                 }
             }),
-            name: strings[NAME]
+            name: strings['name']
         }];
     },
 
@@ -338,7 +312,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     hide: function() {
         var instance = this;
 
-        instance.set(VISIBLE, false);
+        instance.set('visible', false);
 
         return instance;
     },
@@ -351,7 +325,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     show: function() {
         var instance = this;
 
-        instance.set(VISIBLE, true);
+        instance.set('visible', true);
 
         return instance;
     },
@@ -460,19 +434,19 @@ A.Connector = A.Base.create('line', A.Base, [], {
     _initShapes: function() {
         var instance = this;
 
-        var shape = instance.shape = instance.get(GRAPHIC).addShape(
-            instance.get(SHAPE)
+        var shape = instance.shape = instance.get('graphic').addShape(
+            instance.get('shape')
         );
 
-        var shapeArrow = instance.shapeArrow = instance.get(GRAPHIC).addShape(
-            instance.get(SHAPE_ARROW)
+        var shapeArrow = instance.shapeArrow = instance.get('graphic').addShape(
+            instance.get('shapeArrow')
         );
 
-        shape.on(CLICK, A.bind(instance._onShapeClick, instance));
-        shape.on(MOUSEENTER, A.bind(instance._onShapeMouseEnter, instance));
-        shape.on(MOUSELEAVE, A.bind(instance._onShapeMouseLeave, instance));
-        shapeArrow.on(CLICK, A.bind(instance._onShapeClick, instance));
-        instance.get(NODE_NAME).on(CLICK, A.bind(instance._onShapeClick, instance));
+        shape.on('click', A.bind(instance._onShapeClick, instance));
+        shape.on('mouseenter', A.bind(instance._onShapeMouseEnter, instance));
+        shape.on('mouseleave', A.bind(instance._onShapeMouseLeave, instance));
+        shapeArrow.on('click', A.bind(instance._onShapeClick, instance));
+        instance.get('nodeName').on('click', A.bind(instance._onShapeClick, instance));
     },
 
     /**
@@ -485,7 +459,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
      */
     _offsetXY: function(xy, sign) {
         var instance = this;
-        var offsetXY = instance.get(GRAPHIC).getXY();
+        var offsetXY = instance.get('graphic').getXY();
 
         return [xy[0] + offsetXY[0] * sign, xy[1] + offsetXY[1] * sign];
     },
@@ -499,8 +473,8 @@ A.Connector = A.Base.create('line', A.Base, [], {
      */
     _onShapeClick: function(event) {
         var instance = this;
-        var builder = instance.get(BUILDER);
-        var selected = instance.get(SELECTED);
+        var builder = instance.get('builder');
+        var selected = instance.get('selected');
 
         if (builder) {
             if (event.hasModifier()) {
@@ -518,7 +492,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
             }
         }
 
-        instance.set(SELECTED, !selected);
+        instance.set('selected', !selected);
 
         event.halt();
     },
@@ -533,9 +507,9 @@ A.Connector = A.Base.create('line', A.Base, [], {
     _onShapeMouseEnter: function(event) {
         var instance = this;
 
-        if (!instance.get(SELECTED)) {
-            var shapeHover = instance.get(SHAPE_HOVER);
-            var shapeArrowHover = instance.get(SHAPE_ARROW_HOVER);
+        if (!instance.get('selected')) {
+            var shapeHover = instance.get('shapeHover');
+            var shapeArrowHover = instance.get('shapeArrowHover');
 
             if (shapeHover) {
                 instance._updateShape(instance.shape, shapeHover);
@@ -557,9 +531,9 @@ A.Connector = A.Base.create('line', A.Base, [], {
     _onShapeMouseLeave: function(event) {
         var instance = this;
 
-        if (!instance.get(SELECTED)) {
-            instance._updateShape(instance.shape, instance.get(SHAPE));
-            instance._updateShape(instance.shapeArrow, instance.get(SHAPE_ARROW));
+        if (!instance.get('selected')) {
+            instance._updateShape(instance.shape, instance.get('shape'));
+            instance._updateShape(instance.shapeArrow, instance.get('shapeArrow'));
         }
     },
 
@@ -575,7 +549,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 
         if (!A.instanceOf(val, A.Node)) {
             val = new A.Node.create(val);
-            instance.get(BUILDER).canvas.append(val.unselectable());
+            instance.get('builder').canvas.append(val.unselectable());
         }
 
         return val;
@@ -592,9 +566,9 @@ A.Connector = A.Base.create('line', A.Base, [], {
         var instance = this;
 
         return A.merge({
-                type: PATH,
+                type: 'path',
                 stroke: {
-                    color: instance.get(COLOR),
+                    color: instance.get('color'),
                     weight: 2,
                     opacity: 1
                 }
@@ -614,13 +588,13 @@ A.Connector = A.Base.create('line', A.Base, [], {
         var instance = this;
 
         return A.merge({
-                type: PATH,
+                type: 'path',
                 fill: {
-                    color: instance.get(COLOR),
+                    color: instance.get('color'),
                     opacity: 1
                 },
                 stroke: {
-                    color: instance.get(COLOR),
+                    color: instance.get('color'),
                     weight: 2,
                     opacity: 1
                 }
@@ -639,7 +613,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     _uiSetName: function(val) {
         var instance = this;
 
-        instance.get(NODE_NAME).html(val);
+        instance.get('nodeName').html(val);
     },
 
     /**
@@ -654,10 +628,10 @@ A.Connector = A.Base.create('line', A.Base, [], {
         var instance = this;
 
         instance._updateShape(
-            instance.shape, val ? instance.get(SHAPE_SELECTED) : instance.get(SHAPE), draw);
+            instance.shape, val ? instance.get('shapeSelected') : instance.get('shape'), draw);
 
         instance._updateShape(
-            instance.shapeArrow, val ? instance.get(SHAPE_ARROW_SELECTED) : instance.get(SHAPE_ARROW), draw);
+            instance.shapeArrow, val ? instance.get('shapeArrowSelected') : instance.get('shapeArrow'), draw);
     },
 
     /**
@@ -670,7 +644,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     _uiSetShowName: function(val) {
         var instance = this;
 
-        instance.get(NODE_NAME).toggleClass(CSS_HIDE, !val);
+        instance.get('nodeName').toggleClass(CSS_HIDE, !val);
     },
 
     /**
@@ -683,9 +657,9 @@ A.Connector = A.Base.create('line', A.Base, [], {
     _uiSetVisible: function(val) {
         var instance = this;
 
-        instance.shape.set(VISIBLE, val);
-        instance.shapeArrow.set(VISIBLE, val);
-        instance._uiSetShowName(val && instance.get(SHOW_NAME));
+        instance.shape.set('visible', val);
+        instance.shapeArrow.set('visible', val);
+        instance._uiSetShowName(val && instance.get('showName'));
     },
 
     /**
@@ -700,12 +674,12 @@ A.Connector = A.Base.create('line', A.Base, [], {
     _updateShape: function(shape, cShape, draw) {
         var instance = this;
 
-        if (cShape.hasOwnProperty(FILL)) {
-            shape.set(FILL, cShape[FILL]);
+        if (cShape.hasOwnProperty('fill')) {
+            shape.set('fill', cShape['fill']);
         }
 
-        if (cShape.hasOwnProperty(STROKE)) {
-            shape.set(STROKE, cShape[STROKE]);
+        if (cShape.hasOwnProperty('stroke')) {
+            shape.set('stroke', cShape['stroke']);
         }
 
         if (draw !== false) {
@@ -785,7 +759,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
             valueFn: function() {
                 var instance = this;
 
-                return CONNECTOR + (++A.Env._uidx);
+                return 'connector' + (++A.Env._uidx);
             },
             validator: isString
         },

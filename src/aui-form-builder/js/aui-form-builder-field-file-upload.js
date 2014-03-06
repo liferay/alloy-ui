@@ -7,22 +7,12 @@
 
 var L = A.Lang,
 
-    FORM_BUILDER_FIELD = 'form-builder-field',
-    FORM_BUILDER_FILE_UPLOAD_FIELD = 'form-builder-file-upload-field',
-    ID = 'id',
-    LABEL = 'label',
-    NAME = 'name',
-    NODE = 'node',
-    PREDEFINED_VALUE = 'predefinedValue',
-    SPACE = ' ',
-    TEMPLATE = 'template',
-
     getCN = A.getClassName,
 
-    CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
-    CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
+    CSS_FORM_BUILDER_FIELD = getCN('form-builder-field'),
+    CSS_FORM_BUILDER_FIELD_NODE = getCN('form-builder-field', 'node'),
 
-    TPL_FILE_UPLOAD = '<input id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE].join(SPACE) +
+    TPL_FILE_UPLOAD = '<input id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE].join(' ') +
         '" name="{name}" type="file" value="{value}" />';
 
 /**
@@ -43,7 +33,7 @@ var FormBuilderFileUploadField = A.Component.create({
      * @type String
      * @static
      */
-    NAME: FORM_BUILDER_FILE_UPLOAD_FIELD,
+    NAME: 'form-builder-file-upload-field',
 
     /**
      * Static property used to define the default attribute
@@ -98,11 +88,11 @@ var FormBuilderFileUploadField = A.Component.create({
             var instance = this;
 
             return L.sub(
-                instance.get(TEMPLATE), {
-                    id: instance.get(ID),
-                    label: instance.get(LABEL),
-                    name: instance.get(NAME),
-                    value: instance.get(PREDEFINED_VALUE)
+                instance.get('template'), {
+                    id: instance.get('id'),
+                    label: instance.get('label'),
+                    name: instance.get('name'),
+                    value: instance.get('predefinedValue')
                 }
             );
         }

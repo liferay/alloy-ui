@@ -8,23 +8,9 @@
 var Lang = A.Lang,
     isFunction = Lang.isFunction,
 
-    _EMPTY_STR = '',
-    M_DASH = '&mdash;',
-    _SPACE = ' ',
-
     DateMath = A.DataType.DateMath,
 
-    WEEK_LENGTH = DateMath.WEEK_LENGTH,
-
-    SCHEDULER_VIEW_WEEK = 'scheduler-view-week',
-
-    DATE = 'date',
-    DAYS = 'days',
-    FIRST_DAY_OF_WEEK = 'firstDayOfWeek',
-    LOCALE = 'locale',
-    SCHEDULER = 'scheduler',
-    VIEW_DATE = 'viewDate',
-    WEEK = 'week';
+    WEEK_LENGTH = DateMath.WEEK_LENGTH;
 
 /**
  * A base class for `SchedulerWeekView`.
@@ -44,7 +30,7 @@ var SchedulerWeekView = A.Component.create({
      * @type {String}
      * @static
      */
-    NAME: SCHEDULER_VIEW_WEEK,
+    NAME: 'scheduler-view-week',
 
     /**
      * Static property used to define the default attribute
@@ -64,7 +50,7 @@ var SchedulerWeekView = A.Component.create({
          * @type {String}
          */
         bodyContent: {
-            value: _EMPTY_STR
+            value: ''
         },
 
         /**
@@ -97,7 +83,7 @@ var SchedulerWeekView = A.Component.create({
          * @type {String}
          */
         name: {
-            value: WEEK
+            value: 'week'
         },
 
         /**
@@ -135,8 +121,8 @@ var SchedulerWeekView = A.Component.create({
          */
         getAdjustedViewDate: function(date) {
             var instance = this;
-            var scheduler = instance.get(SCHEDULER);
-            var firstDayOfWeek = scheduler.get(FIRST_DAY_OF_WEEK);
+            var scheduler = instance.get('scheduler');
+            var firstDayOfWeek = scheduler.get('firstDayOfWeek');
 
             return DateMath.toMidnight(DateMath.getFirstDayOfWeek(date, firstDayOfWeek));
         },
@@ -150,8 +136,8 @@ var SchedulerWeekView = A.Component.create({
          */
         getNextDate: function() {
             var instance = this;
-            var scheduler = instance.get(SCHEDULER);
-            var viewDate = scheduler.get(VIEW_DATE);
+            var scheduler = instance.get('scheduler');
+            var viewDate = scheduler.get('viewDate');
 
             return DateMath.toLastHour(DateMath.add(viewDate, DateMath.WEEK, 1));
         },
@@ -165,8 +151,8 @@ var SchedulerWeekView = A.Component.create({
          */
         getPrevDate: function() {
             var instance = this;
-            var scheduler = instance.get(SCHEDULER);
-            var viewDate = scheduler.get(VIEW_DATE);
+            var scheduler = instance.get('scheduler');
+            var viewDate = scheduler.get('viewDate');
 
             return DateMath.toMidnight(DateMath.subtract(viewDate, DateMath.WEEK, 1));
         },
@@ -194,8 +180,8 @@ var SchedulerWeekView = A.Component.create({
          */
         _firstDayOfWeek: function(date) {
             var instance = this;
-            var scheduler = instance.get(SCHEDULER);
-            var firstDayOfWeek = scheduler.get(FIRST_DAY_OF_WEEK);
+            var scheduler = instance.get('scheduler');
+            var firstDayOfWeek = scheduler.get('firstDayOfWeek');
 
             return DateMath.getFirstDayOfWeek(date, firstDayOfWeek);
         },
@@ -210,8 +196,8 @@ var SchedulerWeekView = A.Component.create({
          */
         _valueNavigationDateFormatter: function(date) {
             var instance = this;
-            var scheduler = instance.get(SCHEDULER);
-            var locale = scheduler.get(LOCALE);
+            var scheduler = instance.get('scheduler');
+            var locale = scheduler.get('locale');
 
             var startDate = instance._firstDayOfWeek(date);
 
@@ -222,7 +208,7 @@ var SchedulerWeekView = A.Component.create({
                 }
             );
 
-            var endDate = DateMath.add(startDate, DateMath.DAY, instance.get(DAYS) - 1);
+            var endDate = DateMath.add(startDate, DateMath.DAY, instance.get('days') - 1);
 
             var endDateLabel = A.DataType.Date.format(
                 endDate, {
@@ -231,7 +217,7 @@ var SchedulerWeekView = A.Component.create({
                 }
             );
 
-            return [startDateLabel, M_DASH, endDateLabel].join(_SPACE);
+            return [startDateLabel, '&mdash;', endDateLabel].join(' ');
         }
     }
 });

@@ -13,33 +13,16 @@ var L = A.Lang,
         }
     ),
 
-    BTN = 'btn',
-    BUTTON = 'button',
-    BUTTON_TYPE = 'buttonType',
-    FORM_BUILDER_BUTTON_FIELD = 'form-builder-button-field',
-    FORM_BUILDER_FIELD = 'form-builder-field',
-    ID = 'id',
-    LABEL = 'label',
-    NAME = 'name',
-    NODE = 'node',
-    PREDEFINED_VALUE = 'predefinedValue',
-    RESET = 'reset',
-    SPACE = ' ',
-    SUBMIT = 'submit',
-    TEMPLATE = 'template',
-    TEMPLATE_NODE = 'templateNode',
-    TYPE = 'type',
-
     getCN = A.getClassName,
 
-    CSS_BTN = getCN(BTN),
-    CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
-    CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
+    CSS_BTN = getCN('btn'),
+    CSS_FORM_BUILDER_FIELD = getCN('form-builder-field'),
+    CSS_FORM_BUILDER_FIELD_NODE = getCN('form-builder-field', 'node'),
 
-    TPL_BUTTON = '<button id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_BTN].join(SPACE) +
+    TPL_BUTTON = '<button id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_BTN].join(' ') +
         '" type="{type}">{value}</button>',
 
-    BUTTON_TYPES = [SUBMIT, RESET, BUTTON];
+    BUTTON_TYPES = ['submit', 'reset', 'button'];
 
 /**
  * A base class for `A.FormBuilderButtonField`.
@@ -59,7 +42,7 @@ var FormBuilderButtonField = A.Component.create({
      * @type String
      * @static
      */
-    NAME: FORM_BUILDER_BUTTON_FIELD,
+    NAME: 'form-builder-button-field',
 
     /**
      * Static property used to define the default attribute
@@ -94,7 +77,7 @@ var FormBuilderButtonField = A.Component.create({
             validator: function(val) {
                 return A.Array(BUTTON_TYPES).indexOf(val.toLowerCase()) > -1;
             },
-            value: SUBMIT
+            value: 'submit'
         },
 
         /**
@@ -103,7 +86,7 @@ var FormBuilderButtonField = A.Component.create({
          * @attribute predefinedValue
          */
         predefinedValue: {
-            value: toInitialCap(SUBMIT)
+            value: toInitialCap('submit')
         },
 
         /**
@@ -137,7 +120,7 @@ var FormBuilderButtonField = A.Component.create({
      * @type Array
      * @static
      */
-    UI_ATTRS: A.FormBuilderField.UI_ATTRS.concat([BUTTON_TYPE]),
+    UI_ATTRS: A.FormBuilderField.UI_ATTRS.concat(['buttonType']),
 
     /**
      * Static property provides a string to identify the CSS prefix.
@@ -169,12 +152,12 @@ var FormBuilderButtonField = A.Component.create({
             var instance = this;
 
             return L.sub(
-                instance.get(TEMPLATE), {
-                    id: instance.get(ID),
-                    label: instance.get(LABEL),
-                    name: instance.get(NAME),
-                    type: instance.get(BUTTON_TYPE),
-                    value: instance.get(PREDEFINED_VALUE)
+                instance.get('template'), {
+                    id: instance.get('id'),
+                    label: instance.get('label'),
+                    name: instance.get('name'),
+                    type: instance.get('buttonType'),
+                    value: instance.get('predefinedValue')
                 }
             );
         },
@@ -193,15 +176,15 @@ var FormBuilderButtonField = A.Component.create({
             var model = A.FormBuilderButtonField.superclass.getPropertyModel.apply(instance, arguments);
 
             model.push({
-                attributeName: BUTTON_TYPE,
+                attributeName: 'buttonType',
                 editor: new A.RadioCellEditor({
                     options: {
-                        'button': strings[BUTTON],
-                        'reset': strings[RESET],
-                        'submit': strings[SUBMIT]
+                        'button': strings['button'],
+                        'reset': strings['reset'],
+                        'submit': strings['submit']
                     }
                 }),
-                name: strings[BUTTON_TYPE]
+                name: strings['buttonType']
             });
 
             return model;
@@ -216,9 +199,9 @@ var FormBuilderButtonField = A.Component.create({
          */
         _uiSetButtonType: function(val) {
             var instance = this,
-                templateNode = instance.get(TEMPLATE_NODE);
+                templateNode = instance.get('templateNode');
 
-            templateNode.setAttribute(TYPE, val);
+            templateNode.setAttribute('type', val);
         },
 
         /**
@@ -230,7 +213,7 @@ var FormBuilderButtonField = A.Component.create({
          */
         _uiSetPredefinedValue: function(val) {
             var instance = this,
-                templateNode = instance.get(TEMPLATE_NODE);
+                templateNode = instance.get('templateNode');
 
             templateNode.setContent(val);
         }

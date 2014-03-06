@@ -6,19 +6,6 @@
 
 var Lang = A.Lang,
 
-    BODY_CONTENT = 'bodyContent',
-    BOUNDING_BOX = 'boundingBox',
-    CONTENT_BOX = 'contentBox',
-    FORMATTER = 'formatter',
-    HOVER = 'hover',
-    MOUSEENTER = 'mouseenter',
-    TITLE = 'title',
-    TOOLTIP = 'tooltip',
-    TRIGGER = 'trigger',
-    VISIBLE = 'visible',
-
-    _DATA_TITLE = 'data-title',
-
     getClassName = A.getClassName,
 
     CSS_TOOLTIP_ARROW = getClassName('tooltip-arrow'),
@@ -40,7 +27,7 @@ var Lang = A.Lang,
  * @include http://alloyui.com/examples/tooltip/basic-markup.html
  * @include http://alloyui.com/examples/tooltip/basic.js
  */
-A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
+A.Tooltip = A.Base.create('tooltip', A.Widget, [
     A.WidgetCssClass,
     A.WidgetPosition,
     A.WidgetStdMod,
@@ -73,8 +60,8 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
      */
     renderUI: function() {
         var instance = this,
-            boundingBox = instance.get(BOUNDING_BOX),
-            contentBox = instance.get(CONTENT_BOX);
+            boundingBox = instance.get('boundingBox'),
+            contentBox = instance.get('contentBox');
 
         contentBox.addClass(CSS_TOOLTIP_INNER);
         boundingBox.append(A.Tooltip.TEMPLATES.arrow);
@@ -88,20 +75,20 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
      */
     bindUI: function() {
         var instance = this,
-            trigger = instance.get(TRIGGER);
+            trigger = instance.get('trigger');
 
         // Do not bind the synthetic hover event to the widget dom events
         // wrapper api. Hover bind method has a different method signature which
         // is not handled by widget yet. Bind to the `boundingBox` instead.
         if (trigger) {
             trigger.on(
-                HOVER,
+                'hover',
                 A.bind(instance._onBoundingBoxMouseenter, instance),
                 A.bind(instance._onBoundingBoxMouseleave, instance));
         }
 
-        instance.get(BOUNDING_BOX).on(
-            HOVER,
+        instance.get('boundingBox').on(
+            'hover',
             A.bind(instance._onBoundingBoxMouseenter, instance),
             A.bind(instance._onBoundingBoxMouseleave, instance));
     },
@@ -115,7 +102,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
      */
     _uiSetVisible: function(val) {
         var instance = this,
-            boundingBox = instance.get(BOUNDING_BOX);
+            boundingBox = instance.get('boundingBox');
 
         instance._widgetUiSetVisible(val);
 
@@ -152,26 +139,26 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
             formatter,
             title;
 
-        formatter = instance.get(FORMATTER);
-        trigger = instance.get(TRIGGER);
+        formatter = instance.get('formatter');
+        trigger = instance.get('trigger');
 
         if (!trigger) {
             return;
         }
 
-        dataTitle = trigger.getAttribute(_DATA_TITLE);
-        title = trigger.getAttribute(TITLE) || dataTitle;
+        dataTitle = trigger.getAttribute('data-title');
+        title = trigger.getAttribute('title') || dataTitle;
 
         if (formatter) {
             title = formatter.call(instance, title);
         }
 
         if (!dataTitle) {
-            trigger.removeAttribute(TITLE).setAttribute(_DATA_TITLE, title);
+            trigger.removeAttribute('title').setAttribute('data-title', title);
         }
 
         instance.setStdModContent(
-            A.WidgetStdMod.BODY, trigger && title || instance.get(BODY_CONTENT));
+            A.WidgetStdMod.BODY, trigger && title || instance.get('bodyContent'));
     },
 
     /**
@@ -210,7 +197,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
      * @type String
      * @static
      */
-    CSS_PREFIX: getClassName(TOOLTIP),
+    CSS_PREFIX: getClassName('tooltip'),
 
     /**
      * Static property used to define the default attribute
@@ -274,7 +261,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
          */
         triggerShowEvent: {
             validator: Lang.isString,
-            value: MOUSEENTER
+            value: 'mouseenter'
         }
     },
 

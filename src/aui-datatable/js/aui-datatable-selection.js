@@ -10,26 +10,6 @@ var Lang = A.Lang,
     isString = Lang.isString,
     isObject = Lang.isObject,
 
-    CLASS_NAMES_SELECTION = 'CLASS_NAMES_SELECTION',
-
-    ACTIVE_CELL = 'activeCell',
-    ACTIVE_COORD = 'activeCoord',
-    ACTIVE_ROW = 'activeRow',
-    ACTIVE_COORD_CHANGE = 'activeCoordChange',
-    BOUNDING_BOX = 'boundingBox',
-    CELL = 'cell',
-    CELL_INDEX = 'cellIndex',
-    CHILDREN = 'children',
-    FOCUSED = 'focused',
-    KEY = 'key',
-    MOUSEDOWN = 'mousedown',
-    MOUSEENTER = 'mouseenter',
-    MOUSEUP = 'mouseup',
-    SELECTION = 'selection',
-    TABINDEX = 'tabindex',
-
-    _DOT = '.',
-
     clamp = function(value, min, max) {
         return Math.min(Math.max(value, min), max);
     };
@@ -119,16 +99,16 @@ A.mix(DataTableSelection.prototype, {
      */
     initializer: function() {
         var instance = this,
-            boundingBox = instance.get(BOUNDING_BOX);
+            boundingBox = instance.get('boundingBox');
 
-        instance[CLASS_NAMES_SELECTION] = {
-            cell: instance.getClassName(CELL),
-            selection: instance.getClassName(SELECTION)
+        instance['CLASS_NAMES_SELECTION'] = {
+            cell: instance.getClassName('cell'),
+            selection: instance.getClassName('selection')
         };
 
         instance._bindSelectionUI();
 
-        boundingBox.addClass(instance[CLASS_NAMES_SELECTION].selection);
+        boundingBox.addClass(instance['CLASS_NAMES_SELECTION'].selection);
 
     },
 
@@ -192,7 +172,7 @@ A.mix(DataTableSelection.prototype, {
     getActiveColumn: function() {
         var instance = this;
 
-        return instance.getColumn(instance.get(ACTIVE_CELL));
+        return instance.getColumn(instance.get('activeCell'));
     },
 
     /**
@@ -203,7 +183,7 @@ A.mix(DataTableSelection.prototype, {
     getActiveRecord: function() {
         var instance = this;
 
-        return instance.getRecord(instance.get(ACTIVE_ROW));
+        return instance.getRecord(instance.get('activeRow'));
     },
 
     /**
@@ -218,7 +198,7 @@ A.mix(DataTableSelection.prototype, {
             tbody = instance.body.tbodyNode,
             rowIndexOffset = tbody.get('firstChild.rowIndex');
 
-        return [cell.get('parentNode.rowIndex') - rowIndexOffset, cell.get(CELL_INDEX)];
+        return [cell.get('parentNode.rowIndex') - rowIndexOffset, cell.get('cellIndex')];
     },
 
     /**
@@ -233,7 +213,7 @@ A.mix(DataTableSelection.prototype, {
             activeCell = instance.getCell(event.newVal);
 
         if (activeCell) {
-            activeCell.setAttribute(TABINDEX, 0).focus();
+            activeCell.setAttribute('tabindex', 0).focus();
         }
     },
 
@@ -245,15 +225,15 @@ A.mix(DataTableSelection.prototype, {
      */
     _bindSelectionUI: function() {
         var instance = this,
-            classNames = instance[CLASS_NAMES_SELECTION];
+            classNames = instance['CLASS_NAMES_SELECTION'];
 
         instance._selectionKeyHandler = A.getDoc().on(
-            KEY, A.bind(instance._onSelectionKey, instance), 'down:enter,37,38,39,40');
+            'key', A.bind(instance._onSelectionKey, instance), 'down:enter,37,38,39,40');
 
-        instance.after(ACTIVE_COORD_CHANGE, instance._afterActiveCellIndexChange);
-        instance.delegate(MOUSEUP, A.bind(instance._onSelectionMouseUp, instance), _DOT + classNames.cell);
-        instance.delegate(MOUSEDOWN, A.bind(instance._onSelectionMouseDown, instance), _DOT + classNames.cell);
-        instance.delegate(MOUSEENTER, A.bind(instance._onSelectionMouseEnter, instance), _DOT + classNames.cell);
+        instance.after('activeCoordChange', instance._afterActiveCellIndexChange);
+        instance.delegate('mouseup', A.bind(instance._onSelectionMouseUp, instance), '.' + classNames.cell);
+        instance.delegate('mousedown', A.bind(instance._onSelectionMouseDown, instance), '.' + classNames.cell);
+        instance.delegate('mouseenter', A.bind(instance._onSelectionMouseEnter, instance), '.' + classNames.cell);
     },
 
     /**
@@ -264,7 +244,7 @@ A.mix(DataTableSelection.prototype, {
      */
     _getActiveCell: function() {
         var instance = this,
-            activeCoord = instance.get(ACTIVE_COORD),
+            activeCoord = instance.get('activeCoord'),
             activeRowIndex = activeCoord[0],
             activeCellIndex = activeCoord[1];
 
@@ -283,7 +263,7 @@ A.mix(DataTableSelection.prototype, {
      */
     _getActiveRow: function() {
         var instance = this,
-            activeCoord = instance.get(ACTIVE_COORD),
+            activeCoord = instance.get('activeCoord'),
             activeRowIndex = activeCoord[0];
 
         if (activeRowIndex > -1) {
@@ -303,7 +283,7 @@ A.mix(DataTableSelection.prototype, {
     _onSelectionMouseDown: function(event) {
         var instance = this,
             seed = event.currentTarget,
-            boundingBox = instance.get(BOUNDING_BOX),
+            boundingBox = instance.get('boundingBox'),
             coords = instance.getCoord(seed);
 
         boundingBox.unselectable();
@@ -312,7 +292,7 @@ A.mix(DataTableSelection.prototype, {
         instance._selectionSeed = seed;
         instance._selectionStart = instance._selectionEnd = instance.getCoord(seed);
 
-        instance.set(ACTIVE_COORD, coords);
+        instance.set('activeCoord', coords);
     },
 
     /**
@@ -333,7 +313,7 @@ A.mix(DataTableSelection.prototype, {
         instance._selectionSeed = seed;
         instance._selectionEnd = instance.getCoord(seed);
 
-        instance.set(SELECTION, {
+        instance.set('selection', {
             start: instance._selectionStart,
             end: instance._selectionEnd
         });
@@ -348,12 +328,12 @@ A.mix(DataTableSelection.prototype, {
      */
     _onSelectionMouseUp: function(event) {
         var instance = this,
-            boundingBox = instance.get(BOUNDING_BOX);
+            boundingBox = instance.get('boundingBox');
 
-        if (instance.get(FOCUSED)) {
+        if (instance.get('focused')) {
             instance._selectionEnd = instance.getCoord(instance._selectionSeed);
 
-            instance.set(SELECTION, {
+            instance.set('selection', {
                 start: instance._selectionStart,
                 end: instance._selectionEnd
             });
@@ -376,14 +356,14 @@ A.mix(DataTableSelection.prototype, {
             body = instance.body,
             tbody = body.tbodyNode,
             keyCode = event.keyCode,
-            activeCell = instance.get(ACTIVE_CELL),
+            activeCell = instance.get('activeCell'),
             activeCoord,
-            imax = tbody.get(CHILDREN).size(),
+            imax = tbody.get('children').size(),
             jmax = body.get('columns').length,
             i,
             j;
 
-        if (activeCell && instance.get(FOCUSED)) {
+        if (activeCell && instance.get('focused')) {
             activeCoord = instance.getCoord(activeCell);
 
             i = activeCoord[0];
@@ -405,9 +385,9 @@ A.mix(DataTableSelection.prototype, {
             i = clamp(i, 0, imax - 1);
             j = clamp(j, 0, jmax - 1);
 
-            instance.set(ACTIVE_COORD, [i, j]);
+            instance.set('activeCoord', [i, j]);
 
-            instance.set(SELECTION, [i, j]);
+            instance.set('selection', [i, j]);
 
             event.preventDefault();
         }

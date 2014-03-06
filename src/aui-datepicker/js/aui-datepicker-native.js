@@ -5,21 +5,7 @@
  * @submodule aui-datepicker-native
  */
 
-var Lang = A.Lang,
-
-    _DASH = '-',
-
-    ACTIVE_INPUT = 'activeInput',
-    CHANGE = 'change',
-    CONTAINER = 'container',
-    DATE = 'date',
-    NATIVE_MASK = 'nativeMask',
-    NATIVE_TYPE = 'nativeType',
-    SELECTION_CHANGE = 'selectionChange',
-    SELECTOR = 'selector',
-    TOUCHSTART = 'touchstart',
-    TIME = 'time',
-    TYPE = 'type';
+var Lang = A.Lang;
 
 /**
  * A base class for `DatePickerNativeBase`.
@@ -89,16 +75,16 @@ DatePickerNativeBase.prototype = {
      */
     bindNativeUI: function() {
         var instance = this,
-            container = instance.get(CONTAINER),
-            selector = instance.get(SELECTOR);
+            container = instance.get('container'),
+            selector = instance.get('selector');
 
         instance._eventHandles.push(
             container.delegate(
-                TOUCHSTART,
+                'touchstart',
                 A.bind('_onceUserInteraction', instance), selector),
 
             container.delegate(
-                CHANGE,
+                'change',
                 A.bind('_afterNativeSelectionChange', instance), selector)
         );
     },
@@ -110,7 +96,7 @@ DatePickerNativeBase.prototype = {
      */
     clearSelection: function() {
         var instance = this,
-            activeInput = instance.get(ACTIVE_INPUT);
+            activeInput = instance.get('activeInput');
 
         activeInput.val('');
     },
@@ -133,7 +119,7 @@ DatePickerNativeBase.prototype = {
      */
     hide: function() {
         var instance = this,
-            activeInput = instance.get(ACTIVE_INPUT);
+            activeInput = instance.get('activeInput');
 
         activeInput.blur();
     },
@@ -145,7 +131,7 @@ DatePickerNativeBase.prototype = {
      */
     show: function() {
         var instance = this,
-            activeInput = instance.get(ACTIVE_INPUT);
+            activeInput = instance.get('activeInput');
 
         activeInput.focus();
     },
@@ -158,7 +144,7 @@ DatePickerNativeBase.prototype = {
      */
     selectDates: function(dates) {
         var instance = this,
-            activeInput = instance.get(ACTIVE_INPUT);
+            activeInput = instance.get('activeInput');
 
         if (Lang.isArray(dates)) {
             dates = dates[0];
@@ -177,11 +163,11 @@ DatePickerNativeBase.prototype = {
      */
     useInputNode: function(node) {
         var instance = this,
-            nativeType = instance.get(NATIVE_TYPE),
-            type = node.attr(TYPE),
+            nativeType = instance.get('nativeType'),
+            type = node.attr('type'),
             parsed;
 
-        instance.set(ACTIVE_INPUT, node);
+        instance.set('activeInput', node);
 
         if (!instance._isTypeSupported(type)) {
             parsed = instance.getParsedDatesFromInputValue();
@@ -190,8 +176,8 @@ DatePickerNativeBase.prototype = {
             }
         }
 
-        if (node.getAttribute(TYPE) !== nativeType) {
-            node.setAttribute(TYPE, nativeType);
+        if (node.getAttribute('type') !== nativeType) {
+            node.setAttribute('type', nativeType);
         }
 
         instance._fireSelectionChange();
@@ -206,7 +192,7 @@ DatePickerNativeBase.prototype = {
      * @return {String} The result of the string manipulation.
      */
     _addFourDigitsYearPadding: function(text) {
-        return A.Lang.String.repeat('0', 4 - text.indexOf(_DASH)) + text;
+        return A.Lang.String.repeat('0', 4 - text.indexOf('-')) + text;
     },
 
     /**
@@ -218,7 +204,7 @@ DatePickerNativeBase.prototype = {
      */
     _afterNativeSelectionChange: function(event) {
         var instance = this,
-            type = event.currentTarget.attr(TYPE);
+            type = event.currentTarget.attr('type');
 
         if (instance._isTypeSupported(type)) {
             instance._fireSelectionChange();
@@ -233,11 +219,11 @@ DatePickerNativeBase.prototype = {
      */
     _fireSelectionChange: function() {
         var instance = this,
-            activeInput = instance.get(ACTIVE_INPUT),
+            activeInput = instance.get('activeInput'),
             parsed = instance._parseDateFromString(activeInput.val());
 
         instance.fire(
-            SELECTION_CHANGE, {
+            'selectionChange', {
                 newSelection: parsed ? [parsed] : []
             });
     },
@@ -252,13 +238,13 @@ DatePickerNativeBase.prototype = {
      */
     _formatDate: function(date) {
         var instance = this,
-            nativeMask = instance.get(NATIVE_MASK),
-            nativeType = instance.get(NATIVE_TYPE),
+            nativeMask = instance.get('nativeMask'),
+            nativeType = instance.get('nativeType'),
             formatted = A.Date.format(date, {
                 format: nativeMask
             });
 
-        if (nativeType === DATE) {
+        if (nativeType === 'date') {
             formatted = instance._addFourDigitsYearPadding(formatted);
         }
 
@@ -293,7 +279,7 @@ DatePickerNativeBase.prototype = {
      */
     _parseDateFromString: function(text) {
         var instance = this,
-            nativeMask = instance.get(NATIVE_MASK);
+            nativeMask = instance.get('nativeMask');
 
         if (!text) {
             return false;

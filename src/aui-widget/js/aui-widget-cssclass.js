@@ -4,10 +4,6 @@
  * @module aui-widget-cssclass
  */
 
-var BOUNDING_BOX = 'boundingBox',
-    CONTENT_BOX = 'contentBox',
-    CSS_CLASS_CHANGE = 'cssClassChange';
-
 /**
  * Widget extension, which can be used to add cssClass support to the
  * base Widget class, through the [Base.build](Base.html#method_build) method.
@@ -58,7 +54,7 @@ WidgetCssClass.prototype = {
         var instance = this;
 
         instance._uiSetCssClass(config.cssClass);
-        instance.after(CSS_CLASS_CHANGE, instance._afterCssClassChange);
+        instance.after('cssClassChange', instance._afterCssClassChange);
     },
 
     /**
@@ -76,8 +72,8 @@ WidgetCssClass.prototype = {
         prevVal = event.prevVal;
 
         if (prevVal) {
-            instance.get(BOUNDING_BOX).removeClass(prevVal);
-            instance.get(CONTENT_BOX).removeClass(
+            instance.get('boundingBox').removeClass(prevVal);
+            instance.get('contentBox').removeClass(
                 prevVal + WidgetCssClass.CSS_CLASS_CONTENT_SUFFIX);
         }
 
@@ -96,8 +92,8 @@ WidgetCssClass.prototype = {
         var instance = this;
 
         if (val) {
-            instance.get(BOUNDING_BOX).addClass(val);
-            instance.get(CONTENT_BOX).addClass(
+            instance.get('boundingBox').addClass(val);
+            instance.get('contentBox').addClass(
                 val + WidgetCssClass.CSS_CLASS_CONTENT_SUFFIX);
         }
     }

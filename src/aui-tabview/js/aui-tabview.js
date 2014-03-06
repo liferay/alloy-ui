@@ -7,56 +7,33 @@
 var Lang = A.Lang,
     isBoolean = Lang.isBoolean,
 
-    _DOT = '.',
-
-    ACTIVE = 'active',
-    BOUNDING_BOX = 'boundingBox',
-    CONTENT = 'content',
-    CONTENT_BOX = 'contentBox',
-    DISABLED = 'disabled',
-    LABEL = 'label',
-    LIST = 'list',
-    LIST_NODE = 'listNode',
-    NAV = 'nav',
-    PANE = 'pane',
-    PANEL_NODE = 'panelNode',
-    PILLS = 'pills',
-    STACKED = 'stacked',
-    SYNC_UI = 'syncUI',
-    TAB = 'tab',
-    TABBABLE = 'tabbable',
-    TABS = 'tabs',
-    TYPE = 'type',
-    TYPE_CHANGE = 'typeChange',
-    SELECTED_CHANGE = 'selectedChange',
-
     getClassName = A.getClassName;
 
 A.TabviewBase._classNames = {
-    selectedPanel: getClassName(ACTIVE),
-    selectedTab: getClassName(ACTIVE),
-    tab: getClassName(TAB),
-    tabLabel: getClassName(TAB, LABEL),
-    tabPanel: getClassName(TAB, PANE),
-    tabview: getClassName(TABBABLE),
-    tabviewList: getClassName(NAV),
-    tabviewListStacked: getClassName(NAV, STACKED),
-    tabviewPanel: getClassName(TAB, CONTENT)
+    selectedPanel: getClassName('active'),
+    selectedTab: getClassName('active'),
+    tab: getClassName('tab'),
+    tabLabel: getClassName('tab', 'label'),
+    tabPanel: getClassName('tab', 'pane'),
+    tabview: getClassName('tabbable'),
+    tabviewList: getClassName('nav'),
+    tabviewListStacked: getClassName('nav', 'stacked'),
+    tabviewPanel: getClassName('tab', 'content')
 };
 
 A.TabviewBase._queries = {
-    selectedPanel: '> div ' + _DOT + A.TabviewBase._classNames.selectedPanel,
-    selectedTab: '> ul > ' + _DOT + A.TabviewBase._classNames.selectedTab,
+    selectedPanel: '> div ' + '.' + A.TabviewBase._classNames.selectedPanel,
+    selectedTab: '> ul > ' + '.' + A.TabviewBase._classNames.selectedTab,
     tab: '> ul > li:not(.nav-header)',
     tabLabel: '> ul > li:not(.nav-header) > a',
     tabPanel: '> div > div',
-    tabview: _DOT + A.TabviewBase._classNames.tabview,
+    tabview: '.' + A.TabviewBase._classNames.tabview,
     tabviewList: '> ul',
     tabviewPanel: '> div'
 };
 
-A.Tab.CSS_PREFIX = getClassName(TAB);
-A.Tab.NAME = TAB;
+A.Tab.CSS_PREFIX = getClassName('tab');
+A.Tab.NAME = 'tab';
 
 /**
  * A base class for Tab.
@@ -80,7 +57,7 @@ A.Tab = A.Component.create({
      * @type String
      * @static
      */
-    NAME: TAB,
+    NAME: 'tab',
 
     /**
      * Static property used to define the default attribute
@@ -111,7 +88,7 @@ A.Tab = A.Component.create({
      * @type String
      * @static
      */
-    CSS_PREFIX: getClassName(TAB),
+    CSS_PREFIX: getClassName('tab'),
 
     /**
      * Static property used to define which component it extends.
@@ -133,7 +110,7 @@ A.Tab = A.Component.create({
         initializer: function() {
             var instance = this;
 
-            instance.on(SELECTED_CHANGE, instance._onTabSelectedChange);
+            instance.on('selectedChange', instance._onTabSelectedChange);
 
             A.after(instance._afterUiSetDisabled, instance, '_uiSetDisabled');
         },
@@ -148,7 +125,7 @@ A.Tab = A.Component.create({
         _afterUiSetDisabled: function(val) { // TODO: move to A.Component?
             var instance = this;
 
-            instance.get(BOUNDING_BOX).toggleClass(getClassName(DISABLED), val);
+            instance.get('boundingBox').toggleClass(getClassName('disabled'), val);
         },
 
         /**
@@ -161,7 +138,7 @@ A.Tab = A.Component.create({
         _onTabSelectedChange: function(event) {
             var instance = this;
 
-            if (instance.get(DISABLED)) {
+            if (instance.get('disabled')) {
                 event.halt();
             }
         },
@@ -195,13 +172,13 @@ A.Tab = A.Component.create({
         _valueDisabled: function() {
             var instance = this;
 
-            return instance.get(BOUNDING_BOX).hasClass(DISABLED);
+            return instance.get('boundingBox').hasClass('disabled');
         }
     }
 });
 
-A.TabView.NAME = TABBABLE;
-A.TabView.CSS_PREFIX = getClassName(TABBABLE);
+A.TabView.NAME = 'tabbable';
+A.TabView.CSS_PREFIX = getClassName('tabbable');
 
 /**
  * A base class for TabView.
@@ -223,7 +200,7 @@ A.TabView = A.Component.create({
      * @type String
      * @static
      */
-    NAME: TABBABLE,
+    NAME: 'tabbable',
 
     /**
      * Static property provides a string to identify the CSS prefix.
@@ -232,7 +209,7 @@ A.TabView = A.Component.create({
      * @type String
      * @static
      */
-    CSS_PREFIX: getClassName(TABBABLE),
+    CSS_PREFIX: getClassName('tabbable'),
 
     /**
      * Static property used to define the default attribute
@@ -266,9 +243,9 @@ A.TabView = A.Component.create({
          */
         type: {
             validator: function(val) {
-                return val === LIST || val === TABS || val === PILLS;
+                return val === 'list' || val === 'tabs' || val === 'pills';
             },
-            value: TABS
+            value: 'tabs'
         }
     },
 
@@ -279,7 +256,7 @@ A.TabView = A.Component.create({
      * @type Array
      * @static
      */
-    UI_ATTRS: [STACKED, TYPE],
+    UI_ATTRS: ['stacked', 'type'],
 
     /**
      * Static property used to define which component it extends.
@@ -301,8 +278,8 @@ A.TabView = A.Component.create({
         initializer: function() {
             var instance = this;
 
-            instance.after(instance._afterSyncUI, instance, SYNC_UI);
-            instance.after(TYPE_CHANGE, instance._afterTypeChange);
+            instance.after(instance._afterSyncUI, instance, 'syncUI');
+            instance.after('typeChange', instance._afterTypeChange);
         },
 
         /**
@@ -314,7 +291,7 @@ A.TabView = A.Component.create({
         disableTab: function(i) {
             var instance = this;
 
-            instance.item(i).set(DISABLED, true);
+            instance.item(i).set('disabled', true);
         },
 
         /**
@@ -326,7 +303,7 @@ A.TabView = A.Component.create({
         enableTab: function(i) {
             var instance = this;
 
-            instance.item(i).set(DISABLED, false);
+            instance.item(i).set('disabled', false);
         },
 
         /**
@@ -338,7 +315,7 @@ A.TabView = A.Component.create({
             var instance = this,
                 _queries = A.TabviewBase._queries;
 
-            return instance.get(CONTENT_BOX).one(_queries.selectedTab);
+            return instance.get('contentBox').one(_queries.selectedTab);
         },
 
         /**
@@ -350,7 +327,7 @@ A.TabView = A.Component.create({
             var instance = this,
                 _queries = A.TabviewBase._queries;
 
-            return instance.get(CONTENT_BOX).all(_queries.tab);
+            return instance.get('contentBox').all(_queries.tab);
         },
 
         /**
@@ -368,12 +345,12 @@ A.TabView = A.Component.create({
             A.TabView.superclass._afterSelectionChange.apply(this, arguments);
 
             if (newVal) {
-                newVal.get(BOUNDING_BOX).addClass(selectedTabClassName);
-                newVal.get(PANEL_NODE).addClass(selectedTabClassName);
+                newVal.get('boundingBox').addClass(selectedTabClassName);
+                newVal.get('panelNode').addClass(selectedTabClassName);
             }
             if (prevVal) {
-                prevVal.get(BOUNDING_BOX).removeClass(selectedTabClassName);
-                prevVal.get(PANEL_NODE).removeClass(selectedTabClassName);
+                prevVal.get('boundingBox').removeClass(selectedTabClassName);
+                prevVal.get('panelNode').removeClass(selectedTabClassName);
             }
         },
 
@@ -386,10 +363,10 @@ A.TabView = A.Component.create({
          */
         _afterTypeChange: function(event) {
             var instance = this,
-                listNode = instance.get(LIST_NODE);
+                listNode = instance.get('listNode');
 
             if (event.prevVal) {
-                listNode.removeClass(getClassName(NAV, event.prevVal));
+                listNode.removeClass(getClassName('nav', event.prevVal));
             }
         },
 
@@ -402,12 +379,12 @@ A.TabView = A.Component.create({
          */
         _renderChildren: function() { // TODO: file issue on YUI.
             var instance = this,
-                renderTo = instance._childrenContainer || instance.get(CONTENT_BOX);
+                renderTo = instance._childrenContainer || instance.get('contentBox');
 
             instance._childrenContainer = renderTo;
 
             instance.each(function(child) {
-                if (child.get(BOUNDING_BOX).inDoc()) {
+                if (child.get('boundingBox').inDoc()) {
                     renderTo = null;
                 }
                 child.render(renderTo);
@@ -423,9 +400,9 @@ A.TabView = A.Component.create({
          */
         _uiSetType: function(val) {
             var instance = this,
-                listNode = instance.get(LIST_NODE);
+                listNode = instance.get('listNode');
 
-            listNode.addClass(getClassName(NAV, val));
+            listNode.addClass(getClassName('nav', val));
         },
 
         /**
@@ -437,7 +414,7 @@ A.TabView = A.Component.create({
          */
         _uiSetStacked: function(val) {
             var instance = this,
-                listNode = instance.get(LIST_NODE);
+                listNode = instance.get('listNode');
 
             listNode.toggleClass(
                 A.TabviewBase._classNames.tabviewListStacked, val);

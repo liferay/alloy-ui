@@ -7,35 +7,14 @@
 
 var L = A.Lang,
 
-    ACCEPT_CHILDREN = 'acceptChildren',
-    BUILDER = 'builder',
-    CONTENT_BOX = 'contentBox',
-    DOT = '.',
-    DROP = 'drop',
-    DROP_ZONE_NODE = 'dropZoneNode',
-    FORM = 'form',
-    FORM_BUILDER_FIELD = 'form-builder-field',
-    FORM_BUILDER_FIELDSET_FIELD = 'form-builder-fieldset-field',
-    ID = 'id',
-    LABEL = 'label',
-    NO = 'no',
-    NODE = 'node',
-    SHOW_LABEL = 'showLabel',
-    SPACE = ' ',
-    TEMPLATE = 'template',
-    TEMPLATE_NODE = 'templateNode',
-    TYPE = 'type',
-    YES = 'yes',
-    ZONE = 'zone',
-
     getCN = A.getClassName,
 
-    CSS_FIELD_LABEL = getCN(FORM_BUILDER_FIELD, LABEL),
-    CSS_FORM_BUILDER_DROP_ZONE = getCN(FORM, BUILDER, DROP, ZONE),
-    CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
-    CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
+    CSS_FIELD_LABEL = getCN('form-builder-field', 'label'),
+    CSS_FORM_BUILDER_DROP_ZONE = getCN('form', 'builder', 'drop', 'zone'),
+    CSS_FORM_BUILDER_FIELD = getCN('form-builder-field'),
+    CSS_FORM_BUILDER_FIELD_NODE = getCN('form-builder-field', 'node'),
 
-    TPL_FIELDSET = '<fieldset id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE].join(SPACE) + '"></fieldset>',
+    TPL_FIELDSET = '<fieldset id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE].join(' ') + '"></fieldset>',
     TPL_LEGEND = '<legend class="' + CSS_FIELD_LABEL + '"></legend>';
 
 /**
@@ -56,7 +35,7 @@ var FormBuilderFieldsetField = A.Component.create({
      * @type String
      * @static
      */
-    NAME: FORM_BUILDER_FIELDSET_FIELD,
+    NAME: 'form-builder-fieldset-field',
 
     /**
      * Static property used to define the default attribute
@@ -122,7 +101,7 @@ var FormBuilderFieldsetField = A.Component.create({
      * @type Array
      * @static
      */
-    UI_ATTRS: [ACCEPT_CHILDREN, LABEL, SHOW_LABEL],
+    UI_ATTRS: ['acceptChildren', 'label', 'showLabel'],
 
     /**
      * Static property provides a string to identify the CSS prefix.
@@ -155,8 +134,8 @@ var FormBuilderFieldsetField = A.Component.create({
             var instance = this;
 
             return L.sub(
-                instance.get(TEMPLATE), {
-                    id: instance.get(ID)
+                instance.get('template'), {
+                    id: instance.get('id')
                 }
             );
         },
@@ -172,23 +151,23 @@ var FormBuilderFieldsetField = A.Component.create({
                 strings = instance.getStrings();
 
             return [{
-                attributeName: TYPE,
+                attributeName: 'type',
                 editor: false,
-                name: strings[TYPE]
+                name: strings['type']
             }, {
-                attributeName: LABEL,
+                attributeName: 'label',
                 editor: new A.TextCellEditor(),
-                name: strings[LABEL]
+                name: strings['label']
             }, {
-                attributeName: SHOW_LABEL,
+                attributeName: 'showLabel',
                 editor: new A.RadioCellEditor({
                     options: {
-                        'true': strings[YES],
-                        'false': strings[NO]
+                        'true': strings['yes'],
+                        'false': strings['no']
                     }
                 }),
                 formatter: A.bind(instance._booleanFormatter, instance),
-                name: strings[SHOW_LABEL]
+                name: strings['showLabel']
             }];
         },
 
@@ -201,9 +180,9 @@ var FormBuilderFieldsetField = A.Component.create({
          */
         _uiSetAcceptChildren: function(val) {
             var instance = this,
-                contentBox = instance.get(CONTENT_BOX),
-                dropZone = instance.get(DROP_ZONE_NODE),
-                markupDropZone = contentBox.one(DOT + CSS_FORM_BUILDER_DROP_ZONE);
+                contentBox = instance.get('contentBox'),
+                dropZone = instance.get('dropZoneNode'),
+                markupDropZone = contentBox.one('.' + CSS_FORM_BUILDER_DROP_ZONE);
 
             if (val && !markupDropZone) {
                 contentBox.append(dropZone);
@@ -212,10 +191,10 @@ var FormBuilderFieldsetField = A.Component.create({
                 markupDropZone.remove();
             }
             else if (val && markupDropZone) {
-                instance.set(DROP_ZONE_NODE, markupDropZone);
+                instance.set('dropZoneNode', markupDropZone);
             }
 
-            instance.get(TEMPLATE_NODE).hide();
+            instance.get('templateNode').hide();
         }
 
     }

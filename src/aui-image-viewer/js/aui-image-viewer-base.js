@@ -15,106 +15,37 @@ var L = A.Lang,
 
     DOC = A.config.doc,
 
-    ANIM = 'anim',
-    AUTO = 'auto',
-    BD = 'bd',
-    BLANK = 'blank',
-    BODY = 'body',
-    BOUNDING_BOX = 'boundingBox',
-    CAPTION = 'caption',
-    CAPTION_EL = 'captionEl',
-    CAPTION_FROM_TITLE = 'captionFromTitle',
-    CAROUSEL = 'carousel',
-    CENTERED = 'centered',
-    CLOSE = 'close',
-    CLOSE_EL = 'closeEl',
-    CONTROL = 'control',
-    CONTROL_LEFT_EL = 'controlLeftEl',
-    CONTROL_RIGHT_EL = 'controlRightEl',
-    CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
-    CURRENT_INDEX = 'currentIndex',
-    EASE_BOTH_STRONG = 'easeBothStrong',
-    FOOTER = 'footer',
-    HELPER = 'helper',
-    HIDDEN = 'hidden',
-    HIDE = 'hide',
-    HREF = 'href',
-    ICON = 'icon',
-    IMAGE = 'image',
-    IMAGE_ANIM = 'imageAnim',
-    IMAGE_VIEWER = 'image-viewer',
-    INFO = 'info',
-    INFO_EL = 'infoEl',
-    INFO_TEMPLATE = 'infoTemplate',
-    LEFT = 'left',
-    LINK = 'link',
-    LINKS = 'links',
-    LOADER = 'loader',
-    LOADING = 'loading',
-    LOADING_EL = 'loadingEl',
-    LOCK = 'lock',
-    MAX_HEIGHT = 'maxHeight',
-    MAX_WIDTH = 'maxWidth',
-    MODAL = 'modal',
-    OFFSET_HEIGHT = 'offsetHeight',
-    OFFSET_WIDTH = 'offsetWidth',
-    OPACITY = 'opacity',
-    OVERLAY = 'overlay',
-    PRELOAD_ALL_IMAGES = 'preloadAllImages',
-    PRELOAD_NEIGHBOR_IMAGES = 'preloadNeighborImages',
-    PX = 'px',
-    REGION = 'region',
-    RIGHT = 'right',
-    SCROLL = 'scroll',
-    SHOW = 'show',
-    SHOW_CLOSE = 'showClose',
-    SHOW_CONTROLS = 'showControls',
-    SPACE = ' ',
-    SRC = 'src',
-    TIME = 'time',
-    TITLE = 'title',
-    TOP = 'top',
-    TOTAL_LINKS = 'totalLinks',
-    VIEWPORT_REGION = 'viewportRegion',
-    VISIBLE = 'visible',
-    WELL = 'well',
-    OWNER_DOCUMENT = 'ownerDocument',
-
     isNodeList = function(v) {
         return (v instanceof A.NodeList);
     },
 
     concat = function() {
-        return Array.prototype.slice.call(arguments).join(SPACE);
+        return Array.prototype.slice.call(arguments).join(' ');
     },
 
     getCN = A.getClassName,
 
-    CSS_CAROUSEL_CONTROL = getCN(CAROUSEL, CONTROL),
-    CSS_CLOSE = getCN(CLOSE),
-    CSS_HELPER_SCROLL_LOCK = getCN(HELPER, SCROLL, LOCK),
-    CSS_HIDE = getCN(HIDE),
-    CSS_ICON_TIME = getCN(ICON, TIME),
-    CSS_IMAGE_VIEWER_BD = getCN(IMAGE_VIEWER, BD),
-    CSS_IMAGE_VIEWER_CAPTION = getCN(IMAGE_VIEWER, CAPTION),
-    CSS_IMAGE_VIEWER_CLOSE = getCN(IMAGE_VIEWER, CLOSE),
-    CSS_IMAGE_VIEWER_CONTROL = getCN(IMAGE_VIEWER, CONTROL),
-    CSS_IMAGE_VIEWER_IMAGE = getCN(IMAGE_VIEWER, IMAGE),
-    CSS_IMAGE_VIEWER_INFO = getCN(IMAGE_VIEWER, INFO),
-    CSS_IMAGE_VIEWER_LINK = getCN(IMAGE_VIEWER, LINK),
-    CSS_IMAGE_VIEWER_LOADER = getCN(IMAGE_VIEWER, LOADER),
-    CSS_IMAGE_VIEWER_LOADING = getCN(IMAGE_VIEWER, LOADING),
-    CSS_LEFT = getCN(LEFT),
-    CSS_RIGHT = getCN(RIGHT),
-    CSS_WELL = getCN(WELL),
-
-    KEY_ESC = 'ESC',
-    KEY_LEFT = 'LEFT',
-    KEY_RIGHT = 'RIGHT',
+    CSS_CAROUSEL_CONTROL = getCN('carousel', 'control'),
+    CSS_CLOSE = getCN('close'),
+    CSS_HELPER_SCROLL_LOCK = getCN('helper', 'scroll', 'lock'),
+    CSS_HIDE = getCN('hide'),
+    CSS_ICON_TIME = getCN('icon', 'time'),
+    CSS_IMAGE_VIEWER_BD = getCN('image-viewer', 'bd'),
+    CSS_IMAGE_VIEWER_CAPTION = getCN('image-viewer', 'caption'),
+    CSS_IMAGE_VIEWER_CLOSE = getCN('image-viewer', 'close'),
+    CSS_IMAGE_VIEWER_CONTROL = getCN('image-viewer', 'control'),
+    CSS_IMAGE_VIEWER_IMAGE = getCN('image-viewer', 'image'),
+    CSS_IMAGE_VIEWER_INFO = getCN('image-viewer', 'info'),
+    CSS_IMAGE_VIEWER_LINK = getCN('image-viewer', 'link'),
+    CSS_IMAGE_VIEWER_LOADER = getCN('image-viewer', 'loader'),
+    CSS_IMAGE_VIEWER_LOADING = getCN('image-viewer', 'loading'),
+    CSS_LEFT = getCN('left'),
+    CSS_RIGHT = getCN('right'),
+    CSS_WELL = getCN('well'),
 
     MAP_RESET_DIMENSIONS = {
-        height: AUTO,
-        width: AUTO
+        height: 'auto',
+        width: 'auto'
     },
 
     NODE_BLANK_TEXT = DOC.createTextNode(''),
@@ -122,7 +53,7 @@ var L = A.Lang,
     INFO_LABEL_TEMPLATE = 'Image {current} of {total}',
 
     TPL_CAPTION = '<h4 class="' + CSS_IMAGE_VIEWER_CAPTION + '"></h4>',
-    TPL_CLOSE = '<button class="' + concat(CSS_IMAGE_VIEWER_CLOSE, CSS_CLOSE) + '" type="button">×</button>',
+    TPL_CLOSE = '<button class="' + concat(CSS_IMAGE_VIEWER_CLOSE, CSS_CLOSE) + '" type="button">?</button>',
     TPL_CONTROL_LEFT = '<a href="#" class="' + concat(CSS_IMAGE_VIEWER_CONTROL, CSS_CAROUSEL_CONTROL, CSS_LEFT) +
         '">&lsaquo;</a>',
     TPL_CONTROL_RIGHT = '<a href="#" class="' + concat(CSS_IMAGE_VIEWER_CONTROL, CSS_CAROUSEL_CONTROL, CSS_RIGHT) +
@@ -184,7 +115,7 @@ var ImageViewer = A.Base.create(
             instance._renderControls();
             instance._renderFooter();
 
-            instance.get(LINKS).addClass(CSS_IMAGE_VIEWER_LINK);
+            instance.get('links').addClass(CSS_IMAGE_VIEWER_LINK);
         },
 
         /**
@@ -195,10 +126,10 @@ var ImageViewer = A.Base.create(
          */
         bindUI: function() {
             var instance = this;
-            var links = instance.get(LINKS);
-            var controlLeftEl = instance.get(CONTROL_LEFT_EL);
-            var controlRightEl = instance.get(CONTROL_RIGHT_EL);
-            var closeEl = instance.get(CLOSE_EL);
+            var links = instance.get('links');
+            var controlLeftEl = instance.get('controlLeftEl');
+            var controlRightEl = instance.get('controlRightEl');
+            var closeEl = instance.get('closeEl');
 
             closeEl.on('click', A.bind(instance._onClickCloseEl, instance));
             controlLeftEl.on('click', A.bind(instance._onClickLeftControl, instance));
@@ -232,7 +163,7 @@ var ImageViewer = A.Base.create(
         destructor: function() {
             var instance = this;
 
-            var links = instance.get(LINKS);
+            var links = instance.get('links');
 
             instance.close();
 
@@ -242,10 +173,10 @@ var ImageViewer = A.Base.create(
             // detach key global listener from the document
             A.getDoc().detach('keydown', instance._keyHandler);
 
-            instance.get(CONTROL_LEFT_EL).remove(true);
-            instance.get(CONTROL_RIGHT_EL).remove(true);
-            instance.get(CLOSE_EL).remove(true);
-            instance.get(LOADER).remove(true);
+            instance.get('controlLeftEl').remove(true);
+            instance.get('controlRightEl').remove(true);
+            instance.get('closeEl').remove(true);
+            instance.get('loader').remove(true);
         },
 
         /**
@@ -270,7 +201,7 @@ var ImageViewer = A.Base.create(
         getLink: function(currentIndex) {
             var instance = this;
 
-            return instance.get(LINKS).item(currentIndex);
+            return instance.get('links').item(currentIndex);
         },
 
         /**
@@ -283,7 +214,7 @@ var ImageViewer = A.Base.create(
             var instance = this;
 
             return instance.getLink(
-                instance.get(CURRENT_INDEX)
+                instance.get('currentIndex')
             );
         },
 
@@ -296,9 +227,9 @@ var ImageViewer = A.Base.create(
         loadImage: function(src) {
             var instance = this;
 
-            var loader = instance.get(LOADER);
+            var loader = instance.get('loader');
 
-            instance.set(LOADING, true);
+            instance.set('loading', true);
 
             var activeImagePool = instance._activeImagePool;
 
@@ -306,7 +237,7 @@ var ImageViewer = A.Base.create(
                 activeImagePool = [];
 
                 // creating the placeholder image
-                var placeholder = instance.get(IMAGE);
+                var placeholder = instance.get('image');
 
                 var image0 = placeholder.clone();
                 var image1 = placeholder.clone();
@@ -340,10 +271,10 @@ var ImageViewer = A.Base.create(
             // dataURI allows cached images to refire load event in webkit, and
             // bypass the MimeType error (c/o Paul Irish & Doug Jones)
             if (A.UA.webkit) {
-                image.attr(SRC, 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==');
+                image.attr('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==');
             }
 
-            image.attr(SRC, src);
+            image.attr('src', src);
 
             instance.fire('request', {
                 image: image
@@ -373,7 +304,7 @@ var ImageViewer = A.Base.create(
             var instance = this;
 
             return instance.hasLink(
-                instance.get(CURRENT_INDEX) + 1
+                instance.get('currentIndex') + 1
             );
         },
 
@@ -387,7 +318,7 @@ var ImageViewer = A.Base.create(
             var instance = this;
 
             return instance.hasLink(
-                instance.get(CURRENT_INDEX) - 1
+                instance.get('currentIndex') - 1
             );
         },
 
@@ -399,9 +330,9 @@ var ImageViewer = A.Base.create(
         hideControls: function() {
             var instance = this;
 
-            instance.get(CONTROL_LEFT_EL).hide();
-            instance.get(CONTROL_RIGHT_EL).hide();
-            instance.get(CLOSE_EL).hide();
+            instance.get('controlLeftEl').hide();
+            instance.get('controlRightEl').hide();
+            instance.get('closeEl').hide();
         },
 
         /**
@@ -414,8 +345,8 @@ var ImageViewer = A.Base.create(
 
             if (instance.hasNext()) {
                 instance.set(
-                    CURRENT_INDEX,
-                    instance.get(CURRENT_INDEX) + 1
+                    'currentIndex',
+                    instance.get('currentIndex') + 1
                 );
 
                 instance.show();
@@ -430,7 +361,7 @@ var ImageViewer = A.Base.create(
         preloadAllImages: function() {
             var instance = this;
 
-            instance.get(LINKS).each(function(link, index) {
+            instance.get('links').each(function(link, index) {
                 instance.preloadImage(index);
             });
         },
@@ -446,7 +377,7 @@ var ImageViewer = A.Base.create(
             var link = instance.getLink(currentIndex);
 
             if (link) {
-                var src = link.attr(HREF);
+                var src = link.attr('href');
 
                 instance._createPreloadImage(src);
             }
@@ -462,8 +393,8 @@ var ImageViewer = A.Base.create(
 
             if (instance.hasPrev()) {
                 instance.set(
-                    CURRENT_INDEX,
-                    instance.get(CURRENT_INDEX) - 1
+                    'currentIndex',
+                    instance.get('currentIndex') - 1
                 );
 
                 instance.show();
@@ -477,9 +408,9 @@ var ImageViewer = A.Base.create(
          */
         showLoading: function() {
             var instance = this;
-            var loadingEl = instance.get(LOADING_EL);
+            var loadingEl = instance.get('loadingEl');
 
-            instance.setStdModContent(BODY, loadingEl);
+            instance.setStdModContent('body', loadingEl);
 
             loadingEl.center(instance.bodyNode);
         },
@@ -497,7 +428,7 @@ var ImageViewer = A.Base.create(
                 ImageViewer.superclass.show.apply(this, arguments);
 
                 instance.loadImage(
-                    currentLink.attr(HREF)
+                    currentLink.attr('href')
                 );
             }
         },
@@ -560,18 +491,18 @@ var ImageViewer = A.Base.create(
          */
         _renderControls: function() {
             var instance = this;
-            var body = A.one(BODY);
+            var body = A.one('body');
 
             body.append(
-                instance.get(CONTROL_LEFT_EL).hide()
+                instance.get('controlLeftEl').hide()
             );
 
             body.append(
-                instance.get(CONTROL_RIGHT_EL).hide()
+                instance.get('controlRightEl').hide()
             );
 
             body.append(
-                instance.get(CLOSE_EL).hide()
+                instance.get('closeEl').hide()
             );
         },
 
@@ -584,19 +515,19 @@ var ImageViewer = A.Base.create(
         _renderFooter: function() {
             var instance = this;
 
-            var boundingBox = instance.get(BOUNDING_BOX);
+            var boundingBox = instance.get('boundingBox');
 
-            var docFrag = boundingBox.get(OWNER_DOCUMENT).invoke(CREATE_DOCUMENT_FRAGMENT);
+            var docFrag = boundingBox.get('ownerDocument').invoke('createDocumentFragment');
 
             docFrag.append(
-                instance.get(CAPTION_EL)
+                instance.get('captionEl')
             );
             docFrag.append(
-                instance.get(INFO_EL)
+                instance.get('infoEl')
             );
 
             instance.setStdModContent(
-                FOOTER,
+                'footer',
                 docFrag
             );
         },
@@ -609,18 +540,18 @@ var ImageViewer = A.Base.create(
          */
         _syncCaptionUI: function() {
             var instance = this;
-            var caption = instance.get(CAPTION);
-            var captionEl = instance.get(CAPTION_EL);
-            var captionFromTitle = instance.get(CAPTION_FROM_TITLE);
+            var caption = instance.get('caption');
+            var captionEl = instance.get('captionEl');
+            var captionFromTitle = instance.get('captionFromTitle');
 
             if (captionFromTitle) {
                 var currentLink = instance.getCurrentLink();
 
                 if (currentLink) {
-                    var title = currentLink.attr(TITLE);
+                    var title = currentLink.attr('title');
 
                     if (title) {
-                        caption = currentLink.attr(TITLE);
+                        caption = currentLink.attr('title');
                     }
                 }
             }
@@ -636,22 +567,22 @@ var ImageViewer = A.Base.create(
          */
         _syncControlsUI: function() {
             var instance = this;
-            var boundingBox = instance.get(BOUNDING_BOX);
-            var controlLeftEl = instance.get(CONTROL_LEFT_EL);
-            var controlRightEl = instance.get(CONTROL_RIGHT_EL);
-            var closeEl = instance.get(CLOSE_EL);
+            var boundingBox = instance.get('boundingBox');
+            var controlLeftEl = instance.get('controlLeftEl');
+            var controlRightEl = instance.get('controlRightEl');
+            var closeEl = instance.get('closeEl');
 
-            if (instance.get(VISIBLE)) {
-                if (instance.get(SHOW_CONTROLS)) {
+            if (instance.get('visible')) {
+                if (instance.get('showControls')) {
                     // get the viewportRegion to centralize the controls on the
                     // middle of the window viewport
-                    var viewportRegion = boundingBox.get(VIEWPORT_REGION);
+                    var viewportRegion = boundingBox.get('viewportRegion');
                     var heightRegion = Math.floor(viewportRegion.height / 2) + viewportRegion.top;
 
                     // show or hide controls based on the hasPrev/hasNext
                     // information
-                    controlLeftEl[instance.hasPrev() ? SHOW : HIDE]();
-                    controlRightEl[instance.hasNext() ? SHOW : HIDE]();
+                    controlLeftEl[instance.hasPrev() ? 'show' : 'hide']();
+                    controlRightEl[instance.hasNext() ? 'show' : 'hide']();
 
                     closeEl.show();
                 }
@@ -684,10 +615,10 @@ var ImageViewer = A.Base.create(
          */
         _syncInfoUI: function() {
             var instance = this;
-            var infoEl = instance.get(INFO_EL);
+            var infoEl = instance.get('infoEl');
 
             infoEl.html(
-                instance.get(INFO_TEMPLATE)
+                instance.get('infoTemplate')
             );
         },
 
@@ -704,8 +635,8 @@ var ImageViewer = A.Base.create(
             var instance = this;
 
             var ratio = 1;
-            var maxHeight = instance.get(MAX_HEIGHT);
-            var maxWidth = instance.get(MAX_WIDTH);
+            var maxHeight = instance.get('maxHeight');
+            var maxWidth = instance.get('maxWidth');
 
             if ((height > maxHeight) || (width > maxWidth)) {
                 var hRatio = (height / maxHeight);
@@ -727,8 +658,8 @@ var ImageViewer = A.Base.create(
          */
         _getInfoTemplate: function(v) {
             var instance = this;
-            var total = instance.get(TOTAL_LINKS);
-            var current = instance.get(CURRENT_INDEX) + 1;
+            var total = instance.get('totalLinks');
+            var current = instance.get('currentIndex') + 1;
 
             return L.sub(v, {
                 current: current,
@@ -748,9 +679,9 @@ var ImageViewer = A.Base.create(
 
             instance._uiSetImageSize(image);
 
-            instance.setStdModContent(BODY, image);
+            instance.setStdModContent('body', image);
 
-            instance.set(LOADING, false);
+            instance.set('loading', false);
 
             instance._syncImageViewerUI();
 
@@ -761,9 +692,9 @@ var ImageViewer = A.Base.create(
                 image: image
             });
 
-            if (instance.get(PRELOAD_NEIGHBOR_IMAGES)) {
+            if (instance.get('preloadNeighborImages')) {
                 // preload neighbor images
-                var currentIndex = instance.get(CURRENT_INDEX);
+                var currentIndex = instance.get('currentIndex');
 
                 instance.preloadImage(currentIndex + 1);
                 instance.preloadImage(currentIndex - 1);
@@ -779,12 +710,12 @@ var ImageViewer = A.Base.create(
         _afterRender: function() {
             var instance = this;
             var bodyNode = instance.bodyNode;
-            var boundingBox = instance.get(BOUNDING_BOX);
+            var boundingBox = instance.get('boundingBox');
 
             bodyNode.addClass(CSS_IMAGE_VIEWER_BD);
             boundingBox.addClass(CSS_WELL);
 
-            if (instance.get(PRELOAD_ALL_IMAGES)) {
+            if (instance.get('preloadAllImages')) {
                 instance.preloadAllImages();
             }
         },
@@ -799,7 +730,7 @@ var ImageViewer = A.Base.create(
          */
         _afterLoadingChange: function(event) {
             var instance = this;
-            var boundingBox = instance.get(BOUNDING_BOX);
+            var boundingBox = instance.get('boundingBox');
 
             if (event.newVal) {
                 boundingBox.addClass(CSS_IMAGE_VIEWER_LOADING);
@@ -883,8 +814,8 @@ var ImageViewer = A.Base.create(
 
             // set the current currentIndex of the clicked image
             instance.set(
-                CURRENT_INDEX,
-                instance.get(LINKS).indexOf(target)
+                'currentIndex',
+                instance.get('links').indexOf(target)
             );
 
             instance.show();
@@ -902,17 +833,17 @@ var ImageViewer = A.Base.create(
         _onKeyInteraction: function(event) {
             var instance = this;
 
-            if (!instance.get(VISIBLE)) {
+            if (!instance.get('visible')) {
                 return false; // NOTE: return
             }
 
-            if (event.isKey(KEY_LEFT)) {
+            if (event.isKey('LEFT')) {
                 instance.prev();
             }
-            else if (event.isKey(KEY_RIGHT)) {
+            else if (event.isKey('RIGHT')) {
                 instance.next();
             }
-            else if (event.isKey(KEY_ESC)) {
+            else if (event.isKey('ESC')) {
                 instance.close();
             }
         },
@@ -930,10 +861,10 @@ var ImageViewer = A.Base.create(
 
             instance._displayLoadedImage(image);
 
-            var imageAnim = instance.get(IMAGE_ANIM);
+            var imageAnim = instance.get('imageAnim');
 
-            if (instance.get(ANIM)) {
-                image.setStyle(OPACITY, 0);
+            if (instance.get('anim')) {
+                image.setStyle('opacity', 0);
 
                 if (!image.fx) {
                     image.plug(NodeFx, imageAnim);
@@ -962,7 +893,7 @@ var ImageViewer = A.Base.create(
             var instance = this;
             var bodyNode = instance.bodyNode;
             var footerNode = instance.footerNode;
-            var imageRegion = image.get(REGION);
+            var imageRegion = image.get('region');
 
             var ratio = instance._getRatio(
                 imageRegion.width,
@@ -972,14 +903,14 @@ var ImageViewer = A.Base.create(
             var height = (imageRegion.height / ratio);
             var width = (imageRegion.width / ratio);
 
-            image.set(OFFSET_HEIGHT, height);
-            image.set(OFFSET_WIDTH, width);
+            image.set('offsetHeight', height);
+            image.set('offsetWidth', width);
 
-            footerNode.setStyle('width', width + PX);
+            footerNode.setStyle('width', width + 'px');
 
             bodyNode.setStyles({
-                height: height + PX,
-                width: width + PX
+                height: height + 'px',
+                width: width + 'px'
             });
         }
     },
@@ -992,7 +923,7 @@ var ImageViewer = A.Base.create(
          * @type String
          * @static
          */
-        NAME: IMAGE_VIEWER,
+        NAME: 'image-viewer',
 
         /**
          * Static property provides a string to identify the CSS prefix.
@@ -1001,7 +932,7 @@ var ImageViewer = A.Base.create(
          * @type String
          * @static
          */
-        CSS_PREFIX: getCN(IMAGE_VIEWER),
+        CSS_PREFIX: getCN('image-viewer'),
 
         /**
          * Static property used to define the default attribute
@@ -1043,7 +974,7 @@ var ImageViewer = A.Base.create(
              * @type String
              */
             caption: {
-                value: BLANK,
+                value: 'blank',
                 validator: isString
             },
 
@@ -1255,7 +1186,7 @@ var ImageViewer = A.Base.create(
             totalLinks: {
                 readOnly: true,
                 getter: function(v) {
-                    return this.get(LINKS).size();
+                    return this.get('links').size();
                 }
             },
 

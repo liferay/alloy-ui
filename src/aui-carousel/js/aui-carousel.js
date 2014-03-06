@@ -6,33 +6,27 @@
 
 var Lang = A.Lang,
 
-    STR_BLANK = ' ',
-
-    CAROUSEL = 'carousel',
-
     getCN = A.getClassName,
 
-    CSS_ITEM = getCN(CAROUSEL, 'item'),
-    CSS_ITEM_ACTIVE = getCN(CAROUSEL, 'item', 'active'),
-    CSS_ITEM_TRANSITION = getCN(CAROUSEL, 'item', 'transition'),
-    CSS_MENU_ACTIVE = getCN(CAROUSEL, 'menu', 'active'),
-    CSS_MENU_INDEX = getCN(CAROUSEL, 'menu', 'index'),
-    CSS_MENU_ITEM = getCN(CAROUSEL, 'menu', 'item'),
-    CSS_MENU_NEXT = getCN(CAROUSEL, 'menu', 'next'),
-    CSS_MENU_PLAY = getCN(CAROUSEL, 'menu', 'play'),
-    CSS_MENU_PAUSE = getCN(CAROUSEL, 'menu', 'pause'),
-    CSS_MENU_PREV = getCN(CAROUSEL, 'menu', 'prev'),
-    CSS_MENU_ITEM_DEFAULT = [CSS_MENU_ITEM, CSS_MENU_INDEX].join(STR_BLANK),
-    CSS_MENU_ITEM_ACTIVE = [CSS_MENU_ITEM, CSS_MENU_INDEX, CSS_MENU_ACTIVE].join(STR_BLANK),
+    CSS_ITEM = getCN('carousel', 'item'),
+    CSS_ITEM_ACTIVE = getCN('carousel', 'item', 'active'),
+    CSS_ITEM_TRANSITION = getCN('carousel', 'item', 'transition'),
+    CSS_MENU_ACTIVE = getCN('carousel', 'menu', 'active'),
+    CSS_MENU_INDEX = getCN('carousel', 'menu', 'index'),
+    CSS_MENU_ITEM = getCN('carousel', 'menu', 'item'),
+    CSS_MENU_NEXT = getCN('carousel', 'menu', 'next'),
+    CSS_MENU_PLAY = getCN('carousel', 'menu', 'play'),
+    CSS_MENU_PAUSE = getCN('carousel', 'menu', 'pause'),
+    CSS_MENU_PREV = getCN('carousel', 'menu', 'prev'),
+    CSS_MENU_ITEM_DEFAULT = [CSS_MENU_ITEM, CSS_MENU_INDEX].join(' '),
+    CSS_MENU_ITEM_ACTIVE = [CSS_MENU_ITEM, CSS_MENU_INDEX, CSS_MENU_ACTIVE].join(' '),
 
-    DOT = '.',
-
-    SELECTOR_MENU_INDEX = DOT + CSS_MENU_INDEX,
-    SELECTOR_MENU_NEXT = DOT + CSS_MENU_NEXT,
-    SELECTOR_MENU_PAUSE = DOT + CSS_MENU_PAUSE,
-    SELECTOR_MENU_PLAY = DOT + CSS_MENU_PLAY,
+    SELECTOR_MENU_INDEX = '.' + CSS_MENU_INDEX,
+    SELECTOR_MENU_NEXT = '.' + CSS_MENU_NEXT,
+    SELECTOR_MENU_PAUSE = '.' + CSS_MENU_PAUSE,
+    SELECTOR_MENU_PLAY = '.' + CSS_MENU_PLAY,
     SELECTOR_MENU_PLAY_OR_PAUSE = [SELECTOR_MENU_PLAY, SELECTOR_MENU_PAUSE].join(),
-    SELECTOR_MENU_PREV = DOT + CSS_MENU_PREV,
+    SELECTOR_MENU_PREV = '.' + CSS_MENU_PREV,
 
     TPL_ITEM = '<li><a class="' + CSS_MENU_ITEM + ' {cssClasses}">{index}</a></li>',
 
@@ -70,7 +64,7 @@ var Carousel = A.Component.create({
      * @type String
      * @static
      */
-    NAME: CAROUSEL,
+    NAME: 'carousel',
 
     /**
      * Static property used to define the default attribute
@@ -149,7 +143,7 @@ var Carousel = A.Component.create({
          * @type String
          */
         nodeMenuItemSelector: {
-            value: DOT + CSS_MENU_ITEM
+            value: '.' + CSS_MENU_ITEM
         },
 
         /**
@@ -607,7 +601,7 @@ var Carousel = A.Component.create({
             }
 
             var menu = A.Node.create(Lang.sub(TPL_MENU, {
-                items: items.join(STR_BLANK)
+                items: items.join(' ')
             }));
 
             instance.get('contentBox').appendChild(menu);

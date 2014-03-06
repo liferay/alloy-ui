@@ -5,11 +5,6 @@
  */
 
 var QS = A.QueryString,
-
-    _BLANK = '',
-
-    _ANCHOR_SEPARATOR = '#',
-    _QUERY_SEPARATOR = '?',
     _SCHEME_SEPARATOR = '://',
 
     URL_SOURCE = 0,
@@ -553,19 +548,19 @@ A.mix(Url.prototype, {
 
         if (instance._query) {
             url.push(
-                _QUERY_SEPARATOR,
+                '?',
                 instance._query
             );
         }
 
         if (instance._anchor) {
             url.push(
-                _ANCHOR_SEPARATOR,
+                '#',
                 instance._anchor
             );
         }
 
-        return url.join(_BLANK);
+        return url.join('');
     },
 
     /**
@@ -578,7 +573,7 @@ A.mix(Url.prototype, {
         var instance = this;
 
         if (!instance._parameters) {
-            instance._parameters = QS.parse(instance._query || _BLANK);
+            instance._parameters = QS.parse(instance._query || '');
         }
 
         instance._query = QS.stringify(instance._parameters);

@@ -5,8 +5,6 @@
  */
 
 var L = A.Lang,
-    FALSE = 'false',
-    TRUE = 'true',
 
     NUM_SIXTY = 60,
     NUM_THOUSAND = 1000,
@@ -43,7 +41,7 @@ var L = A.Lang,
 DB.parse = function(data) {
     data = A.Lang.trim(data);
 
-    return (data == FALSE) ? false : !! data;
+    return (data == 'false') ? false : !! data;
 };
 
 /**
@@ -60,7 +58,7 @@ DS.evaluate = function(data) {
     var trimmedData = A.Lang.trim(data);
 
     // booleans
-    if (trimmedData == TRUE || trimmedData == FALSE) {
+    if (trimmedData == 'true' || trimmedData == 'false') {
         return DB.parse(data);
     }
 
@@ -89,11 +87,7 @@ var L = A.Lang,
     S = A.Lang.String,
 
     isDate = L.isDate,
-    isValue = L.isValue,
-
-    COLON = ':',
-    AM = 'am',
-    PM = 'pm';
+    isValue = L.isValue;
 
 A.namespace('DataType.DateMath');
 
@@ -937,12 +931,12 @@ A.mix(A.DataType.DateMath, {
         var time = padHours ? S.padNumber(hours, 2) : String(hours);
 
         if (!omitMinutes) {
-            time += COLON;
+            time += ':';
             time += S.padNumber(minutes, 2);
         }
 
         if (!hideAmPm) {
-            time += (isPM ? PM : AM);
+            time += (isPM ? 'pm' : 'am');
         }
 
         return time;
@@ -961,12 +955,12 @@ A.mix(A.DataType.DateMath, {
 
         var hours = date.getHours();
         var minutes = date.getMinutes();
-        var time = S.padNumber(hours, 2) + COLON + S.padNumber(minutes, 2);
+        var time = S.padNumber(hours, 2) + ':' + S.padNumber(minutes, 2);
 
         if (showSeconds) {
             var seconds = date.getSeconds();
 
-            time += COLON;
+            time += ':';
             time += S.padNumber(seconds, 2);
         }
 

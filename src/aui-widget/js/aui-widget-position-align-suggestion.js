@@ -1,15 +1,4 @@
-var ALIGN = 'align',
-    BOTTOM = 'bottom',
-    BOUNDING_BOX = 'boundingBox',
-    CONSTRAIN = 'constrain',
-    LEFT = 'left',
-    POSITION = 'position',
-    POSITION_CHANGE = 'positionChange',
-    RENDERED = 'rendered',
-    RIGHT = 'right',
-    TOP = 'top',
-
-    getClassName = A.getClassName;
+var getClassName = A.getClassName;
 
 /**
  * Widget extension, which can be used to suggest alignment points based on
@@ -41,10 +30,10 @@ PositionAlignSuggestion.ATTRS = {
      */
     position: {
         validator: function(val) {
-            return val === BOTTOM || val === TOP || val === LEFT ||
-                val === RIGHT;
+            return val === 'bottom' || val === 'top' || val === 'left' ||
+                val === 'right';
         },
-        value: TOP
+        value: 'top'
     }
 };
 
@@ -83,7 +72,7 @@ A.mix(PositionAlignSuggestion.prototype, {
 
         A.after(instance._afterRenderUIPAS, instance, 'renderUI');
 
-        instance.after(POSITION_CHANGE, instance._afterPositionChangePAS);
+        instance.after('positionChange', instance._afterPositionChangePAS);
     },
 
     /**
@@ -96,7 +85,7 @@ A.mix(PositionAlignSuggestion.prototype, {
         var instance = this,
             align;
 
-        align = instance.get(ALIGN) || {};
+        align = instance.get('align') || {};
 
         if (alignNode) {
             align.node = alignNode;
@@ -104,10 +93,10 @@ A.mix(PositionAlignSuggestion.prototype, {
 
         if (!instance._hasAlignmentPoints) {
             align.points = instance._getAlignPointsSuggestion(
-                instance.get(POSITION));
+                instance.get('position'));
         }
 
-        instance.set(ALIGN, align);
+        instance.set('align', align);
     },
 
     /**
@@ -133,7 +122,7 @@ A.mix(PositionAlignSuggestion.prototype, {
     _afterRenderUIPAS: function() {
         var instance = this;
 
-        instance._uiSetPosition(instance.get(POSITION));
+        instance._uiSetPosition(instance.get('position'));
     },
 
     /**
@@ -165,8 +154,8 @@ A.mix(PositionAlignSuggestion.prototype, {
      */
     _findBestPosition: function(node) {
         var instance = this,
-            position = instance.get(POSITION),
-            testPositions = [position, TOP, BOTTOM, LEFT, RIGHT];
+            position = instance.get('position'),
+            testPositions = [position, 'top', 'bottom', 'left', 'right'];
 
         testPositions = A.Array.dedupe(testPositions);
 
@@ -203,14 +192,14 @@ A.mix(PositionAlignSuggestion.prototype, {
         var instance = this,
             position;
 
-        if (!instance.get(CONSTRAIN) || !instance.get(RENDERED)) {
+        if (!instance.get('constrain') || !instance.get('rendered')) {
             return;
         }
 
         position = instance._findBestPosition(node);
 
         instance._syncPositionUI(
-            position, instance._lastPosition || instance.get(POSITION));
+            position, instance._lastPosition || instance.get('position'));
 
         instance._lastPosition = position;
 
@@ -228,7 +217,7 @@ A.mix(PositionAlignSuggestion.prototype, {
      */
     _syncPositionUI: function(val, prevVal) {
         var instance = this,
-            boundingBox = instance.get(BOUNDING_BOX);
+            boundingBox = instance.get('boundingBox');
 
         if (prevVal) {
             boundingBox.removeClass(getClassName(prevVal));

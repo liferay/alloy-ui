@@ -5,15 +5,7 @@
  * @submodule aui-search-ternary-search-tree
  */
 
-var Lang = A.Lang,
-
-    NAME = 'TernarySearchTree',
-
-    CHARACTER = 'character',
-    CHILD = 'child',
-    LARGER_NODE = 'largerNode',
-    SMALLER_NODE = 'smallerNode',
-    WORD = 'word';
+var Lang = A.Lang;
 
 /**
  * A base class for TernarySearchTree.
@@ -33,7 +25,7 @@ var TernarySearchTree = A.Component.create({
      * @type String
      * @static
      */
-    NAME: NAME,
+    NAME: 'TernarySearchTree',
 
     /**
      * Static property provides a string to identify the namespace.
@@ -131,7 +123,7 @@ var TernarySearchTree = A.Component.create({
             var node = instance._search(instance._root, prefix, 0);
 
             if (node) {
-                instance._inOrderTraversal(node.get(CHILD), results);
+                instance._inOrderTraversal(node.get('child'), results);
             }
 
             return results;
@@ -152,15 +144,15 @@ var TernarySearchTree = A.Component.create({
                 return;
             }
 
-            instance._inOrderTraversal(node.get(SMALLER_NODE), results);
+            instance._inOrderTraversal(node.get('smallerNode'), results);
 
             if (node.isEndOfWord()) {
-                results.push(node.get(WORD));
+                results.push(node.get('word'));
             }
 
-            instance._inOrderTraversal(node.get(CHILD), results);
+            instance._inOrderTraversal(node.get('child'), results);
 
-            instance._inOrderTraversal(node.get(LARGER_NODE), results);
+            instance._inOrderTraversal(node.get('largerNode'), results);
         },
 
         /**
@@ -178,19 +170,19 @@ var TernarySearchTree = A.Component.create({
             var character = word.charAt(index);
 
             if (Lang.isValue(node)) {
-                if (character === node.get(CHARACTER)) {
+                if (character === node.get('character')) {
                     if (index + 1 < word.length) {
-                        node.set(CHILD, instance._insert(node.get(CHILD), word, index + 1));
+                        node.set('child', instance._insert(node.get('child'), word, index + 1));
                     }
                     else {
-                        node.set(WORD, word);
+                        node.set('word', word);
                     }
                 }
-                else if (character < node.get(CHARACTER)) {
-                    node.set(SMALLER_NODE, instance._insert(node.get(SMALLER_NODE), word, index));
+                else if (character < node.get('character')) {
+                    node.set('smallerNode', instance._insert(node.get('smallerNode'), word, index));
                 }
                 else {
-                    node.set(LARGER_NODE, instance._insert(node.get(LARGER_NODE), word, index));
+                    node.set('largerNode', instance._insert(node.get('largerNode'), word, index));
                 }
             }
             else {
@@ -222,25 +214,25 @@ var TernarySearchTree = A.Component.create({
             if (Lang.isValue(node)) {
                 var character = pattern.charAt(index);
 
-                var nodeCharacter = node.get(CHARACTER);
+                var nodeCharacter = node.get('character');
 
                 var patternChar = TernarySearchTree.PATTERN_CHAR;
 
                 if (character === patternChar || character < nodeCharacter) {
-                    instance._patternMatch(node.get(SMALLER_NODE), pattern, index, results);
+                    instance._patternMatch(node.get('smallerNode'), pattern, index, results);
                 }
 
                 if (character === patternChar || character === nodeCharacter) {
                     if (index + 1 < pattern.length) {
-                        instance._patternMatch(node.get(CHILD), pattern, index + 1, results);
+                        instance._patternMatch(node.get('child'), pattern, index + 1, results);
                     }
                     else if (node.isEndOfWord()) {
-                        results.push(node.get(WORD));
+                        results.push(node.get('word'));
                     }
                 }
 
                 if (character === patternChar || character > nodeCharacter) {
-                    instance._patternMatch(node.get(LARGER_NODE), pattern, index, results);
+                    instance._patternMatch(node.get('largerNode'), pattern, index, results);
                 }
             }
         },
@@ -262,18 +254,18 @@ var TernarySearchTree = A.Component.create({
             if (Lang.isValue(node)) {
                 var character = word.charAt(index);
 
-                var nodeCharacter = node.get(CHARACTER);
+                var nodeCharacter = node.get('character');
 
                 if (character === nodeCharacter) {
                     if (index + 1 < word.length) {
-                        result = instance._search(node.get(CHILD), word, index + 1);
+                        result = instance._search(node.get('child'), word, index + 1);
                     }
                 }
                 else if (character < nodeCharacter) {
-                    result = instance._search(node.get(SMALLER_NODE), word, index);
+                    result = instance._search(node.get('smallerNode'), word, index);
                 }
                 else {
-                    result = instance._search(node.get(LARGER_NODE), word, index);
+                    result = instance._search(node.get('largerNode'), word, index);
                 }
             }
 
