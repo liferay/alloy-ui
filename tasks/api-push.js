@@ -27,12 +27,12 @@ module.exports = function(grunt) {
                     exports._setGruntConfig(mainCallback);
             },
             function(mainCallback) {
-                    grunt.log.ok('Move folder');
-                    exports._moveFolder(mainCallback);
-            },
-            function(mainCallback) {
                     grunt.log.ok('Go to branch');
                     exports._gitGoToBranch(mainCallback);
+            },
+            function(mainCallback) {
+                    grunt.log.ok('Move folder');
+                    exports._moveFolder(mainCallback);
             },
             function(mainCallback) {
                     grunt.log.ok('Add folder');
@@ -87,6 +87,19 @@ module.exports = function(grunt) {
         mainCallback();
     };
 
+    exports._gitGoToBranch = function(mainCallback) {
+        var branch = grunt.config([TASK.name, 'branch']);
+        var repo = grunt.config([TASK.name, 'repo']);
+
+        command.open(repo)
+            .on('stdout', command.writeTo(process.stdout))
+            .on('stderr', command.writeTo(process.stderr))
+            .exec('git', ['checkout', branch])
+            .then(function() {
+                mainCallback();
+            });
+    };
+
     exports._moveFolder = function(mainCallback) {
         var src = grunt.config([TASK.name, 'src']);
         var dist = grunt.config([TASK.name, 'dist']);
@@ -106,19 +119,6 @@ module.exports = function(grunt) {
                 });
             }
         });
-    };
-
-    exports._gitGoToBranch = function(mainCallback) {
-        var branch = grunt.config([TASK.name, 'branch']);
-        var repo = grunt.config([TASK.name, 'repo']);
-
-        command.open(repo)
-            .on('stdout', command.writeTo(process.stdout))
-            .on('stderr', command.writeTo(process.stderr))
-            .exec('git', ['checkout', branch])
-            .then(function() {
-                mainCallback();
-            });
     };
 
     exports._gitAddFolder = function(mainCallback) {
