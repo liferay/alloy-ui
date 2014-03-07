@@ -3,7 +3,7 @@
 }
 
 .table-highlight-overlay {
-    position: absolute;
+    position: relative;
     z-index: 1;
 }
 

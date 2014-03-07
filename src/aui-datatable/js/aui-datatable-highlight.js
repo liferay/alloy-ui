@@ -71,6 +71,8 @@ var DataTableHighlight = A.Base.create(
             instance.afterHostEvent('activeCoordChange', instance._afterActiveCoordChange);
             instance.afterHostEvent('selectionChange', instance._afterSelectionChange);
             instance.afterHostEvent('dataChange', instance._afterDataChange);
+
+            A.on('windowresize', A.bind(instance._afterWindowResize, instance));
         },
 
         /**
@@ -219,6 +221,32 @@ var DataTableHighlight = A.Base.create(
                 A.Array.each(nodes, function(node) {
                     node.addClass(instance.CLASS_NAMES.highlight);
                 });
+            }
+        },
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _afterWindowResize
+         * @protected
+         */
+        _afterWindowResize: function() {
+            var instance = this,
+                activeBorderWidth = instance.get('activeBorderWidth'),
+                overlayActiveNode = instance.get('overlayActiveNode'),
+                overlayNode = instance.get('overlayNode'),
+                rangeBorderWidth = instance.get('rangeBorderWidth'),
+                tableHighlightActive = A.one('.table-highlight-overlay-active'),
+                tableHighlightSelection = tableHighlightActive ? tableHighlightActive.next('.table-highlight-overlay') : null;
+
+            if (tableHighlightActive) {
+                instance._alignBorder(
+                    overlayActiveNode, instance.getActiveRegion(), activeBorderWidth);
+            }
+
+            if (tableHighlightSelection) {
+                instance._alignBorder(
+                    overlayNode, instance.getSelectionRegion(), rangeBorderWidth);
             }
         },
 
