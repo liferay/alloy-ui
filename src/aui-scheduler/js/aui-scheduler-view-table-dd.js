@@ -408,7 +408,8 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      */
     _onEventDragStart: function(event) {
         var instance = this;
-        var draggingEvent = instance['draggingEvent'] = instance['delegate']['dd'].get('node').getData('scheduler-event');
+        var draggingEvent = instance['draggingEvent'] =
+            instance['delegate']['dd'].get('node').getData('scheduler-event');
 
         if (draggingEvent) {
             instance._syncCellDimensions();

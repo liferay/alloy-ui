@@ -291,13 +291,17 @@ var DiagramBuilder = A.Component.create({
 
             instance.handlerKeyDown = A.getDoc().on('keydown', A.bind(instance._afterKeyEvent, instance));
 
-            instance.dropContainer.delegate('click', A.bind(instance._onNodeClick, instance), '.' + CSS_DIAGRAM_NODE);
-            instance.dropContainer.delegate('mousedown', A.bind(instance._onCloseButtonMouseDown, instance),
-                '.diagram-builder-controls button');
-            instance.dropContainer.delegate('mouseenter', A.bind(instance._onNodeMouseEnter, instance), '.' +
-                CSS_DIAGRAM_NODE);
-            instance.dropContainer.delegate('mouseleave', A.bind(instance._onNodeMouseLeave, instance), '.' +
-                CSS_DIAGRAM_NODE);
+            instance.dropContainer.delegate(
+                'click', A.bind(instance._onNodeClick, instance), '.' + CSS_DIAGRAM_NODE);
+
+            instance.dropContainer.delegate(
+                'mousedown', A.bind(instance._onCloseButtonMouseDown, instance), '.diagram-builder-controls button');
+
+            instance.dropContainer.delegate(
+                'mouseenter', A.bind(instance._onNodeMouseEnter, instance), '.' + CSS_DIAGRAM_NODE);
+
+            instance.dropContainer.delegate(
+                'mouseleave', A.bind(instance._onNodeMouseLeave, instance), '.' + CSS_DIAGRAM_NODE);
         },
 
         /**
@@ -1861,7 +1865,11 @@ var DiagramNode = A.Component.create({
             var builder = instance.get('builder');
             var publishedSource = builder.publishedSource;
 
-            if (!builder.isAbleToConnect() && builder.get('showSuggestConnector') && builder.connector.get('visible')) {
+            if (!builder.isAbleToConnect() &&
+                builder.get('showSuggestConnector') &&
+                builder.connector.get(
+                'visible')) {
+                
                 builder.showSuggestConnectorOverlay();
             }
             else {
@@ -2182,7 +2190,8 @@ var DiagramNode = A.Component.create({
         renderShapeBoundary: function() {
             var instance = this;
 
-            var boundary = instance.boundary = instance.get('graphic').addShape(instance.get('shapeBoundary'));
+            var boundary = instance.boundary =
+            instance.get('graphic').addShape(instance.get('shapeBoundary'));
 
             return boundary;
         },
@@ -2195,7 +2204,8 @@ var DiagramNode = A.Component.create({
         renderShapeInvite: function() {
             var instance = this;
 
-            var invite = instance.invite = instance.get('builder').get('graphic').addShape(instance.get('shapeInvite'));
+            var invite = instance.invite =
+            instance.get('builder').get('graphic').addShape(instance.get('shapeInvite'));
 
             invite.set('visible', false);
 

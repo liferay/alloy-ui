@@ -15,7 +15,7 @@ var Lang = A.Lang,
 
     // The first Bernstein basis polynomials (n=3),
     // http://en.wikipedia.org/wiki/B%C3%A9zier_curve The t in the function for
-    // a linear B?zier curve can be thought of as describing how far B(t) is
+    // a linear Bézier curve can be thought of as describing how far B(t) is
     // from P0 to P1. For example when t=0.25, B(t) is one quarter of the way
     // from point P0 to P1. As t varies from 0 to 1, B(t) describes a straight
     // line from P0 to P1.
@@ -32,7 +32,7 @@ var Lang = A.Lang,
         return ((1 - t) * (1 - t) * (1 - t));
     },
 
-    // Find a Cubic Bezier point based on the control points. Consider the first
+    // Find a Cubic Bézier point based on the control points. Consider the first
     // two control points as the start and end point respectively.
     getCubicBezier = function(t, startPos, endPos, cp1, cp2) {
         var x = startPos[0] * B1(t) + cp1[0] * B2(t) + cp2[0] * B3(t) + endPos[0] * B4(t);

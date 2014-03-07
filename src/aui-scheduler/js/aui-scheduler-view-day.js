@@ -1,4 +1,4 @@
-/**
+instance['headerTableNode']/**
  * The Scheduler Component
  *
  * @module aui-scheduler
@@ -543,18 +543,25 @@ var SchedulerDayView = A.Component.create({
         bindUI: function() {
             var instance = this;
 
-            instance['headerTableNode'].delegate('click', A.bind(instance._onClickDaysHeader, instance), '.' +
-                CSS_SCHEDULER_VIEW_DAY_HEADER_DAY);
-            instance['columnData'].delegate('mousedown', A.bind(instance._onMouseDownTableCol, instance), '.' +
+            instance['headerTableNode'].delegate(
+                'click', A.bind(instance._onClickDaysHeader, instance), '.' + CSS_SCHEDULER_VIEW_DAY_HEADER_DAY);
+
+            instance['columnData'].delegate(
+                'mousedown', A.bind(instance._onMouseDownTableCol, instance), '.' +
                 CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
-            instance['columnData'].delegate('mouseenter', A.bind(instance._onMouseEnterEvent, instance), '.' +
-                CSS_SCHEDULER_EVENT);
-            instance['columnData'].delegate('mouseleave', A.bind(instance._onMouseLeaveEvent, instance), '.' +
-                CSS_SCHEDULER_EVENT);
-            instance['columnData'].delegate('mousemove', A.bind(instance._onMouseMoveTableCol, instance), '.' +
+
+            instance['columnData'].delegate(
+                'mouseenter', A.bind(instance._onMouseEnterEvent, instance), '.' + CSS_SCHEDULER_EVENT);
+
+            instance['columnData'].delegate(
+                'mouseleave', A.bind(instance._onMouseLeaveEvent, instance), '.' + CSS_SCHEDULER_EVENT);
+
+            instance['columnData'].delegate(
+                'mousemove', A.bind(instance._onMouseMoveTableCol, instance), '.' +
                 CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY);
-            instance['columnData'].delegate('mouseup', A.bind(instance._onMouseUpTableCol, instance), '.' +
-                CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
+
+            instance['columnData'].delegate(
+                'mouseup', A.bind(instance._onMouseUpTableCol, instance), '.' + CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
 
             instance.on('drag:end', instance._onEventDragEnd);
             instance.on('drag:start', instance._onEventDragStart);
@@ -1275,7 +1282,8 @@ var SchedulerDayView = A.Component.create({
          */
         _onEventDragStart: function(event) {
             var instance = this;
-            var draggingEvent = instance['draggingEvent'] = instance.delegate.dd.get('node').getData('scheduler-event');
+            var draggingEvent = instance['draggingEvent'] =
+                instance.delegate.dd.get('node').getData('scheduler-event');
 
             if (draggingEvent) {
                 var placeholder = instance['eventPlaceholder'];

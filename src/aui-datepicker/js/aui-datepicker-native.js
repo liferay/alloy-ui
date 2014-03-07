@@ -261,8 +261,8 @@ DatePickerNativeBase.prototype = {
      */
     _isTypeSupported: function(type) {
         switch (type.toLowerCase()) {
-            case DATE:
-            case TIME:
+            case 'date':
+            case 'time':
                 return true;
             default:
                 return false;

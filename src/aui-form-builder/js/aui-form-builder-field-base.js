@@ -470,8 +470,10 @@ var FormBuilderField = A.Component.create({
      * @type Array
      * @static
      */
-    UI_ATTRS: ['acceptChildren', 'disabled', 'fields', 'label', 'name', 'predefinedValue', 'required', 'selected', 'showLabel',
-        'tip', 'unique'],
+    UI_ATTRS: [
+        'acceptChildren', 'disabled', 'fields', 'label', 'name',
+        'predefinedValue', 'required', 'selected', 'showLabel', 'tip', 'unique'
+    ],
 
     /**
      * Static property used to define which component it extends.

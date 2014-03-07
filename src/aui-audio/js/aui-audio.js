@@ -4,10 +4,11 @@
  * @module aui-audio
  */
 
-var AObject = A.Object,
-    Lang = A.Lang,
+var Lang = A.Lang,
     UA = A.UA,
     DOC = A.config.doc,
+
+    owns = A.Object.owns,
 
     getClassName = A.getClassName,
 
@@ -309,7 +310,7 @@ var AudioImpl = A.Component.create({
                 var fixedAttributesParam = [];
 
                 for (var attributeName in fixedAttributes) {
-                    if (AObject.owns(fixedAttributes, attributeName)) {
+                    if (owns(fixedAttributes, attributeName)) {
                         fixedAttributesParam.push('<param name="', attributeName, '" value="', fixedAttributes[
                             attributeName], '" />');
                     }
@@ -378,7 +379,8 @@ var AudioImpl = A.Component.create({
         _setMedia: function(flashVars) {
             var instance = this;
 
-            if (!AObject.owns(flashVars, 'mp3') && !AObject.owns(flashVars, 'mp4') && !AObject.owns(flashVars, 'flv')) {
+            if (!owns(flashVars, 'mp3') && !owns(flashVars, 'mp4') && !owns(flashVars,
+                'flv')) {
                 var audioUrl = instance.get('url');
 
                 var type = instance.get('type');

@@ -88,9 +88,12 @@ var Lang = A.Lang,
                 autoCompleteResultsList = instance._createListNode();
             }
 
-            autoCompleteResultsList.delegate('click', instance._handleResultListClick, SELECTOR_ENTRY_CONTAINER,
-                instance);
-            autoCompleteResultsList.delegate('mouseenter', instance._onMouseEnter, SELECTOR_ENTRY_CONTAINER, instance);
+            autoCompleteResultsList.delegate(
+                'click', instance._handleResultListClick, SELECTOR_ENTRY_CONTAINER, instance);
+
+            autoCompleteResultsList.delegate(
+                'mouseenter', instance._onMouseEnter, SELECTOR_ENTRY_CONTAINER, instance);
+            
             autoCompleteResultsList.delegate('mouseleave', instance._onMouseLeave, SELECTOR_ENTRY_CONTAINER);
 
             instance._autoCompleteResultsList = autoCompleteResultsList;

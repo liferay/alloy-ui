@@ -1547,11 +1547,11 @@ A.TreeNodeCheck = TreeNodeCheck;
 /*
  * TreeNodeTask
  */
-var isTreeNodeTask = function(node) {
-        return node instanceof A.TreeNodeCheck;
-    },
+var CSS_TREE_NODE_CHILD_UNCHECKED = getCN('tree', 'node', 'child', 'unchecked'),
 
-    CSS_TREE_NODE_CHILD_UNCHECKED = getCN('tree', 'node', 'child', 'unchecked');
+    isTreeNodeTask = function(node) {
+        return node instanceof A.TreeNodeCheck;
+    };
 
 /**
  * A base class for TreeNodeTask, providing:
@@ -1669,11 +1669,11 @@ A.TreeNodeTask = TreeNodeTask;
  * TreeNodeRadio
  */
 
-var isTreeNodeRadio = function(node) {
-        return node instanceof A.TreeNodeRadio;
-    },
+var CSS_NODE_RADIO = getCN('tree', 'node', 'radio'),
 
-    CSS_NODE_RADIO = getCN('tree', 'node', 'radio');
+    isTreeNodeRadio = function(node) {
+        return node instanceof A.TreeNodeRadio;
+    };
 
 /**
  * A base class for TreeNodeRadio, providing:

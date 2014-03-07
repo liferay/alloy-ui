@@ -455,7 +455,7 @@ var SortableList = A.Component.create({
                 // update placeholder height
                 placeholder.setStyle(
                     'height',
-                    node.get('offsetHeight') + PX
+                    node.get('offsetHeight') + 'px'
                 );
 
                 node.hide();

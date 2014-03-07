@@ -283,7 +283,7 @@ var ProgressBar = A.Component.create({
 
             return toNumber(
                 boundingBox.getStyle(
-                    this.get('orientation') === HORIZONTAL ? 'width' : HEIGHT
+                    this.get('orientation') === 'horizontal' ? 'width' : 'height'
                 )
             );
         },

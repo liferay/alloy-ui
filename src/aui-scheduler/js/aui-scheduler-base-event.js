@@ -468,7 +468,8 @@ var SchedulerEvent = A.Component.create({
         addPaddingNode: function() {
             var instance = this;
 
-            instance.get('node').push(A.Node.create(instance.EVENT_NODE_TEMPLATE).setData('scheduler-event', instance));
+            instance.get('node').push(
+                A.Node.create(instance.EVENT_NODE_TEMPLATE).setData('scheduler-event', instance));
 
             instance.syncUI();
         },
