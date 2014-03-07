@@ -11,3 +11,4 @@ No registries yet.
 * [AUI-1194](https://issues.liferay.com/browse/AUI-1194) BaseOptionsCellEditor does not allow empty values
 * [AUI-1195](https://issues.liferay.com/browse/AUI-1195) Option can not be added in datatable-edit
 * [AUI-1163](https://issues.liferay.com/browse/AUI-1163) Remove unnecessary constants
+* [AUI-1170](https://issues.liferay.com/browse/AUI-1170) Datatable highlight should fit to element on browser window resize, also when the datatable container has overflow, highlighting should follow element.
