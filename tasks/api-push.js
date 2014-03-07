@@ -48,10 +48,6 @@ module.exports = function(grunt) {
             function(mainCallback) {
                     grunt.log.ok('Push changes');
                     exports._gitPushToBranch(mainCallback);
-            },
-            function(mainCallback) {
-                    grunt.log.ok('Undo changes on src/');
-                    exports._gitCheckoutDir(mainCallback, 'src/');
             }],
             function(err) {
                 if (err) {
@@ -161,16 +157,6 @@ module.exports = function(grunt) {
             .on('stdout', command.writeTo(process.stdout))
             .on('stderr', command.writeTo(process.stderr))
             .exec('git', ['push', remote, branch])
-            .then(function() {
-                mainCallback();
-            });
-    };
-
-    exports._gitCheckoutDir = function(mainCallback, dir) {
-        command.open(ROOT)
-            .on('stdout', command.writeTo(process.stdout))
-            .on('stderr', command.writeTo(process.stderr))
-            .exec('git', ['checkout', dir])
             .then(function() {
                 mainCallback();
             });

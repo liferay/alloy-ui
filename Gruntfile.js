@@ -19,7 +19,7 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('.alloy.json'),
 
         'api-build': {
-            'src': ['src', path.join('<%= pkg.dependencies.yui3.folder %>', 'src')],
+            'src': 'temp',
             'dist': path.join(ROOT, 'api'),
             'theme': path.join(ROOT, '<%= pkg.dependencies["alloy-apidocs-theme"].folder %>'),
             'aui-version': '<%= pkg["version"] %>'
@@ -27,7 +27,7 @@ module.exports = function(grunt) {
 
         'api-include': {
             'all': {
-                'src': ['src/*/js/*.js'],
+                'src': ['temp/alloy-ui/src/*/js/*.js'],
                 'repo': path.join(ROOT, '<%= pkg.dependencies["alloyui.com"].folder %>')
             }
         },
@@ -85,6 +85,22 @@ module.exports = function(grunt) {
         },
 
         copy: {
+            api: {
+                files: [
+                    {
+                        cwd: path.join('<%= pkg.dependencies.yui3.folder %>', 'src/'),
+                        src: '**',
+                        dest: 'temp/yui3/src/',
+                        expand: true
+                    },
+                    {
+                        cwd: 'src/',
+                        src: '**',
+                        dest: 'temp/alloy-ui/src/',
+                        expand: true
+                    }
+                ]
+            },
             css: {
                 files: [
                     {
@@ -131,7 +147,7 @@ module.exports = function(grunt) {
 
         clean: {
             api: [
-                'src-temp',
+                'api', 'temp'
             ],
             css: [
                 'build/aui-css/css/responsive.css',
@@ -208,8 +224,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-jsbeautifier');
 
     grunt.registerTask('all', ['bootstrap', 'build']);
-    grunt.registerTask('api', ['api-include', 'api-build']);
-    grunt.registerTask('api-deploy', ['api', 'api-push']);
+    grunt.registerTask('api', ['copy:api', 'api-include', 'api-build']);
+    grunt.registerTask('api-deploy', ['api', 'api-push', 'clean:api']);
     grunt.registerTask('bootstrap', ['compass', 'copy:css', 'cssmin', 'copy:img', 'clean:css']);
     grunt.registerTask('format', ['jsbeautifier']);
     grunt.registerTask('lint', ['jshint']);
