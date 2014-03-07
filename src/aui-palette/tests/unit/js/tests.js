@@ -38,7 +38,7 @@ YUI.add('aui-palette-tests', function(Y) {
 
         /*
          * Check if an array of objects can be stored and retrieved
-         * @tests AUI-1033
+         * Tests: AUI-1033
          */
         'store and retrieve objects as items': function() {
             palette = new Y.Palette({

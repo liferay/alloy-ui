@@ -68,7 +68,7 @@ var SchedulerMonthView = A.Component.create({
          * @attribute displayDaysInterval
          * @default 42
          * @type {Number}
-         * @readyOnly
+         * @readOnly
          */
         displayDaysInterval: {
             readOnly: true,

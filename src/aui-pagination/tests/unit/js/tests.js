@@ -17,9 +17,7 @@ YUI.add('aui-pagination-tests', function(Y) {
 
         name: 'Pagination control rendering tests',
 
-        /**
-         * @tests AUI-1106
-         */
+        // Tests: AUI-1106
         'assert that pagination controls do not render': function() {
             var instance = this,
                 paginationContent,

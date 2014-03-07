@@ -46,11 +46,11 @@ YUI.add('aui-event-tests', function(Y) {
         // Tests
         //----------------------------------------------------------------------
 
-        /**
+        /*
          * Checks that the synthetic input event is fired as expected when input
          * content changes.
          *
-         * @tests AUI-749
+         * Tests: AUI-749
          */
         'input event': function() {
             var instance = this,
@@ -84,10 +84,10 @@ YUI.add('aui-event-tests', function(Y) {
             );
         },
 
-        /**
+        /*
          * Checks that the synthetic input event is detached properly.
          *
-         * @tests AUI-749
+         * Tests: AUI-749
          */
         'detach input event': function() {
             var instance = this,
@@ -130,11 +130,11 @@ YUI.add('aui-event-tests', function(Y) {
             );
         },
 
-        /**
+        /*
          * Checks that keys that can't cause an input modification don't fire
          * an input event.
          *
-         * @tests AUI-749
+         * Tests: AUI-749
          */
         'do not dispatch on not modifying keys': function() {
             var instance = this,

@@ -62,7 +62,7 @@ YUI.add('aui-form-validator-tests', function(Y) {
 
         /*
          * Check if on submit all fields are marked as invalid
-         * @tests AUI-965
+         * Tests: AUI-965
          */
         'test submit form': function() {
             var buttonSubmit,
@@ -78,9 +78,9 @@ YUI.add('aui-form-validator-tests', function(Y) {
             Y.Assert.isNull(elementWithoutError, 'There shouldn\'t be any element without class error');
         },
 
-        /**
+        /*
          * Check if validator nodes render after the input and lable's textNode
-         * @tests AUI-965
+         * Tests: AUI-965
          */
         'test error message displayed after label': function() {
             var instance = this;

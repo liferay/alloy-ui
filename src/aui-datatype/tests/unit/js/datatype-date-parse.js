@@ -142,7 +142,7 @@ YUI.add('aui-datatype-date-parse-tests', function(Y) {
         },
 
         /*
-         * @tests AUI-978
+         * Tests: AUI-978
          */
         'test invalid input': function() {
             testParse(

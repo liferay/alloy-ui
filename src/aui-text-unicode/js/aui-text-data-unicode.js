@@ -1,4 +1,4 @@
-/**
+/*
  * Mapping UTF-8 groups of characters. Based on Steven Levithan's XRegExp
  * project (http://xregexp.com)
  */

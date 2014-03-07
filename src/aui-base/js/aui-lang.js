@@ -58,9 +58,6 @@
         return wrappedFn;
     };
 
-    /**
-     * A.Lang
-     */
     A.mix(Lang, {
         constrain: function(num, min, max) {
             return Math.min(Math.max(num, min), max);
@@ -89,9 +86,6 @@
         }
     });
 
-    /**
-     * A.Array
-     */
     A.mix(AArray, {
         remove: function(a, from, to) {
             var rest = a.slice((to || from) + 1 || a.length);
@@ -111,9 +105,6 @@
         }
     });
 
-    /**
-     * A.Labg.String
-     */
     var LString = A.namespace('Lang.String'),
 
         DOC = A.config.doc,
@@ -428,11 +419,7 @@
         }
     });
 
-    /**
-     * A.Object
-     */
-
-    /**
+    /*
      * Maps an object to an array, using the return value of fn as the values
      * for the new array.
      */
@@ -449,7 +436,7 @@
         return map;
     };
 
-    /**
+    /*
      * Maps an array or object to a resulting array, using the return value of
      * fn as the values for the new array. Like A.each, this function can accept
      * an object or an array.

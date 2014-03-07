@@ -372,7 +372,7 @@ A.Base.mix(A.DataTable, [CellEditorSupport]);
  * @extends Overlay
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
- * @abstract
+ * @constructor
  */
 var BaseCellEditor = A.Component.create({
 
@@ -1174,7 +1174,7 @@ A.BaseCellEditor = BaseCellEditor;
  * @extends A.BaseCellEditor
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
- * @abstract
+ * @constructor
  */
 var BaseOptionsCellEditor = A.Component.create({
 

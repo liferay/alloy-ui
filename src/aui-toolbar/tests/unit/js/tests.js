@@ -16,7 +16,7 @@ YUI.add('aui-toolbar-tests', function(Y) {
 
         /*
          * Check if title attribute is set during the process of creation
-         * @tests AUI-971
+         * Tests: AUI-971
          */
         'test setting title attribute': function() {
             var title,

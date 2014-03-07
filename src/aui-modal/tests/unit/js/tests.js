@@ -134,9 +134,7 @@ YUI.add('aui-modal-tests', function(Y) {
         // Tests
         //----------------------------------------------------------------------
 
-        /**
-         * @tests AUI-1107
-         */
+        // Tests: AUI-1107
         'listen after visibleChange with destroyOnHide enabled': function() {
             var instance = this,
                 mock = new Y.Mock();

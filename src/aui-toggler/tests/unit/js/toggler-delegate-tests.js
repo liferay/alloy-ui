@@ -67,11 +67,11 @@ YUI.add('aui-toggler-delegate-tests', function(Y) {
         // Tests
         //----------------------------------------------------------------------
 
-        /**
+        /*
          * Checks that TogglerDelegate properly cleans headerEventHandler
          * listeners after being destroyed
          *
-         * @tests AUI-939
+         * Tests: AUI-939
          */
         'detached headerEventHandler': function() {
             var instance = this,
@@ -101,11 +101,11 @@ YUI.add('aui-toggler-delegate-tests', function(Y) {
                 'headerEventHandler handlers should be cleaned and not called after destroyed');
         },
 
-        /**
+        /*
          * Checks that TogglerDelegate properly cleans _onAnimatingChange
          * listeners after being destroyed
          *
-         * @tests AUI-939
+         * Tests: AUI-939
          */
         'detached _onAnimatingChange': function() {
             var instance = this,
@@ -141,11 +141,11 @@ YUI.add('aui-toggler-delegate-tests', function(Y) {
                 '_onAnimatingChange handler should be cleaned and not called after destroyed');
         },
 
-        /**
+        /*
          * Checks that TogglerDelegate properly cleans all toggler
          * references after being destroyed
          *
-         * @tests AUI-939
+         * Tests: AUI-939
          */
         'removed toggler references': function() {
             // Force the creation of the togglers
@@ -235,11 +235,11 @@ YUI.add('aui-toggler-delegate-tests', function(Y) {
         // Tests
         //----------------------------------------------------------------------
 
-        /**
+        /*
          * Checks if the path to the node is fully expanded. A path to a node
          * should typically include all its toggler-content ancestors.
          *
-         * @tests AUI-938
+         * Tests: AUI-938
          */
         'test node path visibility': function() {
             var instance = this,
