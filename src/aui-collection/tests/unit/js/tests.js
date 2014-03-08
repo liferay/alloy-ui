@@ -200,6 +200,20 @@ YUI.add('aui-collection-tests', function(Y) {
             Y.Assert.areSame(map.getValue(functionKey), 3);
         },
 
+        'put/get object with hashCode': function() {
+            var map = new Y.Map(),
+                Clazz = function() {
+                    this.hashCode = function() {
+                        return 'uid';
+                    };
+                },
+                reference = new Clazz();
+
+            map.put(reference, 'value');
+            Y.Assert.areSame(map.getValue(reference), 'value');
+            Y.Assert.isUndefined(map.getValue('uid'));
+        },
+
         'has value': function() {
             var map = new Y.Map();
             map.put('key1', 'value');
