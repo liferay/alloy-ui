@@ -1,0 +1,126 @@
+{namespace layout autoescape="false"}
+
+/**
+ * Layout
+ * @param header Content of the layout header.
+ * @param nav Content of the layout nav.
+ * @param body Content of the layout body.
+ * @param? pjax Whether should display only content.
+ */
+{template .page}
+    {if not $pjax}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+        <link rel="stylesheet" href="assets/main.css">
+        <script src="../../build/aui/aui.js"></script>
+    </head>
+    <body>
+    <div class="container-fluid" id="page">
+        <div id="page-default">
+        {/if}
+            <header class="row-fluid" id="header">
+                {$header}
+            </header>
+            <div class="row-fluid" id="nav">
+                {$nav}
+            </div>
+            <div class="row-fluid" id="body">
+                {$body}
+            </div>
+        {if not $pjax}
+        </div>
+    </div>
+        <script src="main.js"></script>
+    </body>
+    </html>
+    {/if}
+{/template}
+
+/**
+  * Nav
+  * @param navs Nav items.
+  */
+{template .nav}
+    <nav>
+        <ul>
+        {foreach $nav in $navs}
+            <li><a href="{$nav}">{$nav}</a></li>
+        {/foreach}
+        </ul>
+    </nav>
+{/template}
+
+/**
+  * Surface
+  * @param id Surface id.
+  */
+{template .surface}
+    <section id="surface{$id}">
+        <a href="home?sid={$id}&foo=complex string foo">Surface {$id}</a>
+    </section>
+{/template}
+
+/**
+ * /home
+ * @param? pjax Whether should display only content.
+ */
+{template .home}
+    {call layout.page data="all"}
+        {param header}
+            <div id="header-default">
+                <h1 class="span12">AlloyUI - /home</h1>
+            </div>
+        {/param}
+        {param nav}
+            <div id="nav-default">
+                {call layout.nav}
+                    {param navs: ['home', 'about'] /}
+                {/call}
+            </div>
+        {/param}
+        {param body}
+            <div id="body-default">
+                <div class="span6">
+                    {call layout.surface}{param id: 1 /}{/call}
+                    {call layout.surface}{param id: 2 /}{/call}
+                </div>
+                <div class="span6">
+                    {call layout.surface}{param id: 3 /}{/call}
+                    {call layout.surface}{param id: 4 /}{/call}
+                </div>
+            </div>
+        {/param}
+    {/call}
+{/template}
+
+/**
+ * /about
+ * @param? pjax Whether should display only content.
+ */
+{template .about}
+    {call layout.page data="all"}
+        {param header}
+            <div id="header-default">
+                <h1 class="span12">AlloyUI - /about</h1>
+            </div>
+        {/param}
+        {param nav}
+            <div id="nav-default">
+                {call layout.nav}
+                    {param navs: ['home', 'about', 'contact'] /}
+                {/call}
+            </div>
+        {/param}
+        {param body}
+            <div id="body-default">
+                <div class="span12">
+                    {call layout.surface}{param id: 1 /}{/call}
+                </div>
+            </div>
+        {/param}
+    {/call}
+{/template}

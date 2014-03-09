@@ -1,0 +1,12 @@
+{
+  "name": "surface",
+  "description": "surface test app",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "3.x",
+    "soynode": "0.3.5",
+    "async": "~0.2.10",
+    "sleep": "~1.1.3"
+  }
+}

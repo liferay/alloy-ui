@@ -1,0 +1,12 @@
+{
+    "name": "aui-surface",
+    "builds": {
+        "aui-surface": {
+            "jsfiles": [
+                "js/aui-surface.js",
+                "js/aui-surface-app.js",
+                "js/aui-surface-screen.js"
+            ]
+        }
+    }
+}

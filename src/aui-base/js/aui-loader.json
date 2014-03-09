@@ -815,6 +815,16 @@
             "aui-component"
         ]
     },
+    "aui-surface": {
+        "requires": [
+            "base-build",
+            "node-style",
+            "pjax-base",
+            "promise",
+            "router",
+            "aui-set"
+        ]
+    },
     "aui-tabview": {
         "requires": [
             "selector-css3",
