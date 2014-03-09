@@ -1157,6 +1157,16 @@ Y.mix(YUI.Env[Y.version].modules, {
             "plugin"
         ]
     },
+    "aui-surface": {
+        "requires": [
+            "base-build",
+            "node-style",
+            "pjax-base",
+            "promise",
+            "router",
+            "aui-set"
+        ]
+    },
     "aui-swf-deprecated": {
         "requires": [
             "querystring-parse-simple",
@@ -1433,4 +1443,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'a90a81b0755ac5e4143d29e0a56dee2c';
+YUI.Env[Y.version].md5 = '45453f370eb8c5bfe7a40607ad6f2899';

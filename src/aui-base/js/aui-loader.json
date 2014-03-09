@@ -1133,6 +1133,16 @@
             "plugin"
         ]
     },
+    "aui-surface": {
+        "requires": [
+            "base-build",
+            "node-style",
+            "pjax-base",
+            "promise",
+            "router",
+            "aui-set"
+        ]
+    },
     "aui-swf-deprecated": {
         "requires": [
             "querystring-parse-simple",
