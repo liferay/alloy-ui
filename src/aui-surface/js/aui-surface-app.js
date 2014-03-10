@@ -46,6 +46,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
      */
     initializer: function() {
         this.screens = {};
+        this.on('navigate', this._onNavigate);
         this._registerRoutes(this.get('screens'));
     },
 
@@ -93,11 +94,6 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
 
         if (path === this.activePath) {
             A.log('Not navigating, already at destination', 'info');
-            return;
-        }
-
-        if (this.activeScreen && this.activeScreen.beforeDeactivate()) {
-            A.log('Navigation cancelled by active screen', 'info');
             return;
         }
 
@@ -151,6 +147,20 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
                 A.log('Navigation done, process next screen', 'info');
                 next();
             });
+    },
+
+    /**
+     * Intercepts navigate event in order to prevent url change if needed.
+     *
+     * @method  _onNavigate
+     * @param {EventFacade} event Navigate event facade
+     * @private
+     */
+    _onNavigate: function(event) {
+        if (this.activeScreen && this.activeScreen.beforeDeactivate()) {
+            A.log('Navigation cancelled by active screen', 'info');
+            event.halt();
+        }
     },
 
     /**
