@@ -1,3 +1,4 @@
+@import "compass";
 .image-gallery-hidden {
     display: none;
 }
@@ -7,6 +8,11 @@
     text-align: center;
     width: 100%;
     z-index: 3000;
+}
+.image-gallery .image-viewer-caption {
+    @include ellipsis;
+
+    max-width: 300px;
 }
 .ie6 .image-gallery-pagination {
     position: absolute;
