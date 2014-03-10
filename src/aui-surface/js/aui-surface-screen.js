@@ -130,13 +130,32 @@ A.ScreenBase.ATTRS = {
 A.ScreenCacheable = function() {};
 
 A.ScreenCacheable.prototype = {
+    /**
+     * Holds the cache information.
+     *
+     * @property cache
+     * @type {Object}
+     * @protected
+     */
     cache: null,
 
+    /**
+     * Adds content to the cache.
+     *
+     * @method addCache
+     * @param {String} surfaceId The id of the surface DOM element.
+     * @param {String} content Content to be cached.
+     */
     addCache: function(surfaceId, content) {
         this.cache = this.cache || {};
         this.cache[surfaceId] = content;
     },
 
+    /**
+     * Clears the cache.
+     *
+     * @method clearCache
+     */
     clearCache: function() {
         this.cache = null;
     },

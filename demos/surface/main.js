@@ -14,7 +14,6 @@ YUI({
         //     });
         // },
 
-        // TODO: Prevent url navigation when beforeDeactivate returns true
         // beforeDeactivate: function() {
         //     return true;
         // },
