@@ -20,19 +20,28 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
     activeScreen: null,
 
     /**
-     * Map that index the screen instances by the screen id.
+     * Maps the screen classes by the path.
+     *
+     * @property screenFactories
+     * @type {Object}
+     * @protected
+     */
+    screenFactories: null,
+
+    /**
+     * Maps the screen instances by the path.
      *
      * @property screens
-     * @type {Screen}
+     * @type {Object}
      * @protected
      */
     screens: null,
 
     /**
-     * Map that index the surfaces instances by the screen id.
+     * Map that index the surfaces instances by the surface id.
      *
      * @property surfaces
-     * @type {Surface}
+     * @type {Object}
      * @protected
      */
     surfaces: null,
@@ -97,7 +106,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
             return;
         }
 
-        A.log('Navigation starts', 'info');
+        A.log('Navigate to [' + path + ']', 'info');
 
         if (!screen) {
             A.log('Screen not found, create one', 'info');
@@ -129,7 +138,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
             })
             .then(function() {
                 if (instance.activeScreen) {
-                    A.log('Deactivate the active screen', 'info');
+                    A.log('Deactivate active screen', 'info');
                     instance.activeScreen.deactivate();
                 }
             })
@@ -137,7 +146,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
                 instance._setDocumentTitle(screen);
             })
             .then(function() {
-                A.log('The screen is ready, batch transitions...', 'info');
+                A.log('Screen is ready, batch transitions...', 'info');
                 A.Array.each(surfaces, function(surface) {
                     transitions.push(surface.show(screenId));
                 });
@@ -147,7 +156,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
             })
             .then(function() {
                 instance._finalizeNavigate(path, screen);
-                A.log('Navigation done, process next screen', 'info');
+                A.log('Navigation done, request next screen', 'info');
                 next();
             });
     },
@@ -189,14 +198,17 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
      * Registers a route for a screen.
      *
      * @method  _registerRoutes
-     * @param {[Screen]} screens Array of Screen classes.
+     * @param {Array} screenFactories Array of objects with `path` and `screen`
+     *     keys.
      * @private
      */
-    _registerRoutes: function(screens) {
+    _registerRoutes: function(screenFactories) {
         var instance = this;
 
-        A.Object.each(screens, function(ScreenCtor, path) {
-            instance.route(path, A.bind(instance._handleNavigate, instance, path, ScreenCtor));
+        A.Object.each(screenFactories, function(screenFactory) {
+            instance.route(
+                screenFactory.path,
+                A.bind(instance._handleNavigate, instance, screenFactory.path, screenFactory.screen));
         });
     },
 
@@ -213,13 +225,32 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
     },
 
     /**
+     * Sets screens attribute.
+     *
+     * @method  _setScreens
+     * @private
+     * @param {Array} val Array of objects, each object should contain `path`
+     *     and `screen`.
+     * @return {Array}
+     */
+    _setScreens: function(val) {
+        var instance = this;
+
+        instance.screenFactories = {};
+        A.Array.each(val, function(data) {
+            instance.screenFactories[String(data.path)] = data.screen;
+        });
+        return val;
+    },
+
+    /**
      * Sets surfaces attribute.
      *
      * @method  _setSurfaces
      * @private
      * @param {[Surface | String]} val Array of Surface instances or ids of the
      *     surface DOM element.
-     * @return {[Surface]} Array of Surface instances.
+     * @return {Array} Array of Surface instances.
      */
     _setSurfaces: function(val) {
         var instance = this;
@@ -253,11 +284,21 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
         },
 
         /**
+         * Maps the `path` and `screen` values. The `path` should be a string or
+         * a regex that maps the navigation route to a screen class definition
+         * (not an instance), e.g:
+         *
+         *     `{ path: "/home:param1", screen: Y.MyScreen }`
+         *     `{ path: /foo.+/, screen: Y.MyScreen }`
+         *
          * @attribute screens
+         * @default []
+         * @type {Array}
          */
         screens: {
-            validator: Lang.isObject,
-            value: {},
+            setter: '_setScreens',
+            validator: Lang.isArray,
+            value: [],
             writeOnce: true
         },
 
