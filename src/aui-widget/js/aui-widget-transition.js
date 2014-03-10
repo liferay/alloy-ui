@@ -41,7 +41,26 @@ WidgetTransition.ATTRS = {
      */
     animated: {
         validator: Lang.isBoolean,
-        value: false
+        value: false,
+        writeOnce: true
+    },
+
+    /**
+     * Determine the delay (in milliseconds) after transition animation of widget.
+     * By default the delay is not specified.
+     *
+     * @attribute delay
+     * @default  {show: 0,hide: 0}
+     * @type Object
+     * @writeOnce
+     */
+    delay: {
+        validator: Lang.isObject,
+        value: {
+            show: 0,
+            hide: 0
+        },
+        writeOnce: true
     },
 
     /**
@@ -73,10 +92,13 @@ WidgetTransition.ATTRS = {
      * visibility after the trigger element. By default the stick duration is
      * not specified.
      *
+     * @deprecated As of 2.0.0 replaced by attribute `delay`.
      * @attribute stickDuration
      * @type Number
      */
     stickDuration: {
+        lazyAdd: false,
+        setter: '_setStickDuration',
         validator: Lang.isNumber,
         value: 0
     }
@@ -141,9 +163,9 @@ WidgetTransition.prototype = {
      */
     _maybeHide: function() {
         var instance = this,
-            stickDuration = instance.get('stickDuration');
+            delay = instance.get('delay');
 
-        instance._hideTimer = A.later(stickDuration, instance, instance._transition);
+        instance._hideTimer = A.later(delay.hide, instance, instance._transition);
     },
 
     /**
@@ -153,8 +175,24 @@ WidgetTransition.prototype = {
      * @protected
      */
     _maybeShow: function() {
+        var instance = this,
+            delay = instance.get('delay');
+
+        A.later(delay.show, instance, instance._transition, true);
+    },
+
+    /**
+     * Set delay:hide to stickDuration value.
+     *
+     * @method _onStickDurationChange
+     * @protected
+     */
+    _setStickDuration: function(val) {
         var instance = this;
-        instance._transition(true);
+
+        instance.set('delay.hide', val);
+
+        return val;
     },
 
     /**

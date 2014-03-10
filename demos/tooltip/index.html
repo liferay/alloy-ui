@@ -45,7 +45,7 @@
          new Y.Tooltip({
             trigger: '#triggerTop',
             duration: 0.5, // in seconds
-            stickDuration: 1000 // in milliseconds
+            delay: {show: 0, hide: 1000} // in milliseconds
         }).render();
 
         new Y.Tooltip({
@@ -58,7 +58,7 @@
             trigger: '#triggerHelp',
             cssClass: 'tooltip-help',
             opacity: 1,
-            stickDuration: 100
+            delay: {show: 0, hide: 1000} // in milliseconds
         }).render();
 
         new Y.TooltipDelegate({
