@@ -94,10 +94,16 @@ YUI({
         linkSelector: 'a',
         root: '/demos/surface',
 
-        screens: {
-            '/home': Y.HomeScreen,
-            '/about': Y.AboutScreen
-        },
+        screens: [
+            {
+                path: '/home',
+                screen: Y.HomeScreen
+            },
+            {
+                path: '/about',
+                screen: Y.AboutScreen
+            }
+        ],
 
         surfaces: ['page', 'header', 'nav', 'body']
     })
