@@ -134,6 +134,9 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
                 }
             })
             .then(function() {
+                instance._setDocumentTitle(screen);
+            })
+            .then(function() {
                 A.log('The screen is ready, batch transitions...', 'info');
                 A.Array.each(surfaces, function(surface) {
                     transitions.push(surface.show(screenId));
@@ -198,6 +201,18 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
     },
 
     /**
+     * Updates the document title with the `title` of the screen or the
+     * `defaultTitle` of the surface app.
+     *
+     * @method  _setDocumentTitle
+     * @param {Screen} screen
+     * @private
+     */
+    _setDocumentTitle: function(screen) {
+        A.config.doc.title = screen.get('title') || this.get('defaultTitle');
+    },
+
+    /**
      * Sets surfaces attribute.
      *
      * @method  _setSurfaces
@@ -224,6 +239,22 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
 
 }, {
     ATTRS: {
+        /**
+         * Defines the default document title in case the screen doesn't have
+         * any `title`.
+         *
+         * @attribute defaultTitle
+         * @default Home
+         * @type {String}
+         */
+        defaultTitle: {
+            validator: Lang.isString,
+            value: 'Home'
+        },
+
+        /**
+         * @attribute screens
+         */
         screens: {
             validator: Lang.isObject,
             value: {},
