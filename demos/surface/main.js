@@ -5,7 +5,7 @@ YUI({
     }
 }).use('aui-surface', 'transition', 'io', function(Y) {
 
-    Y.TestScreen = Y.Base.create('testScreen', Y.Screen, [], {
+    Y.HomeScreen = Y.Base.create('testScreen', Y.Screen, [], {
         // beforeFlip: function() {
         //     return new Y.Promise(function(resolve) {
         //         setTimeout(function() {
@@ -39,6 +39,9 @@ YUI({
             },
             id: {
                 value: 'test'
+            },
+            title: {
+                value: 'Home'
             }
         }
     });
@@ -66,9 +69,11 @@ YUI({
             cacheable: {
                 value: false
             },
-
             id: {
                 value: 'about'
+            },
+            title: {
+                value: 'About'
             }
         }
     });
@@ -90,7 +95,7 @@ YUI({
         root: '/demos/surface',
 
         screens: {
-            '/home': Y.TestScreen,
+            '/home': Y.HomeScreen,
             '/about': Y.AboutScreen
         },
 
