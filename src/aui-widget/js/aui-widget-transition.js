@@ -46,11 +46,11 @@ WidgetTransition.ATTRS = {
     },
 
     /**
-     * Determine the delay (in milliseconds) after transition animation of widget.
-     * By default the delay is not specified.
+     * Determine the delay (in milliseconds) after widget's transition
+     * animation. By default there's no delay.
      *
      * @attribute delay
-     * @default  {show: 0,hide: 0}
+     * @default { show: 0, hide: 0 }
      * @type Object
      * @writeOnce
      */
@@ -182,7 +182,7 @@ WidgetTransition.prototype = {
     },
 
     /**
-     * Set delay:hide to stickDuration value.
+     * Set `delay:hide` to `stickDuration` value.
      *
      * @method _onStickDurationChange
      * @protected

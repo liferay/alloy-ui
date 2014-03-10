@@ -27,10 +27,12 @@
             bodyContent: 'One fine body…',
             headerContent: 'Header content',
             trigger: '#triggerTop',
-            position: function() {return 'right';},
             animated: true,
             duration: 0.5, // in seconds
-            delay: {show: 0, hide: 1000} // in milliseconds
+            delay: { // in milliseconds
+                show: 0,
+                hide: 1000
+            }
         }).render();
 
         var popoverBottom = new Y.Popover({
