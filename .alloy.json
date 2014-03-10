@@ -5,7 +5,7 @@
         "ace": {
             "folder": "../ace-builds",
             "repo": "https://github.com/ajaxorg/ace-builds.git",
-            "version": "master"
+            "version": "v1.1.2"
         },
         "yui3": {
             "folder": "../yui3",
