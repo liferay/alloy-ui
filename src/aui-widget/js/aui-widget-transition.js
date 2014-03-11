@@ -165,7 +165,9 @@ WidgetTransition.prototype = {
         var instance = this,
             delay = instance.get('delay');
 
-        instance._hideTimer = A.later(delay.hide, instance, instance._transition);
+        instance._prepareTransition(false);
+
+        instance._hideTimer = A.later(delay.hide, instance, instance._transition, false);
     },
 
     /**
@@ -177,6 +179,8 @@ WidgetTransition.prototype = {
     _maybeShow: function() {
         var instance = this,
             delay = instance.get('delay');
+
+        instance._prepareTransition(true);
 
         A.later(delay.show, instance, instance._transition, true);
     },
@@ -218,15 +222,14 @@ WidgetTransition.prototype = {
     },
 
     /**
-     * Shows or hides depending on the passed parameter, when no parameter is
-     * specified the default behavior is to hide the element.
+     * Prepare the widget to be animated.
      *
-     * @method _transition
+     * @method _prepareTransition
      * @param {Boolean} visible When `true`, fade in the element, otherwise
      *     fades out.
      * @protected
      */
-    _transition: function(visible) {
+    _prepareTransition: function(visible) {
         var instance = this,
             boundingBox = instance.get('boundingBox');
 
@@ -238,6 +241,20 @@ WidgetTransition.prototype = {
             // then make sure the opacity transition goes from 0 to 1.
             boundingBox.setStyle('opacity', 0);
         }
+    },
+
+    /**
+     * Shows or hides depending on the passed parameter, when no parameter is
+     * specified the default behavior is to hide the element.
+     *
+     * @method _transition
+     * @param {Boolean} visible When `true`, fade in the element, otherwise
+     *     fades out.
+     * @protected
+     */
+    _transition: function(visible) {
+        var instance = this,
+            boundingBox = instance.get('boundingBox');
 
         boundingBox.transition({
                 duration: instance.get('duration'),
