@@ -112,23 +112,26 @@ YUI.add('aui-datatable-tests', function(Y) {
         var overlayActiveNode = Y.one('.table-highlight-overlay-active'),
             overlayActiveChildren = overlayActiveNode.get('children'),
             overlaySelectionNode = overlayActiveNode ? overlayActiveNode.next('.table-highlight-overlay') : null,
+
+            lowerXLimit = tableData.getX() >= (overlayActiveNode.getX() - 1),
+            lowerYLimit = tableData.getY() >= (overlayActiveNode.getY() - 1),
             overlayActiveBorderWidth = overlayActiveChildren.item(0).get('offsetHeight'),
             overlayActiveBottomWidth = overlayActiveChildren.item(2).get('offsetWidth'),
             overlayActiveLeftHeight = overlayActiveChildren.item(3).get('offsetHeight') + overlayActiveBorderWidth,
             overlayActiveRightHeight = overlayActiveChildren.item(1).get('offsetHeight') + overlayActiveBorderWidth,
             overlayActiveTopWidth = overlayActiveChildren.item(0).get('offsetWidth'),
-            tableDataHeight = tableData.get('offsetHeight');
-            tableDataWidth = tableData.get('offsetWidth');
+            tableDataHeight = tableData.get('offsetHeight'),
+            tableDataWidth = tableData.get('offsetWidth'),
+            upperXLimit = tableData.getX() <= (overlayActiveNode.getX() + 1),
+            upperYLimit = tableData.getX() <= (overlayActiveNode.getY() - 1);
 
-        Y.Assert.areSame(
-            tableData.getX(),
-            overlayActiveNode.getX(),
-            'X Position of <td></td> and highlight are not the same.');
+        Y.Assert.isTrue(
+            (lowerXLimit && upperXLimit),
+            'X Position of <td></td> and highlight are not the similar.');
 
-        Y.Assert.areSame(
-            tableData.getY(),
-            overlayActiveNode.getY(),
-            'Y Position of <td></td> and highlight are not the same.');
+        Y.Assert.isTrue(
+            (lowerYLimit && upperYLimit),
+            'Y Position of <td></td> and highlight are not the similar.');
 
         Y.Assert.areSame(
             tableDataWidth,

@@ -263,7 +263,7 @@ var DataTableHighlight = A.Base.create(
             var instance = this,
                 host = instance.get('host');
 
-            host._tableNode.appendChild(overlayNode);
+            host._tableNode.ancestor().appendChild(overlayNode);
 
             if (region) {
                 var borders = overlayNode.get('children'),
