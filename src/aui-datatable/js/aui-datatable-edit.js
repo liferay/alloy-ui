@@ -240,7 +240,7 @@ A.mix(CellEditorSupport.prototype, {
         var instance = this,
             row = instance.getRow(model);
 
-        row.toggleClass(instance.CLASS_NAMES_CELL_EDITOR_SUPPORT['readOnly'], model.get('readOnly') === true);
+        row.toggleClass(instance.CLASS_NAMES_CELL_EDITOR_SUPPORT.readOnly, model.get('readOnly') === true);
     },
 
     /**
@@ -896,14 +896,14 @@ var BaseCellEditor = A.Component.create({
                             on: {
                                 click: A.bind(instance._handleSaveEvent, instance)
                             },
-                            label: strings['save'],
+                            label: strings.save,
                             icon: 'icon-ok-sign'
                         },
                         {
                             on: {
                                 click: A.bind(instance._handleCancelEvent, instance)
                             },
-                            label: strings['cancel']
+                            label: strings.cancel
                         }
                     ]
                 ]
@@ -1371,7 +1371,7 @@ var BaseOptionsCellEditor = A.Component.create({
 
             buffer.push(
                 Lang.sub(instance.EDIT_LABEL_TEMPLATE, {
-                    editOptions: strings['editOptions']
+                    editOptions: strings.editOptions
                 })
             );
 
@@ -1381,7 +1381,7 @@ var BaseOptionsCellEditor = A.Component.create({
 
             buffer.push(
                 Lang.sub(instance.EDIT_ADD_LINK_TEMPLATE, {
-                    addOption: strings['addOption']
+                    addOption: strings.addOption
                 })
             );
 
@@ -1402,9 +1402,9 @@ var BaseOptionsCellEditor = A.Component.create({
 
             return Lang.sub(
                 instance.EDIT_OPTION_ROW_TEMPLATE, {
-                    remove: strings['remove'],
-                    titleName: strings['name'],
-                    titleValue: strings['value'],
+                    remove: strings.remove,
+                    titleName: strings.name,
+                    titleValue: strings.value,
                     valueName: name,
                     valueValue: value
                 }

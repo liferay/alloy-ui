@@ -291,7 +291,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
                     }
                 }
             }),
-            name: strings['name']
+            name: strings.name
         }];
     },
 
@@ -675,11 +675,11 @@ A.Connector = A.Base.create('line', A.Base, [], {
         var instance = this;
 
         if (cShape.hasOwnProperty('fill')) {
-            shape.set('fill', cShape['fill']);
+            shape.set('fill', cShape.fill);
         }
 
         if (cShape.hasOwnProperty('stroke')) {
-            shape.set('stroke', cShape['stroke']);
+            shape.set('stroke', cShape.stroke);
         }
 
         if (draw !== false) {

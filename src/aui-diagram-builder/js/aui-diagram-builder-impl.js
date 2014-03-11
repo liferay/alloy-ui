@@ -464,7 +464,7 @@ var DiagramBuilder = A.Component.create({
             var strings = instance.getStrings();
             var selectedConnectors = instance.getSelectedConnectors();
 
-            if (selectedConnectors.length && confirm(strings['deleteConnectorsMessage'])) {
+            if (selectedConnectors.length && confirm(strings.deleteConnectorsMessage)) {
                 AArray.each(selectedConnectors, function(connector) {
                     var transition = connector.get('transition');
 
@@ -485,7 +485,7 @@ var DiagramBuilder = A.Component.create({
             var strings = instance.getStrings();
             var selectedNode = instance.selectedNode;
 
-            if (selectedNode && !selectedNode.get('required') && confirm(strings['deleteNodesMessage'])) {
+            if (selectedNode && !selectedNode.get('required') && confirm(strings.deleteNodesMessage)) {
                 selectedNode.close();
                 instance.editingNode = instance.selectedNode = null;
                 instance.stopEditing();
@@ -2100,7 +2100,7 @@ var DiagramNode = A.Component.create({
             return [{
                 attributeName: 'description',
                 editor: new A.TextAreaCellEditor(),
-                name: strings['description']
+                name: strings.description
             }, {
                 attributeName: 'name',
                 editor: new A.TextCellEditor({
@@ -2112,11 +2112,11 @@ var DiagramNode = A.Component.create({
                         }
                     }
                 }),
-                name: strings['name']
+                name: strings.name
             }, {
                 attributeName: 'type',
                 editor: false,
-                name: strings['type']
+                name: strings.type
             }];
         },
 
@@ -2804,7 +2804,7 @@ var DiagramNode = A.Component.create({
 
 A.DiagramNode = DiagramNode;
 
-A.DiagramBuilder.types['node'] = A.DiagramNode;
+A.DiagramBuilder.types.node = A.DiagramNode;
 
 /**
  * A base class for DiagramNodeState.
@@ -2921,7 +2921,7 @@ A.DiagramNodeState = A.Component.create({
     }
 });
 
-A.DiagramBuilder.types['state'] = A.DiagramNodeState;
+A.DiagramBuilder.types.state = A.DiagramNodeState;
 
 /**
  * A base class for DiagramNodeCondition.
@@ -3021,7 +3021,7 @@ A.DiagramNodeCondition = A.Component.create({
     }
 });
 
-A.DiagramBuilder.types['condition'] = A.DiagramNodeCondition;
+A.DiagramBuilder.types.condition = A.DiagramNodeCondition;
 
 /**
  * A base class for DiagramNodeStart.
@@ -3075,7 +3075,7 @@ A.DiagramNodeStart = A.Component.create({
     EXTENDS: A.DiagramNodeState
 });
 
-A.DiagramBuilder.types['start'] = A.DiagramNodeStart;
+A.DiagramBuilder.types.start = A.DiagramNodeStart;
 
 /**
  * A base class for DiagramNodeEnd.
@@ -3129,7 +3129,7 @@ A.DiagramNodeEnd = A.Component.create({
     EXTENDS: A.DiagramNodeState
 });
 
-A.DiagramBuilder.types['end'] = A.DiagramNodeEnd;
+A.DiagramBuilder.types.end = A.DiagramNodeEnd;
 
 /**
  * A base class for DiagramNodeJoin.
@@ -3213,7 +3213,7 @@ A.DiagramNodeJoin = A.Component.create({
     }
 });
 
-A.DiagramBuilder.types['join'] = A.DiagramNodeJoin;
+A.DiagramBuilder.types.join = A.DiagramNodeJoin;
 
 /**
  * A base class for DiagramNodeFork.
@@ -3297,7 +3297,7 @@ A.DiagramNodeFork = A.Component.create({
     }
 });
 
-A.DiagramBuilder.types['fork'] = A.DiagramNodeFork;
+A.DiagramBuilder.types.fork = A.DiagramNodeFork;
 
 /**
  * A base class for `A.DiagramNodeTask`.
@@ -3416,4 +3416,4 @@ A.DiagramNodeTask = A.Component.create({
     }
 });
 
-A.DiagramBuilder.types['task'] = A.DiagramNodeTask;
+A.DiagramBuilder.types.task = A.DiagramNodeTask;

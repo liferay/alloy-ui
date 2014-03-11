@@ -153,21 +153,21 @@ var FormBuilderFieldsetField = A.Component.create({
             return [{
                 attributeName: 'type',
                 editor: false,
-                name: strings['type']
+                name: strings.type
             }, {
                 attributeName: 'label',
                 editor: new A.TextCellEditor(),
-                name: strings['label']
+                name: strings.label
             }, {
                 attributeName: 'showLabel',
                 editor: new A.RadioCellEditor({
                     options: {
-                        'true': strings['yes'],
-                        'false': strings['no']
+                        'true': strings.yes,
+                        'false': strings.no
                     }
                 }),
                 formatter: A.bind(instance._booleanFormatter, instance),
-                name: strings['showLabel']
+                name: strings.showLabel
             }];
         },
 

@@ -385,14 +385,14 @@ Base.prototype = {
 
         instance._editorCommands.push(
             Do.before(instance._handleEnter, editor, 'onTextInput', instance),
-            Do.before(instance._handleKey, commands['golinedown'], 'exec', instance, 40),
-            Do.before(instance._handleKey, commands['golineup'], 'exec', instance, 38),
-            Do.before(instance._handleKey, commands['gotoend'], 'exec', instance, 35),
-            Do.before(instance._handleKey, commands['gotolineend'], 'exec', instance, 35),
-            Do.before(instance._handleKey, commands['gotolinestart'], 'exec', instance, 36),
-            Do.before(instance._handleKey, commands['gotopagedown'], 'exec', instance, 34),
-            Do.before(instance._handleKey, commands['gotopageup'], 'exec', instance, 33),
-            Do.before(instance._handleKey, commands['gotostart'], 'exec', instance, 36)
+            Do.before(instance._handleKey, commands.golinedown, 'exec', instance, 40),
+            Do.before(instance._handleKey, commands.golineup, 'exec', instance, 38),
+            Do.before(instance._handleKey, commands.gotoend, 'exec', instance, 35),
+            Do.before(instance._handleKey, commands.gotolineend, 'exec', instance, 35),
+            Do.before(instance._handleKey, commands.gotolinestart, 'exec', instance, 36),
+            Do.before(instance._handleKey, commands.gotopagedown, 'exec', instance, 34),
+            Do.before(instance._handleKey, commands.gotopageup, 'exec', instance, 33),
+            Do.before(instance._handleKey, commands.gotostart, 'exec', instance, 36)
         );
     },
 

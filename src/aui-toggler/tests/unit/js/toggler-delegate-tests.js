@@ -78,7 +78,7 @@ YUI.add('aui-toggler-delegate-tests', function(Y) {
             );
 
             // Workaround for https://github.com/yui/yui3/issues/1421
-            var mockWrapper = instance._wrapMockFn(mock['headerEventHandler'], mockErrors);
+            var mockWrapper = instance._wrapMockFn(mock.headerEventHandler, mockErrors);
 
             var headerHandler = Y.Do.before(mockWrapper, togglerDelegate, 'headerEventHandler');
 
@@ -113,7 +113,7 @@ YUI.add('aui-toggler-delegate-tests', function(Y) {
             );
 
             // Workaround for https://github.com/yui/yui3/issues/1421
-            var mockWrapper = instance._wrapMockFn(mock['_onAnimatingChange'], mockErrors);
+            var mockWrapper = instance._wrapMockFn(mock._onAnimatingChange, mockErrors);
 
             var animationChange = Y.Do.before(mockWrapper, togglerDelegate, '_onAnimatingChange');
 

@@ -1167,10 +1167,10 @@ var DiagramBuilderBase = A.Component.create({
 
                 defaultValue.children = [
                     {
-                        label: strings['addNode']
+                        label: strings.addNode
                     },
                     {
-                        label: strings['settings'],
+                        label: strings.settings,
                         disabled: true
                     }
                 ];
@@ -1197,7 +1197,7 @@ var DiagramBuilderBase = A.Component.create({
                             on: {
                                 click: A.bind(instance._handleCancelEvent, instance)
                             },
-                            label: strings['close']
+                            label: strings.close
                         }
                     ]
                 },

@@ -391,15 +391,15 @@
         _unescapeEntitiesUsingDom: function(str) {
             var el = DOC.createElement('a');
 
-            el['innerHTML'] = str;
+            el.innerHTML = str;
 
-            if (el['normalize']) {
-                el['normalize']();
+            if (el.normalize) {
+                el.normalize();
             }
 
             str = el.firstChild.nodeValue;
 
-            el['innerHTML'] = '';
+            el.innerHTML = '';
 
             return str;
         }

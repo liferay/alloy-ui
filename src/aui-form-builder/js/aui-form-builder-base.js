@@ -710,11 +710,11 @@ var FormBuilder = A.Component.create({
             });
 
             if (deep) {
-                config['fields'] = [];
+                config.fields = [];
 
                 A.each(field.get('fields'), function(child, index) {
                     if (!child.get('unique')) {
-                        config['fields'][index] = instance._cloneField(child, deep);
+                        config.fields[index] = instance._cloneField(child, deep);
                     }
                 });
             }

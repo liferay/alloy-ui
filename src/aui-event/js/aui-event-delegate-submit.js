@@ -32,7 +32,7 @@ A.Event.define(
             var clickHandles = instance._prepareHandles(subscription, node);
 
             if (!AObject.owns(clickHandles, 'click')) {
-                clickHandles['click'] = node.delegate(
+                clickHandles.click = node.delegate(
                     'click',
                     function(event) {
                         var activeElement = event.target;
@@ -150,7 +150,7 @@ A.Event.define(
             var handles = instance._prepareHandles(subscription, form);
 
             if (!AObject.owns(handles, 'submit')) {
-                handles['submit'] = A.Event._attach(['submit', fireFn, form, notifier, filter ? 'submit_delegate' :
+                handles.submit = A.Event._attach(['submit', fireFn, form, notifier, filter ? 'submit_delegate' :
                     'submit_on']);
             }
         },
