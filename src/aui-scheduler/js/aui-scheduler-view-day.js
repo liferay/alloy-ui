@@ -23,7 +23,7 @@ var Lang = A.Lang,
             width = 0.1;
 
         if (body) {
-            testNode.style.cssText = "position:absolute;visibility:hidden;overflow:scroll;width:20px;";
+            testNode.style.cssText = 'position:absolute;visibility:hidden;overflow:scroll;width:20px;';
             testNode.appendChild(doc.createElement('p')).style.height = '1px';
             body.insertBefore(testNode, body.firstChild);
             width = testNode.offsetWidth - testNode.clientWidth;
