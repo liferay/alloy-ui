@@ -72,6 +72,14 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
 
         screen.afterFlip();
 
+        // Concurrent routes can share the same screen, e.g. `/home` and
+        // `/home:param`, for those cases a page refresh is performed and
+        // removing the screen is not necessary.
+        if (screen === activeScreen) {
+            A.log('Screen [' + screen + '] refreshed', 'info');
+            return;
+        }
+
         if (activeScreen && !activeScreen.get('cacheable')) {
             this._removeScreen(this.activePath, activeScreen);
         }
@@ -95,6 +103,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
     _handleNavigate: function(path, ScreenCtor, req, res, next) {
         var instance = this,
             screen = instance.screens[path],
+            activeScreen = instance.activeScreen,
             screenId,
             deffered,
             contents = [],
@@ -104,11 +113,16 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
         A.log('Navigate to [' + path + ']', 'info');
 
         if (!screen) {
-            A.log('Screen not found, create one', 'info');
+            A.log('Screen for [' + path + '] not found, create one', 'info');
             screen = new ScreenCtor();
         }
 
         screenId = screen.get('id');
+
+        if (screen === activeScreen) {
+            A.log('Screen [' + screen + '] simulates page refresh', 'info');
+            screen.clearCache();
+        }
 
         // Stack the surfaces and its operations in the right order. Since
         // getContentForSurface could return a promise in order to fetch async
@@ -123,30 +137,27 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
             .then(function(data) {
                 // When surfaces contents are ready, add them to each surface
                 A.Array.each(surfaces, function(surface, i) {
-                    surface.addContent(screenId, data[i]);
                     screen.addCache(surface, data[i]);
+                    surface.addContent(screenId, data[i]);
                 });
-            })
-            .then(function() {
+
                 A.log('Tell the screen to get ready (beforeFlip)...', 'info');
                 return A.when(screen.beforeFlip());
             })
             .then(function() {
-                if (instance.activeScreen) {
+                if (activeScreen) {
                     A.log('Deactivate active screen', 'info');
-                    instance.activeScreen.deactivate();
+                    activeScreen.deactivate();
                 }
-            })
-            .then(function() {
+
                 instance._setDocumentTitle(screen);
-            })
-            .then(function() {
-                A.log('Screen is ready, batch transitions...', 'info');
+
+                // Animations should start at the same time, therefore
+                // it's passed to Y.batch to be processed in parallel
+                A.log('Screen [' + screen + '] ready, transition...', 'info');
                 A.Array.each(surfaces, function(surface) {
                     transitions.push(surface.show(screenId));
                 });
-                // Animations should start at the same time, therefore
-                // it's passed to Y.batch to be processed in parallel
                 return A.batch.apply(A, transitions);
             })
             .then(function() {
@@ -188,14 +199,13 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
      * @private
      */
     _removeScreen: function(path, screen) {
-        var instance = this,
-            screenId = screen.get('id');
+        var screenId = screen.get('id');
 
-        A.Object.each(instance.surfaces, function(surface) {
+        A.Object.each(this.surfaces, function(surface) {
             surface.remove(screenId);
         });
         screen.destroy();
-        delete instance.screens[path];
+        delete this.screens[path];
     },
 
     /**
