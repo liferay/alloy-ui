@@ -5,13 +5,35 @@ YUI({
     }
 }).use('aui-surface', 'transition', 'io', function(Y) {
 
+    /**
+     * Utils
+     */
+    var load = function(url) {
+        return new Y.Promise(function(resolve) {
+            Y.io(url, {
+                on: {
+                    success: function(id, xhr) {
+                        resolve(xhr.responseText);
+                    }
+                }
+            });
+        });
+    };
+
+    var delay = function(ms) {
+        return new Y.Promise(function(resolve) {
+            setTimeout(function() {
+                resolve();
+            }, ms);
+        });
+    };
+
+    /**
+     * Screens
+     */
     Y.HomeScreen = Y.Base.create('testScreen', Y.Screen, [], {
         // beforeFlip: function() {
-        //     return new Y.Promise(function(resolve) {
-        //         setTimeout(function() {
-        //             resolve();
-        //         }, 500);
-        //     });
+        //     return delay(1000);
         // },
 
         // beforeDeactivate: function() {
@@ -21,21 +43,13 @@ YUI({
         getSurfaceContent: function(surfaceId) {
             switch (surfaceId) {
                 case 'page':
-                    return new Y.Promise(function(resolve) {
-                        Y.io('home?pjax=1', {
-                            on: {
-                                success: function(id, xhr) {
-                                    resolve(xhr.responseText);
-                                }
-                            }
-                        });
-                    });
+                    return load('home?pjax=1');
             }
         }
     }, {
         ATTRS: {
             cacheable: {
-                value: false
+                value: true
             },
             id: {
                 value: 'test'
@@ -53,21 +67,13 @@ YUI({
         getSurfaceContent: function(surfaceId) {
             switch (surfaceId) {
                 case 'page':
-                    return new Y.Promise(function(resolve) {
-                        Y.io('about?pjax=1', {
-                            on: {
-                                success: function(id, xhr) {
-                                    resolve(xhr.responseText);
-                                }
-                            }
-                        });
-                    });
+                    return load('about?pjax=1');
             }
         }
     }, {
         ATTRS: {
             cacheable: {
-                value: false
+                value: true
             },
             id: {
                 value: 'about'
@@ -90,13 +96,17 @@ YUI({
     //     });
     // };
 
+    /**
+     * App
+     */
     new Y.SurfaceApp({
         linkSelector: 'a',
         root: '/demos/surface',
 
+        // TODO: How to add more screens?
         screens: [
             {
-                path: '/home',
+                path: '/home:sid',
                 screen: Y.HomeScreen
             },
             {
@@ -105,8 +115,9 @@ YUI({
             }
         ],
 
+        // TODO: How to add more surfaces?
         surfaces: ['page', 'header', 'nav', 'body']
     })
-    .dispatch();
+        .dispatch();
 
 });
