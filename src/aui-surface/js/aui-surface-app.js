@@ -101,11 +101,6 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
             surfaces = [],
             transitions = [];
 
-        if (path === this.activePath) {
-            A.log('Not navigating, already at destination', 'info');
-            return;
-        }
-
         A.log('Navigate to [' + path + ']', 'info');
 
         if (!screen) {
@@ -162,16 +157,25 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
     },
 
     /**
-     * Intercepts navigate event in order to prevent url change if needed.
+     * Intercepts navigate event in order to prevent URL change if needed.
      *
      * @method  _onNavigate
      * @param {EventFacade} event Navigate event facade
      * @private
      */
     _onNavigate: function(event) {
+        // Chained routes and route with params are resolved to the same path,
+        // since parameters can distinguish the page state the full URL is
+        // compared to determine when is already at the destination
+        if (event.url === this._getURL()) {
+            A.log('Not navigating, already at destination', 'info');
+            event.halt();
+            return;
+        }
         if (this.activeScreen && this.activeScreen.beforeDeactivate()) {
             A.log('Navigation cancelled by active screen', 'info');
             event.halt();
+            return;
         }
     },
 
