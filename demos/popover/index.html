@@ -29,7 +29,10 @@
             trigger: '#triggerTop',
             animated: true,
             duration: 0.5, // in seconds
-            stickDuration: 1000 // in milliseconds
+            delay: { // in milliseconds
+                show: 0,
+                hide: 1000
+            }
         }).render();
 
         var popoverBottom = new Y.Popover({

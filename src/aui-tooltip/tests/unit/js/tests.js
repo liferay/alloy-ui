@@ -210,9 +210,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
             test.wait(1000);
         },
 
-        /**
-         * @tests AUI-1092
-         */
+        // Tests: AUI-1092
         '#12 #triggerLeft\'s tooltip should not cover button #triggerBottom': function() {
             var test = this,
                 tooltipLeft = Y.one('.tooltip.left'),

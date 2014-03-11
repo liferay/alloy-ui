@@ -1,5 +1,5 @@
 /**
- * The IORequest Utility - Provides response data normalization for XML, JSON,
+ * The IORequest Utility - Provides response data normalization for 'xml', 'json',
  * JavaScript and cache option.
  *
  * @module aui-io
@@ -18,37 +18,6 @@ var L = A.Lang,
             return defaults[attr];
         };
     },
-
-    ACTIVE = 'active',
-    ARGUMENTS = 'arguments',
-    AUTO_LOAD = 'autoLoad',
-    CACHE = 'cache',
-    CFG = 'cfg',
-    COMPLETE = 'complete',
-    CONTENT_TYPE = 'content-type',
-    CONTEXT = 'context',
-    DATA = 'data',
-    DATA_TYPE = 'dataType',
-    EMPTY_STRING = '',
-    END = 'end',
-    FAILURE = 'failure',
-    FORM = 'form',
-    GET = 'get',
-    HEADERS = 'headers',
-    IO_REQUEST = 'IORequest',
-    JSON = 'json',
-    METHOD = 'method',
-    RESPONSE_DATA = 'responseData',
-    START = 'start',
-    SUCCESS = 'success',
-    SYNC = 'sync',
-    TIMEOUT = 'timeout',
-    TRANSACTION = 'transaction',
-    URI = 'uri',
-    XDR = 'xdr',
-    XML = 'xml',
-
-    PARSE_ERROR = 'Parser error: IO dataType is not correctly parsing',
 
     ACCEPTS = {
         all: '*/*',
@@ -82,7 +51,7 @@ var IORequest = A.Component.create({
      * @type String
      * @static
      */
-    NAME: IO_REQUEST,
+    NAME: 'IORequest',
 
     /**
      * Static property used to define the default attribute
@@ -129,7 +98,7 @@ var IORequest = A.Component.create({
          */
         dataType: {
             setter: function(v) {
-                return (v || EMPTY_STRING).toLowerCase();
+                return (v || '').toLowerCase();
             },
             value: null,
             validator: isString
@@ -199,22 +168,22 @@ var IORequest = A.Component.create({
                 // mapped public attributes when the user call .start() it
                 // always retrieve the last set values for each mapped attr
                 return {
-                    arguments: instance.get(ARGUMENTS),
-                    context: instance.get(CONTEXT),
+                    arguments: instance.get('arguments'),
+                    context: instance.get('context'),
                     data: instance.getFormattedData(),
-                    form: instance.get(FORM),
-                    headers: instance.get(HEADERS),
-                    method: instance.get(METHOD),
+                    form: instance.get('form'),
+                    headers: instance.get('headers'),
+                    method: instance.get('method'),
                     on: {
-                        complete: A.bind(instance.fire, instance, COMPLETE),
+                        complete: A.bind(instance.fire, instance, 'complete'),
                         end: A.bind(instance._end, instance),
-                        failure: A.bind(instance.fire, instance, FAILURE),
-                        start: A.bind(instance.fire, instance, START),
+                        failure: A.bind(instance.fire, instance, 'failure'),
+                        start: A.bind(instance.fire, instance, 'start'),
                         success: A.bind(instance._success, instance)
                     },
-                    sync: instance.get(SYNC),
-                    timeout: instance.get(TIMEOUT),
-                    xdr: instance.get(XDR)
+                    sync: instance.get('sync'),
+                    timeout: instance.get('timeout'),
+                    xdr: instance.get('xdr')
                 };
             },
             readOnly: true
@@ -244,7 +213,7 @@ var IORequest = A.Component.create({
          * @type Object
          */
         arguments: {
-            valueFn: getDefault(ARGUMENTS)
+            valueFn: getDefault('arguments')
         },
 
         /**
@@ -256,7 +225,7 @@ var IORequest = A.Component.create({
          * @type Object
          */
         context: {
-            valueFn: getDefault(CONTEXT)
+            valueFn: getDefault('context')
         },
 
         /**
@@ -268,7 +237,7 @@ var IORequest = A.Component.create({
          * @type Object
          */
         data: {
-            valueFn: getDefault(DATA)
+            valueFn: getDefault('data')
         },
 
         /**
@@ -280,7 +249,7 @@ var IORequest = A.Component.create({
          * @type Object
          */
         form: {
-            valueFn: getDefault(FORM)
+            valueFn: getDefault('form')
         },
 
         /**
@@ -294,7 +263,7 @@ var IORequest = A.Component.create({
             getter: function(value) {
                 var header = [];
                 var instance = this;
-                var dataType = instance.get(DATA_TYPE);
+                var dataType = instance.get('dataType');
 
                 if (dataType) {
                     header.push(
@@ -313,7 +282,7 @@ var IORequest = A.Component.create({
                     }
                 );
             },
-            valueFn: getDefault(HEADERS)
+            valueFn: getDefault('headers')
         },
 
         /**
@@ -325,7 +294,7 @@ var IORequest = A.Component.create({
          * @type String
          */
         method: {
-            valueFn: getDefault(METHOD)
+            valueFn: getDefault('method')
         },
 
         /**
@@ -349,7 +318,7 @@ var IORequest = A.Component.create({
          * @type Boolean
          */
         sync: {
-            valueFn: getDefault(SYNC)
+            valueFn: getDefault('sync')
         },
 
         /**
@@ -361,7 +330,7 @@ var IORequest = A.Component.create({
          * @type Number
          */
         timeout: {
-            valueFn: getDefault(TIMEOUT)
+            valueFn: getDefault('timeout')
         },
 
         /**
@@ -373,7 +342,7 @@ var IORequest = A.Component.create({
          * @type Object
          */
         xdr: {
-            valueFn: getDefault(XDR)
+            valueFn: getDefault('xdr')
         }
     },
 
@@ -416,7 +385,7 @@ var IORequest = A.Component.create({
 
             instance.stop();
 
-            instance.set(TRANSACTION, null);
+            instance.set('transaction', null);
         },
 
         /**
@@ -428,7 +397,7 @@ var IORequest = A.Component.create({
          */
         getFormattedData: function() {
             var instance = this;
-            var value = instance.get(DATA);
+            var value = instance.get('data');
             var dataFormatter = defaults.dataFormatter;
 
             if (isFunction(dataFormatter)) {
@@ -448,7 +417,7 @@ var IORequest = A.Component.create({
 
             instance.destructor();
 
-            instance.set(ACTIVE, true);
+            instance.set('active', true);
 
             var ioObj = instance._yuiIOObj;
 
@@ -459,11 +428,11 @@ var IORequest = A.Component.create({
             }
 
             var transaction = ioObj.send(
-                instance.get(URI),
-                instance.get(CFG)
+                instance.get('uri'),
+                instance.get('cfg')
             );
 
-            instance.set(TRANSACTION, transaction);
+            instance.set('transaction', transaction);
         },
 
         /**
@@ -473,7 +442,7 @@ var IORequest = A.Component.create({
          */
         stop: function() {
             var instance = this;
-            var transaction = instance.get(TRANSACTION);
+            var transaction = instance.get('transaction');
 
             if (transaction) {
                 transaction.abort();
@@ -489,7 +458,7 @@ var IORequest = A.Component.create({
         _autoStart: function() {
             var instance = this;
 
-            if (instance.get(AUTO_LOAD)) {
+            if (instance.get('autoLoad')) {
                 instance.start();
             }
         },
@@ -506,11 +475,11 @@ var IORequest = A.Component.create({
          */
         _parseURL: function(url) {
             var instance = this;
-            var cache = instance.get(CACHE);
-            var method = instance.get(METHOD);
+            var cache = instance.get('cache');
+            var method = instance.get('method');
 
             // reusing logic to add a timestamp on the url from jQuery 1.3.2
-            if ((cache === false) && (method == GET)) {
+            if ((cache === false) && (method == 'get')) {
                 var ts = +new Date;
                 // try replacing _= if it is there
                 var ret = url.replace(/(\?|&)_=.*?(&|$)/, '$1_=' + ts + '$2');
@@ -541,10 +510,10 @@ var IORequest = A.Component.create({
         _end: function(id, args) {
             var instance = this;
 
-            instance.set(ACTIVE, false);
-            instance.set(TRANSACTION, null);
+            instance.set('active', false);
+            instance.set('transaction', null);
 
-            instance.fire(END, id, args);
+            instance.fire('end', id, args);
         },
 
         /**
@@ -561,9 +530,9 @@ var IORequest = A.Component.create({
             var instance = this;
 
             // update the responseData attribute with the new data from xhr
-            instance.set(RESPONSE_DATA, obj);
+            instance.set('responseData', obj);
 
-            instance.fire(SUCCESS, id, obj, args);
+            instance.fire('success', id, obj, args);
         },
 
         /**
@@ -579,19 +548,19 @@ var IORequest = A.Component.create({
             var instance = this;
 
             if (xhr) {
-                var dataType = instance.get(DATA_TYPE);
-                var contentType = xhr.getResponseHeader(CONTENT_TYPE) || '';
+                var dataType = instance.get('dataType');
+                var contentType = xhr.getResponseHeader('content-type') || '';
 
                 // if the dataType or the content-type is XML...
-                if ((dataType == XML) ||
-                    (!dataType && contentType.indexOf(XML) >= 0)) {
+                if ((dataType == 'xml') ||
+                    (!dataType && contentType.indexOf('xml') >= 0)) {
 
                     // use responseXML
                     data = xhr.responseXML;
 
                     // check if the XML was parsed correctly
                     if (data.documentElement.tagName == 'parsererror') {
-                        throw PARSE_ERROR;
+                        throw 'Parser error: IO dataType is not correctly parsing';
                     }
                 }
                 else {
@@ -599,18 +568,18 @@ var IORequest = A.Component.create({
                     data = xhr.responseText;
                 }
 
-                // empty string is not a valid JSON, convert it to null
-                if (data === EMPTY_STRING) {
+                // empty string is not a valid 'json', convert it to null
+                if (data === '') {
                     data = null;
                 }
 
                 // trying to parse to JSON if dataType is a valid json
-                if (dataType == JSON) {
+                if (dataType == 'json') {
                     try {
                         data = A.JSON.parse(data);
                     }
                     catch (e) {
-                        // throw PARSE_ERROR;
+                        // throw 'Parser error: IO dataType is not correctly parsing';
                     }
                 }
                 else {

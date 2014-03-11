@@ -11,32 +11,8 @@ var L = A.Lang,
 
     UA = A.UA,
 
-    BOUNDING_BOX = 'boundingBox',
-    CHILDREN = 'children',
-    CONTAINER = 'container',
-    CONTENT = 'content',
-    CONTENT_BOX = 'contentBox',
-    DOT = '.',
-    FILE = 'file',
-    HITAREA = 'hitarea',
-    ICON = 'icon',
-    INVALID = 'invalid',
-    LABEL = 'label',
-    LAST_SELECTED = 'lastSelected',
-    LEAF = 'leaf',
-    NODE = 'node',
-    OWNER_TREE = 'ownerTree',
-    ROOT = 'root',
-    SELECT_ON_TOGGLE = 'selectOnToggle',
-    SPACE = ' ',
-    TREE = 'tree',
-    TREE_NODE = 'tree-node',
-    TREE_VIEW = 'tree-view',
-    TYPE = 'type',
-    VIEW = 'view',
-
     concat = function() {
-        return Array.prototype.slice.call(arguments).join(SPACE);
+        return Array.prototype.slice.call(arguments).join(' ');
     },
 
     isTreeNode = function(v) {
@@ -45,13 +21,13 @@ var L = A.Lang,
 
     getCN = A.getClassName,
 
-    CSS_TREE_HITAREA = getCN(TREE, HITAREA),
-    CSS_TREE_ICON = getCN(TREE, ICON),
-    CSS_TREE_LABEL = getCN(TREE, LABEL),
-    CSS_TREE_NODE_CONTENT = getCN(TREE, NODE, CONTENT),
-    CSS_TREE_NODE_CONTENT_INVALID = getCN(TREE, NODE, CONTENT, INVALID),
-    CSS_TREE_ROOT_CONTAINER = getCN(TREE, ROOT, CONTAINER),
-    CSS_TREE_VIEW_CONTENT = getCN(TREE, VIEW, CONTENT);
+    CSS_TREE_HITAREA = getCN('tree', 'hitarea'),
+    CSS_TREE_ICON = getCN('tree', 'icon'),
+    CSS_TREE_LABEL = getCN('tree', 'label'),
+    CSS_TREE_NODE_CONTENT = getCN('tree', 'node', 'content'),
+    CSS_TREE_NODE_CONTENT_INVALID = getCN('tree', 'node', 'content', 'invalid'),
+    CSS_TREE_ROOT_CONTAINER = getCN('tree', 'root', 'container'),
+    CSS_TREE_VIEW_CONTENT = getCN('tree', 'view', 'content');
 
 /**
  * A base class for TreeView, providing:
@@ -77,7 +53,7 @@ var TreeView = A.Component.create({
      * @type String
      * @static
      */
-    NAME: TREE_VIEW,
+    NAME: 'tree-view',
 
     /**
      * Static property used to define the default attribute
@@ -97,7 +73,7 @@ var TreeView = A.Component.create({
          * @type String
          */
         type: {
-            value: FILE,
+            value: 'file',
             validator: isString
         },
 
@@ -151,9 +127,9 @@ var TreeView = A.Component.create({
          */
         initializer: function() {
             var instance = this;
-            var boundingBox = instance.get(BOUNDING_BOX);
+            var boundingBox = instance.get('boundingBox');
 
-            boundingBox.setData(TREE_VIEW, instance);
+            boundingBox.setData('tree-view', instance);
         },
 
         /**
@@ -261,11 +237,11 @@ var TreeView = A.Component.create({
                 }
 
                 // find the parent TreeNode...
-                var parentNode = node.get(PARENT_NODE).get(PARENT_NODE);
-                var parentInstance = parentNode.getData(TREE_NODE);
+                var parentNode = node.get('parentNode').get('parentNode');
+                var parentInstance = parentNode.getData('tree-node');
 
                 if (!A.instanceOf(parentInstance, A.TreeNode)) {
-                    parentInstance = parentNode.getData(TREE_VIEW);
+                    parentInstance = parentNode.getData('tree-view');
                 }
 
                 // and simulate the appendChild.
@@ -281,9 +257,9 @@ var TreeView = A.Component.create({
          */
         _createNodeContainer: function() {
             var instance = this;
-            var contentBox = instance.get(CONTENT_BOX);
+            var contentBox = instance.get('contentBox');
 
-            instance.set(CONTAINER, contentBox);
+            instance.set('container', contentBox);
 
             return contentBox;
         },
@@ -296,10 +272,10 @@ var TreeView = A.Component.create({
          */
         _renderElements: function() {
             var instance = this;
-            var contentBox = instance.get(CONTENT_BOX);
-            var children = instance.get(CHILDREN);
-            var type = instance.get(TYPE);
-            var CSS_TREE_TYPE = getCN(TREE, type);
+            var contentBox = instance.get('contentBox');
+            var children = instance.get('children');
+            var type = instance.get('type');
+            var CSS_TREE_TYPE = getCN('tree', type);
 
             contentBox.addClass(CSS_TREE_VIEW_CONTENT);
 
@@ -322,17 +298,17 @@ var TreeView = A.Component.create({
         _delegateDOM: function() {
             var instance = this;
 
-            var boundingBox = instance.get(BOUNDING_BOX);
+            var boundingBox = instance.get('boundingBox');
 
             // expand/collapse delegations
-            boundingBox.delegate('click', A.bind(instance._onClickNodeEl, instance), DOT + CSS_TREE_NODE_CONTENT);
-            boundingBox.delegate('dblclick', A.bind(instance._onClickHitArea, instance), DOT + CSS_TREE_ICON);
-            boundingBox.delegate('dblclick', A.bind(instance._onClickHitArea, instance), DOT + CSS_TREE_LABEL);
+            boundingBox.delegate('click', A.bind(instance._onClickNodeEl, instance), '.' + CSS_TREE_NODE_CONTENT);
+            boundingBox.delegate('dblclick', A.bind(instance._onClickHitArea, instance), '.' + CSS_TREE_ICON);
+            boundingBox.delegate('dblclick', A.bind(instance._onClickHitArea, instance), '.' + CSS_TREE_LABEL);
             // other delegations
             boundingBox.delegate(
-                'mouseenter', A.bind(instance._onMouseEnterNodeEl, instance), DOT + CSS_TREE_NODE_CONTENT);
+                'mouseenter', A.bind(instance._onMouseEnterNodeEl, instance), '.' + CSS_TREE_NODE_CONTENT);
             boundingBox.delegate(
-                'mouseleave', A.bind(instance._onMouseLeaveNodeEl, instance), DOT + CSS_TREE_NODE_CONTENT);
+                'mouseleave', A.bind(instance._onMouseLeaveNodeEl, instance), '.' + CSS_TREE_NODE_CONTENT);
         },
 
         /**
@@ -348,16 +324,16 @@ var TreeView = A.Component.create({
             var treeNode = instance.getNodeByChild(event.currentTarget);
 
             if (treeNode) {
-                if (event.target.test(DOT + CSS_TREE_HITAREA)) {
+                if (event.target.test('.' + CSS_TREE_HITAREA)) {
                     treeNode.toggle();
 
-                    if (!instance.get(SELECT_ON_TOGGLE)) {
+                    if (!instance.get('selectOnToggle')) {
                         return;
                     }
                 }
 
                 if (!treeNode.isSelected()) {
-                    var lastSelected = instance.get(LAST_SELECTED);
+                    var lastSelected = instance.get('lastSelected');
 
                     // select drag node
                     if (lastSelected) {
@@ -426,45 +402,22 @@ A.TreeView = TreeView;
  */
 var isNumber = L.isNumber,
 
-    ABOVE = 'above',
-    APPEND = 'append',
-    BELOW = 'below',
-    BLOCK = 'block',
-    BODY = 'body',
-    CLEARFIX = 'clearfix',
-    DEFAULT = 'default',
-    DISPLAY = 'display',
-    DOWN = 'down',
-    DRAG = 'drag',
-    DRAGGABLE = 'draggable',
-    DRAG_CURSOR = 'dragCursor',
-    DRAG_NODE = 'dragNode',
-    EXPANDED = 'expanded',
-    HELPER = 'helper',
-    INSERT = 'insert',
-    OFFSET_HEIGHT = 'offsetHeight',
-    PARENT_NODE = 'parentNode',
-    SCROLL_DELAY = 'scrollDelay',
-    STATE = 'state',
-    TREE_DRAG_DROP = 'tree-drag-drop',
-    UP = 'up',
-
     DDM = A.DD.DDM,
 
-    CSS_CLEARFIX = getCN(CLEARFIX),
-    CSS_ICON = getCN(ICON),
-    CSS_TREE_DRAG_HELPER = getCN(TREE, DRAG, HELPER),
-    CSS_TREE_DRAG_HELPER_CONTENT = getCN(TREE, DRAG, HELPER, CONTENT),
-    CSS_TREE_DRAG_HELPER_LABEL = getCN(TREE, DRAG, HELPER, LABEL),
-    CSS_TREE_DRAG_INSERT_ABOVE = getCN(TREE, DRAG, INSERT, ABOVE),
-    CSS_TREE_DRAG_INSERT_APPEND = getCN(TREE, DRAG, INSERT, APPEND),
-    CSS_TREE_DRAG_INSERT_BELOW = getCN(TREE, DRAG, INSERT, BELOW),
-    CSS_TREE_DRAG_STATE_APPEND = getCN(TREE, DRAG, STATE, APPEND),
-    CSS_TREE_DRAG_STATE_INSERT_ABOVE = getCN(TREE, DRAG, STATE, INSERT, ABOVE),
-    CSS_TREE_DRAG_STATE_INSERT_BELOW = getCN(TREE, DRAG, STATE, INSERT, BELOW),
+    CSS_CLEARFIX = getCN('clearfix'),
+    CSS_ICON = getCN('icon'),
+    CSS_TREE_DRAG_HELPER = getCN('tree', 'drag', 'helper'),
+    CSS_TREE_DRAG_HELPER_CONTENT = getCN('tree', 'drag', 'helper', 'content'),
+    CSS_TREE_DRAG_HELPER_LABEL = getCN('tree', 'drag', 'helper', 'label'),
+    CSS_TREE_DRAG_INSERT_ABOVE = getCN('tree', 'drag', 'insert', 'above'),
+    CSS_TREE_DRAG_INSERT_APPEND = getCN('tree', 'drag', 'insert', 'append'),
+    CSS_TREE_DRAG_INSERT_BELOW = getCN('tree', 'drag', 'insert', 'below'),
+    CSS_TREE_DRAG_STATE_APPEND = getCN('tree', 'drag', 'state', 'append'),
+    CSS_TREE_DRAG_STATE_INSERT_ABOVE = getCN('tree', 'drag', 'state', 'insert', 'above'),
+    CSS_TREE_DRAG_STATE_INSERT_BELOW = getCN('tree', 'drag', 'state', 'insert', 'below'),
 
     HELPER_TPL = '<div class="' + CSS_TREE_DRAG_HELPER + '">' +
-        '<div class="' + [CSS_TREE_DRAG_HELPER_CONTENT, CSS_CLEARFIX].join(SPACE) + '">' +
+        '<div class="' + [CSS_TREE_DRAG_HELPER_CONTENT, CSS_CLEARFIX].join(' ') + '">' +
         '<span class="' + CSS_ICON + '"></span>' +
         '<span class="' + CSS_TREE_DRAG_HELPER_LABEL + '"></span>' +
         '</div>' +
@@ -490,7 +443,7 @@ var TreeViewDD = A.Component.create({
      * @type String
      * @static
      */
-    NAME: TREE_DRAG_DROP,
+    NAME: 'tree-drag-drop',
 
     /**
      * Static property used to define the default attribute
@@ -536,7 +489,7 @@ var TreeViewDD = A.Component.create({
          * @type String
          * @protected
          */
-        direction: BELOW,
+        direction: 'below',
 
         /**
          * Drop action (i.e. could be 'append', 'below' or 'above').
@@ -582,7 +535,7 @@ var TreeViewDD = A.Component.create({
          */
         destructor: function() {
             var instance = this;
-            var helper = instance.get(HELPER);
+            var helper = instance.get('helper');
 
             if (helper) {
                 helper.remove(true);
@@ -622,12 +575,12 @@ var TreeViewDD = A.Component.create({
             var helper = A.Node.create(HELPER_TPL).hide();
 
             // append helper to the body
-            A.one(BODY).append(helper);
+            A.one('body').append(helper);
 
-            instance.set(HELPER, helper);
+            instance.set('helper', helper);
 
             // set DRAG_CURSOR to the default arrow
-            DDM.set(DRAG_CURSOR, DEFAULT);
+            DDM.set('dragCursor', 'default');
         },
 
         /**
@@ -638,15 +591,15 @@ var TreeViewDD = A.Component.create({
          */
         _bindDragDrop: function() {
             var instance = this,
-                boundingBox = instance.get(BOUNDING_BOX),
+                boundingBox = instance.get('boundingBox'),
                 dragInitHandle = null;
 
             instance._createDragInitHandler = function() {
                 instance.ddDelegate = new A.DD.Delegate({
                     bubbleTargets: instance,
                     container: boundingBox,
-                    invalid: DOT + CSS_TREE_NODE_CONTENT_INVALID,
-                    nodes: DOT + CSS_TREE_NODE_CONTENT,
+                    invalid: '.' + CSS_TREE_NODE_CONTENT_INVALID,
+                    nodes: '.' + CSS_TREE_NODE_CONTENT,
                     target: true
                 });
 
@@ -657,7 +610,7 @@ var TreeViewDD = A.Component.create({
                     positionProxy: false,
                     borderStyle: null
                 }).plug(A.Plugin.DDNodeScroll, {
-                    scrollDelay: instance.get(SCROLL_DELAY),
+                    scrollDelay: instance.get('scrollDelay'),
                     node: boundingBox
                 });
 
@@ -699,9 +652,9 @@ var TreeViewDD = A.Component.create({
         _appendState: function(nodeContent) {
             var instance = this;
 
-            instance.dropAction = APPEND;
+            instance.dropAction = 'append';
 
-            instance.get(HELPER).addClass(CSS_TREE_DRAG_STATE_APPEND);
+            instance.get('helper').addClass(CSS_TREE_DRAG_STATE_APPEND);
 
             nodeContent.addClass(CSS_TREE_DRAG_INSERT_APPEND);
         },
@@ -716,9 +669,9 @@ var TreeViewDD = A.Component.create({
         _goingDownState: function(nodeContent) {
             var instance = this;
 
-            instance.dropAction = BELOW;
+            instance.dropAction = 'below';
 
-            instance.get(HELPER).addClass(CSS_TREE_DRAG_STATE_INSERT_BELOW);
+            instance.get('helper').addClass(CSS_TREE_DRAG_STATE_INSERT_BELOW);
 
             nodeContent.addClass(CSS_TREE_DRAG_INSERT_BELOW);
         },
@@ -733,9 +686,9 @@ var TreeViewDD = A.Component.create({
         _goingUpState: function(nodeContent) {
             var instance = this;
 
-            instance.dropAction = ABOVE;
+            instance.dropAction = 'above';
 
-            instance.get(HELPER).addClass(CSS_TREE_DRAG_STATE_INSERT_ABOVE);
+            instance.get('helper').addClass(CSS_TREE_DRAG_STATE_INSERT_ABOVE);
 
             nodeContent.addClass(CSS_TREE_DRAG_INSERT_ABOVE);
         },
@@ -749,7 +702,7 @@ var TreeViewDD = A.Component.create({
          */
         _resetState: function(nodeContent) {
             var instance = this;
-            var helper = instance.get(HELPER);
+            var helper = instance.get('helper');
 
             helper.removeClass(CSS_TREE_DRAG_STATE_APPEND);
             helper.removeClass(CSS_TREE_DRAG_STATE_INSERT_ABOVE);
@@ -773,10 +726,10 @@ var TreeViewDD = A.Component.create({
             var instance = this;
             var drag = event.drag;
             var drop = event.drop;
-            var nodeContent = drop.get(NODE);
-            var dropNode = nodeContent.get(PARENT_NODE);
-            var dragNode = drag.get(NODE).get(PARENT_NODE);
-            var dropTreeNode = dropNode.getData(TREE_NODE);
+            var nodeContent = drop.get('node');
+            var dropNode = nodeContent.get('parentNode');
+            var dragNode = drag.get('node').get('parentNode');
+            var dropTreeNode = dropNode.getData('tree-node');
 
             // reset the classNames from the last nodeContent
             instance._resetState(instance.nodeContent);
@@ -784,11 +737,11 @@ var TreeViewDD = A.Component.create({
             // cannot drop the dragged element into any of its children
             // nor above an undraggable element
             // using DOM contains method for performance reason
-            if ( !! dropTreeNode.get(DRAGGABLE) && !dragNode.contains(dropNode)) {
+            if ( !! dropTreeNode.get('draggable') && !dragNode.contains(dropNode)) {
                 // nArea splits the height in 3 areas top/center/bottom these
                 // areas are responsible for defining the state when the mouse
                 // is over any of them
-                var nArea = nodeContent.get(OFFSET_HEIGHT) / 3;
+                var nArea = nodeContent.get('offsetHeight') / 3;
                 var yTop = nodeContent.getY();
                 var yCenter = yTop + nArea;
                 var yBottom = yTop + nArea * 2;
@@ -811,7 +764,7 @@ var TreeViewDD = A.Component.create({
                     // if it's a leaf we need to set the ABOVE or BELOW state
                     // instead of append
                     else {
-                        if (instance.direction === UP) {
+                        if (instance.direction === 'up') {
                             instance._goingUpState(nodeContent);
                         }
                         else {
@@ -834,30 +787,30 @@ var TreeViewDD = A.Component.create({
         _afterDropHit: function(event) {
             var instance = this;
             var dropAction = instance.dropAction;
-            var dragNode = event.drag.get(NODE).get(PARENT_NODE);
-            var dropNode = event.drop.get(NODE).get(PARENT_NODE);
+            var dragNode = event.drag.get('node').get('parentNode');
+            var dropNode = event.drop.get('node').get('parentNode');
 
-            var dropTreeNode = dropNode.getData(TREE_NODE);
-            var dragTreeNode = dragNode.getData(TREE_NODE);
+            var dropTreeNode = dropNode.getData('tree-node');
+            var dragTreeNode = dragNode.getData('tree-node');
 
             var output = instance.getEventOutputMap(instance);
 
             output.tree.dropNode = dropTreeNode;
             output.tree.dragNode = dragTreeNode;
 
-            if (dropAction === ABOVE) {
+            if (dropAction === 'above') {
                 dropTreeNode.insertBefore(dragTreeNode);
 
                 instance.bubbleEvent('dropInsert', output);
             }
-            else if (dropAction === BELOW) {
+            else if (dropAction === 'below') {
                 dropTreeNode.insertAfter(dragTreeNode);
 
                 instance.bubbleEvent('dropInsert', output);
             }
-            else if (dropAction === APPEND) {
+            else if (dropAction === 'append') {
                 if (dropTreeNode && !dropTreeNode.isLeaf()) {
-                    if (!dropTreeNode.get(EXPANDED)) {
+                    if (!dropTreeNode.get('expanded')) {
                         // expand node when drop a child on it
                         dropTreeNode.expand();
                     }
@@ -891,7 +844,7 @@ var TreeViewDD = A.Component.create({
             // if the y change
             if (y !== lastY) {
                 // set the drag direction
-                instance.direction = (y < lastY) ? UP : DOWN;
+                instance.direction = (y < lastY) ? 'up' : 'down';
             }
 
             instance.lastY = y;
@@ -907,9 +860,9 @@ var TreeViewDD = A.Component.create({
         _onDragStart: function(event) {
             var instance = this;
             var drag = event.target;
-            var dragNode = drag.get(NODE).get(PARENT_NODE);
-            var dragTreeNode = dragNode.getData(TREE_NODE);
-            var lastSelected = instance.get(LAST_SELECTED);
+            var dragNode = drag.get('node').get('parentNode');
+            var dragTreeNode = dragNode.getData('tree-node');
+            var lastSelected = instance.get('lastSelected');
 
             // select drag node
             if (lastSelected) {
@@ -919,19 +872,19 @@ var TreeViewDD = A.Component.create({
             dragTreeNode.select();
 
             // initialize drag helper
-            var helper = instance.get(HELPER);
-            var helperLabel = helper.one(DOT + CSS_TREE_DRAG_HELPER_LABEL);
+            var helper = instance.get('helper');
+            var helperLabel = helper.one('.' + CSS_TREE_DRAG_HELPER_LABEL);
 
             // show helper, we need display block here, yui dd hide it with
             // display none
-            helper.setStyle(DISPLAY, BLOCK).show();
+            helper.setStyle('display', 'block').show();
 
             // set the CSS_TREE_DRAG_HELPER_LABEL html with the label of the
             // dragged node
-            helperLabel.html(dragTreeNode.get(LABEL));
+            helperLabel.html(dragTreeNode.get('label'));
 
             // update the DRAG_NODE with the new helper
-            drag.set(DRAG_NODE, helper);
+            drag.set('dragNode', helper);
         },
 
         /**
@@ -955,8 +908,8 @@ var TreeViewDD = A.Component.create({
          * @protected
          */
         _onDropHit: function(event) {
-            var dropNode = event.drop.get(NODE).get(PARENT_NODE);
-            var dropTreeNode = dropNode.getData(TREE_NODE);
+            var dropNode = event.drop.get('node').get('parentNode');
+            var dropTreeNode = dropNode.getData('tree-node');
 
             if (!isTreeNode(dropTreeNode)) {
                 event.preventDefault();

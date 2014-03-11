@@ -4,25 +4,17 @@
  * @module aui-audio
  */
 
-var AObject = A.Object,
-    Lang = A.Lang,
+var Lang = A.Lang,
     UA = A.UA,
     DOC = A.config.doc,
 
-    NAME = 'audio',
+    owns = A.Object.owns,
 
     getClassName = A.getClassName,
 
-    CSS_AUDIO_NODE = getClassName(NAME, 'node'),
+    CSS_AUDIO_NODE = getClassName('audio', 'node'),
 
     DEFAULT_PLAYER_PATH = A.config.base + 'aui-audio/assets/player.swf',
-    FIXED_ATTRIBUTES = 'fixedAttributes',
-    FLASH_VARS = 'flashVars',
-    MP3 = 'mp3',
-    OGG_URL = 'oggUrl',
-    SRC = 'src',
-    SWF_URL = 'swfUrl',
-    URL = 'url',
 
     REGEX_FILE_EXTENSION = /\.([^\.]+)$/;
 
@@ -47,7 +39,7 @@ var AudioImpl = A.Component.create({
      * @type String
      * @static
      */
-    NAME: NAME,
+    NAME: 'audio',
 
     /**
      * Static property used to define the default attribute
@@ -91,7 +83,7 @@ var AudioImpl = A.Component.create({
          * @type String
          */
         type: {
-            value: MP3,
+            value: 'mp3',
             validator: Lang.isString
         },
 
@@ -178,7 +170,7 @@ var AudioImpl = A.Component.create({
      * @type Array
      * @static
      */
-    BIND_UI_ATTRS: [URL, OGG_URL, SWF_URL, FIXED_ATTRIBUTES, FLASH_VARS],
+    BIND_UI_ATTRS: ['url', 'oggUrl', 'swfUrl', 'fixedAttributes', 'flashVars'],
 
     /**
      * Static property used to define the attributes
@@ -188,7 +180,7 @@ var AudioImpl = A.Component.create({
      * @type Array
      * @static
      */
-    SYNC_UI_ATTRS: [URL, OGG_URL],
+    SYNC_UI_ATTRS: ['url', 'oggUrl'],
 
     prototype: {
 
@@ -204,7 +196,7 @@ var AudioImpl = A.Component.create({
             instance._renderAudioTask = A.debounce(instance._renderAudio, 1, instance);
             instance._renderSwfTask = A.debounce(instance._renderSwf, 1, instance);
 
-            instance._renderAudio(!instance.get(OGG_URL));
+            instance._renderAudio(!instance.get('oggUrl'));
         },
 
         /**
@@ -287,10 +279,10 @@ var AudioImpl = A.Component.create({
         _renderSwf: function() {
             var instance = this;
 
-            var swfUrl = instance.get(SWF_URL);
+            var swfUrl = instance.get('swfUrl');
 
             if (swfUrl) {
-                var flashVars = instance.get(FLASH_VARS);
+                var flashVars = instance.get('flashVars');
 
                 instance._setMedia(flashVars);
 
@@ -313,12 +305,12 @@ var AudioImpl = A.Component.create({
                     movie = '<param name="movie" value="' + swfUrl + '"/>';
                 }
 
-                var fixedAttributes = instance.get(FIXED_ATTRIBUTES);
+                var fixedAttributes = instance.get('fixedAttributes');
 
                 var fixedAttributesParam = [];
 
                 for (var attributeName in fixedAttributes) {
-                    if (AObject.owns(fixedAttributes, attributeName)) {
+                    if (owns(fixedAttributes, attributeName)) {
                         fixedAttributesParam.push('<param name="', attributeName, '" value="', fixedAttributes[
                             attributeName], '" />');
                     }
@@ -387,8 +379,8 @@ var AudioImpl = A.Component.create({
         _setMedia: function(flashVars) {
             var instance = this;
 
-            if (!AObject.owns(flashVars, MP3) && !AObject.owns(flashVars, 'mp4') && !AObject.owns(flashVars, 'flv')) {
-                var audioUrl = instance.get(URL);
+            if (!owns(flashVars, 'mp3') && !owns(flashVars, 'mp4') && !owns(flashVars, 'flv')) {
+                var audioUrl = instance.get('url');
 
                 var type = instance.get('type');
 
@@ -465,7 +457,7 @@ var AudioImpl = A.Component.create({
                         instance._sourceOgg = sourceOgg;
                     }
 
-                    sourceOgg.attr(SRC, val);
+                    sourceOgg.attr('src', val);
                 }
             }
         },
@@ -493,7 +485,7 @@ var AudioImpl = A.Component.create({
         _uiSetUrl: function(val) {
             var instance = this;
 
-            var oggUrl = instance.get(OGG_URL);
+            var oggUrl = instance.get('oggUrl');
             var audio = instance._audio;
 
             var sourceMp3 = instance._sourceMp3;
@@ -515,7 +507,7 @@ var AudioImpl = A.Component.create({
                         instance._sourceMp3 = sourceMp3;
                     }
 
-                    sourceMp3.attr(SRC, val);
+                    sourceMp3.attr('src', val);
                 }
             }
 

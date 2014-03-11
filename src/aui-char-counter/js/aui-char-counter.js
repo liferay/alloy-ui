@@ -5,14 +5,7 @@
  */
 
 var L = A.Lang,
-    isNumber = L.isNumber,
-
-    CHAR_COUNTER = 'char-counter',
-    COUNTER = 'counter',
-    INPUT = 'input',
-    MAX_LENGTH = 'maxLength',
-    SCROLL_LEFT = 'scrollLeft',
-    SCROLL_TOP = 'scrollTop';
+    isNumber = L.isNumber;
 
 /**
  * A base class for CharCounter, providing:
@@ -38,7 +31,7 @@ var CharCounter = A.Component.create({
      * @type String
      * @static
      */
-    NAME: CHAR_COUNTER,
+    NAME: 'char-counter',
 
     /**
      * Static property used to define the default attribute
@@ -133,7 +126,7 @@ var CharCounter = A.Component.create({
          */
         bindUI: function() {
             var instance = this;
-            var input = instance.get(INPUT);
+            var input = instance.get('input');
 
             instance.publish('maxLength');
 
@@ -141,7 +134,7 @@ var CharCounter = A.Component.create({
 
             if (input) {
                 // use cross browser input-handler event
-                instance.handler = input.on(INPUT, A.bind(instance._onInputChange, instance));
+                instance.handler = input.on('input', A.bind(instance._onInputChange, instance));
             }
         },
 
@@ -153,13 +146,13 @@ var CharCounter = A.Component.create({
          */
         syncUI: function() {
             var instance = this;
-            var counter = instance.get(COUNTER);
+            var counter = instance.get('counter');
 
             if (counter) {
-                var value = instance.get(INPUT).val();
+                var value = instance.get('input').val();
 
                 counter.html(
-                    instance.get(MAX_LENGTH) - value.length
+                    instance.get('maxLength') - value.length
                 );
             }
         },
@@ -189,16 +182,16 @@ var CharCounter = A.Component.create({
          */
         checkLength: function() {
             var instance = this;
-            var input = instance.get(INPUT);
-            var maxLength = instance.get(MAX_LENGTH);
+            var input = instance.get('input');
+            var maxLength = instance.get('maxLength');
 
             if (!input) {
                 return false; // NOTE: return
             }
 
             var value = input.val();
-            var scrollTop = input.get(SCROLL_TOP);
-            var scrollLeft = input.get(SCROLL_LEFT);
+            var scrollTop = input.get('scrollTop');
+            var scrollLeft = input.get('scrollLeft');
 
             if (value.length > maxLength) {
                 input.val(
@@ -210,8 +203,8 @@ var CharCounter = A.Component.create({
                 instance.fire('maxLength');
             }
 
-            input.set(SCROLL_TOP, scrollTop);
-            input.set(SCROLL_LEFT, scrollLeft);
+            input.set('scrollTop', scrollTop);
+            input.set('scrollLeft', scrollLeft);
 
             instance.syncUI();
         },
@@ -240,10 +233,10 @@ var CharCounter = A.Component.create({
          */
         _setMaxLength: function(v) {
             var instance = this;
-            var input = instance.get(INPUT);
+            var input = instance.get('input');
 
             if (input && (v < Infinity)) {
-                input.set(MAX_LENGTH, v);
+                input.set('maxLength', v);
             }
 
             return v;

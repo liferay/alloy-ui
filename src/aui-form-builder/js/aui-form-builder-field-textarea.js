@@ -9,25 +9,16 @@ var L = A.Lang,
 
     AArray = A.Array,
 
-    FIELD = 'field',
-    FORM_BUILDER_FIELD = 'form-builder-field',
-    FORM_BUILDER_TEXTAREA_FIELD = 'form-builder-textarea-field',
-    NODE = 'node',
-    PREDEFINED_VALUE = 'predefinedValue',
-    SPACE = ' ',
-    TEXT = 'text',
-    TEXTAREA = 'textarea',
-
     getCN = A.getClassName,
 
-    CSS_FIELD = getCN(FIELD),
-    CSS_FIELD_TEXT = getCN(FIELD, TEXT),
-    CSS_FIELD_TEXTAREA = getCN(FIELD, TEXTAREA),
-    CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
-    CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
+    CSS_FIELD = getCN('field'),
+    CSS_FIELD_TEXT = getCN('field', 'text'),
+    CSS_FIELD_TEXTAREA = getCN('field', 'textarea'),
+    CSS_FORM_BUILDER_FIELD = getCN('form-builder-field'),
+    CSS_FORM_BUILDER_FIELD_NODE = getCN('form-builder-field', 'node'),
 
     TPL_TEXTAREA = '<textarea id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD, CSS_FIELD_TEXT,
-        CSS_FIELD_TEXTAREA].join(SPACE) + '" name="{name}">{value}</textarea>';
+        CSS_FIELD_TEXTAREA].join(' ') + '" name="{name}">{value}</textarea>';
 
 /**
  * A base class for `A.FormBuilderTextAreaField`.
@@ -47,7 +38,7 @@ var FormBuilderTextAreaField = A.Component.create({
      * @type String
      * @static
      */
-    NAME: FORM_BUILDER_TEXTAREA_FIELD,
+    NAME: 'form-builder-textarea-field',
 
     /**
      * Static property used to define the default attribute
@@ -106,7 +97,7 @@ var FormBuilderTextAreaField = A.Component.create({
             AArray.each(
                 model,
                 function(item, index, collection) {
-                    if (item.attributeName === PREDEFINED_VALUE) {
+                    if (item.attributeName === 'predefinedValue') {
                         collection[index].editor = new A.TextAreaCellEditor();
                     }
                 }

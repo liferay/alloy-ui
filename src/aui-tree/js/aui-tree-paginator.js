@@ -11,22 +11,7 @@ var Lang = A.Lang,
 
     getCN = A.getClassName,
 
-    CHILDREN = 'children',
-    CONTAINER = 'container',
-    END = 'end',
-    IO = 'io',
-    LIMIT = 'limit',
-    MORE_RESULTS_LABEL = 'Load more results',
-    NODE = 'node',
-    OWNER_TREE = 'ownerTree',
-    PAGINATOR = 'paginator',
-    START = 'start',
-    TREE = 'tree',
-    TREE_NODE_IO = 'tree-node-io',
-
-    EV_TREE_NODE_PAGINATOR_CLICK = 'paginatorClick',
-
-    CSS_TREE_NODE_PAGINATOR = getCN(TREE, NODE, PAGINATOR),
+    CSS_TREE_NODE_PAGINATOR = getCN('tree', 'node', 'paginator'),
 
     TPL_PAGINATOR = '<a class="' + CSS_TREE_NODE_PAGINATOR + '" hrsef="javascript:void(0);">{moreResultsLabel}</a>';
 
@@ -70,7 +55,7 @@ TreeViewPaginator.ATTRS = {
             var paginatorNode = A.Node.create(
                 Lang.sub(
                     TPL_PAGINATOR, {
-                        moreResultsLabel: value.moreResultsLabel || MORE_RESULTS_LABEL
+                        moreResultsLabel: value.moreResultsLabel || 'Load more results'
                     }
                 )
             );
@@ -79,10 +64,10 @@ TreeViewPaginator.ATTRS = {
                     alwaysVisible: false,
                     autoFocus: true,
                     element: paginatorNode,
-                    endParam: END,
-                    limitParam: LIMIT,
+                    endParam: 'end',
+                    limitParam: 'limit',
                     start: 0,
-                    startParam: START
+                    startParam: 'start'
                 },
                 value
             );
@@ -102,7 +87,7 @@ TreeViewPaginator.prototype = {
     _bindPaginatorUI: function() {
         var instance = this;
 
-        var paginator = instance.get(PAGINATOR);
+        var paginator = instance.get('paginator');
 
         if (paginator) {
             paginator.element.on('click', A.bind(instance._handlePaginatorClickEvent, instance));
@@ -121,9 +106,9 @@ TreeViewPaginator.prototype = {
         var instance = this;
 
         instance.publish(
-            EV_TREE_NODE_PAGINATOR_CLICK, {
+            'paginatorClick', {
                 defaultFn: instance._defPaginatorClickFn,
-                prefix: TREE_NODE_IO
+                prefix: 'tree-node-io'
             }
         );
     },
@@ -139,13 +124,13 @@ TreeViewPaginator.prototype = {
     _defPaginatorClickFn: function(event) {
         var instance = this;
 
-        var paginator = instance.get(PAGINATOR);
+        var paginator = instance.get('paginator');
 
         if (isValue(paginator.limit)) {
             paginator.start = instance.getChildrenLength();
         }
 
-        if (instance.get(IO)) {
+        if (instance.get('io')) {
             instance.initIO();
         }
     },
@@ -162,7 +147,7 @@ TreeViewPaginator.prototype = {
 
         var output = instance.getEventOutputMap(instance);
 
-        instance.fire(EV_TREE_NODE_PAGINATOR_CLICK, output);
+        instance.fire('paginatorClick', output);
 
         event.halt();
     },
@@ -177,7 +162,7 @@ TreeViewPaginator.prototype = {
     _syncPaginatorIOData: function(io) {
         var instance = this;
 
-        var paginator = instance.get(PAGINATOR);
+        var paginator = instance.get('paginator');
 
         if (paginator && isValue(paginator.limit)) {
             var data = io.cfg.data || {};
@@ -199,7 +184,7 @@ TreeViewPaginator.prototype = {
     _syncPaginatorUI: function(newNodes) {
         var instance = this;
 
-        var paginator = instance.get(PAGINATOR);
+        var paginator = instance.get('paginator');
 
         if (paginator) {
             var hasMoreData = true;
@@ -215,7 +200,7 @@ TreeViewPaginator.prototype = {
             var showPaginator = childrenLength && hasMoreData && (total > childrenLength);
 
             if (paginator.alwaysVisible || showPaginator) {
-                instance.get(CONTAINER).append(
+                instance.get('container').append(
                     paginator.element.show()
                 );
 

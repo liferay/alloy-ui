@@ -14,106 +14,20 @@ var Lang = A.Lang,
     WidgetStdMod = A.WidgetStdMod,
     AArray = A.Array,
 
-    ACTIVE_ELEMENT = 'activeElement',
-    ATTRIBUTE_NAME = 'attributeName',
-    AVAILABLE_FIELD = 'availableField',
-    AVAILABLE_FIELDS = 'availableFields',
-    BACKSPACE = 'backspace',
-    BOOLEAN = 'boolean',
-    BOUNDARY = 'boundary',
-    BOUNDING_BOX = 'boundingBox',
-    BUILDER = 'builder',
-    CANVAS = 'canvas',
-    CLICK = 'click',
-    CONDITION = 'condition',
-    CONNECTOR = 'connector',
-    CONNECTORS = 'connectors',
-    CONTENT = 'content',
-    CONTROLS = 'controls',
-    CONTROLS_TOOLBAR = 'controlsToolbar',
-    CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
-    DATA = 'data',
-    DATA_NODE_ID = 'data-nodeId',
-    DELETE = 'delete',
-    DELETE_CONNECTORS_MESSAGE = 'deleteConnectorsMessage',
-    DELETE_NODES_MESSAGE = 'deleteNodesMessage',
-    DESCRIPTION = 'description',
-    DIAGRAM = 'diagram',
-    DIAGRAM_BUILDER_NAME = 'diagram-builder',
-    DIAGRAM_NODE = 'diagramNode',
-    DIAGRAM_NODE_MANAGER_NAME = 'diagram-node-manager',
-    DIAGRAM_NODE_NAME = 'diagram-node',
-    DRAG_NODE = 'dragNode',
-    DRAGGING = 'dragging',
-    EDITING = 'editing',
-    END = 'end',
-    ESC = 'esc',
-    FIELD = 'field',
-    FIELDS = 'fields',
-    FIELDS_DRAG_CONFIG = 'fieldsDragConfig',
-    FORK = 'fork',
-    GRAPHIC = 'graphic',
-    HEIGHT = 'height',
-    HIGHLIGHT_BOUNDARY_STROKE = 'highlightBoundaryStroke',
-    HIGHLIGHT_DROP_ZONES = 'highlightDropZones',
-    HIGHLIGHTED = 'highlighted',
-    ID = 'id',
-    JOIN = 'join',
-    KEYDOWN = 'keydown',
-    LABEL = 'label',
-    LOCK = 'lock',
-    MOUSEDOWN = 'mousedown',
-    MOUSEENTER = 'mouseenter',
-    MOUSELEAVE = 'mouseleave',
-    NAME = 'name',
-    NODE = 'node',
-    P1 = 'p1',
-    P2 = 'p2',
-    PARENT_NODE = 'parentNode',
-    RADIUS = 'radius',
-    RENDERED = 'rendered',
-    REQUIRED = 'required',
-    SELECTED = 'selected',
-    SHAPE = 'shape',
-    SHAPE_BOUNDARY = 'shapeBoundary',
-    SHAPE_INVITE = 'shapeInvite',
-    SHOW_SUGGEST_CONNECTOR = 'showSuggestConnector',
-    SOURCE = 'source',
-    START = 'start',
-    STATE = 'state',
-    STROKE = 'stroke',
-    SUGGEST = 'suggest',
-    SUGGEST_CONNECTOR_OVERLAY = 'suggestConnectorOverlay',
-    TARGET = 'target',
-    TASK = 'task',
-    TRANSITION = 'transition',
-    TRANSITIONS = 'transitions',
-    TYPE = 'type',
-    VALUE = 'value',
-    VISIBLE = 'visible',
-    WIDTH = 'width',
-    XY = 'xy',
-    Z_INDEX = 'zIndex',
-
-    _DASH = '-',
-    _DOT = '.',
-    _EMPTY_STR = '',
-    _UNDERLINE = '_',
-
     AgetClassName = A.getClassName,
 
-    CSS_DB_CONTROLS = AgetClassName(DIAGRAM, BUILDER, CONTROLS),
-    CSS_DIAGRAM_BUILDER_FIELD = AgetClassName(DIAGRAM, BUILDER, FIELD),
-    CSS_DIAGRAM_NODE = AgetClassName(DIAGRAM, NODE),
-    CSS_DIAGRAM_NODE_CONTENT = AgetClassName(DIAGRAM, NODE, CONTENT),
-    CSS_DIAGRAM_NODE_EDITING = AgetClassName(DIAGRAM, NODE, EDITING),
-    CSS_DIAGRAM_NODE_LABEL = AgetClassName(DIAGRAM, NODE, LABEL),
-    CSS_DIAGRAM_NODE_SELECTED = AgetClassName(DIAGRAM, NODE, SELECTED),
-    CSS_DIAGRAM_NODE_SHAPE_BOUNDARY = AgetClassName(DIAGRAM, NODE, SHAPE, BOUNDARY),
-    CSS_DIAGRAM_SUGGEST_CONNECTOR = AgetClassName(DIAGRAM, NODE, SUGGEST, CONNECTOR),
+    CSS_DB_CONTROLS = AgetClassName('diagram', 'builder', 'controls'),
+    CSS_DIAGRAM_BUILDER_FIELD = AgetClassName('diagram', 'builder', 'field'),
+    CSS_DIAGRAM_NODE = AgetClassName('diagram', 'node'),
+    CSS_DIAGRAM_NODE_CONTENT = AgetClassName('diagram', 'node', 'content'),
+    CSS_DIAGRAM_NODE_EDITING = AgetClassName('diagram', 'node', 'editing'),
+    CSS_DIAGRAM_NODE_LABEL = AgetClassName('diagram', 'node', 'label'),
+    CSS_DIAGRAM_NODE_SELECTED = AgetClassName('diagram', 'node', 'selected'),
+    CSS_DIAGRAM_NODE_SHAPE_BOUNDARY = AgetClassName('diagram', 'node', 'shape', 'boundary'),
+    CSS_DIAGRAM_SUGGEST_CONNECTOR = AgetClassName('diagram', 'node', 'suggest', 'connector'),
 
     adjustDiagramNodeOffset = function(diagramNode, offsetXY) {
-        var dnXY = isArray(diagramNode) ? diagramNode : diagramNode.get(BOUNDING_BOX).getXY();
+        var dnXY = isArray(diagramNode) ? diagramNode : diagramNode.get('boundingBox').getXY();
 
         return [dnXY[0] + offsetXY[0], dnXY[1] + offsetXY[1]];
     },
@@ -128,8 +42,8 @@ var Lang = A.Lang,
     findHotPointBestMatch = function(diagramNode1, diagramNode2) {
         var hp1 = diagramNode1.hotPoints,
             hp2 = diagramNode2.hotPoints,
-            xy1 = diagramNode1.get(BOUNDING_BOX).getXY(),
-            xy2 = diagramNode2.get(BOUNDING_BOX).getXY(),
+            xy1 = diagramNode1.get('boundingBox').getXY(),
+            xy2 = diagramNode2.get('boundingBox').getXY(),
             len1, len2, i, j, minDistance = Infinity,
             match = [[0, 0], [0, 0]];
 
@@ -200,7 +114,7 @@ var DiagramBuilder = A.Component.create({
      * @type String
      * @static
      */
-    NAME: DIAGRAM_BUILDER_NAME,
+    NAME: 'diagram-builder',
 
     /**
      * Static property used to define the default attribute
@@ -356,7 +270,7 @@ var DiagramBuilder = A.Component.create({
          */
         initializer: function() {
             var instance = this,
-                canvas = instance.get(CANVAS);
+                canvas = instance.get('canvas');
 
             instance.on({
                 cancel: instance._onCancel,
@@ -373,17 +287,22 @@ var DiagramBuilder = A.Component.create({
                 }
             });
 
-            canvas.on(MOUSEENTER, A.bind(instance._onCanvasMouseEnter, instance));
+            canvas.on('mouseenter', A.bind(instance._onCanvasMouseEnter, instance));
 
-            instance.handlerKeyDown = A.getDoc().on(KEYDOWN, A.bind(instance._afterKeyEvent, instance));
+            instance.handlerKeyDown = A.getDoc().on('keydown', A.bind(instance._afterKeyEvent, instance));
 
-            instance.dropContainer.delegate(CLICK, A.bind(instance._onNodeClick, instance), _DOT + CSS_DIAGRAM_NODE);
-            instance.dropContainer.delegate(MOUSEDOWN, A.bind(instance._onCloseButtonMouseDown, instance),
-                '.diagram-builder-controls button');
-            instance.dropContainer.delegate(MOUSEENTER, A.bind(instance._onNodeMouseEnter, instance), _DOT +
-                CSS_DIAGRAM_NODE);
-            instance.dropContainer.delegate(MOUSELEAVE, A.bind(instance._onNodeMouseLeave, instance), _DOT +
-                CSS_DIAGRAM_NODE);
+            instance.dropContainer.delegate(
+                'click', A.bind(instance._onNodeClick, instance), '.' + CSS_DIAGRAM_NODE);
+
+            instance.dropContainer.delegate(
+                'mousedown', A.bind(instance._onCloseButtonMouseDown, instance), '.diagram-builder-controls button'
+            );
+
+            instance.dropContainer.delegate(
+                'mouseenter', A.bind(instance._onNodeMouseEnter, instance), '.' + CSS_DIAGRAM_NODE);
+
+            instance.dropContainer.delegate(
+                'mouseleave', A.bind(instance._onNodeMouseLeave, instance), '.' + CSS_DIAGRAM_NODE);
         },
 
         /**
@@ -415,7 +334,7 @@ var DiagramBuilder = A.Component.create({
 
             instance.syncConnectionsUI();
 
-            instance.connector = instance.get(CONNECTOR);
+            instance.connector = instance.get('connector');
         },
 
         /**
@@ -426,7 +345,7 @@ var DiagramBuilder = A.Component.create({
         syncConnectionsUI: function() {
             var instance = this;
 
-            instance.get(FIELDS).each(function(diagramNode) {
+            instance.get('fields').each(function(diagramNode) {
                 diagramNode.syncConnectionsUI();
             });
         },
@@ -441,7 +360,7 @@ var DiagramBuilder = A.Component.create({
 
             var fields = [];
 
-            instance.get(FIELDS).each(function(diagramNode) {
+            instance.get('fields').each(function(diagramNode) {
                 fields.push(diagramNode);
             });
 
@@ -466,7 +385,7 @@ var DiagramBuilder = A.Component.create({
             tabView.disableTab(A.DiagramBuilder.SETTINGS_TAB);
 
             if (editingNode) {
-                editingNode.get(BOUNDING_BOX).removeClass(CSS_DIAGRAM_NODE_EDITING);
+                editingNode.get('boundingBox').removeClass(CSS_DIAGRAM_NODE_EDITING);
             }
 
             instance.editingConnector = instance.editingNode = null;
@@ -492,7 +411,7 @@ var DiagramBuilder = A.Component.create({
             }
 
             if (diagramNode1 && diagramNode2) {
-                diagramNode1.connect(diagramNode2.get(NAME), optConnector);
+                diagramNode1.connect(diagramNode2.get('name'), optConnector);
             }
 
             return instance;
@@ -509,7 +428,7 @@ var DiagramBuilder = A.Component.create({
             var instance = this;
 
             AArray.each(nodes, function(node) {
-                if (node.hasOwnProperty(SOURCE) && node.hasOwnProperty(TARGET)) {
+                if (node.hasOwnProperty('source') && node.hasOwnProperty('target')) {
                     instance.connect(node.source, node.target, node.connector);
                 }
             });
@@ -529,7 +448,7 @@ var DiagramBuilder = A.Component.create({
             if (!isDiagramNode(val)) {
                 val.builder = instance;
                 val.bubbleTargets = instance;
-                val = new(instance.getFieldClass(val.type || NODE))(val);
+                val = new(instance.getFieldClass(val.type || 'node'))(val);
             }
 
             return val;
@@ -545,9 +464,9 @@ var DiagramBuilder = A.Component.create({
             var strings = instance.getStrings();
             var selectedConnectors = instance.getSelectedConnectors();
 
-            if (selectedConnectors.length && confirm(strings[DELETE_CONNECTORS_MESSAGE])) {
+            if (selectedConnectors.length && confirm(strings['deleteConnectorsMessage'])) {
                 AArray.each(selectedConnectors, function(connector) {
-                    var transition = connector.get(TRANSITION);
+                    var transition = connector.get('transition');
 
                     A.DiagramNode.getNodeByName(transition.source).disconnect(transition);
                 });
@@ -566,7 +485,7 @@ var DiagramBuilder = A.Component.create({
             var strings = instance.getStrings();
             var selectedNode = instance.selectedNode;
 
-            if (selectedNode && !selectedNode.get(REQUIRED) && confirm(strings[DELETE_NODES_MESSAGE])) {
+            if (selectedNode && !selectedNode.get('required') && confirm(strings['deleteNodesMessage'])) {
                 selectedNode.close();
                 instance.editingNode = instance.selectedNode = null;
                 instance.stopEditing();
@@ -583,7 +502,7 @@ var DiagramBuilder = A.Component.create({
         destructor: function(attribute) {
             var instance = this;
 
-            instance.get(SUGGEST_CONNECTOR_OVERLAY).destroy();
+            instance.get('suggestConnectorOverlay').destroy();
         },
 
         /**
@@ -595,8 +514,8 @@ var DiagramBuilder = A.Component.create({
         eachConnector: function(fn) {
             var instance = this;
 
-            instance.get(FIELDS).each(function(diagramNode) {
-                var transitions = diagramNode.get(TRANSITIONS);
+            instance.get('fields').each(function(diagramNode) {
+                var transitions = diagramNode.get('transitions');
 
                 AArray.each(transitions.values(), function(transition) {
                     fn.call(instance, diagramNode.getConnector(transition), transition, diagramNode);
@@ -622,7 +541,7 @@ var DiagramBuilder = A.Component.create({
                 tabView.enableTab(A.DiagramBuilder.SETTINGS_TAB);
                 tabView.selectChild(A.DiagramBuilder.SETTINGS_TAB);
 
-                instance.propertyList.set(DATA, connector.getProperties());
+                instance.propertyList.set('data', connector.getProperties());
 
                 instance.editingConnector = instance.selectedConnector = connector;
             }
@@ -646,9 +565,9 @@ var DiagramBuilder = A.Component.create({
                 tabView.enableTab(A.DiagramBuilder.SETTINGS_TAB);
                 tabView.selectChild(A.DiagramBuilder.SETTINGS_TAB);
 
-                instance.propertyList.set(DATA, diagramNode.getProperties());
+                instance.propertyList.set('data', diagramNode.getProperties());
 
-                diagramNode.get(BOUNDING_BOX).addClass(CSS_DIAGRAM_NODE_EDITING);
+                diagramNode.get('boundingBox').addClass(CSS_DIAGRAM_NODE_EDITING);
 
                 instance.editingNode = instance.selectedNode = diagramNode;
             }
@@ -687,8 +606,8 @@ var DiagramBuilder = A.Component.create({
                 nodes = [],
                 transitions;
 
-            instance.get(FIELDS).each(function(diagramNode) {
-                transitions = diagramNode.get(TRANSITIONS);
+            instance.get('fields').each(function(diagramNode) {
+                transitions = diagramNode.get('transitions');
 
                 AArray.each(transitions.values(), function(transition) {
                     if (transition[property] === value) {
@@ -711,7 +630,7 @@ var DiagramBuilder = A.Component.create({
             var selected = [];
 
             instance.eachConnector(function(connector) {
-                if (connector.get(SELECTED)) {
+                if (connector.get('selected')) {
                     selected.push(connector);
                 }
             });
@@ -728,7 +647,7 @@ var DiagramBuilder = A.Component.create({
         getSourceNodes: function(diagramNode) {
             var instance = this;
 
-            return instance.getNodesByTransitionProperty(TARGET, diagramNode.get(NAME));
+            return instance.getNodesByTransitionProperty('target', diagramNode.get('name'));
         },
 
         /**
@@ -742,10 +661,10 @@ var DiagramBuilder = A.Component.create({
             var instance = this;
 
             instance.connector.hide();
-            instance.get(SUGGEST_CONNECTOR_OVERLAY).hide();
+            instance.get('suggestConnectorOverlay').hide();
 
             try {
-                instance.fieldsDrag.dd.set(LOCK, false);
+                instance.fieldsDrag.dd.set('lock', false);
             }
             catch (e) {}
         },
@@ -782,7 +701,7 @@ var DiagramBuilder = A.Component.create({
         plotField: function(field) {
             var instance = this;
 
-            if (!field.get(RENDERED)) {
+            if (!field.get('rendered')) {
                 field.render(instance.dropContainer);
             }
         },
@@ -798,7 +717,7 @@ var DiagramBuilder = A.Component.create({
 
             instance.unselectNodes();
 
-            instance.selectedNode = diagramNode.set(SELECTED, true).focus();
+            instance.selectedNode = diagramNode.set('selected', true).focus();
         },
 
         /**
@@ -809,16 +728,16 @@ var DiagramBuilder = A.Component.create({
          */
         showSuggestConnectorOverlay: function(xy) {
             var instance = this,
-                showSuggestConnectorOverlay = instance.get(SUGGEST_CONNECTOR_OVERLAY),
-                boundingBox = showSuggestConnectorOverlay.get(BOUNDING_BOX);
+                showSuggestConnectorOverlay = instance.get('suggestConnectorOverlay'),
+                boundingBox = showSuggestConnectorOverlay.get('boundingBox');
 
-            showSuggestConnectorOverlay.get(BOUNDING_BOX).addClass(CSS_DIAGRAM_SUGGEST_CONNECTOR);
+            showSuggestConnectorOverlay.get('boundingBox').addClass(CSS_DIAGRAM_SUGGEST_CONNECTOR);
 
             showSuggestConnectorOverlay.set(
-                XY, xy || instance.connector.get(P2)).show();
+                'xy', xy || instance.connector.get('p2')).show();
 
             try {
-                instance.fieldsDrag.dd.set(LOCK, true);
+                instance.fieldsDrag.dd.set('lock', true);
             }
             catch (e) {}
         },
@@ -849,11 +768,11 @@ var DiagramBuilder = A.Component.create({
                 nodes: []
             };
 
-            instance.get(FIELDS).each(function(diagramNode) {
+            instance.get('fields').each(function(diagramNode) {
                 var node = {
                     transitions: []
                 },
-                    transitions = diagramNode.get(TRANSITIONS);
+                    transitions = diagramNode.get('transitions');
 
                 // serialize node attributes
                 AArray.each(diagramNode.SERIALIZABLE_ATTRS, function(attributeName) {
@@ -882,7 +801,7 @@ var DiagramBuilder = A.Component.create({
             var instance = this;
 
             AArray.each(instance.getSelectedConnectors(), function(connector) {
-                connector.set(SELECTED, false);
+                connector.set('selected', false);
             });
         },
 
@@ -896,7 +815,7 @@ var DiagramBuilder = A.Component.create({
             var selectedNode = instance.selectedNode;
 
             if (selectedNode) {
-                selectedNode.set(SELECTED, false);
+                selectedNode.set('selected', false);
             }
 
             instance.selectedNode = null;
@@ -912,14 +831,14 @@ var DiagramBuilder = A.Component.create({
         _afterKeyEvent: function(event) {
             var instance = this;
 
-            if (event.hasModifier() || A.getDoc().get(ACTIVE_ELEMENT).test(':input,td')) {
+            if (event.hasModifier() || A.getDoc().get('activeElement').test(':input,td')) {
                 return;
             }
 
-            if (event.isKey(ESC)) {
+            if (event.isKey('esc')) {
                 instance._onEscKey(event);
             }
-            else if (event.isKey(BACKSPACE) || event.isKey(DELETE)) {
+            else if (event.isKey('backspace') || event.isKey('delete')) {
                 instance._onDeleteKey(event);
             }
         },
@@ -976,7 +895,7 @@ var DiagramBuilder = A.Component.create({
         _onCloseButtonMouseDown: function(event) {
             var instance = this;
 
-            var diagramNode = event.currentTarget.ancestor(_DOT + DIAGRAM_NODE_NAME);
+            var diagramNode = event.currentTarget.ancestor('.' + 'diagram-node');
 
             if (isDiagramNode(A.Widget.getByNode(diagramNode))) {
                 instance._deleteSelectedNode(event);
@@ -1010,7 +929,7 @@ var DiagramBuilder = A.Component.create({
             var drag = event.target;
 
             if (instance.isFieldsDrag(drag)) {
-                var diagramNode = A.Widget.getByNode(drag.get(DRAG_NODE));
+                var diagramNode = A.Widget.getByNode(drag.get('dragNode'));
 
                 diagramNode.alignTransitions();
 
@@ -1030,10 +949,10 @@ var DiagramBuilder = A.Component.create({
         _onDragEnd: function(event) {
             var instance = this;
             var drag = event.target;
-            var diagramNode = A.Widget.getByNode(drag.get(DRAG_NODE));
+            var diagramNode = A.Widget.getByNode(drag.get('dragNode'));
 
             if (diagramNode && instance.isFieldsDrag(drag)) {
-                diagramNode.set(XY, diagramNode.getLeftTop());
+                diagramNode.set('xy', diagramNode.getLeftTop());
             }
         },
 
@@ -1049,11 +968,11 @@ var DiagramBuilder = A.Component.create({
             var drag = event.drag;
 
             if (instance.isAvailableFieldsDrag(drag)) {
-                var availableField = drag.get(NODE).getData(AVAILABLE_FIELD);
+                var availableField = drag.get('node').getData('availableField');
 
                 var newField = instance.addField({
                     xy: getLeftTop(drag.lastXY, instance.dropContainer),
-                    type: availableField.get(TYPE)
+                    type: availableField.get('type')
                 });
 
                 instance.select(newField);
@@ -1119,7 +1038,7 @@ var DiagramBuilder = A.Component.create({
 
             // Only enable editing if the double clicked node is inside the node
             // contentBox.
-            if (!event.target.ancestor(_DOT + CSS_DIAGRAM_NODE_CONTENT, true)) {
+            if (!event.target.ancestor('.' + CSS_DIAGRAM_NODE_CONTENT, true)) {
                 return;
             }
 
@@ -1141,7 +1060,7 @@ var DiagramBuilder = A.Component.create({
             var instance = this;
             var diagramNode = A.Widget.getByNode(event.currentTarget);
 
-            diagramNode.set(HIGHLIGHTED, true);
+            diagramNode.set('highlighted', true);
         },
 
         /**
@@ -1156,8 +1075,8 @@ var DiagramBuilder = A.Component.create({
             var publishedSource = instance.publishedSource;
             var diagramNode = A.Widget.getByNode(event.currentTarget);
 
-            if (!publishedSource || !publishedSource.boundaryDragDelegate.dd.get(DRAGGING)) {
-                diagramNode.set(HIGHLIGHTED, false);
+            if (!publishedSource || !publishedSource.boundaryDragDelegate.dd.get('dragging')) {
+                diagramNode.set('highlighted', false);
             }
         },
 
@@ -1172,16 +1091,16 @@ var DiagramBuilder = A.Component.create({
             var instance = this;
             var editingNode = instance.editingNode;
             var editingConnector = instance.editingConnector;
-            var modelList = instance.propertyList.get(DATA);
+            var modelList = instance.propertyList.get('data');
 
             if (editingNode) {
                 modelList.each(function(model) {
-                    editingNode.set(model.get(ATTRIBUTE_NAME), model.get(VALUE));
+                    editingNode.set(model.get('attributeName'), model.get('value'));
                 });
             }
             else if (editingConnector) {
                 modelList.each(function(model) {
-                    editingConnector.set(model.get(ATTRIBUTE_NAME), model.get(VALUE));
+                    editingConnector.set(model.get('attributeName'), model.get('value'));
                 });
             }
         },
@@ -1195,12 +1114,12 @@ var DiagramBuilder = A.Component.create({
          */
         _onSuggestConnectorNodeClick: function(event) {
             var instance = this;
-            var availableField = event.currentTarget.getData(AVAILABLE_FIELD);
+            var availableField = event.currentTarget.getData('availableField');
             var connector = instance.connector;
 
             var node = instance.addField({
-                type: availableField.get(TYPE),
-                xy: connector.toCoordinate(connector.get(P2))
+                type: availableField.get('type'),
+                xy: connector.toCoordinate(connector.get('p2'))
             });
 
             instance.hideSuggestConnectorOverlay();
@@ -1215,11 +1134,11 @@ var DiagramBuilder = A.Component.create({
          */
         _renderGraphic: function() {
             var instance = this;
-            var graphic = instance.get(GRAPHIC);
-            var canvas = instance.get(CANVAS);
+            var graphic = instance.get('graphic');
+            var canvas = instance.get('canvas');
 
             graphic.render(canvas);
-            A.one(canvas).on(MOUSEDOWN, A.bind(instance._onCanvasMouseDown, instance));
+            A.one(canvas).on('mousedown', A.bind(instance._onCanvasMouseDown, instance));
         },
 
         /**
@@ -1233,12 +1152,12 @@ var DiagramBuilder = A.Component.create({
             var instance = this;
 
             if (!isConnector(val)) {
-                var xy = instance.get(CANVAS).getXY();
+                var xy = instance.get('canvas').getXY();
 
                 val = new A.Connector(
                     A.merge({
                             builder: instance,
-                            graphic: instance.get(GRAPHIC),
+                            graphic: instance.get('graphic'),
                             lazyDraw: true,
                             p1: xy,
                             p2: xy,
@@ -1283,7 +1202,7 @@ var DiagramBuilder = A.Component.create({
                             }
                         ]
                     },
-                    nodes: _DOT + CSS_DIAGRAM_NODE
+                    nodes: '.' + CSS_DIAGRAM_NODE
                 },
                 val || {}
             );
@@ -1300,15 +1219,15 @@ var DiagramBuilder = A.Component.create({
             var instance = this;
 
             if (!val) {
-                var docFrag = A.getDoc().invoke(CREATE_DOCUMENT_FRAGMENT),
+                var docFrag = A.getDoc().invoke('createDocumentFragment'),
                     boundingBox,
                     contentBox;
 
-                AArray.each(instance.get(AVAILABLE_FIELDS), function(field) {
-                    var node = field.get(NODE);
+                AArray.each(instance.get('availableFields'), function(field) {
+                    var node = field.get('node');
 
                     docFrag.appendChild(
-                        node.clone().setData(AVAILABLE_FIELD, node.getData(AVAILABLE_FIELD))
+                        node.clone().setData('availableField', node.getData('availableField'))
                     );
                 });
 
@@ -1320,13 +1239,13 @@ var DiagramBuilder = A.Component.create({
                     zIndex: 10000
                 });
 
-                boundingBox = val.get(BOUNDING_BOX);
+                boundingBox = val.get('boundingBox');
                 contentBox = val.get('contentBox');
 
                 contentBox.addClass('popover-content');
                 boundingBox.addClass('popover');
 
-                boundingBox.delegate(CLICK, A.bind(instance._onSuggestConnectorNodeClick, instance), _DOT +
+                boundingBox.delegate('click', A.bind(instance._onSuggestConnectorNodeClick, instance), '.' +
                     CSS_DIAGRAM_BUILDER_FIELD);
             }
 
@@ -1343,7 +1262,7 @@ var DiagramBuilder = A.Component.create({
             var instance = this;
 
             instance.fieldsDrag = new A.DD.Delegate(
-                instance.get(FIELDS_DRAG_CONFIG)
+                instance.get('fieldsDragConfig')
             );
         }
     }
@@ -1371,7 +1290,7 @@ var DiagramNodeManagerBase = A.Component.create({
      * @type String
      * @static
      */
-    NAME: DIAGRAM_NODE_MANAGER_NAME,
+    NAME: 'diagram-node-manager',
 
     /**
      * Static property used to define which component it extends.
@@ -1403,7 +1322,7 @@ var DiagramNode = A.Component.create({
      * @type String
      * @static
      */
-    NAME: DIAGRAM_NODE_NAME,
+    NAME: 'diagram-node',
 
     /**
      * Static property used to define the UI attributes.
@@ -1412,7 +1331,7 @@ var DiagramNode = A.Component.create({
      * @type Array
      * @static
      */
-    UI_ATTRS: [HIGHLIGHTED, NAME, REQUIRED, SELECTED],
+    UI_ATTRS: ['highlighted', 'name', 'required', 'selected'],
 
     /**
      * Static property used to define the default attribute
@@ -1464,7 +1383,7 @@ var DiagramNode = A.Component.create({
          * @type String
          */
         description: {
-            value: _EMPTY_STR,
+            value: '',
             validator: isString
         },
 
@@ -1513,7 +1432,7 @@ var DiagramNode = A.Component.create({
             valueFn: function() {
                 var instance = this;
 
-                return instance.get(TYPE) + (++A.Env._uidx);
+                return instance.get('type') + (++A.Env._uidx);
             },
             validator: isString
         },
@@ -1641,7 +1560,7 @@ var DiagramNode = A.Component.create({
          * @type String
          */
         type: {
-            value: NODE,
+            value: 'node',
             validator: isString
         },
 
@@ -1734,7 +1653,7 @@ var DiagramNode = A.Component.create({
      * @private
      */
     buildNodeId: function(id) {
-        return DIAGRAM_NODE + _UNDERLINE + FIELD + _UNDERLINE + id.replace(/[^a-z0-9.:_\-]/ig, '_');
+        return 'diagramNode' + '_' + 'field' + '_' + id.replace(/[^a-z0-9.:_\-]/ig, '_');
     },
 
     prototype: {
@@ -1746,7 +1665,7 @@ var DiagramNode = A.Component.create({
 
         CONTROLS_TEMPLATE: '<div class="' + CSS_DB_CONTROLS + '"></div>',
 
-        SERIALIZABLE_ATTRS: [DESCRIPTION, NAME, REQUIRED, TYPE, WIDTH, HEIGHT, Z_INDEX, XY],
+        SERIALIZABLE_ATTRS: ['description', 'name', 'required', 'type', 'width', 'height', 'zIndex', 'xy'],
 
         /**
          * Construction logic executed during DiagramNode instantiation.
@@ -1790,7 +1709,7 @@ var DiagramNode = A.Component.create({
                 boundaryMouseLeave: {}
             });
 
-            instance.get(BOUNDING_BOX).addClass(CSS_DIAGRAM_NODE + _DASH + instance.get(TYPE));
+            instance.get('boundingBox').addClass(CSS_DIAGRAM_NODE + '-' + instance.get('type'));
         },
 
         /**
@@ -1804,12 +1723,12 @@ var DiagramNode = A.Component.create({
             var instance = this;
 
             instance.eachConnector(function(connector, index, sourceNode) {
-                sourceNode.removeTransition(connector.get(TRANSITION));
+                sourceNode.removeTransition(connector.get('transition'));
             });
 
             instance.invite.destroy();
-            instance.get(GRAPHIC).destroy();
-            instance.get(BUILDER).removeField(instance);
+            instance.get('graphic').destroy();
+            instance.get('builder').removeField(instance);
         },
 
         /**
@@ -1820,7 +1739,7 @@ var DiagramNode = A.Component.create({
          */
         addTransition: function(transition) {
             var instance = this,
-                transitions = instance.get(TRANSITIONS);
+                transitions = instance.get('transitions');
 
             transition = instance.prepareTransition(transition);
 
@@ -1864,7 +1783,7 @@ var DiagramNode = A.Component.create({
          */
         alignTransitions: function() {
             var instance = this,
-                transitions = instance.get(TRANSITIONS);
+                transitions = instance.get('transitions');
 
             AArray.each(transitions.values(), A.bind(instance.alignTransition, instance));
         },
@@ -1898,7 +1817,7 @@ var DiagramNode = A.Component.create({
 
             if (diagramNode) {
                 if (!instance.isTransitionConnected(transition)) {
-                    var builder = instance.get(BUILDER);
+                    var builder = instance.get('builder');
                     var bestMatch = findHotPointBestMatch(instance, diagramNode);
 
                     A.mix(transition, {
@@ -1909,12 +1828,12 @@ var DiagramNode = A.Component.create({
                     connector = new A.Connector(
                         A.merge({
                             builder: builder,
-                            graphic: builder.get(GRAPHIC),
+                            graphic: builder.get('graphic'),
                             transition: transition
                         }, optConnector)
                     );
 
-                    instance.get(CONNECTORS).put(transition.uid, connector);
+                    instance.get('connectors').put(transition.uid, connector);
                 }
             }
 
@@ -1944,20 +1863,23 @@ var DiagramNode = A.Component.create({
         connectEnd: function(event) {
             var instance = this;
             var drag = event.target;
-            var builder = instance.get(BUILDER);
+            var builder = instance.get('builder');
             var publishedSource = builder.publishedSource;
 
-            if (!builder.isAbleToConnect() && builder.get(SHOW_SUGGEST_CONNECTOR) && builder.connector.get(VISIBLE)) {
+            if (!builder.isAbleToConnect() &&
+                builder.get('showSuggestConnector') &&
+                builder.connector.get('visible')) {
+
                 builder.showSuggestConnectorOverlay();
             }
             else {
                 builder.connector.hide();
-                publishedSource.invite.set(VISIBLE, false);
+                publishedSource.invite.set('visible', false);
             }
 
-            if (builder.get(HIGHLIGHT_DROP_ZONES)) {
-                builder.get(FIELDS).each(function(diagramNode) {
-                    diagramNode.set(HIGHLIGHTED, false);
+            if (builder.get('highlightDropZones')) {
+                builder.get('fields').each(function(diagramNode) {
+                    diagramNode.set('highlighted', false);
                 });
             }
         },
@@ -1970,17 +1892,17 @@ var DiagramNode = A.Component.create({
          */
         connectMove: function(event) {
             var instance = this;
-            var builder = instance.get(BUILDER);
+            var builder = instance.get('builder');
             var mouseXY = event.mouseXY;
 
-            builder.connector.set(P2, mouseXY);
+            builder.connector.set('p2', mouseXY);
 
             if (builder.publishedTarget) {
                 var invite = instance.invite;
-                var offset = invite.get(RADIUS) || 0;
+                var offset = invite.get('radius') || 0;
 
-                if (!invite.get(VISIBLE)) {
-                    invite.set(VISIBLE, true);
+                if (!invite.get('visible')) {
+                    invite.set('visible', true);
                 }
 
                 invite.setXY([mouseXY[0] - offset, mouseXY[1] - offset]);
@@ -1999,9 +1921,9 @@ var DiagramNode = A.Component.create({
 
             instance.connect(
                 instance.prepareTransition({
-                    sourceXY: getLeftTop(dd.startXY, instance.get(BOUNDING_BOX)),
-                    target: diagramNode.get(NAME),
-                    targetXY: getLeftTop(dd.mouseXY, diagramNode.get(BOUNDING_BOX))
+                    sourceXY: getLeftTop(dd.startXY, instance.get('boundingBox')),
+                    target: diagramNode.get('name'),
+                    targetXY: getLeftTop(dd.mouseXY, diagramNode.get('boundingBox'))
                 })
             );
         },
@@ -2015,10 +1937,10 @@ var DiagramNode = A.Component.create({
          */
         connectOutTarget: function(event) {
             var instance = this;
-            var builder = instance.get(BUILDER);
+            var builder = instance.get('builder');
 
             builder.publishedTarget = null;
-            builder.publishedSource.invite.set(VISIBLE, false);
+            builder.publishedSource.invite.set('visible', false);
         },
 
         /**
@@ -2030,7 +1952,7 @@ var DiagramNode = A.Component.create({
          */
         connectOverTarget: function(event) {
             var instance = this;
-            var builder = instance.get(BUILDER);
+            var builder = instance.get('builder');
 
             if (builder.publishedSource !== instance) {
                 builder.publishedTarget = instance;
@@ -2045,14 +1967,14 @@ var DiagramNode = A.Component.create({
          */
         connectStart: function(event) {
             var instance = this;
-            var builder = instance.get(BUILDER);
-            var canvas = builder.get(CANVAS);
+            var builder = instance.get('builder');
+            var canvas = builder.get('canvas');
 
-            builder.connector.show().set(P1, event.startXY);
+            builder.connector.show().set('p1', event.startXY);
 
-            if (builder.get(HIGHLIGHT_DROP_ZONES)) {
-                builder.get(FIELDS).each(function(diagramNode) {
-                    diagramNode.set(HIGHLIGHTED, true);
+            if (builder.get('highlightDropZones')) {
+                builder.get('fields').each(function(diagramNode) {
+                    diagramNode.set('highlighted', true);
                 });
             }
 
@@ -2084,14 +2006,14 @@ var DiagramNode = A.Component.create({
         eachConnector: function(fn) {
             var instance = this,
                 sourceNodes = [],
-                connectors = [].concat(instance.get(CONNECTORS).values()),
+                connectors = [].concat(instance.get('connectors').values()),
                 tIndex = connectors.length;
 
-            AArray.each(instance.get(BUILDER).getSourceNodes(instance), function(sourceNode) {
-                var sourceConnectors = sourceNode.get(CONNECTORS);
+            AArray.each(instance.get('builder').getSourceNodes(instance), function(sourceNode) {
+                var sourceConnectors = sourceNode.get('connectors');
 
                 AArray.each(sourceConnectors.values(), function(connector) {
-                    if (instance.get(NAME) === connector.get(TRANSITION).target) {
+                    if (instance.get('name') === connector.get('transition').target) {
                         sourceNodes.push(sourceNode);
                         connectors.push(connector);
                     }
@@ -2116,7 +2038,7 @@ var DiagramNode = A.Component.create({
         getConnector: function(transition) {
             var instance = this;
 
-            return instance.get(CONNECTORS).getValue(transition.uid);
+            return instance.get('connectors').getValue(transition.uid);
         },
 
         /**
@@ -2127,7 +2049,7 @@ var DiagramNode = A.Component.create({
         getContainer: function() {
             var instance = this;
 
-            return (instance.get(BUILDER).dropContainer || instance.get(BOUNDING_BOX).get(PARENT_NODE));
+            return (instance.get('builder').dropContainer || instance.get('boundingBox').get('parentNode'));
         },
 
         /**
@@ -2138,7 +2060,7 @@ var DiagramNode = A.Component.create({
         getLeftTop: function() {
             var instance = this;
 
-            return getLeftTop(instance.get(BOUNDING_BOX), instance.getContainer());
+            return getLeftTop(instance.get('boundingBox'), instance.getContainer());
         },
 
         /**
@@ -2155,7 +2077,7 @@ var DiagramNode = A.Component.create({
                 var value = instance.get(property.attributeName),
                     type = Lang.type(value);
 
-                if (type === BOOLEAN) {
+                if (type === 'boolean') {
                     value = String(value);
                 }
 
@@ -2176,11 +2098,11 @@ var DiagramNode = A.Component.create({
             var strings = instance.getStrings();
 
             return [{
-                attributeName: DESCRIPTION,
+                attributeName: 'description',
                 editor: new A.TextAreaCellEditor(),
-                name: strings[DESCRIPTION]
+                name: strings['description']
             }, {
-                attributeName: NAME,
+                attributeName: 'name',
                 editor: new A.TextCellEditor({
                     validator: {
                         rules: {
@@ -2190,11 +2112,11 @@ var DiagramNode = A.Component.create({
                         }
                     }
                 }),
-                name: strings[NAME]
+                name: strings['name']
             }, {
-                attributeName: TYPE,
+                attributeName: 'type',
                 editor: false,
-                name: strings[TYPE]
+                name: strings['type']
             }];
         },
 
@@ -2220,7 +2142,7 @@ var DiagramNode = A.Component.create({
         isTransitionConnected: function(transition) {
             var instance = this;
 
-            return instance.get(CONNECTORS).has(transition.uid);
+            return instance.get('connectors').has(transition.uid);
         },
 
         /**
@@ -2233,7 +2155,7 @@ var DiagramNode = A.Component.create({
             var instance = this;
 
             var transition = {
-                source: instance.get(NAME),
+                source: instance.get('name'),
                 target: null,
                 uid: A.guid()
             };
@@ -2257,7 +2179,7 @@ var DiagramNode = A.Component.create({
         removeTransition: function(transition) {
             var instance = this;
 
-            return instance.get(TRANSITIONS).remove(transition.uid);
+            return instance.get('transitions').remove(transition.uid);
         },
 
         /**
@@ -2268,7 +2190,8 @@ var DiagramNode = A.Component.create({
         renderShapeBoundary: function() {
             var instance = this;
 
-            var boundary = instance.boundary = instance.get(GRAPHIC).addShape(instance.get(SHAPE_BOUNDARY));
+            var boundary = instance.boundary =
+                instance.get('graphic').addShape(instance.get('shapeBoundary'));
 
             return boundary;
         },
@@ -2281,9 +2204,10 @@ var DiagramNode = A.Component.create({
         renderShapeInvite: function() {
             var instance = this;
 
-            var invite = instance.invite = instance.get(BUILDER).get(GRAPHIC).addShape(instance.get(SHAPE_INVITE));
+            var invite = instance.invite =
+                instance.get('builder').get('graphic').addShape(instance.get('shapeInvite'));
 
-            invite.set(VISIBLE, false);
+            invite.set('visible', false);
 
             return invite;
         },
@@ -2295,7 +2219,7 @@ var DiagramNode = A.Component.create({
          */
         syncConnectionsUI: function() {
             var instance = this,
-                transitions = instance.get(TRANSITIONS);
+                transitions = instance.get('transitions');
 
             AArray.each(transitions.values(), function(transition) {
                 instance.connect(transition, transition.connector);
@@ -2325,11 +2249,11 @@ var DiagramNode = A.Component.create({
         _afterRender: function(event) {
             var instance = this;
 
-            instance.setStdModContent(WidgetStdMod.BODY, _EMPTY_STR, WidgetStdMod.AFTER);
+            instance.setStdModContent(WidgetStdMod.BODY, '', WidgetStdMod.AFTER);
             instance._renderGraphic();
             instance._renderControls();
             instance._renderLabel();
-            instance._uiSetHighlighted(instance.get(HIGHLIGHTED));
+            instance._uiSetHighlighted(instance.get('highlighted'));
         },
 
         /**
@@ -2342,7 +2266,7 @@ var DiagramNode = A.Component.create({
         _afterTransitionsRemove: function(event) {
             var instance = this;
 
-            instance.get(CONNECTORS).remove(event.value.uid);
+            instance.get('connectors').remove(event.value.uid);
         },
 
         /**
@@ -2387,7 +2311,7 @@ var DiagramNode = A.Component.create({
          */
         _controlsToolbarValueFn: function(val) {
             var instance = this,
-                id = instance.get(ID);
+                id = instance.get('id');
 
             return {
                 children: [
@@ -2411,7 +2335,7 @@ var DiagramNode = A.Component.create({
         _handleCloseEvent: function(event) {
             var instance = this;
 
-            instance.get(BUILDER).deleteSelectedNode();
+            instance.get('builder').deleteSelectedNode();
         },
 
         /**
@@ -2439,7 +2363,7 @@ var DiagramNode = A.Component.create({
          */
         _handleConnectMove: function(mouseXY) {
             var instance = this;
-            var builder = instance.get(BUILDER);
+            var builder = instance.get('builder');
 
             instance.fire('connectMove', {
                 mouseXY: mouseXY,
@@ -2457,7 +2381,7 @@ var DiagramNode = A.Component.create({
          */
         _handleConnectEnd: function() {
             var instance = this;
-            var builder = instance.get(BUILDER);
+            var builder = instance.get('builder');
             var publishedSource = builder.publishedSource;
             var publishedTarget = builder.publishedTarget;
 
@@ -2482,7 +2406,7 @@ var DiagramNode = A.Component.create({
          */
         _handleConnectOutTarget: function() {
             var instance = this;
-            var builder = instance.get(BUILDER);
+            var builder = instance.get('builder');
             var publishedSource = builder.publishedSource;
 
             if (publishedSource) {
@@ -2501,7 +2425,7 @@ var DiagramNode = A.Component.create({
          */
         _handleConnectOverTarget: function() {
             var instance = this;
-            var builder = instance.get(BUILDER);
+            var builder = instance.get('builder');
             var publishedSource = builder.publishedSource;
 
             if (publishedSource) {
@@ -2536,7 +2460,7 @@ var DiagramNode = A.Component.create({
             var instance = this;
 
             instance._handleConnectEnd();
-            event.target.get(DRAG_NODE).show();
+            event.target.get('dragNode').show();
         },
 
         /**
@@ -2550,7 +2474,7 @@ var DiagramNode = A.Component.create({
             var instance = this;
 
             instance._handleConnectStart(instance.boundaryDragDelegate.dd.startXY);
-            event.target.get(DRAG_NODE).hide();
+            event.target.get('dragNode').hide();
         },
 
         /**
@@ -2598,10 +2522,10 @@ var DiagramNode = A.Component.create({
             var instance = this;
 
             instance.eachConnector(function(connector, index, sourceNode) {
-                var transition = connector.get(TRANSITION);
+                var transition = connector.get('transition');
 
-                transition[(instance === sourceNode) ? SOURCE : TARGET] = event.newVal;
-                connector.set(TRANSITION, transition);
+                transition[(instance === sourceNode) ? 'source' : 'target'] = event.newVal;
+                connector.set('transition', transition);
             });
         },
 
@@ -2613,7 +2537,7 @@ var DiagramNode = A.Component.create({
          */
         _renderControls: function() {
             var instance = this;
-            var boundingBox = instance.get(BOUNDING_BOX);
+            var boundingBox = instance.get('boundingBox');
 
             instance.controlsNode = A.Node.create(instance.CONTROLS_TEMPLATE).appendTo(boundingBox);
         },
@@ -2630,10 +2554,10 @@ var DiagramNode = A.Component.create({
             var instance = this;
 
             instance.controlsToolbar = new A.Toolbar(
-                instance.get(CONTROLS_TOOLBAR)
+                instance.get('controlsToolbar')
             ).render(instance.controlsNode);
 
-            instance._uiSetRequired(instance.get(REQUIRED));
+            instance._uiSetRequired(instance.get('required'));
         },
 
         /**
@@ -2646,11 +2570,11 @@ var DiagramNode = A.Component.create({
             var instance = this;
 
             instance.set(
-                GRAPHIC,
+                'graphic',
                 new A.Graphic({
-                    height: instance.get(HEIGHT),
+                    height: instance.get('height'),
                     render: instance.bodyNode,
-                    width: instance.get(WIDTH)
+                    width: instance.get('width')
                 })
             );
 
@@ -2726,18 +2650,18 @@ var DiagramNode = A.Component.create({
         _setupBoundaryDrag: function() {
             var instance = this;
 
-            var builder = instance.get(BUILDER);
+            var builder = instance.get('builder');
 
             instance.boundaryDragDelegate = new A.DD.Delegate({
                 bubbleTargets: instance,
                 container: instance.bodyNode,
-                nodes: _DOT + CSS_DIAGRAM_NODE_SHAPE_BOUNDARY,
+                nodes: '.' + CSS_DIAGRAM_NODE_SHAPE_BOUNDARY,
                 dragConfig: {
                     useShim: false,
                     plugins: [
                         {
                             cfg: {
-                                constrain: (builder ? builder.get(CANVAS) : null)
+                                constrain: (builder ? builder.get('canvas') : null)
                             },
                             fn: A.Plugin.DDConstrained
                         },
@@ -2779,12 +2703,12 @@ var DiagramNode = A.Component.create({
         _uiSetHighlighted: function(val) {
             var instance = this;
 
-            if (instance.get(RENDERED)) {
-                var stroke = val ? instance.get(HIGHLIGHT_BOUNDARY_STROKE) : instance.get(SHAPE_BOUNDARY + _DOT +
-                    STROKE);
+            if (instance.get('rendered')) {
+                var stroke = val ? instance.get('highlightBoundaryStroke') : instance.get('shapeBoundary' + '.' +
+                    'stroke');
 
                 if (stroke) {
-                    instance.boundary.set(STROKE, stroke);
+                    instance.boundary.set('stroke', stroke);
                 }
             }
         },
@@ -2798,9 +2722,9 @@ var DiagramNode = A.Component.create({
          */
         _uiSetName: function(val) {
             var instance = this;
-            var boundingBox = instance.get(BOUNDING_BOX);
+            var boundingBox = instance.get('boundingBox');
 
-            boundingBox.setAttribute(DATA_NODE_ID, A.DiagramNode.buildNodeId(val));
+            boundingBox.setAttribute('data-nodeId', A.DiagramNode.buildNodeId(val));
 
             if (instance.get('rendered')) {
                 instance.labelNode.setContent(val);
@@ -2834,7 +2758,7 @@ var DiagramNode = A.Component.create({
         _uiSetSelected: function(val) {
             var instance = this;
 
-            instance.get(BOUNDING_BOX).toggleClass(CSS_DIAGRAM_NODE_SELECTED, val);
+            instance.get('boundingBox').toggleClass(CSS_DIAGRAM_NODE_SELECTED, val);
 
             if (val && !instance.controlsToolbar) {
                 instance._renderControlsToolbar();
@@ -2880,7 +2804,7 @@ var DiagramNode = A.Component.create({
 
 A.DiagramNode = DiagramNode;
 
-A.DiagramBuilder.types[NODE] = A.DiagramNode;
+A.DiagramBuilder.types['node'] = A.DiagramNode;
 
 /**
  * A base class for DiagramNodeState.
@@ -2900,7 +2824,7 @@ A.DiagramNodeState = A.Component.create({
      * @type String
      * @static
      */
-    NAME: DIAGRAM_NODE_NAME,
+    NAME: 'diagram-node',
 
     /**
      * Static property used to define the default attribute
@@ -2931,7 +2855,7 @@ A.DiagramNodeState = A.Component.create({
          * @type String
          */
         type: {
-            value: STATE
+            value: 'state'
         },
 
         /**
@@ -2966,8 +2890,8 @@ A.DiagramNodeState = A.Component.create({
         renderShapeBoundary: function() {
             var instance = this;
 
-            var boundary = instance.boundary = instance.get(GRAPHIC).addShape(
-                instance.get(SHAPE_BOUNDARY)
+            var boundary = instance.boundary = instance.get('graphic').addShape(
+                instance.get('shapeBoundary')
             );
 
             boundary.translate(5, 5);
@@ -2997,7 +2921,7 @@ A.DiagramNodeState = A.Component.create({
     }
 });
 
-A.DiagramBuilder.types[STATE] = A.DiagramNodeState;
+A.DiagramBuilder.types['state'] = A.DiagramNodeState;
 
 /**
  * A base class for DiagramNodeCondition.
@@ -3017,7 +2941,7 @@ A.DiagramNodeCondition = A.Component.create({
      * @type String
      * @static
      */
-    NAME: DIAGRAM_NODE_NAME,
+    NAME: 'diagram-node',
 
     /**
      * Static property used to define the default attribute
@@ -3048,7 +2972,7 @@ A.DiagramNodeCondition = A.Component.create({
          * @type String
          */
         type: {
-            value: CONDITION
+            value: 'condition'
         },
 
         /**
@@ -3083,8 +3007,8 @@ A.DiagramNodeCondition = A.Component.create({
         renderShapeBoundary: function() {
             var instance = this;
 
-            var boundary = instance.boundary = instance.get(GRAPHIC).addShape(
-                instance.get(SHAPE_BOUNDARY)
+            var boundary = instance.boundary = instance.get('graphic').addShape(
+                instance.get('shapeBoundary')
             );
 
             boundary.translate(10, 10);
@@ -3097,7 +3021,7 @@ A.DiagramNodeCondition = A.Component.create({
     }
 });
 
-A.DiagramBuilder.types[CONDITION] = A.DiagramNodeCondition;
+A.DiagramBuilder.types['condition'] = A.DiagramNodeCondition;
 
 /**
  * A base class for DiagramNodeStart.
@@ -3117,7 +3041,7 @@ A.DiagramNodeStart = A.Component.create({
      * @type String
      * @static
      */
-    NAME: DIAGRAM_NODE_NAME,
+    NAME: 'diagram-node',
 
     /**
      * Static property used to define the default attribute
@@ -3137,7 +3061,7 @@ A.DiagramNodeStart = A.Component.create({
          * @type String
          */
         type: {
-            value: START
+            value: 'start'
         }
     },
 
@@ -3151,7 +3075,7 @@ A.DiagramNodeStart = A.Component.create({
     EXTENDS: A.DiagramNodeState
 });
 
-A.DiagramBuilder.types[START] = A.DiagramNodeStart;
+A.DiagramBuilder.types['start'] = A.DiagramNodeStart;
 
 /**
  * A base class for DiagramNodeEnd.
@@ -3171,7 +3095,7 @@ A.DiagramNodeEnd = A.Component.create({
      * @type String
      * @static
      */
-    NAME: DIAGRAM_NODE_NAME,
+    NAME: 'diagram-node',
 
     /**
      * Static property used to define the default attribute
@@ -3191,7 +3115,7 @@ A.DiagramNodeEnd = A.Component.create({
          * @type String
          */
         type: {
-            value: END
+            value: 'end'
         }
     },
 
@@ -3205,7 +3129,7 @@ A.DiagramNodeEnd = A.Component.create({
     EXTENDS: A.DiagramNodeState
 });
 
-A.DiagramBuilder.types[END] = A.DiagramNodeEnd;
+A.DiagramBuilder.types['end'] = A.DiagramNodeEnd;
 
 /**
  * A base class for DiagramNodeJoin.
@@ -3225,7 +3149,7 @@ A.DiagramNodeJoin = A.Component.create({
      * @type String
      * @static
      */
-    NAME: DIAGRAM_NODE_NAME,
+    NAME: 'diagram-node',
 
     /**
      * Static property used to define the default attribute
@@ -3256,7 +3180,7 @@ A.DiagramNodeJoin = A.Component.create({
          * @type String
          */
         type: {
-            value: JOIN
+            value: 'join'
         },
 
         /**
@@ -3289,7 +3213,7 @@ A.DiagramNodeJoin = A.Component.create({
     }
 });
 
-A.DiagramBuilder.types[JOIN] = A.DiagramNodeJoin;
+A.DiagramBuilder.types['join'] = A.DiagramNodeJoin;
 
 /**
  * A base class for DiagramNodeFork.
@@ -3309,7 +3233,7 @@ A.DiagramNodeFork = A.Component.create({
      * @type String
      * @static
      */
-    NAME: DIAGRAM_NODE_NAME,
+    NAME: 'diagram-node',
 
     /**
      * Static property used to define the default attribute
@@ -3340,7 +3264,7 @@ A.DiagramNodeFork = A.Component.create({
          * @type String
          */
         type: {
-            value: FORK
+            value: 'fork'
         },
 
         /**
@@ -3373,7 +3297,7 @@ A.DiagramNodeFork = A.Component.create({
     }
 });
 
-A.DiagramBuilder.types[FORK] = A.DiagramNodeFork;
+A.DiagramBuilder.types['fork'] = A.DiagramNodeFork;
 
 /**
  * A base class for `A.DiagramNodeTask`.
@@ -3393,7 +3317,7 @@ A.DiagramNodeTask = A.Component.create({
      * @type String
      * @static
      */
-    NAME: DIAGRAM_NODE_NAME,
+    NAME: 'diagram-node',
 
     /**
      * Static property used to define the default attribute
@@ -3424,7 +3348,7 @@ A.DiagramNodeTask = A.Component.create({
          * @type String
          */
         type: {
-            value: TASK
+            value: 'task'
         },
 
         /**
@@ -3459,8 +3383,8 @@ A.DiagramNodeTask = A.Component.create({
         renderShapeBoundary: function() {
             var instance = this;
 
-            var boundary = instance.boundary = instance.get(GRAPHIC).addShape(
-                instance.get(SHAPE_BOUNDARY)
+            var boundary = instance.boundary = instance.get('graphic').addShape(
+                instance.get('shapeBoundary')
             );
 
             boundary.translate(8, 8);
@@ -3492,4 +3416,4 @@ A.DiagramNodeTask = A.Component.create({
     }
 });
 
-A.DiagramBuilder.types[TASK] = A.DiagramNodeTask;
+A.DiagramBuilder.types['task'] = A.DiagramNodeTask;

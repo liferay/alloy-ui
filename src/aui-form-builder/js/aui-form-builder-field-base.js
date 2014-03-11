@@ -11,86 +11,29 @@ var L = A.Lang,
 
     AArray = A.Array,
 
-    ACCEPT_CHILDREN = 'acceptChildren',
-    ALERT = 'alert',
-    ALLOW_REMOVE_REQUIRED_FIELDS = 'allowRemoveRequiredFields',
-    ASTERISK = 'asterisk',
-    BODY_CONTENT = 'bodyContent',
-    BOOLEAN = 'boolean',
-    BOUNDING_BOX = 'boundingBox',
-    BUILDER = 'builder',
-    CHILDREN = 'children',
-    CLEARFIX = 'clearfix',
-    COMPONENT = 'component',
-    CONTENT_BOX = 'contentBox',
-    CONTROLS_TOOLBAR = 'controlsToolbar',
-    DELETE_FIELDS_MESSAGE = 'deleteFieldsMessage',
-    DISABLED = 'disabled',
-    DOT = '.',
-    DROP = 'drop',
-    DROP_ZONE_NODE = 'dropZoneNode',
-    EMPTY_STR = '',
-    FIELD = 'field',
-    FIELDS = 'fields',
-    FORM = 'form',
-    FORM_BUILDER_FIELD = 'form-builder-field',
-    HIDDEN_ATTRIBUTES = 'hiddenAttributes',
-    ICON = 'icon',
-    ID = 'id',
-    INFO = 'info',
-    LABEL = 'label',
-    LABEL_NODE = 'labelNode',
-    NAME = 'name',
-    NO = 'no',
-    PARENT = 'parent',
-    PLUS = 'plus',
-    PREDEFINED_VALUE = 'predefinedValue',
-    QUESTION = 'question',
-    READ_ONLY = 'readOnly',
-    READ_ONLY_ATTRIBUTES = 'readOnlyAttributes',
-    REQUIRED = 'required',
-    REQUIRED_FLAG_NODE = 'requiredFlagNode',
-    SELECTED = 'selected',
-    SHOW_LABEL = 'showLabel',
-    SIGN = 'sign',
-    SPACE = ' ',
-    STRING = 'string',
-    TEMPLATE_NODE = 'templateNode',
-    TIP = 'tip',
-    TIP_FLAG_NODE = 'tipFlagNode',
-    TRASH = 'trash',
-    TYPE = 'type',
-    UNIQUE = 'unique',
-    WIDGET = 'widget',
-    WRENCH = 'wrench',
-    YES = 'yes',
-    ZONE = 'zone',
-
-    _UNDERLINE = '_',
-
     getCN = A.getClassName,
 
-    CSS_ALERT = getCN(ALERT),
-    CSS_ALERT_INFO = getCN(ALERT, INFO),
-    CSS_CLEARFIX = getCN(CLEARFIX),
-    CSS_COMPONENT = getCN(COMPONENT),
-    CSS_FB_DROP_ZONE = getCN(FORM, BUILDER, DROP, ZONE),
-    CSS_FB_FIELD = getCN(FORM, BUILDER, FIELD),
-    CSS_FB_FIELD_SELECTED = getCN(FORM, BUILDER, FIELD, SELECTED),
-    CSS_FB_UNIQUE = getCN(FORM, BUILDER, UNIQUE),
-    CSS_ICON = getCN(ICON),
-    CSS_ICON_ASTERISK = getCN(ICON, ASTERISK),
-    CSS_ICON_PLUS = getCN(ICON, PLUS),
-    CSS_ICON_QUESTION_SIGN = getCN(ICON, QUESTION, SIGN),
-    CSS_ICON_TRASH = getCN(ICON, TRASH),
-    CSS_ICON_WRENCH = getCN(ICON, WRENCH),
-    CSS_WIDGET = getCN(WIDGET),
+    CSS_ALERT = getCN('alert'),
+    CSS_ALERT_INFO = getCN('alert', 'info'),
+    CSS_CLEARFIX = getCN('clearfix'),
+    CSS_COMPONENT = getCN('component'),
+    CSS_FB_DROP_ZONE = getCN('form', 'builder', 'drop', 'zone'),
+    CSS_FB_FIELD = getCN('form', 'builder', 'field'),
+    CSS_FB_FIELD_SELECTED = getCN('form', 'builder', 'field', 'selected'),
+    CSS_FB_UNIQUE = getCN('form', 'builder', 'unique'),
+    CSS_ICON = getCN('icon'),
+    CSS_ICON_ASTERISK = getCN('icon', 'asterisk'),
+    CSS_ICON_PLUS = getCN('icon', 'plus'),
+    CSS_ICON_QUESTION_SIGN = getCN('icon', 'question', 'sign'),
+    CSS_ICON_TRASH = getCN('icon', 'trash'),
+    CSS_ICON_WRENCH = getCN('icon', 'wrench'),
+    CSS_WIDGET = getCN('widget'),
 
-    TPL_ALERT_TIP = '<div class="' + [CSS_ALERT, CSS_ALERT_INFO].join(SPACE) + '"></div>',
-    TPL_BOUNDING_BOX = '<div class="' + [CSS_WIDGET, CSS_COMPONENT, CSS_FB_FIELD].join(SPACE) + '"></div>',
+    TPL_ALERT_TIP = '<div class="' + [CSS_ALERT, CSS_ALERT_INFO].join(' ') + '"></div>',
+    TPL_BOUNDING_BOX = '<div class="' + [CSS_WIDGET, CSS_COMPONENT, CSS_FB_FIELD].join(' ') + '"></div>',
     TPL_DROP_ZONE = '<div class="' + CSS_FB_DROP_ZONE + '"></div>',
-    TPL_FLAG_REQUIRED = '<span class="' + [CSS_ICON, CSS_ICON_ASTERISK].join(SPACE) + '"></span>',
-    TPL_FLAG_TIP = '<span class="' + [CSS_ICON, CSS_ICON_QUESTION_SIGN].join(SPACE) + '"></span>',
+    TPL_FLAG_REQUIRED = '<span class="' + [CSS_ICON, CSS_ICON_ASTERISK].join(' ') + '"></span>',
+    TPL_FLAG_TIP = '<span class="' + [CSS_ICON, CSS_ICON_QUESTION_SIGN].join(' ') + '"></span>',
     TPL_LABEL = '<label for="{id}">{label}</label>';
 
 /**
@@ -112,7 +55,7 @@ var FormBuilderFieldBase = A.Component.create({
      * @type String
      * @static
      */
-    NAME: FORM_BUILDER_FIELD,
+    NAME: 'form-builder-field',
 
     /**
      * Static property used to define the augmented classes.
@@ -142,7 +85,7 @@ var FormBuilderField = A.Component.create({
      * @type String
      * @static
      */
-    NAME: FORM_BUILDER_FIELD,
+    NAME: 'form-builder-field',
 
     /**
      * Static property used to define the default attribute
@@ -187,7 +130,7 @@ var FormBuilderField = A.Component.create({
                 var instance = this;
 
                 return {
-                    children: instance._getToolbarItems(instance.get(REQUIRED), instance.get(UNIQUE)),
+                    children: instance._getToolbarItems(instance.get('required'), instance.get('unique')),
                     visible: false
                 };
             }
@@ -201,7 +144,7 @@ var FormBuilderField = A.Component.create({
          * @type String
          */
         dataType: {
-            value: STRING
+            value: 'string'
         },
 
         /**
@@ -255,7 +198,7 @@ var FormBuilderField = A.Component.create({
          * @type String
          */
         label: {
-            value: EMPTY_STR
+            value: ''
         },
 
         /**
@@ -277,7 +220,7 @@ var FormBuilderField = A.Component.create({
         name: {
             valueFn: function() {
                 var instance = this,
-                    type = instance.get(TYPE);
+                    type = instance.get('type');
 
                 return A.FormBuilderField.buildFieldName(type);
             }
@@ -301,7 +244,7 @@ var FormBuilderField = A.Component.create({
          * @type String
          */
         predefinedValue: {
-            value: EMPTY_STR
+            value: ''
         },
 
         /**
@@ -407,7 +350,7 @@ var FormBuilderField = A.Component.create({
          * @type String
          */
         template: {
-            value: EMPTY_STR
+            value: ''
         },
 
         /**
@@ -418,7 +361,7 @@ var FormBuilderField = A.Component.create({
          * @type String
          */
         tip: {
-            value: EMPTY_STR
+            value: ''
         },
 
         /**
@@ -429,7 +372,7 @@ var FormBuilderField = A.Component.create({
          * @type String
          */
         type: {
-            value: EMPTY_STR
+            value: ''
         },
 
         /**
@@ -479,8 +422,8 @@ var FormBuilderField = A.Component.create({
                 return A.Node.create(
                     L.sub(
                         TPL_LABEL, {
-                            id: instance.get(ID),
-                            label: instance.get(LABEL)
+                            id: instance.get('id'),
+                            label: instance.get('label')
                         }
                     )
                 );
@@ -527,8 +470,10 @@ var FormBuilderField = A.Component.create({
      * @type Array
      * @static
      */
-    UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, FIELDS, LABEL, NAME, PREDEFINED_VALUE, REQUIRED, SELECTED, SHOW_LABEL,
-        TIP, UNIQUE],
+    UI_ATTRS: [
+        'acceptChildren', 'disabled', 'fields', 'label', 'name',
+        'predefinedValue', 'required', 'selected', 'showLabel', 'tip', 'unique'
+    ],
 
     /**
      * Static property used to define which component it extends.
@@ -548,7 +493,7 @@ var FormBuilderField = A.Component.create({
      * @return {String}
      */
     buildFieldId: function(id) {
-        return FIELDS + _UNDERLINE + FIELD + _UNDERLINE + id;
+        return 'fields' + '_' + 'field' + '_' + id;
     },
 
     /**
@@ -571,10 +516,10 @@ var FormBuilderField = A.Component.create({
      * @static
      */
     HTML_PARSER: {
-        dropZoneNode: DOT + CSS_FB_DROP_ZONE,
-        labelNode: LABEL,
-        requiredFlagNode: DOT + CSS_ICON_ASTERISK,
-        tipFlagNode: DOT + CSS_ICON_QUESTION_SIGN
+        dropZoneNode: '.' + CSS_FB_DROP_ZONE,
+        labelNode: 'label',
+        requiredFlagNode: '.' + CSS_ICON_ASTERISK,
+        tipFlagNode: '.' + CSS_ICON_QUESTION_SIGN
     },
 
     prototype: {
@@ -591,12 +536,12 @@ var FormBuilderField = A.Component.create({
             var instance = this;
 
             instance.controlsToolbar = new A.Toolbar(
-                instance.get(CONTROLS_TOOLBAR)
+                instance.get('controlsToolbar')
             );
 
             instance.toolTip = new A.Overlay({
                 align: {
-                    node: instance.get(TIP_FLAG_NODE),
+                    node: instance.get('tipFlagNode'),
                     points: [A.WidgetPositionAlign.LC, A.WidgetPositionAlign.RC]
                 },
                 boundingBox: A.Node.create(TPL_ALERT_TIP),
@@ -613,7 +558,7 @@ var FormBuilderField = A.Component.create({
          */
         bindUI: function() {
             var instance = this,
-                tipFlagNode = instance.get(TIP_FLAG_NODE);
+                tipFlagNode = instance.get('tipFlagNode');
 
             tipFlagNode.on('mouseover', A.bind(instance._onMouseOverTipFlagNode, instance));
             tipFlagNode.on('mouseout', A.bind(instance._onMouseOutTipFlagNode, instance));
@@ -627,12 +572,12 @@ var FormBuilderField = A.Component.create({
          */
         renderUI: function() {
             var instance = this,
-                boundingBox = instance.get(BOUNDING_BOX),
-                contentBox = instance.get(CONTENT_BOX),
-                labelNode = instance.get(LABEL_NODE),
-                requiredFlagNode = instance.get(REQUIRED_FLAG_NODE),
-                templateNode = instance.get(TEMPLATE_NODE),
-                tipFlagNode = instance.get(TIP_FLAG_NODE);
+                boundingBox = instance.get('boundingBox'),
+                contentBox = instance.get('contentBox'),
+                labelNode = instance.get('labelNode'),
+                requiredFlagNode = instance.get('requiredFlagNode'),
+                templateNode = instance.get('templateNode'),
+                tipFlagNode = instance.get('tipFlagNode');
 
             contentBox.addClass(CSS_CLEARFIX);
 
@@ -654,10 +599,10 @@ var FormBuilderField = A.Component.create({
          */
         destructor: function() {
             var instance = this,
-                builder = instance.get(BUILDER),
+                builder = instance.get('builder'),
                 fieldId = builder._getFieldId(instance);
 
-            instance.get(FIELDS).each(function(field) {
+            instance.get('fields').each(function(field) {
                 field.destroy();
             });
 
@@ -673,11 +618,11 @@ var FormBuilderField = A.Component.create({
 
             // destroy manually because NestedList doesn`t
             // use delegate
-            instance.get(BOUNDING_BOX).dd.destroy();
+            instance.get('boundingBox').dd.destroy();
 
             instance.toolTip.destroy();
 
-            instance.get(PARENT).removeField(instance);
+            instance.get('parent').removeField(instance);
 
             builder.uniqueFieldsMap.remove(fieldId);
         },
@@ -692,11 +637,11 @@ var FormBuilderField = A.Component.create({
          */
         createField: function(val) {
             var instance = this,
-                builder = instance.get(BUILDER);
+                builder = instance.get('builder');
 
             val = builder.createField(val);
 
-            val.set(PARENT, instance);
+            val.set('parent', instance);
 
             return val;
         },
@@ -710,7 +655,7 @@ var FormBuilderField = A.Component.create({
          * @return {String}
          */
         getHTML: function() {
-            return EMPTY_STR;
+            return '';
         },
 
         /**
@@ -734,8 +679,8 @@ var FormBuilderField = A.Component.create({
         getProperties: function() {
             var instance = this,
                 propertyModel = instance.getPropertyModel(),
-                hiddenAttributes = instance.get(HIDDEN_ATTRIBUTES),
-                readOnlyAttributes = instance.get(READ_ONLY_ATTRIBUTES),
+                hiddenAttributes = instance.get('hiddenAttributes'),
+                readOnlyAttributes = instance.get('readOnlyAttributes'),
                 properties = [];
 
             AArray.each(propertyModel, function(property) {
@@ -750,7 +695,7 @@ var FormBuilderField = A.Component.create({
                 var value = instance.get(attribute),
                     type = L.type(value);
 
-                if (type === BOOLEAN) {
+                if (type === 'boolean') {
                     value = String(value);
                 }
 
@@ -780,45 +725,45 @@ var FormBuilderField = A.Component.create({
                 strings = instance.getStrings();
 
             return [{
-                attributeName: TYPE,
+                attributeName: 'type',
                 editor: false,
-                name: strings[TYPE]
+                name: strings['type']
             }, {
-                attributeName: LABEL,
+                attributeName: 'label',
                 editor: new A.TextCellEditor(),
-                name: strings[LABEL]
+                name: strings['label']
             }, {
-                attributeName: SHOW_LABEL,
+                attributeName: 'showLabel',
                 editor: new A.RadioCellEditor({
                     options: {
-                        'true': strings[YES],
-                        'false': strings[NO]
+                        'true': strings['yes'],
+                        'false': strings['no']
                     }
                 }),
                 formatter: A.bind(instance._booleanFormatter, instance),
-                name: strings[SHOW_LABEL]
+                name: strings['showLabel']
             }, {
-                attributeName: READ_ONLY,
+                attributeName: 'readOnly',
                 editor: new A.RadioCellEditor({
                     options: {
-                        'true': strings[YES],
-                        'false': strings[NO]
+                        'true': strings['yes'],
+                        'false': strings['no']
                     }
                 }),
                 formatter: A.bind(instance._booleanFormatter, instance),
-                name: strings[READ_ONLY]
+                name: strings['readOnly']
             }, {
-                attributeName: REQUIRED,
+                attributeName: 'required',
                 editor: new A.RadioCellEditor({
                     options: {
-                        'true': strings[YES],
-                        'false': strings[NO]
+                        'true': strings['yes'],
+                        'false': strings['no']
                     }
                 }),
                 formatter: A.bind(instance._booleanFormatter, instance),
-                name: strings[REQUIRED]
+                name: strings['required']
             }, {
-                attributeName: NAME,
+                attributeName: 'name',
                 editor: new A.TextCellEditor({
                     validator: {
                         rules: {
@@ -828,15 +773,15 @@ var FormBuilderField = A.Component.create({
                         }
                     }
                 }),
-                name: strings[NAME]
+                name: strings['name']
             }, {
-                attributeName: PREDEFINED_VALUE,
+                attributeName: 'predefinedValue',
                 editor: new A.TextCellEditor(),
-                name: strings[PREDEFINED_VALUE]
+                name: strings['predefinedValue']
             }, {
-                attributeName: TIP,
+                attributeName: 'tip',
                 editor: new A.TextAreaCellEditor(),
-                name: strings[TIP]
+                name: strings['tip']
             }];
         },
 
@@ -851,7 +796,7 @@ var FormBuilderField = A.Component.create({
             var instance = this,
                 strings = instance.getStrings();
 
-            return A.DataType.Boolean.parse(o.data.value) ? strings[YES] : strings[NO];
+            return A.DataType.Boolean.parse(o.data.value) ? strings['yes'] : strings['no'];
         },
 
         /**
@@ -862,7 +807,7 @@ var FormBuilderField = A.Component.create({
          */
         _getToolbarItems: function() {
             var instance = this,
-                builder = instance.get(BUILDER),
+                builder = instance.get('builder'),
                 items = [
                     {
                         icon: CSS_ICON_WRENCH,
@@ -872,7 +817,7 @@ var FormBuilderField = A.Component.create({
                     }
                 ];
 
-            if (!instance.get(UNIQUE)) {
+            if (!instance.get('unique')) {
                 items.push({
                     icon: CSS_ICON_PLUS,
                     on: {
@@ -881,7 +826,7 @@ var FormBuilderField = A.Component.create({
                 });
             }
 
-            if ((builder && builder.get(ALLOW_REMOVE_REQUIRED_FIELDS)) || !instance.get(REQUIRED)) {
+            if ((builder && builder.get('allowRemoveRequiredFields')) || !instance.get('required')) {
                 items.push({
                     icon: CSS_ICON_TRASH,
                     on: {
@@ -903,8 +848,8 @@ var FormBuilderField = A.Component.create({
         _handleDuplicateEvent: function(event) {
             var instance = this;
 
-            if (!instance.get(UNIQUE)) {
-                instance.get(BUILDER).duplicateField(instance);
+            if (!instance.get('unique')) {
+                instance.get('builder').duplicateField(instance);
             }
 
             event.stopPropagation();
@@ -920,7 +865,7 @@ var FormBuilderField = A.Component.create({
         _handleEditEvent: function(event) {
             var instance = this;
 
-            instance.get(BUILDER).editField(instance);
+            instance.get('builder').editField(instance);
 
             event.stopPropagation();
         },
@@ -936,7 +881,7 @@ var FormBuilderField = A.Component.create({
             var instance = this,
                 strings = instance.getStrings();
 
-            if (confirm(strings[DELETE_FIELDS_MESSAGE])) {
+            if (confirm(strings['deleteFieldsMessage'])) {
                 instance.destroy();
             }
 
@@ -991,9 +936,9 @@ var FormBuilderField = A.Component.create({
          */
         _uiSetAcceptChildren: function(val) {
             var instance = this,
-                boundingBox = instance.get(BOUNDING_BOX),
-                dropZone = instance.get(DROP_ZONE_NODE),
-                markupDropZone = boundingBox.one(DOT + CSS_FB_DROP_ZONE);
+                boundingBox = instance.get('boundingBox'),
+                dropZone = instance.get('dropZoneNode'),
+                markupDropZone = boundingBox.one('.' + CSS_FB_DROP_ZONE);
 
             if (val && !markupDropZone) {
                 boundingBox.append(dropZone);
@@ -1002,7 +947,7 @@ var FormBuilderField = A.Component.create({
                 markupDropZone.remove();
             }
             else if (val && markupDropZone) {
-                instance.set(DROP_ZONE_NODE, markupDropZone);
+                instance.set('dropZoneNode', markupDropZone);
             }
         },
 
@@ -1016,7 +961,7 @@ var FormBuilderField = A.Component.create({
         _uiSetSelected: function(val) {
             var instance = this;
 
-            instance.get(BOUNDING_BOX).toggleClass(CSS_FB_FIELD_SELECTED, val);
+            instance.get('boundingBox').toggleClass(CSS_FB_FIELD_SELECTED, val);
         },
 
         /**
@@ -1028,13 +973,13 @@ var FormBuilderField = A.Component.create({
          */
         _uiSetDisabled: function(val) {
             var instance = this,
-                templateNode = instance.get(TEMPLATE_NODE);
+                templateNode = instance.get('templateNode');
 
             if (val) {
-                templateNode.setAttribute(DISABLED, val);
+                templateNode.setAttribute('disabled', val);
             }
             else {
-                templateNode.removeAttribute(DISABLED);
+                templateNode.removeAttribute('disabled');
             }
         },
 
@@ -1048,9 +993,9 @@ var FormBuilderField = A.Component.create({
          */
         _uiSetFields: function(val) {
             var instance = this,
-                builder = instance.get(BUILDER);
+                builder = instance.get('builder');
 
-            builder.plotFields(val, instance.get(DROP_ZONE_NODE));
+            builder.plotFields(val, instance.get('dropZoneNode'));
         },
 
         /**
@@ -1062,7 +1007,7 @@ var FormBuilderField = A.Component.create({
          */
         _uiSetLabel: function(val) {
             var instance = this,
-                labelNode = instance.get(LABEL_NODE);
+                labelNode = instance.get('labelNode');
 
             labelNode.setContent(A.Escape.html(val));
         },
@@ -1076,9 +1021,9 @@ var FormBuilderField = A.Component.create({
          */
         _uiSetName: function(val) {
             var instance = this,
-                templateNode = instance.get(TEMPLATE_NODE);
+                templateNode = instance.get('templateNode');
 
-            templateNode.set(NAME, val);
+            templateNode.set('name', val);
         },
 
         /**
@@ -1090,7 +1035,7 @@ var FormBuilderField = A.Component.create({
          */
         _uiSetPredefinedValue: function(val) {
             var instance = this,
-                templateNode = instance.get(TEMPLATE_NODE);
+                templateNode = instance.get('templateNode');
 
             templateNode.val(val);
         },
@@ -1105,7 +1050,7 @@ var FormBuilderField = A.Component.create({
         _uiSetRequired: function(val) {
             var instance = this,
                 controlsToolbar = instance.controlsToolbar,
-                requiredNode = instance.get(REQUIRED_FLAG_NODE);
+                requiredNode = instance.get('requiredFlagNode');
 
             if (val) {
                 requiredNode.show();
@@ -1114,7 +1059,7 @@ var FormBuilderField = A.Component.create({
                 requiredNode.hide();
             }
 
-            controlsToolbar.set(CHILDREN, instance._getToolbarItems());
+            controlsToolbar.set('children', instance._getToolbarItems());
         },
 
         /**
@@ -1126,7 +1071,7 @@ var FormBuilderField = A.Component.create({
          */
         _uiSetShowLabel: function(val) {
             var instance = this,
-                labelNode = instance.get(LABEL_NODE);
+                labelNode = instance.get('labelNode');
 
             if (val) {
                 labelNode.show();
@@ -1145,7 +1090,7 @@ var FormBuilderField = A.Component.create({
          */
         _uiSetTip: function(val) {
             var instance = this,
-                tipFlagNode = instance.get(TIP_FLAG_NODE);
+                tipFlagNode = instance.get('tipFlagNode');
 
             if (val) {
                 tipFlagNode.show();
@@ -1154,7 +1099,7 @@ var FormBuilderField = A.Component.create({
                 tipFlagNode.hide();
             }
 
-            instance.toolTip.set(BODY_CONTENT, val);
+            instance.toolTip.set('bodyContent', val);
         },
 
         /**
@@ -1166,12 +1111,12 @@ var FormBuilderField = A.Component.create({
          */
         _uiSetUnique: function(val) {
             var instance = this,
-                boundingBox = instance.get(BOUNDING_BOX),
+                boundingBox = instance.get('boundingBox'),
                 controlsToolbar = instance.controlsToolbar;
 
             boundingBox.toggleClass(CSS_FB_UNIQUE, val);
 
-            controlsToolbar.set(CHILDREN, instance._getToolbarItems());
+            controlsToolbar.set('children', instance._getToolbarItems());
         }
 
     }

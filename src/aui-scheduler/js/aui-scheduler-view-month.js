@@ -10,27 +10,10 @@ var Lang = A.Lang,
 
     DateMath = A.DataType.DateMath,
 
-    _DOT = '.',
-
-    COL = 'col',
-    DATA = 'data',
-    FIRST_DAY_OF_WEEK = 'firstDayOfWeek',
-    LOCALE = 'locale',
-    MONTH = 'month',
-    NOMONTH = 'nomonth',
-    SCHEDULER = 'scheduler',
-    TABLE = 'table',
-    TABLE_ROW_CONTAINER = 'tableRowContainer',
-    TITLE = 'title',
-    VIEW_DATE = 'viewDate',
-
-    SCHEDULER_VIEW = 'scheduler-view',
-    SCHEDULER_VIEW_MONTH = 'scheduler-view-month',
-
     getCN = A.getClassName,
 
-    CSS_SVM_TABLE_DATA_COL_NOMONTH = getCN(SCHEDULER_VIEW_MONTH, TABLE, DATA, COL, NOMONTH),
-    CSS_SVT_TABLE_DATA_COL_TITLE = getCN(SCHEDULER_VIEW, TABLE, DATA, COL, TITLE);
+    CSS_SVM_TABLE_DATA_COL_NOMONTH = getCN('scheduler-view-month', 'table', 'data', 'col', 'nomonth'),
+    CSS_SVT_TABLE_DATA_COL_TITLE = getCN('scheduler-view', 'table', 'data', 'col', 'title');
 
 /**
  * A base class for `SchedulerMonthView`.
@@ -50,7 +33,7 @@ var SchedulerMonthView = A.Component.create({
      * @type {String}
      * @static
      */
-    NAME: SCHEDULER_VIEW_MONTH,
+    NAME: 'scheduler-view-month',
 
     /**
      * Static property used to define the default attribute
@@ -68,7 +51,7 @@ var SchedulerMonthView = A.Component.create({
          * @attribute displayDaysInterval
          * @default 42
          * @type {Number}
-         * @readyOnly
+         * @readOnly
          */
         displayDaysInterval: {
             readOnly: true,
@@ -83,7 +66,7 @@ var SchedulerMonthView = A.Component.create({
          * @type {String}
          */
         name: {
-            value: MONTH
+            value: 'month'
         },
 
         /**
@@ -95,12 +78,12 @@ var SchedulerMonthView = A.Component.create({
         navigationDateFormatter: {
             value: function(date) {
                 var instance = this;
-                var scheduler = instance.get(SCHEDULER);
+                var scheduler = instance.get('scheduler');
 
                 return A.DataType.Date.format(
                     date, {
                         format: '%B %Y',
-                        locale: scheduler.get(LOCALE)
+                        locale: scheduler.get('locale')
                     }
                 );
             },
@@ -143,8 +126,8 @@ var SchedulerMonthView = A.Component.create({
         getNextDate: function() {
             var instance = this;
 
-            var scheduler = instance.get(SCHEDULER);
-            var viewDate = scheduler.get(VIEW_DATE);
+            var scheduler = instance.get('scheduler');
+            var viewDate = scheduler.get('viewDate');
 
             return DateMath.toLastHour(DateMath.add(viewDate, DateMath.MONTH, 1));
         },
@@ -159,8 +142,8 @@ var SchedulerMonthView = A.Component.create({
         getPrevDate: function() {
             var instance = this;
 
-            var scheduler = instance.get(SCHEDULER);
-            var viewDate = scheduler.get(VIEW_DATE);
+            var scheduler = instance.get('scheduler');
+            var viewDate = scheduler.get('viewDate');
 
             return DateMath.toMidnight(DateMath.subtract(viewDate, DateMath.MONTH, 1));
         },
@@ -175,15 +158,15 @@ var SchedulerMonthView = A.Component.create({
 
             A.SchedulerMonthView.superclass.plotEvents.apply(instance, arguments);
 
-            var scheduler = instance.get(SCHEDULER);
-            var viewDate = scheduler.get(VIEW_DATE);
+            var scheduler = instance.get('scheduler');
+            var viewDate = scheduler.get('viewDate');
 
             var monthEnd = DateMath.findMonthEnd(viewDate);
             var monthStart = DateMath.findMonthStart(viewDate);
 
             var currentIntervalStart = instance._findCurrentIntervalStart();
 
-            var colTitleNodes = instance[TABLE_ROW_CONTAINER].all(_DOT + CSS_SVT_TABLE_DATA_COL_TITLE);
+            var colTitleNodes = instance['tableRowContainer'].all('.' + CSS_SVT_TABLE_DATA_COL_TITLE);
 
             colTitleNodes.each(function(colTitleNode, index) {
                 var celDate = DateMath.add(currentIntervalStart, DateMath.DAY, index);
@@ -205,8 +188,8 @@ var SchedulerMonthView = A.Component.create({
          */
         _findCurrentIntervalStart: function() {
             var instance = this;
-            var scheduler = instance.get(SCHEDULER);
-            var viewDate = scheduler.get(VIEW_DATE);
+            var scheduler = instance.get('scheduler');
+            var viewDate = scheduler.get('viewDate');
 
             return instance._findFirstDayOfWeek(viewDate);
         },
@@ -222,8 +205,8 @@ var SchedulerMonthView = A.Component.create({
         _findFirstDayOfWeek: function(date) {
             var instance = this;
 
-            var scheduler = instance.get(SCHEDULER);
-            var firstDayOfWeek = scheduler.get(FIRST_DAY_OF_WEEK);
+            var scheduler = instance.get('scheduler');
+            var firstDayOfWeek = scheduler.get('firstDayOfWeek');
 
             return DateMath.getFirstDayOfWeek(date, firstDayOfWeek);
         }

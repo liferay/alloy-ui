@@ -9,28 +9,11 @@ var Lang = A.Lang,
     isFunction = Lang.isFunction,
     isObject = Lang.isObject,
     isString = Lang.isString,
-
-    ATTRIBUTE_VALUE_FORMAT = 'attributeValueFormat',
-    ATTRIBUTES = 'attributes',
-    ARIA = 'aria',
-    ARIA_PREFIX = 'aria-',
-    ATTRIBUTE_NODE = 'attributeNode',
-    BOUNDING_BOX = 'boundingBox',
-    HOST = 'host',
-    ROLE = 'role',
-    ROLE_NAME = 'roleName',
-    ROLE_NODE = 'roleNode',
-    VALIDATE_W3C = 'validateW3C',
-    CHANGE_PREFIX = 'Change',
-
-    EMPTY_STR = '',
     STR_REGEX = /([^a-z])/ig,
-
-    EV_PROCESS_ATTRIBUTE = 'aria:processAttribute',
 
     _toAriaRole = A.cached(function(str) {
         return str.replace(STR_REGEX, function() {
-            return EMPTY_STR;
+            return '';
         }).toLowerCase();
     });
 
@@ -52,7 +35,7 @@ var Aria = A.Component.create({
      * @type String
      * @static
      */
-    NAME: ARIA,
+    NAME: 'aria',
 
     /**
      * Static property provides a string to identify the namespace.
@@ -61,7 +44,7 @@ var Aria = A.Component.create({
      * @type String
      * @static
      */
-    NS: ARIA,
+    NS: 'aria',
 
     /**
      * Static property used to define the default attribute configuration for
@@ -108,7 +91,7 @@ var Aria = A.Component.create({
             writeOnce: true,
             setter: A.one,
             valueFn: function() {
-                return this.get(HOST).get(BOUNDING_BOX);
+                return this.get('host').get('boundingBox');
             }
         },
 
@@ -121,10 +104,10 @@ var Aria = A.Component.create({
         roleName: {
             valueFn: function() {
                 var instance = this;
-                var host = instance.get(HOST);
-                var roleName = _toAriaRole(host.constructor.NAME || EMPTY_STR);
+                var host = instance.get('host');
+                var roleName = _toAriaRole(host.constructor.NAME || '');
 
-                return (instance.isValidRole(roleName) ? roleName : EMPTY_STR);
+                return (instance.isValidRole(roleName) ? roleName : '');
             },
             validator: isString
         },
@@ -139,7 +122,7 @@ var Aria = A.Component.create({
             writeOnce: true,
             setter: A.one,
             valueFn: function() {
-                return this.get(HOST).get(BOUNDING_BOX);
+                return this.get('host').get('boundingBox');
             }
         },
 
@@ -176,16 +159,16 @@ var Aria = A.Component.create({
         initializer: function() {
             var instance = this;
 
-            instance.publish(EV_PROCESS_ATTRIBUTE, {
+            instance.publish('aria:processAttribute', {
                 defaultFn: instance._defProcessFn,
                 queuable: false,
                 emitFacade: true,
                 bubbles: true,
-                prefix: ARIA
+                prefix: 'aria'
             });
 
             instance._uiSetRoleName(
-                instance.get(ROLE_NAME)
+                instance.get('roleName')
             );
 
             instance.after('roleNameChange', instance._afterRoleNameChange);
@@ -203,7 +186,7 @@ var Aria = A.Component.create({
         isValidAttribute: function(attrName) {
             var instance = this;
 
-            return (instance.get(VALIDATE_W3C) ? A.Plugin.Aria.W3C_ATTRIBUTES[attrName] : true);
+            return (instance.get('validateW3C') ? A.Plugin.Aria.W3C_ATTRIBUTES[attrName] : true);
         },
 
         /**
@@ -216,7 +199,7 @@ var Aria = A.Component.create({
         isValidRole: function(roleName) {
             var instance = this;
 
-            return (instance.get(VALIDATE_W3C) ? A.Plugin.Aria.W3C_ROLES[roleName] : true);
+            return (instance.get('validateW3C') ? A.Plugin.Aria.W3C_ROLES[roleName] : true);
         },
 
         /**
@@ -232,7 +215,7 @@ var Aria = A.Component.create({
             var instance = this;
 
             if (instance.isValidAttribute(attrName)) {
-                (node || instance.get(ATTRIBUTE_NODE)).set(ARIA_PREFIX + attrName, attrValue);
+                (node || instance.get('attributeNode')).set('aria-' + attrName, attrValue);
 
                 return true;
             }
@@ -266,7 +249,7 @@ var Aria = A.Component.create({
             var instance = this;
 
             if (instance.isValidRole(roleName)) {
-                (node || instance.get(ROLE_NODE)).set(ROLE, roleName);
+                (node || instance.get('roleNode')).set('role', roleName);
 
                 return true;
             }
@@ -322,7 +305,7 @@ var Aria = A.Component.create({
          */
         _bindHostAttributes: function() {
             var instance = this;
-            var attributes = instance.get(ATTRIBUTES);
+            var attributes = instance.get('attributes');
 
             A.each(attributes, function(aria, attrName) {
                 var ariaAttr = instance._getAriaAttribute(aria, attrName);
@@ -331,7 +314,7 @@ var Aria = A.Component.create({
                     aria: ariaAttr
                 });
 
-                instance.afterHostEvent(attrName + CHANGE_PREFIX, function(event) {
+                instance.afterHostEvent(attrName + 'Change', function(event) {
                     event.aria = ariaAttr;
                     instance._afterHostAttributeChange(event);
                 });
@@ -362,7 +345,7 @@ var Aria = A.Component.create({
          */
         _getAriaAttribute: function(aria, attrName) {
             var instance = this;
-            var attributeValueFormat = instance.get(ATTRIBUTE_VALUE_FORMAT);
+            var attributeValueFormat = instance.get('attributeValueFormat');
             var prepared = {};
 
             if (isString(aria)) {
@@ -375,7 +358,7 @@ var Aria = A.Component.create({
             }
             else if (isObject(aria)) {
                 prepared = A.mix(aria, {
-                    ariaName: EMPTY_STR,
+                    ariaName: '',
                     attrName: attrName,
                     format: attributeValueFormat,
                     node: null
@@ -395,7 +378,7 @@ var Aria = A.Component.create({
         _handleProcessAttribute: function(event) {
             var instance = this;
 
-            instance.fire(EV_PROCESS_ATTRIBUTE, {
+            instance.fire('aria:processAttribute', {
                 aria: event.aria
             });
         },
@@ -409,7 +392,7 @@ var Aria = A.Component.create({
          */
         _setAttribute: function(ariaAttr) {
             var instance = this;
-            var host = instance.get(HOST);
+            var host = instance.get('host');
             var attrValue = host.get(ariaAttr.attrName);
             var attrNode = ariaAttr.node;
 

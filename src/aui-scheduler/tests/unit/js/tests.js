@@ -31,7 +31,7 @@ YUI.add('aui-scheduler-tests', function(Y) {
         },
 
         /*
-         * @tests AUI-1045
+         * Tests: AUI-1045
          */
         'event color is encoded in RGB': function() {
             var events = scheduler.getEventsByDay(new Date(2013, 11, 6));

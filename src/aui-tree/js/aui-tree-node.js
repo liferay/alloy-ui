@@ -10,54 +10,6 @@ var Lang = A.Lang,
     isBoolean = Lang.isBoolean,
     isFunction = Lang.isFunction,
 
-    CACHE = 'cache',
-    IO = 'io',
-    LOADED = 'loaded',
-    LOADING = 'loading',
-    PAGINATOR = 'paginator',
-    ALWAYS_SHOW_HITAREA = 'alwaysShowHitArea',
-    BLANK = '',
-    BOUNDING_BOX = 'boundingBox',
-    CHILDREN = 'children',
-    COLLAPSED = 'collapsed',
-    CONTAINER = 'container',
-    CONTENT = 'content',
-    CONTENT_BOX = 'contentBox',
-    DRAGGABLE = 'draggable',
-    EXPANDED = 'expanded',
-    HIDDEN = 'hidden',
-    HIT_AREA_EL = 'hitAreaEl',
-    HITAREA = 'hitarea',
-    ICON = 'icon',
-    ICON_EL = 'iconEl',
-    INVALID = 'invalid',
-    HIDE = 'hide',
-    ID = 'id',
-    LABEL = 'label',
-    LABEL_EL = 'labelEl',
-    LAST_SELECTED = 'lastSelected',
-    LEAF = 'leaf',
-    NODE = 'node',
-    OVER = 'over',
-    OWNER_TREE = 'ownerTree',
-    PARENT_NODE = 'parentNode',
-    RADIO = 'radio',
-    RENDERED = 'rendered',
-    SELECTED = 'selected',
-    SPACE = ' ',
-    TREE = 'tree',
-    TREE_NODE = 'tree-node',
-    OK = 'ok',
-    REFRESH = 'refresh',
-    MINUS = 'minus',
-    PLUS = 'plus',
-    FILE = 'file',
-    CLOSE = 'close',
-    FOLDER = 'folder',
-    SIGN = 'sign',
-    OPEN = 'open',
-    CHECK = 'check',
-
     isTreeNode = function(v) {
         return (v instanceof A.TreeNode);
     },
@@ -68,27 +20,27 @@ var Lang = A.Lang,
 
     getCN = A.getClassName,
 
-    CSS_TREE_COLLAPSED = getCN(TREE, COLLAPSED),
-    CSS_TREE_CONTAINER = getCN(TREE, CONTAINER),
-    CSS_TREE_EXPANDED = getCN(TREE, EXPANDED),
-    CSS_TREE_HITAREA = getCN(TREE, HITAREA),
-    CSS_TREE_ICON = getCN(TREE, ICON),
-    CSS_TREE_LABEL = getCN(TREE, LABEL),
-    CSS_TREE_NODE = getCN(TREE, NODE),
-    CSS_TREE_NODE_CONTENT = getCN(TREE, NODE, CONTENT),
-    CSS_TREE_NODE_CONTENT_INVALID = getCN(TREE, NODE, CONTENT, INVALID),
-    CSS_TREE_NODE_HIDDEN_HITAREA = getCN(TREE, NODE, HIDDEN, HITAREA),
-    CSS_TREE_NODE_LEAF = getCN(TREE, NODE, LEAF),
-    CSS_TREE_NODE_OVER = getCN(TREE, NODE, OVER),
-    CSS_TREE_NODE_SELECTED = getCN(TREE, NODE, SELECTED),
-    CSS_ICON_FOLDER_CLOSE = getCN(ICON, FOLDER, CLOSE),
-    CSS_ICON_FOLDER_OPEN = getCN(ICON, FOLDER, OPEN),
-    CSS_ICON_ICON_PLUS = getCN(ICON, PLUS),
-    CSS_ICON_ICON_MINUS = getCN(ICON, MINUS),
-    CSS_ICON_ICON_FILE = getCN(ICON, FILE),
-    CSS_ICON_ICON_REFRESH = getCN(ICON, REFRESH),
-    CSS_ICON_OK_SIGN = getCN(ICON, OK, SIGN),
-    CSS_ICON_CHECK = getCN(ICON, CHECK),
+    CSS_TREE_COLLAPSED = getCN('tree', 'collapsed'),
+    CSS_TREE_CONTAINER = getCN('tree', 'container'),
+    CSS_TREE_EXPANDED = getCN('tree', 'expanded'),
+    CSS_TREE_HITAREA = getCN('tree', 'hitarea'),
+    CSS_TREE_ICON = getCN('tree', 'icon'),
+    CSS_TREE_LABEL = getCN('tree', 'label'),
+    CSS_TREE_NODE = getCN('tree', 'node'),
+    CSS_TREE_NODE_CONTENT = getCN('tree', 'node', 'content'),
+    CSS_TREE_NODE_CONTENT_INVALID = getCN('tree', 'node', 'content', 'invalid'),
+    CSS_TREE_NODE_HIDDEN_HITAREA = getCN('tree', 'node', 'hidden', 'hitarea'),
+    CSS_TREE_NODE_LEAF = getCN('tree', 'node', 'leaf'),
+    CSS_TREE_NODE_OVER = getCN('tree', 'node', 'over'),
+    CSS_TREE_NODE_SELECTED = getCN('tree', 'node', 'selected'),
+    CSS_ICON_FOLDER_CLOSE = getCN('icon', 'folder', 'close'),
+    CSS_ICON_FOLDER_OPEN = getCN('icon', 'folder', 'open'),
+    CSS_ICON_ICON_PLUS = getCN('icon', 'plus'),
+    CSS_ICON_ICON_MINUS = getCN('icon', 'minus'),
+    CSS_ICON_ICON_FILE = getCN('icon', 'file'),
+    CSS_ICON_ICON_REFRESH = getCN('icon', 'refresh'),
+    CSS_ICON_OK_SIGN = getCN('icon', 'ok', 'sign'),
+    CSS_ICON_CHECK = getCN('icon', 'check'),
 
     HIT_AREA_TPL = '<i class="' + CSS_TREE_HITAREA + '"></i>',
     ICON_TPL = '<i class="' + CSS_TREE_ICON + '"></i>',
@@ -121,7 +73,7 @@ var TreeNode = A.Component.create({
      * @type String
      * @static
      */
-    NAME: TREE_NODE,
+    NAME: 'tree-node',
 
     /**
      * Static property used to define the default attribute
@@ -168,16 +120,16 @@ var TreeNode = A.Component.create({
                     iconCheck: CSS_ICON_CHECK,
                     iconCollapsed: CSS_ICON_FOLDER_CLOSE,
                     iconExpanded: CSS_ICON_FOLDER_OPEN,
-                    iconHitAreaCollapsed: [CSS_TREE_HITAREA, CSS_ICON_ICON_PLUS].join(SPACE),
-                    iconHitAreaExpanded: [CSS_TREE_HITAREA, CSS_ICON_ICON_MINUS].join(SPACE),
+                    iconHitAreaCollapsed: [CSS_TREE_HITAREA, CSS_ICON_ICON_PLUS].join(' '),
+                    iconHitAreaExpanded: [CSS_TREE_HITAREA, CSS_ICON_ICON_MINUS].join(' '),
                     iconLeaf: CSS_ICON_ICON_FILE,
                     iconLoading: CSS_ICON_ICON_REFRESH,
                     iconUncheck: CSS_ICON_CHECK
                 },
                 normal: {
                     iconCheck: CSS_ICON_CHECK,
-                    iconHitAreaCollapsed: [CSS_TREE_HITAREA, CSS_ICON_ICON_PLUS].join(SPACE),
-                    iconHitAreaExpanded: [CSS_TREE_HITAREA, CSS_ICON_ICON_MINUS].join(SPACE),
+                    iconHitAreaCollapsed: [CSS_TREE_HITAREA, CSS_ICON_ICON_PLUS].join(' '),
+                    iconHitAreaExpanded: [CSS_TREE_HITAREA, CSS_ICON_ICON_MINUS].join(' '),
                     iconLoading: CSS_ICON_ICON_REFRESH,
                     iconUncheck: CSS_ICON_CHECK
                 }
@@ -215,7 +167,7 @@ var TreeNode = A.Component.create({
          * @type String
          */
         label: {
-            value: BLANK,
+            value: '',
             validator: isString
         },
 
@@ -257,7 +209,7 @@ var TreeNode = A.Component.create({
             value: true,
             setter: function(v) {
                 // if has children it's not a leaf
-                if (v && this.get(CHILDREN).length) {
+                if (v && this.get('children').length) {
                     return false;
                 }
 
@@ -316,7 +268,7 @@ var TreeNode = A.Component.create({
         labelEl: {
             setter: A.one,
             valueFn: function() {
-                var label = this.get(LABEL);
+                var label = this.get('label');
 
                 return A.Node.create(LABEL_TPL).html(label).unselectable();
             }
@@ -416,16 +368,16 @@ var TreeNode = A.Component.create({
         initializer: function() {
             var instance = this;
 
-            var boundingBox = instance.get(BOUNDING_BOX);
+            var boundingBox = instance.get('boundingBox');
 
-            boundingBox.setData(TREE_NODE, instance);
+            boundingBox.setData('tree-node', instance);
 
             // Sync the Widget TreeNode id with the BOUNDING_BOX id
             instance._syncTreeNodeBBId();
 
-            instance._uiSetDraggable(instance.get(DRAGGABLE));
-            instance._uiSetExpanded(instance.get(EXPANDED));
-            instance._uiSetLeaf(instance.get(LEAF));
+            instance._uiSetDraggable(instance.get('draggable'));
+            instance._uiSetExpanded(instance.get('expanded'));
+            instance._uiSetLeaf(instance.get('leaf'));
         },
 
         /**
@@ -456,17 +408,17 @@ var TreeNode = A.Component.create({
         render: function(container) {
             var instance = this;
 
-            if (!instance.get(RENDERED)) {
+            if (!instance.get('rendered')) {
                 instance.renderUI();
                 instance.bindUI();
                 instance.syncUI();
 
-                instance.set(RENDERED, true);
+                instance.set('rendered', true);
             }
 
             if (container) {
-                var boundingBox = instance.get(BOUNDING_BOX);
-                var paginator = instance.get(PAGINATOR);
+                var boundingBox = instance.get('boundingBox');
+                var paginator = instance.get('paginator');
 
                 boundingBox.appendTo(container);
 
@@ -579,10 +531,10 @@ var TreeNode = A.Component.create({
         _renderContentBox: function(v) {
             var instance = this;
 
-            var contentBox = instance.get(CONTENT_BOX);
+            var contentBox = instance.get('contentBox');
 
             if (!instance.isLeaf()) {
-                var expanded = instance.get(EXPANDED);
+                var expanded = instance.get('expanded');
 
                 // add folder css classes state
                 contentBox.addClass(
@@ -607,17 +559,17 @@ var TreeNode = A.Component.create({
         _renderBoundingBox: function() {
             var instance = this;
 
-            var boundingBox = instance.get(BOUNDING_BOX);
-            var contentBox = instance.get(CONTENT_BOX);
+            var boundingBox = instance.get('boundingBox');
+            var contentBox = instance.get('contentBox');
 
-            contentBox.append(instance.get(ICON_EL));
-            contentBox.append(instance.get(LABEL_EL));
+            contentBox.append(instance.get('iconEl'));
+            contentBox.append(instance.get('labelEl'));
             boundingBox.append(contentBox);
 
-            var nodeContainer = instance.get(CONTAINER);
+            var nodeContainer = instance.get('container');
 
             if (nodeContainer) {
-                if (!instance.get(EXPANDED)) {
+                if (!instance.get('expanded')) {
                     nodeContainer.hide();
                 }
 
@@ -638,12 +590,12 @@ var TreeNode = A.Component.create({
             var instance = this;
 
             // creating <ul class="tree-container">
-            var nodeContainer = instance.get(CONTAINER) || A.Node.create(NODE_CONTAINER_TPL);
+            var nodeContainer = instance.get('container') || A.Node.create(NODE_CONTAINER_TPL);
 
             nodeContainer.addClass(CSS_TREE_CONTAINER);
 
             // when it's not a leaf it has a <ul> container
-            instance.set(CONTAINER, nodeContainer);
+            instance.set('container', nodeContainer);
 
             return nodeContainer;
         },
@@ -657,7 +609,7 @@ var TreeNode = A.Component.create({
         _syncHitArea: function() {
             var instance = this;
 
-            if (instance.get(ALWAYS_SHOW_HITAREA) || instance.getChildrenLength()) {
+            if (instance.get('alwaysShowHitArea') || instance.getChildrenLength()) {
                 instance.showHitArea();
             }
             else {
@@ -674,7 +626,7 @@ var TreeNode = A.Component.create({
          */
         _syncIconUI: function() {
             var instance = this,
-                ownerTree = instance.get(OWNER_TREE);
+                ownerTree = instance.get('ownerTree');
 
             if (ownerTree) {
                 var type = ownerTree.get('type'),
@@ -684,9 +636,9 @@ var TreeNode = A.Component.create({
                     return;
                 }
 
-                var expanded = instance.get(EXPANDED),
-                    iconEl = instance.get(ICON_EL),
-                    hitAreaEl = instance.get(HIT_AREA_EL),
+                var expanded = instance.get('expanded'),
+                    iconEl = instance.get('iconEl'),
+                    hitAreaEl = instance.get('hitAreaEl'),
                     icon = instance.isLeaf() ?
                         cssClasses.iconLeaf :
                         (expanded ? cssClasses.iconExpanded : cssClasses.iconCollapsed),
@@ -694,12 +646,12 @@ var TreeNode = A.Component.create({
                         cssClasses.iconHitAreaExpanded :
                         cssClasses.iconHitAreaCollapsed;
 
-                if (instance.get(LOADING)) {
+                if (instance.get('loading')) {
                     icon = cssClasses.iconLoading;
                 }
 
-                iconEl.setAttribute('className', icon || BLANK);
-                hitAreaEl.setAttribute('className', iconHitArea || BLANK);
+                iconEl.setAttribute('className', icon || '');
+                hitAreaEl.setAttribute('className', iconHitArea || '');
             }
 
             instance._syncHitArea();
@@ -726,7 +678,7 @@ var TreeNode = A.Component.create({
         collapse: function() {
             var instance = this;
 
-            instance.set(EXPANDED, false);
+            instance.set('expanded', false);
         },
 
         /**
@@ -780,7 +732,7 @@ var TreeNode = A.Component.create({
         expand: function() {
             var instance = this;
 
-            instance.set(EXPANDED, true);
+            instance.set('expanded', true);
         },
 
         /**
@@ -808,11 +760,11 @@ var TreeNode = A.Component.create({
 
             var depth = 0;
 
-            var parentNode = instance.get(PARENT_NODE);
+            var parentNode = instance.get('parentNode');
 
             while (parentNode) {
                 ++depth;
-                parentNode = parentNode.get(PARENT_NODE);
+                parentNode = parentNode.get('parentNode');
             }
 
             return depth;
@@ -837,7 +789,7 @@ var TreeNode = A.Component.create({
          * @return {Boolean}
          */
         isSelected: function() {
-            return this.get(CONTENT_BOX).hasClass(CSS_TREE_NODE_SELECTED);
+            return this.get('contentBox').hasClass(CSS_TREE_NODE_SELECTED);
         },
 
         /**
@@ -849,7 +801,7 @@ var TreeNode = A.Component.create({
         isLeaf: function() {
             var instance = this;
 
-            return instance.get(LEAF);
+            return instance.get('leaf');
         },
 
         /**
@@ -861,13 +813,13 @@ var TreeNode = A.Component.create({
         isAncestor: function(node) {
             var instance = this;
 
-            var parentNode = instance.get(PARENT_NODE);
+            var parentNode = instance.get('parentNode');
 
             while (parentNode) {
                 if (parentNode === node) {
                     return true;
                 }
-                parentNode = parentNode.get(PARENT_NODE);
+                parentNode = parentNode.get('parentNode');
             }
 
             return false;
@@ -881,7 +833,7 @@ var TreeNode = A.Component.create({
         toggle: function() {
             var instance = this;
 
-            if (instance.get(EXPANDED)) {
+            if (instance.get('expanded')) {
                 instance.collapse();
             }
             else {
@@ -897,13 +849,13 @@ var TreeNode = A.Component.create({
         select: function() {
             var instance = this;
 
-            var ownerTree = instance.get(OWNER_TREE);
+            var ownerTree = instance.get('ownerTree');
 
             if (ownerTree) {
-                ownerTree.set(LAST_SELECTED, instance);
+                ownerTree.set('lastSelected', instance);
             }
 
-            instance.get(CONTENT_BOX).addClass(CSS_TREE_NODE_SELECTED);
+            instance.get('contentBox').addClass(CSS_TREE_NODE_SELECTED);
 
             instance.fire('select');
         },
@@ -916,7 +868,7 @@ var TreeNode = A.Component.create({
         unselect: function() {
             var instance = this;
 
-            instance.get(CONTENT_BOX).removeClass(CSS_TREE_NODE_SELECTED);
+            instance.get('contentBox').removeClass(CSS_TREE_NODE_SELECTED);
 
             instance.fire('unselect');
         },
@@ -927,7 +879,7 @@ var TreeNode = A.Component.create({
          * @method over
          */
         over: function() {
-            this.get(CONTENT_BOX).addClass(CSS_TREE_NODE_OVER);
+            this.get('contentBox').addClass(CSS_TREE_NODE_OVER);
         },
 
         /*
@@ -936,7 +888,7 @@ var TreeNode = A.Component.create({
          * @method over
          */
         out: function() {
-            this.get(CONTENT_BOX).removeClass(CSS_TREE_NODE_OVER);
+            this.get('contentBox').removeClass(CSS_TREE_NODE_OVER);
         },
 
         /*
@@ -947,7 +899,7 @@ var TreeNode = A.Component.create({
         showHitArea: function() {
             var instance = this;
 
-            var hitAreaEl = instance.get(HIT_AREA_EL);
+            var hitAreaEl = instance.get('hitAreaEl');
 
             hitAreaEl.removeClass(CSS_TREE_NODE_HIDDEN_HITAREA);
         },
@@ -960,7 +912,7 @@ var TreeNode = A.Component.create({
         hideHitArea: function() {
             var instance = this;
 
-            var hitAreaEl = instance.get(HIT_AREA_EL);
+            var hitAreaEl = instance.get('hitAreaEl');
 
             hitAreaEl.addClass(CSS_TREE_NODE_HIDDEN_HITAREA);
         },
@@ -975,9 +927,9 @@ var TreeNode = A.Component.create({
         _syncTreeNodeBBId: function(id) {
             var instance = this;
 
-            instance.get(BOUNDING_BOX).attr(
-                ID,
-                instance.get(ID)
+            instance.get('boundingBox').attr(
+                'id',
+                instance.get('id')
             );
         },
 
@@ -1011,7 +963,7 @@ var TreeNode = A.Component.create({
          */
         _uiSetDraggable: function(val) {
             var instance = this;
-            var contentBox = instance.get(CONTENT_BOX);
+            var contentBox = instance.get('contentBox');
 
             contentBox.toggleClass(CSS_TREE_NODE_CONTENT_INVALID, !val);
         },
@@ -1027,10 +979,10 @@ var TreeNode = A.Component.create({
             var instance = this;
 
             if (!instance.isLeaf()) {
-                var container = instance.get(CONTAINER);
-                var contentBox = instance.get(CONTENT_BOX);
-                var ownerTree = instance.get(OWNER_TREE);
-                var treeHitArea = contentBox.one(DOT + CSS_TREE_HITAREA);
+                var container = instance.get('container');
+                var contentBox = instance.get('contentBox');
+                var ownerTree = instance.get('ownerTree');
+                var treeHitArea = contentBox.one('.' + CSS_TREE_HITAREA);
 
                 if (val) {
                     contentBox.replaceClass(CSS_TREE_COLLAPSED, CSS_TREE_EXPANDED);
@@ -1067,20 +1019,20 @@ var TreeNode = A.Component.create({
         _uiSetLeaf: function(val) {
             var instance = this;
 
-            var contentBox = instance.get(CONTENT_BOX);
+            var contentBox = instance.get('contentBox');
 
             if (val) {
-                instance.get(CONTAINER).remove();
-                instance.get(HIT_AREA_EL).remove();
+                instance.get('container').remove();
+                instance.get('hitAreaEl').remove();
             }
             else {
                 // append hitarea element
-                contentBox.prepend(instance.get(HIT_AREA_EL));
+                contentBox.prepend(instance.get('hitAreaEl'));
 
                 // if has children append them to this model
                 instance._createNodeContainer();
 
-                instance._uiSetExpanded(instance.get(EXPANDED));
+                instance._uiSetExpanded(instance.get('expanded'));
             }
 
             // add leaf css classes
@@ -1094,7 +1046,6 @@ A.TreeNode = TreeNode;
 /*
  * TreeNodeIO
  */
-var TREE_NODE_IO = 'tree-node-io';
 
 /**
  * A base class for TreeNodeIO, providing:
@@ -1117,7 +1068,7 @@ var TreeNodeIO = A.Component.create({
      * @type String
      * @static
      */
-    NAME: TREE_NODE_IO,
+    NAME: 'tree-node-io',
 
     /**
      * Static property used to define the default attribute
@@ -1237,15 +1188,15 @@ var TreeNodeIO = A.Component.create({
         expand: function() {
             var instance = this;
 
-            var cache = instance.get(CACHE);
-            var children = instance.get(CHILDREN);
-            var io = instance.get(IO);
-            var loaded = instance.get(LOADED);
-            var loading = instance.get(LOADING);
+            var cache = instance.get('cache');
+            var children = instance.get('children');
+            var io = instance.get('io');
+            var loaded = instance.get('loaded');
+            var loading = instance.get('loading');
 
             if (!cache) {
                 // if cache is false on expand, always set LOADED to false
-                instance.set(LOADED, false);
+                instance.set('loaded', false);
             }
 
             if (io && !loaded && !loading && !children.length && !instance.isLeaf()) {
@@ -1271,12 +1222,12 @@ var TreeNodeIO = A.Component.create({
         _inheritOwnerTreeAttrs: function() {
             var instance = this;
 
-            var ownerTree = instance.get(OWNER_TREE);
+            var ownerTree = instance.get('ownerTree');
 
             if (ownerTree) {
-                if (!instance.get(IO)) {
+                if (!instance.get('io')) {
                     var io = A.clone(
-                        ownerTree.get(IO),
+                        ownerTree.get('io'),
                         true,
                         function(value, key) {
                             if (isFunction(value) && (value.defaultFn || value.wrappedFn)) {
@@ -1287,11 +1238,11 @@ var TreeNodeIO = A.Component.create({
                         }
                     );
 
-                    instance.set(IO, io);
+                    instance.set('io', io);
                 }
 
-                if (!instance.get(PAGINATOR)) {
-                    var ownerTreePaginator = ownerTree.get(PAGINATOR);
+                if (!instance.get('paginator')) {
+                    var ownerTreePaginator = ownerTree.get('paginator');
 
                     var paginator = A.clone(ownerTreePaginator);
 
@@ -1301,7 +1252,7 @@ var TreeNodeIO = A.Component.create({
                         paginator.element = ownerTreePaginator.element.clone();
                     }
 
-                    instance.set(PAGINATOR, paginator);
+                    instance.set('paginator', paginator);
                 }
             }
         },
@@ -1325,18 +1276,9 @@ A.TreeNodeIO = TreeNodeIO;
 /*
  * TreeNodeCheck
  */
-var CHECKBOX = 'checkbox',
-    CHECKED = 'checked',
-    CHECK_CONTAINER_EL = 'checkContainerEl',
-    CHECK_EL = 'checkEl',
-    CHECK_NAME = 'checkName',
-    DOT = '.',
-    NAME = 'name',
-    TREE_NODE_CHECK = 'tree-node-check',
-
-    CSS_TREE_NODE_CHECKBOX = getCN(TREE, NODE, CHECKBOX),
-    CSS_TREE_NODE_CHECKBOX_CONTAINER = getCN(TREE, NODE, CHECKBOX, CONTAINER),
-    CSS_TREE_NODE_CHECKED = getCN(TREE, NODE, CHECKED),
+var CSS_TREE_NODE_CHECKBOX = getCN('tree', 'node', 'checkbox'),
+    CSS_TREE_NODE_CHECKBOX_CONTAINER = getCN('tree', 'node', 'checkbox', 'container'),
+    CSS_TREE_NODE_CHECKED = getCN('tree', 'node', 'checked'),
 
     CHECKBOX_CONTAINER_TPL = '<i class="' + CSS_TREE_NODE_CHECKBOX_CONTAINER + '"></i>',
     CHECKBOX_TPL = '<input class="' + CSS_TREE_NODE_CHECKBOX + '" type="checkbox" />';
@@ -1361,7 +1303,7 @@ var TreeNodeCheck = A.Component.create({
      * @type String
      * @static
      */
-    NAME: TREE_NODE_CHECK,
+    NAME: 'tree-node-check',
 
     /**
      * Static property used to define the default attribute
@@ -1393,7 +1335,7 @@ var TreeNodeCheck = A.Component.create({
          * @type String
          */
         checkName: {
-            value: TREE_NODE_CHECK,
+            value: 'tree-node-check',
             validator: isString
         },
 
@@ -1421,9 +1363,9 @@ var TreeNodeCheck = A.Component.create({
         checkEl: {
             setter: A.one,
             valueFn: function() {
-                var checkName = this.get(CHECK_NAME);
+                var checkName = this.get('checkName');
 
-                return A.Node.create(CHECKBOX_TPL).attr(NAME, checkName);
+                return A.Node.create(CHECKBOX_TPL).attr('name', checkName);
             }
         }
     },
@@ -1443,9 +1385,9 @@ var TreeNodeCheck = A.Component.create({
 
             A.TreeNodeCheck.superclass.renderUI.apply(instance, arguments);
 
-            var labelEl = instance.get(LABEL_EL);
-            var checkEl = instance.get(CHECK_EL);
-            var checkContainerEl = instance.get(CHECK_CONTAINER_EL);
+            var labelEl = instance.get('labelEl');
+            var checkEl = instance.get('checkEl');
+            var checkContainerEl = instance.get('checkContainerEl');
 
             checkEl.hide();
 
@@ -1457,7 +1399,7 @@ var TreeNodeCheck = A.Component.create({
                 instance.check();
             }
 
-            instance._uiSetChecked(instance.get(CHECKED));
+            instance._uiSetChecked(instance.get('checked'));
         },
 
         /**
@@ -1469,16 +1411,16 @@ var TreeNodeCheck = A.Component.create({
         bindUI: function() {
             var instance = this;
 
-            var contentBox = instance.get(CONTENT_BOX);
-            var labelEl = instance.get(LABEL_EL);
+            var contentBox = instance.get('contentBox');
+            var labelEl = instance.get('labelEl');
 
             A.TreeNodeCheck.superclass.bindUI.apply(instance, arguments);
 
             instance.after('checkedChange', A.bind(instance._afterCheckedChange, instance));
 
-            contentBox.delegate('click', A.bind(instance.toggleCheck, instance), DOT +
+            contentBox.delegate('click', A.bind(instance.toggleCheck, instance), '.' +
                 CSS_TREE_NODE_CHECKBOX_CONTAINER);
-            contentBox.delegate('click', A.bind(instance.toggleCheck, instance), DOT + CSS_TREE_LABEL);
+            contentBox.delegate('click', A.bind(instance.toggleCheck, instance), '.' + CSS_TREE_LABEL);
 
             // cancel dblclick because of the check
             labelEl.swallowEvent('dblclick');
@@ -1492,7 +1434,7 @@ var TreeNodeCheck = A.Component.create({
         check: function(originalTarget) {
             var instance = this;
 
-            instance.set(CHECKED, true, {
+            instance.set('checked', true, {
                 originalTarget: originalTarget
             });
         },
@@ -1505,7 +1447,7 @@ var TreeNodeCheck = A.Component.create({
         uncheck: function(originalTarget) {
             var instance = this;
 
-            instance.set(CHECKED, false, {
+            instance.set('checked', false, {
                 originalTarget: originalTarget
             });
         },
@@ -1518,8 +1460,8 @@ var TreeNodeCheck = A.Component.create({
         toggleCheck: function() {
             var instance = this;
 
-            var checkEl = instance.get(CHECK_EL);
-            var checked = checkEl.attr(CHECKED);
+            var checkEl = instance.get('checkEl');
+            var checked = checkEl.attr('checked');
 
             if (!checked) {
                 instance.check();
@@ -1538,7 +1480,7 @@ var TreeNodeCheck = A.Component.create({
         isChecked: function() {
             var instance = this;
 
-            return instance.get(CHECKED);
+            return instance.get('checked');
         },
 
         /**
@@ -1549,7 +1491,7 @@ var TreeNodeCheck = A.Component.create({
          */
         _syncIconCheckUI: function() {
             var instance = this,
-                ownerTree = instance.get(OWNER_TREE);
+                ownerTree = instance.get('ownerTree');
 
             if (ownerTree) {
                 var type = ownerTree.get('type'),
@@ -1559,7 +1501,7 @@ var TreeNodeCheck = A.Component.create({
                     return;
                 }
 
-                var checkContainerEl = instance.get(CHECK_CONTAINER_EL),
+                var checkContainerEl = instance.get('checkContainerEl'),
                     isChecked = instance.isChecked();
                 checkContainerEl.removeClass(
                     isChecked ?
@@ -1594,8 +1536,8 @@ var TreeNodeCheck = A.Component.create({
             var instance = this;
 
             instance._syncIconCheckUI();
-            instance.get(CHECK_EL).attr(CHECKED, val ? CHECKED : BLANK);
-            instance.get(CONTENT_BOX).toggleClass(CSS_TREE_NODE_CHECKED, val);
+            instance.get('checkEl').attr('checked', val ? 'checked' : '');
+            instance.get('contentBox').toggleClass(CSS_TREE_NODE_CHECKED, val);
         }
     }
 });
@@ -1605,15 +1547,11 @@ A.TreeNodeCheck = TreeNodeCheck;
 /*
  * TreeNodeTask
  */
-var CHILD = 'child',
-    TREE_NODE_TASK = 'tree-node-task',
-    UNCHECKED = 'unchecked',
+var CSS_TREE_NODE_CHILD_UNCHECKED = getCN('tree', 'node', 'child', 'unchecked'),
 
     isTreeNodeTask = function(node) {
         return node instanceof A.TreeNodeCheck;
-    },
-
-    CSS_TREE_NODE_CHILD_UNCHECKED = getCN(TREE, NODE, CHILD, UNCHECKED);
+    };
 
 /**
  * A base class for TreeNodeTask, providing:
@@ -1637,7 +1575,7 @@ var TreeNodeTask = A.Component.create({
      * @type String
      * @static
      */
-    NAME: TREE_NODE_TASK,
+    NAME: 'tree-node-task',
 
     EXTENDS: A.TreeNodeCheck,
 
@@ -1652,7 +1590,7 @@ var TreeNodeTask = A.Component.create({
         check: function(originalTarget) {
             var instance = this;
 
-            var contentBox = instance.get(CONTENT_BOX);
+            var contentBox = instance.get('contentBox');
 
             originalTarget = originalTarget || instance;
 
@@ -1676,7 +1614,7 @@ var TreeNodeTask = A.Component.create({
                         });
 
                         if (!hasUncheckedChild) {
-                            parentNode.get(CONTENT_BOX).removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+                            parentNode.get('contentBox').removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
                         }
                     }
                 }
@@ -1697,7 +1635,7 @@ var TreeNodeTask = A.Component.create({
         uncheck: function(originalTarget) {
             var instance = this;
 
-            var contentBox = instance.get(CONTENT_BOX);
+            var contentBox = instance.get('contentBox');
 
             originalTarget = originalTarget || instance;
 
@@ -1712,7 +1650,7 @@ var TreeNodeTask = A.Component.create({
             instance.eachParent(
                 function(parentNode) {
                     if (isTreeNodeTask(parentNode) && parentNode.isChecked()) {
-                        parentNode.get(CONTENT_BOX).addClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+                        parentNode.get('contentBox').addClass(CSS_TREE_NODE_CHILD_UNCHECKED);
                     }
                 }
             );
@@ -1731,13 +1669,11 @@ A.TreeNodeTask = TreeNodeTask;
  * TreeNodeRadio
  */
 
-var TREE_NODE_RADIO = 'tree-node-radio',
+var CSS_NODE_RADIO = getCN('tree', 'node', 'radio'),
 
     isTreeNodeRadio = function(node) {
         return node instanceof A.TreeNodeRadio;
-    },
-
-    CSS_NODE_RADIO = getCN(TREE, NODE, RADIO);
+    };
 
 /**
  * A base class for TreeNodeRadio, providing:
@@ -1761,7 +1697,7 @@ var TreeNodeRadio = A.Component.create({
      * @type String
      * @static
      */
-    NAME: TREE_NODE_RADIO,
+    NAME: 'tree-node-radio',
 
     /**
      * Static property used to define the default attribute
@@ -1785,16 +1721,16 @@ var TreeNodeRadio = A.Component.create({
                     iconCheck: CSS_ICON_OK_SIGN,
                     iconCollapsed: CSS_ICON_FOLDER_CLOSE,
                     iconExpanded: CSS_ICON_FOLDER_OPEN,
-                    iconHitAreaCollapsed: [CSS_TREE_HITAREA, CSS_ICON_ICON_PLUS].join(SPACE),
-                    iconHitAreaExpanded: [CSS_TREE_HITAREA, CSS_ICON_ICON_MINUS].join(SPACE),
+                    iconHitAreaCollapsed: [CSS_TREE_HITAREA, CSS_ICON_ICON_PLUS].join(' '),
+                    iconHitAreaExpanded: [CSS_TREE_HITAREA, CSS_ICON_ICON_MINUS].join(' '),
                     iconLeaf: CSS_ICON_ICON_FILE,
                     iconLoading: CSS_ICON_ICON_REFRESH,
                     iconUncheck: CSS_ICON_OK_SIGN
                 },
                 normal: {
                     iconCheck: CSS_ICON_OK_SIGN,
-                    iconHitAreaCollapsed: [CSS_TREE_HITAREA, CSS_ICON_ICON_PLUS].join(SPACE),
-                    iconHitAreaExpanded: [CSS_TREE_HITAREA, CSS_ICON_ICON_MINUS].join(SPACE),
+                    iconHitAreaCollapsed: [CSS_TREE_HITAREA, CSS_ICON_ICON_PLUS].join(' '),
+                    iconHitAreaExpanded: [CSS_TREE_HITAREA, CSS_ICON_ICON_MINUS].join(' '),
                     iconLoading: CSS_ICON_ICON_REFRESH,
                     iconUncheck: CSS_ICON_OK_SIGN
                 }
@@ -1817,7 +1753,7 @@ var TreeNodeRadio = A.Component.create({
 
             A.TreeNodeRadio.superclass.renderUI.apply(instance, arguments);
 
-            instance.get(CONTENT_BOX).addClass(CSS_NODE_RADIO);
+            instance.get('contentBox').addClass(CSS_NODE_RADIO);
         },
 
         /**
@@ -1846,13 +1782,13 @@ var TreeNodeRadio = A.Component.create({
             var children;
 
             if (node) {
-                children = node.get(CHILDREN);
+                children = node.get('children');
             }
             else {
-                var ownerTree = instance.get(OWNER_TREE);
+                var ownerTree = instance.get('ownerTree');
 
                 if (ownerTree) {
-                    children = ownerTree.get(CHILDREN);
+                    children = ownerTree.get('children');
                 }
                 else {
                     return;

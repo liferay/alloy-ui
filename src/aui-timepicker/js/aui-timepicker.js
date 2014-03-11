@@ -4,18 +4,7 @@
  * @module aui-timepicker
  */
 
-var Lang = A.Lang,
-
-    ACTIVE_INPUT = 'activeInput',
-    AUTO = 'auto',
-    AUTO_HIDE = 'autoHide',
-    AUTOCOMPLETE = 'autocomplete',
-    DATE_SEPARATOR = 'dateSeparator',
-    MASK = 'mask',
-    SELECT = 'select',
-    SELECTION_CHANGE = 'selectionChange',
-    TRIGGER = 'trigger',
-    VALUES = 'values';
+var Lang = A.Lang;
 
 /**
  * A base class for `TimePickerBase`.
@@ -178,7 +167,7 @@ A.mix(TimePickerBase.prototype, {
     getAutoComplete: function(node) {
         var instance = this,
             autocomplete = instance.autocomplete,
-            autocompleteConfig = instance.get(AUTOCOMPLETE);
+            autocompleteConfig = instance.get('autocomplete');
 
         if (autocomplete) {
             autocomplete.destroy();
@@ -189,7 +178,7 @@ A.mix(TimePickerBase.prototype, {
         autocomplete.render(instance.getPopover().bodyNode).sendRequest();
         instance.autocomplete = autocomplete;
 
-        autocomplete.after(SELECT, instance._afterAutocompleteSelect, instance);
+        autocomplete.after('select', instance._afterAutocompleteSelect, instance);
 
         return autocomplete;
     },
@@ -214,12 +203,12 @@ A.mix(TimePickerBase.prototype, {
      */
     useInputNode: function(node) {
         var instance = this,
-            activeInput = instance.get(ACTIVE_INPUT),
+            activeInput = instance.get('activeInput'),
             popover = instance.getPopover();
 
         if (activeInput !== node) {
-            instance.set(ACTIVE_INPUT, node);
-            popover.set(TRIGGER, node);
+            instance.set('activeInput', node);
+            popover.set('trigger', node);
             instance.getAutoComplete(node);
         }
 
@@ -246,7 +235,7 @@ A.mix(TimePickerBase.prototype, {
 
         instance.selectDates(parsed);
 
-        if (instance.get(AUTO_HIDE)) {
+        if (instance.get('autoHide')) {
             instance.hide();
         }
     },
@@ -262,7 +251,7 @@ A.mix(TimePickerBase.prototype, {
         var instance = this;
 
         if (selection) {
-            instance.fire(SELECTION_CHANGE, {
+            instance.fire('selectionChange', {
                 newSelection: selection
             });
         }
@@ -279,8 +268,8 @@ A.mix(TimePickerBase.prototype, {
      */
     _setAutocomplete: function(val) {
         var instance = this,
-            dateSeparator = instance.get(DATE_SEPARATOR),
-            values = instance.get(VALUES);
+            dateSeparator = instance.get('dateSeparator'),
+            values = instance.get('values');
 
         return A.merge({
             align: false,
@@ -290,7 +279,7 @@ A.mix(TimePickerBase.prototype, {
             queryDelimiter: dateSeparator,
             source: values,
             tabSelect: false,
-            width: AUTO
+            width: 'auto'
         }, val);
     },
 
@@ -310,7 +299,7 @@ A.mix(TimePickerBase.prototype, {
             formatted.push(
                 A.Date.format(
                     A.Date.parse('%H:%M', timeISOFormat), {
-                        format: instance.get(MASK)
+                        format: instance.get('mask')
                     }));
         });
 

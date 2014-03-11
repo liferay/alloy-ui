@@ -11,24 +11,6 @@ var L = A.Lang,
     isObject = L.isObject,
     isUndefined = L.isUndefined,
 
-    BOUNDING_BOX = 'boundingBox',
-    CHILDREN = 'children',
-    CONTAINER = 'container',
-    DOT = '.',
-    ID = 'id',
-    INDEX = 'index',
-    LAZY_LOAD = 'lazyLoad',
-    LEAF = 'leaf',
-    NEXT_SIBLING = 'nextSibling',
-    NODE = 'node',
-    OWNER_TREE = 'ownerTree',
-    PARENT_NODE = 'parentNode',
-    PREV_SIBLING = 'prevSibling',
-    PREVIOUS_SIBLING = 'previousSibling',
-    TREE = 'tree',
-    TREE_NODE = 'tree-node',
-    TREE_DATA = 'tree-data',
-
     isTreeNode = function(v) {
         return (A.instanceOf(v, A.TreeNode));
     },
@@ -39,7 +21,7 @@ var L = A.Lang,
 
     getCN = A.getClassName,
 
-    CSS_TREE_NODE = getCN(TREE, NODE);
+    CSS_TREE_NODE = getCN('tree', 'node');
 
 /**
  * A base class for TreeData, providing:
@@ -158,7 +140,7 @@ A.mix(TreeData.prototype, {
             instance.refreshIndex();
         }
 
-        return instance.get(INDEX)[uid];
+        return instance.get('index')[uid];
     },
 
     /**
@@ -171,7 +153,7 @@ A.mix(TreeData.prototype, {
     isRegistered: function(node) {
         var instance = this;
 
-        return !!(instance.get(INDEX)[node.get(ID)]);
+        return !!(instance.get('index')[node.get('id')]);
     },
 
     /**
@@ -184,18 +166,18 @@ A.mix(TreeData.prototype, {
      */
     updateReferences: function(node, parentNode, ownerTree) {
         var instance = this;
-        var oldParent = node.get(PARENT_NODE);
-        var oldOwnerTree = node.get(OWNER_TREE);
+        var oldParent = node.get('parentNode');
+        var oldOwnerTree = node.get('ownerTree');
         var moved = oldParent && (oldParent !== parentNode);
 
         if (oldParent) {
             if (moved) {
                 // when moved update the oldParent children
-                var children = oldParent.get(CHILDREN);
+                var children = oldParent.get('children');
 
                 A.Array.removeItem(children, node);
 
-                oldParent.set(CHILDREN, children);
+                oldParent.set('children', children);
             }
 
             oldParent.unregisterNode(node);
@@ -206,10 +188,10 @@ A.mix(TreeData.prototype, {
         }
 
         // update parent reference when registered
-        node.set(PARENT_NODE, parentNode);
+        node.set('parentNode', parentNode);
 
         // update the ownerTree of the node
-        node.set(OWNER_TREE, ownerTree);
+        node.set('ownerTree', ownerTree);
 
         if (parentNode) {
             // register the new node on the parentNode index
@@ -224,7 +206,7 @@ A.mix(TreeData.prototype, {
         if (oldOwnerTree != ownerTree) {
             // when change the OWNER_TREE update the children references also
             node.eachChildren(function(child) {
-                instance.updateReferences(child, child.get(PARENT_NODE), ownerTree);
+                instance.updateReferences(child, child.get('parentNode'), ownerTree);
             });
         }
 
@@ -232,7 +214,7 @@ A.mix(TreeData.prototype, {
         if (moved) {
             var output = instance.getEventOutputMap(node);
 
-            if (!oldParent.get(CHILDREN).length) {
+            if (!oldParent.get('children').length) {
                 oldParent.collapse();
             }
 
@@ -268,8 +250,8 @@ A.mix(TreeData.prototype, {
      */
     registerNode: function(node) {
         var instance = this;
-        var uid = node.get(ID);
-        var index = instance.get(INDEX);
+        var uid = node.get('id');
+        var index = instance.get('index');
 
         if (uid) {
             index[uid] = node;
@@ -279,7 +261,7 @@ A.mix(TreeData.prototype, {
             node.addTarget(instance);
 
             // when the node is appended to the TreeView set the OWNER_TREE
-            node.set(OWNER_TREE, instance);
+            node.set('ownerTree', instance);
         }
 
         node._inheritOwnerTreeAttrs();
@@ -299,7 +281,7 @@ A.mix(TreeData.prototype, {
         if (index) {
             instance._indexPrimed = true;
 
-            instance.set(INDEX, index);
+            instance.set('index', index);
         }
     },
 
@@ -311,9 +293,9 @@ A.mix(TreeData.prototype, {
      */
     unregisterNode: function(node) {
         var instance = this;
-        var index = instance.get(INDEX);
+        var index = instance.get('index');
 
-        delete index[node.get(ID)];
+        delete index[node.get('id')];
 
         if (isTreeView(instance)) {
             node.removeTarget(instance);
@@ -400,13 +382,13 @@ A.mix(TreeData.prototype, {
      */
     eachParent: function(fn) {
         var instance = this;
-        var parentNode = instance.get(PARENT_NODE);
+        var parentNode = instance.get('parentNode');
 
         while (parentNode) {
             if (parentNode) {
                 fn.call(instance, parentNode);
             }
-            parentNode = parentNode.get(PARENT_NODE);
+            parentNode = parentNode.get('parentNode');
         }
     },
 
@@ -427,7 +409,7 @@ A.mix(TreeData.prototype, {
         instance.fire(eventType, args);
 
         if (!cancelBubbling) {
-            var parentNode = instance.get(PARENT_NODE);
+            var parentNode = instance.get('parentNode');
 
             // Avoid execution of the native action (private methods) while
             // propagate for example: private _appendChild() is invoked only on
@@ -443,7 +425,7 @@ A.mix(TreeData.prototype, {
 
             while (parentNode) {
                 parentNode.fire(eventType, args);
-                parentNode = parentNode.get(PARENT_NODE);
+                parentNode = parentNode.get('parentNode');
             }
         }
     },
@@ -494,15 +476,15 @@ A.mix(TreeData.prototype, {
 
         var instance = this;
         var node = event.tree.node;
-        var ownerTree = instance.get(OWNER_TREE);
-        var children = instance.get(CHILDREN);
+        var ownerTree = instance.get('ownerTree');
+        var children = instance.get('children');
 
         // updateReferences first
         instance.updateReferences(node, instance, ownerTree);
         // and then set the children, to have the appendChild propagation
         // the PARENT_NODE references should be updated
         var length = children.push(node);
-        instance.set(CHILDREN, children);
+        instance.set('children', children);
 
         // updating prev/nextSibling attributes
         var prevIndex = length - 2;
@@ -512,7 +494,7 @@ A.mix(TreeData.prototype, {
         node._prevSibling = prevSibling;
 
         // render node
-        node.render(instance.get(CONTAINER));
+        node.render(instance.get('container'));
     },
 
     /**
@@ -525,7 +507,7 @@ A.mix(TreeData.prototype, {
     item: function(index) {
         var instance = this;
 
-        return instance.get(CHILDREN)[index];
+        return instance.get('children')[index];
     },
 
     /**
@@ -539,7 +521,7 @@ A.mix(TreeData.prototype, {
     indexOf: function(node) {
         var instance = this;
 
-        return A.Array.indexOf(instance.get(CHILDREN), node);
+        return A.Array.indexOf(instance.get('children'), node);
     },
 
     /**
@@ -564,7 +546,7 @@ A.mix(TreeData.prototype, {
     getChildren: function(deep) {
         var instance = this;
         var cNodes = [];
-        var children = instance.get(CHILDREN);
+        var children = instance.get('children');
 
         cNodes = cNodes.concat(children);
 
@@ -580,7 +562,7 @@ A.mix(TreeData.prototype, {
     getChildrenLength: function() {
         var instance = this;
 
-        return (instance.childrenLength || instance.get(CHILDREN).length);
+        return (instance.childrenLength || instance.get('children').length);
     },
 
     /**
@@ -628,17 +610,17 @@ A.mix(TreeData.prototype, {
 
         var instance = this;
         var node = event.tree.node;
-        var ownerTree = instance.get(OWNER_TREE);
+        var ownerTree = instance.get('ownerTree');
 
         if (instance.isRegistered(node)) {
             // update parent reference when removed
-            node.set(PARENT_NODE, null);
+            node.set('parentNode', null);
 
             // unregister the node
             instance.unregisterNode(node);
 
             // no parent, no ownerTree
-            node.set(OWNER_TREE, null);
+            node.set('ownerTree', null);
 
             if (ownerTree) {
                 // unregister the removed node from the tree index
@@ -646,12 +628,12 @@ A.mix(TreeData.prototype, {
             }
 
             // remove child from the container
-            node.get(BOUNDING_BOX).remove();
+            node.get('boundingBox').remove();
 
-            var children = instance.get(CHILDREN);
+            var children = instance.get('children');
 
             A.Array.removeItem(children, node);
-            instance.set(CHILDREN, children);
+            instance.set('children', children);
         }
     },
 
@@ -664,7 +646,7 @@ A.mix(TreeData.prototype, {
         var instance = this;
 
         instance.eachChildren(function(node) {
-            var parentNode = node.get(PARENT_NODE);
+            var parentNode = node.get('parentNode');
 
             if (parentNode) {
                 parentNode.removeChild(node);
@@ -688,12 +670,12 @@ A.mix(TreeData.prototype, {
             return false; // NOTE: return
         }
 
-        var refParentTreeNode = refTreeNode.get(PARENT_NODE);
+        var refParentTreeNode = refTreeNode.get('parentNode');
 
         if (treeNode && refParentTreeNode) {
-            var nodeBoundingBox = treeNode.get(BOUNDING_BOX);
-            var refBoundingBox = refTreeNode.get(BOUNDING_BOX);
-            var ownerTree = refTreeNode.get(OWNER_TREE);
+            var nodeBoundingBox = treeNode.get('boundingBox');
+            var refBoundingBox = refTreeNode.get('boundingBox');
+            var ownerTree = refTreeNode.get('ownerTree');
 
             if (where === 'before') {
                 refBoundingBox.placeBefore(nodeBoundingBox);
@@ -705,26 +687,26 @@ A.mix(TreeData.prototype, {
             var refSiblings = [];
             // using the YUI selector to regenerate the index based on the real dom
             // this avoid misscalculations on the nodes index number
-            var DOMChildren = refParentTreeNode.get(BOUNDING_BOX).all('> ul > li');
+            var DOMChildren = refParentTreeNode.get('boundingBox').all('> ul > li');
 
             DOMChildren.each(function(child) {
-                refSiblings.push(child.getData(TREE_NODE));
+                refSiblings.push(child.getData('tree-node'));
             });
 
             // updating prev/nextSibling attributes
-            var nextSiblingNode = nodeBoundingBox.get(NEXT_SIBLING);
+            var nextSiblingNode = nodeBoundingBox.get('nextSibling');
 
-            treeNode.set(NEXT_SIBLING, nextSiblingNode && nextSiblingNode.getData(TREE_NODE));
+            treeNode.set('nextSibling', nextSiblingNode && nextSiblingNode.getData('tree-node'));
 
-            var prevSiblingNode = nodeBoundingBox.get(PREVIOUS_SIBLING);
+            var prevSiblingNode = nodeBoundingBox.get('previousSibling');
 
-            treeNode.set(PREV_SIBLING, prevSiblingNode && prevSiblingNode.getData(TREE_NODE));
+            treeNode.set('prevSibling', prevSiblingNode && prevSiblingNode.getData('tree-node'));
 
             // update all references
             refTreeNode.updateReferences(treeNode, refParentTreeNode, ownerTree);
 
             // updating refParentTreeNode childTreeNodes
-            refParentTreeNode.set(CHILDREN, refSiblings);
+            refParentTreeNode.set('children', refSiblings);
         }
 
         // render treeNode after it's inserted
@@ -773,10 +755,10 @@ A.mix(TreeData.prototype, {
      */
     getNodeByChild: function(child) {
         var instance = this;
-        var treeNodeEl = child.ancestor(DOT + CSS_TREE_NODE);
+        var treeNodeEl = child.ancestor('.' + CSS_TREE_NODE);
 
         if (treeNodeEl) {
-            return treeNodeEl.getData(TREE_NODE);
+            return treeNodeEl.getData('tree-node');
         }
 
         return null;
@@ -795,7 +777,7 @@ A.mix(TreeData.prototype, {
     _setChildren: function(v) {
         var instance = this;
         var childNodes = [];
-        var container = instance.get(CONTAINER);
+        var container = instance.get('container');
 
         if (!container) {
             container = instance._createNodeContainer();
@@ -810,20 +792,20 @@ A.mix(TreeData.prototype, {
         var ownerTree = instance;
 
         if (isTreeNode(instance)) {
-            ownerTree = instance.get(OWNER_TREE);
+            ownerTree = instance.get('ownerTree');
         }
 
         var hasOwnerTree = isTreeView(ownerTree);
         var lazyLoad = true;
 
         if (hasOwnerTree) {
-            lazyLoad = ownerTree.get(LAZY_LOAD);
+            lazyLoad = ownerTree.get('lazyLoad');
         }
 
         instance.updateIndex({});
 
         if (instance.childrenLength > 0) {
-            instance.set(LEAF, false);
+            instance.set('leaf', false);
         }
 
         A.Array.each(v, function(node, index) {
@@ -831,14 +813,14 @@ A.mix(TreeData.prototype, {
                 if (!isTreeNode(node) && isObject(node)) {
                     // cache and remove children to lazy add them later for
                     // performance reasons
-                    var children = node[CHILDREN];
+                    var children = node['children'];
                     var hasChildren = children && children.length;
 
-                    node[OWNER_TREE] = ownerTree;
-                    node[PARENT_NODE] = instance;
+                    node['ownerTree'] = ownerTree;
+                    node['parentNode'] = instance;
 
                     if (hasChildren && lazyLoad) {
-                        delete node[CHILDREN];
+                        delete node['children'];
                     }
 
                     // creating node from json
@@ -848,7 +830,7 @@ A.mix(TreeData.prototype, {
                         node.childrenLength = children.length;
 
                         A.setTimeout(function() {
-                            node.set(CHILDREN, children);
+                            node.set('children', children);
                         }, 50);
                     }
                 }

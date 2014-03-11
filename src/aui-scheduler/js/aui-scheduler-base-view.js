@@ -24,7 +24,7 @@ var SchedulerView = A.Component.create({
      * @type {String}
      * @static
      */
-    NAME: SCHEDULER_VIEW,
+    NAME: 'scheduler-view',
 
     /**
      * Static property used to define the augmented classes.
@@ -53,7 +53,7 @@ var SchedulerView = A.Component.create({
          * @type {String}
          */
         bodyContent: {
-            value: _EMPTY_STR
+            value: ''
         },
 
         /**
@@ -101,7 +101,7 @@ var SchedulerView = A.Component.create({
          * @type {String}
          */
         name: {
-            value: _EMPTY_STR,
+            value: '',
             validator: isString
         },
 
@@ -115,11 +115,11 @@ var SchedulerView = A.Component.create({
         navigationDateFormatter: {
             value: function(date) {
                 var instance = this;
-                var scheduler = instance.get(SCHEDULER);
+                var scheduler = instance.get('scheduler');
 
                 return A.DataType.Date.format(date, {
                     format: '%A, %d %B, %Y',
-                    locale: scheduler.get(LOCALE)
+                    locale: scheduler.get('locale')
                 });
             },
             validator: isFunction
@@ -201,7 +201,7 @@ var SchedulerView = A.Component.create({
      * @type {Array}
      * @static
      */
-    BIND_UI_ATTRS: [SCROLLABLE],
+    BIND_UI_ATTRS: ['scrollable'],
 
     prototype: {
 
@@ -338,10 +338,10 @@ var SchedulerView = A.Component.create({
          */
         _afterRender: function(event) {
             var instance = this;
-            var scheduler = instance.get(SCHEDULER);
+            var scheduler = instance.get('scheduler');
 
             instance._uiSetScrollable(
-                instance.get(SCROLLABLE)
+                instance.get('scrollable')
             );
         },
 
@@ -355,7 +355,7 @@ var SchedulerView = A.Component.create({
          */
         _setScheduler: function(val) {
             var instance = this;
-            var scheduler = instance.get(SCHEDULER);
+            var scheduler = instance.get('scheduler');
 
             if (scheduler) {
                 instance.removeTarget(scheduler);

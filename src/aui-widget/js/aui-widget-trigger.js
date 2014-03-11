@@ -1,13 +1,4 @@
-var Lang = A.Lang,
-
-    TRIGGER_CHANGE = 'triggerChange',
-    TRIGGER = 'trigger',
-    BIND_DOM_EVENTS = 'bindDOMEvents',
-    TRIGGER = 'trigger',
-    TRIGGER_CHANGE = 'triggerChange',
-    TRIGGER_HIDE_EVENT = 'triggerHideEvent',
-    TRIGGER_TOGGLE_EVENT = 'triggerToggleEvent',
-    TRIGGER_SHOW_EVENT = 'triggerShowEvent';
+var Lang = A.Lang;
 
 /**
  * Widget extension, which can be used to add trigger support to the
@@ -96,7 +87,7 @@ A.mix(WidgetTrigger.prototype, {
 
         A.after(instance._afterRenderUIWT, instance, 'renderUI');
 
-        instance.after(TRIGGER_CHANGE, instance._afterTriggerChange);
+        instance.after('triggerChange', instance._afterTriggerChange);
     },
 
     /**
@@ -121,7 +112,7 @@ A.mix(WidgetTrigger.prototype, {
     _afterRenderUIWT: function() {
         var instance = this;
 
-        instance._uiSetTrigger(instance.get(TRIGGER));
+        instance._uiSetTrigger(instance.get('trigger'));
     },
 
     /**
@@ -153,26 +144,26 @@ A.mix(WidgetTrigger.prototype, {
 
         (new A.EventHandle(instance._eventHandles)).detach();
 
-        if (val && instance.get(BIND_DOM_EVENTS)) {
+        if (val && instance.get('bindDOMEvents')) {
             eventHandles = instance._eventHandles = [];
 
-            triggerHideEvent = instance.get(TRIGGER_HIDE_EVENT);
-            triggerShowEvent = instance.get(TRIGGER_SHOW_EVENT);
-            triggerToggleEvent = instance.get(TRIGGER_TOGGLE_EVENT);
+            triggerHideEvent = instance.get('triggerHideEvent');
+            triggerShowEvent = instance.get('triggerShowEvent');
+            triggerToggleEvent = instance.get('triggerToggleEvent');
 
             if (triggerHideEvent) {
                 eventHandles.push(
-                    val.on(instance.get(TRIGGER_HIDE_EVENT), instance.hide, instance));
+                    val.on(instance.get('triggerHideEvent'), instance.hide, instance));
             }
 
             if (triggerShowEvent) {
                 eventHandles.push(
-                    val.on(instance.get(TRIGGER_SHOW_EVENT), instance.show, instance));
+                    val.on(instance.get('triggerShowEvent'), instance.show, instance));
             }
 
             if (triggerToggleEvent) {
                 eventHandles.push(
-                    val.on(instance.get(TRIGGER_TOGGLE_EVENT), instance.toggle, instance));
+                    val.on(instance.get('triggerToggleEvent'), instance.toggle, instance));
             }
         }
     }

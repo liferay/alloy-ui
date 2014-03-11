@@ -40,7 +40,7 @@ YUI.add('aui-tabview-tests', function(Y) {
         name: 'Tabview Tests',
 
         /*
-         * @tests AUI-976
+         * Tests: AUI-976
          */
         'verify active tab instantiated from markup': function() {
             var activeTab = myTabView.getActiveTab(),
@@ -50,7 +50,7 @@ YUI.add('aui-tabview-tests', function(Y) {
         },
 
         /*
-         * @tests AUI-976
+         * Tests: AUI-976
          */
         'verify disabled tab instantiated from markup': function() {
             var disabledTabs = [],
@@ -67,7 +67,7 @@ YUI.add('aui-tabview-tests', function(Y) {
         },
 
         /*
-         * @tests AUI-976
+         * Tests: AUI-976
          */
         'verify active tab instantiated from script': function() {
             var activeTab = myOtherTabView.getActiveTab(),
@@ -77,7 +77,7 @@ YUI.add('aui-tabview-tests', function(Y) {
         },
 
         /*
-         * @tests AUI-976
+         * Tests: AUI-976
          */
         'verify disabled tab instantiated from script': function() {
             var disabledTabs = [],

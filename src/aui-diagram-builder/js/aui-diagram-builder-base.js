@@ -26,76 +26,24 @@ var Lang = A.Lang,
 
     AArray = A.Array,
 
-    ADD_NODE = 'addNode',
-    AUTO = 'auto',
-    AVAILABLE_FIELD = 'availableField',
-    AVAILABLE_FIELDS = 'availableFields',
-    AVAILABLE_FIELDS_DRAG_CONFIG = 'availableFieldsDragConfig',
-    BOUNDING_BOX = 'boundingBox',
-    BUILDER = 'builder',
-    CANCEL = 'cancel',
-    CANVAS = 'canvas',
-    CLEARFIX = 'clearfix',
-    CLOSE = 'close',
-    CONTAINER = 'container',
-    CONTENT = 'content',
-    CONTENT_BOX = 'contentBox',
-    CONTENT_CONTAINER = 'contentContainer',
-    CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
-    DIAGRAM = 'diagram',
-    DIAGRAM_BUILDER = 'diagram-builder',
-    DRAGGABLE = 'draggable',
-    DROP = 'drop',
-    DROP_CONFIG = 'dropConfig',
-    DROP_CONTAINER = 'dropContainer',
-    FIELD = 'field',
-    FIELDS = 'fields',
-    FIELDS_CONTAINER = 'fieldsContainer',
-    HEIGHT = 'height',
-    ICON = 'icon',
-    ICON_CLASS = 'iconClass',
-    ID = 'id',
-    LABEL = 'label',
-    LAYOUT = 'layout',
-    MAX_FIELDS = 'maxFields',
-    NODE = 'node',
-    PARENT_NODE = 'parentNode',
-    PROPERTY_LIST = 'propertyList',
-    RENDERED = 'rendered',
-    SAVE = 'save',
-    STRIPED = 'striped',
-    SETTINGS = 'settings',
-    TAB_VIEW = 'tabView',
-    TABBABLE = 'tabbable',
-    TABLE = 'table',
-    TABS = 'tabs',
-    TITLE = 'title',
-    TOOLBAR = 'toolbar',
-    TOOLBAR_CONTAINER = 'toolbarContainer',
-
     AgetClassName = A.getClassName,
 
-    _DOT = '.',
-    _HASH = '#',
-    _SPACE = ' ',
-    _UNDERLINE = '_',
-
-    CSS_CLEARFIX = AgetClassName(CLEARFIX),
-    CSS_DIAGRAM_BUILDER_CANVAS = AgetClassName(DIAGRAM, BUILDER, CANVAS),
-    CSS_DIAGRAM_BUILDER_CONTENT_CONTAINER = AgetClassName(DIAGRAM, BUILDER, CONTENT, CONTAINER),
-    CSS_DIAGRAM_BUILDER_DROP_CONTAINER = AgetClassName(DIAGRAM, BUILDER, DROP, CONTAINER),
-    CSS_DIAGRAM_BUILDER_FIELD = AgetClassName(DIAGRAM, BUILDER, FIELD),
-    CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE = AgetClassName(DIAGRAM, BUILDER, FIELD, DRAGGABLE),
-    CSS_DIAGRAM_BUILDER_FIELD_ICON = AgetClassName(DIAGRAM, BUILDER, FIELD, ICON),
-    CSS_DIAGRAM_BUILDER_FIELD_LABEL = AgetClassName(DIAGRAM, BUILDER, FIELD, LABEL),
-    CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER = AgetClassName(DIAGRAM, BUILDER, FIELDS, CONTAINER),
-    CSS_DIAGRAM_BUILDER_TABS = AgetClassName(DIAGRAM, BUILDER, TABS),
-    CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER = AgetClassName(DIAGRAM, BUILDER, TOOLBAR, CONTAINER),
-    CSS_ICON = AgetClassName(ICON),
-    CSS_LAYOUT = AgetClassName(LAYOUT),
-    CSS_TABBABLE = AgetClassName(TABBABLE),
-    CSS_TABBABLE_CONTENT = AgetClassName(TABBABLE, CONTENT),
-    CSS_TABLE_STRIPED = AgetClassName(TABLE, STRIPED);
+    CSS_CLEARFIX = AgetClassName('clearfix'),
+    CSS_DIAGRAM_BUILDER_CANVAS = AgetClassName('diagram', 'builder', 'canvas'),
+    CSS_DIAGRAM_BUILDER_CONTENT_CONTAINER = AgetClassName('diagram', 'builder', 'content', 'container'),
+    CSS_DIAGRAM_BUILDER_DROP_CONTAINER = AgetClassName('diagram', 'builder', 'drop', 'container'),
+    CSS_DIAGRAM_BUILDER_FIELD = AgetClassName('diagram', 'builder', 'field'),
+    CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE = AgetClassName('diagram', 'builder', 'field', 'draggable'),
+    CSS_DIAGRAM_BUILDER_FIELD_ICON = AgetClassName('diagram', 'builder', 'field', 'icon'),
+    CSS_DIAGRAM_BUILDER_FIELD_LABEL = AgetClassName('diagram', 'builder', 'field', 'label'),
+    CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER = AgetClassName('diagram', 'builder', 'fields', 'container'),
+    CSS_DIAGRAM_BUILDER_TABS = AgetClassName('diagram', 'builder', 'tabs'),
+    CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER = AgetClassName('diagram', 'builder', 'toolbar', 'container'),
+    CSS_ICON = AgetClassName('icon'),
+    CSS_LAYOUT = AgetClassName('layout'),
+    CSS_TABBABLE = AgetClassName('tabbable'),
+    CSS_TABBABLE_CONTENT = AgetClassName('tabbable', 'content'),
+    CSS_TABLE_STRIPED = AgetClassName('table', 'striped');
 
 /**
  * A base class for AvailableField.
@@ -115,7 +63,7 @@ var AvailableField = A.Component.create({
      * @type String
      * @static
      */
-    NAME: AVAILABLE_FIELD,
+    NAME: 'availableField',
 
     /**
      * Static property used to define the default attribute
@@ -186,12 +134,12 @@ var AvailableField = A.Component.create({
                     val = A.Node.create(
                         A.Lang.sub(
                             instance.FIELD_ITEM_TEMPLATE, {
-                                iconClass: instance.get(ICON_CLASS)
+                                iconClass: instance.get('iconClass')
                             }
                         )
                     );
 
-                    val.setData(AVAILABLE_FIELD, instance);
+                    val.setData('availableField', instance);
                 }
 
                 return val;
@@ -208,7 +156,7 @@ var AvailableField = A.Component.create({
          * @type String
          */
         type: {
-            value: NODE,
+            value: 'node',
             validator: isString
         }
     },
@@ -231,7 +179,7 @@ var AvailableField = A.Component.create({
      * @return {String}
      */
     buildNodeId: function(id) {
-        return AVAILABLE_FIELDS + _UNDERLINE + FIELD + _UNDERLINE + id;
+        return 'availableFields' + '_' + 'field' + '_' + id;
     },
 
     /**
@@ -242,7 +190,7 @@ var AvailableField = A.Component.create({
      * @private
      */
     getAvailableFieldById: function(id) {
-        return A.AvailableField.getAvailableFieldByNode(_HASH + A.AvailableField.buildNodeId(id));
+        return A.AvailableField.getAvailableFieldByNode('#' + A.AvailableField.buildNodeId(id));
     },
 
     /**
@@ -256,7 +204,7 @@ var AvailableField = A.Component.create({
         node = A.one(node);
 
         if (isNode(node)) {
-            return node.getData(AVAILABLE_FIELD);
+            return node.getData('availableField');
         }
 
         return null;
@@ -264,7 +212,7 @@ var AvailableField = A.Component.create({
 
     prototype: {
         FIELD_ITEM_TEMPLATE: '<li class="' + CSS_DIAGRAM_BUILDER_FIELD + '">' + '<span class="' + [CSS_ICON,
-            CSS_DIAGRAM_BUILDER_FIELD_ICON].join(_SPACE) + ' {iconClass}"></span>' + '<div class="' + CSS_DIAGRAM_BUILDER_FIELD_LABEL + '"></div>' + '</li>',
+            CSS_DIAGRAM_BUILDER_FIELD_ICON].join(' ') + ' {iconClass}"></span>' + '<div class="' + CSS_DIAGRAM_BUILDER_FIELD_LABEL + '"></div>' + '</li>',
 
         /**
          * Construction logic executed during `A.AvailableField` instantiation.
@@ -275,7 +223,7 @@ var AvailableField = A.Component.create({
          */
         initializer: function() {
             var instance = this;
-            var node = instance.get(NODE);
+            var node = instance.get('node');
 
             instance.after({
                 draggableChange: instance._afterDraggableChange,
@@ -283,18 +231,18 @@ var AvailableField = A.Component.create({
                 labelChange: instance._afterLabelChange
             });
 
-            instance.labelNode = node.one(_DOT + CSS_DIAGRAM_BUILDER_FIELD_LABEL);
+            instance.labelNode = node.one('.' + CSS_DIAGRAM_BUILDER_FIELD_LABEL);
 
             instance._uiSetDraggable(
-                instance.get(DRAGGABLE)
+                instance.get('draggable')
             );
 
             instance._uiSetId(
-                instance.get(ID)
+                instance.get('id')
             );
 
             instance._uiSetLabel(
-                instance.get(LABEL)
+                instance.get('label')
             );
         },
 
@@ -364,7 +312,7 @@ var AvailableField = A.Component.create({
         _uiSetDraggable: function(val) {
             var instance = this;
 
-            instance.get(NODE).toggleClass(CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE, val);
+            instance.get('node').toggleClass(CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE, val);
         },
 
         /**
@@ -377,7 +325,7 @@ var AvailableField = A.Component.create({
         _uiSetId: function(val) {
             var instance = this;
 
-            instance.get(NODE).set(ID, val);
+            instance.get('node').set('id', val);
         },
 
         /**
@@ -390,7 +338,7 @@ var AvailableField = A.Component.create({
         _uiSetLabel: function(val) {
             var instance = this;
 
-            instance.get(NODE).attr(TITLE, val);
+            instance.get('node').attr('title', val);
             instance.labelNode.setContent(val);
         }
     }
@@ -474,7 +422,7 @@ A.mix(FieldSupport.prototype, {
     _updateFields: function(fields) {
         var instance = this;
 
-        instance.set(FIELDS, fields);
+        instance.set('fields', fields);
     },
 
     /**
@@ -487,12 +435,12 @@ A.mix(FieldSupport.prototype, {
     addField: function(field, index) {
         var instance = this;
 
-        if (instance.get(FIELDS).size() < instance.get(MAX_FIELDS)) {
+        if (instance.get('fields').size() < instance.get('maxFields')) {
             var newField = instance.createField(field);
 
             if (newField) {
                 instance._updateFields(
-                    instance.get(FIELDS).add(newField, index)
+                    instance.get('fields').add(newField, index)
                 );
             }
 
@@ -514,7 +462,7 @@ A.mix(FieldSupport.prototype, {
         var fields = [];
 
         AArray.each(val, function(field, index) {
-            if (index < instance.get(MAX_FIELDS)) {
+            if (index < instance.get('maxFields')) {
                 fields.push(instance.createField(field));
             }
         });
@@ -532,7 +480,7 @@ A.mix(FieldSupport.prototype, {
         var instance = this;
 
         instance._updateFields(
-            instance.get(FIELDS).remove(field)
+            instance.get('fields').remove(field)
         );
     },
 
@@ -571,7 +519,7 @@ var DiagramBuilderBase = A.Component.create({
      * @type String
      * @static
      */
-    NAME: DIAGRAM_BUILDER,
+    NAME: 'diagram-builder',
 
     /**
      * Static property used to define the default attribute
@@ -747,11 +695,11 @@ var DiagramBuilderBase = A.Component.create({
      * @static
      */
     HTML_PARSER: {
-        contentContainer: _DOT + CSS_DIAGRAM_BUILDER_CONTENT_CONTAINER,
-        dropContainer: _DOT + CSS_DIAGRAM_BUILDER_DROP_CONTAINER,
-        fieldsContainer: _DOT + CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER,
-        toolbarContainer: _DOT + CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER,
-        canvas: _DOT + CSS_DIAGRAM_BUILDER_CANVAS
+        contentContainer: '.' + CSS_DIAGRAM_BUILDER_CONTENT_CONTAINER,
+        dropContainer: '.' + CSS_DIAGRAM_BUILDER_DROP_CONTAINER,
+        fieldsContainer: '.' + CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER,
+        toolbarContainer: '.' + CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER,
+        canvas: '.' + CSS_DIAGRAM_BUILDER_CANVAS
     },
 
     /**
@@ -761,7 +709,7 @@ var DiagramBuilderBase = A.Component.create({
      * @type Array
      * @static
      */
-    UI_ATTRS: [AVAILABLE_FIELDS, FIELDS],
+    UI_ATTRS: ['availableFields', 'fields'],
 
     /**
      * Static property used to define the augmented classes.
@@ -776,7 +724,7 @@ var DiagramBuilderBase = A.Component.create({
         CANVAS_TEMPLATE: '<div tabindex="1" class="' + CSS_DIAGRAM_BUILDER_CANVAS + '"></div>',
         CONTENT_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_CONTENT_CONTAINER + '"></div>',
         DROP_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_DROP_CONTAINER + '"></div>',
-        FIELDS_CONTAINER_TEMPLATE: '<ul class="' + [CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER, CSS_CLEARFIX].join(_SPACE) + '"></ul>',
+        FIELDS_CONTAINER_TEMPLATE: '<ul class="' + [CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER, CSS_CLEARFIX].join(' ') + '"></ul>',
         TOOLBAR_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER + '"></div>',
 
         fieldsNode: null,
@@ -808,11 +756,11 @@ var DiagramBuilderBase = A.Component.create({
 
             instance.after(instance._afterUiSetHeight, instance, '_uiSetHeight');
 
-            instance.canvas = instance.get(CANVAS);
-            instance.contentContainer = instance.get(CONTENT_CONTAINER);
-            instance.dropContainer = instance.get(DROP_CONTAINER);
-            instance.fieldsContainer = instance.get(FIELDS_CONTAINER);
-            instance.toolbarContainer = instance.get(TOOLBAR_CONTAINER);
+            instance.canvas = instance.get('canvas');
+            instance.contentContainer = instance.get('contentContainer');
+            instance.dropContainer = instance.get('dropContainer');
+            instance.fieldsContainer = instance.get('fieldsContainer');
+            instance.toolbarContainer = instance.get('toolbarContainer');
         },
 
         /**
@@ -836,7 +784,7 @@ var DiagramBuilderBase = A.Component.create({
          */
         plotFields: function() {
             var instance = this;
-            var fields = instance.get(FIELDS);
+            var fields = instance.get('fields');
 
             fields.each(function(field) {
                 instance.plotField(field);
@@ -856,7 +804,7 @@ var DiagramBuilderBase = A.Component.create({
             instance._renderCanvas();
 
             instance._uiSetAvailableFields(
-                instance.get(AVAILABLE_FIELDS)
+                instance.get('availableFields')
             );
         },
 
@@ -868,7 +816,7 @@ var DiagramBuilderBase = A.Component.create({
          */
         syncUI: function() {
             var instance = this;
-            var contentBox = instance.get(CONTENT_BOX);
+            var contentBox = instance.get('contentBox');
 
             instance._setupDrop();
             instance._setupAvailableFieldsDrag();
@@ -917,7 +865,7 @@ var DiagramBuilderBase = A.Component.create({
             if (tabview) {
                 tabNode = tabview.get('panelNode');
 
-                if (instance.get(RENDERED) && (tabNode === instance.settingsNode)) {
+                if (instance.get('rendered') && (tabNode === instance.settingsNode)) {
                     instance._renderSettings();
                 }
             }
@@ -933,8 +881,8 @@ var DiagramBuilderBase = A.Component.create({
         _afterUiSetHeight: function(val) {
             var instance = this;
 
-            instance.contentContainer.setStyle(HEIGHT, isNumber(val) ? val + instance.DEF_UNIT : val);
-            instance.dropContainer.setStyle(HEIGHT, isNumber(val) ? val + instance.DEF_UNIT : val);
+            instance.contentContainer.setStyle('height', isNumber(val) ? val + instance.DEF_UNIT : val);
+            instance.dropContainer.setStyle('height', isNumber(val) ? val + instance.DEF_UNIT : val);
         },
 
         /**
@@ -959,7 +907,7 @@ var DiagramBuilderBase = A.Component.create({
         _handleCancelEvent: function() {
             var instance = this;
 
-            instance.fire(CANCEL);
+            instance.fire('cancel');
         },
 
         /**
@@ -971,7 +919,7 @@ var DiagramBuilderBase = A.Component.create({
         _handleSaveEvent: function() {
             var instance = this;
 
-            instance.fire(SAVE);
+            instance.fire('save');
         },
 
         /**
@@ -982,7 +930,7 @@ var DiagramBuilderBase = A.Component.create({
          */
         _renderCanvas: function() {
             var instance = this;
-            var contentBox = instance.get(CONTENT_BOX);
+            var contentBox = instance.get('contentBox');
             var canvas = instance.canvas;
             var contentContainer = instance.contentContainer;
             var dropContainer = instance.dropContainer;
@@ -996,7 +944,7 @@ var DiagramBuilderBase = A.Component.create({
             }
 
             if (contentContainer.inDoc()) {
-                contentContainer.get(PARENT_NODE).append(contentContainer);
+                contentContainer.get('parentNode').append(contentContainer);
             }
             else {
                 contentBox.appendChild(contentContainer);
@@ -1014,11 +962,11 @@ var DiagramBuilderBase = A.Component.create({
             var instance = this;
 
             if (!instance.propertyList) {
-                var propertyList = instance.propertyList = new A.PropertyList(instance.get(PROPERTY_LIST));
+                var propertyList = instance.propertyList = new A.PropertyList(instance.get('propertyList'));
 
                 propertyList.render(instance.settingsNode);
 
-                propertyList.get(BOUNDING_BOX).unselectable().addClass(CSS_TABLE_STRIPED);
+                propertyList.get('boundingBox').unselectable().addClass(CSS_TABLE_STRIPED);
             }
         },
 
@@ -1046,7 +994,7 @@ var DiagramBuilderBase = A.Component.create({
             var instance = this;
 
             if (!instance.tabView) {
-                var tabView = new A.TabView(instance.get(TAB_VIEW));
+                var tabView = new A.TabView(instance.get('tabView'));
 
                 instance.tabView = tabView;
                 instance.fieldsNode = tabView.item(0).get('panelNode');
@@ -1066,7 +1014,7 @@ var DiagramBuilderBase = A.Component.create({
 
             if (!instance.toolbar) {
                 instance.toolbar = new A.Toolbar(
-                    instance.get(TOOLBAR)
+                    instance.get('toolbar')
                 ).render(instance.settingsNode);
             }
         },
@@ -1081,7 +1029,7 @@ var DiagramBuilderBase = A.Component.create({
             var instance = this;
 
             instance.drop = new A.DD.Drop(
-                instance.get(DROP_CONFIG)
+                instance.get('dropConfig')
             );
         },
 
@@ -1096,7 +1044,7 @@ var DiagramBuilderBase = A.Component.create({
             var instance = this;
 
             instance.availableFieldsDrag = new A.DD.Delegate(
-                instance.get(AVAILABLE_FIELDS_DRAG_CONFIG)
+                instance.get('availableFieldsDragConfig')
             );
         },
 
@@ -1132,7 +1080,7 @@ var DiagramBuilderBase = A.Component.create({
 
             return A.merge({
                     bubbleTargets: instance,
-                    groups: [AVAILABLE_FIELDS],
+                    groups: ['availableFields'],
                     node: instance.dropContainer
                 },
                 val || {}
@@ -1151,9 +1099,9 @@ var DiagramBuilderBase = A.Component.create({
 
             return A.merge({
                     bubbleTargets: instance,
-                    container: instance.get(BOUNDING_BOX),
+                    container: instance.get('boundingBox'),
                     dragConfig: {
-                        groups: [AVAILABLE_FIELDS],
+                        groups: ['availableFields'],
                         plugins: [
                             {
                                 cfg: {
@@ -1163,7 +1111,7 @@ var DiagramBuilderBase = A.Component.create({
                             }
                         ]
                     },
-                    nodes: _DOT + CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE
+                    nodes: '.' + CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE
                 },
                 val || {}
             );
@@ -1184,7 +1132,7 @@ var DiagramBuilderBase = A.Component.create({
                     width: 260,
                     scroll: {
                         height: 400,
-                        width: AUTO
+                        width: 'auto'
                     }
                 },
                 val
@@ -1200,17 +1148,17 @@ var DiagramBuilderBase = A.Component.create({
          */
         _setTabView: function(val) {
             var instance = this,
-                boundingBox = instance.get(BOUNDING_BOX),
-                tabViewContentNode = boundingBox.one(_DOT + CSS_TABBABLE_CONTENT);
+                boundingBox = instance.get('boundingBox'),
+                tabViewContentNode = boundingBox.one('.' + CSS_TABBABLE_CONTENT);
 
             defaultValue = {
                 after: {
                     selectionChange: A.bind(instance._afterSelectionChange, instance)
                 },
-                boundingBox: boundingBox.one(_DOT + CSS_TABBABLE),
+                boundingBox: boundingBox.one('.' + CSS_TABBABLE),
                 bubbleTargets: instance,
                 cssClass: CSS_DIAGRAM_BUILDER_TABS,
-                render: instance.get(CONTENT_BOX),
+                render: instance.get('contentBox'),
                 srcNode: tabViewContentNode
             };
 
@@ -1219,10 +1167,10 @@ var DiagramBuilderBase = A.Component.create({
 
                 defaultValue.children = [
                     {
-                        label: strings[ADD_NODE]
+                        label: strings['addNode']
                     },
                     {
-                        label: strings[SETTINGS],
+                        label: strings['settings'],
                         disabled: true
                     }
                 ];
@@ -1249,7 +1197,7 @@ var DiagramBuilderBase = A.Component.create({
                             on: {
                                 click: A.bind(instance._handleCancelEvent, instance)
                             },
-                            label: strings[CLOSE]
+                            label: strings['close']
                         }
                     ]
                 },
@@ -1269,10 +1217,10 @@ var DiagramBuilderBase = A.Component.create({
             var fieldsNode = instance.fieldsNode;
 
             if (fieldsNode) {
-                var docFrag = A.getDoc().invoke(CREATE_DOCUMENT_FRAGMENT);
+                var docFrag = A.getDoc().invoke('createDocumentFragment');
 
                 AArray.each(val, function(field) {
-                    docFrag.appendChild(field.get(NODE));
+                    docFrag.appendChild(field.get('node'));
                 });
 
                 fieldsNode.setContent(
@@ -1291,7 +1239,7 @@ var DiagramBuilderBase = A.Component.create({
         _uiSetFields: function(event) {
             var instance = this;
 
-            if (instance.get(RENDERED)) {
+            if (instance.get('rendered')) {
                 instance.plotFields();
             }
         }

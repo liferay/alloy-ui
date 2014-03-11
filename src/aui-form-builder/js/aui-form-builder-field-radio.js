@@ -7,38 +7,19 @@
 
 var L = A.Lang,
 
-    BUILDER = 'builder',
-    CHECKED = 'checked',
-    CHOICE = 'choice',
-    CONTAINER = 'container',
-    DISABLED = 'disabled',
-    EMPTY_STR = '',
-    FIELD = 'field',
-    FORM_BUILDER_FIELD = 'form-builder-field',
-    FORM_BUILDER_RADIO_FIELD = 'form-builder-radio-field',
-    ID = 'id',
-    INPUT = 'input',
-    NAME = 'name',
-    NODE = 'node',
-    OPTIONS = 'options',
-    PREDEFINED_VALUE = 'predefinedValue',
-    RADIO = 'radio',
-    SPACE = ' ',
-    TEMPLATE_NODE = 'templateNode',
-
     getCN = A.getClassName,
 
-    CSS_FIELD = getCN(FIELD),
-    CSS_FIELD_CHOICE = getCN(FIELD, CHOICE),
-    CSS_FIELD_RADIO = getCN(FIELD, RADIO),
-    CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
-    CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
-    CSS_FORM_BUILDER_FIELD_OPTIONS_CONTAINER = getCN(FORM_BUILDER_FIELD, OPTIONS, CONTAINER),
+    CSS_FIELD = getCN('field'),
+    CSS_FIELD_CHOICE = getCN('field', 'choice'),
+    CSS_FIELD_RADIO = getCN('field', 'radio'),
+    CSS_FORM_BUILDER_FIELD = getCN('form-builder-field'),
+    CSS_FORM_BUILDER_FIELD_NODE = getCN('form-builder-field', 'node'),
+    CSS_FORM_BUILDER_FIELD_OPTIONS_CONTAINER = getCN('form-builder-field', 'options', 'container'),
 
     TPL_OPTIONS_CONTAINER = '<div class="' + CSS_FORM_BUILDER_FIELD_OPTIONS_CONTAINER + '"></div>',
     TPL_RADIO =
         '<div><input id="{id}" class="' + [CSS_FIELD, CSS_FIELD_CHOICE, CSS_FIELD_RADIO, CSS_FORM_BUILDER_FIELD_NODE].join(
-            SPACE) +
+            ' ') +
         '" name="{name}" type="radio" value="{value}" {checked} {disabled} /><label class="field-label" for="{id}">{label}</label></div>';
 
 /**
@@ -59,7 +40,7 @@ var FormBuilderRadioField = A.Component.create({
      * @type String
      * @static
      */
-    NAME: FORM_BUILDER_RADIO_FIELD,
+    NAME: 'form-builder-radio-field',
 
     /**
      * Static property used to define the default attribute
@@ -132,14 +113,14 @@ var FormBuilderRadioField = A.Component.create({
          */
         _uiSetDisabled: function(val) {
             var instance = this,
-                templateNode = instance.get(TEMPLATE_NODE);
+                templateNode = instance.get('templateNode');
 
-            templateNode.all(INPUT).each(function(input) {
+            templateNode.all('input').each(function(input) {
                 if (val) {
-                    input.setAttribute(DISABLED, val);
+                    input.setAttribute('disabled', val);
                 }
                 else {
-                    input.removeAttribute(DISABLED);
+                    input.removeAttribute('disabled');
                 }
             });
         },
@@ -156,8 +137,8 @@ var FormBuilderRadioField = A.Component.create({
                 buffer = [],
                 counter = 0,
                 hasPredefinedValue = false,
-                predefinedValue = instance.get(PREDEFINED_VALUE),
-                templateNode = instance.get(TEMPLATE_NODE);
+                predefinedValue = instance.get('predefinedValue'),
+                templateNode = instance.get('templateNode');
 
             A.each(val, function(item, index, collection) {
                 var checked = A.Array.indexOf(predefinedValue, item.value) > -1;
@@ -165,11 +146,11 @@ var FormBuilderRadioField = A.Component.create({
                 buffer.push(
                     L.sub(
                         TPL_RADIO, {
-                            checked: checked ? 'checked="checked"' : EMPTY_STR,
-                            disabled: instance.get(DISABLED) ? 'disabled="disabled"' : EMPTY_STR,
-                            id: instance.get(ID) + counter++,
+                            checked: checked ? 'checked="checked"' : '',
+                            disabled: instance.get('disabled') ? 'disabled="disabled"' : '',
+                            id: instance.get('id') + counter++,
                             label: item.label,
-                            name: instance.get(NAME),
+                            name: instance.get('name'),
                             value: item.value
                         }
                     )
@@ -180,14 +161,14 @@ var FormBuilderRadioField = A.Component.create({
                 }
             });
 
-            instance.optionNodes = A.NodeList.create(buffer.join(EMPTY_STR));
+            instance.optionNodes = A.NodeList.create(buffer.join(''));
 
             templateNode.setContent(instance.optionNodes);
 
             if (!hasPredefinedValue) {
-                instance.set(PREDEFINED_VALUE, instance._valuePredefinedValueFn());
+                instance.set('predefinedValue', instance._valuePredefinedValueFn());
 
-                instance.get(BUILDER).editField(instance);
+                instance.get('builder').editField(instance);
             }
         },
 
@@ -206,9 +187,9 @@ var FormBuilderRadioField = A.Component.create({
                 return;
             }
 
-            optionNodes.set(CHECKED, false);
+            optionNodes.set('checked', false);
 
-            optionNodes.all('input[value="' + val + '"]').set(CHECKED, true);
+            optionNodes.all('input[value="' + val + '"]').set('checked', true);
         },
 
         /**
@@ -219,7 +200,7 @@ var FormBuilderRadioField = A.Component.create({
          */
         _valuePredefinedValueFn: function() {
             var instance = this,
-                options = instance.get(OPTIONS),
+                options = instance.get('options'),
                 predefinedValue;
 
             if (options.length) {

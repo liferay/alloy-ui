@@ -41,7 +41,26 @@ WidgetTransition.ATTRS = {
      */
     animated: {
         validator: Lang.isBoolean,
-        value: false
+        value: false,
+        writeOnce: true
+    },
+
+    /**
+     * Determine the delay (in milliseconds) after widget's transition
+     * animation. By default there's no delay.
+     *
+     * @attribute delay
+     * @default { show: 0, hide: 0 }
+     * @type Object
+     * @writeOnce
+     */
+    delay: {
+        validator: Lang.isObject,
+        value: {
+            show: 0,
+            hide: 0
+        },
+        writeOnce: true
     },
 
     /**
@@ -73,10 +92,13 @@ WidgetTransition.ATTRS = {
      * visibility after the trigger element. By default the stick duration is
      * not specified.
      *
+     * @deprecated As of 2.0.0 replaced by attribute `delay`.
      * @attribute stickDuration
      * @type Number
      */
     stickDuration: {
+        lazyAdd: false,
+        setter: '_setStickDuration',
         validator: Lang.isNumber,
         value: 0
     }
@@ -141,9 +163,11 @@ WidgetTransition.prototype = {
      */
     _maybeHide: function() {
         var instance = this,
-            stickDuration = instance.get('stickDuration');
+            delay = instance.get('delay');
 
-        instance._hideTimer = A.later(stickDuration, instance, instance._transition);
+        instance._prepareTransition(false);
+
+        instance._hideTimer = A.later(delay.hide, instance, instance._transition, false);
     },
 
     /**
@@ -153,8 +177,26 @@ WidgetTransition.prototype = {
      * @protected
      */
     _maybeShow: function() {
+        var instance = this,
+            delay = instance.get('delay');
+
+        instance._prepareTransition(true);
+
+        A.later(delay.show, instance, instance._transition, true);
+    },
+
+    /**
+     * Set `delay:hide` to `stickDuration` value.
+     *
+     * @method _onStickDurationChange
+     * @protected
+     */
+    _setStickDuration: function(val) {
         var instance = this;
-        instance._transition(true);
+
+        instance.set('delay.hide', val);
+
+        return val;
     },
 
     /**
@@ -180,15 +222,14 @@ WidgetTransition.prototype = {
     },
 
     /**
-     * Shows or hides depending on the passed parameter, when no parameter is
-     * specified the default behavior is to hide the element.
+     * Prepare the widget to be animated.
      *
-     * @method _transition
+     * @method _prepareTransition
      * @param {Boolean} visible When `true`, fade in the element, otherwise
      *     fades out.
      * @protected
      */
-    _transition: function(visible) {
+    _prepareTransition: function(visible) {
         var instance = this,
             boundingBox = instance.get('boundingBox');
 
@@ -200,6 +241,20 @@ WidgetTransition.prototype = {
             // then make sure the opacity transition goes from 0 to 1.
             boundingBox.setStyle('opacity', 0);
         }
+    },
+
+    /**
+     * Shows or hides depending on the passed parameter, when no parameter is
+     * specified the default behavior is to hide the element.
+     *
+     * @method _transition
+     * @param {Boolean} visible When `true`, fade in the element, otherwise
+     *     fades out.
+     * @protected
+     */
+    _transition: function(visible) {
+        var instance = this,
+            boundingBox = instance.get('boundingBox');
 
         boundingBox.transition({
                 duration: instance.get('duration'),

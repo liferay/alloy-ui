@@ -23,66 +23,19 @@ var L = A.Lang,
         return (v instanceof A.FormBuilderField);
     },
 
-    ALLOW_REMOVE_REQUIRED_FIELDS = 'allowRemoveRequiredFields',
-    ATTRIBUTE_NAME = 'attributeName',
-    AVAILABLE_FIELD = 'availableField',
-    AVAILABLE_FIELDS = 'availableFields',
-    BOUNDING_BOX = 'boundingBox',
-    BUILDER = 'builder',
-    DATA = 'data',
-    DD = 'dd',
-    DIAGRAM = 'diagram',
-    DRAGGABLE = 'draggable',
-    DRAGGING = 'dragging',
-    DROP = 'drop',
-    EMPTY_STR = '',
-    FIELD = 'field',
-    FIELDS = 'fields',
-    FIELDS_SORTABLE_LIST_CONFIG = 'fieldsSortableListConfig',
-    FORM = 'form',
-    FORM_BUILDER = 'form-builder',
-    HIDDEN_ATTRIBUTES = 'hiddenAttributes',
-    ID = 'id',
-    LABEL = 'label',
-    LOCALIZATION_MAP = 'localizationMap',
-    NAME = 'name',
-    NODE = 'node',
-    OPACITY = 'opacity',
-    OPTIONS = 'options',
-    PARENT = 'parent',
-    PARENT_NODE = 'parentNode',
-    PLACEHOLDER = 'placeholder',
-    PREDEFINED_VALUE = 'predefinedValue',
-    READ_ONLY_ATTRIBUTES = 'readOnlyAttributes',
-    RENDERED = 'rendered',
-    REQUIRED = 'required',
-    SELECTED = 'selected',
-    SHOW_LABEL = 'showLabel',
-    TIP = 'tip',
-    TYPE = 'type',
-    UNIQUE = 'unique',
-    VALUE = 'value',
-    WIDTH = 'width',
-    HOVER = 'hover',
-    ZONE = 'zone',
-
-    _DOT = '.',
-    _EMPTY_STR = '',
-    _UNDERLINE = '_',
-
     getCN = A.getClassName,
 
-    AVAILABLE_FIELDS_ID_PREFIX = AVAILABLE_FIELDS + _UNDERLINE + FIELD + _UNDERLINE,
-    FIELDS_ID_PREFIX = FIELDS + _UNDERLINE + FIELD + _UNDERLINE,
+    AVAILABLE_FIELDS_ID_PREFIX = 'availableFields' + '_' + 'field' + '_',
+    FIELDS_ID_PREFIX = 'fields' + '_' + 'field' + '_',
 
-    CSS_DD_DRAGGING = getCN(DD, DRAGGING),
-    CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE = getCN(DIAGRAM, BUILDER, FIELD, DRAGGABLE),
-    CSS_FIELD_HOVER = getCN(FORM, BUILDER, FIELD, HOVER),
-    CSS_FORM_BUILDER_DROP_ZONE = getCN(FORM, BUILDER, DROP, ZONE),
-    CSS_FORM_BUILDER_FIELD = getCN(FORM, BUILDER, FIELD),
-    CSS_FORM_BUILDER_PLACEHOLDER = getCN(FORM, BUILDER, PLACEHOLDER),
+    CSS_DD_DRAGGING = getCN('dd', 'dragging'),
+    CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE = getCN('diagram', 'builder', 'field', 'draggable'),
+    CSS_FIELD_HOVER = getCN('form', 'builder', 'field', 'hover'),
+    CSS_FORM_BUILDER_DROP_ZONE = getCN('form', 'builder', 'drop', 'zone'),
+    CSS_FORM_BUILDER_FIELD = getCN('form', 'builder', 'field'),
+    CSS_FORM_BUILDER_PLACEHOLDER = getCN('form', 'builder', 'placeholder'),
 
-    INVALID_CLONE_ATTRS = [ID, NAME],
+    INVALID_CLONE_ATTRS = ['id', 'name'],
 
     TPL_PLACEHOLDER = '<div class="' + CSS_FORM_BUILDER_PLACEHOLDER + '"></div>';
 
@@ -105,7 +58,7 @@ var FormBuilderAvailableField = A.Component.create({
      * @type String
      * @static
      */
-    NAME: AVAILABLE_FIELD,
+    NAME: 'availableField',
 
     /**
      * Static property used to define the default attribute
@@ -244,7 +197,7 @@ var FormBuilder = A.Component.create({
      * @type String
      * @static
      */
-    NAME: FORM_BUILDER,
+    NAME: 'form-builder',
 
     /**
      * Static property used to define the default attribute
@@ -318,7 +271,7 @@ var FormBuilder = A.Component.create({
      * @type Array
      * @static
      */
-    UI_ATTRS: [ALLOW_REMOVE_REQUIRED_FIELDS],
+    UI_ATTRS: ['allowRemoveRequiredFields'],
 
     /**
      * Static property used to define which component it extends.
@@ -388,11 +341,11 @@ var FormBuilder = A.Component.create({
 
             instance.after('*:focusedChange', instance._afterFieldFocusedChange);
 
-            instance.dropContainer.delegate('click', A.bind(instance._onClickField, instance), _DOT +
+            instance.dropContainer.delegate('click', A.bind(instance._onClickField, instance), '.' +
                 CSS_FORM_BUILDER_FIELD);
-            instance.dropContainer.delegate('mouseover', A.bind(instance._onMouseOverField, instance), _DOT +
+            instance.dropContainer.delegate('mouseover', A.bind(instance._onMouseOverField, instance), '.' +
                 CSS_FORM_BUILDER_FIELD);
-            instance.dropContainer.delegate('mouseout', A.bind(instance._onMouseOutField, instance), _DOT +
+            instance.dropContainer.delegate('mouseout', A.bind(instance._onMouseOutField, instance), '.' +
                 CSS_FORM_BUILDER_FIELD);
         },
 
@@ -445,7 +398,7 @@ var FormBuilder = A.Component.create({
                     }
                 });
 
-                config = new(instance.getFieldClass(config.type || FIELD))(A.mix(attrs, config));
+                config = new(instance.getFieldClass(config.type || 'field'))(A.mix(attrs, config));
             }
 
             config.addTarget(instance);
@@ -463,12 +416,12 @@ var FormBuilder = A.Component.create({
          */
         duplicateField: function(field) {
             var instance = this,
-                index = instance._getFieldNodeIndex(field.get(BOUNDING_BOX)),
+                index = instance._getFieldNodeIndex(field.get('boundingBox')),
                 newField = instance._cloneField(field, true),
-                boundingBox = newField.get(BOUNDING_BOX);
+                boundingBox = newField.get('boundingBox');
 
-            boundingBox.setStyle(OPACITY, 0);
-            instance.insertField(newField, ++index, field.get(PARENT));
+            boundingBox.setStyle('opacity', 0);
+            instance.insertField(newField, ++index, field.get('parent'));
             boundingBox.show(true);
         },
 
@@ -536,7 +489,7 @@ var FormBuilder = A.Component.create({
             parent = parent || instance;
 
             // remove from previous parent
-            field.get(PARENT).removeField(field);
+            field.get('parent').removeField(field);
 
             parent.addField(field, index);
         },
@@ -552,7 +505,7 @@ var FormBuilder = A.Component.create({
 
             instance.tabView.enableTab(A.FormBuilder.SETTINGS_TAB);
             instance.tabView.selectChild(A.FormBuilder.SETTINGS_TAB);
-            instance.propertyList.set(DATA, instance.getFieldProperties(field));
+            instance.propertyList.set('data', instance.getFieldProperties(field));
         },
 
         /**
@@ -564,9 +517,9 @@ var FormBuilder = A.Component.create({
          */
         plotField: function(field, container) {
             var instance = this,
-                boundingBox = field.get(BOUNDING_BOX);
+                boundingBox = field.get('boundingBox');
 
-            if (!field.get(RENDERED)) {
+            if (!field.get('rendered')) {
                 field.render(container);
             }
             else {
@@ -589,9 +542,9 @@ var FormBuilder = A.Component.create({
             var instance = this;
 
             container = container || instance.dropContainer;
-            fields = fields || instance.get(FIELDS);
+            fields = fields || instance.get('fields');
 
-            container.setContent(EMPTY_STR);
+            container.setContent('');
 
             A.each(fields, function(field) {
                 instance.plotField(field, container);
@@ -678,9 +631,9 @@ var FormBuilder = A.Component.create({
                 node;
 
             if (isAvailableField(availableField)) {
-                node = availableField.get(NODE);
+                node = availableField.get('node');
 
-                availableField.set(DRAGGABLE, false);
+                availableField.set('draggable', false);
                 node.unselectable();
             }
         },
@@ -697,9 +650,9 @@ var FormBuilder = A.Component.create({
                 node;
 
             if (isAvailableField(availableField)) {
-                node = availableField.get(NODE);
+                node = availableField.get('node');
 
-                availableField.set(DRAGGABLE, true);
+                availableField.set('draggable', true);
                 node.selectable();
             }
         },
@@ -714,7 +667,7 @@ var FormBuilder = A.Component.create({
         _afterSelectedFieldsSetAdd: function(event) {
             var instance = this;
 
-            event.value.set(SELECTED, true);
+            event.value.set('selected', true);
 
             instance.openEditProperties(event.value);
         },
@@ -730,7 +683,7 @@ var FormBuilder = A.Component.create({
         _afterSelectedFieldsSetRemove: function(event) {
             var instance = this;
 
-            event.value.set(SELECTED, false);
+            event.value.set('selected', false);
 
             instance.closeEditProperties();
         },
@@ -757,11 +710,11 @@ var FormBuilder = A.Component.create({
             });
 
             if (deep) {
-                config[FIELDS] = [];
+                config['fields'] = [];
 
-                A.each(field.get(FIELDS), function(child, index) {
-                    if (!child.get(UNIQUE)) {
-                        config[FIELDS][index] = instance._cloneField(child, deep);
+                A.each(field.get('fields'), function(child, index) {
+                    if (!child.get('unique')) {
+                        config['fields'][index] = instance._cloneField(child, deep);
                     }
                 });
             }
@@ -778,35 +731,35 @@ var FormBuilder = A.Component.create({
          */
         _dropField: function(dragNode) {
             var instance = this,
-                availableField = dragNode.getData(AVAILABLE_FIELD),
+                availableField = dragNode.getData('availableField'),
                 field = A.Widget.getByNode(dragNode);
 
             if (isAvailableField(availableField)) {
                 var config = {
-                    hiddenAttributes: availableField.get(HIDDEN_ATTRIBUTES),
-                    label: availableField.get(LABEL),
-                    localizationMap: availableField.get(LOCALIZATION_MAP),
-                    options: availableField.get(OPTIONS),
-                    predefinedValue: availableField.get(PREDEFINED_VALUE),
-                    readOnlyAttributes: availableField.get(READ_ONLY_ATTRIBUTES),
-                    required: availableField.get(REQUIRED),
-                    showLabel: availableField.get(SHOW_LABEL),
-                    tip: availableField.get(TIP),
-                    type: availableField.get(TYPE),
-                    unique: availableField.get(UNIQUE),
-                    width: availableField.get(WIDTH)
+                    hiddenAttributes: availableField.get('hiddenAttributes'),
+                    label: availableField.get('label'),
+                    localizationMap: availableField.get('localizationMap'),
+                    options: availableField.get('options'),
+                    predefinedValue: availableField.get('predefinedValue'),
+                    readOnlyAttributes: availableField.get('readOnlyAttributes'),
+                    required: availableField.get('required'),
+                    showLabel: availableField.get('showLabel'),
+                    tip: availableField.get('tip'),
+                    type: availableField.get('type'),
+                    unique: availableField.get('unique'),
+                    width: availableField.get('width')
                 };
 
                 if (config.unique) {
                     config.id = instance._getFieldId(availableField);
-                    config.name = availableField.get(NAME);
+                    config.name = availableField.get('name');
                 }
 
                 field = instance.createField(config);
             }
 
             if (isFormBuilderField(field)) {
-                var parentNode = dragNode.get(PARENT_NODE),
+                var parentNode = dragNode.get('parentNode'),
                     dropField = A.Widget.getByNode(parentNode),
                     index = instance._getFieldNodeIndex(dragNode);
 
@@ -827,7 +780,7 @@ var FormBuilder = A.Component.create({
          * @return {String}
          */
         _getFieldId: function(field) {
-            var id = field.get(ID),
+            var id = field.get('id'),
                 prefix;
 
             if (isAvailableField(field)) {
@@ -837,7 +790,7 @@ var FormBuilder = A.Component.create({
                 prefix = FIELDS_ID_PREFIX;
             }
 
-            return id.replace(prefix, _EMPTY_STR);
+            return id.replace(prefix, '');
         },
 
         /**
@@ -848,10 +801,10 @@ var FormBuilder = A.Component.create({
          * @protected
          */
         _getFieldNodeIndex: function(fieldNode) {
-            return fieldNode.get(PARENT_NODE).all(
+            return fieldNode.get('parentNode').all(
                 // prevent the placeholder interference on the index
                 // calculation
-                '> *:not(' + _DOT + CSS_FORM_BUILDER_PLACEHOLDER + ')'
+                '> *:not(' + '.' + CSS_FORM_BUILDER_PLACEHOLDER + ')'
             ).indexOf(fieldNode);
         },
 
@@ -881,7 +834,7 @@ var FormBuilder = A.Component.create({
         _onDragEnd: function(event) {
             var instance = this,
                 drag = event.target,
-                dragNode = drag.get(NODE);
+                dragNode = drag.get('node');
 
             instance._dropField(dragNode);
 
@@ -889,7 +842,7 @@ var FormBuilder = A.Component.create({
             if (!isFormBuilderField(A.Widget.getByNode(dragNode))) {
                 dragNode.remove();
 
-                drag.set(NODE, instance._originalDragNode);
+                drag.set('node', instance._originalDragNode);
             }
         },
 
@@ -917,10 +870,10 @@ var FormBuilder = A.Component.create({
          * @protected
          */
         _onDragMouseDown: function(event) {
-            var dragNode = event.target.get(NODE),
+            var dragNode = event.target.get('node'),
                 availableField = A.AvailableField.getAvailableFieldByNode(dragNode);
 
-            if (isAvailableField(availableField) && !availableField.get(DRAGGABLE)) {
+            if (isAvailableField(availableField) && !availableField.get('draggable')) {
                 event.halt();
             }
         },
@@ -935,7 +888,7 @@ var FormBuilder = A.Component.create({
         _onDragStart: function(event) {
             var instance = this,
                 drag = event.target,
-                dragNode = drag.get(NODE);
+                dragNode = drag.get('node');
 
             // skip already instanciated fields
             if (isFormBuilderField(A.Widget.getByNode(dragNode))) {
@@ -949,12 +902,12 @@ var FormBuilder = A.Component.create({
             var clonedDragNode = dragNode.clone();
             dragNode.placeBefore(clonedDragNode);
 
-            drag.set(NODE, clonedDragNode);
+            drag.set('node', clonedDragNode);
 
-            var availableFieldData = dragNode.getData(AVAILABLE_FIELD);
-            clonedDragNode.setData(AVAILABLE_FIELD, availableFieldData);
+            var availableFieldData = dragNode.getData('availableField');
+            clonedDragNode.setData('availableField', availableFieldData);
 
-            clonedDragNode.attr(ID, EMPTY_STR);
+            clonedDragNode.attr('id', '');
             clonedDragNode.hide();
 
             dragNode.removeClass(CSS_DD_DRAGGING);
@@ -974,7 +927,7 @@ var FormBuilder = A.Component.create({
             var field = A.Widget.getByNode(event.currentTarget);
 
             field.controlsToolbar.hide();
-            field.get(BOUNDING_BOX).removeClass(CSS_FIELD_HOVER);
+            field.get('boundingBox').removeClass(CSS_FIELD_HOVER);
 
             event.stopPropagation();
         },
@@ -990,7 +943,7 @@ var FormBuilder = A.Component.create({
             var field = A.Widget.getByNode(event.currentTarget);
 
             field.controlsToolbar.show();
-            field.get(BOUNDING_BOX).addClass(CSS_FIELD_HOVER);
+            field.get('boundingBox').addClass(CSS_FIELD_HOVER);
 
             event.stopPropagation();
         },
@@ -1008,10 +961,10 @@ var FormBuilder = A.Component.create({
                 editingField = instance.editingField;
 
             if (editingField) {
-                var modelList = instance.propertyList.get(DATA);
+                var modelList = instance.propertyList.get('data');
 
                 modelList.each(function(model) {
-                    editingField.set(model.get(ATTRIBUTE_NAME), model.get(VALUE));
+                    editingField.set(model.get('attributeName'), model.get('value'));
                 });
 
                 instance._syncUniqueField(editingField);
@@ -1054,7 +1007,7 @@ var FormBuilder = A.Component.create({
             return A.merge({
                     bubbleTargets: instance,
                     dd: {
-                        groups: [AVAILABLE_FIELDS],
+                        groups: ['availableFields'],
                         plugins: [
                             {
                                 cfg: {
@@ -1066,7 +1019,7 @@ var FormBuilder = A.Component.create({
                         ]
                     },
                     dropCondition: function(event) {
-                        var dropNode = event.drop.get(NODE),
+                        var dropNode = event.drop.get('node'),
                             field = A.Widget.getByNode(dropNode);
 
                         if (isFormBuilderField(field)) {
@@ -1076,9 +1029,9 @@ var FormBuilder = A.Component.create({
                         return false;
                     },
                     placeholder: A.Node.create(TPL_PLACEHOLDER),
-                    dropOn: _DOT + CSS_FORM_BUILDER_DROP_ZONE,
+                    dropOn: '.' + CSS_FORM_BUILDER_DROP_ZONE,
                     sortCondition: function(event) {
-                        var dropNode = event.drop.get(NODE);
+                        var dropNode = event.drop.get('node');
 
                         return (dropNode !== instance.dropContainer &&
                             dropContainer.contains(dropNode));
@@ -1099,12 +1052,12 @@ var FormBuilder = A.Component.create({
 
             if (!instance.availableFieldsSortableList) {
                 var availableFieldsNodes = instance.fieldsContainer.all(
-                    _DOT + CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE
+                    '.' + CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE
                 );
 
                 instance.availableFieldsSortableList = new A.SortableList(
                     A.merge(
-                        instance.get(FIELDS_SORTABLE_LIST_CONFIG), {
+                        instance.get('fieldsSortableListConfig'), {
                             nodes: availableFieldsNodes
                         }
                     )
@@ -1123,7 +1076,7 @@ var FormBuilder = A.Component.create({
 
             if (!instance.fieldsSortableList) {
                 instance.fieldsSortableList = new A.SortableList(
-                    instance.get(FIELDS_SORTABLE_LIST_CONFIG)
+                    instance.get('fieldsSortableListConfig')
                 );
             }
         },
@@ -1141,7 +1094,7 @@ var FormBuilder = A.Component.create({
                 availableField = getAvailableFieldById(fieldId);
 
             if (isAvailableField(availableField)) {
-                if (availableField.get(UNIQUE) || field.get(UNIQUE)) {
+                if (availableField.get('unique') || field.get('unique')) {
                     instance.uniqueFieldsMap.put(fieldId, field);
                 }
             }
@@ -1157,8 +1110,8 @@ var FormBuilder = A.Component.create({
         _uiSetAllowRemoveRequiredFields: function() {
             var instance = this;
 
-            instance.get(FIELDS).each(function(field) {
-                field._uiSetRequired(field.get(REQUIRED));
+            instance.get('fields').each(function(field) {
+                field._uiSetRequired(field.get('required'));
             });
         }
     }

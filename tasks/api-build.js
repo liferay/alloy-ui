@@ -17,9 +17,6 @@ var async = require('async');
 var command = require('command');
 var path = require('path');
 
-// -- Globals ------------------------------------------------------------------
-var ROOT = process.cwd();
-
 // -- Task ---------------------------------------------------------------------
 module.exports = function(grunt) {
     grunt.registerTask(TASK.name, TASK.description, function() {
@@ -76,18 +73,13 @@ module.exports = function(grunt) {
     exports._buildYuidoc = function(mainCallback) {
         var auiVersion = grunt.config([TASK.name, 'aui-version']);
         var configFile = path.join(grunt.config([TASK.name, 'theme']), 'yuidoc.json');
-        var sourceDirs = grunt.config([TASK.name, 'src']);
+        var sourceDir = grunt.config([TASK.name, 'src']);
         var destinationDir = grunt.config([TASK.name, 'dist']);
 
         var commandArgs = [];
-
-        sourceDirs.forEach(function(srcDir) {
-            commandArgs.push(srcDir);
-        });
-
         commandArgs.push('-c', configFile, '-o', destinationDir, '--project-version', auiVersion);
 
-        command.open(ROOT)
+        command.open(sourceDir)
             .on('stdout', command.writeTo(process.stdout))
             .on('stderr', command.writeTo(process.stderr))
             .exec('yuidoc', commandArgs)

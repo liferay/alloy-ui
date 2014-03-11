@@ -28,9 +28,7 @@ YUI.add('aui-color-picker-tests', function(Y) {
 
         name: 'ColorPicker Trigger tests',
 
-        /**
-         * @tests AUI-983
-         */
+        // Tests: AUI-983
         'assert ColorPicker could be opened via multiple triggers': function() {
             var instance = this,
                 trigger1;
@@ -79,9 +77,7 @@ YUI.add('aui-color-picker-tests', function(Y) {
             }
         },
 
-        /**
-         * @tests AUI-1083
-         */
+        // Tests: AUI-1083
         'assert results view color changes with value slider change': function() {
             var instance = this,
                 hsvPaletteContainer,
@@ -196,9 +192,7 @@ YUI.add('aui-color-picker-tests', function(Y) {
 
         name: 'ColorPicker value change tests',
 
-        /**
-         * @tests AUI-1091
-         */
+        // Tests: AUI-1091
         'assert changing the HEX value field changes selected attribute': function() {
             var field;
 

@@ -11,10 +11,7 @@ var Lang = A.Lang,
         return (arr || []).concat(arr2 || []);
     },
 
-    _NAME = 'component',
-
     _INSTANCES = {},
-    _STR_BLANK = ' ',
     _CONSTRUCTOR_OBJECT = A.config.win.Object.prototype.constructor,
 
     ClassNameManager = A.ClassNameManager,
@@ -38,7 +35,7 @@ var Lang = A.Lang,
  *     properties.
  * @constructor
  */
-var Component = A.Base.create(_NAME, A.Widget, [
+var Component = A.Base.create('component', A.Widget, [
         A.WidgetCssClass,
         A.WidgetToggle
     ], {
@@ -111,8 +108,8 @@ var Component = A.Base.create(_NAME, A.Widget, [
         var boundingBoxNodeClassName = boundingBoxNode.className;
         var contentBoxNodeClassName = contentBoxNode.className;
 
-        var boundingBoxBuffer = (boundingBoxNodeClassName) ? boundingBoxNodeClassName.split(_STR_BLANK) : [];
-        var contentBoxBuffer = (contentBoxNodeClassName) ? contentBoxNodeClassName.split(_STR_BLANK) : [];
+        var boundingBoxBuffer = (boundingBoxNodeClassName) ? boundingBoxNodeClassName.split(' ') : [];
+        var contentBoxBuffer = (contentBoxNodeClassName) ? contentBoxNodeClassName.split(' ') : [];
 
         var classes = instance._getClasses();
 
@@ -142,12 +139,12 @@ var Component = A.Base.create(_NAME, A.Widget, [
         contentBoxBuffer.push(instance.getClassName('content'));
 
         if (boundingBoxNode === contentBoxNode) {
-            contentBoxNodeClassName = AArray.dedupe(contentBoxBuffer.concat(boundingBoxBuffer)).join(_STR_BLANK);
+            contentBoxNodeClassName = AArray.dedupe(contentBoxBuffer.concat(boundingBoxBuffer)).join(' ');
         }
         else {
-            boundingBoxNode.className = AArray.dedupe(boundingBoxBuffer).join(_STR_BLANK);
+            boundingBoxNode.className = AArray.dedupe(boundingBoxBuffer).join(' ');
 
-            contentBoxNodeClassName = AArray.dedupe(contentBoxBuffer).join(_STR_BLANK);
+            contentBoxNodeClassName = AArray.dedupe(contentBoxBuffer).join(' ');
         }
 
         contentBoxNode.className = contentBoxNodeClassName;

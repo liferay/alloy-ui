@@ -7,18 +7,7 @@
 
 var Lang = A.Lang,
 
-    _DOCUMENT = A.one(A.config.doc),
-
-    ACTIVE_ELEMENT = 'activeElement',
-    ACTIVE_INPUT = 'activeInput',
-    BOTTOM = 'bottom',
-    BOUNDING_BOX = 'boundingBox',
-    CLICK = 'click',
-    CLICKOUTSIDE = 'clickoutside',
-    ESC = 'esc',
-    KEY = 'key',
-    POPOVER = 'popover',
-    POPOVER_CSS_CLASS = 'popoverCssClass';
+    _DOCUMENT = A.one(A.config.doc);
 
 /**
  * A base class for `DatePickerPopover`.
@@ -107,9 +96,9 @@ A.mix(DatePickerPopover.prototype, {
             popover = instance.popover;
 
         if (!popover) {
-            popover = new A.Popover(instance.get(POPOVER));
-            popover.get(BOUNDING_BOX).on(
-                CLICKOUTSIDE, instance._onPopoverClickOutside, instance);
+            popover = new A.Popover(instance.get('popover'));
+            popover.get('boundingBox').on(
+                'clickoutside', instance._onPopoverClickOutside, instance);
 
             instance.popover = popover;
         }
@@ -148,9 +137,9 @@ A.mix(DatePickerPopover.prototype, {
      */
     _isActiveInputFocused: function() {
         var instance = this,
-            activeInput = instance.get(ACTIVE_INPUT);
+            activeInput = instance.get('activeInput');
 
-        return (activeInput === _DOCUMENT.get(ACTIVE_ELEMENT));
+        return (activeInput === _DOCUMENT.get('activeElement'));
     },
 
     /**
@@ -163,7 +152,7 @@ A.mix(DatePickerPopover.prototype, {
     _onPopoverClickOutside: function(event) {
         var instance = this,
             target = event.target,
-            activeInput = instance.get(ACTIVE_INPUT);
+            activeInput = instance.get('activeInput');
 
         if (!instance._isActiveInputFocused() && !activeInput.contains(target)) {
 
@@ -183,18 +172,18 @@ A.mix(DatePickerPopover.prototype, {
 
         return A.merge({
             bodyContent: '',
-            cssClass: instance.get(POPOVER_CSS_CLASS),
+            cssClass: instance.get('popoverCssClass'),
             constrain: true,
             hideOn: [
                 {
                     node: _DOCUMENT,
-                    eventName: KEY,
-                    keyCode: ESC
+                    eventName: 'key',
+                    keyCode: 'esc'
                 }
             ],
-            position: BOTTOM,
+            position: 'bottom',
             render: true,
-            triggerShowEvent: CLICK,
+            triggerShowEvent: 'click',
             triggerToggleEvent: null,
             visible: false
         }, val);

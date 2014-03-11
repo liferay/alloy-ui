@@ -8,34 +8,6 @@ var L = A.Lang,
     isString = L.isString,
     isFunction = L.isFunction,
 
-    BLOCK = 'block',
-    BODY = 'body',
-    DD = 'dd',
-    DISPLAY = 'display',
-    DOWN = 'down',
-    DRAG_NODE = 'dragNode',
-    DROP_CONDITION = 'dropCondition',
-    DROP_CONTAINER = 'dropContainer',
-    DROP_ON = 'dropOn',
-    FLOAT = 'float',
-    HEIGHT = 'height',
-    HELPER = 'helper',
-    HIDDEN = 'hidden',
-    LEFT = 'left',
-    NODE = 'node',
-    NODES = 'nodes',
-    NONE = 'none',
-    OFFSET_HEIGHT = 'offsetHeight',
-    PLACEHOLDER = 'placeholder',
-    PROXY = 'proxy',
-    PX = 'px',
-    RIGHT = 'right',
-    SORT_CONDITION = 'sortCondition',
-    SORTABLE_LIST = 'sortable-list',
-    UP = 'up',
-    VISIBILITY = 'visibility',
-    VISIBLE = 'visible',
-
     DDM = A.DD.DDM,
 
     isNodeList = function(v) {
@@ -64,7 +36,7 @@ var SortableList = A.Component.create({
      * @type String
      * @static
      */
-    NAME: SORTABLE_LIST,
+    NAME: 'sortable-list',
 
     /**
      * Static property used to define the default attribute
@@ -112,8 +84,8 @@ var SortableList = A.Component.create({
             value: function(event) {
                 var instance = this;
                 var drop = event.drop;
-                var dropNode = drop.get(NODE);
-                var dropOn = instance.get(DROP_ON);
+                var dropNode = drop.get('node');
+                var dropOn = instance.get('dropOn');
 
                 return dropNode.one(dropOn);
             },
@@ -217,7 +189,7 @@ var SortableList = A.Component.create({
          */
         initializer: function() {
             var instance = this;
-            var nodes = instance.get(NODES);
+            var nodes = instance.get('nodes');
 
             // drag & drop listeners
             instance.on('drag:align', instance._onDragAlign);
@@ -269,7 +241,7 @@ var SortableList = A.Component.create({
          */
         _createDrag: function(node) {
             var instance = this;
-            var helper = instance.get(HELPER);
+            var helper = instance.get('helper');
 
             if (!DDM.getDrag(node)) {
                 var dragOptions = {
@@ -278,7 +250,7 @@ var SortableList = A.Component.create({
                     target: true
                 };
 
-                var proxyOptions = instance.get(PROXY);
+                var proxyOptions = instance.get('proxy');
 
                 if (helper) {
                     proxyOptions.borderStyle = null;
@@ -286,7 +258,7 @@ var SortableList = A.Component.create({
 
                 // creating delayed drag instance
                 new A.DD.Drag(
-                    A.mix(dragOptions, instance.get(DD))
+                    A.mix(dragOptions, instance.get('dd'))
                 ).plug(A.Plugin.DDProxy, proxyOptions);
             }
         },
@@ -299,13 +271,13 @@ var SortableList = A.Component.create({
          */
         _createHelper: function() {
             var instance = this;
-            var helper = instance.get(HELPER);
+            var helper = instance.get('helper');
 
             if (helper) {
                 // append helper to the body
-                A.one(BODY).append(helper.hide());
+                A.one('body').append(helper.hide());
 
-                instance.set(HELPER, helper);
+                instance.set('helper', helper);
             }
         },
 
@@ -321,9 +293,9 @@ var SortableList = A.Component.create({
             var instance = this;
             var drag = event.target;
             var drop = event.drop;
-            var dragNode = drag.get(NODE);
-            var dropNode = drop.get(NODE);
-            var dropContainer = instance.get(DROP_CONTAINER);
+            var dragNode = drag.get('node');
+            var dropNode = drop.get('node');
+            var dropContainer = instance.get('dropContainer');
             var container;
 
             if (dropContainer) {
@@ -334,11 +306,11 @@ var SortableList = A.Component.create({
             var xDirection = instance.XDirection;
             var yDirection = instance.YDirection;
 
-            if (dropNode.getStyle(FLOAT) !== NONE) {
+            if (dropNode.getStyle('float') !== 'none') {
                 floating = true;
             }
 
-            var placeholder = instance.get(PLACEHOLDER);
+            var placeholder = instance.get('placeholder');
 
             if (!placeholder) {
                 // if no placeholder use the dragNode instead
@@ -347,7 +319,7 @@ var SortableList = A.Component.create({
 
             if (!placeholder.contains(dropNode)) {
                 // check for the user dropCondition
-                var dropCondition = instance.get(DROP_CONDITION);
+                var dropCondition = instance.get('dropCondition');
 
                 // if there is a container waiting for nodes to be appended it's
                 // priority
@@ -361,7 +333,7 @@ var SortableList = A.Component.create({
                 // otherwise, check if it's floating and the xDirection
                 // or if it's not floating and the yDirection
                 else {
-                    if ((floating && (xDirection === LEFT)) || (!floating && (yDirection === UP))) {
+                    if ((floating && (xDirection === 'left')) || (!floating && (yDirection === 'up'))) {
                         // LEFT or UP directions means to place the placeholder
                         // before
                         dropNode.placeBefore(placeholder);
@@ -394,13 +366,13 @@ var SortableList = A.Component.create({
             // if the y change
             if (y !== lastY) {
                 // set the drag vertical direction
-                instance.YDirection = (y < lastY) ? UP : DOWN;
+                instance.YDirection = (y < lastY) ? 'up' : 'down';
             }
 
             // if the x change
             if (x !== lastX) {
                 // set the drag horizontal direction
-                instance.XDirection = (x < lastX) ? LEFT : RIGHT;
+                instance.XDirection = (x < lastX) ? 'left' : 'right';
             }
 
             instance.lastX = x;
@@ -417,8 +389,8 @@ var SortableList = A.Component.create({
         _onDragEnd: function(event) {
             var instance = this;
             var drag = event.target;
-            var dragNode = drag.get(NODE);
-            var placeholder = instance.get(PLACEHOLDER);
+            var dragNode = drag.get('node');
+            var placeholder = instance.get('placeholder');
 
             if (placeholder) {
                 dragNode.show();
@@ -440,7 +412,7 @@ var SortableList = A.Component.create({
          */
         _onDragExit: function(event) {
             var instance = this;
-            var sortCondition = instance.get(SORT_CONDITION);
+            var sortCondition = instance.get('sortCondition');
 
             if (sortCondition(event)) {
                 instance._updatePlaceholder(event, true);
@@ -457,11 +429,11 @@ var SortableList = A.Component.create({
         _onDragMouseDown: function(event) {
             var instance = this;
             var drag = event.target;
-            var helper = instance.get(HELPER);
+            var helper = instance.get('helper');
 
             if (helper) {
                 // update the DRAG_NODE with the new helper
-                drag.set(DRAG_NODE, helper);
+                drag.set('dragNode', helper);
             }
         },
 
@@ -475,15 +447,15 @@ var SortableList = A.Component.create({
         _onDragStart: function(event) {
             var instance = this;
             var drag = event.target;
-            var node = drag.get(NODE);
-            var helper = instance.get(HELPER);
-            var placeholder = instance.get(PLACEHOLDER);
+            var node = drag.get('node');
+            var helper = instance.get('helper');
+            var placeholder = instance.get('placeholder');
 
             if (placeholder) {
                 // update placeholder height
                 placeholder.setStyle(
-                    HEIGHT,
-                    node.get(OFFSET_HEIGHT) + PX
+                    'height',
+                    node.get('offsetHeight') + 'px'
                 );
 
                 node.hide();
@@ -495,8 +467,8 @@ var SortableList = A.Component.create({
                     // show helper, we need display block here, yui dd hide it
                     // with display none
                     helper.setStyles({
-                        display: BLOCK,
-                        visibility: VISIBLE
+                        display: 'block',
+                        visibility: 'visible'
                     }).show();
                 }
             }
@@ -511,7 +483,7 @@ var SortableList = A.Component.create({
          */
         _onDragOver: function(event) {
             var instance = this;
-            var sortCondition = instance.get(SORT_CONDITION);
+            var sortCondition = instance.get('sortCondition');
 
             if (sortCondition(event)) {
                 instance._updatePlaceholder(event);

@@ -7,27 +7,13 @@
 
 var L = A.Lang,
 
-    FORM_BUILDER_FIELD = 'form-builder-field',
-    FORM_BUILDER_SELECT_FIELD = 'form-builder-select-field',
-    ID = 'id',
-    LABEL = 'label',
-    MULTIPLE = 'multiple',
-    NAME = 'name',
-    NO = 'no',
-    NODE = 'node',
-    PREDEFINED_VALUE = 'predefinedValue',
-    SPACE = ' ',
-    TEMPLATE = 'template',
-    TEMPLATE_NODE = 'templateNode',
-    YES = 'yes',
-
     getCN = A.getClassName,
 
-    CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
-    CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
+    CSS_FORM_BUILDER_FIELD = getCN('form-builder-field'),
+    CSS_FORM_BUILDER_FIELD_NODE = getCN('form-builder-field', 'node'),
 
     TPL_SELECT =
-        '<select id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE].join(SPACE) +
+        '<select id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE].join(' ') +
         '" name="{name}" value="{value}"></select>';
 
 /**
@@ -48,7 +34,7 @@ var FormBuilderSelectField = A.Component.create({
      * @type String
      * @static
      */
-    NAME: FORM_BUILDER_SELECT_FIELD,
+    NAME: 'form-builder-select-field',
 
     /**
      * Static property used to define the default attribute
@@ -92,7 +78,7 @@ var FormBuilderSelectField = A.Component.create({
      * @type Array
      * @static
      */
-    UI_ATTRS: A.FormBuilderField.UI_ATTRS.concat([MULTIPLE, PREDEFINED_VALUE]),
+    UI_ATTRS: A.FormBuilderField.UI_ATTRS.concat(['multiple', 'predefinedValue']),
 
     /**
      * Static property provides a string to identify the CSS prefix.
@@ -124,11 +110,11 @@ var FormBuilderSelectField = A.Component.create({
             var instance = this;
 
             return L.sub(
-                instance.get(TEMPLATE), {
-                    id: instance.get(ID),
-                    label: instance.get(LABEL),
-                    name: instance.get(NAME),
-                    value: instance.get(PREDEFINED_VALUE)
+                instance.get('template'), {
+                    id: instance.get('id'),
+                    label: instance.get('label'),
+                    name: instance.get('name'),
+                    value: instance.get('predefinedValue')
                 }
             );
         },
@@ -146,15 +132,15 @@ var FormBuilderSelectField = A.Component.create({
             var model = A.FormBuilderSelectField.superclass.getPropertyModel.apply(instance, arguments);
 
             model.push({
-                attributeName: MULTIPLE,
+                attributeName: 'multiple',
                 editor: new A.RadioCellEditor({
                     options: {
-                        'true': strings[YES],
-                        'false': strings[NO]
+                        'true': strings['yes'],
+                        'false': strings['no']
                     }
                 }),
                 formatter: A.bind(instance._booleanFormatter, instance),
-                name: strings[MULTIPLE]
+                name: strings['multiple']
             });
 
             return model;
@@ -169,16 +155,16 @@ var FormBuilderSelectField = A.Component.create({
          */
         _uiSetMultiple: function(val) {
             var instance = this,
-                templateNode = instance.get(TEMPLATE_NODE);
+                templateNode = instance.get('templateNode');
 
             if (val) {
-                templateNode.setAttribute(MULTIPLE, MULTIPLE);
+                templateNode.setAttribute('multiple', 'multiple');
             }
             else {
-                templateNode.removeAttribute(MULTIPLE);
+                templateNode.removeAttribute('multiple');
             }
 
-            instance.predefinedValueEditor.set(MULTIPLE, val);
+            instance.predefinedValueEditor.set('multiple', val);
         }
 
     }

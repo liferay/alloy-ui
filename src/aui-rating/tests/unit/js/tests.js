@@ -22,9 +22,7 @@ YUI.add('aui-rating-tests', function(Y) {
         // Tests
         //----------------------------------------------------------------------
 
-        /**
-         * @tests AUI-1132
-         */
+        // Tests: AUI-1132
         'check that pressing enter selects an item': function() {
             var instance = this,
                 item3;

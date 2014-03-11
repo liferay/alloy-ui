@@ -8,18 +8,7 @@ var Lang = A.Lang,
 
     clamp = function(value, min, max) {
         return Math.min(Math.max(value, min), max);
-    },
-
-    ACTIVE_INPUT = 'activeInput',
-    AUTO_HIDE = 'autoHide',
-    CALENDAR = 'calendar',
-    DATE = 'date',
-    DATE_CLICK = 'dateClick',
-    MULTIPLE = 'multiple',
-    PANES = 'panes',
-    SELECTION_CHANGE = 'selectionChange',
-    SELECTION_MODE = 'selectionMode',
-    TRIGGER = 'trigger';
+    };
 
 /**
  * A base class for `DatePickerBase`.
@@ -109,7 +98,7 @@ A.mix(DatePickerBase.prototype, {
     initializer: function() {
         var instance = this;
 
-        instance.after(SELECTION_CHANGE, instance._afterDatePickerSelectionChange);
+        instance.after('selectionChange', instance._afterDatePickerSelectionChange);
     },
 
     /**
@@ -154,21 +143,21 @@ A.mix(DatePickerBase.prototype, {
             // attribute, then switch it back after calendar renders.
             originalCalendarTemplate = A.CalendarBase.CONTENT_TEMPLATE;
             A.CalendarBase.CONTENT_TEMPLATE =
-                DatePickerBase.PANES[instance.get(PANES) - 1];
+                DatePickerBase.PANES[instance.get('panes') - 1];
 
             // Initialize the popover instance before calendar renders since it
             // will use popover.bodyNode as render node.
             instance.getPopover();
 
-            calendar = new A.Calendar(instance.get(CALENDAR));
+            calendar = new A.Calendar(instance.get('calendar'));
             calendar.render(instance.popover.bodyNode);
             instance.calendar = calendar;
 
             calendar.after(
-                SELECTION_CHANGE, instance._afterCalendarSelectionChange,
+                'selectionChange', instance._afterCalendarSelectionChange,
                 instance);
             calendar.after(
-                DATE_CLICK, instance._afterCalendarDateClick,
+                'dateClick', instance._afterCalendarDateClick,
                 instance);
 
             // Restore the original CalendarBase template.
@@ -200,8 +189,8 @@ A.mix(DatePickerBase.prototype, {
         var instance = this,
             popover = instance.getPopover();
 
-        popover.set(TRIGGER, node);
-        instance.set(ACTIVE_INPUT, node);
+        popover.set('trigger', node);
+        instance.set('activeInput', node);
 
         instance.alignTo(node);
         instance.clearSelection(true);
@@ -217,9 +206,9 @@ A.mix(DatePickerBase.prototype, {
     _afterCalendarDateClick: function() {
         var instance = this,
             calendar = instance.getCalendar(),
-            selectionMode = calendar.get(SELECTION_MODE);
+            selectionMode = calendar.get('selectionMode');
 
-        if (instance.get(AUTO_HIDE) && (selectionMode !== MULTIPLE)) {
+        if (instance.get('autoHide') && (selectionMode !== 'multiple')) {
             instance.hide();
         }
     },
@@ -234,7 +223,7 @@ A.mix(DatePickerBase.prototype, {
     _afterCalendarSelectionChange: function(event) {
         var instance = this;
 
-        instance.fire(SELECTION_CHANGE, {
+        instance.fire('selectionChange', {
             newSelection: event.newSelection
         });
     },
@@ -263,7 +252,7 @@ A.mix(DatePickerBase.prototype, {
             firstSelectedDate = dates[0];
 
         if (firstSelectedDate) {
-            instance.getCalendar().set(DATE, firstSelectedDate);
+            instance.getCalendar().set('date', firstSelectedDate);
         }
     },
 

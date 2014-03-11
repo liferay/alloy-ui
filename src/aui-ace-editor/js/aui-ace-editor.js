@@ -4,15 +4,7 @@
  * @module aui-ace-editor
  */
 
-var Lang = A.Lang,
-
-    BOUNDING_BOX = 'boundingBox',
-    CONTENT_BOX = 'contentBox',
-    EMPTY_STR = '',
-    HEIGHT = 'height',
-    WIDTH = 'width',
-
-    NAME = 'ace-editor';
+var Lang = A.Lang;
 
 var ACE_EDITOR_BASE_PATH = A.config.base + 'aui-ace-editor/ace';
 
@@ -42,7 +34,7 @@ var AceEditor = A.Component.create({
      * @type String
      * @static
      */
-    NAME: NAME,
+    NAME: 'ace-editor',
 
     /**
      * Static property used to define which component it extends.
@@ -100,7 +92,7 @@ var AceEditor = A.Component.create({
             lazyAdd: false,
             getter: '_getMode',
             setter: '_setMode',
-            value: EMPTY_STR
+            value: ''
         },
 
         /**
@@ -188,7 +180,7 @@ var AceEditor = A.Component.create({
             lazyAdd: false,
             getter: '_getValue',
             setter: '_setValue',
-            value: EMPTY_STR
+            value: ''
         },
 
         /**
@@ -211,7 +203,7 @@ var AceEditor = A.Component.create({
      * @type Array
      * @static
      */
-    UI_ATTRS: [HEIGHT, WIDTH],
+    UI_ATTRS: ['height', 'width'],
 
     prototype: {
 
@@ -224,7 +216,7 @@ var AceEditor = A.Component.create({
             var instance = this;
 
             if (!instance.editor) {
-                var boundingBox = instance.get(BOUNDING_BOX);
+                var boundingBox = instance.get('boundingBox');
 
                 instance.editor = ace.edit(boundingBox.getDOM());
             }

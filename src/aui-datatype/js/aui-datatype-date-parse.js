@@ -13,9 +13,7 @@ var Lang = A.Lang,
         if (!isNaN(val)) {
             return val;
         }
-    },
-
-    LOCALE = 'locale';
+    };
 
 /**
  * A base class for `A.DateParser`.
@@ -273,7 +271,7 @@ A.mix(DateParser.prototype, {
         var instance = this,
             aggregate = A.Date.aggregates[token];
 
-        if (aggregate === LOCALE) {
+        if (aggregate === 'locale') {
             aggregate = instance._getLangResource(token);
         }
 

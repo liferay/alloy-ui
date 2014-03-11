@@ -14,7 +14,7 @@
  *     properties.
  * @constructor
  */
-var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
+var SchedulerCalendar = A.Base.create('scheduler-calendar', A.ModelList, [], {
     model: A.SchedulerEvent,
 
     /**
@@ -38,9 +38,9 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
         );
 
         instance._setModelsAttrs({
-            color: instance.get(COLOR),
-            disabled: instance.get(DISABLED),
-            visible: instance.get(VISIBLE)
+            color: instance.get('color'),
+            disabled: instance.get('disabled'),
+            visible: instance.get('visible')
         });
     },
 
@@ -55,7 +55,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
         var instance = this;
 
         instance._setModelsAttrs({
-            color: instance.get(COLOR)
+            color: instance.get('color')
         }, {
             silent: event.silent
         });
@@ -72,7 +72,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
         var instance = this;
 
         instance._setModelsAttrs({
-            disabled: instance.get(DISABLED)
+            disabled: instance.get('disabled')
         }, {
             silent: event.silent
         });
@@ -89,9 +89,9 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
         var instance = this;
 
         instance._setModelsAttrs({
-            color: instance.get(COLOR),
-            disabled: instance.get(DISABLED),
-            visible: instance.get(VISIBLE)
+            color: instance.get('color'),
+            disabled: instance.get('disabled'),
+            visible: instance.get('visible')
         }, {
             silent: true
         });
@@ -110,7 +110,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
         var instance = this;
 
         instance._setModelsAttrs({
-            visible: instance.get(VISIBLE)
+            visible: instance.get('visible')
         }, {
             silent: event.silent
         });
@@ -125,7 +125,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      */
     _onRemoveEvents: function(event) {
         var instance = this;
-        var scheduler = instance.get(SCHEDULER);
+        var scheduler = instance.get('scheduler');
 
         if (scheduler) {
             scheduler.removeEvents(instance);
@@ -158,7 +158,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      */
     _uiSetEvents: function(val) {
         var instance = this;
-        var scheduler = instance.get(SCHEDULER);
+        var scheduler = instance.get('scheduler');
 
         if (scheduler) {
             scheduler.addEvents(val);
@@ -186,7 +186,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
         color: {
             valueFn: function() {
                 var instance = this;
-                var palette = instance.get(PALETTE);
+                var palette = instance.get('palette');
                 var randomIndex = Math.ceil(Math.random() * palette.length) - 1;
 
                 return palette[randomIndex];

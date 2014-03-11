@@ -23,104 +23,24 @@ var Lang = A.Lang,
     WidgetStdMod = A.WidgetStdMod,
     AgetClassName = A.getClassName,
 
-    ACTIVE_CELL = 'activeCell',
-    ADD = 'add',
-    ADD_OPTION = 'addOption',
-    BASE_CELL_EDITOR = 'baseCellEditor',
-    BOUNDING_BOX = 'boundingBox',
-    CALENDAR = 'calendar',
-    CANCEL = 'cancel',
-    CELL = 'cell',
-    CELLEDITOR = 'celleditor',
-    CHECKBOX_CELL_EDITOR = 'checkboxCellEditor',
-    CHECKED = 'checked',
-    CLICK = 'click',
-    CONTENT_BOX = 'contentBox',
-    DATA = 'data',
-    DATATABLE = 'datatable',
-    DATE_CELL_EDITOR = 'dateCellEditor',
-    DD = 'dd',
-    DELETE = 'delete',
-    DISK = 'disk',
-    DOTTED = 'dotted',
-    DROP_DOWN_CELL_EDITOR = 'dropDownCellEditor',
-    EDIT = 'edit',
-    EDIT_EVENT = 'editEvent',
-    EDIT_OPTIONS = 'editOptions',
-    EDITABLE = 'editable',
-    EDITOR = 'editor',
-    ELEMENT = 'element',
-    ELEMENT_NAME = 'elementName',
-    GRIP = 'grip',
-    HANDLE = 'handle',
-    HIDE = 'hide',
-    HIDE_ON_SAVE = 'hideOnSave',
-    ICON = 'icon',
-    INIT_EDIT = 'initEdit',
-    INIT_TOOLBAR = 'initToolbar',
-    INIT_VALIDATOR = 'initValidator',
-    INPUT = 'input',
-    INPUT_FORMATTER = 'inputFormatter',
-    KEY = 'key',
-    LABEL = 'label',
-    LINK = 'link',
-    MOUSEDOWN = 'mousedown',
-    MULTIPLE = 'multiple',
-    NAME = 'name',
-    ONLY = 'only',
-    OPTION = 'option',
-    OPTIONS = 'options',
-    OPTIONS_CELL_EDITOR = 'optionsCellEditor',
-    OUTPUT_FORMATTER = 'outputFormatter',
-    PENCIL = 'pencil',
-    RADIO_CELL_EDITOR = 'radioCellEditor',
-    READ = 'read',
-    READ_ONLY = 'readOnly',
-    REMOVE = 'remove',
-    RENDER = 'render',
-    RENDERED = 'rendered',
-    RETURN = 'return',
-    ROW = 'row',
-    SAVE = 'save',
-    SELECTED = 'selected',
-    SELECTED_ATTR_NAME = 'selectedAttrName',
-    SHOW_TOOLBAR = 'showToolbar',
-    SUBMIT = 'submit',
-    TEXT_AREA_CELL_EDITOR = 'textAreaCellEditor',
-    TEXT_CELL_EDITOR = 'textCellEditor',
-    TOOLBAR = 'toolbar',
-    UNESCAPE_VALUE = 'unescapeValue',
-    VALIDATOR = 'validator',
-    VALUE = 'value',
-    VERTICAL = 'vertical',
-    VISIBLE = 'visible',
-    WRAPPER = 'wrapper',
-    Z_INDEX = 'zIndex',
-
-    _COMMA = ',',
-    _DOT = '.',
-    _EMPTY_STR = '',
-    _NL = '\n',
-    _SPACE = ' ',
-
     REGEX_BR = /<br\s*\/?>/gi,
     REGEX_NL = /[\r\n]/g,
 
-    CSS_CELLEDITOR_EDIT = AgetClassName(CELLEDITOR, EDIT),
-    CSS_CELLEDITOR_EDIT_ADD_OPTION = AgetClassName(CELLEDITOR, EDIT, ADD, OPTION),
-    CSS_CELLEDITOR_EDIT_DD_HANDLE = AgetClassName(CELLEDITOR, EDIT, DD, HANDLE),
-    CSS_CELLEDITOR_EDIT_DELETE_OPTION = AgetClassName(CELLEDITOR, EDIT, DELETE, OPTION),
-    CSS_CELLEDITOR_EDIT_HIDE_OPTION = AgetClassName(CELLEDITOR, EDIT, HIDE, OPTION),
-    CSS_CELLEDITOR_EDIT_INPUT_NAME = AgetClassName(CELLEDITOR, EDIT, INPUT, NAME),
-    CSS_CELLEDITOR_EDIT_INPUT_VALUE = AgetClassName(CELLEDITOR, EDIT, INPUT, VALUE),
-    CSS_CELLEDITOR_EDIT_LABEL = AgetClassName(CELLEDITOR, EDIT, LABEL),
-    CSS_CELLEDITOR_EDIT_LINK = AgetClassName(CELLEDITOR, EDIT, LINK),
-    CSS_CELLEDITOR_EDIT_OPTION_ROW = AgetClassName(CELLEDITOR, EDIT, OPTION, ROW),
-    CSS_CELLEDITOR_ELEMENT = AgetClassName(CELLEDITOR, ELEMENT),
-    CSS_CELLEDITOR_OPTION = AgetClassName(CELLEDITOR, OPTION),
-    CSS_DATATABLE_EDITABLE = AgetClassName(DATATABLE, EDITABLE),
-    CSS_ICON = AgetClassName(ICON),
-    CSS_ICON_GRIP_DOTTED_VERTICAL = AgetClassName(ICON, GRIP, DOTTED, VERTICAL),
+    CSS_CELLEDITOR_EDIT = AgetClassName('celleditor', 'edit'),
+    CSS_CELLEDITOR_EDIT_ADD_OPTION = AgetClassName('celleditor', 'edit', 'add', 'option'),
+    CSS_CELLEDITOR_EDIT_DD_HANDLE = AgetClassName('celleditor', 'edit', 'dd', 'handle'),
+    CSS_CELLEDITOR_EDIT_DELETE_OPTION = AgetClassName('celleditor', 'edit', 'delete', 'option'),
+    CSS_CELLEDITOR_EDIT_HIDE_OPTION = AgetClassName('celleditor', 'edit', 'hide', 'option'),
+    CSS_CELLEDITOR_EDIT_INPUT_NAME = AgetClassName('celleditor', 'edit', 'input', 'name'),
+    CSS_CELLEDITOR_EDIT_INPUT_VALUE = AgetClassName('celleditor', 'edit', 'input', 'value'),
+    CSS_CELLEDITOR_EDIT_LABEL = AgetClassName('celleditor', 'edit', 'label'),
+    CSS_CELLEDITOR_EDIT_LINK = AgetClassName('celleditor', 'edit', 'link'),
+    CSS_CELLEDITOR_EDIT_OPTION_ROW = AgetClassName('celleditor', 'edit', 'option', 'row'),
+    CSS_CELLEDITOR_ELEMENT = AgetClassName('celleditor', 'element'),
+    CSS_CELLEDITOR_OPTION = AgetClassName('celleditor', 'option'),
+    CSS_DATATABLE_EDITABLE = AgetClassName('datatable', 'editable'),
+    CSS_ICON = AgetClassName('icon'),
+    CSS_ICON_GRIP_DOTTED_VERTICAL = AgetClassName('icon', 'grip', 'dotted', 'vertical'),
 
     TPL_BR = '<br/>';
 
@@ -173,7 +93,7 @@ CellEditorSupport.ATTRS = {
     editEvent: {
         setter: '_setEditEvent',
         validator: isString,
-        value: CLICK
+        value: 'click'
     }
 };
 
@@ -188,16 +108,16 @@ A.mix(CellEditorSupport.prototype, {
      */
     initializer: function() {
         var instance = this,
-            editEvent = instance.get(EDIT_EVENT);
+            editEvent = instance.get('editEvent');
 
         instance.CLASS_NAMES_CELL_EDITOR_SUPPORT = {
-            cell: instance.getClassName(CELL),
-            readOnly: instance.getClassName(READ, ONLY)
+            cell: instance.getClassName('cell'),
+            readOnly: instance.getClassName('read', 'only')
         };
 
-        instance.after(RENDER, instance._afterCellEditorSupportRender);
+        instance.after('render', instance._afterCellEditorSupportRender);
 
-        instance.delegate(editEvent, instance._onEditCell, _DOT + instance.CLASS_NAMES_CELL_EDITOR_SUPPORT.cell,
+        instance.delegate(editEvent, instance._onEditCell, '.' + instance.CLASS_NAMES_CELL_EDITOR_SUPPORT.cell,
             instance);
     },
 
@@ -211,7 +131,7 @@ A.mix(CellEditorSupport.prototype, {
     getEditor: function(record, column) {
         var instance = this,
             columnEditor = column.editor,
-            recordEditor = record.get(EDITOR);
+            recordEditor = record.get('editor');
 
         if (columnEditor === false || recordEditor === false) {
             return null;
@@ -231,7 +151,7 @@ A.mix(CellEditorSupport.prototype, {
 
         instance._syncModelsReadOnlyUI();
 
-        instance.body.after(A.bind(instance._syncModelsReadOnlyUI, instance), instance.body, RENDER);
+        instance.body.after(A.bind(instance._syncModelsReadOnlyUI, instance), instance.body, 'render');
     },
 
     /**
@@ -243,24 +163,24 @@ A.mix(CellEditorSupport.prototype, {
      */
     _onEditCell: function(event) {
         var instance = this,
-            activeCell = instance.get(ACTIVE_CELL),
+            activeCell = instance.get('activeCell'),
             alignNode = event.alignNode || activeCell,
             column = instance.getColumn(alignNode),
             record = instance.getRecord(alignNode),
             editor = instance.getEditor(record, column);
 
-        if (isBaseEditor(editor) && !record.get(READ_ONLY)) {
-            if (!editor.get(RENDERED)) {
+        if (isBaseEditor(editor) && !record.get('readOnly')) {
+            if (!editor.get('rendered')) {
                 editor.on({
                     visibleChange: A.bind(instance._onEditorVisibleChange, instance),
                     save: A.bind(instance._onEditorSave, instance)
                 });
 
-                editor.set(Z_INDEX, CellEditorSupport.EDITOR_ZINDEX);
+                editor.set('zIndex', CellEditorSupport.EDITOR_ZINDEX);
                 editor.render();
             }
 
-            editor.set(VALUE, record.get(column.key));
+            editor.set('value', record.get(column.key));
 
             editor.show().move(alignNode.getXY());
         }
@@ -279,11 +199,11 @@ A.mix(CellEditorSupport.prototype, {
             column = instance.getActiveColumn(),
             record = instance.getActiveRecord();
 
-        editor.set(VALUE, event.newVal);
+        editor.set('value', event.newVal);
 
         // TODO: Memorize the activeCell coordinates to set the focus on it
         // instead
-        instance.set(ACTIVE_CELL, instance.get(ACTIVE_CELL));
+        instance.set('activeCell', instance.get('activeCell'));
 
         record.set(column.key, event.newVal);
 
@@ -320,7 +240,7 @@ A.mix(CellEditorSupport.prototype, {
         var instance = this,
             row = instance.getRow(model);
 
-        row.toggleClass(instance.CLASS_NAMES_CELL_EDITOR_SUPPORT[READ_ONLY], model.get(READ_ONLY) === true);
+        row.toggleClass(instance.CLASS_NAMES_CELL_EDITOR_SUPPORT['readOnly'], model.get('readOnly') === true);
     },
 
     /**
@@ -332,7 +252,7 @@ A.mix(CellEditorSupport.prototype, {
     _syncModelsReadOnlyUI: function() {
         var instance = this;
 
-        instance.get(DATA).each(function(model) {
+        instance.get('data').each(function(model) {
             instance._syncModelReadOnlyUI(model);
         });
     },
@@ -372,7 +292,7 @@ A.Base.mix(A.DataTable, [CellEditorSupport]);
  * @extends Overlay
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
- * @abstract
+ * @constructor
  */
 var BaseCellEditor = A.Component.create({
 
@@ -383,7 +303,7 @@ var BaseCellEditor = A.Component.create({
      * @type String
      * @static
      */
-    NAME: BASE_CELL_EDITOR,
+    NAME: 'baseCellEditor',
 
     /**
      * Static property used to define the default attribute
@@ -415,7 +335,7 @@ var BaseCellEditor = A.Component.create({
          * @type String
          */
         elementName: {
-            value: VALUE,
+            value: 'value',
             validator: isString
         },
 
@@ -427,7 +347,7 @@ var BaseCellEditor = A.Component.create({
          * @type String
          */
         footerContent: {
-            value: _EMPTY_STR
+            value: ''
         },
 
         /**
@@ -469,11 +389,11 @@ var BaseCellEditor = A.Component.create({
                 var instance = this;
 
                 if (isString(val)) {
-                    if (instance.get(UNESCAPE_VALUE)) {
+                    if (instance.get('unescapeValue')) {
                         val = LString.unescapeEntities(val);
                     }
 
-                    val = val.replace(REGEX_BR, _NL);
+                    val = val.replace(REGEX_BR, 'n');
                 }
 
                 return val;
@@ -563,7 +483,7 @@ var BaseCellEditor = A.Component.create({
          * @type String
          */
         value: {
-            value: _EMPTY_STR
+            value: ''
         },
 
         /**
@@ -594,7 +514,7 @@ var BaseCellEditor = A.Component.create({
      * @type Array
      * @static
      */
-    UI_ATTRS: [EDITABLE, SHOW_TOOLBAR, VALUE],
+    UI_ATTRS: ['editable', 'showToolbar', 'value'],
 
     prototype: {
         CONTENT_TEMPLATE: '<form></form>',
@@ -652,7 +572,7 @@ var BaseCellEditor = A.Component.create({
         bindUI: function() {
             var instance = this;
 
-            instance.get(BOUNDING_BOX).on(KEY, A.bind(instance._onEscKey, instance), 'down:27');
+            instance.get('boundingBox').on('key', A.bind(instance._onEscKey, instance), 'down:27');
         },
 
         /**
@@ -681,7 +601,7 @@ var BaseCellEditor = A.Component.create({
             var instance = this;
 
             return instance.formatValue(
-                instance.get(INPUT_FORMATTER),
+                instance.get('inputFormatter'),
                 instance.getElementsValue()
             );
         },
@@ -767,7 +687,7 @@ var BaseCellEditor = A.Component.create({
             var instance = this;
 
             instance.validator = new A.FormValidator(
-                instance.get(VALIDATOR)
+                instance.get('validator')
             );
         },
 
@@ -780,10 +700,10 @@ var BaseCellEditor = A.Component.create({
          */
         _defInitToolbarFn: function(event) {
             var instance = this;
-            var editable = instance.get(EDITABLE);
+            var editable = instance.get('editable');
 
             instance.toolbar = new A.Toolbar(
-                instance.get(TOOLBAR)
+                instance.get('toolbar')
             ).render(instance.footerNode);
 
             if (editable) {
@@ -801,7 +721,7 @@ var BaseCellEditor = A.Component.create({
         _defSaveFn: function(event) {
             var instance = this;
 
-            if (instance.get(HIDE_ON_SAVE)) {
+            if (instance.get('hideOnSave')) {
                 instance.hide();
             }
         },
@@ -819,7 +739,7 @@ var BaseCellEditor = A.Component.create({
 
             if (event.newVal) {
                 if (!hDocMouseDown) {
-                    instance._hDocMouseDownEv = A.getDoc().on(MOUSEDOWN, A.bind(instance._onDocMouseDownExt,
+                    instance._hDocMouseDownEv = A.getDoc().on('mousedown', A.bind(instance._onDocMouseDownExt,
                         instance));
                 }
             }
@@ -838,7 +758,7 @@ var BaseCellEditor = A.Component.create({
         _handleCancelEvent: function() {
             var instance = this;
 
-            instance.fire(CANCEL);
+            instance.fire('cancel');
         },
 
         /**
@@ -850,7 +770,7 @@ var BaseCellEditor = A.Component.create({
         _handleEditEvent: function() {
             var instance = this;
 
-            instance.fire(EDIT);
+            instance.fire('edit');
         },
 
         /**
@@ -862,8 +782,8 @@ var BaseCellEditor = A.Component.create({
         _handleInitEditEvent: function() {
             var instance = this;
 
-            if (instance.get(RENDERED)) {
-                this.fire(INIT_EDIT);
+            if (instance.get('rendered')) {
+                this.fire('initEdit');
             }
         },
 
@@ -876,8 +796,8 @@ var BaseCellEditor = A.Component.create({
         _handleInitValidatorEvent: function() {
             var instance = this;
 
-            if (instance.get(RENDERED)) {
-                this.fire(INIT_VALIDATOR);
+            if (instance.get('rendered')) {
+                this.fire('initValidator');
             }
         },
 
@@ -890,8 +810,8 @@ var BaseCellEditor = A.Component.create({
         _handleInitToolbarEvent: function() {
             var instance = this;
 
-            if (instance.get(RENDERED) && instance.get(SHOW_TOOLBAR)) {
-                this.fire(INIT_TOOLBAR);
+            if (instance.get('rendered') && instance.get('showToolbar')) {
+                this.fire('initToolbar');
             }
         },
 
@@ -905,9 +825,9 @@ var BaseCellEditor = A.Component.create({
             var instance = this;
 
             if (!instance.validator.hasErrors()) {
-                instance.fire(SAVE, {
+                instance.fire('save', {
                     newVal: instance.getValue(),
-                    prevVal: instance.get(VALUE)
+                    prevVal: instance.get('value')
                 });
             }
         },
@@ -921,10 +841,10 @@ var BaseCellEditor = A.Component.create({
          */
         _onDocMouseDownExt: function(event) {
             var instance = this;
-            var boundingBox = instance.get(BOUNDING_BOX);
+            var boundingBox = instance.get('boundingBox');
 
             if (!boundingBox.contains(event.target)) {
-                instance.set(VISIBLE, false);
+                instance.set('visible', false);
             }
         },
 
@@ -976,14 +896,14 @@ var BaseCellEditor = A.Component.create({
                             on: {
                                 click: A.bind(instance._handleSaveEvent, instance)
                             },
-                            label: strings[SAVE],
+                            label: strings['save'],
                             icon: 'icon-ok-sign'
                         },
                         {
                             on: {
                                 click: A.bind(instance._handleCancelEvent, instance)
                             },
-                            label: strings[CANCEL]
+                            label: strings['cancel']
                         }
                     ]
                 ]
@@ -1001,7 +921,7 @@ var BaseCellEditor = A.Component.create({
             var instance = this;
 
             return A.merge({
-                    boundingBox: instance.get(CONTENT_BOX),
+                    boundingBox: instance.get('contentBox'),
                     bubbleTargets: instance
                 },
                 val
@@ -1042,10 +962,10 @@ var BaseCellEditor = A.Component.create({
             var elements = instance.elements;
 
             if (elements) {
-                return elements.get(VALUE);
+                return elements.get('value');
             }
 
-            return _EMPTY_STR;
+            return '';
         },
 
         /**
@@ -1097,8 +1017,8 @@ var BaseCellEditor = A.Component.create({
             var instance = this;
 
             instance.elements.setAttribute(
-                NAME,
-                instance.get(ELEMENT_NAME)
+                'name',
+                instance.get('elementName')
             );
         },
 
@@ -1125,13 +1045,13 @@ var BaseCellEditor = A.Component.create({
             var instance = this;
             var toolbar = instance.toolbar;
 
-            if (instance.get(RENDERED) && toolbar) {
+            if (instance.get('rendered') && toolbar) {
                 if (val) {
                     toolbar.add(
                         [
                             {
                                 icon: 'icon-edit',
-                                label: instance.getString(EDIT),
+                                label: instance.getString('edit'),
                                 on: {
                                     click: A.bind(instance._handleEditEvent, instance)
                                 }
@@ -1158,7 +1078,7 @@ var BaseCellEditor = A.Component.create({
 
             if (elements) {
                 elements.val(
-                    instance.formatValue(instance.get(OUTPUT_FORMATTER), val)
+                    instance.formatValue(instance.get('outputFormatter'), val)
                 );
             }
         }
@@ -1174,7 +1094,7 @@ A.BaseCellEditor = BaseCellEditor;
  * @extends A.BaseCellEditor
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
- * @abstract
+ * @constructor
  */
 var BaseOptionsCellEditor = A.Component.create({
 
@@ -1185,7 +1105,7 @@ var BaseOptionsCellEditor = A.Component.create({
      * @type String
      * @static
      */
-    NAME: OPTIONS_CELL_EDITOR,
+    NAME: 'optionsCellEditor',
 
     /**
      * Static property used to define the default attribute
@@ -1238,7 +1158,7 @@ var BaseOptionsCellEditor = A.Component.create({
          * @type String
          */
         selectedAttrName: {
-            value: SELECTED,
+            value: 'selected',
             validator: isString
         },
 
@@ -1280,17 +1200,17 @@ var BaseOptionsCellEditor = A.Component.create({
      * @type Array
      * @static
      */
-    UI_ATTRS: [OPTIONS],
+    UI_ATTRS: ['options'],
 
     prototype: {
         EDIT_TEMPLATE: '<div class="' + CSS_CELLEDITOR_EDIT + '"></div>',
 
         EDIT_OPTION_ROW_TEMPLATE: '<div class="' + CSS_CELLEDITOR_EDIT_OPTION_ROW + '">' + '<span class="' + [
-            CSS_CELLEDITOR_EDIT_DD_HANDLE, CSS_ICON, CSS_ICON_GRIP_DOTTED_VERTICAL].join(_SPACE) + '"></span>' + '<input class="' + CSS_CELLEDITOR_EDIT_INPUT_NAME + '" size="7" placeholder="{titleName}" title="{titleName}" type="text" value="{valueName}" /> ' + '<input class="' + CSS_CELLEDITOR_EDIT_INPUT_VALUE + '" size="7" placeholder="{titleValue}" title="{titleValue}" type="text" value="{valueValue}" /> ' + '<a class="' + [
-            CSS_CELLEDITOR_EDIT_LINK, CSS_CELLEDITOR_EDIT_DELETE_OPTION].join(_SPACE) + '" href="javascript:void(0);">{remove}</a> ' + '</div>',
+            CSS_CELLEDITOR_EDIT_DD_HANDLE, CSS_ICON, CSS_ICON_GRIP_DOTTED_VERTICAL].join(' ') + '"></span>' + '<input class="' + CSS_CELLEDITOR_EDIT_INPUT_NAME + '" size="7" placeholder="{titleName}" title="{titleName}" type="text" value="{valueName}" /> ' + '<input class="' + CSS_CELLEDITOR_EDIT_INPUT_VALUE + '" size="7" placeholder="{titleValue}" title="{titleValue}" type="text" value="{valueValue}" /> ' + '<a class="' + [
+            CSS_CELLEDITOR_EDIT_LINK, CSS_CELLEDITOR_EDIT_DELETE_OPTION].join(' ') + '" href="javascript:void(0);">{remove}</a> ' + '</div>',
 
         EDIT_ADD_LINK_TEMPLATE: '<a class="' + [CSS_CELLEDITOR_EDIT_LINK, CSS_CELLEDITOR_EDIT_ADD_OPTION].join(
-            _SPACE) + '" href="javascript:void(0);">{addOption}</a> ',
+            ' ') + '" href="javascript:void(0);">{addOption}</a> ',
         EDIT_LABEL_TEMPLATE: '<div class="' + CSS_CELLEDITOR_EDIT_LABEL + '">{editOptions}</div>',
 
         editContainer: null,
@@ -1307,9 +1227,9 @@ var BaseOptionsCellEditor = A.Component.create({
         initializer: function() {
             var instance = this;
 
-            instance.on(EDIT, instance._onEditEvent);
-            instance.on(SAVE, instance._onSave);
-            instance.after(INIT_TOOLBAR, instance._afterInitToolbar);
+            instance.on('edit', instance._onEditEvent);
+            instance.on('save', instance._onSave);
+            instance.after('initToolbar', instance._afterInitToolbar);
         },
 
         /**
@@ -1321,17 +1241,17 @@ var BaseOptionsCellEditor = A.Component.create({
          */
         addNewOption: function(name, value) {
             var instance = this;
-            var addOptionLink = instance.editContainer.one(_DOT + CSS_CELLEDITOR_EDIT_ADD_OPTION);
+            var addOptionLink = instance.editContainer.one('.' + CSS_CELLEDITOR_EDIT_ADD_OPTION);
 
             var newRow = A.Node.create(
                 instance._createEditOption(
-                    name || _EMPTY_STR,
+                    name || '',
                     value || _EMPTY_STR
                 )
             );
 
             addOptionLink.placeBefore(newRow);
-            newRow.one(INPUT).focus();
+            newRow.one('input').focus();
         },
 
         /**
@@ -1354,8 +1274,8 @@ var BaseOptionsCellEditor = A.Component.create({
             var editContainer = instance.editContainer;
 
             if (editContainer) {
-                var names = editContainer.all(_DOT + CSS_CELLEDITOR_EDIT_INPUT_NAME);
-                var values = editContainer.all(_DOT + CSS_CELLEDITOR_EDIT_INPUT_VALUE);
+                var names = editContainer.all('.' + CSS_CELLEDITOR_EDIT_INPUT_NAME);
+                var values = editContainer.all('.' + CSS_CELLEDITOR_EDIT_INPUT_VALUE);
                 var options = {};
 
                 names.each(function(inputName, index) {
@@ -1367,10 +1287,10 @@ var BaseOptionsCellEditor = A.Component.create({
                     }
                 });
 
-                instance.set(OPTIONS, options);
+                instance.set('options', options);
 
                 instance._uiSetValue(
-                    instance.get(VALUE)
+                    instance.get('value')
                 );
 
                 instance.toggleEdit();
@@ -1421,8 +1341,8 @@ var BaseOptionsCellEditor = A.Component.create({
                 }
             });
 
-            var options = A.NodeList.create(optionsBuffer.join(_EMPTY_STR));
-            var wrappers = A.NodeList.create(wrappersBuffer.join(_EMPTY_STR));
+            var options = A.NodeList.create(optionsBuffer.join(''));
+            var wrappers = A.NodeList.create(wrappersBuffer.join(''));
 
             if (wrappers.size()) {
                 wrappers.each(function(wrapper, i) {
@@ -1451,21 +1371,21 @@ var BaseOptionsCellEditor = A.Component.create({
 
             buffer.push(
                 Lang.sub(instance.EDIT_LABEL_TEMPLATE, {
-                    editOptions: strings[EDIT_OPTIONS]
+                    editOptions: strings['editOptions']
                 })
             );
 
-            A.each(instance.get(OPTIONS), function(name, value) {
+            A.each(instance.get('options'), function(name, value) {
                 buffer.push(instance._createEditOption(name, value));
             });
 
             buffer.push(
                 Lang.sub(instance.EDIT_ADD_LINK_TEMPLATE, {
-                    addOption: strings[ADD_OPTION]
+                    addOption: strings['addOption']
                 })
             );
 
-            return buffer.join(_EMPTY_STR);
+            return buffer.join('');
         },
 
         /**
@@ -1482,9 +1402,9 @@ var BaseOptionsCellEditor = A.Component.create({
 
             return Lang.sub(
                 instance.EDIT_OPTION_ROW_TEMPLATE, {
-                    remove: strings[REMOVE],
-                    titleName: strings[NAME],
-                    titleValue: strings[VALUE],
+                    remove: strings['remove'],
+                    titleName: strings['name'],
+                    titleValue: strings['value'],
                     valueName: name,
                     valueValue: value
                 }
@@ -1502,9 +1422,9 @@ var BaseOptionsCellEditor = A.Component.create({
             var instance = this;
             var editContainer = A.Node.create(instance.EDIT_TEMPLATE);
 
-            editContainer.delegate('click', A.bind(instance._onEditLinkClickEvent, instance), _DOT +
+            editContainer.delegate('click', A.bind(instance._onEditLinkClickEvent, instance), '.' +
                 CSS_CELLEDITOR_EDIT_LINK);
-            editContainer.delegate('keydown', A.bind(instance._onEditKeyEvent, instance), INPUT);
+            editContainer.delegate('keydown', A.bind(instance._onEditKeyEvent, instance), 'input');
 
             instance.editContainer = editContainer;
 
@@ -1516,8 +1436,8 @@ var BaseOptionsCellEditor = A.Component.create({
 
             instance.editSortable = new A.Sortable({
                 container: editContainer,
-                handles: [_DOT + CSS_CELLEDITOR_EDIT_DD_HANDLE],
-                nodes: _DOT + CSS_CELLEDITOR_EDIT_OPTION_ROW,
+                handles: ['.' + CSS_CELLEDITOR_EDIT_DD_HANDLE],
+                nodes: '.' + CSS_CELLEDITOR_EDIT_OPTION_ROW,
                 opacity: '.3'
             }).delegate.dd.plug(A.Plugin.DDConstrained, {
                 constrain: editContainer,
@@ -1538,7 +1458,7 @@ var BaseOptionsCellEditor = A.Component.create({
             var options = [];
 
             instance.options.each(function(option) {
-                if (option.get(instance.get(SELECTED_ATTR_NAME))) {
+                if (option.get(instance.get('selectedAttrName'))) {
                     options.push(option);
                 }
             });
@@ -1574,15 +1494,15 @@ var BaseOptionsCellEditor = A.Component.create({
             var instance = this;
             var currentTarget = event.currentTarget;
 
-            if (currentTarget.test(_DOT + CSS_CELLEDITOR_EDIT_ADD_OPTION)) {
+            if (currentTarget.test('.' + CSS_CELLEDITOR_EDIT_ADD_OPTION)) {
                 instance.addNewOption();
             }
-            else if (currentTarget.test(_DOT + CSS_CELLEDITOR_EDIT_HIDE_OPTION)) {
+            else if (currentTarget.test('.' + CSS_CELLEDITOR_EDIT_HIDE_OPTION)) {
                 instance.toggleEdit();
             }
-            else if (currentTarget.test(_DOT + CSS_CELLEDITOR_EDIT_DELETE_OPTION)) {
+            else if (currentTarget.test('.' + CSS_CELLEDITOR_EDIT_DELETE_OPTION)) {
                 instance.removeOption(
-                    currentTarget.ancestor(_DOT + CSS_CELLEDITOR_EDIT_OPTION_ROW)
+                    currentTarget.ancestor('.' + CSS_CELLEDITOR_EDIT_OPTION_ROW)
                 );
             }
 
@@ -1600,8 +1520,8 @@ var BaseOptionsCellEditor = A.Component.create({
             var instance = this;
             var currentTarget = event.currentTarget;
 
-            if (event.isKey(RETURN)) {
-                var nextInput = currentTarget.next(INPUT);
+            if (event.isKey('return')) {
+                var nextInput = currentTarget.next('input');
 
                 if (nextInput) {
                     nextInput.selectText();
@@ -1672,7 +1592,7 @@ var BaseOptionsCellEditor = A.Component.create({
             var instance = this;
 
             instance._createOptions(val);
-            instance._uiSetValue(instance.get(VALUE));
+            instance._uiSetValue(instance.get('value'));
             instance._syncElementsName();
         },
 
@@ -1688,16 +1608,16 @@ var BaseOptionsCellEditor = A.Component.create({
             var options = instance.options;
 
             if (options && options.size()) {
-                options.set(instance.get(SELECTED_ATTR_NAME), false);
+                options.set(instance.get('selectedAttrName'), false);
 
                 if (isValue(val)) {
                     if (!isArray(val)) {
-                        val = String(val).split(_COMMA);
+                        val = String(val).split(',');
                     }
 
                     AArray.each(val, function(value) {
                         options.filter('[value="' + Lang.trim(value) + '"]').set(instance.get(
-                            SELECTED_ATTR_NAME), true);
+                            'selectedAttrName'), true);
                     });
                 }
             }
@@ -1727,7 +1647,7 @@ var TextCellEditor = A.Component.create({
      * @type String
      * @static
      */
-    NAME: TEXT_CELL_EDITOR,
+    NAME: 'textCellEditor',
 
     /**
      * Static property used to define which component it extends.
@@ -1763,7 +1683,7 @@ var TextAreaCellEditor = A.Component.create({
      * @type String
      * @static
      */
-    NAME: TEXT_AREA_CELL_EDITOR,
+    NAME: 'textAreaCellEditor',
 
     /**
      * Static property used to define which component it extends.
@@ -1799,7 +1719,7 @@ var DropDownCellEditor = A.Component.create({
      * @type String
      * @static
      */
-    NAME: DROP_DOWN_CELL_EDITOR,
+    NAME: 'dropDownCellEditor',
 
     /**
      * Static property used to define the default attribute
@@ -1840,7 +1760,7 @@ var DropDownCellEditor = A.Component.create({
      * @type Array
      * @static
      */
-    UI_ATTRS: [MULTIPLE],
+    UI_ATTRS: ['multiple'],
 
     prototype: {
         ELEMENT_TEMPLATE: '<select class="' + CSS_CELLEDITOR_ELEMENT + '"></select>',
@@ -1854,11 +1774,11 @@ var DropDownCellEditor = A.Component.create({
         getElementsValue: function() {
             var instance = this;
 
-            if (instance.get(MULTIPLE)) {
-                return instance._getSelectedOptions().get(VALUE);
+            if (instance.get('multiple')) {
+                return instance._getSelectedOptions().get('value');
             }
 
-            return instance.elements.get(VALUE);
+            return instance.elements.get('value');
         },
 
         /**
@@ -1885,10 +1805,10 @@ var DropDownCellEditor = A.Component.create({
             var elements = instance.elements;
 
             if (val) {
-                elements.setAttribute(MULTIPLE, MULTIPLE);
+                elements.setAttribute('multiple', 'multiple');
             }
             else {
-                elements.removeAttribute(MULTIPLE);
+                elements.removeAttribute('multiple');
             }
         }
     }
@@ -1914,7 +1834,7 @@ var CheckboxCellEditor = A.Component.create({
      * @type String
      * @static
      */
-    NAME: CHECKBOX_CELL_EDITOR,
+    NAME: 'checkboxCellEditor',
 
     /**
      * Static property used to define the default attribute
@@ -1934,7 +1854,7 @@ var CheckboxCellEditor = A.Component.create({
          * @type String
          */
         selectedAttrName: {
-            value: CHECKED
+            value: 'checked'
         }
     },
 
@@ -1960,7 +1880,7 @@ var CheckboxCellEditor = A.Component.create({
         getElementsValue: function() {
             var instance = this;
 
-            return instance._getSelectedOptions().get(VALUE);
+            return instance._getSelectedOptions().get('value');
         },
 
         /**
@@ -1989,7 +1909,7 @@ var CheckboxCellEditor = A.Component.create({
             var options = instance.options;
 
             if (options) {
-                options.setAttribute(NAME, instance.get(ELEMENT_NAME));
+                options.setAttribute('name', instance.get('elementName'));
             }
         }
     }
@@ -2015,7 +1935,7 @@ var RadioCellEditor = A.Component.create({
      * @type String
      * @static
      */
-    NAME: RADIO_CELL_EDITOR,
+    NAME: 'radioCellEditor',
 
     /**
      * Static property used to define which component it extends.
@@ -2038,7 +1958,7 @@ var RadioCellEditor = A.Component.create({
         getElementsValue: function() {
             var instance = this;
 
-            return instance._getSelectedOptions().get(VALUE)[0];
+            return instance._getSelectedOptions().get('value')[0];
         }
     }
 });
@@ -2063,7 +1983,7 @@ var DateCellEditor = A.Component.create({
      * @type String
      * @static
      */
-    NAME: DATE_CELL_EDITOR,
+    NAME: 'dateCellEditor',
 
     /**
      * Static property used to define which component it extends.
@@ -2092,7 +2012,7 @@ var DateCellEditor = A.Component.create({
          * @type String
          */
         bodyContent: {
-            value: _EMPTY_STR
+            value: ''
         },
 
         /**
@@ -2214,7 +2134,7 @@ var DateCellEditor = A.Component.create({
             var instance = this,
                 selectedDates = instance.calendar.get('selectedDates');
 
-            instance.elements.val(AArray.invoke(selectedDates, 'getTime').join(_COMMA));
+            instance.elements.val(AArray.invoke(selectedDates, 'getTime').join(','));
         },
 
         /**
@@ -2229,7 +2149,7 @@ var DateCellEditor = A.Component.create({
             A.DateCellEditor.superclass._afterRender.apply(instance, arguments);
 
             instance.calendar = new A.Calendar(
-                instance.get(CALENDAR)
+                instance.get('calendar')
             ).render(instance.bodyNode);
         },
 
@@ -2267,7 +2187,7 @@ var DateCellEditor = A.Component.create({
                     val = [val];
                 }
 
-                formatedValue = instance.formatValue(instance.get(OUTPUT_FORMATTER), val);
+                formatedValue = instance.formatValue(instance.get('outputFormatter'), val);
 
                 calendar._clearSelection();
 

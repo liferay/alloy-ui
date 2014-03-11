@@ -11,9 +11,6 @@ var AArray = A.Array,
 
     getClassName = A.getClassName,
 
-    _NAME = 'color-palette',
-    _EMPTY = '',
-
     CSS_COLOR_PALETTE_ITEM = getClassName('color-palette-item'),
     CSS_PALETTE_ITEM = getClassName('palette-item'),
     CSS_PALETTE_ITEM_INNER = getClassName('palette-item-inner'),
@@ -29,7 +26,7 @@ var AArray = A.Array,
      *     properties.
      * @constructor
      */
-    ColorPalette = A.Base.create(_NAME, A.Widget, [
+    ColorPalette = A.Base.create('color-palette', A.Widget, [
     A.Palette,
     A.WidgetCssClass,
     A.WidgetToggle
@@ -53,7 +50,7 @@ var AArray = A.Array,
                         column: column,
                         index: index,
                         row: row,
-                        selectedClassName: selected ? CSS_PALETTE_ITEM_SELECTED : _EMPTY,
+                        selectedClassName: selected ? CSS_PALETTE_ITEM_SELECTED : '',
                         title: item.name,
                         value: item.value
                     }
@@ -102,7 +99,7 @@ var AArray = A.Array,
          * @type {String}
          * @static
          */
-        CSS_PREFIX: getClassName(_NAME),
+        CSS_PREFIX: getClassName('color-palette'),
 
         /**
          * Static property provides a string to identify the class.
@@ -111,7 +108,7 @@ var AArray = A.Array,
          * @type {String}
          * @static
          */
-        NAME: _NAME,
+        NAME: 'color-palette',
 
         /**
          * Static property used to define the default attribute

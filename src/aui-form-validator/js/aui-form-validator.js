@@ -21,67 +21,18 @@ var Lang = A.Lang,
 
     getRegExp = A.DOM._getRegExp,
 
-    FORM_VALIDATOR = 'form-validator',
-
-    _DOT = '.',
-    _EMPTY_STR = '',
-    _FORM_ELEMENTS_SELECTOR = 'input,select,textarea,button',
-    _INVALID_DATE = 'Invalid Date',
-    _PIPE = '|',
-    _SPACE = ' ',
-
-    EV_BLUR = 'blur',
-    EV_ERROR_FIELD = 'errorField',
-    EV_INPUT = 'input',
-    EV_SUBMIT_ERROR = 'submitError',
-    EV_VALIDATE_FIELD = 'validateField',
-    EV_VALID_FIELD = 'validField',
-
-    ARIA_REQUIRED = 'aria-required',
-    BOUNDING_BOX = 'boundingBox',
-    CHECKBOX = 'checkbox',
-    CONTAINER_ERROR_CLASS = 'containerErrorClass',
-    CONTAINER_VALID_CLASS = 'containerValidClass',
-    CONTROL = 'control',
-    ERROR = 'error',
-    ERROR_CLASS = 'errorClass',
-    FIELD = 'field',
-    FIELD_CONTAINER = 'fieldContainer',
-    FIELD_STRINGS = 'fieldStrings',
-    FOCUS = 'focus',
-    GROUP = 'group',
-    HELP = 'help',
-    INLINE = 'inline',
-    LABEL_CSS_CLASS = 'labelCssClass',
-    MESSAGE_CONTAINER = 'messageContainer',
-    NAME = 'name',
-    RADIO = 'radio',
-    RULES = 'rules',
-    SELECT_TEXT = 'selectText',
-    SHOW_ALL_MESSAGES = 'showAllMessages',
-    SHOW_MESSAGES = 'showMessages',
-    STACK = 'stack',
-    STACK_ERROR_CONTAINER = 'stackErrorContainer',
-    STRINGS = 'strings',
-    SUBMIT = 'submit',
-    SUCCESS = 'success',
-    TYPE = 'type',
-    VALID_CLASS = 'validClass',
-    VALIDATE_ON_BLUR = 'validateOnBlur',
-    VALIDATE_ON_INPUT = 'validateOnInput',
-
     getCN = A.getClassName,
 
-    CSS_CONTROL_GROUP = getCN(CONTROL, GROUP),
-    CSS_ERROR = getCN(ERROR),
-    CSS_ERROR_FIELD = getCN(ERROR, FIELD),
-    CSS_SUCCESS = getCN(SUCCESS),
-    CSS_SUCCESS_FIELD = getCN(SUCCESS, FIELD),
-    CSS_HELP_INLINE = getCN(HELP, INLINE),
-    CSS_STACK = getCN(FORM_VALIDATOR, STACK),
+    CSS_CONTROL_GROUP = getCN('control', 'group'),
+    CSS_ERROR = getCN('error'),
+    CSS_ERROR_FIELD = getCN('error', 'field'),
+    CSS_SUCCESS = getCN('success'),
+    CSS_SUCCESS_FIELD = getCN('success', 'field'),
+    CSS_HELP_INLINE = getCN('help', 'inline'),
+    CSS_STACK = getCN('form-validator', 'stack'),
 
     TPL_MESSAGE = '<div role="alert"></div>',
-    TPL_STACK_ERROR = '<div class="' + [CSS_STACK, CSS_HELP_INLINE].join(_SPACE) + '"></div>';
+    TPL_STACK_ERROR = '<div class="' + [CSS_STACK, CSS_HELP_INLINE].join(' ') + '"></div>';
 
 A.mix(defaults, {
     STRINGS: {
@@ -136,7 +87,7 @@ A.mix(defaults, {
 
                 extensions = A.Array.map(extensions, A.Escape.regex);
 
-                regex = getRegExp('[.](' + extensions.join(_PIPE) + ')$', 'i');
+                regex = getRegExp('[.](' + extensions.join('|') + ')$', 'i');
             }
 
             return regex && regex.test(val);
@@ -145,7 +96,7 @@ A.mix(defaults, {
         date: function(val, node, ruleValue) {
             var date = new Date(val);
 
-            return (isDate(date) && (date !== _INVALID_DATE) && !isNaN(date));
+            return (isDate(date) && (date !== 'Invalid Date') && !isNaN(date));
         },
 
         equalTo: function(val, node, ruleValue) {
@@ -186,7 +137,7 @@ A.mix(defaults, {
             var instance = this;
 
             if (A.FormValidator.isCheckable(node)) {
-                var name = node.get(NAME),
+                var name = node.get('name'),
                     elements = A.all(instance.getFieldsByName(name));
 
                 return (elements.filter(':checked').size() > 0);
@@ -218,7 +169,7 @@ var FormValidator = A.Component.create({
      * @type String
      * @static
      */
-    NAME: FORM_VALIDATOR,
+    NAME: 'form-validator',
 
     /**
      * Static property used to define the default attribute
@@ -291,7 +242,7 @@ var FormValidator = A.Component.create({
          * @type String
          */
         fieldContainer: {
-            value: _DOT + CSS_CONTROL_GROUP
+            value: '.' + CSS_CONTROL_GROUP
         },
 
         /**
@@ -455,9 +406,9 @@ var FormValidator = A.Component.create({
      * @return {Boolean}
      */
     isCheckable: function(node) {
-        var nodeType = node.get(TYPE).toLowerCase();
+        var nodeType = node.get('type').toLowerCase();
 
-        return (nodeType === CHECKBOX || nodeType === RADIO);
+        return (nodeType === 'checkbox' || nodeType === 'radio');
     },
 
     /**
@@ -488,8 +439,8 @@ var FormValidator = A.Component.create({
             instance._stackErrorContainers = {};
 
             instance.bindUI();
-            instance._uiSetValidateOnBlur(instance.get(VALIDATE_ON_BLUR));
-            instance._uiSetValidateOnInput(instance.get(VALIDATE_ON_INPUT));
+            instance._uiSetValidateOnBlur(instance.get('validateOnBlur'));
+            instance._uiSetValidateOnInput(instance.get('validateOnInput'));
         },
 
         /**
@@ -500,12 +451,12 @@ var FormValidator = A.Component.create({
          */
         bindUI: function() {
             var instance = this,
-                boundingBox = instance.get(BOUNDING_BOX);
+                boundingBox = instance.get('boundingBox');
 
-            var onceFocusHandler = boundingBox.delegate(FOCUS, function(event) {
+            var onceFocusHandler = boundingBox.delegate('focus', function(event) {
                 instance._setARIARoles();
                 onceFocusHandler.detach();
-            }, _FORM_ELEMENTS_SELECTOR);
+            }, 'input,select,textarea,button');
 
             instance.publish({
                 errorField: {
@@ -541,7 +492,7 @@ var FormValidator = A.Component.create({
         addFieldError: function(field, ruleName) {
             var instance = this,
                 errors = instance.errors,
-                name = field.get(NAME);
+                name = field.get('name');
 
             if (!errors[name]) {
                 errors[name] = [];
@@ -559,7 +510,7 @@ var FormValidator = A.Component.create({
         clearFieldError: function(field) {
             var instance = this;
 
-            delete instance.errors[field.get(NAME)];
+            delete instance.errors[field.get('name')];
         },
 
         /**
@@ -572,7 +523,7 @@ var FormValidator = A.Component.create({
             var instance = this;
 
             A.each(
-                instance.get(RULES),
+                instance.get('rules'),
                 function(rule, fieldName) {
                     if (isFunction(fn)) {
                         fn.apply(instance, [rule, fieldName]);
@@ -590,7 +541,7 @@ var FormValidator = A.Component.create({
          */
         findFieldContainer: function(field) {
             var instance = this,
-                fieldContainer = instance.get(FIELD_CONTAINER);
+                fieldContainer = instance.get('fieldContainer');
 
             if (fieldContainer) {
                 return field.ancestor(fieldContainer);
@@ -604,11 +555,11 @@ var FormValidator = A.Component.create({
          */
         focusInvalidField: function() {
             var instance = this,
-                boundingBox = instance.get(BOUNDING_BOX),
-                field = boundingBox.one(_DOT + CSS_ERROR);
+                boundingBox = instance.get('boundingBox'),
+                field = boundingBox.one('.' + CSS_ERROR);
 
             if (field) {
-                if (instance.get(SELECT_TEXT)) {
+                if (instance.get('selectText')) {
                     field.selectText();
                 }
 
@@ -648,7 +599,7 @@ var FormValidator = A.Component.create({
          */
         getFieldsByName: function(fieldName) {
             var instance = this,
-                domBoundingBox = instance.get(BOUNDING_BOX).getDOM();
+                domBoundingBox = instance.get('boundingBox').getDOM();
 
             return domBoundingBox.elements[fieldName];
         },
@@ -663,7 +614,7 @@ var FormValidator = A.Component.create({
         getFieldError: function(field) {
             var instance = this;
 
-            return instance.errors[field.get(NAME)];
+            return instance.errors[field.get('name')];
         },
 
         /**
@@ -674,11 +625,11 @@ var FormValidator = A.Component.create({
          */
         getFieldStackErrorContainer: function(field) {
             var instance = this,
-                name = field.get(NAME),
+                name = field.get('name'),
                 stackContainers = instance._stackErrorContainers;
 
             if (!stackContainers[name]) {
-                stackContainers[name] = instance.get(STACK_ERROR_CONTAINER);
+                stackContainers[name] = instance.get('stackErrorContainer');
             }
 
             return stackContainers[name];
@@ -694,10 +645,10 @@ var FormValidator = A.Component.create({
          */
         getFieldErrorMessage: function(field, rule) {
             var instance = this,
-                fieldName = field.get(NAME),
-                fieldStrings = instance.get(FIELD_STRINGS)[fieldName] || {},
-                fieldRules = instance.get(RULES)[fieldName],
-                strings = instance.get(STRINGS),
+                fieldName = field.get('name'),
+                fieldStrings = instance.get('fieldStrings')[fieldName] || {},
+                fieldRules = instance.get('rules')[fieldName],
+                strings = instance.get('strings'),
                 substituteRulesMap = {};
 
             if (rule in fieldRules) {
@@ -706,7 +657,7 @@ var FormValidator = A.Component.create({
                 A.each(
                     ruleValue,
                     function(value, index) {
-                        substituteRulesMap[index] = [value].join(_EMPTY_STR);
+                        substituteRulesMap[index] = [value].join('');
                     }
                 );
             }
@@ -741,15 +692,15 @@ var FormValidator = A.Component.create({
 
             instance._highlightHelper(
                 field,
-                instance.get(ERROR_CLASS),
-                instance.get(VALID_CLASS),
+                instance.get('errorClass'),
+                instance.get('validClass'),
                 valid
             );
 
             instance._highlightHelper(
                 fieldContainer,
-                instance.get(CONTAINER_ERROR_CLASS),
-                instance.get(CONTAINER_VALID_CLASS),
+                instance.get('containerErrorClass'),
+                instance.get('containerValidClass'),
                 valid
             );
         },
@@ -789,7 +740,7 @@ var FormValidator = A.Component.create({
         printStackError: function(field, container, errors) {
             var instance = this;
 
-            if (!instance.get(SHOW_ALL_MESSAGES)) {
+            if (!instance.get('showAllMessages')) {
                 errors = errors.slice(0, 1);
             }
 
@@ -799,7 +750,7 @@ var FormValidator = A.Component.create({
                 errors,
                 function(error, index) {
                     var message = instance.getFieldErrorMessage(field, error),
-                        messageEl = instance.get(MESSAGE_CONTAINER).addClass(error);
+                        messageEl = instance.get('messageContainer').addClass(error);
 
                     container.append(
                         messageEl.html(message)
@@ -860,8 +811,8 @@ var FormValidator = A.Component.create({
                 }
             };
 
-            removeClasses(field, [VALID_CLASS, ERROR_CLASS]);
-            removeClasses(fieldContainer, [CONTAINER_VALID_CLASS, CONTAINER_ERROR_CLASS]);
+            removeClasses(field, ['validClass', 'errorClass']);
+            removeClasses(fieldContainer, ['containerValidClass', 'containerErrorClass']);
         },
 
         /**
@@ -874,7 +825,7 @@ var FormValidator = A.Component.create({
         validatable: function(field) {
             var instance = this,
                 validatable = false,
-                fieldRules = instance.get(RULES)[field.get(NAME)];
+                fieldRules = instance.get('rules')[field.get('name')];
 
             if (fieldRules) {
                 var required = instance.normalizeRuleValue(fieldRules.required);
@@ -919,7 +870,7 @@ var FormValidator = A.Component.create({
                 instance.resetField(fieldNode);
 
                 if (validatable) {
-                    instance.fire(EV_VALIDATE_FIELD, {
+                    instance.fire('validateField', {
                         validator: {
                             field: fieldNode
                         }
@@ -988,7 +939,7 @@ var FormValidator = A.Component.create({
 
             instance.highlight(field);
 
-            if (instance.get(SHOW_MESSAGES)) {
+            if (instance.get('showMessages')) {
                 target = field;
 
                 stackContainer = instance.getFieldStackErrorContainer(field);
@@ -998,7 +949,7 @@ var FormValidator = A.Component.create({
                 if (nextSibling && nextSibling.get('nodeType') === 3) {
                     ancestor = field.ancestor();
 
-                    if (ancestor && ancestor.hasClass(instance.get(LABEL_CSS_CLASS))) {
+                    if (ancestor && ancestor.hasClass(instance.get('labelCssClass'))) {
                         target = nextSibling;
                     }
                 }
@@ -1039,7 +990,7 @@ var FormValidator = A.Component.create({
             var instance = this;
 
             var field = event.validator.field;
-            var fieldRules = instance.get(RULES)[field.get(NAME)];
+            var fieldRules = instance.get('rules')[field.get('name')];
 
             A.each(
                 fieldRules,
@@ -1059,7 +1010,7 @@ var FormValidator = A.Component.create({
             var fieldErrors = instance.getFieldError(field);
 
             if (fieldErrors) {
-                instance.fire(EV_ERROR_FIELD, {
+                instance.fire('errorField', {
                     validator: {
                         field: field,
                         errors: fieldErrors
@@ -1067,7 +1018,7 @@ var FormValidator = A.Component.create({
                 });
             }
             else {
-                instance.fire(EV_VALID_FIELD, {
+                instance.fire('validField', {
                     validator: {
                         field: field
                     }
@@ -1106,7 +1057,7 @@ var FormValidator = A.Component.create({
          */
         _extractRulesFromMarkup: function(rules) {
             var instance = this,
-                domBoundingBox = instance.get(BOUNDING_BOX).getDOM(),
+                domBoundingBox = instance.get('boundingBox').getDOM(),
                 elements = domBoundingBox.elements,
                 defaultRulesKeys = AObject.keys(defaults.RULES),
                 defaultRulesJoin = defaultRulesKeys.join('|'),
@@ -1181,12 +1132,12 @@ var FormValidator = A.Component.create({
             if (instance.hasErrors()) {
                 data.validator.errors = instance.errors;
 
-                instance.fire(EV_SUBMIT_ERROR, data);
+                instance.fire('submitError', data);
 
                 event.halt();
             }
             else {
-                instance.fire(SUBMIT, data);
+                instance.fire('submit', data);
             }
         },
 
@@ -1217,8 +1168,8 @@ var FormValidator = A.Component.create({
                     if (rule.required) {
                         var field = instance.getField(fieldName);
 
-                        if (field && !field.attr(ARIA_REQUIRED)) {
-                            field.attr(ARIA_REQUIRED, true);
+                        if (field && !field.attr('aria-required')) {
+                            field.attr('aria-required', true);
                         }
                     }
                 }
@@ -1235,7 +1186,7 @@ var FormValidator = A.Component.create({
         _uiSetExtractRules: function(val) {
             var instance = this;
             if (val) {
-                instance._extractRulesFromMarkup(instance.get(RULES));
+                instance._extractRulesFromMarkup(instance.get('rules'));
             }
         },
 
@@ -1248,12 +1199,12 @@ var FormValidator = A.Component.create({
          */
         _uiSetValidateOnInput: function(val) {
             var instance = this,
-                boundingBox = instance.get(BOUNDING_BOX);
+                boundingBox = instance.get('boundingBox');
 
             if (val) {
                 if (!instance._inputHandlers) {
-                    instance._inputHandlers = boundingBox.delegate(EV_INPUT, instance._onFieldInput,
-                        _FORM_ELEMENTS_SELECTOR, instance);
+                    instance._inputHandlers = boundingBox.delegate('input', instance._onFieldInput,
+                        'input,select,textarea,button', instance);
                 }
             }
             else {
@@ -1272,12 +1223,12 @@ var FormValidator = A.Component.create({
          */
         _uiSetValidateOnBlur: function(val) {
             var instance = this,
-                boundingBox = instance.get(BOUNDING_BOX);
+                boundingBox = instance.get('boundingBox');
 
             if (val) {
                 if (!instance._blurHandlers) {
-                    instance._blurHandlers = boundingBox.delegate(EV_BLUR, instance._onFieldInput,
-                        _FORM_ELEMENTS_SELECTOR, instance);
+                    instance._blurHandlers = boundingBox.delegate('blur', instance._onFieldInput,
+                        'input,select,textarea,button', instance);
                 }
             }
             else {

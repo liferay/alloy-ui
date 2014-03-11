@@ -58,9 +58,6 @@
         return wrappedFn;
     };
 
-    /**
-     * A.Lang
-     */
     A.mix(Lang, {
         constrain: function(num, min, max) {
             return Math.min(Math.max(num, min), max);
@@ -89,9 +86,6 @@
         }
     });
 
-    /**
-     * A.Array
-     */
     A.mix(AArray, {
         remove: function(a, from, to) {
             var rest = a.slice((to || from) + 1 || a.length);
@@ -111,14 +105,9 @@
         }
     });
 
-    /**
-     * A.Labg.String
-     */
     var LString = A.namespace('Lang.String'),
 
         DOC = A.config.doc,
-        INNER_HTML = 'innerHTML',
-        NORMALIZE = 'normalize',
         REGEX_DASH = /-([a-z])/gi,
         REGEX_ESCAPE_REGEX = /([.*+?^$(){}|[\]\/\\])/g,
         REGEX_NL2BR = /\r?\n/g,
@@ -126,19 +115,7 @@
         REGEX_STRIP_TAGS = /<\/?[^>]+>/gi,
         REGEX_UNCAMELIZE = /([a-zA-Z][a-zA-Z])([A-Z])([a-z])/g,
         REGEX_UNCAMELIZE_REPLACE_SEPARATOR = /([a-zA-Z][a-zA-Z])([A-Z])([a-z])/g,
-
-        STR_BLANK = '',
-        STR_AMP = '&',
-        STR_CHEVRON_LEFT = '<',
         STR_ELLIPSIS = '...',
-        STR_END = 'end',
-        STR_HASH = '#',
-        STR_MIDDLE = 'middle',
-        STR_START = 'start',
-        STR_ZERO = '0',
-
-        STR_G = 'g',
-        STR_S = 's',
 
         htmlUnescapedValues = [],
 
@@ -164,7 +141,7 @@
         }
     }
 
-    var REGEX_HTML_ESCAPE = new RegExp('[' + htmlUnescapedValues.join(STR_BLANK) + ']', 'g'),
+    var REGEX_HTML_ESCAPE = new RegExp('[' + htmlUnescapedValues.join('') + ']', 'g'),
         REGEX_HTML_UNESCAPE = /&([^;]+);/g;
 
     A.mix(LString, {
@@ -199,9 +176,9 @@
         },
 
         defaultValue: function(str, defaultValue) {
-            if (isUndefined(str) || str === STR_BLANK) {
+            if (isUndefined(str) || str === '') {
                 if (isUndefined(defaultValue)) {
-                    defaultValue = STR_BLANK;
+                    defaultValue = '';
                 }
 
                 str = defaultValue;
@@ -239,7 +216,7 @@
                 index = str.length;
             }
 
-            return LString.repeat(STR_ZERO, Math.max(0, length - index)) + str;
+            return LString.repeat('0', Math.max(0, length - index)) + str;
         },
 
         pluralize: function(count, singularVersion, pluralVersion) {
@@ -249,7 +226,7 @@
                 suffix = singularVersion;
             }
             else {
-                suffix = pluralVersion || singularVersion + STR_S;
+                suffix = pluralVersion || singularVersion + 's';
             }
 
             return count + ' ' + suffix;
@@ -266,9 +243,9 @@
         },
 
         remove: function(str, substitute, all) {
-            var re = new RegExp(LString.escapeRegEx(substitute), all ? STR_G : STR_BLANK);
+            var re = new RegExp(LString.escapeRegEx(substitute), all ? 'g' : '');
 
-            return str.replace(re, STR_BLANK);
+            return str.replace(re, '');
         },
 
         removeAll: function(str, substitute) {
@@ -296,7 +273,7 @@
 
         stripScripts: function(str) {
             if (str) {
-                str = String(str).replace(REGEX_STRIP_SCRIPTS, STR_BLANK);
+                str = String(str).replace(REGEX_STRIP_SCRIPTS, '');
             }
 
             return str;
@@ -306,7 +283,7 @@
             var instance = this;
 
             if (str) {
-                str = String(str).replace(REGEX_STRIP_TAGS, STR_BLANK);
+                str = String(str).replace(REGEX_STRIP_TAGS, '');
             }
 
             return str;
@@ -345,17 +322,17 @@
             var strLength = str.length;
 
             if (str && strLength > length) {
-                where = where || STR_END;
+                where = where || 'end';
 
-                if (where === STR_END) {
+                if (where === 'end') {
                     str = str.substr(0, length - STR_ELLIPSIS.length) + STR_ELLIPSIS;
                 }
-                else if (where === STR_MIDDLE) {
+                else if (where === 'middle') {
                     var middlePoint = Math.floor(length / 2);
 
                     str = str.substr(0, middlePoint) + STR_ELLIPSIS + str.substr(strLength - middlePoint);
                 }
-                else if (where === STR_START) {
+                else if (where === 'start') {
                     str = STR_ELLIPSIS + str.substr(strLength - length);
                 }
             }
@@ -365,7 +342,7 @@
 
         undef: function(str) {
             if (isUndefined(str)) {
-                str = STR_BLANK;
+                str = '';
             }
 
             return str;
@@ -373,8 +350,8 @@
 
         // inspired from Google unescape entities
         unescapeEntities: function(str) {
-            if (LString.contains(str, STR_AMP)) {
-                if (DOC && !LString.contains(str, STR_CHEVRON_LEFT)) {
+            if (LString.contains(str, '&')) {
+                if (DOC && !LString.contains(str, '<')) {
                     str = LString._unescapeEntitiesUsingDom(str);
                 }
                 else {
@@ -400,8 +377,8 @@
         _unescapeHTML: function(match) {
             var value = MAP_HTML_CHARS_UNESCAPED[match];
 
-            if (!value && value.charAt(0) === STR_HASH) {
-                var charCode = Number(STR_ZERO + value.substr(1));
+            if (!value && value.charAt(0) === '#') {
+                var charCode = Number('0' + value.substr(1));
 
                 if (!isNaN(charCode)) {
                     value = String.fromCharCode(charCode);
@@ -414,25 +391,21 @@
         _unescapeEntitiesUsingDom: function(str) {
             var el = DOC.createElement('a');
 
-            el[INNER_HTML] = str;
+            el['innerHTML'] = str;
 
-            if (el[NORMALIZE]) {
-                el[NORMALIZE]();
+            if (el['normalize']) {
+                el['normalize']();
             }
 
             str = el.firstChild.nodeValue;
 
-            el[INNER_HTML] = STR_BLANK;
+            el['innerHTML'] = '';
 
             return str;
         }
     });
 
-    /**
-     * A.Object
-     */
-
-    /**
+    /*
      * Maps an object to an array, using the return value of fn as the values
      * for the new array.
      */
@@ -449,7 +422,7 @@
         return map;
     };
 
-    /**
+    /*
      * Maps an array or object to a resulting array, using the return value of
      * fn as the values for the new array. Like A.each, this function can accept
      * an object or an array.

@@ -4,8 +4,6 @@
  * @module aui-widget-toggle
  */
 
-var VISIBLE = 'visible';
-
 /**
  * Widget extension, which can be used to add toggle visibility support to the
  * base Widget class, through the [Base.build](Base.html#method_build)
@@ -28,10 +26,10 @@ WidgetToggle.prototype = {
         var instance = this;
 
         if (!A.Lang.isBoolean(visible)) {
-            visible = !instance.get(VISIBLE);
+            visible = !instance.get('visible');
         }
 
-        return instance.set(VISIBLE, visible);
+        return instance.set('visible', visible);
     }
 };
 

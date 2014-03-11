@@ -13,10 +13,6 @@ var AArray = A.Array,
 
     CSS_HSV_PALETTE_MODAL = getClassName('hsv-palette-modal'),
 
-    NAME = 'hsv-palette-modal',
-
-    EMPTY = '',
-
     /**
      * A base class for `HSVAPaletteModal`.
      *
@@ -26,7 +22,7 @@ var AArray = A.Array,
      *     properties.
      * @constructor
      */
-    HSVAPaletteModal = A.Base.create(NAME, A.Modal, [A.WidgetCssClass, A.WidgetToggle], {
+    HSVAPaletteModal = A.Base.create('hsv-palette-modal', A.Modal, [A.WidgetCssClass, A.WidgetToggle], {
 
         /**
          * Construction logic executed during `HSVAPaletteModal` instantiation.
@@ -151,7 +147,7 @@ var AArray = A.Array,
             selected: {
                 getter: '_getSelected',
                 validator: Lang.isString,
-                value: EMPTY
+                value: ''
             }
         },
 
@@ -162,7 +158,7 @@ var AArray = A.Array,
          * @type {String}
          * @static
          */
-        CSS_PREFIX: getClassName(NAME),
+        CSS_PREFIX: getClassName('hsv-palette-modal'),
 
         /**
          * Static property provides a string to identify the class.
@@ -171,7 +167,7 @@ var AArray = A.Array,
          * @type {String}
          * @static
          */
-        NAME: NAME,
+        NAME: 'hsv-palette-modal',
 
         /**
          * Static property provides a string to identify the namespace.
@@ -180,7 +176,7 @@ var AArray = A.Array,
          * @type {String}
          * @static
          */
-        NS: NAME
+        NS: 'hsv-palette-modal'
     });
 
 A.HSVAPaletteModal = HSVAPaletteModal;

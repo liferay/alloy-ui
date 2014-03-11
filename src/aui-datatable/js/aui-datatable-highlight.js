@@ -10,36 +10,13 @@ var Lang = A.Lang,
     isString = Lang.isString,
     isBoolean = Lang.isBoolean,
 
-    ACTIVE = 'active',
-    ACTIVE_BORDER_WIDTH = 'activeBorderWidth',
-    ACTIVE_CELL = 'activeCell',
-    ACTIVE_COORD_CHANGE = 'activeCoordChange',
-    ACTIVE_ROW = 'activeRow',
-    BORDER = 'border',
-    CELLS = 'cells',
-    CHILDREN = 'children',
-    DATA_CHANGE = 'dataChange',
-    HIGHLIGHT = 'highlight',
-    HIGHLIGHT_RANGE = 'highlightRange',
-    HOST = 'host',
-    OVERLAY = 'overlay',
-    OVERLAY_ACTIVE_NODE = 'overlayActiveNode',
-    OVERLAY_NODE = 'overlayNode',
-    RANGE_BORDER_WIDTH = 'rangeBorderWidth',
-    REGION = 'region',
-    ROWS = 'rows',
-    SELECTION_CHANGE = 'selectionChange',
-    TYPE = 'type',
-
-    _SPACE = ' ',
-
     _setCSSClockwiseRule = function(val) {
         var instance = this,
             i = 0,
             len;
 
         if (isString(val)) {
-            val = Lang.trim(val).replace(/\s+/g, ' ').split(_SPACE);
+            val = Lang.trim(val).replace(/\s+/g, ' ').split(' ');
         }
         else if (!isArray(val)) {
             val = A.Array(val);
@@ -80,19 +57,19 @@ var DataTableHighlight = A.Base.create(
          */
         initializer: function() {
             var instance = this,
-                host = instance.get(HOST);
+                host = instance.get('host');
 
             instance.CLASS_NAMES = {
-                active: host.getClassName(ACTIVE),
-                border: host.getClassName(HIGHLIGHT, BORDER),
-                highlight: host.getClassName(HIGHLIGHT),
-                overlay: host.getClassName(HIGHLIGHT, OVERLAY),
-                overlayActive: host.getClassName(HIGHLIGHT, OVERLAY, ACTIVE)
+                active: host.getClassName('active'),
+                border: host.getClassName('highlight', 'border'),
+                highlight: host.getClassName('highlight'),
+                overlay: host.getClassName('highlight', 'overlay'),
+                overlayActive: host.getClassName('highlight', 'overlay', 'active')
             };
 
-            instance.afterHostEvent(ACTIVE_COORD_CHANGE, instance._afterActiveCoordChange);
-            instance.afterHostEvent(SELECTION_CHANGE, instance._afterSelectionChange);
-            instance.afterHostEvent(DATA_CHANGE, instance._afterDataChange);
+            instance.afterHostEvent('activeCoordChange', instance._afterActiveCoordChange);
+            instance.afterHostEvent('selectionChange', instance._afterSelectionChange);
+            instance.afterHostEvent('dataChange', instance._afterDataChange);
         },
 
         /**
@@ -102,8 +79,8 @@ var DataTableHighlight = A.Base.create(
          */
         clear: function() {
             var instance = this,
-                host = instance.get(HOST),
-                activeCell = host.get(ACTIVE_CELL);
+                host = instance.get('host'),
+                activeCell = host.get('activeCell');
 
             if (activeCell) {
                 activeCell.removeClass(instance.CLASS_NAMES.active);
@@ -120,20 +97,20 @@ var DataTableHighlight = A.Base.create(
          */
         getActiveRegion: function() {
             var instance = this,
-                host = instance.get(HOST),
-                type = instance.get(TYPE),
+                host = instance.get('host'),
+                type = instance.get('type'),
                 region = null,
                 activeNode;
 
-            if (type === ROWS) {
-                activeNode = host.get(ACTIVE_ROW);
+            if (type === 'rows') {
+                activeNode = host.get('activeRow');
             }
             else {
-                activeNode = host.get(ACTIVE_CELL);
+                activeNode = host.get('activeCell');
             }
 
             if (activeNode) {
-                region = activeNode.get(REGION);
+                region = activeNode.get('region');
             }
 
             return region;
@@ -147,8 +124,8 @@ var DataTableHighlight = A.Base.create(
         getSelectionRegion: function() {
             var instance = this,
                 nodes = instance._nodes,
-                r1 = nodes[0].get(REGION),
-                r2 = nodes[nodes.length - 1].get(REGION);
+                r1 = nodes[0].get('region'),
+                r2 = nodes[nodes.length - 1].get('region');
 
             return {
                 0: r1.top,
@@ -171,14 +148,14 @@ var DataTableHighlight = A.Base.create(
          */
         _afterActiveCoordChange: function(event) {
             var instance = this,
-                host = instance.get(HOST),
-                activeBorderWidth = instance.get(ACTIVE_BORDER_WIDTH),
-                overlayActiveNode = instance.get(OVERLAY_ACTIVE_NODE),
+                host = instance.get('host'),
+                activeBorderWidth = instance.get('activeBorderWidth'),
+                overlayActiveNode = instance.get('overlayActiveNode'),
                 classNames = instance.CLASS_NAMES,
-                activeRow = host.get(ACTIVE_ROW),
+                activeRow = host.get('activeRow'),
                 lastActiveRow = instance._lastActiveRow;
 
-            if (!instance.get(TYPE)) {
+            if (!instance.get('type')) {
                 return;
             }
 
@@ -222,11 +199,11 @@ var DataTableHighlight = A.Base.create(
         _afterSelectionChange: function(event) {
             var instance = this,
                 nodes,
-                highlightRange = instance.get(HIGHLIGHT_RANGE),
-                overlayNode = instance.get(OVERLAY_NODE),
-                rangeBorderWidth = instance.get(RANGE_BORDER_WIDTH);
+                highlightRange = instance.get('highlightRange'),
+                overlayNode = instance.get('overlayNode'),
+                rangeBorderWidth = instance.get('rangeBorderWidth');
 
-            if (!instance.get(TYPE)) {
+            if (!instance.get('type')) {
                 return;
             }
 
@@ -255,12 +232,12 @@ var DataTableHighlight = A.Base.create(
          */
         _alignBorder: function(overlayNode, region, borderWidth) {
             var instance = this,
-                host = instance.get(HOST);
+                host = instance.get('host');
 
             host._tableNode.appendChild(overlayNode);
 
             if (region) {
-                var borders = overlayNode.get(CHILDREN),
+                var borders = overlayNode.get('children'),
                     t = borders.item(0),
                     r = borders.item(1),
                     b = borders.item(2),
@@ -289,7 +266,7 @@ var DataTableHighlight = A.Base.create(
          */
         _collectNodes: function(selection) {
             var instance = this,
-                type = instance.get(TYPE);
+                type = instance.get('type');
 
             if (!type || !selection) {
                 return null;
@@ -307,8 +284,8 @@ var DataTableHighlight = A.Base.create(
         _clearBorders: function() {
             var instance = this;
 
-            instance.get(OVERLAY_NODE).remove();
-            instance.get(OVERLAY_ACTIVE_NODE).remove();
+            instance.get('overlayNode').remove();
+            instance.get('overlayActiveNode').remove();
         },
 
         /**
@@ -335,7 +312,7 @@ var DataTableHighlight = A.Base.create(
          * @protected
          */
         _validateType: function(val) {
-            return (val === CELLS || val === ROWS || val === null);
+            return (val === 'cells' || val === 'rows' || val === null);
         }
     }, {
         /**
@@ -345,7 +322,7 @@ var DataTableHighlight = A.Base.create(
          * @type String
          * @static
          */
-        NS: HIGHLIGHT,
+        NS: 'highlight',
 
         /**
          * Static property provides a string to identify the class.
@@ -450,7 +427,7 @@ var DataTableHighlight = A.Base.create(
              */
             type: {
                 validator: '_validateType',
-                value: CELLS
+                value: 'cells'
             }
         }
     }

@@ -12,59 +12,17 @@ var Lang = A.Lang,
 
     getCN = A.getClassName,
 
-    ATTR_DATA_INDEX = 'data-index',
+    CLASS_ENTRY = getCN('ace-autocomplete', 'entry'),
+    CLASS_ENTRY_CONTAINER = getCN('ace-autocomplete', 'entry', 'container'),
+    CLASS_ENTRY_CONTAINER_HIGHLIGHTED = getCN('ace-autocomplete', 'entry', 'container', 'highlighted'),
+    CLASS_ENTRY_EMPTY = getCN('ace-autocomplete', 'entry', 'empty'),
+    CLASS_ENTRY_LOADING = getCN('ace-autocomplete', 'entry', 'loading'),
+    CLASS_LOADING = getCN('ace-autocomplete', 'entry', 'loading'),
+    CLASS_RESULTS_LIST = getCN('ace-autocomplete', 'results'),
 
-    _DOT = '.',
-    _EMPTY_STRING = '',
-    _NAME = 'ace-autocomplete-list',
-    _SPACE = ' ',
-
-    ADD_SUGGESTION = 'addSuggestion',
-    CLICK = 'click',
-    CONTAINER = 'container',
-    CONTENT_BOX = 'contentBox',
-    CURSOR_CHANGE = 'cursorChange',
-    CURSOR_OUT = 'cursorOut',
-    EMPTY = 'empty',
-    ENTRY = 'entry',
-    ENTRY_SELECTED = 'entrySelected',
-    HIGHLIGHTED = 'highlighted',
-    INSERT_TEXT = 'insertText',
-    LIST = 'list',
-    LIST_NODE = 'listNode',
-    LOADING = 'loading',
-    LOADING_MESSAGE = 'loadingMessage',
-    MATCH = 'match',
-    MOUSEENTER = 'mouseenter',
-    MOUSELEAVE = 'mouseleave',
-    NEXT = 'next',
-    OFFSET_HEIGHT = 'offsetHeight',
-    PREVIOUS = 'previous',
-    REGION = 'region',
-    REMOVE_TEXT = 'removeText',
-    RESULTS = 'results',
-    RESULTS = 'results',
-    RESULTS_CHANGE = 'resultsChange',
-    RESULTS_ERROR = 'resultsError',
-    SELECTED = 'selected',
-    SHOW_LOADING_MESSAGE = 'showLoadingMessage',
-    VISIBLE = 'visible',
-    VISIBLE_CHANGE = 'visibleChange',
-    XY = 'xy',
-
-    CSS_PREFIX = 'ace-autocomplete',
-
-    CLASS_ENTRY = getCN(CSS_PREFIX, ENTRY),
-    CLASS_ENTRY_CONTAINER = getCN(CSS_PREFIX, ENTRY, CONTAINER),
-    CLASS_ENTRY_CONTAINER_HIGHLIGHTED = getCN(CSS_PREFIX, ENTRY, CONTAINER, HIGHLIGHTED),
-    CLASS_ENTRY_EMPTY = getCN(CSS_PREFIX, ENTRY, EMPTY),
-    CLASS_ENTRY_LOADING = getCN(CSS_PREFIX, ENTRY, LOADING),
-    CLASS_LOADING = getCN(CSS_PREFIX, ENTRY, LOADING),
-    CLASS_RESULTS_LIST = getCN(CSS_PREFIX, RESULTS),
-
-    SELECTOR_ENTRY_CONTAINER = _DOT + CLASS_ENTRY_CONTAINER,
-    SELECTOR_ENTRY_CONTAINER_SELECTED = SELECTOR_ENTRY_CONTAINER + _DOT + SELECTED,
-    SELECTOR_SELECTED_ENTRY = SELECTOR_ENTRY_CONTAINER_SELECTED + _SPACE + _DOT + CLASS_ENTRY,
+    SELECTOR_ENTRY_CONTAINER = '.' + CLASS_ENTRY_CONTAINER,
+    SELECTOR_ENTRY_CONTAINER_SELECTED = SELECTOR_ENTRY_CONTAINER + '.' + 'selected',
+    SELECTOR_SELECTED_ENTRY = SELECTOR_ENTRY_CONTAINER_SELECTED + ' ' + '.' + CLASS_ENTRY,
 
     TPL_FRAGMENT = '<div></div>',
 
@@ -88,7 +46,7 @@ var Lang = A.Lang,
      *     properties.
      * @constructor
      */
-    AutoCompleteList = A.Base.create(_NAME, A.Overlay, [
+    AutoCompleteList = A.Base.create('ace-autocomplete-list', A.Overlay, [
     A.AceEditor.AutoCompleteBase,
     A.WidgetAutohide
 ], {
@@ -102,16 +60,16 @@ var Lang = A.Lang,
         bindUI: function() {
             var instance = this;
 
-            instance.on(ADD_SUGGESTION, instance.hide, instance);
-            instance.on(CURSOR_CHANGE, instance._onCursorChange, instance);
-            instance.on(CURSOR_OUT, instance.hide, instance);
-            instance.on(INSERT_TEXT, instance._onInsertText, instance);
-            instance.on(MATCH, instance._onMatch, instance);
-            instance.on(REMOVE_TEXT, instance._onRemoveText, instance);
-            instance.on(RESULTS_CHANGE, instance._onResultsChange, instance);
-            instance.on(RESULTS_ERROR, instance._setEmptyResults, instance);
-            instance.on(SHOW_LOADING_MESSAGE, instance._onShowLoadingMessage, instance);
-            instance.on(VISIBLE_CHANGE, instance._onVisibleChange, instance);
+            instance.on('addSuggestion', instance.hide, instance);
+            instance.on('cursorChange', instance._onCursorChange, instance);
+            instance.on('cursorOut', instance.hide, instance);
+            instance.on('insertText', instance._onInsertText, instance);
+            instance.on('match', instance._onMatch, instance);
+            instance.on('removeText', instance._onRemoveText, instance);
+            instance.on('resultsChange', instance._onResultsChange, instance);
+            instance.on('resultsError', instance._setEmptyResults, instance);
+            instance.on('showLoadingMessage', instance._onShowLoadingMessage, instance);
+            instance.on('visibleChange', instance._onVisibleChange, instance);
         },
 
         /**
@@ -124,16 +82,19 @@ var Lang = A.Lang,
             var instance = this,
                 autoCompleteResultsList;
 
-            autoCompleteResultsList = instance.get(LIST_NODE);
+            autoCompleteResultsList = instance.get('listNode');
 
             if (!autoCompleteResultsList) {
                 autoCompleteResultsList = instance._createListNode();
             }
 
-            autoCompleteResultsList.delegate(CLICK, instance._handleResultListClick, SELECTOR_ENTRY_CONTAINER,
-                instance);
-            autoCompleteResultsList.delegate(MOUSEENTER, instance._onMouseEnter, SELECTOR_ENTRY_CONTAINER, instance);
-            autoCompleteResultsList.delegate(MOUSELEAVE, instance._onMouseLeave, SELECTOR_ENTRY_CONTAINER);
+            autoCompleteResultsList.delegate(
+                'click', instance._handleResultListClick, SELECTOR_ENTRY_CONTAINER, instance);
+
+            autoCompleteResultsList.delegate(
+                'mouseenter', instance._onMouseEnter, SELECTOR_ENTRY_CONTAINER, instance);
+
+            autoCompleteResultsList.delegate('mouseleave', instance._onMouseLeave, SELECTOR_ENTRY_CONTAINER);
 
             instance._autoCompleteResultsList = autoCompleteResultsList;
         },
@@ -151,7 +112,7 @@ var Lang = A.Lang,
 
             listNode = A.Node.create(instance.TPL_LIST);
 
-            instance.get(CONTENT_BOX).append(listNode);
+            instance.get('contentBox').append(listNode);
 
             return listNode;
         },
@@ -176,9 +137,9 @@ var Lang = A.Lang,
             if (!entriesPerPage) {
                 autoCompleteResultsList = instance._autoCompleteResultsList;
 
-                entryHeight = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER).get(OFFSET_HEIGHT);
+                entryHeight = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER).get('offsetHeight');
 
-                containerHeight = autoCompleteResultsList.get(OFFSET_HEIGHT);
+                containerHeight = autoCompleteResultsList.get('offsetHeight');
 
                 entriesPerPage = Math.floor(containerHeight / entryHeight);
 
@@ -230,10 +191,10 @@ var Lang = A.Lang,
                 selectedEntry;
 
             if (keyCode === KEY_UP) {
-                action = PREVIOUS;
+                action = 'previous';
             }
             else if (keyCode === KEY_DONW) {
-                action = NEXT;
+                action = 'next';
             }
 
             if (action) {
@@ -245,15 +206,15 @@ var Lang = A.Lang,
                     entry = selectedEntry[action](SELECTOR_ENTRY_CONTAINER);
 
                     if (entry) {
-                        selectedEntry.removeClass(SELECTED);
+                        selectedEntry.removeClass('selected');
 
-                        entry.addClass(SELECTED);
+                        entry.addClass('selected');
 
-                        resultsListNodeRegion = autoCompleteResultsList.get(REGION);
+                        resultsListNodeRegion = autoCompleteResultsList.get('region');
 
-                        entryRegion = entry.get(REGION);
+                        entryRegion = entry.get('region');
 
-                        if (action === PREVIOUS) {
+                        if (action === 'previous') {
                             if (entryRegion.top < resultsListNodeRegion.top) {
                                 entry.scrollIntoView(true);
                             }
@@ -292,7 +253,7 @@ var Lang = A.Lang,
             var instance = this,
                 result;
 
-            if (instance.get(VISIBLE)) {
+            if (instance.get('visible')) {
                 if (keyCode === KEY_UP || keyCode === KEY_DONW) {
                     result = instance._handleArrows(keyCode);
                 }
@@ -334,9 +295,9 @@ var Lang = A.Lang,
 
             selectedEntry = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER_SELECTED);
 
-            selectedEntryIndex = Lang.toInt(selectedEntry.attr(ATTR_DATA_INDEX));
+            selectedEntryIndex = Lang.toInt(selectedEntry.attr('data-index'));
 
-            sudoClass = _EMPTY_STRING;
+            sudoClass = '';
 
             scrollTop = false;
 
@@ -351,7 +312,7 @@ var Lang = A.Lang,
                 sudoClass = ':last-child';
             }
 
-            nextSelectedEntry = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER + '[' + ATTR_DATA_INDEX + '="' +
+            nextSelectedEntry = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER + '[' + 'data-index' + '="' +
                 nextSelectedEntryIndex + '"]');
 
             if (!nextSelectedEntry) {
@@ -359,9 +320,9 @@ var Lang = A.Lang,
             }
 
             if (selectedEntry !== nextSelectedEntry) {
-                selectedEntry.removeClass(SELECTED);
+                selectedEntry.removeClass('selected');
 
-                nextSelectedEntry.addClass(SELECTED);
+                nextSelectedEntry.addClass('selected');
 
                 nextSelectedEntry.scrollIntoView(scrollTop);
             }
@@ -387,9 +348,9 @@ var Lang = A.Lang,
             selectedEntry = instance._autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER_SELECTED);
 
             if (entryNode !== selectedEntry) {
-                selectedEntry.removeClass(SELECTED);
+                selectedEntry.removeClass('selected');
 
-                entryNode.addClass(SELECTED);
+                entryNode.addClass('selected');
             }
 
             content = entryNode.text();
@@ -397,7 +358,7 @@ var Lang = A.Lang,
             instance._addSuggestion(content);
 
             instance.fire(
-                ENTRY_SELECTED, {
+                'entrySelected', {
                     content: content
                 }
             );
@@ -436,9 +397,9 @@ var Lang = A.Lang,
             selectedEntry = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER_SELECTED);
 
             if (item !== selectedEntry) {
-                selectedEntry.removeClass(SELECTED);
+                selectedEntry.removeClass('selected');
 
-                item.addClass(SELECTED);
+                item.addClass('selected');
 
                 item.scrollIntoView(scrollTop);
             }
@@ -457,7 +418,7 @@ var Lang = A.Lang,
         _onCursorChange: function(event) {
             var instance = this;
 
-            if (!instance.get(VISIBLE)) {
+            if (!instance.get('visible')) {
                 event.preventDefault();
             }
         },
@@ -473,7 +434,7 @@ var Lang = A.Lang,
         _onInsertText: function(event) {
             var instance = this;
 
-            if (event.startRow !== event.endRow && instance.get(VISIBLE)) {
+            if (event.startRow !== event.endRow && instance.get('visible')) {
                 instance.hide();
             }
         },
@@ -492,7 +453,7 @@ var Lang = A.Lang,
                 hasResults,
                 visible;
 
-            visible = instance.get(VISIBLE);
+            visible = instance.get('visible');
 
             hasResults = instance._autoCompleteResultsList.hasChildNodes();
 
@@ -501,7 +462,7 @@ var Lang = A.Lang,
                     if (!visible) {
                         coords = event.coords;
 
-                        instance.set(XY, [coords.pageX + PADDING_HORIZ, coords.pageY + PADDING_VERT]);
+                        instance.set('xy', [coords.pageX + PADDING_HORIZ, coords.pageY + PADDING_VERT]);
 
                         instance.show();
                     }
@@ -548,7 +509,7 @@ var Lang = A.Lang,
         _onRemoveText: function(event) {
             var instance = this;
 
-            if (instance.get(VISIBLE)) {
+            if (instance.get('visible')) {
                 instance.hide();
             }
         },
@@ -598,7 +559,7 @@ var Lang = A.Lang,
             firstEntry = autoCompleteResultsList.one(SELECTOR_ENTRY_CONTAINER);
 
             if (firstEntry) {
-                firstEntry.addClass(SELECTED);
+                firstEntry.addClass('selected');
             }
         },
 
@@ -620,12 +581,12 @@ var Lang = A.Lang,
             autoCompleteResultsList.appendChild(
                 Lang.sub(
                     instance.TPL_LOADING, {
-                        label: instance.get(LOADING_MESSAGE)
+                        label: instance.get('loadingMessage')
                     }
                 )
             );
 
-            if (!instance.get(VISIBLE)) {
+            if (!instance.get('visible')) {
                 instance.show();
             }
         },
@@ -658,7 +619,7 @@ var Lang = A.Lang,
         _setEmptyResults: function() {
             var instance = this;
 
-            instance.set(RESULTS, []);
+            instance.set('results', []);
         },
 
         TPL_ENTRY: '<li class="' + CLASS_ENTRY_CONTAINER + '" data-index="{index}">' + '<span class="' + CLASS_ENTRY + '">{value}</span>' + '</li>',
@@ -677,7 +638,7 @@ var Lang = A.Lang,
          * @type String
          * @static
          */
-        NAME: _NAME,
+        NAME: 'ace-autocomplete-list',
 
         /**
          * Static property provides a string to identify the namespace.
@@ -686,7 +647,7 @@ var Lang = A.Lang,
          * @type String
          * @static
          */
-        NS: _NAME,
+        NS: 'ace-autocomplete-list',
 
         /**
          * Static property used to define the default attribute
@@ -771,7 +732,7 @@ var Lang = A.Lang,
          * @type String
          * @static
          */
-        CSS_PREFIX: CSS_PREFIX,
+        CSS_PREFIX: 'ace-autocomplete',
 
         /**
          * Object hash, defining how attribute values are to be parsed from
@@ -781,7 +742,7 @@ var Lang = A.Lang,
          * @static
          */
         HTML_PARSER: {
-            listNode: _DOT + CLASS_RESULTS_LIST
+            listNode: '.' + CLASS_RESULTS_LIST
         }
     });
 

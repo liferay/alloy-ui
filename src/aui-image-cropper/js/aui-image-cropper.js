@@ -10,12 +10,10 @@ var Lang = A.Lang,
 
     toInt = Lang.toInt,
 
-    NAME = 'image-cropper',
-
-    CSS_CROP = A.getClassName(NAME, 'crop'),
-    CSS_CROP_OUTLINE = A.getClassName(NAME, 'crop', 'outline'),
-    CSS_OVERLAY = A.getClassName(NAME, 'overlay'),
-    CSS_OVERLAY_HOVER = A.getClassName(NAME, 'crop', 'hover');
+    CSS_CROP = A.getClassName('image-cropper', 'crop'),
+    CSS_CROP_OUTLINE = A.getClassName('image-cropper', 'crop', 'outline'),
+    CSS_OVERLAY = A.getClassName('image-cropper', 'overlay'),
+    CSS_OVERLAY_HOVER = A.getClassName('image-cropper', 'crop', 'hover');
 
 /**
  * A base class for Image Cropper.
@@ -38,7 +36,7 @@ var ImageCropper = A.Component.create({
      * @type String
      * @static
      */
-    NAME: NAME,
+    NAME: 'image-cropper',
 
     /**
      * Static property used to define the default attribute

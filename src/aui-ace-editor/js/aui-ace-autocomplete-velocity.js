@@ -12,11 +12,6 @@ var Lang = A.Lang,
     MATCH_DIRECTIVES = 0,
     MATCH_VARIABLES = 1,
 
-    _NAME = 'aui-ace-autocomplete-velocity',
-
-    DIRECTIVES_MATCHER = 'directivesMatcher',
-    VARIABLES_MATCHER = 'variablesMatcher',
-
     /**
      * A base class for Velocity plugin.
      *
@@ -26,7 +21,7 @@ var Lang = A.Lang,
      *     properties.
      * @constructor
      */
-    Velocity = A.Base.create(_NAME, A.AceEditor.TemplateProcessor, [], {
+    Velocity = A.Base.create('aui-ace-autocomplete-velocity', A.AceEditor.TemplateProcessor, [], {
 
         /**
          * Checks if the provided content contains directive or variable.
@@ -47,7 +42,7 @@ var Lang = A.Lang,
             if ((matchIndex = content.lastIndexOf('#')) >= 0) {
                 content = content.substring(matchIndex);
 
-                if (instance.get(DIRECTIVES_MATCHER).test(content)) {
+                if (instance.get('directivesMatcher').test(content)) {
                     match = {
                         content: content.substring(1),
                         start: matchIndex,
@@ -58,7 +53,7 @@ var Lang = A.Lang,
             else if ((matchIndex = content.lastIndexOf('$')) >= 0) {
                 content = content.substring(matchIndex);
 
-                if (instance.get(VARIABLES_MATCHER).test(content)) {
+                if (instance.get('variablesMatcher').test(content)) {
                     match = {
                         content: content.substring(1),
                         start: matchIndex,
@@ -78,7 +73,7 @@ var Lang = A.Lang,
          * @type String
          * @static
          */
-        NAME: _NAME,
+        NAME: 'aui-ace-autocomplete-velocity',
 
         /**
          * Static property provides a string to identify the namespace.
@@ -87,7 +82,7 @@ var Lang = A.Lang,
          * @type String
          * @static
          */
-        NS: _NAME,
+        NS: 'aui-ace-autocomplete-velocity',
 
         /**
          * Static property used to define the default attribute

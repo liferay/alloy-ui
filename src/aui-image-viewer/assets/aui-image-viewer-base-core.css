@@ -32,6 +32,9 @@
 }
 .image-viewer-caption, .image-viewer-info {
     margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .image-viewer-caption {
     color: #222;
