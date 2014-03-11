@@ -93,7 +93,7 @@ var Lang = A.Lang,
 
             autoCompleteResultsList.delegate(
                 'mouseenter', instance._onMouseEnter, SELECTOR_ENTRY_CONTAINER, instance);
-            
+
             autoCompleteResultsList.delegate('mouseleave', instance._onMouseLeave, SELECTOR_ENTRY_CONTAINER);
 
             instance._autoCompleteResultsList = autoCompleteResultsList;

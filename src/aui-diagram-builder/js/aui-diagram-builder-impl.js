@@ -295,7 +295,8 @@ var DiagramBuilder = A.Component.create({
                 'click', A.bind(instance._onNodeClick, instance), '.' + CSS_DIAGRAM_NODE);
 
             instance.dropContainer.delegate(
-                'mousedown', A.bind(instance._onCloseButtonMouseDown, instance), '.diagram-builder-controls button');
+                'mousedown', A.bind(instance._onCloseButtonMouseDown, instance), '.diagram-builder-controls button'
+            );
 
             instance.dropContainer.delegate(
                 'mouseenter', A.bind(instance._onNodeMouseEnter, instance), '.' + CSS_DIAGRAM_NODE);
@@ -1867,9 +1868,8 @@ var DiagramNode = A.Component.create({
 
             if (!builder.isAbleToConnect() &&
                 builder.get('showSuggestConnector') &&
-                builder.connector.get(
-                'visible')) {
-                
+                builder.connector.get('visible')) {
+
                 builder.showSuggestConnectorOverlay();
             }
             else {
@@ -2191,7 +2191,7 @@ var DiagramNode = A.Component.create({
             var instance = this;
 
             var boundary = instance.boundary =
-            instance.get('graphic').addShape(instance.get('shapeBoundary'));
+                instance.get('graphic').addShape(instance.get('shapeBoundary'));
 
             return boundary;
         },
@@ -2205,7 +2205,7 @@ var DiagramNode = A.Component.create({
             var instance = this;
 
             var invite = instance.invite =
-            instance.get('builder').get('graphic').addShape(instance.get('shapeInvite'));
+                instance.get('builder').get('graphic').addShape(instance.get('shapeInvite'));
 
             invite.set('visible', false);
 

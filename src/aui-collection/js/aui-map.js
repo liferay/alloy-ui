@@ -339,7 +339,7 @@ var HashMap = A.Base.create('map', A.Base, [], {
             valueIndex;
 
         if (instance._isObjectWithHashCode(value)) {
-            return instance.OBJECT + _UNDERLINE + value.hashCode();
+            return instance.OBJECT + '_' + value.hashCode();
         }
         // When object hash code is missing, falls back to O(N) implementation
         valueIndex = AArray.indexOf(instance._objects, value);

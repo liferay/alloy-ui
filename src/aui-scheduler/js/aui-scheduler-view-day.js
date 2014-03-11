@@ -1,4 +1,4 @@
-instance['headerTableNode']/**
+/**
  * The Scheduler Component
  *
  * @module aui-scheduler

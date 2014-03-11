@@ -379,8 +379,7 @@ var AudioImpl = A.Component.create({
         _setMedia: function(flashVars) {
             var instance = this;
 
-            if (!owns(flashVars, 'mp3') && !owns(flashVars, 'mp4') && !owns(flashVars,
-                'flv')) {
+            if (!owns(flashVars, 'mp3') && !owns(flashVars, 'mp4') && !owns(flashVars, 'flv')) {
                 var audioUrl = instance.get('url');
 
                 var type = instance.get('type');
