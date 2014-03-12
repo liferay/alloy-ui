@@ -189,13 +189,18 @@ WidgetTransition.prototype = {
     /**
      * Set the `delay` attribute.
      *
-     * @method _onStickDurationChange
+     * @method _setDelay
+     * @param {Object | Number} val Delay value
      * @protected
      */
     _setDelay: function(val) {
         if (Lang.isNumber(val)) {
-            return {show: val, hide: val};
+            return {
+                show: val,
+                hide: val
+            };
         }
+
         return val;
     },
 
