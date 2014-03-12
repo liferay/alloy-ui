@@ -46,8 +46,9 @@ WidgetTransition.ATTRS = {
     },
 
     /**
-     * Determine the delay (in milliseconds) after widget's transition
-     * animation. By default there's no delay.
+     * Determine the `delay` (in milliseconds) after widget's transition
+     * animation. By default there's no delay. Can pass as parameter
+     * a object `{show: value, hide: value}` or a single value 'Number'.
      *
      * @attribute delay
      * @default { show: 0, hide: 0 }
@@ -55,7 +56,7 @@ WidgetTransition.ATTRS = {
      * @writeOnce
      */
     delay: {
-        validator: Lang.isObject,
+        setter: '_setDelay',
         value: {
             show: 0,
             hide: 0
@@ -183,6 +184,19 @@ WidgetTransition.prototype = {
         instance._prepareTransition(true);
 
         A.later(delay.show, instance, instance._transition, true);
+    },
+
+    /**
+     * Set the `delay` attribute.
+     *
+     * @method _onStickDurationChange
+     * @protected
+     */
+    _setDelay: function(val) {
+        if (Lang.isNumber(val)) {
+            return {show: val, hide: val};
+        }
+        return val;
     },
 
     /**
