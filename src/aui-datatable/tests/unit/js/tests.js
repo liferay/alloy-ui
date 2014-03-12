@@ -4,48 +4,48 @@ YUI.add('aui-datatable-tests', function(Y) {
 
     var data = [
         {
-            name: 'Joan B. Jones',
+            active: 'no',
             address: '3271 Another Ave',
-            city: 'New York',
-            state: 'AL',
             amount: 3,
-            active: 'no',
+            city: 'New York',
             colors: ['red', 'blue'],
+            date: '2013-01-01',
             fruit: ['apple'],
-            date: '2013-01-01'
+            name: 'Joan B. Jones',
+            state: 'AL'
         },
         {
-            name: 'Bob C. Uncle',
-            address: '9996 Random Road',
-            city: 'Los Angeles',
-            state: 'CA',
-            amount: 0,
             active: 'maybe',
+            address: '9996 Random Road',
+            amount: 0,
+            city: 'Los Angeles',
             colors: ['green'],
+            date: '2013-01-01',
             fruit: ['cherry'],
-            date: '2013-01-01'
+            name: 'Bob C. Uncle',
+            state: 'CA'
         },
         {
-            name: 'John D. Smith',
-            address: '1623 Some Street',
-            city: 'San Francisco',
-            state: 'CA',
-            amount: 5,
             active: 'yes',
+            address: '1623 Some Street',
+            amount: 5,
+            city: 'San Francisco',
             colors: ['red'],
+            date: '',
             fruit: ['cherry'],
-            date: ''
+            name: 'John D. Smith',
+            state: 'CA'
         },
         {
-            name: 'Joan E. Jones',
-            address: '3217 Another Ave',
-            city: 'New York',
-            state: 'KY',
-            amount: 3,
             active: 'no',
+            address: '3217 Another Ave',
+            amount: 3,
+            city: 'New York',
             colors: ['red', 'blue'],
+            date: '2013-01-06',
             fruit: ['apple', 'cherry'],
-            date: '2013-01-06'
+            name: 'Joan E. Jones',
+            state: 'KY'
         }
     ];
 
@@ -53,15 +53,13 @@ YUI.add('aui-datatable-tests', function(Y) {
         boundingBox: '#simple',
         columns: [
             {
-                key: 'name',
-                sortable: true,
                 editor: new Y.TextAreaCellEditor({
                     on: {
-                        save: function(event) {
-                            console.log('save', event.newVal);
-                        },
                         cancel: function(event) {
                             console.log('cancel', event);
+                        },
+                        save: function(event) {
+                            console.log('save', event.newVal);
                         }
                     },
                     validator: {
@@ -71,27 +69,28 @@ YUI.add('aui-datatable-tests', function(Y) {
                             }
                         }
                     }
-                })
+                }),
+                key: 'name',
+                sortable: true
             },
             {
-                key: 'address',
-                editor: new Y.TextAreaCellEditor()
+                editor: new Y.TextAreaCellEditor(),
+                key: 'address'
             },
             {
-                key: 'city',
-                editor: new Y.TextAreaCellEditor()
+                editor: new Y.TextAreaCellEditor(),
+                key: 'city'
             },
             {
-                key: 'state',
                 editor: new Y.DropDownCellEditor({
                     editable: true,
-                    options: ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID",
-                        "IL", "IN", "IA", "KS", "KY", "LA"]
-                })
+                    options: ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL', 'GA', 'HI', 'ID',
+                        'IL', 'IN', 'IA', 'KS', 'KY', 'LA']
+                }),
+                key: 'state'
             },
             'amount',
             {
-                key: "active",
                 editor: new Y.RadioCellEditor({
                     editable: true,
                     options: {
@@ -99,10 +98,10 @@ YUI.add('aui-datatable-tests', function(Y) {
                         no: 'No',
                         maybe: 'Maybe'
                     }
-                })
+                }),
+                key: 'active'
             },
             {
-                key: "colors",
                 editor: new Y.CheckboxCellEditor({
                     editable: true,
                     multiple: true,
@@ -111,33 +110,34 @@ YUI.add('aui-datatable-tests', function(Y) {
                         green: 'Green',
                         blue: 'Blue'
                     }
-                })
+                }),
+                key: 'colors'
             },
             {
-                key: 'fruit',
-                sortable: true,
                 editor: new Y.DropDownCellEditor({
                     editable: true,
                     multiple: true,
                     options: {
                         apple: 'Apple',
-                        cherry: 'Cherry',
                         banana: 'Banana',
+                        cherry: 'Cherry',
                         kiwi: 'Kiwi'
                     }
-                })
+                }),
+                key: 'fruit',
+                sortable: true
             },
             {
-                key: 'date',
-                sortable: true,
                 editor: new Y.DateCellEditor({
                     calendar: {
-                        width: '400px',
-                        showPrevMonth: true,
+                        selectionMode: 'multiple',
                         showNextMonth: true,
-                        selectionMode: 'multiple'
+                        showPrevMonth: true,
+                        width: '400px'
                     }
-                })
+                }),
+                key: 'date',
+                sortable: true
             }
         ],
         data: data,
@@ -150,21 +150,41 @@ YUI.add('aui-datatable-tests', function(Y) {
     }).render();
 
     function assertHighlightPosition(tableData) {
-        var overlayActiveNode = Y.one('.table-highlight-overlay-active'),
-            overlayActiveChildren = overlayActiveNode.get('children'),
-            overlaySelectionNode = overlayActiveNode ? overlayActiveNode.next('.table-highlight-overlay') : null,
+        var lowerXLimit,
+            lowerYLimit,
+            overlayActiveBorderWidth,
+            overlayActiveBottomWidth,
+            overlayActiveChildren,
+            overlayActiveLeftHeight,
+            overlayActiveNode,
+            overlayActiveRightHeight,
+            overlayActiveTopWidth,
+            overlaySelectionNode,
+            tableDataHeight,
+            tableDataWidth,
+            upperXLimit,
+            upperYLimit;
 
-            lowerXLimit = tableData.getX() >= (overlayActiveNode.getX() - 1),
-            lowerYLimit = tableData.getY() >= (overlayActiveNode.getY() - 1),
-            overlayActiveBorderWidth = overlayActiveChildren.item(0).get('offsetHeight'),
-            overlayActiveBottomWidth = overlayActiveChildren.item(2).get('offsetWidth'),
-            overlayActiveLeftHeight = overlayActiveChildren.item(3).get('offsetHeight') + overlayActiveBorderWidth,
-            overlayActiveRightHeight = overlayActiveChildren.item(1).get('offsetHeight') + overlayActiveBorderWidth,
-            overlayActiveTopWidth = overlayActiveChildren.item(0).get('offsetWidth'),
-            tableDataHeight = tableData.get('offsetHeight'),
-            tableDataWidth = tableData.get('offsetWidth'),
-            upperXLimit = tableData.getX() <= (overlayActiveNode.getX() + 1),
-            upperYLimit = tableData.getX() <= (overlayActiveNode.getY() - 1);
+        overlayActiveNode = Y.one('.table-highlight-overlay-active');
+        overlayActiveChildren = overlayActiveNode.get('children');
+        overlaySelectionNode = overlayActiveNode ? overlayActiveNode.next('.table-highlight-overlay') : null;
+
+        lowerXLimit = tableData.getX() >= (overlayActiveNode.getX() - 1);
+        lowerYLimit = tableData.getY() >= (overlayActiveNode.getY() - 1);
+
+        overlayActiveBorderWidth = overlayActiveChildren.item(0).get('offsetHeight');
+        overlayActiveBottomWidth = overlayActiveChildren.item(2).get('offsetWidth');
+
+        overlayActiveLeftHeight = overlayActiveChildren.item(3).get('offsetHeight') + overlayActiveBorderWidth;
+        overlayActiveRightHeight = overlayActiveChildren.item(1).get('offsetHeight') + overlayActiveBorderWidth;
+
+        overlayActiveTopWidth = overlayActiveChildren.item(0).get('offsetWidth');
+
+        tableDataHeight = tableData.get('offsetHeight');
+        tableDataWidth = tableData.get('offsetWidth');
+
+        upperXLimit = tableData.getX() <= (overlayActiveNode.getX() + 1);
+        upperYLimit = tableData.getX() <= (overlayActiveNode.getY() - 1);
 
         Y.Assert.isTrue(
             (lowerXLimit && upperXLimit),
@@ -197,13 +217,15 @@ YUI.add('aui-datatable-tests', function(Y) {
             overlayActiveRightHeight,
             'Hightlight right border height ' + overlayActiveRightHeight + ' is not same height as table data ' +
             tableDataHeight + '.');
-    };
+    }
 
     suite.add(new Y.Test.Case({
         name: 'Datatable Highlight',
         'table-cell should be highlighted on click': function() {
             var test = this,
-                tableData = Y.one('tr.table-odd td.table-col-amount');
+                tableData;
+
+            tableData = Y.one('tr.table-odd td.table-col-amount');
 
             tableData.once('mousedown', function(event) {
                 setTimeout(function() {
@@ -223,9 +245,13 @@ YUI.add('aui-datatable-tests', function(Y) {
 
         'table-cell should still be highlighted when table is scrolled horizontally': function() {
             var test = this,
-                datatableContainer = Y.one('#simple'),
-                datatableContent = datatableContainer.one('.table-content'),
-                tableData = Y.one('tr.table-odd td.table-col-amount');
+                datatableContainer,
+                datatableContent,
+                tableData;
+
+            datatableContainer = Y.one('#simple');
+            datatableContent = datatableContainer.one('.table-content');
+            tableData = Y.one('tr.table-odd td.table-col-amount');
 
             datatableContainer.setStyle('width', '300px');
             datatableContent.setStyle('overflow', 'auto');
