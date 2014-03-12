@@ -3,10 +3,50 @@ YUI.add('aui-datatable-tests', function(Y) {
     var suite = new Y.Test.Suite('aui-datatable');
 
     var data = [
-        { name: 'Joan B. Jones', address: '3271 Another Ave', city: 'New York', state: 'AL', amount: 3, active: 'no', colors: ['red','blue'], fruit: ['apple'], date: '2013-01-01' },
-        { name: 'Bob C. Uncle', address: '9996 Random Road', city: 'Los Angeles', state: 'CA', amount: 0, active: 'maybe', colors: ['green'], fruit: ['cherry'], date: '2013-01-01' },
-        { name: 'John D. Smith', address: '1623 Some Street', city: 'San Francisco', state: 'CA', amount: 5, active: 'yes', colors: ['red'], fruit: ['cherry'], date: '' },
-        { name: 'Joan E. Jones', address: '3217 Another Ave', city: 'New York', state: 'KY', amount: 3, active: 'no', colors: ['red','blue'], fruit: ['apple','cherry'], date: '2013-01-06' }
+        {
+            name: 'Joan B. Jones',
+            address: '3271 Another Ave',
+            city: 'New York',
+            state: 'AL',
+            amount: 3,
+            active: 'no',
+            colors: ['red', 'blue'],
+            fruit: ['apple'],
+            date: '2013-01-01'
+        },
+        {
+            name: 'Bob C. Uncle',
+            address: '9996 Random Road',
+            city: 'Los Angeles',
+            state: 'CA',
+            amount: 0,
+            active: 'maybe',
+            colors: ['green'],
+            fruit: ['cherry'],
+            date: '2013-01-01'
+        },
+        {
+            name: 'John D. Smith',
+            address: '1623 Some Street',
+            city: 'San Francisco',
+            state: 'CA',
+            amount: 5,
+            active: 'yes',
+            colors: ['red'],
+            fruit: ['cherry'],
+            date: ''
+        },
+        {
+            name: 'Joan E. Jones',
+            address: '3217 Another Ave',
+            city: 'New York',
+            state: 'KY',
+            amount: 3,
+            active: 'no',
+            colors: ['red', 'blue'],
+            fruit: ['apple', 'cherry'],
+            date: '2013-01-06'
+        }
     ];
 
     new Y.DataTable({
@@ -45,12 +85,13 @@ YUI.add('aui-datatable-tests', function(Y) {
                 key: 'state',
                 editor: new Y.DropDownCellEditor({
                     editable: true,
-                    options: ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA"]
+                    options: ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID",
+                        "IL", "IN", "IA", "KS", "KY", "LA"]
                 })
             },
             'amount',
             {
-                key:"active",
+                key: "active",
                 editor: new Y.RadioCellEditor({
                     editable: true,
                     options: {
@@ -61,7 +102,7 @@ YUI.add('aui-datatable-tests', function(Y) {
                 })
             },
             {
-                key:"colors",
+                key: "colors",
                 editor: new Y.CheckboxCellEditor({
                     editable: true,
                     multiple: true,
@@ -91,7 +132,7 @@ YUI.add('aui-datatable-tests', function(Y) {
                 sortable: true,
                 editor: new Y.DateCellEditor({
                     calendar: {
-                        width:'400px',
+                        width: '400px',
                         showPrevMonth: true,
                         showNextMonth: true,
                         selectionMode: 'multiple'
@@ -136,22 +177,26 @@ YUI.add('aui-datatable-tests', function(Y) {
         Y.Assert.areSame(
             tableDataWidth,
             overlayActiveBottomWidth,
-            'Hightlight bottom border width ' + overlayActiveBottomWidth + ' is not same width as table data ' + tableDataWidth + '.');
+            'Hightlight bottom border width ' + overlayActiveBottomWidth + ' is not same width as table data ' +
+            tableDataWidth + '.');
 
         Y.Assert.areSame(
             tableDataWidth,
             overlayActiveTopWidth,
-            'Hightlight top border width ' + overlayActiveTopWidth + ' is not same width as table data ' + tableDataWidth + '.');
+            'Hightlight top border width ' + overlayActiveTopWidth + ' is not same width as table data ' +
+            tableDataWidth + '.');
 
         Y.Assert.areSame(
             tableDataHeight,
             overlayActiveLeftHeight,
-            'Hightlight left border height ' + overlayActiveLeftHeight + ' is not same height as table data ' + tableDataHeight + '.');
+            'Hightlight left border height ' + overlayActiveLeftHeight + ' is not same height as table data ' +
+            tableDataHeight + '.');
 
         Y.Assert.areSame(
             tableDataHeight,
             overlayActiveRightHeight,
-            'Hightlight right border height ' + overlayActiveRightHeight + ' is not same height as table data ' + tableDataHeight + '.');
+            'Hightlight right border height ' + overlayActiveRightHeight + ' is not same height as table data ' +
+            tableDataHeight + '.');
     };
 
     suite.add(new Y.Test.Case({
