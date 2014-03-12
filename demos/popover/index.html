@@ -24,15 +24,13 @@
             align: {
                 node: triggerTop
             },
-            bodyContent: 'One fine body…',
-            headerContent: 'Header content',
-            trigger: '#triggerTop',
             animated: true,
+            bodyContent: 'One fine body…',
+            delay: 500, // in milliseconds
             duration: 0.5, // in seconds
-            delay: { // in milliseconds
-                show: 0,
-                hide: 1000
-            }
+            headerContent: 'Header content',
+            trigger: '#triggerTop'
+            
         }).render();
 
         var popoverBottom = new Y.Popover({
