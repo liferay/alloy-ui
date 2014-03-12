@@ -138,7 +138,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
                 // When surfaces contents are ready, add them to each surface
                 A.Array.each(surfaces, function(surface, i) {
                     screen.addCache(surface, data[i]);
-                    surface.addContent(screenId, data[i]);
+                    surface.addContent(screenId, data[i], (screen === activeScreen));
                 });
 
                 A.log('Tell the screen to get ready (beforeFlip)...', 'info');
