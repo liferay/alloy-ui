@@ -43,9 +43,11 @@ A.Surface = A.Base.create('surface', A.Base, [], {
      * @method addContent
      * @param {String} screenId The screen id the content belongs too.
      * @param {Node | String} opt_content The content to add.
+     * @param {Boolean} opt_refresh Whether the add content logic should
+     *     simulates a refresh only.
      * @return {Node}
      */
-    addContent: function(screenId, opt_content) {
+    addContent: function(screenId, opt_content, opt_refresh) {
         var child = this.getChild(screenId);
 
         if (!opt_content) {
@@ -55,8 +57,10 @@ A.Surface = A.Base.create('surface', A.Base, [], {
             child = this.createChild(screenId);
         }
         A.log('Screen [' + screenId + '] is adding content to surface [' + this + ']', 'info');
+        if (!opt_refresh) {
+            this.transition(child, null);
+        }
         child.setContent(opt_content);
-        this.transition(child, null);
         this.element.append(child);
         return child;
     },
@@ -180,16 +184,6 @@ A.Surface = A.Base.create('surface', A.Base, [], {
             validator: Lang.isString,
             value: A.guid(),
             writeOnce: true
-        },
-
-        /**
-         * The document.title to set when the screen is active.
-         *
-         * @attribute title
-         * @type {String}
-         */
-        title: {
-            validator: Lang.isString
         }
     },
 
