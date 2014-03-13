@@ -180,7 +180,8 @@ module.exports = function(grunt) {
                 'src/**/*.js',
                 'src/**/*.css',
                 'grunt/*.js',
-                '!src/aui-base/js/*.js',
+                '!src/aui-base/js/aui-aliases.js',
+                '!src/aui-base/js/aui-loader.js',
                 '!src/yui/js/*.js'
             ],
             options: {
