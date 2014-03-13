@@ -144,8 +144,6 @@ A.mix(
          * @return {String}
          */
         parseCSS: function(cssText) {
-            var instance = this;
-
             var css = '';
             var rules = cssText.match(REGEX_RULE);
 
@@ -339,8 +337,6 @@ A.mix(
          * @return {String}
          */
         _getCSSTextFromRule: function(rule) {
-            var instance = this;
-
             var cssText = '';
 
             var ruleStyle = rule.style;

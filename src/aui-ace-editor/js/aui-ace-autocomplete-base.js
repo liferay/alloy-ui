@@ -13,9 +13,6 @@ var Lang = A.Lang,
     FILL_MODE_INSERT = 1,
     FILL_MODE_OVERWRITE = 0,
 
-    STATUS_ERROR = -1,
-    STATUS_SUCCESS = 0,
-
     Base = function() {};
 
 /**
@@ -137,7 +134,7 @@ Base.prototype = {
                     sender: 'editor|cli'
                 }
             ),
-            exec: function(env, args, request) {
+            exec: function() {
                 var cursorPosition = editor.getCursorPosition();
 
                 instance._processAutoComplete(cursorPosition.row, cursorPosition.column);
@@ -159,7 +156,7 @@ Base.prototype = {
      * @param {CustomEvent} event The fired event
      * @protected
      */
-    _defaultCursorChangeFn: function(event) {
+    _defaultCursorChangeFn: function() {
         var instance = this,
             column,
             cursorPosition,
@@ -327,7 +324,7 @@ Base.prototype = {
      * @param {CustomEvent} event The fired event
      * @protected
      */
-    _onEditorChangeCursor: function(event) {
+    _onEditorChangeCursor: function() {
         var instance = this;
 
         instance.fire('cursorChange', instance._getEditor().getCursorPosition());

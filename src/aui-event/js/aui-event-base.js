@@ -5,8 +5,7 @@
  * @submodule aui-event-base
  */
 
-var Lang = A.Lang,
-    AArray = A.Array,
+var AArray = A.Array,
     DOMEventFacade = A.DOMEventFacade,
     DOMEventFacadeProto = DOMEventFacade.prototype;
 
@@ -151,8 +150,6 @@ var KeyMap = {
     ],
 
     hasModifier: function(event) {
-        var instance = this;
-
         return event &&
             (event.ctrlKey ||
             event.altKey ||
@@ -182,7 +179,7 @@ var KeyMap = {
         return result;
     },
 
-    isKeyInSet: function(keyCode, name) {
+    isKeyInSet: function(keyCode) {
         var instance = this;
 
         var args = AArray(arguments, 1, true);

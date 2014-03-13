@@ -7,7 +7,6 @@
 
 var AArray = A.Array,
     AObject = A.Object,
-    Node = A.Node,
     Selector = A.Selector;
 
 /**
@@ -164,13 +163,13 @@ A.Event.define(
          * @param notifier
          * @protected
          */
-        _detachEvents: function(node, subscription, notifier) {
+        _detachEvents: function(node, subscription) {
             A.each(
                 subscription._handles,
-                function(events, node, handles) {
+                function(events) {
                     A.each(
                         events,
-                        function(handle, event, events) {
+                        function(handle) {
                             handle.detach();
                         }
                     );
@@ -247,16 +246,14 @@ A.CustomEvent.prototype._on = function(fn, context, args, when) {
         updateDeprecatedSubscribers.call(instance, eventHandle, fn, context, args, when);
     }
     else {
-        updateSubscribers.call(instance, eventHandle, fn, context, args, when);
+        updateSubscribers.call(instance, args, when);
     }
 
     return eventHandle;
 };
 
 function sortSubscribers(subscribers) {
-    var instance = this;
-
-    var item = AArray.some(
+    AArray.some(
         subscribers,
         function(item, index) {
             if (item.args && item.args[0] === 'submit_delegate') {
@@ -281,7 +278,7 @@ function sortDeprecatedSubscribers(eventHandle, subscribers) {
 
     AObject.each(
         subscribers,
-        function(subscriber, index) {
+        function(subscriber) {
             if (!replace && subscriber.args && subscriber.args[0] === 'submit_delegate') {
                 orderedSubscribers[lastSubscriber.id] = lastSubscriber;
 
@@ -301,7 +298,7 @@ function sortDeprecatedSubscribers(eventHandle, subscribers) {
     return result;
 }
 
-function updateSubscribers(eventHandle, fn, context, args, when) {
+function updateSubscribers(args, when) {
     var instance = this;
 
     if (args && args[0] === 'submit_on') {

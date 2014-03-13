@@ -38,7 +38,6 @@ var Lang = A.Lang,
     CSS_CELLEDITOR_EDIT_OPTION_ROW = AgetClassName('celleditor', 'edit', 'option', 'row'),
     CSS_CELLEDITOR_ELEMENT = AgetClassName('celleditor', 'element'),
     CSS_CELLEDITOR_OPTION = AgetClassName('celleditor', 'option'),
-    CSS_DATATABLE_EDITABLE = AgetClassName('datatable', 'editable'),
     CSS_ICON = AgetClassName('icon'),
     CSS_ICON_GRIP_DOTTED_VERTICAL = AgetClassName('icon', 'grip', 'dotted', 'vertical'),
 
@@ -129,8 +128,7 @@ A.mix(CellEditorSupport.prototype, {
      * @param column
      */
     getEditor: function(record, column) {
-        var instance = this,
-            columnEditor = column.editor,
+        var columnEditor = column.editor,
             recordEditor = record.get('editor');
 
         if (columnEditor === false || recordEditor === false) {
@@ -221,8 +219,7 @@ A.mix(CellEditorSupport.prototype, {
      * @protected
      */
     _onEditorVisibleChange: function(event) {
-        var instance = this,
-            editor = event.currentTarget;
+        var editor = event.currentTarget;
 
         if (event.newVal) {
             editor._syncFocus();
@@ -532,7 +529,7 @@ var BaseCellEditor = A.Component.create({
          * @method initializer
          * @protected
          */
-        initializer: function(config) {
+        initializer: function() {
             var instance = this;
 
             instance._initEvents();
@@ -670,7 +667,7 @@ var BaseCellEditor = A.Component.create({
          * @param event
          * @protected
          */
-        _defCancelFn: function(event) {
+        _defCancelFn: function() {
             var instance = this;
 
             instance.hide();
@@ -683,7 +680,7 @@ var BaseCellEditor = A.Component.create({
          * @param event
          * @protected
          */
-        _defInitValidatorFn: function(event) {
+        _defInitValidatorFn: function() {
             var instance = this;
 
             instance.validator = new A.FormValidator(
@@ -698,7 +695,7 @@ var BaseCellEditor = A.Component.create({
          * @param event
          * @protected
          */
-        _defInitToolbarFn: function(event) {
+        _defInitToolbarFn: function() {
             var instance = this;
             var editable = instance.get('editable');
 
@@ -718,7 +715,7 @@ var BaseCellEditor = A.Component.create({
          * @param event
          * @protected
          */
-        _defSaveFn: function(event) {
+        _defSaveFn: function() {
             var instance = this;
 
             if (instance.get('hideOnSave')) {
@@ -855,7 +852,7 @@ var BaseCellEditor = A.Component.create({
          * @param event
          * @protected
          */
-        _onEscKey: function(event) {
+        _onEscKey: function() {
             var instance = this;
 
             instance.hide();
@@ -869,7 +866,6 @@ var BaseCellEditor = A.Component.create({
          * @protected
          */
         _onSubmit: function(event) {
-            var instance = this;
             var validator = event.validator;
 
             if (validator) {
@@ -993,7 +989,7 @@ var BaseCellEditor = A.Component.create({
          * @param event
          * @protected
          */
-        _defInitEditFn: function(event) {},
+        _defInitEditFn: function() {},
 
         /**
          * TODO. Wanna help? Please send a Pull Request.
@@ -1418,7 +1414,7 @@ var BaseOptionsCellEditor = A.Component.create({
          * @param event
          * @protected
          */
-        _defInitEditFn: function(event) {
+        _defInitEditFn: function() {
             var instance = this;
             var editContainer = A.Node.create(instance.EDIT_TEMPLATE);
 
@@ -1473,7 +1469,7 @@ var BaseOptionsCellEditor = A.Component.create({
          * @param event
          * @protected
          */
-        _onEditEvent: function(event) {
+        _onEditEvent: function() {
             var instance = this;
 
             instance._handleInitEditEvent();
@@ -1541,7 +1537,7 @@ var BaseOptionsCellEditor = A.Component.create({
          * @param event
          * @protected
          */
-        _onSave: function(event) {
+        _onSave: function() {
             var instance = this;
 
             instance.saveOptions();
@@ -2051,7 +2047,7 @@ var DateCellEditor = A.Component.create({
                 var instance = this,
                     values = [];
 
-                AArray.each(val, function(date, index) {
+                AArray.each(val, function(date) {
                     values.push(instance.formatDate(date).toString());
                 });
 
@@ -2070,7 +2066,7 @@ var DateCellEditor = A.Component.create({
                 var instance = this,
                     values = [];
 
-                AArray.each(val, function(date, index) {
+                AArray.each(val, function(date) {
                     values.push(DataType.Date.parse(instance.get('dateFormat'), date));
                 });
 
@@ -2130,7 +2126,7 @@ var DateCellEditor = A.Component.create({
          * @param event
          * @protected
          */
-        _afterDateSelect: function(event) {
+        _afterDateSelect: function() {
             var instance = this,
                 selectedDates = instance.calendar.get('selectedDates');
 

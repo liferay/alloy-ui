@@ -12,9 +12,6 @@
 var path = require('path'),
     root = path.join(__dirname, '../../../');
 
-// -- Requires -----------------------------------------------------------------
-var file = require('./file');
-
 // -- CLI ----------------------------------------------------------------------
 exports.getContent = function() {
     var auiMetaPath = path.join(root, 'src/aui-base/js/aui-loader.json'),

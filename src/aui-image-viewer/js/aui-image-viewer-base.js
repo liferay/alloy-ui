@@ -27,8 +27,6 @@ var L = A.Lang,
 
     CSS_CAROUSEL_CONTROL = getCN('carousel', 'control'),
     CSS_CLOSE = getCN('close'),
-    CSS_HELPER_SCROLL_LOCK = getCN('helper', 'scroll', 'lock'),
-    CSS_HIDE = getCN('hide'),
     CSS_ICON_TIME = getCN('icon', 'time'),
     CSS_IMAGE_VIEWER_BD = getCN('image-viewer', 'bd'),
     CSS_IMAGE_VIEWER_CAPTION = getCN('image-viewer', 'caption'),
@@ -567,18 +565,12 @@ var ImageViewer = A.Base.create(
          */
         _syncControlsUI: function() {
             var instance = this;
-            var boundingBox = instance.get('boundingBox');
             var controlLeftEl = instance.get('controlLeftEl');
             var controlRightEl = instance.get('controlRightEl');
             var closeEl = instance.get('closeEl');
 
             if (instance.get('visible')) {
                 if (instance.get('showControls')) {
-                    // get the viewportRegion to centralize the controls on the
-                    // middle of the window viewport
-                    var viewportRegion = boundingBox.get('viewportRegion');
-                    var heightRegion = Math.floor(viewportRegion.height / 2) + viewportRegion.top;
-
                     // show or hide controls based on the hasPrev/hasNext
                     // information
                     controlLeftEl[instance.hasPrev() ? 'show' : 'hide']();
@@ -750,7 +742,7 @@ var ImageViewer = A.Base.create(
          * @param {EventFacade} event
          * @protected
          */
-        _afterVisibleChange: function(event) {
+        _afterVisibleChange: function() {
             var instance = this;
 
             instance._syncControlsUI();
@@ -1077,8 +1069,6 @@ var ImageViewer = A.Base.create(
              */
             links: {
                 setter: function(v) {
-                    var instance = this;
-
                     if (isNodeList(v)) {
                         return v;
                     }
@@ -1185,7 +1175,7 @@ var ImageViewer = A.Base.create(
              */
             totalLinks: {
                 readOnly: true,
-                getter: function(v) {
+                getter: function() {
                     return this.get('links').size();
                 }
             },

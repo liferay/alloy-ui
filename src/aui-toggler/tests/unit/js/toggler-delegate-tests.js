@@ -22,8 +22,6 @@ YUI.add('aui-toggler-delegate-tests', function(Y) {
         name: 'TogglerDelegate.destructor',
 
         setUp: function() {
-            var instance = this;
-
             if (togglerDelegate) {
                 togglerDelegate.destroy();
             }
@@ -80,7 +78,7 @@ YUI.add('aui-toggler-delegate-tests', function(Y) {
             // Workaround for https://github.com/yui/yui3/issues/1421
             var mockWrapper = instance._wrapMockFn(mock.headerEventHandler, mockErrors);
 
-            var headerHandler = Y.Do.before(mockWrapper, togglerDelegate, 'headerEventHandler');
+            Y.Do.before(mockWrapper, togglerDelegate, 'headerEventHandler');
 
             togglerDelegate.destroy();
 
@@ -115,7 +113,7 @@ YUI.add('aui-toggler-delegate-tests', function(Y) {
             // Workaround for https://github.com/yui/yui3/issues/1421
             var mockWrapper = instance._wrapMockFn(mock._onAnimatingChange, mockErrors);
 
-            var animationChange = Y.Do.before(mockWrapper, togglerDelegate, '_onAnimatingChange');
+            Y.Do.before(mockWrapper, togglerDelegate, '_onAnimatingChange');
 
             // Force the creation of the togglers
             togglerDelegate.createAll();

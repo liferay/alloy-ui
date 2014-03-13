@@ -75,7 +75,7 @@ if (A.UA.ie) {
              * @protected
              * @return {DocumentFragment}
              */
-            _doBeforeCreate: function(html, doc, tag) {
+            _doBeforeCreate: function(html) {
                 var createdFrag = DOM_create.apply(this, arguments);
 
                 var shivedFrag = HTML5.IECreateFix(createdFrag, html);

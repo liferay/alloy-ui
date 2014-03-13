@@ -279,8 +279,6 @@ var SchedulerDayView = A.Component.create({
          */
         headerViewConfig: {
             setter: function(val) {
-                var instance = this;
-
                 return A.merge({
                         displayDaysInterval: 1,
                         displayRows: 6,
@@ -852,7 +850,6 @@ var SchedulerDayView = A.Component.create({
             var instance = this;
             var viewDate = instance.get('scheduler').get('viewDate');
             var formatter = instance.get('headerDateFormatter');
-            var locale = instance.get('locale');
             var todayDate = instance.get('scheduler').get('todayDate');
 
             instance.colHeaderDaysNode.all('a').each(
@@ -1002,7 +999,6 @@ var SchedulerDayView = A.Component.create({
          * @return {Array}
          */
         findEventIntersections: function(evt, events) {
-            var instance = this;
             var group = [];
 
             A.Array.each(events, function(evtCmp) {
@@ -1022,7 +1018,6 @@ var SchedulerDayView = A.Component.create({
          * @param {EventFacade} event
          */
         getXYDelta: function(event) {
-            var instance = this;
             var xy = event.currentTarget.getXY(),
                 pageXY = [event.pageX, event.pageY];
 
@@ -1121,8 +1116,6 @@ var SchedulerDayView = A.Component.create({
          */
         _dragTickAlignY: function(event) {
             var instance = this;
-            var scheduler = instance.get('scheduler');
-            var recorder = scheduler.get('eventRecorder');
 
             var draggingEvent = instance.draggingEvent;
 
@@ -1251,7 +1244,7 @@ var SchedulerDayView = A.Component.create({
          * @param {EventFacade} event
          * @protected
          */
-        _onEventDragEnd: function(event) {
+        _onEventDragEnd: function() {
             var instance = this;
             var draggingEvent = instance.draggingEvent;
 
@@ -1280,7 +1273,7 @@ var SchedulerDayView = A.Component.create({
          * @param {EventFacade} event
          * @protected
          */
-        _onEventDragStart: function(event) {
+        _onEventDragStart: function() {
             var instance = this;
             var draggingEvent = instance.draggingEvent =
                 instance.delegate.dd.get('node').getData('scheduler-event');
@@ -1385,7 +1378,7 @@ var SchedulerDayView = A.Component.create({
          * @param {EventFacade} event
          * @protected
          */
-        _onMouseLeaveEvent: function(event) {
+        _onMouseLeaveEvent: function() {
             var instance = this;
 
             if (!instance.resizing) {
@@ -1448,7 +1441,7 @@ var SchedulerDayView = A.Component.create({
          * @param {EventFacade} event
          * @protected
          */
-        _onMouseUpTableCol: function(event) {
+        _onMouseUpTableCol: function() {
             var instance = this;
             var scheduler = instance.get('scheduler');
             var recorder = scheduler.get('eventRecorder');
@@ -1554,7 +1547,6 @@ var SchedulerDayView = A.Component.create({
          * @return {Node} The `markercellsNode` value.
          */
         _valueMarkercellsNode: function() {
-            var instance = this;
             var buffer = [],
                 i;
 

@@ -304,7 +304,7 @@ YUI.add('aui-tree-tests', function(Y) {
         'TreeNodeView created from HTML Markup should display icon-minus when expanded': function() {
             var test = this;
 
-            var treeView = new Y.TreeView({
+            new Y.TreeView({
                 boundingBox: treeViewComponent,
                 contentBox: Y.one('#createFromHTMLMarkupTest > ul'),
                 type: 'normal'

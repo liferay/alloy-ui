@@ -68,8 +68,6 @@ var Timer = {
      * @return {Boolean}
      */
     isRepeatable: function(task) {
-        var instance = Timer;
-
         return task.repeats;
     },
 
@@ -141,8 +139,6 @@ var Timer = {
      * @param task
      */
     run: function(task) {
-        var instance = Timer;
-
         task.lastRunTime = now();
 
         return task.fn();
@@ -178,8 +174,6 @@ var Timer = {
      * @return {Object}
      */
     _create: function(repeats, ms, fn) {
-        var instance = Timer;
-
         return {
             fn: fn,
             lastRunTime: now(),
@@ -198,8 +192,6 @@ var Timer = {
      * @protected
      */
     _decrementNextRunTime: function(task) {
-        var instance = Timer;
-
         return task.next = task.timeout - (now() - task.lastRunTime);
     },
 
@@ -339,8 +331,6 @@ var Timer = {
      * @protected
      */
     _resetNextRunTime: function(task) {
-        var instance = Timer;
-
         return task.next = task.timeout;
     },
 

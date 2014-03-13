@@ -114,8 +114,6 @@ Messaging = {
     },
 
     _getResponseData: function(data) {
-        var instance = this;
-
         var responseData = data;
 
         if (responseData && /\w+=\w+/.test(responseData)) {

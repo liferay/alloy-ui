@@ -203,8 +203,6 @@
         },
 
         nl2br: function(str) {
-            var instance = this;
-
             return String(str).replace(REGEX_NL2BR, '<br />');
         },
 
@@ -280,8 +278,6 @@
         },
 
         stripTags: function(str) {
-            var instance = this;
-
             if (str) {
                 str = String(str).replace(REGEX_STRIP_TAGS, '');
             }
@@ -427,7 +423,7 @@
      * fn as the values for the new array. Like A.each, this function can accept
      * an object or an array.
      */
-    A.map = function(obj, fn, context) {
+    A.map = function(obj) {
         var module = AObject;
 
         if (isArray(obj)) {

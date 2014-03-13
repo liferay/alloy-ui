@@ -5,9 +5,7 @@
  * @submodule aui-form-builder-field-textarea
  */
 
-var L = A.Lang,
-
-    AArray = A.Array,
+var AArray = A.Array,
 
     getCN = A.getClassName,
 

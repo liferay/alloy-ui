@@ -85,7 +85,7 @@ var SchedulerCalendar = A.Base.create('scheduler-calendar', A.ModelList, [], {
      * @param {EventFacade} event
      * @protected
      */
-    _afterEventsChange: function(event) {
+    _afterEventsChange: function() {
         var instance = this;
 
         instance._setModelsAttrs({
@@ -123,7 +123,7 @@ var SchedulerCalendar = A.Base.create('scheduler-calendar', A.ModelList, [], {
      * @param {EventFacade} event
      * @protected
      */
-    _onRemoveEvents: function(event) {
+    _onRemoveEvents: function() {
         var instance = this;
         var scheduler = instance.get('scheduler');
 

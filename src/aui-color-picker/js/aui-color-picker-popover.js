@@ -5,10 +5,7 @@
  * @submodule aui-color-picker-popover
  */
 
-var Lang = A.Lang,
-    ANode = A.Node,
-
-    getClassName = A.getClassName;
+var Lang = A.Lang;
 
 /**
  * A base class for `ColorPickerPopover`.

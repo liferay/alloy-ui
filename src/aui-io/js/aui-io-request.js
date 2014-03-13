@@ -365,7 +365,7 @@ var IORequest = A.Component.create({
          * @param config
          * @protected
          */
-        init: function(config) {
+        init: function() {
             var instance = this;
 
             IORequest.superclass.init.apply(this, arguments);

@@ -396,7 +396,7 @@ var SchedulerEventRecorder = A.Component.create({
          * @param {EventFacade} event
          * @protected
          */
-        _afterEventChange: function(event) {
+        _afterEventChange: function() {
             var instance = this;
 
             instance.populateForm();
@@ -581,7 +581,7 @@ var SchedulerEventRecorder = A.Component.create({
          * @param {EventFacade} event
          * @protected
          */
-        _handleClickOutSide: function(event) {
+        _handleClickOutSide: function() {
             var instance = this;
 
             instance.fire('cancel');

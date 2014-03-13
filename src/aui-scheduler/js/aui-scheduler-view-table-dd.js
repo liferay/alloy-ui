@@ -128,8 +128,6 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * @method viewDDRenderUI
      */
     viewDDRenderUI: function() {
-        var instance = this;
-
     },
 
     /**
@@ -243,7 +241,6 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      */
     _afterDragAlign: function(event) {
         var instance = this;
-        var dd = event.target;
 
         var bodyRegion = instance.bodyNode.get('region');
 
@@ -481,7 +478,6 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      */
     _onMouseMoveGrid: function(event) {
         var instance = this;
-        var target = event.currentTarget;
 
         var eventXY = [event.pageX, event.pageY];
         var position = instance._findPosition(instance._offsetXY(eventXY, -1));
@@ -500,7 +496,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * @param {EventFacade} event
      * @protected
      */
-    _onMouseUpGrid: function(event) {
+    _onMouseUpGrid: function() {
         var instance = this;
         var scheduler = instance.get('scheduler');
         var recorder = scheduler.get('eventRecorder');

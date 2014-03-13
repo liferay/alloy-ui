@@ -281,7 +281,7 @@ var Lang = A.Lang,
             if (matches.length) {
                 matches = AArray.map(
                     matches,
-                    function(item, index) {
+                    function(item) {
                         var args,
                             data;
 
@@ -290,7 +290,7 @@ var Lang = A.Lang,
                         if (data.type === 'Method') {
                             args = AArray.map(
                                 data.argumentTypes,
-                                function(item, index) {
+                                function(item) {
                                     var parts = item.split('.');
 
                                     return parts[parts.length - 1];

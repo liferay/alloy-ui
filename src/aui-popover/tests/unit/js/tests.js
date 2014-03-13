@@ -4,8 +4,7 @@ YUI.add('aui-popover-tests', function(Y) {
     // AUI Popover Tests
     //--------------------------------------------------------------------------
 
-    var suite = new Y.Test.Suite('aui-popover'),
-        popoverBottom;
+    var suite = new Y.Test.Suite('aui-popover');
 
     //--------------------------------------------------------------------------
     // Test Case for aligning the Popover

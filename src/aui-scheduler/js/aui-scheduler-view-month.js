@@ -111,8 +111,6 @@ var SchedulerMonthView = A.Component.create({
          * @return {Date}
          */
         getAdjustedViewDate: function(date) {
-            var instance = this;
-
             return DateMath.toMidnight(DateMath.findMonthStart(date));
         },
 

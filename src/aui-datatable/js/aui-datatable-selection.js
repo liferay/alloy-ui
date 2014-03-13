@@ -326,7 +326,7 @@ A.mix(DataTableSelection.prototype, {
      * @param event
      * @protected
      */
-    _onSelectionMouseUp: function(event) {
+    _onSelectionMouseUp: function() {
         var instance = this,
             boundingBox = instance.get('boundingBox');
 

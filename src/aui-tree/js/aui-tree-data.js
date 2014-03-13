@@ -7,7 +7,6 @@
 
 var L = A.Lang,
     isArray = L.isArray,
-    isBoolean = L.isBoolean,
     isObject = L.isObject,
     isUndefined = L.isUndefined,
 
@@ -438,7 +437,6 @@ A.mix(TreeData.prototype, {
      * @return {TreeNode}
      */
     createNode: function(options) {
-        var instance = this;
         var classType = A.TreeNode.nodeTypes[isObject(options) ? options.type : options] || A.TreeNode;
 
         return new classType(
@@ -663,7 +661,6 @@ A.mix(TreeData.prototype, {
      * @param {TreeNode} where 'before' or 'after'
      */
     insert: function(treeNode, refTreeNode, where) {
-        var instance = this;
         refTreeNode = refTreeNode || this;
 
         if (refTreeNode === treeNode) {
@@ -754,7 +751,6 @@ A.mix(TreeData.prototype, {
      * @return {TreeNode}
      */
     getNodeByChild: function(child) {
-        var instance = this;
         var treeNodeEl = child.ancestor('.' + CSS_TREE_NODE);
 
         if (treeNodeEl) {
@@ -808,7 +804,7 @@ A.mix(TreeData.prototype, {
             instance.set('leaf', false);
         }
 
-        A.Array.each(v, function(node, index) {
+        A.Array.each(v, function(node) {
             if (node) {
                 if (!isTreeNode(node) && isObject(node)) {
                     // cache and remove children to lazy add them later for

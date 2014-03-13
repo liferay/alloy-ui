@@ -640,7 +640,6 @@ var ImageGallery = A.Component.create({
          */
         _thumbnailFormatter: function(pageNumber) {
             var instance = this,
-                paginationInstance = instance.get('paginationInstance'),
                 linksCount = instance.get('links').size(),
                 index = pageNumber - 1;
 
@@ -676,7 +675,7 @@ var ImageGallery = A.Component.create({
          * @protected
          * @return {String} Parsed string.
          */
-        _getInfoTemplate: function(v) {
+        _getInfoTemplate: function() {
             var label;
             var instance = this;
             var paused = instance.get('paused');

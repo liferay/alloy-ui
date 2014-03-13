@@ -28,7 +28,7 @@ var AArray = A.Array,
  * @constructor
  */
 
-function ColorPickerBase(config) {}
+function ColorPickerBase() {}
 
 ColorPickerBase.prototype = {
     TPL_HEADER_CONTENT: '<h3>{header}</h3>',
@@ -360,8 +360,7 @@ ColorPickerBase.prototype = {
     _onColorPaletteSelectChange: function(event) {
         var instance = this,
             color,
-            item,
-            selectedIndex;
+            item;
 
         if (event.src !== AWidget.UI_SRC) {
             if (instance.get('renderHSVPalette')) {
@@ -394,11 +393,10 @@ ColorPickerBase.prototype = {
      * @param {EventFacade} event
      * @protected
      */
-    _onHSVPaletteOK: function(event) {
+    _onHSVPaletteOK: function() {
         var instance = this,
             color,
             emptySpotIndex,
-            recentColor,
             recentColors;
 
         color = '#' + instance._hsvPaletteModal.get('selected');
@@ -526,7 +524,6 @@ ColorPickerBase.prototype = {
         var instance = this,
             color,
             hsvPalette,
-            index,
             node;
 
         node = event.item;
@@ -599,7 +596,7 @@ ColorPickerBase.prototype = {
         else {
             instance.reset();
 
-            A.later(0, instance, function(event) {
+            A.later(0, instance, function() {
                 instance._clickOutsideHandle = instance.get('boundingBox').once('clickoutside', instance.hide,
                     instance);
             }, instance);
@@ -631,7 +628,6 @@ ColorPickerBase.prototype = {
     _renderColorPalette: function() {
         var instance = this,
             body,
-            color,
             colorPaletteOptions;
 
         body = instance.getStdModNode(A.WidgetStdMod.BODY);
@@ -653,7 +649,6 @@ ColorPickerBase.prototype = {
      */
     _renderHSVTrigger: function() {
         var instance = this,
-            body,
             strings;
 
         strings = instance.get('strings');
@@ -694,7 +689,6 @@ ColorPickerBase.prototype = {
     _renderRecentColors: function() {
         var instance = this,
             body,
-            color,
             recentColors,
             recentColorsPalette;
 
@@ -766,8 +760,6 @@ ColorPickerBase.prototype = {
      * @protected
      */
     _validateTrigger: function(value) {
-        var instance = this;
-
         return (value instanceof A.Node || value instanceof A.NodeList || Lang.isString(value));
     },
 
@@ -778,7 +770,7 @@ ColorPickerBase.prototype = {
      * @param {Node | String} value
      * @protected
      */
-    _uiSetTrigger: function(value) {
+    _uiSetTrigger: function() {
         var instance = this,
             trigger,
             triggerEvent;
