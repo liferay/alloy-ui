@@ -25,14 +25,12 @@ PositionAlignSuggestion.ATTRS = {
      * Determine the position of the tooltip.
      *
      * @attribute position
-     * @default bottom
+     * @default top
      * @type {String}
      */
     position: {
-        validator: function(val) {
-            return val === 'bottom' || val === 'top' || val === 'left' ||
-                val === 'right';
-        },
+        setter: '_setPosition',
+        validator: '_validatePosition',
         value: 'top'
     }
 };
@@ -208,6 +206,21 @@ A.mix(PositionAlignSuggestion.prototype, {
     },
 
     /**
+     * Set the `position` attribute.
+     *
+     * @method _setPosition
+     * @param value
+     * @protected
+     */
+    _setPosition: function(val) {
+        if (A.Lang.isFunction(val)) {
+            val = val.call(this);
+        }
+
+        return val;
+    },
+
+    /**
      * Sync the `boundingBox` position CSS classes.
      *
      * @method _syncPositionUI
@@ -239,6 +252,24 @@ A.mix(PositionAlignSuggestion.prototype, {
         instance._syncPositionUI(val, prevVal);
 
         instance.suggestAlignment();
+    },
+
+    /**
+     * Validates the value of `position` attribute.
+     *
+     * @method _validatePosition
+     * @param value
+     * @protected
+     * @return {Boolean} True only if value is 'bottom', 'top', 'left'
+     * or 'right'.
+     */
+    _validatePosition: function(val) {
+        if (A.Lang.isFunction(val)) {
+            val = val.call(this);
+        }
+
+        return (val === 'bottom' || val === 'top' || val === 'left'
+                || val === 'right');
     }
 });
 
