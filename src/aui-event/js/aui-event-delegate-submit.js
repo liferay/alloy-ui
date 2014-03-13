@@ -235,23 +235,6 @@ A.Event.define(
     true
 );
 
-var originalOn = A.CustomEvent.prototype._on;
-
-A.CustomEvent.prototype._on = function(fn, context, args, when) {
-    var instance = this;
-
-    var eventHandle = originalOn.apply(instance, arguments);
-
-    if (instance._kds) {
-        updateDeprecatedSubscribers.call(instance, eventHandle, fn, context, args, when);
-    }
-    else {
-        updateSubscribers.call(instance, args, when);
-    }
-
-    return eventHandle;
-};
-
 function sortSubscribers(subscribers) {
     AArray.some(
         subscribers,
@@ -265,6 +248,19 @@ function sortSubscribers(subscribers) {
             }
         }
     );
+}
+
+function updateSubscribers(args, when) {
+    var instance = this;
+
+    if (args && args[0] === 'submit_on') {
+        if (when === 'after' && instance._afters.length) {
+            sortSubscribers.call(instance, instance._afters);
+        }
+        else if (instance._subscribers.length) {
+            sortSubscribers.call(instance, instance._subscribers);
+        }
+    }
 }
 
 function sortDeprecatedSubscribers(eventHandle, subscribers) {
@@ -298,19 +294,6 @@ function sortDeprecatedSubscribers(eventHandle, subscribers) {
     return result;
 }
 
-function updateSubscribers(args, when) {
-    var instance = this;
-
-    if (args && args[0] === 'submit_on') {
-        if (when === 'after' && instance._afters.length) {
-            sortSubscribers.call(instance, instance._afters);
-        }
-        else if (instance._subscribers.length) {
-            sortSubscribers.call(instance, instance._subscribers);
-        }
-    }
-}
-
 function updateDeprecatedSubscribers(eventHandle, fn, context, args, when) {
     var instance = this;
 
@@ -323,3 +306,20 @@ function updateDeprecatedSubscribers(eventHandle, fn, context, args, when) {
         }
     }
 }
+
+var originalOn = A.CustomEvent.prototype._on;
+
+A.CustomEvent.prototype._on = function(fn, context, args, when) {
+    var instance = this;
+
+    var eventHandle = originalOn.apply(instance, arguments);
+
+    if (instance._kds) {
+        updateDeprecatedSubscribers.call(instance, eventHandle, fn, context, args, when);
+    }
+    else {
+        updateSubscribers.call(instance, args, when);
+    }
+
+    return eventHandle;
+};

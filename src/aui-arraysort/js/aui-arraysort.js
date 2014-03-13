@@ -4,7 +4,7 @@
  * @module aui-arraysort
  */
 
-ASort = A.ArraySort;
+var ASort = A.ArraySort;
 
 /**
  * Augment the [YUI3 ArraySort](ArraySort.html) with more util methods.

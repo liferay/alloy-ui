@@ -69,7 +69,10 @@ var Lang = A.Lang,
                 matches = instance._getVariableMatches(match.content);
 
                 callbackSuccess(matches);
+                return;
             }
+
+            callbackError();
         },
 
         /**
