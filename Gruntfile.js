@@ -179,7 +179,10 @@ module.exports = function(grunt) {
             files: [
                 'src/**/*.js',
                 'src/**/*.css',
-                'grunt/*.js'
+                'grunt/*.js',
+                '!src/aui-base/js/aui-aliases.js',
+                '!src/aui-base/js/aui-loader.js',
+                '!src/yui/js/*.js'
             ],
             options: {
                 config: '.jsbeautifyrc'
