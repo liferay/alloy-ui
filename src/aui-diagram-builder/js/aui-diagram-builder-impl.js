@@ -14,17 +14,17 @@ var Lang = A.Lang,
     WidgetStdMod = A.WidgetStdMod,
     AArray = A.Array,
 
-    AgetClassName = A.getClassName,
+    aGetClassName = A.getClassName,
 
-    CSS_DB_CONTROLS = AgetClassName('diagram', 'builder', 'controls'),
-    CSS_DIAGRAM_BUILDER_FIELD = AgetClassName('diagram', 'builder', 'field'),
-    CSS_DIAGRAM_NODE = AgetClassName('diagram', 'node'),
-    CSS_DIAGRAM_NODE_CONTENT = AgetClassName('diagram', 'node', 'content'),
-    CSS_DIAGRAM_NODE_EDITING = AgetClassName('diagram', 'node', 'editing'),
-    CSS_DIAGRAM_NODE_LABEL = AgetClassName('diagram', 'node', 'label'),
-    CSS_DIAGRAM_NODE_SELECTED = AgetClassName('diagram', 'node', 'selected'),
-    CSS_DIAGRAM_NODE_SHAPE_BOUNDARY = AgetClassName('diagram', 'node', 'shape', 'boundary'),
-    CSS_DIAGRAM_SUGGEST_CONNECTOR = AgetClassName('diagram', 'node', 'suggest', 'connector'),
+    CSS_DB_CONTROLS = aGetClassName('diagram', 'builder', 'controls'),
+    CSS_DIAGRAM_BUILDER_FIELD = aGetClassName('diagram', 'builder', 'field'),
+    CSS_DIAGRAM_NODE = aGetClassName('diagram', 'node'),
+    CSS_DIAGRAM_NODE_CONTENT = aGetClassName('diagram', 'node', 'content'),
+    CSS_DIAGRAM_NODE_EDITING = aGetClassName('diagram', 'node', 'editing'),
+    CSS_DIAGRAM_NODE_LABEL = aGetClassName('diagram', 'node', 'label'),
+    CSS_DIAGRAM_NODE_SELECTED = aGetClassName('diagram', 'node', 'selected'),
+    CSS_DIAGRAM_NODE_SHAPE_BOUNDARY = aGetClassName('diagram', 'node', 'shape', 'boundary'),
+    CSS_DIAGRAM_SUGGEST_CONNECTOR = aGetClassName('diagram', 'node', 'suggest', 'connector'),
 
     adjustDiagramNodeOffset = function(diagramNode, offsetXY) {
         var dnXY = isArray(diagramNode) ? diagramNode : diagramNode.get('boundingBox').getXY();

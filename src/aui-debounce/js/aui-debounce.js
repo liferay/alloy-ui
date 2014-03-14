@@ -1,12 +1,12 @@
 var Lang = A.Lang,
-    AArray = A.Array,
+    aArray = A.Array,
     isString = Lang.isString,
     isUndefined = Lang.isUndefined,
 
     DEFAULT_ARGS = [];
 
 var toArray = function(arr, fallback, index, arrayLike) {
-    return !isUndefined(arr) ? AArray(arr, index || 0, (arrayLike !== false)) : fallback;
+    return !isUndefined(arr) ? aArray(arr, index || 0, (arrayLike !== false)) : fallback;
 };
 
 A.debounce = function(fn, delay, context, args) {
