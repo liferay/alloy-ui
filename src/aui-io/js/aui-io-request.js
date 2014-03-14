@@ -480,7 +480,7 @@ var IORequest = A.Component.create({
 
             // reusing logic to add a timestamp on the url from jQuery 1.3.2
             if ((cache === false) && (method === 'get')) {
-                var ts = +new Date;
+                var ts = +new Date();
                 // try replacing _= if it is there
                 var ret = url.replace(/(\?|&)_=.*?(&|$)/, '$1_=' + ts + '$2');
                 // if nothing was replaced, add timestamp to the end
