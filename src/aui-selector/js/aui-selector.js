@@ -35,7 +35,7 @@ SELECTOR._isNodeHidden = function(node) {
 
 var testNodeType = function(type) {
     return function(node) {
-        return node.type == type;
+        return node.type === type;
     };
 };
 
