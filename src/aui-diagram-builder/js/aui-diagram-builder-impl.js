@@ -2732,13 +2732,6 @@ var DiagramNode = A.Component.create({
          * @protected
          */
         _uiSetRequired: function() {
-            var instance = this,
-                controlsToolbar = instance.controlsToolbar;
-
-            if (controlsToolbar) {
-                // TODO
-                // controlsToolbar.disable button
-            }
         },
 
         /**

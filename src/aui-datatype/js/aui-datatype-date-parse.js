@@ -391,10 +391,6 @@ A.mix(DateParser.prototype, {
             opt_date.setSeconds(calendar.seconds);
         }
 
-        if (Lang.isValue(calendar.tz)) {
-            // TODO
-        }
-
         return opt_date;
     },
 
