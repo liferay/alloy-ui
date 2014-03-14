@@ -76,7 +76,7 @@ var AWidget = A.Widget,
             var instance = this,
                 body,
                 contentBox,
-                hsvClass,
+                HsvClass,
                 hsvOptions,
                 useAlpha;
 
@@ -86,17 +86,17 @@ var AWidget = A.Widget,
 
             useAlpha = hsvOptions.alpha;
 
-            hsvClass = A.HSVPalette;
+            HsvClass = A.HSVPalette;
 
             if (useAlpha) {
-                hsvClass = A.HSVAPalette;
+                HsvClass = A.HSVAPalette;
             }
 
             contentBox.addClass(CSS_HSV_PALETTE_MODAL);
 
             body = instance.getStdModNode(A.WidgetStdMod.BODY);
 
-            instance._hsvPalette = new hsvClass(hsvOptions).render(body);
+            instance._hsvPalette = new HsvClass(hsvOptions).render(body);
 
             if (instance.get('centered')) {
                 instance.align();
