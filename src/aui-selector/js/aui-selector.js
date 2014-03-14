@@ -12,14 +12,14 @@ var SELECTOR = A.Selector,
 SELECTOR._isNodeHidden = function(node) {
     var width = node.offsetWidth;
     var height = node.offsetHeight;
-    var ignore = node.nodeName.toLowerCase() == 'tr';
+    var ignore = node.nodeName.toLowerCase() === 'tr';
     var className = node.className;
     var nodeStyle = node.style;
 
     var hidden = false;
 
     if (!ignore) {
-        if (width == 0 && height == 0) {
+        if (width === 0 && height === 0) {
             hidden = true;
         }
         else if (width > 0 && height > 0) {
@@ -27,8 +27,8 @@ SELECTOR._isNodeHidden = function(node) {
         }
     }
 
-    hidden = hidden || (nodeStyle.display == 'none' || nodeStyle.visibility == 'hidden') || REGEX_HIDDEN_CLASSNAMES.test(
-        className);
+    hidden = hidden || (nodeStyle.display === 'none' || nodeStyle.visibility === 'hidden') ||
+        REGEX_HIDDEN_CLASSNAMES.test(className);
 
     return hidden;
 };

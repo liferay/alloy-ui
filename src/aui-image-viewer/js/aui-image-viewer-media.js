@@ -156,7 +156,7 @@ var MediaViewerPlugin = A.Component.create({
 
             var mediaType = instance._getMediaType(source.attr('href'));
 
-            if (mediaType != 'image') {
+            if (mediaType !== 'image') {
                 instance._redirectIframe('about:blank');
 
                 host.setStdModContent('body', '');
@@ -180,7 +180,7 @@ var MediaViewerPlugin = A.Component.create({
 
             instance._redirectIframe('about:blank');
 
-            if (mediaType != 'image') {
+            if (mediaType !== 'image') {
                 var providers = instance.get('providers')[mediaType];
 
                 var source = host.getCurrentLink();
@@ -250,7 +250,7 @@ var MediaViewerPlugin = A.Component.create({
 
                 var mediaType = instance._getMediaType(linkHref);
 
-                if (mediaType == 'image') {
+                if (mediaType === 'image') {
                     result = true;
                 }
             }
@@ -321,7 +321,7 @@ var MediaViewerPlugin = A.Component.create({
 
             var mediaType = instance._getMediaType(href);
 
-            if (mediaType != 'image' && !host.getStdModNode('body').html()) {
+            if (mediaType !== 'image' && !host.getStdModNode('body').html()) {
                 host._processChangeRequest();
             }
         },

@@ -128,7 +128,7 @@ Messaging = {
 
         var hash = LOCATION.hash;
 
-        if (hash != lastHash && REGEX_TOKEN_REPLACE_HASH.test(hash)) {
+        if (hash !== lastHash && REGEX_TOKEN_REPLACE_HASH.test(hash)) {
             lastHash = hash;
 
             var data = hash.match(REGEX_TOKEN_EXTRACT_HASH);
@@ -156,7 +156,7 @@ Messaging = {
             valid = sourceURI(origin);
         }
         else if (isString(sourceURI)) {
-            valid = (sourceURI == origin);
+            valid = (sourceURI === origin);
         }
 
         if (valid) {

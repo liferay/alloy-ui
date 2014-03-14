@@ -188,7 +188,7 @@ A.Event.define(
 
                 var type = activeElement.attr('type').toLowerCase();
 
-                if (tagName == 'input' && (type == 'checkbox' || type == 'radio')) {
+                if (tagName === 'input' && (type === 'checkbox' || type === 'radio')) {
                     eventName = 'click';
                 }
 
