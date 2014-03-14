@@ -20,7 +20,7 @@ var Unicode = {
         var regex = null;
 
         if (UData.hasOwnProperty(group)) {
-            regex = new RegExp(UData[group], flags)
+            regex = new RegExp(UData[group], flags);
         }
 
         return regex;
