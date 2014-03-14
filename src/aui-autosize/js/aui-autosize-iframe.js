@@ -17,7 +17,7 @@ var getClassName = A.getClassName,
  *     properties.
  * @constructor
  */
-AutosizeIframe = A.Component.create({
+var AutosizeIframe = A.Component.create({
 
     /**
      * Static property provides a string to identify the class.
