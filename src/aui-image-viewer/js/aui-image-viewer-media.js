@@ -68,13 +68,20 @@ var MediaViewerPlugin = A.Component.create({
             validator: Lang.isObject,
             value: {
                 'flash': {
-                    container: '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="{width}" height="{height}"><param name="wmode" value="{wmode}" /><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="{media}" /><embed src="{media}" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="{width}" height="{height}" wmode="{wmode}"></embed></object>',
+                    container: '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" ' +
+                        'width="{width}" height="{height}"><param name="wmode" value="{wmode}" />' +
+                        '<param name="allowfullscreen" value="true" />' +
+                        '<param name="allowscriptaccess" value="always" /><param name="movie" value="{media}" />' +
+                        '<embed src="{media}" type="application/x-shockwave-flash" allowfullscreen="true"' +
+                        ' allowscriptaccess="always" width="{width}" height="{height}" wmode="{wmode}">' +
+                        '</embed></object>',
                     matcher: /\b.swf\b/i,
                     options: DEFAULT_OPTIONS,
                     mediaRegex: /([^?&#]+)/
                 },
                 'youtube': {
-                    container: '<iframe width="{width}" height="{height}" src="http://www.youtube.com/embed/{media}" frameborder="0" allowfullscreen></iframe>',
+                    container: '<iframe width="{width}" height="{height}" src="http://www.youtube.com/embed/{media}"' +
+                        ' frameborder="0" allowfullscreen></iframe>',
                     matcher: new RegExp(
                         Lang.sub(
                             REGEX_DOMAIN, {
@@ -87,7 +94,9 @@ var MediaViewerPlugin = A.Component.create({
                     mediaRegex: /[\?&]v=([^&#]*)/i
                 },
                 'vimeo': {
-                    container: '<iframe src="http://player.vimeo.com/video/{media}?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="{width}" height="{height}" frameborder="0"></iframe>',
+                    container: '<iframe src="' +
+                        'http://player.vimeo.com/video/{media}?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff' +
+                        '" width="{width}" height="{height}" frameborder="0"></iframe>',
                     matcher: new RegExp(
                         Lang.sub(
                             REGEX_DOMAIN, {

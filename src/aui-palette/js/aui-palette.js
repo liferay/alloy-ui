@@ -30,9 +30,12 @@ var Lang = A.Lang,
     Palette = A.Base.create('palette', A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
         CONTAINER_TEMPLATE: '<table class="' + CSS_PALETTE_CONTAINER + '">{content}</table>',
 
-        ITEMS_CONTAINER_TEMPLATE: '<tr class="' + CSS_PALETTE_ITEMS_CONTAINER + ' ' + CSS_PALETTE_ITEMS_CONTAINER_INDEX + '">{content}</tr>',
+        ITEMS_CONTAINER_TEMPLATE: '<tr class="' + CSS_PALETTE_ITEMS_CONTAINER + ' ' +
+            CSS_PALETTE_ITEMS_CONTAINER_INDEX + '">{content}</tr>',
 
-        ITEM_TEMPLATE: '<td class="' + CSS_PALETTE_ITEM + ' {selectedClassName}" data-column={column} data-index={index} data-row={row} data-value="{value}">' + '<a href="" class="' + CSS_PALETTE_ITEM_INNER + '" onclick="return false;"></a>' + '</td>',
+        ITEM_TEMPLATE: '<td class="' + CSS_PALETTE_ITEM +
+            ' {selectedClassName}" data-column={column} data-index={index} data-row={row} data-value="{value}">' +
+            '<a href="" class="' + CSS_PALETTE_ITEM_INNER + '" onclick="return false;"></a>' + '</td>',
 
         _items: null,
 
