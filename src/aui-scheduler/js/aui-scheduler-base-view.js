@@ -9,7 +9,11 @@ var DateMath = A.DataType.DateMath,
     Lang = A.Lang,
     isBoolean = Lang.isBoolean,
     isFunction = Lang.isFunction,
-    isString = Lang.isString;
+    isString = Lang.isString,
+    getCN = A.getClassName,
+
+    CSS_SCHEDULER_VIEW_NOSCROLL = getCN('scheduler-view', 'noscroll'),
+    CSS_SCHEDULER_VIEW_SCROLLABLE = getCN('scheduler-view', 'scrollable');
 
 /**
  * A base class for `SchedulerView`.

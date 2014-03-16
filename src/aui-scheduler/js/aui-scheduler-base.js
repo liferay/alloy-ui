@@ -11,7 +11,38 @@ var DateMath = A.DataType.DateMath,
     isDate = Lang.isDate,
     isFunction = Lang.isFunction,
     isNumber = Lang.isNumber,
-    WidgetStdMod = A.WidgetStdMod;
+    WidgetStdMod = A.WidgetStdMod,
+    getCN = A.getClassName,
+
+    CSS_SCHEDULER_CONTROLS = getCN('scheduler-base', 'controls'),
+    CSS_SCHEDULER_HD = getCN('scheduler-base', 'hd'),
+    CSS_SCHEDULER_ICON_NEXT = getCN('scheduler-base', 'icon', 'next'),
+    CSS_SCHEDULER_ICON_PREV = getCN('scheduler-base', 'icon', 'prev'),
+    CSS_SCHEDULER_TODAY = getCN('scheduler-base', 'today'),
+    CSS_SCHEDULER_VIEW = getCN('scheduler-base', 'view'),
+    CSS_SCHEDULER_VIEW_ = getCN('scheduler-base', 'view', ''),
+    CSS_SCHEDULER_VIEW_DATE = getCN('scheduler-base', 'view', 'date'),
+    CSS_BTN = getCN('btn'),
+    CSS_ICON_CHEVRON_RIGHT = getCN('icon', 'chevron', 'right'),
+    CSS_ICON_CHEVRON_LEFT = getCN('icon', 'chevron', 'left'),
+    CSS_SCHEDULER_VIEWS = getCN('scheduler-base', 'views'),
+
+    CSS_SCHEDULER_NAV = getCN('scheduler-base', 'nav'),
+    CSS_SCHEDULER_VIEW_SELECTED = getCN('active'),
+
+    TPL_SCHEDULER_CONTROLS = '<div class="span7 ' + CSS_SCHEDULER_CONTROLS + '"></div>',
+    TPL_SCHEDULER_HD = '<div class="row-fluid ' + CSS_SCHEDULER_HD + '"></div>',
+    TPL_SCHEDULER_ICON_NEXT = '<button type="button" class="' + [CSS_SCHEDULER_ICON_NEXT, CSS_BTN].join(' ') +
+        '"><i class="' + CSS_ICON_CHEVRON_RIGHT + '"></i></button>',
+    TPL_SCHEDULER_ICON_PREV = '<button type="button" class="' + [CSS_SCHEDULER_ICON_PREV, CSS_BTN].join(' ') +
+        '"><i class="' + CSS_ICON_CHEVRON_LEFT + '"></i></button>',
+    TPL_SCHEDULER_NAV = '<div class="btn-group"></div>',
+    TPL_SCHEDULER_TODAY = '<button type="button" class="' + [CSS_SCHEDULER_TODAY, CSS_BTN].join(' ') +
+        '">{today}</button>',
+    TPL_SCHEDULER_VIEW = '<button type="button" class="' + [CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_].join(' ') +
+        '{name}" data-view-name="{name}">{label}</button>',
+    TPL_SCHEDULER_VIEW_DATE = '<span class="' + CSS_SCHEDULER_VIEW_DATE + '"></span>',
+    TPL_SCHEDULER_VIEWS = '<div class="span5 ' + CSS_SCHEDULER_VIEWS + '"></div>';
 
 /**
  * A base class for `SchedulerEvents`.
