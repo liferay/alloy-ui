@@ -284,13 +284,13 @@ A.mix(SchedulerEventSupport.prototype, {
         var instance = this,
             events = [];
 
-        if (isModelList(values)) {
+        if (values instanceof A.ModelList) {
             events = values.toArray();
             values.set('scheduler', instance);
         }
         else if (isArray(values)) {
             A.Array.each(values, function(value) {
-                if (isModelList(value)) {
+                if (value instanceof A.ModelList) {
                     events = events.concat(value.toArray());
                     value.set('scheduler', instance);
                 }
@@ -349,7 +349,9 @@ var SchedulerBase = A.Component.create({
          * @type {A.SchedulerView}
          */
         activeView: {
-            validator: isSchedulerView
+            validator: function isSchedulerView(val) {
+                return val instanceof A.SchedulerView;
+            }
         },
 
         /**
@@ -970,7 +972,7 @@ var SchedulerBase = A.Component.create({
             var views = [];
 
             A.Array.each(val, function(view) {
-                if (isSchedulerView(view) && !view.get('rendered')) {
+                if (view instanceof A.SchedulerView && !view.get('rendered')) {
                     view.setAttrs({
                         scheduler: instance
                     });
