@@ -5,6 +5,12 @@
  * @submodule aui-scheduler-base-view
  */
 
+var DateMath = A.DataType.DateMath,
+    Lang = A.Lang,
+    isBoolean = Lang.isBoolean,
+    isFunction = Lang.isFunction,
+    isString = Lang.isString;
+
 /**
  * A base class for `SchedulerView`.
  *

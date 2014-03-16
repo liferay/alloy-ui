@@ -5,6 +5,11 @@
  * @submodule aui-scheduler-base-calendar
  */
 
+var Lang = A.Lang,
+    isArray = Lang.isArray,
+    isBoolean = Lang.isBoolean,
+    isString = Lang.isString;
+
 /**
  * A base class for `SchedulerCalendar`.
  *

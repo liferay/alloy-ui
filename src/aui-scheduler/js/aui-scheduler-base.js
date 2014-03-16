@@ -5,6 +5,14 @@
  * @submodule aui-scheduler-base
  */
 
+var DateMath = A.DataType.DateMath,
+    Lang = A.Lang,
+    isArray = Lang.isArray,
+    isDate = Lang.isDate,
+    isFunction = Lang.isFunction,
+    isNumber = Lang.isNumber,
+    WidgetStdMod = A.WidgetStdMod;
+
 /**
  * A base class for `SchedulerEvents`.
  *

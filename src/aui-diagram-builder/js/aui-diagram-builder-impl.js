@@ -464,7 +464,7 @@ var DiagramBuilder = A.Component.create({
             var strings = instance.getStrings();
             var selectedConnectors = instance.getSelectedConnectors();
 
-            if (selectedConnectors.length && confirm(strings.deleteConnectorsMessage)) {
+            if (selectedConnectors.length && window.confirm(strings.deleteConnectorsMessage)) {
                 AArray.each(selectedConnectors, function(connector) {
                     var transition = connector.get('transition');
 
@@ -485,7 +485,7 @@ var DiagramBuilder = A.Component.create({
             var strings = instance.getStrings();
             var selectedNode = instance.selectedNode;
 
-            if (selectedNode && !selectedNode.get('required') && confirm(strings.deleteNodesMessage)) {
+            if (selectedNode && !selectedNode.get('required') && window.confirm(strings.deleteNodesMessage)) {
                 selectedNode.close();
                 instance.editingNode = instance.selectedNode = null;
                 instance.stopEditing();

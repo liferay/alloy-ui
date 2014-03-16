@@ -881,7 +881,7 @@ var FormBuilderField = A.Component.create({
             var instance = this,
                 strings = instance.getStrings();
 
-            if (confirm(strings.deleteFieldsMessage)) {
+            if (window.confirm(strings.deleteFieldsMessage)) {
                 instance.destroy();
             }
 
