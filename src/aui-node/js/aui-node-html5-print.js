@@ -52,7 +52,7 @@ var html5shiv = A.html5shiv,
     // IE's styleSheet object sometimes becomes inaccessible
     // after trying to print the second time
     isStylesheetDefined = function(obj) {
-        return obj && (obj + STR_EMPTY !== undefined);
+        return obj && (obj + '' !== undefined);
     },
 
     toggleNode = function(node, origNode, prop) {
@@ -308,6 +308,7 @@ A.mix(
             var styleSheets = instance._getAllStyleSheets(DOC.styleSheets, 'all');
             var rule;
             var cssText;
+            var styleSheet;
 
             for (var i = 0; styleSheet = styleSheets[i]; i++) {
                 var rules = styleSheet.rules;
