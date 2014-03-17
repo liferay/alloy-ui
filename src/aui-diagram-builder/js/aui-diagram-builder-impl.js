@@ -2731,8 +2731,7 @@ var DiagramNode = A.Component.create({
          * @param val
          * @protected
          */
-        _uiSetRequired: function() {
-        },
+        _uiSetRequired: function() {},
 
         /**
          * Set the `selected` attribute in the UI.

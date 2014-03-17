@@ -67,7 +67,7 @@ div.innerHTML = '   <table></table>&nbsp;';
 if (div.attachEvent && div.fireEvent) {
     div.attachEvent(
         'onclick',
-        function detach () {
+        function detach() {
             SUPPORT_CLONED_EVENTS = true;
 
             div.detachEvent('onclick', detach);

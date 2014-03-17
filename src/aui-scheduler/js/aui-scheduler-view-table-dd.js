@@ -127,8 +127,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      *
      * @method viewDDRenderUI
      */
-    viewDDRenderUI: function() {
-    },
+    viewDDRenderUI: function() {},
 
     /**
      * Syncs the scheduler view `DD.Delegate` instance. Lifecycle.
