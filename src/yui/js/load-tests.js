@@ -3,33 +3,34 @@
 var add = Y.Features.add;
 // aui-base-html5-shiv
 add('load', '0', {
-    "name": "aui-base-html5-shiv",
-    "trigger": "aui-base",
-    "ua": "ie"
+    'name': 'aui-base-html5-shiv',
+    'trigger': 'aui-base',
+    'ua': 'ie'
 });
 // aui-event-input
 add('load', '1', {
-    "name": "aui-event-input",
-    "test": function(A) {
-    var supportsDOMEvent = A.supportsDOMEvent,
-        testFeature = A.Features.test,
-        addFeature = A.Features.add;
+    'name': 'aui-event-input',
+    'test': function(A) {
+        var supportsDOMEvent = A.supportsDOMEvent,
+            testFeature = A.Features.test,
+            addFeature = A.Features.add;
 
-    if (testFeature('event', 'input') === undefined) {
-        addFeature('event', 'input', {
-            test: function() {
-                return supportsDOMEvent(document.createElement('textarea'), 'input') && (!A.UA.ie || A.UA.ie > 9);
-            }
-        });
-    }
+        if (testFeature('event', 'input') === undefined) {
+            addFeature('event', 'input', {
+                test: function() {
+                    return supportsDOMEvent(document.createElement('textarea'), 'input') && (!A.UA.ie || A.UA.ie >
+                        9);
+                }
+            });
+        }
 
-    return !testFeature('event', 'input');
-},
-    "trigger": "aui-event"
+        return !testFeature('event', 'input');
+    },
+    'trigger': 'aui-event'
 });
 // aui-node-html5
 add('load', '2', {
-    "name": "aui-node-html5",
-    "trigger": "aui-node",
-    "ua": "ie"
+    'name': 'aui-node-html5',
+    'trigger': 'aui-node',
+    'ua': 'ie'
 });

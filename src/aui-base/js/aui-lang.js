@@ -1,6 +1,6 @@
 (function() {
     var Lang = A.Lang,
-        AArray = A.Array,
+        aArray = A.Array,
         AObject = A.Object,
 
         isArray = Lang.isArray,
@@ -19,7 +19,7 @@
             var xargs = arguments;
 
             if (xargs.length > 2) {
-                xargs = AArray(xargs, 2, true);
+                xargs = aArray(xargs, 2, true);
             }
 
             dynamicLookup = (isString(fn) && context);
@@ -45,7 +45,7 @@
                 context = context || method;
 
                 if (argLength > 0) {
-                    returnValue = method.apply(context, AArray(arguments, 0, true).slice(0, argLength));
+                    returnValue = method.apply(context, aArray(arguments, 0, true).slice(0, argLength));
                 }
                 else {
                     returnValue = method.call(context);
@@ -86,7 +86,7 @@
         }
     });
 
-    A.mix(AArray, {
+    A.mix(aArray, {
         remove: function(a, from, to) {
             var rest = a.slice((to || from) + 1 || a.length);
             a.length = (from < 0) ? (a.length + from) : from;
@@ -95,10 +95,10 @@
         },
 
         removeItem: function(a, item) {
-            var index = AArray.indexOf(a, item);
+            var index = aArray.indexOf(a, item);
 
             if (index > -1) {
-                return AArray.remove(a, index);
+                return aArray.remove(a, index);
             }
 
             return a;
@@ -203,8 +203,6 @@
         },
 
         nl2br: function(str) {
-            var instance = this;
-
             return String(str).replace(REGEX_NL2BR, '<br />');
         },
 
@@ -280,8 +278,6 @@
         },
 
         stripTags: function(str) {
-            var instance = this;
-
             if (str) {
                 str = String(str).replace(REGEX_STRIP_TAGS, '');
             }
@@ -391,15 +387,15 @@
         _unescapeEntitiesUsingDom: function(str) {
             var el = DOC.createElement('a');
 
-            el['innerHTML'] = str;
+            el.innerHTML = str;
 
-            if (el['normalize']) {
-                el['normalize']();
+            if (el.normalize) {
+                el.normalize();
             }
 
             str = el.firstChild.nodeValue;
 
-            el['innerHTML'] = '';
+            el.innerHTML = '';
 
             return str;
         }
@@ -427,11 +423,11 @@
      * fn as the values for the new array. Like A.each, this function can accept
      * an object or an array.
      */
-    A.map = function(obj, fn, context) {
+    A.map = function(obj) {
         var module = AObject;
 
         if (isArray(obj)) {
-            module = AArray;
+            module = aArray;
         }
 
         return module.map.apply(this, arguments);

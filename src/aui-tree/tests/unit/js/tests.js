@@ -304,14 +304,16 @@ YUI.add('aui-tree-tests', function(Y) {
         'TreeNodeView created from HTML Markup should display icon-minus when expanded': function() {
             var test = this;
 
-            var treeView = new Y.TreeView({
+            var treeViewComponent = Y.one('#createFromHTMLMarkupTest'),
+                allHitareas;
+
+            new Y.TreeView({
                 boundingBox: treeViewComponent,
                 contentBox: Y.one('#createFromHTMLMarkupTest > ul'),
                 type: 'normal'
             }).render();
 
-            var treeViewComponent = Y.one('#createFromHTMLMarkupTest');
-            var allHitareas = treeViewComponent.all('.tree-container .tree-hitarea');
+            allHitareas = treeViewComponent.all('.tree-container .tree-hitarea');
 
             setTimeout(function() {
                 test.resume(function() {
@@ -434,23 +436,10 @@ YUI.add('aui-tree-tests', function(Y) {
              * assumming that server returned correct response. Clicking on hit area was proved to work above.
              */
             rootTreeNode.get('children')[0].ioSuccessHandler(null, null, {
-                responseText: '[ \
-                    { \
-                        "label": "subchild-one", \
-                        "leaf": true, \
-                        "type": "node" \
-                    }, \
-                    { \
-                        "label": "subchild-two", \
-                        "leaf": true, \
-                        "type": "node" \
-                    }, \
-                    { \
-                        "label": "subchild-three", \
-                        "leaf": true, \
-                        "type": "node" \
-                    } \
-                ]'
+                responseText: '[{"label": "subchild-one","leaf": true,"type": "node"},' +
+                    '{"label": "subchild-two","leaf": true,"type": "node"},' +
+                    '{"label": "subchild-three","leaf": true, "type": "node"}' +
+                    ']'
             });
 
             paginatorLink = rootTreeNodeBB.one('a');

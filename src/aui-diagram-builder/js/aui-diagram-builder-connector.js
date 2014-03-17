@@ -80,8 +80,6 @@ A.PolygonUtil = {
     },
 
     drawPolygon: function(shape, points) {
-        var instance = this;
-
         shape.moveTo(points[0][0], points[0][1]);
 
         AArray.each(points, function(p, i) {
@@ -94,7 +92,6 @@ A.PolygonUtil = {
     },
 
     translatePoints: function(points, x, y) {
-        var instance = this;
         var xy = [];
 
         AArray.each(points, function(p, i) {
@@ -144,7 +141,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
      * @param config
      * @protected
      */
-    initializer: function(config) {
+    initializer: function() {
         var instance = this;
         var lazyDraw = instance.get('lazyDraw');
 
@@ -291,7 +288,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
                     }
                 }
             }),
-            name: strings['name']
+            name: strings.name
         }];
     },
 
@@ -504,7 +501,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
      * @param event
      * @protected
      */
-    _onShapeMouseEnter: function(event) {
+    _onShapeMouseEnter: function() {
         var instance = this;
 
         if (!instance.get('selected')) {
@@ -528,7 +525,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
      * @param event
      * @protected
      */
-    _onShapeMouseLeave: function(event) {
+    _onShapeMouseLeave: function() {
         var instance = this;
 
         if (!instance.get('selected')) {
@@ -675,11 +672,11 @@ A.Connector = A.Base.create('line', A.Base, [], {
         var instance = this;
 
         if (cShape.hasOwnProperty('fill')) {
-            shape.set('fill', cShape['fill']);
+            shape.set('fill', cShape.fill);
         }
 
         if (cShape.hasOwnProperty('stroke')) {
-            shape.set('stroke', cShape['stroke']);
+            shape.set('stroke', cShape.stroke);
         }
 
         if (draw !== false) {
@@ -757,8 +754,6 @@ A.Connector = A.Base.create('line', A.Base, [], {
          */
         name: {
             valueFn: function() {
-                var instance = this;
-
                 return 'connector' + (++A.Env._uidx);
             },
             validator: isString

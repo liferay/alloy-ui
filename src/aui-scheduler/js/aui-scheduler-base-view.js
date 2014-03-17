@@ -5,6 +5,16 @@
  * @submodule aui-scheduler-base-view
  */
 
+var DateMath = A.DataType.DateMath,
+    Lang = A.Lang,
+    isBoolean = Lang.isBoolean,
+    isFunction = Lang.isFunction,
+    isString = Lang.isString,
+    getCN = A.getClassName,
+
+    CSS_SCHEDULER_VIEW_NOSCROLL = getCN('scheduler-view', 'noscroll'),
+    CSS_SCHEDULER_VIEW_SCROLLABLE = getCN('scheduler-view', 'scrollable');
+
 /**
  * A base class for `SchedulerView`.
  *
@@ -64,7 +74,7 @@ var SchedulerView = A.Component.create({
          */
         filterFn: {
             validator: isFunction,
-            value: function(evt) {
+            value: function() {
                 return true;
             }
         },
@@ -239,8 +249,6 @@ var SchedulerView = A.Component.create({
          * @return {Date}
          */
         getAdjustedViewDate: function(date) {
-            var instance = this;
-
             return DateMath.toMidnight(date);
         },
 
@@ -290,8 +298,6 @@ var SchedulerView = A.Component.create({
          * @return {Date}
          */
         limitDate: function(date, maxDate) {
-            var instance = this;
-
             if (DateMath.after(date, maxDate)) {
                 date = DateMath.clone(maxDate);
             }
@@ -319,7 +325,7 @@ var SchedulerView = A.Component.create({
          * @method syncEventUI
          * @param {A.SchedulerEvent} evt A `Scheduler` event.
          */
-        syncEventUI: function(evt) {},
+        syncEventUI: function() {},
 
         /**
          * Sets `date` on the UI.
@@ -336,9 +342,8 @@ var SchedulerView = A.Component.create({
          * @param {EventFacade} event
          * @protected
          */
-        _afterRender: function(event) {
+        _afterRender: function() {
             var instance = this;
-            var scheduler = instance.get('scheduler');
 
             instance._uiSetScrollable(
                 instance.get('scrollable')

@@ -5,6 +5,11 @@
  * @submodule aui-scheduler-base-calendar
  */
 
+var Lang = A.Lang,
+    isArray = Lang.isArray,
+    isBoolean = Lang.isBoolean,
+    isString = Lang.isString;
+
 /**
  * A base class for `SchedulerCalendar`.
  *
@@ -85,7 +90,7 @@ var SchedulerCalendar = A.Base.create('scheduler-calendar', A.ModelList, [], {
      * @param {EventFacade} event
      * @protected
      */
-    _afterEventsChange: function(event) {
+    _afterEventsChange: function() {
         var instance = this;
 
         instance._setModelsAttrs({
@@ -123,7 +128,7 @@ var SchedulerCalendar = A.Base.create('scheduler-calendar', A.ModelList, [], {
      * @param {EventFacade} event
      * @protected
      */
-    _onRemoveEvents: function(event) {
+    _onRemoveEvents: function() {
         var instance = this;
         var scheduler = instance.get('scheduler');
 

@@ -253,7 +253,7 @@ var ParseContent = A.Component.create({
             });
 
             output.js.each(
-                function(node, i) {
+                function(node) {
                     node.remove();
                 }
             );
@@ -282,7 +282,7 @@ var ParseContent = A.Component.create({
 
             var scriptContent = [];
 
-            output.js.each(function(node, i) {
+            output.js.each(function(node) {
                 var src = node.get('src');
 
                 if (src) {

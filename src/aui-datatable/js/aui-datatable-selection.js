@@ -101,14 +101,14 @@ A.mix(DataTableSelection.prototype, {
         var instance = this,
             boundingBox = instance.get('boundingBox');
 
-        instance['CLASS_NAMES_SELECTION'] = {
+        instance.CLASS_NAMES_SELECTION = {
             cell: instance.getClassName('cell'),
             selection: instance.getClassName('selection')
         };
 
         instance._bindSelectionUI();
 
-        boundingBox.addClass(instance['CLASS_NAMES_SELECTION'].selection);
+        boundingBox.addClass(instance.CLASS_NAMES_SELECTION.selection);
 
     },
 
@@ -225,7 +225,7 @@ A.mix(DataTableSelection.prototype, {
      */
     _bindSelectionUI: function() {
         var instance = this,
-            classNames = instance['CLASS_NAMES_SELECTION'];
+            classNames = instance.CLASS_NAMES_SELECTION;
 
         instance._selectionKeyHandler = A.getDoc().on(
             'key', A.bind(instance._onSelectionKey, instance), 'down:enter,37,38,39,40');
@@ -326,7 +326,7 @@ A.mix(DataTableSelection.prototype, {
      * @param event
      * @protected
      */
-    _onSelectionMouseUp: function(event) {
+    _onSelectionMouseUp: function() {
         var instance = this,
             boundingBox = instance.get('boundingBox');
 

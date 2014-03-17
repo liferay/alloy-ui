@@ -7,7 +7,6 @@
 
 var L = A.Lang,
     isArray = L.isArray,
-    isBoolean = L.isBoolean,
     isObject = L.isObject,
     isUndefined = L.isUndefined,
 
@@ -203,7 +202,7 @@ A.mix(TreeData.prototype, {
             ownerTree.registerNode(node);
         }
 
-        if (oldOwnerTree != ownerTree) {
+        if (oldOwnerTree !== ownerTree) {
             // when change the OWNER_TREE update the children references also
             node.eachChildren(function(child) {
                 instance.updateReferences(child, child.get('parentNode'), ownerTree);
@@ -438,10 +437,9 @@ A.mix(TreeData.prototype, {
      * @return {TreeNode}
      */
     createNode: function(options) {
-        var instance = this;
-        var classType = A.TreeNode.nodeTypes[isObject(options) ? options.type : options] || A.TreeNode;
+        var ClassType = A.TreeNode.nodeTypes[isObject(options) ? options.type : options] || A.TreeNode;
 
-        return new classType(
+        return new ClassType(
             isObject(options) ? options : {}
         );
     },
@@ -663,7 +661,6 @@ A.mix(TreeData.prototype, {
      * @param {TreeNode} where 'before' or 'after'
      */
     insert: function(treeNode, refTreeNode, where) {
-        var instance = this;
         refTreeNode = refTreeNode || this;
 
         if (refTreeNode === treeNode) {
@@ -754,7 +751,6 @@ A.mix(TreeData.prototype, {
      * @return {TreeNode}
      */
     getNodeByChild: function(child) {
-        var instance = this;
         var treeNodeEl = child.ancestor('.' + CSS_TREE_NODE);
 
         if (treeNodeEl) {
@@ -808,19 +804,19 @@ A.mix(TreeData.prototype, {
             instance.set('leaf', false);
         }
 
-        A.Array.each(v, function(node, index) {
+        A.Array.each(v, function(node) {
             if (node) {
                 if (!isTreeNode(node) && isObject(node)) {
                     // cache and remove children to lazy add them later for
                     // performance reasons
-                    var children = node['children'];
+                    var children = node.children;
                     var hasChildren = children && children.length;
 
-                    node['ownerTree'] = ownerTree;
-                    node['parentNode'] = instance;
+                    node.ownerTree = ownerTree;
+                    node.parentNode = instance;
 
                     if (hasChildren && lazyLoad) {
-                        delete node['children'];
+                        delete node.children;
                     }
 
                     // creating node from json

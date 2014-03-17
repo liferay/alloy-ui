@@ -6,7 +6,7 @@ YUI.add('aui-pagination-tests', function(Y) {
 
     var suite = new Y.Test.Suite('aui-pagination');
 
-    var pagination = new Y.Pagination({
+    new Y.Pagination({
         boundingBox: '#pagination',
         circular: false,
         showControls: false,

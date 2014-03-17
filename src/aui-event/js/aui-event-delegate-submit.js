@@ -7,7 +7,6 @@
 
 var AArray = A.Array,
     AObject = A.Object,
-    Node = A.Node,
     Selector = A.Selector;
 
 /**
@@ -32,7 +31,7 @@ A.Event.define(
             var clickHandles = instance._prepareHandles(subscription, node);
 
             if (!AObject.owns(clickHandles, 'click')) {
-                clickHandles['click'] = node.delegate(
+                clickHandles.click = node.delegate(
                     'click',
                     function(event) {
                         var activeElement = event.target;
@@ -150,7 +149,7 @@ A.Event.define(
             var handles = instance._prepareHandles(subscription, form);
 
             if (!AObject.owns(handles, 'submit')) {
-                handles['submit'] = A.Event._attach(['submit', fireFn, form, notifier, filter ? 'submit_delegate' :
+                handles.submit = A.Event._attach(['submit', fireFn, form, notifier, filter ? 'submit_delegate' :
                     'submit_on']);
             }
         },
@@ -164,13 +163,13 @@ A.Event.define(
          * @param notifier
          * @protected
          */
-        _detachEvents: function(node, subscription, notifier) {
+        _detachEvents: function(node, subscription) {
             A.each(
                 subscription._handles,
-                function(events, node, handles) {
+                function(events) {
                     A.each(
                         events,
-                        function(handle, event, events) {
+                        function(handle) {
                             handle.detach();
                         }
                     );
@@ -236,27 +235,8 @@ A.Event.define(
     true
 );
 
-var originalOn = A.CustomEvent.prototype._on;
-
-A.CustomEvent.prototype._on = function(fn, context, args, when) {
-    var instance = this;
-
-    var eventHandle = originalOn.apply(instance, arguments);
-
-    if (instance._kds) {
-        updateDeprecatedSubscribers.call(instance, eventHandle, fn, context, args, when);
-    }
-    else {
-        updateSubscribers.call(instance, eventHandle, fn, context, args, when);
-    }
-
-    return eventHandle;
-};
-
 function sortSubscribers(subscribers) {
-    var instance = this;
-
-    var item = AArray.some(
+    AArray.some(
         subscribers,
         function(item, index) {
             if (item.args && item.args[0] === 'submit_delegate') {
@@ -270,6 +250,19 @@ function sortSubscribers(subscribers) {
     );
 }
 
+function updateSubscribers(args, when) {
+    var instance = this;
+
+    if (args && args[0] === 'submit_on') {
+        if (when === 'after' && instance._afters.length) {
+            sortSubscribers.call(instance, instance._afters);
+        }
+        else if (instance._subscribers.length) {
+            sortSubscribers.call(instance, instance._subscribers);
+        }
+    }
+}
+
 function sortDeprecatedSubscribers(eventHandle, subscribers) {
     var result = subscribers;
 
@@ -281,7 +274,7 @@ function sortDeprecatedSubscribers(eventHandle, subscribers) {
 
     AObject.each(
         subscribers,
-        function(subscriber, index) {
+        function(subscriber) {
             if (!replace && subscriber.args && subscriber.args[0] === 'submit_delegate') {
                 orderedSubscribers[lastSubscriber.id] = lastSubscriber;
 
@@ -301,19 +294,6 @@ function sortDeprecatedSubscribers(eventHandle, subscribers) {
     return result;
 }
 
-function updateSubscribers(eventHandle, fn, context, args, when) {
-    var instance = this;
-
-    if (args && args[0] === 'submit_on') {
-        if (when === 'after' && instance._afters.length) {
-            sortSubscribers.call(instance, instance._afters);
-        }
-        else if (instance._subscribers.length) {
-            sortSubscribers.call(instance, instance._subscribers);
-        }
-    }
-}
-
 function updateDeprecatedSubscribers(eventHandle, fn, context, args, when) {
     var instance = this;
 
@@ -326,3 +306,20 @@ function updateDeprecatedSubscribers(eventHandle, fn, context, args, when) {
         }
     }
 }
+
+var originalOn = A.CustomEvent.prototype._on;
+
+A.CustomEvent.prototype._on = function(fn, context, args, when) {
+    var instance = this;
+
+    var eventHandle = originalOn.apply(instance, arguments);
+
+    if (instance._kds) {
+        updateDeprecatedSubscribers.call(instance, eventHandle, fn, context, args, when);
+    }
+    else {
+        updateSubscribers.call(instance, args, when);
+    }
+
+    return eventHandle;
+};

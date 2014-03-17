@@ -4,8 +4,7 @@ YUI.add('aui-popover-tests', function(Y) {
     // AUI Popover Tests
     //--------------------------------------------------------------------------
 
-    var suite = new Y.Test.Suite('aui-popover'),
-        popoverBottom;
+    var suite = new Y.Test.Suite('aui-popover');
 
     //--------------------------------------------------------------------------
     // Test Case for aligning the Popover
@@ -24,7 +23,7 @@ YUI.add('aui-popover-tests', function(Y) {
 
             popoverTop = new Y.Popover({
                 align: {
-                    node: triggerTop
+                    node: window.triggerTop
                 },
                 bodyContent: 'One fine body…',
                 headerContent: 'Header content',
@@ -34,7 +33,7 @@ YUI.add('aui-popover-tests', function(Y) {
 
             popoverBottom = new Y.Popover({
                 align: {
-                    node: triggerBottom
+                    node: window.triggerBottom
                 },
                 bodyContent: 'Another fine body…',
                 headerContent: 'Header content',

@@ -26,24 +26,24 @@ var Lang = A.Lang,
 
     AArray = A.Array,
 
-    AgetClassName = A.getClassName,
+    aGetClassName = A.getClassName,
 
-    CSS_CLEARFIX = AgetClassName('clearfix'),
-    CSS_DIAGRAM_BUILDER_CANVAS = AgetClassName('diagram', 'builder', 'canvas'),
-    CSS_DIAGRAM_BUILDER_CONTENT_CONTAINER = AgetClassName('diagram', 'builder', 'content', 'container'),
-    CSS_DIAGRAM_BUILDER_DROP_CONTAINER = AgetClassName('diagram', 'builder', 'drop', 'container'),
-    CSS_DIAGRAM_BUILDER_FIELD = AgetClassName('diagram', 'builder', 'field'),
-    CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE = AgetClassName('diagram', 'builder', 'field', 'draggable'),
-    CSS_DIAGRAM_BUILDER_FIELD_ICON = AgetClassName('diagram', 'builder', 'field', 'icon'),
-    CSS_DIAGRAM_BUILDER_FIELD_LABEL = AgetClassName('diagram', 'builder', 'field', 'label'),
-    CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER = AgetClassName('diagram', 'builder', 'fields', 'container'),
-    CSS_DIAGRAM_BUILDER_TABS = AgetClassName('diagram', 'builder', 'tabs'),
-    CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER = AgetClassName('diagram', 'builder', 'toolbar', 'container'),
-    CSS_ICON = AgetClassName('icon'),
-    CSS_LAYOUT = AgetClassName('layout'),
-    CSS_TABBABLE = AgetClassName('tabbable'),
-    CSS_TABBABLE_CONTENT = AgetClassName('tabbable', 'content'),
-    CSS_TABLE_STRIPED = AgetClassName('table', 'striped');
+    CSS_CLEARFIX = aGetClassName('clearfix'),
+    CSS_DIAGRAM_BUILDER_CANVAS = aGetClassName('diagram', 'builder', 'canvas'),
+    CSS_DIAGRAM_BUILDER_CONTENT_CONTAINER = aGetClassName('diagram', 'builder', 'content', 'container'),
+    CSS_DIAGRAM_BUILDER_DROP_CONTAINER = aGetClassName('diagram', 'builder', 'drop', 'container'),
+    CSS_DIAGRAM_BUILDER_FIELD = aGetClassName('diagram', 'builder', 'field'),
+    CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE = aGetClassName('diagram', 'builder', 'field', 'draggable'),
+    CSS_DIAGRAM_BUILDER_FIELD_ICON = aGetClassName('diagram', 'builder', 'field', 'icon'),
+    CSS_DIAGRAM_BUILDER_FIELD_LABEL = aGetClassName('diagram', 'builder', 'field', 'label'),
+    CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER = aGetClassName('diagram', 'builder', 'fields', 'container'),
+    CSS_DIAGRAM_BUILDER_TABS = aGetClassName('diagram', 'builder', 'tabs'),
+    CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER = aGetClassName('diagram', 'builder', 'toolbar', 'container'),
+    CSS_ICON = aGetClassName('icon'),
+    CSS_LAYOUT = aGetClassName('layout'),
+    CSS_TABBABLE = aGetClassName('tabbable'),
+    CSS_TABBABLE_CONTENT = aGetClassName('tabbable', 'content'),
+    CSS_TABLE_STRIPED = aGetClassName('table', 'striped');
 
 /**
  * A base class for AvailableField.
@@ -212,7 +212,8 @@ var AvailableField = A.Component.create({
 
     prototype: {
         FIELD_ITEM_TEMPLATE: '<li class="' + CSS_DIAGRAM_BUILDER_FIELD + '">' + '<span class="' + [CSS_ICON,
-            CSS_DIAGRAM_BUILDER_FIELD_ICON].join(' ') + ' {iconClass}"></span>' + '<div class="' + CSS_DIAGRAM_BUILDER_FIELD_LABEL + '"></div>' + '</li>',
+            CSS_DIAGRAM_BUILDER_FIELD_ICON].join(' ') +
+            ' {iconClass}"></span>' + '<div class="' + CSS_DIAGRAM_BUILDER_FIELD_LABEL + '"></div>' + '</li>',
 
         /**
          * Construction logic executed during `A.AvailableField` instantiation.
@@ -724,7 +725,8 @@ var DiagramBuilderBase = A.Component.create({
         CANVAS_TEMPLATE: '<div tabindex="1" class="' + CSS_DIAGRAM_BUILDER_CANVAS + '"></div>',
         CONTENT_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_CONTENT_CONTAINER + '"></div>',
         DROP_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_DROP_CONTAINER + '"></div>',
-        FIELDS_CONTAINER_TEMPLATE: '<ul class="' + [CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER, CSS_CLEARFIX].join(' ') + '"></ul>',
+        FIELDS_CONTAINER_TEMPLATE: '<ul class="' + [CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER, CSS_CLEARFIX].join(' ') +
+            '"></ul>',
         TOOLBAR_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER + '"></div>',
 
         fieldsNode: null,
@@ -831,7 +833,7 @@ var DiagramBuilderBase = A.Component.create({
          * @param event
          * @protected
          */
-        _afterModelChange: function(event) {
+        _afterModelChange: function() {
             var instance = this;
 
             instance._handleSaveEvent();
@@ -844,7 +846,7 @@ var DiagramBuilderBase = A.Component.create({
          * @param event
          * @protected
          */
-        _afterRender: function(event) {
+        _afterRender: function() {
             var instance = this;
 
             instance.plotFields();
@@ -892,7 +894,7 @@ var DiagramBuilderBase = A.Component.create({
          * @param event
          * @protected
          */
-        _defCancelFn: function(event) {
+        _defCancelFn: function() {
             var instance = this;
 
             instance.tabView.selectChild(0);
@@ -1056,10 +1058,9 @@ var DiagramBuilderBase = A.Component.create({
          * @protected
          */
         _setAvailableFields: function(val) {
-            var instance = this;
             var fields = [];
 
-            AArray.each(val, function(field, index) {
+            AArray.each(val, function(field) {
                 fields.push(
                     isAvailableField(field) ? field : new A.AvailableField(field)
                 );
@@ -1149,7 +1150,8 @@ var DiagramBuilderBase = A.Component.create({
         _setTabView: function(val) {
             var instance = this,
                 boundingBox = instance.get('boundingBox'),
-                tabViewContentNode = boundingBox.one('.' + CSS_TABBABLE_CONTENT);
+                tabViewContentNode = boundingBox.one('.' + CSS_TABBABLE_CONTENT),
+                defaultValue;
 
             defaultValue = {
                 after: {
@@ -1167,10 +1169,10 @@ var DiagramBuilderBase = A.Component.create({
 
                 defaultValue.children = [
                     {
-                        label: strings['addNode']
+                        label: strings.addNode
                     },
                     {
-                        label: strings['settings'],
+                        label: strings.settings,
                         disabled: true
                     }
                 ];
@@ -1197,7 +1199,7 @@ var DiagramBuilderBase = A.Component.create({
                             on: {
                                 click: A.bind(instance._handleCancelEvent, instance)
                             },
-                            label: strings['close']
+                            label: strings.close
                         }
                     ]
                 },
@@ -1236,7 +1238,7 @@ var DiagramBuilderBase = A.Component.create({
          * @param event
          * @protected
          */
-        _uiSetFields: function(event) {
+        _uiSetFields: function() {
             var instance = this;
 
             if (instance.get('rendered')) {

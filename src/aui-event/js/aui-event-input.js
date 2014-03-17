@@ -90,7 +90,7 @@ A.Event.define('input', {
      * @param subscription
      * @param notifier
      */
-    detach: function(node, subscription, notifier) {
+    detach: function(node, subscription) {
         subscription._handler.detach();
     },
 
@@ -102,7 +102,7 @@ A.Event.define('input', {
      * @param subscription
      * @param notifier
      */
-    detachDelegate: function(node, subscription, notifier) {
+    detachDelegate: function(node, subscription) {
         A.Array.each(subscription._handles, function(handle) {
             var element = A.one(handle.evt.el);
             if (element) {
@@ -160,8 +160,7 @@ A.Event.define('input', {
      * @protected
      */
     _fireEvent: function(subscription, notifier, event, valueBeforeKey) {
-        var instance = this,
-            input = event.target;
+        var input = event.target;
 
         subscription._timer = null;
 

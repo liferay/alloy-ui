@@ -11,7 +11,7 @@ var L = A.Lang,
     isObject = L.isObject,
     isString = L.isString,
 
-    AArray = A.Array,
+    aArray = A.Array,
 
     getAvailableFieldById = A.AvailableField.getAvailableFieldById,
 
@@ -561,7 +561,7 @@ var FormBuilder = A.Component.create({
             var instance = this,
                 selectedFieldsLinkedSet = instance.selectedFieldsLinkedSet;
 
-            AArray.each(AArray(fields), function(field) {
+            aArray.each(aArray(fields), function(field) {
                 selectedFieldsLinkedSet.add(field);
             });
         },
@@ -598,7 +598,7 @@ var FormBuilder = A.Component.create({
                 fields = selectedFieldsLinkedSet.values();
             }
 
-            AArray.each(AArray(fields), function(field) {
+            aArray.each(aArray(fields), function(field) {
                 selectedFieldsLinkedSet.remove(field);
             });
         },
@@ -701,20 +701,20 @@ var FormBuilder = A.Component.create({
             var instance = this,
                 config = {};
 
-            AArray.each(instance.getFieldProperties(field), function(property) {
+            aArray.each(instance.getFieldProperties(field), function(property) {
                 var name = property.attributeName;
 
-                if (AArray.indexOf(INVALID_CLONE_ATTRS, name) === -1) {
+                if (aArray.indexOf(INVALID_CLONE_ATTRS, name) === -1) {
                     config[name] = property.value;
                 }
             });
 
             if (deep) {
-                config['fields'] = [];
+                config.fields = [];
 
                 A.each(field.get('fields'), function(child, index) {
                     if (!child.get('unique')) {
-                        config['fields'][index] = instance._cloneField(child, deep);
+                        config.fields[index] = instance._cloneField(child, deep);
                     }
                 });
             }
@@ -984,7 +984,7 @@ var FormBuilder = A.Component.create({
         _setAvailableFields: function(val) {
             var fields = [];
 
-            AArray.each(val, function(field) {
+            aArray.each(val, function(field) {
                 fields.push(
                     isAvailableField(field) ? field : new A.FormBuilderAvailableField(field)
                 );

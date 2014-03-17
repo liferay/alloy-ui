@@ -8,7 +8,6 @@ var Lang = A.Lang,
     UA = A.UA,
     getClassName = A.getClassName,
 
-    CSS_VIDEO = getClassName('video'),
     CSS_VIDEO_NODE = getClassName('video', 'node'),
 
     DEFAULT_PLAYER_PATH = A.config.base + 'aui-video/assets/player.swf?t=' + Lang.now(),
@@ -232,8 +231,6 @@ var Video = A.Component.create({
          * @protected
          */
         _createSource: function(type) {
-            var instance = this;
-
             var sourceNode = new A.Node(DOC.createElement('source'));
 
             sourceNode.attr('type', type);
@@ -292,14 +289,16 @@ var Video = A.Component.create({
                 var fixedAttributes = instance.get('fixedAttributes');
 
                 for (var i in fixedAttributes) {
-                    tplObj += '<param name="' + i + '" value="' + fixedAttributes[i] + '" />';
+                    if (fixedAttributes.hasOwnProperty(i)) {
+                        tplObj += '<param name="' + i + '" value="' + fixedAttributes[i] + '" />';
+                    }
                 }
 
                 if (flashVarString) {
                     tplObj += '<param name="flashVars" value="' + flashVarString + '" />';
                 }
 
-                if (posterUrl != '') {
+                if (posterUrl !== '') {
                     tplObj += '<img src="' + posterUrl + '" alt="" />';
                 }
 
@@ -370,7 +369,7 @@ var Video = A.Component.create({
          * @param val
          * @protected
          */
-        _uiSetFixedAttributes: function(val) {
+        _uiSetFixedAttributes: function() {
             var instance = this;
 
             instance._renderSwfTask();
@@ -383,7 +382,7 @@ var Video = A.Component.create({
          * @param val
          * @protected
          */
-        _uiSetFlashVars: function(val) {
+        _uiSetFlashVars: function() {
             var instance = this;
 
             instance._renderSwfTask();
@@ -455,7 +454,7 @@ var Video = A.Component.create({
          * @param val
          * @protected
          */
-        _uiSetSwfUrl: function(val) {
+        _uiSetSwfUrl: function() {
             var instance = this;
 
             instance._renderSwfTask();
@@ -477,7 +476,7 @@ var Video = A.Component.create({
             var sourceMp4 = instance._sourceMp4;
 
             if (UA.gecko && !instance._usingVideo()) {
-                if (sourceMp4 != null) {
+                if (sourceMp4 !== null) {
                     sourceMp4.remove(true);
 
                     instance._sourceMp4 = null;

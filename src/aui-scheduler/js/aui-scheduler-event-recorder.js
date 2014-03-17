@@ -396,7 +396,7 @@ var SchedulerEventRecorder = A.Component.create({
          * @param {EventFacade} event
          * @protected
          */
-        _afterEventChange: function(event) {
+        _afterEventChange: function() {
             var instance = this;
 
             instance.populateForm();
@@ -530,13 +530,13 @@ var SchedulerEventRecorder = A.Component.create({
                 strings = instance.get('strings'),
                 children = [
                     {
-                        label: strings['save'],
+                        label: strings.save,
                         on: {
                             click: A.bind(instance._handleSaveEvent, instance)
                         }
                     },
                     {
-                        label: strings['cancel'],
+                        label: strings.cancel,
                         on: {
                             click: A.bind(instance._handleCancelEvent, instance)
                         }
@@ -545,7 +545,7 @@ var SchedulerEventRecorder = A.Component.create({
 
             if (event) {
                 children.push({
-                    label: strings['delete'],
+                    label: strings.delete,
                     on: {
                         click: A.bind(instance._handleDeleteEvent, instance)
                     }
@@ -581,7 +581,7 @@ var SchedulerEventRecorder = A.Component.create({
          * @param {EventFacade} event
          * @protected
          */
-        _handleClickOutSide: function(event) {
+        _handleClickOutSide: function() {
             var instance = this;
 
             instance.fire('cancel');

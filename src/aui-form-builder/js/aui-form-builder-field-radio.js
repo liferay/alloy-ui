@@ -140,7 +140,7 @@ var FormBuilderRadioField = A.Component.create({
                 predefinedValue = instance.get('predefinedValue'),
                 templateNode = instance.get('templateNode');
 
-            A.each(val, function(item, index, collection) {
+            A.each(val, function(item) {
                 var checked = A.Array.indexOf(predefinedValue, item.value) > -1;
 
                 buffer.push(

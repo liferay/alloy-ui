@@ -579,7 +579,7 @@ var ImageGallery = A.Component.create({
 
             // check if the lastState page number is different from the newState
             // page number.
-            if (!lastState || (lastState && lastState.page != page)) {
+            if (!lastState || (lastState && lastState.page !== page)) {
                 instance.set('currentIndex', page - 1);
 
                 instance._processChangeRequest();
@@ -640,7 +640,6 @@ var ImageGallery = A.Component.create({
          */
         _thumbnailFormatter: function(pageNumber) {
             var instance = this,
-                paginationInstance = instance.get('paginationInstance'),
                 linksCount = instance.get('links').size(),
                 index = pageNumber - 1;
 
@@ -676,7 +675,7 @@ var ImageGallery = A.Component.create({
          * @protected
          * @return {String} Parsed string.
          */
-        _getInfoTemplate: function(v) {
+        _getInfoTemplate: function() {
             var label;
             var instance = this;
             var paused = instance.get('paused');

@@ -14,17 +14,17 @@ var Lang = A.Lang,
     WidgetStdMod = A.WidgetStdMod,
     AArray = A.Array,
 
-    AgetClassName = A.getClassName,
+    aGetClassName = A.getClassName,
 
-    CSS_DB_CONTROLS = AgetClassName('diagram', 'builder', 'controls'),
-    CSS_DIAGRAM_BUILDER_FIELD = AgetClassName('diagram', 'builder', 'field'),
-    CSS_DIAGRAM_NODE = AgetClassName('diagram', 'node'),
-    CSS_DIAGRAM_NODE_CONTENT = AgetClassName('diagram', 'node', 'content'),
-    CSS_DIAGRAM_NODE_EDITING = AgetClassName('diagram', 'node', 'editing'),
-    CSS_DIAGRAM_NODE_LABEL = AgetClassName('diagram', 'node', 'label'),
-    CSS_DIAGRAM_NODE_SELECTED = AgetClassName('diagram', 'node', 'selected'),
-    CSS_DIAGRAM_NODE_SHAPE_BOUNDARY = AgetClassName('diagram', 'node', 'shape', 'boundary'),
-    CSS_DIAGRAM_SUGGEST_CONNECTOR = AgetClassName('diagram', 'node', 'suggest', 'connector'),
+    CSS_DB_CONTROLS = aGetClassName('diagram', 'builder', 'controls'),
+    CSS_DIAGRAM_BUILDER_FIELD = aGetClassName('diagram', 'builder', 'field'),
+    CSS_DIAGRAM_NODE = aGetClassName('diagram', 'node'),
+    CSS_DIAGRAM_NODE_CONTENT = aGetClassName('diagram', 'node', 'content'),
+    CSS_DIAGRAM_NODE_EDITING = aGetClassName('diagram', 'node', 'editing'),
+    CSS_DIAGRAM_NODE_LABEL = aGetClassName('diagram', 'node', 'label'),
+    CSS_DIAGRAM_NODE_SELECTED = aGetClassName('diagram', 'node', 'selected'),
+    CSS_DIAGRAM_NODE_SHAPE_BOUNDARY = aGetClassName('diagram', 'node', 'shape', 'boundary'),
+    CSS_DIAGRAM_SUGGEST_CONNECTOR = aGetClassName('diagram', 'node', 'suggest', 'connector'),
 
     adjustDiagramNodeOffset = function(diagramNode, offsetXY) {
         var dnXY = isArray(diagramNode) ? diagramNode : diagramNode.get('boundingBox').getXY();
@@ -464,7 +464,7 @@ var DiagramBuilder = A.Component.create({
             var strings = instance.getStrings();
             var selectedConnectors = instance.getSelectedConnectors();
 
-            if (selectedConnectors.length && confirm(strings['deleteConnectorsMessage'])) {
+            if (selectedConnectors.length && window.confirm(strings.deleteConnectorsMessage)) {
                 AArray.each(selectedConnectors, function(connector) {
                     var transition = connector.get('transition');
 
@@ -485,7 +485,7 @@ var DiagramBuilder = A.Component.create({
             var strings = instance.getStrings();
             var selectedNode = instance.selectedNode;
 
-            if (selectedNode && !selectedNode.get('required') && confirm(strings['deleteNodesMessage'])) {
+            if (selectedNode && !selectedNode.get('required') && window.confirm(strings.deleteNodesMessage)) {
                 selectedNode.close();
                 instance.editingNode = instance.selectedNode = null;
                 instance.stopEditing();
@@ -499,7 +499,7 @@ var DiagramBuilder = A.Component.create({
          * @param attribute
          * @protected
          */
-        destructor: function(attribute) {
+        destructor: function() {
             var instance = this;
 
             instance.get('suggestConnectorOverlay').destroy();
@@ -581,7 +581,6 @@ var DiagramBuilder = A.Component.create({
          * @param type
          */
         getFieldClass: function(type) {
-            var instance = this;
             var clazz = A.DiagramBuilder.types[type];
 
             if (clazz) {
@@ -657,7 +656,7 @@ var DiagramBuilder = A.Component.create({
          * @param diagramNode
          * @param drag
          */
-        hideSuggestConnectorOverlay: function(diagramNode, drag) {
+        hideSuggestConnectorOverlay: function() {
             var instance = this;
 
             instance.connector.hide();
@@ -728,8 +727,7 @@ var DiagramBuilder = A.Component.create({
          */
         showSuggestConnectorOverlay: function(xy) {
             var instance = this,
-                showSuggestConnectorOverlay = instance.get('suggestConnectorOverlay'),
-                boundingBox = showSuggestConnectorOverlay.get('boundingBox');
+                showSuggestConnectorOverlay = instance.get('suggestConnectorOverlay');
 
             showSuggestConnectorOverlay.get('boundingBox').addClass(CSS_DIAGRAM_SUGGEST_CONNECTOR);
 
@@ -866,7 +864,7 @@ var DiagramBuilder = A.Component.create({
          * @param event
          * @protected
          */
-        _onCancel: function(event) {
+        _onCancel: function() {
             var instance = this;
 
             instance.closeEditProperties();
@@ -1001,7 +999,7 @@ var DiagramBuilder = A.Component.create({
          * @param event
          * @protected
          */
-        _onCanvasMouseDown: function(event) {
+        _onCanvasMouseDown: function() {
             var instance = this;
 
             instance.stopEditing();
@@ -1057,7 +1055,6 @@ var DiagramBuilder = A.Component.create({
          * @protected
          */
         _onNodeMouseEnter: function(event) {
-            var instance = this;
             var diagramNode = A.Widget.getByNode(event.currentTarget);
 
             diagramNode.set('highlighted', true);
@@ -1087,7 +1084,7 @@ var DiagramBuilder = A.Component.create({
          * @param event
          * @protected
          */
-        _onSave: function(event) {
+        _onSave: function() {
             var instance = this;
             var editingNode = instance.editingNode;
             var editingConnector = instance.editingConnector;
@@ -1860,9 +1857,8 @@ var DiagramNode = A.Component.create({
          * @method connectEnd
          * @param event
          */
-        connectEnd: function(event) {
+        connectEnd: function() {
             var instance = this;
-            var drag = event.target;
             var builder = instance.get('builder');
             var publishedSource = builder.publishedSource;
 
@@ -1935,7 +1931,7 @@ var DiagramNode = A.Component.create({
          * @method connectOutTarget
          * @param event
          */
-        connectOutTarget: function(event) {
+        connectOutTarget: function() {
             var instance = this;
             var builder = instance.get('builder');
 
@@ -1950,7 +1946,7 @@ var DiagramNode = A.Component.create({
          * @method connectOverTarget
          * @param event
          */
-        connectOverTarget: function(event) {
+        connectOverTarget: function() {
             var instance = this;
             var builder = instance.get('builder');
 
@@ -1968,7 +1964,7 @@ var DiagramNode = A.Component.create({
         connectStart: function(event) {
             var instance = this;
             var builder = instance.get('builder');
-            var canvas = builder.get('canvas');
+            builder.get('canvas');
 
             builder.connector.show().set('p1', event.startXY);
 
@@ -2100,7 +2096,7 @@ var DiagramNode = A.Component.create({
             return [{
                 attributeName: 'description',
                 editor: new A.TextAreaCellEditor(),
-                name: strings['description']
+                name: strings.description
             }, {
                 attributeName: 'name',
                 editor: new A.TextCellEditor({
@@ -2112,11 +2108,11 @@ var DiagramNode = A.Component.create({
                         }
                     }
                 }),
-                name: strings['name']
+                name: strings.name
             }, {
                 attributeName: 'type',
                 editor: false,
-                name: strings['type']
+                name: strings.type
             }];
         },
 
@@ -2234,8 +2230,6 @@ var DiagramNode = A.Component.create({
          * @protected
          */
         _afterConnectorRemove: function(event) {
-            var instance = this;
-
             event.value.destroy();
         },
 
@@ -2246,7 +2240,7 @@ var DiagramNode = A.Component.create({
          * @param event
          * @protected
          */
-        _afterRender: function(event) {
+        _afterRender: function() {
             var instance = this;
 
             instance.setStdModContent(WidgetStdMod.BODY, '', WidgetStdMod.AFTER);
@@ -2292,7 +2286,7 @@ var DiagramNode = A.Component.create({
          * @param val
          * @protected
          */
-        _connectorsValueFn: function(val) {
+        _connectorsValueFn: function() {
             var instance = this;
 
             return new A.Map({
@@ -2309,9 +2303,8 @@ var DiagramNode = A.Component.create({
          * @param val
          * @protected
          */
-        _controlsToolbarValueFn: function(val) {
-            var instance = this,
-                id = instance.get('id');
+        _controlsToolbarValueFn: function() {
+            var instance = this;
 
             return {
                 children: [
@@ -2332,7 +2325,7 @@ var DiagramNode = A.Component.create({
          * @param event
          * @protected
          */
-        _handleCloseEvent: function(event) {
+        _handleCloseEvent: function() {
             var instance = this;
 
             instance.get('builder').deleteSelectedNode();
@@ -2442,7 +2435,7 @@ var DiagramNode = A.Component.create({
          * @param event
          * @protected
          */
-        _onBoundaryDrag: function(event) {
+        _onBoundaryDrag: function() {
             var instance = this;
             var dd = instance.boundaryDragDelegate.dd;
 
@@ -2550,7 +2543,7 @@ var DiagramNode = A.Component.create({
          * @param event
          * @protected
          */
-        _renderControlsToolbar: function(event) {
+        _renderControlsToolbar: function() {
             var instance = this;
 
             instance.controlsToolbar = new A.Toolbar(
@@ -2738,15 +2731,7 @@ var DiagramNode = A.Component.create({
          * @param val
          * @protected
          */
-        _uiSetRequired: function(val) {
-            var instance = this,
-                controlsToolbar = instance.controlsToolbar;
-
-            if (controlsToolbar) {
-                // TODO
-                // controlsToolbar.disable button
-            }
-        },
+        _uiSetRequired: function() {},
 
         /**
          * Set the `selected` attribute in the UI.
@@ -2786,8 +2771,6 @@ var DiagramNode = A.Component.create({
          * @protected
          */
         _valueShapeBoundary: function() {
-            var instance = this;
-
             return {
                 height: 41,
                 type: 'rect',
@@ -2804,7 +2787,7 @@ var DiagramNode = A.Component.create({
 
 A.DiagramNode = DiagramNode;
 
-A.DiagramBuilder.types['node'] = A.DiagramNode;
+A.DiagramBuilder.types.node = A.DiagramNode;
 
 /**
  * A base class for DiagramNodeState.
@@ -2906,8 +2889,6 @@ A.DiagramNodeState = A.Component.create({
          * @protected
          */
         _valueShapeBoundary: function() {
-            var instance = this;
-
             return {
                 radius: 15,
                 type: 'circle',
@@ -2921,7 +2902,7 @@ A.DiagramNodeState = A.Component.create({
     }
 });
 
-A.DiagramBuilder.types['state'] = A.DiagramNodeState;
+A.DiagramBuilder.types.state = A.DiagramNodeState;
 
 /**
  * A base class for DiagramNodeCondition.
@@ -3021,7 +3002,7 @@ A.DiagramNodeCondition = A.Component.create({
     }
 });
 
-A.DiagramBuilder.types['condition'] = A.DiagramNodeCondition;
+A.DiagramBuilder.types.condition = A.DiagramNodeCondition;
 
 /**
  * A base class for DiagramNodeStart.
@@ -3075,7 +3056,7 @@ A.DiagramNodeStart = A.Component.create({
     EXTENDS: A.DiagramNodeState
 });
 
-A.DiagramBuilder.types['start'] = A.DiagramNodeStart;
+A.DiagramBuilder.types.start = A.DiagramNodeStart;
 
 /**
  * A base class for DiagramNodeEnd.
@@ -3129,7 +3110,7 @@ A.DiagramNodeEnd = A.Component.create({
     EXTENDS: A.DiagramNodeState
 });
 
-A.DiagramBuilder.types['end'] = A.DiagramNodeEnd;
+A.DiagramBuilder.types.end = A.DiagramNodeEnd;
 
 /**
  * A base class for DiagramNodeJoin.
@@ -3213,7 +3194,7 @@ A.DiagramNodeJoin = A.Component.create({
     }
 });
 
-A.DiagramBuilder.types['join'] = A.DiagramNodeJoin;
+A.DiagramBuilder.types.join = A.DiagramNodeJoin;
 
 /**
  * A base class for DiagramNodeFork.
@@ -3297,7 +3278,7 @@ A.DiagramNodeFork = A.Component.create({
     }
 });
 
-A.DiagramBuilder.types['fork'] = A.DiagramNodeFork;
+A.DiagramBuilder.types.fork = A.DiagramNodeFork;
 
 /**
  * A base class for `A.DiagramNodeTask`.
@@ -3400,8 +3381,6 @@ A.DiagramNodeTask = A.Component.create({
          * @return {Object}
          */
         _valueShapeBoundary: function() {
-            var instance = this;
-
             return {
                 height: 55,
                 type: 'rect',
@@ -3416,4 +3395,4 @@ A.DiagramNodeTask = A.Component.create({
     }
 });
 
-A.DiagramBuilder.types['task'] = A.DiagramNodeTask;
+A.DiagramBuilder.types.task = A.DiagramNodeTask;
