@@ -99,25 +99,23 @@ YUI({
     /**
      * App
      */
-    new Y.SurfaceApp({
+    var app = new Y.SurfaceApp({
         linkSelector: 'a',
-        root: '/demos/surface',
+        root: '/demos/surface'
+    });
 
-        // TODO: How to add more screens?
-        screens: [
-            {
-                path: '/home:sid',
-                screen: Y.HomeScreen
-            },
-            {
-                path: '/about',
-                screen: Y.AboutScreen
-            }
-        ],
+    app.addScreens([
+        {
+            path: '/home:sid',
+            screen: Y.HomeScreen
+        },
+        {
+            path: '/about',
+            screen: Y.AboutScreen
+        }
+    ]);
 
-        // TODO: How to add more surfaces?
-        surfaces: ['page', 'header', 'nav', 'body']
-    })
-        .dispatch();
+    app.addSurfaces(['page', 'header', 'nav', 'body']);
 
+    app.dispatch();
 });
