@@ -1,4 +1,5 @@
-var Lang = A.Lang;
+var Lang = A.Lang,
+    AArray = A.Array;
 
 A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
     /**
@@ -20,31 +21,22 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
     activeScreen: null,
 
     /**
-     * Maps the screen classes by the path.
-     *
-     * @property screenFactories
-     * @type {Object}
-     * @protected
-     */
-    screenFactories: null,
-
-    /**
      * Maps the screen instances by the path.
      *
-     * @property screens
+     * @property _screens
      * @type {Object}
      * @protected
      */
-    screens: null,
+    _screens: null,
 
     /**
      * Map that index the surfaces instances by the surface id.
      *
-     * @property surfaces
+     * @property _surfaces
      * @type {Object}
      * @protected
      */
-    surfaces: null,
+    _surfaces: null,
 
     /**
      * Construction logic executed during SurfaceApp instantiation.
@@ -54,9 +46,53 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
      * @protected
      */
     initializer: function() {
-        this.screens = {};
-        this.on('navigate', this._onNavigate);
-        this._registerRoutes(this.get('screens'));
+        var instance = this;
+
+        instance._surfaces = {};
+        instance._screens = {};
+
+        instance.on('navigate', instance._onNavigate);
+    },
+
+    /**
+     * Adds one or more screens to the application.
+     *
+     * @method addScreens
+     * @param {Object} or {Array} screens Single object or an array of object. Each object should contain `path`
+     *     and `screen`.
+     * The `path` should be a string or
+     * a regex that maps the navigation route to a screen class definition
+     * (not an instance), e.g:
+     *
+     *     `{ path: "/home:param1", screen: Y.MyScreen }`
+     *     `{ path: /foo.+/, screen: Y.MyScreen }`
+     */
+    addScreens: function(screens) {
+        this._registerRoutes(AArray(screens));
+    },
+
+    /**
+     * Adds one or more surfaces to the application.
+     *
+     * @method addSurfaces
+     * @param {Surface} or {String} or [{Surface | String}] surfaces String (id) or Surface instance. You can
+     * also pass an Array which contains Surface instances or String (id). In case of ID, these should be the ID of
+     * surface DOM element.
+     */
+    addSurfaces: function(surfaces) {
+        var instance = this;
+
+        surfaces = AArray(surfaces);
+
+        AArray.each(surfaces, function(surface) {
+            if (Lang.isString(surface)) {
+                surface = new A.Surface({
+                    id: surface
+                });
+            }
+
+            instance._surfaces[surface] = surface;
+        });
     },
 
     /**
@@ -85,7 +121,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
         }
         this.activePath = path;
         this.activeScreen = screen;
-        this.screens[path] = screen;
+        this._screens[path] = screen;
     },
 
     /**
@@ -102,7 +138,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
      */
     _handleNavigate: function(path, ScreenCtor, req, res, next) {
         var instance = this,
-            screen = instance.screens[path],
+            screen = instance._screens[path],
             activeScreen = instance.activeScreen,
             screenId,
             deffered,
@@ -128,7 +164,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
         // getContentForSurface could return a promise in order to fetch async
         // content pass it to Y.batch in order to resolve them in parallel
         A.log('Loading surfaces content...', 'info');
-        A.Object.each(instance.surfaces, function(surface, surfaceId) {
+        A.Object.each(instance._surfaces, function(surface, surfaceId) {
             surfaces.push(surface);
             contents.push(screen.handleSurfaceContent(surfaceId));
         });
@@ -136,7 +172,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
         deffered
             .then(function(data) {
                 // When surfaces contents are ready, add them to each surface
-                A.Array.each(surfaces, function(surface, i) {
+                AArray.each(surfaces, function(surface, i) {
                     screen.addCache(surface, data[i]);
                     surface.addContent(screenId, data[i], (screen === activeScreen));
                 });
@@ -155,7 +191,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
                 // Animations should start at the same time, therefore
                 // it's passed to Y.batch to be processed in parallel
                 A.log('Screen [' + screen + '] ready, transition...', 'info');
-                A.Array.each(surfaces, function(surface) {
+                AArray.each(surfaces, function(surface) {
                     transitions.push(surface.show(screenId));
                 });
                 return A.batch.apply(A, transitions);
@@ -201,28 +237,30 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
     _removeScreen: function(path, screen) {
         var screenId = screen.get('id');
 
-        A.Object.each(this.surfaces, function(surface) {
+        A.Object.each(this._surfaces, function(surface) {
             surface.remove(screenId);
         });
+
         screen.destroy();
-        delete this.screens[path];
+
+        delete this._screens[path];
     },
 
     /**
      * Registers a route for a screen.
      *
      * @method  _registerRoutes
-     * @param {Array} screenFactories Array of objects with `path` and `screen`
+     * @param {Array} screens Array of objects with `path` and `screen`
      *     keys.
      * @private
      */
-    _registerRoutes: function(screenFactories) {
+    _registerRoutes: function(screens) {
         var instance = this;
 
-        A.Object.each(screenFactories, function(screenFactory) {
+        AArray.each(screens, function(value) {
             instance.route(
-                screenFactory.path,
-                A.bind(instance._handleNavigate, instance, screenFactory.path, screenFactory.screen));
+                value.path,
+                A.bind(instance._handleNavigate, instance, value.path, value.screen));
         });
     },
 
@@ -236,52 +274,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
      */
     _setDocumentTitle: function(screen) {
         A.config.doc.title = screen.get('title') || this.get('defaultTitle');
-    },
-
-    /**
-     * Sets screens attribute.
-     *
-     * @method  _setScreens
-     * @private
-     * @param {Array} val Array of objects, each object should contain `path`
-     *     and `screen`.
-     * @return {Array}
-     */
-    _setScreens: function(val) {
-        var instance = this;
-
-        instance.screenFactories = {};
-        A.Array.each(val, function(data) {
-            instance.screenFactories[String(data.path)] = data.screen;
-        });
-        return val;
-    },
-
-    /**
-     * Sets surfaces attribute.
-     *
-     * @method  _setSurfaces
-     * @private
-     * @param {[Surface | String]} val Array of Surface instances or ids of the
-     *     surface DOM element.
-     * @return {Array} Array of Surface instances.
-     */
-    _setSurfaces: function(val) {
-        var instance = this;
-
-        instance.surfaces = {};
-        A.Array.each(val, function(surface, i) {
-            if (Lang.isString(surface)) {
-                surface = new A.Surface({
-                    id: surface
-                });
-            }
-            val[i] = surface;
-            instance.surfaces[surface] = surface;
-        });
-        return val;
     }
-
 }, {
     ATTRS: {
         /**
@@ -295,33 +288,6 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
         defaultTitle: {
             validator: Lang.isString,
             value: 'Home'
-        },
-
-        /**
-         * Maps the `path` and `screen` values. The `path` should be a string or
-         * a regex that maps the navigation route to a screen class definition
-         * (not an instance), e.g:
-         *
-         *     `{ path: "/home:param1", screen: Y.MyScreen }`
-         *     `{ path: /foo.+/, screen: Y.MyScreen }`
-         *
-         * @attribute screens
-         * @default []
-         * @type {Array}
-         */
-        screens: {
-            setter: '_setScreens',
-            validator: Lang.isArray,
-            value: [],
-            writeOnce: true
-        },
-
-        surfaces: {
-            lazyAdd: false,
-            setter: '_setSurfaces',
-            validator: Lang.isArray,
-            value: [],
-            writeOnce: true
         }
     }
 });
