@@ -910,10 +910,16 @@ var DiagramBuilder = A.Component.create({
          * @protected
          */
         _onDeleteKey: function(event) {
-            var instance = this;
+            var instance = this,
+                selectedConnectors = instance.getSelectedConnectors();
 
             if (isDiagramNode(A.Widget.getByNode(event.target))) {
                 instance._deleteSelectedNode(event);
+            }
+            else if (selectedConnectors.length > 0) {
+                instance.deleteSelectedConnectors();
+
+                event.halt();
             }
         },
 
