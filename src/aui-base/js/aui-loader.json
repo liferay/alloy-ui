@@ -821,8 +821,7 @@
             "node-style",
             "pjax-base",
             "promise",
-            "router",
-            "aui-set"
+            "router"
         ]
     },
     "aui-tabview": {

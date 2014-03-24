@@ -1,4 +1,6 @@
-var Lang = A.Lang;
+var getNodeById = function(id) {
+    return A.one(A.config.doc.getElementById(id));
+};
 
 A.Surface = A.Base.create('surface', A.Base, [], {
     /**
@@ -11,14 +13,32 @@ A.Surface = A.Base.create('surface', A.Base, [], {
     activeChild: null,
 
     /**
-     * Holds the element with the specified surface id, if not found creates a
-     * new element with the specified id.
+     * Holds the history of child elements.
      *
-     * @property element
+     * @property children
+     * @type {Array}
+     * @protected
+     */
+    children: null,
+
+    /**
+     * Holds the default child element.
+     *
+     * @property defaultChild
      * @type {Node}
      * @protected
      */
-    element: null,
+    defaultChild: null,
+
+    /**
+     * Holds the element with the specified surface id, if not found creates a
+     * new element with the specified id.
+     *
+     * @property el
+     * @type {Node}
+     * @protected
+     */
+    el: null,
 
     /**
      * Construction logic executed during Surface instantiation.
@@ -30,8 +50,13 @@ A.Surface = A.Base.create('surface', A.Base, [], {
     initializer: function() {
         var id = this.get('id');
 
-        this.element = A.one(A.DOM.byId(id));
-        this.activeChild = this.addContent(A.Surface.DEFAULT);
+        if (!id) {
+            throw 'Surface element id not specified.';
+        }
+
+        this.children = {};
+        this.el = getNodeById(id);
+        this.activeChild = this.defaultChild = this.addContent(A.Surface.DEFAULT);
     },
 
     /**
@@ -42,26 +67,34 @@ A.Surface = A.Base.create('surface', A.Base, [], {
      *
      * @method addContent
      * @param {String} screenId The screen id the content belongs too.
-     * @param {Node | String} opt_content The content to add.
-     * @param {Boolean} opt_refresh Whether the add content logic should
-     *     simulates a refresh only.
+     * @param {String | Node} opt_content The string content or node to add.
      * @return {Node}
      */
-    addContent: function(screenId, opt_content, opt_refresh) {
-        var child = this.getChild(screenId);
+    addContent: function(screenId, opt_content) {
+        var instance = this,
+            deferred,
+            child = instance.getChild(screenId);
 
         if (!opt_content) {
             return child;
         }
+
+        A.log('Screen [' + screenId + '] add content to surface [' + this + ']', 'info');
+
         if (!child) {
             child = this.createChild(screenId);
+            child.append(opt_content);
         }
-        A.log('Screen [' + screenId + '] is adding content to surface [' + this + ']', 'info');
-        if (!opt_refresh) {
-            this.transition(child, null);
-        }
-        child.setContent(opt_content);
-        this.element.append(child);
+
+        this.children[screenId] = child;
+        instance.el.append(child);
+        deferred = this.transition(child, null);
+        deferred.then(function() {
+            if (this.activeChild) {
+                this.activeChild.remove();
+            }
+        });
+
         return child;
     },
 
@@ -84,7 +117,7 @@ A.Surface = A.Base.create('surface', A.Base, [], {
      * @return {Node | null}
      */
     getChild: function(screenId) {
-        return A.one(A.DOM.byId(this._makeId(screenId)));
+        return this.children[screenId] || this.el.one('> #' + this._makeId(screenId));
     },
 
     /**
@@ -96,17 +129,22 @@ A.Surface = A.Base.create('surface', A.Base, [], {
      *     navigation until it is resolved.
      */
     show: function(screenId) {
-        var child = this.getChild(screenId),
-            deffered;
+        var from = this.activeChild,
+            to = this.getChild(screenId),
+            deferred;
 
-        // When child for screenId not found use activeChild instead, then the
-        // transition goes from activeChild to child (activeChild)
-        if (!child) {
-            child = this.getChild(A.Surface.DEFAULT);
+        // When surface child for screen not found retrieve the default
+        // content from DOM element with id `surfaceId-default`
+        if (!to) {
+            to = this.defaultChild;
+            if (to) {
+                to.appendTo(this.el);
+            }
         }
-        deffered = this.transition(this.activeChild, child);
-        this.activeChild = child;
-        return deffered;
+
+        deferred = this.transition(from, to);
+        this.activeChild = to;
+        return deferred;
     },
 
     /**
@@ -141,7 +179,7 @@ A.Surface = A.Base.create('surface', A.Base, [], {
      *     navigation until it is resolved.
      */
     transition: function(from, to) {
-        return this.get('transition').call(this, from, to);
+        return A.when(this.get('transition').call(this, from, to));
     },
 
     /**
@@ -166,7 +204,7 @@ A.Surface = A.Base.create('surface', A.Base, [], {
          * @type {Function}
          */
         transition: {
-            validator: Lang.isFunction,
+            validator: A.Lang.isFunction,
             valueFn: function() {
                 return A.Surface.TRANSITION;
             }
@@ -181,8 +219,7 @@ A.Surface = A.Base.create('surface', A.Base, [], {
          * @type {String}
          */
         id: {
-            validator: Lang.isString,
-            value: A.guid(),
+            validator: A.Lang.isString,
             writeOnce: true
         }
     },
