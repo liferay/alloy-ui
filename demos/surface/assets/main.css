@@ -1,4 +1,4 @@
-[id^="surface"] {
+#surface1, #surface2 {
     border: 1px solid #eaeaea;
     margin-bottom: 40px;
     min-height: 100px;
