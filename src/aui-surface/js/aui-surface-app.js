@@ -1,16 +1,4 @@
-var Lang = A.Lang,
-    AArray = A.Array;
-
 A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
-    /**
-     * Holds the active path.
-     *
-     * @property activeChild
-     * @type {String}
-     * @protected
-     */
-    activePath: null,
-
     /**
      * Holds the active screen.
      *
@@ -21,22 +9,31 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
     activeScreen: null,
 
     /**
-     * Maps the screen instances by the path.
+     * Holds the active url containing the query parameters.
      *
-     * @property _screens
+     * @property activeUrl
+     * @type {String}
+     * @protected
+     */
+    activeUrl: null,
+
+    /**
+     * Maps the screen instances by the url containing the parameters.
+     *
+     * @property screens
      * @type {Object}
      * @protected
      */
-    _screens: null,
+    screens: null,
 
     /**
      * Map that index the surfaces instances by the surface id.
      *
-     * @property _surfaces
+     * @property surfaces
      * @type {Object}
      * @protected
      */
-    _surfaces: null,
+    surfaces: null,
 
     /**
      * Construction logic executed during SurfaceApp instantiation.
@@ -46,12 +43,9 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
      * @protected
      */
     initializer: function() {
-        var instance = this;
-
-        instance._surfaces = {};
-        instance._screens = {};
-
-        instance.on('navigate', instance._onNavigate);
+        this.surfaces = {};
+        this.screens = {};
+        this.on('navigate', this._onNavigate);
     },
 
     /**
@@ -68,7 +62,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
      *     `{ path: /foo.+/, screen: Y.MyScreen }`
      */
     addScreens: function(screens) {
-        this._registerRoutes(AArray(screens));
+        this._registerRoutes(A.Array(screens));
     },
 
     /**
@@ -82,46 +76,64 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
     addSurfaces: function(surfaces) {
         var instance = this;
 
-        surfaces = AArray(surfaces);
+        surfaces = A.Array(surfaces);
 
-        AArray.each(surfaces, function(surface) {
-            if (Lang.isString(surface)) {
+        A.Array.each(surfaces, function(surface) {
+            if (A.Lang.isString(surface)) {
                 surface = new A.Surface({
                     id: surface
                 });
             }
-
-            instance._surfaces[surface] = surface;
+            instance.surfaces[surface] = surface;
         });
+    },
+
+    /**
+     * @override
+     */
+    hasRoute: function(url) {
+        var path;
+
+        if (!this._hasSameOrigin(url)) {
+            return false;
+        }
+
+        if (!this._html5) {
+            url = this._upgradeURL(url);
+        }
+
+        path = this.removeRoot(url);
+
+        return !!this.match(path).length;
     },
 
     /**
      * Finalizes a screen navigation.
      *
      * @method  _finalizeNavigate
-     * @param {String} path
+     * @param {String} url
      * @param {Screen} screen
      * @private
      */
-    _finalizeNavigate: function(path, screen) {
+    _finalizeNavigate: function(url, screen) {
         var activeScreen = this.activeScreen;
 
         screen.afterFlip();
 
-        // Concurrent routes can share the same screen, e.g. `/home` and
-        // `/home:param`, for those cases a page refresh is performed and
-        // removing the screen is not necessary.
-        if (screen === activeScreen) {
-            A.log('Screen [' + screen + '] refreshed', 'info');
-            return;
+        if (activeScreen && !activeScreen.get('cacheable')) {
+            this._removeScreen(this.activeUrl, activeScreen);
         }
 
-        if (activeScreen && !activeScreen.get('cacheable')) {
-            this._removeScreen(this.activePath, activeScreen);
-        }
-        this.activePath = path;
+        this.activeUrl = url;
         this.activeScreen = screen;
-        this._screens[path] = screen;
+        this.screens[url] = screen;
+    },
+
+    /**
+     * @override
+     */
+    _getPath: function() {
+        return this.removeRoot(this._getURL());
     },
 
     /**
@@ -136,68 +148,66 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
      * @param  {Function} next       [description]
      * @return {[type]}              [description]
      */
-    _handleNavigate: function(path, ScreenCtor, req, res, next) {
+    _handleNavigate: function(screenFactory, req, res, next) {
         var instance = this,
-            screen = instance._screens[path],
+            url = this.removeRoot(req.url),
+            nextScreen = instance.screens[url],
             activeScreen = instance.activeScreen,
             screenId,
-            deffered,
+            deferred,
             contents = [],
             surfaces = [],
             transitions = [];
 
-        A.log('Navigate to [' + path + ']', 'info');
+        A.log('Navigate to [' + url + ']', 'info');
 
-        if (!screen) {
-            A.log('Screen for [' + path + '] not found, create one', 'info');
-            screen = new ScreenCtor();
+        if (!nextScreen) {
+            A.log('Create screen for [' + url + ']', 'info');
+            nextScreen = new(screenFactory.screen)();
         }
 
-        screenId = screen.get('id');
-
-        if (screen === activeScreen) {
-            A.log('Screen [' + screen + '] simulates page refresh', 'info');
-            screen.clearCache();
-        }
+        screenId = nextScreen.get('id');
 
         // Stack the surfaces and its operations in the right order. Since
         // getContentForSurface could return a promise in order to fetch async
         // content pass it to Y.batch in order to resolve them in parallel
         A.log('Loading surfaces content...', 'info');
-        A.Object.each(instance._surfaces, function(surface, surfaceId) {
+        A.Object.each(instance.surfaces, function(surface, surfaceId) {
             surfaces.push(surface);
-            contents.push(screen.handleSurfaceContent(surfaceId));
+            contents.push(nextScreen.handleSurfaceContent(surfaceId, req));
         });
-        deffered = A.batch.apply(A, contents);
-        deffered
+
+        deferred = A.batch.apply(A, contents);
+        deferred
             .then(function(data) {
-                // When surfaces contents are ready, add them to each surface
-                AArray.each(surfaces, function(surface, i) {
-                    screen.addCache(surface, data[i]);
-                    surface.addContent(screenId, data[i], (screen === activeScreen));
+                // Add the new content to each surface
+                A.Array.each(surfaces, function(surface, i) {
+                    if (data[i]) {
+                        surface.addContent(screenId, data[i]);
+                        nextScreen.addCache(surface, data[i]);
+                    }
                 });
 
-                A.log('Tell the screen to get ready (beforeFlip)...', 'info');
-                return A.when(screen.beforeFlip());
+                return A.when(nextScreen.beforeFlip());
             })
             .then(function() {
                 if (activeScreen) {
-                    A.log('Deactivate active screen', 'info');
                     activeScreen.deactivate();
                 }
 
-                instance._setDocumentTitle(screen);
+                instance._setDocumentTitle(nextScreen);
 
                 // Animations should start at the same time, therefore
                 // it's passed to Y.batch to be processed in parallel
-                A.log('Screen [' + screen + '] ready, transition...', 'info');
-                AArray.each(surfaces, function(surface) {
+                A.log('Screen [' + nextScreen + '] ready, flip...', 'info');
+                A.Array.each(surfaces, function(surface) {
                     transitions.push(surface.show(screenId));
                 });
+
                 return A.batch.apply(A, transitions);
             })
             .then(function() {
-                instance._finalizeNavigate(path, screen);
+                instance._finalizeNavigate(url, nextScreen);
                 A.log('Navigation done, request next screen', 'info');
                 next();
             });
@@ -230,20 +240,32 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
      * Removes a screen.
      *
      * @method  _removeScreen
-     * @param {String} path
+     * @param {String} url
      * @param {Screen} screen
      * @private
      */
-    _removeScreen: function(path, screen) {
+    _removeScreen: function(url, screen) {
         var screenId = screen.get('id');
 
-        A.Object.each(this._surfaces, function(surface) {
+        A.Object.each(this.surfaces, function(surface) {
             surface.remove(screenId);
         });
 
         screen.destroy();
+        delete this.screens[url];
+    },
 
-        delete this._screens[path];
+    /**
+     * Escapes characters in the string that are not safe to use in a RegExp.
+     *
+     * @method _regExpEscape
+     * @param {String} s The string to escape. If not a string, it will be casted
+     *     to one.
+     * @return {string} A RegExp safe, escaped copy of `s`.
+     */
+    _regExpEscape: function(s) {
+        return String(s).replace(/([-()\[\]{}+?*.$\^|,:#<!\\])/g, '\\$1').
+        replace(/\x08/g, '\\x08');
     },
 
     /**
@@ -257,10 +279,20 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
     _registerRoutes: function(screens) {
         var instance = this;
 
-        AArray.each(screens, function(value) {
-            instance.route(
-                value.path,
-                A.bind(instance._handleNavigate, instance, value.path, value.screen));
+        A.Array.each(screens, function(value) {
+            var regex = value.path;
+
+            if (!A.instanceOf(regex, RegExp)) {
+                regex = new RegExp('^' + instance._regExpEscape(value.path) + '$');
+            }
+
+            instance._routes.push({
+                callback: A.bind(instance._handleNavigate, instance, value),
+                callbacks: [A.bind(instance._handleNavigate, instance, value)],
+                keys: [],
+                path: value.path,
+                regex: regex
+            });
         });
     },
 
@@ -286,7 +318,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
          * @type {String}
          */
         defaultTitle: {
-            validator: Lang.isString,
+            validator: A.Lang.isString,
             value: 'Home'
         }
     }

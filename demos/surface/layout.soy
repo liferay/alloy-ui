@@ -19,21 +19,24 @@
         <script src="../../build/aui/aui.js"></script>
     </head>
     <body>
-    <div class="container-fluid" id="page">
-        <div id="page-default">
-        {/if}
-            <header class="row-fluid" id="header">
-                {$header}
-            </header>
-            <div class="row-fluid" id="nav">
-                {$nav}
-            </div>
-            <div class="row-fluid" id="body">
-                {$body}
-            </div>
-        {if not $pjax}
+    <div class="container-fluid">
+    {/if}
+        <header class="row-fluid" id="header">
+            <div id="header-default">{$header}</div>
+        </header>
+        <div class="row-fluid" id="nav">
+            <div id="nav-default">{$nav}</div>
         </div>
+        <div class="row-fluid">
+            {$body}
+        </div>
+    {if not $pjax}
     </div>
+        <div class="container-fluid" id="info">
+            {if not $pjax}
+                <div id="info-default">I am a default content.</div>
+            {/if}
+        </div>
         <script src="main.js"></script>
     </body>
     </html>
@@ -56,11 +59,15 @@
 
 /**
   * Surface
-  * @param id Surface id.
+  * @param sid Surface id.
+  * @param? info Surface info.
   */
 {template .surface}
-    <section id="surface{$id}">
-        <a href="home?sid={$id}&foo=complex string foo">Surface {$id}</a>
+    <section id="surface{$sid}">
+        <div id="surface{$sid}-default">
+            <a href="home?sid={$sid}&foo=complex string foo">Surface {$sid} </a>
+            - <small>{if $info}{$info}{/if}</small>
+        </div>
     </section>
 {/template}
 
@@ -71,27 +78,21 @@
 {template .home}
     {call layout.page data="all"}
         {param header}
-            <div id="header-default">
-                <h1 class="span12">AlloyUI - /home</h1>
-            </div>
+            <h1 class="span12">AlloyUI - /home</h1>
         {/param}
         {param nav}
-            <div id="nav-default">
-                {call layout.nav}
-                    {param navs: ['home', 'about'] /}
-                {/call}
-            </div>
+            {call layout.nav}
+                {param navs: ['home', 'about'] /}
+            {/call}
         {/param}
         {param body}
-            <div id="body-default">
-                <div class="span6">
-                    {call layout.surface}{param id: 1 /}{/call}
-                    {call layout.surface}{param id: 2 /}{/call}
-                </div>
-                <div class="span6">
-                    {call layout.surface}{param id: 3 /}{/call}
-                    {call layout.surface}{param id: 4 /}{/call}
-                </div>
+            <div class="span12">
+                {call layout.surface data="all"}
+                    {param sid: 1 /}
+                {/call}
+                {call layout.surface data="all"}
+                    {param sid: 2 /}
+                {/call}
             </div>
         {/param}
     {/call}
@@ -104,22 +105,21 @@
 {template .about}
     {call layout.page data="all"}
         {param header}
-            <div id="header-default">
-                <h1 class="span12">AlloyUI - /about</h1>
-            </div>
+            <h1 class="span12">AlloyUI - /about</h1>
         {/param}
         {param nav}
-            <div id="nav-default">
-                {call layout.nav}
-                    {param navs: ['home', 'about', 'contact'] /}
-                {/call}
-            </div>
+            {call layout.nav}
+                {param navs: ['home', 'about', 'contact'] /}
+            {/call}
         {/param}
         {param body}
-            <div id="body-default">
-                <div class="span12">
-                    {call layout.surface}{param id: 1 /}{/call}
-                </div>
+            <div class="span12">
+                {call layout.surface data="all"}
+                    {param sid: 1 /}
+                {/call}
+                {call layout.surface data="all"}
+                    {param sid: 2 /}
+                {/call}
             </div>
         {/param}
     {/call}
