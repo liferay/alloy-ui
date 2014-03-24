@@ -54,11 +54,46 @@ YUI.add('module-tests', function(Y) {
             Y.Assert.areNotEqual(startP2, endP2);
 
             largeContent.remove();
+        },
+
+        'test delete connector when pressing delete key': function() {
+            var fields = diagramBuilder.get('fields'),
+                startNode = fields.item(0),
+                transition = startNode.get('transitions').values()[0],
+                connector = startNode.getConnector(transition);
+
+            var tmpConfirmFn = window.confirm;
+
+            window.confirm = function() {
+                return true;
+            };
+
+            connector.set('selected', true);
+
+            Y.getDoc().simulate("keydown", {
+                keyCode: 8
+            });
+            Y.getDoc().simulate("keydown", {
+                keyCode: 46
+            });
+
+            Y.Assert.isFalse(startNode.isTransitionConnected(transition));
+
+            window.confirm = tmpConfirmFn;
+
+            // Reconnect in case other test cases need it
+            diagramBuilder.connectAll([
+                {
+                    connector: connector,
+                    source: startNode,
+                    target: fields.item(1)
+                }
+            ]);
         }
     }));
 
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['test', 'aui-diagram-builder']
+    requires: ['test', 'aui-diagram-builder', 'node-event-simulate']
 });
