@@ -1163,8 +1163,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "node-style",
             "pjax-base",
             "promise",
-            "router",
-            "aui-set"
+            "router"
         ]
     },
     "aui-swf-deprecated": {
@@ -1443,4 +1442,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '45453f370eb8c5bfe7a40607ad6f2899';
+YUI.Env[Y.version].md5 = '8c540dca20ab02807c7c850f8f94e188';
