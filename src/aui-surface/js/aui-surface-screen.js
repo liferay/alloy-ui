@@ -1,6 +1,8 @@
-var Lang = A.Lang;
-
 A.ScreenBase = function() {};
+
+A.ScreenBase.NAME = 'screen';
+
+A.ScreenBase._uniqueIdCounter = Date.now();
 
 A.ScreenBase.prototype = {
     /**
@@ -69,6 +71,7 @@ A.ScreenBase.prototype = {
      *
      * @method getSurfaceContent
      * @param {String} surfaceId The id of the surface DOM element.
+     * @param {Object} req The request object.
      * @return {String | Promise} This can return a string representing the
      *     content of the surface or a promise, which will pause the navigation
      *     until it is resolved. This is useful for loading async content.
@@ -84,12 +87,13 @@ A.ScreenBase.prototype = {
      * @method handleSurfaceContent
      * @protected
      * @param {String} surfaceId The id of the surface DOM element.
+     * @param {Object} req The request object.
      * @return {String | Promise} This can return a string representing the
      * content of the surface or a promise, which will pause the navigation
      * until it is resolved. This is useful for loading async content.
      */
-    handleSurfaceContent: function(surfaceId) {
-        return this.getSurfaceContent(surfaceId);
+    handleSurfaceContent: function(surfaceId, req) {
+        return this.getSurfaceContent(surfaceId, req);
     },
 
     /**
@@ -98,6 +102,27 @@ A.ScreenBase.prototype = {
      */
     toString: function() {
         return this.get('id');
+    },
+
+    /**
+     * Sets the id attribute.
+     *
+     * @method _setId
+     * @param {String} val The screen id to be set.
+     * @return {String} Value of the screen name concatenated with the id.
+     */
+    _setId: function(val) {
+        return this.constructor.NAME + '_' + val;
+    },
+
+    /**
+     * Value of the id attribute.
+     *
+     * @method  _valueId
+     * @return {String}
+     */
+    _valueId: function() {
+        return String(A.ScreenBase._uniqueIdCounter++);
     }
 };
 
@@ -111,8 +136,9 @@ A.ScreenBase.ATTRS = {
      * @type String
      */
     id: {
-        validator: Lang.isString,
-        value: A.guid(),
+        setter: '_setId',
+        validator: A.Lang.isString,
+        valueFn: '_valueId',
         writeOnce: true
     },
 
@@ -120,10 +146,10 @@ A.ScreenBase.ATTRS = {
      * The document.title to set when the screen is active.
      *
      * @attribute title
-     * @type String
+     * @type {String}
      */
     title: {
-        validator: Lang.isString
+        validator: A.Lang.isString
     }
 };
 
@@ -167,17 +193,18 @@ A.ScreenCacheable.prototype = {
      * @method handleSurfaceContent
      * @protected
      * @param {String} surfaceId The id of the surface DOM element.
+     * @param {Object} req The request object.
      * @return {String | Promise} This can return a string representing the
      *     content of the surface or a promise, which will pause the navigation
      *     until it is resolved. This is useful for loading async content.
      */
-    handleSurfaceContent: function(surfaceId) {
-        if (this.cache && this.cache[surfaceId] && this.get('cacheable')) {
+    handleSurfaceContent: function(surfaceId, req) {
+        if (this.cache && A.Lang.isString(this.cache[surfaceId]) && this.get('cacheable')) {
             A.log('Surface [' + surfaceId + '] content from cache', 'info');
             return this.cache[surfaceId];
         }
 
-        return this.getSurfaceContent(surfaceId);
+        return this.getSurfaceContent(surfaceId, req);
     },
 
     _setCacheable: function(val) {
@@ -200,9 +227,9 @@ A.ScreenCacheable.ATTRS = {
      */
     cacheable: {
         setter: '_setCacheable',
-        validator: Lang.isBoolean,
+        validator: A.Lang.isBoolean,
         value: false
     }
 };
 
-A.Screen = A.Base.create('screen', A.Base, [A.ScreenBase, A.ScreenCacheable], {}, {});
+A.Screen = A.Base.create(A.ScreenBase.NAME, A.Base, [A.ScreenBase, A.ScreenCacheable], {}, {});
