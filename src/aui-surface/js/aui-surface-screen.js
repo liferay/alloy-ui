@@ -58,10 +58,10 @@ A.ScreenBase.prototype = {
      * non-cacheable view) or when the App is itself disposed for whatever
      * reason.
      *
-     * @method destroy
+     * @method destructor
      */
-    destroy: function() {
-        A.log('Screen [' + this + '] destroy', 'info');
+    destructor: function() {
+        A.log('Screen [' + this + '] destructor', 'info');
     },
 
     /**
@@ -200,6 +200,15 @@ A.ScreenCacheable.prototype = {
      */
     clearCache: function() {
         this.cache = null;
+    },
+
+    /**
+     * Destroys a cacheable screen.
+     *
+     * @method destructor
+     */
+    destructor: function() {
+        this.clearCache();
     },
 
     /**

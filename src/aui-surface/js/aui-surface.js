@@ -16,7 +16,7 @@ A.Surface = A.Base.create('surface', A.Base, [], {
      * Holds the history of child elements.
      *
      * @property children
-     * @type {Array}
+     * @type {Obejct}
      * @protected
      */
     children: null,
@@ -111,7 +111,7 @@ A.Surface = A.Base.create('surface', A.Base, [], {
      * @return {Node | null}
      */
     getChild: function(screenId) {
-        return this.children[screenId] || this.el.one('> #' + this._makeId(screenId));
+        return this.children[screenId] || getNodeById(this._makeId(screenId));
     },
 
     /**
@@ -155,7 +155,8 @@ A.Surface = A.Base.create('surface', A.Base, [], {
         var child = this.getChild(screenId);
 
         if (child) {
-            child.remove();
+            child.remove(true);
+            delete this.children[screenId];
         }
     },
 
