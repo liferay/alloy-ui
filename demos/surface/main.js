@@ -16,7 +16,7 @@ YUI({
                         var content = xhr.responseText;
                         resolve(opt_selector ?
                                     Y.Node.create(content).one(opt_selector).get('innerHTML') :
-                                    content);
+                                      content);
                     }
                 }
             });
