@@ -1158,12 +1158,37 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     },
     "aui-surface": {
+        "use": [
+            "aui-surface-app",
+            "aui-surface-screen"
+        ]
+    },
+    "aui-surface-app": {
+        "requires": [
+            "pjax-base",
+            "router",
+            "aui-surface-base",
+            "aui-surface-screen"
+        ]
+    },
+    "aui-surface-base": {
         "requires": [
             "base-build",
             "node-style",
-            "pjax-base",
+            "promise"
+        ]
+    },
+    "aui-surface-screen": {
+        "requires": [
+            "base-build"
+        ]
+    },
+    "aui-surface-screen-html": {
+        "requires": [
+            "io",
             "promise",
-            "router"
+            "aui-surface-screen",
+            "aui-url"
         ]
     },
     "aui-swf-deprecated": {
@@ -1442,4 +1467,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '8c540dca20ab02807c7c850f8f94e188';
+YUI.Env[Y.version].md5 = 'f683f8c21d838b29e9dd0312fe3b9cdc';

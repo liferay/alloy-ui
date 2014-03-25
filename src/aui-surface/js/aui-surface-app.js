@@ -265,8 +265,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
      * @return {string} A RegExp safe, escaped copy of `s`.
      */
     _regExpEscape: function(s) {
-        return String(s).replace(/([-()\[\]{}+?*.$\^|,:#<!\\])/g, '\\$1').
-        replace(/\x08/g, '\\x08');
+        return String(s).replace(/([-()\[\]{}+?*.$\^|,:#<!\\])/g, '\\$1').replace(/\x08/g, '\\x08');
     },
 
     /**

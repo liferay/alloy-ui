@@ -28,26 +28,20 @@ operations.push(function(callback) {
     app.use(express.static(path.join(__dirname, '../..')));
 
     app.get('/demos/surface/home', function(req, res) {
-        var content,
-            query = req.query;
-
-        content = soynode.render('layout.home', {
+        var content = soynode.render('layout.home', {
             info: req.query.sid ? Date.now() : 'Home',
             sid: req.query.sid,
-            pjax: query.pjax
+            title: 'Home'
         });
 
         res.send(content);
     });
 
     app.get('/demos/surface/about', function(req, res) {
-        var content,
-            query = req.query;
-
-        content = soynode.render('layout.about', {
+        var content = soynode.render('layout.about', {
             info: req.query.sid ? Date.now() : 'About',
             sid: req.query.sid,
-            pjax: query.pjax
+            title: 'About'
         });
 
         res.send(content);
