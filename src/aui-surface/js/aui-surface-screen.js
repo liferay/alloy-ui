@@ -81,6 +81,22 @@ A.ScreenBase.prototype = {
     },
 
     /**
+     * Returns all contents for the surfaces. This will pass an `opt_contents`
+     * to `getSurfaceContent` with all information you need to fulfill the
+     * surfaces.
+     *
+     * @method getSurfacesContent
+     * @param {Array} surfaces Array with surface ids.
+     * @param {Object} req The request object.
+     * @return {String | Promise} This can return a string representing the
+     *     contents of the surfaces or a promise, which will pause the navigation
+     *     until it is resolved. This is useful for loading async content.
+     */
+    getSurfacesContent: function() {
+        A.log('Screen [' + this + '] getSurfacesContent', 'info');
+    },
+
+    /**
      * Handles getSurfaceContent call for the given surface. This is useful for
      * class extensions add extra logic such as cache.
      *
@@ -92,8 +108,8 @@ A.ScreenBase.prototype = {
      * content of the surface or a promise, which will pause the navigation
      * until it is resolved. This is useful for loading async content.
      */
-    handleSurfaceContent: function(surfaceId, req) {
-        return this.getSurfaceContent(surfaceId, req);
+    handleSurfaceContent: function(surfaceId, req, opt_contents) {
+        return this.getSurfaceContent(surfaceId, req, opt_contents);
     },
 
     /**
@@ -198,13 +214,13 @@ A.ScreenCacheable.prototype = {
      *     content of the surface or a promise, which will pause the navigation
      *     until it is resolved. This is useful for loading async content.
      */
-    handleSurfaceContent: function(surfaceId, req) {
+    handleSurfaceContent: function(surfaceId, req, opt_contents) {
         if (this.cache && A.Lang.isString(this.cache[surfaceId]) && this.get('cacheable')) {
             A.log('Surface [' + surfaceId + '] content from cache', 'info');
             return this.cache[surfaceId];
         }
 
-        return this.getSurfaceContent(surfaceId, req);
+        return this.getSurfaceContent(surfaceId, req, opt_contents);
     },
 
     _setCacheable: function(val) {

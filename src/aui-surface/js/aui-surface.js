@@ -72,7 +72,6 @@ A.Surface = A.Base.create('surface', A.Base, [], {
      */
     addContent: function(screenId, opt_content) {
         var instance = this,
-            deferred,
             child = instance.getChild(screenId);
 
         if (!opt_content) {
