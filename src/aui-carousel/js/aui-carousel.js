@@ -5,6 +5,7 @@
  */
 
 var Lang = A.Lang,
+    isBoolean = Lang.isBoolean,
 
     getCN = A.getClassName,
 
@@ -147,6 +148,18 @@ var Carousel = A.Component.create({
         },
 
         /**
+         * Determines if `Carousel` will pause/play on mouse
+         * enter/leave.
+         *
+         * @attribute pauseOnHover
+         * @type Boolean
+         */
+        pauseOnHover: {
+            value: false,
+            validator: isBoolean
+        },
+
+        /**
          * Attributes that determines the status of transitions between
          * items.
          *
@@ -163,6 +176,7 @@ var Carousel = A.Component.create({
         animation: null,
         nodeSelection: null,
         nodeMenu: null,
+        _handlerHoverEvent: null,
 
         /**
          * Construction logic executed during Carousel instantiation. Lifecycle.
@@ -211,6 +225,7 @@ var Carousel = A.Component.create({
                 itemSelectorChange: instance._afterItemSelectorChange,
                 intervalTimeChange: instance._afterIntervalTimeChange,
                 nodeMenuItemSelector: instance._afterNodeMenuItemSelectorChange,
+                pauseOnHoverChange: instance._afterPauseOnChange,
                 playingChange: instance._afterPlayingChange
             });
 
@@ -221,6 +236,10 @@ var Carousel = A.Component.create({
                     prevVal: false,
                     newVal: true
                 });
+            }
+
+            if (instance.get('pauseOnHover')) {
+                this._attachMouseHoverEvent();
             }
         },
 
@@ -398,6 +417,55 @@ var Carousel = A.Component.create({
 
             if (menuPlayItem) {
                 menuPlayItem.replaceClass(fromClass, toClass);
+            }
+        },
+
+        /**
+         * Creates event listeners to `mouseenter` and `mouseleave` event.
+         *
+         * @method _attachMouseHoverEvent
+         * @protected
+         */
+        _attachMouseHoverEvent: function() {
+
+            if (this._handlerHoverEvent) {
+                return;
+            }
+
+            var bb = this.get('boundingBox'),
+                handlerHoverEvent = [];
+
+            handlerHoverEvent.push(bb.on('mouseenter', A.bind(this.pause, this)));
+            handlerHoverEvent.push(bb.on('mouseleave', A.bind(this.play, this)));
+
+            this._handlerHoverEvent = handlerHoverEvent;
+        },
+
+        /**
+         * Detaches listeners created to `mouseenter` and `mouseleave` event.
+         *
+         * @method _detachMouseHoverEvent
+         * @protected
+         */
+        _detachMouseHoverEvent: function() {
+            A.each(this._handlerHoverEvent, function(mouseEvent) {
+                mouseEvent.detach();
+            });
+            this._handlerHoverEvent = null;
+        },
+
+        /**
+         * Fire after `pauseOnHover` attribute changes.
+         *
+         * @method _afterPauseOnChange
+         * @param event
+         * @protected
+         */
+        _afterPauseOnChange: function(event) {
+            this._detachMouseHoverEvent();
+
+            if (event.newVal) {
+                this._attachMouseHoverEvent();
             }
         },
 
