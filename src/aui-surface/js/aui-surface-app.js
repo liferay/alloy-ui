@@ -168,17 +168,20 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
 
         screenId = nextScreen.get('id');
 
-        // Stack the surfaces and its operations in the right order. Since
-        // getContentForSurface could return a promise in order to fetch async
-        // content pass it to Y.batch in order to resolve them in parallel
-        A.log('Loading surfaces content...', 'info');
-        A.Object.each(instance.surfaces, function(surface, surfaceId) {
-            surfaces.push(surface);
-            contents.push(nextScreen.handleSurfaceContent(surfaceId, req));
-        });
-
-        deferred = A.batch.apply(A, contents);
+        deferred = A.when(nextScreen.getSurfacesContent(A.Object.keys(instance.surfaces), req));
         deferred
+            .then(function(opt_contents) {
+                // Stack the surfaces and its operations in the right order. Since
+                // getSurfaceContent could return a promise in order to fetch async
+                // content pass it to Y.batch in order to resolve them in parallel
+                A.log('Loading surfaces content...', 'info');
+                A.Object.each(instance.surfaces, function(surface, surfaceId) {
+                    surfaces.push(surface);
+                    contents.push(nextScreen.handleSurfaceContent(surfaceId, req, opt_contents));
+                });
+
+                return A.batch.apply(A, contents);
+            })
             .then(function(data) {
                 // Add the new content to each surface
                 A.Array.each(surfaces, function(surface, i) {

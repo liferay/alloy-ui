@@ -43,16 +43,22 @@ YUI({
         //     return true;
         // },
 
-        getSurfaceContent: function(surfaceId, req) {
+        getSurfacesContent: function(surfaces, req) {
             var url = new Y.Url(req.url);
             url.addParameter('pjax', '1');
 
+            return load(url);
+        },
+
+        getSurfaceContent: function(surfaceId, req, opt_contents) {
+            var content = Y.Node.create(opt_contents);
+
             switch (surfaceId) {
                 case 'info': return 'I was injected by HomeScreen.';
-                case 'surface1': return load(url, '#surface1');
-                case 'surface2': return load(url, '#surface2');
-                case 'nav': return load(url, '#nav');
-                case 'header': return load(url, '#header');
+                case 'surface1': return content.one('#surface1').get('innerHTML');
+                case 'surface2': return content.one('#surface2').get('innerHTML');
+                case 'nav': return content.one('#nav').get('innerHTML');
+                case 'header': return content.one('#header').get('innerHTML');
             }
         }
     }, {
@@ -71,16 +77,22 @@ YUI({
         //     return true;
         // },
 
-        getSurfaceContent: function(surfaceId, req) {
+        getSurfacesContent: function(surfaces, req) {
             var url = new Y.Url(req.url);
             url.addParameter('pjax', '1');
 
+            return load(url);
+        },
+
+        getSurfaceContent: function(surfaceId, req, opt_contents) {
+            var content = Y.Node.create(opt_contents);
+
             switch (surfaceId) {
                 case 'info': return 'I was injected by AboutScreen.';
-                case 'surface1': return load(url, '#surface1');
-                case 'surface2': return load(url, '#surface2');
-                case 'nav': return load(url, '#nav');
-                case 'header': return load(url, '#header');
+                case 'surface1': return content.one('#surface1').get('innerHTML');
+                case 'surface2': return content.one('#surface2').get('innerHTML');
+                case 'nav': return content.one('#nav').get('innerHTML');
+                case 'header': return content.one('#header').get('innerHTML');
             }
         }
     }, {
@@ -95,14 +107,20 @@ YUI({
     });
 
     Y.SurfaceScreen = Y.Base.create('surfaceScreen', Y.Screen, [], {
-        getSurfaceContent: function(surfaceId, req) {
+        getSurfacesContent: function(surfaces, req) {
             var url = new Y.Url(req.url);
             url.addParameter('pjax', '1');
 
+            return load(url);
+        },
+
+        getSurfaceContent: function(surfaceId, req, opt_contents) {
+            var content = Y.Node.create(opt_contents);
+
             switch (surfaceId) {
-                case 'surface' + req.query.sid: return load(url, '#surface' + req.query.sid);
-                case 'nav': return load(url, '#nav');
-                case 'header': return load(url, '#header');
+                case 'surface' + req.query.sid: return content.one('#surface' + req.query.sid).get('innerHTML');
+                case 'nav': return content.one('#nav').get('innerHTML');
+                case 'header': return content.one('#header').get('innerHTML');
             }
         }
     }, {
