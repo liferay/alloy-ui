@@ -840,12 +840,37 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     },
     "aui-surface": {
+        "use": [
+            "aui-surface-app",
+            "aui-surface-screen"
+        ]
+    },
+    "aui-surface-app": {
+        "requires": [
+            "pjax-base",
+            "router",
+            "aui-surface-base",
+            "aui-surface-screen"
+        ]
+    },
+    "aui-surface-base": {
         "requires": [
             "base-build",
             "node-style",
-            "pjax-base",
+            "promise"
+        ]
+    },
+    "aui-surface-screen": {
+        "requires": [
+            "base-build"
+        ]
+    },
+    "aui-surface-screen-html": {
+        "requires": [
+            "io",
             "promise",
-            "router"
+            "aui-surface-screen",
+            "aui-url"
         ]
     },
     "aui-tabview": {
@@ -1061,4 +1086,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'cbbf3ff1c44cdd2dbfbf701fa86e867e';
+YUI.Env[Y.version].md5 = '9a67e95ee5079203eb86450217378c6a';

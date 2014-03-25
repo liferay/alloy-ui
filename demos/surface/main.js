@@ -3,7 +3,7 @@ YUI({
     filters: {
         'aui-surface': 'debug'
     }
-}).use('aui-surface', 'aui-url', 'transition', 'io', function(Y) {
+}).use('aui-surface-app', 'aui-surface-screen-html', 'transition', function(Y) {
 
     /**
      * Utils
@@ -72,40 +72,6 @@ YUI({
         }
     });
 
-    Y.AboutScreen = Y.Base.create('aboutScreen', Y.Screen, [], {
-        // beforeDeactivate: function() {
-        //     return true;
-        // },
-
-        getSurfacesContent: function(surfaces, req) {
-            var url = new Y.Url(req.url);
-            url.addParameter('pjax', '1');
-
-            return load(url);
-        },
-
-        getSurfaceContent: function(surfaceId, req, opt_contents) {
-            var content = Y.Node.create(opt_contents);
-
-            switch (surfaceId) {
-                case 'info': return 'I was injected by AboutScreen.';
-                case 'surface1': return content.one('#surface1').get('innerHTML');
-                case 'surface2': return content.one('#surface2').get('innerHTML');
-                case 'nav': return content.one('#nav').get('innerHTML');
-                case 'header': return content.one('#header').get('innerHTML');
-            }
-        }
-    }, {
-        ATTRS: {
-            cacheable: {
-                value: false
-            },
-            title: {
-                value: 'About'
-            }
-        }
-    });
-
     Y.SurfaceScreen = Y.Base.create('surfaceScreen', Y.Screen, [], {
         getSurfacesContent: function(surfaces, req) {
             var url = new Y.Url(req.url);
@@ -165,7 +131,7 @@ YUI({
         },
         {
             path: '/about',
-            screen: Y.AboutScreen
+            screen: Y.HTMLScreen
         }
     ]);
 

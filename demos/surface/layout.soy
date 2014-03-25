@@ -5,22 +5,20 @@
  * @param header Content of the layout header.
  * @param nav Content of the layout nav.
  * @param body Content of the layout body.
- * @param? pjax Whether should display only content.
+ * @param title The title of the document.
  */
 {template .page}
-    {if not $pjax}
     <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>{$title}</title>
         <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
         <link rel="stylesheet" href="assets/main.css">
         <script src="../../build/aui/aui.js"></script>
     </head>
     <body>
     <div class="container-fluid">
-    {/if}
         <header class="row-fluid" id="header">
             <div id="header-default">{$header}</div>
         </header>
@@ -30,17 +28,13 @@
         <div class="row-fluid">
             {$body}
         </div>
-    {if not $pjax}
     </div>
         <div class="container-fluid" id="info">
-            {if not $pjax}
-                <div id="info-default">I am a default content.</div>
-            {/if}
+            <div id="info-default">I am a default content.</div>
         </div>
         <script src="main.js"></script>
     </body>
     </html>
-    {/if}
 {/template}
 
 /**
@@ -73,7 +67,6 @@
 
 /**
  * /home
- * @param? pjax Whether should display only content.
  */
 {template .home}
     {call layout.page data="all"}
@@ -100,7 +93,6 @@
 
 /**
  * /about
- * @param? pjax Whether should display only content.
  */
 {template .about}
     {call layout.page data="all"}
