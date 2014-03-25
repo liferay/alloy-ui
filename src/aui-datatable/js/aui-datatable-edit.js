@@ -1246,7 +1246,7 @@ var BaseOptionsCellEditor = A.Component.create({
             var newRow = A.Node.create(
                 instance._createEditOption(
                     name || '',
-                    value || _EMPTY_STR
+                    value || ''
                 )
             );
 
