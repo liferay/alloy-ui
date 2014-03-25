@@ -86,14 +86,9 @@ A.Surface = A.Base.create('surface', A.Base, [], {
             child.append(opt_content);
         }
 
-        this.children[screenId] = child;
+        this.transition(child, null);
         instance.el.append(child);
-        deferred = this.transition(child, null);
-        deferred.then(function() {
-            if (this.activeChild) {
-                this.activeChild.remove();
-            }
-        });
+        this.children[screenId] = child;
 
         return child;
     },
@@ -132,6 +127,10 @@ A.Surface = A.Base.create('surface', A.Base, [], {
         var from = this.activeChild,
             to = this.getChild(screenId),
             deferred;
+
+        if (this.activeChild) {
+            this.activeChild.remove();
+        }
 
         // When surface child for screen not found retrieve the default
         // content from DOM element with id `surfaceId-default`

@@ -182,10 +182,8 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
             .then(function(data) {
                 // Add the new content to each surface
                 A.Array.each(surfaces, function(surface, i) {
-                    if (data[i]) {
-                        surface.addContent(screenId, data[i]);
-                        nextScreen.addCache(surface, data[i]);
-                    }
+                    surface.addContent(screenId, data[i]);
+                    nextScreen.addCache(surface, data[i]);
                 });
 
                 return A.when(nextScreen.beforeFlip());
