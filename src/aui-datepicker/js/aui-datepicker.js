@@ -183,7 +183,7 @@ A.mix(DatePickerBase.prototype, {
     selectDates: function(dates) {
         var instance = this;
 
-        instance.getCalendar().selectDates(dates);
+        instance.getCalendar().selectDates(instance._normalizeDatesForCalendar(dates));
     },
 
     /**
@@ -303,6 +303,61 @@ A.mix(DatePickerBase.prototype, {
      */
     _setPanes: function(val) {
         return clamp(val, 1, 3);
+    },
+
+    /**
+     * Makes any necessary changes to dates before using them in the
+     * calendar.
+     *
+     * @method _normalizeDatesForCalendar
+     * @param dates
+     * @protected
+     */
+    _normalizeDatesForCalendar: function(dates) {
+        var instance = this,
+            calendar = this.getCalendar(),
+            minDate = calendar.get('minimumDate'),
+            maxDate = calendar.get('maximumDate');
+
+        if (!dates) {
+            return dates;
+        }
+
+        return dates.map(function(date) {
+            // In the date picker the time of the selected day is irrelevant.
+            // The calendar module (that is used to provide the dates to be
+            // selected) currently does take the time into account when comparing
+            // a selected date to the minimum allowed date, if one was set, though.
+            // So we need to make sure that if the date matches the day of the
+            // minimumDate option, its timestamp will be greater.
+            if (minDate && instance._isSameDay(date, minDate)) {
+                return new Date(minDate.getTime() + 1);
+            }
+
+            // This is similar to the minimumDate logic. We need to make sure that
+            // the timestamp is lower than the maximumDate option if it's on the same
+            // day.
+            if (maxDate && instance._isSameDay(date, maxDate)) {
+                return new Date(maxDate.getTime() - 1);
+            }
+
+            return date;
+        });
+    },
+
+    /**
+     * Checks if the given dates are referencing the same
+     * day, month and year.
+     *
+     * @method _isSameDay
+     * @param date1
+     * @param date2
+     * @protected
+     */
+    _isSameDay: function(date1, date2) {
+        return date1.getDate() === date2.getDate() &&
+            date1.getMonth() === date2.getMonth() &&
+            date1.getFullYear() === date2.getFullYear();
     }
 }, true);
 
