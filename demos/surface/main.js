@@ -156,7 +156,7 @@ YUI({
 
     app.addScreens([
         {
-            path: /^\/home\?sid=[0-9]+/,
+            path: /^\/\w+\?sid=[0-9]+/,
             screen: Y.SurfaceScreen
         },
         {
