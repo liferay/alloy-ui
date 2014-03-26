@@ -89,25 +89,6 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
     },
 
     /**
-     * @override
-     */
-    hasRoute: function(url) {
-        var path;
-
-        if (!this._hasSameOrigin(url)) {
-            return false;
-        }
-
-        if (!this._html5) {
-            url = this._upgradeURL(url);
-        }
-
-        path = this.removeRoot(url);
-
-        return !!this.match(path).length;
-    },
-
-    /**
      * Finalizes a screen navigation.
      *
      * @method  _finalizeNavigate
@@ -133,7 +114,14 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
      * @override
      */
     _getPath: function() {
-        return this.removeRoot(this._getURL());
+        return this._getURL().replace(this._regexUrlOrigin, '');
+    },
+
+    /**
+     * @override
+     */
+    removeQuery: function(url) {
+        return url;
     },
 
     /**
@@ -287,7 +275,6 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
             }
 
             instance._routes.push({
-                callback: A.bind(instance._handleNavigate, instance, value),
                 callbacks: [A.bind(instance._handleNavigate, instance, value)],
                 keys: [],
                 path: value.path,
