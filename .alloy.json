@@ -1,6 +1,6 @@
 {
     "alloycore": [ "aui-base-core" ],
-    "alloyregex": "simpleaui|aui|simpleyui|yui",
+    "alloyregex": "(aui|yui(",
     "dependencies": {
         "ace": {
             "folder": "../ace-builds",
@@ -10,7 +10,7 @@
         "yui3": {
             "folder": "../yui3",
             "repo": "https://github.com/liferay/yui3.git",
-            "version": "patched-v3.11.0"
+            "version": "patched-v3.15.0"
         },
         "alloy-bootstrap": {
             "folder": "../alloy-bootstrap",
@@ -28,6 +28,6 @@
             "version": "master"
         }
     },
-    "yuiversion": "patched-v3.11.0",
+    "yuiversion": "patched-v3.15.0",
     "version": "2.0.0"
 }
