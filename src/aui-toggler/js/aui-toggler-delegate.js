@@ -248,7 +248,7 @@ var TogglerDelegate = A.Component.create({
         /**
          * Expand all items.
          *
-         * @method collapseAll
+         * @method expandAll
          */
         expandAll: function(payload) {
             var instance = this;
@@ -261,7 +261,7 @@ var TogglerDelegate = A.Component.create({
         /**
          * Return the content node.
          *
-         * @method headerEventHandler
+         * @method findContentNode
          * @param header
          */
         findContentNode: function(header) {
@@ -322,7 +322,7 @@ var TogglerDelegate = A.Component.create({
         /**
          * Create a Toggler instance.
          *
-         * @method headerEventHandler
+         * @method _create
          * @param header
          * @protected
          */
