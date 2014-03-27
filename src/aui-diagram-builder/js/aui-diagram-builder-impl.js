@@ -58,6 +58,7 @@ var Lang = A.Lang,
 	KEYDOWN = 'keydown',
 	LABEL = 'label',
 	LOCK = 'lock',
+	MOUSEDOWN = 'mousedown',
 	MOUSEENTER = 'mouseenter',
 	MOUSELEAVE = 'mouseleave',
 	NAME = 'name',
@@ -695,7 +696,7 @@ var DiagramBuilder = A.Component.create({
 			event.halt();
 		},
 
-		_onCanvasClick: function(event) {
+		_onCanvasMouseDown: function(event) {
 			var instance = this;
 
 			instance.stopEditing();
@@ -784,10 +785,9 @@ var DiagramBuilder = A.Component.create({
 		_renderGraphic: function() {
 			var instance = this;
 			var graphic = instance.get(GRAPHIC);
-			var canvas = instance.get(CANVAS);
 
-			graphic.render(canvas);
-			A.one(canvas).on(CLICK, A.bind(instance._onCanvasClick, instance));
+			graphic.render(instance.get(CANVAS));
+			A.one(canvas).on(MOUSEDOWN, A.bind(instance._onCanvasMouseDown, instance));
 		},
 
 		_setConnector: function(val) {
