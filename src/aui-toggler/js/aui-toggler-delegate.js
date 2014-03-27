@@ -46,7 +46,7 @@ var TogglerDelegate = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the Toggler Delegate.
+     * configuration for the `A.TogglerDelegate`.
      *
      * @property ATTRS
      * @type Object
@@ -55,7 +55,7 @@ var TogglerDelegate = A.Component.create({
     ATTRS: {
 
         /**
-         * Determine if the Toggler Delegate transitions will animate.
+         * Determine if the `A.TogglerDelegate` transitions will animate.
          *
          * @attribute animated
          * @default false
@@ -69,7 +69,7 @@ var TogglerDelegate = A.Component.create({
         },
 
         /**
-         * Determine if the Toggler Delegate switches
+         * Determine if the `A.TogglerDelegate` switches
          * will be set to off when one switch is toggled on.
          *
          * @attribute closeAllOnExpand
@@ -82,7 +82,7 @@ var TogglerDelegate = A.Component.create({
         },
 
         /**
-         * The container of Toggler Delegate instance.
+         * The container of `A.TogglerDelegate` instance.
          *
          * @attribute container
          */
