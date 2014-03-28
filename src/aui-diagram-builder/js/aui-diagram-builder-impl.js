@@ -1202,9 +1202,10 @@ var DiagramBuilder = A.Component.create({
                             },
                             {
                                 cfg: {
-                                    scrollDelay: 150
+                                    scrollDelay: 150,
+                                    node: dropContainer
                                 },
-                                fn: A.Plugin.DDWinScroll
+                                fn: A.Plugin.DDNodeScroll
                             }
                         ]
                     },
