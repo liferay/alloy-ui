@@ -18,6 +18,15 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
     activeUrl: null,
 
     /**
+     * Holds a deferred withe the current navigation.
+     *
+     * @property pendingRequest
+     * @type {Promise}
+     * @protected
+     */
+    pendingRequest: null,
+
+    /**
      * Maps the screen instances by the url containing the parameters.
      *
      * @property screens
@@ -93,21 +102,23 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
      *
      * @method  _finalizeNavigate
      * @param {String} url
-     * @param {Screen} screen
+     * @param {Screen} nextScreen
      * @private
      */
-    _finalizeNavigate: function(url, screen) {
+    _finalizeNavigate: function(url, nextScreen) {
         var activeScreen = this.activeScreen;
 
-        screen.afterFlip();
+        nextScreen.afterFlip();
+
+        this._setDocumentTitle(nextScreen);
 
         if (activeScreen && !activeScreen.get('cacheable')) {
             this._removeScreen(this.activeUrl, activeScreen);
         }
 
         this.activeUrl = url;
-        this.activeScreen = screen;
-        this.screens[url] = screen;
+        this.activeScreen = nextScreen;
+        this.screens[url] = nextScreen;
     },
 
     /**
@@ -115,6 +126,20 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
      */
     _getPath: function() {
         return this._getURL().replace(this._regexUrlOrigin, '');
+    },
+
+    /**
+     * Handle navigation error.
+     *
+     * @method  _handleNavigateError
+     * @param {String} url
+     * @param {Screen} nextScreen
+     * @param {Error} error
+     * @private
+     */
+    _handleNavigateError: function(url, nextScreen, err) {
+        A.log('Navigation error for [' + nextScreen + '] (' + err + ')', 'info');
+        this.pendingRequest = null;
     },
 
     /**
@@ -136,13 +161,36 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
      * @param  {Function} next       [description]
      * @return {[type]}              [description]
      */
-    _handleNavigate: function(screenFactory, req, res, next) {
+    _handleNavigate: function() {
+        var instance = this,
+            args = arguments;
+
+        function handleNavigateInternal() {
+            instance._doNavigate.apply(instance, args);
+        }
+
+        if (instance.pendingRequest) {
+            instance.pendingRequest.cancel('Navigation cancelled').thenAlways(handleNavigateInternal);
+        }
+        else {
+            A.soon(handleNavigateInternal);
+        }
+    },
+
+    /**
+     * [_doNavigate description]
+     * @param  {[type]}   screenFactory [description]
+     * @param  {[type]}   req           [description]
+     * @param  {[type]}   res           [description]
+     * @param  {Function} next          [description]
+     * @return {[type]}                 [description]
+     */
+    _doNavigate: function(screenFactory, req, res, next) {
         var instance = this,
             url = this.removeRoot(req.url),
             nextScreen = instance.screens[url],
             activeScreen = instance.activeScreen,
             screenId,
-            deferred,
             contents = [],
             surfaces = [],
             transitions = [];
@@ -156,9 +204,11 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
 
         screenId = nextScreen.get('id');
 
-        deferred = A.when(nextScreen.getSurfacesContent(A.Object.keys(instance.surfaces), req));
-        deferred
-            .then(function(opt_contents) {
+        instance.pendingRequest = A.CancellablePromise.resolve(
+            nextScreen.getSurfacesContent(A.Object.keys(instance.surfaces), req));
+
+        instance.pendingRequest.then(
+            function(opt_contents) {
                 // Stack the surfaces and its operations in the right order. Since
                 // getSurfaceContent could return a promise in order to fetch async
                 // content pass it to Y.batch in order to resolve them in parallel
@@ -168,23 +218,23 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
                     contents.push(nextScreen.handleSurfaceContent(surfaceId, req, opt_contents));
                 });
 
-                return A.batch.apply(A, contents);
-            })
-            .then(function(data) {
+                return A.CancellablePromise.all(contents);
+            }
+        ).then(
+            function(data) {
                 // Add the new content to each surface
                 A.Array.each(surfaces, function(surface, i) {
                     surface.addContent(screenId, data[i]);
                     nextScreen.addCache(surface, data[i]);
                 });
 
-                return A.when(nextScreen.beforeFlip());
-            })
-            .then(function() {
+                return A.CancellablePromise.resolve(nextScreen.beforeFlip());
+            }
+        ).then(
+            function() {
                 if (activeScreen) {
                     activeScreen.deactivate();
                 }
-
-                instance._setDocumentTitle(nextScreen);
 
                 // Animations should start at the same time, therefore
                 // it's passed to Y.batch to be processed in parallel
@@ -193,13 +243,18 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
                     transitions.push(surface.show(screenId));
                 });
 
-                return A.batch.apply(A, transitions);
-            })
-            .then(function() {
+                return A.CancellablePromise.all(transitions);
+            }
+        ).then(
+            function() {
                 instance._finalizeNavigate(url, nextScreen);
                 A.log('Navigation done, request next screen', 'info');
                 next();
-            });
+            },
+            function(reason) {
+                instance._handleNavigateError(url, nextScreen, reason);
+            }
+        );
     },
 
     /**

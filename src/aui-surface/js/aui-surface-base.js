@@ -178,7 +178,7 @@ A.Surface = A.Base.create('surface', A.Base, [], {
      *     navigation until it is resolved.
      */
     transition: function(from, to) {
-        return A.when(this.get('transition').call(this, from, to));
+        return A.CancellablePromise.resolve(this.get('transition').call(this, from, to));
     },
 
     /**

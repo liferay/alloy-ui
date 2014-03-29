@@ -1,5 +1,5 @@
 {
-	"aui-surface": {
+    "aui-surface": {
         "use": [
             "aui-surface-app",
             "aui-surface-screen"
@@ -10,31 +10,31 @@
         "requires": [
             "base-build",
             "node-style",
-            "promise"
+            "aui-promise"
         ]
     },
 
     "aui-surface-app": {
-    	"requires": [
+        "requires": [
             "pjax-base",
             "router",
-    		"aui-surface-base",
-    		"aui-surface-screen"
-    	]
+            "aui-surface-base",
+            "aui-surface-screen"
+        ]
     },
 
     "aui-surface-screen": {
-    	"requires": [
-    		"base-build"
-    	]
+        "requires": [
+            "base-build"
+        ]
     },
 
     "aui-surface-screen-html": {
-    	"requires": [
+        "requires": [
             "io",
-            "promise",
-    		"aui-surface-screen",
+            "aui-promise",
+            "aui-surface-screen",
             "aui-url"
-    	]
+        ]
     }
 }

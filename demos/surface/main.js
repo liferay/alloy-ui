@@ -9,26 +9,42 @@ YUI({
      * Utils
      */
     var load = function(url, opt_selector) {
-        return new Y.Promise(function(resolve) {
-            Y.io(url, {
-                on: {
-                    success: function(id, xhr) {
-                        var content = xhr.responseText;
-                        resolve(opt_selector ?
-                                    Y.Node.create(content).one(opt_selector).get('innerHTML') :
-                                      content);
+        var io;
+        return new Y.CancellablePromise(
+            function(resolve, reject) {
+                io = Y.io(url, {
+                    on: {
+                        success: function(id, xhr) {
+                            var content = xhr.responseText;
+                            resolve(opt_selector ?
+                                Y.Node.create(content).one(opt_selector).get('innerHTML') :
+                                content);
+                        },
+                        failure: function() {
+                            reject('Cannot load');
+                        }
                     }
-                }
-            });
-        });
+                });
+            },
+            function(reason) {
+                io.abort();
+                console.log('io.abort()', reason);
+            }
+        );
     };
 
-    var delay = function(ms) {
-        return new Y.Promise(function(resolve) {
-            setTimeout(function() {
-                resolve();
-            }, ms);
-        });
+    var delay = function(ms, val) {
+        var timeout;
+        return new Y.CancellablePromise(
+            function(resolve) {
+                timeout = setTimeout(function() {
+                    resolve(val);
+                }, ms);
+            },
+            function() {
+                clearTimeout(timeout);
+            }
+        );
     };
 
     /**
@@ -54,11 +70,17 @@ YUI({
             var content = Y.Node.create(opt_contents);
 
             switch (surfaceId) {
-                case 'info': return 'I was injected by HomeScreen.';
-                case 'surface1': return content.one('#surface1').get('innerHTML');
-                case 'surface2': return content.one('#surface2').get('innerHTML');
-                case 'nav': return content.one('#nav').get('innerHTML');
-                case 'header': return content.one('#header').get('innerHTML');
+                case 'info':
+                    return 'I was injected by HomeScreen.';
+                case 'surface1':
+                    return content.one('#surface1').get('innerHTML');
+                case 'surface2':
+                    return content.one('#surface2').get('innerHTML');
+                case 'nav':
+                    return content.one('#nav').get('innerHTML');
+                case 'header':
+                    return content.one('#header').get('innerHTML');
+                    // return delay(5000);
             }
         }
     }, {
@@ -84,9 +106,12 @@ YUI({
             var content = Y.Node.create(opt_contents);
 
             switch (surfaceId) {
-                case 'surface' + req.query.sid: return content.one('#surface' + req.query.sid).get('innerHTML');
-                case 'nav': return content.one('#nav').get('innerHTML');
-                case 'header': return content.one('#header').get('innerHTML');
+                case 'surface' + req.query.sid:
+                    return content.one('#surface' + req.query.sid).get('innerHTML');
+                case 'nav':
+                    return content.one('#nav').get('innerHTML');
+                case 'header':
+                    return content.one('#header').get('innerHTML');
             }
         }
     }, {
