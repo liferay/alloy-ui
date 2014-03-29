@@ -224,7 +224,7 @@ A.ScreenCacheable.prototype = {
      *     until it is resolved. This is useful for loading async content.
      */
     handleSurfaceContent: function(surfaceId, req, opt_contents) {
-        if (this.cache && A.Lang.isString(this.cache[surfaceId]) && this.get('cacheable')) {
+        if (this.cache && this.cache[surfaceId] && this.get('cacheable')) {
             A.log('Surface [' + surfaceId + '] content from cache', 'info');
             return this.cache[surfaceId];
         }
