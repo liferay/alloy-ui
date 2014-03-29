@@ -114,7 +114,9 @@ A.extend(CancellablePromise, A.Promise, {
 
         child = CancellablePromise.superclass.then.call(this, onFulfilledInternal, function(reason) {
             try {
-                onRejected(reason);
+                if (A.Lang.isFunction(onRejected)) {
+                    onRejected(reason);
+                }
             }
             catch (e) {
                 throw e;
