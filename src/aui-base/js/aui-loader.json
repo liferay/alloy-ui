@@ -942,6 +942,13 @@
             "aui-aria"
         ]
     },
+    "aui-promise": {
+        "requires": [
+            "array-invoke",
+            "promise",
+            "oop"
+        ]
+    },
     "aui-rating": {
         "use": [
             "aui-rating-base",
@@ -1151,7 +1158,7 @@
         "requires": [
             "base-build",
             "node-style",
-            "promise"
+            "aui-promise"
         ]
     },
     "aui-surface-screen": {
@@ -1162,7 +1169,7 @@
     "aui-surface-screen-html": {
         "requires": [
             "io",
-            "promise",
+            "aui-promise",
             "aui-surface-screen",
             "aui-url"
         ]

@@ -966,6 +966,13 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-aria"
         ]
     },
+    "aui-promise": {
+        "requires": [
+            "array-invoke",
+            "promise",
+            "oop"
+        ]
+    },
     "aui-rating": {
         "use": [
             "aui-rating-base",
@@ -1175,7 +1182,7 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "base-build",
             "node-style",
-            "promise"
+            "aui-promise"
         ]
     },
     "aui-surface-screen": {
@@ -1186,7 +1193,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-surface-screen-html": {
         "requires": [
             "io",
-            "promise",
+            "aui-promise",
             "aui-surface-screen",
             "aui-url"
         ]
@@ -1467,4 +1474,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'f683f8c21d838b29e9dd0312fe3b9cdc';
+YUI.Env[Y.version].md5 = '96771db843fc26afcaa97c71ea7b167e';

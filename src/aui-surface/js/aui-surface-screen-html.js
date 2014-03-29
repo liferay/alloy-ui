@@ -16,7 +16,7 @@ A.HTMLScreen = A.Base.create('htmlScreen', A.Screen, [], {
      * @method getSurfacesContent
      * @param {Array} surfaces An array of surfaces which content should be
      *     loaded from the server.
-     * @return {A.Promise} Promise, which should be resolved with the returned
+     * @return {CancellablePromise} Promise, which should be resolved with the returned
      *     content from the server.
      */
     getSurfacesContent: function(surfaces, req) {
@@ -52,7 +52,7 @@ A.HTMLScreen = A.Base.create('htmlScreen', A.Screen, [], {
      *
      * @method _loadContent
      * @protected
-     * @return {A.Promise} Promise, which should be resolved with the returned
+     * @return {CancellablePromise} Promise, which should be resolved with the returned
      *     content from the server.
      */
     _loadContent: function(url, opt_selector) {
@@ -63,7 +63,7 @@ A.HTMLScreen = A.Base.create('htmlScreen', A.Screen, [], {
             instance._request.abort();
         }
 
-        return new A.Promise(function(resolve, reject) {
+        return new A.CancellablePromise(function(resolve, reject) {
             instance._request = A.io(url, {
                 headers: {
                     'X-PJAX': 'true'

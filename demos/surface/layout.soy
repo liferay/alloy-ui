@@ -54,12 +54,13 @@
 /**
   * Surface
   * @param sid Surface id.
+  * @param basePath Base path for the urls.
   * @param? info Surface info.
   */
 {template .surface}
     <section id="surface{$sid}">
         <div id="surface{$sid}-default">
-            <a href="?sid={$sid}&foo=complex string foo">Surface {$sid} </a>
+            <a href="{$basePath}?sid={$sid}&foo=complex string foo">Surface {$sid} </a>
             - <small>{if $info}{$info}{/if}</small>
         </div>
     </section>
@@ -82,9 +83,11 @@
             <div class="span12">
                 {call layout.surface data="all"}
                     {param sid: 1 /}
+                    {param basePath}home{/param}
                 {/call}
                 {call layout.surface data="all"}
                     {param sid: 2 /}
+                    {param basePath}home{/param}
                 {/call}
             </div>
         {/param}
@@ -108,9 +111,11 @@
             <div class="span12">
                 {call layout.surface data="all"}
                     {param sid: 1 /}
+                    {param basePath}about{/param}
                 {/call}
                 {call layout.surface data="all"}
                     {param sid: 2 /}
+                    {param basePath}about{/param}
                 {/call}
             </div>
         {/param}
