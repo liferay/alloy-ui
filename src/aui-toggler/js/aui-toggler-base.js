@@ -58,7 +58,7 @@ var Toggler = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the Toggler.
+     * configuration for the `A.Toggler`.
      *
      * @property ATTRS
      * @type Object
@@ -67,7 +67,7 @@ var Toggler = A.Component.create({
     ATTRS: {
 
         /**
-         * Determine if the Toggler transitions will animate.
+         * Determine if the `A.Toggler` transitions will animate.
          *
          * @attribute animated
          * @default false
@@ -81,7 +81,7 @@ var Toggler = A.Component.create({
         },
 
         /**
-         * Determine if the Toggler transitions are being animated in that
+         * Determine if the `A.Toggler` transitions are being animated in that
          * moment.
          *
          * @attribute animating
@@ -94,7 +94,7 @@ var Toggler = A.Component.create({
         },
 
         /**
-         * Determine if the Toggler should bind DOM events or not.
+         * Determine if the `A.Toggler` should bind DOM events or not.
          *
          * @attribute bindDOMEvents
          * @default true
@@ -190,7 +190,7 @@ var Toggler = A.Component.create({
     prototype: {
 
         /**
-         * Construction logic executed during Toggler instantiation. Lifecycle.
+         * Construction logic executed during `A.Toggler` instantiation. Lifecycle.
          *
          * @method initializer
          * @protected
@@ -205,7 +205,7 @@ var Toggler = A.Component.create({
         },
 
         /**
-         * Bind the events on the Toggler UI. Lifecycle.
+         * Bind the events on the `A.Toggler` UI. Lifecycle.
          *
          * @method bindUI
          * @protected
@@ -230,7 +230,7 @@ var Toggler = A.Component.create({
         },
 
         /**
-         * Sync the events on the Toggler UI. Lifecycle.
+         * Sync the events on the `A.Toggler` UI. Lifecycle.
          *
          * @method syncUI
          * @protected
@@ -243,7 +243,7 @@ var Toggler = A.Component.create({
         },
 
         /**
-         * Destructor lifecycle implementation for the `Toggler` class.
+         * Destructor lifecycle implementation for the `A.Toggler` class.
          *
          * @method destructor
          * @protected
@@ -257,7 +257,7 @@ var Toggler = A.Component.create({
         },
 
         /**
-         * Expand Toggler with an animation.
+         * Expand `A.Toggler` with an animation.
          *
          * @method animate
          * @param config
@@ -274,7 +274,7 @@ var Toggler = A.Component.create({
         },
 
         /**
-         * Hide Toggler content.
+         * Hide `A.Toggler` content.
          *
          * @method collapse
          */
@@ -285,7 +285,7 @@ var Toggler = A.Component.create({
         },
 
         /**
-         * Show Toggler content.
+         * Show `A.Toggler` content.
          *
          * @method expand
          */

@@ -30,5 +30,5 @@ for (var i = 0; i < files.length; i++) {
         JSON.stringify(alloyJSON.alloycore) + ');');
 
     // Replace _BASE_RE
-    file.replaceRegex(filepath, /simpleyui\|yui/g, alloyJSON.alloyregex);
+    file.replaceRegex(filepath, /\(yui\(/g, alloyJSON.alloyregex);
 }
