@@ -1014,6 +1014,12 @@
         ],
         "skinnable": true
     },
+    "aui-undo-redo": {
+        "requires": [
+            "base",
+            "base-build"
+        ]
+    },
     "aui-url": {
         "requires": [
             "oop",

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+    <style>
+    #buttons-container {
+        margin-bottom: 10px;
+    }
+    #redbox-container {
+        border: 1px solid black;
+        height: 300px;
+        width: 500px;
+    }
+    #redbox {
+        background-color: red;
+        height: 100px;
+        width: 100px;
+    }
+    </style>
+</head>
+<body class="yui3-skin-sam">
+    <h1>AlloyUI - UndoRedo</h1>
+    <div id="buttons-container">
+        <span class="btn undo-button">Undo</span>
+        <span class="btn redo-button">Redo</span>
+    </div>
+    <div id="redbox-container">
+        <div id="redbox"></div>
+    </div>
+
+    <script>
+
+    YUI({filter: 'raw'}).use('aui-undo-redo', 'dd-drag', 'dd-constrain', function(Y) {
+        var box = Y.one('#redbox'),
+            dd = new Y.DD.Drag({node: '#redbox'}),
+            undoRedo = new Y.UndoRedo(),
+            previousXY = box.getXY();
+
+        dd.plug(Y.Plugin.DDConstrained, {constrain2node: '#redbox-container'});
+
+        dd.on('drag:end', function(event) {
+            var undoXY = previousXY,
+                redoXY = box.getXY();
+
+            undoRedo.add({
+                undo: function() {
+                    box.setXY(undoXY);
+                    previousXY = undoXY;
+                },
+                redo: function() {
+                    box.setXY(redoXY);
+                    previousXY = redoXY;
+                }
+            });
+
+            previousXY = redoXY;
+        });
+
+        Y.one('.undo-button').on('click', function() {
+            undoRedo.undo();
+        });
+        Y.one('.redo-button').on('click', function() {
+            undoRedo.redo();
+        });
+    });
+    </script>
+</body>
+</html>
