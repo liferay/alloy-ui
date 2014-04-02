@@ -840,7 +840,8 @@
         "requires": [
             "base-build",
             "node-style",
-            "aui-promise"
+            "aui-promise",
+            "aui-parse-content"
         ]
     },
     "aui-surface-screen": {
