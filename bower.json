@@ -7,8 +7,9 @@
   ],
   "description": "AlloyUI is a framework built on top of YUI3 (JavaScript) that uses Bootstrap (HTML/CSS) to provide a simple API for building high scalable applications",
   "keywords": [
-    "alloyui",
     "alloy",
+    "alloyui",
+    "aui",
     "yui",
     "yui3"
   ],
