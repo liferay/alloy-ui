@@ -1355,9 +1355,7 @@ var BaseOptionsCellEditor = A.Component.create({
                     var name = inputName.val();
                     var value = values.item(index).val();
 
-                    if (name || value) {
-                        options[value] = name;
-                    }
+                    options[value] = name;
                 });
 
                 instance.set(OPTIONS, options);
