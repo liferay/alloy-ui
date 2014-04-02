@@ -21,41 +21,40 @@ module.exports = function(grunt) {
         'api-build': {
             'src': 'temp',
             'dist': path.join(ROOT, 'api'),
-            'theme': path.join(ROOT, '<%= pkg.dependencies["alloy-apidocs-theme"].folder %>'),
+            'theme': path.join(ROOT, 'bower_components/alloy-apidocs-theme'),
             'aui-version': '<%= pkg["version"] %>'
         },
 
         'api-include': {
             'all': {
                 'src': ['temp/alloy-ui/src/*/js/*.js'],
-                'repo': path.join(ROOT, '<%= pkg.dependencies["alloyui.com"].folder %>')
+                'repo': path.join(ROOT, 'bower_components/alloyui.com')
             }
         },
 
         'api-push': {
             'src': path.join(ROOT, 'api'),
-            'dist': path.join(ROOT, '<%= pkg.dependencies["alloyui.com"].folder %>', 'api'),
-            'repo': path.join(ROOT, '<%= pkg.dependencies["alloyui.com"].folder %>'),
+            'dist': path.join(ROOT, 'bower_components/alloyui.com', 'api'),
+            'repo': path.join(ROOT, 'bower_components/alloyui.com'),
             'branch': 'gh-pages',
             'remote': 'origin'
         },
 
         'api-watch': {
-            'src': [path.join(ROOT, 'src'), path.join(ROOT, '<%= pkg.dependencies.yui3.folder %>', 'src')],
-            'theme': path.join(ROOT, '<%= pkg.dependencies["alloy-apidocs-theme"].folder %>'),
+            'src': [path.join(ROOT, 'src'), path.join(ROOT, 'bower_components/yui3', 'src')],
+            'theme': path.join(ROOT, 'bower_components/alloy-apidocs-theme'),
             'aui-version': '<%= pkg["version"] %>'
         },
 
+        bowercopy: {
+            src: {
+                files: {
+                    'build': 'yui3/build'
+                }
+            }
+        },
+
         build: {
-            yui: {
-                'src': path.join(ROOT, '<%= pkg.dependencies.yui3.folder %>', 'src'),
-                'dist': path.join(ROOT, 'build'),
-                'cache': true,
-                'coverage': false,
-                'lint': false,
-                'replace-yuivar': 'Y',
-                'replace-version': '<%= pkg["yuiversion"] %>',
-            },
             aui: {
                 'src': path.join(ROOT, 'src'),
                 'dist': path.join(ROOT, 'build'),
@@ -78,7 +77,7 @@ module.exports = function(grunt) {
         compass: {
             dist: {
                 options: {
-                    sassDir: path.join(ROOT, '<%= pkg.dependencies["alloy-bootstrap"].folder %>', 'lib'),
+                    sassDir: path.join(ROOT, 'bower_components/alloy-bootstrap', 'lib'),
                     cssDir: 'build/aui-css/css/'
                 }
             }
@@ -88,7 +87,7 @@ module.exports = function(grunt) {
             api: {
                 files: [
                     {
-                        cwd: path.join('<%= pkg.dependencies.yui3.folder %>', 'src/'),
+                        cwd: path.join('bower_components/yui3', 'src/'),
                         src: '**',
                         dest: 'temp/yui3/src/',
                         expand: true
@@ -112,11 +111,11 @@ module.exports = function(grunt) {
             img: {
                 files: [
                     {
-                        src: path.join(ROOT, '<%= pkg.dependencies["alloy-bootstrap"].folder %>', 'img/glyphicons-halflings-white.png'),
+                        src: path.join(ROOT, 'bower_components/alloy-bootstrap', 'img/glyphicons-halflings-white.png'),
                         dest: 'build/aui-css/img/glyphicons-halflings-white.png'
                     },
                     {
-                        src: path.join(ROOT, '<%= pkg.dependencies["alloy-bootstrap"].folder %>', 'img/glyphicons-halflings.png'),
+                        src: path.join(ROOT, 'bower_components/alloy-bootstrap', 'img/glyphicons-halflings.png'),
                         dest: 'build/aui-css/img/glyphicons-halflings.png'
                     }
                 ]
@@ -171,10 +170,6 @@ module.exports = function(grunt) {
             }
         },
 
-        init: {
-            dependencies: '<%= pkg.dependencies %>'
-        },
-
         jsbeautifier: {
             files: [
                 'src/**/*.js',
@@ -218,6 +213,7 @@ module.exports = function(grunt) {
 
     grunt.loadTasks('tasks');
 
+    grunt.loadNpmTasks('grunt-bowercopy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-compress');
@@ -226,7 +222,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-jsbeautifier');
 
-    grunt.registerTask('all', ['bootstrap', 'build']);
+    grunt.registerTask('all', ['bowercopy', 'bootstrap', 'build']);
     grunt.registerTask('api', ['copy:api', 'api-include', 'api-build']);
     grunt.registerTask('api-deploy', ['api', 'api-push', 'clean:api']);
     grunt.registerTask('bootstrap', ['compass', 'copy:css', 'cssmin', 'copy:img', 'clean:css']);
