@@ -72,6 +72,8 @@ A.ScreenBase.prototype = {
      * @method getSurfaceContent
      * @param {String} surfaceId The id of the surface DOM element.
      * @param {Object} req The request object.
+     * @param {String} opt_contents Optional content fetch by
+     *     `getSurfacesContent`.
      * @return {String | Promise} This can return a string representing the
      *     content of the surface or a promise, which will pause the navigation
      *     until it is resolved. This is useful for loading async content.
@@ -89,8 +91,9 @@ A.ScreenBase.prototype = {
      * @param {Array} surfaces Array with surface ids.
      * @param {Object} req The request object.
      * @return {String | Promise} This can return a string representing the
-     *     contents of the surfaces or a promise, which will pause the navigation
-     *     until it is resolved. This is useful for loading async content.
+     *     contents of the surfaces or a promise, which will pause the
+     *     navigation until it is resolved. This is useful for loading async
+     *     content.
      */
     getSurfacesContent: function() {
         A.log('Screen [' + this + '] getSurfacesContent', 'info');
@@ -104,12 +107,30 @@ A.ScreenBase.prototype = {
      * @protected
      * @param {String} surfaceId The id of the surface DOM element.
      * @param {Object} req The request object.
+     * @param {String} opt_contents Optional content fetch by
+     *     `getSurfacesContent`.
      * @return {String | Promise} This can return a string representing the
-     * content of the surface or a promise, which will pause the navigation
-     * until it is resolved. This is useful for loading async content.
+     *     content of the surface or a promise, which will pause the navigation
+     *     until it is resolved. This is useful for loading async content.
      */
     handleSurfaceContent: function(surfaceId, req, opt_contents) {
         return this.getSurfaceContent(surfaceId, req, opt_contents);
+    },
+
+    /**
+     * Handles getSurfacesContent call for the given surface. This is useful for
+     * class extensions add extra logic such as cache.
+     *
+     * @method handleSurfacesContent
+     * @protected
+     * @param {String} surfaces Array with surface ids.
+     * @param {Object} req The request object.
+     * @return {String | Promise} This can return a string representing the
+     *     content of the surface or a promise, which will pause the navigation
+     *     until it is resolved. This is useful for loading async content.
+     */
+    handleSurfacesContent: function(surfaces, req) {
+        return this.getSurfacesContent(surfaces, req);
     },
 
     /**
@@ -230,6 +251,26 @@ A.ScreenCacheable.prototype = {
         }
 
         return this.getSurfaceContent(surfaceId, req, opt_contents);
+    },
+
+    /**
+     * If the screen is cacheable returns the cached content for the surfaces.
+     *
+     * @method handleSurfacesContent
+     * @protected
+     * @param {String} surfaces Array with surface ids.
+     * @param {Object} req The request object.
+     * @return {String | Promise} This can return a string representing the
+     *     content of the surface or a promise, which will pause the navigation
+     *     until it is resolved. This is useful for loading async content.
+     */
+    handleSurfacesContent: function(surfaces, req) {
+        if (this.cache && this.cache[surfaces] && this.get('cacheable')) {
+            A.log('Surface [' + surfaces + '] content from cache', 'info');
+            return this.cache[surfaces];
+        }
+
+        return this.getSurfacesContent(surfaces, req);
     },
 
     _setCacheable: function(val) {
