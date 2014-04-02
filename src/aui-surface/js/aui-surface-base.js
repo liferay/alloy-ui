@@ -78,8 +78,7 @@ A.Surface = A.Base.create('surface', A.Base, [], {
      * @return {Node}
      */
     addContent: function(screenId, opt_content) {
-        var instance = this,
-            child = instance.getChild(screenId);
+        var child = this.getChild(screenId);
 
         if (!opt_content) {
             return child;
@@ -93,7 +92,8 @@ A.Surface = A.Base.create('surface', A.Base, [], {
         }
 
         this.transition(child, null);
-        instance.el.append(child);
+        this.el.append(child);
+
         this.children[screenId] = child;
 
         return child;
@@ -134,17 +134,19 @@ A.Surface = A.Base.create('surface', A.Base, [], {
             to = this.getChild(screenId),
             deferred;
 
-        if (this.activeChild) {
+        if (!to) {
+            // When surface child for screen not found retrieve the default
+            // content from DOM element with id `surfaceId-default`
+            to = this.defaultChild;
+        }
+
+        if (from !== to) {
             this.activeChild.remove();
         }
 
-        // When surface child for screen not found retrieve the default
-        // content from DOM element with id `surfaceId-default`
-        if (!to) {
-            to = this.defaultChild;
-            if (to) {
-                to.appendTo(this.el);
-            }
+        // Avoid repaint if the child is already in place
+        if (to && !to.inDoc()) {
+            this.el.append(to);
         }
 
         deferred = this.transition(from, to);
