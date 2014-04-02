@@ -58,7 +58,9 @@ A.Surface = A.Base.create('surface', A.Base, [], {
         this.el = getNodeById(id);
 
         if (this.el) {
-            this.el.plug(A.Plugin.ParseContent);
+            this.el.plug(A.Plugin.ParseContent, {
+                preserve: true
+            });
         }
 
         this.activeChild = this.defaultChild = this.addContent(A.Surface.DEFAULT);
