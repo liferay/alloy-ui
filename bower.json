@@ -1,0 +1,23 @@
+{
+  "name": "alloy-ui",
+  "version": "2.0.0",
+  "homepage": "https://alloyui.com",
+  "authors": [
+    "Eduardo Lundgren <eduardo.lundgren@liferay.com>"
+  ],
+  "description": "AlloyUI is a framework built on top of YUI3 (JavaScript) that uses Bootstrap (HTML/CSS) to provide a simple API for building high scalable applications",
+  "keywords": [
+    "alloyui",
+    "alloy",
+    "yui",
+    "yui3"
+  ],
+  "license": "BSD",
+  "devDependencies": {
+    "ace-builds": "1.1.3",
+    "alloy-apidocs-theme": "1.0.0",
+    "alloy-bootstrap": "2.2.2",
+    "alloyui.com": "1.0.0",
+    "yui3": "3.15.0"
+  }
+}
