@@ -13,15 +13,6 @@ A.Surface = A.Base.create('surface', A.Base, [], {
     activeChild: null,
 
     /**
-     * Holds the history of child elements.
-     *
-     * @property children
-     * @type {Obejct}
-     * @protected
-     */
-    children: null,
-
-    /**
      * Holds the default child element.
      *
      * @property defaultChild
@@ -54,7 +45,6 @@ A.Surface = A.Base.create('surface', A.Base, [], {
             throw 'Surface element id not specified.';
         }
 
-        this.children = {};
         this.el = getNodeById(id);
 
         if (this.el) {
@@ -78,23 +68,16 @@ A.Surface = A.Base.create('surface', A.Base, [], {
      * @return {Node}
      */
     addContent: function(screenId, opt_content) {
-        var child = this.getChild(screenId);
-
         if (!opt_content) {
-            return child;
+            return this.getChild(screenId);
         }
 
         A.log('Screen [' + screenId + '] add content to surface [' + this + ']', 'info');
 
-        if (!child) {
-            child = this.createChild(screenId);
-            child.append(opt_content);
-        }
-
+        var child = this.createChild(screenId);
+        child.append(opt_content);
         this.transition(child, null);
         this.el.append(child);
-
-        this.children[screenId] = child;
 
         return child;
     },
@@ -118,7 +101,7 @@ A.Surface = A.Base.create('surface', A.Base, [], {
      * @return {Node | null}
      */
     getChild: function(screenId) {
-        return this.children[screenId] || getNodeById(this._makeId(screenId));
+        return getNodeById(this._makeId(screenId));
     },
 
     /**
@@ -165,7 +148,6 @@ A.Surface = A.Base.create('surface', A.Base, [], {
 
         if (child) {
             child.remove(true);
-            delete this.children[screenId];
         }
     },
 
