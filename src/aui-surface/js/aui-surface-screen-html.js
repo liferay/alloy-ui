@@ -11,6 +11,17 @@ A.HTMLScreen = A.Base.create('htmlScreen', A.Screen, [], {
     _request: null,
 
     /**
+     * Aborts any outstanding request.
+     *
+     * @method abortRequest
+     */
+    abortRequest: function() {
+        if (this._request) {
+            this._request.abort();
+        }
+    },
+
+    /**
      * Loads the content for all surfaces in one AJAX request from the server.
      *
      * @method getSurfacesContent
@@ -58,36 +69,38 @@ A.HTMLScreen = A.Base.create('htmlScreen', A.Screen, [], {
     _loadContent: function(url, opt_selector) {
         var instance = this;
 
-        // If there's an outstanding request, abort it.
-        if (instance._request) {
-            instance._request.abort();
-        }
+        instance.abortRequest();
 
-        return new A.CancellablePromise(function(resolve, reject) {
-            instance._request = A.io(url, {
-                headers: {
-                    'X-PJAX': 'true'
-                },
-                on: {
-                    failure: function(id, response) {
-                        reject(response.responseText);
+        return new A.CancellablePromise(
+            function(resolve, reject) {
+                instance._request = A.io(url, {
+                    headers: {
+                        'X-PJAX': 'true'
                     },
+                    on: {
+                        failure: function(id, response) {
+                            reject(response.responseText);
+                        },
 
-                    success: function(id, response) {
-                        var frag = A.Node.create(response.responseText);
+                        success: function(id, response) {
+                            var frag = A.Node.create(response.responseText);
 
-                        if (opt_selector) {
-                            frag = frag.one(opt_selector);
+                            if (opt_selector) {
+                                frag = frag.one(opt_selector);
+                            }
+
+                            instance._setTitleFromFragment(frag);
+
+                            resolve(frag);
                         }
-
-                        instance._setTitleFromFragment(frag);
-
-                        resolve(frag);
-                    }
-                },
-                timeout: instance.get('timeout')
-            });
-        });
+                    },
+                    timeout: instance.get('timeout')
+                });
+            },
+            function() {
+                instance.abortRequest();
+            }
+        );
     },
 
     /**
