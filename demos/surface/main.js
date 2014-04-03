@@ -80,7 +80,6 @@ YUI({
                     return content.one('#nav').get('innerHTML');
                 case 'header':
                     return content.one('#header').get('innerHTML');
-                    // return delay(5000);
             }
         }
     }, {

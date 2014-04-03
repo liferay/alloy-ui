@@ -217,17 +217,16 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
                 A.log('Loading surfaces content...', 'info');
                 A.Object.each(instance.surfaces, function(surface, surfaceId) {
                     surfaces.push(surface);
-                    contents.push(nextScreen.handleSurfaceContent(surfaceId, req, opt_contents));
+                    contents.push(nextScreen.getSurfaceContent(surfaceId, req, opt_contents));
                 });
 
-                return A.CancellablePromise.all(contents);
+                return contents;
             }
         ).then(
             function(data) {
                 // Add the new content to each surface
                 A.Array.each(surfaces, function(surface, i) {
                     surface.addContent(screenId, data[i]);
-                    nextScreen.addCache(surface, data[i]);
                 });
 
                 return A.CancellablePromise.resolve(nextScreen.beforeFlip());
