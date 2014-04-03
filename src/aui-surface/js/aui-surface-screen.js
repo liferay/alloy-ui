@@ -74,9 +74,8 @@ A.ScreenBase.prototype = {
      * @param {Object} req The request object.
      * @param {String} opt_contents Optional content fetch by
      *     `getSurfacesContent`.
-     * @return {String | Promise} This can return a string representing the
-     *     content of the surface or a promise, which will pause the navigation
-     *     until it is resolved. This is useful for loading async content.
+     * @return {String | Node} This can return a string or node representing the
+     *     content of the surface.
      */
     getSurfaceContent: function() {
         A.log('Screen [' + this + '] getSurfaceContent', 'info');
@@ -210,8 +209,13 @@ A.ScreenCacheable.prototype = {
      * @param {String} content Content to be cached.
      */
     addCache: function(surfaceId, content) {
-        this.cache = this.cache || {};
-        this.cache[surfaceId] = content;
+        if (this.get('cacheable')) {
+            this.cache = this.cache || {};
+            this.cache[surfaceId] = content;
+        }
+        else {
+            A.log('Screen [' + this + '] is not cacheable', 'info');
+        }
     },
 
     /**
@@ -230,27 +234,6 @@ A.ScreenCacheable.prototype = {
      */
     destructor: function() {
         this.clearCache();
-    },
-
-    /**
-     * If the screen is cacheable returns the cached content for the given
-     * surface.
-     *
-     * @method handleSurfaceContent
-     * @protected
-     * @param {String} surfaceId The id of the surface DOM element.
-     * @param {Object} req The request object.
-     * @return {String | Promise} This can return a string representing the
-     *     content of the surface or a promise, which will pause the navigation
-     *     until it is resolved. This is useful for loading async content.
-     */
-    handleSurfaceContent: function(surfaceId, req, opt_contents) {
-        if (this.cache && this.cache[surfaceId] && this.get('cacheable')) {
-            A.log('Surface [' + surfaceId + '] content from cache', 'info');
-            return this.cache[surfaceId];
-        }
-
-        return this.getSurfaceContent(surfaceId, req, opt_contents);
     },
 
     /**
