@@ -81,12 +81,6 @@ grunt build:aui
 grunt build:aui --src src/aui-module-name
     ```
 
-* Build and import Bootstrap's CSS:
-
-    ```
-grunt bootstrap
-    ```
-
 * Build AlloyUI and import Bootstrap's CSS:
 
     ```

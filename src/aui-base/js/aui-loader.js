@@ -194,6 +194,9 @@ Y.mix(YUI.Env[Y.version].modules, {
             "widget-base"
         ]
     },
+    "aui-css": {
+        "type": "css"
+    },
     "aui-datatable": {
         "use": [
             "aui-datatable-edit",
@@ -1107,4 +1110,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '3a94f927c1e48f564c34c93d1be5a80b';
+YUI.Env[Y.version].md5 = '6a313e8ffc3e6922171a0b1afd7d4d55';
