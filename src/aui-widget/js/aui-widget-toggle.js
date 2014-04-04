@@ -1,5 +1,5 @@
 /**
- * Provides standard module support for toggle sivibility method through an
+ * Provides standard module support for toggle visibility method through an
  * extension.
  * @module aui-widget-toggle
  */
