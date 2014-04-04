@@ -18,7 +18,7 @@ var L = A.Lang,
 
     getCN = A.getClassName,
 
-    CSS_BAR = getCN('bar'),
+    CSS_BAR = getCN('progress', 'bar'),
     CSS_HORIZONTAL = getCN('horizontal'),
     CSS_VERTICAL = getCN('vertical'),
 
