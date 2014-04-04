@@ -5,24 +5,40 @@
     <title></title>
     <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
     <script src="../../build/aui/aui.js"></script>
+    <style>
+    .input-group {
+        width: 400px;
+        margin-bottom: 50px;
+    }
+    </style>
 </head>
 <body>
     <h1>AlloyUI - Char counter</h1>
-    <p>
-        <span id="counter1"></span> character(s) remaining
-    </p>
-    <p>
-        <span id="counter2"></span> character(s) remaining
+    <div class="input-group">
         <input id="input1" class="form-control" type="text">
+        <span class="input-group-addon">
+            <span id="counter1"></span> character(s) remaining
+        </span>
+    </div>
 
-        <button id="button2-1">set maxLength to 10</button>
-        <button id="button2-2">set maxLength to 20 </button>
-    </p>
     <p>
-        <span id="counter3"></span> character(s) remaining
+        <button id="button2-1" class="btn btn-primary">set maxLength to 10</button>
+        <button id="button2-2" class="btn btn-primary">set maxLength to 20 </button>
     </p>
+    <div class="input-group">
         <input id="input2" class="form-control" type="text">
+        <span class="input-group-addon">
+            <span id="counter2"></span> character(s) remaining
+        </span>
+    </div>
+
+    <div class="input-group">
         <textarea id="input3" class="form-control"></textarea>
+        <span class="input-group-addon">
+            <span id="counter3"></span> character(s) remaining
+        </span>
+    </div>
+
     <script>
     YUI({ filter:'raw' }).use('aui-char-counter', function(Y) {
 

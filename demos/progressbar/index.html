@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
     <script src="../../build/aui/aui.js"></script>
     <style>
-    #vertical, #verticalbottom {
+    .vertical {
         float: left;
         margin: 10px;
     }
@@ -14,22 +14,26 @@
 </head>
 <body>
     <h1>AlloyUI - Progress bar</h1>
+    <h2>Horizontal</h2>
     <div id="nolabel"></div>
-    <div id="basic" class="progress-warning"></div>
-    <div id="stripped" class="active progress-striped progress-info"></div>
-    <div id="vertical" class="progress-success"></div>
-    <div id="verticalbottom" class="bottom progress-danger"></div>
+    <div id="basic" class="progress-bar-danger"></div>
+    <div class="progress-striped">
+        <div id="stripped" class="progress-bar-success"></div>
+    </div>
+    <h2>Vertical</h2>
+    <div id="vertical" class="progress-bar-info"></div>
+    <div id="vertical-bottom" class="progress-bar-warning bottom"></div>
     <script>
     YUI({ filter: 'raw' }).use('aui-progressbar', function(Y) {
 
         new Y.ProgressBar({
-            boundingBox: '#nolabel',
+            contentBox: '#nolabel',
             value: 90,
             width: 500
         }).render();
 
         new Y.ProgressBar({
-            boundingBox: '#basic',
+            contentBox: '#basic',
             label: '40%',
             max: 100,
             min: 0,
@@ -46,14 +50,14 @@
         }).render();
 
         new Y.ProgressBar({
-            boundingBox: '#stripped',
+            contentBox: '#stripped',
             label: '90%',
             value: 90,
             width: 500
         }).render();
 
         new Y.ProgressBar({
-            boundingBox: '#vertical',
+            contentBox: '#vertical',
             orientation: 'vertical',
             label: '60%',
             value: 60,
@@ -62,7 +66,7 @@
         }).render();
 
         new Y.ProgressBar({
-            boundingBox: '#verticalbottom',
+            contentBox: '#vertical-bottom',
             orientation: 'vertical',
             label: '60%',
             value: 60,
