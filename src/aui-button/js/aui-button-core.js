@@ -70,10 +70,10 @@ ButtonExt.ATTRS = {
 
     /**
      * Defines markup template for icon, passed in as a node e.g.
-     * `Y.Node.create('<i></i>')`.
+     * `Y.Node.create('<span></span>')`.
      *
      * @attribute iconElement
-     * @default 'A.Node.create("<i></i>")'
+     * @default 'A.Node.create("<span></span>")'
      */
     iconElement: {
         valueFn: function() {
@@ -115,7 +115,7 @@ ButtonExt.ATTRS = {
  * @static
  */
 ButtonExt.HTML_PARSER = {
-    iconElement: 'i'
+    iconElement: 'span'
 };
 
 /**
@@ -137,7 +137,7 @@ ButtonExt.getTypedButtonTemplate = function(template, type) {
 
 ButtonExt.prototype = {
     TEMPLATE: '<button{type}></button>',
-    ICON_TEMPLATE: '<i></i>',
+    ICON_TEMPLATE: '<span></span>',
 
     /**
      * Construction logic executed during `ButtonExt` instantiation. Lifecycle.

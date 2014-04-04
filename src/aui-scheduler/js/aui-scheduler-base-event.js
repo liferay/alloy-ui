@@ -84,10 +84,10 @@ var Lang = A.Lang,
     TPL_HTML_CLOSE_SPAN = '</span>',
     TPL_SCHEDULER_CONTROLS = '<div class="span7 ' + CSS_SCHEDULER_CONTROLS + '"></div>',
     TPL_SCHEDULER_HD = '<div class="row-fluid ' + CSS_SCHEDULER_HD + '"></div>',
-    TPL_SCHEDULER_ICON_NEXT = '<button type="button" class="' + [CSS_SCHEDULER_ICON_NEXT, CSS_BTN].join(' ') +
-        '"><i class="' + CSS_ICON_CHEVRON_RIGHT + '"></i></button>',
-    TPL_SCHEDULER_ICON_PREV = '<button type="button" class="' + [CSS_SCHEDULER_ICON_PREV, CSS_BTN].join(' ') +
-        '"><i class="' + CSS_ICON_CHEVRON_LEFT + '"></i></button>',
+    TPL_SCHEDULER_ICON_NEXT = '<button type="button" class="' + [CSS_ICON, CSS_SCHEDULER_ICON_NEXT, CSS_BTN].join(' ') +
+        '"><span class="' + CSS_ICON_CHEVRON_RIGHT + '"></span></button>',
+    TPL_SCHEDULER_ICON_PREV = '<button type="button" class="' + [CSS_ICON, CSS_SCHEDULER_ICON_PREV, CSS_BTN].join(' ') +
+        '"><span class="' + CSS_ICON_CHEVRON_LEFT + '"></span></button>',
     TPL_SCHEDULER_NAV = '<div class="btn-group"></div>',
     TPL_SCHEDULER_TODAY = '<button type="button" class="' + [CSS_SCHEDULER_TODAY, CSS_BTN].join(' ') +
         '">{today}</button>',

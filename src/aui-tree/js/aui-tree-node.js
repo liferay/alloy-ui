@@ -34,8 +34,6 @@ var Lang = A.Lang,
     CSS_TREE_NODE_LEAF = getCN('tree', 'node', 'leaf'),
     CSS_TREE_NODE_OVER = getCN('tree', 'node', 'over'),
     CSS_TREE_NODE_SELECTED = getCN('tree', 'node', 'selected'),
-    HIT_AREA_TPL = '<i class="' + CSS_TREE_HITAREA + '"></i>',
-    ICON_TPL = '<i class="' + CSS_TREE_ICON + '"></i>',
     CSS_ICON_FOLDER_CLOSE = getCN('glyphicon', 'folder', 'close'),
     CSS_ICON_FOLDER_OPEN = getCN('glyphicon', 'folder', 'open'),
     CSS_ICON_ICON_PLUS = getCN('glyphicon', 'plus'),
@@ -45,6 +43,8 @@ var Lang = A.Lang,
     CSS_ICON_OK_SIGN = getCN('glyphicon', 'ok', 'sign'),
     CSS_ICON_CHECK = getCN('glyphicon', 'check'),
 
+    HIT_AREA_TPL = '<span class="' + CSS_TREE_HITAREA + '"></span>',
+    ICON_TPL = '<span class="' + CSS_TREE_ICON + '"></span>',
     LABEL_TPL = '<span class="' + CSS_TREE_LABEL + '"></span>',
     NODE_CONTAINER_TPL = '<ul></ul>',
 
@@ -1281,7 +1281,7 @@ var CSS_TREE_NODE_CHECKBOX = getCN('tree', 'node', 'checkbox'),
     CSS_TREE_NODE_CHECKBOX_CONTAINER = getCN('tree', 'node', 'checkbox', 'container'),
     CSS_TREE_NODE_CHECKED = getCN('tree', 'node', 'checked'),
 
-    CHECKBOX_CONTAINER_TPL = '<i class="' + CSS_TREE_NODE_CHECKBOX_CONTAINER + '"></i>',
+    CHECKBOX_CONTAINER_TPL = '<span class="' + CSS_TREE_NODE_CHECKBOX_CONTAINER + '"></span>',
     CHECKBOX_TPL = '<input class="' + CSS_TREE_NODE_CHECKBOX + '" type="checkbox" />';
 
 /**

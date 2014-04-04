@@ -116,7 +116,7 @@ A.Toolbar = A.Component.create({
          */
         TEMPLATES: {
             button: '<button class="aui-btn">{content}</button>',
-            icon: '<i class="{cssClass}"></i>',
+            icon: '<span class="{cssClass}"></span>',
             group: '<div class="aui-btn-group {cssClass}"></div>'
         },
 
@@ -322,7 +322,7 @@ ToolbarRenderer.prototype = {
     TEMPLATES: {
         button: A.Button.prototype.TEMPLATE,
         group: '<div class="' + CSS_BTN_GROUP + ' {cssClass}"></div>',
-        icon: '<i class="{cssClass}" />'
+        icon: '<span class="{cssClass}"></span>'
     },
 
     /**
