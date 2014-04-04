@@ -132,14 +132,18 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
      * Handle navigation error.
      *
      * @method  _handleNavigateError
-     * @param {String} url
+     * @param {Object} req The request object.
      * @param {Screen} nextScreen
      * @param {Error} error
      * @private
      */
-    _handleNavigateError: function(url, nextScreen, err) {
+    _handleNavigateError: function(req, nextScreen, err) {
         A.log('Navigation error for [' + nextScreen + '] (' + err + ')', 'info');
         this.pendingRequest = null;
+        // Force redirect on errors not caused by navigation
+        if (!A.instanceOf(err, A.CancellablePromise.Error)) {
+            A.config.win.location.href = req.url;
+        }
     },
 
     /**
@@ -253,7 +257,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
                 next();
             },
             function(reason) {
-                instance._handleNavigateError(url, nextScreen, reason);
+                instance._handleNavigateError(req, nextScreen, reason);
             }
         );
     },
