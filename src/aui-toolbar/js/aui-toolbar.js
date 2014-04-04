@@ -12,6 +12,7 @@ var Lang = A.Lang,
     getCN = A.getClassName,
 
     CSS_BTN = getCN('btn'),
+    CSS_BTN_DEFAULT = getCN('btn', 'default'),
     CSS_BTN_GROUP = getCN('btn', 'group'),
     CSS_BTN_GROUP_CHECKBOX = getCN('btn', 'group', 'checkbox'),
     CSS_BTN_GROUP_RADIO = getCN('btn', 'group', 'radio'),
@@ -372,7 +373,7 @@ ToolbarRenderer.prototype = {
             }
 
             // Add cssClass support
-            cssClass = [CSS_BTN, value.cssClass];
+            cssClass = [CSS_BTN, CSS_BTN_DEFAULT, value.cssClass];
             if (value.primary) {
                 cssClass.push(A.ButtonCore.CLASS_NAMES.PRIMARY);
             }

@@ -58,6 +58,7 @@ var Lang = A.Lang,
     CSS_SCHEDULER_VIEW_SCROLLABLE = getCN('scheduler-view', 'scrollable'),
     CSS_SCHEDULER_VIEW_SELECTED = getCN('active'),
     CSS_BTN = getCN('btn'),
+    CSS_BTN_DEFAULT = getCN('btn', 'default'),
     CSS_ICON = getCN('glyphicon'),
     CSS_ICON_CHEVRON_RIGHT = getCN('glyphicon', 'chevron', 'right'),
     CSS_ICON_CHEVRON_LEFT = getCN('glyphicon', 'chevron', 'left'),
@@ -84,12 +85,12 @@ var Lang = A.Lang,
     TPL_HTML_CLOSE_SPAN = '</span>',
     TPL_SCHEDULER_CONTROLS = '<div class="span7 ' + CSS_SCHEDULER_CONTROLS + '"></div>',
     TPL_SCHEDULER_HD = '<div class="row-fluid ' + CSS_SCHEDULER_HD + '"></div>',
-    TPL_SCHEDULER_ICON_NEXT = '<button type="button" class="' + [CSS_ICON, CSS_SCHEDULER_ICON_NEXT, CSS_BTN].join(' ') +
-        '"><span class="' + CSS_ICON_CHEVRON_RIGHT + '"></span></button>',
-    TPL_SCHEDULER_ICON_PREV = '<button type="button" class="' + [CSS_ICON, CSS_SCHEDULER_ICON_PREV, CSS_BTN].join(' ') +
-        '"><span class="' + CSS_ICON_CHEVRON_LEFT + '"></span></button>',
+    TPL_SCHEDULER_ICON_NEXT = '<button type="button" class="' + [CSS_ICON, CSS_SCHEDULER_ICON_NEXT, CSS_BTN,
+        CSS_BTN_DEFAULT].join(' ') + '"><span class="' + CSS_ICON_CHEVRON_RIGHT + '"></span></button>',
+    TPL_SCHEDULER_ICON_PREV = '<button type="button" class="' + [CSS_ICON, CSS_SCHEDULER_ICON_PREV, CSS_BTN,
+        CSS_BTN_DEFAULT].join(' ') + '"><span class="' + CSS_ICON_CHEVRON_LEFT + '"></span></button>',
     TPL_SCHEDULER_NAV = '<div class="btn-group"></div>',
-    TPL_SCHEDULER_TODAY = '<button type="button" class="' + [CSS_SCHEDULER_TODAY, CSS_BTN].join(' ') +
+    TPL_SCHEDULER_TODAY = '<button type="button" class="' + [CSS_SCHEDULER_TODAY, CSS_BTN, CSS_BTN_DEFAULT].join(' ') +
         '">{today}</button>',
     TPL_SCHEDULER_VIEW = '<button type="button" class="' + [CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_].join(' ') +
         '{name}" data-view-name="{name}">{label}</button>',
