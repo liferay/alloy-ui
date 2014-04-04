@@ -39,8 +39,8 @@ var Lang = A.Lang,
     CSS_CELLEDITOR_ELEMENT = AgetClassName('celleditor', 'element'),
     CSS_CELLEDITOR_OPTION = AgetClassName('celleditor', 'option'),
     CSS_DATATABLE_EDITABLE = AgetClassName('datatable', 'editable'),
-    CSS_ICON = AgetClassName('icon'),
-    CSS_ICON_GRIP_DOTTED_VERTICAL = AgetClassName('icon', 'grip', 'dotted', 'vertical'),
+    CSS_ICON = AgetClassName('glyphicon'),
+    CSS_ICON_GRIP_DOTTED_VERTICAL = AgetClassName('glyphicon', 'resize', 'vertical'),
 
     TPL_BR = '<br/>';
 
@@ -897,7 +897,7 @@ var BaseCellEditor = A.Component.create({
                                 click: A.bind(instance._handleSaveEvent, instance)
                             },
                             label: strings['save'],
-                            icon: 'icon-ok-sign'
+                            icon: 'glyphicon glyphicon-ok-sign'
                         },
                         {
                             on: {
@@ -1050,7 +1050,7 @@ var BaseCellEditor = A.Component.create({
                     toolbar.add(
                         [
                             {
-                                icon: 'icon-edit',
+                                icon: 'glyphicon glyphicon-edit',
                                 label: instance.getString('edit'),
                                 on: {
                                     click: A.bind(instance._handleEditEvent, instance)

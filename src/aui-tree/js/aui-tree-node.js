@@ -20,6 +20,7 @@ var Lang = A.Lang,
 
     getCN = A.getClassName,
 
+    CSS_ICON = getCN('glyphicon'),
     CSS_TREE_COLLAPSED = getCN('tree', 'collapsed'),
     CSS_TREE_CONTAINER = getCN('tree', 'container'),
     CSS_TREE_EXPANDED = getCN('tree', 'expanded'),
@@ -33,17 +34,17 @@ var Lang = A.Lang,
     CSS_TREE_NODE_LEAF = getCN('tree', 'node', 'leaf'),
     CSS_TREE_NODE_OVER = getCN('tree', 'node', 'over'),
     CSS_TREE_NODE_SELECTED = getCN('tree', 'node', 'selected'),
-    CSS_ICON_FOLDER_CLOSE = getCN('icon', 'folder', 'close'),
-    CSS_ICON_FOLDER_OPEN = getCN('icon', 'folder', 'open'),
-    CSS_ICON_ICON_PLUS = getCN('icon', 'plus'),
-    CSS_ICON_ICON_MINUS = getCN('icon', 'minus'),
-    CSS_ICON_ICON_FILE = getCN('icon', 'file'),
-    CSS_ICON_ICON_REFRESH = getCN('icon', 'refresh'),
-    CSS_ICON_OK_SIGN = getCN('icon', 'ok', 'sign'),
-    CSS_ICON_CHECK = getCN('icon', 'check'),
-
     HIT_AREA_TPL = '<i class="' + CSS_TREE_HITAREA + '"></i>',
     ICON_TPL = '<i class="' + CSS_TREE_ICON + '"></i>',
+    CSS_ICON_FOLDER_CLOSE = getCN('glyphicon', 'folder', 'close'),
+    CSS_ICON_FOLDER_OPEN = getCN('glyphicon', 'folder', 'open'),
+    CSS_ICON_ICON_PLUS = getCN('glyphicon', 'plus'),
+    CSS_ICON_ICON_MINUS = getCN('glyphicon', 'minus'),
+    CSS_ICON_ICON_FILE = getCN('glyphicon', 'file'),
+    CSS_ICON_ICON_REFRESH = getCN('glyphicon', 'refresh'),
+    CSS_ICON_OK_SIGN = getCN('glyphicon', 'ok', 'sign'),
+    CSS_ICON_CHECK = getCN('glyphicon', 'check'),
+
     LABEL_TPL = '<span class="' + CSS_TREE_LABEL + '"></span>',
     NODE_CONTAINER_TPL = '<ul></ul>',
 
@@ -117,21 +118,21 @@ var TreeNode = A.Component.create({
         cssClasses: {
             value: {
                 file: {
-                    iconCheck: CSS_ICON_CHECK,
-                    iconCollapsed: CSS_ICON_FOLDER_CLOSE,
-                    iconExpanded: CSS_ICON_FOLDER_OPEN,
+                    iconCheck: [CSS_ICON, CSS_ICON_CHECK].join(' '),
+                    iconCollapsed: [CSS_ICON, CSS_ICON_FOLDER_CLOSE].join(' '),
+                    iconExpanded: [CSS_ICON, CSS_ICON_FOLDER_OPEN].join(' '),
                     iconHitAreaCollapsed: [CSS_TREE_HITAREA, CSS_ICON_ICON_PLUS].join(' '),
                     iconHitAreaExpanded: [CSS_TREE_HITAREA, CSS_ICON_ICON_MINUS].join(' '),
-                    iconLeaf: CSS_ICON_ICON_FILE,
-                    iconLoading: CSS_ICON_ICON_REFRESH,
-                    iconUncheck: CSS_ICON_CHECK
+                    iconLeaf: [CSS_ICON, CSS_ICON_ICON_FILE].join(' '),
+                    iconLoading: [CSS_ICON, CSS_ICON_ICON_REFRESH].join(' '),
+                    iconUncheck: [CSS_ICON, CSS_ICON_CHECK].join(' ')
                 },
                 normal: {
-                    iconCheck: CSS_ICON_CHECK,
+                    iconCheck: [CSS_ICON, CSS_ICON_CHECK].join(' '),
                     iconHitAreaCollapsed: [CSS_TREE_HITAREA, CSS_ICON_ICON_PLUS].join(' '),
                     iconHitAreaExpanded: [CSS_TREE_HITAREA, CSS_ICON_ICON_MINUS].join(' '),
-                    iconLoading: CSS_ICON_ICON_REFRESH,
-                    iconUncheck: CSS_ICON_CHECK
+                    iconLoading: [CSS_ICON, CSS_ICON_ICON_REFRESH].join(' '),
+                    iconUncheck: [CSS_ICON, CSS_ICON_CHECK].join(' ')
                 }
             }
         },
@@ -1718,21 +1719,21 @@ var TreeNodeRadio = A.Component.create({
         cssClasses: {
             value: {
                 file: {
-                    iconCheck: CSS_ICON_OK_SIGN,
-                    iconCollapsed: CSS_ICON_FOLDER_CLOSE,
-                    iconExpanded: CSS_ICON_FOLDER_OPEN,
+                    iconCheck: [CSS_ICON, CSS_ICON_OK_SIGN].join(' '),
+                    iconCollapsed: [CSS_ICON, CSS_ICON_FOLDER_CLOSE].join(' '),
+                    iconExpanded: [CSS_ICON, CSS_ICON_FOLDER_OPEN].join(' '),
                     iconHitAreaCollapsed: [CSS_TREE_HITAREA, CSS_ICON_ICON_PLUS].join(' '),
                     iconHitAreaExpanded: [CSS_TREE_HITAREA, CSS_ICON_ICON_MINUS].join(' '),
-                    iconLeaf: CSS_ICON_ICON_FILE,
-                    iconLoading: CSS_ICON_ICON_REFRESH,
-                    iconUncheck: CSS_ICON_OK_SIGN
+                    iconLeaf: [CSS_ICON, CSS_ICON_ICON_FILE].join(' '),
+                    iconLoading: [CSS_ICON, CSS_ICON_ICON_REFRESH].join(' '),
+                    iconUncheck: [CSS_ICON, CSS_ICON_OK_SIGN].join(' ')
                 },
                 normal: {
-                    iconCheck: CSS_ICON_OK_SIGN,
+                    iconCheck: [CSS_ICON, CSS_ICON_OK_SIGN].join(' '),
                     iconHitAreaCollapsed: [CSS_TREE_HITAREA, CSS_ICON_ICON_PLUS].join(' '),
                     iconHitAreaExpanded: [CSS_TREE_HITAREA, CSS_ICON_ICON_MINUS].join(' '),
-                    iconLoading: CSS_ICON_ICON_REFRESH,
-                    iconUncheck: CSS_ICON_OK_SIGN
+                    iconLoading: [CSS_ICON, CSS_ICON_ICON_REFRESH].join(' '),
+                    iconUncheck: [CSS_ICON, CSS_ICON_OK_SIGN].join(' ')
                 }
             }
         }

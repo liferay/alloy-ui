@@ -7,8 +7,9 @@
 
 var getCN = A.getClassName,
 
-    CSS_ICON_THUMBS_DOWN = getCN('icon', 'thumbs', 'down'),
-    CSS_ICON_THUMBS_UP = getCN('icon', 'thumbs', 'up'),
+    CSS_ICON = getCN('glyphicon'),
+    CSS_ICON_THUMBS_DOWN = getCN('glyphicon', 'thumbs', 'down'),
+    CSS_ICON_THUMBS_UP = getCN('glyphicon', 'thumbs', 'up'),
     CSS_RATING_OFF = getCN('rating', 'off'),
     CSS_RATING_ON = getCN('rating', 'on');
 
@@ -54,12 +55,12 @@ var ThumbRating = A.Component.create({
          */
         cssClasses: {
             value: {
-                down: CSS_ICON_THUMBS_DOWN,
+                down: [CSS_ICON, CSS_ICON_THUMBS_DOWN].join(' '),
                 element: CSS_RATING_OFF,
                 hover: CSS_RATING_ON,
                 off: CSS_RATING_OFF,
                 on: CSS_RATING_ON,
-                up: CSS_ICON_THUMBS_UP
+                up: [CSS_ICON, CSS_ICON_THUMBS_UP].join(' ')
             }
         },
 

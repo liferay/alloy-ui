@@ -17,8 +17,9 @@ var L = A.Lang,
 
     getCN = A.getClassName,
 
-    CSS_ICON_PAUSE = getCN('icon', 'pause'),
-    CSS_ICON_PLAY = getCN('icon', 'play'),
+    CSS_ICON = getCN('glyphicon'),
+    CSS_ICON_PAUSE = getCN('glyphicon', 'pause'),
+    CSS_ICON_PLAY = getCN('glyphicon', 'play'),
     CSS_IMAGE_GALLERY_PAGINATION = getCN('image-gallery', 'pagination'),
     CSS_IMAGE_GALLERY_PAGINATION_THUMB = getCN('image-gallery', 'pagination', 'thumb'),
     CSS_IMAGE_GALLERY_PLAYER = getCN('image-gallery', 'player'),
@@ -483,13 +484,13 @@ var ImageGallery = A.Component.create({
                     children: [
                         [
                             {
-                                icon: CSS_ICON_PLAY,
+                                icon: [CSS_ICON, CSS_ICON_PLAY].join(' '),
                                 on: {
                                     click: A.bind(instance.play, instance)
                                 }
                             },
                             {
-                                icon: CSS_ICON_PAUSE,
+                                icon: [CSS_ICON, CSS_ICON_PAUSE].join(' '),
                                 on: {
                                     click: A.bind(instance.pause, instance)
                                 }

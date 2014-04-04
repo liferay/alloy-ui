@@ -246,12 +246,12 @@ var ButtonSearchCancel = A.Base.create('btn-search-cancel', A.Base, [], {
          * Icon CSS class to be used on the search cancel button.
          *
          * @attribute iconClass
-         * @default 'icon-remove'
+         * @default 'glyphicon glyphicon-remove'
          * @type {String}
          */
         iconClass: {
             validator: Lang.isString,
-            value: 'icon-remove'
+            value: 'glyphicon glyphicon-remove'
         },
 
         /**

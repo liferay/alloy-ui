@@ -2323,7 +2323,7 @@ var DiagramNode = A.Component.create({
             return {
                 children: [
                     {
-                        icon: 'icon-remove',
+                        icon: 'glyphicon glyphicon-remove',
                         on: {
                             click: A.bind(instance._handleCloseEvent, instance)
                         }

@@ -21,12 +21,12 @@ var L = A.Lang,
     CSS_FB_FIELD = getCN('form', 'builder', 'field'),
     CSS_FB_FIELD_SELECTED = getCN('form', 'builder', 'field', 'selected'),
     CSS_FB_UNIQUE = getCN('form', 'builder', 'unique'),
-    CSS_ICON = getCN('icon'),
-    CSS_ICON_ASTERISK = getCN('icon', 'asterisk'),
-    CSS_ICON_PLUS = getCN('icon', 'plus'),
-    CSS_ICON_QUESTION_SIGN = getCN('icon', 'question', 'sign'),
-    CSS_ICON_TRASH = getCN('icon', 'trash'),
-    CSS_ICON_WRENCH = getCN('icon', 'wrench'),
+    CSS_ICON = getCN('glyphicon'),
+    CSS_ICON_ASTERISK = getCN('glyphicon', 'asterisk'),
+    CSS_ICON_PLUS = getCN('glyphicon', 'plus'),
+    CSS_ICON_QUESTION_SIGN = getCN('glyphicon', 'question', 'sign'),
+    CSS_ICON_TRASH = getCN('glyphicon', 'trash'),
+    CSS_ICON_WRENCH = getCN('glyphicon', 'wrench'),
     CSS_WIDGET = getCN('widget'),
 
     TPL_ALERT_TIP = '<div class="' + [CSS_ALERT, CSS_ALERT_INFO].join(' ') + '"></div>',
@@ -520,8 +520,8 @@ var FormBuilderField = A.Component.create({
     HTML_PARSER: {
         dropZoneNode: '.' + CSS_FB_DROP_ZONE,
         labelNode: 'label',
-        requiredFlagNode: '.' + CSS_ICON_ASTERISK,
-        tipFlagNode: '.' + CSS_ICON_QUESTION_SIGN
+        requiredFlagNode: '.' + CSS_ICON + ' .' + CSS_ICON_ASTERISK,
+        tipFlagNode: '.' + CSS_ICON + ' .' + CSS_ICON_QUESTION_SIGN
     },
 
     prototype: {
@@ -838,7 +838,7 @@ var FormBuilderField = A.Component.create({
                 builder = instance.get('builder'),
                 items = [
                     {
-                        icon: CSS_ICON_WRENCH,
+                        icon: [CSS_ICON, CSS_ICON_WRENCH].join(' '),
                         on: {
                             click: A.bind(instance._handleEditEvent, instance)
                         }
@@ -847,7 +847,7 @@ var FormBuilderField = A.Component.create({
 
             if (!instance.get('unique')) {
                 items.push({
-                    icon: CSS_ICON_PLUS,
+                    icon: [CSS_ICON, CSS_ICON_PLUS].join(' '),
                     on: {
                         click: A.bind(instance._handleDuplicateEvent, instance)
                     }
@@ -856,7 +856,7 @@ var FormBuilderField = A.Component.create({
 
             if ((builder && builder.get('allowRemoveRequiredFields')) || !instance.get('required')) {
                 items.push({
-                    icon: CSS_ICON_TRASH,
+                    icon: [CSS_ICON, CSS_ICON_TRASH].join(' '),
                     on: {
                         click: A.bind(instance._handleDeleteEvent, instance)
                     }

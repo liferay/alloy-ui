@@ -44,7 +44,6 @@ var Lang = A.Lang,
 
     getCN = A.getClassName,
 
-    CSS_ICON = getCN('icon'),
     CSS_SCHEDULER_CONTROLS = getCN('scheduler-base', 'controls'),
 
     CSS_SCHEDULER_HD = getCN('scheduler-base', 'hd'),
@@ -59,8 +58,9 @@ var Lang = A.Lang,
     CSS_SCHEDULER_VIEW_SCROLLABLE = getCN('scheduler-view', 'scrollable'),
     CSS_SCHEDULER_VIEW_SELECTED = getCN('active'),
     CSS_BTN = getCN('btn'),
-    CSS_ICON_CHEVRON_RIGHT = getCN('icon', 'chevron', 'right'),
-    CSS_ICON_CHEVRON_LEFT = getCN('icon', 'chevron', 'left'),
+    CSS_ICON = getCN('glyphicon'),
+    CSS_ICON_CHEVRON_RIGHT = getCN('glyphicon', 'chevron', 'right'),
+    CSS_ICON_CHEVRON_LEFT = getCN('glyphicon', 'chevron', 'left'),
     CSS_SCHEDULER_VIEWS = getCN('scheduler-base', 'views'),
 
     CSS_SCHEDULER_EVENT = getCN('scheduler-event'),
