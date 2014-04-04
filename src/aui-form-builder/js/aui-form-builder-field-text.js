@@ -9,13 +9,14 @@ var L = A.Lang,
 
     getCN = A.getClassName,
 
+    CSS_FORM_CONTROL = getCN('form', 'control'),
     CSS_FIELD_INPUT = getCN('field', 'input'),
     CSS_FIELD_INPUT_TEXT = getCN('field', 'input', 'text'),
     CSS_FORM_BUILDER_FIELD = getCN('form-builder-field'),
     CSS_FORM_BUILDER_FIELD_NODE = getCN('form-builder-field', 'node'),
 
-    TPL_INPUT = '<input id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD_INPUT, CSS_FIELD_INPUT_TEXT].join(
-        ' ') + '" name="{name}" type="text" value="{value}" />',
+    TPL_INPUT = '<input id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD_INPUT, CSS_FIELD_INPUT_TEXT,
+        CSS_FORM_CONTROL].join(' ') + '" name="{name}" type="text" value="{value}" />',
 
     WIDTH_VALUES_MAP = {
         small: 'small',

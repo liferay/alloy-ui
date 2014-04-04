@@ -9,20 +9,20 @@
 <body>
     <h1>AlloyUI - Char counter</h1>
     <p>
-        <input type="text" id="input1"/>
         <span id="counter1"></span> character(s) remaining
     </p>
     <p>
-        <input type="text" id="input2">
         <span id="counter2"></span> character(s) remaining
+        <input id="input1" class="form-control" type="text">
 
         <button id="button2-1">set maxLength to 10</button>
         <button id="button2-2">set maxLength to 20 </button>
     </p>
     <p>
-        <textarea id="input3"></textarea>
         <span id="counter3"></span> character(s) remaining
     </p>
+        <input id="input2" class="form-control" type="text">
+        <textarea id="input3" class="form-control"></textarea>
     <script>
     YUI({ filter:'raw' }).use('aui-char-counter', function(Y) {
 

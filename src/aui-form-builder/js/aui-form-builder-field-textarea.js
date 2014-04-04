@@ -11,6 +11,7 @@ var L = A.Lang,
 
     getCN = A.getClassName,
 
+    CSS_FORM_CONTROL = getCN('form', 'control'),
     CSS_FIELD = getCN('field'),
     CSS_FIELD_TEXT = getCN('field', 'text'),
     CSS_FIELD_TEXTAREA = getCN('field', 'textarea'),
@@ -18,7 +19,7 @@ var L = A.Lang,
     CSS_FORM_BUILDER_FIELD_NODE = getCN('form-builder-field', 'node'),
 
     TPL_TEXTAREA = '<textarea id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD, CSS_FIELD_TEXT,
-        CSS_FIELD_TEXTAREA].join(' ') + '" name="{name}">{value}</textarea>';
+        CSS_FIELD_TEXTAREA, CSS_FORM_CONTROL].join(' ') + '" name="{name}">{value}</textarea>';
 
 /**
  * A base class for `A.FormBuilderTextAreaField`.

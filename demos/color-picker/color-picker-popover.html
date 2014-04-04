@@ -27,16 +27,12 @@
     <h1>Alloy - ColorPickerPopover Demo</h1>
 
     <div id="container">
-        <form>
-            <label>Color trigger #1</label>
-            <input class="color-picker-trigger" type="text">
-
-            <label>Color trigger #2</label>
-            <input class="color-picker-trigger" type="text">
-
-            <label>Color trigger #3</label>
-            <input class="color-picker-trigger" type="text">
-        </form>
+        <label>Color trigger #1</label>
+        <input class="form-control" type="text">
+        <label>Color trigger #2</label>
+        <input class="form-control" type="text">
+        <label>Color trigger #3</label>
+        <input class="form-control" type="text">
     </div>
 
 </div>
@@ -44,7 +40,7 @@
 <script>
     YUI({ filter:'raw' }).use('aui-color-picker-popover', function(Y) {
             var colorPicker = new Y.ColorPickerPopover({
-                trigger: '.color-picker-trigger',
+                trigger: '.form-control',
                 zIndex: 2
             }).render();
 
