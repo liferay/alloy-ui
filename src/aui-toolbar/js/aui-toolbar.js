@@ -40,7 +40,7 @@ A.Toolbar = A.Component.create({
      * @type String
      * @static
      */
-    NAME: 'toolbar',
+    NAME: 'btn-toolbar',
 
     /**
      * Static property used to define the default attribute
