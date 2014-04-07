@@ -9,13 +9,22 @@ YUI.add('aui-datatable-tests', function(Y) {
     var suite = new Y.Test.Suite('aui-datatable');
 
     var data = [
-        { fruit: ['apple'] },
-        { fruit: ['cherry'] },
-        { fruit: ['cherry'] },
-        { fruit: ['apple','cherry'] }
+        {
+            fruit: ['apple']
+        },
+        {
+            fruit: ['cherry']
+        },
+        {
+            fruit: ['cherry']
+        },
+        {
+            fruit: ['apple', 'cherry']
+        }
     ];
 
-    var datatable = null, dropdownEditor = null;
+    var datatable = null,
+        dropdownEditor = null;
 
     suite.add(new Y.Test.Case({
         name: 'Datatable',
@@ -54,7 +63,7 @@ YUI.add('aui-datatable-tests', function(Y) {
         },
 
         'Render Datatable': function() {
-            datatable =  datatable.render();
+            datatable = datatable.render();
 
             Y.Assert.isNotNull(datatable);
         },

@@ -103,16 +103,14 @@ YUI.add('aui-form-validator-tests', function(Y) {
 
             var validOption = Y.Node.create('<option value=\"male\">Male</option>').appendTo(select);
 
-            var validator = new Y.FormValidator(
-                {
-                    boundingBox: form,
-                    rules: {
-                        gender: {
-                            required: true
-                        }
+            var validator = new Y.FormValidator({
+                boundingBox: form,
+                rules: {
+                    gender: {
+                        required: true
                     }
                 }
-            );
+            });
 
             form.simulate('submit');
 
