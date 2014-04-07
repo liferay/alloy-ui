@@ -30,7 +30,9 @@
             duration: 0.5, // in seconds
             headerContent: 'Header content',
             trigger: '#triggerTop',
-            position: function() {return 'bottom';}
+            position: function() {
+                return 'top';
+            }
         }).render();
 
         var popoverBottom = new Y.Popover({
@@ -39,7 +41,7 @@
             },
             bodyContent: 'Another fine body…',
             headerContent: 'Header content',
-            position: 'right',
+            position: 'bottom',
             trigger: '#triggerBottom'
         }).render();
 

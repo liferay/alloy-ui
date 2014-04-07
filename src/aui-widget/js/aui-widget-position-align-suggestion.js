@@ -261,15 +261,14 @@ A.mix(PositionAlignSuggestion.prototype, {
      * @param value
      * @protected
      * @return {Boolean} True only if value is 'bottom', 'top', 'left'
-     * or 'right'.
+     *     or 'right'.
      */
     _validatePosition: function(val) {
         if (A.Lang.isFunction(val)) {
             val = val.call(this);
         }
 
-        return (val === 'bottom' || val === 'top' || val === 'left'
-                || val === 'right');
+        return (val === 'bottom' || val === 'top' || val === 'left' || val === 'right');
     }
 });
 
