@@ -258,7 +258,7 @@ A.Toolbar = A.Component.create({
                 }
             }
 
-            var groupNode = seed.ancestor('.' + CSS_BTN_GROUP, true);
+            var groupNode = seed.ancestor('.' + CSS_BTN_GROUP + ', ' + CSS_BTN_GROUP_VERTICAL, true);
             if (groupNode) {
                 var type;
                 if (groupNode.hasClass(CSS_BTN_GROUP_CHECKBOX)) {
@@ -322,7 +322,7 @@ ToolbarRenderer.prototype = {
      */
     TEMPLATES: {
         button: A.Button.prototype.TEMPLATE,
-        group: '<div class="' + CSS_BTN_GROUP + ' {cssClass}"></div>',
+        group: '<div class="{cssClass}"></div>',
         icon: '<span class="{cssClass}"></span>'
     },
 
@@ -433,6 +433,8 @@ ToolbarRenderer.prototype = {
 
             if (orientation === 'vertical') {
                 cssClass.push(CSS_BTN_GROUP_VERTICAL);
+            } else {
+                cssClass.push(CSS_BTN_GROUP);
             }
 
             var groupNode = A.Node.create(
