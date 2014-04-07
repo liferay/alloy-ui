@@ -111,7 +111,7 @@ var AColor = A.Color,
 
         TPL_OUTPUT: '<div class="control-group ' + CSS_LABEL_VALUE + ' ' + CSS_LABEL_VALUE_HEX + '">' + '<label>{label}</label>' + '<div class="controls">' + '<input class="' + CSS_VALUE + '" data-type="{type}" type="text" maxlength="{maxlength}" value="{value}">' + '</div>' + '</div>',
 
-        TPL_LABEL_VALUE: '<div class="control-group input-prepend input-append">' + '<label class="add-on">{label}</label>' + '<input class="span2 ' + CSS_VALUE + '" data-type="{type}" type="text" maxlength="{maxlength}" value="{value}">' + '<label class="' + CSS_LABEL + '">{labelUnit}</label>' + '</div>',
+        TPL_LABEL_VALUE: '<div class="control-group input-prepend input-append">' + '<label class="add-on">{label}</label>' + '<input class="col-lg-2 col-md-2 col-sm-2 ' + CSS_VALUE + '" data-type="{type}" type="text" maxlength="{maxlength}" value="{value}">' + '<label class="' + CSS_LABEL + '">{labelUnit}</label>' + '</div>',
 
         _outputType: 'hex',
 
