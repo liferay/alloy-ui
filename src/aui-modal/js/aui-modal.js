@@ -43,6 +43,7 @@ A.Modal = A.Base.create('modal', A.Widget, [
     A.WidgetPositionConstrain,
     A.WidgetStack
 ], {
+    CONTENT_TEMPLATE: '<div class="modal-content"></div>',
 
     /**
      * Construction logic executed during Modal instantiation. Lifecycle.
@@ -300,7 +301,7 @@ A.Modal = A.Base.create('modal', A.Widget, [
      * @type String
      * @static
      */
-    CSS_PREFIX: getClassName('modal'),
+    CSS_PREFIX: getClassName('modal-dialog'),
 
     /**
      * Static property used to define the default attribute
