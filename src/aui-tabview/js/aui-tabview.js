@@ -212,6 +212,13 @@ A.TabView = A.Component.create({
     CSS_PREFIX: getClassName('tabbable'),
 
     /**
+     * Constants for available tab view types.
+     */
+    TYPE_TABS: 'tabs',
+    TYPE_LIST: 'list',
+    TYPE_PILLS: 'pills',
+
+    /**
      * Static property used to define the default attribute
      * configuration for the TabView.
      *
@@ -243,7 +250,9 @@ A.TabView = A.Component.create({
          */
         type: {
             validator: function(val) {
-                return val === 'list' || val === 'tabs' || val === 'pills';
+                return val === A.TabView.TYPE_LIST ||
+                    val === A.TabView.TYPE_TABS ||
+                    val === A.TabView.TYPE_PILLS;
             },
             value: 'tabs'
         }
@@ -402,7 +411,11 @@ A.TabView = A.Component.create({
             var instance = this,
                 listNode = instance.get('listNode');
 
-            listNode.addClass(getClassName('nav', val));
+            // Stacked tab views can't have the 'nav-tabs' class, they need
+            // to only have 'nav-stacked' instead.
+            if (val !== A.TabView.TYPE_TABS || !this.get('stacked')) {
+                listNode.addClass(getClassName('nav', val));
+            }
         },
 
         /**
@@ -418,6 +431,10 @@ A.TabView = A.Component.create({
 
             listNode.toggleClass(
                 A.TabviewBase._classNames.tabviewListStacked, val);
+
+            if (this.get('type') === A.TabView.TYPE_TABS) {
+                listNode.toggleClass(getClassName('nav', A.TabView.TYPE_TABS), !val);
+            }
         }
     }
 });
