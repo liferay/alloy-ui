@@ -123,8 +123,8 @@ A.Surface = A.Base.create('surface', A.Base, [], {
             to = this.defaultChild;
         }
 
-        if (from !== to) {
-            this.activeChild.remove();
+        if (from && from !== to) {
+            from.remove();
         }
 
         // Avoid repaint if the child is already in place

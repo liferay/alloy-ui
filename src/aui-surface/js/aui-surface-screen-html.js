@@ -66,7 +66,7 @@ A.HTMLScreen = A.Base.create('htmlScreen', A.Screen, [], {
      * @return {CancellablePromise} Promise, which should be resolved with the returned
      *     content from the server.
      */
-    _loadContent: function(url, opt_selector) {
+    _loadContent: function(url) {
         var instance = this;
 
         instance.abortRequest();
@@ -84,10 +84,6 @@ A.HTMLScreen = A.Base.create('htmlScreen', A.Screen, [], {
 
                         success: function(id, response) {
                             var frag = A.Node.create(response.responseText);
-
-                            if (opt_selector) {
-                                frag = frag.one(opt_selector);
-                            }
 
                             instance._setTitleFromFragment(frag);
 
