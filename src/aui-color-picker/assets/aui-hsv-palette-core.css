@@ -1,5 +1,5 @@
 .hsv-container {
-    height: 260px;
+    height: 270px;
     padding: 5px;
     position: relative;
     width: 430px;
@@ -118,11 +118,12 @@
     display: block;
 }
 .hsv-label-value-container .hsv-label-value-hex .hsv-value {
-    width: 50px;
-}
-.hsv-label-value-container .hsv-label-value-hex .hsv-value {
     width: 95px;
 }
 .hsv-label-value-container .hsv-value {
     width: 30px;
+    margin-left: 5px;
+}
+.hsv-label-value-container .add-on {
+    width: 10px;
 }
