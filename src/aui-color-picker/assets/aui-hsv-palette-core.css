@@ -13,7 +13,7 @@
 .hsv-container-controls.hsv-container-alpha {
     width: 550px;
 }
-.hsv-view-container .control-group {
+.hsv-view-container .form-group {
     margin-bottom: 0;
 }
 .hsv-hs-container, .hsv-image-backdrop {
@@ -111,7 +111,7 @@
     top: 5px;
     left: 10px;
 }
-.hsv-label-value-container .control-group .hsv-label-hidden {
+.hsv-label-value-container .form-group .hsv-label-hidden {
     display: none;
 }
 .hsv-label-value-container .hsv-label-value-hex .hsv-label {

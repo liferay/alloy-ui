@@ -23,8 +23,8 @@ var Lang = A.Lang,
 
     getCN = A.getClassName,
 
-    CSS_CONTROL_GROUP = getCN('control', 'group'),
     CSS_ERROR = getCN('error'),
+    CSS_FORM_GROUP = getCN('form', 'group'),
     CSS_ERROR_FIELD = getCN('error', 'field'),
     CSS_SUCCESS = getCN('success'),
     CSS_SUCCESS_FIELD = getCN('success', 'field'),
@@ -242,7 +242,7 @@ var FormValidator = A.Component.create({
          * @type String
          */
         fieldContainer: {
-            value: '.' + CSS_CONTROL_GROUP
+            value: '.' + CSS_FORM_GROUP
         },
 
         /**
