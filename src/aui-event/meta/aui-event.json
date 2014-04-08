@@ -1,9 +1,7 @@
 {
     "aui-event": {
         "use": [
-            "aui-event-base",
-            "aui-event-delegate-change",
-            "aui-event-delegate-submit"
+            "aui-event-base"
         ]
     },
 
@@ -14,6 +12,12 @@
     },
 
     "aui-event-delegate-change": {
+        "condition": {
+            "name": "aui-event-delegate-change",
+            "trigger": "event-base-ie",
+            "ua": "ie"
+        },
+
         "requires": [
             "aui-event-base",
             "event-delegate",
@@ -22,6 +26,12 @@
     },
 
     "aui-event-delegate-submit": {
+        "condition": {
+            "name": "aui-event-delegate-submit",
+            "trigger": "event-base-ie",
+            "ua": "ie"
+        },
+
         "requires": [
             "aui-event-base",
             "event-delegate",
