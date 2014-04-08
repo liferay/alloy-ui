@@ -32,7 +32,7 @@ var AColor = A.Color,
     MIN_SATURATION = 0,
     MIN_VALUE = 0,
 
-    SELECTOR_FORM_GROUP_ERROR = '.form-group.error',
+    SELECTOR_FORM_GROUP_ERROR = '.form-group.has-error',
     SELECTOR_FORM_GROUP = '.form-group',
     SELECTOR_HSV_VALUE = '.hsv-value',
 
@@ -197,10 +197,10 @@ var AColor = A.Color,
 
                 type = fieldNode.getAttribute('data-type');
 
-                fieldNode.ancestor(SELECTOR_FORM_GROUP).removeClass('error');
+                fieldNode.ancestor(SELECTOR_FORM_GROUP).removeClass('has-error');
             }
             else {
-                fieldNode.ancestor(SELECTOR_FORM_GROUP).addClass('error');
+                fieldNode.ancestor(SELECTOR_FORM_GROUP).addClass('has-error');
             }
 
             if (!instance._paletteContainer.one(SELECTOR_FORM_GROUP_ERROR)) {

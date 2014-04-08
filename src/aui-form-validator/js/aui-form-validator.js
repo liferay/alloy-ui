@@ -23,16 +23,16 @@ var Lang = A.Lang,
 
     getCN = A.getClassName,
 
-    CSS_ERROR = getCN('error'),
     CSS_FORM_GROUP = getCN('form', 'group'),
+    CSS_HAS_ERROR = getCN('has', 'error'),
     CSS_ERROR_FIELD = getCN('error', 'field'),
-    CSS_SUCCESS = getCN('success'),
+    CSS_HAS_SUCCESS = getCN('has', 'success'),
     CSS_SUCCESS_FIELD = getCN('success', 'field'),
-    CSS_HELP_INLINE = getCN('help', 'inline'),
+    CSS_HELP_BLOCK = getCN('help', 'block'),
     CSS_STACK = getCN('form-validator', 'stack'),
 
     TPL_MESSAGE = '<div role="alert"></div>',
-    TPL_STACK_ERROR = '<div class="' + [CSS_STACK, CSS_HELP_INLINE].join(' ') + '"></div>';
+    TPL_STACK_ERROR = '<div class="' + [CSS_STACK, CSS_HELP_BLOCK].join(' ') + '"></div>';
 
 A.mix(defaults, {
     STRINGS: {
@@ -197,7 +197,7 @@ var FormValidator = A.Component.create({
          * @type String
          */
         containerErrorClass: {
-            value: CSS_ERROR,
+            value: CSS_HAS_ERROR,
             validator: isString
         },
 
@@ -208,7 +208,7 @@ var FormValidator = A.Component.create({
          * @type String
          */
         containerValidClass: {
-            value: CSS_SUCCESS,
+            value: CSS_HAS_SUCCESS,
             validator: isString
         },
 
@@ -556,7 +556,7 @@ var FormValidator = A.Component.create({
         focusInvalidField: function() {
             var instance = this,
                 boundingBox = instance.get('boundingBox'),
-                field = boundingBox.one('.' + CSS_ERROR);
+                field = boundingBox.one('.' + CSS_HAS_ERROR);
 
             if (field) {
                 if (instance.get('selectText')) {
