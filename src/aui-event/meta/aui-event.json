@@ -32,7 +32,7 @@
     "aui-event-input": {
         "condition": {
             "name": "aui-event-input",
-            "trigger": "aui-event",
+            "trigger": "aui-event-base",
             "test": "aui-event-input-test.js"
         },
 
