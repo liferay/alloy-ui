@@ -104,6 +104,17 @@ ButtonExt.ATTRS = {
      */
     primary: {
         value: false
+    },
+
+    /**
+     * Sets button style to default.
+     *
+     * @attribute default
+     * @default true
+     * @type {Boolean}
+     */
+    default: {
+        value: true
     }
 };
 
@@ -167,6 +178,7 @@ ButtonExt.prototype = {
 
         instance._uiSetIcon(instance.get('icon'));
         instance._uiSetPrimary(instance.get('primary'));
+        instance._uiSetDefault(instance.get('default'));
     },
 
     /**
@@ -237,6 +249,19 @@ ButtonExt.prototype = {
     },
 
     /**
+     * Adds default button class.
+     *
+     * @method _uiSetDefault
+     * @param {String} val
+     * @protected
+     */
+    _uiSetDefault: function(val) {
+        var instance = this;
+
+        instance.get('boundingBox').toggleClass(CLASS_NAMES.BUTTON_DEFAULT, val);
+    },
+
+    /**
      * Adds class name for button icon.
      *
      * @method _uiSetIcon
@@ -297,7 +322,7 @@ var Button = A.Button;
 
 Button.NAME = 'btn';
 
-Button.CSS_PREFIX = [CLASS_NAMES.BUTTON, CLASS_NAMES.BUTTON_DEFAULT].join(' ');
+Button.CSS_PREFIX = [CLASS_NAMES.BUTTON].join(' ');
 
 Button.CLASS_NAMES = CLASS_NAMES;
 

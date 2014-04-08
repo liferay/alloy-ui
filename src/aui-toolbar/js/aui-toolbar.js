@@ -373,7 +373,10 @@ ToolbarRenderer.prototype = {
             }
 
             // Add cssClass support
-            cssClass = [CSS_BTN, CSS_BTN_DEFAULT, value.cssClass];
+            cssClass = [CSS_BTN, value.cssClass];
+            if (value.default === undefined || value.default) {
+                cssClass.push(CSS_BTN_DEFAULT);
+            }
             if (value.primary) {
                 cssClass.push(A.ButtonCore.CLASS_NAMES.PRIMARY);
             }

@@ -393,7 +393,8 @@ A.Modal = A.Base.create('modal', A.Widget, [
                                     event.domEvent.stopPropagation();
                                 }
                             },
-                            render: true
+                            render: true,
+                            default: false
                         }
                     ]
                 };

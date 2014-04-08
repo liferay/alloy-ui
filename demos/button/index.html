@@ -5,6 +5,11 @@
     <title></title>
     <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
     <script src="../../build/aui/aui.js"></script>
+    <style>
+        #closeButton .close {
+            float: none;
+        }
+    </style>
 </head>
 <body>
     <h1>AlloyUI - Button</h1>
@@ -12,6 +17,7 @@
     <button id="basic"></button>
     <button id="toggle"></button>
     <span id="typed"></span>
+    <span id="closeButton"></span>
     <h2>JavaScript button group</h2>
     <p>
         <div id="checkgroup">
@@ -106,6 +112,12 @@
             label: 'Type button',
             domType: 'button'
         }).render('#typed');
+
+        new Y.Button({
+            cssClass: 'close',
+            label: '\u00D7',
+            default: false
+        }).render('#closeButton');
 
         new Y.ButtonGroup({
             boundingBox: '#checkgroup',
