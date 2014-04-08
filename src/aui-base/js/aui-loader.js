@@ -205,8 +205,18 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-datatable-property-list"
         ]
     },
+    "aui-datatable-body": {
+        "requires": [
+            "aui-classnamemanager",
+            "datatable-base",
+            "event-key",
+            "aui-event-base"
+        ],
+        "skinnable": true
+    },
     "aui-datatable-core": {
         "requires": [
+            "aui-datatable-body",
             "datatable-base",
             "event-key",
             "aui-event-base"

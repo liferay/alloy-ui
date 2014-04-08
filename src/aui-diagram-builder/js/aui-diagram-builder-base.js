@@ -1129,11 +1129,11 @@ var DiagramBuilderBase = A.Component.create({
 
             return A.merge({
                     bubbleTargets: instance,
-                    width: 260,
                     scroll: {
                         height: 400,
                         width: 'auto'
-                    }
+                    },
+                    width: '99%'
                 },
                 val
             );
