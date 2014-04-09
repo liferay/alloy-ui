@@ -399,6 +399,18 @@ A.Modal = A.Base.create('modal', A.Widget, [
                     ]
                 };
             }
+        },
+
+        /**
+         * Determine the css classes of Modal's sections.
+         *
+         * @attribute toolbarCssClass
+         * @type Object
+         */
+        toolbarCssClass: {
+            value: {
+                header: 'pull-right'
+            }
         }
     },
 
