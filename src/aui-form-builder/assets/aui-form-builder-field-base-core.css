@@ -3,7 +3,7 @@
     float: left;
     margin-right: 5px;
 }
-.form-builder-field .toolbar {
+.form-builder-field .btn-toolbar {
     position: absolute;
     right: 10px;
     top: 10px;
