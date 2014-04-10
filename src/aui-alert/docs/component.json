@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-alert",
+    "displayName": "Gallery: aui-alert",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "" ],
+    "use"        : [ "aui-alert" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

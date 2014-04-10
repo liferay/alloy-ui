@@ -1,0 +1,16 @@
+{
+    "aui-alert": {
+        "requires": [
+            "widget",
+            "widget-buttons",
+            "dd-plugin",
+            "dd-constrain",
+            "resize-plugin",
+            "timers",
+            "aui-classnamemanager",
+            "aui-widget-cssclass",
+            "aui-widget-transition"
+        ],
+        "skinnable": true
+    }
+}
