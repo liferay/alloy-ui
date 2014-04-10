@@ -10,8 +10,6 @@
     <h1>AlloyUI - Rating</h1>
     <h2>Created from JavaScript</h2>
     <span id="rating"></span>
-    <h2>Created from JavaScript with default selected stars (e.g. avarage rating)</h2>
-    <span id="ratingdefaultselected"></span>
     <h2>From input elements markup</h2>
     <div id="ratinginput">
         <input type="radio" name="rating1" value="v1" title="Horrible" />
@@ -44,13 +42,6 @@
         new Y.Rating({
             boundingBox: '#rating',
             label: 'Label '
-        }).render();
-
-        new Y.Rating({
-            boundingBox: '#ratingdefaultselected',
-            defaultSelected: 1.9,
-            disabled: true,
-            label: 'Average '
         }).render();
 
         new Y.Rating({
