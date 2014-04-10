@@ -45,13 +45,7 @@ A.Surface = A.Base.create('surface', A.Base, [], {
             throw 'Surface element id not specified.';
         }
 
-        this.el = getNodeById(id);
-
-        if (this.el) {
-            this.el.plug(A.Plugin.ParseContent, {
-                preserveScriptNodes: true
-            });
-        }
+        this.el = this.getEl(id);
 
         this.activeChild = this.defaultChild = this.addContent(A.Surface.DEFAULT);
     },
@@ -74,10 +68,15 @@ A.Surface = A.Base.create('surface', A.Base, [], {
 
         A.log('Screen [' + screenId + '] add content to surface [' + this + ']', 'info');
 
-        var child = this.createChild(screenId);
+        var el = this.getEl(),
+            child = this.createChild(screenId);
+
         child.append(opt_content);
         this.transition(child, null);
-        this.el.append(child);
+
+        if (el) {
+            el.append(child);
+        }
 
         return child;
     },
@@ -105,6 +104,30 @@ A.Surface = A.Base.create('surface', A.Base, [], {
     },
 
     /**
+     * Retrieves the surface element from DOM, and sets it to the el property of
+     * the current instance.
+     *
+     * @method getEl
+     * @param  {String} opt_id The ID of the surface element. If not provided,
+     *     this.el will be used.
+     * @return {Node} The retrieved element.
+     */
+    getEl: function(opt_id) {
+        if (this.el) {
+            return this.el;
+        }
+
+        this.el = getNodeById(opt_id || this.get('id'));
+        if (this.el) {
+            this.el.plug(A.Plugin.ParseContent, {
+                preserveScriptNodes: true
+            });
+        }
+
+        return this.el;
+    },
+
+    /**
      * Shows screen content from a surface.
      *
      * @method show
@@ -113,9 +136,10 @@ A.Surface = A.Base.create('surface', A.Base, [], {
      *     navigation until it is resolved.
      */
     show: function(screenId) {
-        var from = this.activeChild,
-            to = this.getChild(screenId),
-            deferred;
+        var deferred,
+            el,
+            from = this.activeChild,
+            to = this.getChild(screenId);
 
         if (!to) {
             // When surface child for screen not found retrieve the default
@@ -127,13 +151,16 @@ A.Surface = A.Base.create('surface', A.Base, [], {
             from.remove();
         }
 
-        // Avoid repaint if the child is already in place
-        if (to && !to.inDoc()) {
-            this.el.append(to);
+        // Avoid repainting if the child is already in place or the element does
+        // not exist
+        el = this.getEl();
+        if (el && to && !to.inDoc()) {
+            el.append(to);
         }
 
         deferred = this.transition(from, to);
         this.activeChild = to;
+
         return deferred;
     },
 
