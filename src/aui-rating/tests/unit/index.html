@@ -1,28 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>aui-rating</title>
+    <head>
+        <title>AUI Rating Unit tests</title>
+        <meta charset="utf-8" />
 
-    <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+        <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
 
-    <script src="../../../../build/aui/aui.js"></script>
-    <script src="js/tests.js"></script>
-    <meta charset="utf-8" />
-</head>
-<body class="yui3-skin-sam">
-<div id="logger"></div>
+        <script src="../../../../build/aui/aui.js"></script>
+        <script src="js/tests.js"></script>
+    </head>
+    <body class="yui3-skin-sam">
+        <div id="logger"></div>
 
-<script>
-YUI({
-    coverage: ['aui-rating'],
-    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-}).use('test-console', 'test', 'module-tests', function(Y) {
-    
-    (new Y.Test.Console()).render('#logger');
+        <h2>From input elements markup</h2>
+        <div id="ratinginput">
+            <input id="item1" type="radio" name="rating1" value="v1" title="Horrible" />
+            <input id="item2" type="radio" name="rating1" value="v2" title="Very bad" />
+            <input id="item3" type="radio" name="rating1" value="v3" title="Bad" />
+            <input id="item4" type="radio" name="rating1" value="v4" title="Acceptable" />
+            <input id="item5" type="radio" name="rating1" value="v5" title="Good" />
+            <input id="item6" type="radio" name="rating1" value="v6" title="Very good" />
+            <input id="item7" type="radio" name="rating1" value="v7" title="Perfect" />
+        </div>
 
-    Y.Test.Runner.setName('aui-rating');
-    Y.Test.Runner.run();
-});
-</script>
-</body>
+        <div id="ratinginput2">
+        </div>
+
+        <script>
+            YUI({
+                coverage: ['aui-rating'],
+                filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+            }).use('test-console', 'test', 'module-tests', function(Y) {
+
+            (new Y.Test.Console()).render('#logger');
+
+                Y.Test.Runner.setName('aui-rating');
+                Y.Test.Runner.run();
+            });
+        </script>
+    </body>
 </html>
