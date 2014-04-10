@@ -1,5 +1,8 @@
 /* Fields */
- .form-builder-field .field-checkbox, .form-builder-field .field-radio {
+.form-builder-field-wrapper {
+    clear: both;
+}
+.form-builder-field .field-checkbox, .form-builder-field .field-radio {
     float: left;
     margin-right: 5px;
 }
