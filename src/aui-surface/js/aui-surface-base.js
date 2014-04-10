@@ -49,7 +49,7 @@ A.Surface = A.Base.create('surface', A.Base, [], {
 
         if (this.el) {
             this.el.plug(A.Plugin.ParseContent, {
-                preserve: true
+                preserveScriptNodes: true
             });
         }
 

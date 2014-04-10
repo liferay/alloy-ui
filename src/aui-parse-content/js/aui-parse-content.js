@@ -92,10 +92,10 @@ var ParseContent = A.Component.create({
          * When true, script nodes will not be removed from original content,
          * instead the script type attribute will be set to `text/plain`.
          *
-         * @attribute preserve
+         * @attribute preserveScriptNodes
          * @default false
          */
-        preserve: {
+        preserveScriptNodes: {
             validator: L.isBoolean,
             value: false
         }
@@ -240,9 +240,9 @@ var ParseContent = A.Component.create({
          */
         _extractScripts: function(content) {
             var instance = this,
+                fragment = A.Node.create('<div></div>'),
                 output = {},
-                preserve = instance.get('preserve'),
-                fragment = A.Node.create('<div></div>');
+                preserveScriptNodes = instance.get('preserveScriptNodes');
 
             // For PADDING_NODE, instead of fixing all tags in the content to be
             // "XHTML"-style, we make the firstChild be a valid non-empty tag,
@@ -263,13 +263,13 @@ var ParseContent = A.Component.create({
 
             output.js = fragment.all('script').filter(function(script) {
                 var includeScript = SCRIPT_TYPES[script.getAttribute('type').toLowerCase()];
-                if (preserve) {
+                if (preserveScriptNodes) {
                     script.setAttribute('type', 'text/parsed');
                 }
                 return includeScript;
             });
 
-            if (!preserve) {
+            if (!preserveScriptNodes) {
                 output.js.each(
                     function(node, i) {
                         node.remove();
