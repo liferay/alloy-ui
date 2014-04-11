@@ -72,7 +72,7 @@ A.HTMLScreen = A.Base.create('htmlScreen', A.Screen, [], {
         instance.abortRequest();
 
         promise = new A.CancellablePromise(
-            function(resolve, reject) {
+            function(resolve) {
                 instance._request = A.io(path, {
                     headers: {
                         'X-PJAX': 'true'
