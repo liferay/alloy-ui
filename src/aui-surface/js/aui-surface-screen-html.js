@@ -30,12 +30,12 @@ A.HTMLScreen = A.Base.create('htmlScreen', A.Screen, [], {
      * @return {CancellablePromise} Promise, which should be resolved with the returned
      *     content from the server.
      */
-    getSurfacesContent: function(surfaces, req) {
-        var url = new A.Url(req.url);
+    getSurfacesContent: function(surfaces, path) {
+        var url = new A.Url(path);
 
         url.addParameters(this.get('urlParams'));
 
-        return this._loadContent(url);
+        return this._loadContent(url.toString());
     },
 
     /**
@@ -44,13 +44,12 @@ A.HTMLScreen = A.Base.create('htmlScreen', A.Screen, [], {
      * @method getSurfaceContent
      * @param {String} surfaceId The ID of the surface, which content should be
      *     loaded.
-     * @req {Object} The request object.
      * @contents {Node} The content container from which the surface content
      *     will be retrieved.
      * @return {String|Node} String or Node instance which contains the content
      *     of the surface.
      */
-    getSurfaceContent: function(surfaceId, req, contents) {
+    getSurfaceContent: function(surfaceId, contents) {
         var frag = contents.one('#' + surfaceId);
 
         if (frag) {
@@ -66,23 +65,23 @@ A.HTMLScreen = A.Base.create('htmlScreen', A.Screen, [], {
      * @return {CancellablePromise} Promise, which should be resolved with the returned
      *     content from the server.
      */
-    _loadContent: function(url) {
-        var instance = this;
+    _loadContent: function(path) {
+        var instance = this,
+            promise;
 
         instance.abortRequest();
 
-        return new A.CancellablePromise(
+        promise = new A.CancellablePromise(
             function(resolve, reject) {
-                instance._request = A.io(url, {
+                instance._request = A.io(path, {
                     headers: {
                         'X-PJAX': 'true'
                     },
                     method: instance.get('method'),
                     on: {
                         failure: function(id, response) {
-                            reject(response.responseText);
+                            promise.cancel(response.responseText);
                         },
-
                         success: function(id, response) {
                             var frag = A.Node.create(response.responseText);
 
@@ -93,11 +92,10 @@ A.HTMLScreen = A.Base.create('htmlScreen', A.Screen, [], {
                     },
                     timeout: instance.get('timeout')
                 });
-            },
-            function() {
-                instance.abortRequest();
             }
         );
+
+        return promise;
     },
 
     /**

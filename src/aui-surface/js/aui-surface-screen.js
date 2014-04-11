@@ -71,7 +71,6 @@ A.ScreenBase.prototype = {
      *
      * @method getSurfaceContent
      * @param {String} surfaceId The id of the surface DOM element.
-     * @param {Object} req The request object.
      * @param {String} opt_contents Optional content fetch by
      *     `getSurfacesContent`.
      * @return {String | Node} This can return a string or node representing the
@@ -88,7 +87,7 @@ A.ScreenBase.prototype = {
      *
      * @method getSurfacesContent
      * @param {Array} surfaces Array with surface ids.
-     * @param {Object} req The request object.
+     * @param {String} path The requested path.
      * @return {String | Promise} This can return a string representing the
      *     contents of the surfaces or a promise, which will pause the
      *     navigation until it is resolved. This is useful for loading async
@@ -105,15 +104,14 @@ A.ScreenBase.prototype = {
      * @method handleSurfaceContent
      * @protected
      * @param {String} surfaceId The id of the surface DOM element.
-     * @param {Object} req The request object.
      * @param {String} opt_contents Optional content fetch by
      *     `getSurfacesContent`.
      * @return {String | Promise} This can return a string representing the
      *     content of the surface or a promise, which will pause the navigation
      *     until it is resolved. This is useful for loading async content.
      */
-    handleSurfaceContent: function(surfaceId, req, opt_contents) {
-        return this.getSurfaceContent(surfaceId, req, opt_contents);
+    handleSurfaceContent: function(surfaceId, opt_contents) {
+        return this.getSurfaceContent(surfaceId, opt_contents);
     },
 
     /**
@@ -123,13 +121,13 @@ A.ScreenBase.prototype = {
      * @method handleSurfacesContent
      * @protected
      * @param {String} surfaces Array with surface ids.
-     * @param {Object} req The request object.
+     * @param {String} path The requested path.
      * @return {String | Promise} This can return a string representing the
      *     content of the surface or a promise, which will pause the navigation
      *     until it is resolved. This is useful for loading async content.
      */
-    handleSurfacesContent: function(surfaces, req) {
-        return this.getSurfacesContent(surfaces, req);
+    handleSurfacesContent: function(surfaces, path) {
+        return this.getSurfacesContent(surfaces, path);
     },
 
     /**
@@ -242,18 +240,18 @@ A.ScreenCacheable.prototype = {
      * @method handleSurfacesContent
      * @protected
      * @param {String} surfaces Array with surface ids.
-     * @param {Object} req The request object.
+     * @param {String} path The requested path.
      * @return {String | Promise} This can return a string representing the
      *     content of the surface or a promise, which will pause the navigation
      *     until it is resolved. This is useful for loading async content.
      */
-    handleSurfacesContent: function(surfaces, req) {
+    handleSurfacesContent: function(surfaces, path) {
         if (this.cache && this.cache[surfaces] && this.get('cacheable')) {
             A.log('Surface [' + surfaces + '] content from cache', 'info');
             return this.cache[surfaces];
         }
 
-        return this.getSurfacesContent(surfaces, req);
+        return this.getSurfacesContent(surfaces, path);
     },
 
     _setCacheable: function(val) {

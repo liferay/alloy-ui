@@ -170,9 +170,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
         }
 
         if (this.matchesRoute(path)) {
-            return this._doNavigate(path, opt_replaceHistory).thenAlways(function() {
-                console.log('DONE');
-            });
+            return this._doNavigate(path, opt_replaceHistory);
         }
     },
 

@@ -59,14 +59,14 @@ YUI({
         //     return true;
         // },
 
-        getSurfacesContent: function(surfaces, req) {
-            var url = new Y.Url(req.url);
+        getSurfacesContent: function(surfaces, path) {
+            var url = new Y.Url(path);
             url.addParameter('pjax', '1');
 
-            return load(url);
+            return load(url.toString());
         },
 
-        getSurfaceContent: function(surfaceId, req, opt_contents) {
+        getSurfaceContent: function(surfaceId, opt_contents) {
             var content = Y.Node.create(opt_contents);
 
             switch (surfaceId) {
@@ -94,19 +94,19 @@ YUI({
     });
 
     Y.SurfaceScreen = Y.Base.create('surfaceScreen', Y.Screen, [], {
-        getSurfacesContent: function(surfaces, req) {
-            var url = new Y.Url(req.url);
+        getSurfacesContent: function(surfaces, path) {
+            var url = new Y.Url(path);
             url.addParameter('pjax', '1');
 
-            return load(url);
+            return load(url.toString());
         },
 
-        getSurfaceContent: function(surfaceId, req, opt_contents) {
+        getSurfaceContent: function(surfaceId, opt_contents) {
             var content = Y.Node.create(opt_contents);
 
             switch (surfaceId) {
-                case 'surface' + req.query.sid:
-                    return content.one('#surface' + req.query.sid).get('innerHTML');
+                case surfaceId:
+                    return content.one('#' + surfaceId).get('innerHTML');
                 case 'nav':
                     return content.one('#nav').get('innerHTML');
                 case 'header':
@@ -139,9 +139,9 @@ YUI({
     /**
      * App
      */
-    var app = new Y.SurfaceApp({
+    window.app = new Y.SurfaceApp({
         linkSelector: 'a',
-        root: '/demos/surface'
+        basePath: '/demos/surface'
     });
 
     app.addScreens([

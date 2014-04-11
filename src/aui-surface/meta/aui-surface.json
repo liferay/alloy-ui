@@ -17,8 +17,8 @@
 
     "aui-surface-app": {
         "requires": [
-            "pjax-base",
-            "router",
+            "event-delegate",
+            "node-event-html5",
             "aui-surface-base",
             "aui-surface-screen"
         ]
