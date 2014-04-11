@@ -1,4 +1,7 @@
-A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
+var doc = A.config.doc,
+    win = A.config.win;
+
+A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
     /**
      * Holds the active screen.
      *
@@ -9,13 +12,13 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
     activeScreen: null,
 
     /**
-     * Holds the active url containing the query parameters.
+     * Holds the active path containing the query parameters.
      *
-     * @property activeUrl
+     * @property activePath
      * @type {String}
      * @protected
      */
-    activeUrl: null,
+    activePath: null,
 
     /**
      * Holds a deferred withe the current navigation.
@@ -25,6 +28,15 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
      * @protected
      */
     pendingRequest: null,
+
+    /**
+     * Holds the screen routes configuration.
+     *
+     * @property routes
+     * @type {Array}
+     * @protected
+     */
+    routes: null,
 
     /**
      * Maps the screen instances by the url containing the parameters.
@@ -52,9 +64,11 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
      * @protected
      */
     initializer: function() {
+        this.routes = [];
         this.surfaces = {};
         this.screens = {};
-        this.on('navigate', this._onNavigate);
+        A.on('popstate', this._onPopState, win, this);
+        A.delegate('click', this._onDocClick, doc, this.get('linkSelector'), this);
     },
 
     /**
@@ -63,15 +77,15 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
      * @method addScreens
      * @param {Object} or {Array} screens Single object or an array of object. Each object should contain `path`
      *     and `screen`.
-     * The `path` should be a string or
-     * a regex that maps the navigation route to a screen class definition
-     * (not an instance), e.g:
-     *
-     *     `{ path: "/home:param1", screen: Y.MyScreen }`
-     *     `{ path: /foo.+/, screen: Y.MyScreen }`
+     *     The `path` should be a string or a regex that maps the navigation
+     *     route to a screen class definition (not an instance), e.g:
+     *         `{ path: "/home:param1", screen: Y.MyScreen }`
+     *         `{ path: /foo.+/, screen: Y.MyScreen }`
+     * @chainable
      */
     addScreens: function(screens) {
         this._registerRoutes(A.Array(screens));
+        return this;
     },
 
     /**
@@ -81,6 +95,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
      * @param {Surface} or {String} or [{Surface | String}] surfaces String (id) or Surface instance. You can
      * also pass an Array which contains Surface instances or String (id). In case of ID, these should be the ID of
      * surface DOM element.
+     * @chainable
      */
     addSurfaces: function(surfaces) {
         var instance = this;
@@ -95,124 +110,92 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
             }
             instance.surfaces[surface] = surface;
         });
+
+        return this;
     },
 
     /**
-     * Finalizes a screen navigation.
+     * Dispatches to the first route handler that matches the current path, if
+     * any.
      *
-     * @method  _finalizeNavigate
-     * @param {String} url
-     * @param {Screen} nextScreen
-     * @private
+     * @method dispatch
+     * @chainable
      */
-    _finalizeNavigate: function(url, nextScreen) {
-        var activeScreen = this.activeScreen;
+    dispatch: function() {
+        var location = A.getLocation();
 
-        nextScreen.afterFlip();
+        this.navigate(location.pathname + location.search, true);
 
-        this._setDocumentTitle(nextScreen);
-
-        if (activeScreen && !activeScreen.get('cacheable')) {
-            this._removeScreen(this.activeUrl, activeScreen);
-        }
-
-        this.activeUrl = url;
-        this.activeScreen = nextScreen;
-        this.screens[url] = nextScreen;
+        return this;
     },
 
     /**
-     * @override
-     */
-    _getPath: function() {
-        return this._getURL().replace(this._regexUrlOrigin, '');
-    },
-
-    /**
-     * Handle navigation error.
+     * Matches a route handler from a path, if not found any returns null.
      *
-     * @method  _handleNavigateError
-     * @param {Object} req The request object.
-     * @param {Screen} nextScreen
-     * @param {Error} error
-     * @private
+     * @method matchesRoute
+     * @param {String} path Path containing the querystring part.
+     * @return {Object | null} Route handler if match any.
      */
-    _handleNavigateError: function(req, nextScreen, err) {
-        A.log('Navigation error for [' + nextScreen + '] (' + err + ')', 'info');
-        this.pendingRequest = null;
-        // Force redirect on errors not caused by navigation
-        if (!A.instanceOf(err, A.CancellablePromise.Error)) {
-            A.config.win.location.href = req.url;
+    matchesRoute: function(path) {
+        var basePath = this.get('basePath');
+
+        // Removes base path from link path
+        path = path.substr(basePath.length);
+
+        return A.Array.find(this.routes, function(route) {
+            return path.search(route.regex) > -1;
+        });
+    },
+
+    /**
+     * Navigates to the specified path if there is a route handler that matches.
+     *
+     * @method navigate
+     * @param {String} path Path containing the querystring part.
+     * @param {Boolean} opt_replaceHistory Replaces browser history.
+     * @return {Promise} Returns a pending request cancellable promise.
+     */
+    navigate: function(path, opt_replaceHistory) {
+        if (this.pendingRequest) {
+            this.pendingRequest.cancel('Navigation cancelled');
+        }
+
+        if (path === this.activePath) {
+            A.log('Not navigating, already at destination', 'info');
+            return;
+        }
+        if (this.activeScreen && this.activeScreen.beforeDeactivate()) {
+            A.log('Navigation cancelled by active screen', 'info');
+            return;
+        }
+
+        if (this.matchesRoute(path)) {
+            return this._doNavigate(path, opt_replaceHistory).thenAlways(function() {
+                console.log('DONE');
+            });
         }
     },
 
     /**
-     * @override
+     * Starts navigation to a path.
+     *
+     * @method  _doNavigate
+     * @param {String} path Path containing the querystring part.
+     * @param {Boolean} opt_replaceHistory Replaces browser history.
+     * @return {Promise} Returns a pending request cancellable promise.
      */
-    removeQuery: function(url) {
-        return url;
-    },
-
-    /**
-     * TODO:
-     *   -
-     *   - If screen is cacheable read its value from cache and leave the screen surface children in doc.
-     *   - Else, invoke screen beforeDeactivate, deactivate and destroy. This should remove all screen surface children.
-     * @param  {[type]}   path       [description]
-     * @param  {[type]}   ScreenCtor [description]
-     * @param  {[type]}   req        [description]
-     * @param  {[type]}   res        [description]
-     * @param  {Function} next       [description]
-     * @return {[type]}              [description]
-     */
-    _handleNavigate: function() {
+    _doNavigate: function(path, opt_replaceHistory) {
         var instance = this,
-            args = arguments;
-
-        function handleNavigateInternal() {
-            instance._doNavigate.apply(instance, args);
-        }
-
-        if (instance.pendingRequest) {
-            instance.pendingRequest.cancel('Navigation cancelled').thenAlways(handleNavigateInternal);
-        }
-        else {
-            A.soon(handleNavigateInternal);
-        }
-    },
-
-    /**
-     * [_doNavigate description]
-     * @param  {[type]}   screenFactory [description]
-     * @param  {[type]}   req           [description]
-     * @param  {[type]}   res           [description]
-     * @param  {Function} next          [description]
-     * @return {[type]}                 [description]
-     */
-    _doNavigate: function(screenFactory, req, res, next) {
-        var instance = this,
-            url = this.removeRoot(req.url),
-            nextScreen = instance.screens[url],
             activeScreen = instance.activeScreen,
-            screenId,
-            contents = [],
+            nextScreen = this._getScreen(path),
+            screenId = nextScreen.get('id'),
             transitions = [],
             surfaces = [],
             surfacesId = A.Object.keys(instance.surfaces);
 
-        A.log('Navigate to [' + url + ']', 'info');
+        A.log('Navigate to [' + path + ']', 'info');
 
-        if (!nextScreen) {
-            A.log('Create screen for [' + url + ']', 'info');
-            nextScreen = new(screenFactory.screen)();
-        }
-
-        screenId = nextScreen.get('id');
-
-        instance.pendingRequest = A.CancellablePromise.resolve(
-            nextScreen.handleSurfacesContent(surfacesId, req));
-
-        instance.pendingRequest.then(
+        instance.pendingRequest = A.CancellablePromise.resolve(nextScreen.handleSurfacesContent(surfacesId, path)).then(
             function(opt_contents) {
                 nextScreen.addCache(surfacesId, opt_contents);
                 // Stack the surfaces and its operations in the right order. Since
@@ -221,16 +204,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
                 A.log('Loading surfaces content...', 'info');
                 A.Object.each(instance.surfaces, function(surface, surfaceId) {
                     surfaces.push(surface);
-                    contents.push(nextScreen.getSurfaceContent(surfaceId, req, opt_contents));
-                });
-
-                return contents;
-            }
-        ).then(
-            function(data) {
-                // Add the new content to each surface
-                A.Array.each(surfaces, function(surface, i) {
-                    surface.addContent(screenId, data[i]);
+                    surface.addContent(screenId, nextScreen.getSurfaceContent(surfaceId, opt_contents));
                 });
 
                 return A.CancellablePromise.resolve(nextScreen.beforeFlip());
@@ -252,36 +226,153 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
             }
         ).then(
             function() {
-                instance._finalizeNavigate(url, nextScreen);
-                A.log('Navigation done, request next screen', 'info');
-                next();
+                instance._finalizeNavigate(path, nextScreen, opt_replaceHistory);
             },
             function(reason) {
-                instance._handleNavigateError(req, nextScreen, reason);
+                instance._handleNavigateError(path, nextScreen, reason);
             }
         );
+
+        return instance.pendingRequest;
     },
 
     /**
-     * Intercepts navigate event in order to prevent URL change if needed.
+     * Finalizes a screen navigation.
      *
-     * @method  _onNavigate
-     * @param {EventFacade} event Navigate event facade
+     * @method  _finalizeNavigate
+     * @param {String} path Path containing the querystring part.
+     * @param {Screen} nextScreen
+     * @param {Boolean} opt_replaceHistory Replaces browser history.
      * @private
      */
-    _onNavigate: function(event) {
-        // Chained routes and route with params are resolved to the same path,
-        // since parameters can distinguish the page state the full URL is
-        // compared to determine when is already at the destination
-        if (event.url === this._getURL()) {
-            A.log('Not navigating, already at destination', 'info');
-            event.halt();
+    _finalizeNavigate: function(path, nextScreen, opt_replaceHistory) {
+        var activeScreen = this.activeScreen,
+            title = nextScreen.get('title') || this.get('defaultTitle');
+
+        doc.title = title;
+
+        this._updateHistory(path, title, opt_replaceHistory);
+
+        nextScreen.afterFlip();
+
+        if (activeScreen && !activeScreen.get('cacheable')) {
+            this._removeScreen(this.activePath, activeScreen);
+        }
+
+        this.activePath = path;
+        this.activeScreen = nextScreen;
+        this.screens[path] = nextScreen;
+
+        A.log('Navigation done', 'info');
+    },
+
+    /**
+     * Retrieves or create a screen to a path.
+     *
+     * @method  _getScreen
+     * @param {String} path Path containing the querystring part.
+     * @private
+     */
+    _getScreen: function(path) {
+        var screen = this.screens[path],
+            route;
+
+        if (!screen) {
+            route = this.matchesRoute(path);
+            if (route) {
+                A.log('Create screen for [' + path + ']', 'info');
+                return new(route.screen)();
+            }
+        }
+
+        return screen;
+    },
+
+    /**
+     * Handle navigation error.
+     *
+     * @method  _handleNavigateError
+     * @param {String} path Path containing the querystring part.
+     * @param {Screen} nextScreen
+     * @param {Error} error
+     * @private
+     */
+    _handleNavigateError: function(path, nextScreen, err) {
+        A.log('Navigation error for [' + nextScreen + '] (' + err + ')', 'info');
+        this._removeScreen(path, nextScreen);
+        this.pendingRequest = null;
+    },
+
+    /**
+     * Tests if link element has the same app's base path.
+     *
+     * @param  {String} path Link path containing the querystring part.
+     * @return {Boolean}
+     * @private
+     */
+    _isSameBasePath: function(path) {
+        return path.indexOf(this.get('basePath')) === 0;
+    },
+
+    /**
+     * Tests if link element is an offsite link.
+     *
+     * @param  {Node} link Link element to check base path.
+     * @return {Boolean}
+     * @private
+     */
+    _isLinkSameOrigin: function(link) {
+        return A.getLocation().hostname === link.get('hostname');
+    },
+
+    /**
+     * Intercepts document clicks and test link elements in order to decide
+     * whether Surface app can navigate.
+     *
+     * @method  _onDocClick
+     * @param {EventFacade} event Event facade
+     * @private
+     */
+    _onDocClick: function(event) {
+        var link = event.target,
+            path;
+
+        if (!this._isLinkSameOrigin(link)) {
+            A.log('Offsite link clicked', 'info');
             return;
         }
-        if (this.activeScreen && this.activeScreen.beforeDeactivate()) {
-            A.log('Navigation cancelled by active screen', 'info');
-            event.halt();
+
+        path = link.get('pathname') + link.get('search');
+
+        if (!this._isSameBasePath(path)) {
+            A.log('Link clicked outside app\'s base path', 'info');
             return;
+        }
+
+        try {
+            this.navigate(path);
+        }
+        catch (err) {
+            win.location.href = path;
+        }
+
+        event.preventDefault();
+    },
+
+    /**
+     * Handles browser history changes and fires app's navigation if the state
+     * below to us.
+     *
+     * @method _onPopState
+     * @param {EventFacade} event Event facade
+     * @private
+     */
+    _onPopState: function(event) {
+        var state = event._event.state;
+
+        if (state && state.surface) {
+            A.log('History navigation to [' + state.path + ']', 'info');
+            this.navigate(state.path, true);
         }
     },
 
@@ -289,11 +380,11 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
      * Removes a screen.
      *
      * @method  _removeScreen
-     * @param {String} url
+     * @param {String} path Path containing the querystring part.
      * @param {Screen} screen
      * @private
      */
-    _removeScreen: function(url, screen) {
+    _removeScreen: function(path, screen) {
         var screenId = screen.get('id');
 
         A.Object.each(this.surfaces, function(surface) {
@@ -301,7 +392,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
         });
 
         screen.destroy();
-        delete this.screens[url];
+        delete this.screens[path];
     },
 
     /**
@@ -311,6 +402,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
      * @param {String} s The string to escape. If not a string, it will be casted
      *     to one.
      * @return {string} A RegExp safe, escaped copy of `s`.
+     * @private
      */
     _regExpEscape: function(s) {
         return String(s).replace(/([-()\[\]{}+?*.$\^|,:#<!\\])/g, '\\$1').replace(/\x08/g, '\\x08');
@@ -328,31 +420,41 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
         var instance = this;
 
         A.Array.each(screens, function(value) {
-            var regex = value.path;
+            var path = value.path;
 
-            if (!A.instanceOf(regex, RegExp)) {
-                regex = new RegExp('^' + instance._regExpEscape(value.path) + '$');
+            if (!A.instanceOf(path, RegExp)) {
+                path = new RegExp('^' + instance._regExpEscape(value.path) + '$');
             }
 
-            instance._routes.push({
-                callbacks: [A.bind(instance._handleNavigate, instance, value)],
-                keys: [],
+            instance.routes.push({
                 path: value.path,
-                regex: regex
+                regex: path,
+                screen: value.screen
             });
         });
     },
 
     /**
-     * Updates the document title with the `title` of the screen or the
-     * `defaultTitle` of the surface app.
+     * Updates or replace browser history.
      *
-     * @method  _setDocumentTitle
-     * @param {Screen} screen
+     * @method _updateHistory
+     * @param {String} path Path containing the querystring part.
+     * @param {String} title Document title.
+     * @param {Boolean} opt_replaceHistory Replaces browser history.
      * @private
      */
-    _setDocumentTitle: function(screen) {
-        A.config.doc.title = screen.get('title') || this.get('defaultTitle');
+    _updateHistory: function(path, title, opt_replaceHistory) {
+        var historyParams = {
+            path: path,
+            surface: true
+        };
+
+        if (opt_replaceHistory) {
+            win.history.replaceState(historyParams, title, path);
+        }
+        else {
+            win.history.pushState(historyParams, title, path);
+        }
     }
 }, {
     ATTRS: {
@@ -367,6 +469,31 @@ A.SurfaceApp = A.Base.create('surface-app', A.Router, [A.PjaxBase], {
         defaultTitle: {
             validator: A.Lang.isString,
             value: 'Home'
+        },
+
+        /**
+         * CSS selector string used to filter link click events so that only the
+         * links which match it will have the enhanced navigation behavior.
+         *
+         * @attribute linkSelector
+         * @type String
+         * @default "a"
+         * @initOnly
+         */
+        linkSelector: {
+            value: 'a',
+            writeOnce: 'initOnly'
+        },
+
+        /**
+         * Absolute base path from which all routes should be evaluated.
+         *
+         * @attribute basePath
+         * @type String
+         * @default ''
+         */
+        basePath: {
+            value: ''
         }
     }
 });
