@@ -332,7 +332,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      * @private
      */
     _onDocClick: function(event) {
-        var link = event.target,
+        var link = event.currentTarget,
             path;
 
         if (!this._isLinkSameOrigin(link)) {
