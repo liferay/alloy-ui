@@ -195,7 +195,9 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
         var instance = this;
 
         this._doNavigate(event.path, event.replaceHistory).thenAlways(function() {
-            instance.fire('endNavigate');
+            instance.fire('endNavigate', {
+                path: event.path
+            });
         });
     },
 
