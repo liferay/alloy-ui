@@ -141,7 +141,15 @@ YUI({
      */
     window.app = new Y.SurfaceApp({
         linkSelector: 'a',
-        basePath: '/demos/surface'
+        basePath: '/demos/surface',
+        on: {
+            startNavigate: function(event) {
+                console.log(event);
+            },
+            endNavigate: function(event) {
+                console.log(event);
+            }
+        }
     });
 
     app.addScreens([
