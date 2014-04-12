@@ -89,14 +89,14 @@ YUI.add('module-tests', function(Y) {
                     target: fields.item(1)
                 }
             ]);
-        }
+        },
 
         /**
          * @tests AUI-1158
          */
         'assert connector does not jump after scroll and mouseover': function() {
-            var start,
-                end;
+            var end,
+                start;
 
             var lines = Y.all('path').get('nodes');
 
@@ -105,7 +105,7 @@ YUI.add('module-tests', function(Y) {
                 function(item, index, collection) {
                     width = item.attr('width');
 
-                    if (width > 0) {
+                    if (width) {
                         start = item.attr('d');
 
                         item.simulate('mouseout');
