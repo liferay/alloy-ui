@@ -67,6 +67,12 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
         this.routes = [];
         this.surfaces = {};
         this.screens = {};
+        this.publish({
+            endNavigate: {},
+            startNavigate: {
+                defaultFn: this._defStartNavigateFn
+            }
+        });
         A.on('popstate', this._onPopState, win, this);
         A.delegate('click', this._onDocClick, doc, this.get('linkSelector'), this);
     },
@@ -153,13 +159,12 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      * @method navigate
      * @param {String} path Path containing the querystring part.
      * @param {Boolean} opt_replaceHistory Replaces browser history.
-     * @return {Promise} Returns a pending request cancellable promise.
      */
     navigate: function(path, opt_replaceHistory) {
         if (this.pendingRequest) {
             this.pendingRequest.cancel('Navigation cancelled');
+            this.pendingRequest = null;
         }
-
         if (path === this.activePath) {
             A.log('Not navigating, already at destination', 'info');
             return;
@@ -169,9 +174,29 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
             return;
         }
 
-        if (this.matchesRoute(path)) {
-            return this._doNavigate(path, opt_replaceHistory);
+        var route = this.matchesRoute(path);
+        if (route) {
+            this.fire('startNavigate', {
+                replaceHistory: opt_replaceHistory,
+                path: path,
+                route: route
+            });
         }
+    },
+
+    /**
+     * Starts navigation to a path.
+     *
+     * @method  _defStartNavigateFn
+     * @param {EventFacade} event Event facade containing `path` and
+     * `replaceHistory`.
+     */
+    _defStartNavigateFn: function(event) {
+        var instance = this;
+
+        this._doNavigate(event.path, event.replaceHistory).thenAlways(function() {
+            instance.fire('endNavigate');
+        });
     },
 
     /**
@@ -247,9 +272,9 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
         var activeScreen = this.activeScreen,
             title = nextScreen.get('title') || this.get('defaultTitle');
 
-        doc.title = title;
-
         this._updateHistory(path, title, opt_replaceHistory);
+
+        doc.title = title;
 
         nextScreen.afterFlip();
 
@@ -260,7 +285,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
         this.activePath = path;
         this.activeScreen = nextScreen;
         this.screens[path] = nextScreen;
-
+        this.pendingRequest = null;
         A.log('Navigation done', 'info');
     },
 
@@ -333,17 +358,18 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      */
     _onDocClick: function(event) {
         var link = event.currentTarget,
-            path;
+            path = link.get('pathname') + link.get('search');
 
         if (!this._isLinkSameOrigin(link)) {
             A.log('Offsite link clicked', 'info');
             return;
         }
-
-        path = link.get('pathname') + link.get('search');
-
         if (!this._isSameBasePath(path)) {
             A.log('Link clicked outside app\'s base path', 'info');
+            return;
+        }
+        if (!this.matchesRoute(path)) {
+            A.log('Link clicked without route', 'info');
             return;
         }
 
