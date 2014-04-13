@@ -23,6 +23,12 @@
             "jsfiles": [
                 "js/aui-surface-screen-html.js"
             ]
+        },
+
+        "aui-surface-screen-route": {
+            "jsfiles": [
+                "js/aui-surface-screen-route.js"
+            ]
         }
     }
 }
