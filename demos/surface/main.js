@@ -152,13 +152,16 @@ YUI({
         }
     });
 
-    app.addScreens([
+    app.addScreenRoutes([
         {
             path: /^\/\w+\?sid=[0-9]+/,
             screen: Y.SurfaceScreen
         },
         {
-            path: '/home',
+            path: function(value) {
+                console.log(value);
+                return value === '/home';
+            },
             screen: Y.HomeScreen
         },
         {
