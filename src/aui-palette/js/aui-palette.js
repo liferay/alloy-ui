@@ -51,11 +51,11 @@ var Lang = A.Lang,
      * @constructor
      */
     Palette = A.Base.create(_NAME, A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
-        CONTAINER_TEMPLATE: '<table class="' + CSS_PALETTE_CONTAINER + '">{content}</table>',
+        CONTAINER_TEMPLATE: '<div class="' + CSS_PALETTE_CONTAINER + '">{content}</div>',
 
-        ITEMS_CONTAINER_TEMPLATE: '<tr class="' + CSS_PALETTE_ITEMS_CONTAINER + _SPACE + CSS_PALETTE_ITEMS_CONTAINER_INDEX + '">{content}</tr>',
+        ITEMS_CONTAINER_TEMPLATE: '<ul class="' + CSS_PALETTE_ITEMS_CONTAINER + _SPACE + CSS_PALETTE_ITEMS_CONTAINER_INDEX + '">{content}</ul>',
 
-        ITEM_TEMPLATE: '<td class="' + CSS_PALETTE_ITEM + ' {selectedClassName}" data-column={column} data-index={index} data-row={row} data-value="{value}">' + '<a href="" class="' + CSS_PALETTE_ITEM_INNER + '" onclick="return false;"></a>' + '</td>',
+        ITEM_TEMPLATE: '<li class="' + CSS_PALETTE_ITEM + ' {selectedClassName}" data-column={column} data-index={index} data-row={row} data-value="{value}">' + '<a href="" class="' + CSS_PALETTE_ITEM_INNER + '" onclick="return false;"></a>' + '</li>',
 
         _items: null,
 
