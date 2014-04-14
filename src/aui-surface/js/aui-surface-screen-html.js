@@ -92,6 +92,9 @@ A.HTMLScreen = A.Base.create('htmlScreen', A.Screen, [], {
                     },
                     timeout: instance.get('timeout')
                 });
+            },
+            function() {
+                instance.abortRequest();
             }
         );
 
