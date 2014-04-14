@@ -3,10 +3,15 @@
     border-spacing: 0;
 }
 .palette-item {
+    display: inline-block;
     padding: 0;
 }
 .palette-item-inner {
     display: block;
     height: 16px;
     width: 16px;
+}
+UL.palette-items-container {
+    margin: 0;
+    padding: 0;
 }
