@@ -1398,7 +1398,8 @@
     "aui-undo-redo": {
         "requires": [
             "base",
-            "base-build"
+            "base-build",
+            "promise"
         ]
     },
     "aui-url": {
