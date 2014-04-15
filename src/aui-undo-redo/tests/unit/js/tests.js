@@ -33,6 +33,56 @@ YUI.add('aui-undo-redo-tests', function(Y) {
             Y.Assert.isFalse(this.undoRedo.redo());
         },
 
+        'should clear history correctly': function() {
+            this.undoRedo.add(this.newWriteState('Hello'));
+            this.undoRedo.add(this.newWriteState(' World'));
+
+            Y.Assert.isTrue(this.undoRedo.undo());
+
+            this.undoRedo.clearHistory();
+            Y.Assert.isFalse(this.undoRedo.undo());
+            Y.Assert.isFalse(this.undoRedo.redo());
+        },
+
+        'should check correctly if can undo/redo': function() {
+            Y.Assert.isFalse(this.undoRedo.canUndo());
+            Y.Assert.isFalse(this.undoRedo.canRedo());
+
+            this.undoRedo.add(this.newWriteState('Hello'));
+            this.undoRedo.add(this.newWriteState(' World'));
+            Y.Assert.isTrue(this.undoRedo.canUndo());
+            Y.Assert.isFalse(this.undoRedo.canRedo());
+
+            this.undoRedo.undo();
+            Y.Assert.isTrue(this.undoRedo.canUndo());
+            Y.Assert.isTrue(this.undoRedo.canRedo());
+
+            this.undoRedo.undo();
+            Y.Assert.isFalse(this.undoRedo.canUndo());
+            Y.Assert.isTrue(this.undoRedo.canRedo());
+        },
+
+        'should allow user to see the undo/redo states': function() {
+            var state1 = this.newWriteState('Hello'),
+                state2 = this.newWriteState(' World');
+
+            Y.Assert.isUndefined(this.undoRedo.undoPeek());
+            Y.Assert.isUndefined(this.undoRedo.redoPeek());
+
+            this.undoRedo.add(state1);
+            this.undoRedo.add(state2);
+            Y.Assert.areSame(state2, this.undoRedo.undoPeek());
+            Y.Assert.isUndefined(this.undoRedo.redoPeek());
+
+            this.undoRedo.undo();
+            Y.Assert.areSame(state1, this.undoRedo.undoPeek());
+            Y.Assert.areSame(state2, this.undoRedo.redoPeek());
+
+            this.undoRedo.undo();
+            Y.Assert.isUndefined(this.undoRedo.undoPeek());
+            Y.Assert.areSame(state1, this.undoRedo.redoPeek());
+        },
+
         'should clean redo stack when new state is added': function() {
             this.undoRedo.add(this.newWriteState('Hello'));
             this.undoRedo.add(this.newWriteState(' World'));
