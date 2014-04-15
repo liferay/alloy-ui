@@ -23,6 +23,15 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
      * @protected
      */
     initializer: function() {
+        this.clearHistory();
+    },
+
+    /**
+     * Resets the stack, clearing all states and pending actions.
+     *
+     * @method clearHistory
+     */
+    clearHistory: function() {
         this._states = [];
         this._pendingActions = [];
 
@@ -66,7 +75,7 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
      * @method undo
      */
     undo: function() {
-        if (this._currentStateIndex < 0) {
+        if (!this.canUndo()) {
             return false;
         }
 
@@ -84,7 +93,7 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
      * @method redo
      */
     redo: function() {
-        if (this._currentStateIndex === this._states.length - 1) {
+        if (!this.canRedo()) {
             return false;
         }
 
@@ -93,6 +102,42 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
             type: this.ACTION_TYPE_REDO
         });
         return true;
+    },
+
+    /**
+     * Checks if there is a state to be undone.
+     *
+     * @method canUndo
+     */
+    canUndo: function() {
+        return this._currentStateIndex >= 0;
+    },
+
+    /**
+     * Checks if there is a state to be redone.
+     *
+     * @method canRedo
+     */
+    canRedo: function() {
+        return this._currentStateIndex < this._states.length - 1;
+    },
+
+    /**
+     * Returns the state that will be undone when calling undo().
+     *
+     * @method undoPeek
+     */
+    undoPeek: function() {
+        return this._states[this._currentStateIndex];
+    },
+
+    /**
+     * Returns the state that will be redone when calling redo().
+     *
+     * @method redoPeek
+     */
+    redoPeek: function() {
+        return this._states[this._currentStateIndex + 1];
     },
 
     /**
