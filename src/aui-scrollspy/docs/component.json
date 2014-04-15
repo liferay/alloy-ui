@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-scrollspy",
+    "displayName": "Gallery: aui-scrollspy",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "bruno.coelho" ],
+    "use"        : [ "aui-scrollspy" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

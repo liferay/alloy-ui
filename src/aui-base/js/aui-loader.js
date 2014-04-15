@@ -817,6 +817,13 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
+    "aui-scrollspy": {
+        "requires": [
+            "aui-classnamemanager",
+            "base-build",
+            "node-core"
+        ]
+    },
     "aui-search": {
         "use": [
             "aui-search-tst"
@@ -1126,4 +1133,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'f0162df5bc417799d6b77cf0e1b8bf4b';
+YUI.Env[Y.version].md5 = '88b3209e5963e226fbd41024df5ae9e7';
