@@ -110,6 +110,34 @@ YUI.add('aui-undo-redo-tests', function(Y) {
             });
         },
 
+        'should respect the max undo depth option': function() {
+            this.undoRedo.set('maxUndoDepth', 2);
+
+            this.undoRedo.add(this.newWriteState('Hello'));
+            this.undoRedo.add(this.newWriteState(' World'));
+            this.undoRedo.add(this.newWriteState('!!!'));
+
+            this.undoRedo.undo();
+            Y.Assert.isTrue(this.undoRedo.canUndo());
+            this.undoRedo.undo();
+            Y.Assert.isFalse(this.undoRedo.canUndo());
+            Y.Assert.areEqual('Hello', this.string);
+        },
+
+        'should respect dynamic changes to the max undo depth option': function() {
+            this.undoRedo.add(this.newWriteState('Hello'));
+            this.undoRedo.add(this.newWriteState(' World'));
+            this.undoRedo.add(this.newWriteState('!!!'));
+
+            this.undoRedo.set('maxUndoDepth', 2);
+
+            this.undoRedo.undo();
+            Y.Assert.isTrue(this.undoRedo.canUndo());
+            this.undoRedo.undo();
+            Y.Assert.isFalse(this.undoRedo.canUndo());
+            Y.Assert.areEqual('Hello', this.string);
+        },
+
         'should handle async undo/redo actions': function() {
             var instance = this;
 

@@ -24,6 +24,8 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
      */
     initializer: function() {
         this.clearHistory();
+
+        this.after('maxUndoDepthChange', A.bind(this._removeStatesBeyondMaxDepth, this));
     },
 
     /**
@@ -66,6 +68,8 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
 
         this._states.push(state);
         this._currentStateIndex++;
+
+        this._removeStatesBeyondMaxDepth();
     },
 
     /**
@@ -200,5 +204,28 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
      */
     _makeEventName: function(prefix, actionType) {
         return prefix + actionType.substring(0, 1).toUpperCase() + actionType.substring(1);
+    },
+
+    /**
+     * Removes states in the stack if it's over the max depth limit.
+     *
+     * @method _removeStatesBeyondMaxDepth
+     * @private
+     */
+    _removeStatesBeyondMaxDepth: function() {
+        var extraCount = this._currentStateIndex + 1 - this.get('maxUndoDepth');
+        if (extraCount > 0) {
+            this._states = this._states.slice(extraCount);
+            this._currentStateIndex -= extraCount;
+        }
+    }
+}, {
+    ATTRS: {
+        maxUndoDepth: {
+            value: 100,
+            validator: function(depth) {
+                return depth >= 1;
+            }
+        }
     }
 });
