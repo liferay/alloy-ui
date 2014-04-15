@@ -114,7 +114,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-component",
             "aui-widget-cssclass",
             "aui-widget-toggle"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-button-search-cancel": {
         "requires": [
@@ -621,7 +622,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-widget-cssclass",
             "aui-widget-toggle",
             "aui-widget-toolbars"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-node": {
         "use": [
@@ -654,7 +656,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-node",
             "aui-component",
             "widget-htmlparser"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-palette": {
         "requires": [
@@ -697,14 +700,16 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-widget-position-align-suggestion",
             "aui-component",
             "aui-node-base"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-progressbar": {
         "requires": [
             "aui-node",
             "aui-component",
             "aui-aria"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-promise": {
         "requires": [

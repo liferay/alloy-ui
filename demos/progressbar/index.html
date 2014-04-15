@@ -22,7 +22,7 @@
     </div>
     <h2>Vertical</h2>
     <div id="vertical" class="progress-bar-info"></div>
-    <div id="vertical-bottom" class="progress-bar-warning bottom"></div>
+    <div id="vertical-bottom" class="progress-bar-warning"></div>
     <script>
     YUI({ filter: 'raw' }).use('aui-progressbar', function(Y) {
 
@@ -66,6 +66,7 @@
         }).render();
 
         new Y.ProgressBar({
+            cssClass: 'bottom',
             contentBox: '#vertical-bottom',
             orientation: 'vertical',
             label: '60%',

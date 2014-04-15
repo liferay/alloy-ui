@@ -56,3 +56,6 @@
 .carousel-menu-active {
     background: #FFF;
 }
+.carousel-hidden {
+    display: none;
+}

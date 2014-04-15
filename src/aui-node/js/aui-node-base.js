@@ -31,9 +31,9 @@ var Lang = A.Lang,
 
     ARRAY_EMPTY_STRINGS = ['', ''],
 
-    CSS_FORCE_OFFSET = getClassName('force', 'offset'),
     CSS_HIDE = getClassName('hide'),
-    CSS_UNSELECTABLE = getClassName('unselectable'),
+    CSS_UNSELECTABLE_VALUE = 'none',
+    CSS_SELECTABLE_VALUE = 'text',
 
     SUPPORT_CLONED_EVENTS = false,
 
@@ -732,7 +732,14 @@ A.mix(NODE_PROTO, {
     selectable: function(noRecurse) {
         var instance = this;
 
-        instance.removeClass(CSS_UNSELECTABLE);
+        instance.setStyles({
+            '-webkit-user-select': CSS_SELECTABLE_VALUE,
+            '-khtml-user-select' : CSS_SELECTABLE_VALUE,
+            '-moz-user-select'   : CSS_SELECTABLE_VALUE,
+            '-ms-user-select'    : CSS_SELECTABLE_VALUE,
+            '-o-user-select'     : CSS_SELECTABLE_VALUE,
+            'user-select'        : CSS_SELECTABLE_VALUE
+        });
 
         if (A.UA.ie || A.UA.opera) {
             _setUnselectable(instance._node, false, noRecurse);
@@ -853,7 +860,14 @@ A.mix(NODE_PROTO, {
     unselectable: function(noRecurse) {
         var instance = this;
 
-        instance.addClass(CSS_UNSELECTABLE);
+        instance.setStyles({
+            '-webkit-user-select': CSS_UNSELECTABLE_VALUE,
+            '-khtml-user-select' : CSS_UNSELECTABLE_VALUE,
+            '-moz-user-select'   : CSS_UNSELECTABLE_VALUE,
+            '-ms-user-select'    : CSS_UNSELECTABLE_VALUE,
+            '-o-user-select'     : CSS_UNSELECTABLE_VALUE,
+            'user-select'        : CSS_UNSELECTABLE_VALUE
+        });
 
         if (A.UA.ie || A.UA.opera) {
             _setUnselectable(instance._node, true, noRecurse);
@@ -1213,11 +1227,23 @@ A.each(
                         dimension = instance.get('offset' + item);
 
                         if (!dimension) {
-                            instance.addClass(CSS_FORCE_OFFSET);
+                            var originalDisplay = instance.getStyle('display');
+                            var originalPosition = instance.getStyle('position');
+                            var originalVisibility = instance.getStyle('visibility');
+
+                            instance.setStyles({
+                                display: 'block !important',
+                                position: 'absolute !important',
+                                visibility: 'hidden !important'
+                            });
 
                             dimension = instance.get('offset' + item);
 
-                            instance.removeClass(CSS_FORCE_OFFSET);
+                            instance.setStyles({
+                                display: originalDisplay,
+                                position: originalPosition,
+                                visibility: originalVisibility
+                            });
                         }
 
                         if (dimension) {

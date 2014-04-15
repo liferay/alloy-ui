@@ -19,6 +19,7 @@
 	        "aui-widget-position-align-suggestion",
 	        "aui-component",
             "aui-node-base"
-        ]
+        ],
+        "skinnable": true
     }
 }

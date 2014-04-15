@@ -104,7 +104,8 @@
             "aui-component",
             "aui-widget-cssclass",
             "aui-widget-toggle"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-button-search-cancel": {
         "requires": [
@@ -597,7 +598,8 @@
             "aui-widget-cssclass",
             "aui-widget-toggle",
             "aui-widget-toolbars"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-node": {
         "use": [
@@ -630,7 +632,8 @@
             "aui-node",
             "aui-component",
             "widget-htmlparser"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-palette": {
         "requires": [
@@ -673,14 +676,16 @@
             "aui-widget-position-align-suggestion",
             "aui-component",
             "aui-node-base"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-progressbar": {
         "requires": [
             "aui-node",
             "aui-component",
             "aui-aria"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-promise": {
         "requires": [

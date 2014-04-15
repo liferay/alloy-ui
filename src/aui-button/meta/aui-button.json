@@ -13,7 +13,8 @@
             "aui-component",
             "aui-widget-cssclass",
             "aui-widget-toggle"
-        ]
+        ],
+        "skinnable": true
     },
 
     "aui-button-search-cancel": {
