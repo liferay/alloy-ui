@@ -5,6 +5,17 @@
  */
 
 A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
+    ACTION_TYPE_UNDO: 'undo',
+    ACTION_TYPE_REDO: 'redo',
+
+    BEFORE_UNDO: 'beforeUndo',
+    AFTER_UNDO: 'afterUndo',
+    BEFORE_REDO: 'beforeRedo',
+    AFTER_REDO: 'afterRedo',
+
+    EVENT_PREFIX_BEFORE: 'before',
+    EVENT_PREFIX_AFTER: 'after',
+
     /**
      * Constructor for the Undo/Redo component.
      *
@@ -13,6 +24,7 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
      */
     initializer: function() {
         this._states = [];
+        this._pendingActions = [];
 
         // This index points to the last state that was executed. Calling
         // undo() will undo the state this index points to.
@@ -23,13 +35,17 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
      * Adds a state to the stack and makes it the current state.
      * Note that all states that could be redone will be removed
      * from the stack after this.
+     * Valid states are objects that have at least 2 functions:
+     * undo and redo. These functions can return promises, in which
+     * case any subsequent calls will be queued, waiting for all
+     * pending promises to end.
      *
      * @method add
      * @param state
      */
     add: function(state) {
         if (!state.undo || !state.redo) {
-            throw new Error('Invalid state. states used in UndoRedo need to have both the \'undo\' ' +
+            throw new Error('Invalid state. States used in UndoRedo need to have both the \'undo\' ' +
                 'and the \'redo\' functions defined');
         }
 
@@ -54,7 +70,10 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
             return false;
         }
 
-        this._states[this._currentStateIndex--].undo();
+        this._runAction({
+            state: this._states[this._currentStateIndex--],
+            type: this.ACTION_TYPE_UNDO
+        });
         return true;
     },
 
@@ -69,7 +88,72 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
             return false;
         }
 
-        this._states[++this._currentStateIndex].redo();
+        this._runAction({
+            state: this._states[++this._currentStateIndex],
+            type: this.ACTION_TYPE_REDO
+        });
         return true;
+    },
+
+    /**
+     * Executes the given action (which can be either undo or redo).
+     *
+     * @method _runAction
+     * @param action
+     * @private
+     */
+    _runAction: function(action) {
+        this._pendingActions.push(action);
+        if (this._pendingActions.length === 1) {
+            this._runNextPendingAction();
+        }
+    },
+
+    /**
+     * Executes the next pending action, if one exists.
+     *
+     * @method _runNextPendingAction
+     * @private
+     */
+    _runNextPendingAction: function() {
+        var instance = this,
+            action = this._pendingActions[0],
+            result;
+
+        if (!action) {
+            return;
+        }
+
+        this.fire(this._makeEventName(this.EVENT_PREFIX_BEFORE, action.type));
+        result = action.state[action.type]();
+
+        if (A.Promise.isPromise(result)) {
+            result.then(A.bind(this._afterAction, this, action));
+        } else {
+            this._afterAction(action);
+        }
+    },
+
+    /**
+     * Executes right after an action finishes running.
+     *
+     * @method _afterAction
+     * @private
+     */
+    _afterAction: function(action) {
+        this.fire(this._makeEventName(this.EVENT_PREFIX_AFTER, action.type));
+        this._pendingActions.shift();
+        this._runNextPendingAction();
+    },
+
+    /**
+     * Constructs the event's name based on its prefix and the
+     * action type related to it.
+     *
+     * @method _makeEventName
+     * @private
+     */
+    _makeEventName: function(prefix, actionType) {
+        return prefix + actionType.substring(0, 1).toUpperCase() + actionType.substring(1);
     }
 });

@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
     <script src="../../build/aui/aui.js"></script>
     <style>
+    body {
+        margin-left: 10px;
+    }
     #buttons-container {
         margin-bottom: 10px;
     }
@@ -19,13 +22,18 @@
         height: 100px;
         width: 100px;
     }
+    .hidden {
+        display: none;
+    }
     </style>
 </head>
 <body class="yui3-skin-sam">
     <h1>AlloyUI - UndoRedo</h1>
     <div id="buttons-container">
+        <span class="btn btn-primary sync-button">Run Async Example</span>
         <span class="btn undo-button">Undo</span>
         <span class="btn redo-button">Redo</span>
+        <span class="loading-indicator hidden">Running...</span>
     </div>
     <div id="redbox-container">
         <div id="redbox"></div>
@@ -37,22 +45,20 @@
         var box = Y.one('#redbox'),
             dd = new Y.DD.Drag({node: '#redbox'}),
             undoRedo = new Y.UndoRedo(),
-            previousXY = box.getXY();
+            previousXY = box.getXY(),
+            async = false;
 
         dd.plug(Y.Plugin.DDConstrained, {constrain2node: '#redbox-container'});
-
         dd.on('drag:end', function(event) {
             var undoXY = previousXY,
                 redoXY = box.getXY();
 
             undoRedo.add({
                 undo: function() {
-                    box.setXY(undoXY);
-                    previousXY = undoXY;
+                    return async ? boxSetXYPromise(undoXY) : boxSetXY(undoXY);
                 },
                 redo: function() {
-                    box.setXY(redoXY);
-                    previousXY = redoXY;
+                    return async ? boxSetXYPromise(redoXY) : boxSetXY(redoXY);
                 }
             });
 
@@ -65,6 +71,30 @@
         Y.one('.redo-button').on('click', function() {
             undoRedo.redo();
         });
+        Y.one('.sync-button').on('click', function() {
+            if (async) {
+                this.set('text', 'Run Async Example');
+            } else {
+                this.set('text', 'Run Sync Example');
+            }
+            async = !async;
+        });
+
+        function boxSetXY(xy) {
+            box.setXY(xy);
+            previousXY = xy;
+        }
+
+        function boxSetXYPromise(xy) {
+            return new Y.Promise(function(resolve) {
+                Y.one('.loading-indicator').removeClass('hidden');
+                setTimeout(function() {
+                    boxSetXY(xy);
+                    resolve();
+                    Y.one('.loading-indicator').addClass('hidden');
+                }, 1000);
+            });
+        }
     });
     </script>
 </body>
