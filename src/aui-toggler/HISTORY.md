@@ -1,8 +1,12 @@
-aui-toggler
-===========
+# AUI Toggler
 
-@VERSION@
-------
+> Documentation and test modifications are not included in this changelog. For more details, see [full commit history](https://github.com/liferay/alloy-ui/commits/master/src/aui-toggler).
 
-	* #AUI-938 Fixed issue with TogglerDelegate collapsing direct ancestors on structures with nested togglers
-	* #AUI-939 Addressed missing destructors in Toggler and TogglerDelegate
+## @VERSION@
+
+No registries yet.
+
+## [2.5.0](https://github.com/liferay/alloy-ui/releases/tag/2.5.0)
+
+* [AUI-1163](https://issues.liferay.com/browse/AUI-1163) Remove unnecessary constants
+* [AUI-1105](https://issues.liferay.com/browse/AUI-1105) Absolutely positing elements that end up in an accordian will overflow from their container when sliding

@@ -214,6 +214,12 @@ AlloyUI is maintained by these people and a bunch of awesome [contributors](http
 --- | --- | --- | --- | --- | --- | ---
 [Eduardo Lundgren](https://github.com/eduardolundgren) | [Nate Cavanaugh](https://github.com/natecavanaugh) | [Bruno Basto](https://github.com/brunobasto) | [Iliyan Peychev](https://github.com/ipeychev) | [Zeno Rocha](https://github.com/zenorocha)
 
+## History
+
+Discover all versions in the [Releases](https://github.com/liferay/alloy-ui/releases) page.
+
+Each module (located under `src/`) contains a `HISTORY.md` file, check them for detailed changelog.
+
 ## License
 
 [BSB License](https://github.com/liferay/alloy-ui/blob/master/LICENSE.md) (c) Liferay, Inc.
