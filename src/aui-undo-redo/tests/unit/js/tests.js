@@ -14,14 +14,14 @@ YUI.add('aui-undo-redo-tests', function(Y) {
     }
 
     suite.add(new Y.Test.Case({
-        name: 'Undo/Redo actions',
+        name: 'Undo/Redo states',
 
         setUp: function() {
             string = '';
             undoRedo = new Y.UndoRedo();
         },
 
-        'should undo and redo the last action': function() {
+        'should undo and redo the last state': function() {
             string += 'Hello';
             undoRedo.add(new WriteAction('Hello'));
             string += ' World';
@@ -50,7 +50,7 @@ YUI.add('aui-undo-redo-tests', function(Y) {
             Y.Assert.isFalse(undoRedo.redo());
         },
 
-        'should clean redo stack when new action is added': function() {
+        'should clean redo stack when new state is added': function() {
             string += 'Hello';
             undoRedo.add(new WriteAction('Hello'));
             string += ' World';
@@ -63,8 +63,8 @@ YUI.add('aui-undo-redo-tests', function(Y) {
             string += ' Earth';
             undoRedo.add(new WriteAction(' Earth'));
 
-            // The action that adds ' World' can't be redone anymore
-            // since the ' Earth' action was added in its place.
+            // The state that adds ' World' can't be redone anymore
+            // since the ' Earth' state was added in its place.
             Y.Assert.isFalse(undoRedo.redo());
 
             undoRedo.undo();
@@ -73,7 +73,7 @@ YUI.add('aui-undo-redo-tests', function(Y) {
             Y.Assert.areEqual('Hello Earth', string);
         },
 
-        'should throw error on invalid actions': function() {
+        'should throw error on invalid states': function() {
             YUITest.Assert.throwsError(Error, function(){
                 undoRedo.add({});
             });

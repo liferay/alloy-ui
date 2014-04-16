@@ -12,64 +12,64 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
      * @protected
      */
     initializer: function() {
-        this._actions = [];
+        this._states = [];
 
-        // This index points to the last action that was executed. Calling
-        // undo() will undo the action this index points to.
-        this._currentActionIndex = -1;
+        // This index points to the last state that was executed. Calling
+        // undo() will undo the state this index points to.
+        this._currentStateIndex = -1;
     },
 
     /**
-     * Adds an action to the stack and makes it the current action.
-     * Note that all actions that could be redone will be removed
+     * Adds a state to the stack and makes it the current state.
+     * Note that all states that could be redone will be removed
      * from the stack after this.
      *
      * @method add
-     * @param action
+     * @param state
      */
-    add: function(action) {
-        if (!action.undo || !action.redo) {
-            throw new Error('Invalid action. Actions used in UndoRedo need to have both the \'undo\' ' +
+    add: function(state) {
+        if (!state.undo || !state.redo) {
+            throw new Error('Invalid state. states used in UndoRedo need to have both the \'undo\' ' +
                 'and the \'redo\' functions defined');
         }
 
-        if (this._currentActionIndex < this._actions.length - 1) {
-            // First remove all actions after the current one, since
-            // those can't be redone anymore now that a new action was added.
-            this._actions = this._actions.slice(0, this._currentActionIndex + 1);
+        if (this._currentStateIndex < this._states.length - 1) {
+            // First remove all states after the current one, since
+            // those can't be redone anymore now that a new state was added.
+            this._states = this._states.slice(0, this._currentStateIndex + 1);
         }
 
-        this._actions.push(action);
-        this._currentActionIndex++;
+        this._states.push(state);
+        this._currentStateIndex++;
     },
 
     /**
-     * Undoes the last action.
-     * Returns false if there was no action to be undone.
+     * Undoes the last state.
+     * Returns false if there was no state to be undone.
      *
      * @method undo
      */
     undo: function() {
-        if (this._currentActionIndex < 0) {
+        if (this._currentStateIndex < 0) {
             return false;
         }
 
-        this._actions[this._currentActionIndex--].undo();
+        this._states[this._currentStateIndex--].undo();
         return true;
     },
 
     /**
-     * Redoes the next action.
-     * Returns false if there was no action to be redone.
+     * Redoes the next state.
+     * Returns false if there was no state to be redone.
      *
      * @method redo
      */
     redo: function() {
-        if (this._currentActionIndex === this._actions.length - 1) {
+        if (this._currentStateIndex === this._states.length - 1) {
             return false;
         }
 
-        this._actions[++this._currentActionIndex].redo();
+        this._states[++this._currentStateIndex].redo();
         return true;
     }
 });
