@@ -90,6 +90,39 @@ YUI.add('aui-form-validator-tests', function(Y) {
             instance._assertValidatorNextLabel('input[name=read]');
         },
 
+        /*
+         * Check if validator correctly validates <select> html fields
+         * Tests: AUI-1204
+         */
+        'test submit empty select': function() {
+            var form = Y.Node.create('<form><select name="gender"></select></form>');
+
+            var select = form.one('select');
+
+            var emptyOption = Y.Node.create('<option value=""></option>').appendTo(select);
+
+            var validOption = Y.Node.create('<option value=\"male\">Male</option>').appendTo(select);
+
+            var validator = new Y.FormValidator({
+                boundingBox: form,
+                rules: {
+                    gender: {
+                        required: true
+                    }
+                }
+            });
+
+            form.simulate('submit');
+
+            Y.Assert.isTrue(validator.hasErrors());
+
+            validOption.attr('selected', 'selected');
+
+            form.simulate('submit');
+
+            Y.Assert.isFalse(validator.hasErrors());
+        },
+
         _assertValidatorNextLabel: function(input) {
             var inputNode,
                 textNode;

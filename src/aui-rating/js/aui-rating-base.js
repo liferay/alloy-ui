@@ -402,7 +402,7 @@ var Rating = A.Component.create({
                 instance.get('elements').some(function(node, i) {
                     node.addClass(className || cssClasses.on);
                     node.removeClass(cssClasses.element);
-                    return (i === Math.floor(index));
+                    return (i === Math.round(index));
                 });
             }
         },

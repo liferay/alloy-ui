@@ -11,7 +11,7 @@ Y.mix(YUI.Env.aliases, {
     "aui-datatable": ["aui-datatable-edit","aui-datatable-highlight","aui-datatable-selection","aui-datatable-property-list"],
     "aui-datepicker-deprecated": ["aui-datepicker-base-deprecated","aui-datepicker-select-deprecated"],
     "aui-diagram-builder": ["aui-diagram-builder-base","aui-diagram-builder-connector","aui-diagram-builder-impl"],
-    "aui-event": ["aui-event-base","aui-event-delegate-change","aui-event-delegate-submit"],
+    "aui-event": ["aui-event-base"],
     "aui-form-builder": ["aui-form-builder-base","aui-form-builder-field-base","aui-form-builder-field-button","aui-form-builder-field-checkbox","aui-form-builder-field-fieldset","aui-form-builder-field-file-upload","aui-form-builder-field-multiple-choice","aui-form-builder-field-radio","aui-form-builder-field-select","aui-form-builder-field-text","aui-form-builder-field-textarea"],
     "aui-form-deprecated": ["aui-form-base-deprecated","aui-form-combobox-deprecated","aui-form-field-deprecated","aui-form-select-deprecated","aui-form-textarea-deprecated","aui-form-textfield-deprecated"],
     "aui-image-viewer": ["aui-image-viewer-base","aui-image-viewer-gallery","aui-image-viewer-media"],

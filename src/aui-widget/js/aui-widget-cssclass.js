@@ -53,7 +53,7 @@ WidgetCssClass.prototype = {
     initializer: function(config) {
         var instance = this;
 
-        instance._uiSetCssClass(config.cssClass);
+        instance._uiSetCssClass(instance.get('cssClass'));
         instance.after('cssClassChange', instance._afterCssClassChange);
     },
 

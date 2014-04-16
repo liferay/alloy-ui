@@ -29,8 +29,10 @@
             delay: 500, // in milliseconds
             duration: 0.5, // in seconds
             headerContent: 'Header content',
-            trigger: '#triggerTop'
-            
+            trigger: '#triggerTop',
+            position: function() {
+                return 'top';
+            }
         }).render();
 
         var popoverBottom = new Y.Popover({

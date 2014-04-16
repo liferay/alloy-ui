@@ -28,7 +28,7 @@
     "aui-base-html5-shiv": {
          "condition": {
             "name": "aui-base-html5-shiv",
-            "trigger": "aui-base",
+            "trigger": "node-base",
             "ua": "ie"
         }
     },

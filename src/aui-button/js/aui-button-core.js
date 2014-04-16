@@ -138,7 +138,6 @@ ButtonExt.getTypedButtonTemplate = function(template, type) {
 ButtonExt.prototype = {
     TEMPLATE: '<button{type}></button>',
     ICON_TEMPLATE: '<i></i>',
-    iconElement: null,
 
     /**
      * Construction logic executed during `ButtonExt` instantiation. Lifecycle.
@@ -262,10 +261,16 @@ ButtonExt.prototype = {
      * @protected
      */
     _uiSetIconAlign: function(val) {
-        var instance = this;
+        // Y.Button labelHTML feature assumes any HTML inside the button is the
+        // label and the icon HTML is contained on its value. To workaround this
+        // issue on icon alignment fetchs the reference from DOM, if not
+        // available uses the one created by HTML_PARSER
+        var iconElement = this.getNode().one(A.ButtonExt.HTML_PARSER.iconElement);
+        if (!iconElement) {
+            iconElement = this.get('iconElement');
+        }
 
-        A.Button.syncIconUI(
-            instance.get('boundingBox'), instance.get('iconElement'), val);
+        A.Button.syncIconUI(this.get('boundingBox'), iconElement, val);
     }
 };
 
@@ -286,23 +291,6 @@ var ButtonCore = A.ButtonCore;
  * @static
  */
 ButtonCore.CLASS_NAMES = CLASS_NAMES;
-
-/**
- * Sets the button text (either as text or sets the `value` attribute).
- *
- * @method _uiSetLabel
- * @protected
- */
-ButtonCore.prototype._uiSetLabel = (function(original) {
-    return function(label) {
-        var instance = this,
-            node = instance.getNode();
-
-        if (label !== '' || node.one('.' + ButtonCore.CLASS_NAMES.LABEL)) {
-            return original.apply(instance, arguments);
-        }
-    };
-}(ButtonCore.prototype._uiSetLabel));
 
 var Button = A.Button;
 
