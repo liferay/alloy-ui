@@ -62,7 +62,8 @@ YUI.add('aui-rating-tests', function(Y) {
         'check that a float passed to defaultSelected is rounded': function() {
             var instance = this;
 
-            Y.Test.Assert.areEqual(roundedValue, ratingRounded.get('elements').filter('.icon-star').size(), 'The number of selected items should be ' + roundedValue);
+            Y.Test.Assert.areEqual(roundedValue, ratingRounded.get('elements').filter('.icon-star').size(),
+                'The number of selected items should be ' + roundedValue);
         }
     }));
 
