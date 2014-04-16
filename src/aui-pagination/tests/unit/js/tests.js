@@ -13,8 +13,8 @@ YUI.add('aui-pagination-tests', function(Y) {
         total: 10
     }).render();
 
-    var pagination_first_last = new Y.Pagination({
-        boundingBox: '#pagination_first_last',
+    var paginationFirstLast = new Y.Pagination({
+        boundingBox: '#paginationFirstLast',
         total: 10
     }).render();
 
@@ -55,14 +55,14 @@ YUI.add('aui-pagination-tests', function(Y) {
 
         // Tests: AUI-1264
         '#1 First li should have text First': function() {
-            var listItems = Y.one('#pagination_first_last').all('li');
+            var listItems = Y.one('#paginationFirstLast').all('li');
 
             Y.Assert.isTrue(
                 listItems.first().get('text') === 'First', 'First li should have text First');
         },
 
         '#2 Last li should have text Last': function() {
-            var listItems = Y.one('#pagination_first_last').all('li');
+            var listItems = Y.one('#paginationFirstLast').all('li');
 
             Y.Assert.isTrue(
                 listItems.last().get('text') === 'Last', 'Last li should have text Last');
@@ -70,27 +70,25 @@ YUI.add('aui-pagination-tests', function(Y) {
 
         '#3 Clicking on last button should move to last page and disable last button': function() {
             var test = this,
-                listItems = Y.one('#pagination_first_last').all('li'),
+                listItems = Y.one('#paginationFirstLast').all('li'),
                 lastButton = listItems.last(),
                 lastPage = listItems.item(listItems.size() - 3);
 
             lastButton.simulate('click');
 
             Y.Assert.isTrue(lastPage.hasClass('active'));
-
             Y.Assert.isTrue(lastButton.hasClass('disabled'));
         },
 
         '#4 Clicking on first button should move to first page and disable first button': function() {
             var test = this,
-                listItems = Y.one('#pagination_first_last').all('li'),
+                listItems = Y.one('#paginationFirstLast').all('li'),
                 firstButton = listItems.item(0),
                 firstPage = listItems.item(2);
 
             firstButton.simulate('click');
 
             Y.Assert.isTrue(firstPage.hasClass('active'));
-
             Y.Assert.isTrue(firstButton.hasClass('disabled'));
         }
     }));
