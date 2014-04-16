@@ -355,9 +355,13 @@ var Pagination = A.Component.create({
          * @param {Object} state
          */
         setState: function(state) {
-            var instance = this;
+            var instance = this,
+                page = state.page;
 
-            instance.set('page', state.page);
+            instance.set('page', page);
+
+            instance._uiSetPage(page);
+
             instance.lastState = state;
         },
 
