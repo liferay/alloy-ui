@@ -1,81 +1,62 @@
 YUI.add('aui-undo-redo-tests', function(Y) {
-    var suite = new Y.Test.Suite('aui-undo-redo'),
-        string = '',
-        undoRedo;
-
-    function WriteAction(suffix) {
-        this._suffix = suffix;
-    }
-    WriteAction.prototype.undo = function() {
-        string = string.slice(0, string.length - this._suffix.length);
-    };
-    WriteAction.prototype.redo = function() {
-        string += this._suffix;
-    }
+    var suite = new Y.Test.Suite('aui-undo-redo');
 
     suite.add(new Y.Test.Case({
         name: 'Undo/Redo states',
 
         setUp: function() {
-            string = '';
-            undoRedo = new Y.UndoRedo();
+            this.reset();
         },
 
         'should undo and redo the last state': function() {
-            string += 'Hello';
-            undoRedo.add(new WriteAction('Hello'));
-            string += ' World';
-            undoRedo.add(new WriteAction(' World'));
-            string += ' !!!';
-            undoRedo.add(new WriteAction(' !!!'));
+            this.undoRedo.add(this.newWriteState('Hello'));
+            this.undoRedo.add(this.newWriteState(' World'));
+            this.undoRedo.add(this.newWriteState(' !!!'));
 
-            undoRedo.undo();
-            Y.Assert.areEqual('Hello World', string);
+            this.undoRedo.undo();
+            Y.Assert.areEqual('Hello World', this.string);
 
-            undoRedo.undo();
-            Y.Assert.areEqual('Hello', string);
+            this.undoRedo.undo();
+            Y.Assert.areEqual('Hello', this.string);
 
-            undoRedo.redo();
-            Y.Assert.areEqual('Hello World', string);
+            this.undoRedo.redo();
+            Y.Assert.areEqual('Hello World', this.string);
         },
 
         'should return false when undo/redo can\'t be done': function() {
-            string += 'Hello';
-            undoRedo.add(new WriteAction('Hello'));
+            this.undoRedo.add(this.newWriteState('Hello'));
 
-            Y.Assert.isTrue(undoRedo.undo());
-            Y.Assert.isFalse(undoRedo.undo());
+            Y.Assert.isTrue(this.undoRedo.undo());
+            Y.Assert.isFalse(this.undoRedo.undo());
 
-            Y.Assert.isTrue(undoRedo.redo());
-            Y.Assert.isFalse(undoRedo.redo());
+            Y.Assert.isTrue(this.undoRedo.redo());
+            Y.Assert.isFalse(this.undoRedo.redo());
         },
 
         'should clean redo stack when new state is added': function() {
-            string += 'Hello';
-            undoRedo.add(new WriteAction('Hello'));
-            string += ' World';
-            undoRedo.add(new WriteAction(' World'));
+            this.undoRedo.add(this.newWriteState('Hello'));
+            this.undoRedo.add(this.newWriteState(' World'));
 
             // Action 'World' is undone here.
-            undoRedo.undo();
-            Y.Assert.areEqual('Hello', string);
+            this.undoRedo.undo();
+            Y.Assert.areEqual('Hello', this.string);
 
-            string += ' Earth';
-            undoRedo.add(new WriteAction(' Earth'));
+            this.undoRedo.add(this.newWriteState(' Earth'));
 
             // The state that adds ' World' can't be redone anymore
             // since the ' Earth' state was added in its place.
-            Y.Assert.isFalse(undoRedo.redo());
+            Y.Assert.isFalse(this.undoRedo.redo());
 
-            undoRedo.undo();
-            Y.Assert.areEqual('Hello', string);
-            undoRedo.redo();
-            Y.Assert.areEqual('Hello Earth', string);
+            this.undoRedo.undo();
+            Y.Assert.areEqual('Hello', this.string);
+            this.undoRedo.redo();
+            Y.Assert.areEqual('Hello Earth', this.string);
         },
 
         'should throw error on invalid states': function() {
+            var instance = this;
             YUITest.Assert.throwsError(Error, function(){
-                undoRedo.add({});
+                instance.undoRedo.add({});
             });
         }
     }));
@@ -83,4 +64,4 @@ YUI.add('aui-undo-redo-tests', function(Y) {
     Y.Test.Runner.add(suite);
 
 
-},'', { requires: [ 'test', 'aui-undo-redo' ] });
+},'', { requires: [ 'test', 'aui-undo-redo', 'tests-aui-undo-redo-utils' ] });
