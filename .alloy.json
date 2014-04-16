@@ -10,7 +10,7 @@
         "yui3": {
             "folder": "../yui3",
             "repo": "https://github.com/liferay/yui3.git",
-            "version": "patched-v3.16.0-rc-1"
+            "version": "patched-v3.16.0"
         },
         "alloy-bootstrap": {
             "folder": "../alloy-bootstrap",
@@ -28,6 +28,6 @@
             "version": "master"
         }
     },
-    "yuiversion": "patched-v3.16.0-rc-1",
-    "version": "2.0.0"
+    "yuiversion": "patched-v3.16.0",
+    "version": "2.5.0"
 }
