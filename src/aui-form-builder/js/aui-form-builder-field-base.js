@@ -672,7 +672,6 @@ var FormBuilderField = A.Component.create({
             return A.Node.create(instance.getHTML());
         },
 
-
         /**
          * Gets all necessary attributes for cloning this field.
          *
