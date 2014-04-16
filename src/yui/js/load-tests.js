@@ -4,11 +4,23 @@ var add = Y.Features.add;
 // aui-base-html5-shiv
 add('load', '0', {
     "name": "aui-base-html5-shiv",
-    "trigger": "aui-base",
+    "trigger": "node-base",
+    "ua": "ie"
+});
+// aui-event-delegate-change
+add('load', '1', {
+    "name": "aui-event-delegate-change",
+    "trigger": "event-base-ie",
+    "ua": "ie"
+});
+// aui-event-delegate-submit
+add('load', '2', {
+    "name": "aui-event-delegate-submit",
+    "trigger": "event-base-ie",
     "ua": "ie"
 });
 // aui-event-input
-add('load', '1', {
+add('load', '3', {
     "name": "aui-event-input",
     "test": function(A) {
     var supportsDOMEvent = A.supportsDOMEvent,
@@ -25,10 +37,10 @@ add('load', '1', {
 
     return !testFeature('event', 'input');
 },
-    "trigger": "aui-event"
+    "trigger": "aui-event-base"
 });
 // aui-node-html5
-add('load', '2', {
+add('load', '4', {
     "name": "aui-node-html5",
     "trigger": "aui-node",
     "ua": "ie"

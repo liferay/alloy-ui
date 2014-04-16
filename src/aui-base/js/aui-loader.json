@@ -86,7 +86,7 @@
     "aui-base-html5-shiv": {
         "condition": {
             "name": "aui-base-html5-shiv",
-            "trigger": "aui-base",
+            "trigger": "node-base",
             "ua": "ie"
         }
     },
@@ -322,9 +322,7 @@
     },
     "aui-event": {
         "use": [
-            "aui-event-base",
-            "aui-event-delegate-change",
-            "aui-event-delegate-submit"
+            "aui-event-base"
         ]
     },
     "aui-event-base": {
@@ -333,6 +331,11 @@
         ]
     },
     "aui-event-delegate-change": {
+        "condition": {
+            "name": "aui-event-delegate-change",
+            "trigger": "event-base-ie",
+            "ua": "ie"
+        },
         "requires": [
             "aui-event-base",
             "event-delegate",
@@ -340,6 +343,11 @@
         ]
     },
     "aui-event-delegate-submit": {
+        "condition": {
+            "name": "aui-event-delegate-submit",
+            "trigger": "event-base-ie",
+            "ua": "ie"
+        },
         "requires": [
             "aui-event-base",
             "event-delegate",
@@ -350,7 +358,7 @@
         "condition": {
             "name": "aui-event-input",
             "test": "aui-event-input-test.js",
-            "trigger": "aui-event"
+            "trigger": "aui-event-base"
         },
         "requires": [
             "aui-event-base",

@@ -35,8 +35,6 @@ var L = A.Lang,
     CSS_FORM_BUILDER_FIELD = getCN('form', 'builder', 'field'),
     CSS_FORM_BUILDER_PLACEHOLDER = getCN('form', 'builder', 'placeholder'),
 
-    INVALID_CLONE_ATTRS = ['id', 'name'],
-
     TPL_PLACEHOLDER = '<div class="' + CSS_FORM_BUILDER_PLACEHOLDER + '"></div>';
 
 /**
@@ -699,15 +697,7 @@ var FormBuilder = A.Component.create({
          */
         _cloneField: function(field, deep) {
             var instance = this,
-                config = {};
-
-            AArray.each(instance.getFieldProperties(field), function(property) {
-                var name = property.attributeName;
-
-                if (AArray.indexOf(INVALID_CLONE_ATTRS, name) === -1) {
-                    config[name] = property.value;
-                }
-            });
+                config = field.getAttributesForCloning();
 
             if (deep) {
                 config['fields'] = [];

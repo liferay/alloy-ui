@@ -512,11 +512,11 @@ A.Connector = A.Base.create('line', A.Base, [], {
             var shapeArrowHover = instance.get('shapeArrowHover');
 
             if (shapeHover) {
-                instance._updateShape(instance.shape, shapeHover);
+                instance._updateShape(instance.shape, shapeHover, false);
             }
 
             if (shapeArrowHover) {
-                instance._updateShape(instance.shapeArrow, shapeArrowHover);
+                instance._updateShape(instance.shapeArrow, shapeArrowHover, false);
             }
         }
     },
@@ -532,8 +532,8 @@ A.Connector = A.Base.create('line', A.Base, [], {
         var instance = this;
 
         if (!instance.get('selected')) {
-            instance._updateShape(instance.shape, instance.get('shape'));
-            instance._updateShape(instance.shapeArrow, instance.get('shapeArrow'));
+            instance._updateShape(instance.shape, instance.get('shape'), false);
+            instance._updateShape(instance.shapeArrow, instance.get('shapeArrow'), false);
         }
     },
 
