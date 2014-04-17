@@ -6,6 +6,7 @@
 
 var Lang = A.Lang,
     isArray = Lang.isArray,
+    isBoolean = Lang.isBoolean,
     isNumber = Lang.isNumber,
     isString = Lang.isString,
     isUndefined = Lang.isUndefined,
@@ -91,8 +92,8 @@ ButtonExt.ATTRS = {
      * @type {String}
      */
     iconAlign: {
-        value: 'left',
-        validator: isString
+        validator: isString,
+        value: 'left'
     },
 
     /**
@@ -103,6 +104,7 @@ ButtonExt.ATTRS = {
      * @type {Boolean}
      */
     primary: {
+        validator: isBoolean,
         value: false
     },
 
@@ -114,6 +116,7 @@ ButtonExt.ATTRS = {
      * @type {Boolean}
      */
     default: {
+        validator: isBoolean,
         value: true
     }
 };
@@ -308,7 +311,6 @@ A.ButtonExt = ButtonExt;
  * @class A.ButtonCore
  * @constructor
  */
-var ButtonCore = A.ButtonCore;
 
 /**
  * Contains CSS class names to use for `ButtonCore`.
@@ -316,13 +318,13 @@ var ButtonCore = A.ButtonCore;
  * @property CLASS_NAMES
  * @static
  */
-ButtonCore.CLASS_NAMES = CLASS_NAMES;
+A.ButtonCore.CLASS_NAMES = CLASS_NAMES;
 
 var Button = A.Button;
 
 Button.NAME = 'btn';
 
-Button.CSS_PREFIX = [CLASS_NAMES.BUTTON].join(' ');
+Button.CSS_PREFIX = CLASS_NAMES.BUTTON;
 
 Button.CLASS_NAMES = CLASS_NAMES;
 
@@ -466,7 +468,10 @@ A.mix(ButtonGroup.prototype, {
 
         instance.getButtons().each(function(button) {
             if (!button.button && !A.instanceOf(A.Widget.getByNode(button), A.Button)) {
-                button.addClass(ButtonCore.CLASS_NAMES.BUTTON_DEFAULT);
+                // TODO: This shouldn't assume button is always default.
+                // A.Plugin.Button doesn't current allow augmentation, therefore
+                // it can't add A.ButtonExt extra attributes to it.
+                button.addClass(A.ButtonCore.CLASS_NAMES.BUTTON_DEFAULT);
 
                 if (A.Button.hasWidgetLazyConstructorData(button)) {
                     new A.Button(A.Button.getWidgetLazyConstructorFromNodeData(button));

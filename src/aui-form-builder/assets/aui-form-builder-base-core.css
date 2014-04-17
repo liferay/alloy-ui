@@ -16,7 +16,6 @@
  .basecelleditor {
     z-index: 500 !important;
 }
-
 .form-builder-field-label, .form-builder-text-field-content label, .form-builder-checkbox-field-content {
     min-height: 33px;
 }

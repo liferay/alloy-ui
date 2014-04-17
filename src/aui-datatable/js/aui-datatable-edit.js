@@ -1658,8 +1658,7 @@ var TextCellEditor = A.Component.create({
     EXTENDS: A.BaseCellEditor,
 
     prototype: {
-        ELEMENT_TEMPLATE: '<input autocomplete="off" class="' +
-            [CSS_CELLEDITOR_ELEMENT, CSS_FORM_CONTROL].join(' ') + '" type="text" />'
+        ELEMENT_TEMPLATE: '<input autocomplete="off" class="' + [CSS_CELLEDITOR_ELEMENT, CSS_FORM_CONTROL].join(' ') + '" type="text" />'
     }
 });
 
@@ -1695,8 +1694,7 @@ var TextAreaCellEditor = A.Component.create({
     EXTENDS: A.BaseCellEditor,
 
     prototype: {
-        ELEMENT_TEMPLATE: '<textarea class="' +
-            [CSS_CELLEDITOR_ELEMENT, CSS_FORM_CONTROL].join(' ') + '"></textarea>'
+        ELEMENT_TEMPLATE: '<textarea class="' + [CSS_CELLEDITOR_ELEMENT, CSS_FORM_CONTROL].join(' ') + '"></textarea>'
     }
 });
 
@@ -1764,8 +1762,7 @@ var DropDownCellEditor = A.Component.create({
     UI_ATTRS: ['multiple'],
 
     prototype: {
-        ELEMENT_TEMPLATE: '<select class="' +
-            [CSS_CELLEDITOR_ELEMENT, CSS_FORM_CONTROL].join(' ') + '"></select>',
+        ELEMENT_TEMPLATE: '<select class="' + [CSS_CELLEDITOR_ELEMENT, CSS_FORM_CONTROL].join(' ') + '"></select>',
 
         OPTION_TEMPLATE: '<option value="{value}">{label}</option>',
 

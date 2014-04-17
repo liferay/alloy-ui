@@ -44,8 +44,7 @@
 .ie6 .image-viewer-close {
     position: absolute;
 }
-.image-viewer .image-viewer-content,
-.image-viewer .image-gallery-content {
+.image-viewer .image-viewer-content, .image-viewer .image-gallery-content {
     padding: 5px;
     background: #fff;
 }

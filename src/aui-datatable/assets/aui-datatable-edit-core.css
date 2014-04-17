@@ -29,8 +29,7 @@
 .celleditor-element {
     margin-bottom: 5px;
 }
-.basecelleditor input[type="checkbox"],
-.basecelleditor input[type="radio"] {
+.basecelleditor input[type="checkbox"], .basecelleditor input[type="radio"] {
     margin-left: 0;
     margin-right: 5px;
 }

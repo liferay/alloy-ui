@@ -98,9 +98,9 @@ WidgetToolbars.prototype = {
 
         if (!A.instanceOf(toolbar, A.Toolbar)) {
             toolbar = new A.Toolbar({
+                cssClass: this.get('toolbarCssClass.' + section) || '',
                 children: toolbar,
-                render: instance.getStdModNode(section, true),
-                cssClass: this.get('toolbarCssClass')[section] || ''
+                render: instance.getStdModNode(section, true)
             });
         }
 

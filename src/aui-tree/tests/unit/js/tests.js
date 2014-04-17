@@ -301,7 +301,7 @@ YUI.add('aui-tree-tests', function(Y) {
         },
 
         // Tests: AUI-1141
-        'TreeNodeView created from HTML Markup should display icon-minus when expanded': function() {
+        'TreeNodeView created from HTML Markup should display glyphicon-minus when expanded': function() {
             var test = this;
 
             var treeViewComponent = Y.one('#createFromHTMLMarkupTest');
@@ -320,8 +320,8 @@ YUI.add('aui-tree-tests', function(Y) {
                         allHitareas,
                         function(hitarea) {
                             Y.Assert.isTrue(
-                                hitarea.hasClass('icon-minus'),
-                                hitarea + ' does not have class icon-minus.');
+                                hitarea.hasClass('glyphicon-minus'),
+                                hitarea + ' does not have class glyphicon-minus.');
                         }
                     );
                 });
@@ -341,7 +341,7 @@ YUI.add('aui-tree-tests', function(Y) {
             test.wait(1000);
         },
 
-        'TreeNodeView created from HTML Markup should display icon-plus when collapsed': function() {
+        'TreeNodeView created from HTML Markup should display glyphicon-plus when collapsed': function() {
             var test = this;
             var treeViewComponent = Y.one('#createFromHTMLMarkupTest');
 
@@ -358,8 +358,8 @@ YUI.add('aui-tree-tests', function(Y) {
             setTimeout(function() {
                 test.resume(function() {
                     for (var i = treeHitareasArray.length; i--;) {
-                        Y.Assert.isTrue(treeHitareasArray[i].hasClass('icon-plus'),
-                            treeHitareasArray[i] + ' does not have class icon-plus');
+                        Y.Assert.isTrue(treeHitareasArray[i].hasClass('glyphicon-plus'),
+                            treeHitareasArray[i] + ' does not have class glyphicon-plus');
                     }
                 });
             }, 800);

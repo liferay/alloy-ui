@@ -734,11 +734,11 @@ A.mix(NODE_PROTO, {
 
         instance.setStyles({
             '-webkit-user-select': CSS_SELECTABLE_VALUE,
-            '-khtml-user-select' : CSS_SELECTABLE_VALUE,
-            '-moz-user-select'   : CSS_SELECTABLE_VALUE,
-            '-ms-user-select'    : CSS_SELECTABLE_VALUE,
-            '-o-user-select'     : CSS_SELECTABLE_VALUE,
-            'user-select'        : CSS_SELECTABLE_VALUE
+            '-khtml-user-select': CSS_SELECTABLE_VALUE,
+            '-moz-user-select': CSS_SELECTABLE_VALUE,
+            '-ms-user-select': CSS_SELECTABLE_VALUE,
+            '-o-user-select': CSS_SELECTABLE_VALUE,
+            'user-select': CSS_SELECTABLE_VALUE
         });
 
         if (A.UA.ie || A.UA.opera) {
@@ -862,11 +862,11 @@ A.mix(NODE_PROTO, {
 
         instance.setStyles({
             '-webkit-user-select': CSS_UNSELECTABLE_VALUE,
-            '-khtml-user-select' : CSS_UNSELECTABLE_VALUE,
-            '-moz-user-select'   : CSS_UNSELECTABLE_VALUE,
-            '-ms-user-select'    : CSS_UNSELECTABLE_VALUE,
-            '-o-user-select'     : CSS_UNSELECTABLE_VALUE,
-            'user-select'        : CSS_UNSELECTABLE_VALUE
+            '-khtml-user-select': CSS_UNSELECTABLE_VALUE,
+            '-moz-user-select': CSS_UNSELECTABLE_VALUE,
+            '-ms-user-select': CSS_UNSELECTABLE_VALUE,
+            '-o-user-select': CSS_UNSELECTABLE_VALUE,
+            'user-select': CSS_UNSELECTABLE_VALUE
         });
 
         if (A.UA.ie || A.UA.opera) {

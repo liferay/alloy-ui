@@ -374,7 +374,7 @@ ToolbarRenderer.prototype = {
 
             // Add cssClass support
             cssClass = [CSS_BTN, value.cssClass];
-            if (value.default === undefined || value.default) {
+            if (value['default'] === undefined || value['default']) {
                 cssClass.push(CSS_BTN_DEFAULT);
             }
             if (value.primary) {
@@ -436,7 +436,8 @@ ToolbarRenderer.prototype = {
 
             if (orientation === 'vertical') {
                 cssClass.push(CSS_BTN_GROUP_VERTICAL);
-            } else {
+            }
+            else {
                 cssClass.push(CSS_BTN_GROUP);
             }
 

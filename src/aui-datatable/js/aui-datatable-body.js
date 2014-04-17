@@ -15,6 +15,7 @@ var getCN = A.getClassName,
  *     properties.
  * @constructor
  */
+
 function DataTableBody() {}
 
 /**

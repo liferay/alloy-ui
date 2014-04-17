@@ -132,6 +132,7 @@ module.exports = function(grunt) {
                 'grunt/*.js',
                 '!src/aui-base/js/aui-aliases.js',
                 '!src/aui-base/js/aui-loader.js',
+                '!src/aui-css/css/*.css',
                 '!src/yui/js/*.js'
             ],
             options: {
@@ -174,7 +175,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-jsbeautifier');
 
-    grunt.registerTask('all', ['bootstrap', 'build']);
     grunt.registerTask('api', ['copy:api', 'api-include', 'api-build']);
     grunt.registerTask('api-deploy', ['api', 'api-push', 'clean:api']);
     grunt.registerTask('format', ['jsbeautifier']);
