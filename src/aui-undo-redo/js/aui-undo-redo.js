@@ -4,6 +4,32 @@
  * @module aui-undo-redo
  */
 
+/**
+ * Fired after a redo has finished running.
+ *
+ * @event afterRedo
+ */
+
+/**
+ * Fired after an undo has finished running.
+ *
+ * @event afterUndo
+ */
+
+/**
+ * Fired right before a redo is run.
+ *
+ * @event beforeRedo
+ * @preventable _defBeforeActionFn
+ */
+
+/**
+ * Fired right before an undo is run.
+ *
+ * @event beforeUndo
+ * @preventable _defBeforeActionFn
+ */
+
 A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
     ACTION_TYPE_REDO: 'redo',
     ACTION_TYPE_UNDO: 'undo',
@@ -53,6 +79,19 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
      */
     initializer: function() {
         this.clearHistory();
+
+        this.publish({
+            afterRedo: {},
+            afterUndo: {},
+            beforeRedo: {
+                defaultFn: this._defBeforeActionFn,
+                preventedFn: this._prevBeforeActionFn
+            },
+            beforeUndo: {
+                defaultFn: this._defBeforeActionFn,
+                preventedFn: this._prevBeforeActionFn
+            }
+        });
 
         this.after('maxUndoDepthChange', this._removeStatesBeyondMaxDepth);
     },
@@ -128,9 +167,11 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
             return false;
         }
 
+        this._currentStateIndex++;
         this._runAction({
-            state: this._states[++this._currentStateIndex],
-            type: this.ACTION_TYPE_REDO
+            state: this._states[this._currentStateIndex],
+            type: this.ACTION_TYPE_REDO,
+            undoIndex: this._currentStateIndex - 1
         });
         return true;
     },
@@ -158,9 +199,11 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
         }
 
         this._runAction({
-            state: this._states[this._currentStateIndex--],
-            type: this.ACTION_TYPE_UNDO
+            state: this._states[this._currentStateIndex],
+            type: this.ACTION_TYPE_UNDO,
+            undoIndex: this._currentStateIndex
         });
+        this._currentStateIndex--;
         return true;
     },
 
@@ -185,7 +228,27 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
     _afterAction: function(action) {
         this.fire(this._makeEventName(this.EVENT_PREFIX_AFTER, action.type));
         this._pendingActions.shift();
+        this._removeStatesBeyondMaxDepth();
         this._runNextPendingAction();
+    },
+
+    /**
+     * This is the default function for the beforeUndo and beforeRedo events.
+     *
+     * @method _defBeforeActionFn
+     * @param {EventFacade} event
+     * @protected
+     */
+    _defBeforeActionFn: function(event) {
+        var action = this._pendingActions[0],
+            result = action.state[action.type]();
+
+        if (A.Promise.isPromise(result)) {
+            result.then(A.bind(this._afterAction, this, action));
+        }
+        else {
+            this._afterAction(action);
+        }
     },
 
     /**
@@ -202,16 +265,34 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
     },
 
     /**
+     * This function runs when a beforeUndo or beforeRedo event is prevented.
+     *
+     * @method _prevBeforeActionFn
+     * @param {EventFacade} event
+     * @protected
+     */
+    _prevBeforeActionFn: function(event) {
+        var action = this._pendingActions[0];
+        this._currentStateIndex = action.undoIndex;
+        this._pendingActions = [];
+        this._removeStatesBeyondMaxDepth();
+    },
+
+    /**
      * Removes states in the stack if it's over the max depth limit.
      *
      * @method _removeStatesBeyondMaxDepth
      * @protected
      */
     _removeStatesBeyondMaxDepth: function() {
-        var extraCount = this._currentStateIndex + 1 - this.get('maxUndoDepth');
-        if (extraCount > 0) {
-            this._states = this._states.slice(extraCount);
-            this._currentStateIndex -= extraCount;
+        // We should ignore this call if there are pending actions, as we may need
+        // to roll back to a state due to the user preventing one of them.
+        if (!this._pendingActions.length) {
+            var extraCount = this._currentStateIndex + 1 - this.get('maxUndoDepth');
+            if (extraCount > 0) {
+                this._states = this._states.slice(extraCount);
+                this._currentStateIndex -= extraCount;
+            }
         }
     },
 
@@ -237,23 +318,12 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
      * @protected
      */
     _runNextPendingAction: function() {
-        var instance = this,
-            action = this._pendingActions[0],
-            result;
-
+        var action = this._pendingActions[0];
         if (!action) {
             return;
         }
 
         this.fire(this._makeEventName(this.EVENT_PREFIX_BEFORE, action.type));
-        result = action.state[action.type]();
-
-        if (A.Promise.isPromise(result)) {
-            result.then(A.bind(this._afterAction, this, action));
-        }
-        else {
-            this._afterAction(action);
-        }
     }
 }, {
     ATTRS: {

@@ -180,6 +180,50 @@ YUI.add('aui-undo-redo-tests', function(Y) {
                     });
                 });
             });
+        },
+
+        'should allow user to prevent undo/redo actions': function() {
+            this.undoRedo.add(this.newWriteState('Hello'));
+            this.undoRedo.add(this.newWriteState(' World'));
+
+            this.undoRedo.on(this.undoRedo.BEFORE_UNDO, function(event) {
+                event.preventDefault();
+            });
+
+            this.undoRedo.undo();
+            Y.Assert.areEqual('Hello World', this.string);
+        },
+
+        'should prevent actions regardless of the max undo depth': function() {
+            var instance = this;
+
+            this.undoRedo.add(this.newWriteState('Hello'));
+            this.undoRedo.add(this.newWriteState(' World'));
+            this.undoRedo.add(this.newWriteState(' !!!', true));
+
+            this.undoRedo.undo();
+            this.undoRedo.set('maxUndoDepth', 1);
+            this.undoRedo.undo();
+
+            // Normally, another undo wouldn't be possible, as the first state
+            // would have been thrown away after setting maxUndoDepth to 1. In
+            // this case this isn't done because there are still pending actions
+            // that can be prevented by the user though.
+            Y.Assert.isTrue(instance.undoRedo.canUndo());
+
+            instance.undoRedo.once(this.undoRedo.BEFORE_REDO, function(event) {
+                event.preventDefault();
+
+                Y.soon(function() {
+                    instance.resume(function() {
+                        Y.Assert.areEqual('Hello', instance.string);
+                        this.undoRedo.redo();
+                        Y.Assert.areEqual('Hello World', instance.string);
+                    });
+                });
+            });
+            instance.undoRedo.redo();
+            this.wait();
         }
     }));
 
