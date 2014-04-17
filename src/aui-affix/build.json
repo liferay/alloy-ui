@@ -1,0 +1,10 @@
+{
+    "name": "aui-affix",
+    "builds": {
+        "aui-affix": {
+            "jsfiles": [
+                "js/aui-affix.js"
+            ]
+        }
+    }
+}

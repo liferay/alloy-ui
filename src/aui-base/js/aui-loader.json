@@ -39,6 +39,15 @@
             "aui-component"
         ]
     },
+    "aui-affix": {
+        "requires": [
+            "node",
+            "node-screen",
+            "base",
+            "yui-throttle",
+            "aui-debounce"
+        ]
+    },
     "aui-aria": {
         "requires": [
             "plugin",
