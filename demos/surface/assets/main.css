@@ -1,0 +1,14 @@
+#surface1, #surface2 {
+    border: 1px solid #eaeaea;
+    margin-bottom: 40px;
+    min-height: 100px;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+nav ul {
+    margin-left: 0;
+}

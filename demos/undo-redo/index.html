@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+    <style>
+    body {
+        margin-left: 10px;
+    }
+    #buttons-container {
+        margin-bottom: 10px;
+    }
+    #redbox-container {
+        border: 1px solid black;
+        height: 300px;
+        width: 500px;
+    }
+    #redbox {
+        background-color: red;
+        height: 100px;
+        width: 100px;
+    }
+    .hidden {
+        display: none;
+    }
+    </style>
+</head>
+<body class="yui3-skin-sam">
+    <h1>AlloyUI - UndoRedo</h1>
+    <div id="buttons-container">
+        <span class="btn btn-primary sync-button">Run Async Example</span>
+        <span class="btn undo-button">Undo</span>
+        <span class="btn redo-button">Redo</span>
+        <span class="loading-indicator hidden">Running...</span>
+    </div>
+    <div id="redbox-container">
+        <div id="redbox"></div>
+    </div>
+
+    <script>
+
+    YUI({filter: 'raw'}).use('aui-undo-redo', 'dd-drag', 'dd-constrain', function(Y) {
+        var box = Y.one('#redbox'),
+            dd = new Y.DD.Drag({node: '#redbox'}),
+            undoRedo = new Y.UndoRedo(),
+            previousXY = box.getXY(),
+            async = false;
+
+        dd.plug(Y.Plugin.DDConstrained, {constrain2node: '#redbox-container'});
+        dd.on('drag:end', function(event) {
+            var undoXY = previousXY,
+                redoXY = box.getXY();
+
+            undoRedo.add({
+                undo: function() {
+                    return async ? boxSetXYPromise(undoXY) : boxSetXY(undoXY);
+                },
+                redo: function() {
+                    return async ? boxSetXYPromise(redoXY) : boxSetXY(redoXY);
+                }
+            });
+
+            previousXY = redoXY;
+        });
+
+        Y.one('.undo-button').on('click', function() {
+            undoRedo.undo();
+        });
+        Y.one('.redo-button').on('click', function() {
+            undoRedo.redo();
+        });
+        Y.one('.sync-button').on('click', function() {
+            if (async) {
+                this.set('text', 'Run Async Example');
+            } else {
+                this.set('text', 'Run Sync Example');
+            }
+            async = !async;
+        });
+
+        function boxSetXY(xy) {
+            box.setXY(xy);
+            previousXY = xy;
+        }
+
+        function boxSetXYPromise(xy) {
+            return new Y.Promise(function(resolve) {
+                Y.one('.loading-indicator').removeClass('hidden');
+                setTimeout(function() {
+                    boxSetXY(xy);
+                    resolve();
+                    Y.one('.loading-indicator').addClass('hidden');
+                }, 1000);
+            });
+        }
+    });
+    </script>
+</body>
+</html>

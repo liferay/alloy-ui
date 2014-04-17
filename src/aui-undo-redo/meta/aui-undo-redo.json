@@ -1,0 +1,9 @@
+{
+    "aui-undo-redo": {
+        "requires": [
+            "base",
+            "base-build",
+            "promise"
+        ]
+    }
+}

@@ -966,6 +966,13 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-aria"
         ]
     },
+    "aui-promise": {
+        "requires": [
+            "array-invoke",
+            "promise",
+            "oop"
+        ]
+    },
     "aui-rating": {
         "use": [
             "aui-rating-base",
@@ -1155,6 +1162,47 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "aui-base-deprecated",
             "plugin"
+        ]
+    },
+    "aui-surface": {
+        "use": [
+            "aui-surface-app",
+            "aui-surface-screen"
+        ]
+    },
+    "aui-surface-app": {
+        "requires": [
+            "event-delegate",
+            "node-event-html5",
+            "aui-surface-base",
+            "aui-surface-screen",
+            "aui-surface-screen-route"
+        ]
+    },
+    "aui-surface-base": {
+        "requires": [
+            "base-build",
+            "node-style",
+            "aui-promise",
+            "aui-parse-content"
+        ]
+    },
+    "aui-surface-screen": {
+        "requires": [
+            "base-build"
+        ]
+    },
+    "aui-surface-screen-html": {
+        "requires": [
+            "io",
+            "aui-promise",
+            "aui-surface-screen",
+            "aui-url"
+        ]
+    },
+    "aui-surface-screen-route": {
+        "requires": [
+            "base-build"
         ]
     },
     "aui-swf-deprecated": {
@@ -1371,6 +1419,13 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
+    "aui-undo-redo": {
+        "requires": [
+            "base",
+            "base-build",
+            "promise"
+        ]
+    },
     "aui-url": {
         "requires": [
             "oop",
@@ -1433,4 +1488,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'a90a81b0755ac5e4143d29e0a56dee2c';
+YUI.Env[Y.version].md5 = 'c9105d39bbac32be044e6413d5d71f1b';

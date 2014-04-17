@@ -1,0 +1,10 @@
+{
+    "name": "aui-promise",
+    "builds": {
+        "aui-promise": {
+            "jsfiles": [
+                "js/aui-promise.js"
+            ]
+        }
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "name": "aui-surface",
+    "builds": {
+        "aui-surface-app": {
+            "jsfiles": [
+                "js/aui-surface-app.js"
+            ]
+        },
+
+        "aui-surface-base": {
+            "jsfiles": [
+                "js/aui-surface-base.js"
+            ]
+        },
+
+        "aui-surface-screen": {
+            "jsfiles": [
+                "js/aui-surface-screen.js"
+            ]
+        },
+
+        "aui-surface-screen-html": {
+            "jsfiles": [
+                "js/aui-surface-screen-html.js"
+            ]
+        },
+
+        "aui-surface-screen-route": {
+            "jsfiles": [
+                "js/aui-surface-screen-route.js"
+            ]
+        }
+    }
+}

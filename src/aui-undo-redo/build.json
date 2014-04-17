@@ -1,0 +1,10 @@
+{
+    "name": "aui-undo-redo",
+    "builds": {
+        "aui-undo-redo": {
+            "jsfiles": [
+                "js/aui-undo-redo.js"
+            ]
+        }
+    }
+}
