@@ -1,0 +1,10 @@
+{
+    "name": "aui-alert",
+    "builds": {
+        "aui-alert": {
+            "jsfiles": [
+                "js/aui-alert.js"
+            ]
+        }
+    }
+}

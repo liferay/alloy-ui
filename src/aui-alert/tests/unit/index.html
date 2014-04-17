@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <title>aui-alert</title>
+   	
+   	<link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+
+    <script src="../../../../build/aui/aui.js"></script>
+    <script src="js/tests.js"></script>
+
+    <meta charset="utf-8" />
+    <style>
+    	.yui3-console-bd {
+        	height: 400px !important;
+        }
+    </style>
+</head>
+<body class="yui3-skin-sam">
+<div id="alerttest" class="alert alert-error">
+    <div>
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        Thank You Mario! But Our Princess Is In Another Castle!
+    </div>
+</div>
+<div id="logger"></div>
+<script>
+YUI({
+    coverage: ['aui-alert'],
+    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+}).use('test-console', 'test', 'aui-alert-tests', function(Y) {
+    
+    (new Y.Test.Console()).render('#logger');
+
+    Y.Test.Runner.setName('aui-alert');
+    Y.Test.Runner.run();
+});
+</script>
+</body>
+</html>
