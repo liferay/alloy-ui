@@ -115,20 +115,6 @@ var Pagination = A.Component.create({
         },
 
         /**
-         * Shift increments page index by the value. Set to 0 if Prev and Next 
-         * are the only controls. Set to 1 if controls contain First, Last,
-         * Prev, and Next.
-         *
-         * @attribute shift
-         * @default 1
-         * @type {Number}
-         */
-        shift: {
-            setter: '_setInt',
-            value: 1
-        },
-
-        /**
          * Total number of page links available. If set, the new
          * [items](A.Pagination.html#attr_items) node list will be rendered.
          *
@@ -161,8 +147,6 @@ var Pagination = A.Component.create({
          */
         strings: {
             value: {
-                first: 'First',
-                last: 'Last',
                 next: 'Next',
                 prev: 'Prev'
             }
@@ -208,7 +192,7 @@ var Pagination = A.Component.create({
     prototype: {
         CONTENT_TEMPLATE: '<ul></ul>',
         ITEM_TEMPLATE: '<li class="{cssClass}"><a href="#">{content}</a></li>',
-        TOTAL_CONTROLS: 4,
+        TOTAL_CONTROLS: 2,
 
         items: null,
         lastState: null,
@@ -273,7 +257,7 @@ var Pagination = A.Component.create({
             if (isNumber(i)) {
                 var items = instance.get('items');
                 if (items) {
-                    i = items.item(i + instance.get('shift'));
+                    i = items.item(i);
                 }
             }
 
@@ -476,29 +460,18 @@ var Pagination = A.Component.create({
 
             var items = instance.get('items'),
                 index = items.indexOf(item),
-                lastIndex = items.size() - 1,
-                nextIndex = items.size() - 2;
+                lastIndex = items.size() - 1;
 
             switch (index) {
                 case 0:
-                    instance._dispatchRequest({
-                        page: 1
-                    });
-                    break;
-                case 1:
                     instance.prev();
                     break;
-                case nextIndex:
-                    instance.next();
-                    break;
                 case lastIndex:
-                    instance._dispatchRequest({
-                        page: items.size() - (instance.TOTAL_CONTROLS / 2) - instance.get('shift') - 1
-                    });
+                    instance.next();
                     break;
                 default:
                     instance._dispatchRequest({
-                        page: index - instance.get('shift')
+                        page: index
                     });
                     break;
             }
@@ -538,12 +511,7 @@ var Pagination = A.Component.create({
                 buffer = '';
 
             buffer += Lang.sub(tpl, {
-                content: instance.getString('first') ? instance.getString('first') : '&laquo;',
-                cssClass: CSS_PAGINATION_CONTROL
-            });
-
-            buffer += Lang.sub(tpl, {
-                content: instance.getString('prev') ? instance.getString('prev') : '&lsaquo;',
+                content: instance.getString('prev'),
                 cssClass: CSS_PAGINATION_CONTROL
             });
 
@@ -552,12 +520,7 @@ var Pagination = A.Component.create({
             }
 
             buffer += Lang.sub(tpl, {
-                content: instance.getString('next') ? instance.getString('next') : '&rsaquo;',
-                cssClass: CSS_PAGINATION_CONTROL
-            });
-
-            buffer += Lang.sub(tpl, {
-                content: instance.getString('last') ? instance.getString('last') : '&raquo;',
+                content: instance.getString('next'),
                 cssClass: CSS_PAGINATION_CONTROL
             });
 
@@ -571,9 +534,6 @@ var Pagination = A.Component.create({
             // way when they are visible.
             if (!instance.get('showControls')) {
                 items.first().remove();
-                items.item(1).remove();
-
-                items.item(items.size()-2).remove();
                 items.last().remove();
             }
         },
@@ -598,14 +558,6 @@ var Pagination = A.Component.create({
         _syncNavigationUI: function() {
             var instance = this,
                 items = instance.get('items');
-
-            if (!instance.get('circular')) {
-                items.item(1).toggleClass(
-                    CSS_DISABLED, instance.get('page') === 1);
-
-                items.item(items.size()-2).toggleClass(
-                    CSS_DISABLED, instance.get('page') === instance.get('total'));
-            }
 
             items.first().toggleClass(
                 CSS_DISABLED, instance.get('page') === 1);
@@ -637,7 +589,9 @@ var Pagination = A.Component.create({
         _uiSetPage: function(val) {
             var instance = this;
 
-            instance._syncNavigationUI();
+            if (!instance.get('circular')) {
+                instance._syncNavigationUI();
+            }
 
             // Do not activate first and last items, they are used for controls.
             if (val === 0 || val === instance.getTotalItems()) {
