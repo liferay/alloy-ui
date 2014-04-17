@@ -105,7 +105,7 @@ YUI.add('aui-undo-redo-tests', function(Y) {
 
         'should throw error on invalid states': function() {
             var instance = this;
-            YUITest.Assert.throwsError(Error, function(){
+            YUITest.Assert.throwsError(Error, function() {
                 instance.undoRedo.add({});
             });
         },
@@ -185,5 +185,6 @@ YUI.add('aui-undo-redo-tests', function(Y) {
 
     Y.Test.Runner.add(suite);
 
-
-},'', { requires: [ 'test', 'aui-undo-redo', 'tests-aui-undo-redo-utils' ] });
+}, '', {
+    requires: ['test', 'aui-undo-redo', 'tests-aui-undo-redo-utils']
+});

@@ -33,7 +33,8 @@ YUI.add('tests-aui-undo-redo-utils', function(Y) {
                                 resolve();
                             });
                         });
-                    } else {
+                    }
+                    else {
                         instance._removeSuffix(suffix);
                     }
                 },
@@ -47,7 +48,8 @@ YUI.add('tests-aui-undo-redo-utils', function(Y) {
                                 resolve();
                             });
                         });
-                    } else {
+                    }
+                    else {
                         instance._appendSuffix(suffix);
                     }
                 }
@@ -89,4 +91,6 @@ YUI.add('tests-aui-undo-redo-utils', function(Y) {
             this.string = this.string.slice(0, this.string.length - suffix.length);
         }
     });
-}, '', {requires: ['promise', 'timers']});
+}, '', {
+    requires: ['promise', 'timers']
+});
