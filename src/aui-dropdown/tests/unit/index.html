@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+    <title>aui-dropdown</title>
+
+    <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+
+    <script src="../../../../build/aui/aui.js"></script>
+    <script src="js/tests.js"></script>
+    <meta charset="utf-8" />
+    <style>
+        .yui3-console-bd {
+            height: 400px !important;
+        }
+    </style>
+</head>
+<body class="yui3-skin-sam">
+	<h1>AlloyUI - Dropdown</h1>
+    <div class="example">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Dropdown Samples</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li id="dropdown1" class="dropdown">
+                            <a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">First Dropdown <b class="caret"></b></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a role="menuitem" tabindex="-1" href="#">Close on esc</a></li>
+                                <li class="divider"></li>
+                                <li><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                            </ul>
+                        </li>
+                        <li id="dropdown2" class="dropdown">
+                            <a id="trigger" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Second Dropdown <b class="caret"></b></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+      </div>
+<script>
+YUI({
+    coverage: ['aui-dropdown'],
+    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+}).use('test-console', 'test', 'aui-dropdown-tests', function(Y) {
+    
+    (new Y.Test.Console()).render('#logger');
+
+    Y.Test.Runner.setName('aui-dropdown');
+    Y.Test.Runner.run();
+});
+</script>
+</body>
+</html>

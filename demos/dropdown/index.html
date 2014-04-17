@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+</head>
+<body>
+    <h1>AlloyUI - Dropdown</h1>
+    <div class="example">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Dropdown Samples</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li id="dropdown1" class="dropdown">
+                            <a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">First Dropdown <b class="caret"></b></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a role="menuitem" tabindex="-1" href="#">Close on esc</a></li>
+                                <li class="divider"></li>
+                                <li><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                            </ul>
+                        </li>
+                        <li id="dropdown2" class="dropdown">
+                            <a id="trigger" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Second Dropdown <b class="caret"></b></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+      </div>
+    <script>
+
+    YUI({ filter: 'raw' }).use('aui-dropdown', function(Y) {
+
+        var dropdown1 = new Y.Dropdown({
+                boundingBox: '#dropdown1',
+                contentBox: '#dropdown1 ul',
+                trigger: '#dropdown1 .dropdown-toggle',
+                hideOnClickOutSide: false
+            }).render();
+
+        var dropdown2 = new Y.Dropdown({
+            trigger: '#trigger',
+            boundingBox: '#dropdown2',
+            items: [
+                {
+                    id: 'first_i',
+                    content: '<a role="menuitem" tabindex="-1">Close on click outside</a>'
+                },
+                {
+                    id: 'second_i',
+                    content: '<a role="menuitem" tabindex="-1" >Close on esc</a>'
+                },
+                {
+                    divider: true
+                },
+                {
+                    id: 'third_i',
+                    content: '<a href="#" role="menuitem">Call function to print on console</a>'
+                }
+            ]
+        }).render();
+
+        dropdown2.get('boundingBox').delegate('click', function(event) {
+            switch(event.currentTarget.get('id')) {
+                case 'third_i':
+                    console.log('Clicked.');
+            }
+        }, 'li');
+
+    });
+    </script>
+</body>
+</html> 

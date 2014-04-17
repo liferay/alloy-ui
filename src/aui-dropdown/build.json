@@ -1,0 +1,10 @@
+{
+    "name": "aui-dropdown",
+    "builds": {
+        "aui-dropdown": {
+            "jsfiles": [
+                "js/aui-dropdown.js"
+            ]
+        }
+    }
+}

@@ -62,6 +62,21 @@ WidgetTrigger.ATTRS = {
         value: null
     },
 
+    triggerShowFn: {
+        validator: Lang.isString,
+        value: 'show'
+    },
+
+    triggerHideFn: {
+        validator: Lang.isString,
+        value: 'hide'
+    },
+
+    triggerToggleFn: {
+        validator: Lang.isString,
+        value: 'toggle'
+    },
+
     /**
      * DOM event to toggle the tooltip.
      *
@@ -140,7 +155,10 @@ A.mix(WidgetTrigger.prototype, {
             eventHandles,
             triggerHideEvent,
             triggerShowEvent,
-            triggerToggleEvent;
+            triggerToggleEvent,
+            triggerHideFn,
+            triggerShowFn,
+            triggerToggleFn;
 
         (new A.EventHandle(instance._eventHandles)).detach();
 
@@ -150,20 +168,23 @@ A.mix(WidgetTrigger.prototype, {
             triggerHideEvent = instance.get('triggerHideEvent');
             triggerShowEvent = instance.get('triggerShowEvent');
             triggerToggleEvent = instance.get('triggerToggleEvent');
+            triggerHideFn = instance.get('triggerHideFn');
+            triggerShowFn = instance.get('triggerShowFn');
+            triggerToggleFn = instance.get('triggerToggleFn');
 
             if (triggerHideEvent) {
                 eventHandles.push(
-                    val.on(instance.get('triggerHideEvent'), instance.hide, instance));
+                    val.on(instance.get('triggerHideEvent'), instance[triggerHideFn], instance));
             }
 
             if (triggerShowEvent) {
                 eventHandles.push(
-                    val.on(instance.get('triggerShowEvent'), instance.show, instance));
+                    val.on(instance.get('triggerShowEvent'), instance[triggerShowFn], instance));
             }
 
             if (triggerToggleEvent) {
                 eventHandles.push(
-                    val.on(instance.get('triggerToggleEvent'), instance.toggle, instance));
+                    val.on(instance.get('triggerToggleEvent'), instance[triggerToggleFn], instance));
             }
         }
     }
