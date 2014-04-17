@@ -317,6 +317,12 @@ A.mix(DatePickerBase.prototype, {
             return dates;
         }
 
+        // We allow users to send a single date as this param as well,
+        // so converting to array here.
+        if (!Lang.isArray(dates)) {
+            dates = [dates];
+        }
+
         return dates.map(function(date) {
             // In the date picker the time of the selected day is irrelevant.
             // The calendar module (that is used to provide the dates to be
