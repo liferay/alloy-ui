@@ -14,7 +14,7 @@
     </div>
 
     <div id="danger" class="alert alert-danger">
-        Thank You Mario! But Our Princess Isn't There!
+        I’m sorry, but the princess is in another castle!
     </div>
 
     <div id="warning"></div>
@@ -22,7 +22,7 @@
     <script type="text/javascript">
     YUI({ filter: 'raw' }).use('aui-alert', function(Y) {
 
-        new Y.Alert({
+        alert = new Y.Alert({
             destroyOnHide: true,
             render: true,
             srcNode: '#info'
