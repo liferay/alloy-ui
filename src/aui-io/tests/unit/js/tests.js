@@ -1,34 +1,33 @@
 YUI.add('aui-io-tests', function(Y) {
 
+    //--------------------------------------------------------------------------
+    // IO Tests
+    //--------------------------------------------------------------------------
+
     var suite = new Y.Test.Suite('aui-io');
 
     suite.add(new Y.Test.Case({
-        name: 'Automated Tests',
 
-		/*
-		 * Check's if the method get & GET can both be used
-		 *
-		 * @tests AUI-843
-		 */
-		'check get case': function() {
-			var ioRequest1 = Y.io.request (
-				'',
-				{
-				cache: 'false',
-				method: 'GET',
-				}
-			);
+        name: 'IO Request Configuration Tests',
 
-			var ioRequest2 = Y.io.request (
-				'',
-				{
-				cache: 'false',
-				method: 'get',
-				}
-			);
+        // Tests: AUI-843
+        'assert upper and lower case can be used for method attribute': function() {
+            var ioRequest1 = Y.io.request (
+                '',
+                {
+                    method: 'GET'
+                }
+            );
 
-			Y.Assert.areSame(ioRequest1.get('method'), ioRequest2.get('method'));
-		},
+            var ioRequest2 = Y.io.request (
+                '',
+                {
+                    method: 'get'
+                }
+            );
+
+            Y.Assert.areSame(ioRequest1.get('method'), ioRequest2.get('method'));
+        }
     }));
 
     Y.Test.Runner.add(suite);
