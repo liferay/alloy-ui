@@ -8,23 +8,45 @@
 </head>
 <body>
     <h1>AlloyUI - Alert</h1>
-    <div class="alert alert-error">
-        <div>
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            Thank You Mario! But Our Princess Is In Another Castle!
-        </div>
+    <div id="info" class="alert alert-info alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        Thank You Mario! But Our Princess Is In Another Castle!
     </div>
+
+    <div id="danger" class="alert alert-danger">
+        Thank You Mario! But Our Princess Isn't There!
+    </div>
+
+    <div id="warning"></div>
 
     <script type="text/javascript">
     YUI({ filter: 'raw' }).use('aui-alert', function(Y) {
 
         new Y.Alert({
-            boundingBox: '.alert-error',
-            srcNode: '.alert > div',
-            destroyOnHide: true
-        }).render();
+            destroyOnHide: true,
+            render: true,
+            srcNode: '#info'
+        });
+
+        new Y.Alert({
+            closeable: false,
+            render: true,
+            srcNode: '#danger'
+        });
+
+        new Y.Alert({
+            animated: true,
+            bodyContent: 'Thank You Mario! But Our Princess Is In That Castle!',
+            boundingBox: '#warning',
+            closeable: true,
+            cssClass: 'alert-warning',
+            destroyOnHide: false,
+            duration: 1,
+            render: true
+        });
+
     });
     </script>
 
 </body>
-</html> 
+</html>

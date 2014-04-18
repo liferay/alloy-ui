@@ -38,5 +38,5 @@ YUI.add('aui-alert-tests', function(Y) {
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: [ 'test', 'aui-alert', 'node-screen', 'node-event-simulate' ]
+    requires: ['test', 'aui-alert', 'node-screen', 'node-event-simulate']
 });

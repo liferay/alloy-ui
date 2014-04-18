@@ -1,12 +1,9 @@
 {
     "aui-alert": {
         "requires": [
-            "widget",
-            "widget-buttons",
-            "dd-plugin",
-            "dd-constrain",
-            "resize-plugin",
             "timers",
+            "widget",
+            "widget-stdmod",
             "aui-classnamemanager",
             "aui-widget-cssclass",
             "aui-widget-transition"
