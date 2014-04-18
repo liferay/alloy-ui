@@ -407,10 +407,6 @@ A.mix(AutosizeIframe, {
         if (iframeDoc && iframeWin.location.href != 'about:blank') {
             var docEl = iframeDoc.documentElement;
 
-            if (docEl) {
-                docEl.style.overflowY = 'hidden';
-            }
-
             var docOffsetHeight = (docEl && docEl.offsetHeight) || 0;
 
             var standardsMode = (iframeDoc.compatMode == 'CSS1Compat');
