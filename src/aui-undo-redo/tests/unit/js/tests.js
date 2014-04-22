@@ -138,8 +138,31 @@ YUI.add('aui-undo-redo-tests', function(Y) {
             Y.Assert.areEqual('Hello', this.string);
         },
 
-        'should handle async undo/redo actions': function() {
+        'should ignore undo/redo actions when another is in progress': function() {
             var instance = this;
+
+            this.undoRedo.add(this.newWriteState('Hello'));
+            this.undoRedo.add(this.newWriteState(' World', true));
+
+            Y.Assert.isTrue(this.undoRedo.undo());
+            Y.Assert.isFalse(this.undoRedo.undo());
+            Y.Assert.isFalse(this.undoRedo.redo());
+
+            this.undoRedo.once(this.undoRedo.AFTER_UNDO, function(event) {
+                Y.soon(function() {
+                    instance.resume(function() {
+                        Y.Assert.areEqual('Hello', instance.string);
+                        Y.Assert.isTrue(instance.undoRedo.undo());
+                        Y.Assert.isTrue(instance.undoRedo.redo());
+                    });
+                });
+            });
+            this.wait();
+        },
+
+        'should queue async undo/redo actions when queueable is true': function() {
+            var instance = this;
+            this.undoRedo = new Y.UndoRedo({queueable: true});
 
             // Add both async and sync states.
             this.undoRedo.add(this.newWriteState('Hello', true));
@@ -196,6 +219,7 @@ YUI.add('aui-undo-redo-tests', function(Y) {
 
         'should prevent actions regardless of the max undo depth': function() {
             var instance = this;
+            this.undoRedo = new Y.UndoRedo({queueable: true});
 
             this.undoRedo.add(this.newWriteState('Hello'));
             this.undoRedo.add(this.newWriteState(' World'));

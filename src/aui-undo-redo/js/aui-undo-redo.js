@@ -125,23 +125,24 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
     },
 
     /**
-     * Checks if there is a state to be redone.
+     * Checks if it's possible to redo an action.
      *
      * @method canRedo
      * @return {Boolean}
      */
     canRedo: function() {
-        return this._currentStateIndex < this._states.length - 1;
+        return this._currentStateIndex < this._states.length - 1 &&
+            !this._shouldIgnoreNewActions();
     },
 
     /**
-     * Checks if there is a state to be undone.
+     * Checks if it's possible to undo an action.
      *
      * @method canUndo
      * @return {Boolean}
      */
     canUndo: function() {
-        return this._currentStateIndex >= 0;
+        return this._currentStateIndex >= 0 && !this._shouldIgnoreNewActions();
     },
 
     /**
@@ -153,6 +154,16 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
         this._states = [];
         this._pendingActions = [];
         this._currentStateIndex = -1;
+    },
+
+    /**
+     * Checks if either an undo or a redo action is currently in progress.
+     *
+     * @method isActionInProgress
+     * @return {Boolean}
+     */
+    isActionInProgress: function() {
+        return this._pendingActions.length > 0;
     },
 
     /**
@@ -327,6 +338,19 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
         }
 
         this.fire(this._makeEventName(this.EVENT_PREFIX_BEFORE, action.type));
+    },
+
+    /**
+     * Checks if new actions (calls to undo/redo) should be ignored. Actions
+     * should only be ignored if the `queueable` attribute is false and there
+     * is currently an action in progress.
+     *
+     * @method _shouldIgnoreNewActions
+     * @return {Boolean}
+     * @protected
+     */
+    _shouldIgnoreNewActions: function() {
+        return !this.get('queueable') && this.isActionInProgress();
     }
 }, {
     ATTRS: {
@@ -342,6 +366,21 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
                 return depth >= 1;
             },
             value: 100
+        },
+
+        /**
+         * Defines how this module will behave when the user calls undo
+         * or redo while an action is still in progress. If false, these
+         * calls will be ignored. If true, they will be queued, running
+         * in order as soon as the pending action finishes.
+         *
+         * @attribute queueable
+         * @default false
+         * @type {Boolean}
+         */
+        queueable: {
+            validator: A.Lang.isBoolean,
+            value: false
         }
     }
 });
