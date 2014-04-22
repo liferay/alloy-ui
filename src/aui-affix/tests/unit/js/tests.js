@@ -59,7 +59,7 @@ YUI.add('aui-affix-tests', function(Y) {
             affix.set('offsetTop', -Infinity);
             window.scrollTo(0, 0);
             this.wait(function() {
-                targetShouldHaveClassName(Y.Affix.CSS_CLASSES.TOP);
+                targetShouldHaveClassName(Y.Affix.CSS_CLASSES.DEFAULT);
             }, 0);
         },
 
