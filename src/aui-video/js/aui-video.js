@@ -14,7 +14,6 @@ var Lang = A.Lang,
     CSS_VIDEO_NODE = getClassName(_NAME, 'node'),
 
     DEFAULT_PLAYER_PATH = A.config.base + 'aui-video/assets/player.swf?t=' + Lang.now(),
-    PLAYER_FLASH_VERSION = '9,0,0,0',
 
     DOC = A.config.doc,
 
@@ -127,6 +126,18 @@ var Video = A.Component.create({
         },
 
         /**
+         * The required Flash version for the swf player
+         *
+         * @attribute flashPlayerVersion
+         * @default '9,0,0,0'
+         * @type String
+         */
+        flashPlayerVersion: {
+            validator: Lang.isString,
+            value: '9,0,0,0'
+        },
+
+        /**
          * Variables used by Flash player.
          *
          * @attribute flashVars
@@ -135,17 +146,6 @@ var Video = A.Component.create({
          */
         flashVars: {
             value: {}
-        },
-
-        /**
-         * The required Flash version for the swf player
-         *
-         * @attribute playerFlashVersion
-         * @default '9,0,0,0'
-         * @type String
-         */
-        playerFlashVersion: {
-            value: PLAYER_FLASH_VERSION
         },
 
         /**
@@ -309,7 +309,7 @@ var Video = A.Component.create({
                 if (UA.ie) {
                     tplObj += 'classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" ' +
                         'codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=' +
-                        instance.get('playerFlashVersion') + '" ';
+                        instance.get('flashPlayerVersion') + '" ';
                 }
                 else {
                     tplObj += 'type="application/x-shockwave-flash" data="' + swfUrl + '" ';
