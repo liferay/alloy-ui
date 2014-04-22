@@ -3,7 +3,7 @@ YUI.add('aui-affix-tests', function(Y) {
     var Assert = Y.Assert,
         suite = new Y.Test.Suite('aui-affix'),
         affix,
-        target = Y.one('#sidenav');
+        target = Y.one('#navbar');
 
     function targetShouldHaveClassName(className) {
         Assert.isTrue(target.hasClass(className));
