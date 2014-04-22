@@ -23,6 +23,9 @@ YUI.add('aui-affix-tests', function(Y) {
         tearDown: function() {
             affix.destructor();
             affix = null;
+            target.removeClass(Y.Affix.CSS_CLASSES_BOTTOM);
+            target.removeClass(Y.Affix.CSS_CLASSES_DEFAULT);
+            target.removeClass(Y.Affix.CSS_CLASSES_TOP);
         },
 
         'should set attributes': function() {
