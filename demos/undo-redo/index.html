@@ -25,14 +25,20 @@
     .hidden {
         display: none;
     }
+    .async-options {
+        margin-bottom: 10px;
+    }
     </style>
 </head>
 <body class="yui3-skin-sam">
     <h1>AlloyUI - UndoRedo</h1>
     <div id="buttons-container">
-        <span class="btn btn-primary sync-button">Run Async Example</span>
-        <span class="btn undo-button">Undo</span>
-        <span class="btn redo-button">Redo</span>
+        <div class="async-options">
+            <span class="btn btn-primary sync-button">Run Async Example</span>
+            <span class="queueable" style="display: none"><input type="checkbox"> Queueable</span>
+        </div>
+        <span class="btn btn-default undo-button">Undo</span>
+        <span class="btn btn-default redo-button">Redo</span>
         <span class="loading-indicator hidden">Running...</span>
     </div>
     <div id="redbox-container">
@@ -78,6 +84,10 @@
                 this.set('text', 'Run Sync Example');
             }
             async = !async;
+            Y.one('.queueable').toggleView();
+        });
+        Y.one('input[type=checkbox]').on('change', function() {
+            undoRedo.set('queueable', !undoRedo.get('queueable'));
         });
 
         function boxSetXY(xy) {

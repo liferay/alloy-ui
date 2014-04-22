@@ -257,7 +257,7 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
      * @param {EventFacade} event
      * @protected
      */
-    _defBeforeActionFn: function(event) {
+    _defBeforeActionFn: function() {
         var action = this._pendingActions[0],
             result = action.state[action.type]();
 
@@ -289,7 +289,7 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
      * @param {EventFacade} event
      * @protected
      */
-    _prevBeforeActionFn: function(event) {
+    _prevBeforeActionFn: function() {
         var action = this._pendingActions[0];
         this._currentStateIndex = action.undoIndex;
         this._pendingActions = [];
