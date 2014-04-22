@@ -8,42 +8,47 @@
     <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
     <script src="../../build/aui/aui.js"></script>
     <style>
-        .affix, .affix-bottom {
+        .demo-well {
+            margin-top: 110px;
+        }
+        .navbar {
+            top: 10px;
+            z-index: 200;
+        }
+        .navbar.affix-top {
+            top: 40px;
+            transition: top .2s;
+        }
+        .navbar.affix {
+            transition: top .2s;
+        }
+        .navbar.affix-top, .navbar.affix-bottom {
             position: fixed;
-            top: 60px;
-            width: 200px;
         }
-        .affix-top {
-            position: static;
-        }
-        .sidenav {
-            background: #f3f3f3;
-            font-size: 26px;
-        }
-        .sidenav.affix {
-            background: #ccc;
-        }
-        .sidenav.affix-bottom {
-            background: #999;
-        }
-        .sidenav li {
-            height: 70px;
-            list-style-type: none;
-            color: #555;
-        }
-        .sidenav li:last-child {
-            height: 40px;
-        }
-        .affix-top .active-on-top, .affix .active-on-default, .affix-bottom .active-on-bottom {
-            font-weight: bold;
-            color: #000;
+
+        .affix-top .active-on-top a, .affix .active-on-default a,
+        .affix-bottom .active-on-bottom a {
+            color: #000 !important;
+            background: #eee !important;
         }
     </style>
 </head>
 <body>
 <div class="container">
+    <nav class="col col-md-4 col-sm-4 hidden-xs">
+        <div class="navbar" id="navbar">
+            <div class="navbar-inner">
+                <a class="brand" href="#">Affix</a>
+                <ul class="nav">
+                    <li class="active-on-top"><a href="#">Top</a></li>
+                    <li class="active-on-default"><a href="#">Default</a></li>
+                    <li class="active-on-bottom"><a href="#">Bottom</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class="row">
-        <div class="well">
+        <div class="demo-well well">
             <h1>The Affix demo</h1>
             <p>Pour-over keffiyeh kale chips church-key, synth jean shorts ennui. Helvetica photo booth occupy, freegan 8-bit tofu PBR&B. Slow-carb bicycle rights cray shabby chic chillwave. Typewriter mlkshk master cleanse try-hard yr hoodie. Portland bitters artisan selvage stumptown. Chillwave ennui drinking vinegar fashion axe gastropub, occupy wayfarers 3 wolf moon next level normcore American Apparel Odd Future. Chambray kitsch tattooed, small batch cliche ethnic disrupt literally viral quinoa fanny pack lomo Williamsburg.<br />
             Elit mumblecore McSweeney's laborum, paleo ut freegan normcore roof party vegan you probably haven't heard of them mollit synth next level fugiat. Direct trade eu id, 8-bit laborum XOXO kogi cillum quis skateboard nulla actually plaid.
@@ -51,13 +56,6 @@
         </div>
     </div>
     <div class="row">
-        <nav class="sidebar col col-md-4 col-sm-4 hidden-xs">
-            <ul class="sidenav" id="sidenav">
-                <li class="active-on-top">TOP</li>
-                <li class="active-on-default">DEFAULT</li>
-                <li class="active-on-bottom">BOTTOM</li>
-            </ul>
-        </nav>
         <section class="col col-md-8 col-sm-8 col-xs-12">
             <article>
                 <h2>What affix really is</h2>
@@ -80,6 +78,26 @@
                 Cornhole semiotics ullamco est, Odd Future master cleanse sartorial readymade jean shorts. Tumblr plaid fashion axe quinoa distillery, cupidatat you probably haven't heard of them anim irure mixtape occupy duis Intelligentsia. Ennui voluptate flexitarian mustache, church-key et freegan. Trust fund Blue Bottle next level, street art sunt 8-bit Williamsburg fingerstache typewriter Etsy assumenda ullamco scenester twee. Chillwave try-hard ad commodo McSweeney's. Brunch biodiesel vero, McSweeney's lo-fi iPhone pop-up. Nostrud Echo Park fanny pack plaid squid, direct trade et viral keffiyeh delectus scenester.<br /><br />
                 Wolf vero salvia mumblecore, commodo Echo Park master cleanse semiotics bespoke nesciunt raw denim food truck Cosby sweater pickled. Elit mumblecore McSweeney's laborum, paleo ut freegan normcore roof party vegan you probably haven't heard of them mollit synth next level fugiat. Ut trust fund Cosby sweater, 3 wolf moon quinoa actually nihil viral distillery tattooed disrupt PBR kale chips craft beer chia. Cray flexitarian placeat sed.<br />Typewriter drinking vinegar in, Vice cliche asymmetrical raw denim High Life bicycle rights tattooed master cleanse. Sint anim chillwave deserunt proident hoodie meggings minim organic Vice cillum, placeat pop-up before they sold out. Authentic Echo Park chia aliquip wayfarers. XOXO meggings Odd Future put a bird on it, proident seitan squid consectetur Pinterest roof party pour-over trust fund typewriter direct trade. Blue Bottle Schlitz tattooed, freegan qui selfies mollit drinking vinegar veniam bicycle rights labore et. Consequat you probably haven't heard of them skateboard proident est, keffiyeh ugh Tonx sriracha dreamcatcher VHS pop-up consectetur deserunt Marfa.
                 Cornhole semiotics ullamco est, Odd Future master cleanse sartorial readymade jean shorts. Tumblr plaid fashion axe quinoa distillery, cupidatat you probably haven't heard of them anim irure mixtape occupy duis Intelligentsia. Ennui voluptate flexitarian mustache, church-key et freegan. Trust fund Blue Bottle next level, street art sunt 8-bit Williamsburg fingerstache typewriter Etsy assumenda ullamco scenester twee. Chillwave try-hard ad commodo McSweeney's. Brunch biodiesel vero, McSweeney's lo-fi iPhone pop-up. Nostrud Echo Park fanny pack plaid squid, direct trade et viral keffiyeh delectus scenester.<br /><br />
+                Wolf vero salvia mumblecore, commodo Echo Park master cleanse semiotics bespoke nesciunt raw denim food truck Cosby sweater pickled. Elit mumblecore McSweeney's laborum, paleo ut freegan normcore roof party vegan you probably haven't heard of them mollit synth next level fugiat. Ut trust fund Cosby sweater, 3 wolf moon quinoa actually nihil viral distillery tattooed disrupt PBR kale chips craft beer chia. Cray flexitarian placeat sed.<br />Typewriter drinking vinegar in, Vice cliche asymmetrical raw denim High Life bicycle rights tattooed master cleanse. Sint anim chillwave deserunt proident hoodie meggings minim organic Vice cillum, placeat pop-up before they sold out. Authentic Echo Park chia aliquip wayfarers. XOXO meggings Odd Future put a bird on it, proident seitan squid consectetur Pinterest roof party pour-over trust fund typewriter direct trade. Blue Bottle Schlitz tattooed, freegan qui selfies mollit drinking vinegar veniam bicycle rights labore et. Consequat you probably haven't heard of them skateboard proident est, keffiyeh ugh Tonx sriracha dreamcatcher VHS pop-up consectetur deserunt Marfa.
+                Cornhole semiotics ullamco est, Odd Future master cleanse sartorial readymade jean shorts. Tumblr plaid fashion axe quinoa distillery, cupidatat you probably haven't heard of them anim irure mixtape occupy duis Intelligentsia. Ennui voluptate flexitarian mustache, church-key et freegan. Trust fund Blue Bottle next level, street art sunt 8-bit Williamsburg fingerstache typewriter Etsy assumenda ullamco scenester twee. Chillwave try-hard ad commodo McSweeney's. Brunch biodiesel vero, McSweeney's lo-fi iPhone pop-up. Nostrud Echo Park fanny pack plaid squid, direct trade et viral keffiyeh delectus scenester.<br /><br />
+                Wolf vero salvia mumblecore, commodo Echo Park master cleanse semiotics bespoke nesciunt raw denim food truck Cosby sweater pickled. Elit mumblecore McSweeney's laborum, paleo ut freegan normcore roof party vegan you probably haven't heard of them mollit synth next level fugiat. Ut trust fund Cosby sweater, 3 wolf moon quinoa actually nihil viral distillery tattooed disrupt PBR kale chips craft beer chia. Cray flexitarian placeat sed.<br />Typewriter drinking vinegar in, Vice cliche asymmetrical raw denim High Life bicycle rights tattooed master cleanse. Sint anim chillwave deserunt proident hoodie meggings minim organic Vice cillum, placeat pop-up before they sold out. Authentic Echo Park chia aliquip wayfarers. XOXO meggings Odd Future put a bird on it, proident seitan squid consectetur Pinterest roof party pour-over trust fund typewriter direct trade. Blue Bottle Schlitz tattooed, freegan qui selfies mollit drinking vinegar veniam bicycle rights labore et. Consequat you probably haven't heard of them skateboard proident est, keffiyeh ugh Tonx sriracha dreamcatcher VHS pop-up consectetur deserunt Marfa.
+
+                Cornhole semiotics ullamco est, Odd Future master cleanse sartorial readymade jean shorts. Tumblr plaid fashion axe quinoa distillery, cupidatat you probably haven't heard of them anim irure mixtape occupy duis Intelligentsia. Ennui voluptate flexitarian mustache, church-key et freegan. Trust fund Blue Bottle next level, street art sunt 8-bit Williamsburg fingerstache typewriter Etsy assumenda ullamco scenester twee. Chillwave try-hard ad commodo McSweeney's. Brunch biodiesel vero, McSweeney's lo-fi iPhone pop-up. Nostrud Echo Park fanny pack plaid squid, direct trade et viral keffiyeh delectus scenester.<br /><br />
+                Wolf vero salvia mumblecore, commodo Echo Park master cleanse semiotics bespoke nesciunt raw denim food truck Cosby sweater pickled. Elit mumblecore McSweeney's laborum, paleo ut freegan normcore roof party vegan you probably haven't heard of them mollit synth next level fugiat. Ut trust fund Cosby sweater, 3 wolf moon quinoa actually nihil viral distillery tattooed disrupt PBR kale chips craft beer chia. Cray flexitarian placeat sed.<br />Typewriter drinking vinegar in, Vice cliche asymmetrical raw denim High Life bicycle rights tattooed master cleanse. Sint anim chillwave deserunt proident hoodie meggings minim organic Vice cillum, placeat pop-up before they sold out. Authentic Echo Park chia aliquip wayfarers. XOXO meggings Odd Future put a bird on it, proident seitan squid consectetur Pinterest roof party pour-over trust fund typewriter direct trade. Blue Bottle Schlitz tattooed, freegan qui selfies mollit drinking vinegar veniam bicycle rights labore et. Consequat you probably haven't heard of them skateboard proident est, keffiyeh ugh Tonx sriracha dreamcatcher VHS pop-up consectetur deserunt Marfa.
+
+                Cornhole semiotics ullamco est, Odd Future master cleanse sartorial readymade jean shorts. Tumblr plaid fashion axe quinoa distillery, cupidatat you probably haven't heard of them anim irure mixtape occupy duis Intelligentsia. Ennui voluptate flexitarian mustache, church-key et freegan. Trust fund Blue Bottle next level, street art sunt 8-bit Williamsburg fingerstache typewriter Etsy assumenda ullamco scenester twee. Chillwave try-hard ad commodo McSweeney's. Brunch biodiesel vero, McSweeney's lo-fi iPhone pop-up. Nostrud Echo Park fanny pack plaid squid, direct trade et viral keffiyeh delectus scenester.<br /><br />
+                Wolf vero salvia mumblecore, commodo Echo Park master cleanse semiotics bespoke nesciunt raw denim food truck Cosby sweater pickled. Elit mumblecore McSweeney's laborum, paleo ut freegan normcore roof party vegan you probably haven't heard of them mollit synth next level fugiat. Ut trust fund Cosby sweater, 3 wolf moon quinoa actually nihil viral distillery tattooed disrupt PBR kale chips craft beer chia. Cray flexitarian placeat sed.<br />Typewriter drinking vinegar in, Vice cliche asymmetrical raw denim High Life bicycle rights tattooed master cleanse. Sint anim chillwave deserunt proident hoodie meggings minim organic Vice cillum, placeat pop-up before they sold out. Authentic Echo Park chia aliquip wayfarers. XOXO meggings Odd Future put a bird on it, proident seitan squid consectetur Pinterest roof party pour-over trust fund typewriter direct trade. Blue Bottle Schlitz tattooed, freegan qui selfies mollit drinking vinegar veniam bicycle rights labore et. Consequat you probably haven't heard of them skateboard proident est, keffiyeh ugh Tonx sriracha dreamcatcher VHS pop-up consectetur deserunt Marfa.
+
+                Cornhole semiotics ullamco est, Odd Future master cleanse sartorial readymade jean shorts. Tumblr plaid fashion axe quinoa distillery, cupidatat you probably haven't heard of them anim irure mixtape occupy duis Intelligentsia. Ennui voluptate flexitarian mustache, church-key et freegan. Trust fund Blue Bottle next level, street art sunt 8-bit Williamsburg fingerstache typewriter Etsy assumenda ullamco scenester twee. Chillwave try-hard ad commodo McSweeney's. Brunch biodiesel vero, McSweeney's lo-fi iPhone pop-up. Nostrud Echo Park fanny pack plaid squid, direct trade et viral keffiyeh delectus scenester.<br /><br />
+                Wolf vero salvia mumblecore, commodo Echo Park master cleanse semiotics bespoke nesciunt raw denim food truck Cosby sweater pickled. Elit mumblecore McSweeney's laborum, paleo ut freegan normcore roof party vegan you probably haven't heard of them mollit synth next level fugiat. Ut trust fund Cosby sweater, 3 wolf moon quinoa actually nihil viral distillery tattooed disrupt PBR kale chips craft beer chia. Cray flexitarian placeat sed.<br />Typewriter drinking vinegar in, Vice cliche asymmetrical raw denim High Life bicycle rights tattooed master cleanse. Sint anim chillwave deserunt proident hoodie meggings minim organic Vice cillum, placeat pop-up before they sold out. Authentic Echo Park chia aliquip wayfarers. XOXO meggings Odd Future put a bird on it, proident seitan squid consectetur Pinterest roof party pour-over trust fund typewriter direct trade. Blue Bottle Schlitz tattooed, freegan qui selfies mollit drinking vinegar veniam bicycle rights labore et. Consequat you probably haven't heard of them skateboard proident est, keffiyeh ugh Tonx sriracha dreamcatcher VHS pop-up consectetur deserunt Marfa.
+
+                Cornhole semiotics ullamco est, Odd Future master cleanse sartorial readymade jean shorts. Tumblr plaid fashion axe quinoa distillery, cupidatat you probably haven't heard of them anim irure mixtape occupy duis Intelligentsia. Ennui voluptate flexitarian mustache, church-key et freegan. Trust fund Blue Bottle next level, street art sunt 8-bit Williamsburg fingerstache typewriter Etsy assumenda ullamco scenester twee. Chillwave try-hard ad commodo McSweeney's. Brunch biodiesel vero, McSweeney's lo-fi iPhone pop-up. Nostrud Echo Park fanny pack plaid squid, direct trade et viral keffiyeh delectus scenester.<br /><br />
+                Wolf vero salvia mumblecore, commodo Echo Park master cleanse semiotics bespoke nesciunt raw denim food truck Cosby sweater pickled. Elit mumblecore McSweeney's laborum, paleo ut freegan normcore roof party vegan you probably haven't heard of them mollit synth next level fugiat. Ut trust fund Cosby sweater, 3 wolf moon quinoa actually nihil viral distillery tattooed disrupt PBR kale chips craft beer chia. Cray flexitarian placeat sed.<br />Typewriter drinking vinegar in, Vice cliche asymmetrical raw denim High Life bicycle rights tattooed master cleanse. Sint anim chillwave deserunt proident hoodie meggings minim organic Vice cillum, placeat pop-up before they sold out. Authentic Echo Park chia aliquip wayfarers. XOXO meggings Odd Future put a bird on it, proident seitan squid consectetur Pinterest roof party pour-over trust fund typewriter direct trade. Blue Bottle Schlitz tattooed, freegan qui selfies mollit drinking vinegar veniam bicycle rights labore et. Consequat you probably haven't heard of them skateboard proident est, keffiyeh ugh Tonx sriracha dreamcatcher VHS pop-up consectetur deserunt Marfa.
+
+                Cornhole semiotics ullamco est, Odd Future master cleanse sartorial readymade jean shorts. Tumblr plaid fashion axe quinoa distillery, cupidatat you probably haven't heard of them anim irure mixtape occupy duis Intelligentsia. Ennui voluptate flexitarian mustache, church-key et freegan. Trust fund Blue Bottle next level, street art sunt 8-bit Williamsburg fingerstache typewriter Etsy assumenda ullamco scenester twee. Chillwave try-hard ad commodo McSweeney's. Brunch biodiesel vero, McSweeney's lo-fi iPhone pop-up. Nostrud Echo Park fanny pack plaid squid, direct trade et viral keffiyeh delectus scenester.<br /><br />
+                Wolf vero salvia mumblecore, commodo Echo Park master cleanse semiotics bespoke nesciunt raw denim food truck Cosby sweater pickled. Elit mumblecore McSweeney's laborum, paleo ut freegan normcore roof party vegan you probably haven't heard of them mollit synth next level fugiat. Ut trust fund Cosby sweater, 3 wolf moon quinoa actually nihil viral distillery tattooed disrupt PBR kale chips craft beer chia. Cray flexitarian placeat sed.<br />Typewriter drinking vinegar in, Vice cliche asymmetrical raw denim High Life bicycle rights tattooed master cleanse. Sint anim chillwave deserunt proident hoodie meggings minim organic Vice cillum, placeat pop-up before they sold out. Authentic Echo Park chia aliquip wayfarers. XOXO meggings Odd Future put a bird on it, proident seitan squid consectetur Pinterest roof party pour-over trust fund typewriter direct trade. Blue Bottle Schlitz tattooed, freegan qui selfies mollit drinking vinegar veniam bicycle rights labore et. Consequat you probably haven't heard of them skateboard proident est, keffiyeh ugh Tonx sriracha dreamcatcher VHS pop-up consectetur deserunt Marfa.
+
+                Cornhole semiotics ullamco est, Odd Future master cleanse sartorial readymade jean shorts. Tumblr plaid fashion axe quinoa distillery, cupidatat you probably haven't heard of them anim irure mixtape occupy duis Intelligentsia. Ennui voluptate flexitarian mustache, church-key et freegan. Trust fund Blue Bottle next level, street art sunt 8-bit Williamsburg fingerstache typewriter Etsy assumenda ullamco scenester twee. Chillwave try-hard ad commodo McSweeney's. Brunch biodiesel vero, McSweeney's lo-fi iPhone pop-up. Nostrud Echo Park fanny pack plaid squid, direct trade et viral keffiyeh delectus scenester.<br /><br />
                 Wolf vero salvia mumblecore, commodo Echo Park master cleanse semiotics bespoke nesciunt raw denim food truck Cosby sweater pickled. Elit mumblecore McSweeney's laborum, paleo ut freegan normcore roof party vegan you probably haven't heard of them mollit synth next level fugiat. Ut trust fund Cosby sweater, 3 wolf moon quinoa actually nihil viral distillery tattooed disrupt PBR kale chips craft beer chia. Cray flexitarian placeat sed.<br />Typewriter drinking vinegar in, Vice cliche asymmetrical raw denim High Life bicycle rights tattooed master cleanse. Sint anim chillwave deserunt proident hoodie meggings minim organic Vice cillum, placeat pop-up before they sold out. Authentic Echo Park chia aliquip wayfarers. XOXO meggings Odd Future put a bird on it, proident seitan squid consectetur Pinterest roof party pour-over trust fund typewriter direct trade. Blue Bottle Schlitz tattooed, freegan qui selfies mollit drinking vinegar veniam bicycle rights labore et. Consequat you probably haven't heard of them skateboard proident est, keffiyeh ugh Tonx sriracha dreamcatcher VHS pop-up consectetur deserunt Marfa.</p>
             </article>
         </section>
@@ -88,9 +106,9 @@
 <script>
     YUI({ filter:'raw' }).use('aui-affix', function(Y) {
         new Y.Affix({
-            target: '#sidenav',
+            target: '#navbar',
             offsetTop: 220,
-            offsetBottom: 800
+            offsetBottom: 220
         });
     });
 </script>
