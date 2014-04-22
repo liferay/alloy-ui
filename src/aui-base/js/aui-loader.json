@@ -984,7 +984,8 @@
             "aui-widget-trigger",
             "aui-widget-position-align-suggestion",
             "aui-node-base"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-tooltip-delegate": {
         "requires": [

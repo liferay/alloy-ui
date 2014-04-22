@@ -1008,7 +1008,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-widget-trigger",
             "aui-widget-position-align-suggestion",
             "aui-node-base"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-tooltip-delegate": {
         "requires": [
@@ -1133,4 +1134,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '1c2589771a90d2d5f576469880a685d9';
+YUI.Env[Y.version].md5 = '5840666cb31d33f483e13e102807effe';
