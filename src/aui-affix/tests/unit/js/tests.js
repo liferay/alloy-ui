@@ -56,7 +56,7 @@ YUI.add('aui-affix-tests', function(Y) {
         },
 
         'should be at the top of the doc and have no offsetTop': function() {
-            affix.set('offsetTop', -Infinity);
+            affix.set('offsetTop', Number.NEGATIVE_INFINITY);
             window.scrollTo(0, 0);
             this.wait(function() {
                 targetShouldHaveClassName(Y.Affix.CSS_CLASSES.DEFAULT);
@@ -64,7 +64,7 @@ YUI.add('aui-affix-tests', function(Y) {
         },
 
         'should be at the end of the doc and have no offsetBottom': function() {
-            affix.set('offsetBottom', -Infinity);
+            affix.set('offsetBottom', Number.NEGATIVE_INFINITY);
             window.scrollTo(0, Y.DOM.docHeight());
             this.wait(function() {
                 targetShouldHaveClassName(Y.Affix.CSS_CLASSES.DEFAULT);
@@ -86,10 +86,10 @@ YUI.add('aui-affix-tests', function(Y) {
         },
 
         'should validate offset with function': function() {
-            affix.set('offsetBottom', function () {
+            affix.set('offsetBottom', function() {
                 return 10;
             });
-            Assert.isFunction(affix.get('offsetBottom'));
+            Assert.areEqual(10, affix.get('offsetBottom'));
         }
     }));
 

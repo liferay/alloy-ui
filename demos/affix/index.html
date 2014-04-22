@@ -8,45 +8,27 @@
     <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
     <script src="../../build/aui/aui.js"></script>
     <style>
-        .demo-well {
-            margin-top: 110px;
-        }
-        .navbar {
-            top: 10px;
+        .navbar.affix, .navbar.affix-bottom {
+            position: fixed;
+            top: 20px;
             z-index: 200;
         }
-        .navbar.affix-top {
-            top: 40px;
-            transition: top .2s;
+        .bottom, .default, .top {
+            display: none !important;
         }
-        .navbar.affix {
-            transition: top .2s;
+        .affix-bottom .bottom {
+            display: block !important;
         }
-        .navbar.affix-top, .navbar.affix-bottom {
-            position: fixed;
+        .affix .default {
+            display: block !important;
         }
-
-        .affix-top .active-on-top a, .affix .active-on-default a,
-        .affix-bottom .active-on-bottom a {
-            color: #000 !important;
-            background: #eee !important;
+        .affix-top .top {
+            display: block !important;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <nav class="col col-md-4 col-sm-4 hidden-xs">
-        <div class="navbar" id="navbar">
-            <div class="navbar-inner">
-                <a class="brand" href="#">Affix</a>
-                <ul class="nav">
-                    <li class="active-on-top"><a href="#">Top</a></li>
-                    <li class="active-on-default"><a href="#">Default</a></li>
-                    <li class="active-on-bottom"><a href="#">Bottom</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
     <div class="row">
         <div class="demo-well well">
             <h1>The Affix demo</h1>
@@ -54,9 +36,20 @@
             Elit mumblecore McSweeney's laborum, paleo ut freegan normcore roof party vegan you probably haven't heard of them mollit synth next level fugiat. Direct trade eu id, 8-bit laborum XOXO kogi cillum quis skateboard nulla actually plaid.
             </p>
         </div>
-    </div>
-    <div class="row">
-        <section class="col col-md-8 col-sm-8 col-xs-12">
+        <div class="navbar navbar-default" id="navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Affix</a>
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Item 1</a></li>
+                    <li><a href="#">Item 2</a></li>
+                    <li><a href="#">Item 3</a></li>
+                    <li class="active top"><a href="#">Top</a></li>
+                    <li class="active default"><a href="#">Middle</a></li>
+                    <li class="active bottom"><a href="#">Bottom</a></li>
+                </ul>
+            </div>
+        </div>
+        <section>
             <article>
                 <h2>What affix really is</h2>
                 <p>Scroll down the page and watch the menu at the left side change position.<br />

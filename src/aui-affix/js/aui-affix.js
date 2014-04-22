@@ -34,17 +34,21 @@ Affix = A.Base.create('affix', A.Base, [], {
             bottom: {
                 defaultFn: this._defAffixBottomFn
             },
-            default: {
+            'default': {
                 defaultFn: this._defAffixFn
             },
             top: {
                 defaultFn: this._defAffixTopFn
             }
         });
+
+        this.after({
+            offsetBottomChange: this._afterOffsetChange,
+            offsetTopChange: this._afterOffsetChange
+        });
+
         this.refresh();
         this._eventHandle = A.one(win).on('scroll', this._onScroll, this);
-        this.after('offsetBottomChange', this._afterOffsetChange);
-        this.after('offsetTopChange', this._afterOffsetChange);
     },
 
     /**
@@ -88,7 +92,7 @@ Affix = A.Base.create('affix', A.Base, [], {
      * @method  _afterOffsetChange
      * @private
      */
-    _afterOffsetChange: function () {
+    _afterOffsetChange: function() {
         this.refresh();
     },
 
@@ -146,7 +150,7 @@ Affix = A.Base.create('affix', A.Base, [], {
     },
 
     /**
-     * Sync the target element class based on the affix positioning
+     * Sync the target element class based on the affix positioning.
      *
      * @method _syncClassesUI
      * @param {String} Position value, could be 'bottom', 'default' or 'top'.
@@ -161,13 +165,19 @@ Affix = A.Base.create('affix', A.Base, [], {
     },
 
     /**
-     * Validate the offset type
+     * Validate the offset type.
      *
      * @method _validateOffset
-     * @param  {-Infinity | Number | Function} value
+     * @param  {Function | Number | Number.NEGATIVE_INFINITY} val
      */
-    _validateOffset: function(value) {
-        return value == -Infinity || A.Lang.isNumber(value) || A.Lang.isFunction(value);
+    _validateOffset: function(val) {
+        if (A.Lang.isFunction(val)) {
+            val = val.call(this);
+        }
+
+        return A.Lang.isNumber(val) ||
+            A.Lang.isFunction(val) ||
+            (val === Number.NEGATIVE_INFINITY);
     }
 }, {
     ATTRS: {
@@ -190,7 +200,7 @@ Affix = A.Base.create('affix', A.Base, [], {
          */
         offsetTop: {
             validator: '_validateOffset',
-            value: -Infinity
+            value: Number.NEGATIVE_INFINITY
         },
 
         /**

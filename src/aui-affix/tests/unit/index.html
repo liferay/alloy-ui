@@ -21,9 +21,7 @@
         .navbar.affix-top, .navbar.affix-bottom {
             position: fixed;
         }
-
-        .affix-top .active-on-top a, .affix .active-on-default a,
-        .affix-bottom .active-on-bottom a {
+        .affix-top .active-on-top a, .affix .active-on-default a, .affix-bottom .active-on-bottom a {
             color: #000 !important;
             background: #eee !important;
         }
@@ -34,18 +32,6 @@
 </head>
 <body class="yui3-skin-sam">
     <div class="container">
-        <nav class="col col-md-4 col-sm-4 hidden-xs">
-            <div class="navbar" id="navbar">
-                <div class="navbar-inner">
-                    <a class="brand" href="#">Affix</a>
-                    <ul class="nav">
-                        <li class="active-on-top"><a href="#">Top</a></li>
-                        <li class="active-on-default"><a href="#">Default</a></li>
-                        <li class="active-on-bottom"><a href="#">Bottom</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
         <div class="row">
             <div class="demo-well well">
                 <h1>The Affix demo</h1>
@@ -53,9 +39,20 @@
                 Elit mumblecore McSweeney's laborum, paleo ut freegan normcore roof party vegan you probably haven't heard of them mollit synth next level fugiat. Direct trade eu id, 8-bit laborum XOXO kogi cillum quis skateboard nulla actually plaid.
                 </p>
             </div>
-        </div>
-        <div class="row">
-            <section class="col col-md-8 col-sm-8 col-xs-12">
+            <div class="navbar navbar-default" id="navbar">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Affix</a>
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Item 1</a></li>
+                        <li><a href="#">Item 2</a></li>
+                        <li><a href="#">Item 3</a></li>
+                        <li class="active top"><a href="#">Top</a></li>
+                        <li class="active default"><a href="#">Middle</a></li>
+                        <li class="active bottom"><a href="#">Bottom</a></li>
+                    </ul>
+                </div>
+            </div>
+            <section>
                 <article>
                     <h2>What affix really is</h2>
                     <p>Scroll down the page and watch the menu at the left side change position.<br />
