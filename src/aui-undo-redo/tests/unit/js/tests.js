@@ -248,6 +248,44 @@ YUI.add('aui-undo-redo-tests', function(Y) {
             });
             instance.undoRedo.redo();
             this.wait();
+        },
+
+        'should merge actions together when requested': function() {
+            var state;
+
+            this.undoRedo.add(this.newWriteState('Hello'));
+
+            state = this.newWriteState(' World');
+            state.merge = function(original_state) {
+                original_state.suffix += this.suffix;
+                return true;
+            };
+            this.undoRedo.add(state);
+
+            this.undoRedo.undo();
+            Y.Assert.areEqual('', this.string);
+            Y.Assert.isFalse(this.undoRedo.undo());
+
+            this.undoRedo.redo();
+            Y.Assert.areEqual('Hello World', this.string);
+            Y.Assert.isFalse(this.undoRedo.redo());
+        },
+
+        'should ignore merge if function returns false': function() {
+            var state;
+
+            this.undoRedo.add(this.newWriteState('Hello'));
+
+            state = this.newWriteState(' World');
+            state.merge = function(original_state) {
+                original_state.suffix += this.suffix;
+                return false;
+            };
+            this.undoRedo.add(state);
+
+            this.undoRedo.undo();
+            Y.Assert.areEqual('Hello', this.string);
+            Y.Assert.isTrue(this.undoRedo.undo());
         }
     }));
 

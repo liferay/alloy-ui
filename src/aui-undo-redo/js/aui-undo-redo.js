@@ -105,7 +105,7 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
      *
      * @method add
      * @param {Object | Function} state Object that contains `undo` and `redo`
-     *     action methods.
+     *     action methods (and, optionally, a 'merge' method).
      */
     add: function(state) {
         if (!state.undo || !state.redo) {
@@ -117,6 +117,11 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
             // First remove all states after the current one, since
             // those can't be redone anymore now that a new state was added.
             this._states = this._states.slice(0, this._currentStateIndex + 1);
+        }
+
+        if (this._tryMerge(state)) {
+            // We shouldn't add the state again if it was already merged.
+            return;
         }
 
         this._states.push(state);
@@ -351,6 +356,22 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
      */
     _shouldIgnoreNewActions: function() {
         return !this.get('queueable') && this.isActionInProgress();
+    },
+
+    /**
+     * Tries to merge the given state to one at the current position in the
+     * stack.
+     *
+     * @method _tryMerge
+     * @return {Boolean} Returns true if the merge happened and false otherwise.
+     * @protected
+     */
+    _tryMerge: function(state) {
+        if (this._currentStateIndex >= 0 && state.merge && A.Lang.isFunction(state.merge)) {
+            return state.merge(this.undoPeek());
+        }
+
+        return false;
     }
 }, {
     ATTRS: {
