@@ -50,8 +50,10 @@ YUI.add('aui-pagination-tests', function(Y) {
 
         // Tests: AUI-1274
         'Assert that Pagination State and Pagination UI are in Sync': function() {
-            var state = { page: 5 },
-                paginationItems = Y.one('#pagination .pagination-content').all('li'),
+            var paginationItems = Y.one('#pagination .pagination-content').all('li'),
+                state = {
+                    page: 5
+                },
                 pageIndex = (state.page - 1);
 
             pagination.setState(state);
