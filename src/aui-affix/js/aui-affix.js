@@ -9,7 +9,7 @@ var Affix,
 
 Affix = A.Base.create('affix', A.Base, [], {
     /**
-     * Holds the scroll eventHandle
+     * Holds the scroll event handle.
      *
      * @type {Node}
      * @private
@@ -17,7 +17,7 @@ Affix = A.Base.create('affix', A.Base, [], {
     _eventHandle: null,
 
     /**
-     * Holds the last event (bottom, default, top)
+     * Holds the last event (bottom, default, top).
      * @type {String}
      * @private
      */
@@ -56,6 +56,7 @@ Affix = A.Base.create('affix', A.Base, [], {
 
     /**
      * Refreshes the affix component to its current state.
+     *
      * @method refresh
      */
     refresh: function() {
@@ -64,7 +65,7 @@ Affix = A.Base.create('affix', A.Base, [], {
             offsetTop = this.get('offsetTop'),
             targetRegion;
 
-        if ((offsetTop >= 0) && offsetTop >= scrollY) {
+        if ((offsetTop >= 0) && (offsetTop >= scrollY)) {
             this._handleAffixEvent(A.Affix.EVENTS.TOP);
             return;
         }
@@ -113,7 +114,7 @@ Affix = A.Base.create('affix', A.Base, [], {
      * Safeguard function for firing the affix change event only when necessary.
      *
      * @method _handleAffixEvent
-     * @param {String} position ('bottom', 'default', 'top')
+     * @param {String} Position value, could be 'bottom', 'default' or 'top'.
      * @private
      */
     _handleAffixEvent: function(position) {
@@ -136,7 +137,7 @@ Affix = A.Base.create('affix', A.Base, [], {
      * Sync the target element class based on the affix positioning
      *
      * @method _syncClassesUI
-     * @param {String} position ('bottom', 'default', 'top')
+     * @param {String} Position value, could be 'bottom', 'default' or 'top'.
      * @private
      */
     _syncClassesUI: function(position) {
@@ -151,29 +152,18 @@ Affix = A.Base.create('affix', A.Base, [], {
      * Validate the offset type
      *
      * @method _validateOffset
-     * @param  {Number|Function} value
+     * @param  {Number | Function} value
      */
     _validateOffset: function(value) {
         return A.Lang.isNumber(value) || A.Lang.isFunction(value);
     }
 }, {
-    // -- Attributes -----------------------------------------------------------
     ATTRS: {
         /**
-         * Defines the target element
-         *
-         * @attribute target
-         * @type {Node|String}
-         */
-        target: {
-            setter: A.one
-        },
-
-        /**
-         * Defines the bottom offset
+         * Defines the bottom offset.
          *
          * @attribute offsetBottom
-         * @type {Function|Number}
+         * @type {Function | Number}
          */
         offsetBottom: {
             validator: '_validateOffset',
@@ -181,18 +171,29 @@ Affix = A.Base.create('affix', A.Base, [], {
         },
 
         /**
-         * Defines the top offset
+         * Defines the top offset.
          *
          * @attribute offsetTop
-         * @type {Function|Number}
+         * @type {Function | Number}
          */
         offsetTop: {
             validator: '_validateOffset',
             value: -Infinity
+        },
+
+        /**
+         * Defines the target element.
+         *
+         * @attribute target
+         * @type {Node | String}
+         */
+        target: {
+            setter: A.one
         }
     },
     /**
-     * List of events
+     * Map of events containing `BOTTOM`, `DEFAULT` or `TOP` keys.
+     *
      * @type {Object}
      */
     EVENTS: {
@@ -201,7 +202,8 @@ Affix = A.Base.create('affix', A.Base, [], {
         TOP: 'top'
     },
     /**
-     * List of classes
+     * Map of class names containing `BOTTOM`, `DEFAULT` or `TOP` keys.
+     *
      * @type {Object}
      */
     CSS_CLASSES: {
