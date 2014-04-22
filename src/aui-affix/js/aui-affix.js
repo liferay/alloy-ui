@@ -127,6 +127,20 @@ Affix = A.Base.create('affix', A.Base, [], {
     },
 
     /**
+     * Get the `offset` attribute.
+     *
+     * @method _getOffset
+     * @param {Number | Number.NEGATIVE_INFINITY} val
+     * @protected
+     */
+    _getOffset: function(val) {
+        if (A.Lang.isFunction(val)) {
+            val = val.call(this);
+        }
+        return val;
+    },
+
+    /**
      * Safeguard function for firing the affix change event only when necessary.
      *
      * @method _handleAffixEvent
@@ -188,8 +202,9 @@ Affix = A.Base.create('affix', A.Base, [], {
          * @type {Function | Number}
          */
         offsetBottom: {
+            getter: '_getOffset',
             validator: '_validateOffset',
-            value: -Infinity
+            value: Number.NEGATIVE_INFINITY
         },
 
         /**
@@ -199,6 +214,7 @@ Affix = A.Base.create('affix', A.Base, [], {
          * @type {Function | Number}
          */
         offsetTop: {
+            setter: '_getOffset',
             validator: '_validateOffset',
             value: Number.NEGATIVE_INFINITY
         },

@@ -29,7 +29,7 @@ PositionAlignSuggestion.ATTRS = {
      * @type {String}
      */
     position: {
-        setter: '_setPosition',
+        getter: '_getPosition',
         validator: '_validatePosition',
         value: 'top'
     }
@@ -180,6 +180,21 @@ A.mix(PositionAlignSuggestion.prototype, {
     },
 
     /**
+     * Set the `position` attribute.
+     *
+     * @method _getPosition
+     * @param {Number} val
+     * @protected
+     */
+    _getPosition: function(val) {
+        if (A.Lang.isFunction(val)) {
+            val = val.call(this);
+        }
+
+        return val;
+    },
+
+    /**
      * Fire before `_uiSetAlign` method.
      *
      * @method _onUISetAlignPAS
@@ -203,21 +218,6 @@ A.mix(PositionAlignSuggestion.prototype, {
 
         return new A.Do.AlterArgs(
             null, [node, instance._getAlignPointsSuggestion(position)]);
-    },
-
-    /**
-     * Set the `position` attribute.
-     *
-     * @method _setPosition
-     * @param value
-     * @protected
-     */
-    _setPosition: function(val) {
-        if (A.Lang.isFunction(val)) {
-            val = val.call(this);
-        }
-
-        return val;
     },
 
     /**
