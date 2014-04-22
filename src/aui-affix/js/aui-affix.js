@@ -152,10 +152,10 @@ Affix = A.Base.create('affix', A.Base, [], {
      * Validate the offset type
      *
      * @method _validateOffset
-     * @param  {Number | Function} value
+     * @param  {-Infinity | Number | Function} value
      */
     _validateOffset: function(value) {
-        return A.Lang.isNumber(value) || A.Lang.isFunction(value);
+        return value == -Infinity || A.Lang.isNumber(value) || A.Lang.isFunction(value);
     }
 }, {
     ATTRS: {
