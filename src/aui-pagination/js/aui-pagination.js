@@ -178,7 +178,7 @@ var Pagination = A.Component.create({
      * @type {Array}
      * @static
      */
-    BIND_UI_ATTRS: ['offset', 'showControls', 'total'],
+    BIND_UI_ATTRS: ['offset', 'page', 'showControls', 'total'],
 
     /**
      * Static property used to define the UI attributes.
@@ -359,8 +359,6 @@ var Pagination = A.Component.create({
                 page = state.page;
 
             instance.set('page', page);
-
-            instance._uiSetPage(page);
 
             instance.lastState = state;
         },
