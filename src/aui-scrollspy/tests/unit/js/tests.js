@@ -30,18 +30,16 @@ YUI.add('aui-scrollspy-tests', function(Y) {
         'should set attributes': function() {
             Assert.areEqual(spy.get('scrollNode'), Y.one('#scrollNode'));
             Assert.areEqual(spy.get('target'), Y.one('#navbar'));
-
             Assert.areEqual(spy.get('offset'), 10);
             spy.set('offset', 15);
             Assert.areEqual(spy.get('offset'), 15);
-
             Assert.areEqual(spy.get('activeGroup'), 'li, .dropdown');
         },
 
-        'should set links to null': function() {
-            Assert.isNotNull(spy.links);
-            spy.flush();
-            Assert.isNull(spy.links);
+        'should clear cached links': function() {
+            Assert.isNotNull(spy.cachedLinks);
+            spy.clearCachedLinks();
+            Assert.isNull(spy.cachedLinks);
         },
 
         'first link should be active': function() {
@@ -52,7 +50,7 @@ YUI.add('aui-scrollspy-tests', function(Y) {
             checkActiveLink('#fat');
             spy.get('scrollNode').set('scrollTop', 150);
 
-            spy.on('scrollspy:activate', function() {
+            spy.on('activate', function() {
                 checkActiveLink('#mdo');
             });
         }
@@ -60,4 +58,6 @@ YUI.add('aui-scrollspy-tests', function(Y) {
 
     Y.Test.Runner.add(suite);
 
-},'', { requires: [ 'test', 'aui-scrollspy', 'node-screen' ] });
+}, '', {
+    requires: ['test', 'aui-scrollspy']
+});

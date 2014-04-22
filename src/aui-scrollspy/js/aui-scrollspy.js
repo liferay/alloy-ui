@@ -23,9 +23,23 @@ var getClassName = A.getClassName,
  */
 A.Scrollspy = A.Base.create('scrollspy', A.Base, [], {
 
+    /**
+     * Holds the active link node reference.
+     *
+     * @property activeLink
+     * @type {Node}
+     * @protected
+     */
     activeLink: null,
 
-    links: null,
+    /**
+     * Holds a cache of the valid links.
+     *
+     * @property cachedLinks
+     * @type {NodeList}
+     * @protected
+     */
+    cachedLinks: null,
 
     /**
      * Construction logic executed during Scrollspy instantiation. Lifecycle.
@@ -39,24 +53,24 @@ A.Scrollspy = A.Base.create('scrollspy', A.Base, [], {
         /**
          * Fired when any target's link changes.
          *
-         * @event scrollspy:activate
+         * @event activate
          * @param {EventFacade} event That activate link change event.
          */
         this.publish(ACTIVATE_EVENT, {
             defaultFn: this._defActivateEventFn
         });
 
-        this.refresh();
         scrollNode.on('scroll', A.bind(this._onScroll, this));
+        this.refresh();
     },
 
     /**
-     * Cleans the cached target's links.
+     * Cleans the cached links.
      *
-     * @method flush
+     * @method clearCachedLinks
      */
-    flush: function() {
-        this.links = null;
+    clearCachedLinks: function() {
+        this.cachedLinks = null;
     },
 
     /**
@@ -83,8 +97,9 @@ A.Scrollspy = A.Base.create('scrollspy', A.Base, [], {
     /**
      * Handler function for scrollNode's scroll event.
      *
-     * @param event
      * @method _defActivateEventFn
+     * @param {EventFacade} event
+     * @protected
      **/
     _defActivateEventFn: function(event) {
         this._uiSetLink(event.newVal, event.prevVal);
@@ -94,6 +109,7 @@ A.Scrollspy = A.Base.create('scrollspy', A.Base, [], {
      * Finds the node whose target should be activated.
      *
      * @method _findLinkBestMatch
+     * @return {Node} Best link match that attends the viewport criteria.
      * @protected
      **/
     _findLinkBestMatch: function() {
@@ -109,23 +125,24 @@ A.Scrollspy = A.Base.create('scrollspy', A.Base, [], {
      * @protected
      **/
     _getValidLinks: function() {
-        if (!this.links) {
-            this.links = this.get('target').all('a');
+        if (!this.cachedLinks) {
+            this.cachedLinks = this.get('target').all('a');
         }
 
-        this.links = this.links.filter(function(link) {
+        this.cachedLinks = this.cachedLinks.filter(function(link) {
             var href = link.getAttribute('href');
             return (href && (href.length > 1) && href.charAt(0) === '#');
         });
 
-        return this.links;
+        return this.cachedLinks;
     },
 
     /**
      * Checks if there's a link corresponding to an anchor in the viewport.
      *
      * @method _isLinkInViewport
-     * @param link
+     * @param {Node} link
+     * @return {Boolean} Whether link is in viewport.
      * @protected
      **/
     _isLinkInViewport: function(link) {
@@ -150,8 +167,8 @@ A.Scrollspy = A.Base.create('scrollspy', A.Base, [], {
      * Sets correct class to active node.
      *
      * @method _uiSetLink
-     * @param val
-     * @param prevVal
+     * @param {Node} val
+     * @param {Node} prevVal
      * @protected
      **/
     _uiSetLink: function(val, prevVal) {
@@ -167,8 +184,7 @@ A.Scrollspy = A.Base.create('scrollspy', A.Base, [], {
             this.activeLink = val;
         }
     }
-},
-{
+}, {
     /**
      * Static property used to define the default attribute
      * configuration for the Scrollspy.
@@ -182,7 +198,7 @@ A.Scrollspy = A.Base.create('scrollspy', A.Base, [], {
          * Ancestors which should be added the .active class.
          *
          * @attribute activeGroup
-         * @type Object
+         * @type {String}
          */
         activeGroup: {
             validator: Lang.isString,
@@ -193,7 +209,7 @@ A.Scrollspy = A.Base.create('scrollspy', A.Base, [], {
          * Pixels to offset from top when calculating position of scroll.
          *
          * @attribute offset
-         * @type Object
+         * @type {Number}
          */
         offset: {
             validator: Lang.isNumber,
@@ -204,12 +220,11 @@ A.Scrollspy = A.Base.create('scrollspy', A.Base, [], {
          * Container that maps target links.
          *
          * @attribute scrollNode
-         * @type Object
-         * @writeOnce
+         * @type {String | Node}
+         * @initOnly
          */
         scrollNode: {
             setter: A.one,
-            validator: Lang.isString,
             writeOnce: 'initOnly'
         },
 
@@ -217,12 +232,11 @@ A.Scrollspy = A.Base.create('scrollspy', A.Base, [], {
          * Target list. Usually a nav bar element with anchors.
          *
          * @attribute target
-         * @type Object
-         * @writeOnce
+         * @type {String | Node}
+         * @initOnly
          */
         target: {
             setter: A.one,
-            validator: Lang.isString,
             writeOnce: 'initOnly'
         }
     }
