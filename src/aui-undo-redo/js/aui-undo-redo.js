@@ -136,8 +136,7 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
      * @return {Boolean}
      */
     canRedo: function() {
-        return this._currentStateIndex < this._states.length - 1 &&
-            !this._shouldIgnoreNewActions();
+        return this._currentStateIndex < this._states.length - 1 && !this._shouldIgnoreNewActions();
     },
 
     /**
@@ -367,7 +366,7 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
      * @protected
      */
     _tryMerge: function(state) {
-        if (this._currentStateIndex >= 0 && state.merge && A.Lang.isFunction(state.merge)) {
+        if (this._currentStateIndex >= 0 && A.Lang.isFunction(state.merge)) {
             return state.merge(this.undoPeek());
         }
 

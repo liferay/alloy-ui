@@ -162,7 +162,9 @@ YUI.add('aui-undo-redo-tests', function(Y) {
 
         'should queue async undo/redo actions when queueable is true': function() {
             var instance = this;
-            this.undoRedo = new Y.UndoRedo({queueable: true});
+            this.undoRedo = new Y.UndoRedo({
+                queueable: true
+            });
 
             // Add both async and sync states.
             this.undoRedo.add(this.newWriteState('Hello', true));
@@ -219,7 +221,9 @@ YUI.add('aui-undo-redo-tests', function(Y) {
 
         'should prevent actions regardless of the max undo depth': function() {
             var instance = this;
-            this.undoRedo = new Y.UndoRedo({queueable: true});
+            this.undoRedo = new Y.UndoRedo({
+                queueable: true
+            });
 
             this.undoRedo.add(this.newWriteState('Hello'));
             this.undoRedo.add(this.newWriteState(' World'));
