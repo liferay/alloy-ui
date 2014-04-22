@@ -117,44 +117,6 @@ var _setUnselectable = function(element, unselectable, noRecurse) {
 A.mix(NODE_PROTO, {
 
     /**
-     * Returns the current ancestors of the node element. If a selector is
-     * specified, the ancestors are filtered to match the selector.
-     *
-     * Example:
-     *
-     * ```
-     * A.one('#nodeId').ancestors('div');
-     * ```
-     *
-     * @method ancestors
-     * @param {String} selector A selector to filter the ancestor elements
-     *     against.
-     * @return {NodeList}
-     */
-    ancestors: function(selector) {
-        var instance = this;
-
-        var ancestors = [];
-        var currentEl = instance.getDOM();
-
-        while (currentEl && currentEl.nodeType !== 9) {
-            if (currentEl.nodeType === 1) {
-                ancestors.push(currentEl);
-            }
-
-            currentEl = currentEl.parentNode;
-        }
-
-        var nodeList = new A.all(ancestors);
-
-        if (selector) {
-            nodeList = nodeList.filter(selector);
-        }
-
-        return nodeList;
-    },
-
-    /**
      * Returns the current ancestors of the node element filtered by a
      * className. This is an optimized method for finding ancestors by a
      * specific CSS class name.
