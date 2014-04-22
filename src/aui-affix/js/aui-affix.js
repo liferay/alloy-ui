@@ -43,6 +43,8 @@ Affix = A.Base.create('affix', A.Base, [], {
         });
         this.refresh();
         this._eventHandle = A.one(win).on('scroll', this._onScroll, this);
+        this.after('offsetBottomChange', this._afterOffsetChange);
+        this.after('offsetTopChange', this._afterOffsetChange);
     },
 
     /**
@@ -78,6 +80,16 @@ Affix = A.Base.create('affix', A.Base, [], {
         }
 
         this._handleAffixEvent(A.Affix.EVENTS.DEFAULT);
+    },
+
+    /**
+     * Call the refresh method after changing the offset
+     *
+     * @method  _afterOffsetChange
+     * @private
+     */
+    _afterOffsetChange: function () {
+        this.refresh();
     },
 
     /**
