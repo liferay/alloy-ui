@@ -173,6 +173,7 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
             type: this.ACTION_TYPE_REDO,
             undoIndex: this._currentStateIndex - 1
         });
+
         return true;
     },
 
@@ -204,6 +205,7 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
             undoIndex: this._currentStateIndex
         });
         this._currentStateIndex--;
+
         return true;
     },
 
@@ -227,6 +229,7 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
      */
     _afterAction: function(action) {
         this.fire(this._makeEventName(this.EVENT_PREFIX_AFTER, action.type));
+
         this._pendingActions.shift();
         this._removeStatesBeyondMaxDepth();
         this._runNextPendingAction();
@@ -285,14 +288,13 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
      * @protected
      */
     _removeStatesBeyondMaxDepth: function() {
+        var extraCount = this._currentStateIndex + 1 - this.get('maxUndoDepth');
+
         // We should ignore this call if there are pending actions, as we may need
         // to roll back to a state due to the user preventing one of them.
-        if (!this._pendingActions.length) {
-            var extraCount = this._currentStateIndex + 1 - this.get('maxUndoDepth');
-            if (extraCount > 0) {
-                this._states = this._states.slice(extraCount);
-                this._currentStateIndex -= extraCount;
-            }
+        if (extraCount > 0 && !this._pendingActions.length) {
+            this._states = this._states.slice(extraCount);
+            this._currentStateIndex -= extraCount;
         }
     },
 
@@ -306,6 +308,7 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
      */
     _runAction: function(action) {
         this._pendingActions.push(action);
+
         if (this._pendingActions.length === 1) {
             this._runNextPendingAction();
         }
@@ -335,10 +338,10 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
          * @type {Number}
          */
         maxUndoDepth: {
-            value: 100,
             validator: function(depth) {
                 return depth >= 1;
-            }
+            },
+            value: 100
         }
     }
 });
