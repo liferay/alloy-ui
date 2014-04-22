@@ -19,38 +19,43 @@ YUI.add('tests-aui-undo-redo-utils', function(Y) {
          * new state object to represent this.
          */
         newWriteState: function(suffix, async) {
-            var instance = this;
+            var instance = this,
+                action;
 
             this._appendSuffix(suffix);
             return {
+                suffix: suffix,
+
                 undo: function() {
+                    action = this;
                     instance._undoCalls++;
 
                     if (async) {
                         return new Y.Promise(function(resolve, reject) {
                             Y.soon(function() {
-                                instance._removeSuffix(suffix);
+                                instance._removeSuffix(action.suffix);
                                 resolve();
                             });
                         });
                     }
                     else {
-                        instance._removeSuffix(suffix);
+                        instance._removeSuffix(action.suffix);
                     }
                 },
                 redo: function() {
+                    action = this;
                     instance._redoCalls++;
 
                     if (async) {
                         return new Y.Promise(function(resolve, reject) {
                             Y.soon(function() {
-                                instance._appendSuffix(suffix);
+                                instance._appendSuffix(action.suffix);
                                 resolve();
                             });
                         });
                     }
                     else {
-                        instance._appendSuffix(suffix);
+                        instance._appendSuffix(action.suffix);
                     }
                 }
             };

@@ -49,6 +49,13 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-component"
         ]
     },
+    "aui-affix": {
+        "requires": [
+            "base",
+            "node-screen",
+            "aui-node"
+        ]
+    },
     "aui-aria": {
         "requires": [
             "plugin",
@@ -1121,6 +1128,13 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
+    "aui-scrollspy": {
+        "requires": [
+            "base-build",
+            "node-screen",
+            "aui-classnamemanager"
+        ]
+    },
     "aui-search": {
         "use": [
             "aui-search-tst"
@@ -1342,7 +1356,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-widget-trigger",
             "aui-widget-position-align-suggestion",
             "aui-node-base"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-tooltip-delegate": {
         "requires": [
@@ -1507,4 +1522,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'f33fff1e33d40479d3871e4f9e6d78b9';
+YUI.Env[Y.version].md5 = 'd5a80894ce0163a864360f5e7cde9ea6';

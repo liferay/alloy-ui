@@ -1,0 +1,10 @@
+{
+    "name": "aui-scrollspy",
+    "builds": {
+        "aui-scrollspy": {
+            "jsfiles": [
+                "js/aui-scrollspy.js"
+            ]
+        }
+    }
+}

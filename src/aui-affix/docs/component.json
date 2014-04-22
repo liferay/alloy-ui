@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-affix",
+    "displayName": "Gallery: aui-affix",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "henvic" ],
+    "use"        : [ "aui-affix" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

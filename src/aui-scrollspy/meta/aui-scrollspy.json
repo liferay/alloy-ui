@@ -1,0 +1,9 @@
+{
+    "aui-scrollspy": {
+        "requires": [
+            "base-build",
+            "node-screen",
+            "aui-classnamemanager"
+        ]
+    }
+}

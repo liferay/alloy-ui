@@ -105,7 +105,7 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
      *
      * @method add
      * @param {Object | Function} state Object that contains `undo` and `redo`
-     *     action methods.
+     *     action methods (and, optionally, a 'merge' method).
      */
     add: function(state) {
         if (!state.undo || !state.redo) {
@@ -119,29 +119,34 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
             this._states = this._states.slice(0, this._currentStateIndex + 1);
         }
 
+        if (this._tryMerge(state)) {
+            // We shouldn't add the state again if it was already merged.
+            return;
+        }
+
         this._states.push(state);
         this._currentStateIndex++;
         this._removeStatesBeyondMaxDepth();
     },
 
     /**
-     * Checks if there is a state to be redone.
+     * Checks if it's possible to redo an action.
      *
      * @method canRedo
      * @return {Boolean}
      */
     canRedo: function() {
-        return this._currentStateIndex < this._states.length - 1;
+        return this._currentStateIndex < this._states.length - 1 && !this._shouldIgnoreNewActions();
     },
 
     /**
-     * Checks if there is a state to be undone.
+     * Checks if it's possible to undo an action.
      *
      * @method canUndo
      * @return {Boolean}
      */
     canUndo: function() {
-        return this._currentStateIndex >= 0;
+        return this._currentStateIndex >= 0 && !this._shouldIgnoreNewActions();
     },
 
     /**
@@ -153,6 +158,16 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
         this._states = [];
         this._pendingActions = [];
         this._currentStateIndex = -1;
+    },
+
+    /**
+     * Checks if either an undo or a redo action is currently in progress.
+     *
+     * @method isActionInProgress
+     * @return {Boolean}
+     */
+    isActionInProgress: function() {
+        return this._pendingActions.length > 0;
     },
 
     /**
@@ -173,6 +188,7 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
             type: this.ACTION_TYPE_REDO,
             undoIndex: this._currentStateIndex - 1
         });
+
         return true;
     },
 
@@ -204,6 +220,7 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
             undoIndex: this._currentStateIndex
         });
         this._currentStateIndex--;
+
         return true;
     },
 
@@ -227,6 +244,7 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
      */
     _afterAction: function(action) {
         this.fire(this._makeEventName(this.EVENT_PREFIX_AFTER, action.type));
+
         this._pendingActions.shift();
         this._removeStatesBeyondMaxDepth();
         this._runNextPendingAction();
@@ -285,14 +303,13 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
      * @protected
      */
     _removeStatesBeyondMaxDepth: function() {
+        var extraCount = this._currentStateIndex + 1 - this.get('maxUndoDepth');
+
         // We should ignore this call if there are pending actions, as we may need
         // to roll back to a state due to the user preventing one of them.
-        if (!this._pendingActions.length) {
-            var extraCount = this._currentStateIndex + 1 - this.get('maxUndoDepth');
-            if (extraCount > 0) {
-                this._states = this._states.slice(extraCount);
-                this._currentStateIndex -= extraCount;
-            }
+        if (extraCount > 0 && !this._pendingActions.length) {
+            this._states = this._states.slice(extraCount);
+            this._currentStateIndex -= extraCount;
         }
     },
 
@@ -306,6 +323,7 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
      */
     _runAction: function(action) {
         this._pendingActions.push(action);
+
         if (this._pendingActions.length === 1) {
             this._runNextPendingAction();
         }
@@ -324,6 +342,35 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
         }
 
         this.fire(this._makeEventName(this.EVENT_PREFIX_BEFORE, action.type));
+    },
+
+    /**
+     * Checks if new actions (calls to undo/redo) should be ignored. Actions
+     * should only be ignored if the `queueable` attribute is false and there
+     * is currently an action in progress.
+     *
+     * @method _shouldIgnoreNewActions
+     * @return {Boolean}
+     * @protected
+     */
+    _shouldIgnoreNewActions: function() {
+        return !this.get('queueable') && this.isActionInProgress();
+    },
+
+    /**
+     * Tries to merge the given state to one at the current position in the
+     * stack.
+     *
+     * @method _tryMerge
+     * @return {Boolean} Returns true if the merge happened and false otherwise.
+     * @protected
+     */
+    _tryMerge: function(state) {
+        if (this._currentStateIndex >= 0 && A.Lang.isFunction(state.merge)) {
+            return state.merge(this.undoPeek());
+        }
+
+        return false;
     }
 }, {
     ATTRS: {
@@ -335,10 +382,25 @@ A.UndoRedo = A.Base.create('undo-redo', A.Base, [], {
          * @type {Number}
          */
         maxUndoDepth: {
-            value: 100,
             validator: function(depth) {
                 return depth >= 1;
-            }
+            },
+            value: 100
+        },
+
+        /**
+         * Defines how this module will behave when the user calls undo
+         * or redo while an action is still in progress. If false, these
+         * calls will be ignored. If true, they will be queued, running
+         * in order as soon as the pending action finishes.
+         *
+         * @attribute queueable
+         * @default false
+         * @type {Boolean}
+         */
+        queueable: {
+            validator: A.Lang.isBoolean,
+            value: false
         }
     }
 });

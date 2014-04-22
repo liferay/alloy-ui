@@ -39,6 +39,13 @@
             "aui-component"
         ]
     },
+    "aui-affix": {
+        "requires": [
+            "base",
+            "node-screen",
+            "aui-node"
+        ]
+    },
     "aui-aria": {
         "requires": [
             "plugin",
@@ -1097,6 +1104,13 @@
         ],
         "skinnable": true
     },
+    "aui-scrollspy": {
+        "requires": [
+            "base-build",
+            "node-screen",
+            "aui-classnamemanager"
+        ]
+    },
     "aui-search": {
         "use": [
             "aui-search-tst"
@@ -1318,7 +1332,8 @@
             "aui-widget-trigger",
             "aui-widget-position-align-suggestion",
             "aui-node-base"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-tooltip-delegate": {
         "requires": [

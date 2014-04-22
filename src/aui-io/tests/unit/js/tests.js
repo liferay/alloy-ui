@@ -1,16 +1,31 @@
 YUI.add('aui-io-tests', function(Y) {
 
+    //--------------------------------------------------------------------------
+    // IO Tests
+    //--------------------------------------------------------------------------
+
     var suite = new Y.Test.Suite('aui-io');
 
     suite.add(new Y.Test.Case({
-        name: 'Automated Tests',
-        'test is empty': function() {
-            Y.Assert.pass('No Tests Provided For This Module');
+
+        name: 'IO Request Configuration Tests',
+
+        // Tests: AUI-843
+        'should method attribute be always lower case': function() {
+            var ioRequest1 = Y.io.request('', {
+                method: 'GET'
+            });
+
+            var ioRequest2 = Y.io.request('', {
+                method: 'get'
+            });
+
+            Y.Assert.areSame(ioRequest1.get('method'), ioRequest2.get('method'));
         }
     }));
 
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['test']
+    requires: ['test', 'aui-io']
 });

@@ -1,3 +1,4 @@
 .tooltip-hidden {
     z-index: -1 !important;
+    display: none;
 }
