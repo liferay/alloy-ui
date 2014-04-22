@@ -1,5 +1,6 @@
 .rating a {
     cursor: pointer;
+    text-decoration: none;
 }
 .rating-disabled a {
     cursor: default;

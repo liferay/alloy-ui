@@ -18,6 +18,7 @@
             "aui-widget-cssclass",
             "aui-widget-toggle",
             "aui-widget-toolbars"
-        ]
+        ],
+        "skinnable": true
     }
 }

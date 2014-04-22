@@ -16,7 +16,15 @@
     margin-right: 3px;
 }
 .scheduler-base-content .scheduler-base-views {
+    float: right;
     white-space: normal;
+    width: auto;
+}
+@media (max-width: 768px) {
+    .scheduler-base-content .scheduler-base-views {
+        float: left;
+        margin-top: 5px;
+    }
 }
 .scheduler-base-views .yui3-button {
     margin: 0 6px 0 0;

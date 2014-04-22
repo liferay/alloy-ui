@@ -1,5 +1,5 @@
 .hsv-container {
-    height: 260px;
+    height: 270px;
     padding: 5px;
     position: relative;
     width: 430px;
@@ -13,7 +13,7 @@
 .hsv-container-controls.hsv-container-alpha {
     width: 550px;
 }
-.hsv-view-container .control-group {
+.hsv-view-container .form-group {
     margin-bottom: 0;
 }
 .hsv-hs-container, .hsv-image-backdrop {
@@ -111,18 +111,19 @@
     top: 5px;
     left: 10px;
 }
-.hsv-label-value-container .control-group .hsv-label-hidden {
+.hsv-label-value-container .form-group .hsv-label-hidden {
     display: none;
 }
 .hsv-label-value-container .hsv-label-value-hex .hsv-label {
     display: block;
 }
 .hsv-label-value-container .hsv-label-value-hex .hsv-value {
-    width: 50px;
-}
-.hsv-label-value-container .hsv-label-value-hex .hsv-value {
     width: 95px;
 }
 .hsv-label-value-container .hsv-value {
     width: 30px;
+    margin-left: 5px;
+}
+.hsv-label-value-container .add-on {
+    width: 10px;
 }

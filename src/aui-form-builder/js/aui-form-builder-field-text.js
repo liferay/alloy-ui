@@ -9,18 +9,20 @@ var L = A.Lang,
 
     getCN = A.getClassName,
 
+    CSS_FORM_CONTROL = getCN('form', 'control'),
     CSS_FIELD_INPUT = getCN('field', 'input'),
     CSS_FIELD_INPUT_TEXT = getCN('field', 'input', 'text'),
     CSS_FORM_BUILDER_FIELD = getCN('form-builder-field'),
     CSS_FORM_BUILDER_FIELD_NODE = getCN('form-builder-field', 'node'),
 
-    TPL_INPUT = '<input id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD_INPUT, CSS_FIELD_INPUT_TEXT].join(
-        ' ') + '" name="{name}" type="text" value="{value}" />',
+    TPL_INPUT = '<div class="row form-builder-field-wrapper"><input id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE,
+        CSS_FIELD_INPUT, CSS_FIELD_INPUT_TEXT,
+        CSS_FORM_CONTROL].join(' ') + '" name="{name}" type="text" value="{value}" /></div>',
 
     WIDTH_VALUES_MAP = {
-        small: 'small',
-        medium: 'medium',
-        large: 'large'
+        small: 'col col-xs-5 col-sm-3 col-md-3',
+        medium: 'col col-xs-6 col-sm-5 col-md-5',
+        large: 'col col-xs-12 col-sm-7 col-md-7'
     };
 
 /**
@@ -157,8 +159,8 @@ var FormBuilderTextField = A.Component.create({
             var instance = this,
                 templateNode = instance.get('templateNode');
 
-            templateNode.addClass(getCN('input', WIDTH_VALUES_MAP[val]));
-            templateNode.removeClass(getCN('input', WIDTH_VALUES_MAP[instance.prevWidth]));
+            templateNode.removeClass(WIDTH_VALUES_MAP[instance.prevWidth]);
+            templateNode.addClass(WIDTH_VALUES_MAP[val]);
 
             instance.prevWidth = val;
         }

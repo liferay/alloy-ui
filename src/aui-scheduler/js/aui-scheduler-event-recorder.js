@@ -20,6 +20,7 @@ var Lang = A.Lang,
 
     getCN = A.getClassName,
 
+    CSS_FORM_CONTROL = getCN('form', 'control'),
     CSS_SCHEDULER_EVENT = getCN('scheduler-event'),
 
     CSS_SCHEDULER_EVENT_RECORDER = getCN('scheduler-event', 'recorder'),
@@ -32,8 +33,8 @@ var Lang = A.Lang,
         '<input type="hidden" name="endDate" value="{endDate}" />' +
         '<label class="' + 'scheduler-event-recorder-date' + '">{date}</label>',
 
-    TPL_HEADER_CONTENT = '<input class="' + CSS_SCHEDULER_EVENT_RECORDER_CONTENT +
-        '" name="content" value="{content}" />';
+    TPL_HEADER_CONTENT = '<input class="' + [CSS_SCHEDULER_EVENT_RECORDER_CONTENT, CSS_FORM_CONTROL]
+        .join(' ') + '" name="content" value="{content}" />';
 
 /**
  * A base class for `SchedulerEventRecorder`.

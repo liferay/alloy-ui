@@ -1,0 +1,6 @@
+.modal-hidden {
+    display: none;
+}
+.modal-content {
+    overflow: hidden;
+}

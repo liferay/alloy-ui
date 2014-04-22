@@ -26,6 +26,7 @@ var Lang = A.Lang,
     REGEX_BR = /<br\s*\/?>/gi,
     REGEX_NL = /[\r\n]/g,
 
+    CSS_FORM_CONTROL = AgetClassName('form', 'control'),
     CSS_CELLEDITOR_EDIT = AgetClassName('celleditor', 'edit'),
     CSS_CELLEDITOR_EDIT_ADD_OPTION = AgetClassName('celleditor', 'edit', 'add', 'option'),
     CSS_CELLEDITOR_EDIT_DD_HANDLE = AgetClassName('celleditor', 'edit', 'dd', 'handle'),
@@ -39,8 +40,8 @@ var Lang = A.Lang,
     CSS_CELLEDITOR_ELEMENT = AgetClassName('celleditor', 'element'),
     CSS_CELLEDITOR_OPTION = AgetClassName('celleditor', 'option'),
     CSS_DATATABLE_EDITABLE = AgetClassName('datatable', 'editable'),
-    CSS_ICON = AgetClassName('icon'),
-    CSS_ICON_GRIP_DOTTED_VERTICAL = AgetClassName('icon', 'grip', 'dotted', 'vertical'),
+    CSS_ICON = AgetClassName('glyphicon'),
+    CSS_ICON_GRIP_DOTTED_VERTICAL = AgetClassName('glyphicon', 'resize', 'vertical'),
 
     TPL_BR = '<br/>';
 
@@ -897,7 +898,7 @@ var BaseCellEditor = A.Component.create({
                                 click: A.bind(instance._handleSaveEvent, instance)
                             },
                             label: strings['save'],
-                            icon: 'icon-ok-sign'
+                            icon: 'glyphicon glyphicon-ok-sign'
                         },
                         {
                             on: {
@@ -1050,7 +1051,7 @@ var BaseCellEditor = A.Component.create({
                     toolbar.add(
                         [
                             {
-                                icon: 'icon-edit',
+                                icon: 'glyphicon glyphicon-edit',
                                 label: instance.getString('edit'),
                                 on: {
                                     click: A.bind(instance._handleEditEvent, instance)
@@ -1657,7 +1658,7 @@ var TextCellEditor = A.Component.create({
     EXTENDS: A.BaseCellEditor,
 
     prototype: {
-        ELEMENT_TEMPLATE: '<input autocomplete="off" class="' + CSS_CELLEDITOR_ELEMENT + '" type="text" />'
+        ELEMENT_TEMPLATE: '<input autocomplete="off" class="' + [CSS_CELLEDITOR_ELEMENT, CSS_FORM_CONTROL].join(' ') + '" type="text" />'
     }
 });
 
@@ -1693,7 +1694,7 @@ var TextAreaCellEditor = A.Component.create({
     EXTENDS: A.BaseCellEditor,
 
     prototype: {
-        ELEMENT_TEMPLATE: '<textarea class="' + CSS_CELLEDITOR_ELEMENT + '"></textarea>'
+        ELEMENT_TEMPLATE: '<textarea class="' + [CSS_CELLEDITOR_ELEMENT, CSS_FORM_CONTROL].join(' ') + '"></textarea>'
     }
 });
 
@@ -1761,7 +1762,8 @@ var DropDownCellEditor = A.Component.create({
     UI_ATTRS: ['multiple'],
 
     prototype: {
-        ELEMENT_TEMPLATE: '<select class="' + CSS_CELLEDITOR_ELEMENT + '"></select>',
+        ELEMENT_TEMPLATE: '<select class="' + [CSS_CELLEDITOR_ELEMENT, CSS_FORM_CONTROL].join(' ') + '"></select>',
+
         OPTION_TEMPLATE: '<option value="{value}">{label}</option>',
 
         /**

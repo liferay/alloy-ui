@@ -2,12 +2,22 @@
 <html>
 <head>
     <title>aui-tree</title>
+    <meta charset="utf-8" />
 
     <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
 
     <script src="../../../../build/aui/aui.js"></script>
     <script src="js/tests.js"></script>
-    <meta charset="utf-8" />
+    <style>
+    .unselectable, .unselectable * {
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -o-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+    </style>
 </head>
 <body class="yui3-skin-sam">
 <div id="logger"></div>

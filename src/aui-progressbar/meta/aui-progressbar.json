@@ -4,6 +4,7 @@
             "aui-node",
             "aui-component",
             "aui-aria"
-        ]
+        ],
+        "skinnable": true
     }
 }

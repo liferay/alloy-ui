@@ -73,7 +73,7 @@ YUI.add('aui-form-validator-tests', function(Y) {
 
             form.simulate('submit');
 
-            elementWithoutError = Y.one('.control-group:not(.error)');
+            elementWithoutError = Y.one('.form-group:not(.has-error)');
 
             Y.Assert.isNull(elementWithoutError, 'There shouldn\'t be any element without class error');
         },

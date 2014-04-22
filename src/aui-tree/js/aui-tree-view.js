@@ -405,7 +405,7 @@ var isNumber = L.isNumber,
     DDM = A.DD.DDM,
 
     CSS_CLEARFIX = getCN('clearfix'),
-    CSS_ICON = getCN('icon'),
+    CSS_ICON = getCN('glyphicon'),
     CSS_TREE_DRAG_HELPER = getCN('tree', 'drag', 'helper'),
     CSS_TREE_DRAG_HELPER_CONTENT = getCN('tree', 'drag', 'helper', 'content'),
     CSS_TREE_DRAG_HELPER_LABEL = getCN('tree', 'drag', 'helper', 'label'),

@@ -317,7 +317,7 @@ A.mix(DatePickerBase.prototype, {
             return dates;
         }
 
-        return dates.map(function(date) {
+        return A.Array.map(A.Array(dates), function(date) {
             // In the date picker the time of the selected day is irrelevant.
             // The calendar module (that is used to provide the dates to be
             // selected) currently does take the time into account when comparing

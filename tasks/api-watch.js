@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2013, Liferay Inc. All rights reserved.
- * Code licensed under the BSD License:
- * https://github.com/liferay/alloy-ui/blob/master/LICENSE.md
- *
- * @author Zeno Rocha <zeno.rocha@liferay.com>
- * @author Eduardo Lundgren <eduardo.lundgren@liferay.com>
- */
-
 var TASK = {
     name: 'api-watch',
     description: 'Run the API Docs locally and watch for any changes.'

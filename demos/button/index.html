@@ -5,6 +5,11 @@
     <title></title>
     <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
     <script src="../../build/aui/aui.js"></script>
+    <style>
+        #closeButton .close {
+            float: none;
+        }
+    </style>
 </head>
 <body>
     <h1>AlloyUI - Button</h1>
@@ -12,6 +17,7 @@
     <button id="basic"></button>
     <button id="toggle"></button>
     <span id="typed"></span>
+    <span id="closeButton"></span>
     <h2>JavaScript button group</h2>
     <p>
         <div id="checkgroup">
@@ -35,10 +41,10 @@
     </p>
     <h2>CSS3 Buttons</h2>
     <p>
-        <a class="btn" href="">Link</a>
-        <button class="btn" type="submit">Button</button>
-        <input class="btn" type="button" value="Input">
-        <input class="btn" type="submit" value="Submit">
+        <a class="btn btn-default" href="">Link</a>
+        <button class="btn btn-default" type="submit">Button</button>
+        <input class="btn btn-default" type="button" value="Input">
+        <input class="btn btn-default" type="submit" value="Submit">
     </p>
     <p>
         <button class="btn btn-primary">Primary</button>
@@ -46,34 +52,43 @@
         <button class="btn btn-success">Success</button>
         <button class="btn btn-warning">Warning</button>
         <button class="btn btn-danger">Danger</button>
-        <button class="btn btn-inverse">Inverse</button>
         <button class="btn btn-link">Link</button>
     </p>
+    <h3>Sizes</h3>
     <p>
-        <button class="btn btn-large btn-primary" type="button">Large button</button>
-        <button class="btn btn-large" type="button">Large button</button>
+        <button class="btn btn-lg btn-primary" type="button">Large button</button>
+        <button class="btn btn-lg btn-default" type="button">Large button</button>
     </p>
     <p>
         <button class="btn btn-primary" type="button">Default button</button>
-        <button class="btn" type="button">Default button</button>
+        <button class="btn btn-default" type="button">Default button</button>
     </p>
     <p>
-        <button class="btn btn-mini btn-primary" type="button">Mini button</button>
-        <button class="btn btn-mini" type="button">Mini button</button>
+        <button class="btn btn-sm btn-primary" type="button">Small button</button>
+        <button class="btn btn-sm btn-default" type="button">Small button</button>
     </p>
     <p>
-        <a href="#" class="btn btn-large btn-primary disabled">Primary link disabled state</a>
-        <a href="#" class="btn btn-large disabled">Link disabled state</a>
+        <button class="btn btn-xs btn-primary" type="button">Extra small button</button>
+        <button class="btn btn-xs btn-default" type="button">Extra small button</button>
     </p>
     <p>
-        <button class="btn btn-large btn-block btn-primary" type="button">Block level button</button>
-        <button class="btn btn-large btn-block" type="button">Block level button</button>
+        <button class="btn btn-lg btn-block btn-primary" type="button">Block level button</button>
+        <button class="btn btn-lg btn-block btn-default" type="button">Block level button</button>
+    </p>
+    <h3>States</h3>
+    <p>
+        <a href="#" class="btn btn-lg btn-primary active">Primary link active state</a>
+        <a href="#" class="btn btn-lg active">Link active state</a>
+    </p>
+    <p>
+        <a href="#" class="btn btn-lg btn-primary disabled">Primary link disabled state</a>
+        <a href="#" class="btn btn-lg disabled">Link disabled state</a>
     </p>
     <h2>Button search cancel</h2>
     <p>
-        <input class="clearable" type="text" />
+        <input class="clearable form-control" type="text">
         <br>
-        <input class="clearable" type="text" value="foo" />
+        <input class="clearable form-control" type="text" value="foo">
     </p>
     <script>
     YUI({ filter: 'raw' }).use('aui-button', 'aui-button-search-cancel', function(Y) {
@@ -81,7 +96,7 @@
         new Y.Button({
             label: 'Basic',
             srcNode: '#basic',
-            icon: 'icon-print',
+            icon: 'glyphicon glyphicon-print',
             iconAlign: 'left',
             primary: true
         }).render();
@@ -90,13 +105,19 @@
             cssClass: 'btn-info',
             label: 'Click to toggle',
             srcNode: '#toggle',
-            icon: 'icon-print'
+            icon: 'glyphicon glyphicon-print'
        }).render();
 
         new Y.Button({
             label: 'Type button',
             domType: 'button'
         }).render('#typed');
+
+        new Y.Button({
+            cssClass: 'close',
+            label: '\u00D7',
+            default: false
+        }).render('#closeButton');
 
         new Y.ButtonGroup({
             boundingBox: '#checkgroup',

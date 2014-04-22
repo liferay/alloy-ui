@@ -12,6 +12,7 @@ var Lang = A.Lang,
     getCN = A.getClassName,
 
     CSS_BTN = getCN('btn'),
+    CSS_BTN_DEFAULT = getCN('btn', 'default'),
     CSS_BTN_GROUP = getCN('btn', 'group'),
     CSS_BTN_GROUP_CHECKBOX = getCN('btn', 'group', 'checkbox'),
     CSS_BTN_GROUP_RADIO = getCN('btn', 'group', 'radio'),
@@ -39,7 +40,7 @@ A.Toolbar = A.Component.create({
      * @type String
      * @static
      */
-    NAME: 'toolbar',
+    NAME: 'btn-toolbar',
 
     /**
      * Static property used to define the default attribute
@@ -116,7 +117,7 @@ A.Toolbar = A.Component.create({
          */
         TEMPLATES: {
             button: '<button class="aui-btn">{content}</button>',
-            icon: '<i class="{cssClass}"></i>',
+            icon: '<span class="{cssClass}"></span>',
             group: '<div class="aui-btn-group {cssClass}"></div>'
         },
 
@@ -257,7 +258,7 @@ A.Toolbar = A.Component.create({
                 }
             }
 
-            var groupNode = seed.ancestor('.' + CSS_BTN_GROUP, true);
+            var groupNode = seed.ancestor('.' + CSS_BTN_GROUP + ', ' + CSS_BTN_GROUP_VERTICAL, true);
             if (groupNode) {
                 var type;
                 if (groupNode.hasClass(CSS_BTN_GROUP_CHECKBOX)) {
@@ -321,8 +322,8 @@ ToolbarRenderer.prototype = {
      */
     TEMPLATES: {
         button: A.Button.prototype.TEMPLATE,
-        group: '<div class="' + CSS_BTN_GROUP + ' {cssClass}"></div>',
-        icon: '<i class="{cssClass}" />'
+        group: '<div class="{cssClass}"></div>',
+        icon: '<span class="{cssClass}"></span>'
     },
 
     /**
@@ -373,6 +374,9 @@ ToolbarRenderer.prototype = {
 
             // Add cssClass support
             cssClass = [CSS_BTN, value.cssClass];
+            if (value['default'] === undefined || value['default']) {
+                cssClass.push(CSS_BTN_DEFAULT);
+            }
             if (value.primary) {
                 cssClass.push(A.ButtonCore.CLASS_NAMES.PRIMARY);
             }
@@ -432,6 +436,9 @@ ToolbarRenderer.prototype = {
 
             if (orientation === 'vertical') {
                 cssClass.push(CSS_BTN_GROUP_VERTICAL);
+            }
+            else {
+                cssClass.push(CSS_BTN_GROUP);
             }
 
             var groupNode = A.Node.create(

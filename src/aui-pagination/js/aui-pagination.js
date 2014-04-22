@@ -190,7 +190,7 @@ var Pagination = A.Component.create({
     UI_ATTRS: ['page'],
 
     prototype: {
-        CONTENT_TEMPLATE: '<ul></ul>',
+        CONTENT_TEMPLATE: '<ul class="pagination"></ul>',
         ITEM_TEMPLATE: '<li class="{cssClass}"><a href="#">{content}</a></li>',
         TOTAL_CONTROLS: 2,
 

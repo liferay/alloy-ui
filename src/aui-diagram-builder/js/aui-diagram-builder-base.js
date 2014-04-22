@@ -39,7 +39,7 @@ var Lang = A.Lang,
     CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER = AgetClassName('diagram', 'builder', 'fields', 'container'),
     CSS_DIAGRAM_BUILDER_TABS = AgetClassName('diagram', 'builder', 'tabs'),
     CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER = AgetClassName('diagram', 'builder', 'toolbar', 'container'),
-    CSS_ICON = AgetClassName('icon'),
+    CSS_ICON = AgetClassName('glyphicon'),
     CSS_LAYOUT = AgetClassName('layout'),
     CSS_TABBABLE = AgetClassName('tabbable'),
     CSS_TABBABLE_CONTENT = AgetClassName('tabbable', 'content'),
@@ -1129,11 +1129,11 @@ var DiagramBuilderBase = A.Component.create({
 
             return A.merge({
                     bubbleTargets: instance,
-                    width: 260,
                     scroll: {
                         height: 400,
                         width: 'auto'
-                    }
+                    },
+                    width: '99%'
                 },
                 val
             );

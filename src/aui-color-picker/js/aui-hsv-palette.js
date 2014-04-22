@@ -32,8 +32,8 @@ var AColor = A.Color,
     MIN_SATURATION = 0,
     MIN_VALUE = 0,
 
-    SELECTOR_CONTROL_GROUP_ERROR = '.control-group.error',
-    SELECTOR_CONTROL_GROUP = '.control-group',
+    SELECTOR_FORM_GROUP_ERROR = '.form-group.has-error',
+    SELECTOR_FORM_GROUP = '.form-group',
     SELECTOR_HSV_VALUE = '.hsv-value',
 
     CSS_CONTAINER = getClassName('hsv-container'),
@@ -109,9 +109,9 @@ var AColor = A.Color,
 
         TPL_LABEL_VALUE_CONTAINER: '<div class="' + CSS_LABEL_VALUE_CONTAINER + ' {subClass}"></div>',
 
-        TPL_OUTPUT: '<div class="control-group ' + CSS_LABEL_VALUE + ' ' + CSS_LABEL_VALUE_HEX + '">' + '<label>{label}</label>' + '<div class="controls">' + '<input class="' + CSS_VALUE + '" data-type="{type}" type="text" maxlength="{maxlength}" value="{value}">' + '</div>' + '</div>',
+        TPL_OUTPUT: '<div class="form-group ' + CSS_LABEL_VALUE + ' ' + CSS_LABEL_VALUE_HEX + '">' + '<label>{label}</label>' + '<div class="controls">' + '<input class="' + CSS_VALUE + '" data-type="{type}" type="text" maxlength="{maxlength}" value="{value}">' + '</div>' + '</div>',
 
-        TPL_LABEL_VALUE: '<div class="control-group input-prepend input-append">' + '<label class="add-on">{label}</label>' + '<input class="span2 ' + CSS_VALUE + '" data-type="{type}" type="text" maxlength="{maxlength}" value="{value}">' + '<label class="' + CSS_LABEL + '">{labelUnit}</label>' + '</div>',
+        TPL_LABEL_VALUE: '<div class="form-group input-prepend input-append">' + '<label class="add-on">{label}</label>' + '<input class="' + CSS_VALUE + '" data-type="{type}" type="text" maxlength="{maxlength}" value="{value}">' + '<label class="' + CSS_LABEL + '">{labelUnit}</label>' + '</div>',
 
         _outputType: 'hex',
 
@@ -197,13 +197,13 @@ var AColor = A.Color,
 
                 type = fieldNode.getAttribute('data-type');
 
-                fieldNode.ancestor(SELECTOR_CONTROL_GROUP).removeClass('error');
+                fieldNode.ancestor(SELECTOR_FORM_GROUP).removeClass('has-error');
             }
             else {
-                fieldNode.ancestor(SELECTOR_CONTROL_GROUP).addClass('error');
+                fieldNode.ancestor(SELECTOR_FORM_GROUP).addClass('has-error');
             }
 
-            if (!instance._paletteContainer.one(SELECTOR_CONTROL_GROUP_ERROR)) {
+            if (!instance._paletteContainer.one(SELECTOR_FORM_GROUP_ERROR)) {
                 instance._updateViewFromInput(fieldNode);
             }
         },

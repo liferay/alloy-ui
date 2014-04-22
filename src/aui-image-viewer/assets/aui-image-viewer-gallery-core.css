@@ -53,3 +53,6 @@
     padding-bottom: 10px;
     text-align: center;
 }
+.image-gallery-player .btn-group {
+    float: none;
+}

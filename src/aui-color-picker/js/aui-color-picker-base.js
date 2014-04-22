@@ -33,11 +33,11 @@ function ColorPickerBase(config) {}
 ColorPickerBase.prototype = {
     TPL_HEADER_CONTENT: '<h3>{header}</h3>',
 
-    TPL_ACTIONS: '<div class="row-fluid ' + CSS_ACTIONS_CONTAINER + '"></div',
+    TPL_ACTIONS: '<div class="row ' + CSS_ACTIONS_CONTAINER + '"></div',
 
-    TPL_HSV_TRIGGER: '<div class="span6 ' + CSS_HSV_TRIGGER + '">{more}</div>',
+    TPL_HSV_TRIGGER: '<div class="col col-lg-6 col-md-6 col-sm-6 ' + CSS_HSV_TRIGGER + '">{more}</div>',
 
-    TPL_NO_COLOR: '<div class="span6 ' + CSS_NO_COLOR + '">' + '<a href class="btn-link"><i class="' + CSS_NO_COLOR_ICON + ' icon-remove-circle"></i>{none}</a>' + '</div>',
+    TPL_NO_COLOR: '<div class="col col-lg-6 col-md-6 col-sm-6 ' + CSS_NO_COLOR + '">' + '<a href class="btn btn-link"><span class="' + CSS_NO_COLOR_ICON + ' glyphicon glyphicon-icon-remove-circle"></span>{none}</a>' + '</div>',
 
     _currentTrigger: null,
     _eventHandles: null,
