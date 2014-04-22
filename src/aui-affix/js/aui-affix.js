@@ -72,7 +72,7 @@ Affix = A.Base.create('affix', A.Base, [], {
 
         targetRegion = this.get('target').get('region');
 
-        if ((offsetBottom >= 0) && ((A.DOM.docHeight() - offsetBottom) <= targetRegion.bottom)) {
+        if ((offsetBottom >= 0) && ((A.DOM.docHeight() - A.DOM.winHeight() - offsetBottom) <= targetRegion.bottom)) {
             this._handleAffixEvent(A.Affix.EVENTS.BOTTOM);
             return;
         }
