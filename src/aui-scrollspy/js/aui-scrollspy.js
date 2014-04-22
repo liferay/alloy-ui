@@ -220,7 +220,7 @@ A.Scrollspy = A.Base.create('scrollspy', A.Base, [], {
          * Container that maps target links.
          *
          * @attribute scrollNode
-         * @type {String | Node}
+         * @type {Node | String}
          * @initOnly
          */
         scrollNode: {
@@ -232,7 +232,7 @@ A.Scrollspy = A.Base.create('scrollspy', A.Base, [], {
          * Target list. Usually a nav bar element with anchors.
          *
          * @attribute target
-         * @type {String | Node}
+         * @type {Node | String}
          * @initOnly
          */
         target: {
