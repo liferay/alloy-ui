@@ -83,6 +83,13 @@ YUI.add('aui-affix-tests', function(Y) {
             this.wait(function() {
                 targetShouldHaveClassName(Y.Affix.CSS_CLASSES.BOTTOM);
             }, 0);
+        },
+
+        'should validate offset with function': function() {
+            affix.set('offsetBottom', function () {
+                return 10;
+            });
+            Assert.isFunction(affix.get('offsetBottom'));
         }
     }));
 
