@@ -41,11 +41,9 @@
     },
     "aui-affix": {
         "requires": [
-            "node",
-            "node-screen",
             "base",
-            "yui-throttle",
-            "aui-debounce"
+            "node-screen",
+            "aui-node"
         ]
     },
     "aui-aria": {
