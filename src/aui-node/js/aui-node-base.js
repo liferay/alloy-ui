@@ -130,14 +130,20 @@ A.mix(NODE_PROTO, {
      * @method ancestorsByClassName
      * @param {String} className A selector to filter the ancestor elements
      *     against.
+     * @param {Boolean} testSelf optional Whether or not to include the element
+     * in the scan
      * @return {NodeList}
      */
-    ancestorsByClassName: function(className) {
+    ancestorsByClassName: function(className, testSelf) {
         var instance = this;
 
         var ancestors = [];
         var cssRE = new RegExp('\\b' + className + '\\b');
         var currentEl = instance.getDOM();
+
+        if (!testSelf) {
+            currentEl = currentEl.parentNode;
+        }
 
         while (currentEl && currentEl.nodeType !== 9) {
             if (currentEl.nodeType === 1 && cssRE.test(currentEl.className)) {
