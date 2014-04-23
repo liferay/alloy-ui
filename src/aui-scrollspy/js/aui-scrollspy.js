@@ -122,6 +122,7 @@ A.Scrollspy = A.Base.create('scrollspy', A.Base, [], {
      * Gets target ids from target links.
      *
      * @method _getValidLinks
+     * @return {NodeList} Filtered cached links.
      * @protected
      **/
     _getValidLinks: function() {
