@@ -28,6 +28,8 @@ A.Alert = A.Base.create('alert', A.Widget, [
 ], {
     CONTENT_TEMPLATE: null,
 
+    _eventHandle: null,
+
     /**
      * Renders the Alert component instance. Lifecycle.
      *
@@ -45,10 +47,7 @@ A.Alert = A.Base.create('alert', A.Widget, [
      * @protected
      */
     bindUI: function() {
-        this.on({
-            click: this._onClickBoundingBox,
-            closeableChange: this._onCloseableChange
-        });
+        this.on('closeableChange', this._onCloseableChange);
         this.after('visibleChange', this._afterVisibleChange);
     },
 
@@ -73,7 +72,7 @@ A.Alert = A.Base.create('alert', A.Widget, [
      * @protected
      */
     _onClickBoundingBox: function(event) {
-        if (event.domEvent.target.test('.' + CSS_CLOSE)) {
+        if (event.target.test('.' + CSS_CLOSE)) {
             this.hide();
         }
     },
@@ -100,9 +99,16 @@ A.Alert = A.Base.create('alert', A.Widget, [
             closeableNode = this.get('closeableNode');
 
         boundingBox.toggleClass(CSS_DISMISSABLE, val);
+
         closeableNode.remove();
+
+        if (this._eventHandle) {
+            this._eventHandle.detach();
+        }
+
         if (val) {
             boundingBox.insert(closeableNode, 0);
+            this._eventHandle = boundingBox.on('click', this._onClickBoundingBox, this);
         }
     }
 }, {

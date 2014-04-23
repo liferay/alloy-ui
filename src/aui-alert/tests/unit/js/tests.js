@@ -2,26 +2,29 @@ YUI.add('aui-alert-tests', function(Y) {
 
     var Assert = Y.Assert,
         suite = new Y.Test.Suite('aui-alert'),
+
         alert1 = new Y.Alert({
-                destroyOnHide: true,
-                render: true,
-                srcNode: '#info'
-            }),
+            destroyOnHide: true,
+            render: true,
+            srcNode: '#info'
+        }),
+
         alert2 = new Y.Alert({
-                closeable: false,
-                render: true,
-                srcNode: '#danger'
-            })
+            closeable: false,
+            render: true,
+            srcNode: '#danger'
+        }),
+
         alert3 = new Y.Alert({
-                animated: true,
-                bodyContent: 'Thank You Mario! But Our Princess Is In That Castle!',
-                boundingBox: '#warning',
-                closeable: true,
-                cssClass: 'alert-warning',
-                destroyOnHide: false,
-                duration: 1,
-                render: true
-            });
+            animated: true,
+            bodyContent: 'Thank You Mario! But Our Princess Is In That Castle!',
+            boundingBox: '#warning',
+            closeable: true,
+            cssClass: 'alert-warning',
+            destroyOnHide: false,
+            duration: 1,
+            render: true
+        });
 
     suite.add(new Y.Test.Case({
 
@@ -31,7 +34,7 @@ YUI.add('aui-alert-tests', function(Y) {
             Assert.isFalse(alert2.get('closeable'));
         },
 
-        'should not be the "close" button on DOM when closeable is false': function() {
+        'should not be the close button when closeable is false': function() {
             alert1.set('closeable', false);
             alert3.set('closeable', false);
             Assert.isNull(Y.one('#info .close'));
@@ -45,6 +48,7 @@ YUI.add('aui-alert-tests', function(Y) {
             var closeNode = Y.one('.close');
 
             alert1.set('closeable', false);
+
             closeNode.simulate('click');
 
             closeNode.on('click', function() {
@@ -68,6 +72,7 @@ YUI.add('aui-alert-tests', function(Y) {
             var closeNode = Y.one('.close');
 
             alert1.set('destroyOnHide', true);
+
             closeNode.simulate('click');
 
             closeNode.on('click', function() {
