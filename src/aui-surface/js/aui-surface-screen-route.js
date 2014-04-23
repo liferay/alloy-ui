@@ -17,7 +17,7 @@ A.ScreenRoute = A.Base.create('screenRoute', A.Base, [], {
             return path(value);
         }
         if (A.instanceOf(path, RegExp)) {
-            return value.search(path) > -1
+            return value.search(path) > -1;
         }
         return null;
     },
