@@ -64,11 +64,12 @@ A.HTMLScreen = A.Base.create('htmlScreen', A.Screen, [], {
      *     content from the server.
      */
     loadContent: function(path) {
-        var instance = this;
+        var instance = this,
+            promise;
 
         instance.abortRequest();
 
-        return new A.CancellablePromise(
+        promise = new A.CancellablePromise(
             function(resolve) {
                 instance._request = A.io(path, {
                     headers: {
@@ -93,6 +94,8 @@ A.HTMLScreen = A.Base.create('htmlScreen', A.Screen, [], {
                 instance.abortRequest();
             }
         );
+
+        return promise;
     },
 
     /**
