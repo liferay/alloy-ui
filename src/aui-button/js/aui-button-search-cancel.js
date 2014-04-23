@@ -191,6 +191,8 @@ var ButtonSearchCancel = A.Base.create('btn-search-cancel', A.Base, [], {
             button = instance.getButtonForElement(element),
             gutter,
             buttonRegion,
+            buttonHeight,
+            buttonWidth,
             elementRegion;
 
         if (!element.val()) {
@@ -203,9 +205,12 @@ var ButtonSearchCancel = A.Base.create('btn-search-cancel', A.Base, [], {
         buttonRegion = button.get('region');
         elementRegion = element.get('region');
 
+        buttonHeight = this.get('iconHeight') ? this.get('iconHeight') : buttonRegion.height;
+        buttonWidth = this.get('iconWidth') ? this.get('iconWidth') : buttonRegion.width;
+
         button.setXY([
-                elementRegion.right - buttonRegion.width + gutter[0],
-                elementRegion.top + elementRegion.height / 2 - buttonRegion.height / 2 + gutter[1]]);
+                elementRegion.right - buttonWidth + gutter[0],
+                elementRegion.top + elementRegion.height / 2 - buttonHeight / 2 + gutter[1]]);
     }
 }, {
     /**
@@ -254,6 +259,32 @@ var ButtonSearchCancel = A.Base.create('btn-search-cancel', A.Base, [], {
         iconClass: {
             validator: Lang.isString,
             value: 'glyphicon glyphicon-remove'
+        },
+
+        /**
+         * Defines the width of the button. Useful when an async request
+         * for resource file (image or font for example) may be necessary
+         * before calculating the button's width.
+         *
+         * @attribute iconWidth
+         * @default 24
+         * @type {Number}
+         */
+        iconWidth: {
+            value: 24
+        },
+
+        /**
+         * Defines the height of the button. Useful when an async request
+         * for resource file (image or font for example) may be necessary
+         * before calculating the button's height.
+         *
+         * @attribute iconHeight
+         * @default 30
+         * @type {Number}
+         */
+        iconHeight: {
+            value: 30
         },
 
         /**

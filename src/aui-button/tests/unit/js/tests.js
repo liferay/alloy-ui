@@ -9,16 +9,16 @@ YUI.add('aui-button-tests', function(Y) {
             iconCloseRegion = iconClose.get('region'),
 
             xpos = inputRegion.right -
-                iconCloseRegion.width +
+                searchButtonCancel.get('iconWidth') +
                 searchButtonCancel.get('gutter.0'),
 
             ypos = inputRegion.top +
                 inputRegion.height / 2 -
-                iconCloseRegion.height / 2 +
+                searchButtonCancel.get('iconHeight') / 2 +
                 searchButtonCancel.get('gutter.1');
 
         Y.Assert.areSame(
-            iconClose.getY(), ypos, 'Y-Position of input and search-btn-cancel should be the same.');
+            Math.round(iconClose.getY()), Math.round(ypos), 'Y-Position of input and search-btn-cancel should be the same.');
         Y.Assert.areSame(
             iconClose.getX(), xpos, 'X-Position of input and search-btn-cancel should be the same.');
     }
@@ -27,11 +27,8 @@ YUI.add('aui-button-tests', function(Y) {
         input.focus().val('This is a test!');
         input.simulate('click');
 
-        // FIXME: Simulating click, run via Yeti on FF (not if run manually on FF) does not trigger input event listener.
-        // We will invoke it manually in this case.
-        if (Y.UA.gecko) {
-            searchButtonCancel._syncButtonUI(input);
-        }
+        // TODO: Remove this when yeti is fixed to stop stealing focus from the test.
+        searchButtonCancel._syncButtonUI(input);
     }
 
     suite.add(new Y.Test.Case({
