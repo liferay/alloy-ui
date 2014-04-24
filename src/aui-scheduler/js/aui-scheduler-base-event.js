@@ -360,7 +360,10 @@ var SchedulerEvent = A.Component.create({
         'colorSaturationFactor', 'titleDateFormat', 'visible', 'disabled'],
 
     prototype: {
-        EVENT_NODE_TEMPLATE: '<div class="' + CSS_SCHEDULER_EVENT + '">' + '<div class="' + CSS_SCHEDULER_EVENT_TITLE + '"></div>' + '<div class="' + CSS_SCHEDULER_EVENT_CONTENT + '"></div>' + '<div class="' + CSS_SCHEDULER_EVENT_ICONS + '">' + '<span class="' + [
+        EVENT_NODE_TEMPLATE: '<div class="' + CSS_SCHEDULER_EVENT + '">' + '<div class="' +
+            CSS_SCHEDULER_EVENT_TITLE +
+            '"></div>' + '<div class="' + CSS_SCHEDULER_EVENT_CONTENT + '"></div>' +
+            '<div class="' + CSS_SCHEDULER_EVENT_ICONS + '">' + '<span class="' + [
             CSS_ICON, CSS_SCHEDULER_EVENT_ICON_DISABLED].join(' ') + '"></span>' + '<span class="' + [CSS_ICON,
             CSS_SCHEDULER_EVENT_ICON_MEETING].join(' ') + '"></span>' + '<span class="' + [CSS_ICON,
             CSS_SCHEDULER_EVENT_ICON_REMINDER].join(' ') + '"></span>' + '<span class="' + [CSS_ICON,

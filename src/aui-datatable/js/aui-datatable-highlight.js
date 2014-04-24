@@ -43,7 +43,9 @@ var DataTableHighlight = A.Base.create(
     A.Plugin.Base, [], {
         CLASS_NAMES: null,
 
-        TPL_FRAME: '<div class="{overlay}">' + '<div class="{border}"></div>' + '<div class="{border}"></div>' + '<div class="{border}"></div>' + '<div class="{border}"></div>' + '</div>',
+        TPL_FRAME: '<div class="{overlay}">' + '<div class="{border}"></div>' +
+            '<div class="{border}"></div>' + '<div class="{border}"></div>' +
+            '<div class="{border}"></div>' + '</div>',
 
         _lastActiveRow: null,
         _nodes: null,

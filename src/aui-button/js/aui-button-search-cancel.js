@@ -24,7 +24,9 @@ var ButtonSearchCancel = A.Base.create('btn-search-cancel', A.Base, [], {
      * @type {String}
      * @protected
      */
-    TEMPLATE: '<div class="' + A.getClassName('btn-search-cancel') + '" style="padding: 5px; position: absolute; z-index: {zIndex};">' + '<span class="{iconClass}"></span>' + '</div>',
+    TEMPLATE: '<div class="' + A.getClassName('btn-search-cancel') +
+        '" style="padding: 5px; position: absolute; z-index: {zIndex};">' +
+        '<i class="{iconClass}"></i>' + '</div>',
 
     /**
      * Holds the created buttons for each element match from the trigger

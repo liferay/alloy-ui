@@ -103,15 +103,23 @@ var AColor = A.Color,
 
         TPL_VALUE_CANVAS: '<span class="' + CSS_VALUE_CANVAS + '"></span>',
 
-        TPL_VALUE_THUMB: '<span class="' + CSS_VALUE_THUMB + '"><span class="' + CSS_VALUE_THUMB_IMAGE + '"></span></span>',
+        TPL_VALUE_THUMB: '<span class="' + CSS_VALUE_THUMB + '"><span class="' +
+            CSS_VALUE_THUMB_IMAGE + '"></span></span>',
 
         TPL_RESULT_VIEW: '<div class="' + CSS_RESULT_VIEW + '"></div>',
 
         TPL_LABEL_VALUE_CONTAINER: '<div class="' + CSS_LABEL_VALUE_CONTAINER + ' {subClass}"></div>',
 
-        TPL_OUTPUT: '<div class="form-group ' + CSS_LABEL_VALUE + ' ' + CSS_LABEL_VALUE_HEX + '">' + '<label>{label}</label>' + '<div class="controls">' + '<input class="' + CSS_VALUE + '" data-type="{type}" type="text" maxlength="{maxlength}" value="{value}">' + '</div>' + '</div>',
+        TPL_OUTPUT: '<div class="control-group ' + CSS_LABEL_VALUE + ' ' +
+            CSS_LABEL_VALUE_HEX + '">' + '<label>{label}</label>' +
+            '<div class="controls">' + '<input class="' + CSS_VALUE +
+            '" data-type="{type}" type="text" maxlength="{maxlength}" value="{value}">' +
+            '</div>' + '</div>',
 
-        TPL_LABEL_VALUE: '<div class="form-group input-prepend input-append">' + '<label class="add-on">{label}</label>' + '<input class="' + CSS_VALUE + '" data-type="{type}" type="text" maxlength="{maxlength}" value="{value}">' + '<label class="' + CSS_LABEL + '">{labelUnit}</label>' + '</div>',
+        TPL_LABEL_VALUE: '<div class="control-group input-prepend input-append">' +
+            '<label class="add-on">{label}</label>' + '<input class="span2 ' + CSS_VALUE +
+            '" data-type="{type}" type="text" maxlength="{maxlength}" value="{value}">' +
+            '<label class="' + CSS_LABEL + '">{labelUnit}</label>' + '</div>',
 
         _outputType: 'hex',
 

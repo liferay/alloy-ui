@@ -622,13 +622,16 @@ var Lang = A.Lang,
             instance.set('results', []);
         },
 
-        TPL_ENTRY: '<li class="' + CLASS_ENTRY_CONTAINER + '" data-index="{index}">' + '<span class="' + CLASS_ENTRY + '">{value}</span>' + '</li>',
+        TPL_ENTRY: '<li class="' + CLASS_ENTRY_CONTAINER + '" data-index="{index}">' + '<span class="' +
+            CLASS_ENTRY + '">{value}</span>' + '</li>',
 
         TPL_LIST: '<ul class="' + CLASS_RESULTS_LIST + '"/>',
 
-        TPL_LOADING: '<li class="' + CLASS_ENTRY_CONTAINER + '">' + '<span class="glyphicon glyphicon-loading ' + CLASS_ENTRY_LOADING + '">{label}</span>' + '</li>',
+        TPL_LOADING: '<li class="' + CLASS_ENTRY_CONTAINER + '">' + '<span class="glyphicon glyphicon-loading ' +
+            CLASS_ENTRY_LOADING + '">{label}</span>' + '</li>',
 
-        TPL_RESULTS_EMPTY: '<li class="' + CLASS_ENTRY_CONTAINER + '">' + '<span class="' + CLASS_ENTRY_EMPTY + '">{label}</span>' + '</li>'
+        TPL_RESULTS_EMPTY: '<li class="' + CLASS_ENTRY_CONTAINER + '">' + '<span class="' + CLASS_ENTRY_EMPTY +
+            '">{label}</span>' + '</li>'
     }, {
 
         /**

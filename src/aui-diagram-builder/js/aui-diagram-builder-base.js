@@ -212,7 +212,8 @@ var AvailableField = A.Component.create({
 
     prototype: {
         FIELD_ITEM_TEMPLATE: '<li class="' + CSS_DIAGRAM_BUILDER_FIELD + '">' + '<span class="' + [CSS_ICON,
-            CSS_DIAGRAM_BUILDER_FIELD_ICON].join(' ') + ' {iconClass}"></span>' + '<div class="' + CSS_DIAGRAM_BUILDER_FIELD_LABEL + '"></div>' + '</li>',
+            CSS_DIAGRAM_BUILDER_FIELD_ICON].join(' ') +
+            ' {iconClass}"></span>' + '<div class="' + CSS_DIAGRAM_BUILDER_FIELD_LABEL + '"></div>' + '</li>',
 
         /**
          * Construction logic executed during `A.AvailableField` instantiation.
