@@ -413,6 +413,11 @@ A.mix(ButtonGroup.prototype, {
 
         instance.getButtons().each(function(button) {
             if (!button.button && !A.instanceOf(A.Widget.getByNode(button), A.Button)) {
+                // TODO: This shouldn't assume button is always default.
+                // A.Plugin.Button doesn't current allow augmentation, therefore
+                // it can't add A.ButtonExt extra attributes to it.
+                button.addClass(A.ButtonCore.CLASS_NAMES.BUTTON_DEFAULT);
+
                 if (A.Button.hasWidgetLazyConstructorData(button)) {
                     new A.Button(A.Button.getWidgetLazyConstructorFromNodeData(button));
                     A.Button.setWidgetLazyConstructorNodeData(button, null);
