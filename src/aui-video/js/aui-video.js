@@ -313,7 +313,7 @@ var Video = A.Component.create({
                     tplObj += '<param name="flashVars" value="' + flashVarString + '" />';
                 }
 
-                if (posterUrl != '') {
+                if (posterUrl !== '') {
                     tplObj += '<img src="' + posterUrl + '" alt="" />';
                 }
 

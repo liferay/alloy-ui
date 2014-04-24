@@ -370,13 +370,13 @@ var SortableLayout = A.Component.create({
             var y = drag.lastXY[1];
 
             // if the x change
-            if (x != lastX) {
+            if (x !== lastX) {
                 // set the drag direction
                 instance.XDirection = (x < lastX) ? 'left' : 'right';
             }
 
             // if the y change
-            if (y != lastY) {
+            if (y !== lastY) {
                 // set the drag direction
                 instance.YDirection = (y < lastY) ? 'up' : 'down';
             }
@@ -603,7 +603,7 @@ var SortableLayout = A.Component.create({
             var lastQuadrant = instance.lastQuadrant;
             var quadrant = instance.quadrant;
 
-            if (quadrant != lastQuadrant) {
+            if (quadrant !== lastQuadrant) {
                 // only trigger exit if it has previously entered in any quadrant
                 if (lastQuadrant) {
                     // merging event with the "last" information
@@ -872,7 +872,7 @@ var SortableLayout = A.Component.create({
             var drag = event.drag;
 
             // prevent drag over bubbling, filtering the top most element
-            if (instance.activeDrop == DDM.activeDrop) {
+            if (instance.activeDrop === DDM.activeDrop) {
                 instance.calculateDirections(drag);
 
                 instance.calculateQuadrant(drag, instance.activeDrop);

@@ -51,7 +51,7 @@ var viewportChange = function(event) {
 
     classNames += ' ' + buffer.join(' ');
 
-    if (oldClassNames != classNames) {
+    if (oldClassNames !== classNames) {
         DOC_EL.className = classNames;
     }
 };

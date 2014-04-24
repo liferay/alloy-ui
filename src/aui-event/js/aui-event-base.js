@@ -163,7 +163,7 @@ var KeyMap = {
     isKey: function(keyCode, name) {
         var instance = this;
 
-        return name && ((instance[name] || instance[name.toUpperCase()]) == keyCode);
+        return name && ((instance[name] || instance[name.toUpperCase()]) === keyCode);
     },
 
     isKeyInRange: function(keyCode, start, end) {
@@ -199,7 +199,7 @@ var KeyMap = {
     isSpecialKey: function(keyCode, eventType) {
         var instance = this;
 
-        var isCtrlPress = (eventType == 'keypress' && instance.ctrlKey);
+        var isCtrlPress = (eventType === 'keypress' && instance.ctrlKey);
 
         return isCtrlPress ||
             instance.isNavKey(keyCode) ||

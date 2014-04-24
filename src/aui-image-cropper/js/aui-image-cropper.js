@@ -393,10 +393,10 @@ var ImageCropper = A.Component.create({
 
             var cropType = event.cropType;
 
-            if (cropType == 'drag:drag') {
+            if (cropType === 'drag:drag') {
                 instance._syncXY();
             }
-            else if (cropType == 'resize:resize') {
+            else if (cropType === 'resize:resize') {
                 instance._syncCropSize();
             }
         },
@@ -654,10 +654,10 @@ var ImageCropper = A.Component.create({
             var origRegion = instance._origRegion;
 
             if (
-                region.bottom != origRegion.bottom ||
-                region.left != origRegion.left ||
-                region.right != origRegion.right ||
-                region.top != origRegion.top
+                region.bottom !== origRegion.bottom ||
+                region.left !== origRegion.left ||
+                region.right !== origRegion.right ||
+                region.top !== origRegion.top
             ) {
 
                 var drag = instance.drag;

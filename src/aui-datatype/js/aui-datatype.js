@@ -41,7 +41,7 @@ var L = A.Lang,
 DB.parse = function(data) {
     data = A.Lang.trim(data);
 
-    return (data == 'false') ? false : !! data;
+    return (data === 'false') ? false : !! data;
 };
 
 /**
@@ -58,7 +58,7 @@ DS.evaluate = function(data) {
     var trimmedData = A.Lang.trim(data);
 
     // booleans
-    if (trimmedData == 'true' || trimmedData == 'false') {
+    if (trimmedData === 'true' || trimmedData === 'false') {
         return DB.parse(data);
     }
 
@@ -343,7 +343,7 @@ A.mix(A.DataType.DateMath, {
      * @return {boolean}
      */
     compare: function(d1, d2) {
-        return (d1 && d2 && (d1.getTime() == d2.getTime()));
+        return (d1 && d2 && (d1.getTime() === d2.getTime()));
     },
 
     /**
@@ -734,7 +734,7 @@ A.mix(A.DataType.DateMath, {
     isYearOverlapWeek: function(weekBeginDate) {
         var overlaps = false;
         var nextWeek = this.add(weekBeginDate, this.DAY, 6);
-        if (nextWeek.getFullYear() != weekBeginDate.getFullYear()) {
+        if (nextWeek.getFullYear() !== weekBeginDate.getFullYear()) {
             overlaps = true;
         }
         return overlaps;
@@ -751,7 +751,7 @@ A.mix(A.DataType.DateMath, {
     isMonthOverlapWeek: function(weekBeginDate) {
         var overlaps = false;
         var nextWeek = this.add(weekBeginDate, this.DAY, 6);
-        if (nextWeek.getMonth() != weekBeginDate.getMonth()) {
+        if (nextWeek.getMonth() !== weekBeginDate.getMonth()) {
             overlaps = true;
         }
         return overlaps;

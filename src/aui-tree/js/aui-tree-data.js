@@ -203,7 +203,7 @@ A.mix(TreeData.prototype, {
             ownerTree.registerNode(node);
         }
 
-        if (oldOwnerTree != ownerTree) {
+        if (oldOwnerTree !== ownerTree) {
             // when change the OWNER_TREE update the children references also
             node.eachChildren(function(child) {
                 instance.updateReferences(child, child.get('parentNode'), ownerTree);

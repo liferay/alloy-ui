@@ -635,7 +635,7 @@ var Carousel = A.Component.create({
         _setActiveIndex: function(val) {
             var instance = this;
 
-            if (val == 'rand') {
+            if (val === 'rand') {
                 val = instance._createIndexRandom();
             }
             else {
@@ -727,7 +727,7 @@ var Carousel = A.Component.create({
                     instance.animation.fire('end');
                 }
 
-                if (objOptions.src == UI_SRC && objOptions.animate) {
+                if (objOptions.src === UI_SRC && objOptions.animate) {
                     instance._createIntervalRotationTask();
                 }
             }

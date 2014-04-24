@@ -208,7 +208,7 @@ A.mix(
 
                     cssClass = node.className;
 
-                    if (cssClass.indexOf('printfix-') == -1) {
+                    if (cssClass.indexOf('printfix-') === -1) {
                         buffer[0] = 'printfix-' + html5Element;
                         buffer[1] = cssClass;
 
@@ -247,7 +247,7 @@ A.mix(
 
                     if (backgroundImage &&
                         backgroundImage.indexOf('url(') > -1 &&
-                        backgroundImage.indexOf('https') == -1) {
+                        backgroundImage.indexOf('https') === -1) {
 
                         elStyle.backgroundImage = backgroundImage.replace('url(', STR_URL_DOMAIN);
                     }
@@ -260,22 +260,22 @@ A.mix(
 
             var newNodes = bodyElClone.getElementsByTagName('*');
 
-            if (length == newNodes.length) {
+            if (length === newNodes.length) {
                 while (length--) {
                     var newNode = newNodes[length];
                     var newNodeName = newNode.nodeName;
 
-                    if (newNodeName == 'INPUT' || newNodeName == 'OPTION') {
+                    if (newNodeName === 'INPUT' || newNodeName === 'OPTION') {
                         var originalNode = originalNodes[length];
                         var originalNodeName = originalNode.nodeName;
 
-                        if (originalNodeName == newNodeName) {
+                        if (originalNodeName === newNodeName) {
                             var prop = null;
 
-                            if (newNodeName == 'OPTION') {
+                            if (newNodeName === 'OPTION') {
                                 prop = 'selected';
                             }
-                            else if (newNodeName == 'INPUT' && (newNode.type == 'checkbox' || newNode.type ==
+                            else if (newNodeName === 'INPUT' && (newNode.type === 'checkbox' || newNode.type ===
                                 'radio')) {
                                 prop = 'checked';
                             }

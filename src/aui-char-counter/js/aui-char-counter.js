@@ -199,7 +199,7 @@ var CharCounter = A.Component.create({
                 );
             }
 
-            if (value.length == maxLength) {
+            if (value.length === maxLength) {
                 instance.fire('maxLength');
             }
 
