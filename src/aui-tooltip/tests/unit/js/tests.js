@@ -1,7 +1,7 @@
 YUI.add('aui-tooltip-tests', function(Y) {
 
     //--------------------------------------------------------------------------
-    // AUI Tooltip Unit Tests
+    // AUI Tooltip Base Unit Tests
     //--------------------------------------------------------------------------
 
     var suite = new Y.Test.Suite('aui-tooltip');
