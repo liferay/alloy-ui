@@ -224,7 +224,7 @@ var KeyMap = {
             keyName = arr[i];
             key = keyName && (instance[keyName] || instance[String(keyName).toUpperCase()]);
 
-            if (keyCode == key) {
+            if (keyCode === key) {
                 result = true;
 
                 break;
