@@ -134,15 +134,15 @@ var FormBuilderTextField = A.Component.create({
                 attributeName: 'width',
                 editor: new A.RadioCellEditor({
                     options: {
-                        small: strings['small'],
-                        medium: strings['medium'],
-                        large: strings['large']
+                        small: strings.small,
+                        medium: strings.medium,
+                        large: strings.large
                     }
                 }),
                 formatter: function(o) {
                     return strings[o.data.value];
                 },
-                name: strings['width']
+                name: strings.width
             });
 
             return model;

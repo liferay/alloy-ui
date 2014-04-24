@@ -986,7 +986,7 @@ A.mix(A.DataType.DateMath, {
 
     Y.namespace("DataType.Date.Locale");
 
-    Y.DataType.Date.Locale["en"] = YDateEn;
+    Y.DataType.Date.Locale.en = YDateEn;
 
     Y.DataType.Date.Locale["en-US"] = Y.merge(YDateEn, {
         c: "%a %d %b %Y %I:%M:%S %p %Z",

@@ -136,12 +136,12 @@ var FormBuilderSelectField = A.Component.create({
                 attributeName: 'multiple',
                 editor: new A.RadioCellEditor({
                     options: {
-                        'true': strings['yes'],
-                        'false': strings['no']
+                        'true': strings.yes,
+                        'false': strings.no
                     }
                 }),
                 formatter: A.bind(instance._booleanFormatter, instance),
-                name: strings['multiple']
+                name: strings.multiple
             });
 
             return model;

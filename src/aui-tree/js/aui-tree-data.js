@@ -813,14 +813,14 @@ A.mix(TreeData.prototype, {
                 if (!isTreeNode(node) && isObject(node)) {
                     // cache and remove children to lazy add them later for
                     // performance reasons
-                    var children = node['children'];
+                    var children = node.children;
                     var hasChildren = children && children.length;
 
-                    node['ownerTree'] = ownerTree;
-                    node['parentNode'] = instance;
+                    node.ownerTree = ownerTree;
+                    node.parentNode = instance;
 
                     if (hasChildren && lazyLoad) {
-                        delete node['children'];
+                        delete node.children;
                     }
 
                     // creating node from json

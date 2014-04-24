@@ -180,12 +180,12 @@ var FormBuilderButtonField = A.Component.create({
                 attributeName: 'buttonType',
                 editor: new A.RadioCellEditor({
                     options: {
-                        'button': strings['button'],
-                        'reset': strings['reset'],
-                        'submit': strings['submit']
+                        'button': strings.button,
+                        'reset': strings.reset,
+                        'submit': strings.submit
                     }
                 }),
-                name: strings['buttonType']
+                name: strings.buttonType
             });
 
             return model;

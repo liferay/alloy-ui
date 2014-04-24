@@ -412,7 +412,7 @@ var SchedulerAgendaView = A.Component.create({
             else {
                 events.push(
                     A.Lang.sub(TPL_NO_EVENTS, {
-                        content: strings['noEvents']
+                        content: strings.noEvents
                     })
                 );
             }

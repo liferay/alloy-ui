@@ -166,7 +166,7 @@ var SchedulerMonthView = A.Component.create({
 
             var currentIntervalStart = instance._findCurrentIntervalStart();
 
-            var colTitleNodes = instance['tableRowContainer'].all('.' + CSS_SVT_TABLE_DATA_COL_TITLE);
+            var colTitleNodes = instance.tableRowContainer.all('.' + CSS_SVT_TABLE_DATA_COL_TITLE);
 
             colTitleNodes.each(function(colTitleNode, index) {
                 var celDate = DateMath.add(currentIntervalStart, DateMath.DAY, index);

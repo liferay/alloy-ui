@@ -140,7 +140,7 @@ A.Event.define(
 
             var handles = instance._prepareHandles(subscription, node);
 
-            handles['beforeactivate'] = node.delegate(
+            handles.beforeactivate = node.delegate(
                 'beforeactivate',
                 function(event) {
                     var activeElement = event.target;

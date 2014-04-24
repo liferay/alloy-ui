@@ -558,16 +558,16 @@ var SchedulerBase = A.Component.create({
         initializer: function() {
             var instance = this;
 
-            instance['viewStack'] = {};
+            instance.viewStack = {};
 
-            instance['controlsNode'] = instance.get('controlsNode');
-            instance['viewDateNode'] = instance.get('viewDateNode');
-            instance['header'] = instance.get('headerNode');
-            instance['iconNextNode'] = instance.get('iconNextNode');
-            instance['iconPrevNode'] = instance.get('iconPrevNode');
-            instance['navNode'] = instance.get('navNode');
-            instance['todayNode'] = instance.get('todayNode');
-            instance['viewsNode'] = instance.get('viewsNode');
+            instance.controlsNode = instance.get('controlsNode');
+            instance.viewDateNode = instance.get('viewDateNode');
+            instance.header = instance.get('headerNode');
+            instance.iconNextNode = instance.get('iconNextNode');
+            instance.iconPrevNode = instance.get('iconPrevNode');
+            instance.navNode = instance.get('navNode');
+            instance.todayNode = instance.get('todayNode');
+            instance.viewsNode = instance.get('viewsNode');
 
             instance.after({
                 activeViewChange: instance._afterActiveViewChange,
@@ -609,7 +609,7 @@ var SchedulerBase = A.Component.create({
         getViewByName: function(name) {
             var instance = this;
 
-            return instance['viewStack'][name];
+            return instance.viewStack[name];
         },
 
         /**
@@ -699,7 +699,7 @@ var SchedulerBase = A.Component.create({
             var instance = this;
 
             instance.buttonGroup = new A.ButtonGroup({
-                boundingBox: instance['viewsNode'],
+                boundingBox: instance.viewsNode,
                 on: {
                     selectionChange: A.bind(instance._onButtonGroupSelectionChange, instance)
                 }
@@ -715,21 +715,21 @@ var SchedulerBase = A.Component.create({
             var instance = this;
             var views = instance.get('views');
 
-            instance['navNode'].append(instance['iconPrevNode']);
-            instance['navNode'].append(instance['iconNextNode']);
+            instance.navNode.append(instance.iconPrevNode);
+            instance.navNode.append(instance.iconNextNode);
 
-            instance['controlsNode'].append(instance['todayNode']);
-            instance['controlsNode'].append(instance['navNode']);
-            instance['controlsNode'].append(instance['viewDateNode']);
+            instance.controlsNode.append(instance.todayNode);
+            instance.controlsNode.append(instance.navNode);
+            instance.controlsNode.append(instance.viewDateNode);
 
             A.Array.each(views, function(view) {
-                instance['viewsNode'].append(instance._createViewTriggerNode(view));
+                instance.viewsNode.append(instance._createViewTriggerNode(view));
             });
 
-            instance['header'].append(instance['controlsNode']);
-            instance['header'].append(instance['viewsNode']);
+            instance.header.append(instance.controlsNode);
+            instance.header.append(instance.viewsNode);
 
-            instance.setStdModContent(WidgetStdMod.HEADER, instance['header'].getDOM());
+            instance.setStdModContent(WidgetStdMod.HEADER, instance.header.getDOM());
         },
 
         /**
@@ -789,11 +789,11 @@ var SchedulerBase = A.Component.create({
         _bindDelegate: function() {
             var instance = this;
 
-            instance['controlsNode'].delegate('click', instance._onClickPrevIcon, '.' + CSS_SCHEDULER_ICON_PREV,
+            instance.controlsNode.delegate('click', instance._onClickPrevIcon, '.' + CSS_SCHEDULER_ICON_PREV,
                 instance);
-            instance['controlsNode'].delegate('click', instance._onClickNextIcon, '.' + CSS_SCHEDULER_ICON_NEXT,
+            instance.controlsNode.delegate('click', instance._onClickNextIcon, '.' + CSS_SCHEDULER_ICON_NEXT,
                 instance);
-            instance['controlsNode'].delegate('click', instance._onClickToday, '.' + CSS_SCHEDULER_TODAY, instance);
+            instance.controlsNode.delegate('click', instance._onClickToday, '.' + CSS_SCHEDULER_TODAY, instance);
         },
 
         /**
@@ -969,7 +969,7 @@ var SchedulerBase = A.Component.create({
 
                     views.push(view);
 
-                    instance['viewStack'][view.get('name')] = view;
+                    instance.viewStack[view.get('name')] = view;
                 }
             });
 
@@ -992,10 +992,10 @@ var SchedulerBase = A.Component.create({
 
             if (val) {
                 var activeView = val.get('name'),
-                    activeNav = instance['viewsNode'].one('.' + CSS_SCHEDULER_VIEW_ + activeView);
+                    activeNav = instance.viewsNode.one('.' + CSS_SCHEDULER_VIEW_ + activeView);
 
                 if (activeNav) {
-                    instance['viewsNode'].all('button').removeClass(CSS_SCHEDULER_VIEW_SELECTED);
+                    instance.viewsNode.all('button').removeClass(CSS_SCHEDULER_VIEW_SELECTED);
                     activeNav.addClass(CSS_SCHEDULER_VIEW_SELECTED);
                 }
             }
@@ -1024,7 +1024,7 @@ var SchedulerBase = A.Component.create({
                     navigationTitle = formatter.call(activeView, date);
                 }
 
-                instance['viewDateNode'].html(navigationTitle);
+                instance.viewDateNode.html(navigationTitle);
 
                 instance.syncEventsUI();
             }

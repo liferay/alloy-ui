@@ -755,41 +755,41 @@ var FormBuilderField = A.Component.create({
             return [{
                 attributeName: 'type',
                 editor: false,
-                name: strings['type']
+                name: strings.type
             }, {
                 attributeName: 'label',
                 editor: new A.TextCellEditor(),
-                name: strings['label']
+                name: strings.label
             }, {
                 attributeName: 'showLabel',
                 editor: new A.RadioCellEditor({
                     options: {
-                        'true': strings['yes'],
-                        'false': strings['no']
+                        'true': strings.yes,
+                        'false': strings.no
                     }
                 }),
                 formatter: A.bind(instance._booleanFormatter, instance),
-                name: strings['showLabel']
+                name: strings.showLabel
             }, {
                 attributeName: 'readOnly',
                 editor: new A.RadioCellEditor({
                     options: {
-                        'true': strings['yes'],
-                        'false': strings['no']
+                        'true': strings.yes,
+                        'false': strings.no
                     }
                 }),
                 formatter: A.bind(instance._booleanFormatter, instance),
-                name: strings['readOnly']
+                name: strings.readOnly
             }, {
                 attributeName: 'required',
                 editor: new A.RadioCellEditor({
                     options: {
-                        'true': strings['yes'],
-                        'false': strings['no']
+                        'true': strings.yes,
+                        'false': strings.no
                     }
                 }),
                 formatter: A.bind(instance._booleanFormatter, instance),
-                name: strings['required']
+                name: strings.required
             }, {
                 attributeName: 'name',
                 editor: new A.TextCellEditor({
@@ -801,15 +801,15 @@ var FormBuilderField = A.Component.create({
                         }
                     }
                 }),
-                name: strings['name']
+                name: strings.name
             }, {
                 attributeName: 'predefinedValue',
                 editor: new A.TextCellEditor(),
-                name: strings['predefinedValue']
+                name: strings.predefinedValue
             }, {
                 attributeName: 'tip',
                 editor: new A.TextAreaCellEditor(),
-                name: strings['tip']
+                name: strings.tip
             }];
         },
 
@@ -824,7 +824,7 @@ var FormBuilderField = A.Component.create({
             var instance = this,
                 strings = instance.getStrings();
 
-            return A.DataType.Boolean.parse(o.data.value) ? strings['yes'] : strings['no'];
+            return A.DataType.Boolean.parse(o.data.value) ? strings.yes : strings.no;
         },
 
         /**
@@ -909,7 +909,7 @@ var FormBuilderField = A.Component.create({
             var instance = this,
                 strings = instance.getStrings();
 
-            if (confirm(strings['deleteFieldsMessage'])) {
+            if (window.confirm(strings.deleteFieldsMessage)) {
                 instance.destroy();
             }
 

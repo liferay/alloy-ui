@@ -338,7 +338,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 
                     return buffer.join(',' + ' ');
                 },
-                name: strings['options']
+                name: strings.options
             });
 
             return model;
