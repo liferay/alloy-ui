@@ -423,7 +423,7 @@
      * fn as the values for the new array. Like A.each, this function can accept
      * an object or an array.
      */
-    A.map = function(obj, fn, context) {
+    A.map = function(obj) {
         var module = AObject;
 
         if (isArray(obj)) {
