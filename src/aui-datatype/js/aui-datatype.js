@@ -968,31 +968,31 @@ A.mix(A.DataType.DateMath, {
 (function(Y) {
     // See http://yuilibrary.com/projects/yui3/ticket/2532862
     var YDateEn = {
-        a: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-        A: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        b: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        B: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
-            "November", "December"],
-        c: "%a %d %b %Y %T %Z",
-        p: ["AM", "PM"],
-        P: ["am", "pm"],
-        r: "%I:%M:%S %p",
-        x: "%d/%m/%y",
-        X: "%T"
+        a: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        A: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        b: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        B: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
+            'November', 'December'],
+        c: '%a %d %b %Y %T %Z',
+        p: ['AM', 'PM'],
+        P: ['am', 'pm'],
+        r: '%I:%M:%S %p',
+        x: '%d/%m/%y',
+        X: '%T'
     };
 
-    Y.namespace("DataType.Date.Locale");
+    Y.namespace('DataType.Date.Locale');
 
     Y.DataType.Date.Locale.en = YDateEn;
 
-    Y.DataType.Date.Locale["en-US"] = Y.merge(YDateEn, {
-        c: "%a %d %b %Y %I:%M:%S %p %Z",
-        x: "%m/%d/%Y",
-        X: "%I:%M:%S %p"
+    Y.DataType.Date.Locale['en-US'] = Y.merge(YDateEn, {
+        c: '%a %d %b %Y %I:%M:%S %p %Z',
+        x: '%m/%d/%Y',
+        X: '%I:%M:%S %p'
     });
 
-    Y.DataType.Date.Locale["en-GB"] = Y.merge(YDateEn, {
-        r: "%l:%M:%S %P %Z"
+    Y.DataType.Date.Locale['en-GB'] = Y.merge(YDateEn, {
+        r: '%l:%M:%S %P %Z'
     });
-    Y.DataType.Date.Locale["en-AU"] = Y.merge(YDateEn);
+    Y.DataType.Date.Locale['en-AU'] = Y.merge(YDateEn);
 }(A));

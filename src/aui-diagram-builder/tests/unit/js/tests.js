@@ -70,10 +70,10 @@ YUI.add('aui-diagram-builder-tests', function(Y) {
 
             connector.set('selected', true);
 
-            Y.getDoc().simulate("keydown", {
+            Y.getDoc().simulate('keydown', {
                 keyCode: 8
             });
-            Y.getDoc().simulate("keydown", {
+            Y.getDoc().simulate('keydown', {
                 keyCode: 46
             });
 
