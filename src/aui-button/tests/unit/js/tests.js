@@ -26,6 +26,8 @@ YUI.add('aui-button-tests', function(Y) {
             xpos,
             'X-Position of input and search-btn-cancel should be the same.'
         );
+
+        input.simulate('blur');
     }
 
     function fillInput(input) {
@@ -89,6 +91,9 @@ YUI.add('aui-button-tests', function(Y) {
                 Y.one('#search-btn-cancel-demo'), 'before');
 
             Y.all('input.clearable').each(function(input) {
+                // TODO: Remove this when yeti is fixed to stop stealing focus from the test.
+                searchButtonCancel._syncButtonUI(input);
+
                 assertPosition(input);
             });
         }
@@ -97,5 +102,5 @@ YUI.add('aui-button-tests', function(Y) {
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['aui-button', 'aui-button-search-cancel', 'aui-node', 'test']
+    requires: ['aui-button', 'aui-button-search-cancel', 'aui-node', 'node-event-simulate', 'test']
 });
