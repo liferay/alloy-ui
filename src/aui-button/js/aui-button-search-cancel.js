@@ -74,7 +74,7 @@ var ButtonSearchCancel = A.Base.create('btn-search-cancel', A.Base, [], {
         AArray.each(instance._buttons, function(button) {
             // To avoid memory leak caused by ghost button references, clear
             // its reference from the input element first
-            button.getData('btn-search-cancel').unwrap().clearData('btn-search-cancel');
+            button.getData('btn-search-cancel').clearData('btn-search-cancel');
             button.remove();
         });
 
@@ -95,6 +95,8 @@ var ButtonSearchCancel = A.Base.create('btn-search-cancel', A.Base, [], {
             container.delegate(
                 ['focus', 'input'],
                 A.debounce(instance._onUserInteraction, 50, instance), trigger),
+            container.delegate('blur',
+                A.debounce(instance._onBlur, 25, instance), trigger),
             // YUI implementation for the windowresize synthetic event do not
             // support Y.on('windowresize', fn, context) binding, therefore
             // should be wrapped using Y.bind.
@@ -114,8 +116,6 @@ var ButtonSearchCancel = A.Base.create('btn-search-cancel', A.Base, [], {
             button = element.getData('btn-search-cancel');
 
         if (!button) {
-            element.wrap('<span/>').ancestor().setStyle('position', 'relative');
-
             button = A.Node.create(
                 A.Lang.sub(
                     instance.TEMPLATE, {
@@ -128,10 +128,26 @@ var ButtonSearchCancel = A.Base.create('btn-search-cancel', A.Base, [], {
             button.setData('btn-search-cancel', element);
             element.setData('btn-search-cancel', button);
 
-            button.on('click', instance._onButtonClick, instance, element);
+            button.on('gesturemovestart', A.rbind('_onButtonClick', instance, element));
         }
 
         return button;
+    },
+
+    /**
+     * Fires when the input loses focus.
+     *
+     * @method _onBlur
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onBlur: function(event) {
+        var instance = this,
+            button = instance.getButtonForElement(event.target);
+
+        if (button) {
+            button.hide();
+        }
     },
 
     /**
@@ -145,7 +161,11 @@ var ButtonSearchCancel = A.Base.create('btn-search-cancel', A.Base, [], {
     _onButtonClick: function(event, element) {
         var instance = this;
 
-        instance._syncButtonUI(element.val('').focus());
+        instance._syncButtonUI(element.val(''));
+
+        A.soon(function() {
+            element.focus();
+        });
     },
 
     /**
