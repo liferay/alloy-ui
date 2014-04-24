@@ -373,7 +373,7 @@ ToolbarRenderer.prototype = {
             }
 
             // Add cssClass support
-            cssClass = [CSS_BTN, value.cssClass];
+            cssClass = [CSS_BTN, CSS_BTN_DEFAULT, value.cssClass];
             buttonNode.addClass(cssClass.join(' '));
 
             // Add id support

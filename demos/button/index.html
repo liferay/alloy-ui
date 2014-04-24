@@ -94,11 +94,11 @@
     YUI({ filter: 'raw' }).use('aui-button', 'aui-button-search-cancel', function(Y) {
 
         new Y.Button({
+            cssClass: 'btn-primary',
             label: 'Basic',
             srcNode: '#basic',
             icon: 'glyphicon glyphicon-print',
-            iconAlign: 'left',
-            primary: true
+            iconAlign: 'left'
         }).render();
 
         new Y.ToggleButton({
@@ -115,8 +115,7 @@
 
         new Y.Button({
             cssClass: 'close',
-            label: '\u00D7',
-            default: false
+            label: '\u00D7'
         }).render('#closeButton');
 
         new Y.ButtonGroup({

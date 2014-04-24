@@ -19,6 +19,7 @@ var Lang = A.Lang,
         BUTTON_GROUP: getClassName('btn', 'group'),
         DISABLED: getClassName('disabled'),
         LABEL: getClassName('label'),
+        PRIMARY: getClassName('btn', 'primary'),
         SELECTED: getClassName('active'),
         TOGGLE: getClassName('togglebtn')
     };
@@ -45,6 +46,17 @@ var ButtonExt = function(config) {
  * @static
  */
 ButtonExt.ATTRS = {
+
+    /**
+     * CSS class to be automatically added to the `boundingBox`.
+     *
+     * @attribute cssClass
+     * @type String
+     */
+    cssClass: {
+        validator: isString,
+        value: CLASS_NAMES.BUTTON_DEFAULT
+    },
 
     /**
      * Defines the HTML type attribute of element e.g. `<input type="button">`.
@@ -274,17 +286,6 @@ Button.CLASS_NAMES = CLASS_NAMES;
 A.Button = A.Base.create(Button.NAME, Button, [ButtonExt, A.WidgetCssClass, A.WidgetToggle], {}, {
 
     /**
-     * CSS class to be automatically added to the `boundingBox`.
-     *
-     * @attribute cssClass
-     * @type String
-     */
-    cssClass: {
-        validator: isString,
-        value: CLASS_NAMES.BUTTON_DEFAULT
-    },
-
-    /**
      * Returns an object literal containing widget constructor data specified in
      * the node.
      *
@@ -412,11 +413,6 @@ A.mix(ButtonGroup.prototype, {
 
         instance.getButtons().each(function(button) {
             if (!button.button && !A.instanceOf(A.Widget.getByNode(button), A.Button)) {
-                // TODO: This shouldn't assume button is always default.
-                // A.Plugin.Button doesn't current allow augmentation, therefore
-                // it can't add A.ButtonExt extra attributes to it.
-                button.addClass(A.ButtonCore.CLASS_NAMES.BUTTON_DEFAULT);
-
                 if (A.Button.hasWidgetLazyConstructorData(button)) {
                     new A.Button(A.Button.getWidgetLazyConstructorFromNodeData(button));
                     A.Button.setWidgetLazyConstructorNodeData(button, null);
