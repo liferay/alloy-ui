@@ -385,7 +385,6 @@ A.Modal = A.Base.create('modal', A.Widget, [
                     header: [
                         {
                             cssClass: 'close',
-                            default: false,
                             label: '\u00D7',
                             on: {
                                 click: function(event) {
