@@ -9,7 +9,7 @@ var Lang = A.Lang,
     now = Lang.now,
     isEmpty = A.Object.isEmpty,
 
-    AArray = A.Array;
+    aArray = A.Array;
 
 /**
  * A base class for Timer.
@@ -82,7 +82,7 @@ var Timer = {
     setTimeout: function(fn, ms, context) {
         var instance = Timer;
 
-        var args = AArray(arguments, 3, true);
+        var args = aArray(arguments, 3, true);
 
         return instance.register(false, fn, ms, context, args);
     },
@@ -99,7 +99,7 @@ var Timer = {
     setInterval: function(fn, ms, context) {
         var instance = Timer;
 
-        var args = AArray(arguments, 3, true);
+        var args = aArray(arguments, 3, true);
 
         return instance.register(true, fn, ms, context, args);
     },

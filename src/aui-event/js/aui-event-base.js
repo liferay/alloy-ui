@@ -5,8 +5,7 @@
  * @submodule aui-event-base
  */
 
-var Lang = A.Lang,
-    AArray = A.Array,
+var aArray = A.Array,
     DOMEventFacade = A.DOMEventFacade,
     DOMEventFacadeProto = DOMEventFacade.prototype;
 
@@ -183,7 +182,7 @@ var KeyMap = {
     isKeyInSet: function(keyCode) {
         var instance = this;
 
-        var args = AArray(arguments, 1, true);
+        var args = aArray(arguments, 1, true);
 
         return instance._isKeyInSet(keyCode, args);
     },
@@ -289,7 +288,7 @@ A.mix(
         isKeyInSet: function() {
             var instance = this;
 
-            var args = AArray(arguments, 0, true);
+            var args = aArray(arguments, 0, true);
 
             return KeyMap._isKeyInSet(instance.keyCode, args);
         },

@@ -437,9 +437,9 @@ A.mix(TreeData.prototype, {
      * @return {TreeNode}
      */
     createNode: function(options) {
-        var classType = A.TreeNode.nodeTypes[isObject(options) ? options.type : options] || A.TreeNode;
+        var ClassType = A.TreeNode.nodeTypes[isObject(options) ? options.type : options] || A.TreeNode;
 
-        return new classType(
+        return new ClassType(
             isObject(options) ? options : {}
         );
     },

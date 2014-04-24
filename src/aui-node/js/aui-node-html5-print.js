@@ -68,13 +68,13 @@ var html5shiv = A.html5shiv,
 
 html5shiv(DOC);
 
-var PrintFix = function() {
+var printFix = function() {
     var afterPrint = function() {
         if (isShivDisabled()) {
             destroy();
         }
         else {
-            PrintFix.onAfterPrint();
+            printFix.onAfterPrint();
         }
     };
 
@@ -83,7 +83,7 @@ var PrintFix = function() {
             destroy();
         }
         else {
-            PrintFix.onBeforePrint();
+            printFix.onBeforePrint();
         }
     };
 
@@ -99,12 +99,12 @@ var PrintFix = function() {
 
     init();
 
-    PrintFix.destroy = destroy;
-    PrintFix.init = init;
+    printFix.destroy = destroy;
+    printFix.init = init;
 };
 
 A.mix(
-    PrintFix, {
+    printFix, {
         /**
          * Fires after a print.
          *
@@ -512,6 +512,6 @@ A.mix(
     }
 );
 
-A.namespace('HTML5').PrintFix = PrintFix;
+A.namespace('HTML5').printFix = printFix;
 
-PrintFix();
+printFix();

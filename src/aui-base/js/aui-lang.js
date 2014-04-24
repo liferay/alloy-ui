@@ -1,6 +1,6 @@
 (function() {
     var Lang = A.Lang,
-        AArray = A.Array,
+        aArray = A.Array,
         AObject = A.Object,
 
         isArray = Lang.isArray,
@@ -19,7 +19,7 @@
             var xargs = arguments;
 
             if (xargs.length > 2) {
-                xargs = AArray(xargs, 2, true);
+                xargs = aArray(xargs, 2, true);
             }
 
             dynamicLookup = (isString(fn) && context);
@@ -45,7 +45,7 @@
                 context = context || method;
 
                 if (argLength > 0) {
-                    returnValue = method.apply(context, AArray(arguments, 0, true).slice(0, argLength));
+                    returnValue = method.apply(context, aArray(arguments, 0, true).slice(0, argLength));
                 }
                 else {
                     returnValue = method.call(context);
@@ -86,7 +86,7 @@
         }
     });
 
-    A.mix(AArray, {
+    A.mix(aArray, {
         remove: function(a, from, to) {
             var rest = a.slice((to || from) + 1 || a.length);
             a.length = (from < 0) ? (a.length + from) : from;
@@ -95,10 +95,10 @@
         },
 
         removeItem: function(a, item) {
-            var index = AArray.indexOf(a, item);
+            var index = aArray.indexOf(a, item);
 
             if (index > -1) {
-                return AArray.remove(a, index);
+                return aArray.remove(a, index);
             }
 
             return a;
@@ -427,7 +427,7 @@
         var module = AObject;
 
         if (isArray(obj)) {
-            module = AArray;
+            module = aArray;
         }
 
         return module.map.apply(this, arguments);
