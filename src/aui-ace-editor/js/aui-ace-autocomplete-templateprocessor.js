@@ -70,6 +70,9 @@ var Lang = A.Lang,
 
                 callbackSuccess(matches);
             }
+            else {
+                callbackError();
+            }
         },
 
         /**
