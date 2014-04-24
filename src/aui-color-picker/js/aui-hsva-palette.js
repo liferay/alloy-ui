@@ -44,7 +44,8 @@ var Lang = A.Lang,
 
         TPL_ALPHA_SLIDER_CONTAINER: '<div class="' + CSS_ALPHA_SLIDER_CONTAINER + '"><div>',
 
-        TPL_ALPHA_THUMB: '<span class="' + CSS_ALPHA_THUMB + '"><span class="' + CSS_ALPHA_THUMB_IMAGE + '"></span></span>',
+        TPL_ALPHA_THUMB: '<span class="' + CSS_ALPHA_THUMB + '"><span class="' + CSS_ALPHA_THUMB_IMAGE +
+            '"></span></span>',
 
         /**
          * Construction logic executed during `HSVAPalette` instantiation.
