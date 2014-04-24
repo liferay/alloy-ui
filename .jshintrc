@@ -17,7 +17,8 @@
         "A": true,
         "Y": true,
         "AUI": true,
-        "YUI": true
+        "YUI": true,
+        "YUITest": true
     },
     "globalstrict": false,
     "immed": true,
