@@ -236,6 +236,53 @@ YUI.add('aui-tooltip-tests', function(Y) {
             });
 
             test.wait(1000);
+        },
+
+        '#13 should format the content as requested': function() {
+            var tooltip = new Y.Tooltip({
+                formatter: function(text) {
+                    return text.toUpperCase();
+                },
+                trigger: '#triggerTooltipFormatted'
+            }).render();
+
+            Y.Assert.areEqual(
+                'TEST',
+                tooltip.get('contentBox').get('text'),
+                'Tooltip content should be uppercase'
+            );
+        },
+
+        '#14 should create tooltip without trigger': function() {
+            var tooltip = new Y.Tooltip({
+                contentBox: '#noTrigger'
+            }).render();
+
+            Y.Assert.isTrue(
+                tooltip.get('boundingBox').hasClass('tooltip'),
+                'Bounding box should have the tooltip class'
+            );
+            Y.Assert.areEqual(
+                'noTrigger',
+                tooltip.get('contentBox').get('id'),
+                'Content box should be the original element'
+            );
+        },
+
+        '#15 should create tooltip without title': function() {
+            var bodyContent = 'Some Content',
+                tooltip;
+
+            tooltip = new Y.Tooltip({
+                trigger: '#triggerNoTitle',
+                bodyContent: bodyContent
+            }).render();
+
+            Y.Assert.areEqual(
+                bodyContent,
+                tooltip.get('contentBox').get('text'),
+                'Body content should have been used as the tooltip\'s content'
+            );
         }
     }));
     Y.Test.Runner.add(suite);
