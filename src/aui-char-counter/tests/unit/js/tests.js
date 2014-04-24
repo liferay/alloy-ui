@@ -48,7 +48,8 @@ YUI.add('aui-char-counter-tests', function(Y) {
             Y.Assert.areEqual('12345', this.input.get('value'));
 
             this.changeInputContent('123456');
-            Y.Assert.areEqual('12345', this.input.get('value'), 'The string 123456 exceeds the limit, so it should be cropped.');
+            Y.Assert.areEqual('12345', this.input.get('value'),
+                'The string 123456 exceeds the limit, so it should be cropped.');
         },
 
         'should not allow text to exceed max initially': function() {
@@ -59,7 +60,8 @@ YUI.add('aui-char-counter-tests', function(Y) {
                 maxLength: 5
             });
 
-            Y.Assert.areEqual('12345', this.input.get('value'), 'The value 123456 should be cropped after initializing the CharCounter.');
+            Y.Assert.areEqual('12345', this.input.get('value'),
+                'The value 123456 should be cropped after initializing the CharCounter.');
         },
 
         'should be able to trigger length check manually': function() {
@@ -93,16 +95,20 @@ YUI.add('aui-char-counter-tests', function(Y) {
                 maxLength: 5
             });
 
-            Y.Assert.areEqual(5, Lang.toInt(this.counter.get('text')), 'Limit is set to 5 characters, initially there should be 5 characters remaining.');
+            Y.Assert.areEqual(5, Lang.toInt(this.counter.get('text')),
+                'Limit is set to 5 characters, initially there should be 5 characters remaining.');
 
             this.changeInputContent('1');
-            Y.Assert.areEqual(4, Lang.toInt(this.counter.get('text')), 'Limit is set to 5 characters, 1 character added, remaining should be 4.');
+            Y.Assert.areEqual(4, Lang.toInt(this.counter.get('text')),
+                'Limit is set to 5 characters, 1 character added, remaining should be 4.');
 
             this.changeInputContent('12345');
-            Y.Assert.areEqual(0, Lang.toInt(this.counter.get('text')), 'Limit is set to 5 characters, remaining should be 0.');
+            Y.Assert.areEqual(0, Lang.toInt(this.counter.get('text')),
+                'Limit is set to 5 characters, remaining should be 0.');
 
             this.changeInputContent('123456');
-            Y.Assert.areEqual(0, Lang.toInt(this.counter.get('text')), 'Limit is set to 5 characters, remaining should be 0 and value should be cropped.');
+            Y.Assert.areEqual(0, Lang.toInt(this.counter.get('text')),
+                'Limit is set to 5 characters, remaining should be 0 and value should be cropped.');
         },
 
         'should work with max length changes': function() {
@@ -116,7 +122,8 @@ YUI.add('aui-char-counter-tests', function(Y) {
 
             this.charCounter.set('maxLength', 2);
 
-            Y.Assert.areEqual('12', this.input.get('value'), 'Max length set to 2, value should be cropped to \'12\'.');
+            Y.Assert.areEqual('12', this.input.get('value'),
+                'Max length set to 2, value should be cropped to \'12\'.');
             Y.Assert.areEqual(0, Lang.toInt(this.counter.get('text')), 'Expecting 0 remaining characters.');
         },
 
@@ -136,7 +143,9 @@ YUI.add('aui-char-counter-tests', function(Y) {
             Y.Assert.isFalse(eventTriggered, 'maxlength event should not be fired yet.');
 
             this.changeInputContent('12345');
-            Y.Assert.isTrue(eventTriggered, 'Max length is set to 5 characters, and value to \'12345\',  maxLength event should be fired now.');
+            Y.Assert.isTrue(eventTriggered,
+                'Max length is set to 5 characters, and value to \'12345\',  maxLength event should be fired now.'
+            );
         },
 
         'should be destroyed correctly': function() {
