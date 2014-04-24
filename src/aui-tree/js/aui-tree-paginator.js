@@ -24,7 +24,7 @@ var Lang = A.Lang,
  * @constructor
  */
 
-function TreeViewPaginator(config) {
+function TreeViewPaginator() {
     var instance = this;
 
     A.after(instance._bindPaginatorUI, this, 'bindUI');
@@ -50,8 +50,6 @@ TreeViewPaginator.ATTRS = {
      */
     paginator: {
         setter: function(value) {
-            var instance = this;
-
             var paginatorNode = A.Node.create(
                 Lang.sub(
                     TPL_PAGINATOR, {
@@ -121,7 +119,7 @@ TreeViewPaginator.prototype = {
      * @param {EventFacade} event The Event object
      * @protected
      */
-    _defPaginatorClickFn: function(event) {
+    _defPaginatorClickFn: function() {
         var instance = this;
 
         var paginator = instance.get('paginator');
@@ -194,7 +192,6 @@ TreeViewPaginator.prototype = {
             }
 
             var childrenLength = instance.getChildrenLength();
-            var start = paginator.start;
             var total = paginator.total || childrenLength;
 
             var showPaginator = childrenLength && hasMoreData && (total > childrenLength);

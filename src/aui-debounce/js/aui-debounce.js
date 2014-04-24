@@ -1,6 +1,5 @@
 var Lang = A.Lang,
     AArray = A.Array,
-    isArray = Lang.isArray,
     isString = Lang.isString,
     isUndefined = Lang.isUndefined,
 

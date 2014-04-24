@@ -499,7 +499,7 @@ var DiagramBuilder = A.Component.create({
          * @param attribute
          * @protected
          */
-        destructor: function(attribute) {
+        destructor: function() {
             var instance = this;
 
             instance.get('suggestConnectorOverlay').destroy();
@@ -581,7 +581,6 @@ var DiagramBuilder = A.Component.create({
          * @param type
          */
         getFieldClass: function(type) {
-            var instance = this;
             var clazz = A.DiagramBuilder.types[type];
 
             if (clazz) {
@@ -657,7 +656,7 @@ var DiagramBuilder = A.Component.create({
          * @param diagramNode
          * @param drag
          */
-        hideSuggestConnectorOverlay: function(diagramNode, drag) {
+        hideSuggestConnectorOverlay: function() {
             var instance = this;
 
             instance.connector.hide();
@@ -728,8 +727,7 @@ var DiagramBuilder = A.Component.create({
          */
         showSuggestConnectorOverlay: function(xy) {
             var instance = this,
-                showSuggestConnectorOverlay = instance.get('suggestConnectorOverlay'),
-                boundingBox = showSuggestConnectorOverlay.get('boundingBox');
+                showSuggestConnectorOverlay = instance.get('suggestConnectorOverlay');
 
             showSuggestConnectorOverlay.get('boundingBox').addClass(CSS_DIAGRAM_SUGGEST_CONNECTOR);
 
@@ -866,7 +864,7 @@ var DiagramBuilder = A.Component.create({
          * @param event
          * @protected
          */
-        _onCancel: function(event) {
+        _onCancel: function() {
             var instance = this;
 
             instance.closeEditProperties();
@@ -1007,7 +1005,7 @@ var DiagramBuilder = A.Component.create({
          * @param event
          * @protected
          */
-        _onCanvasMouseDown: function(event) {
+        _onCanvasMouseDown: function() {
             var instance = this;
 
             instance.stopEditing();
@@ -1063,7 +1061,6 @@ var DiagramBuilder = A.Component.create({
          * @protected
          */
         _onNodeMouseEnter: function(event) {
-            var instance = this;
             var diagramNode = A.Widget.getByNode(event.currentTarget);
 
             diagramNode.set('highlighted', true);
@@ -1093,7 +1090,7 @@ var DiagramBuilder = A.Component.create({
          * @param event
          * @protected
          */
-        _onSave: function(event) {
+        _onSave: function() {
             var instance = this;
             var editingNode = instance.editingNode;
             var editingConnector = instance.editingConnector;
@@ -1867,9 +1864,8 @@ var DiagramNode = A.Component.create({
          * @method connectEnd
          * @param event
          */
-        connectEnd: function(event) {
+        connectEnd: function() {
             var instance = this;
-            var drag = event.target;
             var builder = instance.get('builder');
             var publishedSource = builder.publishedSource;
 
@@ -1942,7 +1938,7 @@ var DiagramNode = A.Component.create({
          * @method connectOutTarget
          * @param event
          */
-        connectOutTarget: function(event) {
+        connectOutTarget: function() {
             var instance = this;
             var builder = instance.get('builder');
 
@@ -1957,7 +1953,7 @@ var DiagramNode = A.Component.create({
          * @method connectOverTarget
          * @param event
          */
-        connectOverTarget: function(event) {
+        connectOverTarget: function() {
             var instance = this;
             var builder = instance.get('builder');
 
@@ -1975,7 +1971,6 @@ var DiagramNode = A.Component.create({
         connectStart: function(event) {
             var instance = this;
             var builder = instance.get('builder');
-            var canvas = builder.get('canvas');
 
             builder.connector.show().set('p1', event.startXY);
 
@@ -2241,8 +2236,6 @@ var DiagramNode = A.Component.create({
          * @protected
          */
         _afterConnectorRemove: function(event) {
-            var instance = this;
-
             event.value.destroy();
         },
 
@@ -2253,7 +2246,7 @@ var DiagramNode = A.Component.create({
          * @param event
          * @protected
          */
-        _afterRender: function(event) {
+        _afterRender: function() {
             var instance = this;
 
             instance.setStdModContent(WidgetStdMod.BODY, '', WidgetStdMod.AFTER);
@@ -2299,7 +2292,7 @@ var DiagramNode = A.Component.create({
          * @param val
          * @protected
          */
-        _connectorsValueFn: function(val) {
+        _connectorsValueFn: function() {
             var instance = this;
 
             return new A.Map({
@@ -2316,9 +2309,8 @@ var DiagramNode = A.Component.create({
          * @param val
          * @protected
          */
-        _controlsToolbarValueFn: function(val) {
-            var instance = this,
-                id = instance.get('id');
+        _controlsToolbarValueFn: function() {
+            var instance = this;
 
             return {
                 children: [
@@ -2339,7 +2331,7 @@ var DiagramNode = A.Component.create({
          * @param event
          * @protected
          */
-        _handleCloseEvent: function(event) {
+        _handleCloseEvent: function() {
             var instance = this;
 
             instance.get('builder').deleteSelectedNode();
@@ -2449,7 +2441,7 @@ var DiagramNode = A.Component.create({
          * @param event
          * @protected
          */
-        _onBoundaryDrag: function(event) {
+        _onBoundaryDrag: function() {
             var instance = this;
             var dd = instance.boundaryDragDelegate.dd;
 
@@ -2557,7 +2549,7 @@ var DiagramNode = A.Component.create({
          * @param event
          * @protected
          */
-        _renderControlsToolbar: function(event) {
+        _renderControlsToolbar: function() {
             var instance = this;
 
             instance.controlsToolbar = new A.Toolbar(
@@ -2793,8 +2785,6 @@ var DiagramNode = A.Component.create({
          * @protected
          */
         _valueShapeBoundary: function() {
-            var instance = this;
-
             return {
                 height: 41,
                 type: 'rect',
@@ -2913,8 +2903,6 @@ A.DiagramNodeState = A.Component.create({
          * @protected
          */
         _valueShapeBoundary: function() {
-            var instance = this;
-
             return {
                 radius: 15,
                 type: 'circle',
@@ -3407,8 +3395,6 @@ A.DiagramNodeTask = A.Component.create({
          * @return {Object}
          */
         _valueShapeBoundary: function() {
-            var instance = this;
-
             return {
                 height: 55,
                 type: 'rect',

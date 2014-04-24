@@ -18,7 +18,7 @@ var Lang = A.Lang,
 
         AArray.each(
             val,
-            function(item, index, collection) {
+            function(item) {
                 options[item.value] = item.label;
             }
         );
@@ -105,7 +105,7 @@ var OptionsEditor = A.Component.create({
          * @param event
          * @protected
          */
-        _handleSaveEvent: function(event) {
+        _handleSaveEvent: function() {
             var instance = this;
 
             instance.saveOptions();
@@ -304,7 +304,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 
                         A.each(
                             this.get('options'),
-                            function(item, index, collection) {
+                            function(item, index) {
                                 var option = {
                                     label: item,
                                     value: index
@@ -331,7 +331,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 
                     A.each(
                         o.data.value,
-                        function(item, index, collection) {
+                        function(item) {
                             buffer.push(item.label);
                         }
                     );
@@ -358,7 +358,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 
             A.each(
                 val,
-                function(item, index, collection) {
+                function(item) {
                     buffer.push(
                         Lang.sub(
                             instance.get('optionTemplate'), {

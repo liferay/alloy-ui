@@ -6,7 +6,6 @@
  */
 
 var AObject = A.Object,
-    Node = A.Node,
     Selector = A.Selector;
 
 /**
@@ -160,13 +159,13 @@ A.Event.define(
          * @param notifier
          * @protected
          */
-        _detachEvents: function(node, subscription, notifier) {
+        _detachEvents: function(node, subscription) {
             A.each(
                 subscription._handles,
-                function(events, node, handles) {
+                function(events) {
                     A.each(
                         events,
-                        function(handle, event, events) {
+                        function(handle) {
                             handle.detach();
                         }
                     );

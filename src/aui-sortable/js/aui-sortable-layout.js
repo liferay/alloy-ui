@@ -536,7 +536,7 @@ var SortableLayout = A.Component.create({
             var dropNodes = instance.get('dropNodes');
 
             if (dropNodes) {
-                dropNodes.each(function(node, i) {
+                dropNodes.each(function(node) {
                     instance.addDropNode(node);
                 });
             }
@@ -549,7 +549,7 @@ var SortableLayout = A.Component.create({
          * @param event
          * @protected
          */
-        _defPlaceholderAlign: function(event) {
+        _defPlaceholderAlign: function() {
             var instance = this;
             var activeDrop = instance.activeDrop;
             var placeholder = instance.get('placeholder');
@@ -655,7 +655,7 @@ var SortableLayout = A.Component.create({
          * @param event
          * @protected
          */
-        _positionNode: function(event) {
+        _positionNode: function() {
             var instance = this;
             var activeDrop = instance.lastAlignDrop || instance.activeDrop;
 
@@ -733,7 +733,7 @@ var SortableLayout = A.Component.create({
          * @param event
          * @protected
          */
-        _syncProxyNodeUI: function(event) {
+        _syncProxyNodeUI: function() {
             var instance = this;
             var dragNode = DDM.activeDrag.get('dragNode');
             var proxyNode = instance.get('proxyNode');
@@ -888,7 +888,7 @@ var SortableLayout = A.Component.create({
          * @param event
          * @protected
          */
-        _onDragStart: function(event) {
+        _onDragStart: function() {
             var instance = this;
 
             if (instance.get('lazyStart')) {

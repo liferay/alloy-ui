@@ -22,7 +22,7 @@ var Lang = A.Lang,
  * @constructor
  */
 
-function TreeViewIO(config) {
+function TreeViewIO() {
     var instance = this;
 
     instance.publish(
@@ -191,7 +191,7 @@ TreeViewIO.prototype = {
      * @param event
      * @protected
      */
-    _onIOSuccessDefault: function(event) {
+    _onIOSuccessDefault: function() {
         var instance = this;
 
         var ownerTree = instance.get('ownerTree');

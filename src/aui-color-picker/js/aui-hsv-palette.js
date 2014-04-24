@@ -19,7 +19,6 @@ var AColor = A.Color,
     MAXLEN_SATURATION = 3,
     MAXLEN_VALUE = 3,
 
-    MAX_ALPHA = 100,
     MAX_HUE = 360,
     MAX_SATURATION = 100,
     MAX_VALUE = 100,
@@ -28,7 +27,6 @@ var AColor = A.Color,
     MIN_B = 0,
     MIN_G = 0,
     MIN_HUE = 0,
-    MIN_R = 0,
     MIN_SATURATION = 0,
     MIN_VALUE = 0,
 
@@ -430,8 +428,6 @@ var AColor = A.Color,
          * @protected
          */
         _calculateRGBArray: function(r, g, b) {
-            var instance = this;
-
             return AColor.fromArray([r, g, b], 'RGB');
         },
 
@@ -588,8 +584,6 @@ var AColor = A.Color,
          * @protected
          */
         _getFieldValue: function(fieldNode) {
-            var instance = this;
-
             return fieldNode.one('.' + CSS_VALUE).get('value');
         },
 
@@ -602,7 +596,7 @@ var AColor = A.Color,
          * @return {String} hex value
          * @protected
          */
-        _getHexValue: function(hexColor, rgbColorArray) {
+        _getHexValue: function(hexColor) {
             return hexColor.substring(1);
         },
 
@@ -634,8 +628,6 @@ var AColor = A.Color,
          * @protected
          */
         _getHSVArray: function(hsv) {
-            var instance = this;
-
             return AColor.toArray(hsv, 'HSV');
         },
 
@@ -1106,8 +1098,6 @@ var AColor = A.Color,
          * @protected
          */
         _setFieldValue: function(fieldNode, value) {
-            var instance = this;
-
             fieldNode.one('.' + CSS_VALUE).set('value', value);
         },
 

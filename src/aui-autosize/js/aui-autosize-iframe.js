@@ -4,10 +4,7 @@
  * @module aui-autosize-iframe
  */
 
-var Lang = A.Lang,
-    isString = Lang.isString,
-
-    getClassName = A.getClassName,
+var getClassName = A.getClassName,
 
     CSS_AUTOSIZE_IFRAME_MONITORED_HEIGHT = getClassName('autosizeiframe', 'monitored', 'height');
 
@@ -20,7 +17,7 @@ var Lang = A.Lang,
  *     properties.
  * @constructor
  */
-AutosizeIframe = A.Component.create({
+var AutosizeIframe = A.Component.create({
 
     /**
      * Static property provides a string to identify the class.
@@ -288,7 +285,7 @@ AutosizeIframe = A.Component.create({
          * @param event
          * @protected
          */
-        _setInterval: function(event) {
+        _setInterval: function() {
             var instance = this;
 
             if (!instance._intervalId) {

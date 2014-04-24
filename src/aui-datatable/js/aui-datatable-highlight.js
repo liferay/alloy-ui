@@ -11,8 +11,7 @@ var Lang = A.Lang,
     isBoolean = Lang.isBoolean,
 
     _setCSSClockwiseRule = function(val) {
-        var instance = this,
-            i = 0,
+        var i = 0,
             len;
 
         if (isString(val)) {
@@ -148,7 +147,7 @@ var DataTableHighlight = A.Base.create(
          * @param event
          * @protected
          */
-        _afterActiveCoordChange: function(event) {
+        _afterActiveCoordChange: function() {
             var instance = this,
                 host = instance.get('host'),
                 activeBorderWidth = instance.get('activeBorderWidth'),
@@ -185,7 +184,7 @@ var DataTableHighlight = A.Base.create(
          * @param event
          * @protected
          */
-        _afterDataChange: function(event) {
+        _afterDataChange: function() {
             var instance = this;
 
             instance.clear();

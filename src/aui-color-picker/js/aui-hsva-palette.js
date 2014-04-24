@@ -7,7 +7,6 @@
 
 var Lang = A.Lang,
     AColor = A.Color,
-    ADo = A.Do,
     AWidget = A.Widget,
 
     getClassName = A.getClassName,
@@ -227,8 +226,7 @@ var Lang = A.Lang,
          * @protected
          */
         _convertColor: function(value, from, to) {
-            var instance = this,
-                out,
+            var out,
                 outputHex;
 
             outputHex = (to === 'hex');
@@ -305,8 +303,6 @@ var Lang = A.Lang,
          * @protected
          */
         _getHSVArray: function(hsv) {
-            var instance = this;
-
             return AColor.toArray(hsv, 'HSVA');
         },
 

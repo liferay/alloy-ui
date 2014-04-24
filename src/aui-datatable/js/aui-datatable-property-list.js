@@ -78,7 +78,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
      * @param event
      * @protected
      */
-    _afterUITriggerSort: function(event) {
+    _afterUITriggerSort: function() {
         var instance = this;
 
         instance.highlight.clear();

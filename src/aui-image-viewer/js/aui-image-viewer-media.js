@@ -128,7 +128,7 @@ var MediaViewerPlugin = A.Component.create({
          * @param config
          * @protected
          */
-        initializer: function(config) {
+        initializer: function() {
             var instance = this;
 
             var handles = instance._handles;
@@ -271,7 +271,7 @@ var MediaViewerPlugin = A.Component.create({
 
             A.some(
                 providers,
-                function(value, key, collection) {
+                function(value, key) {
                     return value.matcher.test(source) && (mediaType = key);
                 }
             );
@@ -307,7 +307,7 @@ var MediaViewerPlugin = A.Component.create({
          * @param event
          * @protected
          */
-        _restoreMedia: function(event) {
+        _restoreMedia: function() {
             var instance = this;
 
             var host = instance.get('host');
@@ -360,7 +360,7 @@ var MediaViewerPlugin = A.Component.create({
 
             A.each(
                 options,
-                function(value, key, collection) {
+                function(value, key) {
                     var regexParam = new RegExp(
                         Lang.sub(
                             REGEX_PARAM, {

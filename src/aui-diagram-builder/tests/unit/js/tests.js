@@ -102,10 +102,8 @@ YUI.add('aui-diagram-builder-tests', function(Y) {
 
             Y.Array.each(
                 lines,
-                function(item, index, collection) {
-                    width = item.attr('width');
-
-                    if (width) {
+                function(item) {
+                    if (item.attr('width')) {
                         start = item.attr('d');
 
                         item.simulate('mouseout');

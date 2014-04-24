@@ -203,8 +203,6 @@
         },
 
         nl2br: function(str) {
-            var instance = this;
-
             return String(str).replace(REGEX_NL2BR, '<br />');
         },
 
@@ -280,8 +278,6 @@
         },
 
         stripTags: function(str) {
-            var instance = this;
-
             if (str) {
                 str = String(str).replace(REGEX_STRIP_TAGS, '');
             }

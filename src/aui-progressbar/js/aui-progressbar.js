@@ -388,7 +388,7 @@ var ProgressBar = A.Component.create({
          * @param {String} val Progress value
          * @protected
          */
-        _uiSetValue: function(val) {
+        _uiSetValue: function() {
             var instance = this;
             var pixelStep = instance._getPixelStep();
 

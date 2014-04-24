@@ -707,7 +707,6 @@ var SchedulerTableView = A.Component.create({
             var scheduler = instance.get('scheduler');
             var viewDate = scheduler.get('viewDate');
             var formatter = instance.get('headerDateFormatter');
-            var locale = instance.get('locale');
             var firstDayOfWeekDt = instance._findFirstDayOfWeek(viewDate);
 
             instance.colHeaderDaysNode.all('div').each(
@@ -822,8 +821,6 @@ var SchedulerTableView = A.Component.create({
          * @return {Number} The cell index at a given `position`.
          */
         _getCellIndex: function(position) {
-            var instance = this;
-
             return position[1] * WEEK_LENGTH + position[0];
         },
 
@@ -864,7 +861,6 @@ var SchedulerTableView = A.Component.create({
          * @return {String} The label that belongs to a given `A.SchedulerEvent`.
          */
         _getEvtLabel: function(evt) {
-            var instance = this;
             var endDate = evt.get('endDate');
             var startDate = evt.get('startDate');
 
@@ -885,7 +881,6 @@ var SchedulerTableView = A.Component.create({
          * @protected
          */
         _getEvtSplitInfo: function(evt, celDate, rowStartDate, rowEndDate) {
-            var instance = this;
             var startDate = evt.getClearStartDate();
             var endDate = evt.getClearEndDate();
 
@@ -1055,8 +1050,6 @@ var SchedulerTableView = A.Component.create({
          * @protected
          */
         _syncEventNodeContainerUI: function(evt, node, evtSplitInfo) {
-            var instance = this;
-
             node.addClass(CSS_SVT_TABLE_DATA_EVENT);
 
             if (evtSplitInfo.left) {
@@ -1161,7 +1154,6 @@ var SchedulerTableView = A.Component.create({
          * @protected
          */
         _valueNodeList: function(size, tpl) {
-            var instance = this;
             var buffer = [];
 
             while (size--) {

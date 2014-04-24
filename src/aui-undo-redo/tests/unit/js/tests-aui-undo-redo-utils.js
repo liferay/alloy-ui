@@ -31,7 +31,7 @@ YUI.add('tests-aui-undo-redo-utils', function(Y) {
                     instance._undoCalls++;
 
                     if (async) {
-                        return new Y.Promise(function(resolve, reject) {
+                        return new Y.Promise(function(resolve) {
                             Y.soon(function() {
                                 instance._removeSuffix(action.suffix);
                                 resolve();
@@ -47,7 +47,7 @@ YUI.add('tests-aui-undo-redo-utils', function(Y) {
                     instance._redoCalls++;
 
                     if (async) {
-                        return new Y.Promise(function(resolve, reject) {
+                        return new Y.Promise(function(resolve) {
                             Y.soon(function() {
                                 instance._appendSuffix(action.suffix);
                                 resolve();

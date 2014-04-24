@@ -4,8 +4,6 @@
  * @module aui-ace-editor
  */
 
-var Lang = A.Lang;
-
 var ACE_EDITOR_BASE_PATH = A.config.base + 'aui-ace-editor/ace';
 
 ace.config.set('modePath', ACE_EDITOR_BASE_PATH);

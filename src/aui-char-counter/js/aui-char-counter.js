@@ -216,7 +216,7 @@ var CharCounter = A.Component.create({
          * @param {EventFacade} event
          * @protected
          */
-        _onInputChange: function(event) {
+        _onInputChange: function() {
             var instance = this;
 
             instance.checkLength();

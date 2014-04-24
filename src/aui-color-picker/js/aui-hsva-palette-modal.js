@@ -5,8 +5,7 @@
  * @submodule aui-hsv-palette-modal
  */
 
-var AArray = A.Array,
-    AWidget = A.Widget,
+var AWidget = A.Widget,
     Lang = A.Lang,
 
     getClassName = A.getClassName,

@@ -4,12 +4,7 @@
  * @module aui-selector
  */
 
-var Lang = A.Lang,
-    isString = Lang.isString,
-
-    SELECTOR = A.Selector,
-
-    getClassName = A.getClassName,
+var SELECTOR = A.Selector,
 
     CSS_HIDE = A.getClassName('hide'),
     REGEX_HIDDEN_CLASSNAMES = new RegExp(CSS_HIDE);

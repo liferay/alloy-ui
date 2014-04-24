@@ -157,7 +157,7 @@ A.mix(defaults, {
             return regex && regex.test(val);
         },
 
-        date: function(val, node, ruleValue) {
+        date: function(val) {
             var date = new Date(val);
 
             return (isDate(date) && (date !== 'Invalid Date') && !isNaN(date));
@@ -197,7 +197,7 @@ A.mix(defaults, {
             return (length >= ruleValue[0]) && (length <= ruleValue[1]);
         },
 
-        required: function(val, node, ruleValue) {
+        required: function(val, node) {
             var instance = this;
 
             if (A.FormValidator.isCheckable(node)) {
@@ -517,7 +517,7 @@ var FormValidator = A.Component.create({
             var instance = this,
                 boundingBox = instance.get('boundingBox');
 
-            var onceFocusHandler = boundingBox.delegate('focus', function(event) {
+            var onceFocusHandler = boundingBox.delegate('focus', function() {
                 instance._setARIARoles();
                 onceFocusHandler.detach();
             }, 'input,select,textarea,button');
@@ -812,7 +812,7 @@ var FormValidator = A.Component.create({
 
             A.Array.each(
                 errors,
-                function(error, index) {
+                function(error) {
                     var message = instance.getFieldErrorMessage(field, error),
                         messageEl = instance.get('messageContainer').addClass(error);
 
@@ -1212,7 +1212,7 @@ var FormValidator = A.Component.create({
          * @param event
          * @protected
          */
-        _onFormReset: function(event) {
+        _onFormReset: function() {
             var instance = this;
 
             instance.resetAllFields();
@@ -1307,7 +1307,7 @@ var FormValidator = A.Component.create({
 A.each(
     defaults.REGEX,
     function(regex, key) {
-        defaults.RULES[key] = function(val, node, ruleValue) {
+        defaults.RULES[key] = function(val) {
             return defaults.REGEX[key].test(val);
         };
     }

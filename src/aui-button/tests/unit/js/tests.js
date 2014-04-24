@@ -45,7 +45,7 @@ YUI.add('aui-button-tests', function(Y) {
                 trigger: '.clearable'
             });
 
-            inputNode.once('click', function(event) {
+            inputNode.once('click', function() {
                 setTimeout(function() {
                     test.resume(function() {
                         assertPosition(inputNode);
@@ -68,7 +68,7 @@ YUI.add('aui-button-tests', function(Y) {
                 trigger: '.clearable'
             });
 
-            inputNode.once('click', function(event) {
+            inputNode.once('click', function() {
                 setTimeout(function() {
                     test.resume(function() {
                         assertPosition(inputNode);

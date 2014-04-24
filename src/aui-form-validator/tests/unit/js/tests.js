@@ -65,8 +65,7 @@ YUI.add('aui-form-validator-tests', function(Y) {
          * Tests: AUI-965
          */
         'test submit form': function() {
-            var buttonSubmit,
-                elementWithoutError,
+            var elementWithoutError,
                 form;
 
             form = Y.one('#myForm');

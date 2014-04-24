@@ -1,5 +1,4 @@
-var Lang = A.Lang,
-    getClassName = A.getClassName,
+var getClassName = A.getClassName,
 
     defaults = A.namespace('config.viewport'),
 
@@ -20,7 +19,7 @@ var Lang = A.Lang,
 
     REGEX_CLASSNAMES = new RegExp('(\\s|\\b)+' + CSS_PREFIX + '(lt|gt)*\\d+(\\b|\\s)+', 'g');
 
-var viewportChange = function(event) {
+var viewportChange = function() {
     var buffer = [];
 
     var oldClassNames = DOC_EL.className.replace(REGEX_CLASSNAMES, '');

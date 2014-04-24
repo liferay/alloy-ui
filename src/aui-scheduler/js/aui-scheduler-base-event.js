@@ -976,8 +976,6 @@ var SchedulerEvent = A.Component.create({
          * @protected
          */
         _setDate: function(val) {
-            var instance = this;
-
             if (isNumber(val)) {
                 val = new Date(val);
             }

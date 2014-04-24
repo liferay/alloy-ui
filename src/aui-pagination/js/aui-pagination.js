@@ -14,7 +14,6 @@ var Lang = A.Lang,
 
     CSS_ACTIVE = getCN('active'),
     CSS_DISABLED = getCN('disabled'),
-    CSS_HIDE = getCN('hide'),
     CSS_PAGINATION_CONTROL = getCN('pagination', 'control');
 
 /**
@@ -575,7 +574,7 @@ var Pagination = A.Component.create({
          * @param {Number} val
          * @protected
          */
-        _uiSetOffset: function(val) {
+        _uiSetOffset: function() {
             var instance = this;
 
             instance._renderItemsUI(instance.get('total'));
@@ -614,7 +613,7 @@ var Pagination = A.Component.create({
          * @param {Boolean} val
          * @protected
          */
-        _uiSetShowControls: function(val) {
+        _uiSetShowControls: function() {
             var instance = this;
 
             instance._renderItemsUI(instance.get('total'));

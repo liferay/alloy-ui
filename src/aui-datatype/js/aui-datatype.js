@@ -354,8 +354,6 @@ A.mix(A.DataType.DateMath, {
      * @param d2
      */
     copyHours: function(d1, d2) {
-        var instance = this;
-
         d1.setHours(d2.getHours());
         d1.setMinutes(d2.getMinutes());
         d1.setSeconds(d2.getSeconds());
@@ -581,8 +579,7 @@ A.mix(A.DataType.DateMath, {
             startOfWeek = this.getFirstDayOfWeek(targetDate, firstDayOfWeek);
         }
 
-        var startYear = startOfWeek.getFullYear(),
-            startTime = startOfWeek.getTime();
+        var startYear = startOfWeek.getFullYear();
 
         // DST shouldn't be a problem here, math is quicker than setDate();
         endOfWeek = new Date(startOfWeek.getTime() + 6 * this.ONE_DAY_MS);

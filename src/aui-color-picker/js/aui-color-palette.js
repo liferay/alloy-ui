@@ -11,7 +11,6 @@ var AArray = A.Array,
 
     getClassName = A.getClassName,
 
-    CSS_COLOR_PALETTE_ITEM = getClassName('color-palette-item'),
     CSS_PALETTE_ITEM = getClassName('palette-item'),
     CSS_PALETTE_ITEM_INNER = getClassName('palette-item-inner'),
     CSS_PALETTE_ITEM_SELECTED = getClassName('palette-item-selected'),
@@ -73,7 +72,7 @@ var AArray = A.Array,
             var instance = this,
                 result;
 
-            result = AArray.map(value, function(item, index) {
+            result = AArray.map(value, function(item) {
                 var tmp = item,
                     color;
 

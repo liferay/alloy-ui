@@ -832,7 +832,7 @@ var DiagramBuilderBase = A.Component.create({
          * @param event
          * @protected
          */
-        _afterModelChange: function(event) {
+        _afterModelChange: function() {
             var instance = this;
 
             instance._handleSaveEvent();
@@ -845,7 +845,7 @@ var DiagramBuilderBase = A.Component.create({
          * @param event
          * @protected
          */
-        _afterRender: function(event) {
+        _afterRender: function() {
             var instance = this;
 
             instance.plotFields();
@@ -893,7 +893,7 @@ var DiagramBuilderBase = A.Component.create({
          * @param event
          * @protected
          */
-        _defCancelFn: function(event) {
+        _defCancelFn: function() {
             var instance = this;
 
             instance.tabView.selectChild(0);
@@ -1057,10 +1057,9 @@ var DiagramBuilderBase = A.Component.create({
          * @protected
          */
         _setAvailableFields: function(val) {
-            var instance = this;
             var fields = [];
 
-            AArray.each(val, function(field, index) {
+            AArray.each(val, function(field) {
                 fields.push(
                     isAvailableField(field) ? field : new A.AvailableField(field)
                 );
@@ -1237,7 +1236,7 @@ var DiagramBuilderBase = A.Component.create({
          * @param event
          * @protected
          */
-        _uiSetFields: function(event) {
+        _uiSetFields: function() {
             var instance = this;
 
             if (instance.get('rendered')) {

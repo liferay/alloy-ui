@@ -22,8 +22,6 @@ YUI.add('aui-toggler-delegate-tests', function(Y) {
         name: 'TogglerDelegate.destructor',
 
         setUp: function() {
-            var instance = this;
-
             if (togglerDelegate) {
                 togglerDelegate.destroy();
             }

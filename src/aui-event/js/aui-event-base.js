@@ -151,8 +151,6 @@ var KeyMap = {
     ],
 
     hasModifier: function(event) {
-        var instance = this;
-
         return event &&
             (event.ctrlKey ||
             event.altKey ||
@@ -182,7 +180,7 @@ var KeyMap = {
         return result;
     },
 
-    isKeyInSet: function(keyCode, name) {
+    isKeyInSet: function(keyCode) {
         var instance = this;
 
         var args = AArray(arguments, 1, true);

@@ -17,7 +17,6 @@ var Lang = A.Lang,
     CLASS_ENTRY_CONTAINER_HIGHLIGHTED = getCN('ace-autocomplete', 'entry', 'container', 'highlighted'),
     CLASS_ENTRY_EMPTY = getCN('ace-autocomplete', 'entry', 'empty'),
     CLASS_ENTRY_LOADING = getCN('ace-autocomplete', 'entry', 'loading'),
-    CLASS_LOADING = getCN('ace-autocomplete', 'entry', 'loading'),
     CLASS_RESULTS_LIST = getCN('ace-autocomplete', 'results'),
 
     SELECTOR_ENTRY_CONTAINER = '.' + CLASS_ENTRY_CONTAINER,
@@ -506,7 +505,7 @@ var Lang = A.Lang,
          * @param {CustomEvent} event The fired event
          * @protected
          */
-        _onRemoveText: function(event) {
+        _onRemoveText: function() {
             var instance = this;
 
             if (instance.get('visible')) {
@@ -570,7 +569,7 @@ var Lang = A.Lang,
          * @param {CustomEvent} event The fired event
          * @protected
          */
-        _onShowLoadingMessage: function(event) {
+        _onShowLoadingMessage: function() {
             var instance = this,
                 autoCompleteResultsList;
 

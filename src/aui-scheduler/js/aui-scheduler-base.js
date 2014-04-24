@@ -769,7 +769,7 @@ var SchedulerBase = A.Component.create({
          * @param {EventFacade} event
          * @protected
          */
-        _afterRender: function(event) {
+        _afterRender: function() {
             var instance = this,
                 activeView = instance.get('activeView');
 

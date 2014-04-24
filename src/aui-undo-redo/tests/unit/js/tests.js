@@ -148,7 +148,7 @@ YUI.add('aui-undo-redo-tests', function(Y) {
             Y.Assert.isFalse(this.undoRedo.undo());
             Y.Assert.isFalse(this.undoRedo.redo());
 
-            this.undoRedo.once(this.undoRedo.AFTER_UNDO, function(event) {
+            this.undoRedo.once(this.undoRedo.AFTER_UNDO, function() {
                 Y.soon(function() {
                     instance.resume(function() {
                         Y.Assert.areEqual('Hello', instance.string);

@@ -4,8 +4,7 @@
  * @module aui-text
  */
 
-var Lang = A.Lang,
-    Text = A.Text,
+var Text = A.Text,
     UData = A.Text.Data.Unicode;
 
 var Unicode = {
@@ -18,7 +17,6 @@ var Unicode = {
      * @private
      */
     compile: function(group, flags) {
-        var instance = this;
         var regex = null;
 
         if (UData.hasOwnProperty(group)) {
