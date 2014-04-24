@@ -24,7 +24,8 @@ YUI.add('aui-scrollspy-tests', function(Y) {
         },
 
         tearDown: function() {
-            delete spy;
+            spy.destructor();
+            spy = null;
         },
 
         'should set attributes': function() {
