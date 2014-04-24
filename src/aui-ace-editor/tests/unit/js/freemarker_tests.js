@@ -16,49 +16,49 @@ YUI.add('aui-ace-autocomplete-freemarker-tests', function(Y) {
                 cfg: {
                     processor: new Y.AceEditor.AutoCompleteFreemarker({
                         variables: {
-                            "types": {
-                                "java.lang.String": {
-                                    "numberOfLeadingZeros": {
-                                        "type": "Method",
-                                        "returnType": "long",
-                                        "argumentTypes": ["long"]
+                            'types': {
+                                'java.lang.String': {
+                                    'numberOfLeadingZeros': {
+                                        'type': 'Method',
+                                        'returnType': 'long',
+                                        'argumentTypes': ['long']
                                     },
-                                    "toString": {
-                                        "type": "Method",
-                                        "returnType": "java.lang.String",
-                                        "argumentTypes": ["long", "java.lang.String", "int"]
+                                    'toString': {
+                                        'type': 'Method',
+                                        'returnType': 'java.lang.String',
+                                        'argumentTypes': ['long', 'java.lang.String', 'int']
                                     },
-                                    "field": {
-                                        "type": "java.lang.String"
+                                    'field': {
+                                        'type': 'java.lang.String'
                                     }
                                 },
-                                "com.liferay.portal.model.Group": {
+                                'com.liferay.portal.model.Group': {
 
                                 },
-                                "Method": {
-                                    "toString": {
-                                        "type": "Method",
-                                        "returnType": "java.lang.String",
-                                        "argumentTypes": []
+                                'Method': {
+                                    'toString': {
+                                        'type': 'Method',
+                                        'returnType': 'java.lang.String',
+                                        'argumentTypes': []
                                     },
-                                    "indexOf": {
-                                        "type": "Method",
-                                        "returnType": "java.lang.Integer",
-                                        "argumentTypes": []
+                                    'indexOf': {
+                                        'type': 'Method',
+                                        'returnType': 'java.lang.Integer',
+                                        'argumentTypes': []
                                     }
                                 }
                             },
-                            "variables": {
-                                "scopeGroupId": {
-                                    "type": "java.lang.String"
+                            'variables': {
+                                'scopeGroupId': {
+                                    'type': 'java.lang.String'
                                 },
 
-                                "scopeGroup": {
-                                    "type": "com.liferay.portal.model.Group"
+                                'scopeGroup': {
+                                    'type': 'com.liferay.portal.model.Group'
                                 },
 
-                                "scopeGroupString": {
-                                    "type": "java.lang.String"
+                                'scopeGroupString': {
+                                    'type': 'java.lang.String'
                                 }
                             }
                         }
