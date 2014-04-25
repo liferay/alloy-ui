@@ -2737,15 +2737,7 @@ var DiagramNode = A.Component.create({
          * @param val
          * @protected
          */
-        _uiSetRequired: function(val) {
-            var instance = this,
-                controlsToolbar = instance.controlsToolbar;
-
-            if (controlsToolbar) {
-                // TODO
-                // controlsToolbar.disable button
-            }
-        },
+        _uiSetRequired: function() {},
 
         /**
          * Set the `selected` attribute in the UI.
