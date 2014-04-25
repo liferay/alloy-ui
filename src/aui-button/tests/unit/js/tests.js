@@ -18,9 +18,15 @@ YUI.add('aui-button-tests', function(Y) {
                 searchButtonCancel.get('gutter.1');
 
         Y.Assert.areSame(
-            Math.round(iconClose.getY()), Math.round(ypos), 'Y-Position of input and search-btn-cancel should be the same.');
+            Math.round(iconClose.getY()), Math.round(ypos),
+            'Y-Position of input and search-btn-cancel should be the same.'
+        );
+
         Y.Assert.areSame(
-            iconClose.getX(), xpos, 'X-Position of input and search-btn-cancel should be the same.');
+            iconClose.getX(),
+            xpos,
+            'X-Position of input and search-btn-cancel should be the same.'
+        );
     }
 
     function fillInput(input) {
@@ -92,5 +98,5 @@ YUI.add('aui-button-tests', function(Y) {
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['aui-button', 'aui-button-search-cancel', 'aui-node', 'node-event-simulate', 'test']
+    requires: ['aui-button', 'aui-button-search-cancel', 'aui-node', 'test']
 });
