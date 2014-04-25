@@ -188,7 +188,6 @@ var ButtonSearchCancel = A.Base.create('btn-search-cancel', A.Base, [], {
         var instance = this,
             button = instance.getButtonForElement(element),
             gutter,
-            buttonRegion,
             buttonHeight,
             buttonWidth,
             elementRegion;
@@ -200,11 +199,17 @@ var ButtonSearchCancel = A.Base.create('btn-search-cancel', A.Base, [], {
 
         element.insert(button.show(), 'after');
         gutter = instance.get('gutter');
-        buttonRegion = button.get('region');
         elementRegion = element.get('region');
 
-        buttonHeight = this.get('iconHeight') ? this.get('iconHeight') : buttonRegion.height;
-        buttonWidth = this.get('iconWidth') ? this.get('iconWidth') : buttonRegion.width;
+        buttonHeight = this.get('iconHeight');
+        if (!Lang.isNumber(buttonHeight)) {
+            buttonHeight = button.get('offsetHeight');
+        }
+
+        buttonWidth = this.get('iconWidth');
+        if (!Lang.isNumber(buttonWidth)) {
+            buttonWidth = button.get('offsetWidth');
+        }
 
         button.setXY([
                 elementRegion.right - buttonWidth + gutter[0],
