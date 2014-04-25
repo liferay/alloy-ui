@@ -438,8 +438,7 @@ YUI.add('aui-tree-tests', function(Y) {
             rootTreeNode.get('children')[0].ioSuccessHandler(null, null, {
                 responseText: '[{"label": "subchild-one","leaf": true,"type": "node"},' +
                     '{"label": "subchild-two","leaf": true,"type": "node"},' +
-                    '{"label": "subchild-three","leaf": true, "type": "node"}' +
-                    ']'
+                    '{"label": "subchild-three","leaf": true, "type": "node"}]'
             });
 
             paginatorLink = rootTreeNodeBB.one('a');

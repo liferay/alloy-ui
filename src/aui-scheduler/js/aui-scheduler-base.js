@@ -5,7 +5,7 @@
  * @submodule aui-scheduler-base
  */
 
- var CSS_SCHEDULER_VIEW_ = A.getClassName('scheduler-base', 'view', ''),
+var CSS_SCHEDULER_VIEW_ = A.getClassName('scheduler-base', 'view', ''),
     CSS_SCHEDULER_VIEW_SELECTED = A.getClassName('active'),
 
     DateMath = A.DataType.DateMath,

@@ -5,15 +5,15 @@
  * @submodule aui-scheduler-base-view
  */
 
- var Lang = A.Lang,
-     isBoolean = Lang.isBoolean,
-     isFunction = Lang.isFunction,
-     isString = Lang.isString,
+var Lang = A.Lang,
+    isBoolean = Lang.isBoolean,
+    isFunction = Lang.isFunction,
+    isString = Lang.isString,
 
-     DateMath = A.DataType.DateMath,
+    DateMath = A.DataType.DateMath,
 
-     CSS_SCHEDULER_VIEW_NOSCROLL = A.getClassName('scheduler-view', 'noscroll'),
-     CSS_SCHEDULER_VIEW_SCROLLABLE = A.getClassName('scheduler-view', 'scrollable');
+    CSS_SCHEDULER_VIEW_NOSCROLL = A.getClassName('scheduler-view', 'noscroll'),
+    CSS_SCHEDULER_VIEW_SCROLLABLE = A.getClassName('scheduler-view', 'scrollable');
 
 /**
  * A base class for `SchedulerView`.

@@ -23,7 +23,7 @@ YUI.add('aui-popover-tests', function(Y) {
 
             popoverTop = new Y.Popover({
                 align: {
-                    node: triggerTop
+                    node: '#triggerTop'
                 },
                 bodyContent: 'One fine body…',
                 headerContent: 'Header content',
@@ -33,7 +33,7 @@ YUI.add('aui-popover-tests', function(Y) {
 
             popoverBottom = new Y.Popover({
                 align: {
-                    node: triggerBottom
+                    node: '#triggerBottom'
                 },
                 bodyContent: 'Another fine body…',
                 headerContent: 'Header content',

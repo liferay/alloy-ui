@@ -14,12 +14,12 @@
     "forin": true,
     "funcscope": false,
     "globals": {
+        "ace": true,
         "A": true,
         "Y": true,
         "AUI": true,
         "YUI": true,
-        "YUITest": true,
-        "ace": true
+        "YUITest": true
     },
     "globalstrict": false,
     "immed": true,
