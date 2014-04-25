@@ -225,7 +225,9 @@ A.mix(NODE_PROTO, {
         else {
             if (isObject(name)) {
                 for (i in name) {
-                    instance.attr(i, name[i]);
+                    if (name.hasOwnProperty(i)) {
+                        instance.attr(i, name[i]);
+                    }
                 }
 
                 return instance;

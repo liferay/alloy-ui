@@ -303,7 +303,9 @@ var Video = A.Component.create({
                 var fixedAttributes = instance.get('fixedAttributes');
 
                 for (var i in fixedAttributes) {
-                    tplObj += '<param name="' + i + '" value="' + fixedAttributes[i] + '" />';
+                    if (fixedAttributes.hasOwnProperty(i)) {
+                        tplObj += '<param name="' + i + '" value="' + fixedAttributes[i] + '" />';
+                    }
                 }
 
                 if (flashVarString) {
