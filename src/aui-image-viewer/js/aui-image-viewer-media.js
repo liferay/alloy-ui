@@ -80,7 +80,8 @@ var MediaViewerPlugin = A.Component.create({
                     mediaRegex: /([^?&#]+)/
                 },
                 'youtube': {
-                    container: '<iframe width="{width}" height="{height}" src="http://www.youtube.com/embed/{media}" frameborder="0" allowfullscreen></iframe>',
+                    container: '<iframe width="{width}" height="{height}" src="http://www.youtube.com/embed/{media}" ' +
+                        'frameborder="0" allowfullscreen></iframe>',
                     matcher: new RegExp(
                         Lang.sub(
                             REGEX_DOMAIN, {
@@ -93,7 +94,9 @@ var MediaViewerPlugin = A.Component.create({
                     mediaRegex: /[\?&]v=([^&#]*)/i
                 },
                 'vimeo': {
-                    container: '<iframe src="http://player.vimeo.com/video/{media}?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="{width}" height="{height}" frameborder="0"></iframe>',
+                    container: '<iframe ' +
+                        'src="http://player.vimeo.com/video/{media}?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff"' +
+                        ' width="{width}" height="{height}" frameborder="0"></iframe>',
                     matcher: new RegExp(
                         Lang.sub(
                             REGEX_DOMAIN, {
