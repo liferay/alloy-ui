@@ -5,6 +5,8 @@
  * @submodule aui-scheduler-base
  */
 
+ var CSS_SCHEDULER_VIEW_SELECTED = getCN('active');
+
 /**
  * A base class for `SchedulerEvents`.
  *
