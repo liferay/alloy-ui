@@ -253,9 +253,7 @@ A.CustomEvent.prototype._on = function(fn, context, args, when) {
 };
 
 function sortSubscribers(subscribers) {
-    var instance = this;
-
-    var item = AArray.some(
+    AArray.some(
         subscribers,
         function(item, index) {
             if (item.args && item.args[0] === 'submit_delegate') {
