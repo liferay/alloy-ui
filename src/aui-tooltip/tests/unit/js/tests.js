@@ -18,7 +18,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
         },
 
         '#2: #triggerTop button should have tooltip on top.': function() {
-            var tooltip = new Y.Tooltip({
+            new Y.Tooltip({
                 position: 'top',
                 trigger: '#triggerTop'
             }).render();
@@ -29,7 +29,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
         },
 
         '#3: #triggerRight button should have tooltip on right': function() {
-            var tooltip = new Y.Tooltip({
+            new Y.Tooltip({
                 position: 'right',
                 trigger: '#triggerRight'
             }).render();
@@ -40,7 +40,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
         },
 
         '#4: #triggerBottom button should have tooltip on bottom': function() {
-            var tooltip = new Y.Tooltip({
+            new Y.Tooltip({
                 position: 'bottom',
                 trigger: '#triggerBottom'
             }).render();
@@ -51,7 +51,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
         },
 
         '#5: #triggerLeft button should have tooltip on left': function() {
-            var tooltip = new Y.Tooltip({
+            new Y.Tooltip({
                 position: 'left',
                 trigger: '#triggerLeft'
             }).render();
@@ -62,7 +62,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
         },
 
         '#6: #triggerTooltipHelp button should display tooltip with class tooltip-help': function() {
-            var tooltip = new Y.Tooltip({
+            new Y.Tooltip({
                 cssClass: 'tooltip-help',
                 position: 'right',
                 stickDuration: 25,
@@ -79,7 +79,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
                 tooltip = Y.one('.tooltip'),
                 triggerTooltipHelp = Y.one('#triggerTooltipHelp');
 
-            triggerTooltipHelp.once('mouseout', function(e) {
+            triggerTooltipHelp.once('mouseout', function() {
                 setTimeout(function() {
                     test.resume(function() {
                         Y.Assert.isFalse(
@@ -132,7 +132,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
                 tooltip = Y.one('.tooltip'),
                 triggerTooltipHelp = Y.one('#triggerTooltipHelp');
 
-            tooltip.once('mouseover', function(e) {
+            tooltip.once('mouseover', function() {
                 setTimeout(function() {
                     test.resume(function() {
                         Y.Assert.isTrue(
@@ -185,7 +185,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
                 tooltip = Y.one('.tooltip'),
                 triggerTooltipHelp = Y.one('#triggerTooltipHelp');
 
-            tooltip.once('mouseout', function(e) {
+            tooltip.once('mouseout', function() {
                 setTimeout(function() {
                     test.resume(function() {
                         Y.Assert.isTrue(
@@ -216,7 +216,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
                 tooltipLeft = Y.one('.tooltip.left'),
                 triggerTooltipHelp = Y.one('#triggerTooltipHelp');
 
-            tooltipLeft.once('mouseout', function(event) {
+            tooltipLeft.once('mouseout', function() {
                 setTimeout(function() {
                     test.resume(function() {
                         condition = (tooltipLeft === null ||
