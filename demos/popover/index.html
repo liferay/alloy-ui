@@ -21,9 +21,6 @@
     YUI({ filter:'raw' }).use('aui-popover', function(Y) {
 
         var popoverTop = new Y.Popover({
-            align: {
-                node: triggerTop
-            },
             animated: true,
             bodyContent: 'One fine body…',
             delay: 500, // in milliseconds
@@ -36,9 +33,6 @@
         }).render();
 
         var popoverBottom = new Y.Popover({
-            align: {
-                node: triggerBottom
-            },
             bodyContent: 'Another fine body…',
             headerContent: 'Header content',
             position: 'bottom',

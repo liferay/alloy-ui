@@ -22,9 +22,6 @@ YUI.add('aui-popover-tests', function(Y) {
                 popoverTop;
 
             popoverTop = new Y.Popover({
-                align: {
-                    node: triggerTop
-                },
                 bodyContent: 'One fine body…',
                 headerContent: 'Header content',
                 plugins: [Y.Plugin.WidgetAnim],
@@ -32,9 +29,6 @@ YUI.add('aui-popover-tests', function(Y) {
             }).render();
 
             popoverBottom = new Y.Popover({
-                align: {
-                    node: triggerBottom
-                },
                 bodyContent: 'Another fine body…',
                 headerContent: 'Header content',
                 position: 'bottom',
