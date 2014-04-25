@@ -308,6 +308,7 @@ A.mix(
             var styleSheets = instance._getAllStyleSheets(DOC.styleSheets, 'all');
             var rule;
             var cssText;
+            var styleSheet;
 
             for (var i = 0; styleSheet = styleSheets[i]; i++) {
                 var rules = styleSheet.rules;

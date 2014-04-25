@@ -2,6 +2,9 @@ var Lang = A.Lang,
     isString = Lang.isString,
 
     lastHash,
+    fnPostMessage,
+    fnReceiveMessage,
+    Messaging,
 
     ENV = A.Env,
     G_ENV = YUI.Env,

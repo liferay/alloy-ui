@@ -1149,7 +1149,8 @@ var DiagramBuilderBase = A.Component.create({
         _setTabView: function(val) {
             var instance = this,
                 boundingBox = instance.get('boundingBox'),
-                tabViewContentNode = boundingBox.one('.' + CSS_TABBABLE_CONTENT);
+                tabViewContentNode = boundingBox.one('.' + CSS_TABBABLE_CONTENT),
+                defaultValue;
 
             defaultValue = {
                 after: {
