@@ -27,7 +27,6 @@ var L = A.Lang,
 
     CSS_CAROUSEL_CONTROL = getCN('carousel', 'control'),
     CSS_CLOSE = getCN('close'),
-    CSS_HELPER_SCROLL_LOCK = getCN('helper', 'scroll', 'lock'),
     CSS_HIDE = getCN('hide'),
     CSS_ICON = getCN('glyphicon'),
     CSS_ICON_REMOVE = getCN('glyphicon', 'remove'),
