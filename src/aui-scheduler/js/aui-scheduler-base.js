@@ -5,7 +5,56 @@
  * @submodule aui-scheduler-base
  */
 
- var CSS_SCHEDULER_VIEW_SELECTED = getCN('active');
+ var CSS_SCHEDULER_VIEW_ = A.getClassName('scheduler-base', 'view', ''),
+    CSS_SCHEDULER_VIEW_SELECTED = A.getClassName('active'),
+
+    DateMath = A.DataType.DateMath,
+    Lang = A.Lang,
+    isArray = Lang.isArray,
+    isDate = Lang.isDate,
+    isFunction = Lang.isFunction,
+    isNumber = Lang.isNumber,
+    WidgetStdMod = A.WidgetStdMod,
+
+    isModelList = function(val) {
+        return val instanceof A.ModelList;
+    },
+
+    isSchedulerView = function(val) {
+        return val instanceof A.SchedulerView;
+    },
+
+    getCN = A.getClassName,
+
+    CSS_SCHEDULER_NAV = getCN('scheduler-base', 'nav'),
+    CSS_SCHEDULER_CONTROLS = getCN('scheduler-base', 'controls'),
+    CSS_SCHEDULER_HD = getCN('scheduler-base', 'hd'),
+    CSS_SCHEDULER_ICON_NEXT = getCN('scheduler-base', 'icon', 'next'),
+    CSS_SCHEDULER_ICON_PREV = getCN('scheduler-base', 'icon', 'prev'),
+    CSS_SCHEDULER_TODAY = getCN('scheduler-base', 'today'),
+    CSS_SCHEDULER_VIEW = getCN('scheduler-base', 'view'),
+    CSS_SCHEDULER_VIEW_ = getCN('scheduler-base', 'view', ''),
+    CSS_SCHEDULER_VIEW_DATE = getCN('scheduler-base', 'view', 'date'),
+    CSS_BTN = getCN('btn'),
+    CSS_BTN_DEFAULT = getCN('btn', 'default'),
+    CSS_ICON = getCN('glyphicon'),
+    CSS_ICON_CHEVRON_RIGHT = getCN('glyphicon', 'chevron', 'right'),
+    CSS_ICON_CHEVRON_LEFT = getCN('glyphicon', 'chevron', 'left'),
+    CSS_SCHEDULER_VIEWS = getCN('scheduler-base', 'views'),
+
+    TPL_SCHEDULER_CONTROLS = '<div class="col col-lg-7 col-md-7 col-sm-7 ' + CSS_SCHEDULER_CONTROLS + '"></div>',
+    TPL_SCHEDULER_HD = '<div class="row ' + CSS_SCHEDULER_HD + '"></div>',
+    TPL_SCHEDULER_ICON_NEXT = '<button type="button" class="' + [CSS_ICON, CSS_SCHEDULER_ICON_NEXT, CSS_BTN,
+        CSS_BTN_DEFAULT].join(' ') + '"><span class="' + CSS_ICON_CHEVRON_RIGHT + '"></span></button>',
+    TPL_SCHEDULER_ICON_PREV = '<button type="button" class="' + [CSS_ICON, CSS_SCHEDULER_ICON_PREV, CSS_BTN,
+        CSS_BTN_DEFAULT].join(' ') + '"><span class="' + CSS_ICON_CHEVRON_LEFT + '"></span></button>',
+    TPL_SCHEDULER_NAV = '<div class="btn-group"></div>',
+    TPL_SCHEDULER_TODAY = '<button type="button" class="' + [CSS_SCHEDULER_TODAY, CSS_BTN, CSS_BTN_DEFAULT].join(' ') +
+        '">{today}</button>',
+    TPL_SCHEDULER_VIEW = '<button type="button" class="' + [CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_].join(' ') +
+        '{name}" data-view-name="{name}">{label}</button>',
+    TPL_SCHEDULER_VIEW_DATE = '<span class="' + CSS_SCHEDULER_VIEW_DATE + '"></span>',
+    TPL_SCHEDULER_VIEWS = '<div class="col col-lg-5 col-md-5 col-sm-5 ' + CSS_SCHEDULER_VIEWS + '"></div>';
 
 /**
  * A base class for `SchedulerEvents`.
