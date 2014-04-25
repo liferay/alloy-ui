@@ -147,7 +147,7 @@ YUI.add('aui-progressbar-tests', function(Y) {
                 callCount: 1,
                 method: 'onComplete',
                 run: function() {
-                    Y.Assert.areEqual(1, instance.progressBar.get('ratio'), 'This event should only havee ben called when ratio is 1');
+                    Y.Assert.areEqual(1, instance.progressBar.get('ratio'), 'This event should only have been called when ratio is 1');
                 }
             });
 
