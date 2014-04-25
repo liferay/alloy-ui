@@ -27,7 +27,6 @@ var L = A.Lang,
 
     CSS_CAROUSEL_CONTROL = getCN('carousel', 'control'),
     CSS_CLOSE = getCN('close'),
-    CSS_HIDE = getCN('hide'),
     CSS_ICON = getCN('glyphicon'),
     CSS_ICON_REMOVE = getCN('glyphicon', 'remove'),
     CSS_ICON_CHEVRON_LEFT = getCN('glyphicon', 'chevron', 'left'),
