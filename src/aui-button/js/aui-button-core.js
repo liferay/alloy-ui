@@ -6,7 +6,6 @@
 
 var Lang = A.Lang,
     isArray = Lang.isArray,
-    isBoolean = Lang.isBoolean,
     isNumber = Lang.isNumber,
     isString = Lang.isString,
     isUndefined = Lang.isUndefined,
