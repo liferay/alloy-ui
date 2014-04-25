@@ -1,39 +1,43 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>aui-progressbar</title>
+    <head>
+        <title>AUI ProgressBar Unit Tests</title>
+        <meta charset="utf-8" />
 
-    <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+        <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
 
-    <script src="../../../../build/aui/aui.js"></script>
-    <script src="js/tests.js"></script>
-    <meta charset="utf-8" />
+        <style>
+            .wrapper {
+                margin-top: 30px;
+            }
+        </style>
 
-    <style>
-        #testhtml {
-            margin-top: 30px;
-        }
-    </style>
-</head>
-<body class="yui3-skin-sam">
-<div id="logger"></div>
-    <div id="testhtml">
-        <div id="progressbar"></div>
-        <div id="progressbarwithlabel"><p>Label Content</p></div>
-        <div id="progressbarnolabel"></div>
-    </div>
+        <script src="../../../../build/aui/aui.js"></script>
+        <script src="js/tests.js"></script>
 
-<script>
-YUI({
-    coverage: ['aui-progressbar'],
-    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-}).use('test-console', 'test', 'aui-progressbar-tests', function(Y) {
+    </head>
+    <body class="yui3-skin-sam">
+        <div id="logger"></div>
 
-    (new Y.Test.Console()).render('#logger');
+        <div class="wrapper">
+            <div id="progressbar"></div>
+            <div id="progressbarWithLabel">
+                <p>Label Content</p>
+            </div>
+            <div id="progressbarWithoutLabel"></div>
+        </div>
 
-    Y.Test.Runner.setName('aui-progressbar');
-    Y.Test.Runner.run();
-});
-</script>
-</body>
+        <script>
+            YUI({
+                coverage: ['aui-progressbar'],
+                filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+            }).use('test-console', 'test', 'aui-progressbar-tests', function(Y) {
+
+                (new Y.Test.Console()).render('#logger');
+
+                Y.Test.Runner.setName('aui-progressbar');
+                Y.Test.Runner.run();
+            });
+        </script>
+    </body>
 </html>
