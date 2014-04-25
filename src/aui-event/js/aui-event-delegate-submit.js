@@ -237,21 +237,6 @@ A.Event.define(
 
 var originalOn = A.CustomEvent.prototype._on;
 
-A.CustomEvent.prototype._on = function(fn, context, args, when) {
-    var instance = this;
-
-    var eventHandle = originalOn.apply(instance, arguments);
-
-    if (instance._kds) {
-        updateDeprecatedSubscribers.call(instance, eventHandle, fn, context, args, when);
-    }
-    else {
-        updateSubscribers.call(instance, eventHandle, fn, context, args, when);
-    }
-
-    return eventHandle;
-};
-
 function sortSubscribers(subscribers) {
     AArray.some(
         subscribers,
@@ -323,3 +308,18 @@ function updateDeprecatedSubscribers(eventHandle, fn, context, args, when) {
         }
     }
 }
+
+A.CustomEvent.prototype._on = function(fn, context, args, when) {
+    var instance = this;
+
+    var eventHandle = originalOn.apply(instance, arguments);
+
+    if (instance._kds) {
+        updateDeprecatedSubscribers.call(instance, eventHandle, fn, context, args, when);
+    }
+    else {
+        updateSubscribers.call(instance, eventHandle, fn, context, args, when);
+    }
+
+    return eventHandle;
+};
