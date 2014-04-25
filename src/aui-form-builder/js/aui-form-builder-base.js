@@ -35,7 +35,9 @@ var L = A.Lang,
     CSS_FORM_BUILDER_FIELD = getCN('form', 'builder', 'field'),
     CSS_FORM_BUILDER_PLACEHOLDER = getCN('form', 'builder', 'placeholder'),
 
-    TPL_PLACEHOLDER = '<div class="' + CSS_FORM_BUILDER_PLACEHOLDER + '"></div>';
+    TPL_PLACEHOLDER = '<div class="' + CSS_FORM_BUILDER_PLACEHOLDER + '"></div>',
+
+    INVALID_CLONE_ATTRS = ['id', 'name'];
 
 /**
  * A base class for `A.FormBuilderAvailableField`.
