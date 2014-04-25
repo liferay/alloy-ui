@@ -304,15 +304,16 @@ YUI.add('aui-tree-tests', function(Y) {
         'TreeNodeView created from HTML Markup should display glyphicon-minus when expanded': function() {
             var test = this;
 
-            var treeViewComponent = Y.one('#createFromHTMLMarkupTest');
+            var treeViewComponent = Y.one('#createFromHTMLMarkupTest'),
+                allHitareas;
 
-            var treeView = new Y.TreeView({
+            new Y.TreeView({
                 boundingBox: treeViewComponent,
                 contentBox: Y.one('#createFromHTMLMarkupTest > ul'),
                 type: 'normal'
             }).render();
 
-            var allHitareas = treeViewComponent.all('.tree-container .tree-hitarea');
+            allHitareas = treeViewComponent.all('.tree-container .tree-hitarea');
 
             setTimeout(function() {
                 test.resume(function() {
