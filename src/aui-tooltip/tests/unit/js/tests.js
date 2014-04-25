@@ -106,7 +106,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
                 tooltip = Y.one('.tooltip'),
                 triggerTooltipHelp = Y.one('#triggerTooltipHelp');
 
-            triggerTooltipHelp.once('mouseover', function(e) {
+            triggerTooltipHelp.once('mouseover', function() {
                 setTimeout(function() {
                     test.resume(function() {
                         Y.Assert.isTrue(
@@ -156,10 +156,9 @@ YUI.add('aui-tooltip-tests', function(Y) {
 
         '#10: .tooltip should be hidden when mouseout of .tooltip.': function() {
             var test = this,
-                tooltip = Y.one('.tooltip'),
-                triggerTooltipHelp = Y.one('#triggerTooltipHelp');
+                tooltip = Y.one('.tooltip');
 
-            tooltip.once('mouseout', function(e) {
+            tooltip.once('mouseout', function() {
                 setTimeout(function() {
                     test.resume(function() {
                         Y.Assert.isFalse(
