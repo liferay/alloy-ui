@@ -391,10 +391,6 @@ A.mix(DateParser.prototype, {
             opt_date.setSeconds(calendar.seconds);
         }
 
-        if (Lang.isValue(calendar.tz)) {
-            // TODO
-        }
-
         return opt_date;
     },
 
@@ -915,11 +911,11 @@ A.Date.dateparser = new A.DateParser();
  * @return {Date} native JavaScript Date. Returns `false` if cannot parse.
  */
 
-var YDateParser = A.Date.parse;
+var yDateParser = A.Date.parse;
 
 A.Date.parse = function(pattern, text, opt_date) {
     if (arguments.length === 1) {
-        return YDateParser(arguments[0]);
+        return yDateParser(arguments[0]);
     }
 
     A.Date.dateparser.compilePattern(pattern);

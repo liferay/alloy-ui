@@ -266,8 +266,7 @@ YUI.add('aui-palette-tests', function(Y) {
         },
 
         'test selection of an item when toggleSelection is set to true': function() {
-            var selectedItem,
-                selectedItems;
+            var selectedItems;
 
             palette.set('toggleSelection', true);
 
@@ -294,11 +293,11 @@ YUI.add('aui-palette-tests', function(Y) {
             selectEventFired = false;
             unselectEventFired = false;
 
-            palette.on('select', function(event) {
+            palette.on('select', function() {
                 selectEventFired = true;
             });
 
-            palette.on('unselect', function(event) {
+            palette.on('unselect', function() {
                 unselectEventFired = true;
             });
 
@@ -317,11 +316,11 @@ YUI.add('aui-palette-tests', function(Y) {
             enterEventFired = false;
             leaveEventFired = false;
 
-            palette.on('enter', function(event) {
+            palette.on('enter', function() {
                 enterEventFired = true;
             });
 
-            palette.on('leave', function(event) {
+            palette.on('leave', function() {
                 leaveEventFired = true;
             });
 

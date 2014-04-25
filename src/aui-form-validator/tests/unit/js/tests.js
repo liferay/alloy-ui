@@ -65,8 +65,7 @@ YUI.add('aui-form-validator-tests', function(Y) {
          * Tests: AUI-965
          */
         'test submit form': function() {
-            var buttonSubmit,
-                elementWithoutError,
+            var elementWithoutError,
                 form;
 
             form = Y.one('#myForm');
@@ -95,15 +94,15 @@ YUI.add('aui-form-validator-tests', function(Y) {
          * Tests: AUI-1204
          */
         'test submit empty select': function() {
-            var form = Y.Node.create('<form><select name="gender"></select></form>');
+            var form = Y.Node.create('<form><select name="gender"></select></form>'),
+                select = form.one('select'),
+                validOption,
+                validator;
 
-            var select = form.one('select');
+            Y.Node.create('<option value=""></option>').appendTo(select);
+            validOption = Y.Node.create('<option value=\"male\">Male</option>').appendTo(select);
 
-            var emptyOption = Y.Node.create('<option value=""></option>').appendTo(select);
-
-            var validOption = Y.Node.create('<option value=\"male\">Male</option>').appendTo(select);
-
-            var validator = new Y.FormValidator({
+            validator = new Y.FormValidator({
                 boundingBox: form,
                 rules: {
                     gender: {

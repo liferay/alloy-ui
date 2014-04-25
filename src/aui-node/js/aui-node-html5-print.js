@@ -41,6 +41,9 @@ var BUFFER_CSS_TEXT = [],
     REGEX_TAG = new RegExp('<(\/*)(' + HTML5_ELEMENTS_LIST + ')', 'gi'),
 
     SELECTOR_REPLACE_RULE = '.' + 'printfix-' + '$1',
+
+    STR_EMPTY = '',
+
     STR_URL_DOMAIN = 'url(' + DOMAIN,
 
     TAG_REPLACE_ORIGINAL = '<$1$2',
@@ -68,13 +71,13 @@ var html5shiv = A.html5shiv,
 
 html5shiv(DOC);
 
-var PrintFix = function() {
+var printFix = function() {
     var afterPrint = function() {
         if (isShivDisabled()) {
             destroy();
         }
         else {
-            PrintFix.onAfterPrint();
+            printFix.onAfterPrint();
         }
     };
 
@@ -83,7 +86,7 @@ var PrintFix = function() {
             destroy();
         }
         else {
-            PrintFix.onBeforePrint();
+            printFix.onBeforePrint();
         }
     };
 
@@ -99,12 +102,12 @@ var PrintFix = function() {
 
     init();
 
-    PrintFix.destroy = destroy;
-    PrintFix.init = init;
+    printFix.destroy = destroy;
+    printFix.init = init;
 };
 
 A.mix(
-    PrintFix, {
+    printFix, {
         /**
          * Fires after a print.
          *
@@ -144,8 +147,6 @@ A.mix(
          * @return {String}
          */
         parseCSS: function(cssText) {
-            var instance = this;
-
             var css = '';
             var rules = cssText.match(REGEX_RULE);
 
@@ -208,7 +209,7 @@ A.mix(
 
                     cssClass = node.className;
 
-                    if (cssClass.indexOf('printfix-') == -1) {
+                    if (cssClass.indexOf('printfix-') === -1) {
                         buffer[0] = 'printfix-' + html5Element;
                         buffer[1] = cssClass;
 
@@ -247,7 +248,7 @@ A.mix(
 
                     if (backgroundImage &&
                         backgroundImage.indexOf('url(') > -1 &&
-                        backgroundImage.indexOf('https') == -1) {
+                        backgroundImage.indexOf('https') === -1) {
 
                         elStyle.backgroundImage = backgroundImage.replace('url(', STR_URL_DOMAIN);
                     }
@@ -260,22 +261,22 @@ A.mix(
 
             var newNodes = bodyElClone.getElementsByTagName('*');
 
-            if (length == newNodes.length) {
+            if (length === newNodes.length) {
                 while (length--) {
                     var newNode = newNodes[length];
                     var newNodeName = newNode.nodeName;
 
-                    if (newNodeName == 'INPUT' || newNodeName == 'OPTION') {
+                    if (newNodeName === 'INPUT' || newNodeName === 'OPTION') {
                         var originalNode = originalNodes[length];
                         var originalNodeName = originalNode.nodeName;
 
-                        if (originalNodeName == newNodeName) {
+                        if (originalNodeName === newNodeName) {
                             var prop = null;
 
-                            if (newNodeName == 'OPTION') {
+                            if (newNodeName === 'OPTION') {
                                 prop = 'selected';
                             }
-                            else if (newNodeName == 'INPUT' && (newNode.type == 'checkbox' || newNode.type ==
+                            else if (newNodeName === 'INPUT' && (newNode.type === 'checkbox' || newNode.type ===
                                 'radio')) {
                                 prop = 'checked';
                             }
@@ -310,6 +311,7 @@ A.mix(
             var styleSheets = instance._getAllStyleSheets(DOC.styleSheets, 'all');
             var rule;
             var cssText;
+            var styleSheet;
 
             for (var i = 0; styleSheet = styleSheets[i]; i++) {
                 var rules = styleSheet.rules;
@@ -339,8 +341,6 @@ A.mix(
          * @return {String}
          */
         _getCSSTextFromRule: function(rule) {
-            var instance = this;
-
             var cssText = '';
 
             var ruleStyle = rule.style;
@@ -516,6 +516,6 @@ A.mix(
     }
 );
 
-A.namespace('HTML5').PrintFix = PrintFix;
+A.namespace('HTML5').printFix = printFix;
 
-PrintFix();
+printFix();

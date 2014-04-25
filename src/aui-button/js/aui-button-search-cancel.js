@@ -24,7 +24,9 @@ var ButtonSearchCancel = A.Base.create('btn-search-cancel', A.Base, [], {
      * @type {String}
      * @protected
      */
-    TEMPLATE: '<div class="' + A.getClassName('btn-search-cancel') + '" style="padding: 5px; position: absolute; z-index: {zIndex};">' + '<span class="{iconClass}"></span>' + '</div>',
+    TEMPLATE: '<div class="' + A.getClassName('btn-search-cancel') +
+        '" style="padding: 5px; position: absolute; z-index: {zIndex};">' +
+        '<i class="{iconClass}"></i>' + '</div>',
 
     /**
      * Holds the created buttons for each element match from the trigger
@@ -188,7 +190,8 @@ var ButtonSearchCancel = A.Base.create('btn-search-cancel', A.Base, [], {
         var instance = this,
             button = instance.getButtonForElement(element),
             gutter,
-            buttonRegion,
+            buttonHeight,
+            buttonWidth,
             elementRegion;
 
         if (!element.val()) {
@@ -198,12 +201,21 @@ var ButtonSearchCancel = A.Base.create('btn-search-cancel', A.Base, [], {
 
         element.insert(button.show(), 'after');
         gutter = instance.get('gutter');
-        buttonRegion = button.get('region');
         elementRegion = element.get('region');
 
+        buttonHeight = this.get('iconHeight');
+        if (!Lang.isNumber(buttonHeight)) {
+            buttonHeight = button.get('offsetHeight');
+        }
+
+        buttonWidth = this.get('iconWidth');
+        if (!Lang.isNumber(buttonWidth)) {
+            buttonWidth = button.get('offsetWidth');
+        }
+
         button.setXY([
-                elementRegion.right - buttonRegion.width + gutter[0],
-                elementRegion.top + elementRegion.height / 2 - buttonRegion.height / 2 + gutter[1]]);
+                elementRegion.right - buttonWidth + gutter[0],
+                elementRegion.top + elementRegion.height / 2 - buttonHeight / 2 + gutter[1]]);
     }
 }, {
     /**
@@ -252,6 +264,32 @@ var ButtonSearchCancel = A.Base.create('btn-search-cancel', A.Base, [], {
         iconClass: {
             validator: Lang.isString,
             value: 'glyphicon glyphicon-remove'
+        },
+
+        /**
+         * Defines the width of the button. Useful when an async request
+         * for resource file (image or font for example) may be necessary
+         * before calculating the button's width.
+         *
+         * @attribute iconWidth
+         * @default 24
+         * @type {Number}
+         */
+        iconWidth: {
+            value: 24
+        },
+
+        /**
+         * Defines the height of the button. Useful when an async request
+         * for resource file (image or font for example) may be necessary
+         * before calculating the button's height.
+         *
+         * @attribute iconHeight
+         * @default 30
+         * @type {Number}
+         */
+        iconHeight: {
+            value: 30
         },
 
         /**

@@ -13,9 +13,6 @@ var Lang = A.Lang,
     FILL_MODE_INSERT = 1,
     FILL_MODE_OVERWRITE = 0,
 
-    STATUS_ERROR = -1,
-    STATUS_SUCCESS = 0,
-
     Base = function() {};
 
 /**
@@ -137,7 +134,7 @@ Base.prototype = {
                     sender: 'editor|cli'
                 }
             ),
-            exec: function(env, args, request) {
+            exec: function() {
                 var cursorPosition = editor.getCursorPosition();
 
                 instance._processAutoComplete(cursorPosition.row, cursorPosition.column);
@@ -159,7 +156,7 @@ Base.prototype = {
      * @param {CustomEvent} event The fired event
      * @protected
      */
-    _defaultCursorChangeFn: function(event) {
+    _defaultCursorChangeFn: function() {
         var instance = this,
             column,
             cursorPosition,
@@ -327,7 +324,7 @@ Base.prototype = {
      * @param {CustomEvent} event The fired event
      * @protected
      */
-    _onEditorChangeCursor: function(event) {
+    _onEditorChangeCursor: function() {
         var instance = this;
 
         instance.fire('cursorChange', instance._getEditor().getCursorPosition());
@@ -385,14 +382,14 @@ Base.prototype = {
 
         instance._editorCommands.push(
             Do.before(instance._handleEnter, editor, 'onTextInput', instance),
-            Do.before(instance._handleKey, commands['golinedown'], 'exec', instance, 40),
-            Do.before(instance._handleKey, commands['golineup'], 'exec', instance, 38),
-            Do.before(instance._handleKey, commands['gotoend'], 'exec', instance, 35),
-            Do.before(instance._handleKey, commands['gotolineend'], 'exec', instance, 35),
-            Do.before(instance._handleKey, commands['gotolinestart'], 'exec', instance, 36),
-            Do.before(instance._handleKey, commands['gotopagedown'], 'exec', instance, 34),
-            Do.before(instance._handleKey, commands['gotopageup'], 'exec', instance, 33),
-            Do.before(instance._handleKey, commands['gotostart'], 'exec', instance, 36)
+            Do.before(instance._handleKey, commands.golinedown, 'exec', instance, 40),
+            Do.before(instance._handleKey, commands.golineup, 'exec', instance, 38),
+            Do.before(instance._handleKey, commands.gotoend, 'exec', instance, 35),
+            Do.before(instance._handleKey, commands.gotolineend, 'exec', instance, 35),
+            Do.before(instance._handleKey, commands.gotolinestart, 'exec', instance, 36),
+            Do.before(instance._handleKey, commands.gotopagedown, 'exec', instance, 34),
+            Do.before(instance._handleKey, commands.gotopageup, 'exec', instance, 33),
+            Do.before(instance._handleKey, commands.gotostart, 'exec', instance, 36)
         );
     },
 

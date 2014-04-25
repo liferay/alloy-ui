@@ -2,9 +2,11 @@
     position: fixed;
     z-index: 3000;
 }
+
 .image-viewer.well {
     padding: 0;
 }
+
 .image-viewer-close {
     color: #fff;
     font-size: 30px;
@@ -14,36 +16,45 @@
     top: 10px;
     z-index: 3000;
 }
+
 .image-viewer-close:hover {
     color: #fff;
     opacity: 1;
 }
+
 .image-viewer-hidden, .image-viewer-loading .yui3-widget-ft {
     display: none;
 }
+
 .image-viewer-bd, .image-viewer .yui3-widget-ft {
     background: #fff;
     width: 16px;
 }
+
 .image-viewer-caption, .image-viewer-info {
     margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
 .image-viewer-caption {
     color: #222;
 }
+
 .image-viewer-info {
     color: #777;
     padding-bottom: 1px;
 }
+
 .image-viewer-loader {
     visibility: hidden;
 }
+
 .ie6 .image-viewer-close {
     position: absolute;
 }
+
 .image-viewer .image-viewer-content, .image-viewer .image-gallery-content {
     padding: 5px;
     background: #fff;

@@ -232,7 +232,7 @@ var Aria = A.Component.create({
         setAttributes: function(attributes) {
             var instance = this;
 
-            A.Array.each(attributes, function(attribute, index, attributes) {
+            A.Array.each(attributes, function(attribute) {
                 instance.setAttribute(attribute.name, attribute.value, attribute.node);
             });
         },
@@ -266,7 +266,7 @@ var Aria = A.Component.create({
         setRoles: function(roles) {
             var instance = this;
 
-            A.Array.each(roles, function(role, index, roles) {
+            A.Array.each(roles, function(role) {
                 instance.setRole(role.name, role.node);
             });
         },

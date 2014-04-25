@@ -1,34 +1,39 @@
 {
-    "name": "alloy",
-    "description": "AlloyUI",
-    "version": "2.5.0",
-    "author": {
-        "name": "Eduardo Lundgren",
-        "email": "eduardo.lundgren@liferay.com",
-        "web": "http://www.eduardolundgren.com",
-        "twitter": "eduardolundgren"
-    },
-    "license": "BSD",
-    "repository": {
-        "type": "git",
-        "url": "git@github.com:liferay/alloy-ui.git"
-    },
-    "keywords": [
-        "alloy", "yui", "external", "commands", "helpers"
-    ],
-    "devDependencies": {
-        "async": "0.2.9",
-        "command": "0.0.4",
-        "fs-extra": "~0.8.1",
-        "grunt": "~0.4.2",
-        "grunt-contrib-clean": "0.5.0",
-        "grunt-contrib-compress": "~0.6.0",
-        "grunt-contrib-copy": "~0.5.0",
-        "grunt-contrib-jshint": "~0.8.0",
-        "grunt-jsbeautifier": "~0.2.6",
-        "which": "1.0.5"
-    },
-    "engines": {
-        "node": ">=0.8 <0.12"
-    }
+  "name": "alloy",
+  "description": "AlloyUI",
+  "version": "2.5.0",
+  "author": {
+    "name": "Eduardo Lundgren",
+    "email": "eduardo.lundgren@liferay.com",
+    "web": "http://www.eduardolundgren.com",
+    "twitter": "eduardolundgren"
+  },
+  "license": "BSD",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:liferay/alloy-ui.git"
+  },
+  "keywords": [
+    "alloy",
+    "yui",
+    "external",
+    "commands",
+    "helpers"
+  ],
+  "devDependencies": {
+    "async": "0.2.9",
+    "command": "0.0.4",
+    "fs-extra": "~0.8.1",
+    "grunt": "~0.4.2",
+    "grunt-contrib-clean": "0.5.0",
+    "grunt-contrib-compress": "~0.6.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-cssbeautifier": "~0.1.1",
+    "grunt-jsbeautifier": "~0.2.6",
+    "which": "1.0.5"
+  },
+  "engines": {
+    "node": ">=0.8 <0.12"
+  }
 }

@@ -38,7 +38,7 @@ YUI.add('aui-affix-tests', function(Y) {
             window.scrollTo(0, 0);
             this.wait(function() {
                 targetShouldHaveClassName(Y.Affix.CSS_CLASSES.TOP);
-            }, 0);
+            }, 500);
         },
 
         'should not fire the positioning events when unnecessary': function() {
@@ -52,7 +52,7 @@ YUI.add('aui-affix-tests', function(Y) {
             window.scrollTo(0, 1);
             this.wait(function() {
                 Assert.isFalse(called);
-            }, 0);
+            }, 500);
         },
 
         'should be at the top of the doc and have no offsetTop': function() {
@@ -60,7 +60,7 @@ YUI.add('aui-affix-tests', function(Y) {
             window.scrollTo(0, 0);
             this.wait(function() {
                 targetShouldHaveClassName(Y.Affix.CSS_CLASSES.DEFAULT);
-            }, 0);
+            }, 500);
         },
 
         'should be at the end of the doc and have no offsetBottom': function() {
@@ -68,21 +68,21 @@ YUI.add('aui-affix-tests', function(Y) {
             window.scrollTo(0, Y.DOM.docHeight());
             this.wait(function() {
                 targetShouldHaveClassName(Y.Affix.CSS_CLASSES.DEFAULT);
-            }, 0);
+            }, 500);
         },
 
         'should be at the middle of the doc': function() {
             window.scrollTo(0, affix.get('offsetTop') + 1);
             this.wait(function() {
                 targetShouldHaveClassName(Y.Affix.CSS_CLASSES.DEFAULT);
-            }, 0);
+            }, 500);
         },
 
         'should be at the bottom of the doc': function() {
             window.scrollTo(0, Y.DOM.docHeight());
             this.wait(function() {
                 targetShouldHaveClassName(Y.Affix.CSS_CLASSES.BOTTOM);
-            }, 0);
+            }, 500);
         },
 
         'should validate offset with function': function() {

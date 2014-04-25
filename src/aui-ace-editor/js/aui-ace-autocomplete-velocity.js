@@ -7,8 +7,6 @@
 
 var Lang = A.Lang,
 
-    Base = A.AceEditor.AutoCompleteBase,
-
     MATCH_DIRECTIVES = 0,
     MATCH_VARIABLES = 1,
 

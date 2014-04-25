@@ -503,7 +503,7 @@ var TreeNode = A.Component.create({
          * @param {EventFacade} event
          * @protected
          */
-        _afterLoadingChange: function(event) {
+        _afterLoadingChange: function() {
             var instance = this;
 
             instance._syncIconUI();
@@ -516,7 +516,7 @@ var TreeNode = A.Component.create({
          * @param {EventFacade} event
          * @protected
          */
-        _afterSetChildren: function(event) {
+        _afterSetChildren: function() {
             var instance = this;
 
             instance._syncIconUI();
@@ -529,7 +529,7 @@ var TreeNode = A.Component.create({
          * @protected
          * @return {Node}
          */
-        _renderContentBox: function(v) {
+        _renderContentBox: function() {
             var instance = this;
 
             var contentBox = instance.get('contentBox');
@@ -925,7 +925,7 @@ var TreeNode = A.Component.create({
          * @param {String} id
          * @protected
          */
-        _syncTreeNodeBBId: function(id) {
+        _syncTreeNodeBBId: function() {
             var instance = this;
 
             instance.get('boundingBox').attr(
@@ -1158,8 +1158,6 @@ var TreeNodeIO = A.Component.create({
          * @protected
          */
         syncUI: function() {
-            var instance = this;
-
             A.TreeNodeIO.superclass.syncUI.apply(this, arguments);
         },
 
@@ -1230,7 +1228,7 @@ var TreeNodeIO = A.Component.create({
                     var io = A.clone(
                         ownerTree.get('io'),
                         true,
-                        function(value, key) {
+                        function(value) {
                             if (isFunction(value) && (value.defaultFn || value.wrappedFn)) {
                                 return false;
                             }
@@ -1264,7 +1262,7 @@ var TreeNodeIO = A.Component.create({
          * @method _onIOSuccess
          * @param event
          */
-        _onIOSuccess: function(event) {
+        _onIOSuccess: function() {
             var instance = this;
 
             instance.expand();
@@ -1798,7 +1796,7 @@ var TreeNodeRadio = A.Component.create({
 
             A.Array.each(
                 children,
-                function(value, index, collection) {
+                function(value) {
                     if (!value.isLeaf()) {
                         instance._uncheckNodesRadio(value);
                     }

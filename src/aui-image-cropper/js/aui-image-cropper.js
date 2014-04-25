@@ -200,7 +200,6 @@ var ImageCropper = A.Component.create({
             var instance = this;
 
             var boundingBox = instance.get('boundingBox');
-            var imageNode = instance.get('srcNode');
 
             instance.cropNode = A.Node.create('<div class="' + CSS_CROP + '"></div>');
             instance.cropNode.append(A.Node.create('<div class="' + CSS_CROP_OUTLINE + '"></div>'));
@@ -285,7 +284,6 @@ var ImageCropper = A.Component.create({
             var instance = this;
 
             var imageNode = instance.get('srcNode');
-            var overlayNode = instance.overlay;
 
             instance.cropNode.setStyle('backgroundImage', 'url(' + imageNode.attr('src') + ')');
 
@@ -393,10 +391,10 @@ var ImageCropper = A.Component.create({
 
             var cropType = event.cropType;
 
-            if (cropType == 'drag:drag') {
+            if (cropType === 'drag:drag') {
                 instance._syncXY();
             }
-            else if (cropType == 'resize:resize') {
+            else if (cropType === 'resize:resize') {
                 instance._syncCropSize();
             }
         },
@@ -408,7 +406,7 @@ var ImageCropper = A.Component.create({
          * @param object
          * @protected
          */
-        _destroyDrag: function(object) {
+        _destroyDrag: function() {
             var instance = this;
 
             if (instance.drag) {
@@ -441,7 +439,7 @@ var ImageCropper = A.Component.create({
          * @param object
          * @protected
          */
-        _destroyResize: function(object) {
+        _destroyResize: function() {
             var instance = this;
 
             if (instance.resize) {
@@ -630,7 +628,7 @@ var ImageCropper = A.Component.create({
          * @param event
          * @protected
          */
-        _syncCropSize: function(event) {
+        _syncCropSize: function() {
             var instance = this;
 
             var cropNode = instance.cropNode;
@@ -646,7 +644,7 @@ var ImageCropper = A.Component.create({
          * @param event
          * @protected
          */
-        _syncRegion: function(event) {
+        _syncRegion: function() {
             var instance = this;
 
             var region = instance._getConstraintRegion(true);
@@ -654,10 +652,10 @@ var ImageCropper = A.Component.create({
             var origRegion = instance._origRegion;
 
             if (
-                region.bottom != origRegion.bottom ||
-                region.left != origRegion.left ||
-                region.right != origRegion.right ||
-                region.top != origRegion.top
+                region.bottom !== origRegion.bottom ||
+                region.left !== origRegion.left ||
+                region.right !== origRegion.right ||
+                region.top !== origRegion.top
             ) {
 
                 var drag = instance.drag;
@@ -682,7 +680,7 @@ var ImageCropper = A.Component.create({
          * @param event
          * @protected
          */
-        _syncXY: function(event) {
+        _syncXY: function() {
             var instance = this;
 
             var cropNode = instance.cropNode;
@@ -840,7 +838,6 @@ var ImageCropper = A.Component.create({
         _uiSetX: function(value) {
             var instance = this;
 
-            var imageNode = instance.get('srcNode');
             var cropNode = instance.cropNode;
 
             cropNode.setStyle('left', value - cropNode.getBorderWidth('l'));
@@ -856,7 +853,6 @@ var ImageCropper = A.Component.create({
         _uiSetY: function(value) {
             var instance = this;
 
-            var imageNode = instance.get('srcNode');
             var cropNode = instance.cropNode;
 
             cropNode.setStyle('top', value - cropNode.getBorderWidth('t'));

@@ -141,12 +141,12 @@ var FormBuilderCheckBoxField = A.Component.create({
                         attributeName: 'predefinedValue',
                         editor: new A.RadioCellEditor({
                             options: {
-                                'true': strings['yes'],
-                                'false': strings['no']
+                                'true': strings.yes,
+                                'false': strings.no
                             }
                         }),
                         formatter: A.bind(instance._booleanFormatter, instance),
-                        name: strings['predefinedValue']
+                        name: strings.predefinedValue
                     };
                 }
             });

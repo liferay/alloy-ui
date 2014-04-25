@@ -6,7 +6,6 @@
  */
 
 var AObject = A.Object,
-    Node = A.Node,
     Selector = A.Selector;
 
 /**
@@ -140,7 +139,7 @@ A.Event.define(
 
             var handles = instance._prepareHandles(subscription, node);
 
-            handles['beforeactivate'] = node.delegate(
+            handles.beforeactivate = node.delegate(
                 'beforeactivate',
                 function(event) {
                     var activeElement = event.target;
@@ -160,13 +159,13 @@ A.Event.define(
          * @param notifier
          * @protected
          */
-        _detachEvents: function(node, subscription, notifier) {
+        _detachEvents: function(node, subscription) {
             A.each(
                 subscription._handles,
-                function(events, node, handles) {
+                function(events) {
                     A.each(
                         events,
-                        function(handle, event, events) {
+                        function(handle) {
                             handle.detach();
                         }
                     );
@@ -190,7 +189,7 @@ A.Event.define(
 
                 var type = activeElement.attr('type').toLowerCase();
 
-                if (tagName == 'input' && (type == 'checkbox' || type == 'radio')) {
+                if (tagName === 'input' && (type === 'checkbox' || type === 'radio')) {
                     eventName = 'click';
                 }
 

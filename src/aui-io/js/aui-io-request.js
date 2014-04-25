@@ -368,7 +368,7 @@ var IORequest = A.Component.create({
          * @param config
          * @protected
          */
-        init: function(config) {
+        init: function() {
             var instance = this;
 
             IORequest.superclass.init.apply(this, arguments);
@@ -482,12 +482,12 @@ var IORequest = A.Component.create({
             var method = instance.get('method');
 
             // reusing logic to add a timestamp on the url from jQuery 1.3.2
-            if ((cache === false) && (method == 'get')) {
-                var ts = +new Date;
+            if ((cache === false) && (method === 'get')) {
+                var ts = +new Date();
                 // try replacing _= if it is there
                 var ret = url.replace(/(\?|&)_=.*?(&|$)/, '$1_=' + ts + '$2');
                 // if nothing was replaced, add timestamp to the end
-                url = ret + ((ret == url) ? (url.match(/\?/) ? '&' : '?') + '_=' + ts : '');
+                url = ret + ((ret === url) ? (url.match(/\?/) ? '&' : '?') + '_=' + ts : '');
             }
 
             // formatting the URL with the default uriFormatter after the cache
@@ -555,14 +555,14 @@ var IORequest = A.Component.create({
                 var contentType = xhr.getResponseHeader('content-type') || '';
 
                 // if the dataType or the content-type is XML...
-                if ((dataType == 'xml') ||
+                if ((dataType === 'xml') ||
                     (!dataType && contentType.indexOf('xml') >= 0)) {
 
                     // use responseXML
                     data = xhr.responseXML;
 
                     // check if the XML was parsed correctly
-                    if (data.documentElement.tagName == 'parsererror') {
+                    if (data.documentElement.tagName === 'parsererror') {
                         throw 'Parser error: IO dataType is not correctly parsing';
                     }
                 }
@@ -577,7 +577,7 @@ var IORequest = A.Component.create({
                 }
 
                 // trying to parse to JSON if dataType is a valid json
-                if (dataType == 'json') {
+                if (dataType === 'json') {
                     try {
                         data = A.JSON.parse(data);
                     }

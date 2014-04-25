@@ -499,8 +499,6 @@ var SortableList = A.Component.create({
          * @return {NodeList}
          */
         _setNodes: function(v) {
-            var instance = this;
-
             if (isNodeList(v)) {
                 return v;
             }

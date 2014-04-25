@@ -1,5 +1,4 @@
-var Lang = A.Lang,
-    getClassName = A.getClassName,
+var getClassName = A.getClassName,
 
     defaults = A.namespace('config.viewport'),
 
@@ -20,7 +19,7 @@ var Lang = A.Lang,
 
     REGEX_CLASSNAMES = new RegExp('(\\s|\\b)+' + CSS_PREFIX + '(lt|gt)*\\d+(\\b|\\s)+', 'g');
 
-var viewportChange = function(event) {
+var viewportChange = function() {
     var buffer = [];
 
     var oldClassNames = DOC_EL.className.replace(REGEX_CLASSNAMES, '');
@@ -33,25 +32,27 @@ var viewportChange = function(event) {
     var col;
 
     for (var i in DEFAULTS_COLUMNS) {
-        col = DEFAULTS_COLUMNS[i];
+        if (DEFAULTS_COLUMNS.hasOwnProperty(i)) {
+            col = DEFAULTS_COLUMNS[i];
 
-        if (viewportWidth >= col) {
-            gtLt = 'gt';
+            if (viewportWidth >= col) {
+                gtLt = 'gt';
 
-            viewportMaxColumns = Math.max(viewportMaxColumns, col);
+                viewportMaxColumns = Math.max(viewportMaxColumns, col);
+            }
+            else {
+                gtLt = 'lt';
+            }
+
+            buffer.push(CSS_PREFIX + gtLt + col);
         }
-        else {
-            gtLt = 'lt';
-        }
-
-        buffer.push(CSS_PREFIX + gtLt + col);
     }
 
     buffer.push(CSS_PREFIX + viewportMaxColumns);
 
     classNames += ' ' + buffer.join(' ');
 
-    if (oldClassNames != classNames) {
+    if (oldClassNames !== classNames) {
         DOC_EL.className = classNames;
     }
 };

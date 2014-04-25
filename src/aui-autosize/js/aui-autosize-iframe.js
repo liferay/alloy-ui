@@ -4,10 +4,7 @@
  * @module aui-autosize-iframe
  */
 
-var Lang = A.Lang,
-    isString = Lang.isString,
-
-    getClassName = A.getClassName,
+var getClassName = A.getClassName,
 
     CSS_AUTOSIZE_IFRAME_MONITORED_HEIGHT = getClassName('autosizeiframe', 'monitored', 'height');
 
@@ -20,7 +17,7 @@ var Lang = A.Lang,
  *     properties.
  * @constructor
  */
-AutosizeIframe = A.Component.create({
+var AutosizeIframe = A.Component.create({
 
     /**
      * Static property provides a string to identify the class.
@@ -288,7 +285,7 @@ AutosizeIframe = A.Component.create({
          * @param event
          * @protected
          */
-        _setInterval: function(event) {
+        _setInterval: function() {
             var instance = this;
 
             if (!instance._intervalId) {
@@ -308,7 +305,7 @@ AutosizeIframe = A.Component.create({
         _uiSetHeight: function(value) {
             var instance = this;
 
-            if (instance._iframeHeight != value) {
+            if (instance._iframeHeight !== value) {
                 instance._iframeHeight = value;
 
                 instance.node.setStyle('height', value);
@@ -377,7 +374,7 @@ A.mix(AutosizeIframe, {
         try {
             var iframeDoc;
 
-            if (iframeWin.nodeName && iframeWin.nodeName.toLowerCase() == 'iframe') {
+            if (iframeWin.nodeName && iframeWin.nodeName.toLowerCase() === 'iframe') {
                 iframeWin = iframeWin.contentWindow;
             }
             else if (A.instanceOf(iframeWin, A.Node)) {
@@ -404,12 +401,12 @@ A.mix(AutosizeIframe, {
     _getContentHeight: function(iframeWin, iframeDoc, fallbackHeight) {
         var contentHeight = null;
 
-        if (iframeDoc && iframeWin.location.href != 'about:blank') {
+        if (iframeDoc && iframeWin.location.href !== 'about:blank') {
             var docEl = iframeDoc.documentElement;
 
             var docOffsetHeight = (docEl && docEl.offsetHeight) || 0;
 
-            var standardsMode = (iframeDoc.compatMode == 'CSS1Compat');
+            var standardsMode = (iframeDoc.compatMode === 'CSS1Compat');
 
             if (standardsMode && docOffsetHeight) {
                 contentHeight = docOffsetHeight;
@@ -460,7 +457,7 @@ A.mix(AutosizeIframe, {
                 docOffsetHeight = docEl.offsetHeight;
             }
 
-            if (docClientHeight != docOffsetHeight && iframeBody) {
+            if (docClientHeight !== docOffsetHeight && iframeBody) {
                 docOffsetHeight = iframeBody.offsetHeight;
                 docScrollHeight = iframeBody.scrollHeight;
             }

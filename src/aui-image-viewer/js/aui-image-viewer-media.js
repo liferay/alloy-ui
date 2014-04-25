@@ -68,13 +68,20 @@ var MediaViewerPlugin = A.Component.create({
             validator: Lang.isObject,
             value: {
                 'flash': {
-                    container: '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="{width}" height="{height}"><param name="wmode" value="{wmode}" /><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="{media}" /><embed src="{media}" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="{width}" height="{height}" wmode="{wmode}"></embed></object>',
+                    container: '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" ' +
+                        'width="{width}" height="{height}"><param name="wmode" value="{wmode}" />' +
+                        '<param name="allowfullscreen" value="true" />' +
+                        '<param name="allowscriptaccess" value="always" /><param name="movie" value="{media}" />' +
+                        '<embed src="{media}" type="application/x-shockwave-flash" allowfullscreen="true"' +
+                        ' allowscriptaccess="always" width="{width}" height="{height}" wmode="{wmode}">' +
+                        '</embed></object>',
                     matcher: /\b.swf\b/i,
                     options: DEFAULT_OPTIONS,
                     mediaRegex: /([^?&#]+)/
                 },
                 'youtube': {
-                    container: '<iframe width="{width}" height="{height}" src="http://www.youtube.com/embed/{media}" frameborder="0" allowfullscreen></iframe>',
+                    container: '<iframe width="{width}" height="{height}" src="http://www.youtube.com/embed/{media}" ' +
+                        'frameborder="0" allowfullscreen></iframe>',
                     matcher: new RegExp(
                         Lang.sub(
                             REGEX_DOMAIN, {
@@ -87,7 +94,9 @@ var MediaViewerPlugin = A.Component.create({
                     mediaRegex: /[\?&]v=([^&#]*)/i
                 },
                 'vimeo': {
-                    container: '<iframe src="http://player.vimeo.com/video/{media}?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="{width}" height="{height}" frameborder="0"></iframe>',
+                    container: '<iframe ' +
+                        'src="http://player.vimeo.com/video/{media}?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff"' +
+                        ' width="{width}" height="{height}" frameborder="0"></iframe>',
                     matcher: new RegExp(
                         Lang.sub(
                             REGEX_DOMAIN, {
@@ -122,7 +131,7 @@ var MediaViewerPlugin = A.Component.create({
          * @param config
          * @protected
          */
-        initializer: function(config) {
+        initializer: function() {
             var instance = this;
 
             var handles = instance._handles;
@@ -147,7 +156,7 @@ var MediaViewerPlugin = A.Component.create({
 
             var mediaType = instance._getMediaType(source.attr('href'));
 
-            if (mediaType != 'image') {
+            if (mediaType !== 'image') {
                 instance._redirectIframe('about:blank');
 
                 host.setStdModContent('body', '');
@@ -171,7 +180,7 @@ var MediaViewerPlugin = A.Component.create({
 
             instance._redirectIframe('about:blank');
 
-            if (mediaType != 'image') {
+            if (mediaType !== 'image') {
                 var providers = instance.get('providers')[mediaType];
 
                 var source = host.getCurrentLink();
@@ -241,7 +250,7 @@ var MediaViewerPlugin = A.Component.create({
 
                 var mediaType = instance._getMediaType(linkHref);
 
-                if (mediaType == 'image') {
+                if (mediaType === 'image') {
                     result = true;
                 }
             }
@@ -265,7 +274,7 @@ var MediaViewerPlugin = A.Component.create({
 
             A.some(
                 providers,
-                function(value, key, collection) {
+                function(value, key) {
                     return value.matcher.test(source) && (mediaType = key);
                 }
             );
@@ -301,7 +310,7 @@ var MediaViewerPlugin = A.Component.create({
          * @param event
          * @protected
          */
-        _restoreMedia: function(event) {
+        _restoreMedia: function() {
             var instance = this;
 
             var host = instance.get('host');
@@ -312,7 +321,7 @@ var MediaViewerPlugin = A.Component.create({
 
             var mediaType = instance._getMediaType(href);
 
-            if (mediaType != 'image' && !host.getStdModNode('body').html()) {
+            if (mediaType !== 'image' && !host.getStdModNode('body').html()) {
                 host._processChangeRequest();
             }
         },
@@ -354,7 +363,7 @@ var MediaViewerPlugin = A.Component.create({
 
             A.each(
                 options,
-                function(value, key, collection) {
+                function(value, key) {
                     var regexParam = new RegExp(
                         Lang.sub(
                             REGEX_PARAM, {

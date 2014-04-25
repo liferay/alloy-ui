@@ -4,12 +4,7 @@
  * @module aui-selector
  */
 
-var Lang = A.Lang,
-    isString = Lang.isString,
-
-    SELECTOR = A.Selector,
-
-    getClassName = A.getClassName,
+var SELECTOR = A.Selector,
 
     CSS_HIDE = A.getClassName('hide'),
     REGEX_HIDDEN_CLASSNAMES = new RegExp(CSS_HIDE);
@@ -17,14 +12,14 @@ var Lang = A.Lang,
 SELECTOR._isNodeHidden = function(node) {
     var width = node.offsetWidth;
     var height = node.offsetHeight;
-    var ignore = node.nodeName.toLowerCase() == 'tr';
+    var ignore = node.nodeName.toLowerCase() === 'tr';
     var className = node.className;
     var nodeStyle = node.style;
 
     var hidden = false;
 
     if (!ignore) {
-        if (width == 0 && height == 0) {
+        if (width === 0 && height === 0) {
             hidden = true;
         }
         else if (width > 0 && height > 0) {
@@ -32,15 +27,15 @@ SELECTOR._isNodeHidden = function(node) {
         }
     }
 
-    hidden = hidden || (nodeStyle.display == 'none' || nodeStyle.visibility == 'hidden') || REGEX_HIDDEN_CLASSNAMES.test(
-        className);
+    hidden = hidden || (nodeStyle.display === 'none' || nodeStyle.visibility === 'hidden') ||
+        REGEX_HIDDEN_CLASSNAMES.test(className);
 
     return hidden;
 };
 
 var testNodeType = function(type) {
     return function(node) {
-        return node.type == type;
+        return node.type === type;
     };
 };
 

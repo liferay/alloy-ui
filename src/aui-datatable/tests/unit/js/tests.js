@@ -1,10 +1,7 @@
 YUI.add('aui-datatable-tests', function(Y) {
 
-    var YgetClassName = Y.getClassName;
-
-    var CSS_CELLEDITOR_EDIT_INPUT_NAME = YgetClassName('celleditor', 'edit', 'input', 'name');
-
-    var CSS_CELLEDITOR_EDIT_INPUT_VALUE = YgetClassName('celleditor', 'edit', 'input', 'value');
+    var CSS_CELLEDITOR_EDIT_INPUT_NAME = Y.getClassName('celleditor', 'edit', 'input', 'name'),
+        CSS_CELLEDITOR_EDIT_INPUT_VALUE = Y.getClassName('celleditor', 'edit', 'input', 'value');
 
     var suite = new Y.Test.Suite('aui-datatable');
 

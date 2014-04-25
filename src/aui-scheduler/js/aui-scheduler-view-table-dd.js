@@ -88,7 +88,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     initializer: function() {
         var instance = this;
 
-        instance['proxyNode'] = A.Node.create(TPL_SVT_PROXY_NODE);
+        instance.proxyNode = A.Node.create(TPL_SVT_PROXY_NODE);
 
         instance.after(instance.viewDDBindUI, instance, 'bindUI');
         instance.after(instance.viewDDRenderUI, instance, 'renderUI');
@@ -111,7 +111,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
             });
         }
 
-        instance['rowsContainerNode'].on({
+        instance.rowsContainerNode.on({
             mousedown: A.bind(instance._onMouseDownGrid, instance),
             mousemove: A.bind(instance._onMouseMoveGrid, instance),
             mouseup: A.bind(instance._onMouseUpGrid, instance)
@@ -127,10 +127,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      *
      * @method viewDDRenderUI
      */
-    viewDDRenderUI: function() {
-        var instance = this;
-
-    },
+    viewDDRenderUI: function() {},
 
     /**
      * Syncs the scheduler view `DD.Delegate` instance. Lifecycle.
@@ -151,8 +148,8 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     removeLasso: function() {
         var instance = this;
 
-        if (instance['lasso']) {
-            instance['lasso'].remove();
+        if (instance.lasso) {
+            instance.lasso.remove();
         }
     },
 
@@ -164,8 +161,8 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     removeProxy: function() {
         var instance = this;
 
-        if (instance['proxyNode']) {
-            instance['proxyNode'].remove();
+        if (instance.proxyNode) {
+            instance.proxyNode.remove();
         }
     },
 
@@ -228,7 +225,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
             instance.lasso.push(lassoNode);
 
-            instance['rowsContainerNode'].append(lassoNode);
+            instance.rowsContainerNode.append(lassoNode);
             lassoNode.sizeTo(w, h);
             lassoNode.setXY(instance._offsetXY([x, y], 1));
         }
@@ -243,7 +240,6 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      */
     _afterDragAlign: function(event) {
         var instance = this;
-        var dd = event.target;
 
         var bodyRegion = instance.bodyNode.get('region');
 
@@ -258,7 +254,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
             return;
         }
 
-        var draggingEvent = instance['draggingEvent'];
+        var draggingEvent = instance.draggingEvent;
         var eventXY = [event.pageX, event.pageY];
         var position = instance._findPosition(instance._offsetXY(eventXY, -1));
 
@@ -361,7 +357,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      */
     _offsetXY: function(xy, sign) {
         var instance = this;
-        var offsetXY = instance['rowsContainerNode'].getXY();
+        var offsetXY = instance.rowsContainerNode.getXY();
 
         return [xy[0] + offsetXY[0] * sign, xy[1] + offsetXY[1] * sign];
     },
@@ -375,7 +371,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      */
     _onEventDragEnd: function(event) {
         var instance = this;
-        var draggingEvent = instance['draggingEvent'];
+        var draggingEvent = instance.draggingEvent;
 
         if (draggingEvent) {
             var positionDate = instance._getPositionDate(instance.lassoLastPosition);
@@ -386,7 +382,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
                 silent: true
             });
 
-            instance['rowsContainerNode'].removeClass(CSS_SVT_DRAGGING).unselectable();
+            instance.rowsContainerNode.removeClass(CSS_SVT_DRAGGING).unselectable();
 
             event.target.set('dragNode', instance.originalDragNode);
 
@@ -396,7 +392,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
             instance.get('scheduler').syncEventsUI();
         }
 
-        instance['draggingEvent'] = null;
+        instance.draggingEvent = null;
     },
 
     /**
@@ -408,8 +404,8 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      */
     _onEventDragStart: function(event) {
         var instance = this;
-        var draggingEvent = instance['draggingEvent'] =
-            instance['delegate']['dd'].get('node').getData('scheduler-event');
+        var draggingEvent = instance.draggingEvent =
+            instance.delegate.dd.get('node').getData('scheduler-event');
 
         if (draggingEvent) {
             instance._syncCellDimensions();
@@ -434,11 +430,11 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
             instance.lassoStartPosition = instance.lassoLastPosition = startPosition;
 
-            instance['rowsContainerNode'].addClass(CSS_SVT_DRAGGING).unselectable();
+            instance.rowsContainerNode.addClass(CSS_SVT_DRAGGING).unselectable();
 
             instance.originalDragNode = event.target.get('dragNode');
 
-            event.target.set('dragNode', instance['proxyNode']);
+            event.target.set('dragNode', instance.proxyNode);
         }
     },
 
@@ -468,7 +464,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
             instance.renderLasso(instance.lassoStartPosition, instance.lassoLastPosition);
 
-            instance['rowsContainerNode'].unselectable();
+            instance.rowsContainerNode.unselectable();
         }
     },
 
@@ -481,7 +477,6 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      */
     _onMouseMoveGrid: function(event) {
         var instance = this;
-        var target = event.currentTarget;
 
         var eventXY = [event.pageX, event.pageY];
         var position = instance._findPosition(instance._offsetXY(eventXY, -1));
@@ -500,7 +495,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
      * @param {EventFacade} event
      * @protected
      */
-    _onMouseUpGrid: function(event) {
+    _onMouseUpGrid: function() {
         var instance = this;
         var scheduler = instance.get('scheduler');
         var recorder = scheduler.get('eventRecorder');
@@ -539,12 +534,12 @@ A.mix(A.SchedulerTableViewDD.prototype, {
     _setupDragDrop: function() {
         var instance = this;
 
-        if (!instance['delegate']) {
-            instance['delegate'] = new A.DD.Delegate(
+        if (!instance.delegate) {
+            instance.delegate = new A.DD.Delegate(
                 instance.get('delegateConfig'));
         }
 
-        var dd = instance['delegate']['dd'];
+        var dd = instance.delegate.dd;
 
         dd.unplug(A.Plugin.DDNodeScroll);
         dd.unplug(A.Plugin.DDProxy);
@@ -573,8 +568,8 @@ A.mix(A.SchedulerTableViewDD.prototype, {
         var displayRowsCount = Math.ceil(displayDaysInterval / WEEK_LENGTH);
         var weekDaysCount = Math.min(displayDaysInterval, WEEK_LENGTH);
 
-        instance.gridCellHeight = instance['rowsContainerNode'].get('offsetHeight') / displayRowsCount;
-        instance.gridCellWidth = instance['rowsContainerNode'].get('offsetWidth') / weekDaysCount;
+        instance.gridCellHeight = instance.rowsContainerNode.get('offsetHeight') / displayRowsCount;
+        instance.gridCellWidth = instance.rowsContainerNode.get('offsetWidth') / weekDaysCount;
     },
 
     /**
@@ -590,7 +585,7 @@ A.mix(A.SchedulerTableViewDD.prototype, {
         var eventNode = evt.get('node').item(0);
         var eventNodePadding = evt.get('node').item(1);
 
-        instance['proxyNode'].setStyles({
+        instance.proxyNode.setStyles({
             backgroundColor: eventNode.getStyle('backgroundColor'),
             color: eventNode.getStyle('color'),
             display: 'block'
@@ -599,11 +594,11 @@ A.mix(A.SchedulerTableViewDD.prototype, {
         if (!eventNodePadding || !eventNodePadding.test(':visible')) {
             var offsetWidth = eventNode.get('offsetWidth');
 
-            instance['proxyNode'].set('offsetWidth', offsetWidth);
+            instance.proxyNode.set('offsetWidth', offsetWidth);
         }
 
-        instance['proxyNode'].appendTo(instance['rowsContainerNode']);
-        instance['proxyNode'].setContent(evt.get('content'));
+        instance.proxyNode.appendTo(instance.rowsContainerNode);
+        instance.proxyNode.setContent(evt.get('content'));
     }
 });
 

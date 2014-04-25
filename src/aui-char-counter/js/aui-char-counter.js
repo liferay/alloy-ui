@@ -199,7 +199,7 @@ var CharCounter = A.Component.create({
                 );
             }
 
-            if (value.length == maxLength) {
+            if (value.length === maxLength) {
                 instance.fire('maxLength');
             }
 
@@ -216,7 +216,7 @@ var CharCounter = A.Component.create({
          * @param {EventFacade} event
          * @protected
          */
-        _onInputChange: function(event) {
+        _onInputChange: function() {
             var instance = this;
 
             instance.checkLength();

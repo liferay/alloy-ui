@@ -50,7 +50,7 @@ WidgetCssClass.prototype = {
      * @param {Object} config
      * @protected
      */
-    initializer: function(config) {
+    initializer: function() {
         var instance = this;
 
         instance._uiSetCssClass(instance.get('cssClass'));

@@ -11,7 +11,6 @@ var AArray = A.Array,
 
     getClassName = A.getClassName,
 
-    CSS_COLOR_PALETTE_ITEM = getClassName('color-palette-item'),
     CSS_PALETTE_ITEM = getClassName('palette-item'),
     CSS_PALETTE_ITEM_INNER = getClassName('palette-item-inner'),
     CSS_PALETTE_ITEM_SELECTED = getClassName('palette-item-selected'),
@@ -31,7 +30,10 @@ var AArray = A.Array,
     A.WidgetCssClass,
     A.WidgetToggle
 ], {
-        ITEM_TEMPLATE: '<li class="' + CSS_PALETTE_ITEM + ' {selectedClassName}" data-column={column} data-index={index} data-row={row} data-value="{value}">' + '<a href="" class="' + CSS_PALETTE_ITEM_INNER + '" style="background-color:{value}" onclick="return false;" title="{title}"></a>' + '</li>',
+        ITEM_TEMPLATE: '<td class="' + CSS_PALETTE_ITEM +
+            ' {selectedClassName}" data-column={column} data-index={index} data-row={row} data-value="{value}">' +
+            '<a href="" class="' + CSS_PALETTE_ITEM_INNER +
+            '" style="background-color:{value}" onclick="return false;" title="{title}"></a>' + '</td>',
 
         /**
          * Provides a default value (Function) to the `formatter` property.
@@ -70,7 +72,7 @@ var AArray = A.Array,
             var instance = this,
                 result;
 
-            result = AArray.map(value, function(item, index) {
+            result = AArray.map(value, function(item) {
                 var tmp = item,
                     color;
 

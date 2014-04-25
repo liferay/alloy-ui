@@ -67,10 +67,10 @@ div.innerHTML = '   <table></table>&nbsp;';
 if (div.attachEvent && div.fireEvent) {
     div.attachEvent(
         'onclick',
-        function() {
+        function detach() {
             SUPPORT_CLONED_EVENTS = true;
 
-            div.detachEvent('onclick', arguments.callee);
+            div.detachEvent('onclick', detach);
         }
     );
 
@@ -225,7 +225,9 @@ A.mix(NODE_PROTO, {
         else {
             if (isObject(name)) {
                 for (i in name) {
-                    instance.attr(i, name[i]);
+                    if (name.hasOwnProperty(i)) {
+                        instance.attr(i, name[i]);
+                    }
                 }
 
                 return instance;
@@ -842,7 +844,7 @@ A.mix(NODE_PROTO, {
      * @param {Function} callback A function to run after the visibility change.
      *     Optional.
      */
-    toggle: function(on, callback) {
+    toggle: function() {
         var instance = this;
 
         instance._toggleView.apply(instance, arguments);
@@ -1205,7 +1207,7 @@ NODE_PROTO._isHidden = function() {
 
 A.each(
  ['Height', 'Width'],
-    function(item, index, collection) {
+    function(item, index) {
         var sides = index ? 'lr' : 'tb';
 
         var dimensionType = item.toLowerCase();
@@ -1437,8 +1439,6 @@ A.mix(
          * @method getDOM
          */
         getDOM: function() {
-            var instance = this;
-
             return ANodeList.getDOMNodes(this);
         },
 
