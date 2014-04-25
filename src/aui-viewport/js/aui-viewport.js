@@ -32,18 +32,20 @@ var viewportChange = function() {
     var col;
 
     for (var i in DEFAULTS_COLUMNS) {
-        col = DEFAULTS_COLUMNS[i];
+        if (DEFAULTS_COLUMNS.hasOwnProperty(i)) {
+            col = DEFAULTS_COLUMNS[i];
 
-        if (viewportWidth >= col) {
-            gtLt = 'gt';
+            if (viewportWidth >= col) {
+                gtLt = 'gt';
 
-            viewportMaxColumns = Math.max(viewportMaxColumns, col);
+                viewportMaxColumns = Math.max(viewportMaxColumns, col);
+            }
+            else {
+                gtLt = 'lt';
+            }
+
+            buffer.push(CSS_PREFIX + gtLt + col);
         }
-        else {
-            gtLt = 'lt';
-        }
-
-        buffer.push(CSS_PREFIX + gtLt + col);
     }
 
     buffer.push(CSS_PREFIX + viewportMaxColumns);
