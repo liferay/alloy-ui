@@ -145,7 +145,10 @@ YUI.add('aui-progressbar-tests', function(Y) {
             Y.Mock.expect(mock, {
                 args: [YUITest.Mock.Value.Object],
                 callCount: 1,
-                method: 'onComplete'
+                method: 'onComplete',
+                run: function() {
+                    Y.Assert.areEqual(1, instance.progressBar.get('ratio'), 'This event should only havee ben called when ratio is 1');
+                }
             });
 
             this.progressBar = new Y.ProgressBar({
