@@ -451,10 +451,12 @@ var ImageViewer = A.Base.create(
             var image;
 
             for (var i in preloadImagePool) {
-                image = preloadImagePool[i];
+                if (preloadImagePool.hasOwnProperty(i)) {
+                    image = preloadImagePool[i];
 
-                if (image && image.complete) {
-                    preloadImagePool[i] = null;
+                    if (image && image.complete) {
+                        preloadImagePool[i] = null;
+                    }
                 }
             }
         },
