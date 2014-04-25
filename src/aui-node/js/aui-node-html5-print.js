@@ -41,6 +41,9 @@ var BUFFER_CSS_TEXT = [],
     REGEX_TAG = new RegExp('<(\/*)(' + HTML5_ELEMENTS_LIST + ')', 'gi'),
 
     SELECTOR_REPLACE_RULE = '.' + 'printfix-' + '$1',
+
+    STR_EMPTY = '',
+
     STR_URL_DOMAIN = 'url(' + DOMAIN,
 
     TAG_REPLACE_ORIGINAL = '<$1$2',
