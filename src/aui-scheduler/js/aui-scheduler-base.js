@@ -815,7 +815,7 @@ var SchedulerBase = A.Component.create({
                 view.set(
                     'triggerNode',
                     A.Node.create(
-                        Lang.sub(TPL_SCHEDULER_VIEW, {
+                        A.Lang.sub(TPL_SCHEDULER_VIEW, {
                             name: name,
                             label: (instance.getString(name) || name)
                         })
@@ -925,7 +925,7 @@ var SchedulerBase = A.Component.create({
         _processTemplate: function(tpl) {
             var instance = this;
 
-            return Lang.sub(tpl, instance.getStrings());
+            return A.Lang.sub(tpl, instance.getStrings());
         },
 
         /**
