@@ -271,7 +271,7 @@ var ParseContent = A.Component.create({
 
             if (!preserveScriptNodes) {
                 output.js.each(
-                    function(node, i) {
+                    function(node) {
                         node.remove();
                     }
                 );
