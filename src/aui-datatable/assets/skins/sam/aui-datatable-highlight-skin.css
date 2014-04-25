@@ -2,10 +2,12 @@
     background-color: #eff4fe;
     color: #000;
 }
+
 .table-highlight-border {
     position: absolute;
     background-color: #89aff9;
 }
+
 .table-highlight-overlay-active .table-highlight-border {
     position: absolute;
     background-color: #5292F7;

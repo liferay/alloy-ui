@@ -1,16 +1,20 @@
 .carousel {
     position: relative;
 }
+
 .carousel-item {
     position: absolute;
     z-index: 1;
 }
+
 .carousel-item-transition {
     z-index: 2;
 }
+
 .carousel-item-active {
     z-index: 3;
 }
+
 .carousel menu {
     background: #000;
     bottom: 6px;
@@ -21,9 +25,11 @@
     right: 6px;
     z-index: 4;
 }
+
 .carousel menu li, .carousel menu a {
     float: left;
 }
+
 .carousel-menu-item {
     background: #474A4B;
     cursor: pointer;
@@ -31,31 +37,39 @@
     overflow: hidden;
     text-indent: -999999px;
 }
+
 .carousel-menu-next, .carousel-menu-play, .carousel-menu-pause, .carousel-menu-prev {
     height: 18px;
     width: 18px;
     margin: 0 3px;
 }
+
 .carousel-menu-next {
     background-image: url(next.png);
 }
+
 .carousel-menu-play {
     background-image: url(play.png);
 }
+
 .carousel-menu-pause {
     background-image: url(pause.png);
 }
+
 .carousel-menu-prev {
     background-image: url(prev.png);
 }
+
 .carousel-menu-index {
     height: 9px;
     margin: 4px 3px;
     width: 9px;
 }
+
 .carousel-menu-active {
     background: #FFF;
 }
+
 .carousel-hidden {
     display: none;
 }
