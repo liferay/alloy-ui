@@ -1,8 +1,7 @@
 {
     "aui-timepicker": {
         "requires": [
-            "autocomplete-list",
-            "autocomplete-list-keys",
+            "autocomplete",
             "aui-datepicker-delegate",
             "aui-datepicker-popover"
         ],
