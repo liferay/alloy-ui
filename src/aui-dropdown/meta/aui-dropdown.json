@@ -1,0 +1,18 @@
+{
+    "aui-dropdown": {
+        "requires": [
+            "event-delegate",
+            "event-key",
+            "event-outside",
+            "node-focusmanager",
+            "widget",
+            "widget-stack",
+            "aui-classnamemanager",
+            "aui-node",
+            "aui-widget-cssclass",
+            "aui-widget-toggle",
+            "aui-widget-trigger"
+        ],
+        "skinnable": true
+    }
+}

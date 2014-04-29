@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-dropdown",
+    "displayName": "Gallery: aui-dropdown",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "" ],
+    "use"        : [ "aui-dropdown" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

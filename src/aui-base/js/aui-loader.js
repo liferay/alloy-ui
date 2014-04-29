@@ -488,6 +488,22 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
+    "aui-dropdown": {
+        "requires": [
+            "event-delegate",
+            "event-key",
+            "event-outside",
+            "node-focusmanager",
+            "widget",
+            "widget-stack",
+            "aui-classnamemanager",
+            "aui-node",
+            "aui-widget-cssclass",
+            "aui-widget-toggle",
+            "aui-widget-trigger"
+        ],
+        "skinnable": true
+    },
     "aui-editable-deprecated": {
         "requires": [
             "aui-base-deprecated",
@@ -1291,8 +1307,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-timepicker": {
         "requires": [
-            "autocomplete-list",
-            "autocomplete-list-keys",
+            "autocomplete",
             "aui-datepicker-delegate",
             "aui-datepicker-popover"
         ],
@@ -1533,4 +1548,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '0d29bc5f8baa4e469134d7e5097694f8';
+YUI.Env[Y.version].md5 = '7ef34310c62b558cee9fed72cdeb0621';
