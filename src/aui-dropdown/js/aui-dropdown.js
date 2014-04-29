@@ -4,11 +4,6 @@
  * @module aui-dropdown
  */
 
-var getClassName = A.getClassName,
-
-    TPL_ENTRY = '<li id="{id}">{content}</li>',
-    TPL_DIVIDER = '<li class="divider"></li>';
-
 /**
  * A base class for Dropdown.
  *
@@ -29,7 +24,42 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
 ], {
     CONTENT_TEMPLATE: '<ul class="dropdown-menu"/>',
 
+    /**
+     * Defines the template for the divider item on the dropdown.
+     *
+     * @property TPL_DIVIDER
+     * @type {String}
+     * @default <li class="divider"></li>
+     * @protected
+     */
+    TPL_DIVIDER: '<li class="divider"></li>',
+
+    /**
+     * Defines the template for the entry item on the dropdown.
+     *
+     * @property TPL_ENTRY
+     * @type {String}
+     * @default <li id="{id}">{content}</li>
+     * @protected
+     */
+    TPL_ENTRY: '<li id="{id}">{content}</li>',
+
+    /**
+     * Holds the event handle for the `key` event.
+     *
+     * @property _hideOnEscHandle
+     * @type {EventHandle}
+     * @protected
+     */
     _hideOnEscHandle: null,
+
+    /**
+     * Holds the event handle for the `clickoutside` event.
+     *
+     * @property _hideOnClickOutsideHandle
+     * @type {EventHandle}
+     * @protected
+     */
     _hideOnClickOutsideHandle: null,
 
     /**
@@ -72,7 +102,19 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
     },
 
     /**
-     * Close the `Dropdown` instance.
+     * Brings the dropdown to the top of the zIndex stack.
+     *
+     * @method  bringToTop
+     */
+    bringToTop: function() {
+        if (A.Dropdown.Z_INDEX < 0) {
+            A.Dropdown.Z_INDEX = this.get('zIndex');
+        }
+        this.set('zIndex', A.Dropdown.Z_INDEX++);
+    },
+
+    /**
+     * Close the dropdown.
      *
      * @method close
      */
@@ -81,17 +123,16 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
     },
 
     /**
-     * Display the `Dropdown` instance.
+     * Opens the dropdown.
      *
      * @method open
      */
-
     open: function() {
         this.set('open', true);
     },
 
     /**
-     * Displays or close the `Dropdown`.
+     * Toggles open state of the dropdown.
      *
      * @method toggleContent
      */
@@ -151,9 +192,10 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
     },
 
     /**
-     * Bind the list of host attributes.
+     * Binds the `Plugin.NodeFocusManager` that handle dropdown keyboard
+     * navigation.
      *
-     * @method _bindHostAttributes
+     * @method _bindFocusManager
      * @protected
      */
     _bindFocusManager: function() {
@@ -161,7 +203,7 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
     },
 
     /**
-     * Fire when a click out of `Dropdown` boundingBox.
+     * Fires when a click out of dropdown boundingBox.
      *
      * @method _onClickOutside
      * @protected
@@ -171,7 +213,7 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
     },
 
     /**
-     * Fire when a pres esc key.
+     * Fires when a pres escape key.
      *
      * @method _onEscKey
      * @protected
@@ -204,23 +246,24 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
     },
 
     /**
-     * Create a list of items based on `items` parameter.
+     * Creates a list of items based on `items` parameter.
      *
      * @method _setItems
      * @param {Array} items
      * @protected
      */
     _setItems: function(items) {
-        var buffer = '';
+        var instance = this,
+            buffer = '';
 
         if (A.Lang.isArray(items)) {
             A.Array.each(items, function(item) {
                 if (item.divider) {
-                    buffer += TPL_DIVIDER;
+                    buffer += instance.TPL_DIVIDER;
                 }
                 else {
                     buffer += A.Lang.sub(
-                        TPL_ENTRY, {
+                        instance.TPL_ENTRY, {
                             content: item.content,
                             id: item.id || A.guid()
                         }
@@ -234,10 +277,10 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
     },
 
     /**
-     * Set the `hideOnClickOutside` on the UI.
+     * Sets the `hideOnClickOutside` on the UI.
      *
      * @method _uiHideOnClickOutside
-     * @param val
+     * @param {Boolean} val
      * @protected
      */
     _uiSetHideOnClickOutside: function(val) {
@@ -250,10 +293,10 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
     },
 
     /**
-     * Set the `hideOnEsc` on the UI.
+     * Sets the `hideOnEsc` on the UI.
      *
      * @method _uiHideOnEsc
-     * @param val
+     * @param {Boolean} val
      * @protected
      */
     _uiSetHideOnEsc: function(val) {
@@ -266,10 +309,10 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
     },
 
     /**
-     * Set the `items` on the UI.
+     * Sets the `items` on the UI.
      *
      * @method _uiSetItems
-     * @param val
+     * @param {NodeList} val
      * @protected
      */
     _uiSetItems: function(val) {
@@ -277,13 +320,16 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
     },
 
     /**
-     * Set the `open` on the UI.
+     * Sets the `open` on the UI.
      *
      * @method _uiSetOpen
-     * @param val
+     * @param {Boolean} val
      * @protected
      */
     _uiSetOpen: function(val) {
+        if (this.get('bringToTop')) {
+            this.bringToTop();
+        }
         this.get('boundingBox').toggleClass('open', val);
     },
 
@@ -291,7 +337,7 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
      * Validates the value of `items` attribute.
      *
      * @method _validateItems
-     * @param val
+     * @param {Object} val
      * @protected
      * @return {Boolean} The result of the validation
      */
@@ -308,7 +354,7 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
      * @type String
      * @static
      */
-    CSS_PREFIX: getClassName('dropdown'),
+    CSS_PREFIX: A.getClassName('dropdown'),
 
     /**
      * Static property used to define the default attribute configuration for
@@ -319,20 +365,33 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
      * @static
      */
     ATTRS: {
-
         /**
-         * A Node in which results will be shown.
+         * Brings the dropdown to the top of the zIndex stack on open.
          *
-         * @attribute items
-         * @default null
-         * @type {Node}
-         * @initOnly
+         * @attribute bringToTop
+         * @default true
+         * @type {Boolean}
          */
-        items: {
-            setter: '_setItems',
-            validator: '_validateItems'
+        bringToTop: {
+            validator: A.Lang.isBoolean,
+            value: true
         },
 
+        /**
+         * Defines the keyboard configuration object for
+         * `Plugin.NodeFocusManager`.
+         *
+         * @attribute focusmanager
+         * @default {
+         *     descendants: 'li > a',
+         *     keys: {
+         *         next: 'down:40',
+         *         previous: 'down:38'
+         *     },
+         *     circular: false
+         * }
+         * @type {Object}
+         */
         focusmanager: {
             value: {
                 descendants: 'li > a',
@@ -346,7 +405,18 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
         },
 
         /**
-         * Determine if `dropdown` will close when press `esc`.
+         * Holds a NodeList containing the menu items.
+         *
+         * @attribute items
+         * @type {NodeList}
+         */
+        items: {
+            setter: '_setItems',
+            validator: '_validateItems'
+        },
+
+        /**
+         * Determines if dropdown will close when press escape.
          *
          * @attribute hideOnEsc
          * @default true
@@ -358,8 +428,8 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
         },
 
         /**
-         * Determine if `dropdown` will close when click outside the `boundingBox`
-         * area.
+         * Determines if dropdown will close when click outside the
+         * `boundingBox` area.
          *
          * @attribute hideOnClickOutSide
          * @default true
@@ -370,6 +440,15 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
             value: true
         },
 
+        /**
+         * Determines the dropdown state. Note that `open` state is different
+         * than `visible` state since it only adds or removes an `open` css
+         * class on the `boundingBox` instead of toggling its visibility.
+         *
+         * @attribute open
+         * @default false
+         * @type {Boolean}
+         */
         open: {
             validator: A.Lang.isBoolean,
             value: false
@@ -393,5 +472,16 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
      */
     HTML_PARSER: {
         items: ['> li']
-    }
+    },
+
+    /**
+     * Holds the highest value for the global zIndex responsible to bring the
+     * dropdown menus to the top if `bringToTop` attribute is set to `true`.
+     *
+     * @property Z_INDEX
+     * @type {Number}
+     * @default  -1
+     * @static
+     */
+    Z_INDEX: -1
 });

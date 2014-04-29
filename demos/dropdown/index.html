@@ -8,44 +8,36 @@
 </head>
 <body>
     <h1>AlloyUI - Dropdown</h1>
-    <div class="example">
-        <nav class="navbar navbar-default" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Dropdown Samples</a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li id="dropdown1" class="dropdown">
-                            <a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">First Dropdown <b class="caret"></b></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a role="menuitem" tabindex="-1" href="#">Close on esc</a></li>
-                                <li class="divider"></li>
-                                <li><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                            </ul>
-                        </li>
-                        <li id="dropdown2" class="dropdown">
-                            <a id="trigger" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Second Dropdown <b class="caret"></b></a>
-                        </li>
-                    </ul>
-                </div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li id="dropdown" class="dropdown">
+                        <a id="trigger" href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                    </li>
+                    <li id="stick" class="dropdown">
+                        <a href="#" id="drop2" class="dropdown-toggle" data-toggle="dropdown">Stick <b class="caret"></b></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a role="menuitem" tabindex="-1" href="#">I only close on escape</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a role="menuitem" tabindex="-1" href="#">Some other link</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-        </nav>
-      </div>
+        </div>
+    </nav>
     <script>
 
     YUI({ filter: 'raw' }).use('aui-dropdown', function(Y) {
 
-        var dropdown1 = new Y.Dropdown({
-                boundingBox: '#dropdown1',
-                contentBox: '#dropdown1 ul',
-                trigger: '#dropdown1 .dropdown-toggle',
-                hideOnClickOutSide: false
-            }).render();
-
-        var dropdown2 = new Y.Dropdown({
+        var dropdown = new Y.Dropdown({
+            boundingBox: '#dropdown',
             trigger: '#trigger',
-            boundingBox: '#dropdown2',
             items: [
                 {
                     id: 'first_i',
@@ -53,26 +45,35 @@
                 },
                 {
                     id: 'second_i',
-                    content: '<a role="menuitem" tabindex="-1" >Close on esc</a>'
+                    content: '<a role="menuitem" tabindex="-1" >Close on escape</a>'
                 },
                 {
                     divider: true
                 },
                 {
                     id: 'third_i',
-                    content: '<a href="#" role="menuitem">Call function to print on console</a>'
+                    content: '<a href="#" role="menuitem">I can fire a DOM event</a>'
                 }
-            ]
-        }).render();
+            ],
+            render: true
+        });
 
-        dropdown2.get('boundingBox').delegate('click', function(event) {
-            switch(event.currentTarget.get('id')) {
+        new Y.Dropdown({
+            boundingBox: '#stick',
+            contentBox: '#stick ul',
+            hideOnClickOutSide: false,
+            trigger: '#stick .dropdown-toggle',
+            render: true
+        });
+
+        dropdown.get('boundingBox').delegate('click', function(event) {
+            switch (event.currentTarget.get('id')) {
                 case 'third_i':
-                    console.log('Clicked.');
+                    console.log('Clicked third_i.');
             }
         }, 'li');
 
     });
     </script>
 </body>
-</html> 
+</html>

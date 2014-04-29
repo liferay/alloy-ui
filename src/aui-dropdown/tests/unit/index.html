@@ -16,36 +16,35 @@
 </head>
 <body class="yui3-skin-sam">
 	<h1>AlloyUI - Dropdown</h1>
-    <div class="example">
-        <nav class="navbar navbar-default" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Dropdown Samples</a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li id="dropdown1" class="dropdown">
-                            <a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">First Dropdown <b class="caret"></b></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a role="menuitem" tabindex="-1" href="#">Close on esc</a></li>
-                                <li class="divider"></li>
-                                <li><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                            </ul>
-                        </li>
-                        <li id="dropdown2" class="dropdown">
-                            <a id="trigger" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Second Dropdown <b class="caret"></b></a>
-                        </li>
-                    </ul>
-                </div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li id="dropdown" class="dropdown">
+                        <a id="trigger" href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                    </li>
+                    <li id="stick" class="dropdown">
+                        <a href="#" id="drop2" class="dropdown-toggle" data-toggle="dropdown">Stick <b class="caret"></b></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a role="menuitem" tabindex="-1" href="#">I never close</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a role="menuitem" tabindex="-1" href="#">Some other link</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-        </nav>
-      </div>
+        </div>
+    </nav>
 <script>
 YUI({
     coverage: ['aui-dropdown'],
     filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
 }).use('test-console', 'test', 'aui-dropdown-tests', function(Y) {
-    
+
     (new Y.Test.Console()).render('#logger');
 
     Y.Test.Runner.setName('aui-dropdown');

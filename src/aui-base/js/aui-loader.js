@@ -362,6 +362,22 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
+    "aui-dropdown": {
+        "requires": [
+            "event-delegate",
+            "event-key",
+            "event-outside",
+            "node-focusmanager",
+            "widget",
+            "widget-stack",
+            "aui-classnamemanager",
+            "aui-node",
+            "aui-widget-cssclass",
+            "aui-widget-toggle",
+            "aui-widget-trigger"
+        ],
+        "skinnable": true
+    },
     "aui-event": {
         "use": [
             "aui-event-base"
@@ -1152,4 +1168,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'f1a7edf9f6019c5ffbd02e28a38f4897';
+YUI.Env[Y.version].md5 = '847bec9fa6d6f008924a27d3e687860b';
