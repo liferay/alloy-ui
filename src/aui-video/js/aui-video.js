@@ -34,6 +34,10 @@ var Video = A.Component.create(
 			fixedAttributes: {
 				value: {}
 			},
+			flashPlayerVersion: {
+				validator: Lang.isString,
+				value: '9,0,0,0'
+			},
 			flashVars: {
 				value: {}
 			},
@@ -107,7 +111,9 @@ var Video = A.Component.create(
 					var tplObj = '<object id="' + instance._swfId + '" ';
 
 					if (UA.ie) {
-						tplObj += 'classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" ';
+						tplObj += 'classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" ' +
+							'codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=' +
+							instance.get('flashPlayerVersion') + '" ';
 					}
 					else {
 						tplObj += 'type="application/x-shockwave-flash" data="' + swfUrl + '" ';
