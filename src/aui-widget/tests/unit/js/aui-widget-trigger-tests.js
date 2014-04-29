@@ -1,121 +1,121 @@
 YUI.add('aui-widget-trigger-tests', function(Y) {
-    var suite = new Y.Test.Suite('aui-widget-trigger');
+    var suite = new Y.Test.Suite('aui-widget-trigger'),
+        WidgetTriggerToggle = Y.Base.create(
+            'widgetTriggerToggle',
+            Y.Widget,
+            [Y.WidgetToggle, Y.WidgetTrigger]
+        );
 
     suite.add(new Y.Test.Case({
         name: 'AUI WidgetTrigger Tests',
 
         init: function() {
-            this.MyWidgetWithTrigger = Y.Base.create(
-                'my-widget-with-trigger',
-                Y.Widget,
-                [Y.WidgetToggle, Y.WidgetTrigger]
-            );
+            this._trigger = Y.one('#trigger');
+            this._trigger2 = Y.one('#trigger2');
 
-            this.trigger = Y.one('#trigger');
-            this.trigger2 = Y.one('#trigger2');
-
-            this.eventHide = 'my-event-hide';
-            this.eventShow = 'my-event-show';
-            this.eventToggle = 'my-event-toggle';
+            this._eventHide = 'event-hide';
+            this._eventShow = 'event-show';
+            this._eventToggle = 'event-toggle';
         },
 
         tearDown: function() {
-            this.widgetInstance && this.widgetInstance.destroy();
+            this._widgetTrigger && this._widgetTrigger.destroy();
         },
 
         'should bind hide event': function() {
-            this.widgetInstance = new this.MyWidgetWithTrigger({
-                trigger: this.trigger,
-                triggerHideEvent: this.eventHide,
+            this._widgetTrigger = new WidgetTriggerToggle({
+                trigger: this._trigger,
+                triggerHideEvent: this._eventHide
             }).render();
 
-            Y.Assert.isTrue(this.widgetInstance.get('visible'), 'Widget should be visible initially');
+            Y.Assert.isTrue(this._widgetTrigger.get('visible'), 'Widget should be visible initially');
 
-            this.trigger.fire(this.eventHide);
-            Y.Assert.isFalse(this.widgetInstance.get('visible'), 'Widget should be hidden after hide event');
+            this._trigger.fire(this._eventHide);
+            Y.Assert.isFalse(this._widgetTrigger.get('visible'), 'Widget should be hidden after hide event');
         },
 
         'should bind show event': function() {
-            this.widgetInstance = new this.MyWidgetWithTrigger({
-                trigger: this.trigger,
-                triggerShowEvent: this.eventShow,
+            this._widgetTrigger = new WidgetTriggerToggle({
+                trigger: this._trigger,
+                triggerShowEvent: this._eventShow
             }).render();
 
-            this.widgetInstance.set('visible', false);
+            this._widgetTrigger.set('visible', false);
 
-            this.trigger.fire(this.eventShow);
-            Y.Assert.isTrue(this.widgetInstance.get('visible'), 'Widget should be visible after show event');
+            this._trigger.fire(this._eventShow);
+            Y.Assert.isTrue(this._widgetTrigger.get('visible'), 'Widget should be visible after show event');
         },
 
         'should bind toggle event': function() {
-            this.widgetInstance = new this.MyWidgetWithTrigger({
-                trigger: this.trigger,
-                triggerToggleEvent: this.eventToggle,
+            this._widgetTrigger = new WidgetTriggerToggle({
+                trigger: this._trigger,
+                triggerToggleEvent: this._eventToggle
             }).render();
 
-            Y.Assert.isTrue(this.widgetInstance.get('visible'), 'Widget should be visible initially');
+            Y.Assert.isTrue(this._widgetTrigger.get('visible'), 'Widget should be visible initially');
 
-            this.trigger.fire(this.eventToggle);
+            this._trigger.fire(this._eventToggle);
             Y.Assert.isFalse(
-                this.widgetInstance.get('visible'),
+                this._widgetTrigger.get('visible'),
                 'Widget should be hidden after toggle event'
             );
         },
 
         'should switch triggers dynamically': function() {
-            this.widgetInstance = new this.MyWidgetWithTrigger({
-                trigger: this.trigger,
-                triggerHideEvent: this.eventHide,
-                triggerShowEvent: this.eventShow,
-                triggerToggleEvent: this.eventToggle
+            this._widgetTrigger = new WidgetTriggerToggle({
+                trigger: this._trigger,
+                triggerHideEvent: this._eventHide,
+                triggerShowEvent: this._eventShow,
+                triggerToggleEvent: this._eventToggle
             }).render();
-            this.widgetInstance.set('trigger', this.trigger2);
 
-            this.trigger.fire(this.eventHide);
+            this._widgetTrigger.set('trigger', this._trigger2);
+
+            this._trigger.fire(this._eventHide);
             Y.Assert.isTrue(
-                this.widgetInstance.get('visible'),
+                this._widgetTrigger.get('visible'),
                 'Widget should not become hidden after hide event on previous trigger'
             );
 
-            this.trigger2.fire(this.eventHide);
+            this._trigger2.fire(this._eventHide);
             Y.Assert.isFalse(
-                this.widgetInstance.get('visible'),
+                this._widgetTrigger.get('visible'),
                 'Widget should be hidden after hide event'
             );
 
-            this.trigger2.fire(this.eventShow);
-            Y.Assert.isTrue(this.widgetInstance.get('visible'), 'Widget should be visible after show event');
+            this._trigger2.fire(this._eventShow);
+            Y.Assert.isTrue(this._widgetTrigger.get('visible'), 'Widget should be visible after show event');
 
-            this.trigger2.fire(this.eventToggle);
-            Y.Assert.isFalse(this.widgetInstance.get('visible'),
+            this._trigger2.fire(this._eventToggle);
+            Y.Assert.isFalse(this._widgetTrigger.get('visible'),
                 'Widget should be hidden after toggle event');
         },
 
         'should ignore events if bindDOMEvents is false': function() {
-            this.widgetInstance = new this.MyWidgetWithTrigger({
+            this._widgetTrigger = new WidgetTriggerToggle({
                 bindDOMEvents: false,
-                trigger: this.trigger,
-                triggerHideEvent: this.eventHide,
-                triggerShowEvent: this.eventShow,
-                triggerToggleEvent: this.eventToggle
+                trigger: this._trigger,
+                triggerHideEvent: this._eventHide,
+                triggerShowEvent: this._eventShow,
+                triggerToggleEvent: this._eventToggle
             }).render();
 
-            this.trigger.fire(this.eventHide);
+            this._trigger.fire(this._eventHide);
             Y.Assert.isTrue(
-                this.widgetInstance.get('visible'),
+                this._widgetTrigger.get('visible'),
                 'Widget should not become hidden after hide event when bindDOMEvents is false'
             );
 
-            this.widgetInstance.set('visible', false);
-            this.trigger.fire(this.eventShow);
+            this._widgetTrigger.set('visible', false);
+            this._trigger.fire(this._eventShow);
             Y.Assert.isFalse(
-                this.widgetInstance.get('visible'),
+                this._widgetTrigger.get('visible'),
                 'Widget should not become visible after show event when bindDOMEvents is false'
             );
 
-            this.trigger.fire(this.eventToggle);
+            this._trigger.fire(this._eventToggle);
             Y.Assert.isFalse(
-                this.widgetInstance.get('visible'),
+                this._widgetTrigger.get('visible'),
                 'Widget should not become visible after toggle event when bindDOMEvents is false'
             );
         }
