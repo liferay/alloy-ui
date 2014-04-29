@@ -2,8 +2,7 @@ YUI.add('aui-widget-trigger-tests', function(Y) {
     var suite = new Y.Test.Suite('aui-widget-trigger'),
         WidgetTriggerToggle = Y.Base.create(
             'widgetTriggerToggle',
-            Y.Widget,
-            [Y.WidgetToggle, Y.WidgetTrigger]
+            Y.Widget, [Y.WidgetToggle, Y.WidgetTrigger]
         );
 
     suite.add(new Y.Test.Case({
