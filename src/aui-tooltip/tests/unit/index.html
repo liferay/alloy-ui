@@ -1,60 +1,59 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>aui-tooltip</title>
+    <head>
+        <meta charset="utf-8" />
+        <title>AUI Tooltip Unit Tests</title>
 
-    <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+        <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+        <link rel="stylesheet" href="../../assets/aui-tooltip-base-core.css">
 
-    <link rel="stylesheet" href="../../assets/aui-tooltip-base-core.css">
+        <script src="../../../../build/aui/aui.js"></script>
+        <script src="js/tests.js"></script>
+    </head>
+    <body class="yui3-skin-sam">
+        <div id="logger"></div>
+        <div class="row">
+            <div class="col col-lg-12 col-md-12 col-sm-12">
+                <h1>AUI Tooltip Tests</h1>
 
-    <script src="../../../../build/aui/aui.js"></script>
-    <script src="js/tests.js"></script>
-    <meta charset="utf-8" />
-</head>
-<body class="yui3-skin-sam">
-<div id="logger"></div>
-<div class="row">
-    <div class="col col-lg-12 col-md-12 col-sm-12">
-        <h1>AUI Tooltip Tests</h1>
+                <p>
+                    <button class="btn btn-lg btn-primary" id="triggerTop" title="One fine body…">#triggerTop</button>
 
-        <p>
-            <button class="btn btn-lg btn-primary" id="triggerTop" title="One fine body…">#triggerTop</button>
+                    <button class="btn btn-lg btn-primary" id="triggerRight" title="One fine body…">#triggerRight</button>
+                </p>
 
-            <button class="btn btn-lg btn-primary" id="triggerRight" title="One fine body…">#triggerRight</button>
-        </p>
+                <p>
+                    <button class="btn btn-lg btn-primary" id="triggerBottom" title="One fine body…">#triggerBottom</button>
 
-        <p>
-            <button class="btn btn-lg btn-primary" id="triggerBottom" title="One fine body…">#triggerBottom</button>
+                    <button class="btn btn-lg btn-primary" id="triggerLeft" title="One fine body…">#triggerLeft</button>
+                </p>
+            </div>
+        </div>
 
-            <button class="btn btn-lg btn-primary" id="triggerLeft" title="One fine body…">#triggerLeft</button>
-        </p>
-    </div>
-</div>
+        <div class="row">
+            <div class="col col-lg-12 col-md-12 col-sm-12">
+                <h1>AUI Tooltip Mouseover Tests</h1>
 
-<div class="row">
-    <div class="col col-lg-12 col-md-12 col-sm-12">
-        <h1>AUI Tooltip Mouseover Tests</h1>
+                <button class="btn btn-lg btn-primary" id="triggerTooltipHelp" title="Users are individuals who perform tasks using the portal. Administrators can create new users or deactivate existing users. Users com join sites, be placed into organization hierarchies, be delegated permissions in roles, or be collected into users groups. User groups can cross organizational boundaries, and can be used to assign all members to other collections, such as sites or roles. User groups may also be used to customize personal site templates for members.">Mouseover to show help tooltip</button>
 
-        <button class="btn btn-lg btn-primary" id="triggerTooltipHelp" title="Users are individuals who perform tasks using the portal. Administrators can create new users or deactivate existing users. Users com join sites, be placed into organization hierarchies, be delegated permissions in roles, or be collected into users groups. User groups can cross organizational boundaries, and can be used to assign all members to other collections, such as sites or roles. User groups may also be used to customize personal site templates for members.">Mouseover to show help tooltip</button>
+                <button class="btn btn-primary" id="triggerNoTitle">No Title</button>
 
-        <button class="btn btn-primary" id="triggerNoTitle">No Title</button>
+                <button class="btn btn-primary" id="triggerTooltipFormatted" title="Test">Formatted Tooltip</button>
+            </div>
+        </div>
 
-        <button class="btn btn-primary" id="triggerTooltipFormatted" title="Test">Formatted Tooltip</button>
-    </div>
-</div>
+        <div id="noTrigger">Something</div>
+        <script>
+        YUI({
+            coverage: ['aui-tooltip-base'],
+            filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+        }).use('test-console', 'test', 'aui-tooltip-tests', function(Y) {
 
-<div id="noTrigger">Something</div>
-<script>
-YUI({
-    coverage: ['aui-tooltip-base'],
-    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-}).use('test-console', 'test', 'aui-tooltip-tests', function(Y) {
+            (new Y.Test.Console()).render('#logger');
 
-    (new Y.Test.Console()).render('#logger');
-
-    Y.Test.Runner.setName('aui-tooltip');
-    Y.Test.Runner.run();
-});
-</script>
-</body>
+            Y.Test.Runner.setName('aui-tooltip');
+            Y.Test.Runner.run();
+        });
+        </script>
+    </body>
 </html>
