@@ -12,14 +12,14 @@ YUI.add('aui-tooltip-delegate-tests', function(Y) {
         },
 
         'should show tooltips for all triggers': function() {
-            var instance = this,
-                tooltip,
+            var tooltip,
                 triggers = Y.all('.tooltip-btn');
 
             this._delegate = new Y.TooltipDelegate({
                 trigger: '.tooltip-btn'
             });
-            tooltip = instance._delegate.getTooltip();
+
+            tooltip = this._delegate.getTooltip();
 
             triggers.each(function(trigger) {
                 trigger.simulate('mouseover');
