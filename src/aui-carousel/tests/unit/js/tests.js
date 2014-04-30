@@ -57,8 +57,6 @@ YUI.add('aui-carousel-tests', function(Y) {
         'should play images in sequence': function() {
             var instance = this;
 
-            debugger;
-
             Y.Assert.areEqual(0, this._carousel.get('activeIndex'), 'Initially, activeIndex should be 0');
 
             this.waitForNext(function() {
