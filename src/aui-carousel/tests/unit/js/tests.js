@@ -14,17 +14,21 @@ YUI.add('aui-carousel-tests', function(Y) {
         },
 
         setUp: function() {
-            this._container.setHTML('<div id="content"><div></div><div></div><div></div></div>');
-
-            this._carousel = new Y.Carousel({
+            this.createCarousel({
                 contentBox: '#content',
                 intervalTime: 1,
                 itemSelector: '> div'
-            }).render();
+            });
         },
 
         tearDown: function() {
             this._carousel && this._carousel.destroy();
+        },
+
+        createCarousel: function(config) {
+            this._container.setHTML('<div id="content"><div></div><div></div><div></div></div>');
+
+            this._carousel = new Y.Carousel(config).render();
         },
 
         assertPaused: function(callback) {
@@ -38,16 +42,17 @@ YUI.add('aui-carousel-tests', function(Y) {
                     'Carousel was paused, so activeIndex should not have been updated'
                 );
 
-                callback();
+                callback && callback();
             }, (this._carousel.get('animationTime') + this._carousel.get('intervalTime')) * 1000 + 100);
         },
 
         waitForNext: function(callback) {
-            var instance = this;
+            var instance = this,
+                timeBefore = new Date().getTime();
 
             this._carousel.onceAfter('activeIndexChange', function() {
                 instance.resume(function() {
-                    callback();
+                    callback(Math.round((new Date().getTime() - timeBefore) / 1000));
                 });
             });
 
@@ -80,6 +85,27 @@ YUI.add('aui-carousel-tests', function(Y) {
                             'Cycle is closed, activeIndex should be 0'
                         );
                     });
+                });
+            });
+        },
+
+        'should change the interval time': function() {
+            var instance = this;
+
+            this.waitForNext(function(intervalTime1) {
+                Y.Assert.areEqual(
+                    1,
+                    intervalTime1,
+                    'Initial interval time is of 1 second'
+                );
+
+                instance._carousel.set('intervalTime', 2);
+                instance.waitForNext(function(intervalTime2) {
+                    Y.Assert.areEqual(
+                        2,
+                        intervalTime2,
+                        'Interval time should have been updated'
+                    );
                 });
             });
         },
@@ -119,6 +145,19 @@ YUI.add('aui-carousel-tests', function(Y) {
                     );
                 });
             });
+        },
+
+        'should be able to switch images while paused': function() {
+            var instance = this;
+
+            this._carousel.pause();
+            this._carousel.item(1);
+
+            Y.Assert.areEqual(
+                1,
+                instance._carousel.get('activeIndex'),
+                'The image index should have been updated correctly'
+            );
         },
 
         'should switch images when user clicks on next/previous buttons': function() {
@@ -307,6 +346,38 @@ YUI.add('aui-carousel-tests', function(Y) {
                 this._carousel.get('activeIndex'),
                 'There are only 2 items now, so the next item should be 0'
             );
+        },
+
+        'should work with a custom menu': function() {
+            var customMenu = Y.one('#customMenu');
+
+            this._carousel.set('nodeMenu', customMenu);
+            this._carousel.set('nodeMenuItemSelector', '.test-menu-item');
+
+            // This shouldn't throw an exception due to trying to
+            // update the missing play button.
+            this._carousel.set('playing', false);
+
+            // This shouldn't throw an exception due to clicking
+            // on a non carousel button inside the menu.
+            customMenu.one('.test-menu-extra').simulate('click');
+
+            // This shouldn't throw an exception due to trying to
+            // update the missing item button.
+            this._carousel.set('playing', true);
+            this.waitForNext(function() {
+                Y.Assert.pass('No exceptions were thrown');
+            });
+        },
+
+        'should be able to start the carousel already paused': function() {
+            this._carousel.destroy();
+            this.createCarousel({
+                contentBox: '#content',
+                playing: false
+            });
+
+            this.assertPaused();
         }
     }));
 

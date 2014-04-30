@@ -224,7 +224,7 @@ var Carousel = A.Component.create({
                 animationTimeChange: instance._afterAnimationTimeChange,
                 intervalTimeChange: instance._afterIntervalTimeChange,
                 itemSelectorChange: instance._afterItemSelectorChange,
-                nodeMenuItemSelector: instance._afterNodeMenuItemSelectorChange,
+                nodeMenuItemSelectorChange: instance._afterNodeMenuItemSelectorChange,
                 playingChange: instance._afterPlayingChange
             });
 
@@ -367,6 +367,8 @@ var Carousel = A.Component.create({
             instance.nodeMenuItemSelector = event.newVal;
 
             instance._updateMenuNodes();
+
+            instance._bindMenu();
         },
 
         /**
@@ -428,7 +430,15 @@ var Carousel = A.Component.create({
 
             var nodeMenuItemSelector = instance.get('nodeMenuItemSelector');
 
-            menu.delegate('click', instance._onClickDelegate, nodeMenuItemSelector, instance);
+            if (instance._menuClickDelegateHandler) {
+                instance._menuClickDelegateHandler.detach();
+            }
+            instance._menuClickDelegateHandler = menu.delegate(
+                'click',
+                instance._onClickDelegate,
+                nodeMenuItemSelector,
+                instance
+            );
 
             instance.nodeMenuItemSelector = nodeMenuItemSelector;
         },
@@ -736,10 +746,6 @@ var Carousel = A.Component.create({
             var boundingBox = this.get('boundingBox');
 
             if (val) {
-                if (this.hoverEventHandles) {
-                    return;
-                }
-
                 this.hoverEventHandles = [
                     boundingBox.on('mouseenter', A.bind(this.pause, this)),
                     boundingBox.on('mouseleave', A.bind(this.play, this))
@@ -812,6 +818,7 @@ var Carousel = A.Component.create({
         _updateMenuNodes: function() {
             var instance = this;
 
+            instance.nodeMenu = instance.get('nodeMenu');
             instance.menuNodes = instance.nodeMenu.all(SELECTOR_MENU_INDEX);
         },
 
