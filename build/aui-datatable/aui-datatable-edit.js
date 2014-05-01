@@ -895,9 +895,7 @@ var BaseOptionsCellEditor = A.Component.create({
 					var name = inputName.val();
 					var value = values.item(index).val();
 
-					if (name && value) {
-						options[value] = name;
-					}
+					options[value] = name;
 				});
 
 				instance.set(OPTIONS, options);
@@ -1435,4 +1433,4 @@ var DateCellEditor = A.Component.create({
 
 A.DateCellEditor = DateCellEditor;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-calendar','aui-datatable-events','aui-toolbar','aui-form-validator','overlay','sortable']});
+}, '@VERSION@' ,{requires:['aui-calendar','aui-datatable-events','aui-toolbar','aui-form-validator','overlay','sortable'], skinnable:true});

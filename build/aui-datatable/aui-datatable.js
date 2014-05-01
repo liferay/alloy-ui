@@ -154,7 +154,7 @@ A.Plugin.RecordsetSort.prototype._defSortFn = function(event) {
     instance.set('lastSortProperties', event);
 };
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','datatable','plugin']});
+}, '@VERSION@' ,{requires:['aui-base','datatable','plugin'], skinnable:true});
 AUI.add('aui-datatable-events', function(A) {
 // TODO - optimize code
 
@@ -1294,9 +1294,7 @@ var BaseOptionsCellEditor = A.Component.create({
 					var name = inputName.val();
 					var value = values.item(index).val();
 
-					if (name && value) {
-						options[value] = name;
-					}
+					options[value] = name;
 				});
 
 				instance.set(OPTIONS, options);
@@ -1834,7 +1832,7 @@ var DateCellEditor = A.Component.create({
 
 A.DateCellEditor = DateCellEditor;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-calendar','aui-datatable-events','aui-toolbar','aui-form-validator','overlay','sortable']});
+}, '@VERSION@' ,{requires:['aui-calendar','aui-datatable-events','aui-toolbar','aui-form-validator','overlay','sortable'], skinnable:true});
 AUI.add('aui-datatable-selection', function(A) {
 // TODO - add support for row/column selection
 
@@ -2260,7 +2258,7 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 
 A.namespace("Plugin").DataTableSelection = DataTableSelection;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-datatable-base']});
+}, '@VERSION@' ,{requires:['aui-datatable-base'], skinnable:true});
 
 
 AUI.add('aui-datatable', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-datatable-base','aui-datatable-events','aui-datatable-edit','aui-datatable-selection']});
