@@ -274,7 +274,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
         var activeScreen = this.activeScreen,
             title = nextScreen.get('title') || this.get('defaultTitle');
 
-        this._updateHistory(path, title, opt_replaceHistory);
+        this._updateHistory(title, path, opt_replaceHistory);
 
         doc.title = title;
 
@@ -453,7 +453,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      * @param {Boolean} opt_replaceHistory Replaces browser history.
      * @private
      */
-    _updateHistory: function(path, title, opt_replaceHistory) {
+    _updateHistory: function(title, path, opt_replaceHistory) {
         var historyParams = {
             path: path,
             surface: true
