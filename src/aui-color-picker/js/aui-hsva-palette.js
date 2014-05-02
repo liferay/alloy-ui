@@ -24,6 +24,7 @@ var Lang = A.Lang,
 
     CSS_ALPHA_CANVAS = getClassName('hsv-alpha-canvas'),
     CSS_ALPHA_SLIDER_CONTAINER = getClassName('hsv-alpha-slider-container'),
+    CSS_ALPHA_SLIDER_WRAPPER = getClassName('hsv-alpha-slider-wrapper'),
     CSS_ALPHA_THUMB = getClassName('hsv-alpha-thumb'),
     CSS_ALPHA_THUMB_IMAGE = getClassName('hsv-alpha-image'),
 
@@ -39,9 +40,13 @@ var Lang = A.Lang,
      * @constructor
      */
     HSVAPalette = A.Base.create('hsva-palette', A.HSVPalette, [], {
+        CSS_VALUE_RIGHT_SIDE_CONTAINER: 'col-sm-8 col-xs-8',
+
         TPL_ALPHA_CANVAS: '<span class="' + CSS_ALPHA_CANVAS + '"></span>',
 
-        TPL_ALPHA_SLIDER_CONTAINER: '<div class="' + CSS_ALPHA_SLIDER_CONTAINER + '"><div>',
+        TPL_ALPHA_SLIDER_WRAPPER: '<div class="col-sm-2 col-xs-2 ' +
+            CSS_ALPHA_SLIDER_WRAPPER + '"><div class="' +
+            CSS_ALPHA_SLIDER_CONTAINER + '"></div></div>',
 
         TPL_ALPHA_THUMB: '<span class="' + CSS_ALPHA_THUMB + '"><span class="' + CSS_ALPHA_THUMB_IMAGE +
             '"></span></span>',
@@ -58,9 +63,9 @@ var Lang = A.Lang,
 
             instance.set('fieldValidator.hex', REGEX_HEX_COLOR_ALPHA);
 
-            instance.after('hsThumbChange', instance._afterHsThumbChangeFn, instance);
-            instance.after('hsvaInputChange', instance._afterHSVAInputChange, instance);
-            instance.after('rgbInputChange', instance._afterRGBInputChange, instance);
+            instance.after('selectedChange', instance._updateAlphaValue, instance);
+
+            instance.onceAfter('render', instance._updateAlphaValue, instance);
         },
 
         /**
@@ -92,56 +97,6 @@ var Lang = A.Lang,
             if (instance.get('controls')) {
                 instance._setFieldValue(instance._aContainer, alphaDec);
             }
-        },
-
-        /**
-         * Sets alpha slider container style after thumb position change.
-         *
-         * @method _afterHsThumbChangeFn
-         * @param {EventFacade} event
-         * @protected
-         */
-        _afterHsThumbChangeFn: function(event) {
-            var instance = this;
-
-            instance._alphaSliderContainer.setStyle('backgroundColor', event.hexColor);
-        },
-
-        /**
-         * Sets alpha slider style, position, and results view after HSVA input
-         * `valueChange`.
-         *
-         * @method _afterHSVAInputChange
-         * @param {EventFacade} event
-         * @protected
-         */
-        _afterHSVAInputChange: function(event) {
-            var instance = this,
-                alpha = instance._getFieldValue(instance._aContainer);
-
-            instance._alphaSlider.set(
-                'value',
-                MAX_ALPHA - alpha, {
-                    src: AWidget.UI_SRC
-                }
-            );
-
-            instance._alphaSliderContainer.setStyle('backgroundColor', event.hexColor);
-
-            instance._resultView.setStyle('opacity', alpha / MAX_ALPHA);
-        },
-
-        /**
-         * Sets alpha slider container style after RGB input `valueChange`.
-         *
-         * @method _afterRGBInputChange
-         * @param {EventFacade} event
-         * @protected
-         */
-        _afterRGBInputChange: function(event) {
-            var instance = this;
-
-            instance._alphaSliderContainer.setStyle('backgroundColor', event.hexColor);
         },
 
         /**
@@ -177,7 +132,12 @@ var Lang = A.Lang,
             var instance = this,
                 alpha = 255 - instance._alphaSlider.get('value');
 
-            return instance._calculateRGBA(hue, saturation, value, alpha);
+            if (A.UA.ie === 8) {
+                return instance._calculateRGB(hue, saturation, value, alpha);
+            }
+            else {
+                return instance._calculateRGBA(hue, saturation, value, alpha);
+            }
         },
 
         /**
@@ -456,10 +416,14 @@ var Lang = A.Lang,
          * @protected
          */
         _renderAlphaSliderContainer: function() {
-            var instance = this;
+            var instance = this,
+                sliderWrapper;
 
-            instance._alphaSliderContainer = instance._viewContainer.appendChild(
-                instance.TPL_ALPHA_SLIDER_CONTAINER
+            sliderWrapper = A.Node.create(this.TPL_ALPHA_SLIDER_WRAPPER);
+            instance._valueSliderWrapper.insert(sliderWrapper, 'after');
+
+            instance._alphaSliderContainer = sliderWrapper.one(
+                '.' + CSS_ALPHA_SLIDER_CONTAINER
             );
         },
 
@@ -472,7 +436,7 @@ var Lang = A.Lang,
         _renderFields: function() {
             var instance = this;
 
-            A.HSVAPalette.superclass._renderFields.call(instance);
+            A.HSVAPalette.superclass._renderFields.apply(instance, arguments);
 
             instance._aContainer = instance._renderField(
                 instance._labelValueHSVContainer, {
@@ -498,6 +462,29 @@ var Lang = A.Lang,
             A.HSVAPalette.superclass._renderViewContainerContent.call(instance);
 
             instance._renderAlphaSliderContainer();
+        },
+
+        /**
+         * Updates the alpha slider's value according to the currently selected
+         * hex color.
+         *
+         * @method _updateAlphaValue
+         * @protected
+         */
+        _updateAlphaValue: function() {
+            var alpha = this._getFieldValue(this._aContainer),
+                hex = '#' + this.get('selected').substr(0, 6);
+
+            this._alphaSlider.set(
+                'value',
+                MAX_ALPHA - alpha, {
+                    src: AWidget.UI_SRC
+                }
+            );
+
+            this._alphaSliderContainer.setStyle('backgroundColor', hex);
+
+            this._resultView.setStyle('opacity', alpha / MAX_ALPHA);
         }
     }, {
 

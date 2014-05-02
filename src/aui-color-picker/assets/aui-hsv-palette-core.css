@@ -1,29 +1,49 @@
 .hsv-container {
-    height: 270px;
     padding: 5px;
     position: relative;
-    width: 430px;
-}
-
-.hsv-container-controls {
     width: 510px;
 }
 
-.hsv-container-alpha {
-    width: 470px;
-}
-
-.hsv-container-controls.hsv-container-alpha {
+.hsv-container.hsv-container-alpha {
     width: 550px;
 }
 
 .hsv-view-container .form-group {
+    margin-bottom: 10px;
+}
+
+.hsv-view-container .form-group:last-child {
     margin-bottom: 0;
+}
+
+.hsv-view-container .hsv-label {
+    font-weight: normal;
+    padding-left: 2px;
+    text-align: left;
+}
+
+.hsv-view-container .form-control-wrapper {
+    padding: 0;
+}
+
+.hsv-view-container .form-control {
+    padding: 3px 5px;
 }
 
 .hsv-hs-container, .hsv-image-backdrop {
     height: 256px;
     position: absolute;
+    width: 256px;
+}
+
+.hsv-image-wrapper {
+    padding: 0;
+}
+
+.hsv-image-container {
+    height: 256px;
+    margin-left: auto;
+    margin-right: auto;
     width: 256px;
 }
 
@@ -35,16 +55,14 @@
 
 .hsv-value-slider-container, .hsv-alpha-slider-container {
     height: 256px;
-    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
     width: 19px;
 }
 
-.hsv-value-slider-container {
-    left: 280px;
-}
-
-.hsv-alpha-slider-container {
-    left: 320px;
+.hsv-container-alpha .hsv-value-slider-wrapper,
+.hsv-container-alpha .hsv-alpha-slider-wrapper {
+    padding: 0;
 }
 
 .hsv-value-canvas, .hsv-alpha-canvas {
@@ -69,93 +87,50 @@
     width: 32px;
 }
 
+.hsv-result-wrapper {
+    padding-left: 7px;
+}
+
 .hsv-result-view, .hsv-view-backdrop {
     height: 65px;
-    left: 320px;
     position: absolute;
     width: 65px;
 }
 
-.hsv-container-alpha .hsv-result-view, .hsv-container-alpha .hsv-view-backdrop {
-    left: 360px;
-}
-
 .hsv-label {
     display: inline;
-    margin-left: 5px;
 }
 
-.hsv-label-value-container {
-    position: absolute;
-    top: 90px;
+.hsv-label-value-hsv-container,
+.hsv-label-value-rgb-container {
+    padding-top: 25px;
+    padding-left: 0;
 }
 
 .hsv-label-value-container .input-prepend, .hsv-label-value-container .input-append {
     display: block;
 }
 
-.hsv-label-value-hsv-container {
-    left: 320px;
-}
-
-.hsv-container-alpha .hsv-label-value-hsv-container {
-    left: 360px;
-}
-
-.hsv-label-value-rgb-container {
-    left: 440px;
-}
-
-.hsv-container-alpha .hsv-label-value-rgb-container {
-    left: 480px;
-}
-
-.hsv-label-value-hex-container {
-    left: 310px;
-    top: 80px;
-}
-
-.hsv-label-value-hex-container .hsv-output-type {
-    width: 75px;
-}
-
-.hsv-container-alpha .hsv-label-value-hex-container {
-    left: 350px;
-    top: 70px;
-}
-
-.hsv-container-controls .hsv-label-value-hex-container {
-    left: 390px;
-    top: 0;
-}
-
-.hsv-container-controls.hsv-container-alpha .hsv-label-value-hex-container {
-    left: 430px;
-}
-
-.hsv-label-value-hex {
-    position: absolute;
-    top: 5px;
-    left: 10px;
-}
-
 .hsv-label-value-container .form-group .hsv-label-hidden {
     display: none;
 }
 
-.hsv-label-value-container .hsv-label-value-hex .hsv-label {
-    display: block;
+.hsv-hex-wrapper {
+    padding: 0;
 }
 
-.hsv-label-value-container .hsv-label-value-hex .hsv-value {
-    width: 95px;
-}
+@media (max-width: 767px) {
+    .hsv-default-size.hsv-container,
+    .hsv-default-size.hsv-container.hsv-container-alpha {
+        width: 270px;
+    }
 
-.hsv-label-value-container .hsv-value {
-    width: 30px;
-    margin-left: 5px;
-}
+    .hsv-default-size .hsv-value-container {
+        margin-top: 10px;
+    }
 
-.hsv-label-value-container .add-on {
-    width: 10px;
+    .hsv-default-size .hsv-image-wrapper,
+    .hsv-default-size .hsv-value-container {
+        width: 100%;
+    }
 }
