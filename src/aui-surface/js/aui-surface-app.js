@@ -342,6 +342,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
     /**
      * Tests if link element is an offsite link.
      *
+     * @method _isLinkSameOrigin
      * @param  {Node} link Link element to check base path.
      * @return {Boolean}
      * @private
