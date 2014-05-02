@@ -21,6 +21,35 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
     activePath: null,
 
     /**
+     * Holds the document hotizontal scroll position when the navigation using
+     * back or forward happens to be restored after the surfaces are updated.
+     *
+     * @property docScrollX
+     * @type {Number}
+     * @protected
+     */
+    docScrollX: 0,
+
+    /**
+     * Holds the document vertical scroll position when the navigation using
+     * back or forward happens to be restored after the surfaces are updated.
+     *
+     * @property docScrollY
+     * @type {Number}
+     * @protected
+     */
+    docScrollY: 0,
+
+    /**
+     * Holds the scroll event handle.
+     *
+     * @property scrollHandle
+     * @type {Object}
+     * @private
+     */
+    scrollHandle: null,
+
+    /**
      * Holds a deferred withe the current navigation.
      *
      * @property pendingRequest
@@ -240,6 +269,8 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
                     activeScreen.deactivate();
                 }
 
+                instance._syncScrollPosition(opt_replaceHistory);
+
                 // Animations should start at the same time, therefore
                 // it's passed to Y.batch to be processed in parallel
                 A.log('Screen [' + nextScreen + '] ready, flip...', 'info');
@@ -324,6 +355,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      */
     _handleNavigateError: function(path, nextScreen, err) {
         A.log('Navigation error for [' + nextScreen + '] (' + err + ')', 'info');
+        this._unlockScroll();
         this._removeScreen(path, nextScreen);
         this.pendingRequest = null;
     },
@@ -349,6 +381,28 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      */
     _isLinkSameOrigin: function(link) {
         return A.getLocation().hostname === link.get('hostname');
+    },
+
+    /**
+     * Lock the document scroll in order to avoid the browser native back and
+     * forward navigation to change the scroll position. Surface app takes care
+     * of updating it when surfaces are ready.
+     *
+     * @method _lockScroll
+     * @private
+     */
+    _lockScroll: function() {
+        var instance = this,
+            docScrollX = A.DOM.docScrollX(),
+            docScrollY = A.DOM.docScrollY();
+
+        instance._unlockScroll();
+
+        instance.scrollHandle = A.once('scroll', function() {
+            instance.docScrollX = A.DOM.docScrollX();
+            instance.docScrollY = A.DOM.docScrollY();
+            win.scrollTo(docScrollX, docScrollY);
+        });
     },
 
     /**
@@ -399,6 +453,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
 
         if (state && state.surface) {
             A.log('History navigation to [' + state.path + ']', 'info');
+            this._lockScroll();
             this.navigate(state.path, true);
         }
     },
@@ -443,6 +498,36 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
 
             instance.routes.push(value);
         });
+    },
+
+    /**
+     * Sync document scroll position to the values captured when the default
+     * back and forward navigation happened. The scroll position updates after
+     * `beforeFlip` is called and before the surface transitions.
+     *
+     * @method  _syncScrollPosition
+     * @param {Boolean} opt_replaceHistory Replaces browser history.
+     * @private
+     */
+    _syncScrollPosition: function(opt_replaceHistory) {
+        this._unlockScroll();
+        win.scrollTo(
+            opt_replaceHistory ? this.docScrollX : 0,
+            opt_replaceHistory ? this.docScrollY : 0
+        );
+    },
+
+    /**
+     * Unlock the document scroll.
+     *
+     * @method _unlockScroll
+     * @private
+     */
+    _unlockScroll: function() {
+        if (this.scrollHandle) {
+            this.scrollHandle.detach();
+            this.scrollHandle = null;
+        }
     },
 
     /**
