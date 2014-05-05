@@ -1187,8 +1187,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-timepicker": {
         "requires": [
-            "autocomplete-list",
-            "autocomplete-list-keys",
+            "autocomplete",
             "aui-datepicker-delegate",
             "aui-datepicker-popover"
         ],
@@ -1247,7 +1246,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-tooltip-base": {
         "requires": [
-            "event-mouseenter",
+            "event-hover",
             "transition",
             "widget",
             "widget-autohide",
@@ -1416,4 +1415,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'b686029fbc7b1029267a057f36ea552f';
+YUI.Env[Y.version].md5 = '558fb4cc2205a9dffcee7fee0949f05c';

@@ -1163,8 +1163,7 @@
     },
     "aui-timepicker": {
         "requires": [
-            "autocomplete-list",
-            "autocomplete-list-keys",
+            "autocomplete",
             "aui-datepicker-delegate",
             "aui-datepicker-popover"
         ],
@@ -1223,7 +1222,7 @@
     },
     "aui-tooltip-base": {
         "requires": [
-            "event-mouseenter",
+            "event-hover",
             "transition",
             "widget",
             "widget-autohide",
