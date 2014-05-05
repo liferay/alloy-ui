@@ -55,9 +55,9 @@ A.Popover = A.Base.create('popover', A.Widget, [
     initializer: function() {
         var instance = this;
 
-        A.after(instance._afterRenderBoxClassNames, instance, '_renderBoxClassNames')
+        A.after(instance._afterRenderBoxClassNames, instance, '_renderBoxClassNames');
 
-        this._resizeHandle = A.on('resize', A.bind(this._onResize, this), A.config.win);
+        this._resizeHandle = A.on('windowresize', A.bind(this._onResize, this));
     },
 
     /**

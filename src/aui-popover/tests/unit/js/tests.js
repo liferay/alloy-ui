@@ -77,7 +77,7 @@ YUI.add('aui-popover-tests', function(Y) {
                 trigger: button
             }).render();
 
-            oldPosition = Y.one('.popover').get('offsetTop')
+            oldPosition = Y.one('.popover').get('offsetTop');
 
             // This simulates moving the button as the window resizes.
             button.setStyle('position', 'relative');
@@ -86,15 +86,18 @@ YUI.add('aui-popover-tests', function(Y) {
                 // Can't simulate a resize on IE8's window object, so
                 // calling the function directly here.
                 this._popover._onResize();
-            } else {
+            }
+            else {
                 Y.one(Y.config.win).simulate('resize');
             }
 
-            Y.Assert.areEqual(
-                oldPosition + 20,
-                Y.one('.popover').get('offsetTop'),
-                'Trigger was moved down, so the popover should be moved as well'
-            );
+            this.wait(function() {
+                Y.Assert.areEqual(
+                    oldPosition + 20,
+                    Y.one('.popover').get('offsetTop'),
+                    'Trigger was moved down, so the popover should be moved as well'
+                );
+            }, Y.config.windowResizeDelay || 100);
         },
 
         'should be destroyed': function() {
