@@ -41,15 +41,6 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
     docScrollY: 0,
 
     /**
-     * Holds the scroll event handle.
-     *
-     * @property scrollHandle
-     * @type {Object}
-     * @private
-     */
-    scrollHandle: null,
-
-    /**
      * Holds a deferred withe the current navigation.
      *
      * @property pendingRequest
@@ -75,6 +66,15 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      * @protected
      */
     screens: null,
+
+    /**
+     * Holds the scroll event handle.
+     *
+     * @property scrollHandle
+     * @type {Object}
+     * @private
+     */
+    scrollHandle: null,
 
     /**
      * Map that index the surfaces instances by the surface id.
