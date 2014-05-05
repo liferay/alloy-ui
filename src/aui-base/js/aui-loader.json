@@ -692,6 +692,7 @@
     },
     "aui-popover": {
         "requires": [
+            "event-resize",
             "widget",
             "widget-autohide",
             "widget-buttons",

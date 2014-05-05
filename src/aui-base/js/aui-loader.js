@@ -716,6 +716,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-popover": {
         "requires": [
+            "event-resize",
             "widget",
             "widget-autohide",
             "widget-buttons",
@@ -1168,4 +1169,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'afb6983cfaccacc1511ef23ac7c6c6c8';
+YUI.Env[Y.version].md5 = '4d281b66b7dcf436d0a9920098fe86d0';
