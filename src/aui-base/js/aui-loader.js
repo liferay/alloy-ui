@@ -1248,8 +1248,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-timepicker": {
         "requires": [
-            "autocomplete-list",
-            "autocomplete-list-keys",
+            "autocomplete",
             "aui-datepicker-delegate",
             "aui-datepicker-popover"
         ],
@@ -1489,4 +1488,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '877c76cb834cdc70506c9f5c3731c1fa';
+YUI.Env[Y.version].md5 = 'd61110028e7b568dffc16e8e12a2be43';
