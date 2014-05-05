@@ -17,6 +17,7 @@
 
     "aui-surface-app": {
         "requires": [
+            "dom-screen",
             "event-delegate",
             "node-event-html5",
             "aui-surface-base",

@@ -1231,6 +1231,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-surface-app": {
         "requires": [
+            "dom-screen",
             "event-delegate",
             "node-event-html5",
             "aui-surface-base",
@@ -1548,4 +1549,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '7ef34310c62b558cee9fed72cdeb0621';
+YUI.Env[Y.version].md5 = '92e7da14444b0b61b4b8b365513fc2b2';
