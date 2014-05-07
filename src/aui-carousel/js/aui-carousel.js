@@ -535,6 +535,32 @@ var Carousel = A.Component.create({
         },
 
         /**
+         * Fired when the mouse enters the carousel. If it has also entered the
+         * menu the slideshow will be resumed.
+         *
+         * @method _onCarouselEnter
+         * @param {EventFacade} event
+         * @protected
+         */
+        _onCarouselEnter: function(event) {
+            var region = this.get('nodeMenu').get('region');
+            if (region.left > event.clientX || event.clientX > region.right ||
+                region.top > event.clientY || event.clientY > region.bottom) {
+                this._pauseOnEnter();
+            }
+        },
+
+        /**
+         * Fired when the mouse leaves the carousel, which will resume the slideshow.
+         *
+         * @method _onCarouselLeave
+         * @protected
+         */
+        _onCarouselLeave: function() {
+            this._playOnLeave();
+        },
+
+        /**
          * Fire when a click is fired on menu.
          *
          * @method _onClickDelegate
@@ -569,6 +595,20 @@ var Carousel = A.Component.create({
         },
 
         /**
+         * Fired when the mouse enters the menu. If it's coming from the carousel
+         * the slideshow will be resumed.
+         *
+         * @method _onMenuEnter
+         * @param {EventFacade} event
+         * @protected
+         */
+        _onMenuEnter: function(event) {
+            if (event.relatedTarget && event.relatedTarget.hasClass(CSS_ITEM)) {
+                this._playOnLeave();
+            }
+        },
+
+        /**
          * Execute when delegates handle menuItem click.
          *
          * @method _onMenuItemClick
@@ -586,6 +626,20 @@ var Carousel = A.Component.create({
         },
 
         /**
+         * Fired when the mouse leaves the menu. If it's going to the carousel
+         * the slideshow will be paused.
+         *
+         * @method _onMenuLeave
+         * @param {EventFacade} event
+         * @protected
+         */
+        _onMenuLeave: function(event) {
+            if (event.relatedTarget && event.relatedTarget.hasClass(CSS_ITEM)) {
+                this._pauseOnEnter();
+            }
+        },
+
+        /**
          * Execute when delegates handle play click.
          *
          * @method _onMenuPlayClick
@@ -594,6 +648,35 @@ var Carousel = A.Component.create({
          */
         _onMenuPlayClick: function() {
             this.set('playing', !this.get('playing'));
+        },
+
+        /**
+         * Called when the mouse enters the carousel with pauseOnHover set to
+         * true. Pauses the slideshow unless it was already paused.
+         *
+         * @method _pauseOnEnter
+         * @protected
+         */
+        _pauseOnEnter: function() {
+            if (this.get('playing')) {
+                this.pause();
+                this._pausedOnEnter = true;
+            }
+        },
+
+        /**
+         * Called when the mouse leaves the carousel with pauseOnHover set to
+         * true. If the slideshow was paused due to entering the carousel before,
+         * this will resume it.
+         *
+         * @method _playOnLeave
+         * @protected
+         */
+        _playOnLeave: function() {
+            if (this._pausedOnEnter) {
+                this.play();
+                this._pausedOnEnter = false;
+            }
         },
 
         /**
@@ -743,12 +826,15 @@ var Carousel = A.Component.create({
          * @protected
          */
         _uiSetPauseOnHover: function(val) {
-            var boundingBox = this.get('boundingBox');
+            var boundingBox = this.get('boundingBox'),
+                nodeMenu = this.get('nodeMenu');
 
             if (val) {
                 this.hoverEventHandles = [
-                    boundingBox.on('mouseenter', A.bind(this.pause, this)),
-                    boundingBox.on('mouseleave', A.bind(this.play, this))
+                    boundingBox.on('mouseenter', A.bind(this._onCarouselEnter, this)),
+                    boundingBox.on('mouseleave', A.bind(this._onCarouselLeave, this)),
+                    nodeMenu.on('mouseenter', A.bind(this._onMenuEnter, this)),
+                    nodeMenu.on('mouseleave', A.bind(this._onMenuLeave, this))
                 ];
             }
             else {

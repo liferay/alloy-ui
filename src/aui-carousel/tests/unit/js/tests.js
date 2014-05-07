@@ -272,14 +272,19 @@ YUI.add('aui-carousel-tests', function(Y) {
         },
 
         'should pause on hover': function() {
-            var boundingBox = this._carousel.get('boundingBox');
+            var boundingBox = this._carousel.get('boundingBox'),
+                nodeMenu = this._carousel.get('nodeMenu');
 
-            boundingBox.fire('mouseenter');
+            boundingBox.fire('mouseenter', {
+                clientX: nodeMenu.get('region').left - 1
+            });
             Y.Assert.isTrue(this._carousel.get('playing'), 'Should not pause, since pauseOnHover is false');
 
             this._carousel.set('pauseOnHover', true);
 
-            boundingBox.fire('mouseenter');
+            boundingBox.fire('mouseenter', {
+                clientX: nodeMenu.get('region').left - 1
+            });
             Y.Assert.isFalse(this._carousel.get('playing'), 'Should have paused on hover');
 
             boundingBox.fire('mouseleave');
@@ -287,8 +292,79 @@ YUI.add('aui-carousel-tests', function(Y) {
 
             this._carousel.set('pauseOnHover', false);
 
-            boundingBox.fire('mouseenter');
+            boundingBox.fire('mouseenter', {
+                clientX: nodeMenu.get('region').left - 1
+            });
             Y.Assert.isTrue(this._carousel.get('playing'), 'Should not pause, since pauseOnHover is false');
+        },
+
+        'should not resume on leaving if carouse was paused manually': function() {
+            var boundingBox = this._carousel.get('boundingBox'),
+                nodeMenu = this._carousel.get('nodeMenu');
+
+            this._carousel.set('pauseOnHover', true);
+
+            this._carousel.pause();
+
+            boundingBox.fire('mouseenter', {
+                clientX: nodeMenu.get('region').left - 1
+            });
+            boundingBox.fire('mouseleave');
+            Y.Assert.isFalse(this._carousel.get('playing'), 'Should not have resumed on mouse leave');
+        },
+
+        'should not pause when entering carousel through menu': function() {
+            var boundingBox = this._carousel.get('boundingBox'),
+                nodeMenu = this._carousel.get('nodeMenu');
+
+            this._carousel.set('pauseOnHover', true);
+
+            boundingBox.fire('mouseenter', {
+                clientX: nodeMenu.get('region').left + 1
+            });
+            Y.Assert.isTrue(this._carousel.get('playing'), 'Should not have paused on hover');
+        },
+
+        'should resume when entering the menu from the carousel': function() {
+            var boundingBox = this._carousel.get('boundingBox'),
+                nodeMenu = this._carousel.get('nodeMenu');
+
+            this._carousel.set('pauseOnHover', true);
+
+            boundingBox.fire('mouseenter', {
+                clientX: nodeMenu.get('region').left - 1
+            });
+            nodeMenu.fire('mouseenter', {
+                relatedTarget: this._carousel.nodeSelection.item(0)
+            });
+            Y.Assert.isTrue(this._carousel.get('playing'), 'Should have resumed on entering menu');
+
+            boundingBox.fire('mouseleave');
+            nodeMenu.fire('mouseleave', {
+                relatedTarget: this._carousel.nodeSelection.item(0)
+            });
+            Y.Assert.isFalse(this._carousel.get('playing'), 'Should have paused on leaving menu');
+        },
+
+        'should not resume when entering the menu from outside the carousel': function() {
+            var boundingBox = this._carousel.get('boundingBox'),
+                nodeMenu = this._carousel.get('nodeMenu');
+
+            this._carousel.set('pauseOnHover', true);
+
+            boundingBox.fire('mouseenter', {
+                clientX: nodeMenu.get('region').left - 1
+            });
+            nodeMenu.fire('mouseenter', {
+                relatedTarget: Y.one('body')
+            });
+            Y.Assert.isFalse(this._carousel.get('playing'), 'Should not have resumed on entering menu');
+
+            boundingBox.fire('mouseleave');
+            nodeMenu.fire('mouseleave', {
+                relatedTarget: Y.one('body')
+            });
+            Y.Assert.isTrue(this._carousel.get('playing'), 'Should not have paused on leaving menu');
         },
 
         'should set activeIndex to random number': function() {
