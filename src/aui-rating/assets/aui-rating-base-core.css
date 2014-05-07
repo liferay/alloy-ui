@@ -12,3 +12,7 @@
     filter: alpha(opacity=50);
     opacity: .5;
 }
+
+.rating .glyphicon {
+    font-size: 20px;
+}
