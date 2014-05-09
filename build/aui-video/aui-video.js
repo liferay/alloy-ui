@@ -271,4 +271,4 @@ var Video = A.Component.create(
 
 A.Video = Video;
 
-}, '@VERSION@' ,${component.details.hash});
+}, '@VERSION@' ,{requires:['aui-base','querystring-stringify-simple'], skinnable:true});
