@@ -1,4 +1,5 @@
 .carousel {
+    overflow: hidden;
     position: relative;
 }
 

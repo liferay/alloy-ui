@@ -25,6 +25,14 @@
         ]
     },
 
+    "aui-widget-swipe": {
+        "requires": [
+            "classnamemanager",
+            "scrollview-base",
+            "scrollview-paginator"
+        ]
+    },
+
     "aui-widget-toolbars": {
         "requires": [
             "widget-stdmod",

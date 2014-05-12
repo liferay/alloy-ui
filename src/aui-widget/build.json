@@ -7,6 +7,12 @@
             ]
         },
 
+        "aui-widget-swipe": {
+            "jsfiles": [
+                "js/aui-widget-swipe.js"
+            ]
+        },
+
         "aui-widget-toggle": {
             "jsfiles": [
                 "js/aui-widget-toggle.js"

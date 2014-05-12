@@ -118,7 +118,7 @@ YUI.add('aui-carousel-tests', function(Y) {
 
         'should play/pause when user clicks the button': function() {
             var instance = this,
-                pauseButton = this._carousel.get('contentBox').one('.carousel-menu-pause');
+                pauseButton = this._carousel.get('boundingBox').one('.carousel-menu-pause');
 
             pauseButton.simulate('click');
 
@@ -167,8 +167,8 @@ YUI.add('aui-carousel-tests', function(Y) {
         },
 
         'should switch images when user clicks on next/previous buttons': function() {
-            var nextButton = this._carousel.get('contentBox').one('.carousel-menu-next'),
-                prevButton = this._carousel.get('contentBox').one('.carousel-menu-prev');
+            var nextButton = this._carousel.get('boundingBox').one('.carousel-menu-next'),
+                prevButton = this._carousel.get('boundingBox').one('.carousel-menu-prev');
 
             prevButton.simulate('click');
             Y.Assert.areEqual(
@@ -218,19 +218,19 @@ YUI.add('aui-carousel-tests', function(Y) {
             Y.Assert.areEqual(
                 2,
                 this._carousel.get('activeIndex'),
-                'Next function was called, activeIndex shoudl be 2'
+                'Next function was called, activeIndex should be 2'
             );
 
             this._carousel.next();
             Y.Assert.areEqual(
                 0,
                 this._carousel.get('activeIndex'),
-                'Next function was called, activeIndex shoudl be 0'
+                'Next function was called, activeIndex should be 0'
             );
         },
 
         'should switch images when user clicks on item buttons': function() {
-            var itemButtons = this._carousel.get('contentBox').all('.carousel-menu-index');
+            var itemButtons = this._carousel.get('boundingBox').all('.carousel-menu-index');
 
             itemButtons.item(2).simulate('click');
             Y.Assert.areEqual(
