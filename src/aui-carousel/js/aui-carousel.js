@@ -498,7 +498,7 @@ var Carousel = A.Component.create({
         _isMouseInsideMenu: function(event) {
             var region = this.get('nodeMenu').get('region');
             return (region.left > event.clientX || event.clientX > region.right ||
-                    region.top > event.clientY || event.clientY > region.bottom);
+                region.top > event.clientY || event.clientY > region.bottom);
         },
 
         /**
