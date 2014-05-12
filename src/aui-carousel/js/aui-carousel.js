@@ -489,6 +489,19 @@ var Carousel = A.Component.create({
         },
 
         /**
+         * Checks if the mouse is inside the menu region.
+         *
+         * @method  _isMouseInsideMenu
+         * @param  {EventFacade} event
+         * @return {Boolean}
+         */
+        _isMouseInsideMenu: function(event) {
+            var region = this.get('nodeMenu').get('region');
+            return (region.left > event.clientX || event.clientX > region.right ||
+                    region.top > event.clientY || event.clientY > region.bottom);
+        },
+
+        /**
          * Fire when animation ends.
          *
          * @method _onAnimationEnd
@@ -543,9 +556,7 @@ var Carousel = A.Component.create({
          * @protected
          */
         _onCarouselEnter: function(event) {
-            var region = this.get('nodeMenu').get('region');
-            if (region.left > event.clientX || event.clientX > region.right ||
-                region.top > event.clientY || event.clientY > region.bottom) {
+            if (this._isMouseInsideMenu(event)) {
                 this._pauseOnEnter();
             }
         },
