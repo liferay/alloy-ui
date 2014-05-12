@@ -194,6 +194,10 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
             this.pendingRequest.cancel('Navigation cancelled');
             this.pendingRequest = null;
         }
+        if (!this._isSameBasePath(path)) {
+            A.log('Link clicked outside app\'s base path', 'info');
+            return;
+        }
         if (path === this.activePath) {
             A.log('Not navigating, already at destination', 'info');
             return;
@@ -210,7 +214,9 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
                 path: path,
                 route: route
             });
+            return true;
         }
+        return false;
     },
 
     /**
@@ -421,23 +427,13 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
             A.log('Offsite link clicked', 'info');
             return;
         }
-        if (!this._isSameBasePath(path)) {
-            A.log('Link clicked outside app\'s base path', 'info');
-            return;
+
+        if (this.navigate(path)) {
+            event.preventDefault();
         }
-        if (!this.matchesRoute(path)) {
+        else {
             A.log('Link clicked without route', 'info');
-            return;
         }
-
-        try {
-            this.navigate(path);
-        }
-        catch (err) {
-            win.location.href = path;
-        }
-
-        event.preventDefault();
     },
 
     /**
