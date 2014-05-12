@@ -141,6 +141,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "base",
             "base-build",
             "event-focus",
+            "event-move",
             "event-resize",
             "node-screen",
             "node-event-delegate",
@@ -1169,4 +1170,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '4d281b66b7dcf436d0a9920098fe86d0';
+YUI.Env[Y.version].md5 = '3ea715ebf4b126c0522cfb6b5a17458e';
