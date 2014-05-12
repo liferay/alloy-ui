@@ -442,7 +442,10 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
 
     /**
      * Handles browser history changes and fires app's navigation if the state
-     * below to us.
+     * belows to us. If we detect a popstate and the state is `null`, assume it
+     * is navigating to an external page or to a page we don't have route, then
+     * `window.location.reload()` is invoked in order to reload the content to
+     * the current url.
      *
      * @method _onPopState
      * @param {EventFacade} event Event facade
@@ -450,6 +453,11 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      */
     _onPopState: function(event) {
         var state = event._event.state;
+
+        if (state === null) {
+            win.location.reload();
+            return;
+        }
 
         if (state && state.surface) {
             A.log('History navigation to [' + state.path + ']', 'info');
