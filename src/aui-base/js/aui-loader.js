@@ -177,6 +177,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "base",
             "base-build",
             "event-focus",
+            "event-move",
             "event-resize",
             "node-screen",
             "node-event-delegate",
@@ -989,6 +990,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-popover": {
         "requires": [
+            "event-resize",
             "widget",
             "widget-autohide",
             "widget-buttons",
@@ -1549,4 +1551,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '92e7da14444b0b61b4b8b365513fc2b2';
+YUI.Env[Y.version].md5 = '3b68c16f975b849b1ac3e456c637a323';

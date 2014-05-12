@@ -167,6 +167,7 @@
             "base",
             "base-build",
             "event-focus",
+            "event-move",
             "event-resize",
             "node-screen",
             "node-event-delegate",
@@ -965,6 +966,7 @@
     },
     "aui-popover": {
         "requires": [
+            "event-resize",
             "widget",
             "widget-autohide",
             "widget-buttons",

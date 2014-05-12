@@ -14,17 +14,21 @@ YUI.add('aui-carousel-tests', function(Y) {
         },
 
         setUp: function() {
-            this._container.setHTML('<div id="content"><div></div><div></div><div></div></div>');
-
-            this._carousel = new Y.Carousel({
+            this.createCarousel({
                 contentBox: '#content',
                 intervalTime: 1,
                 itemSelector: '> div'
-            }).render();
+            });
         },
 
         tearDown: function() {
             this._carousel && this._carousel.destroy();
+        },
+
+        createCarousel: function(config) {
+            this._container.setHTML('<div id="content"><div></div><div></div><div></div></div>');
+
+            this._carousel = new Y.Carousel(config).render();
         },
 
         assertPaused: function(callback) {
@@ -38,16 +42,17 @@ YUI.add('aui-carousel-tests', function(Y) {
                     'Carousel was paused, so activeIndex should not have been updated'
                 );
 
-                callback();
+                callback && callback();
             }, (this._carousel.get('animationTime') + this._carousel.get('intervalTime')) * 1000 + 100);
         },
 
         waitForNext: function(callback) {
-            var instance = this;
+            var instance = this,
+                timeBefore = new Date().getTime();
 
             this._carousel.onceAfter('activeIndexChange', function() {
                 instance.resume(function() {
-                    callback();
+                    callback(Math.round((new Date().getTime() - timeBefore) / 1000));
                 });
             });
 
@@ -80,6 +85,27 @@ YUI.add('aui-carousel-tests', function(Y) {
                             'Cycle is closed, activeIndex should be 0'
                         );
                     });
+                });
+            });
+        },
+
+        'should change the interval time': function() {
+            var instance = this;
+
+            this.waitForNext(function(intervalTime1) {
+                Y.Assert.areEqual(
+                    1,
+                    intervalTime1,
+                    'Initial interval time is of 1 second'
+                );
+
+                instance._carousel.set('intervalTime', 2);
+                instance.waitForNext(function(intervalTime2) {
+                    Y.Assert.areEqual(
+                        2,
+                        intervalTime2,
+                        'Interval time should have been updated'
+                    );
                 });
             });
         },
@@ -119,6 +145,19 @@ YUI.add('aui-carousel-tests', function(Y) {
                     );
                 });
             });
+        },
+
+        'should be able to switch images while paused': function() {
+            var instance = this;
+
+            this._carousel.pause();
+            this._carousel.item(1);
+
+            Y.Assert.areEqual(
+                1,
+                instance._carousel.get('activeIndex'),
+                'The image index should have been updated correctly'
+            );
         },
 
         'should switch images when user clicks on next/previous buttons': function() {
@@ -233,14 +272,19 @@ YUI.add('aui-carousel-tests', function(Y) {
         },
 
         'should pause on hover': function() {
-            var boundingBox = this._carousel.get('boundingBox');
+            var boundingBox = this._carousel.get('boundingBox'),
+                nodeMenu = this._carousel.get('nodeMenu');
 
-            boundingBox.fire('mouseenter');
+            boundingBox.fire('mouseenter', {
+                clientX: nodeMenu.get('region').left - 1
+            });
             Y.Assert.isTrue(this._carousel.get('playing'), 'Should not pause, since pauseOnHover is false');
 
             this._carousel.set('pauseOnHover', true);
 
-            boundingBox.fire('mouseenter');
+            boundingBox.fire('mouseenter', {
+                clientX: nodeMenu.get('region').left - 1
+            });
             Y.Assert.isFalse(this._carousel.get('playing'), 'Should have paused on hover');
 
             boundingBox.fire('mouseleave');
@@ -248,8 +292,79 @@ YUI.add('aui-carousel-tests', function(Y) {
 
             this._carousel.set('pauseOnHover', false);
 
-            boundingBox.fire('mouseenter');
+            boundingBox.fire('mouseenter', {
+                clientX: nodeMenu.get('region').left - 1
+            });
             Y.Assert.isTrue(this._carousel.get('playing'), 'Should not pause, since pauseOnHover is false');
+        },
+
+        'should not resume on leaving if carouse was paused manually': function() {
+            var boundingBox = this._carousel.get('boundingBox'),
+                nodeMenu = this._carousel.get('nodeMenu');
+
+            this._carousel.set('pauseOnHover', true);
+
+            this._carousel.pause();
+
+            boundingBox.fire('mouseenter', {
+                clientX: nodeMenu.get('region').left - 1
+            });
+            boundingBox.fire('mouseleave');
+            Y.Assert.isFalse(this._carousel.get('playing'), 'Should not have resumed on mouse leave');
+        },
+
+        'should not pause when entering carousel through menu': function() {
+            var boundingBox = this._carousel.get('boundingBox'),
+                nodeMenu = this._carousel.get('nodeMenu');
+
+            this._carousel.set('pauseOnHover', true);
+
+            boundingBox.fire('mouseenter', {
+                clientX: nodeMenu.get('region').left + 1
+            });
+            Y.Assert.isTrue(this._carousel.get('playing'), 'Should not have paused on hover');
+        },
+
+        'should resume when entering the menu from the carousel': function() {
+            var boundingBox = this._carousel.get('boundingBox'),
+                nodeMenu = this._carousel.get('nodeMenu');
+
+            this._carousel.set('pauseOnHover', true);
+
+            boundingBox.fire('mouseenter', {
+                clientX: nodeMenu.get('region').left - 1
+            });
+            nodeMenu.fire('mouseenter', {
+                relatedTarget: this._carousel.nodeSelection.item(0)
+            });
+            Y.Assert.isTrue(this._carousel.get('playing'), 'Should have resumed on entering menu');
+
+            boundingBox.fire('mouseleave');
+            nodeMenu.fire('mouseleave', {
+                relatedTarget: this._carousel.nodeSelection.item(0)
+            });
+            Y.Assert.isFalse(this._carousel.get('playing'), 'Should have paused on leaving menu');
+        },
+
+        'should not resume when entering the menu from outside the carousel': function() {
+            var boundingBox = this._carousel.get('boundingBox'),
+                nodeMenu = this._carousel.get('nodeMenu');
+
+            this._carousel.set('pauseOnHover', true);
+
+            boundingBox.fire('mouseenter', {
+                clientX: nodeMenu.get('region').left - 1
+            });
+            nodeMenu.fire('mouseenter', {
+                relatedTarget: Y.one('body')
+            });
+            Y.Assert.isFalse(this._carousel.get('playing'), 'Should not have resumed on entering menu');
+
+            boundingBox.fire('mouseleave');
+            nodeMenu.fire('mouseleave', {
+                relatedTarget: Y.one('body')
+            });
+            Y.Assert.isTrue(this._carousel.get('playing'), 'Should not have paused on leaving menu');
         },
 
         'should set activeIndex to random number': function() {
@@ -307,6 +422,38 @@ YUI.add('aui-carousel-tests', function(Y) {
                 this._carousel.get('activeIndex'),
                 'There are only 2 items now, so the next item should be 0'
             );
+        },
+
+        'should work with a custom menu': function() {
+            var customMenu = Y.one('#customMenu');
+
+            this._carousel.set('nodeMenu', customMenu);
+            this._carousel.set('nodeMenuItemSelector', '.test-menu-item');
+
+            // This shouldn't throw an exception due to trying to
+            // update the missing play button.
+            this._carousel.set('playing', false);
+
+            // This shouldn't throw an exception due to clicking
+            // on a non carousel button inside the menu.
+            customMenu.one('.test-menu-extra').simulate('click');
+
+            // This shouldn't throw an exception due to trying to
+            // update the missing item button.
+            this._carousel.set('playing', true);
+            this.waitForNext(function() {
+                Y.Assert.pass('No exceptions were thrown');
+            });
+        },
+
+        'should be able to start the carousel already paused': function() {
+            this._carousel.destroy();
+            this.createCarousel({
+                contentBox: '#content',
+                playing: false
+            });
+
+            this.assertPaused();
         }
     }));
 

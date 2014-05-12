@@ -41,15 +41,6 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
     docScrollY: 0,
 
     /**
-     * Holds the scroll event handle.
-     *
-     * @property scrollHandle
-     * @type {Object}
-     * @private
-     */
-    scrollHandle: null,
-
-    /**
      * Holds a deferred withe the current navigation.
      *
      * @property pendingRequest
@@ -75,6 +66,15 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      * @protected
      */
     screens: null,
+
+    /**
+     * Holds the scroll event handle.
+     *
+     * @property scrollHandle
+     * @type {Object}
+     * @private
+     */
+    scrollHandle: null,
 
     /**
      * Map that index the surfaces instances by the surface id.
@@ -194,6 +194,10 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
             this.pendingRequest.cancel('Navigation cancelled');
             this.pendingRequest = null;
         }
+        if (!this._isSameBasePath(path)) {
+            A.log('Link clicked outside app\'s base path', 'info');
+            return;
+        }
         if (path === this.activePath) {
             A.log('Not navigating, already at destination', 'info');
             return;
@@ -210,7 +214,9 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
                 path: path,
                 route: route
             });
+            return true;
         }
+        return false;
     },
 
     /**
@@ -421,28 +427,21 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
             A.log('Offsite link clicked', 'info');
             return;
         }
-        if (!this._isSameBasePath(path)) {
-            A.log('Link clicked outside app\'s base path', 'info');
-            return;
+
+        if (this.navigate(path)) {
+            event.preventDefault();
         }
-        if (!this.matchesRoute(path)) {
+        else {
             A.log('Link clicked without route', 'info');
-            return;
         }
-
-        try {
-            this.navigate(path);
-        }
-        catch (err) {
-            win.location.href = path;
-        }
-
-        event.preventDefault();
     },
 
     /**
      * Handles browser history changes and fires app's navigation if the state
-     * below to us.
+     * belows to us. If we detect a popstate and the state is `null`, assume it
+     * is navigating to an external page or to a page we don't have route, then
+     * `window.location.reload()` is invoked in order to reload the content to
+     * the current url.
      *
      * @method _onPopState
      * @param {EventFacade} event Event facade
@@ -450,6 +449,11 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      */
     _onPopState: function(event) {
         var state = event._event.state;
+
+        if (state === null) {
+            win.location.reload();
+            return;
+        }
 
         if (state && state.surface) {
             A.log('History navigation to [' + state.path + ']', 'info');

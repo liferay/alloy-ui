@@ -56,6 +56,18 @@ A.Popover = A.Base.create('popover', A.Widget, [
         var instance = this;
 
         A.after(instance._afterRenderBoxClassNames, instance, '_renderBoxClassNames');
+
+        this._resizeHandle = A.on('windowresize', A.bind(this._onResize, this));
+    },
+
+    /**
+     * Destructor lifecycle implementation for the `Popover` class.
+     *
+     * @method destructor
+     * @protected
+     */
+    destructor: function() {
+        this._resizeHandle.detach();
     },
 
     /**
@@ -85,6 +97,16 @@ A.Popover = A.Base.create('popover', A.Widget, [
             contentBox = instance.get('contentBox');
 
         contentBox.removeClass(instance.getClassName('content'));
+    },
+
+    /**
+     * Fired after the window is resized.
+     *
+     * @method _onResize
+     * @protected
+     */
+    _onResize: function() {
+        this.suggestAlignment();
     },
 
     /**
