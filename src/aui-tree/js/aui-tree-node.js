@@ -1188,7 +1188,6 @@ var TreeNodeIO = A.Component.create({
             var instance = this;
 
             var cache = instance.get('cache');
-            var children = instance.get('children');
             var io = instance.get('io');
             var loaded = instance.get('loaded');
             var loading = instance.get('loading');
@@ -1198,7 +1197,7 @@ var TreeNodeIO = A.Component.create({
                 instance.set('loaded', false);
             }
 
-            if (io && !loaded && !loading && !children.length && !instance.isLeaf()) {
+            if (io && !loaded && !loading && !this.hasChildNodes() && !instance.isLeaf()) {
                 if (!cache) {
                     // remove all children to reload
                     instance.empty();
