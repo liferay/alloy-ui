@@ -219,7 +219,7 @@ var ButtonSearchCancel = A.Base.create('btn-search-cancel', A.Base, [], {
             return;
         }
 
-        element.insert(button.show(), 'after');
+        element.insert(button.show(), 'before');
         gutter = instance.get('gutter');
         elementRegion = element.get('region');
 
