@@ -8,7 +8,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
 
     suite.add(new Y.Test.Case({
         name: 'Tooltips',
-        '#1: Tooltip constructor should work without a config object.': function() {
+        'should Tooltip constructor work without a config object': function() {
             var tooltip = new Y.Tooltip();
 
             Y.Assert.isInstanceOf(
@@ -17,7 +17,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
                 'tooltip is not an instance of Y.Tooltip.');
         },
 
-        '#2: #triggerTop button should have tooltip on top.': function() {
+        'should have tooltip on top': function() {
             new Y.Tooltip({
                 position: 'top',
                 trigger: '#triggerTop'
@@ -28,7 +28,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
                 '.tooltip does not have class top.');
         },
 
-        '#3: #triggerRight button should have tooltip on right': function() {
+        'should have tooltip on right': function() {
             new Y.Tooltip({
                 position: 'right',
                 trigger: '#triggerRight'
@@ -39,7 +39,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
                 '.tooltip does not have class right.');
         },
 
-        '#4: #triggerBottom button should have tooltip on bottom': function() {
+        'should have tooltip on bottom': function() {
             new Y.Tooltip({
                 position: 'bottom',
                 trigger: '#triggerBottom'
@@ -50,7 +50,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
                 '.tooltip does not have class bottom.');
         },
 
-        '#5: #triggerLeft button should have tooltip on left': function() {
+        'should have tooltip on left': function() {
             new Y.Tooltip({
                 position: 'left',
                 trigger: '#triggerLeft'
@@ -61,7 +61,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
                 '.tooltip does not have class left.');
         },
 
-        '#6: #triggerTooltipHelp button should display tooltip with class tooltip-help': function() {
+        'should display tooltip with class tooltip-help': function() {
             new Y.Tooltip({
                 cssClass: 'tooltip-help',
                 position: 'right',
@@ -74,7 +74,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
                 '.tooltip does not have class tooltip-help.');
         },
 
-        '#7: .tooltip should be hidden when mouseout on #triggerTooltipHelp.': function() {
+        'should be hidden when mouseout on #triggerTooltipHelp': function() {
             var test = this,
                 tooltip = Y.one('.tooltip'),
                 triggerTooltipHelp = Y.one('#triggerTooltipHelp');
@@ -101,7 +101,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
             test.wait(1000);
         },
 
-        '#8: .tooltip should be visible when mouseover on #triggerTooltipHelp.': function() {
+        'should be visible when mouseover on #triggerTooltipHelp': function() {
             var test = this,
                 tooltip = Y.one('.tooltip'),
                 triggerTooltipHelp = Y.one('#triggerTooltipHelp');
@@ -127,7 +127,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
             test.wait(1000);
         },
 
-        '#9: .tooltip should be visible when mouse moves from #triggerTooltipHelp to .tooltip': function() {
+        'should be visible when mouse moves from #triggerTooltipHelp to .tooltip': function() {
             var test = this,
                 tooltip = Y.one('.tooltip'),
                 triggerTooltipHelp = Y.one('#triggerTooltipHelp');
@@ -154,7 +154,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
             test.wait(1000);
         },
 
-        '#10: .tooltip should be hidden when mouseout of .tooltip.': function() {
+        'should be hidden when mouseout of .tooltip': function() {
             var test = this,
                 tooltip = Y.one('.tooltip');
 
@@ -179,7 +179,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
             test.wait(1000);
         },
 
-        '#11: .tooltip should remain visible when mouse moves from .tooltip to #triggerTooltipHelp': function() {
+        'should remain visible when mouse moves from .tooltip to #triggerTooltipHelp': function() {
             var test = this,
                 tooltip = Y.one('.tooltip'),
                 triggerTooltipHelp = Y.one('#triggerTooltipHelp');
@@ -210,7 +210,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
         },
 
         // Tests: AUI-1092
-        '#12 #triggerLeft\'s tooltip should not cover button #triggerBottom': function() {
+        'should not cover button #triggerBottom': function() {
             var test = this,
                 tooltipLeft = Y.one('.tooltip.left'),
                 triggerTooltipHelp = Y.one('#triggerTooltipHelp');
@@ -238,7 +238,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
             test.wait(1000);
         },
 
-        '#13 should format the content as requested': function() {
+        'should format the content as requested': function() {
             var tooltip = new Y.Tooltip({
                 formatter: function(text) {
                     return text.toUpperCase();
@@ -253,7 +253,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
             );
         },
 
-        '#14 should create tooltip without trigger': function() {
+        'should create tooltip without trigger': function() {
             var tooltip = new Y.Tooltip({
                 contentBox: '#noTrigger'
             }).render();
@@ -269,7 +269,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
             );
         },
 
-        '#15 should create tooltip without title': function() {
+        'should create tooltip without title': function() {
             var bodyContent = 'Some Content',
                 tooltip;
 
