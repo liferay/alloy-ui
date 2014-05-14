@@ -5,14 +5,26 @@
 
     <script src="../../../../build/aui/aui.js"></script>
     <script src="js/tests.js"></script>
+    <script src="js/tests-aui-surface-utils.js"></script>
     <meta charset="utf-8" />
 </head>
 <body class="yui3-skin-sam">
+<a href="/base/page">page</a>
+<a href="/base/regex?foo=1">regex</a>
+<a href="/base/delayed">delayed</a>
+<a href="http://alloyui.com/external">external</a>
+<a href="/base/unrouted">unrouted</a>
+<div id="header">
+    <div id="header-default">header-default</div>
+</div>
+<div id="body">
+    <div id="body-default">body-default</div>
+</div>
 <div id="logger"></div>
-
+<div style="height:10000px;width:10000px;"></div>
 <script>
 YUI({
-    coverage: ['aui-surface'],
+    coverage: ['aui-surface-app', 'aui-surface-base', 'aui-surface-screen', 'aui-surface-screen-html', 'aui-surface-screen-route'],
     filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
 }).use('test-console', 'test', 'aui-surface-tests', function(Y) {
 
