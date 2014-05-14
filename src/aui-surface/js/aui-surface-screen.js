@@ -98,23 +98,6 @@ A.ScreenBase.prototype = {
     },
 
     /**
-     * Handles getSurfaceContent call for the given surface. This is useful for
-     * class extensions add extra logic such as cache.
-     *
-     * @method handleSurfaceContent
-     * @protected
-     * @param {String} surfaceId The id of the surface DOM element.
-     * @param {String} opt_contents Optional content fetch by
-     *     `getSurfacesContent`.
-     * @return {String | Promise} This can return a string representing the
-     *     content of the surface or a promise, which will pause the navigation
-     *     until it is resolved. This is useful for loading async content.
-     */
-    handleSurfaceContent: function(surfaceId, opt_contents) {
-        return this.getSurfaceContent(surfaceId, opt_contents);
-    },
-
-    /**
      * Handles getSurfacesContent call for the given surface. This is useful for
      * class extensions add extra logic such as cache.
      *
