@@ -42,7 +42,7 @@ A.Surface = A.Base.create('surface', A.Base, [], {
         var id = this.get('id');
 
         if (!id) {
-            throw 'Surface element id not specified.';
+            throw new Error('Surface element id not specified.');
         }
 
         this.el = this.getEl(id);

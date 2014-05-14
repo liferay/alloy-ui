@@ -336,15 +336,11 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      * @private
      */
     _getScreen: function(path) {
-        var screen = this.screens[path],
-            route;
+        var screen = this.screens[path];
 
         if (!screen) {
-            route = this.matchesRoute(path);
-            if (route) {
-                A.log('Create screen for [' + path + ']', 'info');
-                return new(route.get('screen'))();
-            }
+            A.log('Create screen for [' + path + ']', 'info');
+            return new(this.matchesRoute(path).get('screen'))();
         }
 
         return screen;
