@@ -68,7 +68,7 @@ YUI.add('aui-datatable-tests', function(Y) {
         'Initialize CheckboxCellEditor': function() {
             checkboxCellEditor = new Y.CheckboxCellEditor({
                 editable: true,
-                options: [ 'Yes', 'No' ]
+                options: ['Yes', 'No']
             });
         },
 
@@ -113,15 +113,11 @@ YUI.add('aui-datatable-tests', function(Y) {
         },
 
         'AUI-1288 open cell edit only when the target is inside our bounding box': function() {
-            var instance = this;
-
-            var aui1288TestErrorFlag = false;
-
-            var boundingBox = dropdownEditor.get('boundingBox');
-
-            var ancestor = boundingBox.ancestor();
-
-            var node = Y.Node.create('<input autofocus="autofocus" type="text" />');
+            var instance = this,
+                error = false,
+                boundingBox = dropdownEditor.get('boundingBox'),
+                ancestor = boundingBox.ancestor(),
+                node = Y.Node.create('<input autofocus="autofocus" type="text" />');
 
             Y.Node.prototype.simulateWithCallback = function (type, options, cb) {
                 var eventQueue = new Y.AsyncQueue();
@@ -142,15 +138,20 @@ YUI.add('aui-datatable-tests', function(Y) {
             node.focus();
 
             Y.getWin().on('error', function() {
-                aui1288TestErrorFlag = true;
+                error = true;
             });
 
             //simulate a keypress on the Enter key
-            node.simulate("keydown", { keyCode: 13 });
-            node.simulateWithCallback("keyup", { keyCode: 13 },
+            node.simulate('keydown', {
+                keyCode: 13
+            });
+
+            node.simulateWithCallback(
+                'keyup',
+                {keyCode: 13},
                 function() {
                     instance.resume(function() {
-                        Y.Assert.isTrue(!aui1288TestErrorFlag, 'There were JavaScript errors.');
+                        Y.Assert.isTrue(!error, 'There were JavaScript errors.');
                     });
                 }
             );
