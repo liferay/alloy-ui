@@ -1,0 +1,2 @@
+<div id="header">header-html</div>
+<div id="body">body-html</div>
