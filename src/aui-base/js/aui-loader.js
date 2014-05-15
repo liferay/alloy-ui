@@ -1172,7 +1172,6 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-surface-app": {
         "requires": [
-            "dom-screen",
             "event-delegate",
             "node-event-html5",
             "aui-surface-base",
@@ -1184,6 +1183,8 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "base-build",
             "node-style",
+            "timers",
+            "aui-debounce",
             "aui-promise",
             "aui-parse-content"
         ]
@@ -1488,4 +1489,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'd61110028e7b568dffc16e8e12a2be43';
+YUI.Env[Y.version].md5 = '3a5b0a87b62eff71ec39fed4c81fb2f9';
