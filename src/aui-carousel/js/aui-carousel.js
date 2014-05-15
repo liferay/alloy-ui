@@ -27,15 +27,6 @@ var Lang = A.Lang,
     SELECTOR_MENU_PLAY = '.' + CSS_MENU_PLAY,
     SELECTOR_MENU_PLAY_OR_PAUSE = [SELECTOR_MENU_PLAY, SELECTOR_MENU_PAUSE].join(),
 
-    TPL_ITEM = '<li><a class="' + CSS_MENU_ITEM + ' {cssClasses}">{index}</a></li>',
-
-    TPL_MENU = '<menu>' +
-        '<li><a class="' + CSS_MENU_ITEM + ' ' + CSS_MENU_PLAY + '"></a></li>' +
-        '<li><a class="' + CSS_MENU_ITEM + ' ' + CSS_MENU_PREV + '"></a></li>' +
-        '{items}' +
-        '<li><a class="' + CSS_MENU_ITEM + ' ' + CSS_MENU_NEXT + '"></a></li>' +
-        '</menu>',
-
     UI_SRC = A.Widget.UI_SRC,
 
     MAP_EVENT_INFO = {
@@ -183,6 +174,15 @@ var Carousel = A.Component.create({
     UI_ATTRS: ['pauseOnHover'],
 
     prototype: {
+        TPL_ITEM: '<li><a class="' + CSS_MENU_ITEM + ' {cssClasses}">{index}</a></li>',
+
+        TPL_MENU: '<menu>' +
+            '<li><a class="' + CSS_MENU_ITEM + ' ' + CSS_MENU_PLAY + '"></a></li>' +
+            '<li><a class="' + CSS_MENU_ITEM + ' ' + CSS_MENU_PREV + '"></a></li>' +
+            '{items}' +
+            '<li><a class="' + CSS_MENU_ITEM + ' ' + CSS_MENU_NEXT + '"></a></li>' +
+            '</menu>',
+
         animation: null,
         nodeSelection: null,
         nodeMenu: null,
@@ -774,14 +774,14 @@ var Carousel = A.Component.create({
 
             for (i = 0; i < len; i++) {
                 items.push(
-                    Lang.sub(TPL_ITEM, {
+                    Lang.sub(this.TPL_ITEM, {
                         cssClasses: activeIndex === i ? CSS_MENU_ITEM_ACTIVE : CSS_MENU_ITEM_DEFAULT,
                         index: i
                     })
                 );
             }
 
-            var menu = A.Node.create(Lang.sub(TPL_MENU, {
+            var menu = A.Node.create(Lang.sub(this.TPL_MENU, {
                 items: items.join(' ')
             }));
 
