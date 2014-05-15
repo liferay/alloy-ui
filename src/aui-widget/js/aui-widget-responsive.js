@@ -35,6 +35,7 @@
             A.after(this._handleResponsive, this, '_uiSetVisible'),
             A.after(this._handleResponsive, this, '_uiSetWidth'),
             this.after({
+                gutterChange: this._handleResponsive,
                 maxHeightChange: this._handleResponsive,
                 maxWidthChange: this._handleResponsive,
                 preserveRatioChange: this._handleResponsive,
@@ -80,6 +81,7 @@
      */
     _calculateOriginalDimensions: function() {
         var boundingBox = this.get('boundingBox'),
+            gutter = this.get('gutter'),
             originalDisplay;
 
         if (!this._originalDimensions) {
@@ -90,8 +92,8 @@
             });
 
             this._originalDimensions = {
-                height: boundingBox.get('offsetHeight'),
-                width: boundingBox.get('offsetWidth')
+                height: boundingBox.get('offsetHeight') - gutter[1],
+                width: boundingBox.get('offsetWidth') - gutter[0]
             };
 
             boundingBox.setStyles({
@@ -127,6 +129,7 @@
         }
 
         var boundingBox = this.get('boundingBox'),
+            gutter = this.get('gutter'),
             maxHeight = this.get('maxHeight'),
             maxWidth = this.get('maxWidth'),
             newHeight,
@@ -137,8 +140,8 @@
         this._uiSetDim('width', this.get('width'));
         this._uiSetDim('height', this.get('height'));
 
-        newHeight = boundingBox.get('offsetHeight');
-        newWidth = boundingBox.get('offsetWidth');
+        newHeight = boundingBox.get('offsetHeight') - gutter[1];
+        newWidth = boundingBox.get('offsetWidth') - gutter[0];
 
         if (this._canChangeHeight() && this.get('preserveRatio')) {
             originalDimensions = this._calculateOriginalDimensions();
@@ -155,8 +158,8 @@
         newHeight = Math.floor(newHeight * ratio);
         newWidth = Math.floor(newWidth * ratio);
 
-        boundingBox.set('offsetHeight', newHeight);
-        boundingBox.set('offsetWidth', newWidth);
+        boundingBox.set('offsetHeight', newHeight + gutter[1]);
+        boundingBox.set('offsetWidth', newWidth + gutter[0]);
 
         event.height = newHeight;
         event.width = newWidth;
@@ -169,16 +172,32 @@
      * @protected
      */
     _handleResponsive: function() {
-        var boundingBox = this.get('boundingBox');
+        var boundingBox = this.get('boundingBox'),
+            gutter = this.get('gutter');
 
         this.fire('responsive', {
-            height: boundingBox.get('offsetHeight'),
-            width: boundingBox.get('offsetWidth')
+            height: boundingBox.get('offsetHeight') - gutter[1],
+            width: boundingBox.get('offsetWidth') - gutter[0]
         });
     }
  };
 
  WidgetResponsive.ATTRS = {
+    /**
+     * Vertical and horizontal values in pixels that should not be counted
+     * when preserving the widget's ratio. widget.
+     *
+     * @attribute gutter
+     * @default [0, 0]
+     * @type Array
+     */
+    gutter: {
+        value: [0, 0],
+        validator: function(value) {
+            return A.Lang.isArray(value) && value.length === 2;
+        }
+    },
+
     /**
      * The maximum height of the widget.
      *

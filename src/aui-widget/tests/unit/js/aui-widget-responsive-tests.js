@@ -148,6 +148,22 @@ YUI.add('aui-widget-responsive-tests', function(Y) {
                 this._widget.get('boundingBox').getStyle('height'),
                 'Height should have been updated to match the ratio'
             );
+        },
+
+        'should not take gutter into account when preserving ratio': function() {
+            this._container.setStyle('width', '940px');
+
+            this._createWidget();
+
+            this._widget.get('boundingBox')
+                .append('<div style="height: 20px; width: 100%"></div>');
+            this._widget.set('gutter', [0, 20]);
+
+            Y.Assert.areEqual(
+                '273px',
+                this._widget.get('boundingBox').getStyle('height'),
+                'Height should have been updated to match the ratio'
+            );
         }
     }));
 

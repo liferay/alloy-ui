@@ -462,6 +462,22 @@ YUI.add('aui-carousel-tests', function(Y) {
             });
 
             this.assertPaused();
+        },
+
+        'should render the menu outside of the carousel': function() {
+            var boundingBox = this._carousel.get('boundingBox');
+
+            Y.Assert.isFalse(
+                boundingBox.hasClass('carousel-outside-menu'),
+                'Should not have the carousel-outside-menu class'
+            );
+
+            this._carousel.set('nodeMenuPosition', 'outside');
+
+            Y.Assert.isTrue(
+                boundingBox.hasClass('carousel-outside-menu'),
+                'Should have the carousel-outside-menu class'
+            );
         }
     }));
 

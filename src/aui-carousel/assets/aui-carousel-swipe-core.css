@@ -1,7 +1,3 @@
-.carousel .yui3-scrollview {
-    height: 100%;
-}
-
 .carousel.widget-swipe .yui3-scrollview {
     white-space: nowrap;
 }

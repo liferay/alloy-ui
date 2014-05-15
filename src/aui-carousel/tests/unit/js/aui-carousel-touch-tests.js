@@ -64,6 +64,16 @@ YUI.add('aui-carousel-touch-tests', function(Y) {
                 nodeMenu.all('.carousel-menu-item'),
                 'Should have item buttons'
             );
+        },
+
+        'should have the menu on the outside': function() {
+            this._carousel = this.createCarousel();
+
+            Y.Assert.areEqual(
+                'outside',
+                this._carousel.get('nodeMenuPosition'),
+                'The menu should be outside by default'
+            );
         }
     }));
 

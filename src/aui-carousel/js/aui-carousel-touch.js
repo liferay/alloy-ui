@@ -9,7 +9,21 @@
 function CarouselTouch() {}
 
 CarouselTouch.prototype = {
-    TPL_MENU: '<menu>{items}</menu>'
+    TPL_MENU: '<div class="carousel-menu"><menu>{items}</menu></div>'
+};
+
+CarouselTouch.ATTRS = {
+    /**
+     * Position of the menu.
+     *
+     * @attribute nodeMenuPosition
+     * @default 'outside'
+     * @type String
+     */
+    nodeMenuPosition: {
+        value: 'outside',
+        validator: '_validateNodeMenuPosition'
+    }
 };
 
 A.Base.mix(A.Carousel, [CarouselTouch]);
