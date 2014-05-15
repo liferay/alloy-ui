@@ -891,7 +891,6 @@
     },
     "aui-surface-app": {
         "requires": [
-            "dom-screen",
             "event-delegate",
             "node-event-html5",
             "aui-surface-base",
@@ -903,6 +902,8 @@
         "requires": [
             "base-build",
             "node-style",
+            "timers",
+            "aui-debounce",
             "aui-promise",
             "aui-parse-content"
         ]
