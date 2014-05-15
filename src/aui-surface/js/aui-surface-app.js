@@ -21,24 +21,46 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
     activePath: null,
 
     /**
-     * Holds the document hotizontal scroll position when the navigation using
-     * back or forward happens to be restored after the surfaces are updated.
+     * Holds the window hotizontal scroll position before navigation using back
+     * or forward happens to lock the scroll position until the surfaces are
+     * updated.
      *
-     * @property docScrollX
+     * @property lockPageXOffset
      * @type {Number}
      * @protected
      */
-    docScrollX: 0,
+    lockPageXOffset: 0,
 
     /**
-     * Holds the document vertical scroll position when the navigation using
-     * back or forward happens to be restored after the surfaces are updated.
+     * Holds the window vertical scroll position before navigation using back or
+     * forward happens to lock the scroll position until the surfaces are
+     * updated.
      *
-     * @property docScrollY
+     * @property lockPageYOffset
      * @type {Number}
      * @protected
      */
-    docScrollY: 0,
+    lockPageYOffset: 0,
+
+    /**
+     * Holds the window hotizontal scroll position when the navigation using
+     * back or forward happens to be restored after the surfaces are updated.
+     *
+     * @property pageXOffset
+     * @type {Number}
+     * @protected
+     */
+    pageXOffset: 0,
+
+    /**
+     * Holds the window vertical scroll position when the navigation using
+     * back or forward happens to be restored after the surfaces are updated.
+     *
+     * @property pageYOffset
+     * @type {Number}
+     * @protected
+     */
+    pageYOffset: 0,
 
     /**
      * Holds a deferred withe the current navigation.
@@ -102,6 +124,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
                 defaultFn: this._defStartNavigateFn
             }
         });
+        A.on('scroll', A.debounce(this._onScroll, 50, this));
         A.on('popstate', this._onPopState, win, this);
         A.delegate('click', this._onDocClick, doc, this.get('linkSelector'), this);
     },
@@ -275,8 +298,6 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
                     activeScreen.deactivate();
                 }
 
-                instance._syncScrollPosition(opt_replaceHistory);
-
                 // Animations should start at the same time, therefore
                 // it's passed to Y.batch to be processed in parallel
                 A.log('Screen [' + nextScreen + '] ready, flip...', 'info');
@@ -312,6 +333,8 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
             title = nextScreen.get('title') || this.get('defaultTitle');
 
         this._updateHistory(title, path, opt_replaceHistory);
+
+        this._syncScrollPosition(opt_replaceHistory);
 
         doc.title = title;
 
@@ -357,7 +380,6 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      */
     _handleNavigateError: function(path, nextScreen, err) {
         A.log('Navigation error for [' + nextScreen + '] (' + err + ')', 'info');
-        this._unlockScroll();
         this._removeScreen(path, nextScreen);
         this.pendingRequest = null;
     },
@@ -395,16 +417,37 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      */
     _lockScroll: function() {
         var instance = this,
-            docScrollX = A.DOM.docScrollX(),
-            docScrollY = A.DOM.docScrollY();
+            lockPageXOffset = instance.lockPageXOffset,
+            lockPageYOffset = instance.lockPageYOffset;
 
-        instance._unlockScroll();
+        instance.pageXOffset = win.pageXOffset;
+        instance.pageYOffset = win.pageYOffset;
 
-        instance.scrollHandle = A.once('scroll', function() {
-            instance.docScrollX = A.DOM.docScrollX();
-            instance.docScrollY = A.DOM.docScrollY();
-            win.scrollTo(docScrollX, docScrollY);
-        });
+        // In order to keep the history scrolling fluid, the scroll position
+        // needs to be locked until content is fully loaded and surfaces
+        // painted. The problem is that behavior is incosistent through
+        // browsers. Blink and Webkit popstate event happens before scroll
+        // position updates, and on Firefox and IE scroll position updates
+        // before popstate event. If we assume the lock position is the same as
+        // the current win.page[XY]Offset on popstate, we should capture the
+        // next scroll tick, otherwise listens for the next scroll once to
+        // capture the history scroll position. For more information see
+        // discussion https://bugzilla.mozilla.org/show_bug.cgi?id=679458.
+        if (lockPageXOffset === instance.pageXOffset &&
+            lockPageYOffset === instance.pageYOffset) {
+            A.soon(function() {
+                instance.pageXOffset = win.pageXOffset;
+                instance.pageYOffset = win.pageYOffset;
+                win.scrollTo(lockPageXOffset, lockPageYOffset);
+            });
+        }
+        else {
+            A.once('scroll', function() {
+                instance.pageXOffset = win.pageXOffset;
+                instance.pageYOffset = win.pageYOffset;
+                win.scrollTo(lockPageXOffset, lockPageYOffset);
+            });
+        }
     },
 
     /**
@@ -459,6 +502,19 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
     },
 
     /**
+     * Listens document scroll changes in order to capture the possible lock
+     * scroll position for history scrolling.
+     *
+     * @method _onScroll
+     * @param {EventFacade} event Event facade
+     * @private
+     */
+    _onScroll: function() {
+        this.lockPageXOffset = win.pageXOffset;
+        this.lockPageYOffset = win.pageYOffset;
+    },
+
+    /**
      * Removes a screen.
      *
      * @method  _removeScreen
@@ -510,24 +566,10 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      * @private
      */
     _syncScrollPosition: function(opt_replaceHistory) {
-        this._unlockScroll();
         win.scrollTo(
-            opt_replaceHistory ? this.docScrollX : 0,
-            opt_replaceHistory ? this.docScrollY : 0
+            opt_replaceHistory ? this.pageXOffset : 0,
+            opt_replaceHistory ? this.pageYOffset : 0
         );
-    },
-
-    /**
-     * Unlock the document scroll.
-     *
-     * @method _unlockScroll
-     * @private
-     */
-    _unlockScroll: function() {
-        if (this.scrollHandle) {
-            this.scrollHandle.detach();
-            this.scrollHandle = null;
-        }
     },
 
     /**
