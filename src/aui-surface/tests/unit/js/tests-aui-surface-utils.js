@@ -5,11 +5,7 @@ YUI.add('tests-aui-surface-utils', function(Y) {
         },
 
         assertEqualSurfaceContent: function(surfaceId, content) {
-            Y.Assert.areEqual(content, Y.one('#' + surfaceId).get('text').trim());
-        },
-
-        assertNotSameCurrentPath: function(path) {
-            return Y.Assert.areNotSame(path, this.getCurrentPath());
+            Y.Assert.areEqual(content, Y.one('#' + surfaceId).one('div').get('text').trim());
         },
 
         delay: function(ms, val) {
@@ -26,9 +22,9 @@ YUI.add('tests-aui-surface-utils', function(Y) {
             );
         },
 
-        getBasePath: function() {
-            var basePath = Y.config.win.location.pathname;
-            return basePath.substr(0, basePath.lastIndexOf('/') + 1);
+        getOriginalBasePath: function() {
+            var path = this.originalPath;
+            return path.substr(0, path.lastIndexOf('/'));
         },
 
         getCurrentPath: function() {
@@ -78,7 +74,7 @@ YUI.add('tests-aui-surface-utils', function(Y) {
 
     Y.DelayedScreen = Y.Base.create('delayedScreen', Y.Screen, [], {
         beforeFlip: function() {
-            return Y.Test.Case.prototype.delay(50);
+            return Y.Test.Case.prototype.delay(200);
         },
 
         getSurfaceContent: function(surfaceId) {
