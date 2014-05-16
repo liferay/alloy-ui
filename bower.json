@@ -18,7 +18,7 @@
     "yui3": "liferay/yui3#patched-v3.16.0"
   },
   "devDependencies": {
-    "ace-builds": "ajaxorg/ace-builds#1.1.2",
+    "ace-builds": "1.1.3",
     "alloy-apidocs-theme": "liferay/alloy-apidocs-theme#master",
     "alloyui.com": "liferay/alloyui.com#master"
   }

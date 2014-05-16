@@ -185,6 +185,6 @@ module.exports = function(grunt) {
     grunt.registerTask('format', ['cssbeautifier', 'jsbeautifier']);
     grunt.registerTask('init', ['bowercopy']);
     grunt.registerTask('lint', ['jshint']);
-    grunt.registerTask('release', ['clean:zip', 'build', 'zip:release']);
-    grunt.registerTask('release-cdn', ['clean:zip', 'build', 'cdn', 'zip:cdn', 'build:aui']);
+    grunt.registerTask('release', ['clean:zip', 'all', 'zip:release']);
+    grunt.registerTask('release-cdn', ['clean:zip', 'all', 'cdn', 'zip:cdn', 'build:aui']);
 };
