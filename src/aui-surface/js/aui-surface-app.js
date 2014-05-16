@@ -180,10 +180,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      * @chainable
      */
     dispatch: function() {
-        var location = A.getLocation();
-
-        this.navigate(location.pathname + location.search, true);
-
+        this.navigate(win.location.pathname + win.location.search, true);
         return this;
     },
 
@@ -211,25 +208,13 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      * @method navigate
      * @param {String} path Path containing the querystring part.
      * @param {Boolean} opt_replaceHistory Replaces browser history.
+     * @return {Boolean}
      */
     navigate: function(path, opt_replaceHistory) {
-        if (this.pendingRequest) {
-            this.pendingRequest.cancel('Navigation cancelled');
-            this.pendingRequest = null;
-        }
-        if (!this._isSameBasePath(path)) {
-            A.log('Link clicked outside app\'s base path', 'info');
-            return;
-        }
         if (path === this.activePath) {
             A.log('Not navigating, already at destination', 'info');
-            return;
+            return false;
         }
-        if (this.activeScreen && this.activeScreen.beforeDeactivate()) {
-            A.log('Navigation cancelled by active screen', 'info');
-            return;
-        }
-
         var route = this.matchesRoute(path);
         if (route) {
             this.fire('startNavigate', {
@@ -251,7 +236,10 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      */
     _defStartNavigateFn: function(event) {
         var instance = this;
-
+        if (this.activeScreen && this.activeScreen.beforeDeactivate()) {
+            A.log('Navigation cancelled by active screen', 'info');
+            return;
+        }
         this._doNavigate(event.path, event.replaceHistory).thenAlways(function() {
             instance.fire('endNavigate', {
                 path: event.path
@@ -277,6 +265,11 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
             surfacesId = A.Object.keys(instance.surfaces);
 
         A.log('Navigate to [' + path + ']', 'info');
+
+        if (this.pendingRequest) {
+            this.pendingRequest.cancel('Navigation cancelled');
+            this.pendingRequest = null;
+        }
 
         instance.pendingRequest = A.CancellablePromise.resolve(nextScreen.handleSurfacesContent(surfacesId, path)).then(
             function(opt_contents) {
@@ -385,6 +378,19 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
     },
 
     /**
+     * Tests if hostname is an offsite link.
+     *
+     * @method _isLinkSameOrigin
+     * @param  {String} hostname Link hostname to compare with
+     *     `window.location.hostname`.
+     * @return {Boolean}
+     * @private
+     */
+    _isLinkSameOrigin: function(hostname) {
+        return hostname === win.location.hostname;
+    },
+
+    /**
      * Tests if link element has the same app's base path.
      *
      * @param  {String} path Link path containing the querystring part.
@@ -393,18 +399,6 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      */
     _isSameBasePath: function(path) {
         return path.indexOf(this.get('basePath')) === 0;
-    },
-
-    /**
-     * Tests if link element is an offsite link.
-     *
-     * @method _isLinkSameOrigin
-     * @param  {Node} link Link element to check base path.
-     * @return {Boolean}
-     * @private
-     */
-    _isLinkSameOrigin: function(link) {
-        return A.getLocation().hostname === link.get('hostname');
     },
 
     /**
@@ -460,19 +454,19 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      */
     _onDocClick: function(event) {
         var link = event.currentTarget,
+            hostname = link.get('hostname'),
             path = link.get('pathname') + link.get('search');
 
-        if (!this._isLinkSameOrigin(link)) {
+        if (!this._isLinkSameOrigin(hostname)) {
             A.log('Offsite link clicked', 'info');
             return;
         }
-
-        if (this.navigate(path)) {
-            event.preventDefault();
+        if (!this._isSameBasePath(path)) {
+            A.log('Link clicked outside app\'s base path', 'info');
+            return;
         }
-        else {
-            A.log('Link clicked without route', 'info');
-        }
+        this.navigate(path);
+        event.preventDefault();
     },
 
     /**
