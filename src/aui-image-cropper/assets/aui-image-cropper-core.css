@@ -26,12 +26,15 @@
 }
 
 .image-cropper-crop-outline {
-    height: 100%;
-    width: 100%;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
     border: 1px dashed #FFF;
+    box-sizing: content-box;
+    height: 100%;
     margin-left: -1px;
     margin-top: -1px;
     outline: 3px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
 }
 
 .image-cropper-crop-hover .image-cropper-overlay {

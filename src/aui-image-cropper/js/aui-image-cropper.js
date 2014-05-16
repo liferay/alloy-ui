@@ -233,6 +233,8 @@ var ImageCropper = A.Component.create({
 
             instance.on(['drag:start', 'resize:start'], A.debounce(instance._syncRegion, 25));
 
+            instance.on(['drag:drag', 'drag:end', 'resize:resize', 'resize:end'], A.debounce(instance._constrainValues, 10));
+
             instance.after(['drag:drag', 'resize:resize'], instance._fireCropEvent, instance);
 
             instance.after(
@@ -318,6 +320,9 @@ var ImageCropper = A.Component.create({
             var cropHeight = instance.get('cropHeight');
             var cropWidth = instance.get('cropWidth');
 
+            var xBorder = instance.cropNode.getBorderWidth('lr');
+            var yBorder = instance.cropNode.getBorderWidth('tb');
+
             var x = instance.get('x');
             var y = instance.get('y');
 
@@ -328,7 +333,7 @@ var ImageCropper = A.Component.create({
 
             y = Math.max(y, 0);
 
-            if (y + cropHeight > imageHeight) {
+            if (y + (cropHeight - yBorder) > imageHeight) {
                 y = Math.max(imageHeight - cropHeight, 0);
             }
 
@@ -336,7 +341,7 @@ var ImageCropper = A.Component.create({
 
             // Find valid cropHeight
 
-            if (y + cropHeight > imageHeight) {
+            if (y + (cropHeight - yBorder) > imageHeight) {
                 cropHeight = Math.max(imageHeight - y, 0);
             }
 
@@ -346,7 +351,7 @@ var ImageCropper = A.Component.create({
 
             x = Math.max(x, 0);
 
-            if (x + cropWidth > imageWidth) {
+            if (x + (cropWidth - xBorder) > imageWidth) {
                 x = Math.max(imageWidth - cropWidth, 0);
             }
 
@@ -354,7 +359,7 @@ var ImageCropper = A.Component.create({
 
             // Find valid cropWidth
 
-            if (x + cropWidth > imageWidth) {
+            if (x + (cropWidth - xBorder) > imageWidth) {
                 cropWidth = Math.max(imageWidth - x, 0);
             }
 
@@ -635,8 +640,8 @@ var ImageCropper = A.Component.create({
 
             var cropNode = instance.cropNode;
 
-            instance.set('cropHeight', cropNode.height());
-            instance.set('cropWidth', cropNode.width());
+            instance.set('cropHeight', cropNode.outerHeight());
+            instance.set('cropWidth', cropNode.outerWidth());
         },
 
         /**
