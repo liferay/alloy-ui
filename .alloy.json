@@ -1,28 +1,6 @@
 {
     "alloycore": [ "aui-base-core" ],
     "alloyregex": "(aui|yui(",
-    "dependencies": {
-        "ace": {
-            "folder": "../ace-builds",
-            "repo": "https://github.com/ajaxorg/ace-builds.git",
-            "version": "v1.1.2"
-        },
-        "yui3": {
-            "folder": "../yui3",
-            "repo": "https://github.com/liferay/yui3.git",
-            "version": "patched-v3.16.0"
-        },
-        "alloy-apidocs-theme": {
-            "folder": "../alloy-apidocs-theme",
-            "repo": "https://github.com/liferay/alloy-apidocs-theme.git",
-            "version": "master"
-        },
-        "alloyui.com": {
-            "folder": "../alloyui.com",
-            "repo": "https://github.com/liferay/alloyui.com.git",
-            "version": "master"
-        }
-    },
     "yuiversion": "patched-v3.16.0",
     "version": "2.5.0"
 }

@@ -57,25 +57,19 @@ grunt init
 
 ### Build
 
-* Build YUI and AlloyUI:
+* Fetch dependencies and build AlloyUI:
+
+    ```
+grunt all
+    ```
+
+* Build AlloyUI:
 
     ```
 grunt build
     ```
 
-* Build only YUI:
-
-    ```
-grunt build:yui
-    ```
-
-* Build only AlloyUI:
-
-    ```
-grunt build:aui
-    ```
-
-* Build single AlloyUI module:
+* Build a single AlloyUI module:
 
     ```
 grunt build:aui --src src/aui-module-name

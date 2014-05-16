@@ -12,41 +12,43 @@ module.exports = function(grunt) {
         'api-build': {
             'src': 'temp',
             'dist': path.join(ROOT, 'api'),
-            'theme': path.join(ROOT, '<%= pkg.dependencies["alloy-apidocs-theme"].folder %>'),
+            'theme': path.join(ROOT, 'bower_components/alloy-apidocs-theme'),
             'aui-version': '<%= pkg["version"] %>'
         },
 
         'api-include': {
             'all': {
                 'src': ['temp/alloy-ui/src/*/js/*.js'],
-                'repo': path.join(ROOT, '<%= pkg.dependencies["alloyui.com"].folder %>')
+                'repo': path.join(ROOT, 'bower_components/alloyui.com')
             }
         },
 
         'api-push': {
             'src': path.join(ROOT, 'api'),
-            'dist': path.join(ROOT, '<%= pkg.dependencies["alloyui.com"].folder %>', 'api'),
-            'repo': path.join(ROOT, '<%= pkg.dependencies["alloyui.com"].folder %>'),
+            'dist': path.join(ROOT, 'bower_components/alloyui.com/api'),
+            'repo': path.join(ROOT, 'bower_components/alloyui.com'),
             'branch': 'gh-pages',
             'remote': 'origin'
         },
 
         'api-watch': {
-            'src': [path.join(ROOT, 'src'), path.join(ROOT, '<%= pkg.dependencies.yui3.folder %>', 'src')],
-            'theme': path.join(ROOT, '<%= pkg.dependencies["alloy-apidocs-theme"].folder %>'),
+            'src': [path.join(ROOT, 'src'), path.join(ROOT, 'bower_components/yui3/src')],
+            'theme': path.join(ROOT, 'bower_components/alloy-apidocs-theme'),
             'aui-version': '<%= pkg["version"] %>'
         },
 
-        build: {
-            yui: {
-                'src': path.join(ROOT, '<%= pkg.dependencies.yui3.folder %>', 'src'),
-                'dist': path.join(ROOT, 'build'),
-                'cache': true,
-                'coverage': false,
-                'lint': false,
-                'replace-yuivar': 'Y',
-                'replace-version': '<%= pkg["yuiversion"] %>',
+        bowercopy: {
+            src: {
+                files: {
+                    'build': 'yui3/build'
+                }
             },
+            options: {
+                report: false
+            }
+        },
+
+        build: {
             aui: {
                 'src': path.join(ROOT, 'src'),
                 'dist': path.join(ROOT, 'build'),
@@ -70,7 +72,7 @@ module.exports = function(grunt) {
             api: {
                 files: [
                     {
-                        cwd: path.join('<%= pkg.dependencies.yui3.folder %>', 'src/'),
+                        cwd: path.join('bower_components/yui3/src/'),
                         src: '**',
                         dest: 'temp/yui3/src/',
                         expand: true
@@ -108,9 +110,8 @@ module.exports = function(grunt) {
         },
 
         clean: {
-            api: [
-                'api', 'temp'
-            ],
+            api: ['api', 'temp'],
+            build: ['build'],
             zip: [
                 'alloy-<%= pkg["version"] %>.zip',
                 'cdn-alloy-<%= pkg["version"] %>.zip'
@@ -126,10 +127,6 @@ module.exports = function(grunt) {
                 'src/**/*.css',
                 '!src/aui-css/css/*.css'
             ]
-        },
-
-        init: {
-            dependencies: '<%= pkg.dependencies %>'
         },
 
         jsbeautifier: {
@@ -174,6 +171,7 @@ module.exports = function(grunt) {
 
     grunt.loadTasks('tasks');
 
+    grunt.loadNpmTasks('grunt-bowercopy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-contrib-copy');
@@ -181,9 +179,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-cssbeautifier');
     grunt.loadNpmTasks('grunt-jsbeautifier');
 
+    grunt.registerTask('all', ['clean:build', 'init', 'build']);
     grunt.registerTask('api', ['copy:api', 'api-include', 'api-build']);
     grunt.registerTask('api-deploy', ['api', 'api-push', 'clean:api']);
     grunt.registerTask('format', ['cssbeautifier', 'jsbeautifier']);
+    grunt.registerTask('init', ['bowercopy']);
     grunt.registerTask('lint', ['jshint']);
     grunt.registerTask('release', ['clean:zip', 'build', 'zip:release']);
     grunt.registerTask('release-cdn', ['clean:zip', 'build', 'cdn', 'zip:cdn', 'build:aui']);
