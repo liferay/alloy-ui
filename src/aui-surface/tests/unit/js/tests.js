@@ -15,19 +15,23 @@ YUI.add('aui-surface-tests', function(Y) {
             ignore: {
                 'should cancel pending navigate': noHTML5,
                 'should dispatch to the current url': noHTML5,
-                'should lazily find surface element': noHTML5,
+                'should lazily match surface element': noHTML5,
+                'should match screen routes': noHTML5,
                 'should match surface elements': noHTML5,
                 'should navigate fail using HTMLScreen': noHTML5,
-                'should navigate on link click': noHTML5,
                 'should navigate to /base/delayed asynchronously': noHTML5,
                 'should navigate to /base/page': noHTML5,
-                'should navigate to /base/regex?foo=1': noHTML5,
                 'should navigate to next page': noHTML5,
-                'should navigate to previous /base/delayed asynchronously': noHTML5,
+                'should navigate to path with querystring': noHTML5,
+                'should navigate to previous page asynchronously': noHTML5,
                 'should navigate to previous page': noHTML5,
+                'should navigate to routed link': noHTML5,
+                'should navigate with events': noHTML5,
+                'should navigate with screen lifecycle': noHTML5,
                 'should not handle history states that are not ours': noHTML5,
-                'should not navigate on offsite link click': noHTML5,
-                'should not navigate to link outside base path': noHTML5,
+                'should not navigate to offsite link': noHTML5,
+                'should not navigate to outside base path link': noHTML5,
+                'should not navigate to the same destination': noHTML5,
                 'should not navigate to unrouted link': noHTML5,
                 'should not navigate to unrouted route': noHTML5,
                 'should not navigate when navigation cancelled by active screen': noHTML5,
@@ -39,8 +43,8 @@ YUI.add('aui-surface-tests', function(Y) {
         },
 
         init: function() {
-            this.regexRoute = /^\/regex\?foo=\d+$/;
-            this.currentPath = this.getCurrentPath();
+            this.regexRoute = /^\/regex\?foo=\w+$/;
+            this.originalPath = this.getCurrentPath();
 
             this.app = new Y.SurfaceApp({
                 basePath: '/base',
@@ -89,7 +93,7 @@ YUI.add('aui-surface-tests', function(Y) {
 
         destroy: function() {
             this.app = null;
-            Y.config.win.history.pushState(null, '', this.currentPath);
+            Y.config.win.history.pushState(null, '', this.originalPath);
         },
 
         'should match screen routes': function() {
@@ -120,60 +124,7 @@ YUI.add('aui-surface-tests', function(Y) {
             Y.Assert.areEqual(Y.one('#header'), this.app.surfaces.header.getEl());
         },
 
-        'should update surfaces and title using HTMLScreen': function() {
-            var path = this.getBasePath() + 'content.txt';
-
-            this.app.set('basePath', this.getBasePath());
-            this.app.addScreenRoutes({
-                path: 'content.txt',
-                screen: Y.HTMLScreen
-            });
-            this.app.navigate(path);
-            this.wait(function() {
-                this.app.set('basePath', '/base');
-                this.assertEqualCurrentPath(path);
-                this.assertEqualSurfaceContent('body', 'body-html');
-                this.assertEqualSurfaceContent('header', 'header-html');
-                Y.Assert.areEqual('HTML', Y.config.doc.title);
-            }, 100);
-        },
-
-        'should update surfaces using HTMLScreen': function() {
-            var path = this.getBasePath() + 'notitle.txt';
-
-            this.app.set('basePath', this.getBasePath());
-            this.app.addScreenRoutes({
-                path: 'notitle.txt',
-                screen: Y.HTMLScreen
-            });
-            this.app.navigate(path);
-            this.wait(function() {
-                this.app.set('basePath', '/base');
-                this.assertEqualCurrentPath(path);
-                this.assertEqualSurfaceContent('body', 'body-html');
-                this.assertEqualSurfaceContent('header', 'header-html');
-            }, 100);
-        },
-
-        'should navigate fail using HTMLScreen': function() {
-            var path = this.getBasePath() + 'notitle.txt',
-                path404 = this.getBasePath() + '404.txt';
-
-            this.app.set('basePath', this.getBasePath());
-            this.app.addScreenRoutes({
-                path: '404.txt',
-                screen: Y.HTML404Screen
-            });
-            this.app.navigate(path404);
-            this.wait(function() {
-                this.app.set('basePath', '/base');
-                this.assertEqualCurrentPath(path);
-                this.assertEqualSurfaceContent('body', 'body-html');
-                this.assertEqualSurfaceContent('header', 'header-html');
-            }, 100);
-        },
-
-        'should lazily find surface element': function() {
+        'should lazily match surface element': function() {
             this.app.addSurfaces(
                 new Y.Surface({
                     id: 'lazy'
@@ -201,19 +152,202 @@ YUI.add('aui-surface-tests', function(Y) {
             }, 300);
         },
 
-        'should navigate to /base/delayed asynchronously': function() {
+        'should not navigate to the same destination': function() {
+            Y.Assert.isTrue(this.app.navigate('/base/page'));
+            this.wait(function() {
+                Y.one('a[href="/base/page"]').simulate('click');
+                Y.Assert.isNull(this.app.pendingRequest);
+            }, 100);
+        },
+
+        'should navigate to routed link': function() {
+            Y.one('a[href="/base/regex?foo=1"]').simulate('click');
+            this.wait(function() {
+                this.assertEqualCurrentPath('/base/regex?foo=1');
+                this.assertEqualSurfaceContent('body', 'body-regex');
+                this.assertEqualSurfaceContent('header', 'header-regex');
+                Y.Assert.areEqual('Regex', Y.config.doc.title);
+            }, 100);
+        },
+
+        'should not navigate to offsite link': function() {
+            var external = Y.one('a[href="http://alloyui.com/external"]');
+
+            external.on('click', function(event) {
+                event.preventDefault();
+            });
+
+            external.simulate('click');
+
+            this.wait(function() {
+                this.assertEqualCurrentPath('/base/regex?foo=1');
+                this.assertEqualSurfaceContent('body', 'body-regex');
+                this.assertEqualSurfaceContent('header', 'header-regex');
+                Y.Assert.areEqual('Regex', Y.config.doc.title);
+            }, 100);
+        },
+
+        'should not navigate to unrouted link': function() {
+            var external = Y.one('a[href="/base/unrouted"]');
+
+            external.on('click', function(event) {
+                event.preventDefault();
+            });
+
+            external.simulate('click');
+
+            this.wait(function() {
+                this.assertEqualCurrentPath('/base/regex?foo=1');
+                this.assertEqualSurfaceContent('body', 'body-regex');
+                this.assertEqualSurfaceContent('header', 'header-regex');
+                Y.Assert.areEqual('Regex', Y.config.doc.title);
+            }, 100);
+        },
+
+        'should not navigate to outside base path link': function() {
+            var external = Y.one('a[href="/outside"]');
+
+            external.on('click', function(event) {
+                event.preventDefault();
+            });
+
+            external.simulate('click');
+
+            this.wait(function() {
+                this.assertEqualCurrentPath('/base/regex?foo=1');
+                this.assertEqualSurfaceContent('body', 'body-regex');
+                this.assertEqualSurfaceContent('header', 'header-regex');
+                Y.Assert.areEqual('Regex', Y.config.doc.title);
+            }, 100);
+        },
+
+        'should not navigate to unrouted route': function() {
+            Y.Assert.isFalse(this.app.navigate('/base/unrouted'));
+            this.wait(function() {
+                this.assertEqualCurrentPath('/base/regex?foo=1');
+                this.assertEqualSurfaceContent('body', 'body-regex');
+                this.assertEqualSurfaceContent('header', 'header-regex');
+                Y.Assert.areEqual('Regex', Y.config.doc.title);
+            }, 100);
+        },
+
+        'should cancel pending navigate': function() {
             this.app.navigate('/base/delayed');
 
             setTimeout(function() {
-                this.assertNotSameCurrentPath('/base/delayed');
-            }.bind(this), 30);
+                this.app.navigate('/base/regex?foo=80');
+            }.bind(this), 100);
+
+            this.wait(function() {
+                this.assertEqualCurrentPath('/base/regex?foo=80');
+                this.assertEqualSurfaceContent('body', 'body-regex');
+                this.assertEqualSurfaceContent('header', 'header-regex');
+                Y.Assert.areEqual('Regex', Y.config.doc.title);
+            }, 300);
+        },
+
+        'should navigate with events': function() {
+            var startCalledAt = 0,
+                endCalledAt = 0;
+
+            this.app.on({
+                startNavigate: function(event) {
+                    startCalledAt = Date.now();
+                    Y.ObjectAssert.ownsKey('path', event);
+                    Y.ObjectAssert.ownsKey('route', event);
+                    Y.ObjectAssert.ownsKey('replaceHistory', event);
+                },
+                endNavigate: function(event) {
+                    endCalledAt = Date.now();
+                    Y.ObjectAssert.ownsKey('path', event);
+                }
+            });
+            this.app.navigate('/base/regex?foo=events');
+            this.wait(function() {
+                Y.Assert.isTrue(
+                    (startCalledAt > 0) &&
+                    (endCalledAt > 0) &&
+                    (startCalledAt <= endCalledAt)
+                );
+            }, 100);
+        },
+
+        'should navigate with screen lifecycle': function() {
+            var beforeFlip1CalledAt = 0,
+                beforeFlip2CalledAt = 0,
+                afterFlip2CalledAt = 0,
+                afterFlip1CalledAt = 0,
+                deactivate1CalledAt = 0,
+                LifecycleScreen1 = Y.Base.create('lifecycleScreen1', Y.Screen, [], {
+                    beforeFlip: function() {
+                        beforeFlip1CalledAt = Date.now();
+                    },
+                    afterFlip: function() {
+                        afterFlip1CalledAt = Date.now();
+                    },
+                    deactivate: function() {
+                        deactivate1CalledAt = Date.now();
+                    }
+                }, {}),
+                LifecycleScreen2 = Y.Base.create('lifecycleScreen2', Y.Screen, [], {
+                    beforeFlip: function() {
+                        beforeFlip2CalledAt = Date.now();
+                    },
+                    afterFlip: function() {
+                        afterFlip2CalledAt = Date.now();
+                    }
+                }, {});
+
+            this.app.addScreenRoutes([
+                {
+                    path: '/lifecycle1',
+                    screen: LifecycleScreen1
+                },
+                {
+                    path: '/lifecycle2',
+                    screen: LifecycleScreen2
+                }
+            ]);
+
+            this.app.navigate('/base/lifecycle1');
+
+            setTimeout(function() {
+                Y.Assert.isTrue(
+                    (beforeFlip1CalledAt > 0) &&
+                    (afterFlip1CalledAt > 0) &&
+                    (beforeFlip1CalledAt <= afterFlip1CalledAt)
+                );
+                this.app.navigate('/base/lifecycle2');
+            }.bind(this), 100);
+
+            this.wait(function() {
+                Y.Assert.isTrue(
+                    (beforeFlip2CalledAt > 0) &&
+                    (deactivate1CalledAt > 0) &&
+                    (afterFlip2CalledAt > 0) &&
+                    (beforeFlip2CalledAt <= deactivate1CalledAt) &&
+                    (deactivate1CalledAt <= afterFlip2CalledAt)
+                );
+            }, 200);
+        },
+
+        'should navigate to /base/delayed asynchronously': function() {
+            this.app.navigate('/base/regex?foo=1');
+
+            setTimeout(function() {
+                this.app.navigate('/base/delayed');
+            }.bind(this), 100);
+
+            setTimeout(function() {
+                this.assertEqualCurrentPath('/base/regex?foo=1');
+            }.bind(this), 200);
 
             this.wait(function() {
                 this.assertEqualCurrentPath('/base/delayed');
                 this.assertEqualSurfaceContent('body', 'body-delayed');
                 this.assertEqualSurfaceContent('header', 'header-delayed');
                 Y.Assert.areEqual('Delayed', Y.config.doc.title);
-            }, 100);
+            }, 500);
         },
 
         'should navigate to /base/page': function() {
@@ -226,7 +360,7 @@ YUI.add('aui-surface-tests', function(Y) {
             }, 50);
         },
 
-        'should navigate to /base/regex?foo=1': function() {
+        'should navigate to path with querystring': function() {
             this.app.navigate('/base/regex?foo=1');
             this.wait(function() {
                 this.assertEqualCurrentPath('/base/regex?foo=1');
@@ -252,26 +386,33 @@ YUI.add('aui-surface-tests', function(Y) {
                 this.assertEqualSurfaceContent('body', 'body-regex');
                 this.assertEqualSurfaceContent('header', 'header-regex');
                 Y.Assert.areEqual('Regex', Y.config.doc.title);
-            }, 300);
+            }, 400);
         },
 
-        'should navigate to previous /base/delayed asynchronously': function() {
+        'should navigate to previous page asynchronously': function() {
             this.app.navigate('/base/delayed');
 
             setTimeout(function() {
                 this.app.navigate('/base/regex?foo=30');
-            }.bind(this), 200);
+            }.bind(this), 300);
 
             setTimeout(function() {
                 Y.config.win.history.back();
-            }.bind(this), 300);
+            }.bind(this), 400);
+
+            setTimeout(function() {
+                this.assertEqualCurrentPath('/base/delayed');
+                this.assertEqualSurfaceContent('body', 'body-regex');
+                this.assertEqualSurfaceContent('header', 'header-regex');
+                Y.Assert.areEqual('Regex', Y.config.doc.title);
+            }.bind(this), 600);
 
             this.wait(function() {
                 this.assertEqualCurrentPath('/base/delayed');
                 this.assertEqualSurfaceContent('body', 'body-delayed');
                 this.assertEqualSurfaceContent('header', 'header-delayed');
                 Y.Assert.areEqual('Delayed', Y.config.doc.title);
-            }, 600);
+            }, 800);
         },
 
         'should navigate to next page': function() {
@@ -295,49 +436,6 @@ YUI.add('aui-surface-tests', function(Y) {
                 this.assertEqualSurfaceContent('header', 'header-regex');
                 Y.Assert.areEqual('Regex', Y.config.doc.title);
             }, 600);
-        },
-
-        'should remember the scroll position': function() {
-            var pageXOffsetAfterNavigate = 0,
-                pageYOffsetAfterNavigate = 0;
-
-            this.app.navigate('/base/regex?foo=60');
-
-            setTimeout(function() {
-                Y.config.win.scrollTo(10, 10);
-            }.bind(this), 1000);
-
-            setTimeout(function() {
-                this.app.navigate('/base/regex?foo=70');
-            }.bind(this), 2000);
-
-            setTimeout(function() {
-                pageXOffsetAfterNavigate = Y.config.win.pageXOffset;
-                pageYOffsetAfterNavigate = Y.config.win.pageYOffset;
-                Y.config.win.history.back();
-            }.bind(this), 3000);
-
-            this.wait(function() {
-                Y.Assert.areEqual(0, pageXOffsetAfterNavigate);
-                Y.Assert.areEqual(0, pageYOffsetAfterNavigate);
-                Y.Assert.areEqual(10, Y.config.win.pageXOffset);
-                Y.Assert.areEqual(10, Y.config.win.pageYOffset);
-            }, 10000);
-        },
-
-        'should cancel pending navigate': function() {
-            this.app.navigate('/base/delayed');
-
-            setTimeout(function() {
-                this.app.navigate('/base/page');
-            }.bind(this), 20);
-
-            this.wait(function() {
-                this.assertEqualCurrentPath('/base/page');
-                this.assertEqualSurfaceContent('body', 'body-page');
-                this.assertEqualSurfaceContent('header', 'header-page');
-                Y.Assert.areEqual('Page', Y.config.doc.title);
-            }, 100);
         },
 
         'should dispatch to the current url': function() {
@@ -374,68 +472,85 @@ YUI.add('aui-surface-tests', function(Y) {
             }, 400);
         },
 
-        'should navigate on link click': function() {
-            Y.one('a[href="/base/regex?foo=1"]').simulate('click');
-            this.wait(function() {
-                this.assertEqualCurrentPath('/base/regex?foo=1');
-                this.assertEqualSurfaceContent('body', 'body-regex');
-                this.assertEqualSurfaceContent('header', 'header-regex');
-                Y.Assert.areEqual('Regex', Y.config.doc.title);
-            }, 50);
-        },
+        'should update surfaces and title using HTMLScreen': function() {
+            var path = this.getOriginalBasePath() + '/content.txt';
 
-        'should not navigate on offsite link click': function() {
-            var external = Y.one('a[href="http://alloyui.com/external"]');
-
-            external.on('click', function(event) {
-                event.preventDefault();
+            this.app.set('basePath', this.getOriginalBasePath());
+            this.app.addScreenRoutes({
+                path: '/content.txt',
+                screen: Y.HTMLScreen
             });
-
-            external.simulate('click');
-
+            this.app.navigate(path);
             this.wait(function() {
-                this.assertEqualCurrentPath('/base/regex?foo=1');
-                this.assertEqualSurfaceContent('body', 'body-regex');
-                this.assertEqualSurfaceContent('header', 'header-regex');
-                Y.Assert.areEqual('Regex', Y.config.doc.title);
-            }, 50);
+                this.app.set('basePath', '/base');
+                this.assertEqualCurrentPath(path);
+                this.assertEqualSurfaceContent('body', 'body-html');
+                this.assertEqualSurfaceContent('header', 'header-html');
+                Y.Assert.areEqual('HTML', Y.config.doc.title);
+            }, 100);
         },
 
-        'should not navigate to unrouted link': function() {
-            var external = Y.one('a[href="/base/unrouted"]');
+        'should update surfaces using HTMLScreen': function() {
+            var path = this.getOriginalBasePath() + '/notitle.txt';
 
-            external.on('click', function(event) {
-                event.preventDefault();
+            this.app.set('basePath', this.getOriginalBasePath());
+            this.app.addScreenRoutes({
+                path: '/notitle.txt',
+                screen: Y.HTMLScreen
             });
-
-            external.simulate('click');
-
+            this.app.navigate(path);
             this.wait(function() {
-                this.assertEqualCurrentPath('/base/regex?foo=1');
-                this.assertEqualSurfaceContent('body', 'body-regex');
-                this.assertEqualSurfaceContent('header', 'header-regex');
-                Y.Assert.areEqual('Regex', Y.config.doc.title);
-            }, 50);
+                this.app.set('basePath', '/base');
+                this.assertEqualCurrentPath(path);
+                this.assertEqualSurfaceContent('body', 'body-html');
+                this.assertEqualSurfaceContent('header', 'header-html');
+            }, 100);
         },
 
-        'should not navigate to unrouted route': function() {
-            Y.Assert.isFalse(this.app.navigate('/base/unrouted'));
+        'should navigate fail using HTMLScreen': function() {
+            var path = this.getOriginalBasePath() + '/notitle.txt',
+                path404 = this.getOriginalBasePath() + '/404.txt';
+
+            this.app.set('basePath', this.getOriginalBasePath());
+            this.app.addScreenRoutes({
+                path: '/404.txt',
+                screen: Y.HTML404Screen
+            });
+            this.app.navigate(path404);
             this.wait(function() {
-                this.assertEqualCurrentPath('/base/regex?foo=1');
-                this.assertEqualSurfaceContent('body', 'body-regex');
-                this.assertEqualSurfaceContent('header', 'header-regex');
-                Y.Assert.areEqual('Regex', Y.config.doc.title);
-            }, 50);
+                this.app.set('basePath', '/base');
+                this.assertEqualCurrentPath(path);
+                this.assertEqualSurfaceContent('body', 'body-html');
+                this.assertEqualSurfaceContent('header', 'header-html');
+            }, 100);
         },
 
-        'should not navigate to link outside base path': function() {
-            this.app.navigate('/outside');
+        'should remember the scroll position': function() {
+            var pageXOffsetAfterNavigate = 0,
+                pageYOffsetAfterNavigate = 0;
+
+            this.app.navigate('/base/regex?foo=60');
+
+            setTimeout(function() {
+                Y.config.win.scrollTo(10, 10);
+            }.bind(this), 1000);
+
+            setTimeout(function() {
+                this.app.navigate('/base/regex?foo=70');
+            }.bind(this), 2000);
+
+            setTimeout(function() {
+                pageXOffsetAfterNavigate = Y.config.win.pageXOffset;
+                pageYOffsetAfterNavigate = Y.config.win.pageYOffset;
+                Y.config.win.history.back();
+            }.bind(this), 3000);
+
             this.wait(function() {
-                this.assertEqualCurrentPath('/base/regex?foo=1');
-                this.assertEqualSurfaceContent('body', 'body-regex');
-                this.assertEqualSurfaceContent('header', 'header-regex');
-                Y.Assert.areEqual('Regex', Y.config.doc.title);
-            }, 50);
+                Y.Assert.areEqual(0, pageXOffsetAfterNavigate);
+                Y.Assert.areEqual(0, pageYOffsetAfterNavigate);
+                Y.Assert.areEqual(10, Y.config.win.pageXOffset);
+                Y.Assert.areEqual(10, Y.config.win.pageYOffset);
+            }, 10000);
         },
 
         'should not navigate when navigation cancelled by active screen': function() {
