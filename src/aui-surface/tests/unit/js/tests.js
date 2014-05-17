@@ -43,15 +43,27 @@ YUI.add('aui-surface-tests', function(Y) {
         },
 
         init: function() {
-            this.regexRoute = /^\/regex\?foo=\w+$/;
-            this.originalPath = this.getCurrentPath();
+            var instance = this;
 
-            this.app = new Y.SurfaceApp({
+            instance.regexRoute = /^\/regex\?foo=\w+$/;
+            instance.originalPath = instance.getCurrentPath();
+
+            instance.app = new Y.SurfaceApp({
                 basePath: '/base',
-                linkSelector: 'a'
+                linkSelector: 'a',
+                on: {
+                    startNavigate: function(event) {
+                        instance.startNavigateFn &&
+                            instance.startNavigateFn(event);
+                    },
+                    endNavigate: function(event) {
+                        instance.endNavigateFn &&
+                            instance.endNavigateFn(event);
+                    }
+                }
             });
 
-            this.app.addScreenRoutes([
+            instance.app.addScreenRoutes([
                 new Y.ScreenRoute({
                     path: '/page',
                     screen: Y.PageScreen
@@ -65,7 +77,7 @@ YUI.add('aui-surface-tests', function(Y) {
                     screen: Y.LazySurfaceScreen
                 },
                 {
-                    path: this.regexRoute,
+                    path: instance.regexRoute,
                     screen: Y.RegexScreen
                 },
                 {
@@ -82,7 +94,7 @@ YUI.add('aui-surface-tests', function(Y) {
                 }
             ]);
 
-            this.app.addSurfaces([
+            instance.app.addSurfaces([
                 new Y.Surface({
                     id: 'header'
                 }),
@@ -94,6 +106,11 @@ YUI.add('aui-surface-tests', function(Y) {
         destroy: function() {
             this.app = null;
             Y.config.win.history.pushState(null, '', this.originalPath);
+        },
+
+        tearDown: function() {
+            this.startNavigateFn = null;
+            this.endNavigateFn = null;
         },
 
         'should match screen routes': function() {
@@ -254,18 +271,16 @@ YUI.add('aui-surface-tests', function(Y) {
             var startCalledAt = 0,
                 endCalledAt = 0;
 
-            this.app.on({
-                startNavigate: function(event) {
-                    startCalledAt = Date.now();
-                    Y.ObjectAssert.ownsKey('path', event);
-                    Y.ObjectAssert.ownsKey('route', event);
-                    Y.ObjectAssert.ownsKey('replaceHistory', event);
-                },
-                endNavigate: function(event) {
-                    endCalledAt = Date.now();
-                    Y.ObjectAssert.ownsKey('path', event);
-                }
-            });
+            this.startNavigateFn = function(event) {
+                startCalledAt = Date.now();
+                Y.ObjectAssert.ownsKey('path', event);
+                Y.ObjectAssert.ownsKey('route', event);
+                Y.ObjectAssert.ownsKey('replaceHistory', event);
+            };
+            this.endNavigateFn = function(event) {
+                endCalledAt = Date.now();
+                Y.ObjectAssert.ownsKey('path', event);
+            };
             this.app.navigate('/base/regex?foo=events');
             this.wait(function() {
                 Y.Assert.isTrue(
