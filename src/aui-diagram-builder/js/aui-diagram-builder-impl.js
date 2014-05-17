@@ -784,9 +784,10 @@ var DiagramBuilder = A.Component.create({
 
 		_renderGraphic: function() {
 			var instance = this;
+			var canvas = instance.get(CANVAS);
 			var graphic = instance.get(GRAPHIC);
 
-			graphic.render(instance.get(CANVAS));
+			graphic.render(canvas);
 			A.one(canvas).on(MOUSEDOWN, A.bind(instance._onCanvasMouseDown, instance));
 		},
 
