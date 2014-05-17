@@ -505,38 +505,44 @@ YUI.add('aui-surface-tests', function(Y) {
         },
 
         'should update surfaces and title using HTMLScreen': function() {
-            var path = this.getOriginalBasePath() + '/content.txt';
+            var instance = this,
+                path = instance.getOriginalBasePath() + '/content.txt';
 
-            this.app.set('basePath', this.getOriginalBasePath());
-            this.app.addScreenRoutes({
+            instance.app.set('basePath', instance.getOriginalBasePath());
+            instance.app.addScreenRoutes({
                 path: '/content.txt',
                 screen: Y.HTMLScreen
             });
-            this.app.navigate(path);
-            this.wait(function() {
-                this.app.set('basePath', '/base');
-                this.assertEqualCurrentPath(path);
-                this.assertEqualSurfaceContent('body', 'body-html');
-                this.assertEqualSurfaceContent('header', 'header-html');
+            instance.endNavigateFn = function() {
+                instance.app.set('basePath', '/base');
+                instance.assertEqualCurrentPath(path);
+                instance.assertEqualSurfaceContent('body', 'body-html');
+                instance.assertEqualSurfaceContent('header', 'header-html');
                 Y.Assert.areEqual('HTML', Y.config.doc.title);
-            }, 100);
+                instance.resume();
+            };
+            instance.app.navigate(path);
+            instance.wait();
         },
 
         'should update surfaces using HTMLScreen': function() {
-            var path = this.getOriginalBasePath() + '/notitle.txt';
+            var instance = this,
+                path = instance.getOriginalBasePath() + '/notitle.txt';
 
-            this.app.set('basePath', this.getOriginalBasePath());
-            this.app.addScreenRoutes({
+            instance.app.set('basePath', instance.getOriginalBasePath());
+            instance.app.addScreenRoutes({
                 path: '/notitle.txt',
                 screen: Y.HTMLScreen
             });
-            this.app.navigate(path);
-            this.wait(function() {
-                this.app.set('basePath', '/base');
-                this.assertEqualCurrentPath(path);
-                this.assertEqualSurfaceContent('body', 'body-html');
-                this.assertEqualSurfaceContent('header', 'header-html');
-            }, 100);
+            instance.endNavigateFn = function() {
+                instance.app.set('basePath', '/base');
+                instance.assertEqualCurrentPath(path);
+                instance.assertEqualSurfaceContent('body', 'body-html');
+                instance.assertEqualSurfaceContent('header', 'header-html');
+                instance.resume();
+            };
+            instance.app.navigate(path);
+            instance.wait();
         },
 
         'should navigate fail using HTMLScreen': function() {
