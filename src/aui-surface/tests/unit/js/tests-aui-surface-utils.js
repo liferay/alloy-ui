@@ -22,13 +22,13 @@ YUI.add('tests-aui-surface-utils', function(Y) {
             );
         },
 
+        getCurrentPath: function() {
+            return Y.config.win.location.pathname + Y.config.win.location.search;
+        },
+
         getOriginalBasePath: function() {
             var path = this.originalPath;
             return path.substr(0, path.lastIndexOf('/'));
-        },
-
-        getCurrentPath: function() {
-            return Y.config.win.location.pathname + Y.config.win.location.search;
         }
     });
 
