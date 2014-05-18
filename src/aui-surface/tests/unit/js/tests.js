@@ -142,14 +142,13 @@ YUI.add('aui-surface-tests', function(Y) {
         },
 
         'should lazily match surface element': function() {
-            var instance = this;
-
-            instance.app.addSurfaces(
-                new Y.Surface({
+            var instance = this,
+                lazySurface = new Y.Surface({
                     id: 'lazy'
-                })
-            );
-            Y.Assert.isNull(instance.app.surfaces.lazy.getEl());
+                });
+
+            instance.app.addSurfaces(lazySurface);
+            Y.Assert.isNull(lazySurface.getEl());
 
             instance.app.navigate('/base/lazy');
 
