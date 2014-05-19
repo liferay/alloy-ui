@@ -37,17 +37,6 @@ module.exports = function(grunt) {
             'aui-version': '<%= pkg["version"] %>'
         },
 
-        bowercopy: {
-            src: {
-                files: {
-                    'build': 'yui3/build'
-                }
-            },
-            options: {
-                report: false
-            }
-        },
-
         build: {
             aui: {
                 'src': path.join(ROOT, 'src'),
@@ -175,7 +164,6 @@ module.exports = function(grunt) {
     grunt.registerTask('api', ['copy:api', 'api-include', 'api-build']);
     grunt.registerTask('api-deploy', ['api', 'api-push', 'clean:api']);
     grunt.registerTask('format', ['cssbeautifier', 'jsbeautifier']);
-    grunt.registerTask('init', ['bowercopy']);
     grunt.registerTask('release', ['clean:zip', 'all', 'zip:release']);
     grunt.registerTask('release-cdn', ['clean:zip', 'all', 'cdn', 'zip:cdn', 'build:aui']);
 };
