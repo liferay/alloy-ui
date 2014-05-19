@@ -142,13 +142,6 @@ module.exports = function(grunt) {
             }
         },
 
-        jshint: {
-            aui: ['*.js', 'src/**/js/*.js'],
-            options: {
-                jshintrc: '.jshintrc'
-            }
-        },
-
         test: {
             coverage: false
         },
@@ -175,7 +168,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-cssbeautifier');
     grunt.loadNpmTasks('grunt-jsbeautifier');
 
@@ -184,7 +176,6 @@ module.exports = function(grunt) {
     grunt.registerTask('api-deploy', ['api', 'api-push', 'clean:api']);
     grunt.registerTask('format', ['cssbeautifier', 'jsbeautifier']);
     grunt.registerTask('init', ['bowercopy']);
-    grunt.registerTask('lint', ['jshint']);
     grunt.registerTask('release', ['clean:zip', 'all', 'zip:release']);
     grunt.registerTask('release-cdn', ['clean:zip', 'all', 'cdn', 'zip:cdn', 'build:aui']);
 };
