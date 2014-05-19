@@ -8,7 +8,7 @@ var Lang = A.Lang,
     isBoolean = Lang.isBoolean,
     isNumber = Lang.isNumber,
 
-    toInt = Lang.toInt,
+    toFloat = Lang.toFloat,
 
     CSS_CROP = A.getClassName('image-cropper', 'crop'),
     CSS_CROP_OUTLINE = A.getClassName('image-cropper', 'crop', 'outline'),
@@ -692,8 +692,8 @@ var ImageCropper = A.Component.create({
 
             var cropNode = instance.cropNode;
 
-            instance.set('x', toInt(cropNode.getStyle('left')) + cropNode.getBorderWidth('l'));
-            instance.set('y', toInt(cropNode.getStyle('top')) + cropNode.getBorderWidth('t'));
+            instance.set('x', toFloat(cropNode.getStyle('left')) + cropNode.getBorderWidth('l'));
+            instance.set('y', toFloat(cropNode.getStyle('top')) + cropNode.getBorderWidth('t'));
         },
 
         /**
