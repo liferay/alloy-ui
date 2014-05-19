@@ -1,11 +1,11 @@
 YUI.add('tests-aui-surface-utils', function(Y) {
     Y.mix(Y.Test.Case.prototype, {
         assertEqualCurrentPath: function(path) {
-            return Y.Assert.areEqual(path, this.getCurrentPath());
+            Y.Assert.areEqual(path, this.getCurrentPath());
         },
 
         assertEqualSurfaceContent: function(surfaceId, content) {
-            Y.Assert.areEqual(content, Y.one('#' + surfaceId).one('div').get('text').trim());
+            Y.Assert.areEqual(content, this.getSurfaceContent(surfaceId));
         },
 
         delay: function(ms, val) {
@@ -29,6 +29,10 @@ YUI.add('tests-aui-surface-utils', function(Y) {
         getOriginalBasePath: function() {
             var path = this.originalPath;
             return path.substr(0, path.lastIndexOf('/'));
+        },
+
+        getSurfaceContent: function(surfaceId) {
+            return Y.one('#' + surfaceId).one('div').get('text').trim();
         }
     });
 
