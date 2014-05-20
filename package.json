@@ -34,6 +34,7 @@
     "gulp-jsbeautifier": "~0.0.2",
     "gulp-jshint": "~1.6.1",
     "jshint-stylish": "~0.2.0",
+    "require-dir": "~0.1.0",
     "which": "1.0.5"
   },
   "engines": {
