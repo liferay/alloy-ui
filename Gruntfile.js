@@ -115,12 +115,6 @@ module.exports = function(grunt) {
             coverage: false
         },
 
-        watch: {
-            'src': ROOT,
-            'replace-yuivar': 'A',
-            'replace-version': '<%= pkg["version"] %>'
-        },
-
         zip: {
             cdn: {
                 name: 'cdn-alloy-<%= pkg["version"] %>.zip'
