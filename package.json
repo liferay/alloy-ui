@@ -36,9 +36,11 @@
     "gulp-shell": "~0.2.5",
     "gulp-util": "~2.2.1",
     "jshint-stylish": "~0.2.0",
+    "nopt": "~2.2.1",
     "require-dir": "~0.1.0",
     "which": "1.0.5"
     "shifter": "~0.4.6",
+    "yogi": "~0.1.12"
   },
   "engines": {
     "node": ">=0.8 <0.12"

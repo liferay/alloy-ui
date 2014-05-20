@@ -111,10 +111,6 @@ module.exports = function(grunt) {
             name: 'aui-test'
         },
 
-        test: {
-            coverage: false
-        },
-
         zip: {
             cdn: {
                 name: 'cdn-alloy-<%= pkg["version"] %>.zip'
