@@ -65,11 +65,11 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
     /**
      * Holds a deferred withe the current navigation.
      *
-     * @property pendingRequest
+     * @property pendingNavigate
      * @type {Promise}
      * @protected
      */
-    pendingRequest: null,
+    pendingNavigate: null,
 
     /**
      * Holds the screen routes configuration.
@@ -187,18 +187,16 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
     },
 
     /**
-     * Matches a route handler from a path, if not found any returns null.
+     * Matches if path is a known route, if not found any returns null.
      *
-     * @method matchesRoute
+     * @method matchesPath
      * @param {String} path Path containing the querystring part.
      * @return {Object | null} Route handler if match any.
      */
-    matchesRoute: function(path) {
+    matchesPath: function(path) {
         var basePath = this.get('basePath');
 
-        // Removes base path from link path
         path = path.substr(basePath.length);
-
         return A.Array.find(this.routes, function(route) {
             return route.matchesPath(path);
         });
@@ -213,27 +211,13 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      * @return {Promise} Returns a pending request cancellable promise.
      */
     navigate: function(path, opt_replaceHistory) {
-        if (path === this.activePath) {
-            A.log('Navigation cancelled, already at destination', 'info');
-            // TODO: Implement refresh behavior when already at destination
-            return A.CancellablePromise.resolve();
-        }
+        this._stopPending();
 
-        if (this.activeScreen && this.activeScreen.beforeDeactivate()) {
-            A.log('Navigation cancelled by active screen', 'info');
-            return A.CancellablePromise.reject(
-                new A.CancellablePromise.Error('Navigation cancelled by active screen'));
-        }
-
-        var route = this.matchesRoute(path);
-        if (route) {
-            this.fire('startNavigate', {
-                path: path,
-                replaceHistory: opt_replaceHistory,
-                route: route
-            });
-        }
-        return this.pendingRequest;
+        this.fire('startNavigate', {
+            path: path,
+            replaceHistory: !! opt_replaceHistory
+        });
+        return this.pendingNavigate;
     },
 
     /**
@@ -249,23 +233,16 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
                 path: event.path
             };
 
-        if (this.pendingRequest) {
-            this.pendingRequest.cancel('Navigation cancelled');
-            this.pendingRequest = null;
-        }
-
-        this.pendingRequest = this._doNavigate(
+        this.pendingNavigate = this._doNavigate(
             event.path,
             event.replaceHistory
-        ).then(
-            function() {
-                instance.fire('successNavigate', payload);
-            },
+        ).
+        catch (
             function(err) {
-                instance.fire('failNavigate', payload);
-                // Make sure to re-throw the error here in oder to guarantee
-                // that any future promise chain will also be rejected
-                throw err;
+                A.log(err.message, 'info');
+                // Clear pendingNavigate in case of error
+                instance._stopPending();
+                payload.error = err;
             }
         ).thenAlways(
             function() {
@@ -284,43 +261,40 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      */
     _doNavigate: function(path, opt_replaceHistory) {
         var instance = this,
-            activeScreen = instance.activeScreen,
-            nextScreen = this._getScreen(path),
-            screenId = nextScreen.get('id'),
-            transitions = [],
-            surfaces = [],
-            surfacesId = A.Object.keys(instance.surfaces);
+            nextScreen,
+            activeScreen = instance.activeScreen;
+
+        if (this.activeScreen && this.activeScreen.beforeDeactivate()) {
+            this.pendingNavigate = A.CancellablePromise.reject(
+                new A.CancellablePromise.Error('Cancelled by active screen'));
+            return this.pendingNavigate;
+        }
+
+        var route = this.matchesPath(path);
+        if (!route) {
+            this.pendingNavigate = A.CancellablePromise.reject(
+                new A.CancellablePromise.Error('No screen for ' + path));
+            return this.pendingNavigate;
+        }
 
         A.log('Navigate to [' + path + ']', 'info');
 
-        return A.CancellablePromise.resolve(nextScreen.handleSurfacesContent(surfacesId, path)).then(
-            function(opt_contents) {
-                nextScreen.addCache(surfacesId, opt_contents);
-                // Stack the surfaces and its operations in the right order. Since
-                // getSurfaceContent could return a promise in order to fetch async
-                // content pass it to Y.batch in order to resolve them in parallel
-                A.log('Loading surfaces content...', 'info');
+        nextScreen = this._getScreenInstance(path, route);
+
+        this.pendingNavigate = A.CancellablePromise.resolve(
+            nextScreen.load(path)
+        ).then(
+            function(contents) {
+                var screenId = nextScreen.get('id');
                 A.Object.each(instance.surfaces, function(surface, surfaceId) {
-                    surfaces.push(surface);
-                    surface.addContent(screenId, nextScreen.getSurfaceContent(surfaceId, opt_contents));
+                    surface.addContent(screenId, nextScreen.getSurfaceContent(surfaceId, contents));
                 });
 
-                return A.CancellablePromise.resolve(nextScreen.beforeFlip());
-            }
-        ).then(
-            function() {
                 if (activeScreen) {
                     activeScreen.deactivate();
                 }
 
-                // Animations should start at the same time, therefore
-                // it's passed to Y.batch to be processed in parallel
-                A.log('Screen [' + nextScreen + '] ready, flip...', 'info');
-                A.Array.each(surfaces, function(surface) {
-                    transitions.push(surface.show(screenId));
-                });
-
-                return A.CancellablePromise.all(transitions);
+                return nextScreen.flip(instance.surfaces);
             }
         ).then(
             function() {
@@ -330,6 +304,8 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
                 instance._handleNavigateError(path, nextScreen, reason);
             }
         );
+
+        return this.pendingNavigate;
     },
 
     /**
@@ -351,7 +327,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
 
         doc.title = title;
 
-        nextScreen.afterFlip();
+        nextScreen.activate();
 
         if (activeScreen && !activeScreen.get('cacheable')) {
             this._removeScreen(this.activePath, activeScreen);
@@ -360,26 +336,8 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
         this.activePath = path;
         this.activeScreen = nextScreen;
         this.screens[path] = nextScreen;
-        this.pendingRequest = null;
+        this.pendingNavigate = null;
         A.log('Navigation done', 'info');
-    },
-
-    /**
-     * Retrieves or create a screen to a path.
-     *
-     * @method  _getScreen
-     * @param {String} path Path containing the querystring part.
-     * @private
-     */
-    _getScreen: function(path) {
-        var screen = this.screens[path];
-
-        if (!screen) {
-            A.log('Create screen for [' + path + ']', 'info');
-            return new(this.matchesRoute(path).get('screen'))();
-        }
-
-        return screen;
     },
 
     /**
@@ -394,7 +352,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
     _handleNavigateError: function(path, nextScreen, err) {
         A.log('Navigation error for [' + nextScreen + '] (' + err + ')', 'info');
         this._removeScreen(path, nextScreen);
-        this.pendingRequest = null;
+        this.pendingNavigate = null;
     },
 
     /**
@@ -465,6 +423,40 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
     },
 
     /**
+     * Retrieves or create a screen instance to a path.
+     *
+     * @method  _getScreenInstance
+     * @param {String} path Path containing the querystring part.
+     * @private
+     */
+    _getScreenInstance: function(path, route) {
+        var screen,
+            refreshScreen;
+
+        // When simulating page refresh the request lifecycle for activeScreen
+        // and nextScreen should be respected, therefore creating a new screen
+        // instance for the same path is needed
+        if (path === this.activePath) {
+            A.log('Already at destination, refresh navigation', 'info');
+            refreshScreen = this.screens[path];
+            delete this.screens[path];
+        }
+
+        screen = this.screens[path];
+        if (!screen) {
+            A.log('Create screen for [' + path + ']', 'info');
+            screen = new(route.get('screen'))();
+            // When simulating a page refresh the cache should copy the cache
+            // from refreshScreen to avoid roundtrip to the server
+            if (refreshScreen) {
+                screen.addCache(refreshScreen.getCache());
+            }
+        }
+
+        return screen;
+    },
+
+    /**
      * Intercepts document clicks and test link elements in order to decide
      * whether Surface app can navigate.
      *
@@ -475,7 +467,8 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
     _onDocClick: function(event) {
         var link = event.currentTarget,
             hostname = link.get('hostname'),
-            path = link.get('pathname') + link.get('search');
+            path = link.get('pathname') + link.get('search'),
+            navigateFailed = false;
 
         if (!this._isLinkSameOrigin(hostname)) {
             A.log('Offsite link clicked', 'info');
@@ -485,8 +478,16 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
             A.log('Link clicked outside app\'s base path', 'info');
             return;
         }
-        this.navigate(path);
-        event.preventDefault();
+
+        this.navigate(path).
+        catch (function() {
+            // Do not prevent link navigation in case some synchronous error occurs
+            navigateFailed = true;
+        });
+
+        if (!navigateFailed) {
+            event.preventDefault();
+        }
     },
 
     /**
@@ -535,7 +536,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      * @param {EventFacade} event
      */
     _preventNavigateFn: function() {
-        this.pendingRequest = A.CancellablePromise.reject(
+        this.pendingNavigate = A.CancellablePromise.reject(
             new A.CancellablePromise.Error('Navigation has been prevented'));
     },
 
@@ -595,6 +596,19 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
             opt_replaceHistory ? this.pageXOffset : 0,
             opt_replaceHistory ? this.pageYOffset : 0
         );
+    },
+
+    /**
+     * Cancels pending navigate with `Cancel pending navigation` error.
+     *
+     * @method  _stopPending
+     * @protected
+     */
+    _stopPending: function() {
+        if (this.pendingNavigate) {
+            this.pendingNavigate.cancel('Cancel pending navigation');
+            this.pendingNavigate = null;
+        }
     },
 
     /**
