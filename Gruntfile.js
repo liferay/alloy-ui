@@ -37,19 +37,6 @@ module.exports = function(grunt) {
             'aui-version': '<%= pkg["version"] %>'
         },
 
-        build: {
-            aui: {
-                'src': path.join(ROOT, 'src'),
-                'dist': path.join(ROOT, 'build'),
-                'cache': false,
-                'coverage': true,
-                'istanbul': true,
-                'lint': false,
-                'replace-yuivar': 'A',
-                'replace-version': '<%= pkg["version"] %>',
-            }
-        },
-
         cdn: {
             combine: true,
             comboBase: 'http://cdn.alloyui.com/combo/combo.php?',
