@@ -64,8 +64,12 @@ YUI({
     });
 
     Y.HomeScreen = Y.Base.create('homeScreen', Y.HTMLScreen, [], {
-        // beforeFlip: function() {
-        //     return delay(1000);
+        // flip: function() {
+        //     var flip = Y.HomeScreen.superclass.flip.apply(this, arguments);
+
+        //     return flip.then(function() {
+        //         return delay(1000);
+        //     });
         // },
 
         // beforeDeactivate: function() {
