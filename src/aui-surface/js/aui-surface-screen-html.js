@@ -20,23 +20,6 @@ A.HTMLScreen = A.Base.create('htmlScreen', A.Screen, [], {
     },
 
     /**
-     * Loads the content for all surfaces in one AJAX request from the server.
-     *
-     * @method getSurfacesContent
-     * @param {Array} surfaces An array of surfaces which content should be
-     *     loaded from the server.
-     * @return {CancellablePromise} Promise, which should be resolved with the returned
-     *     content from the server.
-     */
-    getSurfacesContent: function(surfaces, path) {
-        var url = new A.Url(path);
-
-        url.addParameters(this.get('urlParams'));
-
-        return this.loadContent(url.toString());
-    },
-
-    /**
      * Returns content for given surface from the provided content.
      *
      * @method getSurfaceContent
@@ -53,6 +36,24 @@ A.HTMLScreen = A.Base.create('htmlScreen', A.Screen, [], {
         if (frag) {
             return frag.getHTML();
         }
+    },
+
+    /**
+     * Loads the content for all surfaces in one AJAX request from the server.
+     *
+     * @method load
+     * @return {CancellablePromise} Promise, which should be resolved with the
+     *     returned content from the server.
+     */
+    load: function(path) {
+        var cache = this.getCache();
+        if (A.Lang.isValue(cache)) {
+            return A.CancellablePromise.resolve(cache);
+        }
+
+        var url = new A.Url(path);
+        url.addParameters(this.get('urlParams'));
+        return this.loadContent(url.toString());
     },
 
     /**
@@ -84,6 +85,7 @@ A.HTMLScreen = A.Base.create('htmlScreen', A.Screen, [], {
                             var frag = A.Node.create('<div/>');
                             frag.append(response.responseText);
                             instance._setScreenTitleFromFragment(frag);
+                            instance.addCache(frag);
                             resolve(frag);
                         }
                     },
@@ -149,6 +151,15 @@ A.HTMLScreen = A.Base.create('htmlScreen', A.Screen, [], {
     }
 }, {
     ATTRS: {
+        /**
+         * @attribute cacheable
+         * @default true
+         * @type Boolean
+         */
+        cacheable: {
+            value: true
+        },
+
         /**
          * Ajax request method.
          *

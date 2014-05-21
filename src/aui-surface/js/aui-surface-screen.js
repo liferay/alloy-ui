@@ -6,19 +6,19 @@ A.ScreenBase._uniqueIdCounter = Date.now();
 
 A.ScreenBase.prototype = {
     /**
-     * Allows a screen to perform any setup that requires its DOM to be
-     * visible.
+     * Fires when the screen is active. Allows a screen to perform any setup
+     * that requires its DOM to be visible. Lifecycle.
      *
-     * @method afterFlip
+     * @method activate
      */
-    afterFlip: function() {
-        A.log('Screen [' + this + '] afterFlip', 'info');
+    activate: function() {
+        A.log('Screen [' + this + '] activate', 'info');
     },
 
     /**
      * Gives the Screen a chance to cancel the navigation and stop itself from
      * being deactivated. Can be used, for example, if the screen has unsaved
-     * state.
+     * state. Lifecycle.
      *
      * Clean-up should not be preformed here, since the navigation may still be
      * cancelled. Do clean-up in deactivate.
@@ -32,20 +32,28 @@ A.ScreenBase.prototype = {
 
     /**
      * Allows a screen to perform any setup immediately before the DOM is
-     * made visible.
+     * made visible. Lifecycle.
      *
-     * @method beforeFlip
+     * @method flip
      * @return {Promise} This can return a promise, which will pause the
      *     navigation until it is resolved.
      */
-    beforeFlip: function() {
-        A.log('Screen [' + this + '] beforeFlip', 'info');
+    flip: function(surfaces) {
+        var instance = this;
+
+        A.log('Screen [' + this + '] flip', 'info');
+        var transitions = [];
+        A.each(surfaces, function(surface) {
+            transitions.push(surface.show(instance.get('id')));
+        });
+
+        return A.CancellablePromise.all(transitions);
     },
 
     /**
      * Allows a screen to do any cleanup necessary after it has been
      * deactivated, for example cancelling outstanding XHRs or stopping
-     * timers.
+     * timers. Lifecycle.
      *
      * @method deactivate
      */
@@ -56,7 +64,7 @@ A.ScreenBase.prototype = {
     /**
      * Destroy a screen, either after it is deactivated (in the case of a
      * non-cacheable view) or when the App is itself disposed for whatever
-     * reason.
+     * reason. Lifecycle.
      *
      * @method destructor
      */
@@ -83,34 +91,17 @@ A.ScreenBase.prototype = {
     /**
      * Returns all contents for the surfaces. This will pass an `opt_contents`
      * to `getSurfaceContent` with all information you need to fulfill the
-     * surfaces.
+     * surfaces. Lifecycle.
      *
      * @method getSurfacesContent
-     * @param {Array} surfaces Array with surface ids.
      * @param {String} path The requested path.
      * @return {String | Promise} This can return a string representing the
      *     contents of the surfaces or a promise, which will pause the
      *     navigation until it is resolved. This is useful for loading async
      *     content.
      */
-    getSurfacesContent: function() {
+    load: function() {
         A.log('Screen [' + this + '] getSurfacesContent', 'info');
-    },
-
-    /**
-     * Handles getSurfacesContent call for the given surface. This is useful for
-     * class extensions add extra logic such as cache.
-     *
-     * @method handleSurfacesContent
-     * @protected
-     * @param {String} surfaces Array with surface ids.
-     * @param {String} path The requested path.
-     * @return {String | Promise} This can return a string representing the
-     *     content of the surface or a promise, which will pause the navigation
-     *     until it is resolved. This is useful for loading async content.
-     */
-    handleSurfacesContent: function(surfaces, path) {
-        return this.getSurfacesContent(surfaces, path);
     },
 
     /**
@@ -174,7 +165,7 @@ A.ScreenCacheable = function() {};
 
 A.ScreenCacheable.prototype = {
     /**
-     * Holds the cache information.
+     * Holds the cached data.
      *
      * @property cache
      * @type {Object}
@@ -189,10 +180,9 @@ A.ScreenCacheable.prototype = {
      * @param {String} surfaceId The id of the surface DOM element.
      * @param {String} content Content to be cached.
      */
-    addCache: function(surfaceId, content) {
+    addCache: function(content) {
         if (this.get('cacheable')) {
-            this.cache = this.cache || {};
-            this.cache[surfaceId] = content;
+            this.cache = content;
         }
         else {
             A.log('Screen [' + this + '] is not cacheable', 'info');
@@ -220,23 +210,21 @@ A.ScreenCacheable.prototype = {
     /**
      * If the screen is cacheable returns the cached content for the surfaces.
      *
-     * @method handleSurfacesContent
+     * @method getCache
      * @protected
-     * @param {String} surfaces Array with surface ids.
-     * @param {String} path The requested path.
-     * @return {String | Promise} This can return a string representing the
-     *     content of the surface or a promise, which will pause the navigation
-     *     until it is resolved. This is useful for loading async content.
+     * @return {Object} Cached content.
      */
-    handleSurfacesContent: function(surfaces, path) {
-        if (this.cache && this.cache[surfaces] && this.get('cacheable')) {
-            A.log('Surface [' + surfaces + '] content from cache', 'info');
-            return this.cache[surfaces];
-        }
-
-        return this.getSurfacesContent(surfaces, path);
+    getCache: function() {
+        return this.cache;
     },
 
+    /**
+     * Sets the cache content.
+     *
+     * @method _setCacheable
+     * @protected
+     * @return {Object} Cached content.
+     */
     _setCacheable: function(val) {
         if (!val) {
             this.clearCache();
