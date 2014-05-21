@@ -13,44 +13,40 @@ YUI.add('aui-surface-tests', function(Y) {
         _should: {
             // Ignore all tests in browsers without HTML5 history support.
             ignore: {
-                'should cancel pending navigate': noHTML5,
-                'should dispatch to the current url': noHTML5,
-                'should lazily match surface element': noHTML5,
-                'should match screen routes': noHTML5,
+                'should find screen route from path': noHTML5,
+                'should throw error when surface is not found': noHTML5,
                 'should match surface elements': noHTML5,
-                'should navigate fail using HTMLScreen': noHTML5,
-                'should navigate to /base/delayed asynchronously': noHTML5,
-                'should navigate to /base/page': noHTML5,
-                'should navigate to next page': noHTML5,
-                'should navigate to path with querystring': noHTML5,
-                'should navigate to previous page asynchronously': noHTML5,
-                'should navigate to previous page': noHTML5,
-                'should navigate to routed link': noHTML5,
-                'should navigate with events': noHTML5,
+                'should lazily match surface element': noHTML5,
                 'should navigate with screen lifecycle': noHTML5,
-                'should not navigate to history states that are not ours': noHTML5,
-                'should not navigate to offsite link': noHTML5,
-                'should not navigate to outside base path link': noHTML5,
-                'should not navigate to unrouted link': noHTML5,
-                'should not navigate to unrouted route': noHTML5,
-                'should not navigate when navigation cancelled by active screen': noHTML5,
-                'should not navigate when navigation is prevented': noHTML5,
+                'should navigate asynchronously': noHTML5,
+                'should dispatch to the current url': noHTML5,
+                'should prevent navigate from startNavigate': noHTML5,
+                'should not navigate to unrouted path': noHTML5,
+                'should not navigate when preveted by active screen': noHTML5,
+                'should cancel pending navigate': noHTML5,
                 'should remember the scroll position': noHTML5 || Y.UA.ie,
-                'should simulate a refresh when navigate to the same destination': noHTML5,
-                'should throw error when surface id is not found': noHTML5,
+                'should navigate when history buttons are clicked': noHTML5,
+                'should not navigate to history states that are not ours': noHTML5,
+                'should navigate fail using HTMLScreen': noHTML5,
                 'should update surfaces and title using HTMLScreen': noHTML5,
-                'should update surfaces using HTMLScreen': noHTML5
+                'should update surfaces using HTMLScreen': noHTML5,
+                'should navigate to clicked links': noHTML5,
+                'should not navigate to unrouted clicked links': noHTML5,
+                'should not navigate to external clicked links': noHTML5,
+                'should not navigate to clicked links outside base path': noHTML5,
+                'should navigate to previous page asynchronously': noHTML5
             }
         },
 
         init: function() {
             var instance = this;
 
-            instance.regexRoute = /^\/regex\?foo=\w+$/;
+            instance.queryStringRoute = /^\/querystring\?p=\w+$/;
             instance.originalPath = instance.getCurrentPath();
 
             instance.app = new Y.SurfaceApp({
                 basePath: '/base',
+                defaultTitle: 'default',
                 linkSelector: 'a'
             });
 
@@ -68,18 +64,18 @@ YUI.add('aui-surface-tests', function(Y) {
                     screen: Y.LazySurfaceScreen
                 },
                 {
-                    path: instance.regexRoute,
-                    screen: Y.RegexScreen
+                    path: instance.queryStringRoute,
+                    screen: Y.QueryStringScreen
                 },
                 {
                     path: function(value) {
-                        return value === '/delayed';
+                        return value === '/delayed200ms';
                     },
                     screen: Y.DelayedScreen
                 },
                 {
                     path: {
-                        unknown: true
+                        wrongtype: true
                     },
                     screen: Y.Screen
                 }
@@ -96,29 +92,29 @@ YUI.add('aui-surface-tests', function(Y) {
 
         destroy: function() {
             this.app = null;
-            Y.config.win.history.pushState(null, '', this.originalPath);
+            Y.config.win.history.pushState(null, null, this.originalPath);
         },
 
         tearDown: function() {
             this.app.detachAll();
         },
 
-        'should match screen routes': function() {
+        'should find screen route from path': function() {
             var route = null;
 
-            route = this.app.matchesRoute('/base/unknown');
+            route = this.app.matchesPath('/base/unknown');
             Y.Assert.isNull(route);
 
-            route = this.app.matchesRoute('/base/page');
+            route = this.app.matchesPath('/base/page');
             Y.Assert.isInstanceOf(Y.ScreenRoute, route);
             Y.Assert.areEqual('/page', route.get('path'));
 
-            route = this.app.matchesRoute('/base/regex?foo=1');
+            route = this.app.matchesPath('/base/querystring?p=1');
             Y.Assert.isInstanceOf(Y.ScreenRoute, route);
-            Y.Assert.areEqual(this.regexRoute, route.get('path'));
+            Y.Assert.areEqual(this.queryStringRoute, route.get('path'));
         },
 
-        'should throw error when surface id is not found': function() {
+        'should throw error when surface is not found': function() {
             Y.Assert.throwsError(Error, function() {
                 new Y.Surface({
                     id: ''
@@ -143,13 +139,13 @@ YUI.add('aui-surface-tests', function(Y) {
             instance.app.navigate('/base/lazy').then(function() {
                 instance.app.navigate('/base/page').then(function() {
                     Y.one('body').append('<div id="lazy"/>');
-                    Y.Assert.isNotNull(instance.app.surfaces.lazy.getEl());
+                    Y.Assert.isNotNull(lazySurface.getEl());
                     instance.app.navigate('/base/lazy').then(function() {
                         instance.resume(function() {
-                            instance.assertEqualCurrentPath('/base/lazy');
-                            instance.assertEqualSurfaceContent('lazy', 'lazy');
-                            instance.assertEqualSurfaceContent('body', 'body-default');
-                            instance.assertEqualSurfaceContent('header', 'header-default');
+                            instance.assertPath('/base/lazy');
+                            instance.assertSurfaceContent('lazy', 'lazy');
+                            instance.assertSurfaceContent('body', 'default');
+                            instance.assertSurfaceContent('header', 'default');
                         });
                     });
                 });
@@ -157,189 +153,46 @@ YUI.add('aui-surface-tests', function(Y) {
             instance.wait();
         },
 
-        'should simulate a refresh when navigate to the same destination': function() {
-            var instance = this,
-                shouldNotCallStartEvent = false,
-                shouldNotCallFailEvent = false,
-                shouldNotCallSuccessEvent = false,
-                shouldNotCallEndEvent = false;
-
-            instance.app.on('endNavigate', function() {
-                instance.app.on({
-                    startNavigate: function() {
-                        shouldNotCallStartEvent = true;
-                    },
-                    failNavigate: function() {
-                        shouldNotCallStartEvent = true;
-                    },
-                    successNavigate: function() {
-                        shouldNotCallSuccessEvent = true;
-                    },
-                    endNavigate: function() {
-                        shouldNotCallEndEvent = true;
-                    }
-                });
-                instance.app.navigate('/base/page').then(function() {
-                    instance.resume(function() {
-                        Y.Assert.isFalse(shouldNotCallStartEvent);
-                        Y.Assert.isFalse(shouldNotCallFailEvent);
-                        Y.Assert.isFalse(shouldNotCallSuccessEvent);
-                        Y.Assert.isFalse(shouldNotCallEndEvent);
-                    });
-                });
-            });
-            Y.one('a[href="/base/page"]').simulate('click');
-            instance.wait();
-        },
-
-        'should navigate to routed link': function() {
-            var instance = this;
-
-            instance.app.on('endNavigate', function() {
-                instance.resume(function() {
-                    instance.assertEqualCurrentPath('/base/regex?foo=1');
-                    instance.assertEqualSurfaceContent('body', 'body-regex');
-                    instance.assertEqualSurfaceContent('header', 'header-regex');
-                    Y.Assert.areEqual('Regex', Y.config.doc.title);
-                });
-            });
-            Y.one('a[href="/base/regex?foo=1"]').simulate('click');
-            instance.wait();
-        },
-
-        'should not navigate to offsite link': function() {
-            var external = Y.one('a[href="http://alloyui.com/external"]');
-
-            external.on('click', function(event) {
-                event.preventDefault();
-            });
-            external.simulate('click');
-            this.wait(function() {
-                this.assertEqualCurrentPath('/base/regex?foo=1');
-                this.assertEqualSurfaceContent('body', 'body-regex');
-                this.assertEqualSurfaceContent('header', 'header-regex');
-                Y.Assert.areEqual('Regex', Y.config.doc.title);
-            }, 50);
-        },
-
-        'should not navigate to unrouted link': function() {
-            var external = Y.one('a[href="/base/unrouted"]');
-
-            external.on('click', function(event) {
-                event.preventDefault();
-            });
-            external.simulate('click');
-            this.wait(function() {
-                this.assertEqualCurrentPath('/base/regex?foo=1');
-                this.assertEqualSurfaceContent('body', 'body-regex');
-                this.assertEqualSurfaceContent('header', 'header-regex');
-                Y.Assert.areEqual('Regex', Y.config.doc.title);
-            }, 50);
-        },
-
-        'should not navigate to outside base path link': function() {
-            var external = Y.one('a[href="/outside"]');
-
-            external.on('click', function(event) {
-                event.preventDefault();
-            });
-            external.simulate('click');
-            this.wait(function() {
-                this.assertEqualCurrentPath('/base/regex?foo=1');
-                this.assertEqualSurfaceContent('body', 'body-regex');
-                this.assertEqualSurfaceContent('header', 'header-regex');
-                Y.Assert.areEqual('Regex', Y.config.doc.title);
-            }, 50);
-        },
-
-        'should cancel pending navigate': function() {
-            var instance = this,
-                shouldNotChangePath = false,
-                shouldFailDelayedNavigate = false;
-
-            instance.app.navigate('/base/delayed').thenCatch(function() {
-                shouldFailDelayedNavigate = true;
-                shouldNotChangePath = (instance.getCurrentPath() === '/base/regex?foo=1');
-            });
-            setTimeout(function() {
-                instance.app.navigate('/base/regex?foo=80').then(function() {
-                    instance.resume(function() {
-                        Y.Assert.isTrue(shouldFailDelayedNavigate);
-                        Y.Assert.isTrue(shouldNotChangePath);
-                        instance.assertEqualCurrentPath('/base/regex?foo=80');
-                        instance.assertEqualSurfaceContent('body', 'body-regex');
-                        instance.assertEqualSurfaceContent('header', 'header-regex');
-                        Y.Assert.areEqual('Regex', Y.config.doc.title);
-                    });
-                });
-                instance.app.navigate('/base/regex?foo=80');
-            }, 10);
-            instance.wait();
-        },
-
-        'should navigate with events': function() {
-            var instance = this,
-                startCalledAt = 0,
-                successCalledAt = 0,
-                endCalledAt = 0,
-                startEvent = null,
-                successEvent = null;
-
-            instance.app.on({
-                startNavigate: function(event) {
-                    startEvent = event;
-                    startCalledAt = Date.now();
-                },
-                successNavigate: function(event) {
-                    successEvent = event;
-                    successCalledAt = Date.now();
-                },
-                endNavigate: function(event) {
-                    endCalledAt = Date.now();
-                    instance.resume(function() {
-                        Y.Assert.isTrue(
-                            (startCalledAt > 0) &&
-                            (successCalledAt > 0) &&
-                            (endCalledAt > 0) &&
-                            (startCalledAt <= successCalledAt) &&
-                            (successCalledAt <= endCalledAt)
-                        );
-                        Y.ObjectAssert.ownsKey('path', event);
-                        Y.ObjectAssert.ownsKey('path', startEvent);
-                        Y.ObjectAssert.ownsKey('path', successEvent);
-                        Y.ObjectAssert.ownsKey('replaceHistory', startEvent);
-                        Y.ObjectAssert.ownsKey('route', startEvent);
-                    });
-                }
-            });
-            instance.app.navigate('/base/regex?foo=events');
-            instance.wait();
-        },
-
         'should navigate with screen lifecycle': function() {
             var instance = this,
-                beforeFlip1CalledAt = 0,
-                beforeFlip2CalledAt = 0,
-                afterFlip2CalledAt = 0,
-                afterFlip1CalledAt = 0,
+                activate1CalledAt = 0,
+                activate2CalledAt = 0,
                 deactivate1CalledAt = 0,
+                destroy1CalledAt = 0,
+                flip1CalledAt = 0,
+                flip2CalledAt = 0,
+                startNavigate = [],
+                endNavigate = [],
+
                 LifecycleScreen1 = Y.Base.create('lifecycleScreen1', Y.Screen, [], {
-                    beforeFlip: function() {
-                        beforeFlip1CalledAt = Date.now();
+                    flip: function() {
+                        flip1CalledAt = Date.now();
+                        return LifecycleScreen1.superclass.flip.apply(this, arguments);
                     },
-                    afterFlip: function() {
-                        afterFlip1CalledAt = Date.now();
+                    activate: function() {
+                        activate1CalledAt = Date.now();
                     },
                     deactivate: function() {
                         deactivate1CalledAt = Date.now();
-                    }
-                }, {}),
-                LifecycleScreen2 = Y.Base.create('lifecycleScreen2', Y.Screen, [], {
-                    beforeFlip: function() {
-                        beforeFlip2CalledAt = Date.now();
                     },
-                    afterFlip: function() {
-                        afterFlip2CalledAt = Date.now();
+                    destroy: function() {
+                        destroy1CalledAt = Date.now();
+                    }
+                }, {
+                    ATTRS: {
+                        cacheable: {
+                            value: false
+                        }
+                    }
+                }),
+
+                LifecycleScreen2 = Y.Base.create('lifecycleScreen2', Y.Screen, [], {
+                    flip: function() {
+                        flip2CalledAt = Date.now();
+                        return LifecycleScreen2.superclass.flip.apply(this, arguments);
+                    },
+                    activate: function() {
+                        activate2CalledAt = Date.now();
                     }
                 }, {});
 
@@ -354,144 +207,310 @@ YUI.add('aui-surface-tests', function(Y) {
                 }
             ]);
 
+            instance.app.on({
+                startNavigate: function(event) {
+                    startNavigate.push(event.path);
+                    startNavigate.push(event.replaceHistory);
+                },
+                endNavigate: function(event) {
+                    endNavigate.push(event.path);
+                    endNavigate.push(event.error);
+                }
+            });
+
             instance.app.navigate('/base/lifecycle1').then(function() {
-                instance.app.navigate('/base/lifecycle2').then(function() {
-                    instance.resume(function() {
-                        Y.Assert.isTrue(
-                            (beforeFlip1CalledAt > 0) &&
-                            (afterFlip1CalledAt > 0) &&
-                            (beforeFlip1CalledAt <= afterFlip1CalledAt)
-                        );
+                // Navigate to the same path to simulate a page refresh
+                instance.app.navigate('/base/lifecycle1').then(function() {
+                    instance.app.navigate('/base/lifecycle2', true).then(function() {
+                        instance.resume(function() {
+                            Y.Assert.isTrue(
+                                (flip1CalledAt > 0) &&
+                                (activate1CalledAt > 0) &&
+                                (flip1CalledAt <= activate1CalledAt)
+                            );
 
-                        Y.Assert.isTrue(
-                            (beforeFlip2CalledAt > 0) &&
-                            (deactivate1CalledAt > 0) &&
-                            (afterFlip2CalledAt > 0) &&
-                            (beforeFlip2CalledAt <= deactivate1CalledAt) &&
-                            (deactivate1CalledAt <= afterFlip2CalledAt)
-                        );
+                            Y.Assert.isTrue(
+                                (flip2CalledAt > 0) &&
+                                (activate2CalledAt > 0) &&
+                                (flip2CalledAt <= activate2CalledAt)
+                            );
+
+                            Y.Assert.isTrue(
+                                (flip2CalledAt > 0) &&
+                                (deactivate1CalledAt > 0) &&
+                                (destroy1CalledAt > 0) &&
+                                (activate2CalledAt > 0) &&
+                                (deactivate1CalledAt <= flip2CalledAt) &&
+                                (flip2CalledAt <= activate2CalledAt) &&
+                                (activate2CalledAt <= destroy1CalledAt)
+                            );
+                            Y.ArrayAssert.itemsAreEqual(
+                                [
+                                    '/base/lifecycle1',
+                                    false,
+                                    '/base/lifecycle1',
+                                    false,
+                                    '/base/lifecycle2',
+                                    true
+                                ],
+                                startNavigate
+                            );
+                            Y.ArrayAssert.itemsAreEqual(
+                                [
+                                    '/base/lifecycle1',
+                                    undefined,
+                                    '/base/lifecycle1',
+                                    undefined,
+                                    '/base/lifecycle2',
+                                    undefined
+                                ],
+                                endNavigate
+                            );
+                        });
                     });
                 });
             });
             instance.wait();
         },
 
-        'should navigate to /base/delayed asynchronously': function() {
+        'should navigate asynchronously': function() {
             var instance = this,
-                shouldNotChangePath = false;
+                pathBeforeAsync;
 
-            instance.app.navigate('/base/regex?foo=1').then(function() {
+            instance.app.navigate('/base/querystring?p=beforeAsync').then(function() {
                 instance.app.on('startNavigate', function() {
-                    shouldNotChangePath = (instance.getCurrentPath() === '/base/regex?foo=1');
+                    pathBeforeAsync = instance.getCurrentPath();
                 });
-                instance.app.navigate('/base/delayed').then(function() {
+                instance.app.navigate('/base/delayed200ms').then(function() {
                     instance.resume(function() {
-                        Y.Assert.isTrue(shouldNotChangePath);
-                        instance.assertEqualCurrentPath('/base/delayed');
-                        instance.assertEqualSurfaceContent('body', 'body-delayed');
-                        instance.assertEqualSurfaceContent('header', 'header-delayed');
-                        Y.Assert.areEqual('Delayed', Y.config.doc.title);
+                        Y.Assert.areEqual('/base/querystring?p=beforeAsync', pathBeforeAsync);
+                        instance.assertNavigation('/base/delayed200ms', 'delayed');
                     });
                 });
             });
             instance.wait();
         },
 
-        'should navigate to /base/page': function() {
+        'should dispatch to the current url': function() {
             var instance = this;
 
-            instance.app.navigate('/base/page').then(function() {
+            Y.config.win.history.pushState(null, '', '/base/querystring?p=dispatch');
+
+            instance.app.dispatch().then(function() {
                 instance.resume(function() {
-                    instance.assertEqualCurrentPath('/base/page');
-                    instance.assertEqualSurfaceContent('body', 'body-page');
-                    instance.assertEqualSurfaceContent('header', 'header-page');
-                    Y.Assert.areEqual('Page', Y.config.doc.title);
+                    instance.assertNavigation('/base/querystring?p=dispatch', 'querystring');
                 });
             });
             instance.wait();
         },
 
-        'should navigate to path with querystring': function() {
-            var instance = this;
-
-            instance.app.navigate('/base/regex?foo=1').then(function() {
-                instance.resume(function() {
-                    this.assertEqualCurrentPath('/base/regex?foo=1');
-                    this.assertEqualSurfaceContent('body', 'body-regex');
-                    this.assertEqualSurfaceContent('header', 'header-regex');
-                    Y.Assert.areEqual('Regex', Y.config.doc.title);
-                });
-            });
-            instance.wait();
-        },
-
-        'should navigate to previous page': function() {
-            var instance = this;
-
-            instance.app.navigate('/base/regex?foo=10').then(function() {
-                instance.app.navigate('/base/regex?foo=20').then(function() {
-                    instance.app.on('endNavigate', function() {
-                        instance.resume(function() {
-                            instance.assertEqualCurrentPath('/base/regex?foo=10');
-                            instance.assertEqualSurfaceContent('body', 'body-regex');
-                            instance.assertEqualSurfaceContent('header', 'header-regex');
-                            Y.Assert.areEqual('Regex', Y.config.doc.title);
-                        });
-                    });
-                    Y.config.win.history.back();
-                });
-            });
-            instance.wait();
-        },
-
-        'should navigate to previous page asynchronously': function() {
+        'should prevent navigate from startNavigate': function() {
             var instance = this,
-                bodySurfaceContentAfterBack,
-                currentPathAfterBack,
-                headerSurfaceContentAfterBack,
-                titleAfterBack;
+                endNavigateCalled = false;
 
-            instance.app.navigate('/base/delayed').then(function() {
-                instance.app.navigate('/base/regex?foo=30').then(function() {
-                    instance.app.on('endNavigate', function() {
-                        instance.resume(function() {
-                            Y.Assert.areEqual('/base/delayed', currentPathAfterBack);
-                            Y.Assert.areEqual('body-regex', bodySurfaceContentAfterBack);
-                            Y.Assert.areEqual('header-regex', headerSurfaceContentAfterBack);
-                            Y.Assert.areEqual('Regex', titleAfterBack);
-                            instance.assertEqualCurrentPath('/base/delayed');
-                            instance.assertEqualSurfaceContent('body', 'body-delayed');
-                            instance.assertEqualSurfaceContent('header', 'header-delayed');
-                            Y.Assert.areEqual('Delayed', Y.config.doc.title);
-                        });
+            instance.app.navigate('/base/querystring?p=beforeprevent').then(function() {
+                instance.app.on({
+                    startNavigate: function(event) {
+                        event.halt();
+                    },
+                    endNavigate: function() {
+                        endNavigateCalled = true;
+                    }
+                });
+                instance.app.navigate('/base/querystring?p=prevent').
+                catch (function(err) {
+                    instance.resume(function() {
+                        instance.assertNavigation(
+                            '/base/querystring?p=beforeprevent',
+                            'querystring'
+                        );
+                        Y.Assert.isFalse(endNavigateCalled);
+                        Y.Assert.isInstanceOf(Error, err);
+                        Y.Assert.areEqual('Navigation has been prevented', err.message);
                     });
-
-                    Y.config.win.history.back();
-
-                    setTimeout(function() {
-                        bodySurfaceContentAfterBack = instance.getSurfaceContent('body');
-                        currentPathAfterBack = instance.getCurrentPath();
-                        headerSurfaceContentAfterBack = instance.getSurfaceContent('header');
-                        titleAfterBack = Y.config.doc.title;
-                    }, 100);
                 });
             });
             instance.wait();
         },
 
-        'should navigate to next page': function() {
-            var instance = this;
+        'should not navigate to unrouted path': function() {
+            var instance = this,
+                err1,
+                startNavigateCalled = false,
+                endNavigateCalled = false;
 
-            instance.app.navigate('/base/regex?foo=40').then(function() {
-                instance.app.navigate('/base/regex?foo=50').then(function() {
-                    instance.app.on('endNavigate', function() {
-                        instance.app.on('endNavigate', function() {
+            instance.app.navigate('/base/querystring?p=beforeunrouted').then(function() {
+                instance.app.on({
+                    startNavigate: function() {
+                        startNavigateCalled = true;
+                    },
+                    endNavigate: function(event) {
+                        err1 = event.error;
+                        endNavigateCalled = true;
+                    }
+                });
+                instance.app.navigate('/base/unknown').thenCatch(function(err2) {
+                    instance.resume(function() {
+                        instance.assertNavigation(
+                            '/base/querystring?p=beforeunrouted',
+                            'querystring'
+                        );
+                        Y.Assert.isTrue(endNavigateCalled);
+                        Y.Assert.isTrue(startNavigateCalled);
+                        Y.Assert.isInstanceOf(Error, err1);
+                        Y.Assert.areEqual('No screen for /base/unknown', err1.message);
+                        Y.Assert.isInstanceOf(Error, err2);
+                        Y.Assert.areEqual('No screen for /base/unknown', err2.message);
+                    });
+                });
+            });
+            instance.wait();
+        },
+
+        'should not navigate when preveted by active screen': function() {
+            var instance = this,
+                err1,
+                startNavigateCalled = false,
+                endNavigateCalled = false;
+
+            instance.app.navigate('/base/locked').then(function() {
+                instance.app.on({
+                    startNavigate: function() {
+                        startNavigateCalled = true;
+                    },
+                    endNavigate: function(event) {
+                        err1 = event.error;
+                        endNavigateCalled = true;
+                    }
+                });
+                instance.app.navigate('/base/querystring?p=afterlocked').thenCatch(function(err2) {
+                    instance.resume(function() {
+                        Y.LockedScreen.locked = false;
+                        instance.assertNavigation('/base/locked', 'default');
+                        Y.Assert.isTrue(endNavigateCalled);
+                        Y.Assert.isTrue(startNavigateCalled);
+                        Y.Assert.isInstanceOf(Error, err1);
+                        Y.Assert.areEqual('Cancelled by active screen', err1.message);
+                        Y.Assert.isInstanceOf(Error, err2);
+                        Y.Assert.areEqual('Cancelled by active screen', err2.message);
+                    });
+                });
+            });
+            instance.wait();
+        },
+
+        'should cancel pending navigate': function() {
+            var instance = this,
+                err = [],
+                startNavigate = [],
+                endNavigate = [];
+
+            instance.app.on({
+                startNavigate: function(event) {
+                    startNavigate.push(event.path);
+                },
+                endNavigate: function(event) {
+                    endNavigate.push(event.path);
+                    err.push(event.error);
+                }
+            });
+
+            instance.app.navigate('/base/delayed200ms').
+            catch (function(error) {
+                err.push(error);
+            });
+
+            Y.soon(function() {
+                instance.app.navigate('/base/querystring?p=cancelpending').then(function() {
+                    instance.resume(function() {
+                        instance.assertNavigation(
+                            '/base/querystring?p=cancelpending',
+                            'querystring'
+                        );
+                        Y.ArrayAssert.itemsAreEqual(
+                            [
+                                '/base/delayed200ms',
+                                '/base/querystring?p=cancelpending'
+                            ],
+                            startNavigate
+                        );
+                        Y.ArrayAssert.itemsAreEqual(
+                            [
+                                '/base/delayed200ms',
+                                '/base/querystring?p=cancelpending'
+                            ],
+                            endNavigate
+                        );
+                        Y.Assert.isUndefined(err[2]);
+                        Y.Assert.isInstanceOf(Error, err[1]);
+                        Y.Assert.areEqual('Cancel pending navigation', err[1].message);
+                        Y.Assert.isInstanceOf(Error, err[0]);
+                        Y.Assert.areEqual('Cancel pending navigation', err[0].message);
+                    });
+                });
+            });
+
+            instance.wait();
+        },
+
+        'should remember the scroll position': function() {
+            var instance = this,
+                pageXOffsetAfterNavigate = 0,
+                pageYOffsetAfterNavigate = 0;
+
+            instance.app.navigate('/base/querystring?p=scroll1').then(function() {
+                Y.once('scroll', function() {
+                    // History scrolling requires some time to persist the
+                    // scroll position set by the back/forward button
+                    setTimeout(function() {
+                        instance.app.navigate('/base/querystring?p=scroll2').then(function() {
+                            instance.app.once('endNavigate', function() {
+                                instance.resume(function() {
+                                    Y.Assert.areEqual(0, pageXOffsetAfterNavigate);
+                                    Y.Assert.areEqual(0, pageYOffsetAfterNavigate);
+                                    Y.Assert.areEqual(10, Y.config.win.pageXOffset);
+                                    Y.Assert.areEqual(10, Y.config.win.pageYOffset);
+                                });
+                            });
+                            // After the new navigation happens the scroll
+                            // position goes back to 0,0 and also needs some
+                            // time to persist before back/forward button is
+                            // invoked
+                            setTimeout(function() {
+                                Y.config.win.history.back();
+                            }, 200);
+                        });
+                    }, 1000);
+                });
+                pageXOffsetAfterNavigate = Y.config.win.pageXOffset;
+                pageYOffsetAfterNavigate = Y.config.win.pageYOffset;
+                Y.config.win.scrollTo(10, 10);
+            });
+            instance.wait();
+        },
+
+        'should navigate when history buttons are clicked': function() {
+            var instance = this,
+                history = [];
+
+            instance.app.navigate('/base/querystring?p=pageback').then(function() {
+                instance.app.navigate('/base/querystring?p=pageforward').then(function() {
+                    instance.app.once('endNavigate', function(event) {
+                        history.push(event.path);
+                        instance.app.once('endNavigate', function(event) {
+                            history.push(event.path);
                             instance.resume(function() {
-                                instance.assertEqualCurrentPath('/base/regex?foo=50');
-                                instance.assertEqualSurfaceContent('body', 'body-regex');
-                                instance.assertEqualSurfaceContent('header',
-                                    'header-regex');
-                                Y.Assert.areEqual('Regex', Y.config.doc.title);
+                                instance.assertNavigation(
+                                    '/base/querystring?p=pageforward',
+                                    'querystring'
+                                );
+                                Y.ArrayAssert.itemsAreEqual(
+                                    [
+                                        '/base/querystring?p=pageback',
+                                        '/base/querystring?p=pageforward'
+                                    ],
+                                    history
+                                );
                             });
                         });
                         Y.config.win.history.forward();
@@ -502,37 +521,44 @@ YUI.add('aui-surface-tests', function(Y) {
             instance.wait();
         },
 
-        'should dispatch to the current url': function() {
-            var instance = this;
-
-            Y.config.win.history.pushState(null, '', '/base/regex?foo=1');
-
-            instance.app.dispatch().then(function() {
-                instance.resume(function() {
-                    instance.assertEqualCurrentPath('/base/regex?foo=1');
-                    instance.assertEqualSurfaceContent('body', 'body-regex');
-                    instance.assertEqualSurfaceContent('header', 'header-regex');
-                    Y.Assert.areEqual('Regex', Y.config.doc.title);
-                });
-            });
-            instance.wait();
-        },
-
         'should not navigate to history states that are not ours': function() {
             var instance = this;
 
             Y.config.win.history.pushState({}, '', '/unknown/state');
-
             instance.app.navigate('/base/page').then(function() {
                 setTimeout(function() {
                     instance.resume(function() {
-                        instance.assertEqualCurrentPath('/unknown/state');
-                        instance.assertEqualSurfaceContent('body', 'body-page');
-                        instance.assertEqualSurfaceContent('header', 'header-page');
-                        Y.Assert.areEqual('Page', Y.config.doc.title);
+                        instance.assertPath('/unknown/state');
+                        instance.assertSurfaceContent('body', 'page');
+                        instance.assertSurfaceContent('header', 'page');
+                        Y.Assert.areEqual('page', Y.config.doc.title);
                     });
-                }, 100);
+                }, 200);
                 Y.config.win.history.back();
+            });
+            instance.wait();
+        },
+
+        'should navigate fail using HTMLScreen': function() {
+            var instance = this,
+                path404 = instance.getOriginalBasePath() + '/404.txt';
+
+            instance.app.addScreenRoutes({
+                path: '/404.txt',
+                screen: Y.HTML404Screen
+            });
+            instance.app.navigate('/base/querystring?p=before404').then(function() {
+                instance.app.set('basePath', instance.getOriginalBasePath());
+                instance.app.navigate(path404).
+                catch (function() {
+                    instance.resume(function() {
+                        instance.assertNavigation(
+                            '/base/querystring?p=before404',
+                            'querystring'
+                        );
+                        instance.app.set('basePath', '/base');
+                    });
+                });
             });
             instance.wait();
         },
@@ -548,10 +574,7 @@ YUI.add('aui-surface-tests', function(Y) {
             instance.app.set('basePath', instance.getOriginalBasePath());
             instance.app.navigate(path).then(function() {
                 instance.resume(function() {
-                    instance.assertEqualCurrentPath(path);
-                    instance.assertEqualSurfaceContent('body', 'body-html');
-                    instance.assertEqualSurfaceContent('header', 'header-html');
-                    Y.Assert.areEqual('HTML', Y.config.doc.title);
+                    instance.assertNavigation(path, 'html');
                     instance.app.set('basePath', '/base');
                 });
             });
@@ -566,123 +589,78 @@ YUI.add('aui-surface-tests', function(Y) {
                 path: '/notitle.txt',
                 screen: Y.HTMLScreen
             });
-            instance.app.set('basePath', instance.getOriginalBasePath());
-            instance.app.navigate(path).then(function() {
-                instance.resume(function() {
-                    instance.app.set('basePath', '/base');
-                    instance.assertEqualCurrentPath(path);
-                    instance.assertEqualSurfaceContent('body', 'body-html');
-                    instance.assertEqualSurfaceContent('header', 'header-html');
+            instance.app.navigate('/base/querystring?p=beforehtml').then(function() {
+                instance.app.set('basePath', instance.getOriginalBasePath());
+                instance.app.navigate(path).then(function() {
+                    instance.resume(function() {
+                        instance.assertPath(path);
+                        instance.assertSurfaceContent('body', 'html');
+                        instance.assertSurfaceContent('header', 'html');
+                        Y.Assert.areEqual('default', Y.config.doc.title);
+                        instance.app.set('basePath', '/base');
+                    });
                 });
             });
+
             instance.wait();
         },
 
-        'should navigate fail using HTMLScreen': function() {
-            var instance = this,
-                path = instance.getOriginalBasePath() + '/notitle.txt',
-                path404 = instance.getOriginalBasePath() + '/404.txt';
-
-            instance.app.addScreenRoutes({
-                path: '/404.txt',
-                screen: Y.HTML404Screen
-            });
-            instance.app.set('basePath', instance.getOriginalBasePath());
-            instance.app.navigate(path404).thenCatch(function() {
-                instance.resume(function() {
-                    instance.assertEqualCurrentPath(path);
-                    instance.assertEqualSurfaceContent('body', 'body-html');
-                    instance.assertEqualSurfaceContent('header', 'header-html');
-                    instance.app.set('basePath', '/base');
-                });
-            });
-            instance.wait();
-        },
-
-        'should remember the scroll position': function() {
-            var instance = this,
-                pageXOffsetAfterNavigate = 0,
-                pageYOffsetAfterNavigate = 0;
-
-            instance.app.navigate('/base/regex?foo=60').then(function() {
-                Y.once('scroll', function() {
-                    // History scrolling requires some time to persist the
-                    // scroll position set by the back/forward button
-                    setTimeout(function() {
-                        instance.app.navigate('/base/regex?foo=70').then(function() {
-                            instance.app.once('endNavigate', function() {
-                                instance.resume(function() {
-                                    Y.Assert.areEqual(0, pageXOffsetAfterNavigate);
-                                    Y.Assert.areEqual(0, pageYOffsetAfterNavigate);
-                                    Y.Assert.areEqual(10, Y.config.win.pageXOffset);
-                                    Y.Assert.areEqual(10, Y.config.win.pageYOffset);
-                                });
-                            });
-                            // After the new navigation happens the scroll
-                            // position goes back to 0,0 and also needs some
-                            // time to persis before back/forward button is
-                            // invoked
-                            setTimeout(function() {
-                                Y.config.win.history.back();
-                            }, 100);
-                        });
-                    }, 1000);
-                });
-                pageXOffsetAfterNavigate = Y.config.win.pageXOffset;
-                pageYOffsetAfterNavigate = Y.config.win.pageYOffset;
-                Y.config.win.scrollTo(10, 10);
-            });
-            instance.wait();
-        },
-
-        'should not navigate when navigation is prevented': function() {
+        'should navigate to clicked links': function() {
             var instance = this;
 
-            instance.app.on({
-                startNavigate: function(event) {
-                    event.halt();
-                }
-            });
-            instance.app.navigate('/base/regex?foo=80').thenCatch(function(err) {
+            instance.app.on('endNavigate', function() {
                 instance.resume(function() {
-                    Y.Assert.isInstanceOf(Error, err);
-                    Y.Assert.areEqual('Navigation has been prevented', err.message);
+                    instance.assertNavigation('/base/page', 'page');
                 });
+            });
+            Y.one('a[href="/base/page"]').simulate('click');
+            instance.wait();
+        },
+
+        'should not navigate to unrouted clicked links': function() {
+            var instance = this;
+
+            instance.app.navigate('/base/querystring?p=beforeunrouted').then(function() {
+                instance.app.on('endNavigate', function(event) {
+                    instance.resume(function() {
+                        instance.assertNavigation(
+                            '/base/querystring?p=beforeunrouted',
+                            'querystring'
+                        );
+                        Y.Assert.isInstanceOf(Error, event.error);
+                        Y.Assert.areEqual('No screen for /base/unrouted', event.error.message);
+                    });
+                });
+                Y.one('a[href="/base/unrouted"]').simulate('click');
             });
             instance.wait();
         },
 
-        'should not navigate when navigation cancelled by active screen': function() {
-            var instance = this,
-                shouldNotCallStartEvent = false,
-                shouldNotCallFailEvent = false,
-                shouldNotCallSuccessEvent = false,
-                shouldNotCallEndEvent = false;
+        'should not navigate to external clicked links': function() {
+            Y.one('a[href="http://alloyui.com/external"]').simulate('click');
+            Y.Assert.isNull(this.app.pendingNavigate);
+        },
 
-            instance.app.navigate('/base/locked').then(function() {
-                instance.app.on({
-                    startNavigate: function() {
-                        shouldNotCallStartEvent = true;
-                    },
-                    failNavigate: function() {
-                        shouldNotCallStartEvent = true;
-                    },
-                    successNavigate: function() {
-                        shouldNotCallSuccessEvent = true;
-                    },
-                    endNavigate: function() {
-                        shouldNotCallEndEvent = true;
-                    }
-                });
-                instance.app.navigate('/base/page').thenCatch(function(err) {
-                    instance.resume(function() {
-                        Y.Assert.isFalse(shouldNotCallStartEvent);
-                        Y.Assert.isFalse(shouldNotCallFailEvent);
-                        Y.Assert.isFalse(shouldNotCallSuccessEvent);
-                        Y.Assert.isFalse(shouldNotCallEndEvent);
-                        Y.Assert.isInstanceOf(Error, err);
-                        Y.Assert.areEqual('Navigation cancelled by active screen', err.message);
+        'should not navigate to clicked links outside base path': function() {
+            Y.one('a[href="/outside"]').simulate('click');
+            Y.Assert.isNull(this.app.pendingNavigate);
+        },
+
+        'should navigate to previous page asynchronously': function() {
+            var instance = this,
+                start = 0,
+                end = 0;
+
+            instance.app.navigate('/base/delayed200ms').then(function() {
+                instance.app.navigate('/base/querystring?p=afterasync').then(function() {
+                    instance.app.on('endNavigate', function() {
+                        end = Date.now();
+                        instance.resume(function() {
+                            Y.Assert.isTrue((end - start) > 200);
+                        });
                     });
+                    start = Date.now();
+                    Y.config.win.history.back();
                 });
             });
             instance.wait();
