@@ -39,10 +39,10 @@ A.ScreenBase.prototype = {
      *     navigation until it is resolved.
      */
     flip: function(surfaces) {
-        var instance = this;
+        var instance = this,
+            transitions = [];
 
         A.log('Screen [' + this + '] flip', 'info');
-        var transitions = [];
         A.each(surfaces, function(surface) {
             transitions.push(surface.show(instance.get('id')));
         });
