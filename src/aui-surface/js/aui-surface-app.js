@@ -236,13 +236,12 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
         this.pendingNavigate = this._doNavigate(
             event.path,
             event.replaceHistory
-        ).
-        catch (
-            function(err) {
-                A.log(err.message, 'info');
-                // Clear pendingNavigate in case of error
+        ).thenCatch(
+            function(reason) {
+                A.log(reason.message, 'info');
+                payload.error = reason;
                 instance._stopPending();
-                payload.error = err;
+                throw reason;
             }
         ).thenAlways(
             function() {
@@ -261,6 +260,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      */
     _doNavigate: function(path, opt_replaceHistory) {
         var instance = this,
+            route,
             nextScreen,
             activeScreen = instance.activeScreen;
 
@@ -270,7 +270,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
             return this.pendingNavigate;
         }
 
-        var route = this.matchesPath(path);
+        route = this.matchesPath(path);
         if (!route) {
             this.pendingNavigate = A.CancellablePromise.reject(
                 new A.CancellablePromise.Error('No screen for ' + path));
@@ -479,8 +479,12 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
             return;
         }
 
-        this.navigate(path).
-        catch (function() {
+        if (!this.matchesPath(path)) {
+            A.log('No screen for ' + path, 'info');
+            return;
+        }
+
+        this.navigate(path).thenCatch(function() {
             // Do not prevent link navigation in case some synchronous error occurs
             navigateFailed = true;
         });

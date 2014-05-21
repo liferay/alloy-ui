@@ -46,12 +46,14 @@ A.HTMLScreen = A.Base.create('htmlScreen', A.Screen, [], {
      *     returned content from the server.
      */
     load: function(path) {
-        var cache = this.getCache();
+        var cache = this.getCache(),
+            url;
+
         if (A.Lang.isValue(cache)) {
             return A.CancellablePromise.resolve(cache);
         }
 
-        var url = new A.Url(path);
+        url = new A.Url(path);
         url.addParameters(this.get('urlParams'));
         return this.loadContent(url.toString());
     },

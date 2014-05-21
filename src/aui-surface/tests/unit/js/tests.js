@@ -22,7 +22,7 @@ YUI.add('aui-surface-tests', function(Y) {
                 'should dispatch to the current url': noHTML5,
                 'should prevent navigate from startNavigate': noHTML5,
                 'should not navigate to unrouted path': noHTML5,
-                'should not navigate when preveted by active screen': noHTML5,
+                'should not navigate when prevented by active screen': noHTML5,
                 'should cancel pending navigate': noHTML5,
                 'should remember the scroll position': noHTML5 || Y.UA.ie,
                 'should navigate when history buttons are clicked': noHTML5,
@@ -367,7 +367,7 @@ YUI.add('aui-surface-tests', function(Y) {
             instance.wait();
         },
 
-        'should not navigate when preveted by active screen': function() {
+        'should not navigate when prevented by active screen': function() {
             var instance = this,
                 err1,
                 startNavigateCalled = false,
@@ -618,22 +618,8 @@ YUI.add('aui-surface-tests', function(Y) {
         },
 
         'should not navigate to unrouted clicked links': function() {
-            var instance = this;
-
-            instance.app.navigate('/base/querystring?p=beforeunrouted').then(function() {
-                instance.app.on('endNavigate', function(event) {
-                    instance.resume(function() {
-                        instance.assertNavigation(
-                            '/base/querystring?p=beforeunrouted',
-                            'querystring'
-                        );
-                        Y.Assert.isInstanceOf(Error, event.error);
-                        Y.Assert.areEqual('No screen for /base/unrouted', event.error.message);
-                    });
-                });
-                Y.one('a[href="/base/unrouted"]').simulate('click');
-            });
-            instance.wait();
+            Y.one('a[href="/base/unrouted"]').simulate('click');
+            Y.Assert.isNull(this.app.pendingNavigate);
         },
 
         'should not navigate to external clicked links': function() {
