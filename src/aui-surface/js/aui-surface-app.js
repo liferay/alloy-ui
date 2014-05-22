@@ -183,18 +183,35 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      * @return {Promise} Returns a pending request cancellable promise.
      */
     dispatch: function() {
-        return this.navigate(win.location.pathname + win.location.search, true);
+        return this.navigate(
+            win.location.pathname + win.location.search + win.location.hash,
+            true
+        );
     },
 
     /**
-     * Matches if path is a known route, if not found any returns null.
+     * Matches if path is a known route, if not found any returns null. The path
+     * could contain a fragment-id (#). If the path is the same as the current
+     * url, and the path contains a fragment, we do not prevent the default
+     * browser behavior.
      *
      * @method matchesPath
      * @param {String} path Path containing the querystring part.
-     * @return {Object | null} Route handler if match any.
+     * @return {Object | null} Route handler if match any or `null` if the path
+     *     is the same as the current url and the path contains a fragment.
      */
     matchesPath: function(path) {
-        var basePath = this.get('basePath');
+        var basePath = this.get('basePath'),
+            hashIndex;
+
+        // Remove path hash before match
+        hashIndex = path.lastIndexOf('#');
+        if (hashIndex > -1) {
+            path = path.substr(0, hashIndex);
+            if (path === win.location.pathname + win.location.search) {
+                return null;
+            }
+        }
 
         path = path.substr(basePath.length);
         return A.Array.find(this.routes, function(route) {
@@ -473,7 +490,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
     _onDocClick: function(event) {
         var link = event.currentTarget,
             hostname = link.get('hostname'),
-            path = link.get('pathname') + link.get('search'),
+            path = link.get('pathname') + link.get('search') + link.get('hash'),
             navigateFailed = false;
 
         if (!this._isLinkSameOrigin(hostname)) {
@@ -484,7 +501,6 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
             A.log('Link clicked outside app\'s base path', 'info');
             return;
         }
-
         if (!this.matchesPath(path)) {
             A.log('No screen for ' + path, 'info');
             return;
@@ -514,7 +530,7 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
     _onPopState: function(event) {
         var state = event._event.state;
 
-        if (state === null) {
+        if (state === null && !win.location.hash) {
             win.location.reload();
             return;
         }
