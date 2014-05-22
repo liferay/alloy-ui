@@ -273,17 +273,30 @@ YUI.add('aui-surface-tests', function(Y) {
             instance.wait();
         },
 
+        'should navigate to hash clicked links': function() {
+            var instance = this;
+
+            instance.app.navigate('/base/querystring?p=beforehash').then(function() {
+                instance.app.navigate('/base/page#hash').then(function() {
+                    instance.resume(function() {
+                        instance.assertNavigation('/base/page#hash', 'page');
+                    });
+                });
+            });
+            instance.wait();
+        },
+
         'should navigate asynchronously': function() {
             var instance = this,
                 pathBeforeAsync;
 
-            instance.app.navigate('/base/querystring?p=beforeAsync').then(function() {
+            instance.app.navigate('/base/querystring?p=beforeasync').then(function() {
                 instance.app.on('startNavigate', function() {
                     pathBeforeAsync = instance.getCurrentPath();
                 });
                 instance.app.navigate('/base/delayed200ms').then(function() {
                     instance.resume(function() {
-                        Y.Assert.areEqual('/base/querystring?p=beforeAsync', pathBeforeAsync);
+                        Y.Assert.areEqual('/base/querystring?p=beforeasync', pathBeforeAsync);
                         instance.assertNavigation('/base/delayed200ms', 'delayed');
                     });
                 });
@@ -629,6 +642,11 @@ YUI.add('aui-surface-tests', function(Y) {
 
         'should not navigate to clicked links outside base path': function() {
             Y.one('a[href="/outside"]').simulate('click');
+            Y.Assert.isNull(this.app.pendingNavigate);
+        },
+
+        'should not navigate to hash clicked links in the same url': function() {
+            Y.one('a[href="/base/page#hash"]').simulate('click');
             Y.Assert.isNull(this.app.pendingNavigate);
         },
 
