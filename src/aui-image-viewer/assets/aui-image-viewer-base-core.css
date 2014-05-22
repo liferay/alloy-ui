@@ -28,7 +28,6 @@
 
 .image-viewer-bd, .image-viewer .yui3-widget-ft {
     background: #fff;
-    width: 16px;
 }
 
 .image-viewer-caption, .image-viewer-info {
@@ -56,6 +55,43 @@
 }
 
 .image-viewer .image-viewer-content, .image-viewer .image-gallery-content {
-    padding: 5px;
+    padding: 5px 0;
     background: #fff;
+    text-align: center;
+}
+
+.image-viewer .image-viewer-image-list,
+.image-viewer .image-viewer-image-container {
+    height: 100%;
+}
+
+.image-viewer .image-viewer-image-container {
+    display: none;
+    left: 0;
+    padding: 0 5px;
+    position: relative;
+    top: 0;
+    width: 100%;
+}
+
+.image-viewer .image-viewer-image-container.image-viewer-current-image {
+    display: block;
+}
+
+.image-viewer .image-viewer-image {
+    max-height: 100%;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+.image-viewer .image-viewer-loading-icon {
+    display: none;
+}
+
+.image-viewer .image-viewer-loading .image-viewer-loading-icon {
+    display: inline-block;
+}
+
+.image-viewer .image-viewer-loading .image-viewer-image {
+    display: none;
 }

@@ -315,7 +315,7 @@ var ImageGallery = A.Component.create({
 
             instance.on('playingChange', instance._onPlayingChange);
             instance.on('pausedChange', instance._onPausedChange);
-            instance.on('currentIndexChange', instance._onCurrentIndexChange);
+            instance.after('currentIndexChange', instance._onCurrentIndexChange);
 
             instance.publish('changeRequest', {
                 defaultFn: this._changeRequest
@@ -378,32 +378,6 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Shows the `A.ImageGallery`.
-         *
-         * **NOTE:**Overloads the [ImageViewer](A.ImageViewer.html) show method
-         * to not loadImage, the changeRequest now is responsible to do that if
-         * we invoke the superclass show method its loading the image, and the
-         * changeRequest loads again, avoiding double request.
-         *
-         * @method show
-         */
-        show: function() {
-            var instance = this;
-            var currentLink = instance.getCurrentLink();
-
-            if (currentLink) {
-                A.ImageViewer.superclass.show.apply(this, arguments);
-
-                // changeRequest on paginationInstance with the new page set
-                var paginationInstance = instance.get('paginationInstance');
-
-                paginationInstance._dispatchRequest({
-                    page: instance.get('currentIndex') + 1
-                });
-            }
-        },
-
-        /**
          * Shows the [A.Pagination](A.Pagination.html) with the thumbnails list.
          *
          * @method showPagination
@@ -426,6 +400,18 @@ var ImageGallery = A.Component.create({
             if (instance._timer) {
                 instance._timer.cancel();
             }
+        },
+
+        /**
+         * Fired after `currentIndex` changes.
+         *
+         * @method _onCurrentIndexChange
+         * @protected
+         */
+        _onCurrentIndexChange: function() {
+            this.get('paginationInstance')._dispatchRequest({
+                page: this.get('currentIndex') + 1
+            });
         },
 
         /**
@@ -616,11 +602,6 @@ var ImageGallery = A.Component.create({
          */
         _processChangeRequest: function() {
             var instance = this;
-
-            // loading current index image
-            instance.loadImage(
-                instance.getCurrentLink().attr('href')
-            );
 
             // restart the timer if the user change the image, respecting the
             // paused state

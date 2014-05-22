@@ -10,6 +10,7 @@
     "aui-image-viewer-base": {
         "requires": [
             "anim",
+            "imageloader",
             "widget",
             "widget-modality",
             "widget-position",
@@ -20,6 +21,7 @@
             "aui-event",
             "aui-node-base",
             "aui-widget-cssclass",
+            "aui-widget-responsive",
             "aui-widget-toggle"
         ],
         "skinnable": true

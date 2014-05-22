@@ -5,66 +5,21 @@
  * @submodule aui-image-viewer-base
  */
 
-var L = A.Lang,
-    isBoolean = L.isBoolean,
-    isNumber = L.isNumber,
-    isObject = L.isObject,
-    isString = L.isString,
+var CSS_CAPTION = A.getClassName('image', 'viewer', 'caption'),
+    CSS_CLOSE = A.getClassName('image', 'viewer', 'close'),
+    CSS_CONTROL = A.getClassName('image', 'viewer', 'control'),
+    CSS_CURRENT_IMAGE = A.getClassName('image', 'viewer', 'current', 'image'),
+    CSS_IMAGE = A.getClassName('image', 'viewer', 'image'),
+    CSS_IMAGE_CONTAINER = A.getClassName('image', 'viewer', 'image', 'container'),
+    CSS_IMAGE_LIST = A.getClassName('image', 'viewer', 'image', 'list'),
+    CSS_INFO = A.getClassName('image', 'viewer', 'info'),
+    CSS_LOADING = A.getClassName('image', 'viewer', 'loading'),
+    CSS_LOADING_ICON = A.getClassName('image', 'viewer', 'loading', 'icon'),
+    CSS_WELL = A.getClassName('well'),
 
-    NodeFx = A.Plugin.NodeFX,
+    EVENT_LOAD = 'load',
 
-    DOC = A.config.doc,
-
-    isNodeList = function(v) {
-        return (v instanceof A.NodeList);
-    },
-
-    concat = function() {
-        return Array.prototype.slice.call(arguments).join(' ');
-    },
-
-    getCN = A.getClassName,
-
-    CSS_CAROUSEL_CONTROL = getCN('carousel', 'control'),
-    CSS_CLOSE = getCN('close'),
-    CSS_ICON = getCN('glyphicon'),
-    CSS_ICON_REMOVE = getCN('glyphicon', 'remove'),
-    CSS_ICON_CHEVRON_LEFT = getCN('glyphicon', 'chevron', 'left'),
-    CSS_ICON_CHEVRON_RIGHT = getCN('glyphicon', 'chevron', 'right'),
-    CSS_ICON_TIME = getCN('glyphicon', 'time'),
-    CSS_IMAGE_VIEWER_BD = getCN('image-viewer', 'bd'),
-    CSS_IMAGE_VIEWER_CAPTION = getCN('image-viewer', 'caption'),
-    CSS_IMAGE_VIEWER_CLOSE = getCN('image-viewer', 'close'),
-    CSS_IMAGE_VIEWER_CONTROL = getCN('image-viewer', 'control'),
-    CSS_IMAGE_VIEWER_IMAGE = getCN('image-viewer', 'image'),
-    CSS_IMAGE_VIEWER_INFO = getCN('image-viewer', 'info'),
-    CSS_IMAGE_VIEWER_LINK = getCN('image-viewer', 'link'),
-    CSS_IMAGE_VIEWER_LOADER = getCN('image-viewer', 'loader'),
-    CSS_IMAGE_VIEWER_LOADING = getCN('image-viewer', 'loading'),
-    CSS_LEFT = getCN('left'),
-    CSS_RIGHT = getCN('right'),
-    CSS_WELL = getCN('well'),
-
-    MAP_RESET_DIMENSIONS = {
-        height: 'auto',
-        width: 'auto'
-    },
-
-    NODE_BLANK_TEXT = DOC.createTextNode(''),
-
-    INFO_LABEL_TEMPLATE = 'Image {current} of {total}',
-
-    TPL_CAPTION = '<h4 class="' + CSS_IMAGE_VIEWER_CAPTION + '"></h4>',
-    TPL_CLOSE = '<button class="' + concat(CSS_IMAGE_VIEWER_CLOSE, CSS_CLOSE) + '" type="button">' +
-        '<span class="' + [CSS_ICON, CSS_ICON_REMOVE].join(' ') + '"></span></button>',
-    TPL_CONTROL_LEFT = '<a href="#" class="' + concat(CSS_IMAGE_VIEWER_CONTROL, CSS_CAROUSEL_CONTROL, CSS_LEFT) +
-        '"><span class="' + [CSS_ICON, CSS_ICON_CHEVRON_LEFT].join(' ') + '"></span></a>',
-    TPL_CONTROL_RIGHT = '<a href="#" class="' + concat(CSS_IMAGE_VIEWER_CONTROL, CSS_CAROUSEL_CONTROL, CSS_RIGHT) +
-        '"><span class="' + [CSS_ICON, CSS_ICON_CHEVRON_RIGHT].join(' ') + '"></span></a>',
-    TPL_IMAGE = '<img class="' + CSS_IMAGE_VIEWER_IMAGE + '" />',
-    TPL_INFO = '<h5 class="' + CSS_IMAGE_VIEWER_INFO + '"></h5>',
-    TPL_LOADER = '<div class="' + CSS_IMAGE_VIEWER_LOADER + '"></div>',
-    TPL_LOADING = '<div class="' + CSS_ICON_TIME + '"></div>';
+    INFO_LABEL_TEMPLATE = 'Image {current} of {total}';
 
 /**
  * A base class for `A.ImageViewer`, providing:
@@ -82,11 +37,10 @@ var L = A.Lang,
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
- * @include http://alloyui.com/examples/image-viewer/basic-markup.html
- * @include http://alloyui.com/examples/image-viewer/basic.js
  */
-var ImageViewer = A.Base.create(
-    'aui-image-viewer',
+
+A.ImageViewer = A.Base.create(
+    'image-viewer',
     A.Widget, [
         A.WidgetCssClass,
         A.WidgetStdMod,
@@ -95,16 +49,42 @@ var ImageViewer = A.Base.create(
         A.WidgetStack,
         A.WidgetPositionAlign,
         A.WidgetPositionConstrain,
+        A.WidgetResponsive,
         A.WidgetModality
     ], {
+        TPL_CAPTION: '<h4 class="' + CSS_CAPTION + '"></h4>',
+        TPL_CLOSE: '<button class="close ' + CSS_CLOSE + '" type="button">' +
+            '<span class="glyphicon glyphicon-remove"></span></button>',
+        TPL_CONTROL_LEFT: '<a href="#" class="carousel-control left ' + CSS_CONTROL +
+            '"><span class="glyphicon glyphicon-chevron-left"></span></a>',
+        TPL_CONTROL_RIGHT: '<a href="#" class="carousel-control right ' + CSS_CONTROL +
+            '"><span class="glyphicon glyphicon-chevron-right"></span></a>',
+        TPL_IMAGE: '<img class="' + CSS_IMAGE + '"></img>',
+        TPL_IMAGE_CONTAINER: '<div class="' + CSS_IMAGE_CONTAINER + '">' +
+            '<span class="glyphicon glyphicon-time ' + CSS_LOADING_ICON + '"></span></div>',
+        TPL_IMAGE_LIST: '<div class="' + CSS_IMAGE_LIST + '"></div>',
+        TPL_INFO: '<h5 class="' + CSS_INFO + '"></h5>',
+
         /**
-         * Handler for the key events.
+         * Constructor for the `ImageViewer`. Lifecycle.
          *
-         * @property _keyHandler
-         * @type EventHandler
+         * @method initializer
          * @protected
          */
-        _keyHandler: null,
+        initializer: function() {
+            this._eventHandles = [
+                this.after('currentIndexChange', this._showCurrentImage),
+                this.after('linksChange', this._afterLinksChange),
+                this.after('preloadAllImagesChange', this._preloadAll),
+                this.after('showControlsChange', this._syncControlsUI),
+                this.after('responsive', this._afterResponsive),
+                this.on('responsive', this._onResponsive),
+                A.after(this._afterFillHeight, this, 'fillHeight'),
+                A.after(this._afterUISetVisible, this, '_uiSetVisible')
+            ];
+
+            this._imgLoadGroups = [];
+        },
 
         /**
          * Create the DOM structure for the `A.ImageViewer`. Lifecycle.
@@ -113,188 +93,54 @@ var ImageViewer = A.Base.create(
          * @protected
          */
         renderUI: function() {
-            var instance = this;
-
-            instance._renderControls();
-            instance._renderFooter();
-
-            instance.get('links').addClass(CSS_IMAGE_VIEWER_LINK);
+            this._renderImages();
+            this._renderControls();
+            this._renderFooter();
         },
 
         /**
-         * Bind the events on the `A.ImageViewer` UI. Lifecycle.
+         * Bind the events for the `A.ImageViewer` UI. Lifecycle.
          *
          * @method bindUI
          * @protected
          */
         bindUI: function() {
-            var instance = this;
-            var links = instance.get('links');
-            var controlLeftEl = instance.get('controlLeftEl');
-            var controlRightEl = instance.get('controlRightEl');
-            var closeEl = instance.get('closeEl');
+            this._attachLinkEvent();
 
-            closeEl.on('click', A.bind(instance._onClickCloseEl, instance));
-            controlLeftEl.on('click', A.bind(instance._onClickLeftControl, instance));
-            controlRightEl.on('click', A.bind(instance._onClickRightControl, instance));
-            links.on('click', A.bind(instance._onClickLinks, instance));
-
-            instance._keyHandler = A.bind(instance._onKeyInteraction, instance);
-
-            // NOTE: using keydown to avoid keyCode bug on IE
-            A.getDoc().on('keydown', instance._keyHandler);
-
-            A.getWin().on(
-                'resize',
-                function() {
-                    instance._setAlignCenter(true);
-                }
+            this._eventHandles.push(
+                this._controlLeftEl.on('click', A.bind(this.prev, this)),
+                this._controlRightEl.on('click', A.bind(this.next, this)),
+                this._closeEl.on('click', A.bind(this.hide, this)),
+                A.getDoc().on('keydown', A.bind(this._onKeydown, this))
             );
-
-            instance.after('render', instance._afterRender);
-            instance.after('loadingChange', instance._afterLoadingChange);
-            instance.after('visibleChange', instance._afterVisibleChange);
         },
 
         /**
          * Destructor lifecycle implementation for the `A.ImageViewer` class.
-         * Purges events attached to the node (and all child nodes).
          *
          * @method destructor
          * @protected
          */
         destructor: function() {
-            var instance = this;
+            (new A.EventHandle(this._eventHandles)).detach();
 
-            var links = instance.get('links');
+            this._detachLinkEvent();
 
-            instance.close();
-
-            links.detach('click');
-            links.removeClass(CSS_IMAGE_VIEWER_LINK);
-
-            // detach key global listener from the document
-            A.getDoc().detach('keydown', instance._keyHandler);
-
-            instance.get('controlLeftEl').remove(true);
-            instance.get('controlRightEl').remove(true);
-            instance.get('closeEl').remove(true);
-            instance.get('loader').remove(true);
+            this._controlLeftEl.remove(true);
+            this._controlRightEl.remove(true);
+            this._closeEl.remove(true);
         },
 
         /**
-         * Hides the `A.ImageViewer` instance.
-         *
-         * @method close
-         */
-        close: function() {
-            var instance = this;
-
-            instance.hide();
-        },
-
-        /**
-         * Gets the `Node` reference to the `currentIndex` element from
+         * Gets the `Node` reference to the `index` element from
          * the [links](A.ImageViewer.html#attr_links).
          *
          * @method getLink
-         * @param {Number} currentIndex
+         * @param index
          * @return {Node}
          */
-        getLink: function(currentIndex) {
-            var instance = this;
-
-            return instance.get('links').item(currentIndex);
-        },
-
-        /**
-         * Gets the current loaded node link reference.
-         *
-         * @method getCurrentLink
-         * @return {Node}
-         */
-        getCurrentLink: function() {
-            var instance = this;
-
-            return instance.getLink(
-                instance.get('currentIndex')
-            );
-        },
-
-        /**
-         * Loads an image `src` on the `A.ImageViewer`.
-         *
-         * @method loadImage
-         * @param {String} src Image src.
-         */
-        loadImage: function(src) {
-            var instance = this;
-
-            var loader = instance.get('loader');
-
-            instance.set('loading', true);
-
-            var activeImagePool = instance._activeImagePool;
-
-            if (!activeImagePool) {
-                activeImagePool = [];
-
-                // creating the placeholder image
-                var placeholder = instance.get('image');
-
-                var image0 = placeholder.clone();
-                var image1 = placeholder.clone();
-
-                // bind the onLoad handler to the image, this handler should
-                // append the loaded image
-                var onload = A.bind(instance._onLoadImage, instance);
-
-                image0.on('load', onload);
-                image1.on('load', onload);
-
-                activeImagePool.push(image0, image1);
-
-                instance._activeImagePool = activeImagePool;
-            }
-
-            var image = activeImagePool[0];
-
-            image.removeAttribute('height');
-            image.removeAttribute('width');
-
-            image.setStyles(MAP_RESET_DIMENSIONS);
-
-            // append the placeholder image to the loader div
-            loader.append(image);
-
-            // re-sort the pool
-            activeImagePool.push(activeImagePool.shift(image));
-
-            // set the src of the image to be loaded on the placeholder image.
-            // dataURI allows cached images to refire load event in webkit, and
-            // bypass the MimeType error (c/o Paul Irish & Doug Jones)
-            if (A.UA.webkit) {
-                image.attr('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==');
-            }
-
-            image.attr('src', src);
-
-            instance.fire('request', {
-                image: image
-            });
-        },
-
-        /**
-         * Checks if there is a node reference for the `currentIndex`.
-         *
-         * @method hasLink
-         * @param {Number} currentIndex
-         * @return {Boolean}
-         */
-        hasLink: function(currentIndex) {
-            var instance = this;
-
-            return instance.getLink(currentIndex);
+        getLink: function(index) {
+            return this.get('links').item(index);
         },
 
         /**
@@ -304,11 +150,7 @@ var ImageViewer = A.Base.create(
          * @return {Boolean}
          */
         hasNext: function() {
-            var instance = this;
-
-            return instance.hasLink(
-                instance.get('currentIndex') + 1
-            );
+            return this.get('currentIndex') + 1 < this.get('links').size();
         },
 
         /**
@@ -318,24 +160,7 @@ var ImageViewer = A.Base.create(
          * @return {Boolean}
          */
         hasPrev: function() {
-            var instance = this;
-
-            return instance.hasLink(
-                instance.get('currentIndex') - 1
-            );
-        },
-
-        /**
-         * Hide all UI controls (i.e., arrows, close icon etc).
-         *
-         * @method hideControls
-         */
-        hideControls: function() {
-            var instance = this;
-
-            instance.get('controlLeftEl').hide();
-            instance.get('controlRightEl').hide();
-            instance.get('closeEl').hide();
+            return this.get('currentIndex') > 0;
         },
 
         /**
@@ -344,307 +169,143 @@ var ImageViewer = A.Base.create(
          * @method next
          */
         next: function() {
-            var instance = this;
-
-            if (instance.hasNext()) {
-                instance.set(
-                    'currentIndex',
-                    instance.get('currentIndex') + 1
-                );
-
-                instance.show();
-            }
-        },
-
-        /**
-         * Preloads all images.
-         *
-         * @method preloadAllImages
-         */
-        preloadAllImages: function() {
-            var instance = this;
-
-            instance.get('links').each(function(link, index) {
-                instance.preloadImage(index);
-            });
-        },
-
-        /**
-         * Preloads an image based on its `index`.
-         *
-         * @method preloadImage
-         * @param {Number} currentIndex
-         */
-        preloadImage: function(currentIndex) {
-            var instance = this;
-            var link = instance.getLink(currentIndex);
-
-            if (link) {
-                var src = link.attr('href');
-
-                instance._createPreloadImage(src);
+            if (this.hasNext()) {
+                this.set('currentIndex', this.get('currentIndex') + 1);
             }
         },
 
         /**
          * Loads the previous image.
          *
-         * @method next
+         * @method prev
          */
         prev: function() {
-            var instance = this;
-
-            if (instance.hasPrev()) {
-                instance.set(
-                    'currentIndex',
-                    instance.get('currentIndex') - 1
-                );
-
-                instance.show();
+            if (this.hasPrev()) {
+                this.set('currentIndex', this.get('currentIndex') - 1);
             }
         },
 
         /**
-         * Shows the loading icon.
+         * Fired after `fillHeight` function is called. Updates the line-height
+         * of the fillHeight node to be equal to its height, so the images can
+         * be vertically centered.
          *
-         * @method showLoading
+         * @method _afterFillHeight
+         * @protected
          */
-        showLoading: function() {
-            var instance = this;
-            var loadingEl = instance.get('loadingEl');
+        _afterFillHeight: function() {
+            var fillHeightNode = this.getStdModNode(this.get('fillHeight'));
 
-            instance.setStdModContent('body', loadingEl);
+            fillHeightNode.setStyle('lineHeight', fillHeightNode.getStyle('height'));
+        },
 
-            loadingEl.center(instance.bodyNode);
+        /**
+         * Fired after the `link` attribute is changed. It will render the
+         * referenced images and attach click events to those links.
+         *
+         * @method _attachLinkEvents
+         * @protected
+         */
+        _afterLinksChange: function() {
+            this._renderImages();
+            this._attachLinkEvent();
+        },
+
+        /**
+         * Fired after the `responsive` event.
+         *
+         * @method _afterResponsive
+         * @protected
+         */
+        _afterResponsive: function() {
+            var image = this._getCurrentImage();
+
+            if (image) {
+                this.footerNode.setStyle('width', '');
+                image.setStyles({
+                    maxHeight: '100%',
+                    maxWidth: '100%'
+                });
+
+                this.bodyNode.setStyles({
+                    height: '',
+                    lineHeight: ''
+                });
+                this._fillHeight();
+
+                this._setAlignCenter(true);
+            }
         },
 
         /**
          * Shows the `A.ImageViewer` UI.
          *
-         * @method show
-         */
-        show: function() {
-            var instance = this;
-            var currentLink = instance.getCurrentLink();
-
-            if (currentLink) {
-                ImageViewer.superclass.show.apply(this, arguments);
-
-                instance.loadImage(
-                    currentLink.attr('href')
-                );
-            }
-        },
-
-        /**
-         * Removes the references to the preload images to free up memory.
-         *
-         * @method _clearPreloadImageFn
+         * @method _afterUISetVisible
          * @protected
          */
-        _clearPreloadImageFn: function() {
-            var instance = this;
+        _afterUISetVisible: function() {
+            if (this.get('visible')) {
+                this._showCurrentImage();
 
-            var preloadImagePool = instance._preloadImagePool;
-            var image;
-
-            for (var i in preloadImagePool) {
-                if (preloadImagePool.hasOwnProperty(i)) {
-                    image = preloadImagePool[i];
-
-                    if (image && image.complete) {
-                        preloadImagePool[i] = null;
-                    }
-                }
-            }
-        },
-
-        /**
-         * Creates the preload image instance, and add's it to the internal
-         * pool.
-         *
-         * @method _createPreloadImage
-         * @param src
-         * @protected
-         */
-        _createPreloadImage: function(src) {
-            var instance = this;
-
-            var preloadImagePool = instance._preloadImagePool;
-
-            if (!preloadImagePool) {
-                preloadImagePool = instance._preloadImagePool = {};
-
-                instance._clearPreloadImageTask = A.debounce(instance._clearPreloadImageFn, 50, instance);
-            }
-
-            if (!(src in preloadImagePool)) {
-                var image = new Image();
-
-                image.onload = instance._clearPreloadImageTask;
-                image.src = src;
-
-                preloadImagePool[src] = image;
-            }
-        },
-
-        /**
-         * Renders the controls UI.
-         *
-         * @method _renderControls
-         * @protected
-         */
-        _renderControls: function() {
-            var instance = this;
-            var body = A.one('body');
-
-            body.append(
-                instance.get('controlLeftEl').hide()
-            );
-
-            body.append(
-                instance.get('controlRightEl').hide()
-            );
-
-            body.append(
-                instance.get('closeEl').hide()
-            );
-        },
-
-        /**
-         * Renders the footer UI.
-         *
-         * @method _renderFooter
-         * @protected
-         */
-        _renderFooter: function() {
-            var instance = this;
-
-            var boundingBox = instance.get('boundingBox');
-
-            var docFrag = boundingBox.get('ownerDocument').invoke('createDocumentFragment');
-
-            docFrag.append(
-                instance.get('captionEl')
-            );
-            docFrag.append(
-                instance.get('infoEl')
-            );
-
-            instance.setStdModContent(
-                'footer',
-                docFrag
-            );
-        },
-
-        /**
-         * Sync the caption UI.
-         *
-         * @method _syncCaptionUI
-         * @protected
-         */
-        _syncCaptionUI: function() {
-            var instance = this;
-            var caption = instance.get('caption');
-            var captionEl = instance.get('captionEl');
-            var captionFromTitle = instance.get('captionFromTitle');
-
-            if (captionFromTitle) {
-                var currentLink = instance.getCurrentLink();
-
-                if (currentLink) {
-                    var title = currentLink.attr('title');
-
-                    if (title) {
-                        caption = currentLink.attr('title');
-                    }
-                }
-            }
-
-            captionEl.html(caption);
-        },
-
-        /**
-         * Sync the controls UI.
-         *
-         * @method _syncControlsUI
-         * @protected
-         */
-        _syncControlsUI: function() {
-            var instance = this;
-            var controlLeftEl = instance.get('controlLeftEl');
-            var controlRightEl = instance.get('controlRightEl');
-            var closeEl = instance.get('closeEl');
-
-            if (instance.get('visible')) {
-                if (instance.get('showControls')) {
-                    // show or hide controls based on the hasPrev/hasNext
-                    // information
-                    controlLeftEl[instance.hasPrev() ? 'show' : 'hide']();
-                    controlRightEl[instance.hasNext() ? 'show' : 'hide']();
-
-                    closeEl.show();
-                }
+                this._fillHeight();
             }
             else {
-                // if the overlay is not visible hide all controls
-                instance.hideControls();
+                this._closeEl.hide();
+                this._syncControlsUI();
             }
         },
 
         /**
-         * Sync the `A.ImageViewer` UI.
+         * Attaches the click event for the image links.
          *
-         * @method _syncImageViewerUI
+         * @method _attachLinkEvent
          * @protected
          */
-        _syncImageViewerUI: function() {
-            var instance = this;
+        _attachLinkEvent: function() {
+            this._detachLinkEvent();
 
-            instance._syncControlsUI();
-            instance._syncCaptionUI();
-            instance._syncInfoUI();
-        },
-
-        /**
-         * Sync the info UI.
-         *
-         * @method _syncInfoUI
-         * @protected
-         */
-        _syncInfoUI: function() {
-            var instance = this;
-            var infoEl = instance.get('infoEl');
-
-            infoEl.html(
-                instance.get('infoTemplate')
+            this._linkEvent = this.get('links').on(
+                'click',
+                A.bind(this._onClickLinks, this)
             );
         },
 
         /**
-         * Calculates the resize ratio for the loaded image.
+         * Detaches the click event for the image links, if one
+         * was attached earlier.
          *
-         * @method _getRatio
-         * @param {Number} width Image width
-         * @param {Number} height Image height
+         * @method _detachLinkEvent
          * @protected
-         * @return {Number}
          */
-        _getRatio: function(width, height) {
-            var instance = this;
-
-            var ratio = 1;
-            var maxHeight = instance.get('maxHeight');
-            var maxWidth = instance.get('maxWidth');
-
-            if ((height > maxHeight) || (width > maxWidth)) {
-                var hRatio = (height / maxHeight);
-                var wRatio = (width / maxWidth);
-
-                ratio = Math.max(hRatio, wRatio);
+        _detachLinkEvent: function() {
+            if (this._linkEvent) {
+                this._linkEvent.detach();
+                this._linkEvent = null;
             }
+        },
 
-            return ratio;
+        /**
+         * Gets the current image container.
+         *
+         * @method _getCurrentImageContainer
+         * @return {Node}
+         * @protected
+         */
+        _getCurrentImageContainer: function() {
+            var containers = this.get('contentBox').all('.' + CSS_IMAGE_CONTAINER);
+            return containers.item(this.get('currentIndex'));
+        },
+
+        /**
+         * Gets the current image node.
+         *
+         * @method _getCurrentImage
+         * @return {Node}
+         * @protected
+         */
+        _getCurrentImage: function() {
+            var container = this._getCurrentImageContainer();
+            return container.one('.' + CSS_IMAGE);
         },
 
         /**
@@ -652,287 +313,341 @@ var ImageViewer = A.Base.create(
          *
          * @method _getInfoTemplate
          * @param {String} v template
-         * @protected
          * @return {String} Parsed string.
          */
         _getInfoTemplate: function(v) {
-            var instance = this;
-            var total = instance.get('totalLinks');
-            var current = instance.get('currentIndex') + 1;
-
-            return L.sub(v, {
-                current: current,
-                total: total
+            return A.Lang.sub(v, {
+                current: this.get('currentIndex') + 1,
+                total: this.get('links').size()
             });
         },
 
         /**
-         * Displays the image once it's been loaded.
+         * Fires the necessary events to load the requested image.
          *
-         * @method _displayLoadedImage
-         * @param {Node} image The loaded image
+         * @method _loadImage
+         * @param {Number} index The index of the image to load.
          * @protected
          */
-        _displayLoadedImage: function(image) {
-            var instance = this;
-
-            instance._uiSetImageSize(image);
-
-            instance.setStdModContent('body', image);
-
-            instance.set('loading', false);
-
-            instance._syncImageViewerUI();
-
-            // invoke WidgetPosition _setAlignCenter to force center alignment
-            instance._setAlignCenter(true);
-
-            instance.fire('load', {
-                image: image
-            });
-
-            if (instance.get('preloadNeighborImages')) {
-                // preload neighbor images
-                var currentIndex = instance.get('currentIndex');
-
-                instance.preloadImage(currentIndex + 1);
-                instance.preloadImage(currentIndex - 1);
-            }
+        _loadImage: function(index) {
+            this.fire(EVENT_LOAD + index);
         },
 
         /**
-         * Fires after the `A.ImageViewer` render phase.
-         *
-         * @method _afterRender
-         * @protected
-         */
-        _afterRender: function() {
-            var instance = this;
-            var bodyNode = instance.bodyNode;
-            var boundingBox = instance.get('boundingBox');
-
-            bodyNode.addClass(CSS_IMAGE_VIEWER_BD);
-            boundingBox.addClass(CSS_WELL);
-
-            if (instance.get('preloadAllImages')) {
-                instance.preloadAllImages();
-            }
-        },
-
-        /**
-         * Fires after the value of the
-         * [loading](A.ImageViewer.html#attr_loading) attribute change.
-         *
-         * @method _afterLoadingChange
-         * @param {EventFacade} event
-         * @protected
-         */
-        _afterLoadingChange: function(event) {
-            var instance = this;
-            var boundingBox = instance.get('boundingBox');
-
-            if (event.newVal) {
-                boundingBox.addClass(CSS_IMAGE_VIEWER_LOADING);
-
-                instance.showLoading();
-            }
-            else {
-                boundingBox.removeClass(CSS_IMAGE_VIEWER_LOADING);
-            }
-        },
-
-        /**
-         * Fires after the value of the
-         * [visible](A.ImageViewer.html#attr_visible) attribute change.
-         *
-         * @method _afterVisibleChange
-         * @param {EventFacade} event
-         * @protected
-         */
-        _afterVisibleChange: function() {
-            var instance = this;
-
-            instance._syncControlsUI();
-        },
-
-        /**
-         * Fires the click event on the close icon.
-         *
-         * @method _onClickCloseEl
-         * @param {EventFacade} event Click event facade
-         * @protected
-         */
-        _onClickCloseEl: function(event) {
-            var instance = this;
-
-            instance.close();
-
-            event.halt();
-        },
-
-        /**
-         * Fires the click event on the left control icon.
-         *
-         * @method _onClickLeftControl
-         * @param {EventFacade} event Click event facade
-         * @protected
-         */
-        _onClickLeftControl: function(event) {
-            var instance = this;
-
-            instance.prev();
-
-            event.halt();
-        },
-
-        /**
-         * Fires the click event on the right control icon.
-         *
-         * @method _onClickRightControl
-         * @param {EventFacade} event Click event facade
-         * @protected
-         */
-        _onClickRightControl: function(event) {
-            var instance = this;
-
-            instance.next();
-
-            event.halt();
-        },
-
-        /**
-         * Fires the click event on the links.
+         * Fired when the nodes in the `links` attribute are clicked.
          *
          * @method _onClickLinks
-         * @param {EventFacade} event Click event facade
+         * @param {EventFacade} event
          * @protected
          */
         _onClickLinks: function(event) {
-            var instance = this;
-            var target = event.currentTarget;
-
-            // set the current currentIndex of the clicked image
-            instance.set(
-                'currentIndex',
-                instance.get('links').indexOf(target)
-            );
-
-            instance.show();
-
             event.preventDefault();
+
+            this.show();
+            this.set(
+                'currentIndex',
+                this.get('links').indexOf(event.currentTarget)
+            );
         },
 
         /**
-         * Handles the key interaction (i.e., next, prev etc).
+         * This should be called when the current image is ready to be
+         * displayed.
          *
-         * @method _onKeyInteraction
-         * @param {EventFacade} event Click event facade
+         * @method _onCurrentImageReady
          * @protected
          */
-        _onKeyInteraction: function(event) {
-            var instance = this;
+        _onCurrentImageReady: function() {
+            var instance = this,
+                image = this._getCurrentImage();
 
-            if (!instance.get('visible')) {
-                return false; // NOTE: return
-            }
+            this.updateDimensionsWithNewRatio();
 
-            if (event.isKey('LEFT')) {
-                instance.prev();
-            }
-            else if (event.isKey('RIGHT')) {
-                instance.next();
-            }
-            else if (event.isKey('ESC')) {
-                instance.close();
-            }
-        },
-
-        /**
-         * Fires on a image load.
-         *
-         * @method _onLoadImage
-         * @param {EventFacade} event
-         * @protected
-         */
-        _onLoadImage: function(event) {
-            var instance = this;
-            var image = event.currentTarget;
-
-            instance._displayLoadedImage(image);
-
-            var imageAnim = instance.get('imageAnim');
-
-            if (instance.get('anim')) {
+            if (this.get('anim') && this.get('visible')) {
                 image.setStyle('opacity', 0);
 
                 if (!image.fx) {
-                    image.plug(NodeFx, imageAnim);
+                    image.plug(A.Plugin.NodeFX, this.get('imageAnim'));
+
+                    image.fx.on('end', function(info) {
+                        instance.fire('anim', {
+                            anim: info,
+                            image: image
+                        });
+                    });
                 }
 
-                image.fx.on('end', function(info) {
-                    instance.fire('anim', {
-                        anim: info,
-                        image: image
-                    });
-                });
-
                 image.fx.stop().run();
+            }
+
+            this.fire('load', {
+                image: image
+            });
+        },
+
+        /**
+         * Fired when an image has finished loading.
+         *
+         * @method _onImageLoad
+         * @protected
+         */
+        _onImageLoad: function(image, index) {
+            image.setData('loaded', true);
+            image.get('parentNode').removeClass(CSS_LOADING);
+
+            if (this.get('visible') && index === this.get('currentIndex')) {
+                this._onCurrentImageReady();
             }
         },
 
         /**
-         * Sets the size of the image and the overlay respecting the
-         * maxHeight/maxWidth ratio.
+         * Fired when the user presses a key on the keyboard.
          *
-         * @method _uiSetImageSize
-         * @param {HTMLImage} image Image
+         * @method _onKeydown
+         * @param {EventFacade} event
          * @protected
          */
-        _uiSetImageSize: function(image) {
+        _onKeydown: function(event) {
+            if (!this.get('visible')) {
+                return false;
+            }
+
+            if (event.isKey('LEFT')) {
+                this.prev();
+            }
+            else if (event.isKey('RIGHT')) {
+                this.next();
+            }
+            else if (event.isKey('ESC')) {
+                this.hide();
+            }
+        },
+
+        /**
+         * Fired on the `responsive` event.
+         *
+         * @method _onResponsive
+         * @protected
+         */
+        _onResponsive: function() {
+            var image = this._getCurrentImage();
+
+            if (image) {
+                this.footerNode.setStyle('width', 0);
+                image.setStyles({
+                    maxHeight: 'none',
+                    maxWidth: 'none'
+                });
+            }
+        },
+
+        /**
+         * Preloads all the images if the `preloadAllImages` attribute is true.
+         *
+         * @method _preloadAll
+         * @protected
+         */
+        _preloadAll: function() {
             var instance = this;
-            var bodyNode = instance.bodyNode;
-            var footerNode = instance.footerNode;
-            var imageRegion = image.get('region');
 
-            var ratio = instance._getRatio(
-                imageRegion.width,
-                imageRegion.height
-            );
+            if (this.get('preloadAllImages')) {
+                this.get('links').each(function(link, index) {
+                    instance._loadImage(index);
+                });
+            }
+        },
 
-            var height = (imageRegion.height / ratio);
-            var width = (imageRegion.width / ratio);
+        /**
+         * Renders the viewer controsl (next/prev/close).
+         *
+         * @method _renderControls
+         * @protected
+         */
+        _renderControls: function() {
+            var body = A.one('body');
 
-            image.set('offsetHeight', height);
-            image.set('offsetWidth', width);
+            this._controlLeftEl = A.Node.create(this.TPL_CONTROL_LEFT);
+            body.append(this._controlLeftEl.hide());
 
-            footerNode.setStyle('width', width + 'px');
+            this._controlRightEl = A.Node.create(this.TPL_CONTROL_RIGHT);
+            body.append(this._controlRightEl.hide());
 
-            bodyNode.setStyles({
-                height: height + 'px',
-                width: width + 'px'
+            this._closeEl = A.Node.create(this.TPL_CLOSE);
+            body.append(this._closeEl.hide());
+        },
+
+        /**
+         * Renders the footer of the viewer.
+         *
+         * @method _renderFooter
+         * @protected
+         */
+        _renderFooter: function() {
+            var container = A.Node.create('<div></div>');
+
+            this._captionEl = A.Node.create(this.TPL_CAPTION);
+            container.append(this._captionEl);
+
+            this._infoEl = A.Node.create(this.TPL_INFO);
+            container.append(this._infoEl);
+
+            this.setStdModContent('footer', container);
+        },
+
+        /**
+         * Renders the image in the given index inside the given container.
+         *
+         * @method _renderImage
+         * @param {Number} index The index of the image to be loaded.
+         * @param {Node} container The container where the image should be added.
+         * @protected
+         */
+        _renderImage: function(index, container) {
+            var group,
+                id,
+                image = A.Node.create(this.TPL_IMAGE),
+                link = this.get('links').item(index);
+
+            container.prepend(image);
+
+            if (A.UA.ie === 8) {
+                // YUI is currently losing the reference to the img node on IE8
+                // after creating it, in a way that setting attributes doesn't
+                // work on the img unless we find it from the DOM again.
+                image = container.one('.' + CSS_IMAGE);
+            }
+
+            this._eventHandles.push(image.once('load', A.bind(this._onImageLoad, this, image, index)));
+            id = image.generateID();
+
+            group = new A.ImgLoadGroup();
+            group.addCustomTrigger(EVENT_LOAD + index, this);
+            group.registerImage({
+                domId: id,
+                srcUrl: link.attr('href')
             });
+            this._imgLoadGroups.push(group);
+        },
+
+        /**
+         * Renders the images inside the viewer.
+         *
+         * @method _renderImages
+         * @protected
+         */
+        _renderImages: function() {
+            var instance = this,
+                container,
+                list = A.Node.create(this.TPL_IMAGE_LIST);
+
+            this.setStdModContent('body', list);
+
+            this.get('links').each(function(link, index) {
+                container = A.Node.create(instance.TPL_IMAGE_CONTAINER);
+                container.addClass(CSS_LOADING);
+                list.append(container);
+
+                instance._renderImage(index, container);
+            });
+
+            this._preloadAll();
+        },
+
+        /**
+         * Loads the image specified at `currentIndex` and shows it.
+         *
+         * @method _showCurrentImage
+         * @protected
+         */
+        _showCurrentImage: function() {
+            var containers,
+                contentBox = this.get('contentBox'),
+                currentIndex = this.get('currentIndex'),
+                image,
+                imageContainer;
+
+            if (!this.get('visible')) {
+                return;
+            }
+
+            containers = contentBox.all('.' + CSS_IMAGE_CONTAINER);
+            containers.removeClass(CSS_CURRENT_IMAGE);
+
+            imageContainer = containers.item(this.get('currentIndex'));
+            imageContainer.addClass(CSS_CURRENT_IMAGE);
+
+            this._closeEl.show();
+            this._syncControlsUI();
+            this._syncCaptionUI();
+            this._syncInfoUI();
+
+            this._loadImage(currentIndex);
+
+            image = imageContainer.one('.' + CSS_IMAGE);
+            this.fire('request', {
+                image: image
+            });
+
+            if (this.get('preloadNeighborImages')) {
+                if (this.hasPrev()) {
+                    this._loadImage(currentIndex - 1);
+                }
+                if (this.hasNext()) {
+                    this._loadImage(currentIndex + 1);
+                }
+            }
+
+            if (image.getData('loaded')) {
+                this._onCurrentImageReady();
+            }
+        },
+
+        /**
+         * Updates the caption.
+         *
+         * @method _syncCaptionUI
+         * @protected
+         */
+        _syncCaptionUI: function() {
+            var caption = this.get('caption'),
+                link;
+
+            if (this.get('captionFromTitle')) {
+                link = this.get('links').item(this.get('currentIndex'));
+                caption = link.attr('title') ? link.attr('title') : caption;
+            }
+
+            this._captionEl.set('text', caption);
+        },
+
+        /**
+         * Updates the controls (next/prev/close), showing or hiding them
+         * as necessary.
+         *
+         * @method _syncControlsUI
+         * @protected
+         */
+        _syncControlsUI: function() {
+            if (this.get('visible') && this.get('showControls')) {
+                this._controlLeftEl[this.hasPrev() ? 'show' : 'hide']();
+                this._controlRightEl[this.hasNext() ? 'show' : 'hide']();
+            }
+            else {
+                this._controlLeftEl.hide();
+                this._controlRightEl.hide();
+            }
+        },
+
+        /**
+         * Updates the info node.
+         *
+         * @method _syncInfoUI
+         * @protected
+         */
+        _syncInfoUI: function() {
+            this._infoEl.setHTML(this.get('infoTemplate'));
         }
-    },
-
-    {
-        /**
-         * Static property provides a string to identify the class.
-         *
-         * @property NAME
-         * @type String
-         * @static
-         */
-        NAME: 'image-viewer',
-
-        /**
-         * Static property provides a string to identify the CSS prefix.
-         *
-         * @property CSS_PREFIX
-         * @type String
-         * @static
-         */
-        CSS_PREFIX: getCN('image-viewer'),
-
+    }, {
         /**
          * Static property used to define the default attribute
          * configuration for the `A.ImageViewer`.
@@ -942,7 +657,6 @@ var ImageViewer = A.Base.create(
          * @static
          */
         ATTRS: {
-
             /**
              * If `true` the navigation is animated.
              *
@@ -952,29 +666,19 @@ var ImageViewer = A.Base.create(
              */
             anim: {
                 value: true,
-                validator: isBoolean
-            },
-
-            /**
-             * The content of body.
-             *
-             * @attribute bodyContent
-             * @type String
-             */
-            bodyContent: {
-                value: NODE_BLANK_TEXT
+                validator: A.Lang.isBoolean
             },
 
             /**
              * The caption of the displayed image.
              *
              * @attribute caption
-             * @default ''
+             * @default 'blank'
              * @type String
              */
             caption: {
                 value: 'blank',
-                validator: isString
+                validator: A.Lang.isString
             },
 
             /**
@@ -987,7 +691,7 @@ var ImageViewer = A.Base.create(
              */
             captionFromTitle: {
                 value: true,
-                validator: isBoolean
+                validator: A.Lang.isBoolean
             },
 
             /**
@@ -1003,6 +707,17 @@ var ImageViewer = A.Base.create(
             },
 
             /**
+             * The CSS class to be added to the bounding box.
+             *
+             * @attribute cssClass
+             * @default 'well'
+             * @type String
+             */
+            cssClass: {
+                value: CSS_WELL
+            },
+
+            /**
              * Index of the current image.
              *
              * @attribute currentIndex
@@ -1011,22 +726,7 @@ var ImageViewer = A.Base.create(
              */
             currentIndex: {
                 value: 0,
-                validator: isNumber
-            },
-
-            /**
-             * Image node element used to load the images.
-             *
-             * @attribute image
-             * @default Generated img element.
-             * @readOnly
-             * @type Node
-             */
-            image: {
-                readOnly: true,
-                valueFn: function() {
-                    return A.Node.create(TPL_IMAGE);
-                }
+                validator: A.Lang.isNumber
             },
 
             /**
@@ -1048,7 +748,7 @@ var ImageViewer = A.Base.create(
                         value
                     );
                 },
-                validator: isObject
+                validator: A.Lang.isObject
             },
 
             /**
@@ -1063,7 +763,7 @@ var ImageViewer = A.Base.create(
                     return this._getInfoTemplate(v);
                 },
                 value: INFO_LABEL_TEMPLATE,
-                validator: isString
+                validator: A.Lang.isString
             },
 
             /**
@@ -1076,10 +776,10 @@ var ImageViewer = A.Base.create(
              */
             links: {
                 setter: function(v) {
-                    if (isNodeList(v)) {
+                    if (v instanceof A.NodeList) {
                         return v;
                     }
-                    else if (isString(v)) {
+                    else if (A.Lang.isString(v)) {
                         return A.all(v);
                     }
 
@@ -1088,19 +788,7 @@ var ImageViewer = A.Base.create(
             },
 
             /**
-             * Whether the image is during a loading state.
-             *
-             * @attribute loading
-             * @default false
-             * @type Boolean
-             */
-            loading: {
-                value: false,
-                validator: isBoolean
-            },
-
-            /**
-             * Displays the modal the viewport. Set to `false` to disable.
+             * Displays a mask behind the viewer. Set to `false` to disable.
              *
              * @attribute modal
              * @default true
@@ -1120,7 +808,7 @@ var ImageViewer = A.Base.create(
              */
             preloadAllImages: {
                 value: false,
-                validator: isBoolean
+                validator: A.Lang.isBoolean
             },
 
             /**
@@ -1133,19 +821,7 @@ var ImageViewer = A.Base.create(
              */
             preloadNeighborImages: {
                 value: true,
-                validator: isBoolean
-            },
-
-            /**
-             * Shows close icon control.
-             *
-             * @attribute showClose
-             * @default true
-             * @type Boolean
-             */
-            showClose: {
-                value: true,
-                validator: isBoolean
+                validator: A.Lang.isBoolean
             },
 
             /**
@@ -1157,34 +833,7 @@ var ImageViewer = A.Base.create(
              */
             showControls: {
                 value: true,
-                validator: isBoolean
-            },
-
-            /**
-             * Specify the tab order of elements.
-             *
-             * @attribute tabIndex
-             * @default null
-             * @type Number
-             */
-            tabIndex: {
-                value: null
-            },
-
-            /**
-             * Helper attribute to get the `size` of the
-             * [links](A.ImageViewer.html#attr_links) NodeList.
-             *
-             * @attribute totalLinks
-             * @default true
-             * @readOnly
-             * @type Boolean
-             */
-            totalLinks: {
-                readOnly: true,
-                getter: function() {
-                    return this.get('links').size();
-                }
+                validator: A.Lang.isBoolean
             },
 
             /**
@@ -1196,147 +845,16 @@ var ImageViewer = A.Base.create(
              */
             visible: {
                 value: false
-            },
-
-            /**
-             * Specify the stack order of elements.
-             *
-             * @attribute zIndex
-             * @default 3000
-             * @type Number
-             */
-            zIndex: {
-                value: 3000,
-                validator: isNumber
-            },
-
-            /**
-             * The element to be used as left control.
-             *
-             * @attribute controlLeftEl
-             * @default Generated HTML div element.
-             * @readOnly
-             * @type Node
-             */
-            controlLeftEl: {
-                readOnly: true,
-                valueFn: function() {
-                    return A.Node.create(TPL_CONTROL_LEFT);
-                }
-            },
-
-            /**
-             * The element to be used as right control.
-             *
-             * @attribute controlRightEl
-             * @default Generated HTML div element.
-             * @readOnly
-             * @type Node
-             */
-            controlRightEl: {
-                readOnly: true,
-                valueFn: function() {
-                    return A.Node.create(TPL_CONTROL_RIGHT);
-                }
-            },
-
-            /**
-             * The element to be used as caption.
-             *
-             * @attribute captionEl
-             * @default Generated HTML div element.
-             * @readOnly
-             * @type Node
-             */
-            captionEl: {
-                readOnly: true,
-                valueFn: function() {
-                    return A.Node.create(TPL_CAPTION);
-                }
-            },
-
-            /**
-             * The element to be used as close.
-             *
-             * @attribute closeEl
-             * @default Generated HTML div element.
-             * @readOnly
-             * @type Node
-             */
-            closeEl: {
-                readOnly: true,
-                valueFn: function() {
-                    return A.Node.create(TPL_CLOSE);
-                }
-            },
-
-            /**
-             * The element to be used as info.
-             *
-             * @attribute infoEl
-             * @default Generated HTML div element.
-             * @readOnly
-             * @type Node
-             */
-            infoEl: {
-                readOnly: true,
-                valueFn: function() {
-                    return A.Node.create(TPL_INFO);
-                }
-            },
-
-            /**
-             * HTML element to contain the `img` which is being loaded.
-             *
-             * @attribute loader
-             * @default Generated HTML div element.
-             * @type Node
-             */
-            loader: {
-                readOnly: true,
-                valueFn: function() {
-                    return A.Node.create(TPL_LOADER).appendTo(DOC.body);
-                }
-            },
-
-            /**
-             * The element to be used as loading.
-             *
-             * @attribute loadingEl
-             * @default Generated HTML div element.
-             * @type Node
-             */
-            loadingEl: {
-                valueFn: function() {
-                    return A.Node.create(TPL_LOADING);
-                }
-            },
-
-            /**
-             * The maximum height of the element.
-             *
-             * @attribute maxHeight
-             * @default Infinity
-             * @type Number
-             */
-            maxHeight: {
-                value: Infinity,
-                validator: isNumber
-            },
-
-            /**
-             * The maximum width of the element.
-             *
-             * @attribute maxWidth
-             * @default Infinity
-             * @type Number
-             */
-            maxWidth: {
-                value: Infinity,
-                validator: isNumber
             }
-        }
+        },
+
+        /**
+         * Static property provides a string to identify the CSS prefix.
+         *
+         * @property CSS_PREFIX
+         * @type String
+         * @static
+         */
+        CSS_PREFIX: A.getClassName('image-viewer')
     }
 );
-
-A.ImageViewer = ImageViewer;

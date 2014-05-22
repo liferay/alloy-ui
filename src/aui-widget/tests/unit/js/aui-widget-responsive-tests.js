@@ -6,17 +6,30 @@ YUI.add('aui-widget-responsive-tests', function(Y) {
         name: 'AUI WidgetResponsive Unit Tests',
 
         init: function() {
+            var instance = this;
+
             this._container = Y.one('#container');
 
-            this._imageWidth = 940;
-            this._imageHeight = 253;
+            this._originalViewportFn = Y.DOM.viewportRegion;
+            this._viewportHeight = 2000;
+            this._viewportWidth = 2000;
+            Y.DOM.viewportRegion = function() {
+                return {
+                    height: instance._viewportHeight,
+                    width: instance._viewportWidth
+                };
+            }
+        },
+
+        destroy: function() {
+            Y.DOM.viewportRegion = this._originalViewportFn;
         },
 
         setUp: function() {
             var content = Y.Node.create('<div id="content"></div>'),
-                image = Y.one('#image');
+                images = Y.one('#images');
 
-            content.setHTML(image.getHTML());
+            content.setHTML(images.getHTML());
             this._container.append(content);
 
             this._container.setStyles({
@@ -163,6 +176,44 @@ YUI.add('aui-widget-responsive-tests', function(Y) {
 
             Y.Assert.areEqual(
                 '273px',
+                this._widget.get('boundingBox').getStyle('height'),
+                'Height should have been updated to match the ratio'
+            );
+        },
+
+        'should reset the ratio when requested': function() {
+            var images;
+
+            this._container.setStyle('width', '940px');
+
+            this._createWidget();
+
+            images = this._widget.get('contentBox').all('img');
+            images.item(0).hide();
+            images.item(1).show();
+            this._widget.updateDimensionsWithNewRatio();
+
+            Y.Assert.areEqual(
+                '626px',
+                this._widget.get('boundingBox').getStyle('height'),
+                'Height should have been updated to match the ratio'
+            );
+        },
+
+        'should make the widget fit in the viewport': function() {
+            this._container.setStyle('width', '940px');
+            this._viewportWidth = 470;
+            this._viewportHeight = 235;
+
+            this._createWidget();
+
+            Y.Assert.areEqual(
+                '470px',
+                this._widget.get('boundingBox').getStyle('width'),
+                'Width should have been updated to fit the viewport'
+            );
+            Y.Assert.areEqual(
+                '126px',
                 this._widget.get('boundingBox').getStyle('height'),
                 'Height should have been updated to match the ratio'
             );

@@ -72,6 +72,18 @@ WidgetResponsive.prototype = {
     },
 
     /**
+     * Updates the widget's dimensions like the `updateDimensions` method, but
+     * also recalculates the ratio to be preserved. Useful if the visible content
+     * of the widget has changed causing the ratio to change as well.
+     *
+     * @method updateDimensionsWithNewRatio
+     */
+    updateDimensionsWithNewRatio: function() {
+        this._originalDimensions = null;
+        this.updateDimensions();
+    },
+
+    /**
      * Calculates the original width and height of the widget, which will be
      * used when changing its dimensions to preserve its ratio.
      *
@@ -85,8 +97,6 @@ WidgetResponsive.prototype = {
             originalDisplay;
 
         if (!this._originalDimensions) {
-            originalDisplay = boundingBox.getStyle('display');
-
             boundingBox.setStyles({
                 display: 'inline-block'
             });
@@ -97,7 +107,7 @@ WidgetResponsive.prototype = {
             };
 
             boundingBox.setStyles({
-                display: originalDisplay
+                display: ''
             });
         }
 
@@ -112,6 +122,16 @@ WidgetResponsive.prototype = {
      */
     _canChangeHeight: function() {
         return this.get('height') === 'auto' || this.get('height') === '';
+    },
+
+    /**
+     * Checks if the width can be manually changed.
+     *
+     * @method _canChangeWidth
+     * @return {Boolean}
+     */
+    _canChangeWidth: function() {
+        return this.get('width') === 'auto' || this.get('width') === '';
     },
 
     /**
@@ -135,7 +155,8 @@ WidgetResponsive.prototype = {
             newHeight,
             newWidth,
             originalDimensions,
-            ratio = 1;
+            ratio = 1,
+            viewportRegion = A.DOM.viewportRegion();
 
         this._uiSetDim('width', this.get('width'));
         this._uiSetDim('height', this.get('height'));
@@ -146,6 +167,13 @@ WidgetResponsive.prototype = {
         if (this._canChangeHeight() && this.get('preserveRatio')) {
             originalDimensions = this._calculateOriginalDimensions();
             newHeight = (originalDimensions.height * newWidth) / originalDimensions.width;
+        }
+
+        if (this._canChangeHeight()) {
+            maxHeight = Math.min(maxHeight, viewportRegion.height);
+        }
+        if (this._canChangeWidth()) {
+            maxWidth = Math.min(maxWidth, viewportRegion.width);
         }
 
         if (newWidth > maxWidth || newHeight > maxHeight) {

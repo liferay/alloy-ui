@@ -46,39 +46,14 @@
 </div>
 <script>
 
-YUI({ filter: 'raw' }).use('aui-image-viewer-base', 'panel', function(Y) {
-
+YUI({ filter: 'raw' }).use('aui-image-viewer-base', function(Y) {
 	new Y.ImageViewer({
 		anim: false,
 		links: '#gallery a',
 		caption: 'Liferay Champion Soccer',
 		captionFromTitle: true,
-		preloadAllImages: true,
-		showInfo: true,
-
-		// anim: false,
-		// currentIndex: 3,
-		// infoTemplate: 'Image {current} of {total}, modified.',
-		// lockScroll: false,
-		// modal: false,
-		// preloadNeighborImages: true,
-		// showArrows: false,
-		// showClose: false,
-		// imageAnim: {
-		// 	duration: 2,
-		// 	easing: 'bounceOut',
-		// },
-
-		after: {
-			anim: function(event) {
-			},
-			request: function(event) {
-			},
-			load: function(event) {
-			}
-		}
+		preloadAllImages: true
 	}).render();
-
 });
 
 </script>
