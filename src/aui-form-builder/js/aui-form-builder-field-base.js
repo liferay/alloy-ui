@@ -70,8 +70,6 @@ var L = A.Lang,
 
     getCN = A.getClassName,
 
-    CSS_ALERT = getCN(ALERT),
-    CSS_ALERT_INFO = getCN(ALERT, INFO),
     CSS_CLEARFIX = getCN(CLEARFIX),
     CSS_COMPONENT = getCN(COMPONENT),
     CSS_FB_DROP_ZONE = getCN(FORM, BUILDER, DROP, ZONE),
@@ -86,7 +84,6 @@ var L = A.Lang,
     CSS_ICON_WRENCH = getCN(ICON, WRENCH),
     CSS_WIDGET = getCN(WIDGET),
 
-    TPL_ALERT_TIP = '<div class="' + [CSS_ALERT, CSS_ALERT_INFO].join(SPACE) + '"></div>',
     TPL_BOUNDING_BOX = '<div class="' + [CSS_WIDGET, CSS_COMPONENT, CSS_FB_FIELD].join(SPACE) + '"></div>',
     TPL_DROP_ZONE = '<div class="' + CSS_FB_DROP_ZONE + '"></div>',
     TPL_FLAG_REQUIRED = '<span class="' + [CSS_ICON, CSS_ICON_ASTERISK].join(SPACE) + '"></span>',
@@ -585,30 +582,6 @@ var FormBuilderField = A.Component.create({
             instance.controlsToolbar = new A.Toolbar(
                 instance.get(CONTROLS_TOOLBAR)
             );
-
-            instance.toolTip = new A.Overlay({
-                align: {
-                    node: instance.get(TIP_FLAG_NODE),
-                    points: [A.WidgetPositionAlign.LC, A.WidgetPositionAlign.RC]
-                },
-                boundingBox: A.Node.create(TPL_ALERT_TIP),
-                zIndex: 500,
-                visible: false
-            });
-        },
-
-        /**
-         * Bind the events on the FormBuilderField UI. Lifecycle.
-         *
-         * @method bindUI
-         * @protected
-         */
-        bindUI: function() {
-            var instance = this,
-                tipFlagNode = instance.get(TIP_FLAG_NODE);
-
-            tipFlagNode.on('mouseover', A.bind(instance._onMouseOverTipFlagNode, instance));
-            tipFlagNode.on('mouseout', A.bind(instance._onMouseOutTipFlagNode, instance));
         },
 
         /**
@@ -634,7 +607,6 @@ var FormBuilderField = A.Component.create({
             contentBox.append(templateNode);
 
             instance.controlsToolbar.render(boundingBox);
-            instance.toolTip.render(contentBox);
         },
 
         /**
@@ -666,7 +638,7 @@ var FormBuilderField = A.Component.create({
             // use delegate
             instance.get(BOUNDING_BOX).dd.destroy();
 
-            instance.toolTip.destroy();
+            instance.tooltip.destroy();
 
             instance.get(PARENT).removeField(instance);
 
@@ -927,34 +899,6 @@ var FormBuilderField = A.Component.create({
         /**
          * TODO. Wanna help? Please send a Pull Request.
          *
-         * @method _onMouseOutTipFlagNode
-         * @protected
-         */
-        _onMouseOutTipFlagNode: function() {
-            var instance = this;
-
-            instance.toolTipTime = setTimeout(function() {
-                instance.toolTip.hide();
-            }, 300);
-        },
-
-        /**
-         * TODO. Wanna help? Please send a Pull Request.
-         *
-         * @method _onMouseOverTipFlagNode
-         * @protected
-         */
-        _onMouseOverTipFlagNode: function() {
-            var instance = this;
-
-            clearInterval(instance.toolTipTime);
-
-            instance.toolTip.show();
-        },
-
-        /**
-         * TODO. Wanna help? Please send a Pull Request.
-         *
          * @method _setId
          * @param val
          * @protected
@@ -1134,7 +1078,18 @@ var FormBuilderField = A.Component.create({
                 tipFlagNode.hide();
             }
 
-            instance.toolTip.set(BODY_CONTENT, val);
+            if (this.tooltip) {
+                this.tooltip.set(BODY_CONTENT, val);
+                return;
+            }
+
+            this.tooltip = new A.Tooltip({
+                bodyContent: val,
+                trigger: tipFlagNode,
+                position: 'right',
+                visible: false
+            }).render();
+
         },
 
         /**
