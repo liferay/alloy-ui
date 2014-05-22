@@ -18,6 +18,7 @@ YUI.add('aui-surface-tests', function(Y) {
                 'should match surface elements': noHTML5,
                 'should lazily match surface element': noHTML5,
                 'should navigate with screen lifecycle': noHTML5,
+                'should navigate to hash clicked links': noHTML5,
                 'should navigate asynchronously': noHTML5,
                 'should dispatch to the current url': noHTML5,
                 'should prevent navigate from startNavigate': noHTML5,
@@ -34,6 +35,7 @@ YUI.add('aui-surface-tests', function(Y) {
                 'should not navigate to unrouted clicked links': noHTML5,
                 'should not navigate to external clicked links': noHTML5,
                 'should not navigate to clicked links outside base path': noHTML5,
+                'should not navigate to hash clicked links in the same url': noHTML5,
                 'should navigate to previous page asynchronously': noHTML5
             }
         },
