@@ -30,7 +30,7 @@ YUI.add('tests-aui-surface-utils', function(Y) {
         },
 
         getCurrentPath: function() {
-            return Y.config.win.location.pathname + Y.config.win.location.search;
+            return Y.config.win.location.pathname + Y.config.win.location.search + Y.config.win.location.hash;
         },
 
         getOriginalBasePath: function() {
