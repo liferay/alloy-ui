@@ -1031,12 +1031,7 @@ var FormBuilderField = A.Component.create({
                 controlsToolbar = instance.controlsToolbar,
                 requiredNode = instance.get(REQUIRED_FLAG_NODE);
 
-            if (val) {
-                requiredNode.show();
-            }
-            else {
-                requiredNode.hide();
-            }
+            requiredNode.toggle(val.length !== 0);
 
             controlsToolbar.set(CHILDREN, instance._getToolbarItems());
         },
@@ -1052,12 +1047,7 @@ var FormBuilderField = A.Component.create({
             var instance = this,
                 labelNode = instance.get(LABEL_NODE);
 
-            if (val) {
-                labelNode.show();
-            }
-            else {
-                labelNode.hide();
-            }
+            labelNode.toggle(val.length !== 0);
         },
 
         /**
@@ -1071,12 +1061,7 @@ var FormBuilderField = A.Component.create({
             var instance = this,
                 tipFlagNode = instance.get(TIP_FLAG_NODE);
 
-            if (val) {
-                tipFlagNode.show();
-            }
-            else {
-                tipFlagNode.hide();
-            }
+            tipFlagNode.toggle(val.length !== 0);
 
             if (this.tooltip) {
                 this.tooltip.set(BODY_CONTENT, val);
