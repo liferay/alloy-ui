@@ -287,10 +287,20 @@ A.Modal = A.Base.create('modal', A.Widget, [
      */
     _syncResizeDimensions: function(event) {
         var instance = this,
+            boundingBox = instance.get('boundingBox'),
             resize = event.info;
 
-        instance.set('width', resize.offsetWidth);
-        instance.set('height', resize.offsetHeight);
+        instance.set(
+            'width',
+            resize.offsetWidth -
+            parseInt(boundingBox.getComputedStyle('borderRightWidth'), 10) -
+            parseInt(boundingBox.getComputedStyle('borderLeftWidth'), 10));
+
+        instance.set(
+            'height',
+            resize.offsetHeight -
+            parseInt(boundingBox.getComputedStyle('borderTopWidth'), 10) -
+            parseInt(boundingBox.getComputedStyle('borderBottomWidth'), 10));
     }
 }, {
 
