@@ -43,5 +43,18 @@
             "aui-pagination",
             "aui-toolbar"
         ]
+    },
+
+    "aui-image-viewer-swipe": {
+        "requires": [
+            "aui-image-viewer-base",
+            "aui-widget-swipe",
+            "event-resize"
+        ],
+        "condition": {
+            "trigger": "aui-image-viewer-base",
+            "ua": "touchEnabled"
+        },
+        "skinnable": true
     }
 }

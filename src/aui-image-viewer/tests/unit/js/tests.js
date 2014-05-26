@@ -560,9 +560,9 @@ YUI.add('aui-image-viewer-base-tests', function(Y) {
                 method: 'onLoad',
                 args: [Y.Mock.Value.Object]
             });
-            this._imageViewer.once('load0', mock.onLoad);
+            this._imageViewer.once('load1', mock.onLoad);
 
-            this._imageViewer.set('currentIndex', 0);
+            this._imageViewer.set('currentIndex', 1);
             Y.Mock.verify(mock);
         }
     }));

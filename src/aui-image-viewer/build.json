@@ -17,6 +17,12 @@
             "jsfiles": [
                 "js/aui-image-viewer-media.js"
             ]
+        },
+
+        "aui-image-viewer-swipe": {
+            "jsfiles": [
+                "js/aui-image-viewer-swipe.js"
+            ]
         }
     }
 }
