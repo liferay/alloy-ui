@@ -129,10 +129,10 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
      */
     _onSelectionKey: function(event) {
         var instance = this,
-            targetIsBoundingBox = instance.get('boundingBox').compareTo(event.target)
-            keyCode = event.keyCode;
+            keyCode = event.keyCode,
+            editor = A.Widget.getByNode(event.target);
 
-        if (targetIsBoundingBox && keyCode === 13) {
+        if (editor && keyCode === 13) {
             instance._onEditCell(event);
         }
 
