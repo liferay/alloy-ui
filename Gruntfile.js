@@ -9,58 +9,11 @@ module.exports = function(grunt) {
 
         pkg: grunt.file.readJSON('.alloy.json'),
 
-        'api-build': {
-            'src': 'temp',
-            'dist': path.join(ROOT, 'api'),
-            'theme': path.join(ROOT, 'bower_components/alloy-apidocs-theme'),
-            'aui-version': '<%= pkg["version"] %>'
-        },
-
-        'api-include': {
-            'all': {
-                'src': ['temp/alloy-ui/src/*/js/*.js'],
-                'repo': path.join(ROOT, 'bower_components/alloyui.com')
-            }
-        },
-
-        'api-push': {
-            'src': path.join(ROOT, 'api'),
-            'dist': path.join(ROOT, 'bower_components/alloyui.com/api'),
-            'repo': path.join(ROOT, 'bower_components/alloyui.com'),
-            'branch': 'gh-pages',
-            'remote': 'origin'
-        },
-
-        'api-watch': {
-            'src': [path.join(ROOT, 'src'), path.join(ROOT, 'bower_components/yui3/src')],
-            'theme': path.join(ROOT, 'bower_components/alloy-apidocs-theme'),
-            'aui-version': '<%= pkg["version"] %>'
-        },
-
         cdn: {
             combine: true,
             comboBase: 'http://cdn.alloyui.com/combo/combo.php?',
             filter: 'min',
             root: '../<%= pkg["version"] %>/'
-        },
-
-        copy: {
-            api: {
-                files: [
-                    {
-                        cwd: path.join('bower_components/yui3/src/'),
-                        src: '**',
-                        dest: 'temp/yui3/src/',
-                        expand: true
-                    },
-                    {
-                        cwd: 'src/',
-                        src: '**',
-                        dest: 'temp/alloy-ui/src/',
-                        expand: true
-                    }
-                ]
-            }
         },
 
         compress: {
@@ -86,7 +39,6 @@ module.exports = function(grunt) {
         },
 
         clean: {
-            api: ['api', 'temp'],
             build: ['build'],
             zip: [
                 'alloy-<%= pkg["version"] %>.zip',
@@ -113,11 +65,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-bowercopy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-compress');
-    grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.registerTask('all', ['clean:build', 'init', 'build']);
-    grunt.registerTask('api', ['copy:api', 'api-include', 'api-build']);
-    grunt.registerTask('api-deploy', ['api', 'api-push', 'clean:api']);
     grunt.registerTask('release', ['clean:zip', 'all', 'zip:release']);
     grunt.registerTask('release-cdn', ['clean:zip', 'all', 'cdn', 'zip:cdn', 'build:aui']);
 };
