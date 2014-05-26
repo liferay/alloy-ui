@@ -5,3 +5,7 @@
 .modal-content {
     overflow: hidden;
 }
+
+.modal-footer {
+    margin-top: 0;
+}
