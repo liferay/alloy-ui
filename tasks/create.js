@@ -1,54 +1,32 @@
-var TASK = {
-    name: 'create',
-    description: 'Create a new module under src/ folder'
-};
-
-// -- Dependencies -------------------------------------------------------------
-var async = require('async');
+var gulp = require('gulp');
+var prompt = require('gulp-prompt');
 var spawn = require('child_process').spawn;
-var which = require('which').sync;
 
-// -- Task ---------------------------------------------------------------------
-module.exports = function(grunt) {
-    grunt.registerTask(TASK.name, TASK.description, function() {
-        var done = this.async();
+var name;
 
-        async.series([
-            function(mainCallback) {
-                    exports._setGruntConfig(mainCallback);
-            },
-            function(mainCallback) {
-                    exports._runCommand(mainCallback);
-            }],
-            function(err) {
-                if (err) {
-                    done(false);
-                }
-                else {
-                    done();
-                }
-            }
-        );
+function setName(res) {
+    name = res.name;
+
+    if (name.indexOf('aui-') !== 0) {
+        name = 'aui-' + name;
+    }
+}
+
+gulp.task('create-name', function () {
+    return gulp.src('', { read: false })
+        .pipe(prompt.prompt({
+            name: 'name',
+            type: 'input',
+            message: 'Provide a name to your module'
+        }, setName));
+});
+
+gulp.task('create', ['create-name'], function (callback) {
+    var cmd = spawn('yogi', ['init', name], {
+        stdio: 'inherit'
     });
 
-    exports._setGruntConfig = function(mainCallback) {
-        if (typeof grunt.option('name') === 'string') {
-            grunt.config([TASK.name, 'name'], grunt.option('name'));
-        }
-
-        // Add 'aui' prefix if necessary
-        if (grunt.config([TASK.name, 'name']).indexOf('aui-') !== 0) {
-            grunt.config([TASK.name, 'name'], 'aui-' + grunt.config([TASK.name, 'name']));
-        }
-
-        mainCallback();
-    };
-
-    exports._runCommand = function(mainCallback) {
-        var cmd = spawn(which('yogi'), ['init', grunt.config('create.name')], {
-            stdio: 'inherit'
-        });
-
-        cmd.on('close', mainCallback);
-    };
-};
+    cmd.on('close', function(code) {
+        callback();
+    });
+});

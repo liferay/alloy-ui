@@ -46,10 +46,6 @@ module.exports = function(grunt) {
             ]
         },
 
-        create: {
-            name: 'aui-test'
-        },
-
         zip: {
             cdn: {
                 name: 'cdn-alloy-<%= pkg["version"] %>.zip'
