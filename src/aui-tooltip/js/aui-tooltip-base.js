@@ -127,6 +127,21 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
     },
 
     /**
+     * If the HTML title attribute exists, copy its contents to data-title
+     * and remove it to prevent the browser's native tooltip.
+     *
+     * @private
+     */
+    _borrowTitleAttribute: function() {
+        var trigger = this.get('trigger'),
+            title = trigger.getAttribute('title');
+
+        if (title) {
+            trigger.setAttribute('data-title', title).removeAttribute('title');
+        }
+     },
+
+     /**
       * Set tooltip section attribute.
       *
       * @method _setStdModSection
@@ -154,28 +169,21 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
     _loadTooltipContentFromTitle: function() {
         var instance = this,
             trigger,
-            dataTitle,
             formatter,
             title;
 
         formatter = instance.get('formatter');
         trigger = instance.get('trigger');
-
         if (!trigger) {
             return;
         }
 
-        dataTitle = trigger.getAttribute('data-title');
-        title = trigger.getAttribute('title') || dataTitle;
+        this._borrowTitleAttribute();
 
         if (formatter) {
             title = formatter.call(instance, title);
-        }
 
-        if (!dataTitle) {
-            trigger.removeAttribute('title').setAttribute('data-title', title);
         }
-
         instance.setStdModContent(
             A.WidgetStdMod.BODY, trigger && title || instance.get('bodyContent'));
     },
