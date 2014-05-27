@@ -285,7 +285,7 @@ YUI.add('aui-datatable-tests', function(Y) {
                 { name: 'Joan E. Jones', address: '3217 Another Ave', city: 'New York', state: 'KY', amount: 3, active: 'no', colors: ['red','blue'], fruit: ['apple','cherry'], date: '2013-01-06' }
             ];
 
-            new Y.DataTable({
+            this._dataTable = new Y.DataTable({
                 cssClass: 'table-striped',
                 boundingBox: '#datatable',
                 columns: [
@@ -386,6 +386,96 @@ YUI.add('aui-datatable-tests', function(Y) {
             }).render();
         },
 
+        'navigate on arrow keys': function() {
+            var dataTable = this._dataTable,
+                activeCoords,
+                boundingBox = dataTable.get('boundingBox'),
+                cellCoords = {
+                    'topLeft': [0, 0],
+                    'topRight': [0, 1],
+                    'bottomLeft': [1, 0],
+                    'bottomRight': [1, 1]
+                };
+
+            dataTable.focus();
+            dataTable.set('activeCoord', cellCoords['topLeft']);
+            dataTable.set('selection', cellCoords['topLeft']);
+
+            //simulate right arrow key press
+
+            boundingBox.simulate('keydown', { keyCode: 39 });
+            activeCoords = dataTable.get('activeCoord');
+
+            Y.ArrayAssert.itemsAreSame(cellCoords['topRight'], activeCoords, 'Right arrow should have moved selection.');
+
+            //simulate down arrow key press
+
+            boundingBox.simulate('keydown', { keyCode: 40 });
+            activeCoords = dataTable.get('activeCoord');
+
+            Y.ArrayAssert.itemsAreSame(cellCoords['bottomRight'], activeCoords, 'Down arrow should have moved selection.');
+
+            //simulate left arrow key press
+
+            boundingBox.simulate('keydown', { keyCode: 37 });
+            activeCoords = dataTable.get('activeCoord');
+
+            Y.ArrayAssert.itemsAreSame(cellCoords['bottomLeft'], activeCoords, 'Left arrow should have moved selection.');
+
+            //simulate up arrow key press
+
+            boundingBox.simulate('keydown', { keyCode: 38 });
+            activeCoords = dataTable.get('activeCoord');
+
+            Y.ArrayAssert.itemsAreSame(cellCoords['topLeft'], activeCoords, 'Up arrow should have moved selection.');
+        },
+
+        'open editor on double click': function() {
+            var dataTable = this._dataTable,
+                firstCell = dataTable.getCell([0, 0]);
+
+            firstCell.simulate('dblclick');
+
+            var editorNode = Y.one('.basecelleditor');
+
+            Y.Assert.isNotNull(editorNode, 'The editor should have been opened.');
+        },
+
+        'cancel cell editor': function() {
+            var cell = this._dataTable.getCell([0, 0]),
+                newVal = 'Testing editor node save.',
+                originalVal = cell.html();
+
+            cell.simulate('dblclick');
+
+            var editorNode = Y.one('.basecelleditor'),
+                cancelBtn = editorNode.all('button').item(1),
+                textArea = editorNode.one('textarea');
+
+            textArea.val(newVal);
+
+            cancelBtn.focus().simulate('click');
+
+            Y.Assert.areEqual(cell.html(), originalVal);
+        },
+
+        'save cell edit': function() {
+            var cell = this._dataTable.getCell([0, 0]),
+                newVal = 'Testing editor node save.';
+
+            cell.simulate('dblclick');
+
+            var editorNode = Y.one('.basecelleditor'),
+                textArea = editorNode.one('textarea'),
+                saveBtn = editorNode.all('button').item(0);
+
+            textArea.val(newVal);
+
+            saveBtn.focus().simulate('click');
+
+            Y.Assert.areEqual(cell.html(), newVal);
+        },
+
         'fields sorted on caret click': function() {
             var sortableHeader = Y.one('.table-sortable-column'),
                 colId = sortableHeader.getData('yui3-col-id'),
@@ -399,7 +489,7 @@ YUI.add('aui-datatable-tests', function(Y) {
             Y.all('.table-cell.table-col-' + colId).each(
                 function(item, index, collection) {
                     if (prevCellHtml) {
-                        if (sortBy === "ascending") {
+                        if (sortBy === 'ascending') {
                             sortedCorrectly = prevCellHtml <= item.html();
                         }
                         else {
@@ -411,15 +501,7 @@ YUI.add('aui-datatable-tests', function(Y) {
                 }
             );
 
-            Y.Assert.isTrue(sortedCorrectly);
-        },
-
-        'navigate on arrow keys': function() {
-
-        },
-
-        'open editor on double click': function() {
-
+            Y.Assert.isTrue(sortedCorrectly, 'Items are not sorted correctly.');
         }
     }));
 
