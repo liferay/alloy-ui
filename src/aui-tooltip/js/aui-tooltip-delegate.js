@@ -84,6 +84,7 @@ A.TooltipDelegate = A.Base.create('tooltip-delegate', A.Base, [], {
                 formatter: instance.get('formatter'),
                 opacity: instance.get('opacity'),
                 position: instance.get('position'),
+                html: instance.get('html'),
                 visible: false,
                 zIndex: instance.get('zIndex')
             });
@@ -163,6 +164,18 @@ A.TooltipDelegate = A.Base.create('tooltip-delegate', A.Base, [], {
         },
 
         formatter: A.Tooltip.ATTRS.formatter,
+
+        /**
+         * Determines if the tooltip allows arbitary HTML or is plain text.
+         *
+         * @attribute html
+         * @default false
+         * @type Boolean
+         */
+        html: {
+            value: false,
+            validator: Lang.isBoolean
+        },
 
         /**
          * Determine the opacity of the tooltip.
