@@ -109,7 +109,7 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
         boundingBox.setStyle('opacity', val ? instance.get('opacity') : 0);
 
         if (val) {
-            instance._loadBodyContentFromTitle();
+            instance._loadTooltipContentFromTitle();
         }
     },
 
@@ -129,10 +129,10 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
     /**
      * Load tooltip content from trigger title attribute.
      *
-     * @method _loadBodyContentFromTitle
+     * @method _loadTooltipContentFromTitle
      * @protected
      */
-    _loadBodyContentFromTitle: function() {
+    _loadTooltipContentFromTitle: function() {
         var instance = this,
             trigger,
             dataTitle,
