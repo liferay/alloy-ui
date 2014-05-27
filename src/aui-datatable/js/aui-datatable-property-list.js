@@ -128,17 +128,23 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
      * @protected
      */
     _onSelectionKey: function(event) {
-        var instance = this,
-            keyCode = event.keyCode,
-            editor = A.Widget.getByNode(event.target);
+        var instance = this;
 
-        if (editor && keyCode === 13) {
-            instance._onEditCell(event);
+        if (instance.get('activeCell') && instance.get('focused')) {
+            var keyCode = event.keyCode,
+                target = event.target,
+                editor = A.Widget.getByNode(target);
+
+            if (target.hasClass('yui3-datatable')) {
+                if (editor && keyCode === 13) {
+                    instance._onEditCell(event);
+                }
+
+                A.PropertyList.superclass._onSelectionKey.apply(this, arguments);
+
+                instance._syncPropertyListScrollUI();
+            }
         }
-
-        A.PropertyList.superclass._onSelectionKey.apply(this, arguments);
-
-        instance._syncPropertyListScrollUI();
     },
 
     /**
