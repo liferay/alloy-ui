@@ -89,7 +89,7 @@ WidgetTrigger.ATTRS = {
 };
 
 A.mix(WidgetTrigger.prototype, {
-    _eventHandles: null,
+    _triggerEventHandles: null,
 
     /**
      * Construction logic executed during WidgetTrigger
@@ -114,7 +114,7 @@ A.mix(WidgetTrigger.prototype, {
     destructor: function() {
         var instance = this;
 
-        (new A.EventHandle(instance._eventHandles)).detach();
+        (new A.EventHandle(instance._triggerEventHandles)).detach();
     },
 
     /**
@@ -160,10 +160,10 @@ A.mix(WidgetTrigger.prototype, {
             triggerShowFn,
             triggerToggleFn;
 
-        (new A.EventHandle(instance._eventHandles)).detach();
+        (new A.EventHandle(instance._triggerEventHandles)).detach();
 
         if (val && instance.get('bindDOMEvents')) {
-            eventHandles = instance._eventHandles = [];
+            eventHandles = instance._triggerEventHandles = [];
 
             triggerHideEvent = instance.get('triggerHideEvent');
             triggerShowEvent = instance.get('triggerShowEvent');
