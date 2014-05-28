@@ -279,10 +279,50 @@ YUI.add('aui-datatable-tests', function(Y) {
 
         init: function() {
             var data = [
-                { name: 'Joan B. Jones', address: '3271 Another Ave', city: 'New York', state: 'AL', amount: 3, active: 'no', colors: ['red','blue'], fruit: ['apple'], date: '2013-01-01' },
-                { name: 'Bob C. Uncle', address: '9996 Random Road', city: 'Los Angeles', state: 'CA', amount: 0, active: 'maybe', colors: ['green'], fruit: ['cherry'], date: '2013-01-01' },
-                { name: 'John D. Smith', address: '1623 Some Street', city: 'San Francisco', state: 'CA', amount: 5, active: 'yes', colors: ['red'], fruit: ['cherry'], date: '' },
-                { name: 'Joan E. Jones', address: '3217 Another Ave', city: 'New York', state: 'KY', amount: 3, active: 'no', colors: ['red','blue'], fruit: ['apple','cherry'], date: '2013-01-06' }
+                {
+                    active: 'no',
+                    address: '3271 Another Ave',
+                    amount: 3,
+                    city: 'New York',
+                    colors: ['red','blue'],
+                    date: '2013-01-01',
+                    fruit: ['apple'],
+                    name: 'Joan B. Jones',
+                    state: 'AL'
+                },
+                {
+                    active: 'maybe',
+                    address: '9996 Random Road',
+                    amount: 0,
+                    city: 'Los Angeles',
+                    colors: ['green'],
+                    date: '2013-01-01',
+                    fruit: ['cherry'],
+                    name: 'Bob C. Uncle',
+                    state: 'CA'
+                },
+                {
+                    active: 'yes',
+                    address: '1623 Some Street',
+                    amount: 5,
+                    city: 'San Francisco',
+                    colors: ['red'],
+                    date: '',
+                    fruit: ['cherry'],
+                    name: 'John D. Smith',
+                    state: 'CA'
+                },
+                {
+                    active: 'no',
+                    address: '3217 Another Ave',
+                    amount: 3,
+                    city: 'New York',
+                    colors: ['red','blue'],
+                    date: '2013-01-06',
+                    fruit: ['apple','cherry'],
+                    name: 'Joan E. Jones',
+                    state: 'KY'
+                }
             ];
 
             this._dataTable = new Y.DataTable({
