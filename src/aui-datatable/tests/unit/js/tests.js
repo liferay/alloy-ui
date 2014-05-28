@@ -510,37 +510,35 @@ YUI.add('aui-datatable-tests', function(Y) {
 
         'fields sorted on caret click': function() {
             var sortableHeader = Y.one('.table-sortable-column'),
-                colId = sortableHeader.getData('yui3-col-id'),
-                columnList = Y.all('.table-cell.table-col-' + colId);
+                colId = sortableHeader.getData('yui3-col-id');
 
             sortableHeader.simulate('click');
 
-            var sortBy = sortableHeader.get('aria-sort');
+            var columnList = Y.all('.table-cell.table-col-' + colId),
+                sortBy = sortableHeader.get('aria-sort');
 
-            Y.Assert.isTrue(
+            Y.Assert.isFalse(
                 columnList.some(
                     function(item, index) {
                         var sorted;
 
                         if (index > 0) {
-                            var html = item.html(),
+                            var text = item.text().toLowerCase(),
                                 prevCell = columnList.item(index - 1),
-                                prevCellHtml = prevCell.html();
+                                prevCellText = prevCell.text().toLowerCase();
 
                             if (sortBy === 'ascending') {
-                                sorted = prevCellHtml <= html;
+                                sorted = prevCellText <= text;
                             }
                             else {
-                                sorted = prevCellHtml >= html;
+                                sorted = prevCellText >= text;
                             }
-
-                            prevCellHtml = html;
                         }
                         else {
                             sorted = true;
                         }
 
-                        return sorted;
+                        return !sorted;
                     }
                 ),
                 'Items are not sorted correctly.'
