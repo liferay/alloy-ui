@@ -527,7 +527,7 @@ YUI.add('aui-datatable-tests', function(Y) {
             var sortBy = sortableHeader.get('aria-sort');
 
             Y.all('.table-cell.table-col-' + colId).each(
-                function(item, index, collection) {
+                function(item) {
                     if (prevCellHtml) {
                         if (sortBy === 'ascending') {
                             sortedCorrectly = prevCellHtml <= item.html();
