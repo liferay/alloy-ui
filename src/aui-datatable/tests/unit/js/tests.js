@@ -519,31 +519,40 @@ YUI.add('aui-datatable-tests', function(Y) {
         'fields sorted on caret click': function() {
             var sortableHeader = Y.one('.table-sortable-column'),
                 colId = sortableHeader.getData('yui3-col-id'),
-                prevCellHtml,
-                sortedCorrectly = true;
+                columnList = Y.all('.table-cell.table-col-' + colId);
 
             sortableHeader.simulate('click');
 
             var sortBy = sortableHeader.get('aria-sort');
 
-            Y.all('.table-cell.table-col-' + colId).each(
-                function(item) {
-                    var html = item.html();
+            Y.Assert.isTrue(
+                columnList.some(
+                    function(item, index) {
+                        var sorted;
 
-                    if (prevCellHtml) {
-                        if (sortBy === 'ascending') {
-                            sortedCorrectly = prevCellHtml <= html;
+                        if (index > 0) {
+                            var html = item.html(),
+                                prevCell = columnList.item(index - 1),
+                                prevCellHtml = prevCell.html();
+
+                            if (sortBy === 'ascending') {
+                                sorted = prevCellHtml <= html;
+                            }
+                            else {
+                                sorted = prevCellHtml >= html;
+                            }
+
+                            prevCellHtml = html;
                         }
                         else {
-                            sortedCorrectly = prevCellHtml >= html;
+                            sorted = true;
                         }
+
+                        return sorted;
                     }
-
-                    prevCellHtml = html;
-                }
+                ),
+                'Items are not sorted correctly.'
             );
-
-            Y.Assert.isTrue(sortedCorrectly, 'Items are not sorted correctly.');
         }
     }));
 
