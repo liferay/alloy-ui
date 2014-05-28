@@ -362,12 +362,12 @@ YUI.add('aui-datatable-tests', function(Y) {
                         key: 'state',
                         editor: new Y.DropDownCellEditor({
                             editable: true,
-                            options: ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA"]
+                            options: ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA']
                         })
                     },
                     'amount',
                     {
-                        key:"active",
+                        key:'active',
                         editor: new Y.RadioCellEditor({
                             editable: true,
                             options: {
@@ -378,7 +378,7 @@ YUI.add('aui-datatable-tests', function(Y) {
                         })
                     },
                     {
-                        key:"colors",
+                        key:'colors',
                         editor: new Y.CheckboxCellEditor({
                             editable: true,
                             multiple: true,
