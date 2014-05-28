@@ -431,43 +431,43 @@ YUI.add('aui-datatable-tests', function(Y) {
                 activeCoords,
                 boundingBox = dataTable.get('boundingBox'),
                 cellCoords = {
-                    'topLeft': [0, 0],
-                    'topRight': [0, 1],
-                    'bottomLeft': [1, 0],
-                    'bottomRight': [1, 1]
+                    topLeft: [0, 0],
+                    topRight: [0, 1],
+                    bottomLeft: [1, 0],
+                    bottomRight: [1, 1]
                 };
 
             dataTable.focus();
-            dataTable.set('activeCoord', cellCoords['topLeft']);
-            dataTable.set('selection', cellCoords['topLeft']);
+            dataTable.set('activeCoord', cellCoords.topLeft);
+            dataTable.set('selection', cellCoords.topLeft);
 
             //simulate right arrow key press
 
             boundingBox.simulate('keydown', { keyCode: 39 });
             activeCoords = dataTable.get('activeCoord');
 
-            Y.ArrayAssert.itemsAreSame(cellCoords['topRight'], activeCoords, 'Right arrow should have moved selection.');
+            Y.ArrayAssert.itemsAreSame(cellCoords.topRight, activeCoords, 'Right arrow should have moved selection.');
 
             //simulate down arrow key press
 
             boundingBox.simulate('keydown', { keyCode: 40 });
             activeCoords = dataTable.get('activeCoord');
 
-            Y.ArrayAssert.itemsAreSame(cellCoords['bottomRight'], activeCoords, 'Down arrow should have moved selection.');
+            Y.ArrayAssert.itemsAreSame(cellCoords.bottomRight, activeCoords, 'Down arrow should have moved selection.');
 
             //simulate left arrow key press
 
             boundingBox.simulate('keydown', { keyCode: 37 });
             activeCoords = dataTable.get('activeCoord');
 
-            Y.ArrayAssert.itemsAreSame(cellCoords['bottomLeft'], activeCoords, 'Left arrow should have moved selection.');
+            Y.ArrayAssert.itemsAreSame(cellCoords.bottomLeft, activeCoords, 'Left arrow should have moved selection.');
 
             //simulate up arrow key press
 
             boundingBox.simulate('keydown', { keyCode: 38 });
             activeCoords = dataTable.get('activeCoord');
 
-            Y.ArrayAssert.itemsAreSame(cellCoords['topLeft'], activeCoords, 'Up arrow should have moved selection.');
+            Y.ArrayAssert.itemsAreSame(cellCoords.topLeft, activeCoords, 'Up arrow should have moved selection.');
         },
 
         'open editor on double click': function() {
