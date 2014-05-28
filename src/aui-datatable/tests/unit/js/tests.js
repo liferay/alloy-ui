@@ -528,16 +528,18 @@ YUI.add('aui-datatable-tests', function(Y) {
 
             Y.all('.table-cell.table-col-' + colId).each(
                 function(item) {
+                    var html = item.html();
+
                     if (prevCellHtml) {
                         if (sortBy === 'ascending') {
-                            sortedCorrectly = prevCellHtml <= item.html();
+                            sortedCorrectly = prevCellHtml <= html;
                         }
                         else {
-                            sortedCorrectly = prevCellHtml >= item.html();
+                            sortedCorrectly = prevCellHtml >= html;
                         }
                     }
 
-                    prevCellHtml = item.html();
+                    prevCellHtml = html;
                 }
             );
 
