@@ -1005,6 +1005,7 @@
     },
     "aui-tooltip-base": {
         "requires": [
+            "escape",
             "event-hover",
             "widget",
             "widget-autohide",
