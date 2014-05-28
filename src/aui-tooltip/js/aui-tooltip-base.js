@@ -130,6 +130,7 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
      * If the HTML title attribute exists, copy its contents to data-title
      * and remove it to prevent the browser's native tooltip.
      *
+     * @method _borrowTitleAttribute
      * @private
      */
     _borrowTitleAttribute: function() {
@@ -139,19 +140,19 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
         if (title) {
             trigger.setAttribute('data-title', title).removeAttribute('title');
         }
-     },
+    },
 
-     /**
-      * Set tooltip section attribute.
-      *
-      * @method _setStdModSection
-      * @param {String | Node} val
-      * @protected
-      */
-     _setStdModSection: function(val) {
+    /**
+     * Set tooltip section attribute.
+     *
+     * @method _setStdModSection
+     * @param {String | Node} val
+     * @protected
+     */
+    _setStdModSection: function(val) {
         var formatter = this.get('formatter');
 
-        if (typeof val === 'string') {
+        if (Lang.isString(val)) {
             if (formatter) {
                 val = formatter.call(this, val);
             }
@@ -161,8 +162,8 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
             }
         }
 
-         return val;
-     },
+        return val;
+    },
 
     /**
      * Load tooltip content from trigger title attribute.
@@ -246,16 +247,11 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
         },
 
         /**
-         * Determine the bodyContent
-         *
          * @attribute bodyContent
          * @type {String | Node}
-         * @default null
-         * @description The tooltip contents
          */
         bodyContent: {
-            setter: '_setStdModSection',
-            value: null
+            setter: '_setStdModSection'
         },
 
         /**
@@ -270,16 +266,11 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
         },
 
         /**
-         * Determine the footerContent
-         *
          * @attribute footerContent
          * @type {String | Node}
-         * @default null
-         * @description The tooltip contents
          */
         footerContent: {
-            setter: '_setStdModSection',
-            value: null
+            setter: '_setStdModSection'
         },
 
         /**
@@ -293,16 +284,11 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
         },
 
         /**
-         * Determine the headerContent
-         *
          * @attribute headerContent
          * @type {String | Node}
-         * @default null
-         * @description The tooltip contents
          */
         headerContent: {
-            setter: '_setStdModSection',
-            value: null
+            setter: '_setStdModSection'
         },
 
         /**

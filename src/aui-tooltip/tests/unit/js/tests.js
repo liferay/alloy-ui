@@ -285,21 +285,28 @@ YUI.add('aui-tooltip-tests', function(Y) {
             );
         },
 
-        'should create unescaped tooltip': function() {
-            var bodyContent,
-                textContent = 'foo',
+        'should create tooltip with html content': function() {
+            var html = '<b>foo</b>',
+                text = 'foo',
                 tooltip;
-
-            bodyContent = '<b>' + textContent + '</b>';
 
             tooltip = new Y.Tooltip({
                 trigger: '#triggerHtml',
-                bodyContent: '<b>foo</b>',
+                bodyContent: html,
                 html: true
             }).render();
 
             Y.Assert.areEqual(
-                textContent,
+                text,
+                tooltip.get('contentBox').get('text'),
+                'Body content text should be with no HTML markup'
+            );
+
+            tooltip.set('html', false);
+            tooltip.set('bodyContent', html);
+
+            Y.Assert.areEqual(
+                html,
                 tooltip.get('contentBox').get('text'),
                 'Body content text should be with no HTML markup'
             );
