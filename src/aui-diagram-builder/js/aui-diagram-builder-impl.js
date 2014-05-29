@@ -395,6 +395,8 @@ var DiagramBuilder = A.Component.create({
 
             A.DiagramBuilder.superclass.renderUI.apply(this, arguments);
 
+            instance._setupFieldsDrag();
+
             instance._renderGraphic();
         },
 
@@ -408,8 +410,6 @@ var DiagramBuilder = A.Component.create({
             var instance = this;
 
             A.DiagramBuilder.superclass.syncUI.apply(this, arguments);
-
-            instance._setupFieldsDrag();
 
             instance.syncConnectionsUI();
 
