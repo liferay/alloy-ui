@@ -287,6 +287,7 @@ var DiagramBuilder = A.Component.create({
                 }
             });
 
+            canvas.on('mousedown', A.bind(instance._onCanvasMouseDown, instance));
             canvas.on('mouseenter', A.bind(instance._onCanvasMouseEnter, instance));
 
             instance.handlerKeyDown = A.getDoc().on('keydown', A.bind(instance._afterKeyEvent, instance));
@@ -1137,11 +1138,8 @@ var DiagramBuilder = A.Component.create({
          */
         _renderGraphic: function() {
             var instance = this;
-            var graphic = instance.get('graphic');
-            var canvas = instance.get('canvas');
 
-            graphic.render(canvas);
-            A.one(canvas).on('mousedown', A.bind(instance._onCanvasMouseDown, instance));
+            instance.get('graphic').render(instance.dropContainer);
         },
 
         /**
