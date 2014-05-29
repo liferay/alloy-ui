@@ -69,9 +69,9 @@ var DataTableHighlight = A.Base.create(
             };
 
             instance.afterHostEvent('activeCoordChange', instance._afterActiveCoordChange);
-            instance.afterHostEvent('selectionChange', instance._afterSelectionChange);
-            instance.afterHostEvent('dataChange', instance._afterDataChange);
             instance.afterHostEvent('blur', instance.clear);
+            instance.afterHostEvent('dataChange', instance._afterDataChange);
+            instance.afterHostEvent('selectionChange', instance._afterSelectionChange);
 
             A.on('windowresize', A.bind(instance._afterWindowResize, instance));
         },
