@@ -1896,6 +1896,11 @@ var DiagramNode = A.Component.create({
 
                     connector = new A.Connector(
                         A.merge({
+                            after: {
+                                selectedChange: function() {
+                                    instance.alignTransition(transition);
+                                }
+                            },
                             builder: builder,
                             graphic: builder.get(GRAPHIC),
                             transition: transition
