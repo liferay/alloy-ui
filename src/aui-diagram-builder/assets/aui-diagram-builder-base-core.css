@@ -58,10 +58,9 @@
     text-align: center;
 }
 .diagram-builder-drop-container {
-    position: relative;
-}
-.diagram-builder-drop-container {
     height: 600px;
+    overflow: auto;
+    position: relative;
 }
 .diagram-builder-anchor-node {
     cursor: pointer;

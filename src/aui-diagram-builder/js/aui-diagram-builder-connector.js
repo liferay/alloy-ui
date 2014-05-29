@@ -566,7 +566,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 
         if (!A.instanceOf(val, A.Node)) {
             val = new A.Node.create(val);
-            instance.get(BUILDER).canvas.append(val.unselectable());
+            instance.get(BUILDER).dropContainer.append(val.unselectable());
         }
 
         return val;
