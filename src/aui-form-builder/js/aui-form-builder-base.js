@@ -505,8 +505,8 @@ var FormBuilder = A.Component.create({
          * @method getFieldProperties
          * @param field
          */
-        getFieldProperties: function(field) {
-            return field.getProperties();
+        getFieldProperties: function(field, excludeHidden) {
+            return field.getProperties(excludeHidden);
         },
 
         /**
@@ -539,7 +539,7 @@ var FormBuilder = A.Component.create({
 
             instance.tabView.enableTab(A.FormBuilder.SETTINGS_TAB);
             instance.tabView.selectChild(A.FormBuilder.SETTINGS_TAB);
-            instance.propertyList.set(DATA, instance.getFieldProperties(field));
+            instance.propertyList.set(DATA, instance.getFieldProperties(field, true));
         },
 
         /**
