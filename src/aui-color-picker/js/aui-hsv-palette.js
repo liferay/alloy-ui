@@ -11,21 +11,13 @@ var AColor = A.Color,
 
     getClassName = A.getClassName,
 
-    MAXLEN_B = 3,
-    MAXLEN_G = 3,
     MAXLEN_HEX = 6,
-    MAXLEN_HUE = 3,
-    MAXLEN_R = 3,
-    MAXLEN_SATURATION = 3,
-    MAXLEN_VALUE = 3,
 
     MAX_HUE = 360,
     MAX_SATURATION = 100,
     MAX_VALUE = 100,
     MAX_OPACITY_PERC = 100,
 
-    MIN_B = 0,
-    MIN_G = 0,
     MIN_HUE = 0,
     MIN_SATURATION = 0,
     MIN_VALUE = 0,
@@ -146,7 +138,7 @@ var AColor = A.Color,
         TPL_LABEL_VALUE: '<div class="form-group input-prepend input-append">' +
             '<label class="add-on col-sm-2 col-xs-2 control-label">{label}</label>' +
             '<div class="col-sm-6 col-xs-6 form-control-wrapper"><input class="span2 form-control ' + CSS_VALUE +
-            '" data-type="{type}" type="number" maxlength="{maxlength}" value="{value}"></div>' +
+            '" data-type="{type}" type="number" max="{max}" maxlength="{maxlength}" min="{min}" value="{value}"></div>' +
             '<label class="col-sm-2 col-xs-2 control-label ' + CSS_LABEL + '">{labelUnit}</label>' + '</div>',
 
         _outputType: 'hex',
@@ -207,8 +199,8 @@ var AColor = A.Color,
 
             instance._colorThumbGutter = Math.floor(instance._colorThumb.get('offsetHeight') / 2);
 
-            instance._hsContainerWidth = instance._hsContainer.get('clientWidth');
-            instance._hsContainerHeight = instance._hsContainer.get('clientHeight');
+            instance._hsContainerWidth = instance._hsContainer.get('offsetWidth');
+            instance._hsContainerHeight = instance._hsContainer.get('offsetHeight');
 
             this._createSliders();
         },
@@ -276,14 +268,11 @@ var AColor = A.Color,
             instance._setValueSliderContainerStyle(hue, saturation);
 
             instance._setFieldValue(instance._outputContainer, hexValue);
-
-            if (instance.get('controls')) {
-                instance._setFieldValue(instance._hContainer, Math.round(hue));
-                instance._setFieldValue(instance._sContainer, Math.round(saturation));
-                instance._setFieldValue(instance._rContainer, rgbColorArray[0]);
-                instance._setFieldValue(instance._gContainer, rgbColorArray[1]);
-                instance._setFieldValue(instance._bContainer, rgbColorArray[2]);
-            }
+            instance._setFieldValue(instance._hContainer, Math.round(hue));
+            instance._setFieldValue(instance._sContainer, Math.round(saturation));
+            instance._setFieldValue(instance._rContainer, rgbColorArray[0]);
+            instance._setFieldValue(instance._gContainer, rgbColorArray[1]);
+            instance._setFieldValue(instance._bContainer, rgbColorArray[2]);
 
             instance.fire(
                 'hsThumbChange', {
@@ -595,14 +584,7 @@ var AColor = A.Color,
          * @protected
          */
         _getContainerClassName: function() {
-            var instance = this,
-                className = '';
-
-            if (instance.get('controls')) {
-                className = CSS_CONTAINER_CONTROLS;
-            }
-
-            return className;
+            return CSS_CONTAINER_CONTROLS;
         },
 
         /**
@@ -761,13 +743,10 @@ var AColor = A.Color,
 
                 instance._resultView.setStyle('backgroundColor', hexColor);
                 instance._setFieldValue(instance._outputContainer, hexValue);
-
-                if (instance.get('controls')) {
-                    instance._setFieldValue(instance._vContainer, val);
-                    instance._setFieldValue(instance._rContainer, rgbColorArray[0]);
-                    instance._setFieldValue(instance._gContainer, rgbColorArray[1]);
-                    instance._setFieldValue(instance._bContainer, rgbColorArray[2]);
-                }
+                instance._setFieldValue(instance._vContainer, val);
+                instance._setFieldValue(instance._rContainer, rgbColorArray[0]);
+                instance._setFieldValue(instance._gContainer, rgbColorArray[1]);
+                instance._setFieldValue(instance._bContainer, rgbColorArray[2]);
 
                 instance.fire(
                     'valueChange', {
@@ -853,7 +832,9 @@ var AColor = A.Color,
                         classLabel: data.classLabel || '',
                         label: data.label,
                         labelUnit: data.unit,
+                        max: data.max,
                         maxlength: data.maxlength,
+                        min: data.min,
                         type: data.type,
                         value: data.value
                     }
@@ -949,7 +930,9 @@ var AColor = A.Color,
             instance._hContainer = instance._renderField(
                 labelValueHSVContainer, {
                     label: instance.get('strings').h,
-                    maxlength: MAXLEN_HUE,
+                    max: 360,
+                    maxlength: 3,
+                    min: 0,
                     type: 'hue',
                     unit: '&#176;',
                     value: MIN_HUE
@@ -959,7 +942,9 @@ var AColor = A.Color,
             instance._sContainer = instance._renderField(
                 labelValueHSVContainer, {
                     label: instance.get('strings').s,
-                    maxlength: MAXLEN_SATURATION,
+                    max: MAX_SATURATION,
+                    maxlength: 3,
+                    min: 0,
                     type: 'saturation',
                     unit: '%',
                     value: MAX_SATURATION
@@ -969,7 +954,9 @@ var AColor = A.Color,
             instance._vContainer = instance._renderField(
                 labelValueHSVContainer, {
                     label: instance.get('strings').v,
-                    maxlength: MAXLEN_VALUE,
+                    max: MAX_VALUE,
+                    maxlength: 3,
+                    min: 0,
                     type: 'value',
                     unit: '%',
                     value: MAX_VALUE
@@ -980,10 +967,12 @@ var AColor = A.Color,
                 labelValueRGBContainer, {
                     classLabel: CSS_LABEL_HIDDEN,
                     label: instance.get('strings').r,
-                    maxlength: MAXLEN_R,
+                    max: 255,
+                    maxlength: 3,
+                    min: 0,
                     type: 'r',
                     unit: '',
-                    value: '255'
+                    value: 255
                 }
             );
 
@@ -991,20 +980,24 @@ var AColor = A.Color,
                 labelValueRGBContainer, {
                     classLabel: CSS_LABEL_HIDDEN,
                     label: instance.get('strings').g,
-                    maxlength: MAXLEN_G,
+                    max: 255,
+                    maxlength: 3,
+                    min: 0,
                     type: 'g',
                     unit: '',
-                    value: MIN_G
+                    value: 0
                 }
             );
             instance._bContainer = instance._renderField(
                 labelValueRGBContainer, {
                     classLabel: CSS_LABEL_HIDDEN,
                     label: instance.get('strings').b,
-                    maxlength: MAXLEN_B,
+                    max: 255,
+                    maxlength: 3,
+                    min: 0,
                     type: 'b',
                     unit: '',
-                    value: MIN_B
+                    value: 0
                 }
             );
 
@@ -1095,9 +1088,11 @@ var AColor = A.Color,
             hexWrapper = rightSideContainer.one('.' + CSS_HEX_WRAPPER);
             this._renderHexNode(hexWrapper);
 
-            if (this.get('controls')) {
-                controlsWrapper = rightSideContainer.one('.' + CSS_CONTROLS_WRAPPER);
-                this._renderFields(controlsWrapper);
+            controlsWrapper = rightSideContainer.one('.' + CSS_CONTROLS_WRAPPER);
+            this._renderFields(controlsWrapper);
+
+            if (!this.get('controls')) {
+                controlsWrapper.hide();
             }
         },
 
@@ -1309,12 +1304,9 @@ var AColor = A.Color,
             instance._hsContainer.setStyle('opacity', 1 - ((MAX_OPACITY_PERC - value) / MAX_OPACITY_PERC));
 
             instance._setFieldValue(instance._outputContainer, hexValue);
-
-            if (instance.get('controls')) {
-                instance._setFieldValue(instance._rContainer, rgbColorArray[0]);
-                instance._setFieldValue(instance._gContainer, rgbColorArray[1]);
-                instance._setFieldValue(instance._bContainer, rgbColorArray[2]);
-            }
+            instance._setFieldValue(instance._rContainer, rgbColorArray[0]);
+            instance._setFieldValue(instance._gContainer, rgbColorArray[1]);
+            instance._setFieldValue(instance._bContainer, rgbColorArray[2]);
 
             instance.fire(
                 'hsvaInputChange', {
@@ -1390,12 +1382,9 @@ var AColor = A.Color,
             instance._hsContainer.setStyle('opacity', 1 - ((MAX_OPACITY_PERC - value) / MAX_OPACITY_PERC));
 
             instance._setFieldValue(instance._outputContainer, hexValue);
-
-            if (instance.get('controls')) {
-                instance._setFieldValue(instance._hContainer, hue);
-                instance._setFieldValue(instance._sContainer, saturation);
-                instance._setFieldValue(instance._vContainer, value);
-            }
+            instance._setFieldValue(instance._hContainer, hue);
+            instance._setFieldValue(instance._sContainer, saturation);
+            instance._setFieldValue(instance._vContainer, value);
 
             instance.fire(
                 'rgbInputChange', {
@@ -1504,21 +1493,19 @@ var AColor = A.Color,
 
             instance._hsContainer.setStyle('opacity', 1 - ((MAX_OPACITY_PERC - value) / MAX_OPACITY_PERC));
 
-            if (instance.get('controls')) {
-                currentHexValue = instance._getFieldValue(instance._outputContainer);
+            currentHexValue = instance._getFieldValue(instance._outputContainer);
 
-                if (hexValue.toLowerCase() !== currentHexValue.toLowerCase()) {
-                    instance._setFieldValue(instance._outputContainer, hexValue);
-                }
-
-                instance._setFieldValue(instance._hContainer, hue);
-                instance._setFieldValue(instance._sContainer, saturation);
-                instance._setFieldValue(instance._vContainer, value);
-
-                instance._setFieldValue(instance._rContainer, r);
-                instance._setFieldValue(instance._gContainer, g);
-                instance._setFieldValue(instance._bContainer, b);
+            if (hexValue.toLowerCase() !== currentHexValue.toLowerCase()) {
+                instance._setFieldValue(instance._outputContainer, hexValue);
             }
+
+            instance._setFieldValue(instance._hContainer, hue);
+            instance._setFieldValue(instance._sContainer, saturation);
+            instance._setFieldValue(instance._vContainer, value);
+
+            instance._setFieldValue(instance._rContainer, r);
+            instance._setFieldValue(instance._gContainer, g);
+            instance._setFieldValue(instance._bContainer, b);
         },
 
         /**

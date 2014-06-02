@@ -67,7 +67,6 @@
 
 .hsv-value-canvas, .hsv-alpha-canvas {
     display: inline-block;
-    height: 256px;
     position: relative;
     width: 19px;
 }
@@ -76,13 +75,13 @@
     cursor: default;
     height: 7px;
     position: absolute;
-    width: 18px;
+    width: 19px;
 }
 
 .hsv-value-image, .hsv-alpha-image {
     display: block;
-    height: 11px;
-    margin-left: -7px;
+    height: 12px;
+    margin-left: -6px;
     margin-top: -6px;
     width: 32px;
 }

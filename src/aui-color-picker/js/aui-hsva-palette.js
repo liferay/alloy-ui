@@ -94,9 +94,7 @@ var Lang = A.Lang,
 
             instance._resultView.setStyle('opacity', alphaDec / MAX_ALPHA);
 
-            if (instance.get('controls')) {
-                instance._setFieldValue(instance._aContainer, alphaDec);
-            }
+            instance._setFieldValue(instance._aContainer, alphaDec);
         },
 
         /**
@@ -132,6 +130,7 @@ var Lang = A.Lang,
             var instance = this,
                 alpha = 255 - instance._alphaSlider.get('value');
 
+            // TODO: Use feature checking instead
             if (A.UA.ie === 8) {
                 return instance._calculateRGB(hue, saturation, value, alpha);
             }
@@ -399,13 +398,10 @@ var Lang = A.Lang,
                 hexValue = instance._getHexValue(AColor.toHex(rgbColor), rgbColorArray);
 
                 instance._setFieldValue(instance._outputContainer, hexValue);
-
-                if (instance.get('controls')) {
-                    instance._setFieldValue(instance._aContainer, MAX_ALPHA - alpha);
-                    instance._setFieldValue(instance._rContainer, rgbColorArray[0]);
-                    instance._setFieldValue(instance._gContainer, rgbColorArray[1]);
-                    instance._setFieldValue(instance._bContainer, rgbColorArray[2]);
-                }
+                instance._setFieldValue(instance._aContainer, MAX_ALPHA - alpha);
+                instance._setFieldValue(instance._rContainer, rgbColorArray[0]);
+                instance._setFieldValue(instance._gContainer, rgbColorArray[1]);
+                instance._setFieldValue(instance._bContainer, rgbColorArray[2]);
             }
         },
 
@@ -441,7 +437,9 @@ var Lang = A.Lang,
             instance._aContainer = instance._renderField(
                 instance._labelValueHSVContainer, {
                     label: instance.get('strings').a,
+                    max: 255,
                     maxlength: 3,
+                    min: 0,
                     suffix: '-a',
                     type: 'alpha',
                     unit: '',
