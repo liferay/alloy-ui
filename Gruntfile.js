@@ -9,13 +9,6 @@ module.exports = function(grunt) {
 
         pkg: grunt.file.readJSON('.alloy.json'),
 
-        cdn: {
-            combine: true,
-            comboBase: 'http://cdn.alloyui.com/combo/combo.php?',
-            filter: 'min',
-            root: '../<%= pkg["version"] %>/'
-        },
-
         compress: {
             zip: {
                 options: {
