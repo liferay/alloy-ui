@@ -17,10 +17,6 @@
     vertical-align: top;
 }
 
-.scheduler-view-day-table-col-shim .scheduler-event {
-    border: 2px solid #fff;
-}
-
 .scheduler-view-day-table-col-shim {
     height: 1248px;
     margin-bottom: -1248px;
