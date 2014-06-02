@@ -580,6 +580,8 @@ var ImageCropper = A.Component.create({
 
             drag.addTarget(instance);
 
+            drag.addHandle('.' + CSS_CROP_OUTLINE);
+
             instance.drag = drag;
         },
 
