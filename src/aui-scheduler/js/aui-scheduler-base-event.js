@@ -218,7 +218,43 @@ var SchedulerEvent = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines the CSS border color of a calendar event.
+         *
+         * @attribute borderColor
+         * @default '#FFFFFF'
+         * @type String
+         */
+        borderColor: {
+            value: '#FFFFFF',
+            validator: isString
+        },
+
+        /**
+         * Determines the CSS border style of a calendar event.
+         *
+         * @attribute borderStyle
+         * @default 'solid'
+         * @type String
+         */
+        borderStyle: {
+            value: 'solid',
+            validator: isString
+        },
+
+        /**
+         * Determines the CSS border width of a calendar event.
+         *
+         * @attribute borderWidth
+         * @default '2px'
+         * @type String
+         */
+        borderWidth: {
+            value: '2px',
+            validator: isString
+        },
+
+        /**
+         * Contains the content of Scheduler event's body section.
          *
          * @attribute content
          */
@@ -1094,6 +1130,9 @@ var SchedulerEvent = A.Component.create({
             if (node) {
                 node.setStyles({
                     backgroundColor: backgroundColor,
+                    borderColor: instance.get('borderColor'),
+                    borderStyle: instance.get('borderStyle'),
+                    borderWidth: instance.get('borderWidth'),
                     color: color
                 });
             }
