@@ -1,15 +1,22 @@
 var gulp = require('gulp');
-var nopt = require('nopt');
 var shell = require('gulp-shell');
+var spawn = require('child_process').spawn;
 
 gulp.task('test', function() {
-    var cmd = ['yogi'];
-    var args = nopt(process.argv).argv.cooked;
+    var cmd = 'yogi test';
 
-    cmd = cmd.concat(args).join(' ');
-
-    gulp.src('', { read: false })
+    return gulp.src('', { read: false })
         .pipe(shell(cmd, {
             ignoreErrors: true
         }));
+});
+
+gulp.task('test-browser', function(callback) {
+    var cmd = spawn('yeti', {
+        stdio: 'inherit'
+    });
+
+    cmd.on('close', function() {
+        callback();
+    });
 });

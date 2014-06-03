@@ -22,25 +22,20 @@ IE 7+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 
 ## Automated tasks
 
-Provides a set of util tasks to work with [AlloyUI](http://github.com/liferay/alloy-ui) project.
-
-To change any default option from a task check [Gruntfile.js](https://github.com/liferay/alloy-ui/blob/master/Gruntfile.js). You can also overwrite those options via command-line, for example:
+Here you can find a set of util tasks to work with [AlloyUI](http://github.com/liferay/alloy-ui) project using [Gulp](http://gulpjs.com/).
 
 ```
-grunt command --option value
+gulp <command>
 ```
 
 ### Setup
 
 1. Install [NodeJS](http://nodejs.org/download/), if you don't have it yet.
 
-	Some tasks requires you to have [Ruby](http://www.ruby-lang.org/en/downloads/), [Sass](http://sass-lang.com/tutorial.html), and [Compass](http://compass-style.org/install/) installed. If you're on OS X or Linux you probably already have Ruby installed; test with `ruby -v` in your terminal. When you've confirmed you have Ruby installed, run `gem update --system && gem install compass` to install Compass and Sass.
-
-
 2. Install global dependencies:
 
     ```
-[sudo] npm install -g grunt-cli shifter yogi yuidocjs phantomjs grover istanbul
+[sudo] npm install -g gulp
     ```
 
 3. Install local dependencies:
@@ -49,120 +44,112 @@ grunt command --option value
 npm install
     ```
 
-4. Initialize dependencies:
+### Init
+
+* Fetch dependencies using [Bower](http://bower.io/) and copy YUI3 files to `build` folder:
 
     ```
-grunt init
+gulp init
     ```
 
 ### Build
 
-* Fetch dependencies and build AlloyUI:
+* Build AlloyUI & YUI3 using [Shifter](http://yui.github.io/shifter/):
 
     ```
-grunt all
-    ```
-
-* Build AlloyUI:
-
-    ```
-grunt build
-    ```
-
-* Build a single AlloyUI module:
-
-    ```
-grunt build:aui --src src/aui-module-name
+gulp build
     ```
 
 ### Watch
 
-* Watch and build for any changes:
+* Watch for any changes and build using [Shifter](http://yui.github.io/shifter/):
 
     ```
-grunt watch
-    ```
-
-* Watch and build for any single module changes:
-
-    ```
-grunt watch --src src/aui-module-name
+gulp watch
     ```
 
 ### Create
 
-* Create a new module under `src/` folder:
+* Create a new module under `src` folder using [Yogi](http://yui.github.io/yogi/):
 
     ```
-grunt create --name aui-module-name
+gulp create
     ```
 
-### Format/Lint
+### Format
 
-* Format JavaScript source code:
-
-    ```
-grunt format
-    ```
-
-* Lint JavaScript source code using JSHint.
+* Format CSS & JavaScript code:
 
     ```
-grunt lint
+gulp format
+    ```
+
+* Format only CSS code using [CSS Beautify](https://www.npmjs.org/package/cssbeautify/):
+
+    ```
+gulp format-css
+    ```
+
+* Format only JavaScript code using [JS Beautify](https://www.npmjs.org/package/js-beautify/):
+
+    ```
+gulp format-js
+    ```
+
+### Lint
+
+* Lint JavaScript code using [JSHint](http://www.jshint.com/):
+
+    ```
+gulp lint
     ```
 
 ### Release
 
-* Generate a zip file:
-
-    ```
-grunt zip
-    ```
-
 * Build modules and generate a release zip file:
 
     ```
-grunt release
+gulp release
     ```
 
 * Build modules optimized for CDN and generate a release zip file:
 
     ```
-grunt release-cdn
+gulp release-cdn
     ```
 
 ### Test
 
-* Run unit tests:
+* Run unit tests using [PhantomJS](http://phantomjs.org/):
 
     ```
-grunt test
+gulp test
     ```
 
-* Run code coverage:
+* Run tests in the browser using [Yeti](http://yeti.cx/):
 
     ```
-grunt test --coverage
+gulp test-browser
+    ```
+
+* Run test coverage using [Istanbul](https://www.npmjs.org/package/istanbul/):
+
+    ```
+gulp coverage
     ```
 
 ### API Docs
 
-* Import code examples from alloyui.com and build docs locally:
+* Import code examples from alloyui.com and build docs locally using [YUIDoc](http://yui.github.io/yuidoc/):
 
     ```
-grunt api
+gulp api
     ```
 
-* Run docs locally and watch for any changes:
+* Watch for any changes and build docs locally using [YUIDoc](http://yui.github.io/yuidoc/):
 
     ```
-grunt api-watch
-    ```
-
-* Run `grunt api` and deploy it to alloyui.com:
-
-    ```
-grunt api-deploy
+gulp api-watch
     ```
 
 ## Discussion
@@ -175,10 +162,11 @@ grunt api-deploy
 
 The basic structure of the project is given in the following way:
 
+* `bower_components/` Contains all dependencies fetched via [Bower](http://bower.io/). However, this directory is unnecessary for versioning, so it is ignored ([.gitignore](https://github.com/liferay/alloy-ui/blob/master/.gitignore)).
 * `build/` Contains AlloyUI and YUI generated files, once build task has been run. However, this directory is unnecessary for versioning, so it is ignored ([.gitignore](https://github.com/liferay/alloy-ui/blob/master/.gitignore)).
 * `demos/` Contains basic examples of the AlloyUI modules.
 * `src/` Contains the source code of the AlloyUI modules.
-* `tasks/` Contains the source code of the [Grunt](http://gruntjs.com/) tasks.
+* `tasks/` Contains the source code of the [Gulp](http://gulpjs.com/) tasks.
 * `.alloy.json` Specifies all dependencies and some configurations.
 * `.editorconfig` Specifies the coding style for different editors/IDEs.
 * `.jsbeautifyrc` Specifies the coding format rules for [JSBeautify](http://jsbeautifier.org/).

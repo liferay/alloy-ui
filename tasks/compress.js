@@ -13,13 +13,13 @@ var files = [
     '!tasks/**'
 ];
 
-gulp.task('compress', ['build'], function () {
+gulp.task('compress', ['build'], function() {
     return gulp.src(files)
         .pipe(zip('alloy-' + alloy.version + '.zip'))
         .pipe(gulp.dest('.'));
 });
 
-gulp.task('compress-cdn', ['cdn'], function () {
+gulp.task('compress-cdn', ['cdn'], function() {
     return gulp.src(files)
         .pipe(zip('cdn-alloy-' + alloy.version + '.zip'))
         .pipe(gulp.dest('.'));

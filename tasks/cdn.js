@@ -9,8 +9,8 @@ gulp.task('cdn', ['build'], function() {
         'build/aui/aui-debug.js'
     ];
 
-    return gulp.src(files).
-        pipe(insert.append('\n' +
+    return gulp.src(files)
+        .pipe(insert.append('\n' +
             'YUI_config = {' +
                 'combine:true,' +
                 'comboBase:"http://cdn.alloyui.com/combo/combo.php?",' +

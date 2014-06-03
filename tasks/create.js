@@ -12,7 +12,7 @@ function setName(res) {
     }
 }
 
-gulp.task('create-name', function () {
+gulp.task('create-name', function() {
     return gulp.src('', { read: false })
         .pipe(prompt.prompt({
             name: 'name',
@@ -21,12 +21,12 @@ gulp.task('create-name', function () {
         }, setName));
 });
 
-gulp.task('create', ['create-name'], function (callback) {
+gulp.task('create', ['create-name'], function(callback) {
     var cmd = spawn('yogi', ['init', name], {
         stdio: 'inherit'
     });
 
-    cmd.on('close', function(code) {
+    cmd.on('close', function() {
         callback();
     });
 });
