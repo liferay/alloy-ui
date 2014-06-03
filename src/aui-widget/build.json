@@ -25,6 +25,12 @@
             ]
         },
 
+        "aui-widget-responsive": {
+            "jsfiles": [
+                "js/aui-widget-responsive.js"
+            ]
+        },
+
         "aui-widget-transition": {
             "jsfiles": [
                 "js/aui-widget-transition.js"

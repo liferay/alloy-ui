@@ -18,6 +18,13 @@
         ]
     },
 
+    "aui-widget-responsive": {
+        "requires": [
+            "event-resize",
+            "widget-base"
+        ]
+    },
+
     "aui-widget-toolbars": {
         "requires": [
             "widget-stdmod",

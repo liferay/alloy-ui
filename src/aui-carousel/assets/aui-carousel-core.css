@@ -3,16 +3,24 @@
 }
 
 .carousel-item {
-    position: absolute;
+    display: none;
+    width: 100%;
     z-index: 1;
 }
 
 .carousel-item-transition {
+    display: block;
+    position: absolute;
     z-index: 2;
 }
 
 .carousel-item-active {
+    display: block;
     z-index: 3;
+}
+
+.carousel-item-active-transition {
+    position: absolute;
 }
 
 .carousel menu {

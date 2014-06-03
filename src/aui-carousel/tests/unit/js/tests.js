@@ -16,8 +16,10 @@ YUI.add('aui-carousel-tests', function(Y) {
         setUp: function() {
             this.createCarousel({
                 contentBox: '#content',
+                height: 300,
                 intervalTime: 1,
-                itemSelector: '> div'
+                itemSelector: '> div,img',
+                width: 940
             });
         },
 
@@ -26,7 +28,11 @@ YUI.add('aui-carousel-tests', function(Y) {
         },
 
         createCarousel: function(config) {
-            this._container.setHTML('<div id="content"><div></div><div></div><div></div></div>');
+            var content = Y.Node.create('<div id="content"></div>'),
+                images = Y.one('#images');
+
+            content.setHTML(images.getHTML());
+            this._container.append(content);
 
             this._carousel = new Y.Carousel(config).render();
         },
@@ -450,7 +456,9 @@ YUI.add('aui-carousel-tests', function(Y) {
             this._carousel.destroy();
             this.createCarousel({
                 contentBox: '#content',
-                playing: false
+                height: 300,
+                playing: false,
+                width: 940
             });
 
             this.assertPaused();

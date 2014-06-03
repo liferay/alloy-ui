@@ -10,6 +10,7 @@ var Lang = A.Lang,
 
     CSS_ITEM = getCN('carousel', 'item'),
     CSS_ITEM_ACTIVE = getCN('carousel', 'item', 'active'),
+    CSS_ITEM_ACTIVE_TRANSITION = getCN('carousel', 'item', 'active', 'transition'),
     CSS_ITEM_TRANSITION = getCN('carousel', 'item', 'transition'),
     CSS_MENU_ACTIVE = getCN('carousel', 'menu', 'active'),
     CSS_MENU_INDEX = getCN('carousel', 'menu', 'index'),
@@ -169,6 +170,8 @@ var Carousel = A.Component.create({
         }
     },
 
+    AUGMENTS: [A.WidgetResponsive],
+
     UI_ATTRS: ['pauseOnHover'],
 
     prototype: {
@@ -193,6 +196,21 @@ var Carousel = A.Component.create({
                     opacity: 1
                 }
             });
+
+            this._eventHandles = [
+                this.after('responsive', this._afterResponsive)
+            ];
+        },
+
+        /**
+         * Destructor implementation.
+         * Lifecycle.
+         *
+         * @method destructor
+         * @protected
+         */
+        destructor: function() {
+            (new A.EventHandle(this._eventHandles)).detach();
         },
 
         /**
@@ -418,6 +436,27 @@ var Carousel = A.Component.create({
         },
 
         /**
+         * Fired after the `responsive` event. Handles background images,
+         * adjusting them to make sure they will fit the widget dimensions.
+         *
+         * @method _afterResponsive
+         * @param {EventFacade} event
+         * @protected
+         */
+        _afterResponsive: function(event) {
+            this.nodeSelection.each(function(image) {
+                if (image.getStyle('backgroundImage') !== 'none') {
+                    image.setStyles({
+                        backgroundRepeat: 'no-repeat',
+                        backgroundSize: 'contain',
+                        height: event.height + 'px',
+                        width: event.width + 'px'
+                    });
+                }
+            });
+        },
+
+        /**
          * Attach delegate to the carousel menu.
          *
          * @method _bindMenu
@@ -517,7 +556,7 @@ var Carousel = A.Component.create({
                 oldImage.removeClass(CSS_ITEM_TRANSITION);
             }
 
-            newImage.setStyle('opacity', '1');
+            newImage.removeClass(CSS_ITEM_ACTIVE_TRANSITION);
         },
 
         /**
@@ -533,6 +572,7 @@ var Carousel = A.Component.create({
          */
         _onAnimationStart: function(event, newImage, oldImage, newMenuItem, oldMenuItem) {
             newImage.addClass(CSS_ITEM_ACTIVE);
+            newImage.addClass(CSS_ITEM_ACTIVE_TRANSITION);
 
             if (newMenuItem) {
                 newMenuItem.addClass(CSS_MENU_ACTIVE);
