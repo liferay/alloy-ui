@@ -1,10 +1,18 @@
 var gulp = require('gulp');
-var bower = require('gulp-bower');
+var shell = require('gulp-shell');
 
-gulp.task('init', function() {
+gulp.task('init-bower', function() {
+    var cmd = 'bower install';
+
+    return gulp.src('', { read: false })
+        .pipe(shell(cmd, {
+            ignoreErrors: true
+        }));
+});
+
+gulp.task('init', ['init-bower'], function() {
     var files = 'bower_components/yui3/build/**';
 
-    return bower()
-        .pipe(gulp.src(files))
+    return gulp.src(files)
         .pipe(gulp.dest('build'));
 });
