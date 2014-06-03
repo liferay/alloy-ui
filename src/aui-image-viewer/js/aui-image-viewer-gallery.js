@@ -411,8 +411,18 @@ var ImageGallery = A.Component.create({
          * @protected
          */
         _onCurrentIndexChange: function() {
-            this.get('paginationInstance')._dispatchRequest({
-                page: this.get('currentIndex') + 1
+            var currentIndex = this.get('currentIndex'),
+                offset,
+                page,
+                paginationInstance = this.get('paginationInstance'),
+                total = paginationInstance.get('total');
+
+            page = (currentIndex % total) + 1;
+            offset = currentIndex - page + 2;
+
+            paginationInstance.set('offset', offset);
+            paginationInstance._dispatchRequest({
+                page: page
             });
         },
 
@@ -556,10 +566,11 @@ var ImageGallery = A.Component.create({
          * @protected
          */
         _changeRequest: function(event) {
-            var instance = this;
-            var newState = event.state;
-            var lastState = event.lastState;
-            var page = newState.page;
+            var instance = this,
+                lastState = event.lastState,
+                newState = event.state,
+                page = newState.page,
+                paginationInstance = this.get('paginationInstance');
 
             // only update the paginator UI when the Widget is visible
             if (!instance.get('visible')) {
@@ -569,29 +580,9 @@ var ImageGallery = A.Component.create({
             // check if the lastState page number is different from the newState
             // page number.
             if (!lastState || (lastState && lastState.page !== page)) {
-                instance.set('currentIndex', page - 1);
+                instance.set('currentIndex', paginationInstance.getOffsetPageNumber() - 2);
 
                 instance._processChangeRequest();
-            }
-
-            var linksCount = instance.get('links').size(),
-                paginationInstance = instance.get('paginationInstance'),
-                total = paginationInstance.get('total');
-
-            if (linksCount > total) {
-                var offset = parseInt(page / total, 10) * total + 1;
-
-                if (page % total === 0) {
-                    offset -= total;
-                }
-
-                page = page % total || total;
-
-                paginationInstance.set('offset', offset);
-
-                paginationInstance.setState({
-                    page: page
-                });
             }
         },
 
