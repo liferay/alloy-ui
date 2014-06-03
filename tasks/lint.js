@@ -5,7 +5,11 @@ var stylish = require('jshint-stylish');
 gulp.task('lint', function() {
     var files = [
         '*.js',
-        'src/**/js/*.js'
+        'src/**/js/*.js',
+        '!gulpfile.js',
+        '!**/aui-aliases.js',
+        '!**/aui-loader.js',
+        '!**/load-tests.js'
     ];
 
     return gulp.src(files)
