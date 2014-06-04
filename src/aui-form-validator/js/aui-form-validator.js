@@ -949,7 +949,7 @@ var FormValidator = A.Component.create({
                 if (nextSibling && nextSibling.get('nodeType') === 3) {
                     ancestor = field.ancestor();
 
-                    if (ancestor && ancestor.hasClass(instance.get('labelCssClass'))) {
+                    if (ancestor && (ancestor.hasClass(instance.get('labelCssClass')) || ancestor.hasClass('radio'))) {
                         target = nextSibling;
                     }
                 }
