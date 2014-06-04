@@ -7,9 +7,9 @@ gulp.task('lint', function() {
         '*.js',
         'src/**/js/*.js',
         '!gulpfile.js',
-        '!**/aui-aliases.js',
-        '!**/aui-loader.js',
-        '!**/load-tests.js'
+        '!src/aui-base/js/aui-aliases.js',
+        '!src/aui-base/js/aui-loader.js',
+        '!src/yui/js/load-tests.js'
     ];
 
     return gulp.src(files)
