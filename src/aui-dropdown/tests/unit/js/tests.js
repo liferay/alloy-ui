@@ -68,7 +68,7 @@ YUI.add('aui-dropdown-tests', function(Y) {
         'should close dropdown on click outside only if hideOnClickOutSide is true': function() {
             dropdown.open();
             stick.open();
-            Y.one('doc').simulate('click');
+            Y.one('body').simulate('click');
             Assert.isTrue(stick.get('boundingBox').hasClass('open'));
             Assert.isFalse(dropdown.get('boundingBox').hasClass('open'));
         },
@@ -77,7 +77,7 @@ YUI.add('aui-dropdown-tests', function(Y) {
             dropdown.open();
             stick.open();
 
-            Y.one('doc').simulate('keydown', {
+            Y.one('body').simulate('keydown', {
                 keyCode: 27
             });
 
