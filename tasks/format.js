@@ -1,6 +1,8 @@
 var gulp = require('gulp');
 var cssbeautify = require('gulp-cssbeautify');
 var jsprettify = require('gulp-jsbeautifier');
+var imagemin = require('gulp-imagemin');
+var pngcrush = require('imagemin-pngcrush');
 
 gulp.task('format-css', function() {
     var files = [
@@ -28,4 +30,16 @@ gulp.task('format-js', function() {
         .pipe(gulp.dest('src/'));
 });
 
-gulp.task('format', ['format-css', 'format-js']);
+gulp.task('format-img', function() {
+    return gulp.src('src/**/*.png')
+        .pipe(imagemin({
+            progressive: true,
+            svgoPlugins: [{
+                removeViewBox: false
+            }],
+            use: [pngcrush()]
+        }))
+        .pipe(gulp.dest('src/'));
+});
+
+gulp.task('format', ['format-css', 'format-js', 'format-img']);
