@@ -28,6 +28,13 @@
         "skinnable": true
     },
 
+    "aui-datatable-base-cell-editor": {
+        "requires": [
+            "datatable-base",
+            "overlay"
+        ]
+    },
+
     "aui-datatable-edit": {
         "requires": [
             "datatable-base",
@@ -37,6 +44,7 @@
             "aui-datatype",
             "aui-toolbar",
             "aui-form-validator",
+            "aui-datatable-base-cell-editor",
             "aui-datatable-cell-editor-support",
             "aui-datatable-core"
         ],

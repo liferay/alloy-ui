@@ -1,6 +1,12 @@
 {
     "name": "aui-datatable",
     "builds": {
+        "aui-datatable-base-cell-editor": {
+            "jsfiles": [
+                "js/aui-datatable-base-cell-editor.js"
+            ]
+        },
+
         "aui-datatable-body": {
             "jsfiles": [
                 "js/aui-datatable-body.js"
