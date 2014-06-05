@@ -85,7 +85,7 @@ A.Modal = A.Base.create('modal', A.Widget, [
             instance._userInteractionHandle.detach();
         }
 
-        A.one('body,html').removeClass(CSS_MODAL_OPEN);
+        A.all('body,html').removeClass(CSS_MODAL_OPEN);
     },
 
     /**
@@ -139,7 +139,7 @@ A.Modal = A.Base.create('modal', A.Widget, [
 
     _afterRender: function() {
         if (this.get('visible')) {
-            A.one('body,html').addClass(CSS_MODAL_OPEN);
+            A.all('body,html').addClass(CSS_MODAL_OPEN);
         }
     },
 
@@ -175,7 +175,7 @@ A.Modal = A.Base.create('modal', A.Widget, [
             A.soon(A.bind('destroy', instance));
         }
 
-        A.one('body,html').toggleClass(CSS_MODAL_OPEN, event.newVal);
+        A.all('body,html').toggleClass(CSS_MODAL_OPEN, event.newVal);
     },
 
     /**
