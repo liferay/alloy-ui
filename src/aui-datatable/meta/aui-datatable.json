@@ -35,6 +35,12 @@
         ]
     },
 
+    "aui-datatable-base-options-cell-editor": {
+        "requires": [
+            "aui-datatable-base-cell-editor"
+        ]
+    },
+
     "aui-datatable-edit": {
         "requires": [
             "datatable-base",
@@ -45,6 +51,7 @@
             "aui-toolbar",
             "aui-form-validator",
             "aui-datatable-base-cell-editor",
+            "aui-datatable-base-options-cell-editor",
             "aui-datatable-cell-editor-support",
             "aui-datatable-core"
         ],

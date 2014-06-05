@@ -7,6 +7,12 @@
             ]
         },
 
+        "aui-datatable-base-options-cell-editor": {
+            "jsfiles": [
+                "js/aui-datatable-base-options-cell-editor.js"
+            ]
+        },
+
         "aui-datatable-body": {
             "jsfiles": [
                 "js/aui-datatable-body.js"
