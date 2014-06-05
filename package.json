@@ -22,8 +22,8 @@
   ],
   "devDependencies": {
     "bower": "~1.3.4",
-    "fs-extra": "~0.8.1",
-    "gulp": "~3.6.2",
+    "fs-extra": "~0.9.1",
+    "gulp": "~3.7.0",
     "gulp-clean": "~0.3.0",
     "gulp-cssbeautify": "~0.1.3",
     "gulp-imagemin": "~0.5.1",

@@ -26,6 +26,6 @@ gulp.task('build', ['init'], function() {
     return gulp.src('', { read: false })
         .pipe(shell(cmd, {
             cwd: cwd,
-            ignoreErrors: true,
+            ignoreErrors: true
         }));
 });
