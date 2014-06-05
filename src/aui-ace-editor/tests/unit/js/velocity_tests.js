@@ -7,69 +7,72 @@ YUI.add('aui-ace-autocomplete-velocity-tests', function(Y) {
     var suite = new Y.Test.Suite('aui-ace-autocomplete-velocity'),
         editor,
         elements,
+        IE8 = Y.UA.ie && Y.UA.ie < 9,
         nativeEditor;
 
-    editor = new Y.AceEditor({
-        boundingBox: '#editor',
-        plugins: [{
-            fn: Y.Plugin.AceAutoComplete,
-            cfg: {
-                processor: new Y.AceEditor.AutoCompleteVelocity({
-                    variables: {
-                        'types': {
-                            'java.lang.String': {
-                                'numberOfLeadingZeros': {
-                                    'type': 'Method',
-                                    'returnType': 'long',
-                                    'argumentTypes': ['long']
+    if (!IE8) {
+        editor = new Y.AceEditor({
+            boundingBox: '#editor',
+            plugins: [{
+                fn: Y.Plugin.AceAutoComplete,
+                cfg: {
+                    processor: new Y.AceEditor.AutoCompleteVelocity({
+                        variables: {
+                            'types': {
+                                'java.lang.String': {
+                                    'numberOfLeadingZeros': {
+                                        'type': 'Method',
+                                        'returnType': 'long',
+                                        'argumentTypes': ['long']
+                                    },
+                                    'toString': {
+                                        'type': 'Method',
+                                        'returnType': 'java.lang.String',
+                                        'argumentTypes': ['long', 'java.lang.String', 'int']
+                                    },
+                                    'field': {
+                                        'type': 'java.lang.String'
+                                    }
                                 },
-                                'toString': {
-                                    'type': 'Method',
-                                    'returnType': 'java.lang.String',
-                                    'argumentTypes': ['long', 'java.lang.String', 'int']
+                                'com.liferay.portal.model.Group': {
+
                                 },
-                                'field': {
+                                'Method': {
+                                    'toString': {
+                                        'type': 'Method',
+                                        'returnType': 'java.lang.String',
+                                        'argumentTypes': []
+                                    },
+                                    'indexOf': {
+                                        'type': 'Method',
+                                        'returnType': 'java.lang.Integer',
+                                        'argumentTypes': []
+                                    }
+                                }
+                            },
+                            'variables': {
+                                'scopeGroupId': {
+                                    'type': 'java.lang.String'
+                                },
+
+                                'scopeGroup': {
+                                    'type': 'com.liferay.portal.model.Group'
+                                },
+
+                                'scopeGroupString': {
                                     'type': 'java.lang.String'
                                 }
-                            },
-                            'com.liferay.portal.model.Group': {
-
-                            },
-                            'Method': {
-                                'toString': {
-                                    'type': 'Method',
-                                    'returnType': 'java.lang.String',
-                                    'argumentTypes': []
-                                },
-                                'indexOf': {
-                                    'type': 'Method',
-                                    'returnType': 'java.lang.Integer',
-                                    'argumentTypes': []
-                                }
-                            }
-                        },
-                        'variables': {
-                            'scopeGroupId': {
-                                'type': 'java.lang.String'
-                            },
-
-                            'scopeGroup': {
-                                'type': 'com.liferay.portal.model.Group'
-                            },
-
-                            'scopeGroupString': {
-                                'type': 'java.lang.String'
                             }
                         }
-                    }
-                }),
-                render: true,
-                visible: false,
-                width: 250,
-                zIndex: 10000
-            }
-        }]
-    });
+                    }),
+                    render: true,
+                    visible: false,
+                    width: 250,
+                    zIndex: 10000
+                }
+            }]
+        });
+    }
 
     //--------------------------------------------------------------------------
     // General tests
@@ -78,6 +81,13 @@ YUI.add('aui-ace-autocomplete-velocity-tests', function(Y) {
     suite.add(new Y.Test.Case({
 
         name: 'Velocity general tests',
+
+        _should: {
+            // Ignore all tests in IE8.
+            ignore: {
+                'assert editor contains the plugin': IE8
+            }
+        },
 
         'assert editor contains the plugin': function() {
             editor.render();
@@ -93,6 +103,17 @@ YUI.add('aui-ace-autocomplete-velocity-tests', function(Y) {
     suite.add(new Y.Test.Case({
 
         name: 'Velocity directives tests',
+
+        _should: {
+            // Ignore all tests in IE8.
+            ignore: {
+                'show directives': IE8,
+                'check directives': IE8,
+                'check first directive is selected': IE8,
+                'insert directive': IE8,
+                'insert directive in insert mode': IE8
+            }
+        },
 
         'show directives': function() {
             editor.insert('<#a');
@@ -166,6 +187,17 @@ YUI.add('aui-ace-autocomplete-velocity-tests', function(Y) {
     suite.add(new Y.Test.Case({
 
         name: 'Velocity variables tests',
+
+        _should: {
+            // Ignore all tests in IE8.
+            ignore: {
+                'show variables': IE8,
+                'insert second level of variable': IE8,
+                'insert third level of variable': IE8,
+                'check no more variables': IE8,
+                'check we don\'t show suggestions on fake variables': IE8
+            }
+        },
 
         'show variables': function() {
             nativeEditor.setValue('$');
