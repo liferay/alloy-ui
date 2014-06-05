@@ -143,8 +143,56 @@ YUI.add('aui-modal-tests', function(Y) {
 
     }));
 
+    //--------------------------------------------------------------------------
+    // Test Case for Scroll
+    //--------------------------------------------------------------------------
+
+    suite.add(new Y.Test.Case({
+
+        name: 'Scroll',
+
+        setUp: function() {
+            if (modal) {
+                modal.destroy();
+            }
+
+            modal = new Y.Modal().render('#modal');
+
+            boundingBox = modal.get('boundingBox');
+        },
+
+        tearDown: function() {
+            modal.destroy();
+
+            modal = null;
+            boundingBox = null;
+        },
+
+        //----------------------------------------------------------------------
+        // Tests
+        //----------------------------------------------------------------------
+
+        // Tests: AUI-1336
+        'check modal-open class after visibleChange': function() {
+            var CSS_MODAL_OPEN = Y.getClassName('modal-open');
+
+            var body = Y.getBody(),
+                documentEl = Y.getDoc().get('documentElement');
+
+            modal.show();
+
+            Y.Assert.isTrue(body.hasClass(CSS_MODAL_OPEN));
+            Y.Assert.isTrue(documentEl.hasClass(CSS_MODAL_OPEN));
+
+            modal.hide();
+
+            Y.Assert.isFalse(body.hasClass(CSS_MODAL_OPEN));
+            Y.Assert.isFalse(documentEl.hasClass(CSS_MODAL_OPEN));
+        }
+    }));
+
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['aui-modal', 'node-event-simulate', 'test']
+    requires: ['aui-modal', 'aui-node-base','node-event-simulate', 'test']
 });
