@@ -25,6 +25,12 @@
             ]
         },
 
+        "aui-datatable-checkbox-cell-editor": {
+            "jsfiles": [
+                "js/aui-datatable-checkbox-cell-editor.js"
+            ]
+        },
+
         "aui-datatable-core": {
             "jsfiles": [
                 "js/aui-datatable-core.js"
