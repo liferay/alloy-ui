@@ -1,6 +1,12 @@
 {
     "name": "aui-node",
     "builds": {
+        "aui-node-accessible": {
+            "jsfiles": [
+                "js/aui-node-accessible.js"
+            ]
+        },
+
         "aui-node-base": {
             "jsfiles": [
                 "js/aui-node-base.js"
