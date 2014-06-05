@@ -37,9 +37,16 @@
             "aui-datatype",
             "aui-toolbar",
             "aui-form-validator",
+            "aui-datatable-cell-editor-support",
             "aui-datatable-core"
         ],
         "skinnable": true
+    },
+
+    "aui-datatable-cell-editor-support": {
+        "requires": [
+            "datatable-base"
+        ]
     },
 
     "aui-datatable-highlight": {

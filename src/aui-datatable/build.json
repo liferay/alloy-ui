@@ -7,6 +7,12 @@
             ]
         },
 
+        "aui-datatable-cell-editor-support": {
+            "jsfiles": [
+                "js/aui-datatable-cell-editor-support.js"
+            ]
+        },
+
         "aui-datatable-core": {
             "jsfiles": [
                 "js/aui-datatable-core.js"
