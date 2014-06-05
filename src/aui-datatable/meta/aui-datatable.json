@@ -47,6 +47,12 @@
         ]
     },
 
+    "aui-datatable-date-cell-editor": {
+        "requires": [
+            "aui-datatable-base-options-cell-editor"
+        ]
+    },
+
     "aui-datatable-dropdown-cell-editor": {
         "requires": [
             "aui-datatable-base-options-cell-editor"
@@ -67,6 +73,7 @@
             "aui-datatable-cell-editor-support",
             "aui-datatable-core",
             "aui-datatable-checkbox-cell-editor",
+            "aui-datatable-date-cell-editor",
             "aui-datatable-dropdown-cell-editor",
             "aui-datatable-radio-cell-editor",
             "aui-datatable-text-cell-editor",
