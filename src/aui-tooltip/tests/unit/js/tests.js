@@ -310,6 +310,68 @@ YUI.add('aui-tooltip-tests', function(Y) {
                 tooltip.get('contentBox').get('text'),
                 'Body content text should be with no HTML markup'
             );
+        },
+
+        'should update position on resize from .tooltip on triggerResize': function() {
+            var button = Y.one('#triggerResize'),
+                bodyContent = 'Some Content',
+                tooltip,
+                oldPosition;
+
+            tooltip = new Y.Tooltip({
+                align: {
+                    node: button
+                },
+                trigger: '#triggerResize',
+                bodyContent: bodyContent
+            }).render();
+
+            oldPosition = Y.one('#triggerResize').get('offsetTop');
+
+            // This simulates moving the button as the window resizes.
+            button.setStyle('position', 'relative');
+            button.setStyle('top', '20px');
+            if (Y.UA.ie === 8) {
+                // Can't simulate a resize on IE8's window object, so
+                // calling the function directly here.
+                tooltip._onResize();
+            } else {
+                Y.one(Y.config.win).simulate('resize');
+            }
+
+            Y.Assert.areEqual(
+                oldPosition + 20,
+                Y.one('#triggerResize').get('offsetTop'),
+                'Trigger was moved down, so the popover should be moved as well'
+            );
+        },
+
+        'should update position on scrolling from .tooltip on triggerScroll': function() {
+            var button = Y.one('#triggerScroll'),
+                bodyContent = 'Some Content',
+                tooltip,
+                oldPosition;
+
+            tooltip = new Y.Tooltip({
+                align: {
+                    node: button
+                },
+                position: 'bottom',
+                trigger: '#triggerScroll',
+                bodyContent: bodyContent
+            }).render();
+
+            oldPosition = tooltip.get('contentBox').get('region').top;
+            window.scrollTo(0, 20);
+
+            this.wait(function() {
+
+                Y.Assert.areEqual(
+                    oldPosition + 0,
+                    tooltip.get('contentBox').get('region').top,
+                    'Trigger are out of viewport and there is a scroll on page, so the tooltip should be moved as well'
+                );
+            }, 500);
         }
     }));
     Y.Test.Runner.add(suite);

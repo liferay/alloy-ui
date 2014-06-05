@@ -18,12 +18,14 @@
             "widget-stdmod",
             "aui-classnamemanager",
             "aui-component",
+            "aui-debounce",
             "aui-widget-cssclass",
             "aui-widget-toggle",
             "aui-widget-transition",
             "aui-widget-trigger",
             "aui-widget-position-align-suggestion",
-            "aui-node-base"
+            "aui-node-base",
+            "event-resize"
         ],
         "skinnable": true
     },

@@ -44,12 +44,25 @@
             </div>
         </div>
 
+                <h1>AUI Responsive Tooltip Tests</h1>
+
+                <p>
+                    <button class="btn btn-lg btn-primary" id="triggerResize" title="One fine body…">#triggerResize</button>
+                </p>
+                <p>
+                    <button class="btn btn-lg btn-primary" id="triggerWidth" title="One fine body…">#triggerResize</button>
+                </p>
+                
+                <p style="position:relative; top:200px">
+                    <button class="btn btn-lg btn-primary" id="triggerScroll" title="One fine body…">#triggerScroll</button>
+                </p>
+
         <div id="noTrigger">Something</div>
         <script>
         YUI({
             coverage: ['aui-tooltip-base'],
             filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-        }).use('test-console', 'test', 'aui-tooltip-tests', function(Y) {
+        }).use('test-console', 'test', 'aui-tooltip-tests', 'node-screen', function(Y) {
 
             (new Y.Test.Console()).render('#logger');
 

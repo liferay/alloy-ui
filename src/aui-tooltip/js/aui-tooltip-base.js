@@ -49,7 +49,21 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
     initializer: function() {
         var instance = this;
 
-        A.after(instance._afterUiSetTrigger, instance, '_uiSetTrigger');
+        instance._eventHandles = [
+            A.after(instance._afterUiSetTrigger, instance, '_uiSetTrigger'),
+            A.on('scroll', A.debounce(instance._onScroll, 100, instance)),
+            A.on('windowresize', A.debounce(instance._onResize, 100, instance))
+        ];
+    },
+
+    /**
+     * Destructor lifecycle implementation for the `Tooltip` class.
+     *
+     * @method destructor
+     * @protected
+     */
+    destructor: function() {
+        (new A.EventHandle(this._eventHandles)).detach();
     },
 
     /**
@@ -121,9 +135,7 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
      * @protected
      */
     _afterUiSetTrigger: function(val) {
-        var instance = this;
-
-        instance.suggestAlignment(val);
+        this.suggestAlignment(val);
     },
 
     /**
@@ -195,9 +207,7 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
      * @protected
      */
     _onBoundingBoxMouseenter: function() {
-        var instance = this;
-
-        instance.show();
+        this.show();
     },
 
     /**
@@ -208,12 +218,32 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
      * @protected
      */
     _onBoundingBoxMouseleave: function() {
-        var instance = this;
-
-        instance.hide();
+        this.hide();
     },
 
-    _widgetUiSetVisible: A.Widget.prototype._uiSetVisible
+    /**
+     * Fired after the window is resized.
+     *
+     * @method _onResize
+     * @protected
+     */
+    _onResize: function() {
+        this.suggestAlignment(this.get('trigger'));
+    },
+
+    /**
+     * Scroll event listener function.
+     *
+     * @method _onScroll
+     * @protected
+     */
+    _onScroll: function() {
+        this.suggestAlignment(this.get('trigger'));
+    },
+
+    _widgetUiSetVisible: A.Widget.prototype._uiSetVisible,
+
+    _eventHandles: null
 }, {
 
     /**
@@ -324,7 +354,7 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
         triggerShowEvent: {
             validator: Lang.isString,
             value: 'mouseenter'
-        }
+        },
     },
 
     /**
