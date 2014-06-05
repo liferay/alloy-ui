@@ -7,10 +7,10 @@ YUI.add('aui-ace-autocomplete-freemarker-tests', function(Y) {
     var suite = new Y.Test.Suite('aui-ace-autocomplete-freemarker'),
         editor,
         elements,
-        IE8 = Y.UA.ie && Y.UA.ie < 9,
+        IElt9 = Y.UA.ie && Y.UA.ie < 9,
         nativeEditor;
 
-    if (!IE8) {
+    if (!IElt9) {
         editor = new Y.AceEditor({
             boundingBox: '#editor',
             plugins: [{
@@ -84,9 +84,9 @@ YUI.add('aui-ace-autocomplete-freemarker-tests', function(Y) {
         name: 'Freemarker tests',
 
         _should: {
-            // Ignore all tests in IE8.
+            // Ignore all tests in IE < 9.
             ignore: {
-                'assert editor contains the plugin': IE8
+                'assert editor contains the plugin': IElt9
             }
         },
 
@@ -106,13 +106,13 @@ YUI.add('aui-ace-autocomplete-freemarker-tests', function(Y) {
         name: 'Freemarker directives tests',
 
         _should: {
-            // Ignore all tests in IE8.
+            // Ignore all tests in IE < 9.
             ignore: {
-                'show directives': IE8,
-                'check directives': IE8,
-                'check first directive is selected': IE8,
-                'insert directive': IE8,
-                'insert directive in insert mode': IE8
+                'show directives': IElt9,
+                'check directives': IElt9,
+                'check first directive is selected': IElt9,
+                'insert directive': IElt9,
+                'insert directive in insert mode': IElt9
             }
         },
 
@@ -190,13 +190,13 @@ YUI.add('aui-ace-autocomplete-freemarker-tests', function(Y) {
         name: 'Freemarker variables tests',
 
         _should: {
-            // Ignore all tests in IE8.
+            // Ignore all tests in IE < 9.
             ignore: {
-                'show variables': IE8,
-                'insert second level of variable': IE8,
-                'insert third level of variable': IE8,
-                'check no more variables': IE8,
-                'check we don\'t show suggestions on fake variables': IE8
+                'show variables': IElt9,
+                'insert second level of variable': IElt9,
+                'insert third level of variable': IElt9,
+                'check no more variables': IElt9,
+                'check we don\'t show suggestions on fake variables': IElt9
             }
         },
 
