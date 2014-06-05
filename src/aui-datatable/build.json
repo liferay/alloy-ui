@@ -31,6 +31,12 @@
             ]
         },
 
+        "aui-datatable-dropdown-cell-editor": {
+            "jsfiles": [
+                "js/aui-datatable-dropdown-cell-editor.js"
+            ]
+        },
+
         "aui-datatable-edit": {
             "jsfiles": [
                 "js/aui-datatable-edit.js"

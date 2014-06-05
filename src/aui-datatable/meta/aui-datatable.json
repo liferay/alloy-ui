@@ -41,6 +41,12 @@
         ]
     },
 
+    "aui-datatable-dropdown-cell-editor": {
+        "requires": [
+            "aui-datatable-base-options-cell-editor"
+        ]
+    },
+
     "aui-datatable-edit": {
         "requires": [
             "datatable-base",
@@ -54,6 +60,7 @@
             "aui-datatable-base-options-cell-editor",
             "aui-datatable-cell-editor-support",
             "aui-datatable-core",
+            "aui-datatable-dropdown-cell-editor",
             "aui-datatable-text-cell-editor",
             "aui-datatable-text-area-cell-editor"
         ],
