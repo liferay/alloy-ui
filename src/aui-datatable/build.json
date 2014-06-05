@@ -55,6 +55,12 @@
             ]
         },
 
+        "aui-datatable-text-area-cell-editor": {
+            "jsfiles": [
+                "js/aui-datatable-text-area-cell-editor.js"
+            ]
+        },
+
         "aui-datatable-property-list": {
             "jsfiles": [
                 "js/aui-datatable-property-list.js"

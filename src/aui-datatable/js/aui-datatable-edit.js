@@ -40,43 +40,6 @@ var Lang = A.Lang,
     TPL_BR = '<br/>';
 
 /**
- * TextAreaCellEditor class.
- *
- * @class A.TextAreaCellEditor
- * @extends A.BaseCellEditor
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
- * @constructor
- */
-var TextAreaCellEditor = A.Component.create({
-
-    /**
-     * Static property provides a string to identify the class.
-     *
-     * @property NAME
-     * @type String
-     * @static
-     */
-    NAME: 'textAreaCellEditor',
-
-    /**
-     * Static property used to define which component it extends.
-     *
-     * @property EXTENDS
-     * @type Object
-     * @static
-     */
-    EXTENDS: A.BaseCellEditor,
-
-    prototype: {
-        ELEMENT_TEMPLATE: '<textarea class="' + [CSS_CELLEDITOR_ELEMENT, CSS_FORM_CONTROL].join(' ') +
-            '"></textarea>'
-    }
-});
-
-A.TextAreaCellEditor = TextAreaCellEditor;
-
-/**
  * DropDownCellEditor class.
  *
  * @class A.DropDownCellEditor

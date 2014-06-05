@@ -54,12 +54,19 @@
             "aui-datatable-base-options-cell-editor",
             "aui-datatable-cell-editor-support",
             "aui-datatable-core",
-            "aui-datatable-text-cell-editor"
+            "aui-datatable-text-cell-editor",
+            "aui-datatable-text-area-cell-editor"
         ],
         "skinnable": true
     },
 
     "aui-datatable-text-cell-editor": {
+        "requires": [
+            "aui-datatable-base-options-cell-editor"
+        ]
+    },
+
+    "aui-datatable-text-area-cell-editor": {
         "requires": [
             "aui-datatable-base-options-cell-editor"
         ]
