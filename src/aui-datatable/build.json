@@ -55,6 +55,12 @@
             ]
         },
 
+        "aui-datatable-radio-cell-editor": {
+            "jsfiles": [
+                "js/aui-datatable-radio-cell-editor.js"
+            ]
+        },
+
         "aui-datatable-selection": {
             "jsfiles": [
                 "js/aui-datatable-selection.js"
