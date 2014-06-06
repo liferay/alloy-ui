@@ -14,8 +14,6 @@ gulp.task('build', ['init'], function() {
 
     cmd.push('--build-dir=' + path.join(root, 'build'));
     cmd.push('--no-cache');
-    cmd.push('--no-coverage');
-    cmd.push('--no-istanbul');
     cmd.push('--no-lint');
     cmd.push('--replace-version=' + alloy.version);
     cmd.push('--replace-yuivar=A');
