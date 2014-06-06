@@ -258,9 +258,9 @@ BaseOptionsCellEditor = A.Component.create({
             A.each(val, function(oLabel, oValue) {
                 var values = {
                     id: A.guid(),
-                    label: oLabel,
-                    name: oValue,
-                    value: oValue
+                    label: A.Escape.html(oLabel),
+                    name: A.Escape.html(oValue),
+                    value: A.Escape.html(oValue)
                 };
 
                 if (optionTpl) {
@@ -334,10 +334,10 @@ BaseOptionsCellEditor = A.Component.create({
             return A.Lang.sub(
                 instance.EDIT_OPTION_ROW_TEMPLATE, {
                     remove: strings.remove,
-                    titleName: strings.name,
-                    titleValue: strings.value,
-                    valueName: name,
-                    valueValue: value
+                    titleName: A.Escape.html(strings.name),
+                    titleValue: A.Escape.html(strings.value),
+                    valueName: A.Escape.html(name),
+                    valueValue: A.Escape.html(value)
                 }
             );
         },
@@ -547,7 +547,7 @@ BaseOptionsCellEditor = A.Component.create({
                     }
 
                     A.Array.each(val, function(value) {
-                        options.filter('[value="' + A.Lang.trim(value) + '"]').set(instance.get(
+                        options.filter('[value="' + A.Escape.html(A.Lang.trim(value)) + '"]').set(instance.get(
                             'selectedAttrName'), true);
                     });
                 }

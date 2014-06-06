@@ -37,7 +37,8 @@
 
     "aui-datatable-base-options-cell-editor": {
         "requires": [
-            "aui-datatable-base-cell-editor"
+            "aui-datatable-base-cell-editor",
+            "escape"
         ]
     },
 
