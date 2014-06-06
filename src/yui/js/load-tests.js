@@ -45,8 +45,14 @@ add('load', '4', {
 },
     "trigger": "aui-event-base"
 });
-// aui-node-html5
+// aui-image-viewer-swipe
 add('load', '5', {
+    "name": "aui-image-viewer-swipe",
+    "trigger": "aui-image-viewer-base",
+    "ua": "touchEnabled"
+});
+// aui-node-html5
+add('load', '6', {
     "name": "aui-node-html5",
     "trigger": "aui-node",
     "ua": "ie"

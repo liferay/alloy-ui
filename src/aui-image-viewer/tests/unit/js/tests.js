@@ -94,7 +94,7 @@ YUI.add('aui-image-viewer-base-tests', function(Y) {
                 image;
 
             this._createImageViewer({
-                anim: false,
+                animated: false,
                 preloadNeighborImages: false
             });
 

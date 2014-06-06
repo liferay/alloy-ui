@@ -598,6 +598,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-image-viewer-base": {
         "requires": [
             "anim",
+            "imageloader",
             "widget",
             "widget-modality",
             "widget-position",
@@ -608,6 +609,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-event",
             "aui-node-base",
             "aui-widget-cssclass",
+            "aui-widget-responsive",
             "aui-widget-toggle"
         ],
         "skinnable": true
@@ -627,6 +629,19 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-pagination",
             "aui-toolbar"
         ]
+    },
+    "aui-image-viewer-swipe": {
+        "condition": {
+            "name": "aui-image-viewer-swipe",
+            "trigger": "aui-image-viewer-base",
+            "ua": "touchEnabled"
+        },
+        "requires": [
+            "aui-image-viewer-base",
+            "aui-widget-swipe",
+            "event-resize"
+        ],
+        "skinnable": true
     },
     "aui-io": {
         "use": [
@@ -1205,4 +1220,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'cb22ee10c8940ed2707c4fe3aab7e86b';
+YUI.Env[Y.version].md5 = '29aa878465b31e62e9456d4c74a395f0';

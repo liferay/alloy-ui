@@ -574,6 +574,7 @@
     "aui-image-viewer-base": {
         "requires": [
             "anim",
+            "imageloader",
             "widget",
             "widget-modality",
             "widget-position",
@@ -584,6 +585,7 @@
             "aui-event",
             "aui-node-base",
             "aui-widget-cssclass",
+            "aui-widget-responsive",
             "aui-widget-toggle"
         ],
         "skinnable": true
@@ -603,6 +605,19 @@
             "aui-pagination",
             "aui-toolbar"
         ]
+    },
+    "aui-image-viewer-swipe": {
+        "condition": {
+            "name": "aui-image-viewer-swipe",
+            "trigger": "aui-image-viewer-base",
+            "ua": "touchEnabled"
+        },
+        "requires": [
+            "aui-image-viewer-base",
+            "aui-widget-swipe",
+            "event-resize"
+        ],
+        "skinnable": true
     },
     "aui-io": {
         "use": [
