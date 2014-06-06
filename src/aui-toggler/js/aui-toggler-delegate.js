@@ -124,6 +124,19 @@ var TogglerDelegate = A.Component.create({
         },
 
         /**
+         * User interaction that triggers the Toggler instance.
+         *
+         * @attribute toggleEvent
+         * @type String
+         * @writeOnce
+         */
+        toggleEvent: {
+            validator: isString,
+            value: 'tap',
+            writeOnce: true
+        },
+
+        /**
          * Transition definitions such as duration and type of easing effect.
          *
          * @attribute transition
@@ -194,7 +207,7 @@ var TogglerDelegate = A.Component.create({
             var header = instance.get('header');
 
             instance._eventHandles = [
-                container.delegate(['click', 'keydown'], A.bind('headerEventHandler', instance), header),
+                container.delegate([instance.get('toggleEvent'), 'keydown'], A.bind('headerEventHandler', instance), header),
                 instance.on('toggler:animatingChange', A.bind('_onAnimatingChange', instance))
             ];
         },
@@ -346,6 +359,7 @@ var TogglerDelegate = A.Component.create({
                 content: instance.findContentNode(header),
                 expanded: expanded,
                 header: header,
+                toggleEvent: instance.get('toggleEvent'),
                 transition: instance.get('transition')
             });
 

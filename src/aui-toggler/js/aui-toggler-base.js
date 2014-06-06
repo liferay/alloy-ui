@@ -7,6 +7,7 @@
 var Lang = A.Lang,
     isBoolean = Lang.isBoolean,
     isObject = Lang.isObject,
+    isString = Lang.isString,
     isUndefined = Lang.isUndefined,
 
     toInt = Lang.toInt,
@@ -138,6 +139,19 @@ var Toggler = A.Component.create({
         },
 
         /**
+         * User interaction that triggers the Toggler instance.
+         *
+         * @attribute toggleEvent
+         * @type String
+         * @writeOnce
+         */
+        toggleEvent: {
+            validator: isString,
+            value: 'tap',
+            writeOnce: true
+        },
+
+        /**
          * Transition definitions such as duration and type of easing effect.
          *
          * @attribute transition
@@ -170,7 +184,7 @@ var Toggler = A.Component.create({
      * @param instance
      */
     headerEventHandler: function(event, instance) {
-        if (event.type === 'click' || event.isKey('enter') || event.isKey('space')) {
+        if (event.type === instance.get('toggleEvent') || event.isKey('enter') || event.isKey('space')) {
             event.preventDefault();
 
             return instance.toggle();
@@ -222,7 +236,7 @@ var Toggler = A.Component.create({
 
             if (instance.get('bindDOMEvents')) {
                 eventHandles.push(
-                    header.on(['click', 'keydown'], A.rbind(Toggler.headerEventHandler, null, instance))
+                    header.on([instance.get('toggleEvent'), 'keydown'], A.rbind(Toggler.headerEventHandler, null, instance))
                 );
             }
 
