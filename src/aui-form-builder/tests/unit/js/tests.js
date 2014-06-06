@@ -58,7 +58,7 @@ YUI.add('module-tests', function(Y) {
             var textAreaFields = [];
 
             formBuilder.get('fields').each(
-                function(item, index) {
+                function(item) {
                     if (item.name === 'form-builder-textarea-field') {
                         textAreaFields.push(item);
                     }
