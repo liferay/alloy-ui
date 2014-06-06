@@ -1,13 +1,24 @@
 YUI.add('aui-datatype-date-parse-tests', function(Y) {
 
-    function areLikelySameDate(date1, date2) {
-        return date2 &&
-            date1.getFullYear() === date2.getFullYear() &&
-            date1.getMonth() === date2.getMonth() &&
-            date1.getDate() === date2.getDate() &&
-            date1.getHours() === date2.getHours() &&
-            date1.getMinutes() === date2.getMinutes() &&
-            date1.getSeconds() === date2.getSeconds();
+    function areLikelySameDate(date1, date2, mask) {
+        var result = date2 &&
+                date1.getFullYear() === date2.getFullYear() &&
+                date1.getMonth() === date2.getMonth() &&
+                date1.getDate() === date2.getDate();
+
+        if (/%[HIkl]/.test(mask)) {
+            result = result && date1.getHours() === date2.getHours();
+        }
+
+        if (/%[M]/.test(mask)) {
+            result = result && date1.getMinutes() === date2.getMinutes();
+        }
+
+        if (/%[S]/.test(mask)) {
+            result = result && date1.getSeconds() === date2.getSeconds();
+        }
+
+        return result;
     }
 
     function testMask(mask, opt_text, opt_date) {
@@ -21,7 +32,7 @@ YUI.add('aui-datatype-date-parse-tests', function(Y) {
         parsedDate = Y.Date.parse(mask, opt_text, new Date(+opt_date));
 
         Y.Assert.isTrue(
-            areLikelySameDate(opt_date, parsedDate),
+            areLikelySameDate(opt_date, parsedDate, mask),
             mask + ' [' + opt_text + ', ' + opt_date + ', ' + parsedDate + ' ]');
     }
 
