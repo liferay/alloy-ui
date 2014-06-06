@@ -386,9 +386,15 @@ A.mix(DateParser.prototype, {
         if (Lang.isValue(calendar.minutes)) {
             opt_date.setMinutes(calendar.minutes);
         }
+        else {
+            opt_date.setMinutes(0);
+        }
 
         if (Lang.isValue(calendar.seconds)) {
             opt_date.setSeconds(calendar.seconds);
+        }
+        else {
+            opt_date.setSeconds(0);
         }
 
         return opt_date;
