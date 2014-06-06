@@ -218,7 +218,6 @@ A.mix(DateParser.prototype, {
 
         for (i = 0; i < length; i++) {
             part = compiled[i];
-            nextPart = compiled[i + 1];
 
             if (textPos[0] > textLength) {
                 break;
@@ -227,6 +226,14 @@ A.mix(DateParser.prototype, {
             if (Lang.isString(part)) {
                 textPos[0]++;
                 continue;
+            }
+
+            for (j = i + 1; j < length; j = j + 2) {
+                if (text.indexOf(compiled[j], textPos[0] + 1) > textPos[0]) {
+                    nextPart = compiled[j];
+                    i = j - 1;
+                    break;
+                }
             }
 
             if (part.sequence) {
