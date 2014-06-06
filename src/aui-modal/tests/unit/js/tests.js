@@ -124,7 +124,6 @@ YUI.add('aui-modal-tests', function(Y) {
         // Tests
         //----------------------------------------------------------------------
 
-        // Tests: AUI-1107
         'listen after visibleChange with destroyOnHide enabled': function() {
             var mock = new Y.Mock();
 
@@ -174,7 +173,6 @@ YUI.add('aui-modal-tests', function(Y) {
         // Tests
         //----------------------------------------------------------------------
 
-        // Tests: AUI-1336
         'check modal-open class after visibleChange': function() {
             var elements = Y.all('body,html');
 
