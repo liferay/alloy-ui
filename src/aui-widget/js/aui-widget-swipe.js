@@ -11,7 +11,24 @@ var CSS_WIDGET_SWIPE = A.getClassName('widget', 'swipe');
 function WidgetSwipe() {}
 
 WidgetSwipe.prototype = {
+    /**
+     * Static property used to define the `Plugin.ScrollViewPaginator` index
+     * configuration.
+     *
+     * @property WIDGET_INDEX_ATTRIBUTE
+     * @type {String}
+     * @static
+     */
     WIDGET_INDEX_ATTRIBUTE: 'index',
+
+    /**
+     * Static property used to define the `Plugin.ScrollViewPaginator` selector
+     * configuration.
+     *
+     * @property WIDGET_ITEM_SELECTOR
+     * @type {String}
+     * @static
+     */
     WIDGET_ITEM_SELECTOR: 'img',
 
     /**
@@ -190,6 +207,33 @@ WidgetSwipe.prototype = {
     },
 
     /**
+     * Sets `swipe` attribute.
+     *
+     * @method _setSwipe
+     * @protected
+     */
+    _setSwipe: function(val) {
+        if (A.Lang.isBoolean(val)) {
+            if (val) {
+                val = {};
+            }
+            else {
+                return false;
+            }
+        }
+
+        return A.merge({
+            axis: 'x',
+            contentBox: this.get('contentBox'),
+            flick: {
+                minDistance: 10,
+                minVelocity: 0.3,
+                axis: 'x'
+            }
+        }, val);
+    },
+
+    /**
      * Scrolls to the widget's current index.
      *
      * @method _scrollToCurrentIndex
@@ -240,26 +284,7 @@ WidgetSwipe.ATTRS = {
      * @type {Object|Boolean}
      */
     swipe: {
-        setter: function(value) {
-            if (A.Lang.isBoolean(value)) {
-                if (value) {
-                    value = {};
-                }
-                else {
-                    return false;
-                }
-            }
-
-            return A.merge({
-                axis: 'x',
-                contentBox: this.get('contentBox'),
-                flick: {
-                    minDistance: 10,
-                    minVelocity: 0.3,
-                    axis: 'x'
-                }
-            }, value);
-        },
+        setter: '_setSwipe',
         value: {}
     }
 };

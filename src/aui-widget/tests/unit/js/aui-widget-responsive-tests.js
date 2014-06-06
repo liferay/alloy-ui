@@ -89,7 +89,9 @@ YUI.add('aui-widget-responsive-tests', function(Y) {
 
         'should not change widget dimensions while not visible': function() {
             this._container.setStyle('width', '470px');
-            this._createWidget({visible: false});
+            this._createWidget({
+                visible: false
+            });
 
             this._widget.set('maxWidth', 235);
 

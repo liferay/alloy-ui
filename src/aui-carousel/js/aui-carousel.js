@@ -885,7 +885,8 @@ var Carousel = A.Component.create({
 
             if (val === NODE_MENU_OUTSIDE) {
                 this.set('gutter', [0, this.nodeMenu.get('offsetHeight')]);
-            } else {
+            }
+            else {
                 this.set('gutter', [0, 0]);
             }
         },

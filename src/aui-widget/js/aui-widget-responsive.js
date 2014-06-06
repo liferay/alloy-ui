@@ -19,9 +19,9 @@
  * @class A.WidgetResponsive
  * @param {Object} The user configuration object
  */
- function WidgetResponsive() {}
+function WidgetResponsive() {}
 
- WidgetResponsive.prototype = {
+WidgetResponsive.prototype = {
     /**
      * Construction logic executed during instantiation.
      * Lifecycle.
@@ -180,9 +180,9 @@
             width: boundingBox.get('offsetWidth') - gutter[0]
         });
     }
- };
+};
 
- WidgetResponsive.ATTRS = {
+WidgetResponsive.ATTRS = {
     /**
      * Vertical and horizontal values in pixels that should not be counted
      * when preserving the widget's ratio. widget.
@@ -233,6 +233,6 @@
         value: true,
         validator: A.Lang.isBoolean
     }
- };
+};
 
- A.WidgetResponsive = WidgetResponsive;
+A.WidgetResponsive = WidgetResponsive;

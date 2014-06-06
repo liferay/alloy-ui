@@ -200,7 +200,9 @@ YUI.add('aui-widget-swipe-tests', function(Y) {
             var instance = this,
                 mock = new Y.Mock();
 
-            this._renderWidget({swipe: false});
+            this._renderWidget({
+                swipe: false
+            });
 
             Y.Mock.expect(mock, {
                 args: [Y.Mock.Value.Object],
