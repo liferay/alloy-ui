@@ -18,7 +18,7 @@ YUI.add('aui-widget-responsive-tests', function(Y) {
                     height: instance._viewportHeight,
                     width: instance._viewportWidth
                 };
-            }
+            };
         },
 
         destroy: function() {

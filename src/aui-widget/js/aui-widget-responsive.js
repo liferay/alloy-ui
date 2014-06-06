@@ -93,8 +93,7 @@ WidgetResponsive.prototype = {
      */
     _calculateOriginalDimensions: function() {
         var boundingBox = this.get('boundingBox'),
-            gutter = this.get('gutter'),
-            originalDisplay;
+            gutter = this.get('gutter');
 
         if (!this._originalDimensions) {
             boundingBox.setStyles({

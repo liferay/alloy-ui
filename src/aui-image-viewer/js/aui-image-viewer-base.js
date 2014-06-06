@@ -15,11 +15,7 @@ var CSS_CAPTION = A.getClassName('image', 'viewer', 'caption'),
     CSS_INFO = A.getClassName('image', 'viewer', 'info'),
     CSS_LOADING = A.getClassName('image', 'viewer', 'loading'),
     CSS_LOADING_ICON = A.getClassName('image', 'viewer', 'loading', 'icon'),
-    CSS_WELL = A.getClassName('well'),
-
-    EVENT_LOAD = 'load',
-
-    INFO_LABEL_TEMPLATE = 'Image {current} of {total}';
+    CSS_WELL = A.getClassName('well');
 
 /**
  * A base class for `A.ImageViewer`, providing:
@@ -76,14 +72,12 @@ A.ImageViewer = A.Base.create(
                 this.after('currentIndexChange', this._showCurrentImage),
                 this.after('linksChange', this._afterLinksChange),
                 this.after('preloadAllImagesChange', this._preloadAll),
-                this.after('showControlsChange', this._syncControlsUI),
                 this.after('responsive', this._afterResponsive),
+                this.after('showControlsChange', this._syncControlsUI),
                 this.on('responsive', this._onResponsive),
                 A.after(this._afterFillHeight, this, 'fillHeight'),
                 A.after(this._afterUISetVisible, this, '_uiSetVisible')
             ];
-
-            this._imgLoadGroups = [];
         },
 
         /**
@@ -132,8 +126,8 @@ A.ImageViewer = A.Base.create(
         },
 
         /**
-         * Gets the `Node` reference to the `index` element from
-         * the [links](A.ImageViewer.html#attr_links).
+         * Gets the `Node` reference to the `index` element from the
+         * [links](A.ImageViewer.html#attr_links).
          *
          * @method getLink
          * @param index
@@ -271,8 +265,8 @@ A.ImageViewer = A.Base.create(
         },
 
         /**
-         * Detaches the click event for the image links, if one
-         * was attached earlier.
+         * Detaches the click event for the image links, if one was attached
+         * earlier.
          *
          * @method _detachLinkEvent
          * @protected
@@ -315,8 +309,8 @@ A.ImageViewer = A.Base.create(
          * @param {String} v template
          * @return {String} Parsed string.
          */
-        _getInfoTemplate: function(v) {
-            return A.Lang.sub(v, {
+        _getInfoTemplate: function(val) {
+            return A.Lang.sub(val, {
                 current: this.get('currentIndex') + 1,
                 total: this.get('links').size()
             });
@@ -330,7 +324,7 @@ A.ImageViewer = A.Base.create(
          * @protected
          */
         _loadImage: function(index) {
-            this.fire(EVENT_LOAD + index);
+            this.fire('load' + index);
         },
 
         /**
@@ -363,7 +357,7 @@ A.ImageViewer = A.Base.create(
 
             this.updateDimensionsWithNewRatio();
 
-            if (this.get('anim') && this.get('visible')) {
+            if (this.get('animated') && this.get('visible')) {
                 image.setStyle('opacity', 0);
 
                 if (!image.fx) {
@@ -371,7 +365,7 @@ A.ImageViewer = A.Base.create(
 
                     image.fx.on('end', function(info) {
                         instance.fire('anim', {
-                            anim: info,
+                            animated: info,
                             image: image
                         });
                     });
@@ -504,7 +498,6 @@ A.ImageViewer = A.Base.create(
          */
         _renderImage: function(index, container) {
             var group,
-                id,
                 image = A.Node.create(this.TPL_IMAGE),
                 link = this.get('links').item(index);
 
@@ -517,16 +510,16 @@ A.ImageViewer = A.Base.create(
                 image = container.one('.' + CSS_IMAGE);
             }
 
-            this._eventHandles.push(image.once('load', A.bind(this._onImageLoad, this, image, index)));
-            id = image.generateID();
+            this._eventHandles.push(
+                image.once('load', A.bind(this._onImageLoad, this, image, index))
+            );
 
             group = new A.ImgLoadGroup();
-            group.addCustomTrigger(EVENT_LOAD + index, this);
+            group.addCustomTrigger('load' + index, this);
             group.registerImage({
-                domId: id,
+                domId: image.generateID(),
                 srcUrl: link.attr('href')
             });
-            this._imgLoadGroups.push(group);
         },
 
         /**
@@ -540,8 +533,6 @@ A.ImageViewer = A.Base.create(
                 container,
                 list = A.Node.create(this.TPL_IMAGE_LIST);
 
-            this.setStdModContent('body', list);
-
             this.get('links').each(function(link, index) {
                 container = A.Node.create(instance.TPL_IMAGE_CONTAINER);
                 container.addClass(CSS_LOADING);
@@ -550,7 +541,45 @@ A.ImageViewer = A.Base.create(
                 instance._renderImage(index, container);
             });
 
+            this.setStdModContent('body', list);
+
             this._preloadAll();
+        },
+
+        /**
+         * Sets `imageAnim` attribute.
+         *
+         * @method _setImageAnim
+         * @param {Object} val
+         * @protected
+         */
+        _setImageAnim: function(val) {
+            return A.merge({
+                    to: {
+                        opacity: 1
+                    },
+                    duration: 0.8
+                },
+                val
+            );
+        },
+
+        /**
+         * Sets `links` attribute.
+         *
+         * @method _setLinks
+         * @param {String | NodeList} val
+         * @protected
+         */
+        _setLinks: function(val) {
+            if (val instanceof A.NodeList) {
+                return val;
+            }
+            else if (A.Lang.isString(val)) {
+                return A.all(val);
+            }
+
+            return new A.NodeList([val]);
         },
 
         /**
@@ -621,8 +650,8 @@ A.ImageViewer = A.Base.create(
         },
 
         /**
-         * Updates the controls (next/prev/close), showing or hiding them
-         * as necessary.
+         * Updates the controls (next/prev/close), showing or hiding them as
+         * necessary.
          *
          * @method _syncControlsUI
          * @protected
@@ -649,22 +678,22 @@ A.ImageViewer = A.Base.create(
         }
     }, {
         /**
-         * Static property used to define the default attribute
-         * configuration for the `A.ImageViewer`.
+         * Static property used to define the default attribute configuration
+         * for the `A.ImageViewer`.
          *
          * @property ATTRS
-         * @type Object
+         * @type {Object}
          * @static
          */
         ATTRS: {
             /**
              * If `true` the navigation is animated.
              *
-             * @attribute anim
+             * @attribute animated
              * @default true
-             * @type Boolean
+             * @type {Boolean}
              */
-            anim: {
+            animated: {
                 value: true,
                 validator: A.Lang.isBoolean
             },
@@ -674,7 +703,7 @@ A.ImageViewer = A.Base.create(
              *
              * @attribute caption
              * @default 'blank'
-             * @type String
+             * @type {String}
              */
             caption: {
                 value: 'blank',
@@ -687,7 +716,7 @@ A.ImageViewer = A.Base.create(
              *
              * @attribute captionFromTitle
              * @default true
-             * @type Boolean
+             * @type {Boolean}
              */
             captionFromTitle: {
                 value: true,
@@ -695,12 +724,12 @@ A.ImageViewer = A.Base.create(
             },
 
             /**
-             * If `true` the Overlay with the image will be positioned
-             * on the center of the viewport.
+             * If `true` the Overlay with the image will be positioned on the
+             * center of the viewport.
              *
              * @attribute centered
              * @default true
-             * @type Boolean
+             * @type {Boolean}
              */
             centered: {
                 value: true
@@ -711,7 +740,7 @@ A.ImageViewer = A.Base.create(
              *
              * @attribute cssClass
              * @default 'well'
-             * @type String
+             * @type {String}
              */
             cssClass: {
                 value: CSS_WELL
@@ -722,7 +751,7 @@ A.ImageViewer = A.Base.create(
              *
              * @attribute currentIndex
              * @default 0
-             * @type Number
+             * @type {Number}
              */
             currentIndex: {
                 value: 0,
@@ -734,20 +763,11 @@ A.ImageViewer = A.Base.create(
              *
              * @attribute imageAnim
              * @default Predefined [Anim](Anim.html) configuration.
-             * @type Object
+             * @type {Object}
              */
             imageAnim: {
                 value: {},
-                setter: function(value) {
-                    return A.merge({
-                            to: {
-                                opacity: 1
-                            },
-                            duration: 0.8
-                        },
-                        value
-                    );
-                },
+                setter: '_setImageAnim',
                 validator: A.Lang.isObject
             },
 
@@ -756,13 +776,11 @@ A.ImageViewer = A.Base.create(
              *
              * @attribute infoTemplate
              * @default 'Image {current} of {total}'
-             * @type String
+             * @type {String}
              */
             infoTemplate: {
-                getter: function(v) {
-                    return this._getInfoTemplate(v);
-                },
-                value: INFO_LABEL_TEMPLATE,
+                getter: '_getInfoTemplate',
+                value: 'Image {current} of {total}',
                 validator: A.Lang.isString
             },
 
@@ -772,19 +790,10 @@ A.ImageViewer = A.Base.create(
              * thumbnails.
              *
              * @attribute links
-             * @type String | NodeList
+             * @type {String | NodeList}
              */
             links: {
-                setter: function(v) {
-                    if (v instanceof A.NodeList) {
-                        return v;
-                    }
-                    else if (A.Lang.isString(v)) {
-                        return A.all(v);
-                    }
-
-                    return new A.NodeList([v]);
-                }
+                setter: '_setLinks'
             },
 
             /**
@@ -792,7 +801,7 @@ A.ImageViewer = A.Base.create(
              *
              * @attribute modal
              * @default true
-             * @type Boolean
+             * @type {Boolean}
              */
             modal: {
                 value: true
@@ -804,7 +813,7 @@ A.ImageViewer = A.Base.create(
              *
              * @attribute preloadAllImages
              * @default false
-             * @type Boolean
+             * @type {Boolean}
              */
             preloadAllImages: {
                 value: false,
@@ -817,7 +826,7 @@ A.ImageViewer = A.Base.create(
              *
              * @attribute preloadAllImages
              * @default false
-             * @type Boolean
+             * @type {Boolean}
              */
             preloadNeighborImages: {
                 value: true,
@@ -829,7 +838,7 @@ A.ImageViewer = A.Base.create(
              *
              * @attribute showControls
              * @default true
-             * @type Boolean
+             * @type {Boolean}
              */
             showControls: {
                 value: true,
@@ -841,7 +850,7 @@ A.ImageViewer = A.Base.create(
              *
              * @attribute visible
              * @default false
-             * @type Boolean
+             * @type {Boolean}
              */
             visible: {
                 value: false
@@ -852,7 +861,7 @@ A.ImageViewer = A.Base.create(
          * Static property provides a string to identify the CSS prefix.
          *
          * @property CSS_PREFIX
-         * @type String
+         * @type {String}
          * @static
          */
         CSS_PREFIX: A.getClassName('image-viewer')
