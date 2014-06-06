@@ -2,7 +2,7 @@ A.ScreenBase = function() {};
 
 A.ScreenBase.NAME = 'screen';
 
-A.ScreenBase._uniqueIdCounter = Date.now();
+A.ScreenBase._uniqueIdCounter = A.Lang.now();
 
 A.ScreenBase.prototype = {
     /**
