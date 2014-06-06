@@ -332,8 +332,7 @@ YUI.add('aui-surface-tests', function(Y) {
                         endNavigateCalled = true;
                     }
                 });
-                instance.app.navigate('/base/querystring?p=prevent').
-                then (undefined, function(err) {
+                instance.app.navigate('/base/querystring?p=prevent').thenCatch(function(err) {
                     instance.resume(function() {
                         instance.assertNavigation(
                             '/base/querystring?p=beforeprevent',
@@ -430,8 +429,7 @@ YUI.add('aui-surface-tests', function(Y) {
                 }
             });
 
-            instance.app.navigate('/base/delayed200ms').
-            then (undefined, function(error) {
+            instance.app.navigate('/base/delayed200ms').thenCatch(function(error) {
                 err.push(error);
             });
 
@@ -564,8 +562,7 @@ YUI.add('aui-surface-tests', function(Y) {
             });
             instance.app.navigate('/base/querystring?p=before404').then(function() {
                 instance.app.set('basePath', instance.getOriginalBasePath());
-                instance.app.navigate(path404).
-                then (undefined, function() {
+                instance.app.navigate(path404).thenCatch(function() {
                     instance.resume(function() {
                         instance.assertNavigation(
                             '/base/querystring?p=before404',
