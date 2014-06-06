@@ -154,9 +154,29 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "anim",
             "node-event-delegate",
-            "aui-component"
+            "aui-component",
+            "aui-widget-responsive"
         ],
         "skinnable": true
+    },
+    "aui-carousel-swipe": {
+        "requires": [
+            "aui-carousel",
+            "aui-widget-swipe",
+            "base-build"
+        ],
+        "skinnable": true
+    },
+    "aui-carousel-touch": {
+        "condition": {
+            "name": "aui-carousel-touch",
+            "trigger": "aui-carousel",
+            "ua": "touchEnabled"
+        },
+        "requires": [
+            "aui-carousel-swipe",
+            "base-build"
+        ]
     },
     "aui-char-counter": {
         "requires": [
@@ -1154,6 +1174,19 @@ Y.mix(YUI.Env[Y.version].modules, {
             "widget-stdmod"
         ]
     },
+    "aui-widget-responsive": {
+        "requires": [
+            "event-resize",
+            "widget-base"
+        ]
+    },
+    "aui-widget-swipe": {
+        "requires": [
+            "classnamemanager",
+            "scrollview-base",
+            "scrollview-paginator"
+        ]
+    },
     "aui-widget-toggle": {},
     "aui-widget-toolbars": {
         "requires": [
@@ -1172,4 +1205,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'f452b780b344519d5790e322b997d695';
+YUI.Env[Y.version].md5 = 'cb22ee10c8940ed2707c4fe3aab7e86b';

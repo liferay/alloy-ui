@@ -7,20 +7,26 @@ add('load', '0', {
     "trigger": "node-base",
     "ua": "ie"
 });
-// aui-event-delegate-change
+// aui-carousel-touch
 add('load', '1', {
+    "name": "aui-carousel-touch",
+    "trigger": "aui-carousel",
+    "ua": "touchEnabled"
+});
+// aui-event-delegate-change
+add('load', '2', {
     "name": "aui-event-delegate-change",
     "trigger": "event-base-ie",
     "ua": "ie"
 });
 // aui-event-delegate-submit
-add('load', '2', {
+add('load', '3', {
     "name": "aui-event-delegate-submit",
     "trigger": "event-base-ie",
     "ua": "ie"
 });
 // aui-event-input
-add('load', '3', {
+add('load', '4', {
     "name": "aui-event-input",
     "test": function(A) {
     var supportsDOMEvent = A.supportsDOMEvent,
@@ -40,7 +46,7 @@ add('load', '3', {
     "trigger": "aui-event-base"
 });
 // aui-node-html5
-add('load', '4', {
+add('load', '5', {
     "name": "aui-node-html5",
     "trigger": "aui-node",
     "ua": "ie"

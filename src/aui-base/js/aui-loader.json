@@ -144,9 +144,29 @@
         "requires": [
             "anim",
             "node-event-delegate",
-            "aui-component"
+            "aui-component",
+            "aui-widget-responsive"
         ],
         "skinnable": true
+    },
+    "aui-carousel-swipe": {
+        "requires": [
+            "aui-carousel",
+            "aui-widget-swipe",
+            "base-build"
+        ],
+        "skinnable": true
+    },
+    "aui-carousel-touch": {
+        "condition": {
+            "name": "aui-carousel-touch",
+            "trigger": "aui-carousel",
+            "ua": "touchEnabled"
+        },
+        "requires": [
+            "aui-carousel-swipe",
+            "base-build"
+        ]
     },
     "aui-char-counter": {
         "requires": [
@@ -1128,6 +1148,19 @@
         "requires": [
             "widget-position-align",
             "widget-stdmod"
+        ]
+    },
+    "aui-widget-responsive": {
+        "requires": [
+            "event-resize",
+            "widget-base"
+        ]
+    },
+    "aui-widget-swipe": {
+        "requires": [
+            "classnamemanager",
+            "scrollview-base",
+            "scrollview-paginator"
         ]
     },
     "aui-widget-toggle": {},
