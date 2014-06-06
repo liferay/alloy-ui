@@ -4,6 +4,18 @@ YUI.add('aui-carousel-tests', function(Y) {
     suite.add(new Y.Test.Case({
         name: 'AUI Carousel Unit Tests',
 
+        _should: {
+            // Ignore the following tests in touch enabled browsers. They will
+            // be tested properly in the tests for the aui-carousel-touch module.
+            ignore: {
+                'should play/pause when user clicks the button': Y.UA.touchEnabled,
+                'should switch images when user clicks on next/previous buttons': Y.UA.touchEnabled,
+                'should switch images when user clicks on item buttons': Y.UA.touchEnabled,
+                'should switch the item selector': Y.UA.touchEnabled,
+                'should render the menu outside of the carousel': Y.UA.touchEnabled
+            }
+        },
+
         init: function() {
             this._container = Y.one('#container');
 
