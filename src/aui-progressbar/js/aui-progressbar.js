@@ -269,7 +269,6 @@ var ProgressBar = A.Component.create({
             var boundingBox = instance.get('boundingBox');
 
             boundingBox.setAttribute('tabindex', instance.get('tabindex'));
-            boundingBox.setAttribute('role', 'progressbar');
 
             if (instance.get('useARIA')) {
                 var attributes = {
@@ -284,7 +283,8 @@ var ProgressBar = A.Component.create({
                 }
 
                 instance.plug(A.Plugin.Aria, {
-                    attributes: attributes
+                    attributes: attributes,
+                    roleName: 'progressbar'
                 });
             }
         },
