@@ -24,6 +24,9 @@
     <h2>Vertical</h2>
     <div id="vertical" class="progress-bar-info"></div>
     <div id="vertical-bottom" class="progress-bar-warning"></div>
+    <div class="clearfix"></div>
+    <h2>Complete</h2>
+    <div id="complete" class="progress-bar-success"></div>
     <script>
     YUI({ filter: 'raw' }).use('aui-progressbar', function(Y) {
 
@@ -76,6 +79,12 @@
             height: 200
         }).render();
 
+        new Y.ProgressBar({
+            contentBox: '#complete',
+            label: 'complete!',
+            value: 100,
+            width: 500
+        }).render();
     });
     </script>
 </body>
