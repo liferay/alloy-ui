@@ -264,9 +264,8 @@ var ProgressBar = A.Component.create({
          * @protected
          */
         syncUI: function() {
-            var instance = this;
-
-            var boundingBox = instance.get('boundingBox');
+            var instance = this,
+                boundingBox = instance.get('boundingBox');
 
             boundingBox.setAttribute('tabindex', instance.get('tabindex'));
 
@@ -277,10 +276,6 @@ var ProgressBar = A.Component.create({
                     min: 'valuemin',
                     orientation: 'orientation'
                 };
-
-                if (instance.get('label')) {
-                    attributes.label = 'label';
-                }
 
                 instance.plug(A.Plugin.Aria, {
                     attributes: attributes,
