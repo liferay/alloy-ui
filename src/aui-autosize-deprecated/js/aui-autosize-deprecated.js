@@ -61,7 +61,14 @@ Autosize = A.Component.create({
 
             instance.onHostEvent('valuechange', instance._onValueChange, instance);
 
-            instance.after(['maxHeightChange', 'minHeightChange'], instance._syncHeight);
+            instance.after(
+                ['maxHeightChange', 'minHeightChange'],
+                function(event) {
+                    if (event.src !== UI_SRC.src) {
+                        instance._syncHeight(event);
+                    }
+                }
+            );
 
             instance.after(ADJUSTSIZE, instance._uiAutoSize);
         },
