@@ -52,7 +52,7 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
         instance._eventHandles = [
             A.after(instance._afterUiSetTrigger, instance, '_uiSetTrigger'),
             A.on('scroll', A.debounce(instance._onScroll, 100, instance)),
-            A.on('windowresize', A.debounce(instance._onResize, 100, instance))
+            A.on('windowresize', A.bind(instance._onResize, instance))
         ];
     },
 
@@ -241,9 +241,7 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
         this.suggestAlignment(this.get('trigger'));
     },
 
-    _widgetUiSetVisible: A.Widget.prototype._uiSetVisible,
-
-    _eventHandles: null
+    _widgetUiSetVisible: A.Widget.prototype._uiSetVisible
 }, {
 
     /**
@@ -354,7 +352,7 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
         triggerShowEvent: {
             validator: Lang.isString,
             value: 'mouseenter'
-        },
+        }
     },
 
     /**
@@ -368,3 +366,4 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
         arrow: '<div class="' + CSS_TOOLTIP_ARROW + '"></div>'
     }
 });
+

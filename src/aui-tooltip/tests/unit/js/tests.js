@@ -313,10 +313,10 @@ YUI.add('aui-tooltip-tests', function(Y) {
         },
 
         'should update position on resize from .tooltip on triggerResize': function() {
-            var button = Y.one('#triggerResize'),
-                bodyContent = 'Some Content',
-                tooltip,
-                oldPosition;
+            var bodyContent = 'Some Content',
+                button = Y.one('#triggerResize'),
+                oldPosition,
+                tooltip;
 
             tooltip = new Y.Tooltip({
                 align: {
@@ -326,7 +326,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
                 bodyContent: bodyContent
             }).render();
 
-            oldPosition = Y.one('#triggerResize').get('offsetTop');
+            oldPosition = tooltip.get('boundingBox').get('offsetTop');
 
             // This simulates moving the button as the window resizes.
             button.setStyle('position', 'relative');
@@ -339,18 +339,20 @@ YUI.add('aui-tooltip-tests', function(Y) {
                 Y.one(Y.config.win).simulate('resize');
             }
 
-            Y.Assert.areEqual(
-                oldPosition + 20,
-                Y.one('#triggerResize').get('offsetTop'),
-                'Trigger was moved down, so the popover should be moved as well'
-            );
+            this.wait(function() {
+                Y.Assert.areEqual(
+                    oldPosition + 20,
+                    tooltip.get('boundingBox').get('offsetTop'),
+                    'Trigger was moved down, so the popover should be moved as well'
+                );
+            }, Y.config.windowResizeDelay || 100);
         },
 
         'should update position on scrolling from .tooltip on triggerScroll': function() {
-            var button = Y.one('#triggerScroll'),
-                bodyContent = 'Some Content',
-                tooltip,
-                oldPosition;
+            var bodyContent = 'Some Content',
+                button = Y.one('#triggerScroll'),
+                oldPosition,
+                tooltip;
 
             tooltip = new Y.Tooltip({
                 align: {
@@ -367,7 +369,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
             this.wait(function() {
 
                 Y.Assert.areEqual(
-                    oldPosition + 0,
+                    oldPosition + 20,
                     tooltip.get('contentBox').get('region').top,
                     'Trigger are out of viewport and there is a scroll on page, so the tooltip should be moved as well'
                 );

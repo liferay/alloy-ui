@@ -178,17 +178,17 @@ A.mix(PositionAlignSuggestion.prototype, {
             region = instance._getRegion();
 
         if (nodeRegion.top < region.top) {
-                return 'bottom';
-            }
-            else if (nodeRegion.bottom > region.bottom) {
-                return 'top';
-            }
-            else if (nodeRegion.right > region.right) {
-                return 'left';
-            }
-            else if (nodeRegion.left < region.left) {
-                return 'right';
-            }
+            return 'bottom';
+        }
+        else if (nodeRegion.bottom > region.bottom) {
+            return 'top';
+        }
+        else if (nodeRegion.right > region.right) {
+            return 'left';
+        }
+        else if (nodeRegion.left < region.left) {
+            return 'right';
+        }
     },
     /**
      * Guess alignment points for the `position`.
