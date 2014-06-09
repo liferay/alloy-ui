@@ -1,4 +1,4 @@
 {
     "basedir": ".",
-    "glob": "src/**/tests/unit/*.html"
+    "glob": "**/tests/unit/*.html"
 }

@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var prompt = require('gulp-prompt');
-var spawn = require('child_process').spawn;
+var spawn = require('spawn-local-bin');
 
 var name;
 
@@ -22,11 +22,11 @@ gulp.task('create-name', function() {
 });
 
 gulp.task('create', ['create-name'], function(callback) {
-    var cmd = spawn('yogi', ['init', name], {
-        stdio: 'inherit'
-    });
+    var args = ['init', name];
+    var cmd = 'yogi';
 
-    cmd.on('close', function() {
-        callback();
-    });
+    spawn(cmd, args)
+        .on('exit', function() {
+            callback();
+        });
 });

@@ -1,18 +1,17 @@
 var alloy = require('../.alloy');
 var gulp = require('gulp');
-var shell = require('gulp-shell');
+var spawn = require('spawn-local-bin');
 
 gulp.task('watch', function() {
-    var cmd = ['shifter'];
+    var args = [];
+    var cmd = 'shifter';
 
-    cmd.push('--replace-version=' + alloy.version);
-    cmd.push('--replace-yuivar=A');
-    cmd.push('--watch');
+    args.push('--replace-version=' + alloy.version);
+    args.push('--replace-yuivar=A');
+    args.push('--watch');
 
-    cmd = cmd.join(' ');
-
-    gulp.src('', { read: false })
-        .pipe(shell(cmd, {
-            ignoreErrors: true
-        }));
+    spawn(cmd, args)
+        .on('exit', function() {
+            callback();
+        });
 });

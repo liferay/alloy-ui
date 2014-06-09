@@ -1,29 +1,28 @@
 var alloy = require('../.alloy');
 var gulp = require('gulp');
 var path = require('path');
-var shell = require('gulp-shell');
+var spawn = require('spawn-local-bin');
 
-gulp.task('build', ['init'], function() {
-    var cmd = ['shifter'];
+var ROOT = path.join(__dirname, '..');
+
+gulp.task('build', ['init'], function(callback) {
+    var args = [];
+    var cmd = 'shifter';
     var cwd = process.cwd();
-    var root = path.join(__dirname, '..');
 
-    if (cwd === root) {
+    if (cwd === ROOT) {
         cwd = path.join(cwd, 'src');
     }
 
-    cmd.push('--build-dir=' + path.join(root, 'build'));
-    cmd.push('--no-cache');
-    cmd.push('--no-lint');
-    cmd.push('--replace-version=' + alloy.version);
-    cmd.push('--replace-yuivar=A');
-    cmd.push('--walk');
+    args.push('--build-dir=' + path.join(ROOT, 'build'));
+    args.push('--no-cache');
+    args.push('--no-lint');
+    args.push('--replace-version=' + alloy.version);
+    args.push('--replace-yuivar=A');
+    args.push('--walk');
 
-    cmd = cmd.join(' ');
-
-    return gulp.src('', { read: false })
-        .pipe(shell(cmd, {
-            cwd: cwd,
-            ignoreErrors: true
-        }));
+    spawn(cmd, args, cwd)
+        .on('exit', function() {
+            callback();
+        });
 });

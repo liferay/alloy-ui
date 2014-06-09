@@ -132,12 +132,6 @@ gulp test
 gulp test-browser
     ```
 
-* Run test coverage using [Istanbul](https://www.npmjs.org/package/istanbul/):
-
-    ```
-gulp coverage
-    ```
-
 ### API Docs
 
 * Import code examples from alloyui.com and build docs locally using [YUIDoc](http://yui.github.io/yuidoc/):

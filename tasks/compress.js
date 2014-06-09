@@ -1,6 +1,9 @@
 var alloy = require('../.alloy');
 var gulp = require('gulp');
+var path = require('path');
 var zip = require('gulp-zip');
+
+var ROOT = path.join(__dirname, '..');
 
 var files = [
     '**',
@@ -14,13 +17,13 @@ var files = [
 ];
 
 gulp.task('compress', ['build'], function() {
-    return gulp.src(files)
+    return gulp.src(files, { cwd: ROOT })
         .pipe(zip('alloy-' + alloy.version + '.zip'))
-        .pipe(gulp.dest('.'));
+        .pipe(gulp.dest('.', { cwd: ROOT }));
 });
 
 gulp.task('compress-cdn', ['cdn'], function() {
-    return gulp.src(files)
+    return gulp.src(files, { cwd: ROOT })
         .pipe(zip('cdn-alloy-' + alloy.version + '.zip'))
-        .pipe(gulp.dest('.'));
+        .pipe(gulp.dest('.', { cwd: ROOT }));
 });
