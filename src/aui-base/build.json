@@ -1,11 +1,11 @@
 {
     "name": "aui-base",
     "exec": [
-        "yogi loader --yes --mix --js js/aui-loader.js --json js/aui-loader.json --start ../",
-        "./scripts/build.js"
+        "gulp loader-build",
+        "gulp aliases"
     ],
     "postexec": [
-        "./scripts/postbuild.js"
+        "gulp loader-postbuild"
     ],
     "builds": {
         "aui-base-core": {

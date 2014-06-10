@@ -4,6 +4,11 @@ var path = require('path');
 
 var ROOT = path.join(__dirname, '..');
 
+gulp.task('clean-aliases', function() {
+    return gulp.src(['src/aui-base/js/aui-aliases.js'], { cwd: ROOT, read: false })
+        .pipe(clean());
+});
+
 gulp.task('clean-api', function() {
     return gulp.src(['api', 'temp'], { cwd: ROOT, read: false })
         .pipe(clean());
