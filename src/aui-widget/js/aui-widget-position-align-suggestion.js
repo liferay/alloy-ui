@@ -172,7 +172,7 @@ A.mix(PositionAlignSuggestion.prototype, {
         return position;
     },
 
-    _findBestPositionOutsideViewport: function (node) {
+    _findBestPositionOutsideViewport: function(node) {
         var instance = this,
             nodeRegion = instance._getRegion(node),
             region = instance._getRegion();

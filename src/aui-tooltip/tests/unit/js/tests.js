@@ -335,7 +335,8 @@ YUI.add('aui-tooltip-tests', function(Y) {
                 // Can't simulate a resize on IE8's window object, so
                 // calling the function directly here.
                 tooltip._onResize();
-            } else {
+            }
+            else {
                 Y.one(Y.config.win).simulate('resize');
             }
 

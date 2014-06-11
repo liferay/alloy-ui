@@ -366,4 +366,3 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
         arrow: '<div class="' + CSS_TOOLTIP_ARROW + '"></div>'
     }
 });
-
