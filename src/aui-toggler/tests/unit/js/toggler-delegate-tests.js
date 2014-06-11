@@ -11,7 +11,9 @@ YUI.add('aui-toggler-delegate-tests', function(Y) {
         defaultMarkup = togglerContainer.getHTML(),
 
         _SELECTOR_CSS_CONTENT = '.content',
-        _SELECTOR_CSS_HEADER = '.header';
+        _SELECTOR_CSS_HEADER = '.header',
+
+        IE = Y.UA.ie;
 
     //--------------------------------------------------------------------------
     // Test Case for TogglerDelegate.destructor
@@ -211,7 +213,8 @@ YUI.add('aui-toggler-delegate-tests', function(Y) {
                 closeAllOnExpand: true,
                 content: _SELECTOR_CSS_CONTENT,
                 expanded: false,
-                header: _SELECTOR_CSS_HEADER
+                header: _SELECTOR_CSS_HEADER,
+                toggleEvent: 'click'
             });
         },
 
@@ -261,6 +264,83 @@ YUI.add('aui-toggler-delegate-tests', function(Y) {
             deeplyNestedNode = instance._getHeader(nestedNode, 0);
             deeplyNestedNode.simulate('click');
             instance._assertHeaderExpandedPath(deeplyNestedNode);
+        }
+
+    }));
+
+    //--------------------------------------------------------------------------
+    // Test Case for TogglerDelegate:toggleEvent
+    //--------------------------------------------------------------------------
+
+    suite.add(new Y.Test.Case({
+
+        name: 'TogglerDelegate:toggleEvent',
+
+        _should: {
+            // Ignore IE > 9 until gestureSimulate works with pointer events.
+            ignore: {
+                'test default tap event': IE && IE > 9
+            }
+        },
+
+        setUp: function() {
+            if (togglerDelegate) {
+                togglerDelegate.destroy();
+            }
+
+            togglerContainer.setHTML(defaultMarkup);
+
+            togglerDelegate = new Y.TogglerDelegate({
+                closeAllOnExpand: true,
+                content: _SELECTOR_CSS_CONTENT,
+                expanded: false,
+                header: _SELECTOR_CSS_HEADER
+            });
+
+            this._currentIndex = 0;
+        },
+
+        tearDown: function() {
+            togglerDelegate.destroy();
+
+            togglerDelegate = null;
+        },
+
+        _assertTapToggle: function(headers) {
+            var instance = this,
+                currentIndex = instance._currentIndex,
+                header = headers.item(currentIndex);
+
+            header.simulateGesture('tap', {}, function() {
+                instance.resume(
+                    function() {
+                        Y.Assert.isTrue(header.next('.toggler-content').hasClass('toggler-content-expanded'));
+
+                        currentIndex = currentIndex + 1;
+
+                        if (headers.item(currentIndex)) {
+                            instance._currentIndex = currentIndex;
+
+                            instance._assertTapToggle(headers);
+                        }
+                    }
+                );
+            });
+
+            instance.wait(500);
+        },
+
+        //----------------------------------------------------------------------
+        // Tests
+        //----------------------------------------------------------------------
+
+        /*
+         * Checks to see if Toggler succesfully expands on tap event.
+         *
+         * Tests: AUI-1388
+         */
+        'test default tap event': function() {
+            this._assertTapToggle(Y.all('.toggler-header'));
         }
 
     }));
