@@ -344,7 +344,8 @@ A.mix(DateParser.prototype, {
      */
     _findNextSeparatorPos: function(compiled, compiledPos, text, textPos) {
         var length = compiled.length,
-            separatorPos = compiledPos + 1;
+            separatorPos = compiledPos + 1,
+            j;
 
         for (j = compiledPos + 1; j < length; j++) {
             if (Lang.isString(compiled[j]) && text.indexOf(compiled[j], textPos[0] + 1) > textPos[0]) {
