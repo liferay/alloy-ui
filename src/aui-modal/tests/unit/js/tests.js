@@ -47,26 +47,37 @@ YUI.add('aui-modal-tests', function(Y) {
 
         'toggle drag functionality': function() {
             if (!TOUCH_ENABLED) {
-                Y.Assert.isUndefined(modal.dd, Y.Lang.sub(ERROR_PLUGIN_OVERRIDEN, ['dd']));
-                Y.Assert.isUndefined(modal.hasPlugin('dd'), Y.Lang.sub(ERROR_PLUGIN_PLUGGED, ['dd']));
+                Y.Assert.isUndefined(
+                    modal.dd,
+                    Y.Lang.sub(ERROR_PLUGIN_OVERRIDEN, ['dd']));
+                Y.Assert.isUndefined(
+                    modal.hasPlugin('dd'),
+                    Y.Lang.sub(ERROR_PLUGIN_PLUGGED, ['dd']));
 
                 boundingBox.simulate('click');
             }
 
-            Y.Assert.isNotUndefined(modal.hasPlugin('dd'), Y.Lang.sub(ERROR_PLUGIN_MISSING, ['dd']));
+            Y.Assert.isNotUndefined(
+                modal.hasPlugin('dd'),
+                Y.Lang.sub(ERROR_PLUGIN_MISSING, ['dd']));
 
             modal.set('draggable', false);
-            Y.Assert.isUndefined(modal.hasPlugin('dd'), Y.Lang.sub(ERROR_PLUGIN_AVAILABLE, ['dd']));
+            Y.Assert.isUndefined(
+                modal.hasPlugin('dd'),
+                Y.Lang.sub(ERROR_PLUGIN_AVAILABLE, ['dd']));
 
             modal.set('draggable', true);
-
             if (!TOUCH_ENABLED) {
-                Y.Assert.isUndefined(modal.hasPlugin('dd'), Y.Lang.sub(ERROR_PLUGIN_PLUGGED, ['dd']));
+                Y.Assert.isUndefined(
+                    modal.hasPlugin('dd'),
+                    Y.Lang.sub(ERROR_PLUGIN_PLUGGED, ['dd']));
 
                 boundingBox.simulate('click');
             }
 
-            Y.Assert.isNotUndefined(modal.hasPlugin('dd'), Y.Lang.sub(ERROR_PLUGIN_MISSING, ['dd']));
+            Y.Assert.isNotUndefined(
+                modal.hasPlugin('dd'),
+                Y.Lang.sub(ERROR_PLUGIN_MISSING, ['dd']));
         }
 
     }));

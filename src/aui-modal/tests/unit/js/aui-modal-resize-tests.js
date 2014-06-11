@@ -8,8 +8,6 @@ YUI.add('aui-modal-resize-tests', function(Y) {
         modal,
         boundingBox,
 
-        CSS_MODAL_OPEN = Y.getClassName('modal-open'),
-
         ERROR_PLUGIN_AVAILABLE = '{0} plugin should not be available',
         ERROR_PLUGIN_MISSING = '{0} plugin was not plugged',
         ERROR_PLUGIN_OVERRIDEN = '{0} attribute should not be overriden',
@@ -47,28 +45,38 @@ YUI.add('aui-modal-resize-tests', function(Y) {
 
         'toggle resize functionality': function() {
             if (!TOUCH_ENABLED) {
-                Y.Assert.isUndefined(modal.resize, Y.Lang.sub(ERROR_PLUGIN_OVERRIDEN, ['resize']));
                 Y.Assert.isUndefined(
-                    modal.hasPlugin('resize'), Y.Lang.sub(ERROR_PLUGIN_PLUGGED, ['resize']));
+                    modal.resize,
+                    Y.Lang.sub(ERROR_PLUGIN_OVERRIDEN, ['resize']));
+
+                Y.Assert.isUndefined(
+                    modal.hasPlugin('resize'),
+                    Y.Lang.sub(ERROR_PLUGIN_PLUGGED, ['resize']));
 
                 boundingBox.simulate('click');
             }
 
-            Y.Assert.isNotUndefined(modal.hasPlugin('resize'), Y.Lang.sub(ERROR_PLUGIN_MISSING, ['resize']));
+            Y.Assert.isNotUndefined(
+                modal.hasPlugin('resize'),
+                Y.Lang.sub(ERROR_PLUGIN_MISSING, ['resize']));
 
             modal.set('resizable', false);
-            Y.Assert.isUndefined(modal.hasPlugin('resize'), Y.Lang.sub(ERROR_PLUGIN_AVAILABLE, ['resize']));
+            Y.Assert.isUndefined(
+                modal.hasPlugin('resize'),
+                Y.Lang.sub(ERROR_PLUGIN_AVAILABLE, ['resize']));
 
             modal.set('resizable', true);
-
             if (!TOUCH_ENABLED) {
                 Y.Assert.isUndefined(
-                    modal.hasPlugin('resize'), Y.Lang.sub(ERROR_PLUGIN_PLUGGED, ['resize']));
+                    modal.hasPlugin('resize'),
+                    Y.Lang.sub(ERROR_PLUGIN_PLUGGED, ['resize']));
 
                 boundingBox.simulate('click');
             }
 
-            Y.Assert.isNotUndefined(modal.hasPlugin('resize'), Y.Lang.sub(ERROR_PLUGIN_MISSING, ['resize']));
+            Y.Assert.isNotUndefined(
+                modal.hasPlugin('resize'),
+                Y.Lang.sub(ERROR_PLUGIN_MISSING, ['resize']));
         }
 
     }));
