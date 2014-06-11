@@ -11,7 +11,6 @@
         <script src="js/tests.js"></script>
     </head>
     <body class="yui3-skin-sam">
-        <div id="logger"></div>
         <div class="row">
             <div class="col col-lg-12 col-md-12 col-sm-12">
                 <h4>AUI Tooltip Tests</h4>
@@ -34,7 +33,7 @@
 
                 <button class="btn btn-lg btn-primary" id="triggerResize" title="One fine body…">#triggerResize</button>
 
-                <button class="btn btn-lg btn-primary" id="triggerScroll" title="One fine body…" style="position: relative; top: 500px;">#triggerScroll</button>
+                <button class="btn btn-lg btn-primary" id="triggerScroll" title="One fine body…" style="position: relative; top: 1000px;">#triggerScroll</button>
             </div>
         </div>
 
@@ -51,6 +50,9 @@
         </div>
 
         <div id="noTrigger">Something</div>
+
+        <div id="logger"></div>
+
         <script>
         YUI({
             coverage: ['aui-tooltip-base'],
