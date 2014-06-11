@@ -203,8 +203,8 @@ A.mix(DateParser.prototype, {
             compiled = instance.compiled,
             i,
             length = compiled.length,
-            nextPart,
             part,
+            separatorPos,
             textLength,
             textPos = [0],
             value;
@@ -228,14 +228,6 @@ A.mix(DateParser.prototype, {
                 continue;
             }
 
-            for (j = i + 1; j < length; j = j + 2) {
-                if (text.indexOf(compiled[j], textPos[0] + 1) > textPos[0]) {
-                    nextPart = compiled[j];
-                    i = j - 1;
-                    break;
-                }
-            }
-
             if (part.sequence) {
                 if (DateParser.HINTS.TZ === part.hints) {
                     value = instance._subparseTimeZone(text, textPos);
@@ -250,7 +242,14 @@ A.mix(DateParser.prototype, {
                 }
             }
             else {
-                value = instance._getNextValue(text, textPos, nextPart);
+                separatorPos = instance._findNextSeparatorPos(compiled, i, text, textPos);
+
+                // We may have skipped tokens and separators that were not present in the,
+                // text, so update the compiled index to be the one right before the
+                // separator that will be used.
+                i = separatorPos - 1;
+
+                value = instance._getNextValue(text, textPos, compiled[separatorPos]);
             }
 
             if (part.hints.setter) {
@@ -330,6 +329,31 @@ A.mix(DateParser.prototype, {
         }
 
         return bestMatchIndex;
+    },
+
+    /**
+     * Looks for the position of the next separator that is included in the text.
+     *
+     * @method _findNextSeparatorPos
+     * @param {Array} compiled Information about the compiled mask
+     * @param {Number} compiledPos Current position in the compiled array
+     * @param {String} text The text that is being parsed
+     * @param {Number} Current position in the text being parsed
+     * @returns {Number} Position of the next separator in the compiled array
+     * @protected
+     */
+    _findNextSeparatorPos: function(compiled, compiledPos, text, textPos) {
+        var length = compiled.length,
+            separatorPos = compiledPos + 1;
+
+        for (j = compiledPos + 1; j < length; j++) {
+            if (Lang.isString(compiled[j]) && text.indexOf(compiled[j], textPos[0] + 1) > textPos[0]) {
+                separatorPos = j;
+                break;
+            }
+        }
+
+        return separatorPos;
     },
 
     /**

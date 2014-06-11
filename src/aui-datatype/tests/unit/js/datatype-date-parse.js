@@ -116,6 +116,7 @@ YUI.add('aui-datatype-date-parse-tests', function(Y) {
             testMask('%d/%m/%y', '10/05/10', new Date(2010, 04, 10));
             testMask('%d/%m/%y', '10/05/-10', new Date(-2010, 04, 10));
             testMask('%d/%m/%y', '10/05/00', new Date(2000, 04, 10));
+            testMask('%d%m//%Y', '1002//2012', new Date(2012, 1, 10));
         },
 
         'test aggregates': function() {
@@ -150,6 +151,9 @@ YUI.add('aui-datatype-date-parse-tests', function(Y) {
                 '%a, %b %d, %Y %H:%M:%S %p %Z', 'Tue, Jan 01, 2013 15:05:10 BRT', new Date(2013, 0, 01, 15,
                     05, 10));
             testMask('%m %e %y', '11  4 13', new Date(2013, 10, 4));
+            testMask('%I:%M %p', '7 PM', new Date(2013, 4, 10, 19, 0, 0));
+            testMask('%d/ %m %Y', '03/ 04 2013', new Date(2013, 3, 3));
+            testMask('%d/ %m %Y', '03 04 2013', new Date(2013, 3, 3));
         },
 
         /*
