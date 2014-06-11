@@ -686,7 +686,6 @@ Y.mix(YUI.Env[Y.version].modules, {
             "widget-stdmod",
             "dd-plugin",
             "dd-constrain",
-            "resize-plugin",
             "timers",
             "aui-classnamemanager",
             "aui-widget-cssclass",
@@ -694,6 +693,19 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-widget-toolbars"
         ],
         "skinnable": true
+    },
+    "aui-modal-resize": {
+        "condition": {
+            "name": "aui-modal-resize",
+            "test": function(A) {
+    return !A.UA.mobile;
+},
+            "trigger": "aui-modal"
+        },
+        "requires": [
+            "aui-modal",
+            "resize-plugin"
+        ]
     },
     "aui-node": {
         "use": [
@@ -1220,4 +1232,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '29aa878465b31e62e9456d4c74a395f0';
+YUI.Env[Y.version].md5 = '27bf74971f196ac868f92e11a0aba78b';

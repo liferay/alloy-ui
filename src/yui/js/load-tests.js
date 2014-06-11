@@ -51,8 +51,16 @@ add('load', '5', {
     "trigger": "aui-image-viewer-base",
     "ua": "touchEnabled"
 });
-// aui-node-html5
+// aui-modal-resize
 add('load', '6', {
+    "name": "aui-modal-resize",
+    "test": function(A) {
+    return !A.UA.mobile;
+},
+    "trigger": "aui-modal"
+});
+// aui-node-html5
+add('load', '7', {
     "name": "aui-node-html5",
     "trigger": "aui-node",
     "ua": "ie"
