@@ -960,11 +960,13 @@ var FormValidator = A.Component.create({
             var instance = this,
                 ancestor,
                 field,
+                label,
                 nextSibling,
                 stackContainer,
                 target,
                 validator;
 
+            label = instance.get(LABEL_CSS_CLASS);
             validator = event.validator;
             field = validator.field;
 
@@ -980,8 +982,15 @@ var FormValidator = A.Component.create({
                 if (nextSibling && nextSibling.get('nodeType') === 3) {
                     ancestor = field.ancestor();
 
-                    if (ancestor && ancestor.hasClass(instance.get(LABEL_CSS_CLASS)) || ancestor.hasClass('radio'))) {
-                        target = nextSibling;
+                    if (ancestor) {
+                        if (ancestor.hasClass(label)) {
+                            target = nextSibling;
+                        }
+                        else if (A.FormValidator.isCheckable(target)) {
+                            var label = ancestor.previous('.' + label);
+
+                            target = label;
+                        }
                     }
                 }
 
