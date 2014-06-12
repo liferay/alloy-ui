@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+</head>
+<body class="yui3-skin-sam">
+    <h1>AlloyUI - Image Viewer Base</h1>
+
+    <div id="demo"></div>
+
+    <script>
+        YUI({ filter: 'raw' }).use('aui-image-viewer-base', function(Y) {
+            new Y.ImageViewerBase({
+                sources: [
+                    'assets/lfr-soccer-1.jpg',
+                    'assets/lfr-soccer-2.jpg',
+                    'assets/lfr-soccer-3.jpg',
+                ]
+            }).render('#demo');
+        });
+    </script>
+</body>
+</html>

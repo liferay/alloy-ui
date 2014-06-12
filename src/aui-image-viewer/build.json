@@ -1,6 +1,12 @@
 {
     "name": "aui-image-viewer",
     "builds": {
+        "aui-image-viewer": {
+            "jsfiles": [
+                "js/aui-image-viewer.js"
+            ]
+        },
+
         "aui-image-viewer-base": {
             "jsfiles": [
                 "js/aui-image-viewer-base.js"

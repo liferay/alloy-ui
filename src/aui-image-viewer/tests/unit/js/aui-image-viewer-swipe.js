@@ -6,10 +6,13 @@ YUI.add('aui-image-viewer-swipe-tests', function(Y) {
         name: 'Image Viewer Swipe Tests',
 
         setUp: function() {
-            this._imageViewer = new Y.ImageViewer({
-                links: '#viewer a',
-                captionFromTitle: true
-            }).render();
+            this._imageViewer = new Y.ImageViewerBase({
+                sources: [
+                    'assets/lfr-soccer-1.jpg',
+                    'assets/lfr-soccer-2.jpg',
+                    'assets/lfr-soccer-3.jpg'
+                ],
+            }).render('#container');
         },
 
         tearDown: function() {
@@ -22,14 +25,14 @@ YUI.add('aui-image-viewer-swipe-tests', function(Y) {
             var swipe = this._imageViewer.get('swipe');
 
             Y.Assert.areSame(
-                this._imageViewer.get('contentBox'),
+                this._imageViewer.get('contentBox').one('.image-viewer-base-image-list'),
                 swipe.boundingBox,
-                'The viewer\'s content box should be the scroll view\'s bounding box'
+                'The viewer\'s list node should be the scroll view\'s bounding box'
             );
             Y.Assert.areSame(
-                this._imageViewer.getStdModNode('body'),
+                this._imageViewer.get('contentBox').one('.image-viewer-base-image-list-inner'),
                 swipe.contentBox,
-                'The viewer\'s body should be the scroll view\'s content box'
+                'The viewer\'s inner list node should be the scroll view\'s content box'
             );
         },
 
@@ -41,7 +44,7 @@ YUI.add('aui-image-viewer-swipe-tests', function(Y) {
             );
 
             Y.Assert.areEqual(
-                '.image-viewer-image-container',
+                '.image-viewer-base-image-container',
                 this._imageViewer.WIDGET_ITEM_SELECTOR,
                 'The viewer\'s items are defined by the image container css class'
             );

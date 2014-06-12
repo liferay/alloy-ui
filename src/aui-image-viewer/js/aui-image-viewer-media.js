@@ -7,8 +7,8 @@
 var Lang = A.Lang,
     Do = A.Do,
 
-    CSS_IMAGE_VIEWER_IMAGE = A.getClassName('image', 'viewer', 'image'),
-    CSS_IMAGE_VIEWER_LOADING = A.getClassName('image', 'viewer', 'loading'),
+    CSS_IMAGE_VIEWER_IMAGE = A.getClassName('image', 'viewer', 'base', 'image'),
+    CSS_IMAGE_VIEWER_LOADING = A.getClassName('image', 'viewer', 'base', 'loading'),
 
     DEFAULT_OPTIONS = {
         height: 360,

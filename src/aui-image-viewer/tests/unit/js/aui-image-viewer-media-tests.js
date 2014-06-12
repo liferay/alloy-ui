@@ -41,7 +41,7 @@ YUI.add('aui-image-viewer-media-tests', function(Y) {
 
             Y.Assert.isNotNull(media, 'The media should have been rendered on load');
             Y.Assert.isFalse(
-                mediaContainer.hasClass('image-viewer-loading'),
+                mediaContainer.hasClass('image-viewer-base-loading'),
                 'Media should not have loading indicator'
             );
         },
@@ -59,14 +59,14 @@ YUI.add('aui-image-viewer-media-tests', function(Y) {
             imageContainer = image.get('parentNode');
 
             Y.Assert.isTrue(
-                imageContainer.hasClass('image-viewer-loading'),
+                imageContainer.hasClass('image-viewer-base-loading'),
                 'Image should have started loading'
             );
 
             image.once('load', function() {
                 instance.resume(function() {
                     Y.Assert.isFalse(
-                        imageContainer.hasClass('image-viewer-loading'),
+                        imageContainer.hasClass('image-viewer-base-loading'),
                         'Image should have finished loading'
                     );
                 });

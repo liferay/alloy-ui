@@ -1,0 +1,75 @@
+.image-viewer-base, .image-viewer-base-control.carousel-control {
+    position: fixed;
+    z-index: 3000;
+}
+
+.image-viewer.well {
+    padding: 0;
+}
+
+.image-viewer-close {
+    color: #fff;
+    font-size: 30px;
+    opacity: 0.5;
+    position: fixed;
+    right: 20px;
+    top: 10px;
+    z-index: 3000;
+}
+
+.image-viewer-close:hover {
+    color: #fff;
+    opacity: 1;
+}
+
+.image-viewer-hidden, .image-viewer-loading .yui3-widget-ft {
+    display: none;
+}
+
+.image-viewer-bd, .image-viewer .yui3-widget-ft {
+    background: #fff;
+}
+
+.image-viewer-caption, .image-viewer-info {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.image-viewer-caption {
+    color: #222;
+}
+
+.image-viewer-info {
+    color: #777;
+    padding-bottom: 1px;
+}
+
+.ie6 .image-viewer-close {
+    position: absolute;
+}
+
+.image-viewer .image-viewer-content, .image-viewer .image-gallery-content {
+    padding: 5px 0;
+    background: #fff;
+    text-align: center;
+}
+
+.image-viewer .image-viewer-base-image-container {
+    left: 0;
+    padding: 0 5px;
+    position: relative;
+    top: 0;
+    vertical-align: top;
+}
+
+.widget-swipe.image-viewer .yui3-widget-bd {
+    white-space: nowrap;
+}
+
+.widget-swipe.image-viewer .image-viewer-image-container,
+.widget-swipe.image-viewer .image-viewer-image-container.image-viewer-current-image {
+    display: inline-block;
+    width: 100%;
+}

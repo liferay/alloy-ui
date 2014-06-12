@@ -1,16 +1,20 @@
 {
-	"aui-image-viewer": {
-        "use": [
-            "aui-image-viewer-base",
-            "aui-image-viewer-gallery",
-            "aui-image-viewer-media"
-        ]
-    },
-
-    "aui-image-viewer-base": {
+	"aui-image-viewer-base": {
         "requires": [
             "anim",
+            "aui-classnamemanager",
+            "aui-node",
+            "aui-widget-responsive",
+            "base-build",
             "imageloader",
+            "node-base",
+            "widget"
+        ],
+        "skinnable": true
+    },
+
+    "aui-image-viewer": {
+        "requires": [
             "widget",
             "widget-modality",
             "widget-position",
@@ -19,9 +23,9 @@
             "widget-stack",
             "widget-stdmod",
             "aui-event",
+            "aui-image-viewer-base",
             "aui-node-base",
             "aui-widget-cssclass",
-            "aui-widget-responsive",
             "aui-widget-toggle"
         ],
         "skinnable": true
@@ -29,7 +33,7 @@
 
     "aui-image-viewer-gallery": {
     	"requires": [
-    		"aui-image-viewer-base",
+    		"aui-image-viewer",
     		"aui-pagination",
     		"aui-toolbar"
     	],
@@ -39,7 +43,7 @@
     "aui-image-viewer-media": {
         "requires": [
             "plugin",
-            "aui-image-viewer-base",
+            "aui-image-viewer",
             "aui-pagination",
             "aui-toolbar"
         ]
@@ -54,7 +58,6 @@
         "condition": {
             "trigger": "aui-image-viewer-base",
             "ua": "touchEnabled"
-        },
-        "skinnable": true
+        }
     }
 }

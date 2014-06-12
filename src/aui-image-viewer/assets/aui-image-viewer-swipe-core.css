@@ -1,9 +1,0 @@
-.widget-swipe .yui3-widget-bd {
-    white-space: nowrap;
-}
-
-.widget-swipe .image-viewer-image-container,
-.widget-swipe .image-viewer-image-container.image-viewer-current-image {
-    display: inline-block;
-    width: 100%;
-}

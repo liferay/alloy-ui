@@ -169,10 +169,10 @@ WidgetResponsive.prototype = {
         }
 
         if (this._canChangeHeight()) {
-            maxHeight = Math.min(maxHeight, viewportRegion.height);
+            maxHeight = Math.min(maxHeight, viewportRegion.height) - gutter[1];
         }
         if (this._canChangeWidth()) {
-            maxWidth = Math.min(maxWidth, viewportRegion.width);
+            maxWidth = Math.min(maxWidth, viewportRegion.width) - gutter[0];
         }
 
         if (newWidth > maxWidth || newHeight > maxHeight) {

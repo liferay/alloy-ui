@@ -12,7 +12,7 @@ function ImageViewerSwipe() {}
 
 ImageViewerSwipe.prototype = {
     WIDGET_INDEX_ATTRIBUTE: 'currentIndex',
-    WIDGET_ITEM_SELECTOR: '.image-viewer-image-container'
+    WIDGET_ITEM_SELECTOR: '.image-viewer-base-image-container'
 };
 
 ImageViewerSwipe.ATTRS = {
@@ -36,8 +36,8 @@ ImageViewerSwipe.ATTRS = {
     swipe: {
         getter: function(value) {
             return A.merge(value, {
-                boundingBox: this.get('contentBox'),
-                contentBox: this.getStdModNode('body')
+                boundingBox: this.get('contentBox').one('.image-viewer-base-image-list'),
+                contentBox: this.get('contentBox').one('.image-viewer-base-image-list-inner')
             });
         }
     },
@@ -54,4 +54,4 @@ ImageViewerSwipe.ATTRS = {
     }
 };
 
-A.Base.mix(A.ImageViewer, [A.WidgetSwipe, ImageViewerSwipe]);
+A.Base.mix(A.ImageViewerBase, [A.WidgetSwipe, ImageViewerSwipe]);

@@ -1,140 +1,109 @@
 /**
- * The ImageViewer Utility
+ * The Image Viewer Base module.
  *
- * @module aui-image-viewer
- * @submodule aui-image-viewer-base
+ * @module aui-image-viewer-base
  */
 
-var CSS_CAPTION = A.getClassName('image', 'viewer', 'caption'),
-    CSS_CLOSE = A.getClassName('image', 'viewer', 'close'),
-    CSS_CONTROL = A.getClassName('image', 'viewer', 'control'),
-    CSS_CURRENT_IMAGE = A.getClassName('image', 'viewer', 'current', 'image'),
-    CSS_IMAGE = A.getClassName('image', 'viewer', 'image'),
-    CSS_IMAGE_CONTAINER = A.getClassName('image', 'viewer', 'image', 'container'),
-    CSS_IMAGE_LIST = A.getClassName('image', 'viewer', 'image', 'list'),
-    CSS_INFO = A.getClassName('image', 'viewer', 'info'),
-    CSS_LOADING = A.getClassName('image', 'viewer', 'loading'),
-    CSS_LOADING_ICON = A.getClassName('image', 'viewer', 'loading', 'icon'),
-    CSS_WELL = A.getClassName('well');
+var CSS_CONTROL = A.getClassName('image', 'viewer', 'base', 'control'),
+    CSS_CONTROL_LEFT = A.getClassName('image', 'viewer', 'base', 'control', 'left'),
+    CSS_CONTROL_RIGHT = A.getClassName('image', 'viewer', 'base', 'control', 'right'),
+    CSS_CURRENT_IMAGE = A.getClassName('image', 'viewer', 'base', 'current', 'image'),
+    CSS_IMAGE = A.getClassName('image', 'viewer', 'base', 'image'),
+    CSS_IMAGE_CONTAINER = A.getClassName('image', 'viewer', 'base', 'image', 'container'),
+    CSS_IMAGE_LIST = A.getClassName('image', 'viewer', 'base', 'image', 'list'),
+    CSS_IMAGE_LIST_INNER = A.getClassName('image', 'viewer', 'base', 'image', 'list', 'inner'),
+    CSS_LOADING = A.getClassName('image', 'viewer', 'base', 'loading'),
+    CSS_LOADING_ICON = A.getClassName('image', 'viewer', 'base', 'loading', 'icon');
 
 /**
- * A base class for `A.ImageViewer`, providing:
+ * Fired when the current image will be animated in.
  *
- * - Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)
- * - Displays an image in a Overlay
- * - Keyboard navigation support
+ * @event animate
+ * @preventable _defAnimateFn
+ */
+
+/**
+ * The base class for Image Viewer.
  *
- * Check the [live demo](http://alloyui.com/examples/image-viewer/).
- *
- * @class A.ImageViewer
- * @extends Widget
- * @uses WidgetStdMod, WidgetPosition, WidgetStack, WidgetPositionAlign,
- *     WidgetPositionConstrain, WidgetModality
+ * @class A.ImageViewerBase
+ * @extends A.Widget
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
-
-A.ImageViewer = A.Base.create(
-    'image-viewer',
+A.ImageViewerBase = A.Base.create(
+    'image-viewer-base',
     A.Widget, [
-        A.WidgetCssClass,
-        A.WidgetStdMod,
-        A.WidgetToggle,
-        A.WidgetPosition,
-        A.WidgetStack,
-        A.WidgetPositionAlign,
-        A.WidgetPositionConstrain,
-        A.WidgetResponsive,
-        A.WidgetModality
+        A.WidgetResponsive
     ], {
-        TPL_CAPTION: '<h4 class="' + CSS_CAPTION + '"></h4>',
-        TPL_CLOSE: '<button class="close ' + CSS_CLOSE + '" type="button">' +
-            '<span class="glyphicon glyphicon-remove"></span></button>',
-        TPL_CONTROL_LEFT: '<a href="#" class="carousel-control left ' + CSS_CONTROL +
+        TPL_CONTROL_LEFT: '<a href="#" class="' + CSS_CONTROL + ' ' + CSS_CONTROL_LEFT +
             '"><span class="glyphicon glyphicon-chevron-left"></span></a>',
-        TPL_CONTROL_RIGHT: '<a href="#" class="carousel-control right ' + CSS_CONTROL +
+        TPL_CONTROL_RIGHT: '<a href="#" class="' + CSS_CONTROL + ' ' + CSS_CONTROL_RIGHT +
             '"><span class="glyphicon glyphicon-chevron-right"></span></a>',
         TPL_IMAGE: '<img class="' + CSS_IMAGE + '"></img>',
         TPL_IMAGE_CONTAINER: '<div class="' + CSS_IMAGE_CONTAINER + '">' +
             '<span class="glyphicon glyphicon-time ' + CSS_LOADING_ICON + '"></span></div>',
-        TPL_IMAGE_LIST: '<div class="' + CSS_IMAGE_LIST + '"></div>',
-        TPL_INFO: '<h5 class="' + CSS_INFO + '"></h5>',
+        TPL_IMAGE_LIST: '<div class="' + CSS_IMAGE_LIST + '"><div class="' + CSS_IMAGE_LIST_INNER + '"></div></div>',
 
         /**
-         * Constructor for the `ImageViewer`. Lifecycle.
+         * Constructor for the `A.ImageViewerBase`. Lifecycle.
          *
          * @method initializer
          * @protected
          */
         initializer: function() {
-            this._eventHandles = [
-                this.after('currentIndexChange', this._showCurrentImage),
-                this.after('linksChange', this._afterLinksChange),
-                this.after('preloadAllImagesChange', this._preloadAll),
-                this.after('responsive', this._afterResponsive),
-                this.after('showControlsChange', this._syncControlsUI),
-                this.on('responsive', this._onResponsive),
-                A.after(this._afterFillHeight, this, 'fillHeight'),
-                A.after(this._afterUISetVisible, this, '_uiSetVisible')
-            ];
+            this._eventHandles = [];
+
+            this.publish({
+                animate: {
+                    defaultFn: this._defAnimateFn
+                }
+            });
         },
 
         /**
-         * Create the DOM structure for the `A.ImageViewer`. Lifecycle.
+         * Create the DOM structure for the `A.ImageViewerBase`. Lifecycle.
          *
          * @method renderUI
          * @protected
          */
         renderUI: function() {
+            this.get('boundingBox').unselectable();
+
             this._renderImages();
             this._renderControls();
-            this._renderFooter();
         },
 
         /**
-         * Bind the events for the `A.ImageViewer` UI. Lifecycle.
+         * Bind the events for the `A.ImageViewerBase` UI. Lifecycle.
          *
          * @method bindUI
          * @protected
          */
         bindUI: function() {
-            this._attachLinkEvent();
-
             this._eventHandles.push(
-                this._controlLeftEl.on('click', A.bind(this.prev, this)),
-                this._controlRightEl.on('click', A.bind(this.next, this)),
-                this._closeEl.on('click', A.bind(this.hide, this)),
-                A.getDoc().on('keydown', A.bind(this._onKeydown, this))
+                this.after({
+                    sourcesChange: this._renderImages,
+                    currentIndexChange: this._afterCurrentIndexChange,
+                    preloadAllImagesChange: this._preloadAll,
+                    responsive: this._afterResponsive,
+                    showControlsChange: this._syncControlsUI
+                }),
+                this.on('responsive', this._onResponsive),
+                A.after(this._afterUISetVisible, this, '_uiSetVisible')
             );
+
+            this._bindControls();
         },
 
         /**
-         * Destructor lifecycle implementation for the `A.ImageViewer` class.
+         * Destructor implementation for the `A.ImageViewerBase` class. Lifecycle.
          *
          * @method destructor
          * @protected
          */
         destructor: function() {
             (new A.EventHandle(this._eventHandles)).detach();
-
-            this._detachLinkEvent();
-
-            this._controlLeftEl.remove(true);
-            this._controlRightEl.remove(true);
-            this._closeEl.remove(true);
-        },
-
-        /**
-         * Gets the `Node` reference to the `index` element from the
-         * [links](A.ImageViewer.html#attr_links).
-         *
-         * @method getLink
-         * @param index
-         * @return {Node}
-         */
-        getLink: function(index) {
-            return this.get('links').item(index);
         },
 
         /**
@@ -144,7 +113,7 @@ A.ImageViewer = A.Base.create(
          * @return {Boolean}
          */
         hasNext: function() {
-            return this.get('currentIndex') + 1 < this.get('links').size();
+            return this.get('circular') || this.get('currentIndex') < this.get('sources').length - 1;
         },
 
         /**
@@ -154,7 +123,7 @@ A.ImageViewer = A.Base.create(
          * @return {Boolean}
          */
         hasPrev: function() {
-            return this.get('currentIndex') > 0;
+            return this.get('circular') || this.get('currentIndex') > 0;
         },
 
         /**
@@ -164,7 +133,12 @@ A.ImageViewer = A.Base.create(
          */
         next: function() {
             if (this.hasNext()) {
-                this.set('currentIndex', this.get('currentIndex') + 1);
+                if (this.get('currentIndex') === this.get('sources').length - 1) {
+                    this.set('currentIndex', 0);
+                }
+                else {
+                    this.set('currentIndex', this.get('currentIndex') + 1);
+                }
             }
         },
 
@@ -175,34 +149,25 @@ A.ImageViewer = A.Base.create(
          */
         prev: function() {
             if (this.hasPrev()) {
-                this.set('currentIndex', this.get('currentIndex') - 1);
+                if (this.get('currentIndex') === 0) {
+                    this.set('currentIndex', this.get('sources').length - 1);
+                }
+                else {
+                    this.set('currentIndex', this.get('currentIndex') - 1);
+                }
             }
         },
 
         /**
-         * Fired after `fillHeight` function is called. Updates the line-height
-         * of the fillHeight node to be equal to its height, so the images can
-         * be vertically centered.
+         * Fired after the `currentIndex` attribute is set.
          *
-         * @method _afterFillHeight
+         * @method _afterCurrentIndexChange
+         * @param {EventFacade} event
          * @protected
          */
-        _afterFillHeight: function() {
-            var fillHeightNode = this.getStdModNode(this.get('fillHeight'));
-
-            fillHeightNode.setStyle('lineHeight', fillHeightNode.getStyle('height'));
-        },
-
-        /**
-         * Fired after the `link` attribute is changed. It will render the
-         * referenced images and attach click events to those links.
-         *
-         * @method _attachLinkEvents
-         * @protected
-         */
-        _afterLinksChange: function() {
-            this._renderImages();
-            this._attachLinkEvent();
+        _afterCurrentIndexChange: function(event) {
+            this._previousIndex = event.prevVal;
+            this._showCurrentImage();
         },
 
         /**
@@ -215,24 +180,15 @@ A.ImageViewer = A.Base.create(
             var image = this._getCurrentImage();
 
             if (image) {
-                this.footerNode.setStyle('width', '');
                 image.setStyles({
                     maxHeight: '100%',
                     maxWidth: '100%'
                 });
-
-                this.bodyNode.setStyles({
-                    height: '',
-                    lineHeight: ''
-                });
-                this._fillHeight();
-
-                this._setAlignCenter(true);
             }
         },
 
         /**
-         * Shows the `A.ImageViewer` UI.
+         * Fired after the `visible` attribute is set.
          *
          * @method _afterUISetVisible
          * @protected
@@ -240,54 +196,50 @@ A.ImageViewer = A.Base.create(
         _afterUISetVisible: function() {
             if (this.get('visible')) {
                 this._showCurrentImage();
-
-                this._fillHeight();
             }
             else {
-                this._closeEl.hide();
                 this._syncControlsUI();
             }
+
         },
 
         /**
-         * Attaches the click event for the image links.
+         * Binds the events related to the viewer's controls.
          *
-         * @method _attachLinkEvent
+         * @method _bindControls
          * @protected
          */
-        _attachLinkEvent: function() {
-            this._detachLinkEvent();
-
-            this._linkEvent = this.get('links').on(
-                'click',
-                A.bind(this._onClickLinks, this)
+        _bindControls: function() {
+            this._eventHandles.push(
+                this.get('contentBox').delegate('click', this._onClickControl, '.' + CSS_CONTROL, this)
             );
         },
 
         /**
-         * Detaches the click event for the image links, if one was attached
-         * earlier.
+         * Default behavior for animating the current image in the viewer.
          *
-         * @method _detachLinkEvent
+         * @method _defAnimateFn
          * @protected
          */
-        _detachLinkEvent: function() {
-            if (this._linkEvent) {
-                this._linkEvent.detach();
-                this._linkEvent = null;
-            }
-        },
+        _defAnimateFn: function() {
+            var image = this._getCurrentImage(),
+                imageAnim = this.get('imageAnim');
 
-        /**
-         * Gets the current image container.
-         *
-         * @method _getCurrentImageContainer
-         * @return {Node}
-         * @protected
-         */
-        _getCurrentImageContainer: function() {
-            var containers = this.get('contentBox').all('.' + CSS_IMAGE_CONTAINER);
-            return containers.item(this.get('currentIndex'));
+            if (imageAnim === false) {
+                return;
+            }
+
+            if (!this._animation) {
+                this._animation = new A.Anim(imageAnim);
+            }
+            else {
+                this._animation.stop(true);
+                this._animation.setAttrs(imageAnim);
+            }
+
+            image.setStyle('opacity', 0);
+            this._animation.set('node', image);
+            this._animation.run();
         },
 
         /**
@@ -298,22 +250,28 @@ A.ImageViewer = A.Base.create(
          * @protected
          */
         _getCurrentImage: function() {
-            var container = this._getCurrentImageContainer();
-            return container.one('.' + CSS_IMAGE);
+            return this._getCurrentImageContainer().one('.' + CSS_IMAGE);
         },
 
         /**
-         * Gets the [info](A.ImageViewer.html#attr_info) template.
+         * Returns the container node for the current image.
          *
-         * @method _getInfoTemplate
-         * @param {String} v template
-         * @return {String} Parsed string.
+         * @method _getCurrentImageContainer
+         * @protected
          */
-        _getInfoTemplate: function(val) {
-            return A.Lang.sub(val, {
-                current: this.get('currentIndex') + 1,
-                total: this.get('links').size()
-            });
+        _getCurrentImageContainer: function() {
+            return this._getImageContainerAtIndex(this.get('currentIndex'));
+        },
+
+        /**
+         * Returns the container node at the requested index.
+         *
+         * @method _getImageContainerAtIndex
+         * @param {Number} index
+         * @protected
+         */
+        _getImageContainerAtIndex: function(index) {
+            return this.get('contentBox').all('.' + CSS_IMAGE_CONTAINER).item(index);
         },
 
         /**
@@ -328,20 +286,21 @@ A.ImageViewer = A.Base.create(
         },
 
         /**
-         * Fired when the nodes in the `links` attribute are clicked.
+         * Fired when one of the viewer's controls is clicked.
          *
-         * @method _onClickLinks
+         * @method _onClickControl
          * @param {EventFacade} event
          * @protected
          */
-        _onClickLinks: function(event) {
+        _onClickControl: function(event) {
             event.preventDefault();
 
-            this.show();
-            this.set(
-                'currentIndex',
-                this.get('links').indexOf(event.currentTarget)
-            );
+            if (event.currentTarget.hasClass(CSS_CONTROL_LEFT)) {
+                this.prev();
+            }
+            else if (event.currentTarget.hasClass(CSS_CONTROL_RIGHT)) {
+                this.next();
+            }
         },
 
         /**
@@ -352,31 +311,13 @@ A.ImageViewer = A.Base.create(
          * @protected
          */
         _onCurrentImageReady: function() {
-            var instance = this,
-                image = this._getCurrentImage();
+            if (this.get('visible')) {
+                this.updateDimensionsWithNewRatio();
 
-            this.updateDimensionsWithNewRatio();
-
-            if (this.get('animated') && this.get('visible')) {
-                image.setStyle('opacity', 0);
-
-                if (!image.fx) {
-                    image.plug(A.Plugin.NodeFX, this.get('imageAnim'));
-
-                    image.fx.on('end', function(info) {
-                        instance.fire('anim', {
-                            animated: info,
-                            image: image
-                        });
-                    });
-                }
-
-                image.fx.stop().run();
+                this.fire('animate', {
+                    image: this._getCurrentImage()
+                });
             }
-
-            this.fire('load', {
-                image: image
-            });
         },
 
         /**
@@ -395,29 +336,6 @@ A.ImageViewer = A.Base.create(
         },
 
         /**
-         * Fired when the user presses a key on the keyboard.
-         *
-         * @method _onKeydown
-         * @param {EventFacade} event
-         * @protected
-         */
-        _onKeydown: function(event) {
-            if (!this.get('visible')) {
-                return false;
-            }
-
-            if (event.isKey('LEFT')) {
-                this.prev();
-            }
-            else if (event.isKey('RIGHT')) {
-                this.next();
-            }
-            else if (event.isKey('ESC')) {
-                this.hide();
-            }
-        },
-
-        /**
          * Fired on the `responsive` event.
          *
          * @method _onResponsive
@@ -427,7 +345,6 @@ A.ImageViewer = A.Base.create(
             var image = this._getCurrentImage();
 
             if (image) {
-                this.footerNode.setStyle('width', 0);
                 image.setStyles({
                     maxHeight: 'none',
                     maxWidth: 'none'
@@ -442,54 +359,37 @@ A.ImageViewer = A.Base.create(
          * @protected
          */
         _preloadAll: function() {
-            var instance = this;
+            var sources = this.get('sources');
 
             if (this.get('preloadAllImages')) {
-                this.get('links').each(function(link, index) {
-                    instance._loadImage(index);
-                });
+                for (var i = 0; i < sources.length; i++) {
+                    this._loadImage(i);
+                }
             }
         },
 
         /**
-         * Renders the viewer controsl (next/prev/close).
+         * Renders the viewer's controls.
          *
          * @method _renderControls
          * @protected
          */
         _renderControls: function() {
-            var body = A.one('body');
+            var gutterHorizontal = 0;
 
             this._controlLeftEl = A.Node.create(this.TPL_CONTROL_LEFT);
-            body.append(this._controlLeftEl.hide());
+            this.get('contentBox').prepend(this._controlLeftEl);
+            gutterHorizontal += this._controlLeftEl.get('offsetWidth');
 
             this._controlRightEl = A.Node.create(this.TPL_CONTROL_RIGHT);
-            body.append(this._controlRightEl.hide());
+            this.get('contentBox').append(this._controlRightEl);
+            gutterHorizontal += this._controlRightEl.get('offsetWidth');
 
-            this._closeEl = A.Node.create(this.TPL_CLOSE);
-            body.append(this._closeEl.hide());
+            this.set('gutter', [gutterHorizontal, 0]);
         },
 
         /**
-         * Renders the footer of the viewer.
-         *
-         * @method _renderFooter
-         * @protected
-         */
-        _renderFooter: function() {
-            var container = A.Node.create('<div></div>');
-
-            this._captionEl = A.Node.create(this.TPL_CAPTION);
-            container.append(this._captionEl);
-
-            this._infoEl = A.Node.create(this.TPL_INFO);
-            container.append(this._infoEl);
-
-            this.setStdModContent('footer', container);
-        },
-
-        /**
-         * Renders the image in the given index inside the given container.
+         * Renders the requested image and registers it to be loaded when used.
          *
          * @method _renderImage
          * @param {Number} index The index of the image to be loaded.
@@ -499,7 +399,7 @@ A.ImageViewer = A.Base.create(
         _renderImage: function(index, container) {
             var group,
                 image = A.Node.create(this.TPL_IMAGE),
-                link = this.get('links').item(index);
+                src = this.get('sources')[index];
 
             container.prepend(image);
 
@@ -518,104 +418,62 @@ A.ImageViewer = A.Base.create(
             group.addCustomTrigger('load' + index, this);
             group.registerImage({
                 domId: image.generateID(),
-                srcUrl: link.attr('href')
+                srcUrl: src
             });
         },
 
         /**
-         * Renders the images inside the viewer.
+         * Renders the image list node inside the image viewer.
+         *
+         * @method _renderImageListNode
+         * @protected
+         */
+        _renderImageListNode: function() {
+            var list = A.Node.create(this.TPL_IMAGE_LIST);
+            this.get('contentBox').setHTML(list);
+
+            return list.one('.' + CSS_IMAGE_LIST_INNER);
+        },
+
+        /**
+         * Renders the images indicated in the `sources` attribute.
          *
          * @method _renderImages
          * @protected
          */
         _renderImages: function() {
-            var instance = this,
-                container,
-                list = A.Node.create(this.TPL_IMAGE_LIST);
+            var container,
+                list = this._renderImageListNode(),
+                sources = this.get('sources');
 
-            this.get('links').each(function(link, index) {
-                container = A.Node.create(instance.TPL_IMAGE_CONTAINER);
+            for (var i = 0; i < sources.length; i++) {
+                container = A.Node.create(this.TPL_IMAGE_CONTAINER);
                 container.addClass(CSS_LOADING);
                 list.append(container);
 
-                instance._renderImage(index, container);
-            });
-
-            this.setStdModContent('body', list);
+                this._renderImage(i, container);
+            }
 
             this._preloadAll();
         },
 
         /**
-         * Sets `imageAnim` attribute.
-         *
-         * @method _setImageAnim
-         * @param {Object} val
-         * @protected
-         */
-        _setImageAnim: function(val) {
-            return A.merge({
-                    to: {
-                        opacity: 1
-                    },
-                    duration: 0.8
-                },
-                val
-            );
-        },
-
-        /**
-         * Sets `links` attribute.
-         *
-         * @method _setLinks
-         * @param {String | NodeList} val
-         * @protected
-         */
-        _setLinks: function(val) {
-            if (val instanceof A.NodeList) {
-                return val;
-            }
-            else if (A.Lang.isString(val)) {
-                return A.all(val);
-            }
-
-            return new A.NodeList([val]);
-        },
-
-        /**
-         * Loads the image specified at `currentIndex` and shows it.
+         * Shows the current image in the viewer.
          *
          * @method _showCurrentImage
          * @protected
          */
         _showCurrentImage: function() {
-            var containers,
-                contentBox = this.get('contentBox'),
-                currentIndex = this.get('currentIndex'),
-                image,
-                imageContainer;
+            var currentIndex = this.get('currentIndex'),
+                image;
 
             if (!this.get('visible')) {
                 return;
             }
 
-            containers = contentBox.all('.' + CSS_IMAGE_CONTAINER);
-            containers.removeClass(CSS_CURRENT_IMAGE);
-
-            imageContainer = containers.item(this.get('currentIndex'));
-            imageContainer.addClass(CSS_CURRENT_IMAGE);
-
-            this._closeEl.show();
-            this._syncControlsUI();
-            this._syncCaptionUI();
-            this._syncInfoUI();
+            this._updateCurrentImageCSS();
 
             this._loadImage(currentIndex);
-
-            image = imageContainer.one('.' + CSS_IMAGE);
-            this.fire('request', {
-                image: image
-            });
 
             if (this.get('preloadNeighborImages')) {
                 if (this.hasPrev()) {
@@ -626,124 +484,91 @@ A.ImageViewer = A.Base.create(
                 }
             }
 
+            image = this._getCurrentImage();
             if (image.getData('loaded')) {
                 this._onCurrentImageReady();
             }
+
+            this._syncControlsUI();
         },
 
         /**
-         * Updates the caption.
+         * Sets `imageAnim` attribute.
          *
-         * @method _syncCaptionUI
+         * @method _setImageAnim
+         * @param {Object} val
          * @protected
          */
-        _syncCaptionUI: function() {
-            var caption = this.get('caption'),
-                link;
-
-            if (this.get('captionFromTitle')) {
-                link = this.get('links').item(this.get('currentIndex'));
-                caption = link.attr('title') ? link.attr('title') : caption;
+        _setImageAnim: function(val) {
+            if (val === false) {
+                return val;
             }
-
-            this._captionEl.set('text', caption);
+            else {
+                return A.merge({
+                        to: {
+                            opacity: 1
+                        },
+                        duration: 0.8
+                    },
+                    val
+                );
+            }
         },
 
         /**
-         * Updates the controls (next/prev/close), showing or hiding them as
-         * necessary.
+         * Updates the controls, showing or hiding them as necessary.
          *
          * @method _syncControlsUI
          * @protected
          */
         _syncControlsUI: function() {
-            if (this.get('visible') && this.get('showControls')) {
-                this._controlLeftEl[this.hasPrev() ? 'show' : 'hide']();
-                this._controlRightEl[this.hasNext() ? 'show' : 'hide']();
+            if (this.get('visible') && this.get('showControls') && this.hasPrev()) {
+                this._controlLeftEl.setStyle('visibility', 'visible');
             }
             else {
-                this._controlLeftEl.hide();
-                this._controlRightEl.hide();
+                this._controlLeftEl.setStyle('visibility', 'hidden');
+            }
+
+            if (this.get('visible') && this.get('showControls') && this.hasNext()) {
+                this._controlRightEl.setStyle('visibility', 'visible');
+            }
+            else {
+                this._controlRightEl.setStyle('visibility', 'hidden');
             }
         },
 
         /**
-         * Updates the info node.
+         * Sets the CSS class that indicates the current image.
          *
-         * @method _syncInfoUI
+         * @method _updateCurrentImageCSS
          * @protected
          */
-        _syncInfoUI: function() {
-            this._infoEl.setHTML(this.get('infoTemplate'));
+        _updateCurrentImageCSS: function() {
+            if (A.Lang.isNumber(this._previousIndex)) {
+                this._getImageContainerAtIndex(this._previousIndex).removeClass(CSS_CURRENT_IMAGE);
+            }
+            this._getCurrentImageContainer().addClass(CSS_CURRENT_IMAGE);
         }
     }, {
         /**
          * Static property used to define the default attribute configuration
-         * for the `A.ImageViewer`.
+         * for the `A.ImageViewerBase`.
          *
          * @property ATTRS
-         * @type {Object}
+         * @type Object
          * @static
          */
         ATTRS: {
             /**
-             * If `true` the navigation is animated.
+             * If the image list will be circular or not.
              *
-             * @attribute animated
-             * @default true
-             * @type {Boolean}
+             * @attribute circular
+             * @default false
+             * @type Boolean
              */
-            animated: {
-                value: true,
+            circular: {
+                value: false,
                 validator: A.Lang.isBoolean
-            },
-
-            /**
-             * The caption of the displayed image.
-             *
-             * @attribute caption
-             * @default 'blank'
-             * @type {String}
-             */
-            caption: {
-                value: 'blank',
-                validator: A.Lang.isString
-            },
-
-            /**
-             * If `true` the [caption](A.ImageViewer.html#attr_caption) will be
-             * pulled from the title DOM attribute.
-             *
-             * @attribute captionFromTitle
-             * @default true
-             * @type {Boolean}
-             */
-            captionFromTitle: {
-                value: true,
-                validator: A.Lang.isBoolean
-            },
-
-            /**
-             * If `true` the Overlay with the image will be positioned on the
-             * center of the viewport.
-             *
-             * @attribute centered
-             * @default true
-             * @type {Boolean}
-             */
-            centered: {
-                value: true
-            },
-
-            /**
-             * The CSS class to be added to the bounding box.
-             *
-             * @attribute cssClass
-             * @default 'well'
-             * @type {String}
-             */
-            cssClass: {
-                value: CSS_WELL
             },
 
             /**
@@ -751,7 +576,7 @@ A.ImageViewer = A.Base.create(
              *
              * @attribute currentIndex
              * @default 0
-             * @type {Number}
+             * @type Number
              */
             currentIndex: {
                 value: 0,
@@ -759,61 +584,27 @@ A.ImageViewer = A.Base.create(
             },
 
             /**
-             * Configuration attributes passed to the [Anim](Anim.html) class.
+             * Configuration attributes passed to the [Anim](Anim.html) class, or
+             * false if there should be no animation.
              *
              * @attribute imageAnim
              * @default Predefined [Anim](Anim.html) configuration.
-             * @type {Object}
+             * @type Boolean | Object
              */
             imageAnim: {
                 value: {},
                 setter: '_setImageAnim',
-                validator: A.Lang.isObject
+                validator: function(val) {
+                    return A.Lang.isObject(val) || val === false;
+                }
             },
 
             /**
-             * String template used to display the information.
-             *
-             * @attribute infoTemplate
-             * @default 'Image {current} of {total}'
-             * @type {String}
-             */
-            infoTemplate: {
-                getter: '_getInfoTemplate',
-                value: 'Image {current} of {total}',
-                validator: A.Lang.isString
-            },
-
-            /**
-             * Selector or NodeList containing the links where the
-             * `A.ImageViewer` extracts the information to generate the
-             * thumbnails.
-             *
-             * @attribute links
-             * @type {String | NodeList}
-             */
-            links: {
-                setter: '_setLinks'
-            },
-
-            /**
-             * Displays a mask behind the viewer. Set to `false` to disable.
-             *
-             * @attribute modal
-             * @default true
-             * @type {Boolean}
-             */
-            modal: {
-                value: true
-            },
-
-            /**
-             * Preloads all images grabbed from the
-             * [links](A.ImageViewer.html#attr_links) attribute.
+             * Preloads all images listed in the `sources` attribute.
              *
              * @attribute preloadAllImages
              * @default false
-             * @type {Boolean}
+             * @type Boolean
              */
             preloadAllImages: {
                 value: false,
@@ -826,7 +617,7 @@ A.ImageViewer = A.Base.create(
              *
              * @attribute preloadAllImages
              * @default false
-             * @type {Boolean}
+             * @type Boolean
              */
             preloadNeighborImages: {
                 value: true,
@@ -838,7 +629,7 @@ A.ImageViewer = A.Base.create(
              *
              * @attribute showControls
              * @default true
-             * @type {Boolean}
+             * @type Boolean
              */
             showControls: {
                 value: true,
@@ -846,14 +637,15 @@ A.ImageViewer = A.Base.create(
             },
 
             /**
-             * Determines if the `A.ImageViewer` should be visible or not.
+             * The source links for the images to be shown.
              *
-             * @attribute visible
-             * @default false
-             * @type {Boolean}
+             * @attribute sources
+             * @default []
+             * @type Array
              */
-            visible: {
-                value: false
+            sources: {
+                value: [],
+                validator: A.Lang.isArray
             }
         },
 
@@ -861,9 +653,9 @@ A.ImageViewer = A.Base.create(
          * Static property provides a string to identify the CSS prefix.
          *
          * @property CSS_PREFIX
-         * @type {String}
+         * @type String
          * @static
          */
-        CSS_PREFIX: A.getClassName('image-viewer')
+        CSS_PREFIX: A.getClassName('image-viewer-base')
     }
 );
