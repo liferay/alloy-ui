@@ -880,12 +880,16 @@ DialogManager.after(
 				MODALS[id] = true;
 
 				A.DialogMask.show();
+
+				DialogManager._blockIFrameFocus();
 			}
 			else {
 				delete MODALS[id];
 
 				if (AObject.isEmpty(MODALS)) {
 					A.DialogMask.hide();
+
+					DialogManager._unblockIFrameFocus();
 				}
 			}
 		}
@@ -946,6 +950,41 @@ A.mix(
 			if (dialog && dialog.io) {
 				dialog.io.start();
 			}
+		},
+
+		/**
+		 * Blocks iframes on the page from getting focused by setting their
+		 * tabIndex attribute to -1. The previous value of tabIndex is saved
+		 * so it can be restored later.
+		 *
+		 * @method _blockIFrameFocus
+		 * @protected
+		 */
+		_blockIFrameFocus: function() {
+			A.all('iframe').each(function() {
+				if (this.ancestor('.aui-dialog') === null) {
+					if (!this.hasAttribute('data-tabindex')) {
+						this.setAttribute('data-tabindex', this.get('tabIndex'));
+					}
+
+					this.set('tabIndex', -1);
+				}
+			});
+		},
+
+		/**
+		 * Unblocks focus for the iframes on the page by restoring their original
+		 * tabIndex attributes (see the _blockIFrameFocus method).
+		 *
+		 * @method _unblockIFrameFocus
+		 * @protected
+		 */
+		_unblockIFrameFocus: function() {
+			A.all('iframe').each(function() {
+				if (this.hasAttribute('data-tabindex')) {
+					this.set('tabIndex', this.getAttribute('data-tabindex'));
+				}
+			});
 		}
 	}
 );
