@@ -25,6 +25,7 @@ var Lang = A.Lang,
 	CLOSE = 'close',
 	CLOSETHICK = 'closethick',
 	CONSTRAIN_TO_VIEWPORT = 'constrain2view',
+	DATA_TABINDEX = 'data-tabindex',
 	DD = 'dd',
 	DEFAULT = 'default',
 	DESTROY_ON_CLOSE = 'destroyOnClose',
@@ -47,6 +48,7 @@ var Lang = A.Lang,
 	RESIZABLE_CONFIG = 'resizableConfig',
 	RESIZABLE_INSTANCE = 'resizableInstance',
 	STACK = 'stack',
+	TAB_INDEX = 'tabIndex',
 	USE_ARIA = 'useARIA',
 	VIEWPORT_REGION = 'viewportRegion',
 	WIDTH = 'width',
@@ -961,15 +963,17 @@ A.mix(
 		 * @protected
 		 */
 		_blockIFrameFocus: function() {
-			A.all('iframe').each(function() {
-				if (this.ancestor('.aui-dialog') === null) {
-					if (!this.hasAttribute('data-tabindex')) {
-						this.setAttribute('data-tabindex', this.get('tabIndex'));
-					}
+			A.all('iframe').each(
+				function() {
+					if (this.ancestor(DOT + CSS_DIALOG) === null) {
+						if (!this.hasAttribute(DATA_TABINDEX)) {
+							this.setAttribute(DATA_TABINDEX, this.get(TAB_INDEX));
+						}
 
-					this.set('tabIndex', -1);
+						this.set(TAB_INDEX, -1);
+					}
 				}
-			});
+			);
 		},
 
 		/**
@@ -980,11 +984,13 @@ A.mix(
 		 * @protected
 		 */
 		_unblockIFrameFocus: function() {
-			A.all('iframe').each(function() {
-				if (this.hasAttribute('data-tabindex')) {
-					this.set('tabIndex', this.getAttribute('data-tabindex'));
+			A.all('iframe').each(
+				function() {
+					if (this.hasAttribute(DATA_TABINDEX)) {
+						this.set(TAB_INDEX, this.getAttribute(DATA_TABINDEX));
+					}
 				}
-			});
+			);
 		}
 	}
 );
