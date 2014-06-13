@@ -26,6 +26,7 @@ var Lang = A.Lang,
 	CLOSE = 'close',
 	CLOSETHICK = 'closethick',
 	CONSTRAIN_TO_VIEWPORT = 'constrain2view',
+	DATA_TABINDEX = 'data-tabindex',
 	DD = 'dd',
 	DEFAULT = 'default',
 	DESTROY_ON_CLOSE = 'destroyOnClose',
@@ -48,6 +49,7 @@ var Lang = A.Lang,
 	RESIZABLE_CONFIG = 'resizableConfig',
 	RESIZABLE_INSTANCE = 'resizableInstance',
 	STACK = 'stack',
+	TAB_INDEX = 'tabIndex',
 	USE_ARIA = 'useARIA',
 	VIEWPORT_REGION = 'viewportRegion',
 	WIDTH = 'width',
@@ -881,12 +883,16 @@ DialogManager.after(
 				MODALS[id] = true;
 
 				A.DialogMask.show();
+
+				DialogManager._blockIFrameFocus();
 			}
 			else {
 				delete MODALS[id];
 
 				if (AObject.isEmpty(MODALS)) {
 					A.DialogMask.hide();
+
+					DialogManager._unblockIFrameFocus();
 				}
 			}
 		}
@@ -947,6 +953,45 @@ A.mix(
 			if (dialog && dialog.io) {
 				dialog.io.start();
 			}
+		},
+
+		/**
+		 * Blocks iframes on the page from getting focused by setting their
+		 * tabIndex attribute to -1. The previous value of tabIndex is saved
+		 * so it can be restored later.
+		 *
+		 * @method _blockIFrameFocus
+		 * @protected
+		 */
+		_blockIFrameFocus: function() {
+			A.all('iframe').each(
+				function() {
+					if (this.ancestor(DOT + CSS_DIALOG) === null) {
+						if (!this.hasAttribute(DATA_TABINDEX)) {
+							this.setAttribute(DATA_TABINDEX, this.get(TAB_INDEX));
+						}
+
+						this.set(TAB_INDEX, -1);
+					}
+				}
+			);
+		},
+
+		/**
+		 * Unblocks focus for the iframes on the page by restoring their original
+		 * tabIndex attributes (see the _blockIFrameFocus method).
+		 *
+		 * @method _unblockIFrameFocus
+		 * @protected
+		 */
+		_unblockIFrameFocus: function() {
+			A.all('iframe').each(
+				function() {
+					if (this.hasAttribute(DATA_TABINDEX)) {
+						this.set(TAB_INDEX, this.getAttribute(DATA_TABINDEX));
+					}
+				}
+			);
 		}
 	}
 );
@@ -963,4 +1008,4 @@ A.DialogManager = DialogManager;
  * @static
  */
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize']});
+}, '@VERSION@' ,{requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize'], skinnable:true});
