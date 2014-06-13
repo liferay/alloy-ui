@@ -30,7 +30,7 @@ gulp <command>
 
 ### Setup
 
-1. Install [NodeJS](http://nodejs.org/download/), if you don't have it yet.
+1. Install NodeJS >= [v0.11.13](http://nodejs.org/dist/v0.11.13/), if you don't have it yet.
 
 2. Install global dependencies:
 
