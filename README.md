@@ -60,6 +60,12 @@ gulp init
 gulp build
     ```
 
+* Build AlloyUI loader:
+
+    ```
+gulp build-loader
+    ```
+
 ### Watch
 
 * Watch for any changes and build using [Shifter](http://yui.github.io/shifter/):

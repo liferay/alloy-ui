@@ -1,12 +1,5 @@
 {
     "name": "aui-base",
-    "exec": [
-        "gulp loader-build",
-        "gulp aliases"
-    ],
-    "postexec": [
-        "gulp loader-postbuild"
-    ],
     "builds": {
         "aui-base-core": {
             "jsfiles": [

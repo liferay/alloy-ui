@@ -1,8 +1,13 @@
 var gulp = require('gulp');
 var path = require('path');
+var run = require('run-sequence');
 var spawn = require('spawn-local-bin');
 
 var ROOT = path.join(__dirname, '..');
+
+gulp.task('init', function(callback) {
+    run('init-bower', 'init-yui', callback);
+});
 
 gulp.task('init-bower', function(callback) {
     var args = ['install'];
@@ -15,7 +20,7 @@ gulp.task('init-bower', function(callback) {
         });
 });
 
-gulp.task('init', ['init-bower'], function() {
+gulp.task('init-yui', function() {
     return gulp.src('bower_components/yui3/build/**', { cwd: ROOT })
         .pipe(gulp.dest('build', { cwd: ROOT }));
 });

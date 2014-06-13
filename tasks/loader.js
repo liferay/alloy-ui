@@ -7,7 +7,7 @@ var spawn = require('spawn-local-bin');
 
 var ROOT = path.join(__dirname, '..');
 
-gulp.task('loader-build', function(callback) {
+gulp.task('loader-prebuild', function(callback) {
     var args = [];
     var cmd = 'yogi';
     var cwd = path.join(ROOT, 'src/aui-base');
