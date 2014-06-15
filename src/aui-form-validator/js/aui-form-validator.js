@@ -620,7 +620,7 @@ var FormValidator = A.Component.create({
         focusInvalidField: function() {
             var instance = this,
                 boundingBox = instance.get('boundingBox'),
-                field = boundingBox.one('.' + CSS_HAS_ERROR);
+                field = boundingBox.one('.' + CSS_ERROR_FIELD);
 
             if (field) {
                 if (instance.get('selectText')) {
