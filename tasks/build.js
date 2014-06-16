@@ -53,6 +53,10 @@ function build(cwd, callback) {
 
     spawn(cmd, args, cwd)
         .on('exit', function() {
-            callback();
+            if (callback) {
+                callback();
+            }
         });
-}
+};
+
+module.exports = build;
