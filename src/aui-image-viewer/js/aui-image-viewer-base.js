@@ -70,7 +70,7 @@ A.ImageViewerBase = A.Base.create(
         renderUI: function() {
             this.get('boundingBox').unselectable();
 
-            this._renderImages();
+            this._renderImagesForFirstTime();
             this._renderControls();
         },
 
@@ -375,15 +375,15 @@ A.ImageViewerBase = A.Base.create(
          * @protected
          */
         _renderControls: function() {
-            var gutterHorizontal = 0;
+            var controlNext = this.get('controlNext'),
+                controlPrevious = this.get('controlPrevious'),
+                gutterHorizontal = 0;
 
-            this._controlLeftEl = A.Node.create(this.TPL_CONTROL_LEFT);
-            this.get('contentBox').prepend(this._controlLeftEl);
-            gutterHorizontal += this._controlLeftEl.get('offsetWidth');
+            this.get('contentBox').prepend(controlPrevious);
+            gutterHorizontal += controlPrevious.get('offsetWidth');
 
-            this._controlRightEl = A.Node.create(this.TPL_CONTROL_RIGHT);
-            this.get('contentBox').append(this._controlRightEl);
-            gutterHorizontal += this._controlRightEl.get('offsetWidth');
+            this.get('contentBox').append(controlNext);
+            gutterHorizontal += controlNext.get('offsetWidth');
 
             this.set('gutter', [gutterHorizontal, 0]);
         },
@@ -423,9 +423,34 @@ A.ImageViewerBase = A.Base.create(
         },
 
         /**
+         * Renders all image containers and returns them in an array.
+         *
+         * @method _renderImageContainers
+         * @return {Array} list of image containers
+         * @protected
+         */
+        _renderImageContainers: function() {
+            var container,
+                containers = [],
+                list = this._renderImageListNode(),
+                sources = this.get('sources');
+
+            for (var i = 0; i < sources.length; i++) {
+                container = A.Node.create(this.TPL_IMAGE_CONTAINER);
+                container.addClass(CSS_LOADING);
+                list.append(container);
+
+                containers.push(container);
+            }
+
+            return containers;
+        },
+
+        /**
          * Renders the image list node inside the image viewer.
          *
          * @method _renderImageListNode
+         * @return {Node} the image list node
          * @protected
          */
         _renderImageListNode: function() {
@@ -442,19 +467,36 @@ A.ImageViewerBase = A.Base.create(
          * @protected
          */
         _renderImages: function() {
-            var container,
-                list = this._renderImageListNode(),
-                sources = this.get('sources');
+            var containers = this._renderImageContainers();
 
-            for (var i = 0; i < sources.length; i++) {
-                container = A.Node.create(this.TPL_IMAGE_CONTAINER);
-                container.addClass(CSS_LOADING);
-                list.append(container);
-
-                this._renderImage(i, container);
+            for (var i = 0; i < containers.length; i++) {
+                this._renderImage(i, containers[i]);
             }
 
             this._preloadAll();
+        },
+
+        /**
+         * Renders the images indicated in the `sources` attribute for
+         * the first time. If the images were already present before the widget
+         * is rendered, we'll mark these images as having already been loaded.
+         *
+         * @method _renderImagesForFirstTime
+         * @protected
+         */
+        _renderImagesForFirstTime: function() {
+            var container,
+                images = this.get('contentBox').all('.' + CSS_IMAGE);
+
+            this._renderImages();
+
+            if (images.size()) {
+                for (var i = 0; i < this.get('sources').length; i++) {
+                    container = this._getImageContainerAtIndex(i);
+                    container.removeClass(CSS_LOADING);
+                    container.one('.' + CSS_IMAGE).set('loaded', true);
+                }
+            }
         },
 
         /**
@@ -493,6 +535,22 @@ A.ImageViewerBase = A.Base.create(
         },
 
         /**
+         * Sets `currentIndex` attribute.
+         *
+         * @method _setCurrentIndex
+         * @param {Number|String} val
+         * @protected
+         */
+        _setCurrentIndex: function(val) {
+            if (val === 'rand') {
+                return Math.floor(Math.random() * this.get('sources').length);
+            }
+            else {
+                return Math.max(Math.min(val, this.get('sources').length - 1), 0);
+            }
+        },
+
+        /**
          * Sets `imageAnim` attribute.
          *
          * @method _setImageAnim
@@ -508,7 +566,7 @@ A.ImageViewerBase = A.Base.create(
                         to: {
                             opacity: 1
                         },
-                        duration: 0.8
+                        duration: 0.5
                     },
                     val
                 );
@@ -523,17 +581,17 @@ A.ImageViewerBase = A.Base.create(
          */
         _syncControlsUI: function() {
             if (this.get('visible') && this.get('showControls') && this.hasPrev()) {
-                this._controlLeftEl.setStyle('visibility', 'visible');
+                this.get('controlPrevious').setStyle('visibility', 'visible');
             }
             else {
-                this._controlLeftEl.setStyle('visibility', 'hidden');
+                this.get('controlPrevious').setStyle('visibility', 'hidden');
             }
 
             if (this.get('visible') && this.get('showControls') && this.hasNext()) {
-                this._controlRightEl.setStyle('visibility', 'visible');
+                this.get('controlNext').setStyle('visibility', 'visible');
             }
             else {
-                this._controlRightEl.setStyle('visibility', 'hidden');
+                this.get('controlNext').setStyle('visibility', 'hidden');
             }
         },
 
@@ -572,15 +630,50 @@ A.ImageViewerBase = A.Base.create(
             },
 
             /**
+             * The node for the control that shows the next image.
+             *
+             * @attribute controlNext
+             * @default null
+             * @type Node
+             */
+            controlNext: {
+                setter: function(val) {
+                    return val ? val : A.Node.create(this.TPL_CONTROL_RIGHT);
+                },
+                value: null,
+                validator: A.Lang.isNode,
+                writeOnce: 'initOnly'
+            },
+
+            /**
+             * The node for the control that shows the previous image.
+             *
+             * @attribute controlPrevious
+             * @default null
+             * @type Node
+             */
+            controlPrevious: {
+                setter: function(val) {
+                    return val ? val : A.Node.create(this.TPL_CONTROL_LEFT);
+                },
+                value: null,
+                validator: A.Lang.isNode,
+                writeOnce: 'initOnly'
+            },
+
+            /**
              * Index of the current image.
              *
              * @attribute currentIndex
              * @default 0
-             * @type Number
+             * @type Number | String
              */
             currentIndex: {
+                setter: '_setCurrentIndex',
                 value: 0,
-                validator: A.Lang.isNumber
+                validator: function(val) {
+                    return A.Lang.isNumber(val) || A.Lang.isString(val);
+                }
             },
 
             /**
@@ -656,6 +749,40 @@ A.ImageViewerBase = A.Base.create(
          * @type String
          * @static
          */
-        CSS_PREFIX: A.getClassName('image-viewer-base')
+        CSS_PREFIX: A.getClassName('image-viewer-base'),
+
+        /**
+         * Object hash, defining how attribute values are to be parsed from
+         * markup contained in the widget's content box.
+         *
+         * @property HTML_PARSER
+         * @type Object
+         * @static
+         */
+        HTML_PARSER: {
+            controlNext: function(srcNode) {
+                return srcNode.one('.' + CSS_CONTROL_RIGHT);
+            },
+
+            controlPrevious: function(srcNode) {
+                return srcNode.one('.' + CSS_CONTROL_LEFT);
+            },
+
+            sources: function(srcNode) {
+                var images = srcNode.all('.' + CSS_IMAGE),
+                    sources = [];
+
+                images.each(function() {
+                    if (this.test('img')) {
+                        sources.push(this.getAttribute('src'));
+                    }
+                    else {
+                        sources.push(this.getStyle('backgroundImage').slice(4, -1));
+                    }
+                });
+
+                return sources;
+            }
+        }
     }
 );

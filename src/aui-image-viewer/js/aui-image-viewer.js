@@ -93,8 +93,8 @@ A.ImageViewer = A.Base.create(
         destructor: function() {
             this._detachLinkEvent();
 
-            this._controlLeftEl.remove(true);
-            this._controlRightEl.remove(true);
+            this.get('controlPrevious').remove(true);
+            this.get('controlNext').remove(true);
             this._closeEl.remove(true);
         },
 
@@ -197,8 +197,8 @@ A.ImageViewer = A.Base.create(
          */
         _bindControls: function() {
             this._eventHandles.push(
-                this._controlLeftEl.after('click', A.bind(this._onClickControl, this)),
-                this._controlRightEl.after('click', A.bind(this._onClickControl, this))
+                this.get('controlPrevious').after('click', A.bind(this._onClickControl, this)),
+                this.get('controlNext').after('click', A.bind(this._onClickControl, this))
             );
         },
 
@@ -291,11 +291,8 @@ A.ImageViewer = A.Base.create(
         _renderControls: function() {
             var body = A.one('body');
 
-            this._controlLeftEl = A.Node.create(this.TPL_CONTROL_LEFT);
-            body.append(this._controlLeftEl);
-
-            this._controlRightEl = A.Node.create(this.TPL_CONTROL_RIGHT);
-            body.append(this._controlRightEl);
+            body.append(this.get('controlPrevious'));
+            body.append(this.get('controlNext'));
 
             this._closeEl = A.Node.create(this.TPL_CLOSE);
             body.append(this._closeEl);

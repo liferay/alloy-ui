@@ -25,7 +25,6 @@ YUI.add('aui-carousel-swipe-tests', function(Y) {
                 contentBox: '#content',
                 height: 300,
                 intervalTime: 1,
-                itemSelector: '> div,img',
                 width: 940
             }, config || {});
 
@@ -33,32 +32,42 @@ YUI.add('aui-carousel-swipe-tests', function(Y) {
         },
 
         'should animate when changing index through carousel': function() {
-            var mock = new Y.Mock();
+            var images,
+                mock = new Y.Mock();
 
             this._carousel = this.createCarousel();
+            images = this._carousel.get('boundingBox').all('.image-viewer-base-image');
 
             Y.Mock.expect(mock, {
                 callCount: 1,
-                method: 'animationStart',
+                method: 'afterAnimate',
                 args: [Y.Mock.Value.Object]
             });
-            this._carousel.animation.on('start', mock.animationStart);
+            this._carousel.onceAfter('animate', mock.afterAnimate);
 
-            this._carousel.set('activeIndex', 1);
+            // Set the image as loaded so we won't have to wait for it to fire
+            // the load event before checking the animation.
+            images.item(1).setData('loaded', true);
+            this._carousel.set('currentIndex', 1);
 
             Y.Mock.verify(mock);
         },
 
         'should not animate when scrolling to image by swiping': function() {
-            var mock = new Y.Mock();
+            var images,
+                mock = new Y.Mock();
 
             this._carousel = this.createCarousel();
+            images = this._carousel.get('boundingBox').all('.image-viewer-base-image');
 
             Y.Mock.expect(mock, {
                 callCount: 0,
-                method: 'animationStart',
+                method: 'afterAnimate',
                 args: [Y.Mock.Value.Object]
             });
+            this._carousel.onceAfter('animate', mock.afterAnimate);
+
+            images.item(2).setData('loaded', true);
             this._carousel._scrollView.pages.scrollToIndex(2, 0);
             Y.Mock.verify(mock);
         }

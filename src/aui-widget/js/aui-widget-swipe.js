@@ -56,6 +56,7 @@ WidgetSwipe.prototype = {
     destructor: function() {
         if (this._scrollView) {
             this._scrollView.destroy();
+            this._scrollView = null;
 
             this._detachSwipeEvents();
         }
@@ -77,7 +78,7 @@ WidgetSwipe.prototype = {
 
     /**
      * Fired after the widget's `responsive` event. This adds back the swipe css
-     * class that was removed by `_onResponsiveSwipe`.
+     * class that was removed by `_onResponsiveSwipe` and then syncs the scroll UI.
      *
      * @method _afterResponsiveSwipe
      * @protected
@@ -85,6 +86,10 @@ WidgetSwipe.prototype = {
     _afterResponsiveSwipe: function() {
         if (this._scrollView && !this._scrollView.get('disabled')) {
             this.get('boundingBox').addClass(CSS_WIDGET_SWIPE);
+
+            // Wait for other events after `responsive` to finish before syncing
+            // the scroll UI.
+            A.soon(A.bind(this._syncScrollUI, this));
         }
     },
 

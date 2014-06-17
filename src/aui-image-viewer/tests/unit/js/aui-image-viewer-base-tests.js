@@ -350,6 +350,58 @@ YUI.add('aui-image-viewer-base-tests', function(Y) {
                 this._imageViewer.get('currentIndex'),
                 'First item should be the current one, since viewer is circular'
             );
+        },
+
+        'should set current index to random number': function() {
+            var mock = new Y.Mock(),
+                oldRandom = Math.random,
+                value = 0.4;
+
+            this._createImageViewer();
+
+            // Switch Math.random with a mock during this test so we can check that it's
+            // being called correctly.
+            Y.Mock.expect(mock, {
+                callCount: 1,
+                method: 'fakeRandom',
+                returns: value
+            });
+            Math.random = mock.fakeRandom;
+
+            this._imageViewer.set('currentIndex', 'rand');
+            Y.Assert.areEqual(
+                2,
+                this._imageViewer.get('currentIndex'),
+                'currentIndex should be set to a value determined by Math.random'
+            );
+
+            Y.Mock.verify(mock);
+
+            // Restore the original Math.random function as the test ends.
+            Math.random = oldRandom;
+        },
+
+        'should populate images from existing elements': function() {
+            this._imageViewer = new Y.ImageViewerBase({
+                currentIndex: 2,
+                srcNode: '#htmlparser'
+            }).render();
+
+            Y.Assert.areEqual(
+                3,
+                this._imageViewer.get('sources').length,
+                'Sources should have been populated from the srcNode'
+            );
+
+            Y.Assert.isTrue(
+                this._imageViewer.get('controlPrevious').hasClass('custom-control-previous'),
+                'The previous control should have the custom class'
+            );
+
+            Y.Assert.isTrue(
+                this._imageViewer.get('controlNext').hasClass('custom-control-next'),
+                'The next control should have the custom class'
+            );
         }
     }));
 

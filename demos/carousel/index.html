@@ -10,20 +10,19 @@
 <body>
     <h1>AlloyUI - Carousel</h1>
     <div id="demo">
-        <div style="background: url(assets/article0.png); width: 940px; height: 253px;" class="carousel-item carousel-item-active"></div>
-        <div style="background: url(assets/article1.png); width: 940px; height: 253px;" class="carousel-item"></div>
-        <div style="background: url(assets/article2.png); width: 940px; height: 253px;" class="carousel-item"></div>
-        <div style="background: url(assets/article3.png); width: 940px; height: 253px;" class="carousel-item"></div>
-        <div style="background: url(assets/article0.png); width: 940px; height: 253px;" class="carousel-item"></div>
-        <div style="background: url(assets/article1.png); width: 940px; height: 253px;" class="carousel-item"></div>
-        <div style="background: url(assets/article2.png); width: 940px; height: 253px;" class="carousel-item"></div>
-        <div style="background: url(assets/article3.png); width: 940px; height: 253px;" class="carousel-item"></div>
+        <div style="background: url(assets/article0.png); width: 940px; height: 253px;" class="image-viewer-base-image"></div>
+        <div style="background: url(assets/article1.png); width: 940px; height: 253px;" class="image-viewer-base-image"></div>
+        <div style="background: url(assets/article2.png); width: 940px; height: 253px;" class="image-viewer-base-image"></div>
+        <div style="background: url(assets/article3.png); width: 940px; height: 253px;" class="image-viewer-base-image"></div>
+        <div style="background: url(assets/article0.png); width: 940px; height: 253px;" class="image-viewer-base-image"></div>
+        <div style="background: url(assets/article1.png); width: 940px; height: 253px;" class="image-viewer-base-image"></div>
+        <div style="background: url(assets/article2.png); width: 940px; height: 253px;" class="image-viewer-base-image"></div>
+        <div style="background: url(assets/article3.png); width: 940px; height: 253px;" class="image-viewer-base-image"></div>
     </div>
     <script>
     YUI({ filter: 'raw' }).use('aui-carousel', function(Y) {
 
         new Y.Carousel({
-            intervalTime: 1,
             contentBox: '#demo',
             activeIndex: 0,
             pauseOnHover: true

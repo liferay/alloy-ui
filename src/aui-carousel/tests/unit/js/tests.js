@@ -30,7 +30,6 @@ YUI.add('aui-carousel-tests', function(Y) {
                 contentBox: '#content',
                 height: 300,
                 intervalTime: 1,
-                itemSelector: '> div,img',
                 width: 940
             });
         },
@@ -51,24 +50,24 @@ YUI.add('aui-carousel-tests', function(Y) {
 
         assertPaused: function(callback) {
             var instance = this,
-                previousActiveIndex = this._carousel.get('activeIndex');
+                previousIndex = this._carousel.get('currentIndex');
 
             this.wait(function() {
                 Y.Assert.areEqual(
-                    previousActiveIndex,
-                    instance._carousel.get('activeIndex'),
-                    'Carousel was paused, so activeIndex should not have been updated'
+                    previousIndex,
+                    instance._carousel.get('currentIndex'),
+                    'Carousel was paused, so currentIndex should not have been updated'
                 );
 
                 callback && callback();
-            }, (this._carousel.get('animationTime') + this._carousel.get('intervalTime')) * 1000 + 100);
+            }, (this._carousel.get('imageAnim').duration + this._carousel.get('intervalTime')) * 1000 + 100);
         },
 
         waitForNext: function(callback) {
             var instance = this,
                 timeBefore = new Date().getTime();
 
-            this._carousel.onceAfter('activeIndexChange', function() {
+            this._carousel.onceAfter('currentIndexChange', function() {
                 instance.resume(function() {
                     callback(Math.round((new Date().getTime() - timeBefore) / 1000));
                 });
@@ -80,26 +79,26 @@ YUI.add('aui-carousel-tests', function(Y) {
         'should play images in sequence': function() {
             var instance = this;
 
-            Y.Assert.areEqual(0, this._carousel.get('activeIndex'), 'Initially, activeIndex should be 0');
+            Y.Assert.areEqual(0, this._carousel.get('currentIndex'), 'Initially, currentIndex should be 0');
 
             this.waitForNext(function() {
                 Y.Assert.areEqual(
                     1,
-                    instance._carousel.get('activeIndex'),
+                    instance._carousel.get('currentIndex'),
                     'Next activeIndex should be 1'
                 );
 
                 instance.waitForNext(function() {
                     Y.Assert.areEqual(
                         2,
-                        instance._carousel.get('activeIndex'),
+                        instance._carousel.get('currentIndex'),
                         'Next activeIndex should be 2'
                     );
 
                     instance.waitForNext(function() {
                         Y.Assert.areEqual(
                             0,
-                            instance._carousel.get('activeIndex'),
+                            instance._carousel.get('currentIndex'),
                             'Cycle is closed, activeIndex should be 0'
                         );
                     });
@@ -140,8 +139,8 @@ YUI.add('aui-carousel-tests', function(Y) {
                 instance.waitForNext(function() {
                     Y.Assert.areEqual(
                         1,
-                        instance._carousel.get('activeIndex'),
-                        'Carousel was resumed, so activeIndex should have been updated to 1'
+                        instance._carousel.get('currentIndex'),
+                        'Carousel was resumed, so currentIndex should have been updated to 1'
                     );
                 });
             });
@@ -158,8 +157,8 @@ YUI.add('aui-carousel-tests', function(Y) {
                 instance.waitForNext(function() {
                     Y.Assert.areEqual(
                         1,
-                        instance._carousel.get('activeIndex'),
-                        'Carousel was resumed, so activeIndex should have been updated to 1'
+                        instance._carousel.get('currentIndex'),
+                        'Carousel was resumed, so currentIndex should have been updated to 1'
                     );
                 });
             });
@@ -173,7 +172,7 @@ YUI.add('aui-carousel-tests', function(Y) {
 
             Y.Assert.areEqual(
                 1,
-                instance._carousel.get('activeIndex'),
+                instance._carousel.get('currentIndex'),
                 'The image index should have been updated correctly'
             );
         },
@@ -185,59 +184,29 @@ YUI.add('aui-carousel-tests', function(Y) {
             prevButton.simulate('click');
             Y.Assert.areEqual(
                 2,
-                this._carousel.get('activeIndex'),
-                'Previous button was pressed, activeIndex should be 2'
+                this._carousel.get('currentIndex'),
+                'Previous button was pressed, currentIndex should be 2'
             );
 
             prevButton.simulate('click');
             Y.Assert.areEqual(
                 1,
-                this._carousel.get('activeIndex'),
-                'Previous button was pressed, activeIndex should be 1'
+                this._carousel.get('currentIndex'),
+                'Previous button was pressed, currentIndex should be 1'
             );
 
             nextButton.simulate('click');
             Y.Assert.areEqual(
                 2,
-                this._carousel.get('activeIndex'),
-                'Next button was pressed, activeIndex shoudl be 2'
+                this._carousel.get('currentIndex'),
+                'Next button was pressed, currentIndex shoudl be 2'
             );
 
             nextButton.simulate('click');
             Y.Assert.areEqual(
                 0,
-                this._carousel.get('activeIndex'),
-                'Next button was pressed, activeIndex shoudl be 0'
-            );
-        },
-
-        'should switch images when next/prev functions are called': function() {
-            this._carousel.prev();
-            Y.Assert.areEqual(
-                2,
-                this._carousel.get('activeIndex'),
-                'Previous function was called, activeIndex should be 2'
-            );
-
-            this._carousel.prev();
-            Y.Assert.areEqual(
-                1,
-                this._carousel.get('activeIndex'),
-                'Previous function was called, activeIndex should be 1'
-            );
-
-            this._carousel.next();
-            Y.Assert.areEqual(
-                2,
-                this._carousel.get('activeIndex'),
-                'Next function was called, activeIndex should be 2'
-            );
-
-            this._carousel.next();
-            Y.Assert.areEqual(
-                0,
-                this._carousel.get('activeIndex'),
-                'Next function was called, activeIndex should be 0'
+                this._carousel.get('currentIndex'),
+                'Next button was pressed, currentIndex shoudl be 0'
             );
         },
 
@@ -247,22 +216,22 @@ YUI.add('aui-carousel-tests', function(Y) {
             itemButtons.item(2).simulate('click');
             Y.Assert.areEqual(
                 2,
-                this._carousel.get('activeIndex'),
-                'Second item button was clicked, activeIndex should be 2'
+                this._carousel.get('currentIndex'),
+                'Second item button was clicked, currentIndex should be 2'
             );
 
             itemButtons.item(0).simulate('click');
             Y.Assert.areEqual(
                 0,
-                this._carousel.get('activeIndex'),
-                'First item button was clicked, activeIndex should be 0'
+                this._carousel.get('currentIndex'),
+                'First item button was clicked, currentIndex should be 0'
             );
 
             itemButtons.item(1).simulate('click');
             Y.Assert.areEqual(
                 1,
-                this._carousel.get('activeIndex'),
-                'First item button was clicked, activeIndex should be 1'
+                this._carousel.get('currentIndex'),
+                'First item button was clicked, currentIndex should be 1'
             );
         },
 
@@ -270,22 +239,22 @@ YUI.add('aui-carousel-tests', function(Y) {
             this._carousel.item(2);
             Y.Assert.areEqual(
                 2,
-                this._carousel.get('activeIndex'),
-                'Item function was called, activeIndex should be 2'
+                this._carousel.get('currentIndex'),
+                'Item function was called, currentIndex should be 2'
             );
 
             this._carousel.item(0);
             Y.Assert.areEqual(
                 0,
-                this._carousel.get('activeIndex'),
-                'Item function was called, activeIndex should be 0'
+                this._carousel.get('currentIndex'),
+                'Item function was called, currentIndex should be 0'
             );
 
             this._carousel.item(1);
             Y.Assert.areEqual(
                 1,
-                this._carousel.get('activeIndex'),
-                'Item function was called, activeIndex should be 1'
+                this._carousel.get('currentIndex'),
+                'Item function was called, currentIndex should be 1'
             );
         },
 
@@ -316,7 +285,7 @@ YUI.add('aui-carousel-tests', function(Y) {
             Y.Assert.isTrue(this._carousel.get('playing'), 'Should not pause, since pauseOnHover is false');
         },
 
-        'should not resume on leaving if carouse was paused manually': function() {
+        'should not resume on leaving if carousel was paused manually': function() {
             var boundingBox = this._carousel.get('boundingBox'),
                 nodeMenu = this._carousel.get('nodeMenu');
 
@@ -345,6 +314,7 @@ YUI.add('aui-carousel-tests', function(Y) {
 
         'should resume when entering the menu from the carousel': function() {
             var boundingBox = this._carousel.get('boundingBox'),
+                images = boundingBox.all('.image-viewer-base-image'),
                 nodeMenu = this._carousel.get('nodeMenu');
 
             this._carousel.set('pauseOnHover', true);
@@ -353,13 +323,13 @@ YUI.add('aui-carousel-tests', function(Y) {
                 clientX: nodeMenu.get('region').left - 1
             });
             nodeMenu.fire('mouseenter', {
-                relatedTarget: this._carousel.nodeSelection.item(0)
+                relatedTarget: images.item(0)
             });
             Y.Assert.isTrue(this._carousel.get('playing'), 'Should have resumed on entering menu');
 
             boundingBox.fire('mouseleave');
             nodeMenu.fire('mouseleave', {
-                relatedTarget: this._carousel.nodeSelection.item(0)
+                relatedTarget: images.item(0)
             });
             Y.Assert.isFalse(this._carousel.get('playing'), 'Should have paused on leaving menu');
         },
@@ -385,67 +355,12 @@ YUI.add('aui-carousel-tests', function(Y) {
             Y.Assert.isTrue(this._carousel.get('playing'), 'Should not have paused on leaving menu');
         },
 
-        'should set activeIndex to random number': function() {
-            var mock = new Y.Mock(),
-                oldRandom = Math.random,
-                value = 0.4;
-
-            // Switch Math.random with a mock during this test so we can check that it's
-            // being called correctly.
-            Y.Mock.expect(mock, {
-                callCount: 1,
-                method: 'fakeRandom',
-                returns: value
-            });
-            Math.random = mock.fakeRandom;
-
-            this._carousel.set('activeIndex', 'rand');
-            Y.Assert.areEqual(
-                1,
-                this._carousel.get('activeIndex'),
-                'activeIndex should be set to the return value of the random function'
-            );
-
-            Y.Mock.verify(mock);
-
-            // Restore the original Math.random function as the test ends.
-            Math.random = oldRandom;
-        },
-
-        'should be able to change animation time': function() {
-            this._carousel.set('animationTime', 1);
-            Y.Assert.areEqual(
-                1,
-                this._carousel.animation.get('duration'),
-                'Animation duration should have been updated to the new value'
-            );
-        },
-
-        'should switch the item selector': function() {
-            var contentBox = this._carousel.get('contentBox');
-
-            contentBox.setHTML('<span></span><span></span>');
-            this._carousel.set('itemSelector', '> span');
-
-            this._carousel.next();
-            Y.Assert.areEqual(
-                1,
-                this._carousel.get('activeIndex'),
-                'The second item should have been selected'
-            );
-
-            this._carousel.next();
-            Y.Assert.areEqual(
-                0,
-                this._carousel.get('activeIndex'),
-                'There are only 2 items now, so the next item should be 0'
-            );
-        },
-
         'should work with a custom menu': function() {
             var customMenu = Y.one('#customMenu');
 
             this._carousel.set('nodeMenu', customMenu);
+            this._carousel.set('controlPrevious', Y.one('.test-menu-item-prev'));
+            this._carousel.set('controlNext', Y.one('.test-menu-item-next'));
             this._carousel.set('nodeMenuItemSelector', '.test-menu-item');
 
             // This shouldn't throw an exception due to trying to

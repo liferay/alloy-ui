@@ -6,10 +6,56 @@
     <title></title>
     <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
     <script src="../../build/aui/aui.js"></script>
+
+    <style>
+        #srcNode {
+            white-space: nowrap;
+        }
+
+        .image-viewer-base-control-left {
+            visibility: hidden;
+        }
+
+        .image-viewer-base-control-left,
+        .image-viewer-base-control-right {
+            color: black;
+            display: inline-block;
+            padding: 5px;
+            text-align: center;
+            vertical-align: top;
+            width: 10%;
+        }
+
+        .image-viewer-base-image-list {
+            display: inline-block;
+            overflow: hidden;
+            width: 80%;
+        }
+
+        .image-viewer-base-image {
+            display: inline;
+            max-width: 100%
+        }
+    </style>
 </head>
 <body class="yui3-skin-sam">
     <h1>AlloyUI - Image Viewer Base</h1>
 
+    <h2>Sources from DOM</h2>
+    <div style="height: 350px;">
+        <div id="boundingBox" style="width: 548px; height: 317px;">
+            <div id="srcNode">
+                <a href="#" class="image-viewer-base-control image-viewer-base-control-left" style="visibility: hidden"><span class="glyphicon glyphicon-chevron-left"></span></a><div class="image-viewer-base-image-list">
+                    <img class="image-viewer-base-image" src="assets/lfr-soccer-1.jpg"></img>
+                    <div class="image-viewer-base-image" style="background: url(assets/lfr-soccer-2.jpg); width: 500px; height: 333px;"></div>
+                    <img class="image-viewer-base-image" style="display: none;" src="assets/lfr-soccer-3.jpg"></img>
+                </div><a href="#" class="image-viewer-base-control image-viewer-base-control-right"><span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        </div>
+    </div>
+
+
+    <h2>Sources from Javascript</h2>
     <div id="demo"></div>
 
     <script>
@@ -21,6 +67,11 @@
                     'assets/lfr-soccer-3.jpg',
                 ]
             }).render('#demo');
+
+            new Y.ImageViewerBase({
+                boundingBox: '#boundingBox',
+                srcNode: '#srcNode'
+            }).render();
         });
     </script>
 </body>
