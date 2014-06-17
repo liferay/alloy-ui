@@ -1027,6 +1027,12 @@ var FormValidator = A.Component.create({
                     }
                 }
 
+                // Use aria-describedby to provide extra details for filling input field
+                var id = target.get('id') + 'Helper';
+
+                stackContainer.set('id', id);
+                target.set('aria-describedby', id);
+
                 target.placeAfter(stackContainer);
 
                 instance.printStackError(
@@ -1114,9 +1120,17 @@ var FormValidator = A.Component.create({
             if (field) {
                 if (valid) {
                     field.removeClass(errorClass).addClass(validClass);
+
+                    if (validClass === CSS_SUCCESS_FIELD) {
+                        field.removeAttribute('aria-invalid');
+                    }
                 }
                 else {
                     field.removeClass(validClass).addClass(errorClass);
+
+                    if (errorClass === CSS_ERROR_FIELD) {
+                        field.set('aria-invalid', true);
+                    }
                 }
             }
         },
