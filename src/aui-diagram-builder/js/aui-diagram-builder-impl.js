@@ -287,6 +287,7 @@ var DiagramBuilder = A.Component.create({
                 }
             });
 
+            canvas.on('mousedown', A.bind(instance._onCanvasMouseDown, instance));
             canvas.on('mouseenter', A.bind(instance._onCanvasMouseEnter, instance));
 
             instance.handlerKeyDown = A.getDoc().on('keydown', A.bind(instance._afterKeyEvent, instance));
@@ -316,6 +317,8 @@ var DiagramBuilder = A.Component.create({
 
             A.DiagramBuilder.superclass.renderUI.apply(this, arguments);
 
+            instance._setupFieldsDrag();
+
             instance._renderGraphic();
         },
 
@@ -329,8 +332,6 @@ var DiagramBuilder = A.Component.create({
             var instance = this;
 
             A.DiagramBuilder.superclass.syncUI.apply(this, arguments);
-
-            instance._setupFieldsDrag();
 
             instance.syncConnectionsUI();
 
@@ -1137,11 +1138,8 @@ var DiagramBuilder = A.Component.create({
          */
         _renderGraphic: function() {
             var instance = this;
-            var graphic = instance.get('graphic');
-            var canvas = instance.get('canvas');
 
-            graphic.render(canvas);
-            A.one(canvas).on('mousedown', A.bind(instance._onCanvasMouseDown, instance));
+            instance.get('graphic').render(instance.dropContainer);
         },
 
         /**
@@ -1831,6 +1829,11 @@ var DiagramNode = A.Component.create({
 
                     connector = new A.Connector(
                         A.merge({
+                            after: {
+                                selectedChange: function() {
+                                    instance.alignTransition(transition);
+                                }
+                            },
                             builder: builder,
                             graphic: builder.get('graphic'),
                             transition: transition

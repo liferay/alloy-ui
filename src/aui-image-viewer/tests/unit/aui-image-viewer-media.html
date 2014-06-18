@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>aui-image-viewer-media</title>
+
+    <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+
+    <script src="../../../../build/aui/aui.js"></script>
+    <script src="js/aui-image-viewer-media-tests.js"></script>
+    <meta charset="utf-8" />
+</head>
+<body class="yui3-skin-sam">
+<div id="logger"></div>
+
+<div id="viewer">
+    <a href="http://www.youtube.com/watch?v=z-mPuFs4Gls&width=560&height=349" title="Liferay Retreat 2010">
+        Media 1
+    </a>
+    <a href="assets/lfr-soccer-1.jpg">
+        Media 2
+    </a>
+    <a data-options="width=400&height=300" href="http://vimeo.com/18225907" title="Institucional SEA Liferay Roadshow 2010 (Vimeo movie)">
+        Media 3
+    </a>
+</div>
+
+<script>
+YUI({
+    coverage: ['aui-image-viewer-media'],
+    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+}).use('test-console', 'test', 'aui-image-viewer-media-tests', function(Y) {
+
+    (new Y.Test.Console()).render('#logger');
+
+    Y.Test.Runner.setName('aui-image-viewer-media');
+    Y.Test.Runner.run();
+});
+</script>
+</body>
+</html>

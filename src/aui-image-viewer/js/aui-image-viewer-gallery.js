@@ -28,7 +28,7 @@ var L = A.Lang,
 
     TPL_PAGINATION_CONTAINER = '<div class="' + CSS_IMAGE_GALLERY_PAGINATION + '"></div>',
     TPL_PAGINATION_THUMB = '<li><a class="' + concat(CSS_IMAGE_GALLERY_PAGINATION_THUMB, CSS_WELL) +
-        '"><img src="{src}" /></a></li>',
+    '"><img src="{src}" /></a></li>',
     TPL_PLAYER_CONTAINER = '<div class="' + CSS_IMAGE_GALLERY_PLAYER + '"></div>',
     TPL_PLAYER_CONTENT = '<span class="' + CSS_IMAGE_GALLERY_PLAYER_CONTENT + '"></span>';
 
@@ -54,7 +54,7 @@ var ImageGallery = A.Component.create({
      * Static property provides a string to identify the class.
      *
      * @property NAME
-     * @type String
+     * @type {String}
      * @static
      */
     NAME: 'image-gallery',
@@ -64,18 +64,18 @@ var ImageGallery = A.Component.create({
      * configuration for the `A.ImageGallery`.
      *
      * @property ATTRS
-     * @type Object
+     * @type {Object}
      * @static
      */
     ATTRS: {
 
         /**
-         * If `true` the slide show will be played when the
-         * `A.ImageGallery` is displayed.
+         * If `true` the slide show will be played when the `A.ImageGallery` is
+         * displayed.
          *
          * @attribute autoPlay
          * @default false
-         * @type Boolean
+         * @type {Boolean}
          */
         autoPlay: {
             value: false,
@@ -87,7 +87,7 @@ var ImageGallery = A.Component.create({
          *
          * @attribute delay
          * @default 7000
-         * @type Number
+         * @type {Number}
          */
         delay: {
             value: 7000,
@@ -100,7 +100,7 @@ var ImageGallery = A.Component.create({
          *
          * @attribute pagination
          * @default [A.Pagination](A.Pagination.html) configuration Object.
-         * @type Object
+         * @type {Object}
          */
         pagination: {
             value: {},
@@ -137,7 +137,7 @@ var ImageGallery = A.Component.create({
          * @attribute paginationEl
          * @default Generated HTML div.
          * @readOnly
-         * @type Node
+         * @type {Node}
          */
         paginationEl: {
             readyOnly: true,
@@ -151,7 +151,7 @@ var ImageGallery = A.Component.create({
          *
          * @attribute paginationInstance
          * @default null
-         * @type A.Pagination
+         * @type {A.Pagination}
          */
         paginationInstance: {
             value: null
@@ -162,7 +162,7 @@ var ImageGallery = A.Component.create({
          *
          * @attribute paused
          * @default false
-         * @type Boolean
+         * @type {Boolean}
          */
         paused: {
             value: false,
@@ -174,7 +174,7 @@ var ImageGallery = A.Component.create({
          *
          * @attribute pausedLabel
          * @default ''
-         * @type String
+         * @type {String}
          */
         pausedLabel: {
             value: '',
@@ -186,7 +186,7 @@ var ImageGallery = A.Component.create({
          *
          * @attribute playing
          * @default false
-         * @type Boolean
+         * @type {Boolean}
          */
         playing: {
             value: false,
@@ -198,7 +198,7 @@ var ImageGallery = A.Component.create({
          *
          * @attribute playingLabel
          * @default '(Playing)'
-         * @type String
+         * @type {String}
          */
         playingLabel: {
             value: '(playing)',
@@ -210,7 +210,7 @@ var ImageGallery = A.Component.create({
          *
          * @attribute repeat
          * @default true
-         * @type Boolean
+         * @type {Boolean}
          */
         repeat: {
             value: true,
@@ -222,7 +222,7 @@ var ImageGallery = A.Component.create({
          *
          * @attribute showPlayer
          * @default true
-         * @type Boolean
+         * @type {Boolean}
          */
         showPlayer: {
             value: true,
@@ -234,7 +234,7 @@ var ImageGallery = A.Component.create({
          *
          * @attribute toolbar
          * @default Generated Toolbar with a play, and pause buttons.
-         * @type Toolbar constructor.
+         * @type {Toolbar constructor.}
          */
         toolbar: {
             value: {},
@@ -247,7 +247,7 @@ var ImageGallery = A.Component.create({
          *
          * @attribute useOriginalImage
          * @default false
-         * @type Boolean
+         * @type {Boolean}
          */
         useOriginalImage: {
             value: false,
@@ -259,7 +259,7 @@ var ImageGallery = A.Component.create({
      * Static property used to define which component it extends.
      *
      * @property EXTENDS
-     * @type Object
+     * @type {Object}
      * @static
      */
     EXTENDS: A.ImageViewer,
@@ -270,7 +270,7 @@ var ImageGallery = A.Component.create({
          * Toolbar instance reference.
          *
          * @property toolbar
-         * @type Toolbar
+         * @type {Toolbar}
          * @protected
          */
         toolbar: null,
@@ -279,7 +279,7 @@ var ImageGallery = A.Component.create({
          * Stores the `A.later` reference.
          *
          * @property _timer
-         * @type Number
+         * @type {Number}
          * @protected
          */
         _timer: null,
@@ -313,9 +313,11 @@ var ImageGallery = A.Component.create({
 
             ImageGallery.superclass.bindUI.apply(this, arguments);
 
-            instance.on('playingChange', instance._onPlayingChange);
-            instance.on('pausedChange', instance._onPausedChange);
-            instance.on('currentIndexChange', instance._onCurrentIndexChange);
+            instance.on({
+                playingChange: instance._onPlayingChange,
+                pausedChange: instance._onPausedChange
+            });
+            instance.after('currentIndexChange', instance._onCurrentIndexChange);
 
             instance.publish('changeRequest', {
                 defaultFn: this._changeRequest
@@ -378,32 +380,6 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Shows the `A.ImageGallery`.
-         *
-         * **NOTE:**Overloads the [ImageViewer](A.ImageViewer.html) show method
-         * to not loadImage, the changeRequest now is responsible to do that if
-         * we invoke the superclass show method its loading the image, and the
-         * changeRequest loads again, avoiding double request.
-         *
-         * @method show
-         */
-        show: function() {
-            var instance = this;
-            var currentLink = instance.getCurrentLink();
-
-            if (currentLink) {
-                A.ImageViewer.superclass.show.apply(this, arguments);
-
-                // changeRequest on paginationInstance with the new page set
-                var paginationInstance = instance.get('paginationInstance');
-
-                paginationInstance._dispatchRequest({
-                    page: instance.get('currentIndex') + 1
-                });
-            }
-        },
-
-        /**
          * Shows the [A.Pagination](A.Pagination.html) with the thumbnails list.
          *
          * @method showPagination
@@ -426,6 +402,28 @@ var ImageGallery = A.Component.create({
             if (instance._timer) {
                 instance._timer.cancel();
             }
+        },
+
+        /**
+         * Fired after `currentIndex` changes.
+         *
+         * @method _onCurrentIndexChange
+         * @protected
+         */
+        _onCurrentIndexChange: function() {
+            var currentIndex = this.get('currentIndex'),
+                offset,
+                page,
+                paginationInstance = this.get('paginationInstance'),
+                total = paginationInstance.get('total');
+
+            page = (currentIndex % total) + 1;
+            offset = currentIndex - page + 2;
+
+            paginationInstance.set('offset', offset);
+            paginationInstance._dispatchRequest({
+                page: page
+            });
         },
 
         /**
@@ -476,11 +474,11 @@ var ImageGallery = A.Component.create({
          * @param value
          * @protected
          */
-        _setToolbar: function(value) {
+        _setToolbar: function(val) {
             var instance = this;
 
             if (instance.get('showPlayer')) {
-                value = A.merge({
+                val = A.merge({
                     children: [
                         [
                             {
@@ -497,10 +495,10 @@ var ImageGallery = A.Component.create({
                             }
                         ]
                     ]
-                }, value);
+                }, val);
             }
 
-            return value;
+            return val;
         },
 
         /**
@@ -568,10 +566,11 @@ var ImageGallery = A.Component.create({
          * @protected
          */
         _changeRequest: function(event) {
-            var instance = this;
-            var newState = event.state;
-            var lastState = event.lastState;
-            var page = newState.page;
+            var instance = this,
+                lastState = event.lastState,
+                newState = event.state,
+                page = newState.page,
+                paginationInstance = this.get('paginationInstance');
 
             // only update the paginator UI when the Widget is visible
             if (!instance.get('visible')) {
@@ -581,46 +580,21 @@ var ImageGallery = A.Component.create({
             // check if the lastState page number is different from the newState
             // page number.
             if (!lastState || (lastState && lastState.page !== page)) {
-                instance.set('currentIndex', page - 1);
+                instance.set('currentIndex', paginationInstance.getOffsetPageNumber() - 2);
 
                 instance._processChangeRequest();
-            }
-
-            var linksCount = instance.get('links').size(),
-                paginationInstance = instance.get('paginationInstance'),
-                total = paginationInstance.get('total');
-
-            if (linksCount > total) {
-                var offset = parseInt(page / total, 10) * total + 1;
-
-                if (page % total === 0) {
-                    offset -= total;
-                }
-
-                page = page % total || total;
-
-                paginationInstance.set('offset', offset);
-
-                paginationInstance.setState({
-                    page: page
-                });
             }
         },
 
         /**
-         * Process the change request.
-         * Load image and restart the timer, if needed.
+         * Process the change request. Load image and restart the timer, if
+         * needed.
          *
          * @method _processChangeRequest
          * @protected
          */
         _processChangeRequest: function() {
             var instance = this;
-
-            // loading current index image
-            instance.loadImage(
-                instance.getCurrentLink().attr('href')
-            );
 
             // restart the timer if the user change the image, respecting the
             // paused state
@@ -669,12 +643,13 @@ var ImageGallery = A.Component.create({
         },
 
         /**
-         * Gets the [infoTemplate](A.ImageViewer.html#attr_infoTemplate) template.
+         * Gets the [infoTemplate](A.ImageViewer.html#attr_infoTemplate)
+         * template.
          *
          * @method _getInfoTemplate
-         * @param {String} v template
-         * @protected
+         * @param {String} val template
          * @return {String} Parsed string.
+         * @protected
          */
         _getInfoTemplate: function() {
             var label;

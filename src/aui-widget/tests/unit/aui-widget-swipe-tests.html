@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8" />
+            <title>AUI WidgetSwipe Unit Tests</title>
+
+            <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+
+            <script src="../../../../build/aui/aui.js"></script>
+            <script src="js/aui-widget-swipe-tests.js"></script>
+
+            <style>
+                #container {
+                    white-space: nowrap;
+                }
+
+                #container .box {
+                    display: inline-block;
+                    float: none;
+                    height: 100px;
+                }
+            </style>
+        </head>
+        <body class="yui3-skin-sam">
+            <div id="logger"></div>
+
+            <div id="container">
+                <div class="col-xs-12 box" style="background: red;"></div>
+                <div class="col-xs-12 box" style="background: yellow;"></div>
+                <div class="col-xs-12 box" style="background: blue;"></div>
+            </div>
+
+            <script>
+                YUI({
+                    coverage: ['aui-widget-swipe'],
+                    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+                }).use('test-console', 'test', 'aui-widget-swipe-tests', function(Y) {
+
+                    (new Y.Test.Console()).render('#logger');
+
+                    Y.Test.Runner.setName('aui-widget-swipe');
+                    Y.Test.Runner.run();
+                });
+            </script>
+        </body>
+</html>

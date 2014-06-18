@@ -176,7 +176,7 @@ A.mix(DatePickerBase.prototype, {
     selectDates: function(dates) {
         var instance = this;
 
-        instance.getCalendar().selectDates(instance._normalizeDatesForCalendar(dates));
+        instance.getCalendar().selectDates(dates);
     },
 
     /**
@@ -297,46 +297,6 @@ A.mix(DatePickerBase.prototype, {
      */
     _setPanes: function(val) {
         return clamp(val, 1, 3);
-    },
-
-    /**
-     * Makes any necessary changes to dates before using them in the
-     * calendar.
-     *
-     * @method _normalizeDatesForCalendar
-     * @param dates
-     * @protected
-     */
-    _normalizeDatesForCalendar: function(dates) {
-        var instance = this,
-            calendar = this.getCalendar(),
-            minDate = calendar.get('minimumDate'),
-            maxDate = calendar.get('maximumDate');
-
-        if (!dates) {
-            return dates;
-        }
-
-        return A.Array.map(A.Array(dates), function(date) {
-            // In the date picker the time of the selected day is irrelevant.
-            // The calendar module (that is used to provide the dates to be
-            // selected) currently does take the time into account when comparing
-            // a selected date to the minimum allowed date, if one was set, though.
-            // So we need to make sure that if the date matches the day of the
-            // minimumDate option, its timestamp will be greater.
-            if (minDate && instance._isSameDay(date, minDate)) {
-                return new Date(minDate.getTime() + 1);
-            }
-
-            // This is similar to the minimumDate logic. We need to make sure that
-            // the timestamp is lower than the maximumDate option if it's on the same
-            // day.
-            if (maxDate && instance._isSameDay(date, maxDate)) {
-                return new Date(maxDate.getTime() - 1);
-            }
-
-            return date;
-        });
     },
 
     /**

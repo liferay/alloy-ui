@@ -704,7 +704,7 @@ var FormBuilderField = A.Component.create({
          * @method getProperties
          * @return {Array}
          */
-        getProperties: function() {
+        getProperties: function(excludeHidden) {
             var instance = this,
                 propertyModel = instance.getPropertyModel(),
                 hiddenAttributes = instance.get('hiddenAttributes'),
@@ -716,7 +716,7 @@ var FormBuilderField = A.Component.create({
 
                 // TODO - Change checking to use hashes O(1) instead of indexOf
                 // arrays O(N)
-                if (AArray.indexOf(hiddenAttributes, attribute) > -1) {
+                if (excludeHidden && AArray.indexOf(hiddenAttributes, attribute) > -1) {
                     return;
                 }
 

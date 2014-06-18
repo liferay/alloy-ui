@@ -14,9 +14,8 @@ var file = require('../../aui-base/scripts/file'),
 
 // -- Header -------------------------------------------------------------------
 var root = path.join(__dirname, '../../../'),
-    alloyJSON = require(path.join(root, '.alloy.json')),
     aceBuildDir = path.join(root, 'build', 'aui-ace-editor', 'ace'),
-    acePath = path.join(root, alloyJSON.dependencies.ace.folder, 'src-min'),
+    acePath = path.join(root, 'bower_components/ace-builds', 'src-min'),
     jsPath = path.join(root, 'src', 'aui-ace-editor', 'js'),
     tempPath = path.join(jsPath, '.aui-ace-editor.js'),
     alloyContent = file.read(path.join(jsPath, 'aui-ace-editor.js')),

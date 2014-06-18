@@ -1,92 +1,21 @@
-var TASK = {
-    name: 'cdn',
-    description: 'Define some CDN configurations into build/aui directory.'
-};
+var alloy = require('../.alloy');
+var gulp = require('gulp');
+var insert = require('gulp-insert');
 
-// -- Dependencies -------------------------------------------------------------
-var async = require('async');
-var fs = require('fs-extra');
-var path = require('path');
+gulp.task('cdn', ['build'], function() {
+    var files = [
+        'build/aui/aui.js',
+        'build/aui/aui-min.js',
+        'build/aui/aui-debug.js'
+    ];
 
-// -- Globals ------------------------------------------------------------------
-var ROOT = process.cwd();
-
-// -- Task ---------------------------------------------------------------------
-module.exports = function(grunt) {
-    grunt.registerTask(TASK.name, TASK.description, function() {
-        var done = this.async();
-
-        async.series([
-            function(mainCallback) {
-                    exports._setGruntConfig(mainCallback);
-            },
-            function(mainCallback) {
-                    exports._setYuiConfig(mainCallback);
-            }],
-            function(err) {
-                if (err) {
-                    done(false);
-                }
-                else {
-                    done();
-                }
-            }
-        );
-    });
-
-    exports._setGruntConfig = function(mainCallback) {
-        var options = grunt.option.flags();
-
-        options.forEach(function(option) {
-            var key;
-            var value;
-            var valueIndex;
-
-            // Normalize option
-            option = option.replace(/^--(no-)?/, '');
-
-            valueIndex = option.lastIndexOf('=');
-
-            // String parameter
-            if (valueIndex !== -1) {
-                key = option.substring(0, valueIndex);
-                value = option.substring(valueIndex + 1);
-            }
-            // Boolean parameter
-            else {
-                key = option;
-                value = grunt.option(key);
-            }
-
-            grunt.config([TASK.name, key], value);
-        });
-
-        mainCallback();
-    };
-
-    exports._setYuiConfig = function(mainCallback) {
-        var combine = grunt.config([TASK.name, 'combine']),
-            comboBase = grunt.config([TASK.name, 'comboBase']),
-            filter = grunt.config([TASK.name, 'filter']),
-            root = grunt.config([TASK.name, 'root']);
-
-        var auiBuildDir = path.join(ROOT, 'build', 'aui'),
-            files = [];
-
-        files.push(path.join(auiBuildDir, 'aui.js'));
-        files.push(path.join(auiBuildDir, 'aui-min.js'));
-        files.push(path.join(auiBuildDir, 'aui-debug.js'));
-
-        files.forEach(function(file) {
-            fs.appendFile(
-                file, '\nYUI_config = {' +
-                'combine:' + combine + ',' +
-                'filter:"' + filter + '",' +
-                'comboBase:"' + comboBase + '",' +
-                'root:"' + root + '"' +
-                '};');
-        });
-
-        mainCallback();
-    };
-};
+    return gulp.src(files)
+        .pipe(insert.append('\n' +
+            'YUI_config = {' +
+                'combine:true,' +
+                'comboBase:"http://cdn.alloyui.com/combo/combo.php?",' +
+                'filter:"min",' +
+                'root:"../' + alloy.version + '/"' +
+            '};'))
+        .pipe(gulp.dest('build/aui/'));
+});

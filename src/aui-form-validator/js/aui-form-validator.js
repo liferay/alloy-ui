@@ -993,11 +993,13 @@ var FormValidator = A.Component.create({
             var instance = this,
                 ancestor,
                 field,
+                label,
                 nextSibling,
                 stackContainer,
                 target,
                 validator;
 
+            label = instance.get('labelCssClass');
             validator = event.validator;
             field = validator.field;
 
@@ -1013,8 +1015,15 @@ var FormValidator = A.Component.create({
                 if (nextSibling && nextSibling.get('nodeType') === 3) {
                     ancestor = field.ancestor();
 
-                    if (ancestor && ancestor.hasClass(instance.get('labelCssClass'))) {
-                        target = nextSibling;
+                    if (ancestor) {
+                        if (ancestor.hasClass(label)) {
+                            target = nextSibling;
+                        }
+                        else if (A.FormValidator.isCheckable(target)) {
+                            var label = ancestor.previous('.' + label);
+
+                            target = label;
+                        }
                     }
                 }
 

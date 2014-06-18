@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>AUI Carousel Unit Tests</title>
+
+        <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+
+        <script src="../../../../build/aui/aui.js"></script>
+        <script src="js/aui-carousel-swipe-tests.js"></script>
+    </head>
+    <body class="yui3-skin-sam">
+        <div id="logger"></div>
+        <div id="container"></div>
+
+        <div id="images">
+            <div style="background: url(../../../../demos/carousel/assets/article0.png); width: 940px; height: 250px;" class="carousel-item carousel-item-active"></div>
+            <div style="background: url(../../../../demos/carousel/assets/article1.png); width: 940px; height: 250px;" class="carousel-item carousel-item-active"></div>
+            <img src="../../../../demos/carousel/assets/article2.png" class="carousel-item carousel-item-active"></img>
+        </div>
+
+        <script>
+            YUI({
+                coverage: ['aui-carousel-swipe'],
+                filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+            }).use('test-console', 'test', 'aui-carousel-swipe-tests', function(Y) {
+
+                (new Y.Test.Console()).render('#logger');
+
+                Y.Test.Runner.setName('aui-carousel-swipe');
+                Y.Test.Runner.run();
+            });
+        </script>
+    </body>
+</html>

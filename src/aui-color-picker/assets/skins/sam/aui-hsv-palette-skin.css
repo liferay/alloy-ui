@@ -1,18 +1,12 @@
-.hsv-container {
-    border: 1px solid #666;
-}
-
 .hsv-image-backdrop {
     background-color: #000;
 }
 
-.hsv-hs-container {
+.hsv-hs-container, .hsv-hs-thumb, .hsv-value-canvas, .hsv-alpha-canvas, .hsv-value-image, .hsv-alpha-image, .hsv-view-backdrop {
     background-image: url(sprite.png);
-    border: 1px solid #666;
 }
 
 .hsv-hs-thumb {
-    background-image: url(sprite.png);
     background-position: -315px -84px;
     left: 1px;
     top: 1px;
@@ -20,37 +14,27 @@
 
 .hsv-value-slider-container, .hsv-alpha-slider-container {
     background-color: #FF0000;
-    border: 1px solid #666;
 }
 
 .hsv-value-canvas {
-    background-image: url(sprite.png);
     background-position: -260px 0;
 }
 
 .hsv-alpha-canvas {
-    background-image: url(sprite.png);
     background-position: -290px 0;
 }
 
 .hsv-value-image, .hsv-alpha-image {
-    background-image: url(sprite.png);
-    background-position: -315px -69px;
-}
-
-.hsv-alpha-slider-container {
-    border: 1px solid #666;
+    background-position: -315px -68px;
 }
 
 .hsv-view-backdrop {
     background-color: #FFF;
-    background-image: url(sprite.png);
     background-position: -315px 0;
 }
 
 .hsv-result-view {
     background-color: #FF0000;
-    border: 1px solid #666;
 }
 
 .hsv-result-input {

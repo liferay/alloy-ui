@@ -12,7 +12,6 @@
             "widget-stdmod",
             "dd-plugin",
             "dd-constrain",
-            "resize-plugin",
             "timers",
             "aui-classnamemanager",
             "aui-widget-cssclass",
@@ -20,5 +19,16 @@
             "aui-widget-toolbars"
         ],
         "skinnable": true
+    },
+
+    "aui-modal-resize": {
+        "condition": {
+            "test": "aui-modal-resize-test.js",
+            "trigger": "aui-modal"
+        },
+        "requires": [
+            "aui-modal",
+            "resize-plugin"
+        ]
     }
 }

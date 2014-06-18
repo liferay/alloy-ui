@@ -10,10 +10,6 @@
     z-index: 3000;
 }
 
-.image-gallery .image-viewer-caption {
-    max-width: 300px;
-}
-
 .ie6 .image-gallery-pagination {
     position: absolute;
 }

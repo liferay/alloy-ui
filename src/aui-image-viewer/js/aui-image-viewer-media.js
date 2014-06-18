@@ -7,6 +7,9 @@
 var Lang = A.Lang,
     Do = A.Do,
 
+    CSS_IMAGE_VIEWER_IMAGE = A.getClassName('image', 'viewer', 'image'),
+    CSS_IMAGE_VIEWER_LOADING = A.getClassName('image', 'viewer', 'loading'),
+
     DEFAULT_OPTIONS = {
         height: 360,
         width: 640,
@@ -136,126 +139,8 @@ var MediaViewerPlugin = A.Component.create({
 
             var handles = instance._handles;
 
-            handles.changeReqeust = instance.afterHostMethod('_changeRequest', instance._restoreMedia);
-            handles.close = instance.beforeHostMethod('close', instance.close);
-            handles.loadMedia = instance.beforeHostMethod('loadImage', instance.loadMedia);
-            handles.preloadImage = instance.beforeHostMethod('preloadImage', instance.preloadImage);
-        },
-
-        /**
-         * Checks if the media type is an image, if not empty the content.
-         *
-         * @method close
-         */
-        close: function() {
-            var instance = this;
-
-            var host = instance.get('host');
-
-            var source = host.getCurrentLink();
-
-            var mediaType = instance._getMediaType(source.attr('href'));
-
-            if (mediaType !== 'image') {
-                instance._redirectIframe('about:blank');
-
-                host.setStdModContent('body', '');
-            }
-        },
-
-        /**
-         * Loads a media based on the `providers` and include it on a container.
-         *
-         * @method loadMedia
-         * @param linkHref
-         */
-        loadMedia: function(linkHref) {
-            var instance = this;
-
-            var host = instance.get('host');
-
-            var mediaType = instance._getMediaType(linkHref);
-
-            var result = true;
-
-            instance._redirectIframe('about:blank');
-
-            if (mediaType !== 'image') {
-                var providers = instance.get('providers')[mediaType];
-
-                var source = host.getCurrentLink();
-
-                var options = instance._updateOptions(
-                    source,
-                    A.clone(providers.options)
-                );
-
-                var media = providers.mediaRegex.exec(linkHref);
-
-                if (media) {
-                    options.media = media[1];
-                }
-
-                var container = Lang.sub(
-                    providers.container,
-                    options
-                );
-
-                host.setStdModContent('body', container);
-
-                host._syncImageViewerUI();
-
-                instance._uiSetContainerSize(options.width, options.height);
-
-                host._setAlignCenter(true);
-
-                host.set('loading', false);
-
-                host.fire(
-                    'load', {
-                        media: media
-                    }
-                );
-
-                if (host.get('preloadNeighborImages')) {
-                    var currentIndex = host.get('currentIndex');
-
-                    host.preloadImage(currentIndex + 1);
-                    host.preloadImage(currentIndex - 1);
-                }
-
-                result = new Do.Prevent();
-            }
-
-            return result;
-        },
-
-        /**
-         * Preloads an image.
-         *
-         * @method preloadImage
-         * @param index
-         */
-        preloadImage: function(index) {
-            var instance = this;
-
-            var host = instance.get('host');
-
-            var currentLink = host.getLink(index);
-
-            var result = new Do.Prevent();
-
-            if (currentLink) {
-                var linkHref = currentLink.attr('href');
-
-                var mediaType = instance._getMediaType(linkHref);
-
-                if (mediaType === 'image') {
-                    result = true;
-                }
-            }
-
-            return result;
+            handles._loadMedia = instance.beforeHostMethod('_loadImage', instance._loadMedia);
+            handles._renderMedia = instance.beforeHostMethod('_renderImage', instance._renderMedia);
         },
 
         /**
@@ -283,70 +168,73 @@ var MediaViewerPlugin = A.Component.create({
         },
 
         /**
-         * Sets the `src` attribute in the iframe.
+         * If the media in the specified index is an image, this will defer to
+         * the host's _loadImage default behavior. Otherwise, _loadMedia will be
+         * prevented and the media node will be loaded by this function instead.
          *
-         * @method _redirectIframe
-         * @param source
+         * @method _loadMedia
+         * @param {Number} index The index of the image to load.
          * @protected
          */
-        _redirectIframe: function(source) {
-            var instance = this;
+        _loadMedia: function(index) {
+            var host = this.get('host'),
+                container = host._getCurrentImageContainer(),
+                link = host.get('links').item(index),
+                linkHref = link.getAttribute('href'),
+                media,
+                mediaNode,
+                mediaType = this._getMediaType(linkHref),
+                options,
+                provider;
 
-            var bodyNode = instance.get('host.bodyNode');
+            if (mediaType !== 'image') {
+                mediaNode = host._getCurrentImage();
+                if (!mediaNode) {
+                    provider = this.get('providers')[mediaType];
+                    options = this._updateOptions(
+                        link,
+                        A.clone(provider.options)
+                    );
 
-            if (bodyNode) {
-                var iframe = bodyNode.one('iframe');
+                    media = provider.mediaRegex.exec(linkHref);
+                    if (media) {
+                        options.media = media[1];
+                    }
 
-                if (iframe) {
-                    iframe.attr('src', source);
+                    mediaNode = A.Node.create(Lang.sub(
+                        provider.container,
+                        options
+                    ));
+                    mediaNode.addClass(CSS_IMAGE_VIEWER_IMAGE);
+
+                    mediaNode.setData('loaded', true);
+                    container.removeClass(CSS_IMAGE_VIEWER_LOADING);
+
+                    container.prepend(mediaNode);
                 }
+
+                return new Do.Prevent();
             }
         },
 
         /**
-         * Restores a media.
+         * If the media in the specified index is an image, this will defer to
+         * the host's _renderImage default behavior. Otherwise, _renderImage will
+         * be prevented, as the media node should only be rendered when it's loaded
+         * for the first time (on _loadMedia).
          *
-         * @method _restoreMedia
-         * @param event
+         * @method _renderMedia
+         * @param {Number} index The index of the media to be loaded.
          * @protected
          */
-        _restoreMedia: function() {
-            var instance = this;
+        _renderMedia: function(index) {
+            var host = this.get('host'),
+                link = host.get('links').item(index),
+                linkHref = link.getAttribute('href');
 
-            var host = instance.get('host');
-
-            var source = host.getCurrentLink();
-
-            var href = source.attr('href');
-
-            var mediaType = instance._getMediaType(href);
-
-            if (mediaType !== 'image' && !host.getStdModNode('body').html()) {
-                host._processChangeRequest();
+            if (this._getMediaType(linkHref) !== 'image') {
+                return new Do.Prevent();
             }
-        },
-
-        /**
-         * Sets the container width and height in the UI.
-         *
-         * @method _uiSetContainerSize
-         * @param width
-         * @param height
-         * @protected
-         */
-        _uiSetContainerSize: function(width, height) {
-            var instance = this;
-
-            var host = instance.get('host'),
-                bodyNode = host.bodyNode,
-                footerNode = host.footerNode;
-
-            footerNode.setStyle('width', width);
-
-            bodyNode.setStyles({
-                height: height,
-                width: width
-            });
         },
 
         /**

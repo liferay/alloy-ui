@@ -546,7 +546,7 @@ var SchedulerEventRecorder = A.Component.create({
 
             if (event) {
                 children.push({
-                    label: strings.delete,
+                    label: strings['delete'],
                     on: {
                         click: A.bind(instance._handleDeleteEvent, instance)
                     }

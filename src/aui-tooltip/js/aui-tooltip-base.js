@@ -49,7 +49,21 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
     initializer: function() {
         var instance = this;
 
-        A.after(instance._afterUiSetTrigger, instance, '_uiSetTrigger');
+        instance._eventHandles = [
+            A.after(instance._afterUiSetTrigger, instance, '_uiSetTrigger'),
+            A.on('scroll', A.debounce(instance._onScroll, 100, instance)),
+            A.on('windowresize', A.bind(instance._onResize, instance))
+        ];
+    },
+
+    /**
+     * Destructor lifecycle implementation for the `Tooltip` class.
+     *
+     * @method destructor
+     * @protected
+     */
+    destructor: function() {
+        (new A.EventHandle(this._eventHandles)).detach();
     },
 
     /**
@@ -109,7 +123,7 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
         boundingBox.setStyle('opacity', val ? instance.get('opacity') : 0);
 
         if (val) {
-            instance._loadBodyContentFromTitle();
+            instance._loadTooltipContentFromTitle();
         }
     },
 
@@ -121,44 +135,68 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
      * @protected
      */
     _afterUiSetTrigger: function(val) {
-        var instance = this;
+        this.suggestAlignment(val);
+    },
 
-        instance.suggestAlignment(val);
+    /**
+     * If the HTML title attribute exists, copy its contents to data-title
+     * and remove it to prevent the browser's native tooltip.
+     *
+     * @method _borrowTitleAttribute
+     * @private
+     */
+    _borrowTitleAttribute: function() {
+        var trigger = this.get('trigger'),
+            title = trigger.getAttribute('title');
+
+        if (title) {
+            trigger.setAttribute('data-title', title).removeAttribute('title');
+        }
+    },
+
+    /**
+     * Set tooltip section attribute.
+     *
+     * @method _setStdModSection
+     * @param {String | Node} val
+     * @protected
+     */
+    _setStdModSection: function(val) {
+        var formatter = this.get('formatter');
+
+        if (Lang.isString(val)) {
+            if (formatter) {
+                val = formatter.call(this, val);
+            }
+
+            if (!this.get('html')) {
+                val = A.Escape.html(val);
+            }
+        }
+
+        return val;
     },
 
     /**
      * Load tooltip content from trigger title attribute.
      *
-     * @method _loadBodyContentFromTitle
+     * @method _loadTooltipContentFromTitle
      * @protected
      */
-    _loadBodyContentFromTitle: function() {
-        var instance = this,
-            trigger,
-            dataTitle,
-            formatter,
+    _loadTooltipContentFromTitle: function() {
+        var trigger = this.get('trigger'),
             title;
-
-        formatter = instance.get('formatter');
-        trigger = instance.get('trigger');
 
         if (!trigger) {
             return;
         }
 
-        dataTitle = trigger.getAttribute('data-title');
-        title = trigger.getAttribute('title') || dataTitle;
+        this._borrowTitleAttribute();
 
-        if (formatter) {
-            title = formatter.call(instance, title);
+        title = trigger.getAttribute('data-title');
+        if (title) {
+            this.setStdModContent(A.WidgetStdMod.BODY, title);
         }
-
-        if (!dataTitle) {
-            trigger.removeAttribute('title').setAttribute('data-title', title);
-        }
-
-        instance.setStdModContent(
-            A.WidgetStdMod.BODY, trigger && title || instance.get('bodyContent'));
     },
 
     /**
@@ -169,9 +207,7 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
      * @protected
      */
     _onBoundingBoxMouseenter: function() {
-        var instance = this;
-
-        instance.show();
+        this.show();
     },
 
     /**
@@ -182,9 +218,27 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
      * @protected
      */
     _onBoundingBoxMouseleave: function() {
-        var instance = this;
+        this.hide();
+    },
 
-        instance.hide();
+    /**
+     * Fired after the window is resized.
+     *
+     * @method _onResize
+     * @protected
+     */
+    _onResize: function() {
+        this.suggestAlignment(this.get('trigger'));
+    },
+
+    /**
+     * Scroll event listener function.
+     *
+     * @method _onScroll
+     * @protected
+     */
+    _onScroll: function() {
+        this.suggestAlignment(this.get('trigger'));
     },
 
     _widgetUiSetVisible: A.Widget.prototype._uiSetVisible
@@ -221,6 +275,14 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
         },
 
         /**
+         * @attribute bodyContent
+         * @type {String | Node}
+         */
+        bodyContent: {
+            setter: '_setStdModSection'
+        },
+
+        /**
          * Determine the tooltip constrain node.
          *
          * @attribute constrain
@@ -232,6 +294,14 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
         },
 
         /**
+         * @attribute footerContent
+         * @type {String | Node}
+         */
+        footerContent: {
+            setter: '_setStdModSection'
+        },
+
+        /**
          * Format the title attribute before set the content of the tooltip.
          *
          * @attribute formatter
@@ -239,6 +309,26 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
          */
         formatter: {
             validator: A.Lang.isFunction
+        },
+
+        /**
+         * @attribute headerContent
+         * @type {String | Node}
+         */
+        headerContent: {
+            setter: '_setStdModSection'
+        },
+
+        /**
+         * Determines if the tooltip allows arbitary HTML or is plain text.
+         *
+         * @attribute html
+         * @default false
+         * @type Boolean
+         */
+        html: {
+            value: false,
+            validator: Lang.isBoolean
         },
 
         /**

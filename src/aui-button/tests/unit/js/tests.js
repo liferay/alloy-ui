@@ -5,7 +5,7 @@ YUI.add('aui-button-tests', function(Y) {
 
     function assertPosition(input) {
         var inputRegion = input.get('region'),
-            iconClose = input.next('.btn-search-cancel'),
+            iconClose = input.previous('.btn-search-cancel'),
 
             xpos = inputRegion.right -
                 searchButtonCancel.get('iconWidth') +

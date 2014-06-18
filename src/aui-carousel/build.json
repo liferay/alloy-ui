@@ -5,6 +5,18 @@
             "jsfiles": [
                 "js/aui-carousel.js"
             ]
+        },
+
+        "aui-carousel-swipe": {
+            "jsfiles": [
+                "js/aui-carousel-swipe.js"
+            ]
+        },
+
+        "aui-carousel-touch": {
+            "jsfiles": [
+                "js/aui-carousel-touch.js"
+            ]
         }
     }
 }

@@ -1,7 +1,15 @@
-.modal-hidden {
+.modal-dialog-hidden {
     display: none;
 }
 
 .modal-content {
     overflow: hidden;
+}
+
+.modal-footer {
+    margin-top: 0;
+}
+
+.modal-dialog {
+    position: fixed;
 }

@@ -13,7 +13,8 @@ var Lang = A.Lang,
 
     CSS_MODAL_BD = getClassName('modal-body'),
     CSS_MODAL_FT = getClassName('modal-footer'),
-    CSS_MODAL_HD = getClassName('modal-header');
+    CSS_MODAL_HD = getClassName('modal-header'),
+    CSS_MODAL_OPEN = getClassName('modal-open');
 
 /**
  * A base class for Modal.
@@ -57,13 +58,12 @@ A.Modal = A.Base.create('modal', A.Widget, [
 
         eventHandles = [
             A.after(instance._afterFillHeight, instance, 'fillHeight'),
-            instance.after('resize:end', A.bind(instance._syncResizeDimensions, instance)),
+            instance.after('render', instance._afterRender),
             instance.after('draggableChange', instance._afterDraggableChange),
-            instance.after('resizableChange', instance._afterResizableChange),
             instance.after('visibleChange', instance._afterVisibleChange)
         ];
 
-        instance._applyPlugin(instance._onUserInitInteraction);
+        instance._applyPlugin(instance._plugDrag);
 
         instance._eventHandles = eventHandles;
     },
@@ -82,6 +82,8 @@ A.Modal = A.Base.create('modal', A.Widget, [
         if (instance._userInteractionHandle) {
             instance._userInteractionHandle.detach();
         }
+
+        A.all('body,html').removeClass(CSS_MODAL_OPEN);
     },
 
     /**
@@ -133,21 +135,9 @@ A.Modal = A.Base.create('modal', A.Widget, [
         }
     },
 
-    /**
-     * Fire after resize changes.
-     *
-     * @method _afterResizableChange
-     * @param event
-     * @protected
-     */
-    _afterResizableChange: function(event) {
-        var instance = this;
-
-        if (event.newVal) {
-            instance._applyPlugin(instance._plugResize);
-        }
-        else {
-            instance.unplug(A.Plugin.Resize);
+    _afterRender: function() {
+        if (this.get('visible')) {
+            A.all('body,html').addClass(CSS_MODAL_OPEN);
         }
     },
 
@@ -164,6 +154,8 @@ A.Modal = A.Base.create('modal', A.Widget, [
         if (!event.newVal && instance.get('destroyOnHide')) {
             A.soon(A.bind('destroy', instance));
         }
+
+        A.all('body,html').toggleClass(CSS_MODAL_OPEN, event.newVal);
     },
 
     /**
@@ -214,40 +206,18 @@ A.Modal = A.Base.create('modal', A.Widget, [
     },
 
     /**
-     * Fire before resizing to the correct dimensions.
-     *
-     * @method _beforeResizeCorrectDimensions
-     * @param event
-     * @protected
-     */
-    _beforeResizeCorrectDimensions: function() {
-        var instance = this;
-
-        if (instance.resize.proxy) {
-            return new A.Do.Prevent();
-        }
-    },
-
-    /**
-     * Plug draggable/resizable if enable.
+     * Plug draggable and detach user interaction handle.
      *
      * @method _onUserInitInteraction
      * @protected
      */
     _onUserInitInteraction: function() {
-        var instance = this,
-            draggable = instance.get('draggable'),
-            resizable = instance.get('resizable');
+        var instance = this;
 
+        instance._plugDrag();
+
+        instance._userInteractionHandle.detach();
         instance._userInteractionHandle = null;
-
-        if (draggable) {
-            instance._plugDrag();
-        }
-
-        if (resizable) {
-            instance._plugResize();
-        }
     },
 
     /**
@@ -260,37 +230,9 @@ A.Modal = A.Base.create('modal', A.Widget, [
         var instance = this,
             draggable = instance.get('draggable');
 
-        instance.plug(A.Plugin.Drag, instance._addBubbleTargets(draggable));
-    },
-
-    /**
-     * Plug the resize Plugin
-     *
-     * @method _plugResize
-     * @protected
-     */
-    _plugResize: function() {
-        var instance = this,
-            resizable = instance.get('resizable');
-
-        instance.plug(A.Plugin.Resize, instance._addBubbleTargets(resizable));
-
-        A.before(instance._beforeResizeCorrectDimensions, instance.resize, '_correctDimensions', instance);
-    },
-
-    /**
-     * Sync width/height dimensions on resize.
-     *
-     * @method _syncResizeDimensions
-     * @param event
-     * @protected
-     */
-    _syncResizeDimensions: function(event) {
-        var instance = this,
-            resize = event.info;
-
-        instance.set('width', resize.offsetWidth);
-        instance.set('height', resize.offsetHeight);
+        if (draggable) {
+            instance.plug(A.Plugin.Drag, instance._addBubbleTargets(draggable));
+        }
     }
 }, {
 
@@ -355,19 +297,6 @@ A.Modal = A.Base.create('modal', A.Widget, [
                         fn: A.Plugin.DDConstrained
                     }
                 ]
-            }
-        },
-
-        /**
-         * Determine if Modal should be resizable or not.
-         *
-         * @attribute resizable
-         * @type Object
-         * @writeOnce
-         */
-        resizable: {
-            value: {
-                handles: 'br'
             }
         },
 

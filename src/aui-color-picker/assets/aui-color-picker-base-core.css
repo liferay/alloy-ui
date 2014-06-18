@@ -2,12 +2,16 @@
     padding: 5px 0;
 }
 
+.hsv-trigger {
+    padding-right: 0;
+}
+
 .hsv-trigger, .color-picker-nocolor {
     cursor: pointer;
 }
 
 .color-picker-nocolor {
-    padding-right: 5px;
+    padding-right: 15px;
     text-align: right;
 }
 

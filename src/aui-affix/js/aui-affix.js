@@ -214,7 +214,7 @@ Affix = A.Base.create('affix', A.Base, [], {
          * @type {Function | Number}
          */
         offsetTop: {
-            setter: '_getOffset',
+            getter: '_getOffset',
             validator: '_validateOffset',
             value: Number.NEGATIVE_INFINITY
         },

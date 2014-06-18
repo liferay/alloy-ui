@@ -7,6 +7,12 @@
             ]
         },
 
+        "aui-widget-swipe": {
+            "jsfiles": [
+                "js/aui-widget-swipe.js"
+            ]
+        },
+
         "aui-widget-toggle": {
             "jsfiles": [
                 "js/aui-widget-toggle.js"
@@ -22,6 +28,12 @@
         "aui-widget-position-align-suggestion": {
             "jsfiles": [
                 "js/aui-widget-position-align-suggestion.js"
+            ]
+        },
+
+        "aui-widget-responsive": {
+            "jsfiles": [
+                "js/aui-widget-responsive.js"
             ]
         },
 

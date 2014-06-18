@@ -4,6 +4,18 @@ YUI.add('aui-carousel-tests', function(Y) {
     suite.add(new Y.Test.Case({
         name: 'AUI Carousel Unit Tests',
 
+        _should: {
+            // Ignore the following tests in touch enabled browsers. They will
+            // be tested properly in the tests for the aui-carousel-touch module.
+            ignore: {
+                'should play/pause when user clicks the button': Y.UA.touchEnabled,
+                'should switch images when user clicks on next/previous buttons': Y.UA.touchEnabled,
+                'should switch images when user clicks on item buttons': Y.UA.touchEnabled,
+                'should switch the item selector': Y.UA.touchEnabled,
+                'should render the menu outside of the carousel': Y.UA.touchEnabled
+            }
+        },
+
         init: function() {
             this._container = Y.one('#container');
 
@@ -16,8 +28,10 @@ YUI.add('aui-carousel-tests', function(Y) {
         setUp: function() {
             this.createCarousel({
                 contentBox: '#content',
+                height: 300,
                 intervalTime: 1,
-                itemSelector: '> div'
+                itemSelector: '> div,img',
+                width: 940
             });
         },
 
@@ -26,7 +40,11 @@ YUI.add('aui-carousel-tests', function(Y) {
         },
 
         createCarousel: function(config) {
-            this._container.setHTML('<div id="content"><div></div><div></div><div></div></div>');
+            var content = Y.Node.create('<div id="content"></div>'),
+                images = Y.one('#images');
+
+            content.setHTML(images.getHTML());
+            this._container.append(content);
 
             this._carousel = new Y.Carousel(config).render();
         },
@@ -112,7 +130,7 @@ YUI.add('aui-carousel-tests', function(Y) {
 
         'should play/pause when user clicks the button': function() {
             var instance = this,
-                pauseButton = this._carousel.get('contentBox').one('.carousel-menu-pause');
+                pauseButton = this._carousel.get('boundingBox').one('.carousel-menu-pause');
 
             pauseButton.simulate('click');
 
@@ -161,8 +179,8 @@ YUI.add('aui-carousel-tests', function(Y) {
         },
 
         'should switch images when user clicks on next/previous buttons': function() {
-            var nextButton = this._carousel.get('contentBox').one('.carousel-menu-next'),
-                prevButton = this._carousel.get('contentBox').one('.carousel-menu-prev');
+            var nextButton = this._carousel.get('boundingBox').one('.carousel-menu-next'),
+                prevButton = this._carousel.get('boundingBox').one('.carousel-menu-prev');
 
             prevButton.simulate('click');
             Y.Assert.areEqual(
@@ -212,19 +230,19 @@ YUI.add('aui-carousel-tests', function(Y) {
             Y.Assert.areEqual(
                 2,
                 this._carousel.get('activeIndex'),
-                'Next function was called, activeIndex shoudl be 2'
+                'Next function was called, activeIndex should be 2'
             );
 
             this._carousel.next();
             Y.Assert.areEqual(
                 0,
                 this._carousel.get('activeIndex'),
-                'Next function was called, activeIndex shoudl be 0'
+                'Next function was called, activeIndex should be 0'
             );
         },
 
         'should switch images when user clicks on item buttons': function() {
-            var itemButtons = this._carousel.get('contentBox').all('.carousel-menu-index');
+            var itemButtons = this._carousel.get('boundingBox').all('.carousel-menu-index');
 
             itemButtons.item(2).simulate('click');
             Y.Assert.areEqual(
@@ -450,10 +468,28 @@ YUI.add('aui-carousel-tests', function(Y) {
             this._carousel.destroy();
             this.createCarousel({
                 contentBox: '#content',
-                playing: false
+                height: 300,
+                playing: false,
+                width: 940
             });
 
             this.assertPaused();
+        },
+
+        'should render the menu outside of the carousel': function() {
+            var boundingBox = this._carousel.get('boundingBox');
+
+            Y.Assert.isFalse(
+                boundingBox.hasClass('carousel-outside-menu'),
+                'Should not have the carousel-outside-menu class'
+            );
+
+            this._carousel.set('nodeMenuPosition', 'outside');
+
+            Y.Assert.isTrue(
+                boundingBox.hasClass('carousel-outside-menu'),
+                'Should have the carousel-outside-menu class'
+            );
         }
     }));
 

@@ -18,6 +18,21 @@
         ]
     },
 
+    "aui-widget-responsive": {
+        "requires": [
+            "event-resize",
+            "widget-base"
+        ]
+    },
+
+    "aui-widget-swipe": {
+        "requires": [
+            "classnamemanager",
+            "scrollview-base",
+            "scrollview-paginator"
+        ]
+    },
+
     "aui-widget-toolbars": {
         "requires": [
             "widget-stdmod",

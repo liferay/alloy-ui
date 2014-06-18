@@ -7,70 +7,73 @@ YUI.add('aui-ace-autocomplete-freemarker-tests', function(Y) {
     var suite = new Y.Test.Suite('aui-ace-autocomplete-freemarker'),
         editor,
         elements,
+        IElt9 = Y.UA.ie && Y.UA.ie < 9,
         nativeEditor;
 
-    editor = new Y.AceEditor({
-        boundingBox: '#editor',
-        plugins: [{
-                fn: Y.Plugin.AceAutoComplete,
-                cfg: {
-                    processor: new Y.AceEditor.AutoCompleteFreemarker({
-                        variables: {
-                            'types': {
-                                'java.lang.String': {
-                                    'numberOfLeadingZeros': {
-                                        'type': 'Method',
-                                        'returnType': 'long',
-                                        'argumentTypes': ['long']
+    if (!IElt9) {
+        editor = new Y.AceEditor({
+            boundingBox: '#editor',
+            plugins: [{
+                    fn: Y.Plugin.AceAutoComplete,
+                    cfg: {
+                        processor: new Y.AceEditor.AutoCompleteFreemarker({
+                            variables: {
+                                'types': {
+                                    'java.lang.String': {
+                                        'numberOfLeadingZeros': {
+                                            'type': 'Method',
+                                            'returnType': 'long',
+                                            'argumentTypes': ['long']
+                                        },
+                                        'toString': {
+                                            'type': 'Method',
+                                            'returnType': 'java.lang.String',
+                                            'argumentTypes': ['long', 'java.lang.String', 'int']
+                                        },
+                                        'field': {
+                                            'type': 'java.lang.String'
+                                        }
                                     },
-                                    'toString': {
-                                        'type': 'Method',
-                                        'returnType': 'java.lang.String',
-                                        'argumentTypes': ['long', 'java.lang.String', 'int']
+                                    'com.liferay.portal.model.Group': {
+
                                     },
-                                    'field': {
+                                    'Method': {
+                                        'toString': {
+                                            'type': 'Method',
+                                            'returnType': 'java.lang.String',
+                                            'argumentTypes': []
+                                        },
+                                        'indexOf': {
+                                            'type': 'Method',
+                                            'returnType': 'java.lang.Integer',
+                                            'argumentTypes': []
+                                        }
+                                    }
+                                },
+                                'variables': {
+                                    'scopeGroupId': {
+                                        'type': 'java.lang.String'
+                                    },
+
+                                    'scopeGroup': {
+                                        'type': 'com.liferay.portal.model.Group'
+                                    },
+
+                                    'scopeGroupString': {
                                         'type': 'java.lang.String'
                                     }
-                                },
-                                'com.liferay.portal.model.Group': {
-
-                                },
-                                'Method': {
-                                    'toString': {
-                                        'type': 'Method',
-                                        'returnType': 'java.lang.String',
-                                        'argumentTypes': []
-                                    },
-                                    'indexOf': {
-                                        'type': 'Method',
-                                        'returnType': 'java.lang.Integer',
-                                        'argumentTypes': []
-                                    }
-                                }
-                            },
-                            'variables': {
-                                'scopeGroupId': {
-                                    'type': 'java.lang.String'
-                                },
-
-                                'scopeGroup': {
-                                    'type': 'com.liferay.portal.model.Group'
-                                },
-
-                                'scopeGroupString': {
-                                    'type': 'java.lang.String'
                                 }
                             }
-                        }
-                    }),
-                    render: true,
-                    visible: false,
-                    width: 250,
-                    zIndex: 10000
+                        }),
+                        render: true,
+                        visible: false,
+                        width: 250,
+                        zIndex: 10000
+                    }
                 }
-            }
-        ]
-    });
+            ]
+        });
+    }
 
     //--------------------------------------------------------------------------
     // Test Case for plugin appearance
@@ -79,6 +82,13 @@ YUI.add('aui-ace-autocomplete-freemarker-tests', function(Y) {
     suite.add(new Y.Test.Case({
 
         name: 'Freemarker tests',
+
+        _should: {
+            // Ignore all tests in IE < 9.
+            ignore: {
+                'assert editor contains the plugin': IElt9
+            }
+        },
 
         'assert editor contains the plugin': function() {
             editor.render();
@@ -94,6 +104,17 @@ YUI.add('aui-ace-autocomplete-freemarker-tests', function(Y) {
     suite.add(new Y.Test.Case({
 
         name: 'Freemarker directives tests',
+
+        _should: {
+            // Ignore all tests in IE < 9.
+            ignore: {
+                'show directives': IElt9,
+                'check directives': IElt9,
+                'check first directive is selected': IElt9,
+                'insert directive': IElt9,
+                'insert directive in insert mode': IElt9
+            }
+        },
 
         'show directives': function() {
             editor.insert('<#b');
@@ -167,6 +188,17 @@ YUI.add('aui-ace-autocomplete-freemarker-tests', function(Y) {
     suite.add(new Y.Test.Case({
 
         name: 'Freemarker variables tests',
+
+        _should: {
+            // Ignore all tests in IE < 9.
+            ignore: {
+                'show variables': IElt9,
+                'insert second level of variable': IElt9,
+                'insert third level of variable': IElt9,
+                'check no more variables': IElt9,
+                'check we don\'t show suggestions on fake variables': IElt9
+            }
+        },
 
         'show variables': function() {
             nativeEditor.setValue('${');
