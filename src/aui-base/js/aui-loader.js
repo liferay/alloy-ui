@@ -1050,7 +1050,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-selector",
             "aui-event-base",
             "aui-node",
-            "aui-component"
+            "aui-component",
+            "event-tap"
         ],
         "skinnable": true
     },
@@ -1235,4 +1236,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '2e46866c053a439706272e3ec55c778f';
+YUI.Env[Y.version].md5 = '24311a2d580b40a369103ae875a961bb';
