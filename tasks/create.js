@@ -2,13 +2,11 @@ var gulp = require('gulp');
 var prompt = require('gulp-prompt');
 var spawn = require('spawn-local-bin');
 
-var name;
-
 function setName(res) {
-    name = res.name;
+    exports.name = res.name;
 
     if (name.indexOf('aui-') !== 0) {
-        name = 'aui-' + name;
+        exports.name = 'aui-' + exports.name;
     }
 }
 

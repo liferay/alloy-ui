@@ -1,4 +1,3 @@
-var alloy = require('../.alloy');
 var gulp = require('gulp');
 var insert = require('gulp-insert');
 var path = require('path');

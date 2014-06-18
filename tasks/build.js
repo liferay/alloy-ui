@@ -53,6 +53,6 @@ function build(cwd, callback) {
                 callback();
             }
         });
-};
+}
 
 module.exports = build;
