@@ -5,12 +5,12 @@ var run = require('run-sequence');
 var spawn = require('spawn-local-bin');
 
 var ROOT = path.join(__dirname, '..');
+var CWD = process.env.INIT_CWD;
 
 gulp.task('build', function(callback) {
-    var cwd = process.cwd();
-    var baseDir = path.join(ROOT, 'src/aui-base');
+    var BASE_DIR = path.join(ROOT, 'src/aui-base');
 
-    if (cwd === baseDir) {
+    if (CWD === BASE_DIR) {
         run('init', 'build-loader', callback);
     }
     else {
@@ -19,13 +19,11 @@ gulp.task('build', function(callback) {
 });
 
 gulp.task('build-aui', function(callback) {
-    var cwd = process.cwd();
-
-    if (cwd === ROOT) {
-        cwd = path.join(cwd, 'src');
+    if (CWD === ROOT) {
+        CWD = path.join(CWD, 'src');
     }
 
-    build(cwd, callback);
+    build(CWD, callback);
 });
 
 gulp.task('build-base', function(callback) {
@@ -35,8 +33,6 @@ gulp.task('build-base', function(callback) {
 });
 
 gulp.task('build-loader', function(callback) {
-    var cwd = process.cwd();
-
     run('loader-prebuild', 'aliases', 'build-base', 'loader-postbuild', callback);
 });
 

@@ -3,12 +3,13 @@ var path = require('path');
 var spawn = require('spawn-local-bin');
 
 var ROOT = path.join(__dirname, '..');
+var CWD = process.env.INIT_CWD;
 
 gulp.task('test', function(callback) {
     var args = ['test'];
     var cmd = 'yogi';
 
-    spawn(cmd, args)
+    spawn(cmd, args, CWD)
         .on('exit', function() {
             callback();
         });
@@ -17,13 +18,12 @@ gulp.task('test', function(callback) {
 gulp.task('test-browser', function(callback) {
     var args = [];
     var cmd = 'yeti';
-    var cwd = process.cwd();
 
-    if (cwd === ROOT) {
-        cwd = path.join(cwd, 'src');
+    if (CWD === ROOT) {
+        CWD = path.join(CWD, 'src');
     }
 
-    spawn(cmd, args, cwd)
+    spawn(cmd, args, CWD)
         .on('exit', function() {
             callback();
         });
