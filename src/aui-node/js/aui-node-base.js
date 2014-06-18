@@ -117,44 +117,6 @@ var _setUnselectable = function(element, unselectable, noRecurse) {
 A.mix(NODE_PROTO, {
 
     /**
-     * Returns the current ancestors of the node element. If a selector is
-     * specified, the ancestors are filtered to match the selector.
-     *
-     * Example:
-     *
-     * ```
-     * A.one('#nodeId').ancestors('div');
-     * ```
-     *
-     * @method ancestors
-     * @param {String} selector A selector to filter the ancestor elements
-     *     against.
-     * @return {NodeList}
-     */
-    ancestors: function(selector) {
-        var instance = this;
-
-        var ancestors = [];
-        var currentEl = instance.getDOM();
-
-        while (currentEl && currentEl.nodeType !== 9) {
-            if (currentEl.nodeType === 1) {
-                ancestors.push(currentEl);
-            }
-
-            currentEl = currentEl.parentNode;
-        }
-
-        var nodeList = new A.all(ancestors);
-
-        if (selector) {
-            nodeList = nodeList.filter(selector);
-        }
-
-        return nodeList;
-    },
-
-    /**
      * Returns the current ancestors of the node element filtered by a
      * className. This is an optimized method for finding ancestors by a
      * specific CSS class name.
@@ -168,14 +130,20 @@ A.mix(NODE_PROTO, {
      * @method ancestorsByClassName
      * @param {String} className A selector to filter the ancestor elements
      *     against.
+     * @param {Boolean} testSelf optional Whether or not to include the element
+     * in the scan
      * @return {NodeList}
      */
-    ancestorsByClassName: function(className) {
+    ancestorsByClassName: function(className, testSelf) {
         var instance = this;
 
         var ancestors = [];
         var cssRE = new RegExp('\\b' + className + '\\b');
         var currentEl = instance.getDOM();
+
+        if (!testSelf) {
+            currentEl = currentEl.parentNode;
+        }
 
         while (currentEl && currentEl.nodeType !== 9) {
             if (currentEl.nodeType === 1 && cssRE.test(currentEl.className)) {

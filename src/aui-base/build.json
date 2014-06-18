@@ -1,12 +1,5 @@
 {
     "name": "aui-base",
-    "exec": [
-        "yogi loader --yes --mix --js js/aui-loader.js --json js/aui-loader.json --start ../",
-        "./scripts/build.js"
-    ],
-    "postexec": [
-        "./scripts/postbuild.js"
-    ],
     "builds": {
         "aui-base-core": {
             "jsfiles": [

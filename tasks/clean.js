@@ -1,17 +1,25 @@
-var gulp = require('gulp');
 var clean = require('gulp-clean');
+var gulp = require('gulp');
+var path = require('path');
+
+var ROOT = path.join(__dirname, '..');
+
+gulp.task('clean-aliases', function() {
+    return gulp.src(['src/aui-base/js/aui-aliases.js'], { cwd: ROOT, read: false })
+        .pipe(clean());
+});
 
 gulp.task('clean-api', function() {
-    return gulp.src(['api', 'temp'], { read: false })
+    return gulp.src(['api', 'temp'], { cwd: ROOT, read: false })
         .pipe(clean());
 });
 
 gulp.task('clean-build', function() {
-    return gulp.src('build', { read: false })
+    return gulp.src('build', { cwd: ROOT, read: false })
         .pipe(clean());
 });
 
 gulp.task('clean-zip', function() {
-    return gulp.src('*.zip', { read: false })
+    return gulp.src('*.zip', { cwd: ROOT, read: false })
         .pipe(clean());
 });

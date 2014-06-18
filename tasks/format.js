@@ -1,8 +1,11 @@
-var gulp = require('gulp');
 var cssbeautify = require('gulp-cssbeautify');
-var jsprettify = require('gulp-jsbeautifier');
+var gulp = require('gulp');
 var imagemin = require('gulp-imagemin');
+var jsprettify = require('gulp-jsbeautifier');
+var path = require('path');
 var pngcrush = require('imagemin-pngcrush');
+
+var ROOT = path.join(__dirname, '..');
 
 gulp.task('format-css', function() {
     var files = [
@@ -10,28 +13,30 @@ gulp.task('format-css', function() {
         '!src/aui-css/css/*.css'
     ];
 
-    return gulp.src(files)
+    return gulp.src(files, { cwd: ROOT })
         .pipe(cssbeautify())
-        .pipe(gulp.dest('src/'));
+        .pipe(gulp.dest(path.join(ROOT, 'src/')));
 });
 
 gulp.task('format-js', function() {
+    var configFile = path.join(ROOT, '.jsbeautifyrc');
     var files = [
         'src/**/*.js',
+        '!build/**/*.js',
         '!src/aui-base/js/aui-aliases.js',
         '!src/aui-base/js/aui-loader.js',
         '!src/yui/js/*.js'
     ];
 
-    return gulp.src(files)
+    return gulp.src(files, { cwd: ROOT })
         .pipe(jsprettify({
-            config: './.jsbeautifyrc'
+            config: configFile
         }))
-        .pipe(gulp.dest('src/'));
+        .pipe(gulp.dest(path.join(ROOT, 'src/')));
 });
 
 gulp.task('format-img', function() {
-    return gulp.src('src/**/*.png')
+    return gulp.src('src/**/*.png', { cwd: ROOT })
         .pipe(imagemin({
             progressive: true,
             svgoPlugins: [{
@@ -39,7 +44,7 @@ gulp.task('format-img', function() {
             }],
             use: [pngcrush()]
         }))
-        .pipe(gulp.dest('src/'));
+        .pipe(gulp.dest(path.join(ROOT, 'src/')));
 });
 
 gulp.task('format', ['format-css', 'format-js', 'format-img']);

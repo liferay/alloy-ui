@@ -1,6 +1,9 @@
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
+var path = require('path');
 var stylish = require('jshint-stylish');
+
+var ROOT = path.join(__dirname, '..');
 
 gulp.task('lint', function() {
     var files = [
@@ -12,7 +15,7 @@ gulp.task('lint', function() {
         '!src/yui/js/load-tests.js'
     ];
 
-    return gulp.src(files)
+    return gulp.src(files, { cwd: ROOT })
         .pipe(jshint())
         .pipe(jshint.reporter(stylish));
 });

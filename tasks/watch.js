@@ -1,18 +1,24 @@
-var alloy = require('../.alloy');
+var build = require('./build');
 var gulp = require('gulp');
-var shell = require('gulp-shell');
+var path = require('path');
+var run = require('run-sequence');
+
+var ROOT = path.join(__dirname, '..');
 
 gulp.task('watch', function() {
-    var cmd = ['shifter'];
+    var files = [
+        path.join(ROOT, 'src/**/*.js'),
+        path.join('!', ROOT, 'src/aui-base/js/*.js'),
+        path.join('!', ROOT, 'src/yui/js/*.js')
+    ];
 
-    cmd.push('--replace-version=' + alloy.version);
-    cmd.push('--replace-yuivar=A');
-    cmd.push('--watch');
+    gulp.watch(files, function(data) {
+        var cwd = path.join(path.dirname(data.path), '..');
 
-    cmd = cmd.join(' ');
+        build(cwd);
+    });
 
-    gulp.src('', { read: false })
-        .pipe(shell(cmd, {
-            ignoreErrors: true
-        }));
+    gulp.watch('src/**/meta/*.json', function() {
+        run('build-loader');
+    });
 });

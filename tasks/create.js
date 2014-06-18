@@ -1,14 +1,12 @@
 var gulp = require('gulp');
 var prompt = require('gulp-prompt');
-var spawn = require('child_process').spawn;
-
-var name;
+var spawn = require('spawn-local-bin');
 
 function setName(res) {
-    name = res.name;
+    exports.name = res.name;
 
     if (name.indexOf('aui-') !== 0) {
-        name = 'aui-' + name;
+        exports.name = 'aui-' + exports.name;
     }
 }
 
@@ -22,11 +20,11 @@ gulp.task('create-name', function() {
 });
 
 gulp.task('create', ['create-name'], function(callback) {
-    var cmd = spawn('yogi', ['init', name], {
-        stdio: 'inherit'
-    });
+    var args = ['init', name];
+    var cmd = 'yogi';
 
-    cmd.on('close', function() {
-        callback();
-    });
+    spawn(cmd, args)
+        .on('exit', function() {
+            callback();
+        });
 });

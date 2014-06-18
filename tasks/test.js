@@ -1,22 +1,30 @@
 var gulp = require('gulp');
-var shell = require('gulp-shell');
-var spawn = require('child_process').spawn;
+var path = require('path');
+var spawn = require('spawn-local-bin');
 
-gulp.task('test', function() {
-    var cmd = 'yogi test';
+var ROOT = path.join(__dirname, '..');
+var CWD = process.env.INIT_CWD;
 
-    return gulp.src('', { read: false })
-        .pipe(shell(cmd, {
-            ignoreErrors: true
-        }));
+gulp.task('test', function(callback) {
+    var args = ['test'];
+    var cmd = 'yogi';
+
+    spawn(cmd, args, CWD)
+        .on('exit', function() {
+            callback();
+        });
 });
 
 gulp.task('test-browser', function(callback) {
-    var cmd = spawn('yeti', {
-        stdio: 'inherit'
-    });
+    var args = [];
+    var cmd = 'yeti';
 
-    cmd.on('close', function() {
-        callback();
-    });
+    if (CWD === ROOT) {
+        CWD = path.join(CWD, 'src');
+    }
+
+    spawn(cmd, args, CWD)
+        .on('exit', function() {
+            callback();
+        });
 });

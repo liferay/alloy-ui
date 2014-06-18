@@ -30,7 +30,7 @@ gulp <command>
 
 ### Setup
 
-1. Install [NodeJS](http://nodejs.org/download/), if you don't have it yet.
+1. Install NodeJS >= [v0.11.13](http://nodejs.org/dist/v0.11.13/), if you don't have it yet.
 
 2. Install global dependencies:
 
@@ -58,6 +58,12 @@ gulp init
 
     ```
 gulp build
+    ```
+
+* Build AlloyUI loader:
+
+    ```
+gulp build-loader
     ```
 
 ### Watch
@@ -130,12 +136,6 @@ gulp test
 
     ```
 gulp test-browser
-    ```
-
-* Run test coverage using [Istanbul](https://www.npmjs.org/package/istanbul/):
-
-    ```
-gulp coverage
     ```
 
 ### API Docs
