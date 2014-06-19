@@ -184,7 +184,7 @@ YUI.add('aui-datatable-tests', function(Y) {
         tableDataWidth = tableData.get('offsetWidth');
 
         upperXLimit = tableData.getX() <= (overlayActiveNode.getX() + 1);
-        upperYLimit = tableData.getX() <= (overlayActiveNode.getY() - 1);
+        upperYLimit = tableData.getY() <= (overlayActiveNode.getY() + 1);
 
         Y.Assert.isTrue(
             (lowerXLimit && upperXLimit),
