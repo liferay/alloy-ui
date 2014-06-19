@@ -235,6 +235,18 @@
             "aui-datatable-property-list"
         ]
     },
+    "aui-datatable-base-cell-editor": {
+        "requires": [
+            "datatable-base",
+            "overlay"
+        ]
+    },
+    "aui-datatable-base-options-cell-editor": {
+        "requires": [
+            "aui-datatable-base-cell-editor",
+            "escape"
+        ]
+    },
     "aui-datatable-body": {
         "requires": [
             "aui-classnamemanager",
@@ -243,6 +255,16 @@
             "aui-event-base"
         ],
         "skinnable": true
+    },
+    "aui-datatable-cell-editor-support": {
+        "requires": [
+            "datatable-base"
+        ]
+    },
+    "aui-datatable-checkbox-cell-editor": {
+        "requires": [
+            "aui-datatable-base-options-cell-editor"
+        ]
     },
     "aui-datatable-core": {
         "requires": [
@@ -253,6 +275,16 @@
         ],
         "skinnable": true
     },
+    "aui-datatable-date-cell-editor": {
+        "requires": [
+            "aui-datatable-base-options-cell-editor"
+        ]
+    },
+    "aui-datatable-dropdown-cell-editor": {
+        "requires": [
+            "aui-datatable-base-options-cell-editor"
+        ]
+    },
     "aui-datatable-edit": {
         "requires": [
             "datatable-base",
@@ -262,7 +294,16 @@
             "aui-datatype",
             "aui-toolbar",
             "aui-form-validator",
-            "aui-datatable-core"
+            "aui-datatable-base-cell-editor",
+            "aui-datatable-base-options-cell-editor",
+            "aui-datatable-cell-editor-support",
+            "aui-datatable-core",
+            "aui-datatable-checkbox-cell-editor",
+            "aui-datatable-date-cell-editor",
+            "aui-datatable-dropdown-cell-editor",
+            "aui-datatable-radio-cell-editor",
+            "aui-datatable-text-cell-editor",
+            "aui-datatable-text-area-cell-editor"
         ],
         "skinnable": true
     },
@@ -285,11 +326,26 @@
         ],
         "skinnable": true
     },
+    "aui-datatable-radio-cell-editor": {
+        "requires": [
+            "aui-datatable-base-options-cell-editor"
+        ]
+    },
     "aui-datatable-selection": {
         "requires": [
             "aui-datatable-core"
         ],
         "skinnable": true
+    },
+    "aui-datatable-text-area-cell-editor": {
+        "requires": [
+            "aui-datatable-base-options-cell-editor"
+        ]
+    },
+    "aui-datatable-text-cell-editor": {
+        "requires": [
+            "aui-datatable-base-options-cell-editor"
+        ]
     },
     "aui-datatype": {
         "requires": [

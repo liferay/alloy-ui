@@ -245,6 +245,18 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-datatable-property-list"
         ]
     },
+    "aui-datatable-base-cell-editor": {
+        "requires": [
+            "datatable-base",
+            "overlay"
+        ]
+    },
+    "aui-datatable-base-options-cell-editor": {
+        "requires": [
+            "aui-datatable-base-cell-editor",
+            "escape"
+        ]
+    },
     "aui-datatable-body": {
         "requires": [
             "aui-classnamemanager",
@@ -253,6 +265,16 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-event-base"
         ],
         "skinnable": true
+    },
+    "aui-datatable-cell-editor-support": {
+        "requires": [
+            "datatable-base"
+        ]
+    },
+    "aui-datatable-checkbox-cell-editor": {
+        "requires": [
+            "aui-datatable-base-options-cell-editor"
+        ]
     },
     "aui-datatable-core": {
         "requires": [
@@ -263,6 +285,16 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
+    "aui-datatable-date-cell-editor": {
+        "requires": [
+            "aui-datatable-base-options-cell-editor"
+        ]
+    },
+    "aui-datatable-dropdown-cell-editor": {
+        "requires": [
+            "aui-datatable-base-options-cell-editor"
+        ]
+    },
     "aui-datatable-edit": {
         "requires": [
             "datatable-base",
@@ -272,7 +304,16 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-datatype",
             "aui-toolbar",
             "aui-form-validator",
-            "aui-datatable-core"
+            "aui-datatable-base-cell-editor",
+            "aui-datatable-base-options-cell-editor",
+            "aui-datatable-cell-editor-support",
+            "aui-datatable-core",
+            "aui-datatable-checkbox-cell-editor",
+            "aui-datatable-date-cell-editor",
+            "aui-datatable-dropdown-cell-editor",
+            "aui-datatable-radio-cell-editor",
+            "aui-datatable-text-cell-editor",
+            "aui-datatable-text-area-cell-editor"
         ],
         "skinnable": true
     },
@@ -295,11 +336,26 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
+    "aui-datatable-radio-cell-editor": {
+        "requires": [
+            "aui-datatable-base-options-cell-editor"
+        ]
+    },
     "aui-datatable-selection": {
         "requires": [
             "aui-datatable-core"
         ],
         "skinnable": true
+    },
+    "aui-datatable-text-area-cell-editor": {
+        "requires": [
+            "aui-datatable-base-options-cell-editor"
+        ]
+    },
+    "aui-datatable-text-cell-editor": {
+        "requires": [
+            "aui-datatable-base-options-cell-editor"
+        ]
     },
     "aui-datatype": {
         "requires": [
@@ -1236,4 +1292,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '24311a2d580b40a369103ae875a961bb';
+YUI.Env[Y.version].md5 = 'b1e04d9860ac96fd0f4fce5da1f63ad2';
