@@ -13,7 +13,6 @@ var BaseOptionsCellEditor,
     CSS_ICON = A.getClassName('glyphicon'),
     CSS_ICON_GRIP_DOTTED_VERTICAL = A.getClassName('glyphicon', 'resize', 'vertical');
 
-
 /**
  * Abstract class BaseOptionsCellEditor for options attribute support.
  *

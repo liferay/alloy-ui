@@ -31,8 +31,8 @@ var TextCellEditor = A.Component.create({
     EXTENDS: A.BaseCellEditor,
 
     prototype: {
-        ELEMENT_TEMPLATE: '<input autocomplete="off" class="' + [CSS_CELLEDITOR_ELEMENT, CSS_FORM_CONTROL].join(' ') +
-            '" type="text" />'
+        ELEMENT_TEMPLATE: '<input autocomplete="off" class="' +
+            [CSS_CELLEDITOR_ELEMENT, CSS_FORM_CONTROL].join(' ') + '" type="text" />'
     }
 });
 
