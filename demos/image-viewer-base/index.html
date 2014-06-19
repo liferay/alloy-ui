@@ -6,7 +6,6 @@
     <title></title>
     <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
     <script src="../../build/aui/aui.js"></script>
-
     <style>
         #srcNode {
             white-space: nowrap;
@@ -36,6 +35,10 @@
             display: inline;
             max-width: 100%
         }
+
+        .yui3-viewer-slideshow-content {
+            white-space: nowrap;
+        }
     </style>
 </head>
 <body class="yui3-skin-sam">
@@ -54,25 +57,34 @@
         </div>
     </div>
 
-
-    <h2>Sources from Javascript</h2>
-    <div id="demo"></div>
+    <h2>With slideshow</h2>
+    <div id="slideshow"></div>
 
     <script>
-        YUI({ filter: 'raw' }).use('aui-image-viewer-base', function(Y) {
-            new Y.ImageViewerBase({
-                sources: [
-                    'assets/lfr-soccer-1.jpg',
-                    'assets/lfr-soccer-2.jpg',
-                    'assets/lfr-soccer-3.jpg',
-                ]
-            }).render('#demo');
+        YUI({ filter: 'raw' }).use(
+            'aui-image-viewer-base',
+            'aui-image-viewer-slideshow',
+            function(Y) {
+                var ImageViewerWithSlideshow = Y.Base.create(
+                    'viewer-slideshow',
+                    Y.ImageViewerBase,
+                    [Y.ImageViewerSlideshow]
+                );
+                new ImageViewerWithSlideshow({
+                    intervalTime: 4,
+                    sources: [
+                        'assets/lfr-soccer-1.jpg',
+                        'assets/lfr-soccer-2.jpg',
+                        'assets/lfr-soccer-3.jpg',
+                    ]
+                }).render('#slideshow');
 
-            new Y.ImageViewerBase({
-                boundingBox: '#boundingBox',
-                srcNode: '#srcNode'
-            }).render();
-        });
+                new Y.ImageViewerBase({
+                    boundingBox: '#boundingBox',
+                    srcNode: '#srcNode'
+                }).render();
+            }
+        );
     </script>
 </body>
 </html>

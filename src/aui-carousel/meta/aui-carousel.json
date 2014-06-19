@@ -3,7 +3,8 @@
         "requires": [
             "anim",
             "node-event-delegate",
-            "aui-image-viewer-base"
+            "aui-image-viewer-base",
+            "aui-image-viewer-slideshow"
         ],
         "skinnable": true
     },

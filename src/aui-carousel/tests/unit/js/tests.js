@@ -8,10 +8,9 @@ YUI.add('aui-carousel-tests', function(Y) {
             // Ignore the following tests in touch enabled browsers. They will
             // be tested properly in the tests for the aui-carousel-touch module.
             ignore: {
-                'should play/pause when user clicks the button': Y.UA.touchEnabled,
+                'should update player when user clicks the button': Y.UA.touchEnabled,
                 'should switch images when user clicks on next/previous buttons': Y.UA.touchEnabled,
                 'should switch images when user clicks on item buttons': Y.UA.touchEnabled,
-                'should switch the item selector': Y.UA.touchEnabled,
                 'should render the menu outside of the carousel': Y.UA.touchEnabled
             }
         },
@@ -48,21 +47,6 @@ YUI.add('aui-carousel-tests', function(Y) {
             this._carousel = new Y.Carousel(config).render();
         },
 
-        assertPaused: function(callback) {
-            var instance = this,
-                previousIndex = this._carousel.get('currentIndex');
-
-            this.wait(function() {
-                Y.Assert.areEqual(
-                    previousIndex,
-                    instance._carousel.get('currentIndex'),
-                    'Carousel was paused, so currentIndex should not have been updated'
-                );
-
-                callback && callback();
-            }, (this._carousel.get('imageAnim').duration + this._carousel.get('intervalTime')) * 1000 + 100);
-        },
-
         waitForNext: function(callback) {
             var instance = this,
                 timeBefore = new Date().getTime();
@@ -76,104 +60,57 @@ YUI.add('aui-carousel-tests', function(Y) {
             this.wait();
         },
 
-        'should play images in sequence': function() {
-            var instance = this;
+        'should animate new images by default': function() {
+            this._carousel.get('boundingBox').all('.image-viewer-base-image').item(1)
+                .setData('loaded', true);
+            this._carousel.next();
 
-            Y.Assert.areEqual(0, this._carousel.get('currentIndex'), 'Initially, currentIndex should be 0');
-
-            this.waitForNext(function() {
-                Y.Assert.areEqual(
-                    1,
-                    instance._carousel.get('currentIndex'),
-                    'Next activeIndex should be 1'
-                );
-
-                instance.waitForNext(function() {
-                    Y.Assert.areEqual(
-                        2,
-                        instance._carousel.get('currentIndex'),
-                        'Next activeIndex should be 2'
-                    );
-
-                    instance.waitForNext(function() {
-                        Y.Assert.areEqual(
-                            0,
-                            instance._carousel.get('currentIndex'),
-                            'Cycle is closed, activeIndex should be 0'
-                        );
-                    });
-                });
-            });
+            Y.Assert.isNotUndefined(
+                this._carousel._animation,
+                'The animation object should have been created'
+            );
         },
 
-        'should change the interval time': function() {
-            var instance = this;
-
-            this.waitForNext(function(intervalTime1) {
-                Y.Assert.areEqual(
-                    1,
-                    intervalTime1,
-                    'Initial interval time is of 1 second'
-                );
-
-                instance._carousel.set('intervalTime', 2);
-                instance.waitForNext(function(intervalTime2) {
-                    Y.Assert.areEqual(
-                        2,
-                        intervalTime2,
-                        'Interval time should have been updated'
-                    );
-                });
+        'should not animate new images when paused': function() {
+            this._carousel.destroy();
+            this.createCarousel({
+                contentBox: '#content',
+                height: 300,
+                intervalTime: 1,
+                playing: false,
+                width: 940
             });
+
+            this._carousel.get('boundingBox').all('.image-viewer-base-image').item(1)
+                .setData('loaded', true);
+            this._carousel.next();
+
+            Y.Assert.isUndefined(
+                this._carousel._animation,
+                'The animation object should not have been created'
+            );
         },
 
-        'should play/pause when user clicks the button': function() {
-            var instance = this,
-                pauseButton = this._carousel.get('boundingBox').one('.carousel-menu-pause');
+        'should update player when user clicks the button': function() {
+            var pauseButton = this._carousel.get('boundingBox').one('.carousel-menu-pause');
+
+            Y.Assert.isTrue(
+                pauseButton.hasClass('carousel-menu-pause'),
+                'Player should be in the playing state'
+            );
 
             pauseButton.simulate('click');
 
-            this.assertPaused(function() {
-                pauseButton.simulate('click');
+            Y.Assert.isTrue(
+                pauseButton.hasClass('carousel-menu-play'),
+                'Player should be in the paused state'
+            );
 
-                instance.waitForNext(function() {
-                    Y.Assert.areEqual(
-                        1,
-                        instance._carousel.get('currentIndex'),
-                        'Carousel was resumed, so currentIndex should have been updated to 1'
-                    );
-                });
-            });
-        },
+            pauseButton.simulate('click');
 
-        'should play/pause when functions are called': function() {
-            var instance = this;
-
-            this._carousel.pause();
-
-            this.assertPaused(function() {
-                instance._carousel.play();
-
-                instance.waitForNext(function() {
-                    Y.Assert.areEqual(
-                        1,
-                        instance._carousel.get('currentIndex'),
-                        'Carousel was resumed, so currentIndex should have been updated to 1'
-                    );
-                });
-            });
-        },
-
-        'should be able to switch images while paused': function() {
-            var instance = this;
-
-            this._carousel.pause();
-            this._carousel.item(1);
-
-            Y.Assert.areEqual(
-                1,
-                instance._carousel.get('currentIndex'),
-                'The image index should have been updated correctly'
+            Y.Assert.isTrue(
+                pauseButton.hasClass('carousel-menu-pause'),
+                'Player should be in the playing state'
             );
         },
 
@@ -377,18 +314,6 @@ YUI.add('aui-carousel-tests', function(Y) {
             this.waitForNext(function() {
                 Y.Assert.pass('No exceptions were thrown');
             });
-        },
-
-        'should be able to start the carousel already paused': function() {
-            this._carousel.destroy();
-            this.createCarousel({
-                contentBox: '#content',
-                height: 300,
-                playing: false,
-                width: 940
-            });
-
-            this.assertPaused();
         },
 
         'should render the menu outside of the carousel': function() {

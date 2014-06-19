@@ -30,10 +30,7 @@ var Lang = A.Lang,
     NODE_MENU_INSIDE = 'inside',
     NODE_MENU_OUTSIDE = 'outside',
 
-    SELECTOR_MENU_INDEX = '.' + CSS_MENU_INDEX,
-    SELECTOR_MENU_PAUSE = '.' + CSS_MENU_PAUSE,
-    SELECTOR_MENU_PLAY = '.' + CSS_MENU_PLAY,
-    SELECTOR_MENU_PLAY_OR_PAUSE = [SELECTOR_MENU_PLAY, SELECTOR_MENU_PAUSE].join();
+    SELECTOR_MENU_INDEX = '.' + CSS_MENU_INDEX;
 
 /**
  * A base class for Carousel.
@@ -49,7 +46,7 @@ var Lang = A.Lang,
  * @include http://alloyui.com/examples/carousel/basic.js
  */
 
-A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [], {
+A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlideshow], {
     TPL_ITEM: '<li><a class="' + CSS_MENU_ITEM + ' ' +
         CSS_IMAGE_VIEWER_CONTROL + ' {cssClasses}">{index}</a></li>',
 
@@ -73,12 +70,10 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [], {
         A.Carousel.superclass.bindUI.apply(this, arguments);
 
         this.after({
-            intervalTimeChange: this._afterIntervalTimeChange,
             nodeMenuChange: this._afterNodeMenuChange,
             nodeMenuItemSelectorChange: this._bindControls,
             nodeMenuPositionChange: this._syncNodeMenuPositionUI,
-            pauseOnHoverChange: this._bindPauseOnHover,
-            playingChange: this._syncPlayUI
+            pauseOnHoverChange: this._bindPauseOnHover
         });
 
         this._bindPauseOnHover();
@@ -92,7 +87,6 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [], {
      */
     syncUI: function() {
         this._syncNodeMenuPositionUI();
-        this._syncPlayUI();
     },
 
     /**
@@ -119,49 +113,6 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [], {
     },
 
     /**
-     * Set the `playing` attribute to false which pauses the animation.
-     *
-     * @method pause
-     */
-    pause: function() {
-        this.set('playing', false);
-    },
-
-    /**
-     * Set the `playing` attribute to true which starts the animation.
-     *
-     * @method play
-     */
-    play: function() {
-        this.set('playing', true);
-    },
-
-    /**
-     * Fired after the `currentIndex` attribute is set.
-     *
-     * @method _afterCurrentIndexChange
-     * @protected
-     */
-    _afterCurrentIndexChange: function() {
-        A.Carousel.superclass._afterCurrentIndexChange.apply(this, arguments);
-
-        if (this.get('playing')) {
-            this._createIntervalRotationTask();
-        }
-    },
-
-    /**
-     * Fired after `intervalTime` attribute changes.
-     *
-     * @method _afterIntervalTimeChange
-     * @protected
-     */
-    _afterIntervalTimeChange: function() {
-        this._clearIntervalRotationTask();
-        this._createIntervalRotationTask();
-    },
-
-    /**
      * Fired after `nodeMenu` attribute changes.
      *
      * @method _afterNodeMenuChange
@@ -172,7 +123,6 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [], {
 
         this._syncControlsUI();
         this._syncNodeMenuPositionUI();
-        this._syncPlayUI();
     },
 
     /**
@@ -231,31 +181,6 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [], {
             (new A.EventHandle(this.hoverEventHandles)).detach();
             this.hoverEventHandles = null;
         }
-    },
-
-    /**
-     * Clear the rotation task interval.
-     *
-     * @method _clearIntervalRotationTask
-     * @protected
-     */
-    _clearIntervalRotationTask: function() {
-        clearInterval(this._intervalRotationTask);
-    },
-
-    /**
-     * Create an timer for the rotation task.
-     *
-     * @method _createIntervalRotationTask
-     * @protected
-     */
-    _createIntervalRotationTask: function() {
-        this._clearIntervalRotationTask();
-
-        this._intervalRotationTask = setInterval(
-            A.bind(this.next, this),
-            this.get('intervalTime') * 1000
-        );
     },
 
     /**
@@ -369,9 +294,6 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [], {
         if (event.currentTarget.hasClass(CSS_MENU_INDEX)) {
             this.set('currentIndex', this._menuNodes.indexOf(event.currentTarget));
         }
-        else if (event.currentTarget.test(SELECTOR_MENU_PLAY_OR_PAUSE)) {
-            this.set('playing', !this.get('playing'));
-        }
     },
 
     /**
@@ -455,6 +377,18 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [], {
     },
 
     /**
+     * Overrides the original method for rendering the player button. The button
+     * is already rendered together with the menu by `_renderControls`, so this is
+     * just storing its reference in the right variable.
+     *
+     * @method _renderPlayer
+     * @protected
+     */
+    _renderPlayer: function() {
+        this._player = this.get('nodeMenu').one('.' + CSS_MENU_PLAY);
+    },
+
+    /**
      * Set the `nodeMenu` attribute.
      *
      * @method _setNodeMenu
@@ -510,26 +444,21 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [], {
     },
 
     /**
-     * Updates the play/pause button according to the value of the `playing`
-     * attribute.
+     * Updates the player according to the value of the `playing` attribute.
      *
-     * @method _syncPlayUI
+     * @method _syncPlaying
      * @protected
      */
-    _syncPlayUI: function() {
-        var menuPlayItem = this.get('nodeMenu').one(SELECTOR_MENU_PLAY_OR_PAUSE);
+    _syncPlaying: function() {
+        if (!this._player) {
+            return;
+        }
 
         if (this.get('playing')) {
-            this._createIntervalRotationTask();
-            if (menuPlayItem) {
-                menuPlayItem.replaceClass(CSS_MENU_PLAY, CSS_MENU_PAUSE);
-            }
+            this._player.replaceClass(CSS_MENU_PLAY, CSS_MENU_PAUSE);
         }
         else {
-            this._clearIntervalRotationTask();
-            if (menuPlayItem) {
-                menuPlayItem.replaceClass(CSS_MENU_PAUSE, CSS_MENU_PLAY);
-            }
+            this._player.replaceClass(CSS_MENU_PAUSE, CSS_MENU_PLAY);
         }
     },
 
@@ -597,17 +526,6 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [], {
         },
 
         /**
-         * Interval time in seconds between an item transition.
-         *
-         * @attribute intervalTime
-         * @default 2
-         * @type Number
-         */
-        intervalTime: {
-            value: 2
-        },
-
-        /**
          * Node container of the navigation items.
          *
          * @attribute nodeMenu
@@ -652,19 +570,6 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [], {
          */
         pauseOnHover: {
             value: false,
-            validator: Lang.isBoolean
-        },
-
-        /**
-         * Attributes that determines the status of transitions between
-         * items.
-         *
-         * @attribute playing
-         * @default true
-         * @type Boolean
-         */
-        playing: {
-            value: true,
             validator: Lang.isBoolean
         }
     },

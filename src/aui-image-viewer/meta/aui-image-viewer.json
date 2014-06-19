@@ -49,6 +49,13 @@
         ]
     },
 
+    "aui-image-viewer-slideshow": {
+        "requires": [
+            "aui-classnamemanager",
+            "node"
+        ]
+    },
+
     "aui-image-viewer-swipe": {
         "requires": [
             "aui-image-viewer-base",
