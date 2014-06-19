@@ -8,7 +8,7 @@ Y.mix(YUI.Env.aliases, {
     "aui-datatable": ["aui-datatable-edit","aui-datatable-highlight","aui-datatable-selection","aui-datatable-property-list"],
     "aui-diagram-builder": ["aui-diagram-builder-base","aui-diagram-builder-connector","aui-diagram-builder-impl"],
     "aui-event": ["aui-event-base"],
-    "aui-form-builder": ["aui-form-builder-base","aui-form-builder-field-base","aui-form-builder-field-button","aui-form-builder-field-checkbox","aui-form-builder-field-fieldset","aui-form-builder-field-file-upload","aui-form-builder-field-multiple-choice","aui-form-builder-field-radio","aui-form-builder-field-select","aui-form-builder-field-text","aui-form-builder-field-textarea"],
+    "aui-form-builder": ["aui-form-builder-base","aui-form-builder-field-base","aui-form-builder-field-button","aui-form-builder-field-checkbox","aui-form-builder-field-fieldset","aui-form-builder-field-file-upload","aui-form-builder-field-multiple-choice","aui-form-builder-field-radio","aui-form-builder-field-select","aui-form-builder-field-text","aui-form-builder-field-textarea","aui-tooltip-base"],
     "aui-image-viewer": ["aui-image-viewer-base","aui-image-viewer-gallery","aui-image-viewer-media"],
     "aui-io": ["aui-io-request"],
     "aui-node": ["aui-node-base"],
