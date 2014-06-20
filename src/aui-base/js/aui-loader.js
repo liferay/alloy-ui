@@ -249,7 +249,8 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "datatable-base",
             "overlay"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-datatable-base-options-cell-editor": {
         "requires": [
@@ -296,7 +297,7 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     },
     "aui-datatable-edit": {
-        "requires": [
+        "use": [
             "datatable-base",
             "calendar",
             "overlay",
@@ -314,8 +315,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-datatable-radio-cell-editor",
             "aui-datatable-text-cell-editor",
             "aui-datatable-text-area-cell-editor"
-        ],
-        "skinnable": true
+        ]
     },
     "aui-datatable-highlight": {
         "requires": [
@@ -1293,4 +1293,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '07c90d90b2e8f759217b4cd514077415';
+YUI.Env[Y.version].md5 = '345a71a85aacaca2569658f5bd624aa2';
