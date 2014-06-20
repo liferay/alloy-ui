@@ -32,7 +32,8 @@
         "requires": [
             "datatable-base",
             "overlay"
-        ]
+        ],
+        "skinnable": true
     },
 
     "aui-datatable-base-options-cell-editor": {
@@ -61,7 +62,7 @@
     },
 
     "aui-datatable-edit": {
-        "requires": [
+        "use": [
             "datatable-base",
             "calendar",
             "overlay",
@@ -79,8 +80,7 @@
             "aui-datatable-radio-cell-editor",
             "aui-datatable-text-cell-editor",
             "aui-datatable-text-area-cell-editor"
-        ],
-        "skinnable": true
+        ]
     },
 
     "aui-datatable-radio-cell-editor": {
