@@ -24,6 +24,7 @@
             "widget-stdmod",
             "aui-event",
             "aui-image-viewer-base",
+            "aui-image-viewer-slideshow",
             "aui-node-base",
             "aui-widget-cssclass",
             "aui-widget-toggle"

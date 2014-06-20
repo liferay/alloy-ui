@@ -234,6 +234,49 @@ YUI.add('aui-image-viewer-tests', function(Y) {
                 captionNode.get('text'),
                 'Caption should be equal to the config param'
             );
+        },
+
+        'should have css class on mask when modal': function() {
+            this._createImageViewer({
+                visible: true
+            });
+
+            Y.Assert.isTrue(
+                this._imageViewer.get('maskNode').hasClass('image-viewer-mask'),
+                'Mask should have the css class'
+            );
+        },
+
+        'should not have css class on mask when not modal': function() {
+            this._createImageViewer({
+                modal: false,
+                visible: true
+            });
+
+            Y.Assert.isFalse(
+                this._imageViewer.get('maskNode').hasClass('image-viewer-mask'),
+                'Mask should not have the css class'
+            );
+        },
+
+        'should render player correctly': function() {
+            this._createImageViewer({
+                visible: true
+            });
+
+            Y.Assert.isNotUndefined(this._imageViewer._player, 'Player should have been rendered');
+            Y.Assert.areNotEqual(
+                'none',
+                this._imageViewer._player.getStyle('display'),
+                'Player should be visible'
+            );
+
+            this._imageViewer.set('showPlayer', false);
+            Y.Assert.areEqual(
+                'none',
+                this._imageViewer._player.getStyle('display'),
+                'Player should not be visible'
+            );
         }
     }));
 

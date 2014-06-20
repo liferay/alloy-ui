@@ -5,9 +5,6 @@
  * @module aui-image-viewer-swipe
  */
 
-var DEFAULT_HEIGHT = '90%',
-    DEFAULT_WIDTH = '90%';
-
 function ImageViewerSwipe() {}
 
 ImageViewerSwipe.prototype = {
@@ -16,17 +13,6 @@ ImageViewerSwipe.prototype = {
 };
 
 ImageViewerSwipe.ATTRS = {
-    /**
-     * The height of the image viewer.
-     *
-     * @attribute height
-     * @default '90%'
-     * @type {String | Number}
-     */
-    height: {
-        value: DEFAULT_HEIGHT
-    },
-
     /**
      * Turns the swipe interaction on/off.
      *
@@ -40,17 +26,6 @@ ImageViewerSwipe.ATTRS = {
                 contentBox: this.get('contentBox').one('.image-viewer-base-image-list-inner')
             });
         }
-    },
-
-    /**
-     * The width of the image viewer.
-     *
-     * @attribute width
-     * @default '90%'
-     * @type {String | Number}
-     */
-    width: {
-        value: DEFAULT_WIDTH
     }
 };
 

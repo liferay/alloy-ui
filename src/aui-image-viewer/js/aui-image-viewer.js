@@ -9,8 +9,10 @@ var CSS_CAPTION = A.getClassName('image', 'viewer', 'caption'),
     CSS_CONTROL = A.getClassName('image', 'viewer', 'base', 'control'),
     CSS_CONTROL_LEFT = A.getClassName('image', 'viewer', 'base', 'control', 'left'),
     CSS_CONTROL_RIGHT = A.getClassName('image', 'viewer', 'base', 'control', 'right'),
+    CSS_FOOTER_BUTTONS = A.getClassName('image', 'viewer', 'footer', 'buttons'),
+    CSS_FOOTER_CONTENT = A.getClassName('image', 'viewer', 'footer', 'content'),
     CSS_INFO = A.getClassName('image', 'viewer', 'info'),
-    CSS_WELL = A.getClassName('well');
+    CSS_MASK = A.getClassName('image', 'viewer', 'mask');
 
 /**
  * A class for `A.ImageViewer`, providing:
@@ -33,6 +35,7 @@ var CSS_CAPTION = A.getClassName('image', 'viewer', 'caption'),
 A.ImageViewer = A.Base.create(
     'image-viewer',
     A.ImageViewerBase, [
+        A.ImageViewerSlideshow,
         A.WidgetCssClass,
         A.WidgetStdMod,
         A.WidgetToggle,
@@ -51,7 +54,10 @@ A.ImageViewer = A.Base.create(
         TPL_CONTROL_RIGHT: '<a href="#" class="carousel-control right ' +
             CSS_CONTROL + ' ' + CSS_CONTROL_RIGHT +
             '"><span class="glyphicon glyphicon-chevron-right"></span></a>',
+        TPL_FOOTER_BUTTONS: '<div class="' + CSS_FOOTER_BUTTONS + '"></div>',
+        TPL_FOOTER_CONTENT: '<div class="' + CSS_FOOTER_CONTENT + '"></div>',
         TPL_INFO: '<h5 class="' + CSS_INFO + '"></h5>',
+        TPL_PLAYER: '<span><span class="glyphicon glyphicon-play"></span></span>',
 
         /**
          * Create the DOM structure for the `A.ImageViewer`. Lifecycle.
@@ -96,6 +102,8 @@ A.ImageViewer = A.Base.create(
             this.get('controlPrevious').remove(true);
             this.get('controlNext').remove(true);
             this._closeEl.remove(true);
+
+            this.get('maskNode').removeClass(CSS_MASK);
         },
 
         /**
@@ -168,9 +176,13 @@ A.ImageViewer = A.Base.create(
                 this._fillHeight();
 
                 this._closeEl.show();
+                if (this.get('modal')) {
+                    this.get('maskNode').addClass(CSS_MASK);
+                }
             }
             else {
                 this._closeEl.hide();
+                this.get('maskNode').removeClass(CSS_MASK);
             }
         },
 
@@ -305,7 +317,7 @@ A.ImageViewer = A.Base.create(
          * @protected
          */
         _renderFooter: function() {
-            var container = A.Node.create('<div></div>');
+            var container = A.Node.create(this.TPL_FOOTER_CONTENT);
 
             this._captionEl = A.Node.create(this.TPL_CAPTION);
             this._captionEl.selectable();
@@ -314,6 +326,8 @@ A.ImageViewer = A.Base.create(
             this._infoEl = A.Node.create(this.TPL_INFO);
             this._infoEl.selectable();
             container.append(this._infoEl);
+
+            container.append(A.Node.create(this.TPL_FOOTER_BUTTONS));
 
             this.setStdModContent('footer', container);
         },
@@ -330,6 +344,19 @@ A.ImageViewer = A.Base.create(
             this.setStdModContent('body', list);
 
             return list.one('.image-viewer-base-image-list-inner');
+        },
+
+        /**
+         * Renders the player button.
+         *
+         * @method _renderPlayer
+         * @protected
+         */
+        _renderPlayer: function() {
+            if (this.get('showPlayer') && !this._player) {
+                this._player = A.Node.create(this.TPL_PLAYER);
+                this.get('contentBox').one('.' + CSS_FOOTER_BUTTONS).append(this._player);
+            }
         },
 
         /**
@@ -451,14 +478,14 @@ A.ImageViewer = A.Base.create(
             },
 
             /**
-             * The CSS class to be added to the bounding box.
+             * The height of the image viewer.
              *
-             * @attribute cssClass
-             * @default 'well'
-             * @type {String}
+             * @attribute height
+             * @default '100%'
+             * @type {String | Number}
              */
-            cssClass: {
-                value: CSS_WELL
+            height: {
+                value: '100%'
             },
 
             /**
@@ -507,6 +534,17 @@ A.ImageViewer = A.Base.create(
              */
             visible: {
                 value: false
+            },
+
+            /**
+             * The width of the image viewer.
+             *
+             * @attribute width
+             * @default '100%'
+             * @type {String | Number}
+             */
+            width: {
+                value: '100%'
             }
         },
 
