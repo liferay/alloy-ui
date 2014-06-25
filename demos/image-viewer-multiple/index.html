@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+    <style>
+        #thumbnails .image-viewer-base-image-container,
+        #thumbnails .image-viewer-base-image {
+            height: 56px;
+            width: 56px;
+        }
+
+        #thumbnails .image-viewer-base-image-container .image-viewer-base-loading-icon {
+            line-height: 50px;
+        }
+
+        #thumbnails .image-viewer-base-control-left,
+        #thumbnails .image-viewer-base-control-right {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body class="yui3-skin-sam">
+    <h1>AlloyUI - Image Viewer Multiple</h1>
+
+    <h2>Thumbnails</h2>
+    <div id="thumbnails"></div>
+
+    <script>
+        YUI({ filter: 'raw' }).use('aui-image-viewer-multiple-swipe', function(Y) {
+            window.viewer = new Y.ImageViewerMultiple({
+                height: 70,
+                sources: [
+                    '../image-viewer/assets/lfr-soccer-1.jpg',
+                    '../image-viewer/assets/lfr-soccer-2.jpg',
+                    '../image-viewer/assets/lfr-soccer-3.jpg',
+                    '../image-viewer/assets/lfr-soccer-1.jpg',
+                    '../image-viewer/assets/lfr-soccer-2.jpg',
+                    '../image-viewer/assets/lfr-soccer-3.jpg',
+                    '../image-viewer/assets/lfr-soccer-1.jpg',
+                    '../image-viewer/assets/lfr-soccer-2.jpg',
+                    '../image-viewer/assets/lfr-soccer-3.jpg'
+                ]
+            }).render('#thumbnails');
+        });
+    </script>
+</body>
+</html>

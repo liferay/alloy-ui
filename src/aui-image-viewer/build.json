@@ -25,6 +25,18 @@
             ]
         },
 
+        "aui-image-viewer-multiple": {
+            "jsfiles": [
+                "js/aui-image-viewer-multiple.js"
+            ]
+        },
+
+        "aui-image-viewer-multiple-swipe": {
+            "jsfiles": [
+                "js/aui-image-viewer-multiple-swipe.js"
+            ]
+        },
+
         "aui-image-viewer-slideshow": {
             "jsfiles": [
                 "js/aui-image-viewer-slideshow.js"

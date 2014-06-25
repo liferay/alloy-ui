@@ -50,6 +50,27 @@
         ]
     },
 
+    "aui-image-viewer-multiple": {
+        "requires": [
+            "aui-classnamemanager",
+            "aui-image-viewer-base",
+            "base-build",
+            "node-base"
+        ],
+        "skinnable": true
+    },
+
+    "aui-image-viewer-multiple-swipe": {
+        "requires": [
+            "aui-image-viewer-multiple",
+            "aui-image-viewer-swipe"
+        ],
+        "condition": {
+            "trigger": "aui-image-viewer-multiple",
+            "ua": "touchEnabled"
+        }
+    },
+
     "aui-image-viewer-slideshow": {
         "requires": [
             "aui-classnamemanager",
