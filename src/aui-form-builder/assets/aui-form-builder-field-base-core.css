@@ -1,5 +1,6 @@
 .form-builder-field-wrapper {
     clear: both;
+    padding: 0;
 }
 
 .form-builder-field .field-checkbox, .form-builder-field .field-radio {
