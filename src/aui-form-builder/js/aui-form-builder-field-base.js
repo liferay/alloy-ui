@@ -1031,7 +1031,7 @@ var FormBuilderField = A.Component.create({
                 controlsToolbar = instance.controlsToolbar,
                 requiredNode = instance.get(REQUIRED_FLAG_NODE);
 
-            requiredNode.toggle(val.length !== 0);
+            requiredNode.toggle(val);
 
             controlsToolbar.set(CHILDREN, instance._getToolbarItems());
         },
@@ -1047,7 +1047,7 @@ var FormBuilderField = A.Component.create({
             var instance = this,
                 labelNode = instance.get(LABEL_NODE);
 
-            labelNode.toggle(val.length !== 0);
+            labelNode.toggle(val);
         },
 
         /**
