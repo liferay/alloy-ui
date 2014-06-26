@@ -79,7 +79,7 @@ YUI.add('module-tests', function(Y) {
             Y.Assert.areSame(0, node.childrenLength, 'node.childrenLength should return 0.');
         },
 
-        'appendChild() should regester the TreeNode in the Parent TreeNode and Owner TreeView index attribute': function() {
+        'appendChild() should register the TreeNode in the Parent TreeNode and Owner TreeView index attribute': function() {
             var treeView = new Y.TreeView();
 
             var childTreeNode = new Y.TreeNode({
@@ -176,73 +176,66 @@ YUI.add('module-tests', function(Y) {
          */
         'TreeNodeView created from HTML Markup should display icon-minus when expanded': function() {
             var test = this;
+            var treeViewComponent = Y.one('#createFromHTMLMarkupTest').clone().appendTo(document.body);
 
             var treeView = new Y.TreeView({
                 boundingBox: treeViewComponent,
-                contentBox: Y.one('#createFromHTMLMarkupTest > ul'),
+                contentBox: treeViewComponent.one('> ul'),
                 type: 'normal'
             }).render();
 
-            var treeViewComponent = Y.one('#createFromHTMLMarkupTest');
-            var allHitareas = treeViewComponent.all('.tree-container .tree-hitarea');
+            var children = treeView.getChildren(true);
+            var lazyRenderTimeout = children.length * 50;
 
             setTimeout(function() {
                 test.resume(function() {
-                    Y.each(
-                        allHitareas,
-                        function(hitarea) {
-                            Y.Assert.isTrue(
-                                hitarea.hasClass('icon-minus'),
-                                hitarea + ' does not have class icon-minus.');
+                    Y.each(children, function(node) {
+                        if (node.get('rendered') && !node.get('leaf')) {
+                            var hitArea = node.get('hitAreaEl');
+
+                            hitArea.simulate('click');
+
+                            Y.Assert.isTrue(hitArea.hasClass('icon-minus'), hitArea +
+                                ' does not have class icon-minus.');
                         }
-                    );
+                    }, true);
                 });
-            }, 800);
 
-            setTimeout(function() {
-                treeViewComponent.one('.tree-root-container .tree-hitarea').simulate('click');
+                treeViewComponent.remove();
+            }, lazyRenderTimeout);
 
-                Y.each(
-                    allHitareas,
-                    function(hitarea) {
-                        hitarea.simulate('click');
-                    }
-                );
-            });
-
-            test.wait(1000);
+            test.wait(lazyRenderTimeout);
         },
 
         'TreeNodeView created from HTML Markup should display icon-plus when collapsed': function() {
             var test = this;
-            var treeViewComponent = Y.one('#createFromHTMLMarkupTest');
+            var treeViewComponent = Y.one('#createFromHTMLMarkupTest').clone().appendTo(document.body);
 
-            var allTreeHitareas = treeViewComponent.all('.tree-container .tree-hitarea');
-            var treeHitareasArray = [];
+            var treeView = new Y.TreeView({
+                boundingBox: treeViewComponent,
+                contentBox: treeViewComponent.one('> ul'),
+                type: 'normal'
+            }).render();
 
-            Y.each(
-                allTreeHitareas,
-                function(hitarea) {
-                    treeHitareasArray.push(hitarea);
-                }
-            );
+            var children = treeView.getChildren(true);
+            var lazyRenderTimeout = children.length * 50;
 
             setTimeout(function() {
                 test.resume(function() {
-                    for (var i = treeHitareasArray.length; i--;) {
-                        Y.Assert.isTrue(treeHitareasArray[i].hasClass('icon-plus'),
-                            treeHitareasArray[i] + ' does not have class icon-plus');
-                    }
+                    Y.each(children, function(node) {
+                        if (node.get('rendered') && !node.get('leaf')) {
+                            var hitArea = node.get('hitAreaEl');
+
+                            Y.Assert.isTrue(hitArea.hasClass('icon-plus'), hitArea +
+                                ' does not have class icon-plus.');
+                        }
+                    }, true);
                 });
-            }, 800);
 
-            setTimeout(function() {
-                for (var i = treeHitareasArray.length; i--;) {
-                    treeHitareasArray[i].simulate('click');
-                }
-            });
+                treeViewComponent.remove();
+            }, lazyRenderTimeout);
 
-            test.wait(1000);
+            test.wait(lazyRenderTimeout);
         },
 
         /**
