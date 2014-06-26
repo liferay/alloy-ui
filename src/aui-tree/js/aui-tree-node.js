@@ -641,11 +641,11 @@ var TreeNode = A.Component.create({
                     iconEl = instance.get('iconEl'),
                     hitAreaEl = instance.get('hitAreaEl'),
                     icon = instance.isLeaf() ?
-                        cssClasses.iconLeaf :
-                        (expanded ? cssClasses.iconExpanded : cssClasses.iconCollapsed),
+                    cssClasses.iconLeaf :
+                    (expanded ? cssClasses.iconExpanded : cssClasses.iconCollapsed),
                     iconHitArea = expanded ?
-                        cssClasses.iconHitAreaExpanded :
-                        cssClasses.iconHitAreaCollapsed;
+                    cssClasses.iconHitAreaExpanded :
+                    cssClasses.iconHitAreaCollapsed;
 
                 if (instance.get('loading')) {
                     icon = cssClasses.iconLoading;
