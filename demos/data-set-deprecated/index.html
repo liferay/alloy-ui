@@ -2,13 +2,13 @@
 
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 	<script src="../../build/aui/aui.js" type="text/javascript"></script>
 
-	<link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css" />
-	<link rel="stylesheet" href="../../build/aui-skin-deprecated/aui-skin-deprecated-min.css" type="text/css" media="screen" />
+	<link href="../../build/aui-css/css/bootstrap.css" rel="stylesheet" />
+	<link href="../../build/aui-skin-deprecated/aui-skin-deprecated-min.css" media="screen" rel="stylesheet" type="text/css" />
 
-	<style type="text/css" media="screen">
+	<style media="screen" type="text/css">
 		body {
 			font-size: 12px;
 		}
@@ -46,60 +46,45 @@ YUI(
 		var dataSetTests = new A.Test.Case(
 			{
 				name: 'DataSetTests',
+
 				setUp: function() {
 					var instance = this;
 
 					instance.myGuid = A.guid();
-					instance.myData = {testVal: instance.myGuid};
+					instance.myData = { testVal: instance.myGuid };
 					instance.myCol = new A.DataSet;
 
 					instance.myCol.add('keyAdd', instance.myData);
 				},
+
 				testAdd: function() {
 					var instance = this;
 
 					var col = instance.myCol;
 
 					var guid1 = A.guid();
-					col.add('key2', {testVal: guid1});
+					col.add(
+						'key2',
+						{
+							testVal: guid1
+						}
+					);
 
 					A.Assert.areSame(2, col.size());
 					A.Assert.areSame(guid1, col.item('key2').testVal);
 					A.Assert.areSame(guid1, col.item(1).testVal);
 
 					var guid2 = A.guid();
-					col.add({id: 55, testVal: guid2});
+					col.add(
+						{
+							id: 55,
+							testVal: guid2
+						}
+					);
 
 					A.Assert.areSame(3, col.size());
 					A.Assert.areSame(guid2, col.item(2).testVal);
 					A.Assert.areSame(55, col.getKey(col.item(2)));
-				},
-
-				testPreventAdd: function() {
-					var instance = this;
-
-					var col = instance.myCol;
-
-					var handle = col.on(
-						'add',
-						function(event) {
-							event.preventDefault();
-						}
-					);
-
-					var guid1 = A.guid();
-					col.add('key2', {testVal: guid1});
-
-					A.Assert.areSame(1, col.size());
-
-					handle.detach();
-
-					var guid2 = A.guid();
-					col.add({id: 55, testVal: guid2});
-
-					A.Assert.areSame(2, col.size());
-					A.Assert.areSame(guid2, col.item(1).testVal);
-					A.Assert.areSame(55, col.getKey(col.item(1)));
 				},
 
 				testAddAll: function() {
@@ -148,8 +133,8 @@ YUI(
 					A.Assert.areSame(4, col.get('last').value);
 					A.Assert.areSame(2, col.item(1).value);
 					A.Assert.areSame(true, col.containsKey('keyX3'));
-
 				},
+
 				testClear: function() {
 					var instance = this;
 
@@ -162,25 +147,6 @@ YUI(
 					A.Assert.areSame(0, col.get('keys').length);
 				},
 
-				testPreventClear: function() {
-					var instance = this;
-
-					var col = instance.myCol;
-
-					var handle = col.on(
-						'clear',
-						function(event) {
-							event.preventDefault();
-						}
-					);
-
-					col.clear();
-
-					A.Assert.areNotSame(0, col.size());
-					A.Assert.areNotSame(0, col.get('values').length);
-					A.Assert.areNotSame(0, col.get('keys').length);
-				},
-
 				testClone: function() {
 					var instance = this;
 
@@ -190,6 +156,7 @@ YUI(
 					col2.add('keyCloneAdd', {test4: instance.myGuid});
 					A.Assert.areNotSame(instance.myCol.size(), col2.size());
 				},
+
 				testContains: function() {
 					var instance = this;
 
@@ -215,6 +182,7 @@ YUI(
 					A.Assert.areSame(true, col.contains(2));
 					A.Assert.areSame(false, col.contains(88));
 				},
+
 				testContainsKey: function() {
 					var instance = this;
 
@@ -240,6 +208,7 @@ YUI(
 					A.Assert.areSame(true, col.containsKey('key2'));
 					A.Assert.areSame(false, col.containsKey('keyUndefined'));
 				},
+
 				testEach: function() {
 					var instance = this;
 
@@ -261,7 +230,7 @@ YUI(
 					var shortValues = [];
 
 					col.each(
-						function(item, index, collection) {
+						function(item, index) {
 							indices.push(index);
 							values.push(item);
 						}
@@ -271,7 +240,7 @@ YUI(
 					A.ArrayAssert.itemsAreEqual([0,1,2,3], indices);
 
 					col.each(
-						function(item, index, collection) {
+						function(item, index) {
 							shortValues.push(item);
 
 							if (index > 1) {
@@ -282,6 +251,7 @@ YUI(
 
 					A.ArrayAssert.itemsAreEqual([2,3,4], shortValues);
 				},
+
 				testEachKey: function() {
 					var instance = this;
 
@@ -327,7 +297,7 @@ YUI(
 					);
 
 					var newCol = col.filter(
-						function(item, index, collection) {
+						function(item, index) {
 							return item > 3;
 						}
 					);
@@ -380,6 +350,7 @@ YUI(
 					A.Assert.areSame(2, newCol2.size());
 					A.Assert.areSame('and again is 3', newCol2.item(1).key3);
 				},
+
 				testFindIndex: function() {
 					var instance = this;
 
@@ -495,6 +466,27 @@ YUI(
 					A.Assert.areSame(0, instance.myCol.indexOfKey('keyAdd'));
 				},
 
+				testInsert: function() {
+					var instance = this;
+
+					var col = instance.myCol;
+
+					col.addAll(
+						{
+							key2: 2,
+							key3: 3,
+							key4: 4,
+							key5: 5
+						}
+					);
+
+					col.insert(1, 'key1a', 100);
+
+					A.Assert.areSame(100, col.item('key1a'));
+					A.Assert.areSame(100, col.item(1));
+					A.Assert.areSame(6, col.size());
+				},
+
 				testInvoke: function() {
 					var instance = this;
 
@@ -521,27 +513,6 @@ YUI(
 					instance.myCol.invoke('push', [5,6,7]);
 
 					A.ArrayAssert.itemsAreEqual([5,6,7], col.item('key2'));
-				},
-
-				testInsert: function() {
-					var instance = this;
-
-					var col = instance.myCol;
-
-					col.addAll(
-						{
-							key2: 2,
-							key3: 3,
-							key4: 4,
-							key5: 5
-						}
-					);
-
-					col.insert(1, 'key1a', 100);
-
-					A.Assert.areSame(100, col.item('key1a'));
-					A.Assert.areSame(100, col.item(1));
-					A.Assert.areSame(6, col.size());
 				},
 
 				testItem: function() {
@@ -595,6 +566,52 @@ YUI(
 					A.Assert.areSame(4, col.size());
 				},
 
+				testPreventAdd: function() {
+					var instance = this;
+
+					var col = instance.myCol;
+
+					var handle = col.on(
+						'add',
+						function(event) {
+							event.preventDefault();
+						}
+					);
+
+					var guid1 = A.guid();
+					col.add('key2', {testVal: guid1});
+
+					A.Assert.areSame(1, col.size());
+
+					handle.detach();
+
+					var guid2 = A.guid();
+					col.add({id: 55, testVal: guid2});
+
+					A.Assert.areSame(2, col.size());
+					A.Assert.areSame(guid2, col.item(1).testVal);
+					A.Assert.areSame(55, col.getKey(col.item(1)));
+				},
+
+				testPreventClear: function() {
+					var instance = this;
+
+					var col = instance.myCol;
+
+					var handle = col.on(
+						'clear',
+						function(event) {
+							event.preventDefault();
+						}
+					);
+
+					col.clear();
+
+					A.Assert.areNotSame(0, col.size());
+					A.Assert.areNotSame(0, col.get('values').length);
+					A.Assert.areNotSame(0, col.get('keys').length);
+				},
+
 				testPreventRemove: function() {
 					var instance = this;
 
@@ -620,6 +637,68 @@ YUI(
 
 					A.Assert.areNotSame(undefined, col.item('key4'));
 					A.Assert.areNotSame(4, col.size());
+				},
+
+				testPreventReplace: function() {
+					var instance = this;
+
+					var col = instance.myCol;
+
+					col.addAll(
+						{
+							key2: 2,
+							key3: 3,
+							key4: 4,
+							key5: 5
+						}
+					);
+
+					var handle = col.on(
+						'replace',
+						function(event) {
+							event.preventDefault();
+						}
+					);
+
+					col.replace('key3', 100);
+
+					col.replace('key6', 88);
+
+					A.Assert.areSame(3, col.item('key3'));
+					A.Assert.areSame(6, col.size());
+					A.Assert.areNotSame(88, col.get('key6'));
+				},
+
+				testPreventSort: function() {
+					var instance = this;
+
+					var col = instance.myCol;
+
+					col.clear();
+
+					var handle = col.on(
+						'sort',
+						function(event) {
+							event.preventDefault();
+						}
+					);
+
+					col.addAll(
+						{
+							key3: 3,
+							key2: 2,
+							key5: 5,
+							key4: 4
+						}
+					);
+
+					col.sort('desc');
+
+					A.ArrayAssert.itemsAreEqual([3, 2, 5, 4], col.get('values'));
+
+					col.sort('asc');
+
+					A.ArrayAssert.itemsAreEqual([3, 2, 5, 4], col.get('values'));
 				},
 
 				testRemoveAt: function() {
@@ -690,36 +769,6 @@ YUI(
 					A.Assert.areSame(88, col.get('last'));
 				},
 
-				testPreventReplace: function() {
-					var instance = this;
-
-					var col = instance.myCol;
-
-					col.addAll(
-						{
-							key2: 2,
-							key3: 3,
-							key4: 4,
-							key5: 5
-						}
-					);
-
-					var handle = col.on(
-						'replace',
-						function(event) {
-							event.preventDefault();
-						}
-					);
-
-					col.replace('key3', 100);
-
-					col.replace('key6', 88);
-
-					A.Assert.areSame(3, col.item('key3'));
-					A.Assert.areSame(6, col.size());
-					A.Assert.areNotSame(88, col.get('key6'));
-				},
-
 				testSize: function() {
 					var instance = this;
 
@@ -767,38 +816,6 @@ YUI(
 					col.sort('asc');
 
 					A.ArrayAssert.itemsAreEqual([2, 3, 4, 5], col.get('values'));
-				},
-
-				testPreventSort: function() {
-					var instance = this;
-
-					var col = instance.myCol;
-
-					col.clear();
-
-					var handle = col.on(
-						'sort',
-						function(event) {
-							event.preventDefault();
-						}
-					);
-
-					col.addAll(
-						{
-							key3: 3,
-							key2: 2,
-							key5: 5,
-							key4: 4
-						}
-					);
-
-					col.sort('desc');
-
-					A.ArrayAssert.itemsAreEqual([3, 2, 5, 4], col.get('values'));
-
-					col.sort('asc');
-
-					A.ArrayAssert.itemsAreEqual([3, 2, 5, 4], col.get('values'));
 				}
 			}
 		);
@@ -813,7 +830,6 @@ YUI(
 		A.Test.Runner.run();
 	}
 );
-
 </script>
 
 </body>

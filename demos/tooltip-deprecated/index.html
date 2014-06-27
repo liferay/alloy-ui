@@ -2,37 +2,36 @@
 
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 	<script src="../../build/aui/aui.js" type="text/javascript"></script>
 
-	<link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css" />
-	<link rel="stylesheet" href="../../build/aui-skin-deprecated/aui-skin-deprecated-min.css" type="text/css" media="screen" />
+	<link href="../../build/aui-css/css/bootstrap.css" rel="stylesheet" />
+	<link href="../../build/aui-skin-deprecated/aui-skin-deprecated-min.css" media="screen" rel="stylesheet" type="text/css" />
+
+	<style media="screen" type="text/css">
+		p {
+			border: 1px solid #CCC;
+			font-size: 12px;
+			margin: 10px;
+			padding: 20px 15px;
+		}
+
+		p a {
+			color: #000;
+			cursor: pointer;
+			font-size: 14px;
+			font-weight: bold;
+		}
+
+		.tooltip {
+			color: #999;
+			font-size: 14px;
+		}
+	</style>
 </head>
 
-<style type="text/css" media="screen">
-
-p {
-	border: 1px solid #CCCCCC;
-	margin: 10px;
-	padding: 20px 15px;
-	font-size: 12px;
-}
-
-p a {
-	font-size: 14px;
-	color: #000;
-	cursor: pointer;
-	font-weight: bold;
-}
-
-.tooltip {
-	color: #999;
-	font-size: 14px;
-}
-
-</style>
-
 <body>
+
 <h1>Alloy - Tooltip</h1>
 
 <button id="showAll">Show all Tooltips</button>
@@ -80,72 +79,93 @@ p a {
 </p>
 
 <script type="text/javascript" charset="utf-8">
-
-YUI({filter: 'raw'}).use('aui-tooltip-deprecated', 'aui-io-plugin-deprecated', function(A) {
-
-	var t1 = new A.Tooltip({
-		trigger: '.t1',
-		align: { points: [ 'bc', 'tc' ] },
-		title: true
-	})
-	.render();
-
-
-	var t2 = new A.Tooltip({
-		trigger: '#t2',
-		// cancelHideOnInteraction: false,
-		bodyContent: '<img src="assets/cream.jpg" /><br/><div style="text-align: center;">Ice cream sandwich taste test winner</div>',
-		// align: { points: [ 'bl', 'tr' ] }
-	})
-	.render();
-
-	var t3 = new A.Tooltip({
-		trigger: '#t3',
-		align: { points: [ 'lc', 'rc' ] },
-		showArrow: false,
-		bodyContent: 'Simple tooltip without arrow! No animation.'
-	})
-	.render();
-
-	var t4 = new A.Tooltip({
-		trigger: '#t4',
-		bodyContent: 'Loading...',
-		width: 400,
-		height: 300,
-		after: {
-			show: function(event) {
-				var instance = this;
-
-				setTimeout(
-					function() {
-						instance.io.start();
-					},
-				100);
+YUI(
+	{
+		filter: 'raw'
+	}
+).use(
+	'aui-io-plugin-deprecated',
+	'aui-tooltip-deprecated',
+	function(A) {
+		var t1 = new A.Tooltip(
+			{
+				align: {
+					points: [ 'bc', 'tc' ]
+				},
+				title: true,
+				trigger: '.t1'
 			}
-		}
-	})
-	.render();
+		).render();
 
-	t4.plug(A.Plugin.IO, {
-		autoLoad: false,
-		uri: 'assets/content.html'
-	});
+		var t2 = new A.Tooltip(
+			{
+				// align: { points: [ 'bl', 'tr' ] },
+				bodyContent: '<img src="assets/cream.jpg" /><br/><div style="text-align: center;">Ice cream sandwich taste test winner</div>',
+				// cancelHideOnInteraction: false,
+				trigger: '#t2'
+			}
+		).render();
 
+		var t3 = new A.Tooltip(
+			{
+				align: { points: [ 'lc', 'rc' ] },
+				bodyContent: 'Simple tooltip without arrow! No animation.',
+				showArrow: false,
+				trigger: '#t3'
+			}
+		).render();
 
-	var t5 = new A.Tooltip({
-		trigger: '#t5',
-		// cancelHideOnInteraction: false,
-		bodyContent: '<object width="560" height="340"><param name="movie" value="http://www.youtube.com/v/PiSxJwB29R8&hl=en&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/PiSxJwB29R8&hl=en&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="560" height="340"></embed></object>',
-		// align: { points: [ 'bl', 'tr' ] }
-	})
-	.render();
+		var t4 = new A.Tooltip(
+			{
+				after: {
+					show: function(event) {
+						var instance = this;
 
-	// Extras
+						setTimeout(
+							function() {
+								instance.io.start();
+							},
+							100
+						);
+					}
+				},
+				bodyContent: 'Loading...',
+				height: 300,
+				trigger: '#t4',
+				width: 400
+			}
+		).render();
 
-	A.on('click', function(event) { A.OverlayContextPanelManager.showAll(); event.halt(); }, '#showAll');
+		t4.plug(
+			A.Plugin.IO, {
+				autoLoad: false,
+				uri: 'assets/content.html'
+			}
+		);
 
-});
+		var t5 = new A.Tooltip(
+			{
+				// align: {
+				// 	points: [ 'bl', 'tr' ]
+				// },
+				bodyContent: '<object width="560" height="340"><param name="movie" value="http://www.youtube.com/v/PiSxJwB29R8&hl=en&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/PiSxJwB29R8&hl=en&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="560" height="340"></embed></object>',
+				// cancelHideOnInteraction: false,
+				trigger: '#t5'
+			}
+		).render();
 
+		// Extras
+
+		A.one('#showAll').on(
+			'click',
+			function(event) {
+				A.OverlayContextPanelManager.showAll();
+
+				event.halt();
+			}
+		);
+	}
+);
 </script>
 
 </body>

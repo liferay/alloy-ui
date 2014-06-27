@@ -2,12 +2,13 @@
 
 <html>
 <head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 	<script src="../../build/aui/aui.js" type="text/javascript"></script>
 
-	<link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css" />
-	<link rel="stylesheet" href="../../build/aui-skin-deprecated/aui-skin-deprecated-min.css" type="text/css" media="screen" />
+	<link href="../../build/aui-css/css/bootstrap.css" rel="stylesheet" />
+	<link href="../../build/aui-skin-deprecated/aui-skin-deprecated-min.css" media="screen" rel="stylesheet" type="text/css" />
 
-	<style type="text/css" media="screen">
+	<style media="screen" type="text/css">
 		body {
 			font-size: 12px;
 		}
@@ -23,6 +24,7 @@
 		.piechart {
 			float: left;
 		}
+
 		.loancalculator {
 			float: left;
 			margin-right: 25px;
@@ -74,16 +76,18 @@
 	<div id="demoSeriesCustomizations">
 		<h2>Custom Series Chart</h2>
 	</div>
-
 </div>
 
 <script type="text/javascript" charset="utf-8">
-YUI({ filter: 'raw' }).use(
+YUI(
+	{
+		filter: 'raw'
+	}
+).use(
 	'aui-chart-deprecated',
-	'datatype',
 	'aui-delayed-task-deprecated',
+	'datatype',
 	function(A) {
-
 		var Lang = A.Lang,
 
 			getClassName = A.getClassName,
@@ -102,25 +106,25 @@ YUI({ filter: 'raw' }).use(
 
 		Loancalculator.ATTRS = {
 			amount: {
-				value: 200000,
-				setter: '_setNumber'
+				setter: '_setNumber',
+				value: 200000
 			},
 			interest: {
-				value: 7,
-				setter: '_setNumber'
-			},
-			years: {
-				value: 30,
-				setter: '_setNumber'
-			},
-			monthlyPayment: {
-				value: 0
+				setter: '_setNumber',
+				value: 7
 			},
 			interestPaid: {
 				value: 0
 			},
+			monthlyPayment: {
+				value: 0
+			},
 			totalPaid: {
 				value: 0
+			},
+			years: {
+				setter: '_setNumber',
+				value: 30
 			}
 		};
 
@@ -149,8 +153,8 @@ YUI({ filter: 'raw' }).use(
 			},
 			interest: {
 				decimalPlaces: 2,
-				thousandsSeparator: ',',
-				suffix: '%'
+				suffix: '%',
+				thousandsSeparator: ','
 			},
 			years: {}
 		};
@@ -191,7 +195,7 @@ YUI({ filter: 'raw' }).use(
 						}
 					);
 
-					instance.get('contentBox').appendChild(instance._output);
+					contentBox.appendChild(instance._output);
 				},
 
 				bindUI: function() {
@@ -226,22 +230,69 @@ YUI({ filter: 'raw' }).use(
 					instance._uiSetTotalPaid(instance.get('totalPaid'));
 				},
 
-				_afterMonthlyPaymentChange: function(event) {
-					var instance = this;
-
-					instance._uiSetMonthlyPayment(event.newVal);
-				},
-
 				_afterInterestPaidChange: function(event) {
 					var instance = this;
 
 					instance._uiSetInterestPaid(event.newVal);
 				},
 
+				_afterMonthlyPaymentChange: function(event) {
+					var instance = this;
+
+					instance._uiSetMonthlyPayment(event.newVal);
+				},
+
 				_afterTotalPaidChange: function(event) {
 					var instance = this;
 
 					instance._uiSetTotalPaid(event.newVal);
+				},
+
+				_calculateLoan: function(event) {
+					var instance = this;
+
+					var amount = instance.get('amount');
+					var interest = instance.get('interest');
+					var years = instance.get('years');
+
+					var paymentsPerYear = 12;
+
+					var tempValue = Math.pow((1 + (interest / 100 / paymentsPerYear)), (years * paymentsPerYear));
+					var monthlyPayment = (amount * tempValue * (interest / 100 / paymentsPerYear)) / (tempValue - 1);
+
+					var totalPaid = monthlyPayment * years * paymentsPerYear;
+					var interestPaid = totalPaid - amount;
+
+					instance.set('monthlyPayment', monthlyPayment);
+					instance.set('interestPaid', interestPaid);
+					instance.set('totalPaid', totalPaid);
+
+					if (event && (event.src == A.Widget.UI_SRC) {
+						instance._uiSetAmount(amount);
+						instance._uiSetInterest(interest);
+						instance._uiSetYears(years);
+					}
+				},
+
+				_createOutputField: function(obj) {
+					var instance = this;
+
+					var tpl = Lang.sub(TPL_OUTPUT_FIELD, obj);
+
+					instance._output.append(tpl);
+
+					return instance._output.one('#' + obj.id);
+				},
+
+				_onKeyUpFn: function(event) {
+					var instance = this;
+
+					var field = event.currentTarget;
+					var time = (+new Date);
+
+					var value = field.val() || '';
+
+					instance.set(field.get('id'), value, {src: A.Widget.UI_SRC});
 				},
 
 				_setNumber: function(value) {
@@ -277,12 +328,10 @@ YUI({ filter: 'raw' }).use(
 					instance._interestField.val(value);
 				},
 
-				_uiSetYears: function(value) {
+				_uiSetInterestPaid: function(value) {
 					var instance = this;
 
-					value = A.DataType.Number.format(value, formatConfig.years);
-
-					instance._yearsField.val(value);
+					instance._updateOutputField(instance._interestPaidField, value);
 				},
 
 				_uiSetMonthlyPayment: function(value) {
@@ -291,63 +340,18 @@ YUI({ filter: 'raw' }).use(
 					instance._updateOutputField(instance._monthlyPaymentField, value);
 				},
 
-				_uiSetInterestPaid: function(value) {
-					var instance = this;
-
-					instance._updateOutputField(instance._interestPaidField, value);
-				},
-
 				_uiSetTotalPaid: function(value) {
 					var instance = this;
 
 					instance._updateOutputField(instance._totalPaidField, value);
 				},
 
-				_calculateLoan: function(event) {
+				_uiSetYears: function(value) {
 					var instance = this;
 
-					var amount = instance.get('amount');
-					var interest = instance.get('interest');
-					var years = instance.get('years');
+					value = A.DataType.Number.format(value, formatConfig.years);
 
-					var paymentsPerYear = 12;
-
-					var tempValue = Math.pow((1 + (interest / 100 / paymentsPerYear)), (years * paymentsPerYear));
-					var monthlyPayment = (amount * tempValue * (interest / 100 / paymentsPerYear)) / (tempValue - 1);
-
-					var totalPaid = monthlyPayment * years * paymentsPerYear;
-					var interestPaid = totalPaid - amount;
-
-					instance.set('monthlyPayment', monthlyPayment);
-					instance.set('interestPaid', interestPaid);
-					instance.set('totalPaid', totalPaid);
-
-					if (event && event.src == A.Widget.UI_SRC) {
-						instance._uiSetAmount(amount);
-						instance._uiSetInterest(interest);
-						instance._uiSetYears(years);
-					}
-				},
-
-				_createOutputField: function(obj) {
-					var instance = this;
-
-					var tpl = Lang.sub(TPL_OUTPUT_FIELD, obj);
-
-					instance._output.append(tpl);
-
-					return instance._output.one('#' + obj.id);
-				},
-
-				_onKeyUpFn: function(event) {
-					var instance = this;
-
-					var field = event.currentTarget;
-					var time = (+new Date);
-
-					var value = field.val() || '';
-
-					instance.set(field.get('id'), value, {src: A.Widget.UI_SRC});
+					instance._yearsField.val(value);
 				},
 
 				_updateOutputField: function(field, value) {
@@ -357,9 +361,9 @@ YUI({ filter: 'raw' }).use(
 						value = A.DataType.Number.format(
 							value,
 							{
+								decimalPlaces: 2,
 								prefix: '$',
-								thousandsSeparator: ',',
-								decimalPlaces: 2
+								thousandsSeparator: ','
 							}
 						);
 
@@ -386,9 +390,15 @@ YUI({ filter: 'raw' }).use(
 
 		Examples.PieChart = {
 			theData: [
-		        { response: 'Principle', count: totalPaid - interestPaid },
-		        { response: 'Interest', count: interestPaid }
-		    ],
+				{
+					count: (totalPaid - interestPaid)
+					response: 'Principle',
+				},
+				{
+					count: interestPaid,
+					response: 'Interest'
+				}
+			],
 			updateChart: function(event) {
 				Examples.PieChart.theData[0].count = loanCalc.get('totalPaid') - loanCalc.get('interestPaid');
 				Examples.PieChart.theData[1].count = loanCalc.get('interestPaid');
@@ -412,21 +422,18 @@ YUI({ filter: 'raw' }).use(
 			}
 		).plug(
 			{
-				fn: A.DataSourceJSONSchema,
 				cfg: {
 					resultFields: ['response', 'count']
-				}
+				},
+				fn: A.DataSourceJSONSchema
 			}
 		);
 
 		Examples.PieChart.chart = new A.PieChart(
 			{
-		        dataField: 'count',
+				categoryField: 'response',
+				dataField: 'count',
 				dataSource: Examples.PieChart.dataSource,
-		        categoryField: 'response',
-				width: 400,
-				height: 300,
-				legendLabelFunction: Examples.PieChart.getLegendLabelText,
 				dataTipFunction: function(item, index, series) {
 					var instance = this;
 
@@ -456,19 +463,22 @@ YUI({ filter: 'raw' }).use(
 						}
 					);
 				},
+				height: 300,
+				legendLabelFunction: Examples.PieChart.getLegendLabelText,
 				style: {
 					legend: {
 						display: 'right',
-						padding: 10,
-						spacing: 5,
 						font: {
 							family: 'Arial',
 							size: 13
-						}
+						},
+						padding: 10,
+						spacing: 5
 					}
-				}
-		    }
-		   ).render('#demo');
+				},
+				width: 400
+			}
+		).render('#demo');
 
 			/*
 				Basic Line Chart
@@ -476,24 +486,55 @@ YUI({ filter: 'raw' }).use(
 
 		Examples.LineChart = {
 			expenses: [
-				{ month: 'January', rent: 880.00, utilities: 894.68 },
-				{ month: 'February', rent: 880.00, utilities: 901.35 },
-				{ month: 'March', rent: 880.00, utilities: 889.32 },
-				{ month: 'April', rent: 880.00, utilities: 884.71 },
-				{ month: 'May', rent: 910.00, utilities: 879.811 },
-				{ month: 'June', rent: 910.00, utilities: 897.95 }
+				{
+					month: 'January',
+					rent: 880.00,
+					utilities: 894.68
+				},
+				{
+					month: 'February',
+					rent: 880.00,
+					utilities: 901.35
+				},
+				{
+					month: 'March',
+					rent: 880.00,
+					utilities: 889.32
+				},
+				{
+					month: 'April',
+					rent: 880.00,
+					utilities: 884.71
+				},
+				{
+					month: 'May',
+					rent: 910.00,
+					utilities: 879.811
+				},
+				{
+					month: 'June',
+					rent: 910.00,
+					utilities: 897.95
+				}
 			],
 			series: [
-				{displayName: 'Rent', yField: 'rent'},
-				{displayName: 'Utilities', yField: 'utilities'}
+				{
+					displayName: 'Rent',
+					yField: 'rent'
+				},
+				{
+					displayName: 'Utilities',
+					yField: 'utilities'
+				}
 			],
+
 			formatCurrencyAxisLabel: function(value) {
 				return A.DataType.Number.format(
 					value,
 					{
+						decimalPlaces: 2,
 						prefix: '$',
-						thousandsSeparator: ',',
-						decimalPlaces: 2
+						thousandsSeparator: ','
 					}
 				);
 			},
@@ -505,6 +546,7 @@ YUI({ filter: 'raw' }).use(
 
 				return toolTipText;
 			},
+
 			currencyAxis: (new A.Chart.NumericAxis())
 		};
 
@@ -514,10 +556,10 @@ YUI({ filter: 'raw' }).use(
 			}
 		).plug(
 			{
-				fn: A.DataSourceJSONSchema,
 				cfg: {
 					resultFields: ['month', 'rent', 'utilities']
-				}
+				},
+				fn: A.DataSourceJSONSchema
 			}
 		);
 
@@ -527,12 +569,12 @@ YUI({ filter: 'raw' }).use(
 		Examples.LineChart.chart = new A.LineChart(
 			{
 				dataSource: Examples.LineChart.dataSource,
-				series: Examples.LineChart.series,
-				xField: 'month',
-				yAxis: Examples.LineChart.currencyAxis,
-				width: 400,
+				dataTipFunction: Examples.LineChart.getDataTipText,
 				height: 300,
-				dataTipFunction: Examples.LineChart.getDataTipText
+				series: Examples.LineChart.series,
+				width: 400,
+				xField: 'month',
+				yAxis: Examples.LineChart.currencyAxis
 			}
 		).render('#demoLineChart');
 
@@ -542,23 +584,43 @@ YUI({ filter: 'raw' }).use(
 
 		Examples.StackedBarChart = {
 			data: [
-				{ year: 2004, internetsales: 246852, printsales: 2523359, tvsales: 3123493 },
-				{ year: 2005, internetsales: 851876, printsales: 1084952, tvsales: 3166920 },
-				{ year: 2006, internetsales: 3917246, printsales: 587151, tvsales: 2330095 },
-				{ year: 2007, internetsales: 5318185, printsales: 307456, tvsales: 1830729 }
+				{
+					internetsales: 246852,
+					printsales: 2523359,
+					tvsales: 3123493,
+					year: 2004,
+				},
+				{
+					internetsales: 851876,
+					printsales: 1084952,
+					tvsales: 3166920,
+					year: 2005,
+				},
+				{
+					internetsales: 3917246,
+					printsales: 587151,
+					tvsales: 2330095,
+					year: 2006
+				},
+				{
+					internetsales: 5318185,
+					printsales: 307456,
+					tvsales: 1830729,
+					year: 2007
+				}
 			],
 			series: [
 				{
-					xField: 'internetsales',
-					displayName: 'Internet Sales'
+					displayName: 'Internet Sales',
+					xField: 'internetsales'
 				},
 				{
-					xField: 'printsales',
-					displayName: 'Print Sales'
+					displayName: 'Print Sales',
+					xField: 'printsales'
 				},
 				{
-					xField: 'tvsales',
-					displayName: 'Television Sales'
+					displayName: 'Television Sales',
+					xField: 'tvsales'
 				}
 			],
 			numberToCurrency: function(value) {
@@ -582,21 +644,21 @@ YUI({ filter: 'raw' }).use(
 			}
 		).plug(
 			{
-				fn: A.DataSourceJSONSchema,
 				cfg: {
 					resultFields: ['year', 'internetsales', 'printsales', 'tvsales']
-				}
+				},
+				fn: A.DataSourceJSONSchema
 			}
 		);
 
 		Examples.StackedBarChart.chart = new A.StackedBarChart(
 			{
-				series: Examples.StackedBarChart.series,
-				yField: 'year',
 				dataSource: Examples.StackedBarChart.dataSource,
-				xAxis: Examples.StackedBarChart.currencyAxis,
+				height: 300,
+				series: Examples.StackedBarChart.series,
 				width: 400,
-				height: 300
+				xAxis: Examples.StackedBarChart.currencyAxis,
+				yField: 'year'
 			}
 		).render('#demoStackedBarChart');
 
@@ -607,60 +669,61 @@ YUI({ filter: 'raw' }).use(
 		Examples.SeriesCustomizations = {
 			expenses: [
 				{
+					clientcosts: -85.00,
+					clientprofits: 292.00,
+					incidentals: -654.32,
 					month: 'January',
 					rent: -1280.00,
-					utilities: -494.68,
-					clientprofits: 292.00,
-					clientcosts: -85.00,
 					pay: 2450.00,
-					incidentals: -654.32
+					utilities: -494.68
 				},
 				{
+					clientcosts: -185.00,
+					clientprofits: 292.00,
+					incidentals: -432.26,
 					month: 'February',
 					rent: -1280.00,
-					utilities: -401.35,
-					clientprofits: 292.00,
-					clientcosts: -185.00,
 					pay: 2450.00,
-					incidentals: -432.26
+					utilities: -401.35
 				},
 				{
+					clientcosts: -485.00,
+					clientprofits: 292.00,
+					incidentals: -523.33,
 					month: 'March',
 					rent: -1280.00,
-					utilities: -489.32,
-					clientprofits: 292.00,
-					clientcosts: -485.00,
 					pay: 2450.00,
-					incidentals: -523.33
+					utilities: -489.32
 				},
 				{
+					clientcosts: -185.00,
+					clientprofits: 292.00,
+					incidentals: -765.45,
 					month: 'April',
 					rent: -1280.00,
-					utilities: -484.71,
-					clientprofits: 292.00,
-					clientcosts: -185.00,
 					pay: 2450.00,
-					incidentals: -765.45
+					utilities: -484.71
 				},
 				{
+					clientcosts: -485.00,
+					clientprofits: 292.00,
+					incidentals: -555.11,
 					month: 'May',
 					rent: -1310.00,
-					utilities: -479.811,
-					clientprofits: 292.00,
-					clientcosts: -485.00,
 					pay: 2450.00,
-					incidentals: -555.11
+					utilities: -479.811
 				},
 				{
+					clientcosts: -220.00,
+					clientprofits: 292.00,
+					incidentals: -633.48,
 					month: 'June',
 					rent: -1310.00,
-					utilities: -497.95,
-					clientprofits: 292.00,
-					clientcosts: -220.00,
 					pay: 2450.00,
-					incidentals: -633.48
+					utilities: -497.95
 				}
 			],
+
 			calculateNet: function(dataArray) {
 				var len = dataArray.length;
 				var obj, net;
@@ -680,29 +743,18 @@ YUI({ filter: 'raw' }).use(
 
 				return dataArray;
 			},
+
 			formatCurrencyAxisLabel: function(value) {
 				return A.DataType.Number.format(
 					value,
 					{
+						decimalPlaces: 2,
 						prefix: '$',
-						thousandsSeparator: ',',
-						decimalPlaces: 2
+						thousandsSeparator: ','
 					}
 				);
 			},
-			getClientLegendLabelText: function(value) {
-				return value + ' (profits/costs)';
-			},
-			getLegendLabelText: function(value) {
-				return value;
-			},
-			getDataTipText: function(item, index, series) {
-				var toolTipText = series.displayName + ' for ' + item.month;
 
-				toolTipText += '\n' + Examples.SeriesCustomizations.formatCurrencyAxisLabel( Math.abs(item[series.yField]) );
-
-				return toolTipText;
-			},
 			gainsLossesDataTipFunction: function(item, index, series) {
 				var amt = item[series.yField];
 				var toolTipText = series.displayName + (amt >= 0 ? ' Profits' : ' Costs') + ' for ' + item.month;
@@ -711,37 +763,69 @@ YUI({ filter: 'raw' }).use(
 
 				return toolTipText;
 			},
+
+			getClientLegendLabelText: function(value) {
+				return value + ' (profits/costs)';
+			},
+
+			getDataTipText: function(item, index, series) {
+				var toolTipText = series.displayName + ' for ' + item.month;
+
+				toolTipText += '\n' + Examples.SeriesCustomizations.formatCurrencyAxisLabel( Math.abs(item[series.yField]) );
+
+				return toolTipText;
+			},
+
+			getLegendLabelText: function(value) {
+				return value;
+			},
+
 			currencyAxis: (new A.Chart.NumericAxis()),
 			categoryAxis: (new A.Chart.CategoryAxis()),
 			styleDef: {
-				font:{color:'#eeeeee'},
-				background:{color: '#252e35'},
-				border:{size:1, color: '#000000'},
-				yAxis:
-				{
-					titleRotation:90,
-					color:'#eeeeee',
-					titleFont:{color:'#eeeeee'},
-					majorGridLines:{color:'#eeeeee'},
-					minorTicks:{display:'none'},
-					majorTicks:{display:'none'}
+				font: {
+					color:'#EEE'
+				},
+				background: {
+					color: '#252E35'
+				},
+				border: {
+					color: '#000',
+					size: 1
+				},
+				yAxis: {
+					color: '#EEE',
+					majorGridLines: {
+						color: '#EEE'
+					},
+					majorTicks: {
+						display: 'none'
+					},
+					minorTicks: {
+						display: 'none'
+					},
+					titleRotation: 90,
+					titleFont: {
+						color: '#EEE'
+					}
 				},
 				xAxis:
 				{
-					color:'#eeeeee',
-					titleFont:{color:'#eeeeee'}
+					color: '#EEE',
+					titleFont: {
+						color: '#EEE'
+					}
 				},
-				legend:
-				{
+				legend: {
 					display: 'bottom',
-					padding: 10,
-					spacing: 5,
 					font:
 					{
-						color:'#eeeeee',
+						color: '#EEE',
 						family: 'Arial',
 						size: 11
-					}
+					},
+					padding: 10,
+					spacing: 5
 				}
 			}
 		};
@@ -749,44 +833,63 @@ YUI({ filter: 'raw' }).use(
 		Examples.SeriesCustomizations.series = [
 			{
 				displayName: 'Rent',
-				yField: 'rent',
-				style: {borderColor: '#006600'}
+				style: {
+					borderColor: '#006600'
+				},
+				yField: 'rent'
 			},
 			{
 				displayName: 'Utilities',
-				yField: 'utilities',
-				style: {borderColor: '#006699'}
+				style: {
+					borderColor: '#006699'
+				},
+				yField: 'utilities'
 			},
 			{
+				dataTipFunction: Examples.SeriesCustomizations.gainsLossesDataTipFunction,
 				displayName: 'Client Work',
-				yField: 'clientprofits',
-				style: {borderColor: '#000000', fillColor: '#ff0000'},
 				legendLabelFunction: Examples.SeriesCustomizations.getClientLegendLabelText,
-				dataTipFunction: Examples.SeriesCustomizations.gainsLossesDataTipFunction
+				style: {
+					borderColor: '#000',
+					fillColor: '#FF0000'
+				},
+				yField: 'clientprofits',
 			},
 			{
+				dataTipFunction: Examples.SeriesCustomizations.gainsLossesDataTipFunction,
 				displayName: 'Client Work',
-				yField: 'clientcosts',
-				style: {borderColor: '#000000', fillColor: '#ff0000'},
+				style: {
+					borderColor: '#000',
+					fillColor: '#FF0000'
+				},
 				showInLegend: false,
-				dataTipFunction: Examples.SeriesCustomizations.gainsLossesDataTipFunction
-			 },
+				yField: 'clientcosts',
+			},
 			{
 				displayName: 'Pay',
+				style: {
+					borderColor: '#000'
+				},
 				yField: 'pay',
-				style: {borderColor: '#000000'}
 			},
 			{
 				displayName: 'Misc.',
-				yField: 'incidentals',
-				style: {borderColor: '#660000'}
+				style: {
+					borderColor: '#660000'
+				},
+				yField: 'incidentals'
 			},
 			{
-				type: 'line',
+				dataTipFunction: Examples.SeriesCustomizations.gainsLossesDataTipFunction,
 				displayName: 'Net',
+				style: {
+					borderColor: '#0000FF',
+					fillColor: '#DDDEEE',
+					lineColor: '#0000FF',
+					skin: 'DiamondSkin'
+				},
+				type: 'line',
 				yField: 'net',
-				style: {fillColor: '#dddeee', borderColor: '#0000ff', lineColor: '#0000ff', skin: 'DiamondSkin'},
-				dataTipFunction: Examples.SeriesCustomizations.gainsLossesDataTipFunction
 			}
 		];
 
@@ -796,10 +899,10 @@ YUI({ filter: 'raw' }).use(
 			}
 		).plug(
 			{
-				fn: A.DataSourceJSONSchema,
 				cfg: {
 					resultFields: ['month', 'rent', 'utilities', 'clientcosts', 'clientprofits', 'pay', 'incidentals', 'net']
-				}
+				},
+				fn: A.DataSourceJSONSchema
 			}
 		);
 
@@ -810,21 +913,20 @@ YUI({ filter: 'raw' }).use(
 
 		Examples.SeriesCustomizations.chart = new A.ColumnChart(
 			{
-				series: Examples.SeriesCustomizations.series,
-				xField: 'month',
 				dataSource: Examples.SeriesCustomizations.dataSource,
-				yAxis: Examples.SeriesCustomizations.currencyAxis,
-				xAxis: Examples.SeriesCustomizations.categoryAxis,
-				style: Examples.SeriesCustomizations.styleDef,
-				legendLabelFunction: Examples.SeriesCustomizations.getLegendLabelText,
 				dataTipFunction: Examples.SeriesCustomizations.getDataTipText,
+				height: 300,
+				legendLabelFunction: Examples.SeriesCustomizations.getLegendLabelText,
+				series: Examples.SeriesCustomizations.series,
+				style: Examples.SeriesCustomizations.styleDef,
 				width: 400,
-				height: 300
+				xAxis: Examples.SeriesCustomizations.categoryAxis,
+				xField: 'month',
+				yAxis: Examples.SeriesCustomizations.currencyAxis
 			}
 		).render('#demoSeriesCustomizations');
 	}
 );
-
 </script>
 
 </body>

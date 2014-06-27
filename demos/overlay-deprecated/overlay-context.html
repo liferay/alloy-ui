@@ -2,89 +2,92 @@
 
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 	<script src="../../build/aui/aui.js" type="text/javascript"></script>
 
-	<link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
-	<link rel="stylesheet" href="../../build/aui-skin-deprecated/aui-skin-deprecated-min.css" type="text/css" media="screen" />
+	<link href="../../build/aui-css/css/bootstrap.css" rel="stylesheet" />
+	<link href="../../build/aui-skin-deprecated/aui-skin-deprecated-min.css" media="screen" rel="stylesheet" type="text/css" />
+
+	<style media="screen" type="text/css">
+		#contextOverlay1 {
+			background: #FFF;
+			border: 3px solid #000;
+			padding: 3px;
+			position: absolute;
+			width: 300px;
+		}
+
+		.menu {
+			background: #FFF;
+			border-color: #DEDEDE #BFBFBF #BFBFBF #DEDEDE;
+			border-style: solid;
+			border-width: 1px;
+			position: absolute;
+			width: 150px;
+		}
+
+		.menu ul, .menu li {
+			margin: 0;
+		}
+
+		.menu li {
+			border-bottom: 1px solid #DEDEDE;
+			display: block;
+			padding: 2px;
+		}
+
+		.menu li a {
+			color: #336699;
+			display: block;
+			padding: 2px 5px;
+			text-decoration: none;
+		}
+
+		.menu li a:hover {
+			background: #CCC;
+		}
+
+		.menu-list span {
+			background: #CCC;
+			float: left;
+			font-size: 14px;
+			list-style: none;
+			margin-left: 5px;
+			padding: 4px;
+		}
+
+		.menu-list a {
+			color: #336699;
+			text-decoration: none;
+		}
+
+		.extended-menus {
+			clear: both;
+			padding: 1em 0;
+		}
+
+		.extended-menus input {
+			float: left;
+		}
+
+		.disabled-trigger {
+			color: #333;
+			opacity: 0.5;
+		}
+	</style>
 </head>
 
-<style type="text/css" media="screen">
-
-#contextOverlay1 {
-	width: 300px;
-	border: 3px solid #000;
-	background: #fff;
-	padding: 3px;
-	position: absolute;
-}
-
-.menu {
-	position: absolute;
-	width: 150px;
-	background: #FFFFFF;
-	border-color: #DEDEDE #BFBFBF #BFBFBF #DEDEDE;
-	border-style: solid;
-	border-width: 1px;
-}
-
-.menu ul, .menu li {
-	margin: 0;
-}
-
-.menu li {
-	border-bottom: 1px solid #DEDEDE;
-	display: block;
-	padding: 2px;
-}
-
-.menu li a {
-	display: block;
-	padding: 2px 5px;
-	text-decoration: none;
-	color: #336699;
-}
-
-.menu li a:hover {
-	background: #ccc;
-}
-
-.menu-list span {
-	background: #CCCCCC;
-	float: left;
-	font-size: 14px;
-	list-style: none;
-	margin-left: 5px;
-	padding: 4px;
-}
-
-.menu-list a {
-	text-decoration: none;
-	color: #336699;
-}
-
-.extended-menus {
-	clear: both;
-	padding: 1em 0;
-}
-
-.extended-menus input {
-	float: left;
-}
-
-.disabled-trigger {
-	opacity: 0.5;
-	color: #333;
-}
-
-</style>
-
 <body>
+
 <h1>Alloy - OverlayContext</h1>
 
-<p><button id="simpleOverlay">Open simple OverlayContext</button></p>
+<p>
+	<button id="simpleOverlay">Open simple OverlayContext</button>
+</p>
 
-<p><button id="simpleOverlay2">Open simple OverlayContext - another trigger</button></p>
+<p>
+	<button id="simpleOverlay2">Open simple OverlayContext - another trigger</button>
+</p>
 
 <div id="menuList" class="menu-list">
 	<span class="menu-item-1">
@@ -152,115 +155,129 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
+YUI(
+	{
+		filter: 'raw'
+	}
+).use(
+	'aui-aria',
+	'aui-overlay-context-deprecated',
+	'aui-overlay-manager-deprecated',
+	function(A) {
 
-YUI({
-	filter: 'raw'
-}).use('aui-aria', 'aui-overlay-context-deprecated', 'aui-overlay-manager-deprecated', function(A) {
+		/*
+		* Simple Menu example
+		*/
+		var options = {
+			hideDelay: 1500,
+			hideOn: 'mouseleave',
+			showDelay: 0,
+			showOn: 'mouseenter',
 
-	/*
-	* Simple Menu example
-	*/
-	var options = {
-		showOn: 'mouseenter',
-		hideOn: 'mouseleave',
-		hideDelay: 1500,
-		showDelay: 0,
-
-		on: {
-			show: function(event) {
-				// console.log('on show', event);
-				overlayManager.hideAll();
+			after: {
+				hide: function(event) {
+					// console.log('after hide', event);
+				},
+				show: function(event) {
+					// console.log('after show', event);
+				}
 			},
-			hide: function(event) {
-				// console.log('on hide', event);
-			}
-		},
 
-		after: {
-			show: function(event) {
-				// console.log('after show', event);
+			on: {
+				hide: function(event) {
+					// console.log('on hide', event);
+				},
+				show: function(event) {
+					// console.log('on show', event);
+					overlayManager.hideAll();
+				}
+			}
+		};
+
+		var menuOverlay1 = new A.OverlayContext(
+			A.merge(
+				options,
+				{
+					boundingBox: '#menu1',
+					cancellableHide: false,
+					hideDelay: 1000,
+					showDelay: 0,
+					trigger: '.menu-item-1'
+				}
+			)
+		).render();
+
+		var menuOverlay2 = new A.OverlayContext(
+			A.merge(
+				options,
+				{
+					boundingBox: '#menu2',
+					cancellableHide: true,
+					// hideDelay: 1000,
+					trigger: '#menuItem2'
+				}
+			)
+		)
+		.render();
+
+		A.on('click',
+			function(event) {
+				// changing the original trigger
+
+				var menuItem2 = A.one('#menuItem2');
+				var menuItem2New = A.one('#menuItem2-new');
+
+				var currentValue = this.get('value');
+
+				if (menuItem2.hasClass('disabled-trigger')) {
+					currentValue = currentValue.replace(/Trigger 1/, 'Trigger 2');
+
+					menuOverlay2.set('trigger', '#menuItem2');
+				}
+				else {
+					currentValue = currentValue.replace(/Trigger 2/, 'Trigger 1');
+
+					menuOverlay2.set('trigger', '#menuItem2-new');
+				}
+
+				this.set('value', currentValue);
+
+				menuItem2.toggleClass('disabled-trigger');
+				menuItem2New.toggleClass('disabled-trigger');
 			},
-			hide: function(event) {
-				// console.log('after hide', event);
+			'#changeTrigger'
+		);
+
+		// creating OverlayManager group
+		var overlayManager = new A.OverlayManager();
+
+		overlayManager.register([ menuOverlay1, menuOverlay2 ]);
+
+		/*
+		* Simple OverlayContext
+		*/
+		var contextOverlay1 = new A.OverlayContext(
+			{
+				// align: {
+				// 	node: '#simpleOverlay',
+				// 	points: [ 'tl', 'tr' ]
+				// },
+				boundingBox: '#contextOverlay1',
+				cancellableHide: false,
+				hideDelay: 1000,
+				hideOn: 'mouseout',
+				// hideOnDocumentClick: false,
+				showDelay: 0,
+				showOn: 'mouseover',
+				trigger: 'button'
 			}
-		}
-	};
+		).render();
 
-	var menuOverlay1 = new A.OverlayContext(
-		A.merge(options, {
-			trigger: '.menu-item-1',
-			boundingBox: '#menu1',
-			hideDelay: 1000,
-			cancellableHide: false,
-			showDelay: 0
-		})
-	)
-	.render();
-
-
-	var menuOverlay2 = new A.OverlayContext(
-		A.merge(options, {
-			trigger: '#menuItem2',
-			// hideDelay: 1000,
-			cancellableHide: true,
-			boundingBox: '#menu2'
-		})
-	)
-	.render();
-
-	A.on('click',
-		function(event) {
-			// changing the original trigger
-
-
-			var menuItem2 = A.one('#menuItem2');
-			var menuItem2New = A.one('#menuItem2-new');
-
-			var currentValue = this.get('value');
-
-			if (menuItem2.hasClass('disabled-trigger')) {
-				currentValue = currentValue.replace(/Trigger 1/, 'Trigger 2');
-				menuOverlay2.set('trigger', '#menuItem2');
-			}
-			else {
-				currentValue = currentValue.replace(/Trigger 2/, 'Trigger 1');
-				menuOverlay2.set('trigger', '#menuItem2-new');
-			}
-
-			this.set('value', currentValue);
-
-			menuItem2.toggleClass('disabled-trigger');
-			menuItem2New.toggleClass('disabled-trigger');
-		},
-		'#changeTrigger'
-	);
-
-	// creating OverlayManager group
-	var overlayManager = new A.OverlayManager();
-
-	overlayManager.register([ menuOverlay1, menuOverlay2 ]);
-
-	/*
-	* Simple OverlayContext
-	*/
-	var contextOverlay1 = new A.OverlayContext({
-		trigger: 'button',
-		boundingBox: '#contextOverlay1',
-		showOn: 'mouseover',
-		cancellableHide: false,
-		// hideOnDocumentClick: false,
-		hideOn: 'mouseout',
-		hideDelay: 1000,
-		showDelay: 0
-		// align: { node: '#simpleOverlay', points: [ 'tl', 'tr' ] }
-	})
-	.render();
-
-	// you can change the showOn/hideOn events on the fly
-	contextOverlay1.set('showOn', 'click');
-	contextOverlay1.set('hideOn', 'click');
-});
-
+		// you can change the showOn/hideOn events on the fly
+		contextOverlay1.set('showOn', 'click');
+		contextOverlay1.set('hideOn', 'click');
+	}
+);
 </script>
 
 </body>

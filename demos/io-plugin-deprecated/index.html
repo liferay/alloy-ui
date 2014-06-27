@@ -2,96 +2,103 @@
 
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 	<script src="../../build/aui/aui.js" type="text/javascript"></script>
 
-	<link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
-	<link rel="stylesheet" href="../../build/aui-skin-deprecated/aui-skin-deprecated-min.css" type="text/css" media="screen" />
-
+	<link href="../../build/aui-css/css/bootstrap.css" rel="stylesheet" />
+	<link href="../../build/aui-skin-deprecated/aui-skin-deprecated-min.css" media="screen" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-
 <h1>Alloy - IO</h1>
 
 <div id="content1"></div>
 <div id="content2"></div>
 
 <script type="text/javascript">
+YUI(
+	{
+		filter: 'raw'
+	}
+).use(
+	'aui-dialog-deprecated',
+	'aui-io-plugin-deprecated',
+	function(A) {
+		var content1 = A.one('#content1');
 
-YUI({
-	filter: 'raw'
-}).use('aui-io-plugin-deprecated', 'aui-dialog-deprecated', function(A) {
-
-	var content1 = A.one('#content1');
-
-	content1.plug(A.Plugin.IO, {
-		uri: 'assets/content.html',
-		method: 'GET',
-		data: {
-			key1: 'value1',
-			key2: 'value2'
-		},
-		// node: A.one('#content2'), // dont need to pass this
-		// showLoading: true,
-		// parseContent: true,
-		// failureMessage: 'Error!',
-		// section: 'body',
-		// where: 'REPLACE',
-		// selector: 'div',
-		on: {
-			success: function(event) {
-				console.log('success user', arguments);
-
-				// event.stopImmediatePropagation();
-			},
-			complete: function(event) {
-				// console.log('complete user', arguments);
-				// event.stopImmediatePropagation();
-			},
-			start: function(event) {
-				// console.log('start user', arguments);
-				// event.stopImmediatePropagation();
-			},
-			failure: function(event) {
-				// console.log('failure user', arguments);
-				// event.stopImmediatePropagation();
+		content1.plug(
+			A.Plugin.IO,
+			{
+				data: {
+					key1: 'value1',
+					key2: 'value2'
+				},
+				// failureMessage: 'Error!',
+				method: 'GET',
+				// node: A.one('#content2'), // dont need to pass this
+				on: {
+					complete: function(event) {
+						// console.log('complete user', arguments);
+						// event.stopImmediatePropagation();
+					},
+					failure: function(event) {
+						// console.log('failure user', arguments);
+						// event.stopImmediatePropagation();
+					},
+					start: function(event) {
+						// console.log('start user', arguments);
+						// event.stopImmediatePropagation();
+					},
+					success: function(event) {
+						console.log('success user', arguments);
+						// event.stopImmediatePropagation();
+					}
+				},
+				// parseContent: true,
+				// section: 'body',
+				// selector: 'div',
+				// showLoading: true,
+				// where: 'REPLACE',
+				uri: 'assets/content.html'
 			}
-		}
-	});
+		);
 
-	var dialog = new A.Dialog({
-		title: 'Testing IO',
-		centered: true,
-		width: 300,
-		bodyContent: 'Loading content via A.Plugin.IO...'
-	})
-	.render();
-console.log(A.Plugin.IO);
-	dialog.plug(A.Plugin.IO, {
-		uri: 'assets/content.html'
-		// on: {
-		// 	success: function(event) {
-		// 		console.log('success user', arguments);
-		// 		// event.halt();
-		// 	},
-		// 	complete: function(event) {
-		// 		console.log('complete user', arguments);
-		// 		// event.halt();
-		// 	},
-		// 	start: function(event) {
-		// 		console.log('start user', arguments);
-		// 		// event.halt();
-		// 	},
-		// 	failure: function(event) {
-		// 		console.log('failure user', arguments);
-		// 		// event.halt();
-		// 	}
-		// }
-	});
+		var dialog = new A.Dialog(
+			{
+				bodyContent: 'Loading content via A.Plugin.IO...',
+				centered: true,
+				title: 'Testing IO',
+				width: 300
+			}
+		)
+		.render();
 
-});
-
+		dialog.plug(
+			A.Plugin.IO,
+			{
+				// on: {
+				// 	complete: function(event) {
+				// 		console.log('complete user', arguments);
+				// 		// event.halt();
+				// 	},
+				// 	failure: function(event) {
+				// 		console.log('failure user', arguments);
+				// 		// event.halt();
+				// 	},
+				// 	start: function(event) {
+				// 		console.log('start user', arguments);
+				// 		// event.halt();
+				// 	},
+				// 	success: function(event) {
+				// 		console.log('success user', arguments);
+				// 		// event.halt();
+				// 	}
+				// }
+				uri: 'assets/content.html'
+			}
+		);
+	}
+);
 </script>
 
 </body>

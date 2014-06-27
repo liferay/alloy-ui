@@ -2,13 +2,13 @@
 
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 	<script src="../../build/aui/aui.js" type="text/javascript"></script>
 
-	<link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
-	<link rel="stylesheet" href="../../build/aui-skin-deprecated/aui-skin-deprecated-min.css" type="text/css" media="screen" />
+	<link href="../../build/aui-css/css/bootstrap.css" rel="stylesheet" />
+	<link href="../../build/aui-skin-deprecated/aui-skin-deprecated-min.css" media="screen" rel="stylesheet" type="text/css" />
 
-	<style type="text/css" media="screen">
+	<style media="screen" type="text/css">
 		body {
 			font-size: 12px;
 		}
@@ -20,52 +20,51 @@
 
 		/* ---------- Custom form css ---------- */
 		.field-content {
-			display: block;
-			clear: both;
 			border-bottom: 1px solid #dfdfdf;
+			clear: both;
+			display: block;
 			padding: 7px 0;
 		}
 
 		.field-last .field-content {
-			display: block;
-			clear: both;
 			border-bottom-width: 0;
+			clear: both;
+			display: block;
 			padding: 7px 0;
 		}
 
 		.field-choice .field-content {
-			padding: 0 0 10px;
 			border-bottom-width: 0;
+			padding: 0 0 10px;
 		}
-
 
 		.fieldset-legend {
 			padding-bottom: 1em;
 		}
 
 		.button-row {
-			padding: 5px;
 			background: #eee;
 			border-top: 1px solid #ccc;
+			padding: 5px;
 		}
 
 		.button-input {
 			background-color: #f5f5f5;
 			border: 1px solid #dedede;
-			border-top-color: #eee;
 			border-left-color: #eee;
+			border-top-color: #eee;
 			color: #565656;
 		}
 
 		.button-input:hover {
-			border: 1px solid #c2e1ef;
 			background-color: #dff4ff;
+			border: 1px solid #c2e1ef;
 			color: #369;
 		}
 
 		.button-input:active {
-			border: 1px solid #6299c5;
 			background-color: #6299c5;
+			border: 1px solid #6299c5;
 			color: #fff;
 		}
 
@@ -188,10 +187,8 @@
 <div id="wrapper">
 	<h1>Alloy - form Demo</h1>
 
-
 	<div id="demo">
 		<form class="layout-content form" id="myForm">
-
 			<div class="fieldset w33 column column-first">
 				<div class="fieldset-content column-content column-content-first">
 					<div class="fieldset-legend widget-hd">
@@ -688,12 +685,13 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-YUI({
-	filter: 'raw'
-}).use(
+YUI(
+	{
+		filter: 'raw'
+	}
+).use(
 	'aui-form-base-deprecated',
 	function(A) {
-
 		var form = new A.Form(
 			{
 				contentBox: '#myForm'
@@ -722,14 +720,13 @@ YUI({
 
 		window.myField = new A.Textfield(
 			{
-				labelText: 'label 7',
-				value: 'orgiinal',
-				name: 'fieldX',
 				fieldHint: 'Please enter your username',
-				labelAlign: 'left'
+				labelAlign: 'left',
+				labelText: 'label 7'
+				name: 'fieldX',
+				value: 'orgiinal'
 			}
-		)
-		.render('.fieldset-bd');
+		).render('.fieldset-bd');
 
 		myField.get('boundingBox').prependTo('.fieldset-bd');
 
@@ -737,18 +734,21 @@ YUI({
 
 		window.myForm = form;
 
-		if(1){
-		taBox = A.one('.field-textarea')
-		taCBox = taBox.one('.field-content')
+		if (1) {
+			taBox = A.one('.field-textarea')
+			taCBox = taBox.one('.field-content')
 
-		ta = new A.Textarea({
-		// boundingBox: taBox,
-		// contentBox: taCBox,
-		autoSize: true,
-		maxHeight: 250
-		}).render();
+			ta = new A.Textarea(
+				{
+					autoSize: true,
+					// boundingBox: taBox,
+					// contentBox: taCBox,
+					maxHeight: 250
+				}
+			).render();
 
 		}
+
 		ta.get('node').getComputedStyle('width')
 
 		new A.Combobox(
@@ -758,7 +758,6 @@ YUI({
 		).render();
 	}
 );
-
 </script>
 
 </body>

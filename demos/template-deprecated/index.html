@@ -2,31 +2,31 @@
 
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 	<script src="../../build/aui/aui.js" type="text/javascript"></script>
 
-	<link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
-	<link rel="stylesheet" href="../../build/aui-skin-deprecated/aui-skin-deprecated-min.css" type="text/css" media="screen" />
+	<link href="../../build/aui-css/css/bootstrap.css" rel="stylesheet" />
+	<link href="../../build/aui-skin-deprecated/aui-skin-deprecated-min.css" media="screen" rel="stylesheet" type="text/css" />
 
-	<style type="text/css" media="screen">
+	<style media="screen" type="text/css">
 		body {
 			font-size: 12px;
 		}
 
 		#wrapper {
 			padding: 10px;
-			width: 800px;
 			margin: 0 auto;
+			width: 800px;
 		}
 
 		pre {
-			background: #eee;
+			background: #EEE;
 			overflow: auto;
 			width: 100%;
 		}
 
 		code {
-			background-color: #ddd;
+			background-color: #DDD;
 		}
 
 		h2 {
@@ -43,8 +43,8 @@
 		}
 
 		.note {
-			font-size: 0.9em;
 			color: #555;
+			font-size: 0.9em;
 		}
 
 		#performance .render-output {
@@ -53,8 +53,8 @@
 		}
 
 		.nav {
-			position: fixed;
 			height: 100%;
+			position: fixed;
 			right: 0;
 			top: 0;
 			width: 100px;
@@ -68,13 +68,13 @@
 			background: #EAEAEA;
 			border-left: 5px solid transparent;
 			display: block;
+			left: 0;
+			overflow: hidden;
 			padding: 2px 5px;
 			position: absolute;
 			right: 0;
-			left: 0;
-			white-space: nowrap;
-			overflow: hidden;
 			text-overflow: ellipsis;
+			white-space: nowrap;
 		}
 
 		.nav a:hover {
@@ -87,7 +87,6 @@
 
 <div id="wrapper">
 	<h1>Alloy - Template Demo</h1>
-
 
 	<div id="demo">
 		<p>AlloyUI Templates allow the ability to format text and JavaScript objects in an easy to use manner that is also performant.<br /></p>
@@ -451,73 +450,84 @@ textareaTPL.render(['Item 1', 'Item 2', 'Item 3'], '#somewhere');</pre>
 </div>
 
 <script type="text/javascript" charset="utf-8">
-
-YUI({filter: 'raw'}).use('aui-template-deprecated', 'node', function(A) {
-	A.one('body').delegate('click', function(event) {
-		var parent = event.currentTarget.ancestor();
-		var layoutContent = parent.ancestor('.layout-content');
-
-		var id = layoutContent.guid();
-
-		var tplContent = A.Lang.String.unescapeHTML(layoutContent.one('pre.tpl').html());
-
-		var tpl = new A.Template(tplContent);
-
-		var renderOutput = parent.one('.render-output');
-
-		var jsNode = layoutContent.one('pre.js');
-
-		var js;
-
-		if (jsNode) {
-			js = jsNode.text();
-
-			if (js) {
-				eval('js = ' + js);
-			}
-		}
-
-		if (js) {
-			var outputParent = renderOutput.ancestor();
-			renderOutput.remove();
-			tpl.render(js, renderOutput);
-			outputParent.append(renderOutput);
-		}
-	}, 'input.render-button');
-
-	var div = A.Node.create('<div class="nav"></div>');
-	var items = [];
-
-	A.all('h2').each(
-		function(item, index, collection) {
-			var id = item.guid();
-			var title = item.text();
-
-			items.push(
-				{
-					id: id,
-					title: title,
-					offsetY: item.getXY()[1]
-				}
-			);
-		}
-	);
-
-	data = {
-		items: items,
-		scaleFactor: A.getWin().height()/A.one('body').height()
+YUI(
+	{
+		filter: 'raw'
 	}
+).use(
+	'aui-template-deprecated',
+	'node',
+	function(A) {
+		A.one('body').delegate(
+			'click',
+			function(event) {
+				var parent = event.currentTarget.ancestor();
+				var layoutContent = parent.ancestor('.layout-content');
 
-	tpl = A.Template(
-		'<tpl for="items">',
-			'<a href="#{id}" style="top: {[Math.round(values.offsetY * parent.scaleFactor)]}px">{title}</a>',
-		'</tpl>'
+				var id = layoutContent.guid();
+
+				var tplContent = A.Lang.String.unescapeHTML(layoutContent.one('pre.tpl').html());
+
+				var tpl = new A.Template(tplContent);
+
+				var renderOutput = parent.one('.render-output');
+				var jsNode = layoutContent.one('pre.js');
+
+				var js;
+
+				if (jsNode) {
+					js = jsNode.text();
+
+					if (js) {
+						eval('js = ' + js);
+					}
+				}
+
+				if (js) {
+					var outputParent = renderOutput.ancestor();
+
+					renderOutput.remove();
+					tpl.render(js, renderOutput);
+					outputParent.append(renderOutput);
+				}
+			},
+		'input.render-button'
 	);
 
-	tpl.render(data, div);
+		var div = A.Node.create('<div class="nav"></div>');
+		var items = [];
 
-	A.one('body').append(div);
-});
+		A.all('h2').each(
+			function(item, index) {
+				var id = item.guid();
+				var title = item.text();
+
+				items.push(
+					{
+						id: id,
+						offsetY: item.getXY()[1],
+						title: title
+					}
+				);
+			}
+		);
+
+		data = {
+			items: items,
+			scaleFactor: A.getWin().height()/A.one('body').height()
+		}
+
+		tpl = A.Template(
+			'<tpl for="items">',
+				'<a href="#{id}" style="top: {[Math.round(values.offsetY * parent.scaleFactor)]}px">{title}</a>',
+			'</tpl>'
+		);
+
+		tpl.render(data, div);
+
+		A.one('body').append(div);
+	}
+);
 </script>
 
 <div class="helper-hidden" id="auiDivTPL">
@@ -544,5 +554,6 @@ YUI({filter: 'raw'}).use('aui-template-deprecated', 'node', function(A) {
 		</tpl>
 	</tpl>
 </script>
+
 </body>
 </html>

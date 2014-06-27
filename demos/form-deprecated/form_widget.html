@@ -2,13 +2,13 @@
 
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 	<script src="../../build/aui/aui.js" type="text/javascript"></script>
 
-	<link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
-	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link href="../../build/aui-css/css/bootstrap.css" rel="stylesheet" />
+	<link href="../../build/aui-skin-deprecated/aui-skin-deprecated-min.css" media="screen" rel="stylesheet" type="text/css" />
 
-	<style type="text/css" media="screen">
+	<style media="screen" type="text/css">
 		body {
 			font-size: 12px;
 		}
@@ -21,6 +21,7 @@
 </head>
 
 <body>
+
 <div id="wrapper">
 	<h1>Alloy - form Demo</h1>
 
@@ -30,19 +31,27 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-YUI({
-	filter: 'raw'
-}).use('aui-form-deprecated', function(A) {
+YUI(
+	{
+		filter: 'raw'
+	}
+).use(
+	'aui-form-deprecated',
+	function(A) {
 
 		// Creating a basic field from script
-		var field1 = new A.Field({
-			id: 'field1'
-		}).render('#demo');
+		var field1 = new A.Field(
+			{
+				id: 'field1'
+			}
+		).render('#demo');
 
 		// Creating a basic field from markup
-		var field2 = new A.Field({
-			node: '#field2a'
-		}).render('#demo');
+		var field2 = new A.Field(
+			{
+				node: '#field2a'
+			}
+		).render('#demo');
 
 		// Updating the attributes
 		field1.set('value', 'new value');
@@ -54,9 +63,12 @@ YUI({
 
 		// Setting a validator
 
-		field1.set('validator', function(value) {
-			return /^\d+$/.test(value); //allow only numbers
-		});
+		field1.set(
+			'validator',
+			function(value) {
+				return /^\d+$/.test(value); //allow only numbers
+			}
+		);
 
 		field1.set('value', 'abc1');
 
@@ -69,38 +81,48 @@ YUI({
 		field1.clearInvalid();
 
 		// Creating a basic textarea
-		var textarea1 = new A.Textarea({
-			labelText: 'Textarea'
-		}).render('#demo');
+		var textarea1 = new A.Textarea(
+			{
+				labelText: 'Textarea'
+			}
+		).render('#demo');
 
 		// Creating a textarea with a minHeight/maxHeight
-		var textarea2 = new A.Textarea({
-			autoSize: true,
-			labelText: 'Textarea with minHeight/maxHeight',
-			minHeight: 100,
-			maxHeight: 200
-		}).render('#demo');
+		var textarea2 = new A.Textarea(
+			{
+				autoSize: true,
+				labelText: 'Textarea with minHeight/maxHeight',
+				minHeight: 100,
+				maxHeight: 200
+			}
+		).render('#demo');
 
 		// Creating a basic text field
 
-		var textfield1 = new A.Textfield({
-			labelText: 'Text field 1'
-		}).render('#demo');
+		var textfield1 = new A.Textfield(
+			{
+				labelText: 'Text field 1'
+			}
+		).render('#demo');
 
 		// Creating a text field that selects its content on focus
 
-		var textfield2 = new A.Textfield({
-			labelText: 'Text field 2',
-			selectOnFocus: true,
-			value: 'Select on focus'
-		}).render('#demo');
+		var textfield2 = new A.Textfield(
+			{
+				labelText: 'Text field 2',
+				selectOnFocus: true,
+				value: 'Select on focus'
+			}
+		).render('#demo');
 
 		// Creating a text field that only allows numbers
 
-		var textfield3 = new A.Textfield({
-			labelText: 'Text field 3 (only allow numbers)',
-			allowOnly: /\d/
-		}).render('#demo');
+		var textfield3 = new A.Textfield(
+			{
+				allowOnly: /\d/,
+				labelText: 'Text field 3 (only allow numbers)'
+			}
+		).render('#demo');
 
 		// Creating a basic form
 
@@ -108,24 +130,57 @@ YUI({
 
 		// Adding fields to the form via script
 
-		form.add([
-			{ id: 'field1', labelText: 'Label 1', value: 'field 1' },
-			{ id: 'field2', labelText: 'Label 2', value: 'field 2' },
-			{ id: 'field3', labelText: 'Label 3', value: 'field 3' },
-			{ id: 'field4', labelText: 'Label 4', value: 'field 4' },
-			{ id: 'field5', labelText: 'Label 5', value: 'field 5' },
-			{ id: 'field6', labelText: 'Label 6', value: 'field 6' },
-			{ id: 'field7', labelText: 'Label 7', value: 'field 7' }
-		],
-		true);
+		form.add(
+			[
+				{
+					id: 'field1',
+					labelText: 'Label 1',
+					value: 'field 1'
+				},
+				{
+					id: 'field2',
+					labelText: 'Label 2',
+					value: 'field 2'
+				},
+				{
+					id: 'field3',
+					labelText: 'Label 3',
+					value: 'field 3'
+				},
+				{
+					id: 'field4',
+					labelText: 'Label 4',
+					value: 'field 4'
+				},
+				{
+					id: 'field5',
+					labelText: 'Label 5',
+					value: 'field 5'
+				},
+				{
+					id: 'field6',
+					labelText: 'Label 6',
+					value: 'field 6'
+				},
+				{
+					id: 'field7',
+					labelText: 'Label 7',
+					value: 'field 7'
+				}
+			],
+			true
+		);
 
 		// Setting values on the form
 
-		form.set('values', {
-			field1: 'This is field 1',
-			field2: 'This is field 2',
-			field3: 'This is field 3'
-		});
+		form.set(
+			'values',
+			{
+				field1: 'This is field 1',
+				field2: 'This is field 2',
+				field3: 'This is field 3'
+			}
+		);
 
 		// Checking if the form fields have been changed
 
@@ -139,12 +194,12 @@ YUI({
 
 		window.myField = new A.Textfield(
 			{
-				labelText: 'label 7',
-				value: 'orgiinal',
-				name: 'fieldX',
 				fieldHint: 'Please enter your username',
 				labelAlign: 'left',
-				render: formContentBox
+				labelText: 'label 7',
+				name: 'fieldX',
+				render: formContentBox,
+				value: 'orgiinal'
 			}
 		);
 
@@ -152,10 +207,12 @@ YUI({
 
 		window.myForm = form;
 
-		ta = new A.Textarea({
-			autoSize: true,
-			maxHeight: 250
-		}).render(formContentBox);
+		ta = new A.Textarea(
+			{
+				autoSize: true,
+				maxHeight: 250
+			}
+		).render(formContentBox);
 
 		new A.Combobox(
 			{
@@ -164,7 +221,6 @@ YUI({
 		).render(formContentBox);
 	}
 );
-
 </script>
 
 </body>

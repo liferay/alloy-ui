@@ -2,13 +2,13 @@
 
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 	<script src="../../build/aui/aui.js" type="text/javascript"></script>
 
-	<link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
-	<link rel="stylesheet" href="../../build/aui-skin-deprecated/aui-skin-deprecated-min.css" type="text/css" media="screen" />
+	<link href="../../build/aui-css/css/bootstrap.css" rel="stylesheet" />
+	<link href="../../build/aui-skin-deprecated/aui-skin-deprecated-min.css" media="screen" rel="stylesheet" type="text/css" />
 
-	<style type="text/css" media="screen">
+	<style media="screen" type="text/css">
 		body {
 			font-size: 12px;
 		}
@@ -18,8 +18,8 @@
 		}
 
 		.label-simple-class {
-			font-weight: bold;
 			display: block;
+			font-weight: bold;
 		}
 
 		.label-simple-class-checkbox {
@@ -35,97 +35,144 @@
 	<h1>Alloy - TplSnippets Demo</h1>
 
 	<h2>A.Template.get('select')</h2>
+
 	<div id="select1"></div>
 	<div id="select2"></div>
 
 	<h2>A.Template.get('input')</h2>
+
 	<div id="input1"></div><br/>
 	<div id="input2"></div>
 
 	<h2>A.Template.get('textarea')</h2>
+
 	<div id="textarea1"></div><br/>
 	<div id="textarea2"></div>
 
 	<h2>A.Template.get('checkbox')</h2>
+
 	<div id="checkbox1"></div><br/>
 </div>
 
 <script type="text/javascript" charset="utf-8">
+YUI().use(
+	'aui-tpl-snippets-deprecated',
+	function(A) {
+		var select = A.Template.get('select');
 
-YUI().use('aui-tpl-snippets-deprecated', function(A) {
+		select.render(
+			{
+				auiCssClass: [ 'test', 'abc' ],
+				cssClass: [ 'test', 'abc' ],
+				id: 'selectId1',
+				name: 'select1',
+				options: [
+					{
+						label: 'LABEL',
+						value: 'VALUE'
+					},
+					{
+						label: 'LABEL1',
+						value: 'VALUE1'
+					},
+					{
+						label: 'LABEL2',
+						value: 'VALUE2'
+					}
+				]
+			},
+			'#select1'
+		);
 
-	var select = A.Template.get('select');
+		select.render(
+			{
+				auiCssClass: [ 'test', 'abc' ],
+				cssClass: [ 'test', 'abc' ],
+				disabled: true,
+				id: 'selectId2',
+				name: 'select2',
+				options: [
+					{
+						label: 'LABEL',
+						value: 'VALUE'
+					},
+					{
+						label: 'LABEL1',
+						value: 'VALUE1'
+					},
+					{
+						label: 'LABEL2',
+						value: 'VALUE2'
+					}
+				]
+			},
+			'#select2'
+		);
 
-	select.render({
-          id: 'selectId1',
-          cssClass: [ 'test', 'abc' ],
-          auiCssClass: [ 'test', 'abc' ],
-          name: 'select1',
-          options: [
-               { value: 'VALUE', label: 'LABEL' },
-               { value: 'VALUE1', label: 'LABEL1' },
-               { value: 'VALUE2', label: 'LABEL2' }
-           ]
-    }, '#select1');
+		var input = A.Template.get('input');
 
-    select.render({
-          id: 'selectId2',
-          cssClass: [ 'test', 'abc' ],
-          auiCssClass: [ 'test', 'abc' ],
-          name: 'select2',
-          disabled: true,
-          options: [
-               { value: 'VALUE', label: 'LABEL' },
-               { value: 'VALUE1', label: 'LABEL1' },
-               { value: 'VALUE2', label: 'LABEL2' }
-           ]
-    }, '#select2');
+		input.render(
+			{
+				auiCssClass: 'simple-class',
+				auiLabelCssClass: 'label-simple-class',
+				autocomplete: 'off',
+				// disabled: true,
+				id: 'inputNameId',
+				label: 'Enter your name:',
+				labelId: 'textareaLabelId',
+				labelName: 'textareaLabelName',
+				name: 'name',
+				type: 'text'
+			},
+			'#input1'
+		);
 
-	var input = A.Template.get('input');
+		input.render(
+			{
+				placeholder: 'Type your email address',
+				type: 'text'
+			},
+			'#input2'
+		);
 
-	input.render({
-		auiCssClass: 'simple-class',
-		auiLabelCssClass: 'label-simple-class',
-		autocomplete: 'off',
-		// disabled: true,
-		id: 'inputNameId',
-		label: 'Enter your name:',
-		labelId: 'textareaLabelId',
-		labelName: 'textareaLabelName',
-		name: 'name',
-		type: 'text'
-	}, '#input1');
+		var textarea = A.Template.get('textarea');
 
-	input.render({ type: 'text', placeholder: 'Type your email address' }, '#input2');
+		textarea.render(
+			{
+				auiCssClass: 'simple-class',
+				auiLabelCssClass: 'label-simple-class',
+				autocomplete: 'off',
+				// disabled: true,
+				id: 'textareaNameId',
+				label: 'Enter your name:',
+				labelId: 'textareaLabelId',
+				labelName: 'textareaLabelName',
+				name: 'name'
+			},
+			'#textarea1'
+		);
 
-	var textarea = A.Template.get('textarea');
+		textarea.render(
+			{
+				placeholder: 'Type your email address'
+			},
+			'#textarea2'
+		);
 
-	textarea.render({
-		auiCssClass: 'simple-class',
-		auiLabelCssClass: 'label-simple-class',
-		autocomplete: 'off',
-		// disabled: true,
-		id: 'textareaNameId',
-		label: 'Enter your name:',
-		labelId: 'textareaLabelId',
-		labelName: 'textareaLabelName',
-		name: 'name'
-	}, '#textarea1');
+		var checkbox = A.Template.get('checkbox');
 
-	textarea.render({ placeholder: 'Type your email address' }, '#textarea2');
-
-	var checkbox = A.Template.get('checkbox');
-
-	checkbox.render({
-		auiLabelCssClass: 'label-simple-class-checkbox',
-		// disabled: true,
-		name: 'checkboxName',
-		label: 'Checkbox label',
-		id: 'checkboxId'
-	}, '#checkbox1');
-
-});
-
+		checkbox.render(
+			{
+				auiLabelCssClass: 'label-simple-class-checkbox',
+				// disabled: true,
+				id: 'checkboxId',
+				label: 'Checkbox label',
+				name: 'checkboxName'
+			},
+			'#checkbox1'
+		);
+	}
+);
 </script>
 
 </body>

@@ -2,50 +2,47 @@
 
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 	<script src="../../build/aui/aui.js" type="text/javascript"></script>
 
-	<link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
-	<link rel="stylesheet" href="../../build/aui-skin-deprecated/aui-skin-deprecated-min.css" type="text/css" media="screen" />
+	<link href="../../build/aui-css/css/bootstrap.css" rel="stylesheet" />
+	<link href="../../build/aui-skin-deprecated/aui-skin-deprecated-min.css" media="screen" rel="stylesheet" type="text/css" />
 
-
-	<style type="text/css">
-
+	<style media="screen" type="text/css">
 	.query {
-		color: #444444;
+		color: #444;
 		font-size: 20px;
 		padding: 5px;
 		width: 443px;
 	}
 
 	.list {
+		border: 2px solid #CCC;
 		margin: 30px;
 		width: 500px;
-		border: 2px solid #ccc;
 	}
 
 	.entry, .entry-query {
-		margin: 10px;
-		border: 1px solid #ccc;
-		padding: 10px;
+		border: 1px solid #CCC;
 		font-size: 14px;
+		margin: 10px;
+		padding: 10px;
 	}
 
 	.matched {
-		background-color: #fec;
+		background-color: #FEC;
 		color: #333;
 	}
 
 	.matched b {
-		background-color: #fc0;
+		background-color: #FC0;
 		color: #222;
 	}
 
 	.excluded {
-		background-color: #eee;
+		background-color: #EEE;
 		color: #888;
 	}
-
 	</style>
 </head>
 
@@ -102,81 +99,90 @@
 </div>
 
 <script type="text/javascript">
+YUI(
+	{
+		filter: 'raw'
+	}
+).ready(
+	'aui-live-search-deprecated',
+	'aui-tooltip-deprecated',
+	function(A) {
+		var liveSearch = new A.LiveSearch(
+			{
+				input: '#query1',
+				nodes: '#search1 .entry',
 
-YUI({
-	filter: 'raw'
-}).ready('aui-live-search-deprecated', 'aui-tooltip-deprecated', function(A) {
+				after: {
+					search: function(event) {
+						// console.log('after search');
+						// console.log(event);
 
-	var liveSearch = new A.LiveSearch({
-		input: '#query1',
-		nodes: '#search1 .entry',
+						if (!this.get('searchValue')) {
+							this.get('nodes').removeClass('matched');
+						}
+					}
+				},
 
-		data: function(node) {
-			return node.html();
-		},
+				data: function(node) {
+					return node.html();
+				},
 
-		show: function(node) {
-			if (!node.hasClass('excluded')) {
-				var data = node._OLD_DATA;
+				hide: function(node) {
+					if (!node.hasClass('excluded')) {
+						node.hide();
+						node.setAttribute('nodeStatus', 'hide');
+						node.removeClass('matched');
+					}
+				},
 
-				if (!data) {
-					data = node.html();
-					node._OLD_DATA = data;
+				on: {
+					search: function(event) {
+						// console.log('before search');
+						// console.log(event);
+					}
+				},
+
+				show: function(node) {
+					if (!node.hasClass('excluded')) {
+						var data = node._OLD_DATA;
+
+						if (!data) {
+							data = node.html();
+
+							node._OLD_DATA = data;
+						}
+
+						var search = this.get('searchValue');
+
+						if (search) {
+							data = data.replace(new RegExp(search, 'gi'), '<b>' + search + '</b>');
+						}
+
+						node.html(data);
+						node.show();
+						node.setAttribute('nodeStatus', 'show');
+						node.addClass('matched');
+					}
+
+					return node;
 				}
-
-				var search = this.get('searchValue');
-
-				if (search) {
-					data = data.replace(new RegExp(search, 'gi'), '<b>' + search + '</b>');
-				}
-
-				node.html(data);
-
-				node.show();
-				node.setAttribute('nodeStatus', 'show');
-				node.addClass('matched');
 			}
+		);
 
-			return node;
-		},
+		// extras
 
-		hide: function(node) {
-			if (!node.hasClass('excluded')) {
-				node.hide();
-				node.setAttribute('nodeStatus', 'hide');
-				node.removeClass('matched');
+		var tooltip = new A.Tooltip(
+			{
+				align: {
+					node: '.query',
+					points: [ 'bc', 'tc' ]
+				},
+				bodyContent: 'Type your search below',
+				trigger: '.query'
 			}
-		},
-
-		on: {
-			search: function(event) {
-				// console.log('before search');
-				// console.log(event);
-			}
-		},
-
-		after: {
-			search: function(event) {
-				// console.log('after search');
-				// console.log(event);
-
-				if (!this.get('searchValue')) {
-					this.get('nodes').removeClass('matched');
-				}
-			}
-		}
-	});
-
-	// extras
-
-	var tooltip = new A.Tooltip({
-		bodyContent: 'Type your search below',
-		trigger: '.query',
-		align: { node: '.query', points: [ 'bc', 'tc' ] }
-	})
-	.render();
-});
-
+		).render();
+	}
+);
 </script>
 
 </body>
