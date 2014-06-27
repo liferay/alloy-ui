@@ -24,6 +24,7 @@
             "widget-stdmod",
             "aui-event",
             "aui-image-viewer-base",
+            "aui-image-viewer-multiple",
             "aui-image-viewer-slideshow",
             "aui-node-base",
             "aui-widget-cssclass",
@@ -32,21 +33,11 @@
         "skinnable": true
     },
 
-    "aui-image-viewer-gallery": {
-    	"requires": [
-    		"aui-image-viewer",
-    		"aui-pagination",
-    		"aui-toolbar"
-    	],
-    	"skinnable": true
-    },
-
     "aui-image-viewer-media": {
         "requires": [
             "plugin",
-            "aui-image-viewer",
-            "aui-pagination",
-            "aui-toolbar"
+            "aui-component",
+            "aui-image-viewer"
         ]
     },
 

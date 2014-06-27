@@ -13,12 +13,6 @@
             ]
         },
 
-        "aui-image-viewer-gallery": {
-            "jsfiles": [
-                "js/aui-image-viewer-gallery.js"
-            ]
-        },
-
         "aui-image-viewer-media": {
             "jsfiles": [
                 "js/aui-image-viewer-media.js"

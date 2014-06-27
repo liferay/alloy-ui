@@ -25,33 +25,14 @@ YUI.add('aui-image-viewer-media-tests', function(Y) {
             }, config || {})).render();
         },
 
-        'should only render media content after load': function() {
-            var media,
-                mediaContainer;
-
-            this._createImageViewer();
-
-            media = this._imageViewer._getCurrentImage();
-            Y.Assert.isNull(media, 'The media should not be rendered yet');
-
-            this._imageViewer.getLink('0').simulate('click');
-
-            media = this._imageViewer._getCurrentImage();
-            mediaContainer = media.get('parentNode');
-
-            Y.Assert.isNotNull(media, 'The media should have been rendered on load');
-            Y.Assert.isFalse(
-                mediaContainer.hasClass('image-viewer-base-loading'),
-                'Media should not have loading indicator'
-            );
-        },
-
         'should still work with images': function() {
             var instance = this,
                 image,
                 imageContainer;
 
-            this._createImageViewer();
+            this._createImageViewer({
+                thumbnailsConfig: false
+            });
 
             this._imageViewer.getLink('1').simulate('click');
 
@@ -72,6 +53,27 @@ YUI.add('aui-image-viewer-media-tests', function(Y) {
                 });
             });
             this.wait();
+        },
+
+        'should only render media content after load': function() {
+            var media,
+                mediaContainer;
+
+            this._createImageViewer();
+
+            media = this._imageViewer._getCurrentImage();
+            Y.Assert.isNull(media, 'The media should not be rendered yet');
+
+            this._imageViewer.getLink('0').simulate('click');
+
+            media = this._imageViewer._getCurrentImage();
+            mediaContainer = media.get('parentNode');
+
+            Y.Assert.isNotNull(media, 'The media should have been rendered on load');
+            Y.Assert.isFalse(
+                mediaContainer.hasClass('image-viewer-base-loading'),
+                'Media should not have loading indicator'
+            );
         },
 
         'should not render same media more than once': function() {

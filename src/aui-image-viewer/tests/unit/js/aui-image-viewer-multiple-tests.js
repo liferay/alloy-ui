@@ -5,6 +5,14 @@ YUI.add('aui-image-viewer-multiple-tests', function(Y) {
     suite.add(new Y.Test.Case({
         name: 'Image Viewer Multiple Tests',
 
+        _should: {
+            // Ignore the following tests in touch enabled browsers. They will
+            // be tested properly in the tests for the aui-image-viewer-multiple-swipe module.
+            ignore: {
+                'should scroll to show the current image when necessary': Y.UA.touchEnabled
+            }
+        },
+
         tearDown: function() {
             if (this._imageViewer) {
                 this._imageViewer.destroy();
@@ -81,6 +89,7 @@ YUI.add('aui-image-viewer-multiple-tests', function(Y) {
             );
 
             image = this._imageViewer._getImageContainerAtIndex(2);
+            image.simulate('mousedown');
             image.simulate('click');
 
             Y.Assert.areEqual(

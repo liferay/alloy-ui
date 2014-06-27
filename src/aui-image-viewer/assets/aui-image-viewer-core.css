@@ -27,7 +27,7 @@
 }
 
 .image-viewer .yui3-widget-ft {
-    padding: 5px;
+    padding: 5px 0;
 }
 
 .image-viewer-caption, .image-viewer-info {
@@ -79,6 +79,33 @@
 
 .image-viewer .image-viewer-footer-buttons .glyphicon:hover {
     color: #fff;
+}
+
+.image-viewer .image-viewer-thumbnails {
+    height: 70px;
+}
+
+.image-viewer .image-viewer-thumbnails .image-viewer-multiple .image-viewer-base-image-container,
+.image-viewer .image-viewer-thumbnails .image-viewer-multiple .image-viewer-base-image {
+    height: 56px;
+    padding: 0;
+    width: 56px;
+}
+
+.image-viewer .image-viewer-thumbnails .image-viewer-multiple {
+    padding: 10px 0;
+}
+
+.image-viewer .image-viewer-thumbnails .image-viewer-multiple .image-viewer-base-loading-icon {
+    line-height: 50px;
+}
+
+.image-viewer .image-viewer-thumbnails .image-viewer-multiple .image-viewer-base-image-container:hover {
+    border: 3px solid #777;
+}
+
+.image-viewer .image-viewer-thumbnails .image-viewer-multiple .image-viewer-base-image-container.image-viewer-base-current-image {
+    border: 3px solid #ccc;
 }
 
 .widget-swipe.image-viewer .yui3-widget-bd {

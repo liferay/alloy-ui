@@ -12,7 +12,8 @@ var CSS_CAPTION = A.getClassName('image', 'viewer', 'caption'),
     CSS_FOOTER_BUTTONS = A.getClassName('image', 'viewer', 'footer', 'buttons'),
     CSS_FOOTER_CONTENT = A.getClassName('image', 'viewer', 'footer', 'content'),
     CSS_INFO = A.getClassName('image', 'viewer', 'info'),
-    CSS_MASK = A.getClassName('image', 'viewer', 'mask');
+    CSS_MASK = A.getClassName('image', 'viewer', 'mask'),
+    CSS_THUMBNAILS = A.getClassName('image', 'viewer', 'thumbnails');
 
 /**
  * A class for `A.ImageViewer`, providing:
@@ -58,6 +59,7 @@ A.ImageViewer = A.Base.create(
         TPL_FOOTER_CONTENT: '<div class="' + CSS_FOOTER_CONTENT + '"></div>',
         TPL_INFO: '<h5 class="' + CSS_INFO + '"></h5>',
         TPL_PLAYER: '<span><span class="glyphicon glyphicon-play"></span></span>',
+        TPL_THUMBNAILS: '<div class="' + CSS_THUMBNAILS + '"></div>',
 
         /**
          * Create the DOM structure for the `A.ImageViewer`. Lifecycle.
@@ -83,11 +85,16 @@ A.ImageViewer = A.Base.create(
             this._attachLinkEvent();
 
             this._eventHandles.push(
-                this.after('linksChange', this._afterLinksChange),
+                this.after({
+                    linksChange: this._afterLinksChange,
+                    thumbnailsConfigChange: this._afterThumbnailsConfigChange
+                }),
                 this._closeEl.on('click', A.bind(this.hide, this)),
                 A.getDoc().on('keydown', A.bind(this._onKeydown, this)),
                 A.after(this._afterFillHeight, this, 'fillHeight')
             );
+
+            this._bindThumbnails();
         },
 
         /**
@@ -104,6 +111,10 @@ A.ImageViewer = A.Base.create(
             this._closeEl.remove(true);
 
             this.get('maskNode').removeClass(CSS_MASK);
+
+            if (this._thumbnailsWidget) {
+                this._thumbnailsWidget.destroy();
+            }
         },
 
         /**
@@ -164,6 +175,41 @@ A.ImageViewer = A.Base.create(
         },
 
         /**
+         * Fired after the `thumbnailsConfig` attribute changes.
+         *
+         * @method _afterThumbnailsConfigChange
+         * @param {EventFacade} event
+         * @protected
+         */
+        _afterThumbnailsConfigChange: function(event) {
+            if (event.newVal === false) {
+                this._thumbnailsEl.hide();
+            }
+            else if (event.prevVal === false) {
+                if (this._thumbnailsWidget) {
+                    this._thumbnailsEl.show();
+                }
+                else {
+                    this._renderThumbnailsWidget();
+                    this._bindThumbnails();
+                }
+            }
+            else {
+                this._thumbnailsWidget.setAttrs(this.get('thumbnailsConfig'));
+            }
+        },
+
+        /**
+         * Fired after the current thumbnail index changes.
+         *
+         * @method _afterThumbnailsIndexChange
+         * @protected
+         */
+        _afterThumbnailsIndexChange: function() {
+            this.set('currentIndex', this._thumbnailsWidget.get('currentIndex'));
+        },
+
+        /**
          * Shows the `A.ImageViewer` UI.
          *
          * @method _afterUISetVisible
@@ -174,6 +220,10 @@ A.ImageViewer = A.Base.create(
 
             if (this.get('visible')) {
                 this._fillHeight();
+
+                if (this._thumbnailsWidget) {
+                    this._thumbnailsWidget.updateDimensions();
+                }
 
                 this._closeEl.show();
                 if (this.get('modal')) {
@@ -215,6 +265,20 @@ A.ImageViewer = A.Base.create(
         },
 
         /**
+         * Binds the events related to the thumbnails.
+         *
+         * @method _bindThumbnails
+         * @protected
+         */
+        _bindThumbnails: function() {
+            if (this._thumbnailsWidget) {
+                this._eventHandles.push(
+                    this._thumbnailsWidget.after('currentIndexChange', A.bind(this._afterThumbnailsIndexChange, this))
+                );
+            }
+        },
+
+        /**
          * Detaches the click event for the image links, if one was attached
          * earlier.
          *
@@ -240,6 +304,55 @@ A.ImageViewer = A.Base.create(
                 current: this.get('currentIndex') + 1,
                 total: this.get('links').size()
             });
+        },
+
+        /**
+         * Gets `thumbnailsConfig` attribute.
+         *
+         * @method _getThumbnailsConfig
+         * @param {Boolean | Object} val
+         * @protected
+         */
+        _getThumbnailsConfig: function(val) {
+            if (val === false) {
+                return val;
+            }
+
+            return A.merge({
+                height: 70,
+                showControls: false,
+                sources: this._getThumbnailImageSources(),
+                width: '100%'
+            }, val);
+        },
+
+        /**
+         * Returns an array with the sources of the images to be used as the
+         * viewer's thumbnails. They should be the images included inside the
+         * elements given as the `links` attributes or, if there isn't one,
+         * the respective item in the `sources` attribute.
+         *
+         * @method _getThumbnailImageSources
+         * @protected
+         */
+        _getThumbnailImageSources: function() {
+            var image,
+                index,
+                links = this.get('links'),
+                sources = this.get('sources'),
+                thumbnailSources = [];
+
+            for (index = 0; index < links.size(); index++) {
+                image = links.item(index).one('img');
+                if (image) {
+                    thumbnailSources.push(image.getAttribute('src'));
+                }
+                else {
+                    thumbnailSources.push(sources[index]);
+                }
+            }
+
+            return thumbnailSources;
         },
 
         /**
@@ -319,6 +432,8 @@ A.ImageViewer = A.Base.create(
         _renderFooter: function() {
             var container = A.Node.create(this.TPL_FOOTER_CONTENT);
 
+            this.setStdModContent('footer', container);
+
             this._captionEl = A.Node.create(this.TPL_CAPTION);
             this._captionEl.selectable();
             container.append(this._captionEl);
@@ -329,7 +444,9 @@ A.ImageViewer = A.Base.create(
 
             container.append(A.Node.create(this.TPL_FOOTER_BUTTONS));
 
-            this.setStdModContent('footer', container);
+            this._thumbnailsEl = A.Node.create(this.TPL_THUMBNAILS);
+            container.append(this._thumbnailsEl);
+            this._renderThumbnailsWidget();
         },
 
         /**
@@ -356,6 +473,25 @@ A.ImageViewer = A.Base.create(
             if (this.get('showPlayer') && !this._player) {
                 this._player = A.Node.create(this.TPL_PLAYER);
                 this.get('contentBox').one('.' + CSS_FOOTER_BUTTONS).append(this._player);
+            }
+        },
+
+        /**
+         * Renders the thumbnails widget.
+         *
+         * @method _renderThumbnailsWidget
+         * @protected
+         */
+        _renderThumbnailsWidget: function() {
+            var thumbnailsConfig = this.get('thumbnailsConfig');
+
+            if (thumbnailsConfig === false) {
+                this._thumbnailsEl.hide();
+            }
+            else {
+                this._thumbnailsEl.show();
+                this._thumbnailsWidget = new A.ImageViewerMultiple(thumbnailsConfig)
+                    .render(this._thumbnailsEl);
             }
         },
 
@@ -401,6 +537,7 @@ A.ImageViewer = A.Base.create(
 
             this._syncCaptionUI();
             this._syncInfoUI();
+            this._syncThumbnails();
         },
 
         /**
@@ -429,6 +566,18 @@ A.ImageViewer = A.Base.create(
          */
         _syncInfoUI: function() {
             this._infoEl.setHTML(this.get('infoTemplate'));
+        },
+
+        /**
+         * Updates the thumbnails node.
+         *
+         * @method _syncThumbnails
+         * @protected
+         */
+        _syncThumbnails: function() {
+            if (this._thumbnailsWidget) {
+                this._thumbnailsWidget.set('currentIndex', this.get('currentIndex'));
+            }
         }
     }, {
         /**
@@ -523,6 +672,18 @@ A.ImageViewer = A.Base.create(
              */
             modal: {
                 value: true
+            },
+
+            /**
+             * Configuration options for the thumbnails widget (ImageViewerMultiple).
+             *
+             * @attribute thumbnailsConfig
+             * @default {}
+             * @type {Boolean | Object}
+             */
+            thumbnailsConfig: {
+                getter: '_getThumbnailsConfig',
+                value: {}
             },
 
             /**

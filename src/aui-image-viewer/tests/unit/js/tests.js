@@ -277,6 +277,108 @@ YUI.add('aui-image-viewer-tests', function(Y) {
                 this._imageViewer._player.getStyle('display'),
                 'Player should not be visible'
             );
+        },
+
+        'should update thumbnail index when currentIndex changes': function() {
+            this._createImageViewer();
+
+            this._imageViewer.getLink('0').simulate('click');
+            Y.Assert.areEqual(
+                0,
+                this._imageViewer._thumbnailsWidget.get('currentIndex'),
+                'Thumbnails index should be equal to currentIndex'
+            );
+
+            this._imageViewer.set('currentIndex', 2);
+            Y.Assert.areEqual(
+                2,
+                this._imageViewer._thumbnailsWidget.get('currentIndex'),
+                'Thumbnails index should be equal to currentIndex'
+            );
+        },
+
+        'should update currentIndex when thumbnail index changes': function() {
+            this._createImageViewer({
+                visible: true
+            });
+
+            this._imageViewer._thumbnailsWidget.set('currentIndex', 2),
+            Y.Assert.areEqual(
+                2,
+                this._imageViewer.get('currentIndex'),
+                'currentIndex should be equal to thumbnails index'
+            );
+        },
+
+        'should not show thumbnails if requested': function() {
+            this._createImageViewer({
+                thumbnailsConfig: false,
+                visible: true
+            });
+
+            Y.Assert.isUndefined(
+                this._imageViewer._thumbnailsWidget,
+                'Thumbnails widget should not have been created'
+            );
+        },
+
+        'should change thumbnailsConfig dynamically': function() {
+            this._createImageViewer({
+                thumbnailsConfig: false,
+                visible: true
+            });
+
+            Y.Assert.isUndefined(
+                this._imageViewer._thumbnailsWidget,
+                'Thumbnails widget should not have been created'
+            );
+
+            this._imageViewer.set('thumbnailsConfig', {});
+            Y.Assert.areNotEqual(
+                'none',
+                this._imageViewer._thumbnailsEl.getStyle('display'),
+                'Thumbnails widget should have become visible'
+            );
+
+            this._imageViewer.set('thumbnailsConfig', false);
+            Y.Assert.areEqual(
+                'none',
+                this._imageViewer._thumbnailsEl.getStyle('display'),
+                'Thumbnails widget should have been hidden'
+            );
+
+            this._imageViewer.set('thumbnailsConfig', {});
+            Y.Assert.areNotEqual(
+                'none',
+                this._imageViewer._thumbnailsEl.getStyle('display'),
+                'Thumbnails widget should have become visible again'
+            );
+
+            this._imageViewer.set('thumbnailsConfig', {
+                height: 100
+            });
+            Y.Assert.areNotEqual(
+                'none',
+                this._imageViewer._thumbnailsEl.getStyle('display'),
+                'Thumbnails widget should still be visible'
+            );
+            Y.Assert.areEqual(
+                100,
+                this._imageViewer._thumbnailsWidget.get('height'),
+                'Thumbnails widget should have new height value'
+            );
+        },
+
+        'should use link images for thumbnail sources': function() {
+            this._createImageViewer({
+                visible: true
+            });
+
+            Y.Assert.areEqual(
+                'assets/lfr-soccer-6.jpg',
+                this._imageViewer._thumbnailsWidget.get('sources')[2],
+                'Sources should contain the images from the links'
+            );
         }
     }));
 
