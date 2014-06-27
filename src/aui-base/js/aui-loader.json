@@ -550,6 +550,7 @@
     "aui-dialog-iframe-deprecated": {
         "requires": [
             "plugin",
+            "array-invoke",
             "aui-base-deprecated",
             "aui-loading-mask-deprecated"
         ],
