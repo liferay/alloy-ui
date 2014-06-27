@@ -133,6 +133,8 @@ var DialogIframePlugin = A.Component.create({
         destructor: function() {
             var instance = this;
 
+            instance._bodyNode.loadingmask.destroy();
+
             instance._detachEventHandles();
 
             instance._host.set(BODY_CONTENT, instance._previousBodyContent);

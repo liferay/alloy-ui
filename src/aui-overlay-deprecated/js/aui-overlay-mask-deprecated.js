@@ -196,11 +196,13 @@ var OverlayMask = A.Component.create({
 
             OverlayMask.superclass.bindUI.apply(this, arguments);
 
-            instance.after('targetChange', instance._afterTargetChange);
-            instance.after('visibleChange', instance._afterVisibleChange);
+            instance._eventHandles = [
+                instance.after('targetChange', instance._afterTargetChange),
+                instance.after('visibleChange', instance._afterVisibleChange),
 
-            // window:resize YUI normalized event is not working, bug?
-            A.on('windowresize', A.bind(instance.refreshMask, instance));
+                // window:resize YUI normalized event is not working, bug?
+                A.on('windowresize', A.bind(instance.refreshMask, instance))
+            ];
         },
 
         /**
@@ -213,6 +215,12 @@ var OverlayMask = A.Component.create({
             var instance = this;
 
             instance.refreshMask();
+        },
+
+        destructor: function() {
+            var instance = this;
+
+            (new A.EventHandle(instance._eventHandles)).detach();
         },
 
         /**

@@ -189,6 +189,14 @@ var LoadingMask = A.Component.create({
             instance._bindOverlayMaskUI();
         },
 
+        destructor: function() {
+            var instance = this;
+
+            instance.overlayMask.destroy();
+
+            instance._visibleChangeHandle.detach();
+        },
+
         /**
          * Bind events to the
          * <a href="LoadingMask.html#property_overlayMask">overlayMask</a>.
@@ -199,7 +207,7 @@ var LoadingMask = A.Component.create({
         _bindOverlayMaskUI: function() {
             var instance = this;
 
-            instance.overlayMask.after('visibleChange', instance._afterVisibleChange, instance);
+            instance._visibleChangeHandle = instance.overlayMask.after('visibleChange', instance._afterVisibleChange, instance);
         },
 
         /**
