@@ -16,7 +16,7 @@
 YUI({
     coverage: ['aui-dialog-iframe-deprecated'],
     filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-}).use('test-console', 'test', 'module-tests', function(Y) {
+}).use('aui-dialog-iframe-tests', 'test-console', 'test', 'module-tests', function(Y) {
 
     (new Y.Test.Console()).render('#logger');
 
