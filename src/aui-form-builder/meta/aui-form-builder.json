@@ -11,7 +11,8 @@
             "aui-form-builder-field-radio",
             "aui-form-builder-field-select",
             "aui-form-builder-field-text",
-            "aui-form-builder-field-textarea"
+            "aui-form-builder-field-textarea",
+            "aui-tooltip-base"
         ],
         "skinnable": true
     },

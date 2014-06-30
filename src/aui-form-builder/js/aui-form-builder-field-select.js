@@ -112,10 +112,10 @@ var FormBuilderSelectField = A.Component.create({
 
             return L.sub(
                 instance.get('template'), {
-                    id: instance.get('id'),
-                    label: instance.get('label'),
-                    name: instance.get('name'),
-                    value: instance.get('predefinedValue')
+                    id: A.Escape.html(instance.get('id')),
+                    label: A.Escape.html(instance.get('label')),
+                    name: A.Escape.html(instance.get('name')),
+                    value: A.Escape.html(instance.get('predefinedValue'))
                 }
             );
         },

@@ -28,8 +28,41 @@
         "skinnable": true
     },
 
-    "aui-datatable-edit": {
+    "aui-datatable-base-cell-editor": {
         "requires": [
+            "datatable-base",
+            "overlay"
+        ],
+        "skinnable": true
+    },
+
+    "aui-datatable-base-options-cell-editor": {
+        "requires": [
+            "aui-datatable-base-cell-editor",
+            "escape"
+        ]
+    },
+
+    "aui-datatable-checkbox-cell-editor": {
+        "requires": [
+            "aui-datatable-base-options-cell-editor"
+        ]
+    },
+
+    "aui-datatable-date-cell-editor": {
+        "requires": [
+            "aui-datatable-base-options-cell-editor"
+        ]
+    },
+
+    "aui-datatable-dropdown-cell-editor": {
+        "requires": [
+            "aui-datatable-base-options-cell-editor"
+        ]
+    },
+
+    "aui-datatable-edit": {
+        "use": [
             "datatable-base",
             "calendar",
             "overlay",
@@ -37,9 +70,41 @@
             "aui-datatype",
             "aui-toolbar",
             "aui-form-validator",
-            "aui-datatable-core"
-        ],
-        "skinnable": true
+            "aui-datatable-base-cell-editor",
+            "aui-datatable-base-options-cell-editor",
+            "aui-datatable-cell-editor-support",
+            "aui-datatable-core",
+            "aui-datatable-checkbox-cell-editor",
+            "aui-datatable-date-cell-editor",
+            "aui-datatable-dropdown-cell-editor",
+            "aui-datatable-radio-cell-editor",
+            "aui-datatable-text-cell-editor",
+            "aui-datatable-text-area-cell-editor"
+        ]
+    },
+
+    "aui-datatable-radio-cell-editor": {
+        "requires": [
+            "aui-datatable-base-options-cell-editor"
+        ]
+    },
+
+    "aui-datatable-text-cell-editor": {
+        "requires": [
+            "aui-datatable-base-options-cell-editor"
+        ]
+    },
+
+    "aui-datatable-text-area-cell-editor": {
+        "requires": [
+            "aui-datatable-base-options-cell-editor"
+        ]
+    },
+
+    "aui-datatable-cell-editor-support": {
+        "requires": [
+            "datatable-base"
+        ]
     },
 
     "aui-datatable-highlight": {

@@ -303,75 +303,66 @@ YUI.add('aui-tree-tests', function(Y) {
         // Tests: AUI-1141
         'TreeNodeView created from HTML Markup should display glyphicon-minus when expanded': function() {
             var test = this;
+            var treeViewComponent = Y.one('#createFromHTMLMarkupTest').clone().appendTo(document.body);
 
-            var treeViewComponent = Y.one('#createFromHTMLMarkupTest'),
-                allHitareas;
-
-            new Y.TreeView({
+            var treeView = new Y.TreeView({
                 boundingBox: treeViewComponent,
-                contentBox: Y.one('#createFromHTMLMarkupTest > ul'),
+                contentBox: treeViewComponent.one('> ul'),
                 type: 'normal'
             }).render();
 
-            allHitareas = treeViewComponent.all('.tree-container .tree-hitarea');
+            var children = treeView.getChildren(true);
+            var lazyRenderTimeout = children.length * 50;
 
             setTimeout(function() {
                 test.resume(function() {
-                    Y.each(
-                        allHitareas,
-                        function(hitarea) {
-                            Y.Assert.isTrue(
-                                hitarea.hasClass('glyphicon-minus'),
-                                hitarea + ' does not have class glyphicon-minus.');
+                    Y.each(children, function(node) {
+                        if (node.get('rendered') && !node.get('leaf')) {
+                            var hitArea = node.get('hitAreaEl');
+
+                            hitArea.simulate('click');
+
+                            Y.Assert.isTrue(hitArea.hasClass('glyphicon-minus'), hitArea +
+                                ' does not have class glyphicon-minus');
                         }
-                    );
+                    }, true);
                 });
-            }, 800);
 
-            setTimeout(function() {
-                treeViewComponent.one('.tree-root-container .tree-hitarea').simulate('click');
+                treeViewComponent.remove();
+            }, lazyRenderTimeout);
 
-                Y.each(
-                    allHitareas,
-                    function(hitarea) {
-                        hitarea.simulate('click');
-                    }
-                );
-            });
-
-            test.wait(1000);
+            test.wait(lazyRenderTimeout);
         },
 
         'TreeNodeView created from HTML Markup should display glyphicon-plus when collapsed': function() {
             var test = this;
-            var treeViewComponent = Y.one('#createFromHTMLMarkupTest');
+            var treeViewComponent = Y.one('#createFromHTMLMarkupTest').clone().appendTo(document.body);
 
-            var allTreeHitareas = treeViewComponent.all('.tree-container .tree-hitarea');
-            var treeHitareasArray = [];
+            var treeView = new Y.TreeView({
+                boundingBox: treeViewComponent,
+                contentBox: treeViewComponent.one('> ul'),
+                type: 'normal'
+            }).render();
 
-            Y.each(
-                allTreeHitareas,
-                function(hitarea) {
-                    treeHitareasArray.push(hitarea);
-                }
-            );
+            var children = treeView.getChildren(true);
+            var lazyRenderTimeout = children.length * 50;
 
             setTimeout(function() {
                 test.resume(function() {
-                    for (var i = treeHitareasArray.length; i--;) {
-                        Y.Assert.isTrue(treeHitareasArray[i].hasClass('glyphicon-plus'),
-                            treeHitareasArray[i] + ' does not have class glyphicon-plus');
-                    }
+                    Y.each(children, function(node) {
+                        if (node.get('rendered') && !node.get('leaf')) {
+                            var hitArea = node.get('hitAreaEl');
+
+                            Y.Assert.isTrue(hitArea.hasClass('glyphicon-plus'), hitArea +
+                                ' does not have class glyphicon-plus');
+                        }
+                    }, true);
                 });
-            }, 800);
 
-            setTimeout(function() {
-                for (var i = treeHitareasArray.length; i--;) {
-                    treeHitareasArray[i].simulate('click');
-                }
-            });
+                treeViewComponent.remove();
+            }, lazyRenderTimeout);
 
-            test.wait(1000);
+            test.wait(lazyRenderTimeout);
         },
 
         // Tests: AUI-1156

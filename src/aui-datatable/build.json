@@ -1,9 +1,33 @@
 {
     "name": "aui-datatable",
     "builds": {
+        "aui-datatable-base-cell-editor": {
+            "jsfiles": [
+                "js/aui-datatable-base-cell-editor.js"
+            ]
+        },
+
+        "aui-datatable-base-options-cell-editor": {
+            "jsfiles": [
+                "js/aui-datatable-base-options-cell-editor.js"
+            ]
+        },
+
         "aui-datatable-body": {
             "jsfiles": [
                 "js/aui-datatable-body.js"
+            ]
+        },
+
+        "aui-datatable-cell-editor-support": {
+            "jsfiles": [
+                "js/aui-datatable-cell-editor-support.js"
+            ]
+        },
+
+        "aui-datatable-checkbox-cell-editor": {
+            "jsfiles": [
+                "js/aui-datatable-checkbox-cell-editor.js"
             ]
         },
 
@@ -13,9 +37,15 @@
             ]
         },
 
-        "aui-datatable-edit": {
+        "aui-datatable-date-cell-editor": {
             "jsfiles": [
-                "js/aui-datatable-edit.js"
+                "js/aui-datatable-date-cell-editor.js"
+            ]
+        },
+
+        "aui-datatable-dropdown-cell-editor": {
+            "jsfiles": [
+                "js/aui-datatable-dropdown-cell-editor.js"
             ]
         },
 
@@ -25,9 +55,27 @@
             ]
         },
 
+        "aui-datatable-radio-cell-editor": {
+            "jsfiles": [
+                "js/aui-datatable-radio-cell-editor.js"
+            ]
+        },
+
         "aui-datatable-selection": {
             "jsfiles": [
                 "js/aui-datatable-selection.js"
+            ]
+        },
+
+        "aui-datatable-text-cell-editor": {
+            "jsfiles": [
+                "js/aui-datatable-text-cell-editor.js"
+            ]
+        },
+
+        "aui-datatable-text-area-cell-editor": {
+            "jsfiles": [
+                "js/aui-datatable-text-area-cell-editor.js"
             ]
         },
 

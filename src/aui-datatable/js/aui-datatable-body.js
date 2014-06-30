@@ -10,7 +10,7 @@ var getCN = A.getClassName,
 /**
  * An extension for A.DataTable.BodyView that adds correct class to Table.
  *
- * @class DataTableBody
+ * @class A.DataTableBody
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
@@ -30,7 +30,7 @@ DataTableBody.NAME = 'dataTableBody';
 DataTableBody.prototype = {
 
     /**
-     * Construction logic executed during DataTableBody instantiation.
+     * Construction logic executed during A.DataTableBody instantiation.
      * Lifecycle.
      *
      * @method initializer

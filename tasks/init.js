@@ -1,5 +1,7 @@
+var alloy = require('../.alloy');
 var gulp = require('gulp');
 var path = require('path');
+var replace = require('gulp-replace');
 var run = require('run-sequence');
 var spawn = require('spawn-local-bin');
 
@@ -22,5 +24,6 @@ gulp.task('init-bower', function(callback) {
 
 gulp.task('init-yui', function() {
     return gulp.src('bower_components/yui3/build/**', { cwd: ROOT })
+        .pipe(replace('@VERSION@', alloy.yuiversion))
         .pipe(gulp.dest('build', { cwd: ROOT }));
 });

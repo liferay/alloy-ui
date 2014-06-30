@@ -135,7 +135,7 @@ var FormBuilderFieldsetField = A.Component.create({
 
             return L.sub(
                 instance.get('template'), {
-                    id: instance.get('id')
+                    id: A.Escape.html(instance.get('id'))
                 }
             );
         },

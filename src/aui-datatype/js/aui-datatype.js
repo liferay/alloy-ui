@@ -41,7 +41,7 @@ var L = A.Lang,
 DB.parse = function(data) {
     data = A.Lang.trim(data);
 
-    return (data === 'false') ? false : !! data;
+    return (data === 'false') ? false : !!data;
 };
 
 /**

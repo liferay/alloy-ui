@@ -71,6 +71,8 @@ var DataTableHighlight = A.Base.create(
             instance.afterHostEvent('activeCoordChange', instance._afterActiveCoordChange);
             instance.afterHostEvent('selectionChange', instance._afterSelectionChange);
             instance.afterHostEvent('dataChange', instance._afterDataChange);
+
+            A.on('windowresize', A.bind(instance._afterWindowResize, instance));
         },
 
         /**
@@ -225,6 +227,30 @@ var DataTableHighlight = A.Base.create(
         /**
          * TODO. Wanna help? Please send a Pull Request.
          *
+         * @method _afterWindowResize
+         * @protected
+         */
+        _afterWindowResize: function() {
+            var instance = this,
+                activeBorderWidth = instance.get('activeBorderWidth'),
+                overlayActiveNode = instance.get('overlayActiveNode'),
+                overlayNode = instance.get('overlayNode'),
+                rangeBorderWidth = instance.get('rangeBorderWidth');
+
+            if (overlayActiveNode.inDoc()) {
+                instance._alignBorder(
+                    overlayActiveNode, instance.getActiveRegion(), activeBorderWidth);
+            }
+
+            if (overlayNode.inDoc()) {
+                instance._alignBorder(
+                    overlayNode, instance.getSelectionRegion(), rangeBorderWidth);
+            }
+        },
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
          * @method _alignBorder
          * @param overlayNode
          * @param region
@@ -235,7 +261,7 @@ var DataTableHighlight = A.Base.create(
             var instance = this,
                 host = instance.get('host');
 
-            host._tableNode.appendChild(overlayNode);
+            host._tableNode.ancestor().appendChild(overlayNode);
 
             if (region) {
                 var borders = overlayNode.get('children'),

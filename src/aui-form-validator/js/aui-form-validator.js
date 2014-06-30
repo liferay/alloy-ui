@@ -1020,7 +1020,7 @@ var FormValidator = A.Component.create({
                             target = nextSibling;
                         }
                         else if (A.FormValidator.isCheckable(target)) {
-                            var label = ancestor.previous('.' + label);
+                            label = ancestor.previous('.' + label);
 
                             target = label;
                         }

@@ -1,9 +1,12 @@
+.table-content {
+    position: relative;
+}
 .table-selection {
     outline: 0;
 }
 
 .table-highlight-overlay {
-    position: absolute;
+    position: relative;
     z-index: 1;
 }
 

@@ -362,8 +362,8 @@ var FormBuilderMultipleChoiceField = A.Component.create({
                     buffer.push(
                         Lang.sub(
                             instance.get('optionTemplate'), {
-                                label: item.label,
-                                value: item.value
+                                label: A.Escape.html(item.label),
+                                value: A.Escape.html(item.value)
                             }
                         )
                     );
@@ -397,7 +397,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
             optionNodes.set('selected', false);
 
             AArray.each(val, function(item) {
-                optionNodes.filter('[value="' + item + '"]').set('selected', true);
+                optionNodes.filter('[value="' + A.Escape.html(item) + '"]').set('selected', true);
             });
         }
     }

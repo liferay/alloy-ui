@@ -1,4 +1,11 @@
 /**
+ * An extesion to the Promise utility that provides the ability to cancel
+ * nested promises passing an instance of the `A.CancellablePromise.Error`.
+ *
+ * @module aui-promise
+ */
+
+/**
  * Adds a callback that will be invoked whether the Promise is fulfilled or
  * rejected. The callback receives no argument, and a new child Promise is
  * created. This is useful for ensuring that cleanup takes place after certain
@@ -36,7 +43,7 @@ A.Promise.prototype.thenCatch = function(reject) {
 /**
  * Cancellable promise.
  *
- * @class CancellablePromise
+ * @class A.CancellablePromise
  * @constructor
  * @extends {Promise}
  * @param {Function} fn A function where to insert the logic that resolves this
@@ -72,7 +79,7 @@ A.extend(CancellablePromise, A.Promise, {
     _errorCallback: null,
 
     /**
-     * Cancels the Promise by rejecting it with a `CancellablePromise.Error`. No
+     * Cancels the Promise by rejecting it with a `A.CancellablePromise.Error`. No
      * action is performed if the Promise is already resolved.
      *
      * @method cancel
@@ -227,7 +234,7 @@ A.CancellablePromise = CancellablePromise;
 /**
  * Error used as a rejection reason for canceled Promises.
  *
- * @class CancellablePromise.Error
+ * @class A.CancellablePromise.Error
  * @constructor
  * @extends {Error}
  * @param {String} opt_message An optional debugging message for describing the

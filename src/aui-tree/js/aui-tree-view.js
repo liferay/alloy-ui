@@ -225,12 +225,10 @@ var TreeView = A.Component.create({
                     ownerTree: instance
                 });
 
-                if (deepContainer) {
-                    // render node before invoke the recursion
-                    treeNode.render();
-
-                    // propagating markup recursion
-                    instance._createFromHTMLMarkup(deepContainer);
+                if (instance.get('lazyLoad')) {
+                    A.setTimeout(function() {
+                        treeNode.render();
+                    }, 50);
                 }
                 else {
                     treeNode.render();
@@ -246,6 +244,11 @@ var TreeView = A.Component.create({
 
                 // and simulate the appendChild.
                 parentInstance.appendChild(treeNode);
+
+                if (deepContainer) {
+                    // propagating markup recursion
+                    instance._createFromHTMLMarkup(deepContainer);
+                }
             });
         },
 
@@ -301,7 +304,8 @@ var TreeView = A.Component.create({
             var boundingBox = instance.get('boundingBox');
 
             // expand/collapse delegations
-            boundingBox.delegate('click', A.bind(instance._onClickNodeEl, instance), '.' + CSS_TREE_NODE_CONTENT);
+            boundingBox.delegate('click', A.bind(instance._onClickNodeEl, instance), '.' +
+                CSS_TREE_NODE_CONTENT);
             boundingBox.delegate('dblclick', A.bind(instance._onClickHitArea, instance), '.' + CSS_TREE_ICON);
             boundingBox.delegate('dblclick', A.bind(instance._onClickHitArea, instance), '.' + CSS_TREE_LABEL);
             // other delegations
@@ -417,11 +421,11 @@ var isNumber = L.isNumber,
     CSS_TREE_DRAG_STATE_INSERT_BELOW = getCN('tree', 'drag', 'state', 'insert', 'below'),
 
     HELPER_TPL = '<div class="' + CSS_TREE_DRAG_HELPER + '">' +
-        '<div class="' + [CSS_TREE_DRAG_HELPER_CONTENT, CSS_CLEARFIX].join(' ') + '">' +
-        '<span class="' + CSS_ICON + '"></span>' +
-        '<span class="' + CSS_TREE_DRAG_HELPER_LABEL + '"></span>' +
-        '</div>' +
-        '</div>';
+    '<div class="' + [CSS_TREE_DRAG_HELPER_CONTENT, CSS_CLEARFIX].join(' ') + '">' +
+    '<span class="' + CSS_ICON + '"></span>' +
+    '<span class="' + CSS_TREE_DRAG_HELPER_LABEL + '"></span>' +
+    '</div>' +
+    '</div>';
 
 /**
  * A base class for TreeViewDD, providing:
@@ -737,7 +741,7 @@ var TreeViewDD = A.Component.create({
             // cannot drop the dragged element into any of its children
             // nor above an undraggable element
             // using DOM contains method for performance reason
-            if ( !! dropTreeNode.get('draggable') && !dragNode.contains(dropNode)) {
+            if (!!dropTreeNode.get('draggable') && !dragNode.contains(dropNode)) {
                 // nArea splits the height in 3 areas top/center/bottom these
                 // areas are responsible for defining the state when the mouse
                 // is over any of them

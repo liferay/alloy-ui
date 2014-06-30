@@ -148,10 +148,10 @@ var FormBuilderRadioField = A.Component.create({
                         TPL_RADIO, {
                             checked: checked ? 'checked="checked"' : '',
                             disabled: instance.get('disabled') ? 'disabled="disabled"' : '',
-                            id: instance.get('id') + counter++,
-                            label: item.label,
-                            name: instance.get('name'),
-                            value: item.value
+                            id: A.Escape.html(instance.get('id') + counter++),
+                            label: A.Escape.html(item.label),
+                            name: A.Escape.html(instance.get('name')),
+                            value: A.Escape.html(item.value)
                         }
                     )
                 );
@@ -189,7 +189,7 @@ var FormBuilderRadioField = A.Component.create({
 
             optionNodes.set('checked', false);
 
-            optionNodes.all('input[value="' + val + '"]').set('checked', true);
+            optionNodes.all('input[value="' + A.Escape.html(val) + '"]').set('checked', true);
         },
 
         /**
