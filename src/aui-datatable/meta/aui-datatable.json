@@ -21,6 +21,7 @@
         "requires": [
             "datatable-base",
             "calendar",
+            "escape",
             "overlay",
             "sortable",
             "aui-datatype",
