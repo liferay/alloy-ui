@@ -10,6 +10,7 @@ var Lang = A.Lang,
     isArray = Lang.isArray,
 
     AArray = A.Array,
+    AEscape = A.Escape,
 
     ACCEPT_CHILDREN = 'acceptChildren',
     EDITOR = 'editor',
@@ -379,8 +380,8 @@ var FormBuilderMultipleChoiceField = A.Component.create({
                     buffer.push(
                         Lang.sub(
                             instance.get(OPTION_TEMPLATE), {
-                                label: item.label,
-                                value: item.value
+                                label: AEscape.html(item.label),
+                                value: AEscape.html(item.value)
                             }
                         )
                     );
@@ -414,7 +415,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
             optionNodes.set(SELECTED, false);
 
             AArray.each(val, function(item) {
-                optionNodes.filter('[value="' + item + '"]').set(SELECTED, true);
+                optionNodes.filter('[value="' + AEscape.html(item) + '"]').set(SELECTED, true);
             });
         }
     }

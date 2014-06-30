@@ -7,6 +7,8 @@
 
 var L = A.Lang,
 
+    AEscape = A.Escape,
+
     FIELD = 'field',
     FORM_BUILDER_FIELD = 'form-builder-field',
     FORM_BUILDER_TEXT_FIELD = 'form-builder-text-field',
@@ -123,11 +125,11 @@ var FormBuilderTextField = A.Component.create({
 
             return L.sub(
                 instance.get(TEMPLATE), {
-                    id: instance.get(ID),
-                    label: instance.get(LABEL),
-                    name: instance.get(NAME),
-                    value: instance.get(PREDEFINED_VALUE),
-                    width: instance.get(WIDTH)
+                    id: AEscape.html(instance.get(ID)),
+                    label: AEscape.html(instance.get(LABEL)),
+                    name: AEscape.html(instance.get(NAME)),
+                    value: AEscape.html(instance.get(PREDEFINED_VALUE)),
+                    width: AEscape.html(instance.get(WIDTH))
                 }
             );
         },

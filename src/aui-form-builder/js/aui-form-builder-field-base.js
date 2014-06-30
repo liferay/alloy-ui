@@ -471,8 +471,8 @@ var FormBuilderField = A.Component.create({
                 return A.Node.create(
                     L.sub(
                         TPL_LABEL, {
-                            id: instance.get(ID),
-                            label: instance.get(LABEL)
+                            id: A.Escape.html(instance.get(ID)),
+                            label: A.Escape.html(instance.get(LABEL))
                         }
                     )
                 );

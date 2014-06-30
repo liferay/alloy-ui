@@ -7,6 +7,8 @@
 
 var L = A.Lang,
 
+    AEscape = A.Escape,
+
     FORM_BUILDER_FIELD = 'form-builder-field',
     FORM_BUILDER_SELECT_FIELD = 'form-builder-select-field',
     ID = 'id',
@@ -122,10 +124,10 @@ var FormBuilderSelectField = A.Component.create({
 
             return L.sub(
                 instance.get(TEMPLATE), {
-                    id: instance.get(ID),
-                    label: instance.get(LABEL),
-                    name: instance.get(NAME),
-                    value: instance.get(PREDEFINED_VALUE)
+                    id: AEscape.html(instance.get(ID)),
+                    label: AEscape.html(instance.get(LABEL)),
+                    name: AEscape.html(instance.get(NAME)),
+                    value: AEscape.html(instance.get(PREDEFINED_VALUE))
                 }
             );
         },

@@ -7,6 +7,8 @@
 
 var L = A.Lang,
 
+    AEscape = A.Escape,
+
     toInitialCap = A.cached(
         function(str) {
             return str.substring(0, 1).toUpperCase() + str.substring(1);
@@ -168,11 +170,11 @@ var FormBuilderButtonField = A.Component.create({
 
             return L.sub(
                 instance.get(TEMPLATE), {
-                    id: instance.get(ID),
-                    label: instance.get(LABEL),
-                    name: instance.get(NAME),
-                    type: instance.get(BUTTON_TYPE),
-                    value: instance.get(PREDEFINED_VALUE)
+                    id: AEscape.html(instance.get(ID)),
+                    label: AEscape.html(instance.get(LABEL)),
+                    name: AEscape.html(instance.get(NAME)),
+                    type: AEscape.html(instance.get(BUTTON_TYPE)),
+                    value: AEscape.html(instance.get(PREDEFINED_VALUE))
                 }
             );
         },
@@ -228,7 +230,7 @@ var FormBuilderButtonField = A.Component.create({
             var instance = this,
                 templateNode = instance.get(TEMPLATE_NODE);
 
-            templateNode.setContent(val);
+            templateNode.setContent(AEscape.html(val));
         }
 
     }
