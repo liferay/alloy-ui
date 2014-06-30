@@ -304,6 +304,7 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "datatable-base",
             "calendar",
+            "escape",
             "overlay",
             "sortable",
             "aui-datatype",
@@ -1415,4 +1416,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '558fb4cc2205a9dffcee7fee0949f05c';
+YUI.Env[Y.version].md5 = 'd8228daa6337db475d4d3666a8d142fd';
