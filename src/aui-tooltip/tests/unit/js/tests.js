@@ -235,6 +235,26 @@ YUI.add('module-tests', function(Y) {
             });
 
             test.wait(1000);
+        },
+
+        'should create unescaped tooltip': function() {
+            var bodyContent,
+                textContent = 'foo',
+                tooltip;
+
+            bodyContent = '<b>' + textContent + '</b>';
+
+            tooltip = new Y.Tooltip({
+                trigger: '#triggerHtml',
+                bodyContent: '<b>foo</b>',
+                html: true
+            }).render();
+
+            Y.Assert.areEqual(
+                textContent,
+                tooltip.get('contentBox').get('text'),
+                'Body content text should be with no HTML markup'
+            );
         }
     }));
 

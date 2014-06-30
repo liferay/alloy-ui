@@ -23,6 +23,7 @@
         <button class="btn btn-large btn-primary" id="triggerTop" title="One fine body…">Mouseover to show a top tooltip</button>
         <button class="btn btn-large btn-primary" id="triggerBottom" title="Another fine body…">Mouseover to show a bottom tooltip</button>
         <button class="btn btn-large btn-primary" id="triggerHelp" title="Users are individuals who perform tasks using the portal. Administrators can create new users or deactivate existing users. Users com join sites, be placed into organization hierarchies, be delegated permissions in roles, or be collected into users groups. User groups can cross organizational boundaries, and can be used to assign all members to other collections, such as sites or roles. User groups may also be used to customize personal site templates for members.">Mouseover to show help tooltip</button>
+        <button class="btn btn-lg btn-primary" id="triggerHtml" title="This tooltip <i><b>is not being escaped</b></i>.">Mouseover to show HTML unescaped tooltip</button>
         <br/>
         <br/>
         <h2>Delegate</h2>
@@ -56,6 +57,11 @@
             cssClass: 'tooltip-help',
             opacity: 1,
             stickDuration: 100
+        }).render();
+
+        new Y.Tooltip({
+            trigger: '#triggerHtml',
+            html: true
         }).render();
 
         new Y.TooltipDelegate({

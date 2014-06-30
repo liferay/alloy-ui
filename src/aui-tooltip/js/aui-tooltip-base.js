@@ -209,6 +209,10 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
             if (formatter) {
                 val = formatter.call(this, val);
             }
+
+            if (!this.get('html')) {
+                val = A.Escape.html(val);
+            }
         }
 
          return val;
@@ -221,22 +225,20 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
      * @protected
      */
     _loadTooltipContentFromTitle: function() {
-        var instance = this,
-            trigger,
-            formatter,
+        var trigger = this.get('trigger'),
             title;
 
-        formatter = instance.get(FORMATTER);
-        trigger = instance.get(TRIGGER);
+        if (!trigger) {
+            return;
+        }
 
         this._borrowTitleAttribute();
 
-        if (formatter) {
-            title = formatter.call(instance, title);
-        }
+        title = trigger.getAttribute('data-title');
 
-        instance.setStdModContent(
-            A.WidgetStdMod.BODY, trigger && title || instance.get(BODY_CONTENT));
+        if (title) {
+            this.setStdModContent(A.WidgetStdMod.BODY, title);
+        }
     },
 
     /**
