@@ -180,6 +180,25 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
         }
     },
 
+        /**
+      * Set tooltip section attribute.
+      *
+      * @method _setStdModSection
+      * @param {String | Node} val
+      * @protected
+      */
+     _setStdModSection: function(val) {
+        var formatter = this.get('formatter');
+
+        if (typeof val === 'string') {
+            if (formatter) {
+                val = formatter.call(this, val);
+            }
+        }
+
+         return val;
+     },
+
     /**
      * Load tooltip content from trigger title attribute.
      *
@@ -318,6 +337,19 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
      */
     ATTRS: {
         /**
+         * Determine the bodyContent
+         *
+         * @attribute bodyContent
+         * @type {String | Node}
+         * @default null
+         * @description The tooltip contents
+         */
+        bodyContent: {
+            setter: '_setStdModSection',
+            value: null
+        },
+
+        /**
          * Determine the tooltip constrain node.
          *
          * @attribute constrain
@@ -341,6 +373,19 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
         },
 
         /**
+         * Determine the footerContent
+         *
+         * @attribute footerContent
+         * @type {String | Node}
+         * @default null
+         * @description The tooltip contents
+         */
+        footerContent: {
+            setter: '_setStdModSection',
+            value: null
+        },
+
+        /**
          * Format the title attribute before set the content of the tooltip.
          *
          * @attribute formatter
@@ -348,6 +393,19 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
          */
         formatter: {
             validator: A.Lang.isFunction
+        },
+
+        /**
+         * Determine the headerContent
+         *
+         * @attribute headerContent
+         * @type {String | Node}
+         * @default null
+         * @description The tooltip contents
+         */
+        headerContent: {
+            setter: '_setStdModSection',
+            value: null
         },
 
         /**
