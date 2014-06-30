@@ -409,6 +409,18 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
         },
 
         /**
+         * Determines if the tooltip allows arbitary HTML or is plain text.
+         *
+         * @attribute html
+         * @default false
+         * @type Boolean
+         */
+        html: {
+            value: false,
+            validator: Lang.isBoolean
+        },
+
+        /**
          * Determine the opacity of the tooltip.
          *
          * @attribute opacity
