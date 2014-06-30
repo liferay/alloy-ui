@@ -96,11 +96,11 @@ var FormBuilderButtonField = A.Component.create({
 			return L.sub(
 				instance.get(TEMPLATE),
 				{
-					id: instance.get(ID),
-					label: instance.get(LABEL),
-					name: instance.get(NAME),
-					type: instance.get(BUTTON_TYPE),
-					value: instance.get(PREDEFINED_VALUE)
+					id: A.Escape.html(instance.get(ID)),
+					label: A.Escape.html(instance.get(LABEL)),
+					name: A.Escape.html(instance.get(NAME)),
+					type: A.Escape.html(instance.get(BUTTON_TYPE)),
+					value: A.Escape.html(instance.get(PREDEFINED_VALUE))
 				}
 			)
 		},

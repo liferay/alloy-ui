@@ -97,10 +97,10 @@ var FormBuilderRadioField = A.Component.create({
 							{
 								checked: item.value === instance.get(PREDEFINED_VALUE) ? 'checked="checked"' : EMPTY_STR,
 								disabled: instance.get(DISABLED) ? 'disabled="disabled"' : EMPTY_STR,
-								id: instance.get(ID) + counter++,
-								label: item.label,
-								name: instance.get(NAME),
-								value: item.value
+								id: A.Escape.html(instance.get(ID) + counter++),
+								label: A.Escape.html(item.label),
+								name: A.Escape.html(instance.get(NAME)),
+								value: A.Escape.html(item.value)
 							}
 						)
 					)

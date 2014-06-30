@@ -69,11 +69,11 @@ var FormBuilderTextField = A.Component.create({
 			return L.sub(
 				instance.get(TEMPLATE),
 				{
-					id: instance.get(ID),
-					label: instance.get(LABEL),
-					name: instance.get(NAME),
-					value: instance.get(PREDEFINED_VALUE),
-					width: instance.get(WIDTH)
+					id: A.Escape.html(instance.get(ID)),
+					label: A.Escape.html(instance.get(LABEL)),
+					name: A.Escape.html(instance.get(NAME)),
+					value: A.Escape.html(instance.get(PREDEFINED_VALUE)),
+					width: A.Escape.html(instance.get(WIDTH))
 				}
 			)
 		},
