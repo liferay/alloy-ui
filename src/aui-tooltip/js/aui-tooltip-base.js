@@ -142,7 +142,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
             stickDuration = instance.get(STICK_DURATION);
 
         if (val) {
-            instance._loadBodyContentFromTitle();
+            instance._loadTooltipContentFromTitle();
             instance._maybeShow();
         }
         else {
@@ -183,10 +183,10 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
     /**
      * Load tooltip content from trigger title attribute.
      *
-     * @method _loadBodyContentFromTitle
+     * @method _loadTooltipContentFromTitle
      * @protected
      */
-    _loadBodyContentFromTitle: function() {
+    _loadTooltipContentFromTitle: function() {
         var instance = this,
             trigger,
             dataTitle,
