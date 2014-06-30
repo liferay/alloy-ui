@@ -166,6 +166,21 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
     },
 
     /**
+     * If the HTML title attribute exists, copy its contents to data-title
+     * and remove it to prevent the browser's native tooltip.
+     *
+     * @private
+     */
+    _borrowTitleAttribute: function() {
+        var trigger = this.get('trigger'),
+            title = trigger.getAttribute('title');
+
+        if (title) {
+            trigger.setAttribute('data-title', title).removeAttribute('title');
+        }
+     },
+
+    /**
      * Helper method called to clear the close timer.
      *
      * @method _clearHideTimer
@@ -208,22 +223,16 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
     _loadTooltipContentFromTitle: function() {
         var instance = this,
             trigger,
-            dataTitle,
             formatter,
             title;
 
         formatter = instance.get(FORMATTER);
         trigger = instance.get(TRIGGER);
 
-        dataTitle = trigger.getAttribute(_DATA_TITLE);
-        title = trigger.getAttribute(TITLE) || dataTitle;
+        this._borrowTitleAttribute();
 
         if (formatter) {
             title = formatter.call(instance, title);
-        }
-
-        if (!dataTitle) {
-            trigger.removeAttribute(TITLE).setAttribute(_DATA_TITLE, title);
         }
 
         instance.setStdModContent(
