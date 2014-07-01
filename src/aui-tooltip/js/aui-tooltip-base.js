@@ -169,6 +169,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
      * If the HTML title attribute exists, copy its contents to data-title
      * and remove it to prevent the browser's native tooltip.
      *
+     * @method _borrowTitleAttribute
      * @private
      */
     _borrowTitleAttribute: function() {
@@ -205,7 +206,7 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
      _setStdModSection: function(val) {
         var formatter = this.get('formatter');
 
-        if (typeof val === 'string') {
+        if (Lang.isString(val)) {
             if (formatter) {
                 val = formatter.call(this, val);
             }
@@ -352,12 +353,9 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
          *
          * @attribute bodyContent
          * @type {String | Node}
-         * @default null
-         * @description The tooltip contents
          */
         bodyContent: {
-            setter: '_setStdModSection',
-            value: null
+            setter: '_setStdModSection'
         },
 
         /**
@@ -388,12 +386,9 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
          *
          * @attribute footerContent
          * @type {String | Node}
-         * @default null
-         * @description The tooltip contents
          */
         footerContent: {
-            setter: '_setStdModSection',
-            value: null
+            setter: '_setStdModSection'
         },
 
         /**
@@ -411,12 +406,9 @@ A.Tooltip = A.Base.create(TOOLTIP, A.Widget, [
          *
          * @attribute headerContent
          * @type {String | Node}
-         * @default null
-         * @description The tooltip contents
          */
         headerContent: {
-            setter: '_setStdModSection',
-            value: null
+            setter: '_setStdModSection'
         },
 
         /**
