@@ -21,7 +21,7 @@ YUI(
 		filter: 'raw'
 	}
 ).use(
-	'aui-dialog-deprecated',
+	'aui-modal',
 	'aui-io-plugin-deprecated',
 	function(A) {
 		var content1 = A.one('#content1');
@@ -63,7 +63,7 @@ YUI(
 			}
 		);
 
-		var dialog = new A.Dialog(
+		var dialog = new A.Modal(
 			{
 				bodyContent: 'Loading content via A.Plugin.IO...',
 				centered: true,
