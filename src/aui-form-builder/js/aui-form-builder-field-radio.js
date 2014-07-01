@@ -1,5 +1,7 @@
 var L = A.Lang,
 
+	AEscape = A.Escape,
+
 	CHECKED = 'checked',
 	CHOICE = 'choice',
 	CONTAINER = 'container',
@@ -97,10 +99,10 @@ var FormBuilderRadioField = A.Component.create({
 							{
 								checked: item.value === instance.get(PREDEFINED_VALUE) ? 'checked="checked"' : EMPTY_STR,
 								disabled: instance.get(DISABLED) ? 'disabled="disabled"' : EMPTY_STR,
-								id: A.Escape.html(instance.get(ID) + counter++),
-								label: A.Escape.html(item.label),
-								name: A.Escape.html(instance.get(NAME)),
-								value: A.Escape.html(item.value)
+								id: AEscape.html(instance.get(ID) + counter++),
+								label: AEscape.html(item.label),
+								name: AEscape.html(instance.get(NAME)),
+								value: AEscape.html(item.value)
 							}
 						)
 					)

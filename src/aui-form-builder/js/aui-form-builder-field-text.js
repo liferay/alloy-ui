@@ -1,5 +1,7 @@
 var L = A.Lang,
 
+	AEscape = A.Escape,
+
 	BOUNDING_BOX = 'boundingBox',
 	CONTAINER = 'container',
 	CONTENT_BOX = 'contentBox',
@@ -69,11 +71,11 @@ var FormBuilderTextField = A.Component.create({
 			return L.sub(
 				instance.get(TEMPLATE),
 				{
-					id: A.Escape.html(instance.get(ID)),
-					label: A.Escape.html(instance.get(LABEL)),
-					name: A.Escape.html(instance.get(NAME)),
-					value: A.Escape.html(instance.get(PREDEFINED_VALUE)),
-					width: A.Escape.html(instance.get(WIDTH))
+					id: AEscape.html(instance.get(ID)),
+					label: AEscape.html(instance.get(LABEL)),
+					name: AEscape.html(instance.get(NAME)),
+					value: AEscape.html(instance.get(PREDEFINED_VALUE)),
+					width: AEscape.html(instance.get(WIDTH))
 				}
 			)
 		},

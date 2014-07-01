@@ -1,5 +1,7 @@
 var L = A.Lang,
 
+	AEscape = A.Escape,
+
 	DOT = '.',
 	EMPTY_STR = '',
 	FIELD = 'field',
@@ -54,10 +56,10 @@ var FormBuilderFileUploadField = A.Component.create({
 			return L.sub(
 				instance.get(TEMPLATE),
 				{
-					id: A.Escape.html(instance.get(ID)),
-					label: A.Escape.html(instance.get(LABEL)),
-					name: A.Escape.html(instance.get(NAME)),
-					value: A.Escape.html(instance.get(PREDEFINED_VALUE))
+					id: AEscape.html(instance.get(ID)),
+					label: AEscape.html(instance.get(LABEL)),
+					name: AEscape.html(instance.get(NAME)),
+					value: AEscape.html(instance.get(PREDEFINED_VALUE))
 				}
 			);
 		}

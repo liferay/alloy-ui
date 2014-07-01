@@ -9,6 +9,8 @@ var L = A.Lang,
 		}
 	),
 
+	AEscape = A.Escape,
+
 	BUTTON = 'button',
 	BUTTON_TYPE = 'buttonType',
 	DOT = '.',
@@ -96,11 +98,11 @@ var FormBuilderButtonField = A.Component.create({
 			return L.sub(
 				instance.get(TEMPLATE),
 				{
-					id: A.Escape.html(instance.get(ID)),
-					label: A.Escape.html(instance.get(LABEL)),
-					name: A.Escape.html(instance.get(NAME)),
-					type: A.Escape.html(instance.get(BUTTON_TYPE)),
-					value: A.Escape.html(instance.get(PREDEFINED_VALUE))
+					id: AEscape.html(instance.get(ID)),
+					label: AEscape.html(instance.get(LABEL)),
+					name: AEscape.html(instance.get(NAME)),
+					type: AEscape.html(instance.get(BUTTON_TYPE)),
+					value: AEscape.html(instance.get(PREDEFINED_VALUE))
 				}
 			)
 		},

@@ -298,8 +298,8 @@ var FormBuilderField = A.Component.create({
 					L.sub(
 						TPL_LABEL,
 						{
-							id: A.Escape.html(instance.get(ID)),
-							label: A.Escape.html(instance.get(LABEL))
+							id: AEscape.html(instance.get(ID)),
+							label: AEscape.html(instance.get(LABEL))
 						}
 					)
 				);

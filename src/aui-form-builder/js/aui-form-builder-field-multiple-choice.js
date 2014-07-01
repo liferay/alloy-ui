@@ -2,6 +2,8 @@ var Lang = A.Lang,
 	AArray = A.Array,
 	isString = Lang.isString,
 
+	AEscape = A.Escape,
+
 	ADD_OPTION = 'addOption',
 	DATA = 'data',
 	DRAG = 'drag',
@@ -247,8 +249,8 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 						Lang.sub(
 							instance.get(OPTION_TEMPLATE),
 							{
-								label: A.Escape.html(item.label),
-								value: A.Escape.html(item.value)
+								label: AEscape.html(item.label),
+								value: AEscape.html(item.value)
 							}
 						)
 					);
@@ -276,7 +278,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 			optionNodes.set(SELECTED, false);
 
 			AArray.each(val, function(item) {
-				optionNodes.filter('[value="' + A.Escape.html(item) + '"]').set(SELECTED, true);
+				optionNodes.filter('[value="' + AEscape.html(item) + '"]').set(SELECTED, true);
 			});
 		}
 	}

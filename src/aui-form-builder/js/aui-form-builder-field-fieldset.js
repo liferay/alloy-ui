@@ -1,5 +1,7 @@
 var L = A.Lang,
 
+	AEscape = A.Escape,
+
 	BOUNDING_BOX = 'boundingBox',
 	CONTENT_BOX = 'contentBox',
 	CONTAINER = 'container',
@@ -81,7 +83,7 @@ var FormBuilderFieldsetField = A.Component.create({
 			return L.sub(
 				instance.get(TEMPLATE),
 				{
-					id: A.Escape.html(instance.get(ID))
+					id: AEscape.html(instance.get(ID))
 				}
 			);
 		},
