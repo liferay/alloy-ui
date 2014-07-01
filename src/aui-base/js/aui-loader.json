@@ -1224,6 +1224,7 @@
     },
     "aui-tooltip-base": {
         "requires": [
+            "escape",
             "event-hover",
             "transition",
             "widget",

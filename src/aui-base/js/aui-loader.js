@@ -1248,6 +1248,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-tooltip-base": {
         "requires": [
+            "escape",
             "event-hover",
             "transition",
             "widget",
@@ -1417,4 +1418,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '1e22281b9de54934b1fbd8a7286985e2';
+YUI.Env[Y.version].md5 = 'a8e91cafdf7b49c80becb987c1e243de';
