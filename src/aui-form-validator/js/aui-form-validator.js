@@ -1029,10 +1029,10 @@ var FormValidator = A.Component.create({
                 }
 
                 // Use aria-describedby to provide extra details for filling input field
-                var id = target.get('id') + 'Helper';
+                var id = field.get('id') + 'Helper';
 
                 stackContainer.set('id', id);
-                target.set('aria-describedby', id);
+                field.set('aria-describedby', id);
 
                 target.placeAfter(stackContainer);
 
