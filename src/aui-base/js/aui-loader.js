@@ -537,7 +537,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-form-builder-field-radio",
             "aui-form-builder-field-select",
             "aui-form-builder-field-text",
-            "aui-form-builder-field-textarea"
+            "aui-form-builder-field-textarea",
+            "aui-tooltip-base"
         ]
     },
     "aui-form-builder-base": {
@@ -1416,4 +1417,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'd8228daa6337db475d4d3666a8d142fd';
+YUI.Env[Y.version].md5 = '1e22281b9de54934b1fbd8a7286985e2';
