@@ -9,9 +9,8 @@ var Lang = A.Lang,
 
     isArray = Lang.isArray,
 
-    AEscape = A.Escape,
-
     AArray = A.Array,
+    AEscape = A.Escape,
 
     getCN = A.getClassName,
 

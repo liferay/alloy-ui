@@ -1,5 +1,7 @@
 var BaseOptionsCellEditor,
 
+    L = A.Lang,
+
     AEscape = A.Escape,
 
     CSS_CELLEDITOR_EDIT = A.getClassName('celleditor', 'edit'),
@@ -65,7 +67,7 @@ BaseOptionsCellEditor = A.Component.create({
         options: {
             setter: '_setOptions',
             value: {},
-            validator: A.Lang.isObject
+            validator: L.isObject
         },
 
         /**
@@ -87,7 +89,7 @@ BaseOptionsCellEditor = A.Component.create({
          */
         selectedAttrName: {
             value: 'selected',
-            validator: A.Lang.isString
+            validator: L.isString
         },
 
         /**
@@ -265,11 +267,11 @@ BaseOptionsCellEditor = A.Component.create({
                 };
 
                 if (optionTpl) {
-                    optionsBuffer.push(A.Lang.sub(optionTpl, values));
+                    optionsBuffer.push(L.sub(optionTpl, values));
                 }
 
                 if (optionWrapperTpl) {
-                    wrappersBuffer.push(A.Lang.sub(optionWrapperTpl, values));
+                    wrappersBuffer.push(L.sub(optionWrapperTpl, values));
                 }
             });
 
@@ -302,7 +304,7 @@ BaseOptionsCellEditor = A.Component.create({
             var buffer = [];
 
             buffer.push(
-                A.Lang.sub(instance.EDIT_LABEL_TEMPLATE, {
+                L.sub(instance.EDIT_LABEL_TEMPLATE, {
                     editOptions: strings.editOptions
                 })
             );
@@ -312,7 +314,7 @@ BaseOptionsCellEditor = A.Component.create({
             });
 
             buffer.push(
-                A.Lang.sub(instance.EDIT_ADD_LINK_TEMPLATE, {
+                L.sub(instance.EDIT_ADD_LINK_TEMPLATE, {
                     addOption: strings.addOption
                 })
             );
@@ -332,7 +334,7 @@ BaseOptionsCellEditor = A.Component.create({
             var instance = this;
             var strings = instance.getStrings();
 
-            return A.Lang.sub(
+            return L.sub(
                 instance.EDIT_OPTION_ROW_TEMPLATE, {
                     remove: strings.remove,
                     titleName: AEscape.html(strings.name),
@@ -489,12 +491,12 @@ BaseOptionsCellEditor = A.Component.create({
         _setOptions: function(val) {
             var options = {};
 
-            if (A.Lang.isArray(val)) {
+            if (L.isArray(val)) {
                 A.Array.each(val, function(value) {
                     options[value] = value;
                 });
             }
-            else if (A.Lang.isObject(val)) {
+            else if (L.isObject(val)) {
                 options = val;
             }
 
@@ -542,13 +544,13 @@ BaseOptionsCellEditor = A.Component.create({
             if (options && options.size()) {
                 options.set(instance.get('selectedAttrName'), false);
 
-                if (A.Lang.isValue(val)) {
-                    if (!A.Lang.isArray(val)) {
+                if (L.isValue(val)) {
+                    if (!L.isArray(val)) {
                         val = String(val).split(',');
                     }
 
                     A.Array.each(val, function(value) {
-                        options.filter('[value="' + AEscape.html(A.Lang.trim(value)) + '"]').set(instance.get(
+                        options.filter('[value="' + AEscape.html(L.trim(value)) + '"]').set(instance.get(
                             'selectedAttrName'), true);
                     });
                 }

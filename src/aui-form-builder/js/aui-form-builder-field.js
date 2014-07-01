@@ -10,7 +10,6 @@ var L = A.Lang,
     isObject = L.isObject,
 
     AArray = A.Array,
-
     AEscape = A.Escape,
 
     getCN = A.getClassName,

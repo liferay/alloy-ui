@@ -8,7 +8,6 @@
 var L = A.Lang,
 
     AArray = A.Array,
-
     AEscape = A.Escape,
 
     getCN = A.getClassName,
