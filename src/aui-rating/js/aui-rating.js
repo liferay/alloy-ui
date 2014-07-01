@@ -450,7 +450,7 @@ var Rating = A.Component.create(
 						node.addClass(className || CSS_RATING_EL_ON);
 
 						// stop loop when return true
-						return (i == Math.floor(index));
+						return (i == Math.round(index));
 					});
 				}
 			},
