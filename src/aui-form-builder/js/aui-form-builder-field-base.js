@@ -88,7 +88,9 @@ var L = A.Lang,
     TPL_DROP_ZONE = '<div class="' + CSS_FB_DROP_ZONE + '"></div>',
     TPL_FLAG_REQUIRED = '<span class="' + [CSS_ICON, CSS_ICON_ASTERISK].join(SPACE) + '"></span>',
     TPL_FLAG_TIP = '<span class="' + [CSS_ICON, CSS_ICON_QUESTION_SIGN].join(SPACE) + '"></span>',
-    TPL_LABEL = '<label for="{id}">{label}</label>';
+    TPL_LABEL = '<label for="{id}">{label}</label>',
+
+    INVALID_CLONE_ATTRS = [ID, NAME];
 
 /**
  * A base class for FormBuilderFieldBase.
@@ -681,6 +683,32 @@ var FormBuilderField = A.Component.create({
             var instance = this;
 
             return A.Node.create(instance.getHTML());
+        },
+
+        /**
+         * Gets all necessary attributes for cloning this field.
+         *
+         * @method getAttributesForCloning
+         * @return {Object}
+         */
+        getAttributesForCloning: function() {
+            // List of all non-property attributes that need to be cloned.
+            var attributes = {
+                hiddenAttributes: this.get('hiddenAttributes'),
+                readOnlyAttributes: this.get('readOnlyAttributes'),
+                localizationMap: this.get('localizationMap')
+            };
+
+            // All field properties should be cloned as well.
+            AArray.each(this.getProperties(), function(property) {
+                var name = property.attributeName;
+
+                if (AArray.indexOf(INVALID_CLONE_ATTRS, name) === -1) {
+                    attributes[name] = property.value;
+                }
+            });
+
+            return attributes;
         },
 
         /**
