@@ -10,6 +10,7 @@ var L = A.Lang,
     isObject = L.isObject,
 
     AArray = A.Array,
+    AEscape = A.Escape,
 
     ACCEPT_CHILDREN = 'acceptChildren',
     ALERT = 'alert',
@@ -473,8 +474,8 @@ var FormBuilderField = A.Component.create({
                 return A.Node.create(
                     L.sub(
                         TPL_LABEL, {
-                            id: A.Escape.html(instance.get(ID)),
-                            label: A.Escape.html(instance.get(LABEL))
+                            id: AEscape.html(instance.get(ID)),
+                            label: AEscape.html(instance.get(LABEL))
                         }
                     )
                 );
@@ -1016,7 +1017,7 @@ var FormBuilderField = A.Component.create({
             var instance = this,
                 labelNode = instance.get(LABEL_NODE);
 
-            labelNode.setContent(A.Escape.html(val));
+            labelNode.setContent(AEscape.html(val));
         },
 
         /**
