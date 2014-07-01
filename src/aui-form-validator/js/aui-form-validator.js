@@ -712,7 +712,7 @@ var FormValidator = A.Component.create({
                 fieldName = field.get('name'),
                 fieldStrings = instance.get('fieldStrings')[fieldName] || {},
                 fieldRules = instance.get('rules')[fieldName],
-                label = A.one('label[for=' + field.get('id') + ']').get('text'),
+                label = instance._getLabel(field),
                 strings = instance.get('strings'),
                 substituteRulesMap = {field: label};
 
@@ -1184,6 +1184,21 @@ var FormValidator = A.Component.create({
             }
 
             instance._rulesAlreadyExtracted = true;
+        },
+
+        /**
+         * Gets the label text of a field.
+         *
+         * @method _getLabel
+         * @param field
+         * @return {String}
+         */
+        _getLabel: function(field) {
+            var instance = this,
+                labelClass = '.' + instance.get('labelCssClass'),
+                labelNode = field.ancestor().previous(labelClass) || field.previous(labelClass) || field.ancestor(labelClass);
+
+            return labelNode ? labelNode.get('text') : '';
         },
 
         /**
