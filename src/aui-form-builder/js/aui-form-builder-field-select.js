@@ -7,6 +7,8 @@
 
 var L = A.Lang,
 
+    AEscape = A.Escape,
+
     getCN = A.getClassName,
 
     CSS_FORM_CONTROL = getCN('form', 'control'),
@@ -112,10 +114,10 @@ var FormBuilderSelectField = A.Component.create({
 
             return L.sub(
                 instance.get('template'), {
-                    id: A.Escape.html(instance.get('id')),
-                    label: A.Escape.html(instance.get('label')),
-                    name: A.Escape.html(instance.get('name')),
-                    value: A.Escape.html(instance.get('predefinedValue'))
+                    id: AEscape.html(instance.get('id')),
+                    label: AEscape.html(instance.get('label')),
+                    name: AEscape.html(instance.get('name')),
+                    value: AEscape.html(instance.get('predefinedValue'))
                 }
             );
         },

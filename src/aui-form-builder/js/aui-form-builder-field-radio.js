@@ -7,6 +7,8 @@
 
 var L = A.Lang,
 
+    AEscape = A.Escape,
+
     getCN = A.getClassName,
 
     CSS_FIELD = getCN('field'),
@@ -148,10 +150,10 @@ var FormBuilderRadioField = A.Component.create({
                         TPL_RADIO, {
                             checked: checked ? 'checked="checked"' : '',
                             disabled: instance.get('disabled') ? 'disabled="disabled"' : '',
-                            id: A.Escape.html(instance.get('id') + counter++),
-                            label: A.Escape.html(item.label),
-                            name: A.Escape.html(instance.get('name')),
-                            value: A.Escape.html(item.value)
+                            id: AEscape.html(instance.get('id') + counter++),
+                            label: AEscape.html(item.label),
+                            name: AEscape.html(instance.get('name')),
+                            value: AEscape.html(item.value)
                         }
                     )
                 );
@@ -189,7 +191,7 @@ var FormBuilderRadioField = A.Component.create({
 
             optionNodes.set('checked', false);
 
-            optionNodes.all('input[value="' + A.Escape.html(val) + '"]').set('checked', true);
+            optionNodes.all('input[value="' + AEscape.html(val) + '"]').set('checked', true);
         },
 
         /**

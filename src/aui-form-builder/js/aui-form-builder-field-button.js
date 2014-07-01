@@ -13,6 +13,8 @@ var L = A.Lang,
         }
     ),
 
+    AEscape = A.Escape,
+
     getCN = A.getClassName,
 
     CSS_BTN = getCN('btn'),
@@ -154,11 +156,11 @@ var FormBuilderButtonField = A.Component.create({
 
             return L.sub(
                 instance.get('template'), {
-                    id: A.Escape.html(instance.get('id')),
-                    label: A.Escape.html(instance.get('label')),
-                    name: A.Escape.html(instance.get('name')),
-                    type: A.Escape.html(instance.get('buttonType')),
-                    value: A.Escape.html(instance.get('predefinedValue'))
+                    id: AEscape.html(instance.get('id')),
+                    label: AEscape.html(instance.get('label')),
+                    name: AEscape.html(instance.get('name')),
+                    type: AEscape.html(instance.get('buttonType')),
+                    value: AEscape.html(instance.get('predefinedValue'))
                 }
             );
         },
@@ -216,7 +218,7 @@ var FormBuilderButtonField = A.Component.create({
             var instance = this,
                 templateNode = instance.get('templateNode');
 
-            templateNode.setContent(A.Escape.html(val));
+            templateNode.setContent(AEscape.html(val));
         }
 
     }

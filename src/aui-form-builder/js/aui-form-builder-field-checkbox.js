@@ -9,6 +9,8 @@ var L = A.Lang,
 
     AArray = A.Array,
 
+    AEscape = A.Escape,
+
     getCN = A.getClassName,
 
     CSS_FIELD = getCN('field'),
@@ -167,10 +169,10 @@ var FormBuilderCheckBoxField = A.Component.create({
             return L.sub(
                 instance.get('template'), {
                     checked: checked ? 'checked="checked"' : '',
-                    id: A.Escape.html(instance.get('id')),
-                    label: A.Escape.html(instance.get('label')),
-                    name: A.Escape.html(instance.get('name')),
-                    value: A.Escape.html(instance.get('predefinedValue'))
+                    id: AEscape.html(instance.get('id')),
+                    label: AEscape.html(instance.get('label')),
+                    name: AEscape.html(instance.get('name')),
+                    value: AEscape.html(instance.get('predefinedValue'))
                 }
             );
         },
