@@ -543,6 +543,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-form-builder-base": {
         "requires": [
+            "escape",
             "transition",
             "aui-button",
             "aui-collection",
@@ -1418,4 +1419,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'a8e91cafdf7b49c80becb987c1e243de';
+YUI.Env[Y.version].md5 = '732d541eeacac8e2ce755f01f1daffc3';
