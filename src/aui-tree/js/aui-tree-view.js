@@ -230,24 +230,13 @@ var TreeView = A.Component.create(
 						ownerTree: instance
 					});
 
-					var renderNode = function() {
-						if (deepContainer) {
-							// render node before invoke the recursion
-							treeNode.render();
-
-							// propagating markup recursion
-							instance._createFromHTMLMarkup(deepContainer);
-						}
-						else {
-							treeNode.render();
-						}
-					}
-
 					if (instance.get('lazyLoad')) {
-						A.setTimeout(renderNode, 50);
+						A.setTimeout(function() {
+							treeNode.render();
+						}, 50);
 					}
 					else {
-						renderNode();
+						treeNode.render();
 					}
 
 					// find the parent TreeNode...
@@ -260,6 +249,11 @@ var TreeView = A.Component.create(
 
 					// and simulate the appendChild.
 					parentInstance.appendChild(treeNode);
+
+					if (deepContainer) {
+						// propgating markup recursion
+						instance._createFromHTMLMarkup(deepContainer);
+					}
 				});
 			},
 
