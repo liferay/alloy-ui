@@ -1,0 +1,28 @@
+{
+    "name": "aui-property-builder",
+    "builds": {
+        "aui-property-builder": {
+            "jsfiles": [
+                "js/aui-property-builder.js"
+            ]
+        },
+
+        "aui-property-builder-available-field": {
+            "jsfiles": [
+                "js/aui-property-builder-available-field.js"
+            ]
+        },
+
+        "aui-property-builder-field-support": {
+            "jsfiles": [
+                "js/aui-property-builder-field-support.js"
+            ]
+        },
+
+        "aui-property-builder-settings": {
+            "jsfiles": [
+                "js/aui-property-builder-settings.js"
+            ]
+        }
+    }
+}

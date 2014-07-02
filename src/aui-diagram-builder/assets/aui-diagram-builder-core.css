@@ -1,3 +1,12 @@
+.diagram-node {
+    cursor: move;
+    position: absolute;
+}
+
+.diagram-node-label {
+    text-align: center;
+}
+
 .diagram-builder-anchor-node {
     background: url(anchor-default.png) no-repeat scroll center center transparent;
 }
@@ -8,28 +17,6 @@
 
 .diagram-builder-anchor-node.yui3-dd-drop-over {
     background: url(anchor-drop-active.png) no-repeat scroll center center transparent;
-}
-
-.diagram-builder .diagram-builder-field {
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
-}
-
-.diagram-builder-canvas {
-    background-image: url(checker-bg.png);
-    border-left: 1px solid #CCCCCC;
-    outline: 0;
-    z-index: 100;
-    border-bottom: 1px solid #BBBBBB;
-    border-right: 1px solid #BBBBBB;
-    border-top: 1px solid #CCCCCC;
-    overflow: hidden;
-}
-
-.diagram-builder-field-icon {
-    width: 30px;
-    height: 30px;
 }
 
 .diagram-node-task-icon {

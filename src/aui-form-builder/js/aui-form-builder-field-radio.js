@@ -216,4 +216,4 @@ var FormBuilderRadioField = A.Component.create({
 
 A.FormBuilderRadioField = FormBuilderRadioField;
 
-A.FormBuilder.types.radio = A.FormBuilderRadioField;
+A.namespace('FormBuilder.types').radio = A.FormBuilderRadioField;

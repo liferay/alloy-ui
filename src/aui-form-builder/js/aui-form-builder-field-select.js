@@ -174,4 +174,4 @@ var FormBuilderSelectField = A.Component.create({
 
 A.FormBuilderSelectField = FormBuilderSelectField;
 
-A.FormBuilder.types.select = A.FormBuilderSelectField;
+A.namespace('FormBuilder.types').select = A.FormBuilderSelectField;

@@ -6,22 +6,21 @@
  */
 
 var L = A.Lang,
-    isArray = L.isArray,
-    isBoolean = L.isBoolean,
     isObject = L.isObject,
-    isString = L.isString,
 
     aArray = A.Array,
 
-    getAvailableFieldById = A.AvailableField.getAvailableFieldById,
+    getAvailableFieldById = A.PropertyBuilderAvailableField.getAvailableFieldById,
 
     isAvailableField = function(v) {
-        return (v instanceof A.AvailableField);
+        return (v instanceof A.PropertyBuilderAvailableField);
     },
 
     isFormBuilderField = function(v) {
         return (v instanceof A.FormBuilderField);
     },
+
+    formBuilderTypes = A.namespace('FormBuilder.types'),
 
     getCN = A.getClassName,
 
@@ -29,7 +28,7 @@ var L = A.Lang,
     FIELDS_ID_PREFIX = 'fields' + '_' + 'field' + '_',
 
     CSS_DD_DRAGGING = getCN('dd', 'dragging'),
-    CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE = getCN('diagram', 'builder', 'field', 'draggable'),
+    CSS_PROPERTY_BUILDER_FIELD_DRAGGABLE = getCN('property', 'builder', 'field', 'draggable'),
     CSS_FIELD_HOVER = getCN('form', 'builder', 'field', 'hover'),
     CSS_FORM_BUILDER_DROP_ZONE = getCN('form', 'builder', 'drop', 'zone'),
     CSS_FORM_BUILDER_FIELD = getCN('form', 'builder', 'field'),
@@ -38,148 +37,10 @@ var L = A.Lang,
     TPL_PLACEHOLDER = '<div class="' + CSS_FORM_BUILDER_PLACEHOLDER + '"></div>';
 
 /**
- * A base class for `A.FormBuilderAvailableField`.
- *
- * @class A.FormBuilderAvailableField
- * @extends A.AvailableField
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
- * @constructor
- */
-
-var FormBuilderAvailableField = A.Component.create({
-
-    /**
-     * Static property provides a string to identify the class.
-     *
-     * @property NAME
-     * @type String
-     * @static
-     */
-    NAME: 'availableField',
-
-    /**
-     * Static property used to define the default attribute
-     * configuration for the `A.FormBuilderAvailableField`.
-     *
-     * @property ATTRS
-     * @type Object
-     * @static
-     */
-    ATTRS: {
-
-        /**
-         * List of hidden attributes.
-         *
-         * @attribute hiddenAttributes
-         * @type Array
-         */
-        hiddenAttributes: {
-            validator: isArray
-        },
-
-        /**
-         * The name of the input field.
-         *
-         * @attribute name
-         */
-        name: {},
-
-        /**
-         * Collection of options.
-         *
-         * @attribute options
-         * @type Object
-         */
-        options: {
-            validator: isObject
-        },
-
-        /**
-         * Specifies a predefined value for the input field.
-         *
-         * @attribute predefinedValue
-         */
-        predefinedValue: {},
-
-        /**
-         * List of read-only input fields.
-         *
-         * @attribute readOnlyAttributes
-         * @type Array
-         */
-        readOnlyAttributes: {
-            validator: isArray
-        },
-
-        /**
-         * Checks if an input field is required. In other words, it needs
-         * content to be valid.
-         *
-         * @attribute required
-         * @type Boolean
-         */
-        required: {
-            validator: isBoolean
-        },
-
-        /**
-         * If `true` the label is showed.
-         *
-         * @attribute showLabel
-         * @default true
-         * @type Boolean
-         */
-        showLabel: {
-            validator: isBoolean,
-            value: true
-        },
-
-        /**
-         * Hint to help the user to fill the input field.
-         *
-         * @attribute tip
-         * @type String
-         */
-        tip: {
-            validator: isString
-        },
-
-        /**
-         * Checks if the input field is unique or not.
-         *
-         * @attribute unique
-         * @type Boolean
-         */
-        unique: {
-            validator: isBoolean
-        },
-
-        /**
-         * The width of the input field.
-         *
-         * @attribute width
-         */
-        width: {}
-    },
-
-    /**
-     * Static property used to define which component it extends.
-     *
-     * @property EXTENDS
-     * @type String
-     * @static
-     */
-    EXTENDS: A.AvailableField
-});
-
-A.FormBuilderAvailableField = FormBuilderAvailableField;
-
-/**
  * A base class for `A.FormBuilder`.
  *
  * @class A.FormBuilder
- * @extends A.DiagramBuilderBase
+ * @extends A.PropertyBuilder
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
@@ -206,7 +67,6 @@ var FormBuilder = A.Component.create({
      * @static
      */
     ATTRS: {
-
         /**
          * Checks if removing required fields is permitted or not.
          *
@@ -215,7 +75,7 @@ var FormBuilder = A.Component.create({
          * @type Boolean
          */
         allowRemoveRequiredFields: {
-            validator: isBoolean,
+            validator: A.Lang.isBoolean,
             value: false
         },
 
@@ -259,8 +119,16 @@ var FormBuilder = A.Component.create({
                 value: 'Value'
             }
         }
-
     },
+
+    /**
+     * Static property used to define which component it extends.
+     *
+     * @property EXTENDS
+     * @type String
+     * @static
+     */
+    EXTENDS: A.PropertyBuilder,
 
     /**
      * Static property used to define the UI attributes.
@@ -270,15 +138,6 @@ var FormBuilder = A.Component.create({
      * @static
      */
     UI_ATTRS: ['allowRemoveRequiredFields'],
-
-    /**
-     * Static property used to define which component it extends.
-     *
-     * @property EXTENDS
-     * @type String
-     * @static
-     */
-    EXTENDS: A.DiagramBuilderBase,
 
     /**
      * Static property used to define the fields tab.
@@ -315,36 +174,31 @@ var FormBuilder = A.Component.create({
         initializer: function() {
             var instance = this;
 
-            instance.selectedFieldsLinkedSet = new A.LinkedSet({
-                after: {
-                    add: A.bind(instance._afterSelectedFieldsSetAdd, instance),
-                    remove: A.bind(instance._afterSelectedFieldsSetRemove, instance)
-                }
+            instance.uniqueFieldsMap = new A.Map();
+            instance.uniqueFieldsMap.after({
+                put: A.bind(instance._afterUniqueFieldsMapPut, instance),
+                remove: A.bind(instance._afterUniqueFieldsMapRemove, instance)
             });
 
-            instance.uniqueFieldsMap = new A.Map({
-                after: {
-                    put: A.bind(instance._afterUniqueFieldsMapPut, instance),
-                    remove: A.bind(instance._afterUniqueFieldsMapRemove, instance)
-                }
+            instance.selectedFieldsLinkedSet = new A.LinkedSet();
+            instance.selectedFieldsLinkedSet.after({
+                add: A.bind(instance._afterSelectedFieldsSetAdd, instance),
+                remove: A.bind(instance._afterSelectedFieldsSetRemove, instance)
             });
 
             instance.on({
-                cancel: instance._onCancel,
+                'cancel': instance._onCancel,
                 'drag:end': instance._onDragEnd,
                 'drag:start': instance._onDragStart,
                 'drag:mouseDown': instance._onDragMouseDown,
-                save: instance._onSave
+                'save': instance._onSave
             });
 
             instance.after('*:focusedChange', instance._afterFieldFocusedChange);
 
-            instance.dropContainer.delegate('click', A.bind(instance._onClickField, instance), '.' +
-                CSS_FORM_BUILDER_FIELD);
-            instance.dropContainer.delegate('mouseover', A.bind(instance._onMouseOverField, instance), '.' +
-                CSS_FORM_BUILDER_FIELD);
-            instance.dropContainer.delegate('mouseout', A.bind(instance._onMouseOutField, instance), '.' +
-                CSS_FORM_BUILDER_FIELD);
+            instance.dropContainer.delegate('click', A.bind(instance._onClickField, instance), '.' + CSS_FORM_BUILDER_FIELD);
+            instance.dropContainer.delegate('mouseover', A.bind(instance._onMouseOverField, instance), '.' + CSS_FORM_BUILDER_FIELD);
+            instance.dropContainer.delegate('mouseout', A.bind(instance._onMouseOutField, instance), '.' + CSS_FORM_BUILDER_FIELD);
         },
 
         /**
@@ -450,7 +304,7 @@ var FormBuilder = A.Component.create({
          * @return {Object | null}
          */
         getFieldClass: function(type) {
-            var clazz = A.FormBuilder.types[type];
+            var clazz = formBuilderTypes[type];
 
             if (clazz) {
                 return clazz;
@@ -618,6 +472,37 @@ var FormBuilder = A.Component.create({
         },
 
         /**
+         * Triggers after adding selected fields to a `A.LinkedSet` instance.
+         *
+         * @method _afterSelectedFieldsSetAdd
+         * @param event
+         * @protected
+         */
+        _afterSelectedFieldsSetAdd: function(event) {
+            var instance = this;
+
+            event.value.set('selected', true);
+
+            instance.openEditProperties(event.value);
+        },
+
+        /**
+         * Triggers after removing selected fields from the `A.LinkedSet`
+         * instance.
+         *
+         * @method _afterSelectedFieldsSetRemove
+         * @param event
+         * @protected
+         */
+        _afterSelectedFieldsSetRemove: function(event) {
+            var instance = this;
+
+            event.value.set('selected', false);
+
+            instance.closeEditProperties();
+        },
+
+        /**
          * Triggers after adding unique fields to a `A.Map` instance.
          *
          * @method _afterUniqueFieldsMapPut
@@ -653,37 +538,6 @@ var FormBuilder = A.Component.create({
                 availableField.set('draggable', true);
                 node.selectable();
             }
-        },
-
-        /**
-         * Triggers after adding selected fields to a `A.LinkedSet` instance.
-         *
-         * @method _afterSelectedFieldsSetAdd
-         * @param event
-         * @protected
-         */
-        _afterSelectedFieldsSetAdd: function(event) {
-            var instance = this;
-
-            event.value.set('selected', true);
-
-            instance.openEditProperties(event.value);
-        },
-
-        /**
-         * Triggers after removing selected fields from the `A.LinkedSet`
-         * instance.
-         *
-         * @method _afterSelectedFieldsSetRemove
-         * @param event
-         * @protected
-         */
-        _afterSelectedFieldsSetRemove: function(event) {
-            var instance = this;
-
-            event.value.set('selected', false);
-
-            instance.closeEditProperties();
         },
 
         /**
@@ -861,7 +715,7 @@ var FormBuilder = A.Component.create({
          */
         _onDragMouseDown: function(event) {
             var dragNode = event.target.get('node'),
-                availableField = A.AvailableField.getAvailableFieldByNode(dragNode);
+                availableField = A.PropertyBuilderAvailableField.getAvailableFieldByNode(dragNode);
 
             if (isAvailableField(availableField) && !availableField.get('draggable')) {
                 event.halt();
@@ -963,8 +817,8 @@ var FormBuilder = A.Component.create({
 
         /**
          * Set list of available fields by checking if a field is a
-         * `A.AvailableField` instance. If not creates a new instance of
-         * `A.FormBuilderAvailableField`.
+         * `A.PropertyBuilderAvailableField` instance. If not creates a new
+         * instance of `A.FormBuilderAvailableField`.
          *
          * @method _setAvailableFields
          * @param val
@@ -1042,7 +896,7 @@ var FormBuilder = A.Component.create({
 
             if (!instance.availableFieldsSortableList) {
                 var availableFieldsNodes = instance.fieldsContainer.all(
-                    '.' + CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE
+                    '.' + CSS_PROPERTY_BUILDER_FIELD_DRAGGABLE
                 );
 
                 instance.availableFieldsSortableList = new A.SortableList(
@@ -1109,5 +963,3 @@ var FormBuilder = A.Component.create({
 });
 
 A.FormBuilder = FormBuilder;
-
-A.FormBuilder.types = {};

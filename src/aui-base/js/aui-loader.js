@@ -523,18 +523,19 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     },
     "aui-diagram-builder": {
-        "use": [
-            "aui-diagram-builder-base",
-            "aui-diagram-builder-connector",
-            "aui-diagram-builder-impl"
-        ]
-    },
-    "aui-diagram-builder-base": {
         "requires": [
-            "dd",
-            "collection",
-            "aui-tabview",
-            "aui-datatable-property-list"
+            "overlay",
+            "aui-map",
+            "aui-property-builder",
+            "aui-diagram-builder-connector",
+            "aui-property-builder-settings",
+            "aui-diagram-node-condition",
+            "aui-diagram-node-end",
+            "aui-diagram-node-fork",
+            "aui-diagram-node-join",
+            "aui-diagram-node-start",
+            "aui-diagram-node-state",
+            "aui-diagram-node-task"
         ],
         "skinnable": true
     },
@@ -548,14 +549,51 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
-    "aui-diagram-builder-impl": {
+    "aui-diagram-node": {
         "requires": [
             "overlay",
-            "aui-map",
-            "aui-diagram-builder-base",
-            "aui-diagram-builder-connector"
-        ],
-        "skinnable": true
+            "aui-diagram-node-manager-base"
+        ]
+    },
+    "aui-diagram-node-condition": {
+        "requires": [
+            "aui-diagram-node-state"
+        ]
+    },
+    "aui-diagram-node-end": {
+        "requires": [
+            "aui-diagram-node-state"
+        ]
+    },
+    "aui-diagram-node-fork": {
+        "requires": [
+            "aui-diagram-node-state"
+        ]
+    },
+    "aui-diagram-node-join": {
+        "requires": [
+            "aui-diagram-node-state"
+        ]
+    },
+    "aui-diagram-node-manager-base": {
+        "requires": [
+            "base"
+        ]
+    },
+    "aui-diagram-node-start": {
+        "requires": [
+            "aui-diagram-node-state"
+        ]
+    },
+    "aui-diagram-node-state": {
+        "requires": [
+            "aui-diagram-node"
+        ]
+    },
+    "aui-diagram-node-task": {
+        "requires": [
+            "aui-diagram-node-state"
+        ]
     },
     "aui-dialog-iframe-deprecated": {
         "requires": [
@@ -660,10 +698,11 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     },
     "aui-form-builder": {
-        "skinnable": true,
-        "use": [
-            "aui-form-builder-base",
-            "aui-form-builder-field-base",
+        "requires": [
+            "aui-button",
+            "aui-collection",
+            "aui-form-builder-available-field",
+            "aui-form-builder-field",
             "aui-form-builder-field-button",
             "aui-form-builder-field-checkbox",
             "aui-form-builder-field-fieldset",
@@ -673,22 +712,22 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-form-builder-field-select",
             "aui-form-builder-field-text",
             "aui-form-builder-field-textarea",
-            "aui-tooltip-base"
-        ]
-    },
-    "aui-form-builder-base": {
-        "requires": [
-            "escape",
-            "transition",
-            "aui-button",
-            "aui-collection",
-            "aui-diagram-builder-base",
+            "aui-property-builder",
+            "aui-property-builder-settings",
             "aui-sortable-list",
-            "aui-tabview"
+            "aui-tabview",
+            "aui-tooltip-base",
+            "escape",
+            "transition"
         ],
         "skinnable": true
     },
-    "aui-form-builder-field-base": {
+    "aui-form-builder-available-field": {
+        "requires": [
+            "aui-property-builder-available-field"
+        ]
+    },
+    "aui-form-builder-field": {
         "requires": [
             "panel",
             "aui-datatype"
@@ -697,47 +736,47 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-form-builder-field-button": {
         "requires": [
-            "aui-form-builder-field-base"
+            "aui-form-builder-field"
         ]
     },
     "aui-form-builder-field-checkbox": {
         "requires": [
-            "aui-form-builder-field-base"
+            "aui-form-builder-field"
         ]
     },
     "aui-form-builder-field-fieldset": {
         "requires": [
-            "aui-form-builder-field-base"
+            "aui-form-builder-field"
         ]
     },
     "aui-form-builder-field-file-upload": {
         "requires": [
-            "aui-form-builder-field-base"
+            "aui-form-builder-field"
         ]
     },
     "aui-form-builder-field-multiple-choice": {
         "requires": [
-            "aui-form-builder-field-base"
+            "aui-form-builder-field"
         ]
     },
     "aui-form-builder-field-radio": {
         "requires": [
-            "aui-form-builder-field-base"
+            "aui-form-builder-field"
         ]
     },
     "aui-form-builder-field-select": {
         "requires": [
-            "aui-form-builder-field-base"
+            "aui-form-builder-field"
         ]
     },
     "aui-form-builder-field-text": {
         "requires": [
-            "aui-form-builder-field-base"
+            "aui-form-builder-field"
         ]
     },
     "aui-form-builder-field-textarea": {
         "requires": [
-            "aui-form-builder-field-base"
+            "aui-form-builder-field"
         ]
     },
     "aui-form-combobox-deprecated": {
@@ -1131,6 +1170,31 @@ Y.mix(YUI.Env[Y.version].modules, {
             "array-invoke",
             "promise",
             "oop"
+        ]
+    },
+    "aui-property-builder": {
+        "requires": [
+            "dd",
+            "collection",
+            "aui-property-builder-available-field",
+            "aui-property-builder-field-support",
+            "aui-property-builder-settings",
+            "aui-tabview"
+        ],
+        "skinnable": true
+    },
+    "aui-property-builder-available-field": {
+        "requires": [
+            "base",
+            "aui-component",
+            "aui-node"
+        ]
+    },
+    "aui-property-builder-field-support": {},
+    "aui-property-builder-settings": {
+        "requires": [
+            "aui-tabview",
+            "aui-datatable-property-list"
         ]
     },
     "aui-rating": {
@@ -1675,4 +1739,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '7baa51b7f549092bee7f3763b1af926d';
+YUI.Env[Y.version].md5 = '00f5c273748c54b4f0e7214a605aa000';
