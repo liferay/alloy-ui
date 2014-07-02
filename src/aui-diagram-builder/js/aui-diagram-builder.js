@@ -902,7 +902,7 @@ var DiagramBuilder = A.Component.create({
             var diagramNode = A.Widget.getByNode(drag.get('dragNode'));
 
             if (diagramNode && instance.isFieldsDrag(drag)) {
-                diagramNode.set('xy', diagramNode.getLeftTop());
+                diagramNode.set('xy', diagramNode.getNodeCoordinates());
             }
         },
 
@@ -921,7 +921,7 @@ var DiagramBuilder = A.Component.create({
                 var availableField = drag.get('node').getData('availableField');
 
                 var newField = instance.addField({
-                    xy: A.DiagramNode.getLeftTopCalc(drag.lastXY, instance.dropContainer),
+                    xy: A.DiagramNode.getNodeCoordinates(drag.lastXY, instance.dropContainer),
                     type: availableField.get('type')
                 });
 

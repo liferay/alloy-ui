@@ -13,15 +13,6 @@ var DiagramNode,
         return Math.sqrt(dx * dx + dy * dy);
     },
 
-    getLeftTop = function(container, node) {
-        var nodeXY = A.Lang.isArray(node) ? node : node.getXY();
-        var containerXY = A.Lang.isArray(container) ? container : container.getXY();
-
-        return A.Array.map(containerXY, function(val, i) {
-            return Math.max(0, val - nodeXY[i]);
-        });
-    },
-
     findHotPointBestMatch = function(diagramNode1, diagramNode2) {
         var hp1 = diagramNode1.hotPoints,
             hp2 = diagramNode2.hotPoints,
@@ -407,6 +398,23 @@ DiagramNode = A.Component.create({
     },
 
     /**
+     * Gets the node top and left coordinates based on the container.
+     *
+     * @method getNodeCoordinates
+     * @param container
+     * @param node
+     * @private
+     */
+    getNodeCoordinates: function(container, node) {
+        var nodeXY = A.Lang.isArray(node) ? node : node.getXY();
+        var containerXY = A.Lang.isArray(container) ? container : container.getXY();
+
+        return A.Array.map(containerXY, function(val, i) {
+            return Math.max(0, val - nodeXY[i]);
+        });
+    },
+
+    /**
      * Constructs the node id string.
      *
      * @method buildNodeId
@@ -688,9 +696,9 @@ DiagramNode = A.Component.create({
 
             instance.connect(
                 instance.prepareTransition({
-                    sourceXY: getLeftTop(dd.startXY, instance.get('boundingBox')),
+                    sourceXY: A.DiagramNode.getNodeCoordinates(dd.startXY, instance.get('boundingBox')),
                     target: diagramNode.get('name'),
-                    targetXY: getLeftTop(dd.mouseXY, diagramNode.get('boundingBox'))
+                    targetXY: A.DiagramNode.getNodeCoordinates(dd.mouseXY, diagramNode.get('boundingBox'))
                 })
             );
         },
@@ -821,12 +829,12 @@ DiagramNode = A.Component.create({
         /**
          * Returns the left and top positions of a node based in its container.
          *
-         * @method getLeftTop
+         * @method getNodeCoordinates
          */
-        getLeftTop: function() {
+        getNodeCoordinates: function() {
             var instance = this;
 
-            return getLeftTop(instance.get('boundingBox'), instance.getContainer());
+            return A.DiagramNode.getNodeCoordinates(instance.get('boundingBox'), instance.getContainer());
         },
 
         /**
@@ -1556,4 +1564,3 @@ DiagramNode = A.Component.create({
 });
 
 A.DiagramNode = DiagramNode;
-A.DiagramNode.getLeftTopCalc = getLeftTop;
