@@ -347,12 +347,24 @@ ToolbarRenderer.prototype = {
                 value = childRenderHints.value,
                 type = value.domType || 'button',
                 cssClass,
+                buttonInstance,
                 buttonNode;
 
             if (A.instanceOf(value, A.Button) ||
                 A.instanceOf(value, A.ToggleButton)) {
 
                 return value.get('boundingBox');
+            }
+
+            if (A.UA.touchEnabled) {
+                buttonInstance = new A.Button(value).render();
+
+                // Add title support
+                if (value.title) {
+                    buttonInstance.get('boundingBox').setAttribute('title', value.title);
+                }
+
+                return buttonInstance.get('boundingBox');
             }
 
             // Add node reference support
