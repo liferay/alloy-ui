@@ -19,7 +19,7 @@ var PropertyBuilderAvailableField,
  *     properties.
  * @constructor
  */
- PropertyBuilderAvailableField = A.Component.create({
+PropertyBuilderAvailableField = A.Component.create({
 
     /**
      * Static property provides a string to identify the class.

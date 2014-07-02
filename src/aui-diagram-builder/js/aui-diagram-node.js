@@ -55,7 +55,6 @@ var DiagramNode,
     CSS_DIAGRAM_NODE_SELECTED = A.getClassName('diagram', 'node', 'selected'),
     CSS_DIAGRAM_NODE_SHAPE_BOUNDARY = A.getClassName('diagram', 'node', 'shape', 'boundary');
 
-
 /**
  * A base class for DiagramNode.
  *

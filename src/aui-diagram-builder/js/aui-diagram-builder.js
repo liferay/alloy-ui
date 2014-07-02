@@ -241,7 +241,8 @@ var DiagramBuilder = A.Component.create({
                 'click', A.bind(instance._onNodeClick, instance), '.' + CSS_DIAGRAM_NODE);
 
             instance.dropContainer.delegate(
-                'mousedown', A.bind(instance._onCloseButtonMouseDown, instance), '.diagram-builder-controls button'
+                'mousedown', A.bind(instance._onCloseButtonMouseDown, instance),
+                '.diagram-builder-controls button'
             );
 
             instance.dropContainer.delegate(
@@ -714,8 +715,8 @@ var DiagramBuilder = A.Component.create({
 
             instance.get('fields').each(function(diagramNode) {
                 var node = {
-                    transitions: []
-                },
+                        transitions: []
+                    },
                     transitions = diagramNode.get('transitions');
 
                 // serialize node attributes

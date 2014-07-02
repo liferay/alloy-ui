@@ -76,8 +76,6 @@ PropertyBuilderSettings.ATTRS = {
     }
 };
 
-
-
 /**
  * Object hash, defining how attribute values have to be parsed from markup.
  *
@@ -108,7 +106,7 @@ A.mix(PropertyBuilderSettings.prototype, {
             }
         });
 
-        this.on('render', function () {
+        this.on('render', function() {
             this._renderTabs();
         });
     },

@@ -4,7 +4,6 @@ var PropertyBuilderFieldSupport,
         return A.instanceOf(val, A.ArrayList);
     };
 
-
 /**
  * A base class for `A.PropertyBuilderFieldSupport`.
  *
@@ -21,7 +20,7 @@ var PropertyBuilderFieldSupport = function() {};
  * @type Object
  * @static
  */
- PropertyBuilderFieldSupport.ATTRS = {
+PropertyBuilderFieldSupport.ATTRS = {
 
     /**
      * The collection of fields.
