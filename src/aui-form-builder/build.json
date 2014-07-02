@@ -7,21 +7,15 @@
             ]
         },
 
-        "aui-form-builder-base": {
+        "aui-form-builder": {
             "jsfiles": [
-                "js/aui-form-builder-base.js"
+                "js/aui-form-builder.js"
             ]
         },
 
-        "aui-form-builder-impl": {
+        "aui-form-builder-field": {
             "jsfiles": [
-                "js/aui-form-builder-impl.js"
-            ]
-        },
-
-        "aui-form-builder-field-base": {
-            "jsfiles": [
-                "js/aui-form-builder-field-base.js"
+                "js/aui-form-builder-field.js"
             ]
         },
 

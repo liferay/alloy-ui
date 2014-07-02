@@ -1,4 +1,4 @@
-var FieldSupport,
+var PropertyBuilderFieldSupport,
 
     isArrayList = function(val) {
         return A.instanceOf(val, A.ArrayList);
@@ -6,22 +6,22 @@ var FieldSupport,
 
 
 /**
- * A base class for `A.FieldSupport`.
+ * A base class for `A.PropertyBuilderFieldSupport`.
  *
- * @class A.FieldSupport
+ * @class A.PropertyBuilderFieldSupport
  * @constructor
  */
-var FieldSupport = function() {};
+var PropertyBuilderFieldSupport = function() {};
 
 /**
  * Static property used to define the default attribute
- * configuration for the `A.FieldSupport`.
+ * configuration for the `A.PropertyBuilderFieldSupport`.
  *
  * @property ATTRS
  * @type Object
  * @static
  */
-FieldSupport.ATTRS = {
+ PropertyBuilderFieldSupport.ATTRS = {
 
     /**
      * The collection of fields.
@@ -51,7 +51,7 @@ FieldSupport.ATTRS = {
     }
 };
 
-A.mix(FieldSupport.prototype, {
+A.mix(PropertyBuilderFieldSupport.prototype, {
 
     /**
      * Sets the `fields` attribute.
@@ -157,5 +157,4 @@ A.mix(FieldSupport.prototype, {
     }
 });
 
-A.FieldSupport = FieldSupport;
-// A.FieldSupport = A.Base.create('field-support', A.Base, [FieldSupport]);
+A.PropertyBuilderFieldSupport = PropertyBuilderFieldSupport;

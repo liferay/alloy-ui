@@ -86,9 +86,9 @@ PropertyBuilderSettings.ATTRS = {
  * @extends A.PropertyBuilder.HTML_PARSER
  * @static
  */
-PropertyBuilderSettings.HTML_PARSER = A.mix(A.PropertyBuilder.HTML_PARSER, {
+PropertyBuilderSettings.HTML_PARSER = {
     toolbarContainer: '.' + CSS_PROPERTY_BUILDER_TOOLBAR_CONTAINER
-});
+};
 
 A.mix(PropertyBuilderSettings.prototype, {
     TOOLBAR_CONTAINER_TEMPLATE: '<div class="' + CSS_PROPERTY_BUILDER_TOOLBAR_CONTAINER + '"></div>',
@@ -343,4 +343,3 @@ A.mix(PropertyBuilderSettings.prototype, {
 });
 
 A.PropertyBuilderSettings = PropertyBuilderSettings;
-// A.PropertyBuilderSettings = A.Base.create('aui-property-builder-settings', A.Base, [PropertyBuilderSettings]);

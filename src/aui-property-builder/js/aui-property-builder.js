@@ -10,7 +10,7 @@ var Lang = A.Lang,
     isObject = Lang.isObject,
 
     isAvailableField = function(val) {
-        return A.instanceOf(val, A.AvailableField);
+        return A.instanceOf(val, A.PropertyBuilderAvailableField);
     },
 
     AArray = A.Array,
@@ -30,7 +30,7 @@ var Lang = A.Lang,
  *
  * @class A.PropertyBuilder
  * @extends A.Component
- * @uses A.FieldSupport
+ * @uses A.PropertyBuilderFieldSupport
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
@@ -170,7 +170,7 @@ var PropertyBuilder = A.Component.create({
      * @type Array
      * @static
      */
-    AUGMENTS: [A.FieldSupport],
+    AUGMENTS: [A.PropertyBuilderFieldSupport, A.PropertyBuilderSettings],
 
     prototype: {
         CANVAS_TEMPLATE: '<div tabindex="1" class="' + CSS_PROPERTY_BUILDER_CANVAS + '"></div>',
@@ -366,7 +366,7 @@ var PropertyBuilder = A.Component.create({
 
             AArray.each(val, function(field) {
                 fields.push(
-                    isAvailableField(field) ? field : new A.AvailableField(field)
+                    isAvailableField(field) ? field : new A.PropertyBuilderAvailableField(field)
                 );
             });
 

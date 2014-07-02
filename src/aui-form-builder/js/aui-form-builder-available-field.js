@@ -2,7 +2,7 @@
  * A base class for `A.FormBuilderAvailableField`.
  *
  * @class A.FormBuilderAvailableField
- * @extends A.AvailableField
+ * @extends A.PropertyBuilderAvailableField
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
@@ -38,13 +38,6 @@ var FormBuilderAvailableField = A.Component.create({
         hiddenAttributes: {
             validator: A.Lang.isArray
         },
-
-        /**
-         * The name of the input field.
-         *
-         * @attribute name
-         */
-        name: {},
 
         /**
          * Collection of options.
@@ -114,14 +107,7 @@ var FormBuilderAvailableField = A.Component.create({
          */
         unique: {
             validator: A.Lang.isBoolean
-        },
-
-        /**
-         * The width of the input field.
-         *
-         * @attribute width
-         */
-        width: {}
+        }
     },
 
     /**
@@ -131,7 +117,7 @@ var FormBuilderAvailableField = A.Component.create({
      * @type String
      * @static
      */
-    EXTENDS: A.AvailableField
+    EXTENDS: A.PropertyBuilderAvailableField
 });
 
 A.FormBuilderAvailableField = FormBuilderAvailableField;

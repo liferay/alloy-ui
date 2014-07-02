@@ -1,15 +1,15 @@
 {
     "name": "aui-diagram-builder",
     "builds": {
-        "aui-diagram-builder-connector": {
+        "aui-diagram-builder": {
             "jsfiles": [
-                "js/aui-diagram-builder-connector.js"
+                "js/aui-diagram-builder.js"
             ]
         },
 
-        "aui-diagram-builder-impl": {
+        "aui-diagram-builder-connector": {
             "jsfiles": [
-                "js/aui-diagram-builder-impl.js"
+                "js/aui-diagram-builder-connector.js"
             ]
         },
 
@@ -64,12 +64,6 @@
         "aui-diagram-node-task": {
             "jsfiles": [
                 "js/aui-diagram-node-task.js"
-            ]
-        },
-
-        "aui-field-support": {
-            "jsfiles": [
-                "js/aui-field-support.js"
             ]
         }
     }

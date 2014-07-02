@@ -1,4 +1,4 @@
-var AvailableField,
+var PropertyBuilderAvailableField,
 
     isNode = function(val) {
         return A.instanceOf(val, A.Node);
@@ -11,15 +11,15 @@ var AvailableField,
     CSS_ICON = A.getClassName('icon');
 
 /**
- * A base class for AvailableField.
+ * A base class for PropertyBuilderAvailableField.
  *
- * @class A.AvailableField
+ * @class A.PropertyBuilderAvailableField
  * @extends Base
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
-AvailableField = A.Component.create({
+ PropertyBuilderAvailableField = A.Component.create({
 
     /**
      * Static property provides a string to identify the class.
@@ -32,7 +32,7 @@ AvailableField = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the `A.AvailableField`.
+     * configuration for the `A.PropertyBuilderAvailableField`.
      *
      * @property ATTRS
      * @type Object
@@ -155,7 +155,7 @@ AvailableField = A.Component.create({
      * @private
      */
     getAvailableFieldById: function(id) {
-        return A.AvailableField.getAvailableFieldByNode('#' + A.AvailableField.buildNodeId(id));
+        return A.PropertyBuilderAvailableField.getAvailableFieldByNode('#' + A.PropertyBuilderAvailableField.buildNodeId(id));
     },
 
     /**
@@ -181,7 +181,7 @@ AvailableField = A.Component.create({
             ' {iconClass}"></span>' + '<div class="' + CSS_PROPERTY_BUILDER_FIELD_LABEL + '"></div>' + '</li>',
 
         /**
-         * Construction logic executed during `A.AvailableField` instantiation.
+         * Construction logic executed during `A.PropertyBuilderAvailableField` instantiation.
          * Lifecycle.
          *
          * @method initializer
@@ -265,7 +265,7 @@ AvailableField = A.Component.create({
          * @protected
          */
         _setId: function(val) {
-            return A.AvailableField.buildNodeId(val);
+            return A.PropertyBuilderAvailableField.buildNodeId(val);
         },
 
         /**
@@ -310,4 +310,4 @@ AvailableField = A.Component.create({
     }
 });
 
-A.AvailableField = AvailableField;
+A.PropertyBuilderAvailableField = PropertyBuilderAvailableField;

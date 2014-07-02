@@ -2,7 +2,7 @@
  * The Form Builder Component
  *
  * @module aui-form-builder
- * @submodule aui-form-builder-field-base
+ * @submodule aui-form-builder-field
  */
 
 var L = A.Lang,
@@ -34,37 +34,6 @@ var L = A.Lang,
     TPL_LABEL = '<label for="{id}">{label}</label>',
 
     INVALID_CLONE_ATTRS = ['id', 'name'];
-
-/**
- * A base class for `A.FormBuilderFieldBase`.
- *
- * @class A.FormBuilderFieldBase
- * @extends A.Component
- * @uses A.FieldSupport
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
- * @constructor
- */
-var FormBuilderFieldBase = A.Component.create({
-
-    /**
-     * Static property provides a string to identify the class.
-     *
-     * @property NAME
-     * @type String
-     * @static
-     */
-    NAME: 'form-builder-field',
-
-    /**
-     * Static property used to define the augmented classes.
-     *
-     * @property AUGMENTS
-     * @type Array
-     * @static
-     */
-    AUGMENTS: [A.FieldSupport]
-});
 
 /**
  * A base class for `A.FormBuilderField`.
@@ -475,13 +444,13 @@ var FormBuilderField = A.Component.create({
     ],
 
     /**
-     * Static property used to define which component it extends.
+     * Static property used to define the augmented classes.
      *
-     * @property EXTENDS
-     * @type Object
+     * @property AUGMENTS
+     * @type Array
      * @static
      */
-    EXTENDS: FormBuilderFieldBase,
+    AUGUMENTS: [A.PropertyBuilderFieldSupport],
 
     /**
      * Creates the field id.

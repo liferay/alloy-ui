@@ -1,5 +1,17 @@
 {
-    "aui-available-field": {
+    "aui-property-builder": {
+        "requires": [
+            "dd",
+            "collection",
+            "aui-property-builder-available-field",
+            "aui-property-builder-field-support",
+            "aui-property-builder-settings",
+            "aui-tabview"
+        ],
+        "skinnable": true
+    },
+
+    "aui-property-builder-available-field": {
         "requires": [
             "base",
             "aui-component",
@@ -7,16 +19,7 @@
         ]
     },
 
-    "aui-property-builder": {
-        "requires": [
-            "dd",
-            "collection",
-            "aui-available-field",
-            "aui-field-support",
-            "aui-tabview",
-            "aui-datatable-property-list"
-        ],
-        "skinnable": true
+    "aui-property-builder-field-support": {
     },
 
     "aui-property-builder-settings": {

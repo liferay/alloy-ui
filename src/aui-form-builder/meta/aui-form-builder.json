@@ -1,29 +1,11 @@
 
 {
-    "aui-form-builder-available-field": {
-        "requires": [
-            "aui-available-field"
-        ]
-    },
-
     "aui-form-builder": {
-        "use": [
-            "aui-form-builder-base",
-            "aui-form-builder-impl"
-        ],
-        "skinnable": true
-    },
-
-    "aui-form-builder-base": {
         "requires": [
-            "escape",
-            "transition",
             "aui-button",
             "aui-collection",
-            "aui-property-builder",
-            "aui-sortable-list",
             "aui-form-builder-available-field",
-            "aui-form-builder-field-base",
+            "aui-form-builder-field",
             "aui-form-builder-field-button",
             "aui-form-builder-field-checkbox",
             "aui-form-builder-field-fieldset",
@@ -33,12 +15,24 @@
             "aui-form-builder-field-select",
             "aui-form-builder-field-text",
             "aui-form-builder-field-textarea",
-            "aui-tooltip-base"
+            "aui-property-builder",
+            "aui-property-builder-settings",
+            "aui-sortable-list",
+            "aui-tabview",
+            "aui-tooltip-base",
+            "escape",
+            "transition"
         ],
         "skinnable": true
     },
 
-    "aui-form-builder-field-base": {
+    "aui-form-builder-available-field": {
+        "requires": [
+            "aui-property-builder-available-field"
+        ]
+    },
+
+    "aui-form-builder-field": {
         "requires": [
             "panel",
             "aui-datatype"
@@ -48,62 +42,55 @@
 
     "aui-form-builder-field-button": {
         "requires": [
-            "aui-form-builder-field-base"
+            "aui-form-builder-field"
         ]
     },
 
     "aui-form-builder-field-checkbox": {
         "requires": [
-            "aui-form-builder-field-base"
+            "aui-form-builder-field"
         ]
     },
 
     "aui-form-builder-field-fieldset": {
         "requires": [
-            "aui-form-builder-field-base"
+            "aui-form-builder-field"
         ]
     },
 
     "aui-form-builder-field-file-upload": {
         "requires": [
-            "aui-form-builder-field-base"
+            "aui-form-builder-field"
         ]
     },
 
     "aui-form-builder-field-multiple-choice": {
         "requires": [
-            "aui-form-builder-field-base"
+            "aui-form-builder-field"
         ]
     },
 
     "aui-form-builder-field-radio": {
         "requires": [
-            "aui-form-builder-field-base"
+            "aui-form-builder-field"
         ]
     },
 
     "aui-form-builder-field-select": {
         "requires": [
-            "aui-form-builder-field-base"
+            "aui-form-builder-field"
         ]
     },
 
     "aui-form-builder-field-text": {
         "requires": [
-            "aui-form-builder-field-base"
+            "aui-form-builder-field"
         ]
     },
 
     "aui-form-builder-field-textarea": {
         "requires": [
-            "aui-form-builder-field-base"
-        ]
-    },
-
-    "aui-form-builder-impl": {
-        "requires": [
-            "aui-tabview",
-            "aui-property-builder-settings"
+            "aui-form-builder-field"
         ]
     }
 }
