@@ -1,7 +1,28 @@
+
 {
+    "aui-form-builder-available-field": {
+        "requires": [
+            "aui-available-field"
+        ]
+    },
+
     "aui-form-builder": {
         "use": [
             "aui-form-builder-base",
+            "aui-form-builder-impl"
+        ],
+        "skinnable": true
+    },
+
+    "aui-form-builder-base": {
+        "requires": [
+            "escape",
+            "transition",
+            "aui-button",
+            "aui-collection",
+            "aui-property-builder",
+            "aui-sortable-list",
+            "aui-form-builder-available-field",
             "aui-form-builder-field-base",
             "aui-form-builder-field-button",
             "aui-form-builder-field-checkbox",
@@ -17,22 +38,9 @@
         "skinnable": true
     },
 
-    "aui-form-builder-base": {
-        "requires": [
-            "escape",
-            "transition",
-            "aui-button",
-            "aui-collection",
-            "aui-diagram-builder-base",
-            "aui-sortable-list",
-            "aui-tabview"
-        ],
-        "skinnable": true
-    },
-
     "aui-form-builder-field-base": {
         "requires": [
-        	"panel",
+            "panel",
             "aui-datatype"
         ],
         "skinnable": true
@@ -89,6 +97,13 @@
     "aui-form-builder-field-textarea": {
         "requires": [
             "aui-form-builder-field-base"
+        ]
+    },
+
+    "aui-form-builder-impl": {
+        "requires": [
+            "aui-tabview",
+            "aui-property-builder-settings"
         ]
     }
 }

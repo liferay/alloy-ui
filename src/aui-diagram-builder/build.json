@@ -1,12 +1,6 @@
 {
     "name": "aui-diagram-builder",
     "builds": {
-        "aui-diagram-builder-base": {
-            "jsfiles": [
-                "js/aui-diagram-builder-base.js"
-            ]
-        },
-
         "aui-diagram-builder-connector": {
             "jsfiles": [
                 "js/aui-diagram-builder-connector.js"
@@ -16,6 +10,66 @@
         "aui-diagram-builder-impl": {
             "jsfiles": [
                 "js/aui-diagram-builder-impl.js"
+            ]
+        },
+
+        "aui-diagram-node": {
+            "jsfiles": [
+                "js/aui-diagram-node.js"
+            ]
+        },
+
+        "aui-diagram-node-condition": {
+            "jsfiles": [
+                "js/aui-diagram-node-condition.js"
+            ]
+        },
+
+        "aui-diagram-node-manager-base": {
+            "jsfiles": [
+                "js/aui-diagram-node-manager-base.js"
+            ]
+        },
+
+        "aui-diagram-node-end": {
+            "jsfiles": [
+                "js/aui-diagram-node-end.js"
+            ]
+        },
+
+        "aui-diagram-node-fork": {
+            "jsfiles": [
+                "js/aui-diagram-node-fork.js"
+            ]
+        },
+
+        "aui-diagram-node-join": {
+            "jsfiles": [
+                "js/aui-diagram-node-join.js"
+            ]
+        },
+
+        "aui-diagram-node-start": {
+            "jsfiles": [
+                "js/aui-diagram-node-start.js"
+            ]
+        },
+
+        "aui-diagram-node-state": {
+            "jsfiles": [
+                "js/aui-diagram-node-state.js"
+            ]
+        },
+
+        "aui-diagram-node-task": {
+            "jsfiles": [
+                "js/aui-diagram-node-task.js"
+            ]
+        },
+
+        "aui-field-support": {
+            "jsfiles": [
+                "js/aui-field-support.js"
             ]
         }
     }

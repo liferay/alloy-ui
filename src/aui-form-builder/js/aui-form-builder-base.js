@@ -6,10 +6,7 @@
  */
 
 var L = A.Lang,
-    isArray = L.isArray,
-    isBoolean = L.isBoolean,
     isObject = L.isObject,
-    isString = L.isString,
 
     aArray = A.Array,
 
@@ -23,13 +20,15 @@ var L = A.Lang,
         return (v instanceof A.FormBuilderField);
     },
 
+    formBuilderTypes = A.namespace('FormBuilder.types'),
+
     getCN = A.getClassName,
 
     AVAILABLE_FIELDS_ID_PREFIX = 'availableFields' + '_' + 'field' + '_',
     FIELDS_ID_PREFIX = 'fields' + '_' + 'field' + '_',
 
     CSS_DD_DRAGGING = getCN('dd', 'dragging'),
-    CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE = getCN('diagram', 'builder', 'field', 'draggable'),
+    CSS_PROPERTY_BUILDER_FIELD_DRAGGABLE = getCN('property', 'builder', 'field', 'draggable'),
     CSS_FIELD_HOVER = getCN('form', 'builder', 'field', 'hover'),
     CSS_FORM_BUILDER_DROP_ZONE = getCN('form', 'builder', 'drop', 'zone'),
     CSS_FORM_BUILDER_FIELD = getCN('form', 'builder', 'field'),
@@ -38,155 +37,17 @@ var L = A.Lang,
     TPL_PLACEHOLDER = '<div class="' + CSS_FORM_BUILDER_PLACEHOLDER + '"></div>';
 
 /**
- * A base class for `A.FormBuilderAvailableField`.
+ * A base class for `A.FormBuilderBase`.
  *
- * @class A.FormBuilderAvailableField
- * @extends A.AvailableField
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
- * @constructor
- */
-
-var FormBuilderAvailableField = A.Component.create({
-
-    /**
-     * Static property provides a string to identify the class.
-     *
-     * @property NAME
-     * @type String
-     * @static
-     */
-    NAME: 'availableField',
-
-    /**
-     * Static property used to define the default attribute
-     * configuration for the `A.FormBuilderAvailableField`.
-     *
-     * @property ATTRS
-     * @type Object
-     * @static
-     */
-    ATTRS: {
-
-        /**
-         * List of hidden attributes.
-         *
-         * @attribute hiddenAttributes
-         * @type Array
-         */
-        hiddenAttributes: {
-            validator: isArray
-        },
-
-        /**
-         * The name of the input field.
-         *
-         * @attribute name
-         */
-        name: {},
-
-        /**
-         * Collection of options.
-         *
-         * @attribute options
-         * @type Object
-         */
-        options: {
-            validator: isObject
-        },
-
-        /**
-         * Specifies a predefined value for the input field.
-         *
-         * @attribute predefinedValue
-         */
-        predefinedValue: {},
-
-        /**
-         * List of read-only input fields.
-         *
-         * @attribute readOnlyAttributes
-         * @type Array
-         */
-        readOnlyAttributes: {
-            validator: isArray
-        },
-
-        /**
-         * Checks if an input field is required. In other words, it needs
-         * content to be valid.
-         *
-         * @attribute required
-         * @type Boolean
-         */
-        required: {
-            validator: isBoolean
-        },
-
-        /**
-         * If `true` the label is showed.
-         *
-         * @attribute showLabel
-         * @default true
-         * @type Boolean
-         */
-        showLabel: {
-            validator: isBoolean,
-            value: true
-        },
-
-        /**
-         * Hint to help the user to fill the input field.
-         *
-         * @attribute tip
-         * @type String
-         */
-        tip: {
-            validator: isString
-        },
-
-        /**
-         * Checks if the input field is unique or not.
-         *
-         * @attribute unique
-         * @type Boolean
-         */
-        unique: {
-            validator: isBoolean
-        },
-
-        /**
-         * The width of the input field.
-         *
-         * @attribute width
-         */
-        width: {}
-    },
-
-    /**
-     * Static property used to define which component it extends.
-     *
-     * @property EXTENDS
-     * @type String
-     * @static
-     */
-    EXTENDS: A.AvailableField
-});
-
-A.FormBuilderAvailableField = FormBuilderAvailableField;
-
-/**
- * A base class for `A.FormBuilder`.
- *
- * @class A.FormBuilder
- * @extends A.DiagramBuilderBase
+ * @class A.FormBuilderBase
+ * @extends A.PropertyBuilder
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  * @include http://alloyui.com/examples/form-builder/basic-markup.html
  * @include http://alloyui.com/examples/form-builder/basic.js
  */
-var FormBuilder = A.Component.create({
+var FormBuilderBase = A.Component.create({
 
     /**
      * Static property provides a string to identify the class.
@@ -199,37 +60,13 @@ var FormBuilder = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the `A.FormBuilder`.
+     * configuration for the `A.FormBuilderBase`.
      *
      * @property ATTRS
      * @type Object
      * @static
      */
     ATTRS: {
-
-        /**
-         * Checks if removing required fields is permitted or not.
-         *
-         * @attribute allowRemoveRequiredFields
-         * @default false
-         * @type Boolean
-         */
-        allowRemoveRequiredFields: {
-            validator: isBoolean,
-            value: false
-        },
-
-        /**
-         * Enables a field to be editable.
-         *
-         * @attribute enableEditing
-         * @default true
-         * @type Boolean
-         */
-        enableEditing: {
-            value: true
-        },
-
         /**
          * Collection of sortable fields.
          *
@@ -241,35 +78,8 @@ var FormBuilder = A.Component.create({
             setter: '_setFieldsSortableListConfig',
             validator: isObject,
             value: null
-        },
-
-        /**
-         * Collection of strings used to label elements of the UI.
-         *
-         * @attribute strings
-         * @type Object
-         */
-        strings: {
-            value: {
-                addNode: 'Add field',
-                close: 'Close',
-                propertyName: 'Property Name',
-                save: 'Save',
-                settings: 'Settings',
-                value: 'Value'
-            }
         }
-
     },
-
-    /**
-     * Static property used to define the UI attributes.
-     *
-     * @property UI_ATTRS
-     * @type Array
-     * @static
-     */
-    UI_ATTRS: ['allowRemoveRequiredFields'],
 
     /**
      * Static property used to define which component it extends.
@@ -278,7 +88,7 @@ var FormBuilder = A.Component.create({
      * @type String
      * @static
      */
-    EXTENDS: A.DiagramBuilderBase,
+    EXTENDS: A.PropertyBuilder,
 
     /**
      * Static property used to define the fields tab.
@@ -306,7 +116,7 @@ var FormBuilder = A.Component.create({
         uniqueFieldsMap: null,
 
         /**
-         * Construction logic executed during `A.FormBuilder` instantiation.
+         * Construction logic executed during `A.FormBuilderBase` instantiation.
          * Lifecycle.
          *
          * @method initializer
@@ -315,18 +125,13 @@ var FormBuilder = A.Component.create({
         initializer: function() {
             var instance = this;
 
-            instance.selectedFieldsLinkedSet = new A.LinkedSet({
-                after: {
-                    add: A.bind(instance._afterSelectedFieldsSetAdd, instance),
-                    remove: A.bind(instance._afterSelectedFieldsSetRemove, instance)
-                }
-            });
+            instance.selectedFieldsLinkedSet = new A.LinkedSet();
 
-            instance.uniqueFieldsMap = new A.Map({
-                after: {
-                    put: A.bind(instance._afterUniqueFieldsMapPut, instance),
-                    remove: A.bind(instance._afterUniqueFieldsMapRemove, instance)
-                }
+            instance.uniqueFieldsMap = new A.Map();
+
+            instance.uniqueFieldsMap.after({
+                put: A.bind(instance._afterUniqueFieldsMapPut, instance),
+                remove: A.bind(instance._afterUniqueFieldsMapRemove, instance)
             });
 
             instance.on({
@@ -334,7 +139,6 @@ var FormBuilder = A.Component.create({
                 'drag:end': instance._onDragEnd,
                 'drag:start': instance._onDragStart,
                 'drag:mouseDown': instance._onDragMouseDown,
-                save: instance._onSave
             });
 
             instance.after('*:focusedChange', instance._afterFieldFocusedChange);
@@ -348,7 +152,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * Sync the `A.FormBuilder` UI. Lifecycle.
+         * Sync the `A.FormBuilderBase` UI. Lifecycle.
          *
          * @method syncUI
          * @protected
@@ -358,18 +162,6 @@ var FormBuilder = A.Component.create({
 
             instance._setupAvailableFieldsSortableList();
             instance._setupFieldsSortableList();
-        },
-
-        /**
-         * Selects the field tab and disables the setting tabs.
-         *
-         * @method closeEditProperties
-         */
-        closeEditProperties: function() {
-            var instance = this;
-
-            instance.tabView.selectChild(A.FormBuilder.FIELDS_TAB);
-            instance.tabView.disableTab(A.FormBuilder.SETTINGS_TAB);
         },
 
         /**
@@ -442,7 +234,7 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * Gets the field class based on the `A.FormBuilder` type. If the type
+         * Gets the field class based on the `A.FormBuilderBase` type. If the type
          * doesn't exist, logs an error message.
          *
          * @method getFieldClass
@@ -450,7 +242,7 @@ var FormBuilder = A.Component.create({
          * @return {Object | null}
          */
         getFieldClass: function(type) {
-            var clazz = A.FormBuilder.types[type];
+            var clazz = formBuilderTypes[type];
 
             if (clazz) {
                 return clazz;
@@ -460,17 +252,6 @@ var FormBuilder = A.Component.create({
 
                 return null;
             }
-        },
-
-        /**
-         * Gets a list of properties from the field.
-         *
-         * @method getFieldProperties
-         * @param field
-         * @return {Array}
-         */
-        getFieldProperties: function(field, excludeHidden) {
-            return field.getProperties(excludeHidden);
         },
 
         /**
@@ -490,20 +271,6 @@ var FormBuilder = A.Component.create({
             field.get('parent').removeField(field);
 
             parent.addField(field, index);
-        },
-
-        /**
-         * Enables the settings tab.
-         *
-         * @method openEditProperties
-         * @param field
-         */
-        openEditProperties: function(field) {
-            var instance = this;
-
-            instance.tabView.enableTab(A.FormBuilder.SETTINGS_TAB);
-            instance.tabView.selectChild(A.FormBuilder.SETTINGS_TAB);
-            instance.propertyList.set('data', instance.getFieldProperties(field, true));
         },
 
         /**
@@ -653,37 +420,6 @@ var FormBuilder = A.Component.create({
                 availableField.set('draggable', true);
                 node.selectable();
             }
-        },
-
-        /**
-         * Triggers after adding selected fields to a `A.LinkedSet` instance.
-         *
-         * @method _afterSelectedFieldsSetAdd
-         * @param event
-         * @protected
-         */
-        _afterSelectedFieldsSetAdd: function(event) {
-            var instance = this;
-
-            event.value.set('selected', true);
-
-            instance.openEditProperties(event.value);
-        },
-
-        /**
-         * Triggers after removing selected fields from the `A.LinkedSet`
-         * instance.
-         *
-         * @method _afterSelectedFieldsSetRemove
-         * @param event
-         * @protected
-         */
-        _afterSelectedFieldsSetRemove: function(event) {
-            var instance = this;
-
-            event.value.set('selected', false);
-
-            instance.closeEditProperties();
         },
 
         /**
@@ -939,29 +675,6 @@ var FormBuilder = A.Component.create({
         },
 
         /**
-         * Triggers on saving a field. First checks if the field is being
-         * edited, if it is then sets the data and syncs on the UI.
-         *
-         * @method _onSave
-         * @param event
-         * @protected
-         */
-        _onSave: function() {
-            var instance = this,
-                editingField = instance.editingField;
-
-            if (editingField) {
-                var modelList = instance.propertyList.get('data');
-
-                modelList.each(function(model) {
-                    editingField.set(model.get('attributeName'), model.get('value'));
-                });
-
-                instance._syncUniqueField(editingField);
-            }
-        },
-
-        /**
          * Set list of available fields by checking if a field is a
          * `A.AvailableField` instance. If not creates a new instance of
          * `A.FormBuilderAvailableField`.
@@ -1042,7 +755,7 @@ var FormBuilder = A.Component.create({
 
             if (!instance.availableFieldsSortableList) {
                 var availableFieldsNodes = instance.fieldsContainer.all(
-                    '.' + CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE
+                    '.' + CSS_PROPERTY_BUILDER_FIELD_DRAGGABLE
                 );
 
                 instance.availableFieldsSortableList = new A.SortableList(
@@ -1108,6 +821,4 @@ var FormBuilder = A.Component.create({
 
 });
 
-A.FormBuilder = FormBuilder;
-
-A.FormBuilder.types = {};
+A.FormBuilderBase = FormBuilderBase;

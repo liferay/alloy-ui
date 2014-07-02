@@ -1,9 +1,21 @@
 {
     "name": "aui-form-builder",
     "builds": {
+        "aui-form-builder-available-field": {
+            "jsfiles": [
+                "js/aui-form-builder-available-field.js"
+            ]
+        },
+
         "aui-form-builder-base": {
             "jsfiles": [
                 "js/aui-form-builder-base.js"
+            ]
+        },
+
+        "aui-form-builder-impl": {
+            "jsfiles": [
+                "js/aui-form-builder-impl.js"
             ]
         },
 

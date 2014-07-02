@@ -1,9 +1,9 @@
-.form-builder .diagram-builder-drop-container, .form-builder .tab-pane {
+.form-builder .property-builder-drop-container, .form-builder .tab-pane {
     overflow: auto;
     padding-bottom: 10px;
 }
 
-.form-builder .diagram-builder-fields-container .form-builder-placeholder {
+.form-builder .property-builder-fields-container .form-builder-placeholder {
     display: none;
 }
 
