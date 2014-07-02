@@ -231,12 +231,10 @@ var TreeView = A.Component.create(
 						ownerTree: instance
 					});
 
-					if (deepContainer) {
-						// render node before invoke the recursion
-						treeNode.render();
-
-						// propagating markup recursion
-						instance._createFromHTMLMarkup(deepContainer);
+					if (instance.get('lazyLoad')) {
+						A.setTimeout(function() {
+							treeNode.render();
+						}, 50);
 					}
 					else {
 						treeNode.render();
@@ -252,6 +250,11 @@ var TreeView = A.Component.create(
 
 					// and simulate the appendChild.
 					parentInstance.appendChild(treeNode);
+
+					if (deepContainer) {
+						// propgating markup recursion
+						instance._createFromHTMLMarkup(deepContainer);
+					}
 				});
 			},
 
@@ -762,7 +765,7 @@ var TreeViewDD = A.Component.create(
 				// cannot drop the dragged element into any of its children
 				// nor above an undraggable element
 				// using DOM contains method for performance reason
-				if ( !! dropTreeNode.get(DRAGGABLE) && !dragNode.contains(dropNode)) {
+				if (!!dropTreeNode.get(DRAGGABLE) && !dragNode.contains(dropNode)) {
 					// nArea splits the height in 3 areas top/center/bottom
 					// these areas are responsible for defining the state when the mouse is over any of them
 					var nArea = nodeContent.get(OFFSET_HEIGHT) / 3;
@@ -957,4 +960,4 @@ var TreeViewDD = A.Component.create(
 
 A.TreeViewDD = TreeViewDD;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-tree-node','aui-tree-paginator','aui-tree-io','dd-delegate','dd-proxy']});
+}, '@VERSION@' ,{requires:['aui-tree-node','aui-tree-paginator','aui-tree-io','dd-delegate','dd-proxy'], skinnable:true});
