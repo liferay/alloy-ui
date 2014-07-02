@@ -491,7 +491,6 @@ A.mix(TreeData.prototype, {
 		// and then set the children, to have the appendChild propagation
 		// the PARENT_NODE references should be updated
 		var length = children.push(node);
-		instance.set(CHILDREN, children);
 
 		// updating prev/nextSibling attributes
 		var prevIndex = length - 2;
