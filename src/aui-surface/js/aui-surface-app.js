@@ -99,7 +99,17 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
     scrollHandle: null,
 
     /**
-     * Map that index the surfaces instances by the surface id.
+     * When set to true the first erroneous popstate fired on page load will be
+     * ignored, only if `window.history.state` is also `null`.
+     *
+     * @property skipLoadPopstate
+     * @type {Boolean}
+     * @protected
+     */
+    skipLoadPopstate: false,
+
+    /**
+     * Maps that index the surfaces instances by the surface id.
      *
      * @property surfaces
      * @type {Object}
@@ -130,6 +140,10 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
         A.on('scroll', A.debounce(this._onScroll, 50, this));
         A.on('popstate', this._onPopState, win, this);
         A.delegate('click', this._onDocClick, doc, this.get('linkSelector'), this);
+
+        // Don't fire popstate event on initial document load, for more
+        // information see https://codereview.chromium.org/136463002.
+        this.skipLoadPopstate = A.UA.safari && (doc.readyState === 'interactive');
     },
 
     /**
@@ -530,9 +544,15 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
     _onPopState: function(event) {
         var state = event._event.state;
 
-        if (state === null && !win.location.hash) {
-            win.location.reload();
-            return;
+        if (state === null) {
+            if (this.skipLoadPopstate) {
+                return;
+            }
+
+            if (!win.location.hash) {
+                win.location.reload();
+                return;
+            }
         }
 
         if (state && state.surface) {
@@ -540,6 +560,8 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
             this._lockScroll();
             this.navigate(state.path, true);
         }
+
+        this.skipLoadPopstate = false;
     },
 
     /**
