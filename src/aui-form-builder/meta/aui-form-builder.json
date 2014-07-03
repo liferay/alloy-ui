@@ -35,7 +35,8 @@
     "aui-form-builder-field": {
         "requires": [
             "panel",
-            "aui-datatype"
+            "aui-datatype",
+            "aui-property-builder-field-support"
         ],
         "skinnable": true
     },

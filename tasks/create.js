@@ -5,7 +5,7 @@ var spawn = require('spawn-local-bin');
 function setName(res) {
     exports.name = res.name;
 
-    if (name.indexOf('aui-') !== 0) {
+    if (exports.name.indexOf('aui-') !== 0) {
         exports.name = 'aui-' + exports.name;
     }
 }
@@ -20,7 +20,7 @@ gulp.task('create-name', function() {
 });
 
 gulp.task('create', ['create-name'], function(callback) {
-    var args = ['init', name];
+    var args = ['init', exports.name];
     var cmd = 'yogi';
 
     spawn(cmd, args)

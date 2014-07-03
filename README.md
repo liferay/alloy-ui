@@ -46,7 +46,7 @@ npm install
 
 ### Init
 
-* Fetch dependencies using [Bower](http://bower.io/) and copy YUI3 files to `build` folder:
+* Fetch dependencies using [Bower](http://bower.io/) and [NPM](https://www.npmjs.org/), then copy YUI3 files to `build` folder:
 
     ```
 gulp init
@@ -136,6 +136,14 @@ gulp test
 
     ```
 gulp test-browser
+    ```
+
+### Update
+
+* Update dependencies using [Bower](http://bower.io/) and [NPM](https://www.npmjs.org/):
+
+    ```
+gulp update
     ```
 
 ### API Docs
