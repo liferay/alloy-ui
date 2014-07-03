@@ -22,13 +22,12 @@ var Lang = A.Lang,
 	BOUNDING_BOX = 'boundingBox',
 	BUTTON = 'button',
 	BUTTONS = 'buttons',
-	CLICK_OUTSIDE = "clickoutside",
+	CLICK_OUTSIDE = 'clickoutside',
 	CLOSE = 'close',
 	CLOSETHICK = 'closethick',
 	CONSTRAIN_TO_VIEWPORT = 'constrain2view',
 	DATA_TABINDEX = 'data-tabindex',
 	DD = 'dd',
-	DEFAULT = 'default',
 	DESTROY_ON_CLOSE = 'destroyOnClose',
 	DIALOG = 'dialog',
 	DOT = '.',
@@ -36,7 +35,7 @@ var Lang = A.Lang,
 	DRAG_GUTTER = 5,
 	DRAG_INSTANCE = 'dragInstance',
 	DRAGGABLE = 'draggable',
-	FOCUS_OUTSIDE = "focusoutside",
+	FOCUS_OUTSIDE = 'focusoutside',
 	FOOTER_CONTENT = 'footerContent',
 	HD = 'hd',
 	HEIGHT = 'height',
@@ -64,8 +63,6 @@ var Lang = A.Lang,
 
 	CSS_DIALOG = getCN(DIALOG),
 	CSS_DIALOG_HD = getCN(DIALOG, HD),
-	CSS_ICON_LOADING = getCN(ICON, LOADING),
-	CSS_PREFIX = getCN(DD),
 
 	NODE_BLANK_TEXT = DOC.createTextNode('');
 
@@ -123,15 +120,6 @@ A.mix(
 	Dialog,
 	{
 		/**
-		 * Static property provides a string to identify the class.
-		 *
-		 * @property Dialog.NAME
-		 * @type String
-		 * @static
-		 */
-		NAME: DIALOG,
-
-		/**
 		 * Static property used to define the default attribute
 		 * configuration for the Dialog.
 		 *
@@ -174,8 +162,8 @@ A.mix(
 			 * @type Array
 			 */
 			buttons: {
-				value: [],
-				validator: isArray
+				validator: isArray,
+				value: []
 			},
 
 			/**
@@ -199,8 +187,8 @@ A.mix(
 			 */
 			constrain2view: {
 				setter: '_setConstrain2view',
-				value: false,
-				validator: isBoolean
+				validator: isBoolean,
+				value: false
 			},
 
 			/**
@@ -213,19 +201,8 @@ A.mix(
 			 * @type boolean
 			 */
 			destroyOnClose: {
-				value: false,
-				validator: isBoolean
-			},
-
-			/**
-			 * Boolean specifying if the Panel should be draggable.
-			 *
-			 * @attribute draggable
-			 * @default true
-			 * @type boolean
-			 */
-			draggable: {
-				value: true
+				validator: isBoolean,
+				value: false
 			},
 
 			/**
@@ -241,15 +218,26 @@ A.mix(
 					return A.merge(
 						{
 							bubbleTargets: instance,
-							node: instance.get(BOUNDING_BOX),
-							handles: [ DOT + CSS_DIALOG_HD ]
+							handles: [DOT + CSS_DIALOG_HD],
+							node: instance.get(BOUNDING_BOX)
 						},
 						val || {}
 					);
 				},
-				writeOnce: true,
+				validator: isObject,
 				value: {},
-				validator: isObject
+				writeOnce: true
+			},
+
+			/**
+			 * Boolean specifying if the Panel should be draggable.
+			 *
+			 * @attribute draggable
+			 * @default true
+			 * @type boolean
+			 */
+			draggable: {
+				value: true
 			},
 
 			/**
@@ -277,6 +265,7 @@ A.mix(
 			 * outside the widget is clicked on or focussed upon.</p>
 			 */
 			focusOn: {
+				validator: A.Lang.isArray,
 				valueFn: function() {
 					return [
 						{
@@ -288,9 +277,7 @@ A.mix(
 							eventName: FOCUS_OUTSIDE
 						}
 					];
-				},
-
-				validator: A.Lang.isArray
+				}
 			},
 
 			/**
@@ -310,6 +297,17 @@ A.mix(
 			},
 
 			/**
+			 * Boolean specifying if the Panel should be resizable.
+			 *
+			 * @attribute resizable
+			 * @default true
+			 * @type boolean
+			 */
+			resizable: {
+				value: true
+			},
+
+			/**
 			 * Resize configuration.
 			 *
 			 * @attribute resizableConfig
@@ -321,24 +319,24 @@ A.mix(
 
 					return A.merge(
 						{
-							bubbleTargets: instance,
-							handles: 'r,br,b',
-							minHeight: 100,
-							minWidth: 200,
-							constrain2view: true,
-							node: instance.get(BOUNDING_BOX),
-							proxy: true,
 							after: {
 								end: A.bind(instance._syncResizableDimentions, instance),
 								resize: A.bind(instance._syncResizableDimentions, instance)
-							}
+							},
+							bubbleTargets: instance,
+							constrain2view: true,
+							handles: 'r,br,b',
+							minHeight: 100,
+							minWidth: 200,
+							node: instance.get(BOUNDING_BOX),
+							proxy: true
 						},
 						val || {}
 					);
 				},
-				writeOnce: true,
+				validator: isObject,
 				value: {},
-				validator: isObject
+				writeOnce: true
 			},
 
 			/**
@@ -355,17 +353,6 @@ A.mix(
 			},
 
 			/**
-			 * Boolean specifying if the Panel should be resizable.
-			 *
-			 * @attribute resizable
-			 * @default true
-			 * @type boolean
-			 */
-			resizable: {
-				value: true
-			},
-
-			/**
 			 * If <code>true</code> give stacking habilities to the Dialog.
 			 *
 			 * @attribute stack
@@ -373,11 +360,11 @@ A.mix(
 			 * @type boolean
 			 */
 			stack: {
-				value: true,
 				setter: function(v) {
 					return this._setStack(v);
 				},
-				validator: isBoolean
+				validator: isBoolean,
+				value: true
 			},
 
 			/**
@@ -391,7 +378,16 @@ A.mix(
 					close: 'Close dialog'
 				}
 			}
-		}
+		},
+
+		/**
+		 * Static property provides a string to identify the class.
+		 *
+		 * @property Dialog.NAME
+		 * @type String
+		 * @static
+		 */
+		NAME: DIALOG
 	}
 );
 
@@ -407,9 +403,9 @@ Dialog.prototype = {
 	initializer: function(config) {
 		var instance = this;
 
-		var icons = instance.get(ICONS);
-		var close = instance.get(CLOSE);
 		var buttons = instance.get(BUTTONS);
+		var close = instance.get(CLOSE);
+		var icons = instance.get(ICONS);
 
 		if (buttons && buttons.length && !instance.get(FOOTER_CONTENT)) {
 			instance.set(FOOTER_CONTENT, NODE_BLANK_TEXT);
@@ -419,12 +415,12 @@ Dialog.prototype = {
 			var closeId = A.guid();
 
 			var closeConfig = {
+				handler: {
+					context: instance,
+					fn: instance.close
+				},
 				icon: CLOSETHICK,
 				id: closeId,
-				handler: {
-					fn: instance.close,
-					context: instance
-				},
 				title: instance.get('strings').close
 			};
 
@@ -464,8 +460,8 @@ Dialog.prototype = {
 	bindUI: function() {
 		var instance = this;
 
-		if (instance.get('modal')) {
-			instance.after("focusOnChange", instance._afterFocusOnChange());
+		if (instance.get(MODAL)) {
+			instance.after('focusOnChange', instance._afterFocusOnChange());
 		}
 
 		instance._bindLazyComponents();
@@ -482,16 +478,19 @@ Dialog.prototype = {
 		var instance = this;
 
 		if (instance.get(USE_ARIA)) {
-			instance.plug(A.Plugin.Aria, {
-				attributes: {
-					visible: {
-						ariaName: 'hidden',
-						format: function(value) {
-							return !value;
+			instance.plug(
+				A.Plugin.Aria,
+				{
+					attributes: {
+						visible: {
+							ariaName: 'hidden',
+							format: function(value) {
+								return !value;
+							}
 						}
 					}
 				}
-			});
+			);
 		}
 	},
 
@@ -505,9 +504,8 @@ Dialog.prototype = {
 	destructor: function() {
 		var instance = this;
 
-		var boundingBox = instance.get(BOUNDING_BOX);
+		A.Event.purgeElement(instance.get(BOUNDING_BOX), true);
 
-		A.Event.purgeElement(boundingBox, true);
 		A.DialogManager.remove(instance);
 	},
 
@@ -523,24 +521,10 @@ Dialog.prototype = {
 
 		var viewportRegion = A.getDoc().get(VIEWPORT_REGION);
 
-		instance.move([ viewportRegion.left + toInt(offsetLeft), viewportRegion.top + toInt(offsetTop) ]);
-	},
+		var viewportLeft = viewportRegion.left + toInt(offsetLeft);
+		var viewportTop = viewportRegion.top + toInt(offsetTop);
 
-	/**
-	 * Bind a <code>mouseenter</code> listener to the <code>boundingBox</code>
-	 * to invoke the
-	 * <a href="Dialog.html#config__initLazyComponents">_initLazyComponents</a>.
-	 * Performance reasons.
-	 *
-	 * @method _bindLazyComponents
-	 * @private
-	 */
-	_bindLazyComponents: function() {
-		var instance = this;
-
-		var boundingBox = instance.get(BOUNDING_BOX);
-
-		boundingBox.on('mouseenter', A.bind(instance._initLazyComponents, instance));
+		instance.move([viewportLeft, viewportTop]);
 	},
 
 	/**
@@ -552,6 +536,110 @@ Dialog.prototype = {
 		var instance = this;
 
 		instance.fire('close');
+	},
+
+	/**
+	 * Fires after the value of the
+	 * <a href="Overlay.html#config_constrain2view">constrain2view</a> attribute change.
+	 *
+	 * @method _afterConstrain2viewChange
+	 * @param {EventFacade} event
+	 * @protected
+	 */
+	_afterConstrain2viewChange: function(event) {
+		var instance = this;
+
+		instance._updateDDConstrain2view(
+			instance.get(DRAG_INSTANCE)
+		);
+	},
+
+	/**
+	 * Fires after the value of the
+	 * <a href="Overlay.html#config_draggable">draggable</a> attribute change.
+	 *
+	 * @method _afterDraggableChange
+	 * @param {EventFacade} event
+	 * @protected
+	 */
+	_afterDraggableChange: function(event) {
+		var instance = this;
+
+		instance.set(DRAG_INSTANCE, null);
+	},
+
+	/**
+	 * Fires after the value of the
+	 * <a href="Overlay.html#config_dragInstance">dragInstance</a> attribute change.
+	 *
+	 * @method _afterDragInstanceChange
+	 * @param {EventFacade} event
+	 * @protected
+	 */
+	_afterDragInstanceChange: function(event) {
+		var instance = this;
+
+		var prevVal = event.prevVal;
+
+		if (prevVal) {
+			prevVal.destroy();
+		}
+	},
+
+	/**
+	 * Handles the drag start event
+	 * If "constrain2view" property is set to false this function will constrain the dialog to a region
+	 * in order to prevent moving it to unreachable position
+	 *
+	 * @method _afterDragStart
+	 * @param {EventFacade} event
+	 * @protected
+	 */
+	_afterDragStart: function(event) {
+		var instance = this;
+
+		var constrain2view = instance.get(CONSTRAIN_TO_VIEWPORT);
+
+		if (!constrain2view) {
+			var dragInstance = instance.get(DRAG_INSTANCE);
+
+			var dragNode = dragInstance.get('dragNode');
+
+			var dragNodeRegion = dragNode.get('region');
+			var viewportRegion = dragNode.get('viewportRegion');
+
+			var defaultOffset = [0, 0];
+
+			var deltaXY = dragInstance.deltaXY || defaultOffset;
+			var mouseXY = dragInstance.mouseXY || defaultOffset;
+
+			dragInstance.plug(
+				A.Plugin.DDConstrained,
+				{
+					constrain: {
+						bottom: viewportRegion.bottom + (dragNodeRegion.height - deltaXY[1]) - DRAG_GUTTER,
+						left: viewportRegion.left - deltaXY[0] + DRAG_GUTTER,
+						right: viewportRegion.right + (dragNodeRegion.right - mouseXY[0]) + DRAG_GUTTER,
+						top: viewportRegion.top - deltaXY[1] + DRAG_GUTTER
+					}
+				}
+			);
+		}
+	},
+
+	/**
+	 * Default function called when focusOn Attribute is changed. Remove existing listeners and create new listeners.
+	 *
+	 * @method _afterFocusOnChange
+	 */
+	_afterFocusOnChange : function(event) {
+		var instance = this;
+
+		instance._detachUIHandlesModal();
+
+		if (instance.get(VISIBLE)) {
+			instance._attachUIHandlesModal();
+		}
 	},
 
 	/**
@@ -573,6 +661,99 @@ Dialog.prototype = {
 	},
 
 	/**
+	 * Fires after the value of the
+	 * <a href="Overlay.html#config_resizable">resizable</a> attribute change.
+	 *
+	 * @method _afterResizableChange
+	 * @param {EventFacade} event
+	 * @protected
+	 */
+	_afterResizableChange: function(event) {
+		var instance = this;
+
+		instance.set(RESIZABLE_INSTANCE, null);
+	},
+
+	/**
+	 * Fires after the value of the
+	 * <a href="Overlay.html#config_resizableInstance">resizableInstance</a> attribute change.
+	 *
+	 * @method _afterResizableInstanceChange
+	 * @param {EventFacade} event
+	 * @protected
+	 */
+	_afterResizableInstanceChange: function(event) {
+		var instance = this;
+
+		var prevVal = event.prevVal;
+
+		if (prevVal) {
+			prevVal.destroy();
+		}
+	},
+
+	/**
+	 * Attaches UI Listeners for "clickoutside" and "focusoutside" on the widget. When these events occur, and the widget is modal, focus is shifted back onto the widget.
+	 *
+	 * @method _attachUIHandlesModal
+	 */
+	_attachUIHandlesModal: function() {
+		var instance = this;
+
+		var boundingBox = instance.get(BOUNDING_BOX);
+		var focusOn = instance.get('focusOn');
+		var maskNode = instance.get('maskNode');
+
+		var focus = A.bind(instance._focus, instance);
+
+		var uiHandles = [];
+
+		for (var i = 0; i < focusOn.length; i++) {
+			var ev = focusOn[i].eventName;
+			var keyCode = focusOn[i].keyCode;
+			var node = focusOn[i].node;
+
+			//no keycode or node defined
+			if (!node && !keyCode && ev) {
+				uiHandles.push(boundingBox.on(ev, focus));
+			}
+
+			//node defined, no keycode (not a keypress)
+			else if (node && !keyCode && ev) {
+				uiHandles.push(node.on(ev, focus));
+			}
+
+			//node defined, keycode defined, event defined (its a key press)
+			else if (node && keyCode && ev) {
+				uiHandles.push(node.on(ev, focus, keyCode));
+			}
+
+			else {
+				A.log('focusOn ATTR Error: The event with name "' + ev + '" could not be attached.');
+			}
+		}
+
+		instance._uiHandlesModal = uiHandles;
+	},
+
+	/**
+	 * Bind a <code>mouseenter</code> listener to the <code>boundingBox</code>
+	 * to invoke the
+	 * <a href="Dialog.html#config__initLazyComponents">_initLazyComponents</a>.
+	 * Performance reasons.
+	 *
+	 * @method _bindLazyComponents
+	 * @private
+	 */
+	_bindLazyComponents: function() {
+		var instance = this;
+
+		var boundingBox = instance.get(BOUNDING_BOX);
+
+		boundingBox.on('mouseenter', A.bind(instance._initLazyComponents, instance));
+	},
+
+	/**
 	 * Handles the close event logic.
 	 *
 	 * @method _handleEvent
@@ -588,6 +769,41 @@ Dialog.prototype = {
 		else {
 			instance.hide();
 		}
+	},
+
+	/**
+	 * Detaches all UI Listeners that were set in _attachUIHandlesModal from the widget.
+	 *
+	 * @method _detachUIHandlesModal
+	 */
+	_detachUIHandlesModal: function() {
+		var instance = this;
+
+		A.each(
+			instance._uiHandlesModal,
+			function(h) {
+				h.detach();
+			}
+		);
+
+		instance._uiHandlesModal = null;
+	},
+
+	/**
+	 * Provides mouse and tab focus to the widget's bounding box.
+	 *
+	 * @method _focus
+	 */
+	_focus: function(event) {
+		var instance = this;
+
+		var boundingBox = instance.get(BOUNDING_BOX);
+
+		var oldTI = boundingBox.get('tabIndex');
+
+		boundingBox.set('tabIndex', oldTI >= 0 ? oldTI : 0);
+
+		instance.focus();
 	},
 
 	/**
@@ -651,7 +867,7 @@ Dialog.prototype = {
 		if (icons) {
 			var closeThick = icons.item(instance._closeId) || null;
 
-			if (closeThick){
+			if (closeThick) {
 				instance.aria.setAttribute('controls', instance.get('id'), closeThick.get(BOUNDING_BOX));
 			}
 		}
@@ -731,8 +947,8 @@ Dialog.prototype = {
 	_syncResizableDimentions: function(event) {
 		var instance = this;
 
-		var type = event.type;
 		var info = event.info;
+		var type = event.type;
 
 		if ((type === EV_RESIZE_END) ||
 			((type === EV_RESIZE) && !event.currentTarget.get(PROXY))) {
@@ -757,221 +973,14 @@ Dialog.prototype = {
 				constrain2view: instance.get(CONSTRAIN_TO_VIEWPORT)
 			}
 		);
-	},
-
-	/**
-	 * Fires after the value of the
-	 * <a href="Overlay.html#config_constrain2view">constrain2view</a> attribute change.
-	 *
-	 * @method _afterConstrain2viewChange
-	 * @param {EventFacade} event
-	 * @protected
-	 */
-	_afterConstrain2viewChange: function(event) {
-		var instance = this;
-
-		instance._updateDDConstrain2view(
-			instance.get(DRAG_INSTANCE)
-		);
-	},
-
-	/**
-	 * Fires after the value of the
-	 * <a href="Overlay.html#config_draggable">draggable</a> attribute change.
-	 *
-	 * @method _afterDraggableChange
-	 * @param {EventFacade} event
-	 * @protected
-	 */
-	_afterDraggableChange: function(event) {
-		var instance = this;
-
-		instance.set(DRAG_INSTANCE, null);
-	},
-
-	/**
-	 * Fires after the value of the
-	 * <a href="Overlay.html#config_dragInstance">dragInstance</a> attribute change.
-	 *
-	 * @method _afterDragInstanceChange
-	 * @param {EventFacade} event
-	 * @protected
-	 */
-	_afterDragInstanceChange: function(event) {
-		var instance = this;
-
-		if (event.prevVal) {
-			event.prevVal.destroy();
-		}
-	},
-
-	/**
-	 * Handles the drag start event
-	 * If "constrain2view" property is set to false this function will constrain the dialog to a region
-	 * in order to prevent moving it to unreachable position
-	 *
-	 * @method _afterDragStart
-	 * @param {EventFacade} event
-	 * @protected
-	 */
-	_afterDragStart: function(event) {
-		var instance = this;
-
-		var constrain2view = instance.get(CONSTRAIN_TO_VIEWPORT);
-
-		if (!constrain2view) {
-			var dragInstance = instance.get(DRAG_INSTANCE);
-
-			var dragNode = dragInstance.get('dragNode');
-
-			var viewportRegion = dragNode.get('viewportRegion');
-
-			var dragNodeRegion = dragNode.get('region');
-
-			var defaultOffset = [0, 0];
-
-			var deltaXY = dragInstance.deltaXY || defaultOffset;
-
-			var mouseXY = dragInstance.mouseXY || defaultOffset;
-
-			dragInstance.plug(
-				A.Plugin.DDConstrained,
-				{
-					constrain: {
-						bottom: viewportRegion.bottom + (dragNodeRegion.height - deltaXY[1]) - DRAG_GUTTER,
-						left: viewportRegion.left - deltaXY[0] + DRAG_GUTTER,
-						right: viewportRegion.right + (dragNodeRegion.right - mouseXY[0]) + DRAG_GUTTER,
-						top: viewportRegion.top - deltaXY[1] + DRAG_GUTTER
-					}
-				}
-			);
-		}
-	},
-
-	/**
-	 * Default function called when focusOn Attribute is changed. Remove existing listeners and create new listeners.
-	 *
-	 * @method _afterFocusOnChange
-	 */
-	_afterFocusOnChange : function(event) {
-		var instance = this;
-
-		instance._detachUIHandlesModal();
-
-		if (instance.get(VISIBLE)) {
-			instance._attachUIHandlesModal();
-		}
-	},
-
-	/**
-	 * Fires after the value of the
-	 * <a href="Overlay.html#config_resizable">resizable</a> attribute change.
-	 *
-	 * @method _afterResizableChange
-	 * @param {EventFacade} event
-	 * @protected
-	 */
-	_afterResizableChange: function(event) {
-		var instance = this;
-
-		instance.set(RESIZABLE_INSTANCE, null);
-	},
-
-	/**
-	 * Fires after the value of the
-	 * <a href="Overlay.html#config_resizableInstance">resizableInstance</a> attribute change.
-	 *
-	 * @method _afterResizableInstanceChange
-	 * @param {EventFacade} event
-	 * @protected
-	 */
-	_afterResizableInstanceChange: function(event) {
-		var instance = this;
-
-		if (event.prevVal) {
-			event.prevVal.destroy();
-		}
-	},
-
-	/**
-	 * Attaches UI Listeners for "clickoutside" and "focusoutside" on the widget. When these events occur, and the widget is modal, focus is shifted back onto the widget.
-	 *
-	 * @method _attachUIHandlesModal
-	 */
-	_attachUIHandlesModal : function () {
-		var instance = this;
-
-		var bb          = instance.get(BOUNDING_BOX),
-			maskNode    = instance.get('maskNode'),
-			focusOn     = instance.get('focusOn'),
-			focus       = A.bind(instance._focus, instance),
-			uiHandles   = [],
-			i, len, o;
-
-		for (i = 0, len = focusOn.length; i < len; i++) {
-			o = {};
-			o.node = focusOn[i].node;
-			o.ev = focusOn[i].eventName;
-			o.keyCode = focusOn[i].keyCode;
-
-			//no keycode or node defined
-			if (!o.node && !o.keyCode && o.ev) {
-				uiHandles.push(bb.on(o.ev, focus));
-			}
-
-			//node defined, no keycode (not a keypress)
-			else if (o.node && !o.keyCode && o.ev) {
-				uiHandles.push(o.node.on(o.ev, focus));
-			}
-
-			//node defined, keycode defined, event defined (its a key press)
-			else if (o.node && o.keyCode && o.ev) {
-				uiHandles.push(o.node.on(o.ev, focus, o.keyCode));
-			}
-
-			else {
-				Y.Log('focusOn ATTR Error: The event with name "'+o.ev+'" could not be attached.');
-			}
-		}
-
-		instance._uiHandlesModal = uiHandles;
-	},
-
-	/**
-	 * Detaches all UI Listeners that were set in _attachUIHandlesModal from the widget.
-	 *
-	 * @method _detachUIHandlesModal
-	 */
-	_detachUIHandlesModal : function () {
-		var instance = this;
-
-		A.each(instance._uiHandlesModal, function(h){
-			h.detach();
-		});
-		instance._uiHandlesModal = null;
-	},
-
-	/**
-	 * Provides mouse and tab focus to the widget's bounding box.
-	 *
-	 * @method _focus
-	 */
-	_focus : function (event) {
-		var instance = this;
-
-		var bb = instance.get(BOUNDING_BOX),
-		oldTI = bb.get('tabIndex');
-
-		bb.set('tabIndex', oldTI >= 0 ? oldTI : 0);
-		instance.focus();
 	}
 };
 
 A.Dialog = A.Component.create(
 	{
-		NAME: DIALOG,
+		AUGMENTS: [Dialog, A.WidgetPosition, A.WidgetStack, A.WidgetPositionAlign, A.WidgetPositionConstrain],
 		EXTENDS: A.Panel,
-		AUGMENTS: [Dialog, A.WidgetPosition, A.WidgetStack, A.WidgetPositionAlign, A.WidgetPositionConstrain]
+		NAME: DIALOG
 	}
 );
 
@@ -1028,21 +1037,6 @@ A.mix(
 	DialogManager,
 	{
 		/**
-		 * Find the <a href="Widget.html">Widget</a> instance based on a child
-		 * element.
-		 *
-		 * @method findByChild
-		 * @for DialogManager
-		 * @param {Node | String} child Child node of the Dialog.
-		 * @return {Widget}
-		 */
-		findByChild: function(child) {
-			return A.Widget.getByNode(
-				A.one(child).ancestor(DOT + CSS_DIALOG, true)
-			);
-		},
-
-		/**
 		 * <p>Invoke the <a href="Dialog.html#method_close">close</a> method from
 		 * the Dialog which contains the <code>child</code> element.</p>
 		 *
@@ -1057,6 +1051,21 @@ A.mix(
 		 */
 		closeByChild: function(child) {
 			return DialogManager.findByChild(child).close();
+		},
+
+		/**
+		 * Find the <a href="Widget.html">Widget</a> instance based on a child
+		 * element.
+		 *
+		 * @method findByChild
+		 * @for DialogManager
+		 * @param {Node | String} child Child node of the Dialog.
+		 * @return {Widget}
+		 */
+		findByChild: function(child) {
+			return A.Widget.getByNode(
+				A.one(child).ancestor(DOT + CSS_DIALOG, true)
+			);
 		},
 
 		/**
