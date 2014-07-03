@@ -24,12 +24,12 @@
 </div>
 <div id="logger"></div>
 <div style="height:10000px;width:10000px;"></div>
+<iframe style="display:none;" src="http://www.youtube.com/embed/G5aDDMpHZhY"></iframe>
 <script>
 YUI({
     coverage: ['aui-surface-app', 'aui-surface-base', 'aui-surface-screen', 'aui-surface-screen-html', 'aui-surface-screen-route'],
     filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
 }).use('test-console', 'test', 'aui-surface-tests', function(Y) {
-
     (new Y.Test.Console()).render('#logger');
 
     Y.Test.Runner.setName('aui-surface');

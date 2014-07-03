@@ -1,5 +1,5 @@
 /**
- * The Property Builder Base
+ * The Property Builder
  *
  * @module aui-property-builder
  */

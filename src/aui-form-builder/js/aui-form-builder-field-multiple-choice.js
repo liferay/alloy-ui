@@ -10,6 +10,7 @@ var Lang = A.Lang,
     isArray = Lang.isArray,
 
     AArray = A.Array,
+    AEscape = A.Escape,
 
     getCN = A.getClassName,
 
@@ -362,8 +363,8 @@ var FormBuilderMultipleChoiceField = A.Component.create({
                     buffer.push(
                         Lang.sub(
                             instance.get('optionTemplate'), {
-                                label: A.Escape.html(item.label),
-                                value: A.Escape.html(item.value)
+                                label: AEscape.html(item.label),
+                                value: AEscape.html(item.value)
                             }
                         )
                     );
@@ -397,7 +398,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
             optionNodes.set('selected', false);
 
             AArray.each(val, function(item) {
-                optionNodes.filter('[value="' + A.Escape.html(item) + '"]').set('selected', true);
+                optionNodes.filter('[value="' + AEscape.html(item) + '"]').set('selected', true);
             });
         }
     }

@@ -7,6 +7,8 @@
 
 var L = A.Lang,
 
+    AEscape = A.Escape,
+
     getCN = A.getClassName,
 
     CSS_FIELD_LABEL = getCN('form-builder-field', 'label'),
@@ -135,7 +137,7 @@ var FormBuilderFieldsetField = A.Component.create({
 
             return L.sub(
                 instance.get('template'), {
-                    id: A.Escape.html(instance.get('id'))
+                    id: AEscape.html(instance.get('id'))
                 }
             );
         },
