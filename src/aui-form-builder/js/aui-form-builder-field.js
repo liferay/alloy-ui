@@ -450,7 +450,7 @@ var FormBuilderField = A.Component.create({
      * @type Array
      * @static
      */
-    AUGUMENTS: [A.PropertyBuilderFieldSupport],
+    AUGMENTS: [A.PropertyBuilderFieldSupport],
 
     /**
      * Creates the field id.
