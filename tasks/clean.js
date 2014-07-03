@@ -14,8 +14,18 @@ gulp.task('clean-api', function() {
         .pipe(clean());
 });
 
+gulp.task('clean-bower', function() {
+    return gulp.src('bower_components', { cwd: ROOT, read: false })
+        .pipe(clean());
+});
+
 gulp.task('clean-build', function() {
     return gulp.src('build', { cwd: ROOT, read: false })
+        .pipe(clean());
+});
+
+gulp.task('clean-npm', function() {
+    return gulp.src('node_modules', { cwd: ROOT, read: false })
         .pipe(clean());
 });
 
