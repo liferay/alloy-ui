@@ -40,7 +40,6 @@ var L = A.Lang,
  * A base class for `A.FormBuilderField`.
  *
  * @class A.FormBuilderField
- * @extends A.FormBuilderFieldBase
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
