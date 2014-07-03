@@ -8,12 +8,23 @@ var spawn = require('spawn-local-bin');
 var ROOT = path.join(__dirname, '..');
 
 gulp.task('init', function(callback) {
-    run('init-bower', 'init-yui', callback);
+    run('init-bower', 'init-npm', 'init-yui', callback);
 });
 
 gulp.task('init-bower', function(callback) {
     var args = ['install'];
     var cmd = 'bower';
+    var cwd = ROOT;
+
+    spawn(cmd, args, cwd)
+        .on('exit', function() {
+            callback();
+        });
+});
+
+gulp.task('init-npm', function(callback) {
+    var args = ['install'];
+    var cmd = 'npm';
     var cwd = ROOT;
 
     spawn(cmd, args, cwd)
