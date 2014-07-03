@@ -587,7 +587,8 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-form-builder-field": {
         "requires": [
             "panel",
-            "aui-datatype"
+            "aui-datatype",
+            "aui-property-builder-field-support"
         ],
         "skinnable": true
     },
@@ -1357,4 +1358,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '17d7009fdae3766f03f86ceec237cef6';
+YUI.Env[Y.version].md5 = 'baf37554049571106e585345731c4f35';
