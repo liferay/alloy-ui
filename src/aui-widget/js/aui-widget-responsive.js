@@ -47,7 +47,7 @@ WidgetResponsive.prototype = {
         this.publish({
             responsive: {
                 defaultFn: this._defResponsiveFn
-            },
+            }
         });
     },
 
