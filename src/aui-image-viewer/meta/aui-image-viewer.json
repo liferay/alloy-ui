@@ -43,10 +43,10 @@
 
     "aui-image-viewer-multiple": {
         "requires": [
-            "aui-classnamemanager",
-            "aui-image-viewer-base",
             "base-build",
-            "node-base"
+            "node-base",
+            "aui-classnamemanager",
+            "aui-image-viewer-base"
         ],
         "skinnable": true
     },
@@ -64,16 +64,16 @@
 
     "aui-image-viewer-slideshow": {
         "requires": [
-            "aui-classnamemanager",
-            "node"
+            "node",
+            "aui-classnamemanager"
         ]
     },
 
     "aui-image-viewer-swipe": {
         "requires": [
+            "event-resize",
             "aui-image-viewer-base",
-            "aui-widget-swipe",
-            "event-resize"
+            "aui-widget-swipe"
         ],
         "condition": {
             "trigger": "aui-image-viewer-base",

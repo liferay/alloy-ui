@@ -3,8 +3,7 @@ YUI.add('aui-image-viewer-slideshow-tests', function(Y) {
     var suite = new Y.Test.Suite('aui-image-viewer-slideshow'),
         ImageViewerWithSlideshow = Y.Base.create(
             'test-slideshow',
-            Y.ImageViewerBase,
-            [Y.ImageViewerSlideshow]
+            Y.ImageViewerBase, [Y.ImageViewerSlideshow]
         );
 
     suite.add(new Y.Test.Case({

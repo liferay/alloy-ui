@@ -211,7 +211,7 @@ A.ImageViewerBase = A.Base.create(
          */
         _bindControls: function() {
             this._eventHandles.push(
-                this.get('contentBox').delegate('click', this._onClickControl, '.' + CSS_CONTROL, this)
+                this.get('boundingBox').delegate('click', this._onClickControl, '.' + CSS_CONTROL, this)
             );
         },
 
@@ -580,19 +580,10 @@ A.ImageViewerBase = A.Base.create(
          * @protected
          */
         _syncControlsUI: function() {
-            if (this.get('visible') && this.get('showControls') && this.hasPrev()) {
-                this.get('controlPrevious').setStyle('visibility', 'visible');
-            }
-            else {
-                this.get('controlPrevious').setStyle('visibility', 'hidden');
-            }
-
-            if (this.get('visible') && this.get('showControls') && this.hasNext()) {
-                this.get('controlNext').setStyle('visibility', 'visible');
-            }
-            else {
-                this.get('controlNext').setStyle('visibility', 'hidden');
-            }
+            var hasNext = (this.get('visible') && this.get('showControls') && this.hasNext());
+            var hasPrev = (this.get('visible') && this.get('showControls') && this.hasPrev());
+            this.get('controlNext').toggleClass('invisible', !hasNext);
+            this.get('controlPrevious').toggleClass('invisible', !hasPrev);
         },
 
         /**
