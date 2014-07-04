@@ -8,7 +8,6 @@ Y.mix(YUI.Env.aliases, {
     "aui-datatable": ["aui-datatable-edit","aui-datatable-highlight","aui-datatable-selection","aui-datatable-property-list"],
     "aui-datatable-edit": ["datatable-base","calendar","overlay","sortable","aui-datatype","aui-toolbar","aui-form-validator","aui-datatable-base-cell-editor","aui-datatable-base-options-cell-editor","aui-datatable-cell-editor-support","aui-datatable-core","aui-datatable-checkbox-cell-editor","aui-datatable-date-cell-editor","aui-datatable-dropdown-cell-editor","aui-datatable-radio-cell-editor","aui-datatable-text-cell-editor","aui-datatable-text-area-cell-editor"],
     "aui-event": ["aui-event-base"],
-    "aui-image-viewer": ["aui-image-viewer-base","aui-image-viewer-gallery","aui-image-viewer-media"],
     "aui-io": ["aui-io-request"],
     "aui-node": ["aui-node-base"],
     "aui-rating": ["aui-rating-base","aui-rating-thumb"],

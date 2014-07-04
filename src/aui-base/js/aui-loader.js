@@ -154,8 +154,8 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "anim",
             "node-event-delegate",
-            "aui-component",
-            "aui-widget-responsive"
+            "aui-image-viewer-base",
+            "aui-image-viewer-slideshow"
         ],
         "skinnable": true
     },
@@ -687,16 +687,7 @@ Y.mix(YUI.Env[Y.version].modules, {
         "skinnable": true
     },
     "aui-image-viewer": {
-        "use": [
-            "aui-image-viewer-base",
-            "aui-image-viewer-gallery",
-            "aui-image-viewer-media"
-        ]
-    },
-    "aui-image-viewer-base": {
         "requires": [
-            "anim",
-            "imageloader",
             "widget",
             "widget-modality",
             "widget-position",
@@ -705,27 +696,59 @@ Y.mix(YUI.Env[Y.version].modules, {
             "widget-stack",
             "widget-stdmod",
             "aui-event",
+            "aui-image-viewer-base",
+            "aui-image-viewer-multiple",
+            "aui-image-viewer-slideshow",
             "aui-node-base",
             "aui-widget-cssclass",
-            "aui-widget-responsive",
             "aui-widget-toggle"
         ],
         "skinnable": true
     },
-    "aui-image-viewer-gallery": {
+    "aui-image-viewer-base": {
         "requires": [
-            "aui-image-viewer-base",
-            "aui-pagination",
-            "aui-toolbar"
+            "anim",
+            "aui-classnamemanager",
+            "aui-node",
+            "aui-widget-responsive",
+            "base-build",
+            "imageloader",
+            "node-base",
+            "widget"
         ],
         "skinnable": true
     },
     "aui-image-viewer-media": {
         "requires": [
             "plugin",
-            "aui-image-viewer-base",
-            "aui-pagination",
-            "aui-toolbar"
+            "aui-component",
+            "aui-image-viewer"
+        ]
+    },
+    "aui-image-viewer-multiple": {
+        "requires": [
+            "base-build",
+            "node-base",
+            "aui-classnamemanager",
+            "aui-image-viewer-base"
+        ],
+        "skinnable": true
+    },
+    "aui-image-viewer-multiple-swipe": {
+        "condition": {
+            "name": "aui-image-viewer-multiple-swipe",
+            "trigger": "aui-image-viewer-multiple",
+            "ua": "touchEnabled"
+        },
+        "requires": [
+            "aui-image-viewer-multiple",
+            "aui-image-viewer-swipe"
+        ]
+    },
+    "aui-image-viewer-slideshow": {
+        "requires": [
+            "node",
+            "aui-classnamemanager"
         ]
     },
     "aui-image-viewer-swipe": {
@@ -735,11 +758,10 @@ Y.mix(YUI.Env[Y.version].modules, {
             "ua": "touchEnabled"
         },
         "requires": [
+            "event-resize",
             "aui-image-viewer-base",
-            "aui-widget-swipe",
-            "event-resize"
-        ],
-        "skinnable": true
+            "aui-widget-swipe"
+        ]
     },
     "aui-io": {
         "use": [
@@ -1339,7 +1361,8 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "classnamemanager",
             "scrollview-base",
-            "scrollview-paginator"
+            "scrollview-paginator",
+            "timers"
         ]
     },
     "aui-widget-toggle": {},
@@ -1360,4 +1383,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '8521aafd403a75eb93a0f180fac2d06c';
+YUI.Env[Y.version].md5 = '7ce28f44983ceb29d16c28e0760057e5';
