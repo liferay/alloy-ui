@@ -173,4 +173,4 @@ var FormBuilderTextField = A.Component.create({
 
 A.FormBuilderTextField = FormBuilderTextField;
 
-A.namespace('FormBuilder.types').text = A.FormBuilderTextField;
+A.FormBuilderField.types.text = A.FormBuilderTextField;

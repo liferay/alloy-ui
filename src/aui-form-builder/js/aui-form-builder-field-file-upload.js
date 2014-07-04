@@ -105,4 +105,4 @@ var FormBuilderFileUploadField = A.Component.create({
 
 A.FormBuilderFileUploadField = FormBuilderFileUploadField;
 
-A.namespace('FormBuilder.types').fileupload = A.FormBuilderFileUploadField;
+A.FormBuilderField.types.fileupload = A.FormBuilderFileUploadField;
