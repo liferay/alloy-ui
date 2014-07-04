@@ -2,7 +2,6 @@
  * The Diagram Builder Component
  *
  * @module aui-diagram-builder
- * @submodule aui-diagram-builder-impl
  */
 
 var Lang = A.Lang,
