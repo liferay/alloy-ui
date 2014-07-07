@@ -483,6 +483,8 @@ A.mix(TreeData.prototype, {
         // the PARENT_NODE references should be updated
         var length = children.push(node);
 
+        instance.childrenLength = children.length;
+
         // updating prev/nextSibling attributes
         var prevIndex = length - 2;
         var prevSibling = instance.item(prevIndex);
