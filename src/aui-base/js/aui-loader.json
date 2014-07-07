@@ -964,7 +964,8 @@
             "aui-node-base",
             "aui-component",
             "aui-datatype",
-            "aui-button"
+            "aui-button",
+            "node-focusmanager"
         ],
         "skinnable": true
     },

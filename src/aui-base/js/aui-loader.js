@@ -990,7 +990,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-node-base",
             "aui-component",
             "aui-datatype",
-            "aui-button"
+            "aui-button",
+            "node-focusmanager"
         ],
         "skinnable": true
     },
@@ -1398,4 +1399,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '23205e4418dd5d63ade3aac8335c5f2d';
+YUI.Env[Y.version].md5 = '1d9b51f674b35ebcaadf149c02b0afec';

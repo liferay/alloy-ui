@@ -44,14 +44,14 @@ var CSS_SCHEDULER_VIEW_ = A.getClassName('scheduler-base', 'view', ''),
 
     TPL_SCHEDULER_CONTROLS = '<div class="col col-lg-7 col-md-7 col-sm-7 ' + CSS_SCHEDULER_CONTROLS + '"></div>',
     TPL_SCHEDULER_HD = '<div class="row ' + CSS_SCHEDULER_HD + '"></div>',
-    TPL_SCHEDULER_ICON_NEXT = '<button type="button" class="' + [CSS_ICON, CSS_SCHEDULER_ICON_NEXT, CSS_BTN,
+    TPL_SCHEDULER_ICON_NEXT = '<button aria-label="{ariaLabel}"" role="button" type="button" class="' + [CSS_ICON, CSS_SCHEDULER_ICON_NEXT, CSS_BTN,
         CSS_BTN_DEFAULT].join(' ') + '"><span class="' + CSS_ICON_CHEVRON_RIGHT + '"></span></button>',
-    TPL_SCHEDULER_ICON_PREV = '<button type="button" class="' + [CSS_ICON, CSS_SCHEDULER_ICON_PREV, CSS_BTN,
+    TPL_SCHEDULER_ICON_PREV = '<button aria-label="{ariaLabel}"" role="button" type="button" class="' + [CSS_ICON, CSS_SCHEDULER_ICON_PREV, CSS_BTN,
         CSS_BTN_DEFAULT].join(' ') + '"><span class="' + CSS_ICON_CHEVRON_LEFT + '"></span></button>',
     TPL_SCHEDULER_NAV = '<div class="btn-group"></div>',
-    TPL_SCHEDULER_TODAY = '<button type="button" class="' + [CSS_SCHEDULER_TODAY, CSS_BTN, CSS_BTN_DEFAULT].join(' ') +
+    TPL_SCHEDULER_TODAY = '<button aria-label="{ariaLabel}" role="button" type="button" class="' + [CSS_SCHEDULER_TODAY, CSS_BTN, CSS_BTN_DEFAULT].join(' ') +
         '">{today}</button>',
-    TPL_SCHEDULER_VIEW = '<button type="button" class="' + [CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_].join(' ') +
+    TPL_SCHEDULER_VIEW = '<button aria-label="{ariaLabel}" aria-pressed="false" type="button" class="' + [CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_].join(' ') +
         '{name}" data-view-name="{name}">{label}</button>',
     TPL_SCHEDULER_VIEW_DATE = '<div class="' + CSS_SCHEDULER_VIEW_DATE + '"></div>',
     TPL_SCHEDULER_VIEWS = '<div class="col col-lg-5 col-md-5 col-sm-5 ' + CSS_SCHEDULER_VIEWS + '"></div>';
@@ -396,6 +396,33 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
+         * Contains the aria labels.
+         *
+         * @attribute ariaLabels
+         * @default {
+         *     agenda: 'View Agenda',
+         *     day: 'View by Day',
+         *     month: 'View by Month',
+         *     next: 'Go to Next',
+         *     previous: 'Go to Previous',
+         *     today: 'Go to Today',
+         *     week: 'View by Week'
+         * }
+         * @type {Object}
+         */
+        ariaLabels: {
+            value: {
+                agenda: 'View Agenda',
+                day: 'View by Day',
+                month: 'View by Month',
+                next: 'Go to Next',
+                previous: 'Go to Previous',
+                today: 'Go to Today',
+                week: 'View by Week'
+            }
+        },
+
+        /**
          * Contains the date corresponding to the current date which is the
          * value of the date set on the user's computer.
          *
@@ -405,6 +432,33 @@ var SchedulerBase = A.Component.create({
         date: {
             value: new Date(),
             validator: isDate
+        },
+
+        /**
+        * Defines the keyboard configuration object for
+        * `Plugin.NodeFocusManager`.
+        *
+        * @attribute focusmanager
+        * @default {
+        *     descendants: 'button',
+        *     keys: {
+        *         next: 'down:39',
+        *         previous: 'down:37'
+        *     },
+        *     circular: false
+        * }
+        * @type {Object}
+        */
+        focusmanager: {
+            value: {
+                descendants: 'button',
+                keys: {
+                    next: 'down:39',
+                    previous: 'down:37'
+                },
+                circular: false
+            },
+            writeOnce: 'initOnly'
         },
 
         /**
@@ -515,13 +569,25 @@ var SchedulerBase = A.Component.create({
 
         iconNextNode: {
             valueFn: function() {
-                return A.Node.create(TPL_SCHEDULER_ICON_NEXT);
+                var instance = this;
+
+                return A.Node.create(
+                    A.Lang.sub(TPL_SCHEDULER_ICON_NEXT, {
+                        ariaLabel: instance.getAriaLabel('next')
+                    })
+                );
             }
         },
 
         iconPrevNode: {
             valueFn: function() {
-                return A.Node.create(TPL_SCHEDULER_ICON_PREV);
+                var instance = this;
+
+                return A.Node.create(
+                    A.Lang.sub(TPL_SCHEDULER_ICON_PREV, {
+                        ariaLabel: instance.getAriaLabel('previous')
+                    })
+                );
             }
         },
 
@@ -546,8 +612,14 @@ var SchedulerBase = A.Component.create({
 
         todayNode: {
             valueFn: function() {
+                var instance = this;
+
                 return A.Node.create(
-                    this._processTemplate(TPL_SCHEDULER_TODAY)
+                    A.Lang.sub(this._processTemplate(TPL_SCHEDULER_TODAY),
+                        {
+                            ariaLabel: instance.getAriaLabel('today')
+                        }
+                    )
                 );
             }
         },
@@ -686,6 +758,20 @@ var SchedulerBase = A.Component.create({
             var instance = this;
 
             return instance.getStrings()[key];
+        },
+
+        /**
+         * Returns the aria label that matches the `key` type.
+         *
+         * @method getAriaLabel
+         * @param {String} key
+         * @return {String}
+         */
+        getAriaLabel: function(key) {
+            var instance = this,
+                ariaLabels = instance.get('ariaLabels');
+
+            return ariaLabels[key];
         },
 
         /**
@@ -829,6 +915,8 @@ var SchedulerBase = A.Component.create({
 
             instance._uiSetDate(instance.get('date'));
             instance._uiSetActiveView(activeView);
+
+            instance._plugFocusManager();
         },
 
         /**
@@ -866,7 +954,8 @@ var SchedulerBase = A.Component.create({
                     A.Node.create(
                         A.Lang.sub(TPL_SCHEDULER_VIEW, {
                             name: name,
-                            label: (instance.getString(name) || name)
+                            label: (instance.getString(name) || name),
+                            ariaLabel: instance.getAriaLabel(name)
                         })
                     )
                 );
@@ -965,6 +1054,19 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
+         * Plugs 'NodeFocusManager' into the viewsNode and navNode.
+         *
+         * @method _plugFocusManager
+         * @protected
+         */
+        _plugFocusManager: function() {
+            var instance = this;
+
+            instance.viewsNode.plug(A.Plugin.NodeFocusManager, this.get('focusmanager'));
+            instance.navNode.plug(A.Plugin.NodeFocusManager, this.get('focusmanager'));
+        },
+
+        /**
          * Applies substitution to a given template.
          *
          * @method _processTemplate
@@ -1046,8 +1148,8 @@ var SchedulerBase = A.Component.create({
                     activeNav = instance.viewsNode.one('.' + CSS_SCHEDULER_VIEW_ + activeView);
 
                 if (activeNav) {
-                    instance.viewsNode.all('button').removeClass(CSS_SCHEDULER_VIEW_SELECTED);
-                    activeNav.addClass(CSS_SCHEDULER_VIEW_SELECTED);
+                    instance.viewsNode.all('button').removeClass(CSS_SCHEDULER_VIEW_SELECTED).setAttribute('aria-pressed', false);
+                    activeNav.addClass(CSS_SCHEDULER_VIEW_SELECTED).setAttribute('aria-pressed', true);
                 }
             }
         },

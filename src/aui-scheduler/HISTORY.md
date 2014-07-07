@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1527](https://issues.liferay.com/browse/AUI-1527) add base keyboard navigation
 * [AUI-1370](https://issues.liferay.com/browse/AUI-1370) Add ability to set an event's border color, style, and width
 * [AUI-1309](https://issues.liferay.com/browse/AUI-1309) Make aui-scheduler responsive
 * [AUI-1530](https://issues.liferay.com/browse/AUI-1530) Show red line at current time on Scheduler
