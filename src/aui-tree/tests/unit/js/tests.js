@@ -437,6 +437,87 @@ YUI.add('aui-tree-tests', function(Y) {
             Y.Assert.isTrue(
                 paginatorLink.hasClass('tree-node-paginator'),
                 'childTreeNode has a paginator link');
+        },
+
+        // Tests: AUI-1450
+        'TreeView should update getChildrenLength after clicking \'Load More\' link': function() {
+            var oldChildrenLength,
+                test = this,
+                treeView;
+
+            treeView = new Y.TreeView({
+                children: [
+                    {
+                        id: 'one'
+                    },
+                    {
+                        id: 'two'
+                    },
+                    {
+                        id: 'three'
+                    }
+                ],
+                io: 'assets/pages.html',
+                paginator: {
+                    limit: 3,
+                    offsetParam: 'start',
+                    start: 0,
+                    total: 5
+                },
+                type: 'io'
+            }).render();
+
+            oldChildrenLength = treeView.getChildrenLength();
+
+            treeView.after('ioRequestSuccess', function() {
+                test.resume(function() {
+                    Y.Assert.isTrue(treeView.getChildrenLength() !== oldChildrenLength);
+                });
+            });
+
+            treeView.get('boundingBox').treeViewBB.one('.tree-node-paginator').simulate('click');
+
+            test.wait();
+        },
+
+        'TreeView should not show more nodes than what\'s defined in paginator.total': function() {
+            var paginator,
+                test = this,
+                treeView;
+
+            treeView = new Y.TreeView({
+                children: [
+                    {
+                        id: 'one'
+                    },
+                    {
+                        id: 'two'
+                    },
+                    {
+                        id: 'three'
+                    }
+                ],
+                io: 'assets/pages.html',
+                paginator: {
+                    limit: 3,
+                    offsetParam: 'start',
+                    start: 0,
+                    total: 5
+                },
+                type: 'io'
+            }).render();
+
+            paginator = treeView.get('paginator');
+
+            treeView.after('ioRequestSuccess', function() {
+                test.resume(function() {
+                    Y.Assert.isTrue(treeView.getChildrenLength() <= paginator.total);
+                });
+            });
+
+            treeView.get('boundingBox').treeViewBB.one('.tree-node-paginator').simulate('click');
+
+            test.wait();
         }
     }));
 
