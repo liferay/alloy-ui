@@ -475,7 +475,7 @@ YUI.add('aui-tree-tests', function(Y) {
                 });
             });
 
-            treeView.get('boundingBox').treeViewBB.one('.tree-node-paginator').simulate('click');
+            treeView.get('boundingBox').one('.tree-node-paginator').simulate('click');
 
             test.wait();
         },
@@ -515,7 +515,7 @@ YUI.add('aui-tree-tests', function(Y) {
                 });
             });
 
-            treeView.get('boundingBox').treeViewBB.one('.tree-node-paginator').simulate('click');
+            treeView.get('boundingBox').one('.tree-node-paginator').simulate('click');
 
             test.wait();
         }
