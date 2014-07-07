@@ -55,7 +55,7 @@ A.ImageViewer = A.Base.create(
         TPL_CONTROL_RIGHT: '<a href="#" class="carousel-control right ' +
             CSS_CONTROL + ' ' + CSS_CONTROL_RIGHT +
             '"><span class="glyphicon glyphicon-chevron-right"></span></a>',
-        TPL_FOOTER_BUTTONS: '<div class="' + CSS_FOOTER_BUTTONS + '"></div>',
+        TPL_FOOTER_BUTTONS: '<span class="' + CSS_FOOTER_BUTTONS + '"></span>',
         TPL_FOOTER_CONTENT: '<div class="' + CSS_FOOTER_CONTENT + '"></div>',
         TPL_INFO: '<h5 class="' + CSS_INFO + '"></h5>',
         TPL_PLAYER: '<span><span class="glyphicon glyphicon-play"></span></span>',

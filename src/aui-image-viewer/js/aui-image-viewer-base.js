@@ -375,17 +375,8 @@ A.ImageViewerBase = A.Base.create(
          * @protected
          */
         _renderControls: function() {
-            var controlNext = this.get('controlNext'),
-                controlPrevious = this.get('controlPrevious'),
-                gutterHorizontal = 0;
-
-            this.get('contentBox').prepend(controlPrevious);
-            gutterHorizontal += controlPrevious.get('offsetWidth');
-
-            this.get('contentBox').append(controlNext);
-            gutterHorizontal += controlNext.get('offsetWidth');
-
-            this.set('gutter', [gutterHorizontal, 0]);
+            this.get('contentBox').prepend(this.get('controlPrevious'));
+            this.get('contentBox').append(this.get('controlNext'));
         },
 
         /**

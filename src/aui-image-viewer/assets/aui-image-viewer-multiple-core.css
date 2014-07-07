@@ -4,6 +4,7 @@
 }
 
 .image-viewer-multiple .image-viewer-multiple-content {
+    position: relative;
     white-space: nowrap;
 }
 

@@ -62,18 +62,16 @@ YUI.add('aui-image-viewer-slideshow-tests', function(Y) {
             this._createImageViewer();
 
             this.waitForNext(function(intervalTime1) {
-                Y.Assert.areEqual(
-                    1,
-                    intervalTime1,
-                    'Initial interval time is of 1 second'
+                Y.Assert.isTrue(
+                    intervalTime1 >= 1,
+                    'Initial interval time is of at least 1 second'
                 );
 
                 instance._imageViewer.set('intervalTime', 2);
                 instance.waitForNext(function(intervalTime2) {
-                    Y.Assert.areEqual(
-                        2,
-                        intervalTime2,
-                        'Interval time should have been updated'
+                    Y.Assert.isTrue(
+                        intervalTime2 >= 2,
+                        'Interval time should have been updated to at least 2 seconds'
                     );
                 });
             });

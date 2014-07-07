@@ -1,12 +1,7 @@
-.image-viewer-base {
-    display: inline-block;
-}
-
 .image-viewer-base .image-viewer-base-image-list {
-    display: inline-block;
     text-align: center;
     overflow: hidden;
-    width: 80%;
+    width: 100%;
 }
 
 .image-viewer-base .image-viewer-base-image-container {
@@ -20,6 +15,7 @@
 }
 
 .image-viewer-base .image-viewer-base-content {
+    position: relative;
     text-align: center;
     white-space: nowrap;
 }
@@ -54,9 +50,18 @@
 
 .image-viewer-base .image-viewer-base-control-left,
 .image-viewer-base .image-viewer-base-control-right {
-    display: inline-block;
-    vertical-align: top;
-    width: 10%;
+    bottom: 0;
+    top: 0;
+    position: absolute;
+    z-index: 1;
+}
+
+.image-viewer-base .image-viewer-base-control-left {
+    left: 0;
+}
+
+.image-viewer-base .image-viewer-base-control-right {
+    right: 0;
 }
 
 .image-viewer-base .image-viewer-base-control:hover {

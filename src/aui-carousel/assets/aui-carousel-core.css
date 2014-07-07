@@ -84,6 +84,11 @@
     margin: 0 3px;
 }
 
+.carousel.image-viewer-base .carousel-menu-next,
+.carousel.image-viewer-base .carousel-menu-prev {
+    position: static;
+}
+
 .carousel-menu-next {
     background-image: url(next.png);
 }
