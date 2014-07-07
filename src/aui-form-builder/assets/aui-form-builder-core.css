@@ -1,10 +1,20 @@
 .form-builder .property-builder-drop-container, .form-builder .tab-pane {
+    height: auto;
     overflow: auto;
     padding-bottom: 10px;
 }
 
 .form-builder .property-builder-fields-container .form-builder-placeholder {
     display: none;
+}
+
+.form-builder .property-builder-content-container,
+.form-builder .property-builder-fields-container {
+    padding-left: 0;
+}
+
+.form-builder .property-builder-fields-container .property-builder-field {
+    margin: 0;
 }
 
 .form-builder-placeholder {
