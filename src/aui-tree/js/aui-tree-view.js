@@ -147,24 +147,6 @@ var TreeView = A.Component.create({
         },
 
         /**
-         * Create Nodes.
-         *
-         * @method createNodes
-         * @param nodes
-         */
-        createNodes: function(nodes) {
-            var instance = this;
-
-            A.Array.each(A.Array(nodes), function(node) {
-                var newNode = instance.createNode(node);
-
-                instance.appendChild(newNode);
-            });
-
-            instance._syncPaginatorUI(nodes);
-        },
-
-        /**
          * Create the DOM structure for the TreeView. Lifecycle.
          *
          * @method renderUI

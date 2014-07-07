@@ -708,24 +708,6 @@ var TreeNode = A.Component.create({
         },
 
         /**
-         * Create nodes.
-         *
-         * @method createNodes
-         * @param nodes
-         */
-        createNodes: function(nodes) {
-            var instance = this;
-
-            A.Array.each(A.Array(nodes), function(node) {
-                var newNode = instance.createNode(node);
-
-                instance.appendChild(newNode);
-            });
-
-            instance._syncPaginatorUI(nodes);
-        },
-
-        /**
          * Expand the current TreeNode.
          *
          * @method expand
@@ -1159,24 +1141,6 @@ var TreeNodeIO = A.Component.create({
          */
         syncUI: function() {
             A.TreeNodeIO.superclass.syncUI.apply(this, arguments);
-        },
-
-        /**
-         * Create nodes.
-         *
-         * @method createNodes
-         * @param nodes
-         */
-        createNodes: function(nodes) {
-            var instance = this;
-
-            A.Array.each(A.Array(nodes), function(node) {
-                var newNode = instance.createNode(node);
-
-                instance.appendChild(newNode);
-            });
-
-            instance._syncPaginatorUI(nodes);
         },
 
         /**
