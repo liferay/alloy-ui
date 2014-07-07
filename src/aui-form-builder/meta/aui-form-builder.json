@@ -36,6 +36,7 @@
         "requires": [
             "panel",
             "aui-datatype",
+            "aui-datatable-edit",
             "aui-property-builder-field-support"
         ],
         "skinnable": true
