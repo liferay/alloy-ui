@@ -3,10 +3,8 @@
     "builds": {
         "aui-skin-deprecated": {
             "copy": [
-                [ "images", "../../build/aui-skin-deprecated/images" ]
-            ],
-            "cssfiles": [
-                "css/aui-skin-deprecated.css"
+                [ "css", "./css" ],
+                [ "images", "./images" ]
             ]
         }
     }
