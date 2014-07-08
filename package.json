@@ -23,7 +23,7 @@
   "devDependencies": {
     "bower": "~1.3.6",
     "fs-extra": "~0.9.1",
-    "gulp": "~3.8.1",
+    "gulp": "~3.8.5",
     "gulp-rimraf": "~0.1.0",
     "gulp-cssbeautify": "~0.1.3",
     "gulp-file": "~0.1.0",

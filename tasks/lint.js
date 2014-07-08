@@ -17,5 +17,6 @@ gulp.task('lint', function() {
 
     return gulp.src(files, { cwd: ROOT })
         .pipe(jshint())
-        .pipe(jshint.reporter(stylish));
+        .pipe(jshint.reporter(stylish))
+        .pipe(jshint.reporter('fail'));
 });
