@@ -137,6 +137,20 @@ gulp test
     ```
 gulp test-browser
     ```
+    
+### Code Coverage Report
+* Show code coverage summary
+
+   ```
+gulp report
+   ```
+
+
+* Open code coverage report (html)
+
+    ```
+gulp report-html
+    ```
 
 ### Update
 
