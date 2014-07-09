@@ -26,9 +26,9 @@
 }
 
 .image-cropper-crop-outline {
+    border: 1px dashed #FFF;
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;
-    border: 1px dashed #FFF;
     box-sizing: content-box;
     height: 100%;
     margin-left: -1px;
