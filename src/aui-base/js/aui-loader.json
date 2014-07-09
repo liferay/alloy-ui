@@ -564,6 +564,7 @@
         "requires": [
             "panel",
             "aui-datatype",
+            "aui-datatable-edit",
             "aui-property-builder-field-support"
         ],
         "skinnable": true
@@ -1098,7 +1099,8 @@
         "requires": [
             "selector-css3",
             "tabview",
-            "aui-component"
+            "aui-component",
+            "aui-widget-css"
         ],
         "skinnable": true
     },

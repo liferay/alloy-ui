@@ -588,6 +588,7 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "panel",
             "aui-datatype",
+            "aui-datatable-edit",
             "aui-property-builder-field-support"
         ],
         "skinnable": true
@@ -1124,7 +1125,8 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "selector-css3",
             "tabview",
-            "aui-component"
+            "aui-component",
+            "aui-widget-css"
         ],
         "skinnable": true
     },
@@ -1358,4 +1360,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'baf37554049571106e585345731c4f35';
+YUI.Env[Y.version].md5 = '8521aafd403a75eb93a0f180fac2d06c';
