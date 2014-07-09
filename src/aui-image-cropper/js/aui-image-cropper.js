@@ -233,7 +233,7 @@ var ImageCropper = A.Component.create({
 
             instance.on(['drag:start', 'resize:start'], A.debounce(instance._syncRegion, 25));
 
-            instance.on(['drag:drag', 'drag:end', 'resize:resize', 'resize:end'], A.debounce(instance._constrainValues, 10));
+            instance.on(['drag:drag', 'drag:end', 'resize:end', 'resize:resize'], A.debounce(instance._constrainValues, 10));
 
             instance.after(['drag:drag', 'resize:resize'], instance._fireCropEvent, instance);
 
