@@ -619,11 +619,10 @@ A.ImageViewerBase = A.Base.create(
              * @type Node
              */
             controlNext: {
-                setter: function(val) {
-                    return val ? val : A.Node.create(this.TPL_CONTROL_RIGHT);
-                },
-                value: null,
                 validator: A.Lang.isNode,
+                valueFn: function() {
+                    return A.Node.create(this.TPL_CONTROL_RIGHT);
+                },
                 writeOnce: 'initOnly'
             },
 
@@ -635,11 +634,10 @@ A.ImageViewerBase = A.Base.create(
              * @type Node
              */
             controlPrevious: {
-                setter: function(val) {
-                    return val ? val : A.Node.create(this.TPL_CONTROL_LEFT);
-                },
-                value: null,
                 validator: A.Lang.isNode,
+                valueFn: function() {
+                    return A.Node.create(this.TPL_CONTROL_LEFT);
+                },
                 writeOnce: 'initOnly'
             },
 
