@@ -712,9 +712,13 @@ var FormValidator = A.Component.create({
                 fieldName = field.get('name'),
                 fieldStrings = instance.get('fieldStrings')[fieldName] || {},
                 fieldRules = instance.get('rules')[fieldName],
-                label = instance._getLabel(field),
+                fieldLabel = instance._findFieldLabel(field),
                 strings = instance.get('strings'),
-                substituteRulesMap = {field: label};
+                substituteRulesMap = {};
+
+            if (fieldLabel) {
+                substituteRulesMap.field = fieldLabel;
+            }
 
             if (rule in fieldRules) {
                 var ruleValue = A.Array(fieldRules[rule]);
@@ -1107,6 +1111,22 @@ var FormValidator = A.Component.create({
         },
 
         /**
+         * Finds the label text of a field if existing.
+         *
+         * @method _findFieldLabel
+         * @param field
+         * @return {String}
+         */
+        _findFieldLabel: function(field) {
+            var labelCssClass = '.' + this.get('labelCssClass'),
+                label = field.previous(labelCssClass) || field.ancestor().previous(labelCssClass);
+
+            if (label) {
+                return label.get('text');
+            }
+        },
+
+        /**
          * Sets the error/success CSS classes based on the validation of a
          * field.
          *
@@ -1184,21 +1204,6 @@ var FormValidator = A.Component.create({
             }
 
             instance._rulesAlreadyExtracted = true;
-        },
-
-        /**
-         * Gets the label text of a field.
-         *
-         * @method _getLabel
-         * @param field
-         * @return {String}
-         */
-        _getLabel: function(field) {
-            var instance = this,
-                labelClass = '.' + instance.get('labelCssClass'),
-                labelNode = field.ancestor().previous(labelClass) || field.previous(labelClass) || field.ancestor(labelClass);
-
-            return labelNode ? labelNode.get('text') : '';
         },
 
         /**
