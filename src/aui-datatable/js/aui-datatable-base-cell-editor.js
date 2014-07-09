@@ -32,6 +32,17 @@ BaseCellEditor = A.Component.create({
      * @static
      */
     ATTRS: {
+        /**
+         * The node to constrain the widget's bounding box to, when setting xy.
+         * Can also be set to true, to constrain to the viewport.
+         *
+         * @attribute constrain
+         * @type boolean | Node
+         * @default true
+         */
+        constrain : {
+            value: true
+        },
 
         /**
          * TODO. Wanna help? Please send a Pull Request.
