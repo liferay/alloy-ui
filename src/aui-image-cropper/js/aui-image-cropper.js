@@ -56,8 +56,8 @@ var ImageCropper = A.Component.create({
          * @type Number
          */
         cropHeight: {
-            value: 100,
-            validator: isNumber
+            validator: isNumber,
+            value: 100
         },
 
         /**
@@ -68,8 +68,8 @@ var ImageCropper = A.Component.create({
          * @type Number
          */
         cropWidth: {
-            value: 100,
-            validator: isNumber
+            validator: isNumber,
+            value: 100
         },
 
         /**
@@ -102,8 +102,8 @@ var ImageCropper = A.Component.create({
          * @type Boolean
          */
         movable: {
-            value: true,
-            validator: isBoolean
+            validator: isBoolean,
+            value: true
         },
 
         /**
@@ -115,8 +115,8 @@ var ImageCropper = A.Component.create({
          * @type Boolean
          */
         preserveRatio: {
-            value: false,
-            validator: isBoolean
+            validator: isBoolean,
+            value: false
         },
 
         /**
@@ -139,8 +139,8 @@ var ImageCropper = A.Component.create({
          * @type Boolean
          */
         resizable: {
-            value: true,
-            validator: isBoolean
+            validator: isBoolean,
+            value: true
         },
 
         /**
@@ -151,9 +151,9 @@ var ImageCropper = A.Component.create({
          * @type Number
          */
         x: {
-            value: 0,
             setter: Math.round,
-            validator: isNumber
+            validator: isNumber,
+            value: 0
         },
 
         /**
