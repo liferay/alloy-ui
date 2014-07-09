@@ -36,24 +36,24 @@ var Lang = A.Lang,
 
 A.mix(defaults, {
     STRINGS: {
-        DEFAULT: 'Please fix this field.',
-        acceptFiles: 'Please enter a value with a valid extension ({0}).',
-        alpha: 'Please enter only alpha characters.',
-        alphanum: 'Please enter only alphanumeric characters.',
-        date: 'Please enter a valid date.',
-        digits: 'Please enter only digits.',
-        email: 'Please enter a valid email address.',
-        equalTo: 'Please enter the same value again.',
-        iri: 'Please enter a valid IRI.',
-        max: 'Please enter a value less than or equal to {0}.',
-        maxLength: 'Please enter no more than {0} characters.',
-        min: 'Please enter a value greater than or equal to {0}.',
-        minLength: 'Please enter at least {0} characters.',
-        number: 'Please enter a valid number.',
-        range: 'Please enter a value between {0} and {1}.',
-        rangeLength: 'Please enter a value between {0} and {1} characters long.',
-        required: 'This field is required.',
-        url: 'Please enter a valid URL.'
+        DEFAULT: 'Please fix {field}.',
+        acceptFiles: 'Please enter a value with a valid extension ({0}) in {field}.',
+        alpha: 'Please enter only alpha characters in {field}.',
+        alphanum: 'Please enter only alphanumeric characters in {field}.',
+        date: 'Please enter a valid date in {field}.',
+        digits: 'Please enter only digits in {field}.',
+        email: 'Please enter a valid email address in {field}.',
+        equalTo: 'Please enter the same value again in {field}.',
+        iri: 'Please enter a valid IRI in {field}.',
+        max: 'Please enter a value less than or equal to {0} in {field}.',
+        maxLength: 'Please enter no more than {0} characters in {field}.',
+        min: 'Please enter a value greater than or equal to {0} in {field}.',
+        minLength: 'Please enter at least {0} characters in {field}.',
+        number: 'Please enter a valid number in {field}.',
+        range: 'Please enter a value between {0} and {1} in {field}.',
+        rangeLength: 'Please enter a value between {0} and {1} characters long in {field}.',
+        required: '{field} is required.',
+        url: 'Please enter a valid URL in {field}.'
     },
 
     REGEX: {
@@ -620,7 +620,7 @@ var FormValidator = A.Component.create({
         focusInvalidField: function() {
             var instance = this,
                 boundingBox = instance.get('boundingBox'),
-                field = boundingBox.one('.' + CSS_HAS_ERROR);
+                field = boundingBox.one('.' + CSS_ERROR_FIELD);
 
             if (field) {
                 if (instance.get('selectText')) {
@@ -712,8 +712,13 @@ var FormValidator = A.Component.create({
                 fieldName = field.get('name'),
                 fieldStrings = instance.get('fieldStrings')[fieldName] || {},
                 fieldRules = instance.get('rules')[fieldName],
+                fieldLabel = instance._findFieldLabel(field),
                 strings = instance.get('strings'),
                 substituteRulesMap = {};
+
+            if (fieldLabel) {
+                substituteRulesMap.field = fieldLabel;
+            }
 
             if (rule in fieldRules) {
                 var ruleValue = A.Array(fieldRules[rule]);
@@ -1027,6 +1032,12 @@ var FormValidator = A.Component.create({
                     }
                 }
 
+                // Use aria-describedby to provide extra details for filling input field
+                var id = field.get('id') + 'Helper';
+
+                stackContainer.set('id', id);
+                field.set('aria-describedby', id);
+
                 target.placeAfter(stackContainer);
 
                 instance.printStackError(
@@ -1100,6 +1111,22 @@ var FormValidator = A.Component.create({
         },
 
         /**
+         * Finds the label text of a field if existing.
+         *
+         * @method _findFieldLabel
+         * @param field
+         * @return {String}
+         */
+        _findFieldLabel: function(field) {
+            var labelCssClass = '.' + this.get('labelCssClass'),
+                label = field.previous(labelCssClass) || field.ancestor().previous(labelCssClass);
+
+            if (label) {
+                return label.get('text');
+            }
+        },
+
+        /**
          * Sets the error/success CSS classes based on the validation of a
          * field.
          *
@@ -1114,9 +1141,17 @@ var FormValidator = A.Component.create({
             if (field) {
                 if (valid) {
                     field.removeClass(errorClass).addClass(validClass);
+
+                    if (validClass === CSS_SUCCESS_FIELD) {
+                        field.removeAttribute('aria-invalid');
+                    }
                 }
                 else {
                     field.removeClass(validClass).addClass(errorClass);
+
+                    if (errorClass === CSS_ERROR_FIELD) {
+                        field.set('aria-invalid', true);
+                    }
                 }
             }
         },
