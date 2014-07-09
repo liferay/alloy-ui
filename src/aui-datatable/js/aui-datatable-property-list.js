@@ -132,10 +132,9 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
 
         if (instance.get('activeCell') && instance.get('focused')) {
             var keyCode = event.keyCode,
-                target = event.target,
-                editor = A.Widget.getByNode(target);
+                editor = A.Widget.getByNode(event.target);
 
-            if (target.hasClass('yui3-datatable')) {
+            if (editor instanceof A.DataTable) {
                 if (editor && keyCode === 13) {
                     instance._onEditCell(event);
                 }
