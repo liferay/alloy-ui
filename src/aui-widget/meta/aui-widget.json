@@ -29,7 +29,8 @@
         "requires": [
             "classnamemanager",
             "scrollview-base",
-            "scrollview-paginator"
+            "scrollview-paginator",
+            "timers"
         ]
     },
 

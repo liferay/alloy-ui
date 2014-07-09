@@ -56,6 +56,7 @@ WidgetSwipe.prototype = {
     destructor: function() {
         if (this._scrollView) {
             this._scrollView.destroy();
+            this._scrollView = null;
 
             this._detachSwipeEvents();
         }
@@ -77,7 +78,7 @@ WidgetSwipe.prototype = {
 
     /**
      * Fired after the widget's `responsive` event. This adds back the swipe css
-     * class that was removed by `_onResponsiveSwipe`.
+     * class that was removed by `_onResponsiveSwipe` and then syncs the scroll UI.
      *
      * @method _afterResponsiveSwipe
      * @protected
@@ -85,6 +86,10 @@ WidgetSwipe.prototype = {
     _afterResponsiveSwipe: function() {
         if (this._scrollView && !this._scrollView.get('disabled')) {
             this.get('boundingBox').addClass(CSS_WIDGET_SWIPE);
+
+            // Wait for other events after `responsive` to finish before syncing
+            // the scroll UI.
+            A.soon(A.bind(this._syncScrollUI, this));
         }
     },
 
@@ -125,10 +130,15 @@ WidgetSwipe.prototype = {
     _attachSwipeEvents: function() {
         if (!this._swipeEventHandles) {
             this._swipeEventHandles = [
-                this._scrollView.pages.after('indexChange', A.bind(this._afterIndexChange, this)),
-                this.after(this.WIDGET_INDEX_ATTRIBUTE + 'Change', this._afterWidgetIndexChange),
                 A.after('windowresize', A.bind(this._syncScrollUI, this))
             ];
+
+            if (this._scrollView.pages) {
+                this._swipeEventHandles.push(
+                    this._scrollView.pages.after('indexChange', A.bind(this._afterIndexChange, this)),
+                    this.after(this.WIDGET_INDEX_ATTRIBUTE + 'Change', this._afterWidgetIndexChange)
+                );
+            }
         }
     },
 
@@ -185,10 +195,7 @@ WidgetSwipe.prototype = {
         }
 
         this._scrollView = new A.ScrollView(this.get('swipe'));
-        this._scrollView.plug(A.Plugin.ScrollViewPaginator, {
-            index: this.get(this.WIDGET_INDEX_ATTRIBUTE),
-            selector: this.WIDGET_ITEM_SELECTOR
-        });
+        this._plugPaginator();
         this._scrollView.render();
 
         this._attachSwipeEvents();
@@ -204,6 +211,21 @@ WidgetSwipe.prototype = {
      */
     _onResponsiveSwipe: function() {
         this.get('boundingBox').removeClass(CSS_WIDGET_SWIPE);
+    },
+
+    /**
+     * Plugs ScrollViewPaginator if the `useScrollViewPaginator` is true.
+     *
+     * @method _plugPaginator
+     * @protected
+     */
+    _plugPaginator: function() {
+        if (this.get('useScrollViewPaginator')) {
+            this._scrollView.plug(A.Plugin.ScrollViewPaginator, {
+                index: this.get(this.WIDGET_INDEX_ATTRIBUTE),
+                selector: this.WIDGET_ITEM_SELECTOR
+            });
+        }
     },
 
     /**
@@ -240,10 +262,12 @@ WidgetSwipe.prototype = {
      * @protected
      */
     _scrollToCurrentIndex: function() {
-        this._scrollView.pages.scrollToIndex(
-            this.get(this.WIDGET_INDEX_ATTRIBUTE),
-            0 // Zero duration, animation will be done through ImageViewer.
-        );
+        if (this._scrollView.pages) {
+            this._scrollView.pages.scrollToIndex(
+                this.get(this.WIDGET_INDEX_ATTRIBUTE),
+                0 // Zero duration, animation will be done through ImageViewer.
+            );
+        }
     },
 
     /**
@@ -286,6 +310,17 @@ WidgetSwipe.ATTRS = {
     swipe: {
         setter: '_setSwipe',
         value: {}
+    },
+
+    /**
+     * Flag indicating if ScrollViewPaginator should be plugged.
+     *
+     * @attribute useScrollViewPaginator
+     * @default true
+     * @type {Boolean}
+     */
+    useScrollViewPaginator: {
+        value: true
     }
 };
 

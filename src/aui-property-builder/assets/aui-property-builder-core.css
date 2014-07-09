@@ -35,7 +35,7 @@
     white-space: nowrap;
 }
 
-.property-builder .tabbable {
+.property-builder .property-builder-tabs {
     margin-left: 10px;
     position: absolute;
     width: 270px;

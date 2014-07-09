@@ -276,6 +276,15 @@ A.TabView = A.Component.create({
      */
     EXTENDS: A.TabView,
 
+    /**
+     * Static property used to define the augmented classes.
+     *
+     * @property AUGMENTS
+     * @type Array
+     * @static
+     */
+    AUGMENTS: [A.WidgetCssClass],
+
     prototype: {
 
         /**

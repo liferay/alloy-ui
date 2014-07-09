@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+    <style>
+    .gallery {
+        margin: 30px;
+    }
+    .gallery .picture {
+        border: 5px solid #222;
+        margin: 3px;
+    }
+    .gallery a {
+        outline: none;
+    }
+    </style>
+</head>
+<body class="yui3-skin-sam">
+<h1>AlloyUI - Media gallery viewer</h1>
+<div id="gallery" class="gallery">
+    <a href="http://www.youtube.com/watch?v=z-mPuFs4Gls&width=560&height=349" title="Liferay Retreat 2010">
+        <img alt="Liferay Retreat 2010 (YouTube movie)" class="picture" src="../image-viewer/assets/liferay_retreat.png">
+    </a>
+    <a data-options="width=400&height=300" href="http://vimeo.com/18225907" title="Institucional SEA Liferay Roadshow 2010 (Vimeo movie)">
+        <img alt="Institucional SEA Liferay Roadshow 2010 - parte 2 (Vimeo movie)" class="picture" src="../image-viewer/assets/liferay_roadshow_brasil.jpg">
+    </a>
+    <!-- <a href="http://www.adobe.com/products/flashplayer/include/marquee/design.swf?width=450&height=403" title="Flash 10 demo">
+        <img alt="Flash 10 demo" class="picture" src="../image-viewer/assets/flash-logo.png">
+    </a> -->
+    <a href="http://www.dailymotion.com/video/xdi011_op-nworks-presente-le-portail-d-ent_tech&width=480&height=270" title="Op'nWorks présente le portail d'entreprise Liferay">
+        <img alt="Op'nWorks présente le portail d'entreprise Liferay" class="picture" src="../image-viewer/assets/liferay_fr.png">
+    </a>
+    <a href="../image-viewer/assets/lfr-soccer-1.jpg" title="Doug, Meesa and Louis resting">
+        <img alt="Doug, Meesa and Louis resting" class="picture" src="../image-viewer/assets/lfr-soccer-1_tn.jpg">
+    </a>
+    <a href="../image-viewer/assets/lfr-soccer-2.jpg" title="Grand finale teams">
+        <img alt="Grand finale teams" class="picture" src="../image-viewer/assets/lfr-soccer-2_tn.jpg">
+    </a>
+    <a href="../image-viewer/assets/lfr-soccer-3.jpg" title="Jen looking the landscape">
+        <img alt="Jen looking the landscape" class="picture" src="../image-viewer/assets/lfr-soccer-3_tn.jpg">
+    </a>
+    <a href="../image-viewer/assets/lfr-soccer-4.jpg" title="The real champion winners, Brazilian team!">
+        <img alt="The real champion winners, Brazilian team!" class="picture" src="../image-viewer/assets/lfr-soccer-4_tn.jpg" />
+    </a>
+</div>
+<script>
+
+YUI({ filter: 'raw' }).use('aui-image-viewer', 'aui-image-viewer-media', function(Y) {
+
+    new Y.ImageViewer({
+        caption: 'AlloyUI - MediaViewer mixed demo',
+        links: '#gallery a',
+        playing: false,
+        plugins: [
+            {
+                cfg: {
+                    'providers.dailymotion': {
+                        container: '<iframe frameborder="0" width="{width}" height="{height}" src="http://www.dailymotion.com/embed/video/{media}"></iframe>',
+                        matcher: new RegExp(
+                            Y.Lang.sub(
+                                Y.MediaViewerPlugin.REGEX_DOMAIN,
+                                {
+                                    domain: 'dailymotion.com'
+                                }
+                            ),
+                            'i'
+                        ),
+                        options: Y.MediaViewerPlugin.DEFAULT_OPTIONS,
+                        mediaRegex: /\/video\/([^&#_]*)/i
+                    }
+                },
+                fn: Y.MediaViewerPlugin
+            }
+        ],
+        preloadNeighborImages: true
+    }).render();
+
+});
+
+</script>
+</body>
+</html>

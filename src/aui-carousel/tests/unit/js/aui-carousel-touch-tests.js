@@ -21,7 +21,6 @@ YUI.add('aui-carousel-touch-tests', function(Y) {
                 contentBox: '#content',
                 height: 300,
                 intervalTime: 1,
-                itemSelector: '> div,img',
                 width: 940
             }, config || {});
 

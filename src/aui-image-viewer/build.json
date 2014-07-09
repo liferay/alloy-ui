@@ -1,21 +1,39 @@
 {
     "name": "aui-image-viewer",
     "builds": {
+        "aui-image-viewer": {
+            "jsfiles": [
+                "js/aui-image-viewer.js"
+            ]
+        },
+
         "aui-image-viewer-base": {
             "jsfiles": [
                 "js/aui-image-viewer-base.js"
             ]
         },
 
-        "aui-image-viewer-gallery": {
-            "jsfiles": [
-                "js/aui-image-viewer-gallery.js"
-            ]
-        },
-
         "aui-image-viewer-media": {
             "jsfiles": [
                 "js/aui-image-viewer-media.js"
+            ]
+        },
+
+        "aui-image-viewer-multiple": {
+            "jsfiles": [
+                "js/aui-image-viewer-multiple.js"
+            ]
+        },
+
+        "aui-image-viewer-multiple-swipe": {
+            "jsfiles": [
+                "js/aui-image-viewer-multiple-swipe.js"
+            ]
+        },
+
+        "aui-image-viewer-slideshow": {
+            "jsfiles": [
+                "js/aui-image-viewer-slideshow.js"
             ]
         },
 

@@ -13,7 +13,6 @@ Y.mix(YUI.Env.aliases, {
     "aui-datepicker-deprecated": ["aui-datepicker-base-deprecated","aui-datepicker-select-deprecated"],
     "aui-event": ["aui-event-base"],
     "aui-form-deprecated": ["aui-form-base-deprecated","aui-form-combobox-deprecated","aui-form-field-deprecated","aui-form-select-deprecated","aui-form-textarea-deprecated","aui-form-textfield-deprecated"],
-    "aui-image-viewer": ["aui-image-viewer-base","aui-image-viewer-gallery","aui-image-viewer-media"],
     "aui-io": ["aui-io-request"],
     "aui-io-deprecated": ["aui-io-request","aui-io-plugin-deprecated"],
     "aui-node": ["aui-node-base"],

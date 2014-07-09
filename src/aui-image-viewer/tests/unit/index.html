@@ -14,32 +14,27 @@
 
 
 <div id="viewer">
-    <a class="viewer" href="assets/lfr-soccer-2.jpg" title="Doug, Meesa and Louis resting">
+    <a class="viewer" href="assets/lfr-soccer-7.jpg" title="Doug, Meesa and Louis resting">
         Picture 1
     </a>
-    <a class="viewer" href="assets/lfr-soccer-3.jpg" title="Grand finale teams">
+    <a class="viewer" href="assets/lfr-soccer-7.jpg" title="Grand finale teams">
         Picture 2
     </a>
-    <a href="assets/lfr-soccer-4.jpg">
+    <a href="assets/lfr-soccer-7.jpg">
         Picture 3
-    </a>
-    <a href="assets/lfr-soccer-5.jpg">
-        Picture 4
-    </a>
-    <a href="assets/lfr-soccer-6.jpg">
-        Picture 5
+        <img src="assets/lfr-soccer-6.jpg"></img>
     </a>
 </div>
 
 <script>
 YUI({
-    coverage: ['aui-image-viewer-base'],
+    coverage: ['aui-image-viewer'],
     filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-}).use('test-console', 'test', 'aui-image-viewer-base-tests', function(Y) {
+}).use('test-console', 'test', 'aui-image-viewer-tests', function(Y) {
 
     (new Y.Test.Console()).render('#logger');
 
-    Y.Test.Runner.setName('aui-image-viewer-base');
+    Y.Test.Runner.setName('aui-image-viewer');
     Y.Test.Runner.run();
 });
 </script>

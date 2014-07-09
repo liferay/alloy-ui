@@ -25,6 +25,36 @@ YUI.add('aui-image-viewer-media-tests', function(Y) {
             }, config || {})).render();
         },
 
+        'should still work with images': function() {
+            var instance = this,
+                image,
+                imageContainer;
+
+            this._createImageViewer({
+                thumbnailsConfig: false
+            });
+
+            this._imageViewer.getLink('1').simulate('click');
+
+            image = this._imageViewer._getCurrentImage();
+            imageContainer = image.get('parentNode');
+
+            Y.Assert.isTrue(
+                imageContainer.hasClass('image-viewer-base-loading'),
+                'Image should have started loading'
+            );
+
+            image.once('load', function() {
+                instance.resume(function() {
+                    Y.Assert.isFalse(
+                        imageContainer.hasClass('image-viewer-base-loading'),
+                        'Image should have finished loading'
+                    );
+                });
+            });
+            this.wait();
+        },
+
         'should only render media content after load': function() {
             var media,
                 mediaContainer;
@@ -41,37 +71,9 @@ YUI.add('aui-image-viewer-media-tests', function(Y) {
 
             Y.Assert.isNotNull(media, 'The media should have been rendered on load');
             Y.Assert.isFalse(
-                mediaContainer.hasClass('image-viewer-loading'),
+                mediaContainer.hasClass('image-viewer-base-loading'),
                 'Media should not have loading indicator'
             );
-        },
-
-        'should still work with images': function() {
-            var instance = this,
-                image,
-                imageContainer;
-
-            this._createImageViewer();
-
-            this._imageViewer.getLink('1').simulate('click');
-
-            image = this._imageViewer._getCurrentImage();
-            imageContainer = image.get('parentNode');
-
-            Y.Assert.isTrue(
-                imageContainer.hasClass('image-viewer-loading'),
-                'Image should have started loading'
-            );
-
-            image.once('load', function() {
-                instance.resume(function() {
-                    Y.Assert.isFalse(
-                        imageContainer.hasClass('image-viewer-loading'),
-                        'Image should have finished loading'
-                    );
-                });
-            });
-            this.wait();
         },
 
         'should not render same media more than once': function() {

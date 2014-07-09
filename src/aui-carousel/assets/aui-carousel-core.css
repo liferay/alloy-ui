@@ -1,35 +1,49 @@
-.carousel {
+.carousel.image-viewer-base {
     overflow: hidden;
     position: relative;
 }
 
-.carousel-content {
+.carousel .carousel-content {
     position: relative;
 }
 
-.carousel-item {
+.carousel .carousel-content .image-viewer-base-image-list {
+    display: block;
+}
+
+.carousel .carousel-content .image-viewer-base-image-container {
     display: none;
     width: 100%;
     z-index: 1;
 }
 
-.carousel-item-transition {
+.carousel .carousel-content .image-viewer-base-image {
+    max-height: none;
+    max-width: none;
+}
+
+.carousel .carousel-content .carousel-item-transition {
     display: block;
+    left: 0;
     position: absolute;
+    top: 0;
     z-index: 2;
 }
 
-.carousel-item-active {
+.carousel .carousel-content .image-viewer-base-current-image {
     display: block;
     z-index: 3;
 }
 
-.carousel-item-active-transition {
+.carousel .carousel-content .carousel-item-active-transition {
+    left: 0;
     position: absolute;
+    top: 0;
 }
 
 .carousel.carousel-outside-menu .carousel-menu {
     text-align: center;
+    height: 29px;
 }
 
 .carousel.carousel-outside-menu .carousel-menu menu {
@@ -47,8 +61,6 @@
     padding: 3px;
     right: 6px;
     z-index: 4;
-    -webkit-user-select: none;
-    -moz-user-select: none;
 }
 
 .carousel menu li, .carousel menu a {
@@ -63,10 +75,18 @@
     text-indent: -999999px;
 }
 
-.carousel-menu-next, .carousel-menu-play, .carousel-menu-pause, .carousel-menu-prev {
+.carousel.image-viewer-base .carousel-menu-next,
+.carousel.image-viewer-base .carousel-menu-play,
+.carousel.image-viewer-base .carousel-menu-pause,
+.carousel.image-viewer-base .carousel-menu-prev {
     height: 18px;
     width: 18px;
     margin: 0 3px;
+}
+
+.carousel.image-viewer-base .carousel-menu-next,
+.carousel.image-viewer-base .carousel-menu-prev {
+    position: static;
 }
 
 .carousel-menu-next {

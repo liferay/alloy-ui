@@ -1,9 +1,9 @@
-YUI.add('aui-image-viewer-base-tests', function(Y) {
+YUI.add('aui-image-viewer-tests', function(Y) {
 
-    var suite = new Y.Test.Suite('aui-image-viewer-base');
+    var suite = new Y.Test.Suite('aui-image-viewer');
 
     suite.add(new Y.Test.Case({
-        name: 'Image Viewer Base Tests',
+        name: 'Image Viewer Tests',
 
         tearDown: function() {
             if (this._imageViewer) {
@@ -11,153 +11,12 @@ YUI.add('aui-image-viewer-base-tests', function(Y) {
             }
         },
 
-        _createImageViewer: function(config, skipRender) {
+        _createImageViewer: function(config) {
             this._imageViewer = new Y.ImageViewer(Y.merge({
                 links: '#viewer a',
                 captionFromTitle: true,
                 zIndex: 1
-            }, config));
-
-            if (!skipRender) {
-                this._imageViewer.render();
-            }
-        },
-
-        'should show loading indicator until image is ready': function() {
-            var instance = this,
-                imageContainer,
-                image;
-
-            this._createImageViewer({
-                preloadNeighborImages: false
-            });
-
-            this._imageViewer.getLink('0').simulate('click');
-
-            image = this._imageViewer._getCurrentImage();
-            imageContainer = image.get('parentNode');
-            Y.Assert.isTrue(
-                imageContainer.hasClass('image-viewer-loading'),
-                'Image should have loading css class'
-            );
-
-            image.once('load', function() {
-                instance.resume(function() {
-                    Y.Assert.isFalse(
-                        imageContainer.hasClass('image-viewer-loading'),
-                        'Image should not have loading css class anymore'
-                    );
-                });
-            });
-            this.wait();
-        },
-
-        'should animate new images by default': function() {
-            var instance = this,
-                image,
-                mock = new Y.Mock();
-
-            this._createImageViewer({
-                preloadNeighborImages: false
-            });
-
-            this._imageViewer.getLink('1').simulate('click');
-            image = this._imageViewer._getCurrentImage();
-
-            image.once('load', function() {
-                instance.resume(function() {
-                    Y.Assert.isNotUndefined(
-                        image.fx,
-                        'NodeFX should have been added to the image'
-                    );
-
-                    Y.Mock.expect(mock, {
-                        callCount: 1,
-                        method: 'onAnim',
-                        args: [Y.Mock.Value.Object]
-                    });
-                    instance._imageViewer.once('anim', mock.onAnim);
-
-                    image.fx.once('end', function() {
-                        instance.resume(function() {
-                            Y.Mock.verify(mock);
-                        });
-                    });
-                    instance.wait();
-                });
-            });
-            this.wait();
-        },
-
-        'should not animate new images if requested': function() {
-            var instance = this,
-                image;
-
-            this._createImageViewer({
-                animated: false,
-                preloadNeighborImages: false
-            });
-
-            this._imageViewer.getLink('2').simulate('click');
-            image = this._imageViewer._getCurrentImage();
-
-            image.once('load', function() {
-                instance.resume(function() {
-                    Y.Assert.isUndefined(
-                        image.fx,
-                        'NodeFX should not have been added to the image'
-                    );
-                });
-            });
-            this.wait();
-        },
-
-        'should not wait for images to load for the second time': function() {
-            var instance = this,
-                image;
-
-            this._createImageViewer({
-                preloadNeighborImages: false
-            });
-
-            this._imageViewer.getLink('3').simulate('click');
-            image = this._imageViewer._getCurrentImage();
-
-            Y.Assert.areEqual(
-                1,
-                image.getComputedStyle('opacity'),
-                'Image should not be ready for animation yet'
-            );
-            image.once('load', function() {
-                instance.resume(function() {
-                    Y.Assert.areEqual(
-                        0,
-                        image.getComputedStyle('opacity'),
-                        'Image should be ready for animation after first load'
-                    );
-
-                    image.fx.once('end', function() {
-                        instance.resume(function() {
-                            Y.Assert.areEqual(
-                                1,
-                                image.getComputedStyle('opacity'),
-                                'Image should be visible after animation'
-                            );
-
-                            instance._imageViewer.prev();
-                            instance._imageViewer.next();
-
-                            Y.Assert.areEqual(
-                                0,
-                                image.getComputedStyle('opacity'),
-                                'Image should be instantly ready for animation'
-                            );
-                        });
-                    });
-                    instance.wait();
-                });
-            });
-            this.wait();
+            }, config)).render();
         },
 
         'should have fixed width/height if requested': function() {
@@ -192,46 +51,13 @@ YUI.add('aui-image-viewer-base-tests', function(Y) {
             );
         },
 
-        'should update width to fit in maxWidth': function() {
-            var instance = this,
-                boundingBox,
-                image,
-                imageContainer,
-                initialWidth,
-                maxWidth;
-
-            this._createImageViewer({
-                preloadNeighborImages: false
-            });
-
-            this._imageViewer.getLink('4').simulate('click');
-
-            boundingBox = this._imageViewer.get('boundingBox');
-            image = this._imageViewer._getCurrentImage();
-            imageContainer = image.get('parentNode');
-
-            image.once('load', function() {
-                instance.resume(function() {
-                    initialWidth = boundingBox.get('offsetWidth');
-                    maxWidth = initialWidth / 2;
-
-                    instance._imageViewer.set('maxWidth', maxWidth);
-                    Y.Assert.isTrue(
-                        boundingBox.get('offsetWidth') <= maxWidth,
-                        'Width should change to fit in the maxWidth'
-                    );
-                });
-            });
-            this.wait();
-        },
-
         'should open image viewer when clicking one of the links': function() {
             this._createImageViewer();
 
             Y.Assert.areEqual(
-                5,
+                3,
                 this._imageViewer.get('links').size(),
-                'The viewer should have 5 links'
+                'The viewer should have 3 links'
             );
 
             Y.Assert.isFalse(
@@ -265,7 +91,7 @@ YUI.add('aui-image-viewer-base-tests', function(Y) {
 
             this._imageViewer.set('links', Y.all('#viewer a'));
             Y.Assert.areEqual(
-                5,
+                3,
                 this._imageViewer.get('links').size(),
                 'The viewer now has 3 links'
             );
@@ -275,72 +101,6 @@ YUI.add('aui-image-viewer-base-tests', function(Y) {
                 1,
                 this._imageViewer.get('links').size(),
                 'The viewer now only has 1 link'
-            );
-        },
-
-        'should go to the next item': function() {
-            var button;
-
-            this._createImageViewer();
-
-            this._imageViewer.getLink(2).simulate('click');
-
-            button = Y.one('.carousel-control.right');
-            button.simulate('click');
-
-            Y.Assert.areEqual(
-                3,
-                this._imageViewer.get('currentIndex'),
-                'Current item should have been updated to the next item'
-            );
-
-            button.simulate('click');
-
-            Y.Assert.areEqual(
-                4,
-                this._imageViewer.get('currentIndex'),
-                'Current item should have been updated to the next item'
-            );
-
-            button.simulate('click');
-
-            Y.Assert.areEqual(
-                4,
-                this._imageViewer.get('currentIndex'),
-                'Current item should not be changed, since it was the last one'
-            );
-        },
-
-        'should go to the previous item': function() {
-            var button;
-
-            this._createImageViewer();
-
-            this._imageViewer.getLink(2).simulate('click');
-
-            button = Y.one('.carousel-control.left');
-            button.simulate('click');
-
-            Y.Assert.areEqual(
-                1,
-                this._imageViewer.get('currentIndex'),
-                'Current item should have been updated to the previous item'
-            );
-
-            button.simulate('click');
-
-            Y.Assert.areEqual(
-                0,
-                this._imageViewer.get('currentIndex'),
-                'Current item should have been updated to the previous item'
-            );
-
-            button.simulate('click');
-
-            Y.Assert.areEqual(
-                0,
-                this._imageViewer.get('currentIndex'),
-                'Current item should not be changed, since it was the first one'
             );
         },
 
@@ -476,99 +236,154 @@ YUI.add('aui-image-viewer-base-tests', function(Y) {
             );
         },
 
-        'should load neighbour images by default': function() {
-            var mock = new Y.Mock();
+        'should have css class on mask when modal': function() {
+            this._createImageViewer({
+                visible: true
+            });
 
+            Y.Assert.isTrue(
+                this._imageViewer.get('maskNode').hasClass('image-viewer-mask'),
+                'Mask should have the css class'
+            );
+        },
+
+        'should not have css class on mask when not modal': function() {
+            this._createImageViewer({
+                modal: false,
+                visible: true
+            });
+
+            Y.Assert.isFalse(
+                this._imageViewer.get('maskNode').hasClass('image-viewer-mask'),
+                'Mask should not have the css class'
+            );
+        },
+
+        'should render player correctly': function() {
+            this._createImageViewer({
+                visible: true
+            });
+
+            Y.Assert.isNotUndefined(this._imageViewer._player, 'Player should have been rendered');
+            Y.Assert.areNotEqual(
+                'none',
+                this._imageViewer._player.getStyle('display'),
+                'Player should be visible'
+            );
+
+            this._imageViewer.set('showPlayer', false);
+            Y.Assert.areEqual(
+                'none',
+                this._imageViewer._player.getStyle('display'),
+                'Player should not be visible'
+            );
+        },
+
+        'should update thumbnail index when currentIndex changes': function() {
             this._createImageViewer();
 
-            Y.Mock.expect(mock, {
-                callCount: 2,
-                method: 'onLoad',
-                args: [Y.Mock.Value.Object]
-            });
-
-            this._imageViewer.once('load0', mock.onLoad);
-            this._imageViewer.once('load1', mock.onLoad);
-            this._imageViewer.once('load2', mock.onLoad);
-
             this._imageViewer.getLink('0').simulate('click');
-            Y.Mock.verify(mock);
+            Y.Assert.areEqual(
+                0,
+                this._imageViewer._thumbnailsWidget.get('currentIndex'),
+                'Thumbnails index should be equal to currentIndex'
+            );
 
-            Y.Mock.expect(mock, {
-                callCount: 3,
-                method: 'onLoad',
-                args: [Y.Mock.Value.Object]
-            });
-
-            this._imageViewer.once('load0', mock.onLoad);
-            this._imageViewer.once('load1', mock.onLoad);
-            this._imageViewer.once('load2', mock.onLoad);
-
-            this._imageViewer.next();
-            Y.Mock.verify(mock);
+            this._imageViewer.set('currentIndex', 2);
+            Y.Assert.areEqual(
+                2,
+                this._imageViewer._thumbnailsWidget.get('currentIndex'),
+                'Thumbnails index should be equal to currentIndex'
+            );
         },
 
-        'should not preload neighbour images if requested': function() {
-            var mock = new Y.Mock();
-
+        'should update currentIndex when thumbnail index changes': function() {
             this._createImageViewer({
-                preloadNeighborImages: false
+                visible: true
             });
 
-            Y.Mock.expect(mock, {
-                callCount: 1,
-                method: 'onLoad',
-                args: [Y.Mock.Value.Object]
-            });
-
-            this._imageViewer.once('load0', mock.onLoad);
-            this._imageViewer.once('load1', mock.onLoad);
-            this._imageViewer.once('load2', mock.onLoad);
-
-            this._imageViewer.getLink('0').simulate('click');
-            Y.Mock.verify(mock);
+            this._imageViewer._thumbnailsWidget.set('currentIndex', 2),
+            Y.Assert.areEqual(
+                2,
+                this._imageViewer.get('currentIndex'),
+                'currentIndex should be equal to thumbnails index'
+            );
         },
 
-        'should load all images at once if requested': function() {
-            var mock = new Y.Mock();
-
+        'should not show thumbnails if requested': function() {
             this._createImageViewer({
-                preloadAllImages: true
-            }, true);
-
-            Y.Mock.expect(mock, {
-                callCount: 3,
-                method: 'onLoad',
-                args: [Y.Mock.Value.Object]
+                thumbnailsConfig: false,
+                visible: true
             });
 
-            this._imageViewer.once('load0', mock.onLoad);
-            this._imageViewer.once('load1', mock.onLoad);
-            this._imageViewer.once('load2', mock.onLoad);
-
-            this._imageViewer.render();
-            Y.Mock.verify(mock);
+            Y.Assert.isUndefined(
+                this._imageViewer._thumbnailsWidget,
+                'Thumbnails widget should not have been created'
+            );
         },
 
-        'should not load images when invisible': function() {
-            var mock = new Y.Mock();
-
-            this._createImageViewer();
-
-            Y.Mock.expect(mock, {
-                callCount: 0,
-                method: 'onLoad',
-                args: [Y.Mock.Value.Object]
+        'should change thumbnailsConfig dynamically': function() {
+            this._createImageViewer({
+                thumbnailsConfig: false,
+                visible: true
             });
-            this._imageViewer.once('load1', mock.onLoad);
 
-            this._imageViewer.set('currentIndex', 1);
-            Y.Mock.verify(mock);
+            Y.Assert.isUndefined(
+                this._imageViewer._thumbnailsWidget,
+                'Thumbnails widget should not have been created'
+            );
+
+            this._imageViewer.set('thumbnailsConfig', {});
+            Y.Assert.areNotEqual(
+                'none',
+                this._imageViewer._thumbnailsEl.getStyle('display'),
+                'Thumbnails widget should have become visible'
+            );
+
+            this._imageViewer.set('thumbnailsConfig', false);
+            Y.Assert.areEqual(
+                'none',
+                this._imageViewer._thumbnailsEl.getStyle('display'),
+                'Thumbnails widget should have been hidden'
+            );
+
+            this._imageViewer.set('thumbnailsConfig', {});
+            Y.Assert.areNotEqual(
+                'none',
+                this._imageViewer._thumbnailsEl.getStyle('display'),
+                'Thumbnails widget should have become visible again'
+            );
+
+            this._imageViewer.set('thumbnailsConfig', {
+                height: 100
+            });
+            Y.Assert.areNotEqual(
+                'none',
+                this._imageViewer._thumbnailsEl.getStyle('display'),
+                'Thumbnails widget should still be visible'
+            );
+            Y.Assert.areEqual(
+                100,
+                this._imageViewer._thumbnailsWidget.get('height'),
+                'Thumbnails widget should have new height value'
+            );
+        },
+
+        'should use link images for thumbnail sources': function() {
+            this._createImageViewer({
+                visible: true
+            });
+
+            Y.Assert.areEqual(
+                'assets/lfr-soccer-6.jpg',
+                this._imageViewer._thumbnailsWidget.get('sources')[2],
+                'Sources should contain the images from the links'
+            );
         }
     }));
 
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['aui-image-viewer-base', 'node-event-simulate', 'test']
+    requires: ['aui-image-viewer', 'node-event-simulate', 'test']
 });

@@ -8,7 +8,8 @@
 function CarouselSwipe() {}
 
 CarouselSwipe.prototype = {
-    WIDGET_INDEX_ATTRIBUTE: 'activeIndex',
+    WIDGET_INDEX_ATTRIBUTE: 'currentIndex',
+    WIDGET_ITEM_SELECTOR: '.image-viewer-base-image-container',
 
     /**
      * Construction logic executed during instantiation.
@@ -19,8 +20,6 @@ CarouselSwipe.prototype = {
      */
     initializer: function() {
         A.after(this._afterAttachSwipeEvents, this, '_attachSwipeEvents');
-
-        this.WIDGET_ITEM_SELECTOR = this.get('itemSelector');
     },
 
     /**
@@ -31,19 +30,19 @@ CarouselSwipe.prototype = {
      */
     _afterAttachSwipeEvents: function() {
         this._swipeEventHandles.push(
-            this.on('showImage', this._onShowImage)
+            this.on('animate', this._onAnimate)
         );
     },
 
     /**
-     * Fired on the `showImage` event. This prevents new image animations when
+     * Fired on the `animate` event. This prevents new image animations when
      * the current image was shown by scrolling.
      *
-     * @method _onShowImage
+     * @method _onAnimate
      * @param {EventFacade} event
      * @protected
      */
-    _onShowImage: function(event) {
+    _onAnimate: function(event) {
         if (this._scrollView && this._scrollView.pages.get('index') === this.get(this.WIDGET_INDEX_ATTRIBUTE)) {
             // If the scroll view is already at the new index, then it was already
             // scrolled there, so we don't want the carousel to animate it.

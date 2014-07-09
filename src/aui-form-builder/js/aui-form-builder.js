@@ -28,6 +28,7 @@ var L = A.Lang,
     FIELDS_ID_PREFIX = 'fields' + '_' + 'field' + '_',
 
     CSS_DD_DRAGGING = getCN('dd', 'dragging'),
+    CSS_PROPERTY_BUILDER_CONTENT_CONTAINER = getCN('property', 'builder', 'content', 'container'),
     CSS_PROPERTY_BUILDER_FIELD_DRAGGABLE = getCN('property', 'builder', 'field', 'draggable'),
     CSS_FIELD_HOVER = getCN('form', 'builder', 'field', 'hover'),
     CSS_FORM_BUILDER_DROP_ZONE = getCN('form', 'builder', 'drop', 'zone'),
@@ -118,6 +119,20 @@ var FormBuilder = A.Component.create({
                 settings: 'Settings',
                 value: 'Value'
             }
+        },
+
+        /**
+         * Stores an instance of `A.TabView`.
+         *
+         * @attribute tabView
+         * @default null
+         * @type Object
+         * @writeOnce
+         */
+        tabView: {
+            value: {
+                cssClass: 'col-xs-12 col-sm-6'
+            }
         }
     },
 
@@ -160,6 +175,7 @@ var FormBuilder = A.Component.create({
     SETTINGS_TAB: 1,
 
     prototype: {
+        CONTENT_CONTAINER_TEMPLATE: '<div class="col-xs-12 col-sm-6 ' + CSS_PROPERTY_BUILDER_CONTENT_CONTAINER + '"></div>',
 
         selectedFieldsLinkedSet: null,
         uniqueFieldsMap: null,
@@ -197,8 +213,13 @@ var FormBuilder = A.Component.create({
             instance.after('*:focusedChange', instance._afterFieldFocusedChange);
 
             instance.dropContainer.delegate('click', A.bind(instance._onClickField, instance), '.' + CSS_FORM_BUILDER_FIELD);
-            instance.dropContainer.delegate('mouseover', A.bind(instance._onMouseOverField, instance), '.' + CSS_FORM_BUILDER_FIELD);
-            instance.dropContainer.delegate('mouseout', A.bind(instance._onMouseOutField, instance), '.' + CSS_FORM_BUILDER_FIELD);
+
+            if (!A.UA.touchEnabled) {
+                instance.dropContainer.delegate('mouseover', A.bind(instance._onMouseOverField, instance), '.' + CSS_FORM_BUILDER_FIELD);
+                instance.dropContainer.delegate('mouseout', A.bind(instance._onMouseOutField, instance), '.' + CSS_FORM_BUILDER_FIELD);
+            }
+
+            instance.get('contentBox').addClass('row');
         },
 
         /**
@@ -466,7 +487,7 @@ var FormBuilder = A.Component.create({
             var instance = this,
                 field = event.target;
 
-            if (event.newVal && isFormBuilderField(field)) {
+            if (event.newVal && isFormBuilderField(field) && !A.UA.touchEnabled) {
                 instance.editField(field);
             }
         },

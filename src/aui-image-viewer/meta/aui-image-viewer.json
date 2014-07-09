@@ -1,16 +1,20 @@
 {
-	"aui-image-viewer": {
-        "use": [
-            "aui-image-viewer-base",
-            "aui-image-viewer-gallery",
-            "aui-image-viewer-media"
-        ]
-    },
-
-    "aui-image-viewer-base": {
+	"aui-image-viewer-base": {
         "requires": [
             "anim",
+            "aui-classnamemanager",
+            "aui-node",
+            "aui-widget-responsive",
+            "base-build",
             "imageloader",
+            "node-base",
+            "widget"
+        ],
+        "skinnable": true
+    },
+
+    "aui-image-viewer": {
+        "requires": [
             "widget",
             "widget-modality",
             "widget-position",
@@ -19,42 +23,61 @@
             "widget-stack",
             "widget-stdmod",
             "aui-event",
+            "aui-image-viewer-base",
+            "aui-image-viewer-multiple",
+            "aui-image-viewer-slideshow",
             "aui-node-base",
             "aui-widget-cssclass",
-            "aui-widget-responsive",
             "aui-widget-toggle"
         ],
         "skinnable": true
     },
 
-    "aui-image-viewer-gallery": {
-    	"requires": [
-    		"aui-image-viewer-base",
-    		"aui-pagination",
-    		"aui-toolbar"
-    	],
-    	"skinnable": true
-    },
-
     "aui-image-viewer-media": {
         "requires": [
             "plugin",
-            "aui-image-viewer-base",
-            "aui-pagination",
-            "aui-toolbar"
+            "aui-component",
+            "aui-image-viewer"
+        ]
+    },
+
+    "aui-image-viewer-multiple": {
+        "requires": [
+            "base-build",
+            "node-base",
+            "aui-classnamemanager",
+            "aui-image-viewer-base"
+        ],
+        "skinnable": true
+    },
+
+    "aui-image-viewer-multiple-swipe": {
+        "requires": [
+            "aui-image-viewer-multiple",
+            "aui-image-viewer-swipe"
+        ],
+        "condition": {
+            "trigger": "aui-image-viewer-multiple",
+            "ua": "touchEnabled"
+        }
+    },
+
+    "aui-image-viewer-slideshow": {
+        "requires": [
+            "node",
+            "aui-classnamemanager"
         ]
     },
 
     "aui-image-viewer-swipe": {
         "requires": [
+            "event-resize",
             "aui-image-viewer-base",
-            "aui-widget-swipe",
-            "event-resize"
+            "aui-widget-swipe"
         ],
         "condition": {
             "trigger": "aui-image-viewer-base",
             "ua": "touchEnabled"
-        },
-        "skinnable": true
+        }
     }
 }

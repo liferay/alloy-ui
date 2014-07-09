@@ -45,14 +45,20 @@ add('load', '4', {
 },
     "trigger": "aui-event-base"
 });
-// aui-image-viewer-swipe
+// aui-image-viewer-multiple-swipe
 add('load', '5', {
+    "name": "aui-image-viewer-multiple-swipe",
+    "trigger": "aui-image-viewer-multiple",
+    "ua": "touchEnabled"
+});
+// aui-image-viewer-swipe
+add('load', '6', {
     "name": "aui-image-viewer-swipe",
     "trigger": "aui-image-viewer-base",
     "ua": "touchEnabled"
 });
 // aui-modal-resize
-add('load', '6', {
+add('load', '7', {
     "name": "aui-modal-resize",
     "test": function(A) {
     return !A.UA.mobile;
@@ -60,7 +66,7 @@ add('load', '6', {
     "trigger": "aui-modal"
 });
 // aui-node-html5
-add('load', '7', {
+add('load', '8', {
     "name": "aui-node-html5",
     "trigger": "aui-node",
     "ua": "ie"
