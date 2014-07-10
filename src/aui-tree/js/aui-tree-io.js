@@ -75,6 +75,28 @@ TreeViewIO.prototype = {
     },
 
     /**
+     * Create nodes.
+     *
+     * @method createNodes
+     * @param nodes
+     */
+    createNodes: function(nodes) {
+        var instance = this,
+            paginator = instance.get('paginator');
+
+        A.Array.each(A.Array(nodes), function(node) {
+            var childrenLength = instance.getChildrenLength(),
+                newNode = instance.createNode(node);
+
+            if (paginator && paginator.total > childrenLength) {
+                instance.appendChild(newNode);
+            }
+        });
+
+        instance._syncPaginatorUI(nodes);
+    },
+
+    /**
      * Initialize the IO transaction setup on the
      * [io](A.TreeViewIO.html#attr_io) attribute.
      *
