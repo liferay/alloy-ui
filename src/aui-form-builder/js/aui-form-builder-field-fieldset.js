@@ -205,4 +205,4 @@ var FormBuilderFieldsetField = A.Component.create({
 
 A.FormBuilderFieldsetField = FormBuilderFieldsetField;
 
-A.namespace('FormBuilder.types').fieldset = A.FormBuilderFieldsetField;
+A.FormBuilderField.types.fieldset = A.FormBuilderFieldsetField;

@@ -11,7 +11,7 @@
     <h1>AlloyUI - Datatable</h1>
     <div id="simple" class="table-striped"></div>
     <script>
-    YUI({ filter: 'raw' }).use('aui-datatable', function(Y) {
+    YUI({ filter: 'raw' }).use('aui-datatable', 'datatable-scroll', function(Y) {
 
         var data = [
             { name: 'Joan B. Jones', address: '3271 Another Ave', city: 'New York', state: 'AL', amount: 3, active: 'no', colors: ['red','blue'], fruit: ['apple'], date: '2013-01-01' },
@@ -112,7 +112,7 @@
                 }
             ],
             data: data,
-            editEvent: 'dblclick',
+            editEvent: Y.UA.touchEnabled ? 'click' : 'dblclick',
             plugins: [
                 {
                     fn: Y.Plugin.DataTableHighlight,
@@ -123,7 +123,9 @@
                         // rangeBorderWidth: 1
                     }
                 }
-            ]
+            ],
+            scrollable: 'x',
+            width: '100%'
         }).render();
 
     });

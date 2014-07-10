@@ -201,4 +201,4 @@ var FormBuilderCheckBoxField = A.Component.create({
 
 A.FormBuilderCheckBoxField = FormBuilderCheckBoxField;
 
-A.namespace('FormBuilder.types').checkbox = A.FormBuilderCheckBoxField;
+A.FormBuilderField.types.checkbox = A.FormBuilderCheckBoxField;

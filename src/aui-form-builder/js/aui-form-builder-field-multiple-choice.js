@@ -407,4 +407,4 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 
 A.FormBuilderMultipleChoiceField = FormBuilderMultipleChoiceField;
 
-A.namespace('FormBuilder.types')['multiple-choice'] = A.FormBuilderMultipleChoiceField;
+A.FormBuilderField.types['multiple-choice'] = A.FormBuilderMultipleChoiceField;
