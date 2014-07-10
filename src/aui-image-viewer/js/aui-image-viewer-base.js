@@ -83,11 +83,11 @@ A.ImageViewerBase = A.Base.create(
         bindUI: function() {
             this._eventHandles.push(
                 this.after({
-                    sourcesChange: this._renderImages,
                     currentIndexChange: this._afterCurrentIndexChange,
-                    preloadAllImagesChange: this._preloadAll,
+                    preloadAllImagesChange: this._afterPreloadAllImagesChange,
                     responsive: this._afterResponsive,
-                    showControlsChange: this._syncControlsUI
+                    showControlsChange: this._afterShowControlsChange,
+                    sourcesChange: this._afterSourcesChange
                 }),
                 this.on('responsive', this._onResponsive),
                 A.after(this._afterUISetVisible, this, '_uiSetVisible')
@@ -171,6 +171,16 @@ A.ImageViewerBase = A.Base.create(
         },
 
         /**
+         * Fired after the `preloadAllImages` attribute is changed.
+         *
+         * @method _afterPreloadAllImagesChange
+         * @protected
+         */
+        _afterPreloadAllImagesChange: function() {
+            this._preloadAll();
+        },
+
+        /**
          * Fired after the `responsive` event.
          *
          * @method _afterResponsive
@@ -185,6 +195,26 @@ A.ImageViewerBase = A.Base.create(
                     maxWidth: '100%'
                 });
             }
+        },
+
+        /**
+         * Fired after the `showControls` attribute is changed.
+         *
+         * @method _afterShowControlsChange
+         * @protected
+         */
+        _afterShowControlsChange: function() {
+            this._syncControlsUI();
+        },
+
+        /**
+         * Fired after the `sources` attribute is changed.
+         *
+         * @method _afterSourcesChange
+         * @protected
+         */
+        _afterSourcesChange: function() {
+            this._renderImages();
         },
 
         /**

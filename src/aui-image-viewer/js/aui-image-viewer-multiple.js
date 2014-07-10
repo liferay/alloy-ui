@@ -39,10 +39,10 @@ A.ImageViewerMultiple = A.Base.create('image-viewer-multiple', A.ImageViewerBase
         this._eventHandles.push(
             this.after({
                 currentIndexChange: this._afterMultipleCurrentIndexChange,
-                responsive: this._loadVisibleImages
+                responsive: this._afterMultipleResponsive
             }),
-            A.after(this._bindClickImages, this, 'bindUI'),
-            A.after(this._loadVisibleImages, this, 'renderUI')
+            A.after(this._afterMultipleBindUI, this, 'bindUI'),
+            A.after(this._afterMultipleRenderUI, this, 'renderUI')
         );
 
         this.publish({
@@ -56,6 +56,26 @@ A.ImageViewerMultiple = A.Base.create('image-viewer-multiple', A.ImageViewerBase
     },
 
     /**
+     * Fired after the `bindUI` method runs.
+     *
+     * @method _afterMultipleBindUI
+     * @protected
+     */
+    _afterMultipleBindUI: function() {
+        this._bindClickImages();
+    },
+
+    /**
+     * Fired after the `renderUI` method runs.
+     *
+     * @method _afterMultipleRenderUI
+     * @protected
+     */
+    _afterMultipleRenderUI: function() {
+        this._loadVisibleImages();
+    },
+
+    /**
      * Fired after the `currentIndex` attribute is set.
      *
      * @method _afterMultipleCurrentIndexChange
@@ -65,6 +85,16 @@ A.ImageViewerMultiple = A.Base.create('image-viewer-multiple', A.ImageViewerBase
         this.fire('makeImageVisible', {
             index: this.get('currentIndex')
         });
+    },
+
+    /**
+     * Fired after the `responsive` event is triggered.
+     *
+     * @method _afterMultipleResponsive
+     * @protected
+     */
+    _afterMultipleResponsive: function() {
+        this._loadVisibleImages();
     },
 
     /**

@@ -26,14 +26,14 @@ ImageViewerSlideshow.prototype = {
     initializer: function() {
         this._slideshowEventHandles = [
             this.after({
-                currentIndexChange: this._syncTimers,
-                intervalTimeChange: this._syncTimers,
+                currentIndexChange: this._afterSlideshowCurrentIndexChange,
+                intervalTimeChange: this._afterSlideshowIntervalTimeChange,
                 playingChange: this._afterSlideshowPlayingChange,
                 showPlayerChange: this._afterSlideshowShowPlayerChange
             }),
-            A.after(this._afterSlideshowUISetVisible, this, '_uiSetVisible'),
-            A.after(this._bindPlayer, this, 'bindUI'),
-            A.after(this._renderPlayer, this, 'renderUI')
+            A.after(this._afterSlideshowBindUI, this, 'bindUI'),
+            A.after(this._afterSlideshowRenderUI, this, 'renderUI'),
+            A.after(this._afterSlideshowUISetVisible, this, '_uiSetVisible')
         ];
     },
 
@@ -68,6 +68,46 @@ ImageViewerSlideshow.prototype = {
      */
     play: function() {
         this.set('playing', true);
+    },
+
+    /**
+     * Fired after the `bindUI` method runs.
+     *
+     * @method _afterSlideshowBindUI
+     * @protected
+     */
+    _afterSlideshowBindUI: function() {
+        this._bindPlayer();
+    },
+
+    /**
+     * Fired after the `renderUI` method runs.
+     *
+     * @method _afterSlideshowRenderUI
+     * @protected
+     */
+    _afterSlideshowRenderUI: function() {
+        this._renderPlayer();
+    },
+
+    /**
+     * Fired after the `currentIndex` attribute changes.
+     *
+     * @method _afterSlideshowCurrentIndexChange
+     * @protected
+     */
+    _afterSlideshowCurrentIndexChange: function() {
+        this._syncTimers();
+    },
+
+    /**
+     * Fired after the `intervalTime` attribute changes.
+     *
+     * @method _afterSlideshowIntervalTimeChange
+     * @protected
+     */
+    _afterSlideshowIntervalTimeChange: function() {
+        this._syncTimers();
     },
 
     /**

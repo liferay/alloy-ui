@@ -71,9 +71,9 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
 
         this.after({
             nodeMenuChange: this._afterNodeMenuChange,
-            nodeMenuItemSelectorChange: this._bindControls,
-            nodeMenuPositionChange: this._syncNodeMenuPositionUI,
-            pauseOnHoverChange: this._bindPauseOnHover
+            nodeMenuItemSelectorChange: this._afterNodeMenuItemSelectorChange,
+            nodeMenuPositionChange: this._afterNodeMenuPositionChange,
+            pauseOnHoverChange: this._afterPauseOnHoverChange
         });
 
         this._bindPauseOnHover();
@@ -123,6 +123,36 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
 
         this._syncControlsUI();
         this._syncNodeMenuPositionUI();
+    },
+
+    /**
+     * Fired after `nodeMenuItemSelector` attribute changes.
+     *
+     * @method _afterNodeMenuItemSelectorChange
+     * @protected
+     */
+    _afterNodeMenuItemSelectorChange: function() {
+        this._bindControls();
+    },
+
+    /**
+     * Fired after `nodeMenuPosition` attribute changes.
+     *
+     * @method _afterNodeMenuPositionChange
+     * @protected
+     */
+    _afterNodeMenuPositionChange: function() {
+        this._syncNodeMenuPositionUI();
+    },
+
+    /**
+     * Fired after `pauseOnHover` attribute changes.
+     *
+     * @method _afterPauseOnHoverChange
+     * @protected
+     */
+    _afterPauseOnHoverChange: function() {
+        this._bindPauseOnHover();
     },
 
     /**
