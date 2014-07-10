@@ -69,7 +69,7 @@ var DataTableHighlight = A.Base.create(
             };
 
             instance.afterHostEvent('activeCoordChange', instance._afterActiveCoordChange);
-            instance.afterHostEvent('blur', instance.clear);
+            instance.afterHostEvent('blur', instance._afterBlur);
             instance.afterHostEvent('dataChange', instance._afterDataChange);
             instance.afterHostEvent('selectionChange', instance._afterSelectionChange);
 
@@ -178,6 +178,17 @@ var DataTableHighlight = A.Base.create(
             }
 
             instance._lastActiveRow = activeRow;
+        },
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _afterBlur
+         * @param event
+         * @protected
+         */
+        _afterBlur: function() {
+            this.clear();
         },
 
         /**
