@@ -1,6 +1,7 @@
 YUI.add('module-tests', function(Y) {
 
     var suite = new Y.Test.Suite('aui-scheduler');
+
     suite.add(new Y.Test.Case({
         name: 'Automated Tests',
 
@@ -39,6 +40,37 @@ YUI.add('module-tests', function(Y) {
                     this._agendaView
                 ]
             }, config));
+        },
+
+        'should be able to switch views': function() {
+            this._createScheduler();
+
+            Y.Assert.areSame(
+                this._weekView,
+                this._scheduler.get('activeView'),
+                'The initial view should be week view'
+            );
+
+            Y.one('button.scheduler-base-view-day').simulate('click');
+            Y.Assert.areSame(
+                this._dayView,
+                this._scheduler.get('activeView'),
+                'The day view should have become active'
+            );
+
+            Y.one('button.scheduler-base-view-month').simulate('click');
+            Y.Assert.areSame(
+                this._monthView,
+                this._scheduler.get('activeView'),
+                'The month view should have become active'
+            );
+
+            Y.one('button.scheduler-base-view-agenda').simulate('click');
+            Y.Assert.areSame(
+                this._agendaView,
+                this._scheduler.get('activeView'),
+                'The agenda view should have become active'
+            );
         },
 
         'event color is encoded in RGB': function() {

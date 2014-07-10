@@ -10,7 +10,11 @@
 .scheduler-view-table-more {
     display: inline-block;
     margin-left: 3px;
+    max-width: 100%;
+    overflow: hidden;
     text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .scheduler-view-table-events-overlay-node {
     -moz-border-radius: 6px;
@@ -114,7 +118,6 @@
 }
 .scheduler-view-table-data-col {
     border-left: 0 none;
-    padding: 1px 2px 0;
 }
 .scheduler-view-table-data-col .scheduler-event-content {
     display: inline;
@@ -153,7 +156,7 @@
     color: #1D1D1D;
     cursor: pointer;
     margin-bottom: 1px;
-    padding: 0 3px 0 3px;
+    padding: 0;
     position: relative;
     white-space: nowrap;
 }

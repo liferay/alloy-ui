@@ -8,7 +8,8 @@
             "aui-scheduler-view-month",
             "aui-scheduler-view-table-dd",
             "aui-scheduler-view-table",
-            "aui-scheduler-view-week"
+            "aui-scheduler-view-week",
+            "aui-viewport"
         ]
     },
 
@@ -35,6 +36,19 @@
             "aui-scheduler-base",
             "aui-popover"
         ],
+        "skinnable": true
+    },
+
+    "aui-scheduler-touch": {
+        "requires": [
+            "base-build",
+            "event-gestures",
+            "aui-scheduler"
+        ],
+        "condition": {
+            "trigger": "aui-scheduler",
+            "ua": "touchEnabled"
+        },
         "skinnable": true
     },
 

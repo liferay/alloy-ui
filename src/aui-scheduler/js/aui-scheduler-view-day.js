@@ -109,10 +109,12 @@ var Lang = A.Lang,
     HOST = 'host',
     HOUR_HEIGHT = 'hourHeight',
     ICON = 'icon',
+    INTERSECTING = 'intersecting',
     ISO_TIME = 'isoTime',
     LABEL = 'label',
     LEFT = 'left',
     LOCALE = 'locale',
+    NUMBER = 'number',
     PADDING_RIGHT = 'paddingRight',
     REGION = 'region',
     RESIZER = 'resizer',
@@ -134,6 +136,7 @@ var Lang = A.Lang,
     VIEW = 'view',
     VIEW_DATE = 'viewDate',
     VISIBLE = 'visible',
+    WEEK_DAY = 'weekday',
     WIDTH = 'width',
     MARKER = 'marker',
     MARKERCELL = 'markercell',
@@ -152,6 +155,7 @@ var Lang = A.Lang,
 
     CSS_SCHEDULER_EVENT = getCN(SCHEDULER_EVENT),
     CSS_SCHEDULER_EVENT_DISABLED = getCN(SCHEDULER_EVENT, DISABLED),
+    CSS_SCHEDULER_EVENT_INTERSECTING = getCN(SCHEDULER_EVENT, INTERSECTING),
     CSS_SCHEDULER_EVENT_PROXY = getCN(SCHEDULER_EVENT, PROXY),
 
     CSS_SCHEDULER_TODAY = getCN(SCHEDULER, TODAY),
@@ -164,6 +168,8 @@ var Lang = A.Lang,
     CSS_SCHEDULER_VIEW_DAY_HEADER_COL = getCN(SCHEDULER_VIEW, DAY, HEADER, COL),
     CSS_SCHEDULER_VIEW_DAY_HEADER_DAY = getCN(SCHEDULER_VIEW, DAY, HEADER, DAY),
     CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_FIRST = getCN(SCHEDULER_VIEW, DAY, HEADER, DAY, FIRST),
+    CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_NUMBER = getCN(SCHEDULER_VIEW, DAY, HEADER, DAY, NUMBER),
+    CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_WEEKDAY = getCN(SCHEDULER_VIEW, DAY, HEADER, DAY, WEEK_DAY),
     CSS_SCHEDULER_VIEW_DAY_HEADER_TABLE = getCN(SCHEDULER_VIEW, DAY, HEADER, TABLE),
     CSS_SCHEDULER_VIEW_DAY_HEADER_VIEW_LABEL = getCN(SCHEDULER_VIEW, DAY, HEADER, VIEW, LABEL),
     CSS_SCHEDULER_VIEW_DAY_ICON_GRIP_HORIZONTAL = getCN(SCHEDULER_VIEW, ICON, GRIP, HORIZONTAL),
@@ -227,6 +233,8 @@ var Lang = A.Lang,
 
     TPL_SCHEDULER_VIEW_DAY_HEADER_DAY = '<th class="' + CSS_SCHEDULER_VIEW_DAY_HEADER_DAY +
         '" data-colnumber="{colNumber}"><a href="#">&nbsp;</a></th>',
+    TPL_SCHEDULER_VIEW_DAY_HEADER_DAY_CONTENT = '<span class="' + CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_NUMBER +
+        '">%d</span> <span class="' + CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_WEEKDAY + '">%a</span>',
     TPL_SCHEDULER_VIEW_DAY_HEADER_DAY_FIRST = '<td class="' + [CSS_SCHEDULER_VIEW_DAY_HEADER_DAY,
         CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_FIRST].join(_SPACE) + '"></td>';
 
@@ -345,7 +353,7 @@ var SchedulerDayView = A.Component.create({
 
                 return A.DataType.Date.format(
                     date, {
-                        format: '<span>%d</span> %a',
+                        format: TPL_SCHEDULER_VIEW_DAY_HEADER_DAY_CONTENT,
                         locale: scheduler.get(LOCALE)
                     }
                 );
@@ -374,8 +382,6 @@ var SchedulerDayView = A.Component.create({
          */
         headerViewConfig: {
             setter: function(val) {
-                var instance = this;
-
                 return A.merge({
                         displayDaysInterval: 1,
                         displayRows: 6,
@@ -627,18 +633,10 @@ var SchedulerDayView = A.Component.create({
         bindUI: function() {
             var instance = this;
 
-            instance[HEADER_TABLE_NODE].delegate('click', A.bind(instance._onClickDaysHeader, instance), _DOT +
-                CSS_SCHEDULER_VIEW_DAY_HEADER_DAY);
-            instance[COLUMN_DATA].delegate('mousedown', A.bind(instance._onMouseDownTableCol, instance), _DOT +
-                CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
-            instance[COLUMN_DATA].delegate('mouseenter', A.bind(instance._onMouseEnterEvent, instance), _DOT +
-                CSS_SCHEDULER_EVENT);
-            instance[COLUMN_DATA].delegate('mouseleave', A.bind(instance._onMouseLeaveEvent, instance), _DOT +
-                CSS_SCHEDULER_EVENT);
-            instance[COLUMN_DATA].delegate('mousemove', A.bind(instance._onMouseMoveTableCol, instance), _DOT +
-                CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY);
-            instance[COLUMN_DATA].delegate('mouseup', A.bind(instance._onMouseUpTableCol, instance), _DOT +
-                CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
+            instance[HEADER_TABLE_NODE].delegate(
+                'click', A.bind(instance._onClickDaysHeader, instance), _DOT + CSS_SCHEDULER_VIEW_DAY_HEADER_DAY);
+
+            this._bindMouseEvents();
 
             instance.on('drag:end', instance._onEventDragEnd);
             instance.on('drag:start', instance._onEventDragStart);
@@ -961,6 +959,13 @@ var SchedulerDayView = A.Component.create({
                     evtNode.setStyle(WIDTH, width + _PERCENT);
                     evtNode.setStyle(LEFT, left + _PERCENT);
 
+                    if (total > 1) {
+                        evtNode.addClass(CSS_SCHEDULER_EVENT_INTERSECTING);
+                    }
+                    else {
+                        evtNode.removeClass(CSS_SCHEDULER_EVENT_INTERSECTING);
+                    }
+
                     var evtParentNode = evtNode.get(PARENT_NODE);
 
                     if (evtParentNode) {
@@ -1063,7 +1068,6 @@ var SchedulerDayView = A.Component.create({
          * @param events
          */
         findEventIntersections: function(evt, events) {
-            var instance = this;
             var group = [];
 
             A.Array.each(events, function(evtCmp) {
@@ -1082,7 +1086,6 @@ var SchedulerDayView = A.Component.create({
          * @param event
          */
         getXYDelta: function(event) {
-            var instance = this;
             var xy = event.currentTarget.getXY(),
                 pageXY = [event.pageX, event.pageY];
 
@@ -1138,7 +1141,33 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Binds the events related to the mouse.
+         *
+         * @method _bindMouseEvents
+         * @protected
+         */
+        _bindMouseEvents: function() {
+            this.columnData.delegate(
+                'mousedown', A.bind(this._onMouseDownTableCol, this), _DOT +
+                CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
+
+            this.columnData.delegate(
+                'mouseenter', A.bind(this._onMouseEnterEvent, this), _DOT + CSS_SCHEDULER_EVENT);
+
+            this.columnData.delegate(
+                'mouseleave', A.bind(this._onMouseLeaveEvent, this), _DOT + CSS_SCHEDULER_EVENT);
+
+            this.columnData.delegate(
+                'mousemove', A.bind(this._onMouseMoveTableCol, this), _DOT +
+                CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY);
+
+            this.columnData.delegate(
+                'mouseup', A.bind(this._onMouseUpTableCol, this), _DOT + CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
+        },
+
+        /**
+         * Aligns the dragging `SchedulerEvent` to the X axis while bound to the
+         * Y axis on the `activeColumn`.
          *
          * @method _dragTickAlignX
          * @param activeColumn
@@ -1175,8 +1204,6 @@ var SchedulerDayView = A.Component.create({
          */
         _dragTickAlignY: function(event) {
             var instance = this;
-            var scheduler = instance.get(SCHEDULER);
-            var recorder = scheduler.get(EVENT_RECORDER);
 
             var draggingEvent = instance[DRAGGING_EVENT];
 
@@ -1207,7 +1234,19 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Finds and returns the column related to the given event.
+         *
+         * @method _findActiveColumn
+         * @param {EventFacade} event
+         * @protected
+         */
+        _findActiveColumn: function(event) {
+            return event.currentTarget;
+        },
+
+        /**
+         * Configures a `DD.Delegate` that handles `DD` events for this
+         * `SchedulerDayView`.
          *
          * @method _setupDragDrop
          * @protected
@@ -1263,10 +1302,9 @@ var SchedulerDayView = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetDate
-         * @param val
          * @protected
          */
-        _uiSetDate: function(val) {
+        _uiSetDate: function() {
             var instance = this;
 
             instance.syncColumnsUI();
@@ -1305,7 +1343,7 @@ var SchedulerDayView = A.Component.create({
          * @param event
          * @protected
          */
-        _onEventDragEnd: function(event) {
+        _onEventDragEnd: function() {
             var instance = this;
             var draggingEvent = instance[DRAGGING_EVENT];
 
@@ -1334,7 +1372,7 @@ var SchedulerDayView = A.Component.create({
          * @param event
          * @protected
          */
-        _onEventDragStart: function(event) {
+        _onEventDragStart: function() {
             var instance = this;
             var draggingEvent = instance[DRAGGING_EVENT] = instance.delegate.dd.get(NODE).getData(SCHEDULER_EVENT);
 
@@ -1377,31 +1415,7 @@ var SchedulerDayView = A.Component.create({
                 recorder.hidePopover();
 
                 if (target.test(_DOT + CSS_SCHEDULER_VIEW_DAY_TABLE_COL_SHIM)) {
-                    instance[START_XY] = [event.pageX, event.pageY];
-
-                    var colNumber = toNumber(event.currentTarget.attr(DATA_COLNUMBER));
-                    var startDate = instance.getDateByColumn(colNumber);
-                    var clickLeftTop = instance.getXYDelta(event);
-
-                    instance.roundToNearestHour(
-                        startDate, instance.getYCoordTime(clickLeftTop[1]));
-
-                    var endDate = DateMath.add(startDate, DateMath.MINUTES, recorder.get(DURATION));
-
-                    recorder.move(startDate, {
-                        silent: true
-                    });
-
-                    recorder.setAttrs({
-                        allDay: false,
-                        endDate: endDate
-                    }, {
-                        silent: true
-                    });
-
-                    instance[CREATION_START_DATE] = startDate;
-
-                    event.halt();
+                    this._prepareEventCreation(event);
                 }
                 else if (target.test(
                             [_DOT + CSS_SCHEDULER_VIEW_DAY_RESIZER,
@@ -1438,7 +1452,7 @@ var SchedulerDayView = A.Component.create({
          * @param event
          * @protected
          */
-        _onMouseLeaveEvent: function(event) {
+        _onMouseLeaveEvent: function() {
             var instance = this;
 
             if (!instance[RESIZING]) {
@@ -1455,7 +1469,7 @@ var SchedulerDayView = A.Component.create({
          */
         _onMouseMoveTableCol: function(event) {
             var instance = this;
-            var activeColumn = event.currentTarget;
+            var activeColumn = this._findActiveColumn(event);
             var recorder = instance.get(SCHEDULER).get(EVENT_RECORDER);
 
             if (instance[ACTIVE_COLUMN] !== activeColumn) {
@@ -1501,7 +1515,7 @@ var SchedulerDayView = A.Component.create({
          * @param event
          * @protected
          */
-        _onMouseUpTableCol: function(event) {
+        _onMouseUpTableCol: function() {
             var instance = this;
             var scheduler = instance.get(SCHEDULER);
             var recorder = scheduler.get(EVENT_RECORDER);
@@ -1538,7 +1552,45 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Prepares for the creation of a new scheduler event.
+         *
+         * @method _prepareEventCreation
+         * @protected
+         */
+        _prepareEventCreation: function(event, duration) {
+            var clickLeftTop = this.getXYDelta(event),
+                colNumber = toNumber(event.currentTarget.attr('data-colnumber')),
+                endDate,
+                startDate = this.getDateByColumn(colNumber),
+                recorder = this.get(SCHEDULER).get(EVENT_RECORDER);
+
+            this.startXY = [event.pageX, event.pageY];
+
+            this.roundToNearestHour(startDate, this.getYCoordTime(clickLeftTop[1]));
+
+            if (!duration) {
+                duration = recorder.get('duration');
+            }
+            endDate = DateMath.add(startDate, DateMath.MINUTES, duration);
+
+            recorder.move(startDate, {
+                silent: true
+            });
+
+            recorder.setAttrs({
+                allDay: false,
+                endDate: endDate
+            }, {
+                silent: true
+            });
+
+            this.creationStartDate = startDate;
+
+            event.halt();
+        },
+
+        /**
+         * Removes the `SchedulerView`'s resizer `Node` from the DOM.
          *
          * @method _removeResizer
          * @protected
@@ -1604,7 +1656,6 @@ var SchedulerDayView = A.Component.create({
          * @protected
          */
         _valueMarkercellsNode: function() {
-            var instance = this;
             var buffer = [],
                 i;
 
