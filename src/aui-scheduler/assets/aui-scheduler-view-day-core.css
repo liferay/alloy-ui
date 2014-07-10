@@ -27,6 +27,10 @@
     width: 60px;
 }
 
+.view-lt480 .scheduler-view-day-table-colblank {
+    width: 32px;
+}
+
 .scheduler-view-day-table-coltime {
     border-left: 0;
     color: #555;
@@ -34,12 +38,20 @@
     width: 60px;
 }
 
+.view-lt480 .scheduler-view-day-table-coltime {
+    font-size: 8px;
+    width: 32px;
+}
+
 .scheduler-view-day-table-time {
     border-top: 1px solid #ddd;
     color: #aba9aa;
     height: 52px;
-    margin-top: -1px;
     padding-right: 4px;
+}
+
+.scheduler-view-day-table-time:first-child {
+    margin-top: -1px;
 }
 
 .scheduler-view-day-header-table {
@@ -60,11 +72,15 @@
 .scheduler-view-day-resizer {
     bottom: 0;
     cursor: ns-resize;
-    display: block;
+    display: none;
     height: 6px;
     left: 0;
     position: absolute;
     width: 100%;
+}
+
+.scheduler-view-day .scheduler-view-day-resizer {
+    display: block;
 }
 
 .scheduler-view-day-resizer-icon {
@@ -80,12 +96,20 @@
     width: 62px;
 }
 
+.view-lt480 .scheduler-view-day-header-day-first {
+    width: 32px;
+}
+
 .scheduler-view-day-header-day-pad-right {
     width: 15px;
 }
 
 .scheduler-view-day-header-day {
     text-align: center;
+}
+
+.view-lt480 .scheduler-view-day-header-day-weekday {
+    display: block;
 }
 
 .scheduler-view-day-header-day .scheduler-today-hd {
@@ -102,7 +126,7 @@
     text-decoration: none;
 }
 
-.scheduler-view-day-header-day a span {
+.scheduler-view-day-header-day a .scheduler-view-day-header-day-number {
     font-size: 20px;
 }
 
@@ -113,6 +137,14 @@
     text-align: right;
     top: 26px;
     width: 60px;
+}
+
+.view-lt480 .scheduler-view-day-header-view-label {
+    font-size: 8px;
+    margin: 0;
+    padding-right: 4px;
+    top: 55px;
+    width: 32px;
 }
 
 .scheduler-view-day-header-day a:hover {
@@ -127,6 +159,10 @@
     margin: 0 0 0 62px;
     border-left: 0;
     border-right: 0;
+}
+
+.view-lt480 .scheduler-view-day .scheduler-view-table {
+    margin: 0 0 0 32px;
 }
 
 .scheduler-view-day .scheduler-view-table .scheduler-view-table-data-col-title {
@@ -152,4 +188,5 @@
 .scheduler-view-day .scheduler-event-content {
     margin-top: -2px;
     padding: 0 7px;
+    word-wrap: break-word;
 }

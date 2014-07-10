@@ -13,11 +13,17 @@
 }
 
 .scheduler-base-controls .scheduler-base-view-date {
+    display: inline-block;
     margin-left: 10px;
 }
 
 .scheduler-base-controls .scheduler-base-today {
-    margin-right: 3px;
+    margin: 2px 3px 0 0;
+}
+
+.scheduler-base-controls .scheduler-base-icon-next,
+.scheduler-base-controls .scheduler-base-icon-prev {
+    line-height: 1.42857143;
 }
 
 .scheduler-base-content .scheduler-base-views {
@@ -107,7 +113,7 @@
 .scheduler-view-marker-division {
     border-bottom: 1px dotted #ddd;
     border-top: 1px solid #ddd;
-    height: 25px;
+    height: 27px;
 }
 /* scheduler-base-event */
 .scheduler-event-hidden {

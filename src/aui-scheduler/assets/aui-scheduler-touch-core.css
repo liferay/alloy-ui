@@ -1,0 +1,25 @@
+.scheduler-touch .scheduler-base-content .scheduler-base-view-date,
+.scheduler-touch .scheduler-base-content .scheduler-base-controls,
+.scheduler-touch .scheduler-base-content .scheduler-base-views {
+    text-align: center;
+    width: 100%;
+}
+
+.scheduler-touch .scheduler-base-controls .scheduler-base-today {
+    margin-right: 0;
+    width: 50%;
+}
+
+.scheduler-touch .scheduler-base-controls .btn-group {
+    padding: 0 0 0 3px;
+    width: 50%;
+}
+
+.scheduler-touch .scheduler-base-controls .btn-group button {
+    width: 50%;
+}
+
+.scheduler-touch .scheduler-base-views button {
+    float: none;
+    width: 25%;
+}

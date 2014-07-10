@@ -9,3 +9,20 @@
 .scheduler-view-week .scheduler-event-title, .scheduler-view-week .scheduler-event-content {
     font-size: 14px;
 }
+
+.view-lt480 .scheduler-view-week .scheduler-event-title {
+    display: none;
+}
+
+.view-lt480 .scheduler-view-week .scheduler-event-content {
+    font-size: 10px;
+    padding: 0 2px;
+}
+
+.view-lt480 .scheduler-view-week .scheduler-event-all-day {
+    text-overflow: ellipsis;
+}
+
+.view-lt480 .scheduler-view-week .scheduler-event-intersecting .scheduler-event-content {
+    visibility: hidden;
+}
