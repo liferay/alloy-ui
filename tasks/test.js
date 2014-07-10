@@ -22,7 +22,9 @@ gulp.task('test-coverage', function(callback) {
     spawn(cmd, args, CWD)
         .on('exit', function(err) {
             if (err === 0) {
-                gutil.log('See results with gulp report or gulp report-html');
+                gutil.log('See results with ' +
+                    gutil.colors.yellow('gulp report') + ' or ' +
+                    gutil.colors.yellow('gulp report-browser'));
             }
 
             callback(err);
