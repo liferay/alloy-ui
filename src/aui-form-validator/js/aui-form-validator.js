@@ -1119,7 +1119,7 @@ var FormValidator = A.Component.create({
          */
         _findFieldLabel: function(field) {
             var labelCssClass = '.' + this.get('labelCssClass'),
-                label = field.previous(labelCssClass) || field.ancestor().previous(labelCssClass);
+                label =  A.one('label[for=' + field.get('id') + ']') || field.ancestor().previous(labelCssClass);
 
             if (label) {
                 return label.get('text');
