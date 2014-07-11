@@ -25,18 +25,26 @@
     <script>
     YUI({ filter:'raw' }).use('aui-video', function(Y) {
 
-		var video = new Y.Video({
-			boundingBox: '#demo',
-			width: 640,
-			height: 368,
-			url: 'http://videos.liferay.com/webinars/2010-08-11.mp4',
-			ogvUrl: 'http://videos.liferay.com/webinars/2010-08-11.ogv',
-			swfUrl: 'http://videos.liferay.com/common/player.swf',
-			poster: 'assets/sample-jpg.jpg',
-			fixedAttributes: {
-				allowfullscreen: 'true'
-			}
-		}).render();
+        var video = new Y.Video({
+            boundingBox: '#demo',
+            width: 640,
+            height: 368,
+            url: 'http://videos.liferay.com/webinars/2010-08-11.mp4',
+            ogvUrl: 'http://videos.liferay.com/webinars/2010-08-11.ogv',
+            swfUrl: 'http://videos.liferay.com/common/player.swf',
+            poster: 'assets/sample-jpg.jpg',
+            fixedAttributes: {
+                allowfullscreen: 'true'
+            }
+        }).render();
+
+        video.after('play', function() {
+            console.log('play');
+        });
+
+        video.after('pause', function() {
+            console.log('pause');
+        });
 
         Y.one('#play-btn').on('click', function(e) {
             e.preventDefault();

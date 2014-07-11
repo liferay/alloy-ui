@@ -1290,6 +1290,7 @@
     },
     "aui-video": {
         "requires": [
+            "node-event-html5",
             "querystring-stringify-simple",
             "aui-node",
             "aui-component",
