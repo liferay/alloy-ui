@@ -5,6 +5,24 @@
 ## @VERSION@
 
 * [AUI-1610](https://issues.liferay.com/browse/AUI-1610) Changing predefinedValue for text fields doesn't update them
+* [AUI-1528](https://issues.liferay.com/browse/AUI-1528) Drop Zone on Form-Builder Styling is off
+* [AUI-1303](https://issues.liferay.com/browse/AUI-1303) Make aui-form-builder responsive
+* [AUI-1441](https://issues.liferay.com/browse/AUI-1441) Minimize property lookups for multiple A.Escape calls to use AEscape
+* [AUI-1332](https://issues.liferay.com/browse/AUI-1332) Decouple property list panel from the diagram builder
+* [AUI-1414](https://issues.liferay.com/browse/AUI-1414) Change field width sizes
+* [AUI-1415](https://issues.liferay.com/browse/AUI-1415) All form fields are showing up as required
+* [AUI-1339](https://issues.liferay.com/browse/AUI-1339) Escape form builder parameters
+* [AUI-1346](https://issues.liferay.com/browse/AUI-1346) Cannot clone hiddenAttributes in Form Builder
+* [AUI-1328](https://issues.liferay.com/browse/AUI-1328) Move automated tasks from Grunt to Gulp
+* [AUI-1287](https://issues.liferay.com/browse/AUI-1287) Wrong css formatting when running "grunt format"
+* [AUI-1174](https://issues.liferay.com/browse/AUI-1174) Validate source code with JSHint
+* [AUI-1098](https://issues.liferay.com/browse/AUI-1098) Upgrade to Bootstrap 3
+* [AUI-1257](https://issues.liferay.com/browse/AUI-1257) Fix text input sizes on Form Builder for Bootstrap 3
+* [AUI-1251](https://issues.liferay.com/browse/AUI-1251) Fix FormBuilder edit buttons alignment on Bootstrap 3
+* [AUI-1220](https://issues.liferay.com/browse/AUI-1220) Add .btn-default to .btn elements with no other color on Bootstrap 3
+* [AUI-1222](https://issues.liferay.com/browse/AUI-1222) Add .form-control to inputs and selects on Bootstrap 3
+* [AUI-1224](https://issues.liferay.com/browse/AUI-1224) Add .glyphicon and change prefix from .icon-* to .glyphicon-* on Bootstrap 3
+* [AUI-1273](https://issues.liferay.com/browse/AUI-1273) Describe source code changes in HISTORY.md
 
 ## [2.5.0](https://github.com/liferay/alloy-ui/releases/tag/2.5.0)
 
