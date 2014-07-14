@@ -4,7 +4,11 @@
 
 ## @VERSION@
 
-No registries yet.
+* [AUI-1174](https://issues.liferay.com/browse/AUI-1174) Validate source code with JSHint
+* [AUI-1274](https://issues.liferay.com/browse/AUI-1274) AUI Pagination setState() and _uiSetPage() are not in sync
+* [AUI-1267](https://issues.liferay.com/browse/AUI-1267) Move CSS classes from Alloy Bootstrap to AlloyUI
+* [AUI-1234](https://issues.liferay.com/browse/AUI-1234) Change Pagination CSS class from container <div> to content <ul> on Bootstrap 3
+* [AUI-1273](https://issues.liferay.com/browse/AUI-1273) Describe source code changes in HISTORY.md
 
 ## [2.5.0](https://github.com/liferay/alloy-ui/releases/tag/2.5.0)
 
