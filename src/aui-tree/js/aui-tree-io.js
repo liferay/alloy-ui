@@ -87,7 +87,7 @@ TreeViewIO.prototype = {
         A.Array.each(A.Array(nodes), function(node) {
             var childrenLength = instance.getChildrenLength();
 
-            if (paginator && paginator.total <= childrenLength) {
+            if (paginator && (paginator.total <= childrenLength)) {
                 return;
             }
 
