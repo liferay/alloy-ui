@@ -17,31 +17,49 @@ ImageViewerMultipleSwipe.prototype = {
      */
     initializer: function() {
         this._eventHandles.push(
-            A.after(this._attachMultipleSwipeEvents, this, '_attachSwipeEvents')
+            A.after(this._afterAttachSwipeEvents, this, '_attachSwipeEvents')
         );
     },
 
     /**
      * Attaches swipe events for the viewer's thumbnails.
      *
-     * @method _attachThumbnailsSwipeEvents
+     * @method _afterAttachSwipeEvents
      * @protected
      */
-    _attachMultipleSwipeEvents: function() {
-        var instance = this;
-
+    _afterAttachSwipeEvents: function() {
         this._swipeEventHandles.push(
-            this._scrollView.after('scrollXChange', A.bind(this._loadVisibleImages, this)),
-            this.get('contentBox').on('mousedown', function() {
-                instance._lastThumbnailsScrollX = instance._scrollView.get('scrollX');
-            }),
-            this.on('imageClicked', function(event) {
-                if (instance._lastThumbnailsScrollX !== instance._scrollView.get('scrollX')) {
-                    event.preventDefault();
-                }
-            }),
-            this.on('makeImageVisible', A.bind(this._onMakeImageVisible, this))
+            this._scrollView.after('scrollXChange', A.bind(this._afterScrollXChange, this)),
+            this.get('contentBox').on('mousedown', A.bind(this._onMousedown, this)),
+            this.on({
+                imageClicked: this._onImageClicked,
+                makeImageVisible: this._onMakeImageVisible
+            })
         );
+    },
+
+    /**
+     * Fired after the scroll view's `scrollX` attribute changes.
+     *
+     * @method _afterScrollXChange
+     * @protected
+     */
+    _afterScrollXChange: function() {
+        this._loadVisibleImages();
+    },
+
+    /**
+     * Fired on the `imageClicked` event. Prevents its default behavior when
+     * the widget was scrolled, as the image shouldn't change when dragging.
+     *
+     * @method _onImageClicked
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onImageClicked: function(event) {
+        if (this._lastThumbnailsScrollX !== this._scrollView.get('scrollX')) {
+            event.preventDefault();
+        }
     },
 
     /**
@@ -68,6 +86,17 @@ ImageViewerMultipleSwipe.prototype = {
         this._loadVisibleImages();
 
         event.preventDefault();
+    },
+
+    /**
+     * Fired when the `mousedown` event is triggered on the widget. Stores
+     * the value of `scrollX` at the moment the mousedown happened.
+     *
+     * @method _onMousedown
+     * @protected
+     */
+    _onMousedown: function() {
+        this._lastThumbnailsScrollX = this._scrollView.get('scrollX');
     }
 };
 

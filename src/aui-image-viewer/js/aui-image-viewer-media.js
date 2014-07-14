@@ -135,12 +135,20 @@ var MediaViewerPlugin = A.Component.create({
          * @protected
          */
         initializer: function() {
-            var instance = this;
+            this._eventHandles = [
+                this.beforeHostMethod('_loadImage', this._beforeLoadImage),
+                this.beforeHostMethod('_renderImage', this._beforeRenderImage)
+            ];
+        },
 
-            var handles = instance._handles;
-
-            handles._loadMedia = instance.beforeHostMethod('_loadImage', instance._loadMedia);
-            handles._renderMedia = instance.beforeHostMethod('_renderImage', instance._renderMedia);
+        /**
+         * Destructor implementation for the `A.MediaViewerPlugin` class. Lifecycle.
+         *
+         * @method destructor
+         * @protected
+         */
+        destructor: function() {
+            (new A.EventHandle(this._eventHandles)).detach();
         },
 
         /**
@@ -169,14 +177,14 @@ var MediaViewerPlugin = A.Component.create({
 
         /**
          * If the media in the specified index is an image, this will defer to
-         * the host's _loadImage default behavior. Otherwise, _loadMedia will be
+         * the host's _loadImage default behavior. Otherwise, _loadImage will be
          * prevented and the media node will be loaded by this function instead.
          *
-         * @method _loadMedia
+         * @method _beforeLoadImage
          * @param {Number} index The index of the image to load.
          * @protected
          */
-        _loadMedia: function(index) {
+        _beforeLoadImage: function(index) {
             var host = this.get('host'),
                 container = host._getCurrentImageContainer(),
                 link = host.get('links').item(index),
@@ -221,13 +229,13 @@ var MediaViewerPlugin = A.Component.create({
          * If the media in the specified index is an image, this will defer to
          * the host's _renderImage default behavior. Otherwise, _renderImage will
          * be prevented, as the media node should only be rendered when it's loaded
-         * for the first time (on _loadMedia).
+         * for the first time (on _beforeLoadImage).
          *
-         * @method _renderMedia
+         * @method _beforeRenderImage
          * @param {Number} index The index of the media to be loaded.
          * @protected
          */
-        _renderMedia: function(index) {
+        _beforeRenderImage: function(index) {
             var host = this.get('host'),
                 link = host.get('links').item(index),
                 linkHref = link.getAttribute('href');
@@ -269,9 +277,7 @@ var MediaViewerPlugin = A.Component.create({
             );
 
             return options;
-        },
-
-        _handles: {}
+        }
     },
 
     DATA_OPTIONS: 'data-options',

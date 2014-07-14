@@ -40,7 +40,7 @@
 
 .table-x-scroller {
     position: relative;
-    overflow-x: scroll;
+    overflow-x: auto;
     overflow-y: hidden;
 }
 
