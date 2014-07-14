@@ -39,11 +39,11 @@
         }).render();
 
         video.after('play', function() {
-            console.log('play');
+            Y.log('play');
         });
 
         video.after('pause', function() {
-            console.log('pause');
+            Y.log('pause');
         });
 
         Y.one('#play-btn').on('click', function(e) {

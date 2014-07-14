@@ -101,10 +101,10 @@
                     var widget = this.getEnclosingWidget(event);
 
                     if (Y.instanceOf(widget, Y.Button)) {
-                        console.log(widget.getNode());
+                        Y.log(widget.getNode());
                     }
                     else if (Y.instanceOf(widget, Y.ButtonGroup)) {
-                        console.log(widget.getSelectedButtons());
+                        Y.log(widget.getSelectedButtons());
                     }
                 }
             }
@@ -138,7 +138,7 @@
                         label: '12345',
                         on: {
                             click: function(event) {
-                                console.log(event);
+                                Y.log(event);
                             }
                         }
                     },
@@ -201,7 +201,7 @@
                     label: 'Large from plain object',
                     on: {
                         click: function(event) {
-                            console.log(event);
+                            Y.log(event);
                         }
                     }
                 }

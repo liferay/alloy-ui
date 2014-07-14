@@ -7,7 +7,7 @@ var soynode = require('soynode');
 var operations = [];
 
 operations.push(function(callback) {
-    console.log('Compiling templates...');
+    Y.log('Compiling templates...');
 
     soynode.setOptions({
         allowDynamicRecompile: true,
@@ -48,7 +48,7 @@ operations.push(function(callback) {
     });
 
     app.listen(3000);
-    console.log('Listening on port 3000, Ctrl-C to exit');
+    Y.log('Listening on port 3000, Ctrl-C to exit');
     callback();
 });
 

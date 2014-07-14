@@ -42,16 +42,16 @@
                 items: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ],
                 on: {
                     enter: function(event) {
-                        console.log(event.type);
+                        Y.log(event.type);
                     },
                     leave: function(event) {
-                        console.log(event.type);
+                        Y.log(event.type);
                     },
                     select: function(event) {
-                        console.log(event.type);
+                        Y.log(event.type);
                     },
                     unselect: function(event) {
-                        console.log(event.type);
+                        Y.log(event.type);
                     }
                 },
                 toggleSelection: false
@@ -65,16 +65,16 @@
             var colorPalette = new Y.ColorPalette({
                 on: {
                     enter: function(event) {
-                        console.log(event.type);
+                        Y.log(event.type);
                     },
                     leave: function(event) {
-                        console.log(event.type);
+                        Y.log(event.type);
                     },
                     select: function(event) {
-                        console.log(event.type);
+                        Y.log(event.type);
                     },
                     unselect: function(event) {
-                        console.log(event.type);
+                        Y.log(event.type);
                     }
                 }
             }).render('#colorPalette');
@@ -107,9 +107,9 @@
                 ).render('#hsvPalette');
 
                 hsvPalette.on('selectedChange', function (event) {
-                    console.log('via selected: ' + hsvPalette.get('selected'));
+                    Y.log('via selected: ' + hsvPalette.get('selected'));
 
-                    console.log('via new val: ' +event.newVal);
+                    Y.log('via new val: ' +event.newVal);
                 });
             }
 
