@@ -548,17 +548,7 @@ var ColorPicker = A.Component.create({
 
             if (!instance._pickerContainer) {
                 var container = new A.Panel({
-                    cssClass: CSS_PANEL,
-                    icons: [
-                        {
-                            icon: 'close',
-                            id: 'close',
-                            handler: {
-                                fn: instance.hide,
-                                context: instance
-                            }
-        }
-       ]
+                    bodyContent:''
                 }).render(instance.get('contentBox'));
 
                 var bodyNode = container.bodyNode;
@@ -566,6 +556,12 @@ var ColorPicker = A.Component.create({
                 bodyNode.addClass(CSS_CONTAINER);
 
                 instance._pickerContainer = bodyNode;
+
+                var yuiPanel = instance.get('contentBox').one('.yui3-panel');
+
+                yuiPanel.addClass(CSS_PANEL);
+
+                yuiPanel.setStyle('position', 'static');
             }
         },
 
