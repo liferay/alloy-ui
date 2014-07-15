@@ -69,6 +69,17 @@
     height: 600px;
 }
 
+.scheduler-view-day-current-time {
+    border-top: 2px solid #ff7f6e;
+    height: 0;
+    left: 0;
+    position: absolute;
+    margin-top: -2px;
+    overflow: hidden;
+    width: 100%;
+    z-index: 1000;
+}
+
 .scheduler-view-day-resizer {
     bottom: 0;
     cursor: ns-resize;
