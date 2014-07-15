@@ -177,6 +177,17 @@ var Video = A.Component.create({
             instance._renderSwfTask = A.debounce(instance._renderSwf, 1, instance);
 
             instance._renderVideo(!instance.get('ogvUrl'));
+
+            instance._video.on('play', function (event) {
+                instance.fire('play', {
+                    cropType: event.type
+                });
+            });
+            instance._video.on('pause', function (event) {
+                instance.fire('pause', {
+                    cropType: event.type
+                });
+            });
         },
 
         /**
@@ -193,6 +204,9 @@ var Video = A.Component.create({
                     fireOnce: true
                 }
             );
+
+            instance.publish('play');
+            instance.publish('pause');
         },
 
         /**

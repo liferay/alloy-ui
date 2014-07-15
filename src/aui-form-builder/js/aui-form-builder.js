@@ -32,6 +32,7 @@ var L = A.Lang,
     CSS_FORM_BUILDER_DROP_ZONE = getCN('form', 'builder', 'drop', 'zone'),
     CSS_FORM_BUILDER_FIELD = getCN('form', 'builder', 'field'),
     CSS_FORM_BUILDER_PLACEHOLDER = getCN('form', 'builder', 'placeholder'),
+    CSS_FORM_BUILDER_TABS = getCN('form', 'builder', 'tabs')
 
     TPL_PLACEHOLDER = '<div class="' + CSS_FORM_BUILDER_PLACEHOLDER + '"></div>';
 
@@ -129,7 +130,7 @@ var FormBuilder = A.Component.create({
          */
         tabView: {
             value: {
-                cssClass: 'col-xs-12 col-sm-6'
+                cssClass: CSS_FORM_BUILDER_TABS
             }
         }
     },
@@ -173,7 +174,7 @@ var FormBuilder = A.Component.create({
     SETTINGS_TAB: 1,
 
     prototype: {
-        CONTENT_CONTAINER_TEMPLATE: '<div class="col-xs-12 col-sm-6 ' + CSS_PROPERTY_BUILDER_CONTENT_CONTAINER + '"></div>',
+        CONTENT_CONTAINER_TEMPLATE: '<div class="col-xs-12 col-sm-6 col-md-8 col-lg-9 ' + CSS_PROPERTY_BUILDER_CONTENT_CONTAINER + '"></div>',
 
         selectedFieldsLinkedSet: null,
         uniqueFieldsMap: null,
@@ -832,6 +833,19 @@ var FormBuilder = A.Component.create({
 
                 instance._syncUniqueField(editingField);
             }
+        },
+
+        /**
+         * Overrides PropertyBuilderSettings's `_renderTabs` method, which renders
+         * the builder's tabs.
+         *
+         * @method _renderTabs
+         * @protected
+         */
+        _renderTabs: function() {
+            FormBuilder.superclass._renderTabs.apply(this, arguments);
+
+            this.tabView.get('boundingBox').addClass('col-xs-12 col-sm-6 col-md-4 col-lg-3');
         },
 
         /**

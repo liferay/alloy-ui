@@ -46,6 +46,14 @@
             url: 'assets/bc.mp3'
         }).render();
 
+        audio.after('play', function() {
+            Y.log('play');
+        });
+
+        audio.after('pause', function() {
+            Y.log('pause');
+        });
+
         Y.one('#play-btn').on('click', function(e) {
             e.preventDefault();
 

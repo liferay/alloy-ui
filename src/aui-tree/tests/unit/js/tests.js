@@ -472,6 +472,8 @@ YUI.add('aui-tree-tests', function(Y) {
             treeView.after('ioRequestSuccess', function() {
                 test.resume(function() {
                     Y.Assert.isTrue(treeView.getChildrenLength() !== oldChildrenLength);
+
+                    treeView.destroy();
                 });
             });
 
@@ -512,10 +514,44 @@ YUI.add('aui-tree-tests', function(Y) {
             treeView.after('ioRequestSuccess', function() {
                 test.resume(function() {
                     Y.Assert.isTrue(treeView.getChildrenLength() <= paginator.total);
+
+                    treeView.destroy();
                 });
             });
 
             treeView.get('boundingBox').one('.tree-node-paginator').simulate('click');
+
+            test.wait();
+        },
+
+        'TreeViewIO should make an AJAX request and append children after expanding': function() {
+            var children = [],
+                test = this,
+                treeView;
+
+            var rootNode = new Y.TreeNodeIO({
+                alwaysShowHitArea: true,
+                children: children,
+                expanded: false,
+                io: 'assets/pages.html',
+                label: 'Root',
+                leaf: false
+            });
+
+            treeView = new Y.TreeView({
+                children: [rootNode],
+                type: 'file'
+            }).render();
+
+            rootNode.after('ioRequestSuccess', function() {
+                test.resume(function() {
+                    Y.Assert.isTrue(rootNode.getChildrenLength() > children.length);
+
+                    treeView.destroy();
+                });
+            });
+
+            rootNode.expand();
 
             test.wait();
         }

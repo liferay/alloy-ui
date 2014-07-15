@@ -39,7 +39,7 @@
         new Y.DatePicker({
             on: {
                 selectionChange: function(event) {
-                    console.log(event.newSelection);
+                    Y.log(event.newSelection);
                 }
             },
             popover: {
@@ -83,7 +83,7 @@
             },
             on: {
                 selectionChange: function(event) {
-                    console.log(event.newSelection)
+                    Y.log(event.newSelection)
                 }
             },
             panes: 2,
@@ -93,7 +93,7 @@
         new Y.DatePickerNative({
             on: {
                 selectionChange: function(event) {
-                    console.log(event.newSelection);
+                    Y.log(event.newSelection);
                 }
             },
             trigger: '#delegateNative input'

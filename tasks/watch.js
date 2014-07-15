@@ -7,6 +7,7 @@ var ROOT = path.join(__dirname, '..');
 
 gulp.task('watch', function() {
     var files = [
+        path.join(ROOT, 'src/**/assets/**/*.css'),
         path.join(ROOT, 'src/**/*.js'),
         path.join('!', ROOT, 'src/aui-base/js/*.js'),
         path.join('!', ROOT, 'src/yui/js/*.js')
