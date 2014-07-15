@@ -91,6 +91,24 @@ var SchedulerView = A.Component.create({
         },
 
         /**
+         * Determines the initial scroll behavior for this view. If false,
+         * there will be no scrolling when the view is first shown. When set
+         * to true the view will scroll to the current date and time. If set
+         * to a date the view will scroll to that date instead.
+         *
+         * @attribute initialScroll
+         * @default true
+         * @type {Boolean | Date}
+         */
+        initialScroll: {
+            validator: function(val) {
+                return A.Lang.isBoolean(val) || A.Lang.isDate(val);
+            },
+            value: true,
+            writeOnce: 'initOnly'
+        },
+
+        /**
          * Indicates whether this `SchedulerView` should use international
          * standard time.
          *
@@ -223,9 +241,8 @@ var SchedulerView = A.Component.create({
          * @protected
          */
         initializer: function() {
-            var instance = this;
-
-            instance.after('render', instance._afterRender);
+            this.after('render', this._afterRender);
+            A.after(this._afterBasePlotEvents, this, 'plotEvents');
         },
 
         /**
@@ -313,6 +330,14 @@ var SchedulerView = A.Component.create({
         plotEvents: function() {},
 
         /**
+         * Scrolls to given date.
+         *
+         * @method scrollToDate
+         * @param {Date} date The date to scroll to
+         */
+        scrollToDate: function(date) {},
+
+        /**
          * Sync `SchedulerView` StdContent.
          *
          * @method syncStdContent
@@ -334,6 +359,20 @@ var SchedulerView = A.Component.create({
          * @protected
          */
         _uiSetDate: function() {},
+
+        /**
+         * Syncs the UI according to the value of the `initialScroll` attribute.
+         *
+         * @method _afterBasePlotEvents
+         */
+        _afterBasePlotEvents: function() {
+            var initialScroll = this.get('initialScroll');
+
+            if (initialScroll !== false && this.get('rendered') && this.get('visible') && !this._scrollDone) {
+                this.scrollToDate(initialScroll === true ? new Date() : initialScroll);
+                this._scrollDone = true;
+            }
+        },
 
         /**
          * Handles `render` events.
