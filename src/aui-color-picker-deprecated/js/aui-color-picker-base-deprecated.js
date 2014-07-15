@@ -556,17 +556,7 @@ var ColorPicker = A.Component.create(
 				if (!instance._pickerContainer) {
 					var container = new A.Panel(
 						{
-							cssClass: CSS_PANEL,
-							icons: [
-								{
-									icon: 'close',
-									id: 'close',
-									handler: {
-										fn: instance.hide,
-										context: instance
-									}
-								}
-							]
+							bodyContent:'',
 						}
 					).render(instance.get('contentBox'));
 
@@ -575,6 +565,12 @@ var ColorPicker = A.Component.create(
 					bodyNode.addClass(CSS_CONTAINER);
 
 					instance._pickerContainer = bodyNode;
+
+					var yuiPanel = instance.get('contentBox').one('.yui3-panel');
+
+					yuiPanel.addClass(CSS_PANEL);
+
+					yuiPanel.setStyle('position', 'static');
 				}
 			},
 
@@ -816,7 +812,7 @@ var ColorPicker = A.Component.create(
 				instance._preventDragEvent = true;
 
 				dd._setStartPosition(dd.get('dragNode').getXY());
-	            dd._alignNode(xy, true);
+				dd._alignNode(xy, true);
 
 				instance._preventDragEvent = false;
 			},

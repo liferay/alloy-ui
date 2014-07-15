@@ -9,12 +9,12 @@
     "aui-color-picker-base-deprecated": {
     	"requires": [
     		"dd-drag",
+    		"panel",
     		"slider",
     		"aui-button-item-deprecated",
     		"aui-color-util-deprecated",
     		"aui-form-base-deprecated",
-    		"aui-overlay-context-deprecated",
-    		"aui-panel-deprecated"
+    		"aui-overlay-context-deprecated"
     	],
     	"skinnable": true
     },

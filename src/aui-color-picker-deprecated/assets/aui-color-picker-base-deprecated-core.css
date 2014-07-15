@@ -114,3 +114,7 @@
 	display: inline;
 	position: static;
 }
+
+.yui3-widget-hd {
+	display: none;
+}
