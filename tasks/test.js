@@ -60,7 +60,11 @@ gulp.task('test-coverage-watch', function() {
     gulp.watch(files, function(data) {
         var cwd = normalizeCwd(path.join(path.dirname(data.path), '..'));
 
-        testCoverage(cwd);
+        testCoverage(cwd, function (err) {
+            if (err === 0) {
+                report();
+            }
+        });
     });
 });
 

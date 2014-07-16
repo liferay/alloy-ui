@@ -8,19 +8,30 @@ var ROOT = path.join(__dirname, '..');
 var CWD = process.env.INIT_CWD;
 var ERR_MSG = 'Missing \'coverage\' folder. Please run \'gulp test-coverage\' first.';
 
-gulp.task('report', function (callback) {
+function report(callback) {
     var textReport = path.join(ROOT, 'coverage');
 
     var args = ['report', '--root', textReport, 'text'];
     var cmd = 'istanbul';
+    var proc;
 
     if (!fs.existsSync(textReport)) {
-        callback(ERR_MSG);
+        if (callback) {
+            callback(ERR_MSG);
+        }
+
         return;
     }
 
-    spawn(cmd, args, CWD)
-        .on('exit', callback);
+    proc = spawn(cmd, args, CWD);
+
+    if (callback) {
+        proc.on('exit', callback);
+    }
+}
+
+gulp.task('report', function (callback) {
+    report(callback);
 });
 
 gulp.task('report-browser', function (callback) {
@@ -34,3 +45,5 @@ gulp.task('report-browser', function (callback) {
     open(htmlReport);
     callback();
 });
+
+module.exports = report;
