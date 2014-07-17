@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-menu",
+    "displayName": "Gallery: aui-menu",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "" ],
+    "use"        : [ "aui-menu" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

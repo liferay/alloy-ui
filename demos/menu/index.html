@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+
+    <style>
+        .dropdown-menu {
+            display: block;
+        }
+
+        #box {
+            border: 1px solid #000;
+            height: 100px;
+            margin-bottom: 10px;
+            width: 100px
+        }
+    </style>
+</head>
+<body>
+    <h1>AlloyUI - Menu</h1>
+
+    <h1>From HTML</h1>
+    <div id="box"></div>
+    <div style="height: 250px;">
+        <ul class="dropdown-menu" id="contentBox1">
+            <li class="menu-item">
+                <div class="menu-item-content">
+                    <a>Change Color</a>
+                </div>
+                <div class="menu-item-submenu">
+                    <ul class="menu-content">
+                        <li class="menu-item item-magenta">
+                            <div class="menu-item-content">
+                                 <a>Magenta</a>
+                            </div>
+                        </li>
+                        <li class="menu-item divider"></li>
+                        <li class="menu-item item-cyan">
+                            <div class="menu-item-content">
+                                 <a>Cyan</a>
+                            </div>
+                        </li>
+                        <li class="menu-item item-yellow">
+                            <div class="menu-item-content">
+                                 <a>Yellow</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="menu-item disabled">
+                <div class="menu-item-content">
+                    <a>Change Shape</a>
+                </div>
+            </li>
+            <li class="menu-item divider"></li>
+            <li class="menu-item item-clear">
+                <div class="menu-item-content">
+                    <a>Clear</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <h1>From Javascript</h1>
+    <div id="demo"></div>
+
+    <script>
+        YUI({ filter: 'raw' }).use('aui-menu', function(Y) {
+            var box = Y.one('#box');
+            var menu1 = new Y.Menu({
+                contentBox: '#contentBox1'
+            }).render();
+
+            menu1.after('itemSelected', function(event) {
+                var color = '#fff',
+                    node = event.item.get('node');
+
+                if (node.hasClass('item-magenta')) {
+                    color = '#ff00ff';
+                }
+                else if (node.hasClass('item-cyan')) {
+                    color = '#00ffff';
+                } else if (node.hasClass('item-yellow')) {
+                    color = '#ffff00';
+                }
+
+                box.setStyle('backgroundColor', color);
+            });
+
+            new Y.Menu({
+                items: [
+                    {
+                        content: '<a>Menu Item 1</a>',
+                        submenu: {
+                            items: [
+                                {
+                                    content: '<a>Menu Item 1.1</a>',
+                                    submenu: {
+                                        items: [
+                                            {
+                                                content: '<a>Menu Item 1.1.1</a>'
+                                            },
+                                            {
+                                                content: '<a>Menu Item 1.1.2</a>'
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    content: '<a>Menu Item 1.2</a>',
+                                    submenu: {
+                                        items: [
+                                            {
+                                                content: '<a>Menu Item 1.2.1</a>'
+                                            },
+                                            {
+                                                content: '<a>Menu Item 1.2.2</a>'
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        content: '<a>Menu Item 2</a>'
+                    },
+                    {
+                        divider: true
+                    },
+                    {
+                        content: '<a>Menu Item 3</a>',
+                        disabled: true
+                    }
+                ]
+            }).render('#demo');
+        });
+    </script>
+</body>
+</html>

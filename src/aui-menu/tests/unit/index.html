@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+    <title>aui-menu</title>
+
+    <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+
+    <script src="../../../../build/aui/aui.js"></script>
+    <script src="js/tests.js"></script>
+    <meta charset="utf-8" />
+
+    <style>
+        .dropdown-menu {
+            display: block;
+        }
+    </style>
+</head>
+<body class="yui3-skin-sam">
+<div id="logger"></div>
+<div id="container"></div>
+
+<ul class="dropdown-menu" id="menu">
+    <li class="menu-item">
+        <div class="menu-item-content">
+            <a>Change Color</a>
+        </div>
+        <div class="menu-item-submenu">
+            <ul class="menu-content">
+                <li class="menu-item item-magenta">
+                    <div class="menu-item-content">
+                         <a>Magenta</a>
+                    </div>
+                </li>
+                <li class="menu-item divider"></li>
+                <li class="menu-item item-cyan disabled">
+                    <div class="menu-item-content">
+                         <a>Cyan</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </li>
+    <li class="menu-item">
+        <div class="menu-item-content">
+            <a>Clear</a>
+        </div>
+    </li>
+</ul>
+
+<script>
+YUI({
+    coverage: ['aui-menu'],
+    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+}).use('test-console', 'test', 'aui-menu-tests', function(Y) {
+
+    (new Y.Test.Console()).render('#logger');
+
+    Y.Test.Runner.setName('aui-menu');
+    Y.Test.Runner.run();
+});
+</script>
+</body>
+</html>
