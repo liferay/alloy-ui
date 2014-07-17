@@ -140,20 +140,16 @@ A.mix(PropertyBuilderFieldSupport.prototype, {
         instance._updateFields(
             instance.get('fields').remove(field)
         );
-    },
+    }
 
     /**
      * Creates a single field.
      *
-     * NOTE FOR DEVELOPERS: Yoy *may* want to replace the
-     * methods from this section on your implementation.
+     * NOTE FOR DEVELOPERS: Yoy must implement this method.
      *
      * @method createField
      * @param val
      */
-    createField: function(val) {
-        return val;
-    }
 });
 
 A.PropertyBuilderFieldSupport = PropertyBuilderFieldSupport;
