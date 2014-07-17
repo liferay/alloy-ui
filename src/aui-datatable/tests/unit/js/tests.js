@@ -509,12 +509,12 @@ YUI.add('aui-datatable-tests', function(Y) {
         },
 
         'fields sorted on caret click': function() {
-            var sortableHeader = Y.one('.table-sortable-column'),
+            var sortableHeader = Y.one('#datatable .table-sortable-column'),
                 colId = sortableHeader.getData('yui3-col-id');
 
             sortableHeader.simulate('click');
 
-            var columnList = Y.all('.table-cell.table-col-' + colId),
+            var columnList = Y.all('#datatable .table-cell.table-col-' + colId),
                 sortBy = sortableHeader.get('aria-sort');
 
             Y.Assert.isFalse(
