@@ -397,10 +397,10 @@
             return MAP_HTML_CHARS_ESCAPED[match];
         },
 
-        _unescapeHTML: function(match) {
-            var value = MAP_HTML_CHARS_UNESCAPED[match];
+        _unescapeHTML: function(match, entity) {
+            var value = MAP_HTML_CHARS_UNESCAPED[match] || match;
 
-            if (!value && value.charAt(0) === STR_HASH) {
+            if (!value && entity.charAt(0) === STR_HASH) {
                 var charCode = Number(STR_ZERO + value.substr(1));
 
                 if (!isNaN(charCode)) {
