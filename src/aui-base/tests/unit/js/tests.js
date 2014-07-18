@@ -18,6 +18,18 @@ YUI.add('aui-base-tests', function(Y) {
             for (var j = 0; j < escapedEntities.length; j++) {
                 Assert.areEqual(escaped[i], escapedEntities[i]);
             }
+        },
+
+        'should escape HTML entities as symbols': function() {
+            var symbols = [];
+
+            for (var i = 0; i < escapedEntities.length; i++) {
+                symbols.push(Y.Lang.String.unescapeHTML(escapedEntities[i]));
+            }
+
+            for (var j = 0; j < symbolEntities.length; j++) {
+                Assert.areEqual(symbols[i], symbolEntities[i]);
+            }
         }
     }));
 
