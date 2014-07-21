@@ -950,7 +950,8 @@
             "aui-scheduler-view-month",
             "aui-scheduler-view-table-dd",
             "aui-scheduler-view-table",
-            "aui-scheduler-view-week"
+            "aui-scheduler-view-week",
+            "aui-viewport"
         ]
     },
     "aui-scheduler-base": {
@@ -974,6 +975,19 @@
             "overlay",
             "aui-scheduler-base",
             "aui-popover"
+        ],
+        "skinnable": true
+    },
+    "aui-scheduler-touch": {
+        "condition": {
+            "name": "aui-scheduler-touch",
+            "trigger": "aui-scheduler",
+            "ua": "touchEnabled"
+        },
+        "requires": [
+            "base-build",
+            "event-gestures",
+            "aui-scheduler"
         ],
         "skinnable": true
     },
