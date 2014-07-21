@@ -6,8 +6,8 @@
 
 ## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
 
-* [AUI-1174](https://issues.liferay.com/browse/AUI-1174) Validate source code with JSHint
 * [AUI-1273](https://issues.liferay.com/browse/AUI-1273) Describe source code changes in HISTORY.md
+* [AUI-1174](https://issues.liferay.com/browse/AUI-1174) Validate source code with JSHint
 
 ## [2.5.0](https://github.com/liferay/alloy-ui/releases/tag/2.5.0)
 
