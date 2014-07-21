@@ -29,7 +29,13 @@
                 <h2>TreeView with Tree Paginator</h2>
                 <div id="treepaginator"></div>
             </div>
-             <div class="col-lg-4 col-md-4 col-sm-4">
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <h2>TreeView reused children array 1</h2>
+                <div id="treefirst"></div>
+                <h2>TreeView reused children array 2</h2>
+                <div id="treesecond"></div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
                 <h2>TreeView from HTML markup</h2>
                 <div id="treeViewHTML">
                     <ul class="tree-view-list">
@@ -1491,7 +1497,7 @@
             type: 'file'
         }).render();
 
-         var treeViewPaginator = new Y.TreeView({
+        var treeViewPaginator = new Y.TreeView({
             boundingBox: '#treepaginator',
             children: [
                 {
@@ -1515,6 +1521,27 @@
                 id: 'root-one',
                 label: 'root-one'
             }]
+        }).render();
+
+        var reusedChildren = [
+            {
+                label: 'parent',
+                children: [
+                    {
+                        label: 'child'
+                    }
+                ]
+            }
+        ];
+
+        new Y.TreeView({
+            boundingBox: '#treefirst',
+            children: reusedChildren
+        }).render();
+
+        new Y.TreeView({
+            boundingBox: '#treesecond',
+            children: reusedChildren
         }).render();
 
         var treeViewHTML = new Y.TreeViewDD(
