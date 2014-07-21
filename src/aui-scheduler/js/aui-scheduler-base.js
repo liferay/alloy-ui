@@ -399,15 +399,9 @@ var SchedulerBase = A.Component.create({
          * Contains the aria labels.
          *
          * @attribute ariaLabels
-         * @default {
-         *     agenda: 'View Agenda',
-         *     day: 'View by Day',
-         *     month: 'View by Month',
-         *     next: 'Go to Next',
-         *     previous: 'Go to Previous',
-         *     today: 'Go to Today',
-         *     week: 'View by Week'
-         * }
+         * @default { agenda: 'View Agenda', day: 'View by Day', month: 'View by
+         *     Month', next: 'Go to Next', previous: 'Go to Previous',
+         *     today: 'Go to Today', week: 'View by Week' }
          * @type {Object}
          */
         ariaLabels: {
@@ -435,20 +429,14 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-        * Defines the keyboard configuration object for
-        * `Plugin.NodeFocusManager`.
-        *
-        * @attribute focusmanager
-        * @default {
-        *     descendants: 'button',
-        *     keys: {
-        *         next: 'down:39',
-        *         previous: 'down:37'
-        *     },
-        *     circular: false
-        * }
-        * @type {Object}
-        */
+         * Defines the keyboard configuration object for
+         * `Plugin.NodeFocusManager`.
+         *
+         * @attribute focusmanager
+         * @default { descendants: 'button', keys: { next: 'down:39', previous:
+         *     'down:37' }, circular: false }
+         * @type {Object}
+         */
         focusmanager: {
             value: {
                 descendants: 'button',
@@ -615,11 +603,9 @@ var SchedulerBase = A.Component.create({
                 var instance = this;
 
                 return A.Node.create(
-                    A.Lang.sub(this._processTemplate(TPL_SCHEDULER_TODAY),
-                        {
-                            ariaLabel: instance.getAriaLabel('today')
-                        }
-                    )
+                    A.Lang.sub(this._processTemplate(TPL_SCHEDULER_TODAY), {
+                        ariaLabel: instance.getAriaLabel('today')
+                    })
                 );
             }
         },
