@@ -1070,19 +1070,6 @@ var TreeNodeIO = A.Component.create(
 			/*
 			* Methods
 			*/
-			createNodes: function(nodes) {
-				var instance = this;
-
-				A.Array.each(
-					A.Array(nodes),
-					function(node) {
-						instance.appendChild(instance.createNode(node));
-					}
-				);
-
-				instance._syncPaginatorUI(nodes);
-			},
-
 			expand: function() {
 				var instance = this;
 
