@@ -839,9 +839,13 @@ A.mix(TreeData.prototype, {
                     }
 
                     // creating node from json
+                    var jsonNode = node;
+
                     node = instance.createNode(node);
 
                     if (hasChildren && lazyLoad) {
+                        jsonNode.children = children;
+
                         node.childrenLength = children.length;
 
                         A.setTimeout(function() {
