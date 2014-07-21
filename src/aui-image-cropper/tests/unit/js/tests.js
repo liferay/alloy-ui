@@ -28,7 +28,7 @@ YUI.add('aui-image-cropper-tests', function(Y) {
                 test = this;
 
             if (IE) {
-                if (IE == 10) {
+                if (IE === 10) {
                     simulationEvent = 'MSPointerDown';
                 }
                 else if (IE > 10) {

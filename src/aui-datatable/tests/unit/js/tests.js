@@ -354,7 +354,11 @@ YUI.add('aui-datatable-tests', function(Y) {
                         key: 'state',
                         editor: new Y.DropDownCellEditor({
                             editable: true,
-                            options: ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA']
+                            options: [
+                                'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE',
+                                'DC', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA',
+                                'KS', 'KY', 'LA'
+                            ]
                         })
                     },
                     'amount',
