@@ -284,7 +284,7 @@ YUI.add('aui-datatable-tests', function(Y) {
                     address: '3271 Another Ave',
                     amount: 3,
                     city: 'New York',
-                    colors: ['red','blue'],
+                    colors: ['red', 'blue'],
                     date: '2013-01-01',
                     fruit: ['apple'],
                     name: 'Joan B. Jones',
@@ -317,9 +317,9 @@ YUI.add('aui-datatable-tests', function(Y) {
                     address: '3217 Another Ave',
                     amount: 3,
                     city: 'New York',
-                    colors: ['red','blue'],
+                    colors: ['red', 'blue'],
                     date: '2013-01-06',
-                    fruit: ['apple','cherry'],
+                    fruit: ['apple', 'cherry'],
                     name: 'Joan E. Jones',
                     state: 'KY'
                 }
@@ -359,7 +359,7 @@ YUI.add('aui-datatable-tests', function(Y) {
                     },
                     'amount',
                     {
-                        key:'active',
+                        key: 'active',
                         editor: new Y.RadioCellEditor({
                             editable: true,
                             options: {
@@ -370,7 +370,7 @@ YUI.add('aui-datatable-tests', function(Y) {
                         })
                     },
                     {
-                        key:'colors',
+                        key: 'colors',
                         editor: new Y.CheckboxCellEditor({
                             editable: true,
                             multiple: true,
@@ -400,7 +400,7 @@ YUI.add('aui-datatable-tests', function(Y) {
                         sortable: true,
                         editor: new Y.DateCellEditor({
                             calendar: {
-                                width:'400px',
+                                width: '400px',
                                 showPrevMonth: true,
                                 showNextMonth: true,
                                 selectionMode: 'multiple'
@@ -435,28 +435,36 @@ YUI.add('aui-datatable-tests', function(Y) {
 
             //simulate right arrow key press
 
-            boundingBox.simulate('keydown', { keyCode: 39 });
+            boundingBox.simulate('keydown', {
+                keyCode: 39
+            });
             activeCoords = dataTable.get('activeCoord');
 
             Y.ArrayAssert.itemsAreSame(cellCoords.topRight, activeCoords, 'Right arrow should have moved selection.');
 
             //simulate down arrow key press
 
-            boundingBox.simulate('keydown', { keyCode: 40 });
+            boundingBox.simulate('keydown', {
+                keyCode: 40
+            });
             activeCoords = dataTable.get('activeCoord');
 
             Y.ArrayAssert.itemsAreSame(cellCoords.bottomRight, activeCoords, 'Down arrow should have moved selection.');
 
             //simulate left arrow key press
 
-            boundingBox.simulate('keydown', { keyCode: 37 });
+            boundingBox.simulate('keydown', {
+                keyCode: 37
+            });
             activeCoords = dataTable.get('activeCoord');
 
             Y.ArrayAssert.itemsAreSame(cellCoords.bottomLeft, activeCoords, 'Left arrow should have moved selection.');
 
             //simulate up arrow key press
 
-            boundingBox.simulate('keydown', { keyCode: 38 });
+            boundingBox.simulate('keydown', {
+                keyCode: 38
+            });
             activeCoords = dataTable.get('activeCoord');
 
             Y.ArrayAssert.itemsAreSame(cellCoords.topLeft, activeCoords, 'Up arrow should have moved selection.');
