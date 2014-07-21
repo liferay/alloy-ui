@@ -6,6 +6,10 @@
 
 * [AUI-1300](https://issues.liferay.com/browse/AUI-1300) Make aui-datatable work on touch devices
 
+## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
+
+* [AUI-1288](https://issues.liferay.com/browse/AUI-1288) Datatable Property List errors when 'enter' key is pressed when no active cell
+
 ## [2.5.0](https://github.com/liferay/alloy-ui/releases/tag/2.5.0)
 
 * [AUI-1194](https://issues.liferay.com/browse/AUI-1194) BaseOptionsCellEditor does not allow empty values

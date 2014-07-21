@@ -55,18 +55,24 @@ var Lang = A.Lang,
 
     CSS_SCHEDULER_EVENT = getCN('scheduler-event'),
     CSS_SCHEDULER_EVENT_DISABLED = getCN('scheduler-event', 'disabled'),
+    CSS_SCHEDULER_EVENT_INTERSECTING = getCN('scheduler-event', 'intersecting'),
     CSS_SCHEDULER_EVENT_PROXY = getCN('scheduler-event', 'proxy'),
 
     CSS_SCHEDULER_TODAY = getCN('scheduler', 'today'),
     CSS_SCHEDULER_TODAY_HD = getCN('scheduler', 'today', 'hd'),
 
+    CSS_SCHEDULER_VIEW_SCROLLABLE = getCN('scheduler-view', 'scrollable'),
+
     CSS_SCHEDULER_VIEW_DAY_COLDATA = getCN('scheduler-view', 'coldata'),
     CSS_SCHEDULER_VIEW_DAY_COLGRID = getCN('scheduler-view', 'colgrid'),
+    CSS_SCHEDULER_VIEW_DAY_CURRENT_TIME = getCN('scheduler-view', 'day', 'current', 'time'),
     CSS_SCHEDULER_VIEW_DAY_GRID = getCN('scheduler-view', 'grid'),
     CSS_SCHEDULER_VIEW_DAY_GRID_CONTAINER = getCN('scheduler-view', 'grid', 'container'),
     CSS_SCHEDULER_VIEW_DAY_HEADER_COL = getCN('scheduler-view', 'day', 'header', 'col'),
     CSS_SCHEDULER_VIEW_DAY_HEADER_DAY = getCN('scheduler-view', 'day', 'header', 'day'),
     CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_FIRST = getCN('scheduler-view', 'day', 'header', 'day', 'first'),
+    CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_NUMBER = getCN('scheduler-view', 'day', 'header', 'day', 'number'),
+    CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_WEEKDAY = getCN('scheduler-view', 'day', 'header', 'day', 'weekday'),
     CSS_SCHEDULER_VIEW_DAY_HEADER_TABLE = getCN('scheduler-view', 'day', 'header', 'table'),
     CSS_SCHEDULER_VIEW_DAY_HEADER_VIEW_LABEL = getCN('scheduler-view', 'day', 'header', 'view', 'label'),
     CSS_SCHEDULER_VIEW_DAY_ICON_GRIP_HORIZONTAL = getCN('scheduler-view', 'icon', 'grip', 'horizontal'),
@@ -82,6 +88,9 @@ var Lang = A.Lang,
     CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY = getCN('scheduler-view', 'day', 'table', 'colday'),
     CSS_SCHEDULER_VIEW_DAY_TABLE_COLTIME = getCN('scheduler-view', 'day', 'table', 'coltime'),
     CSS_SCHEDULER_VIEW_DAY_TABLE_TIME = getCN('scheduler-view', 'day', 'table', 'time'),
+
+    TPL_SCHEDULER_VIEW_DAY_CURRENT_TIME = '<div class="' + CSS_SCHEDULER_VIEW_DAY_CURRENT_TIME +
+        '"></div>',
 
     TPL_SCHEDULER_VIEW_DAY_RESIZER = '<div class="' + CSS_SCHEDULER_VIEW_DAY_RESIZER + '">' +
         '<div class="' + [CSS_SCHEDULER_VIEW_DAY_ICON_GRIP_HORIZONTAL, CSS_SCHEDULER_VIEW_DAY_RESIZER_ICON].join(' ') +
@@ -130,6 +139,8 @@ var Lang = A.Lang,
 
     TPL_SCHEDULER_VIEW_DAY_HEADER_DAY = '<th class="' + CSS_SCHEDULER_VIEW_DAY_HEADER_DAY +
         '" data-colnumber="{colNumber}"><a href="#">&nbsp;</a></th>',
+    TPL_SCHEDULER_VIEW_DAY_HEADER_DAY_CONTENT = '<span class="' + CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_NUMBER +
+        '">%d</span> <span class="' + CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_WEEKDAY + '">%a</span>',
     TPL_SCHEDULER_VIEW_DAY_HEADER_DAY_FIRST = '<td class="' + [CSS_SCHEDULER_VIEW_DAY_HEADER_DAY,
         CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_FIRST].join(' ') + '"></td>';
 
@@ -172,6 +183,18 @@ var SchedulerDayView = A.Component.create({
          */
         bodyContent: {
             value: ''
+        },
+
+        /**
+         * Contains the function that returns the `currentTime` node.
+         *
+         * @attribute currentTimeNode
+         * return {Node}
+         */
+        currentTimeNode: {
+            valueFn: function() {
+                return A.Node.create(TPL_SCHEDULER_VIEW_DAY_CURRENT_TIME);
+            }
         },
 
         /**
@@ -250,7 +273,7 @@ var SchedulerDayView = A.Component.create({
 
                 return A.DataType.Date.format(
                     date, {
-                        format: '<span>%d</span> %a',
+                        format: TPL_SCHEDULER_VIEW_DAY_HEADER_DAY_CONTENT,
                         locale: scheduler.get('locale')
                     }
                 );
@@ -459,6 +482,7 @@ var SchedulerDayView = A.Component.create({
     HTML_PARSER: {
         colDaysNode: getNodeListHTMLParser('.' + CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY, 1),
         colHeaderDaysNode: getNodeListHTMLParser('.' + CSS_SCHEDULER_VIEW_DAY_HEADER_DAY, 2),
+        currentTimeNode: '.' + CSS_SCHEDULER_VIEW_DAY_CURRENT_TIME,
         headerTableNode: '.' + CSS_SCHEDULER_VIEW_DAY_HEADER_TABLE,
         headerViewLabelNode: '.' + CSS_SCHEDULER_VIEW_DAY_HEADER_VIEW_LABEL,
         markercellsNode: getNodeListHTMLParser('.' + CSS_SCHEDULER_VIEW_DAY_MARKERCELL, 24),
@@ -490,6 +514,7 @@ var SchedulerDayView = A.Component.create({
 
             instance.colDaysNode = instance.get('colDaysNode');
             instance.colHeaderDaysNode = instance.get('colHeaderDaysNode');
+            instance.currentTimeNode = instance.get('currentTimeNode');
             instance.headerTableNode = instance.get('headerTableNode');
             instance.markercellsNode = instance.get('markercellsNode');
             instance.resizerNode = instance.get('resizerNode');
@@ -509,6 +534,20 @@ var SchedulerDayView = A.Component.create({
                     instance.get('headerViewConfig')
                 );
             }
+        },
+
+        /**
+         * Destructor implementation. Lifecycle.
+         *
+         * @method destructor
+         * @protected
+         */
+        destructor: function() {
+            if (this._eventHandles) {
+                (new A.EventHandle(this._eventHandles)).detach();
+            }
+
+            clearInterval(this._currentTimeInterval);
         },
 
         /**
@@ -544,22 +583,9 @@ var SchedulerDayView = A.Component.create({
             instance.headerTableNode.delegate(
                 'click', A.bind(instance._onClickDaysHeader, instance), '.' + CSS_SCHEDULER_VIEW_DAY_HEADER_DAY);
 
-            instance.columnData.delegate(
-                'mousedown', A.bind(instance._onMouseDownTableCol, instance), '.' +
-                CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
+            this._bindMouseEvents();
 
-            instance.columnData.delegate(
-                'mouseenter', A.bind(instance._onMouseEnterEvent, instance), '.' + CSS_SCHEDULER_EVENT);
-
-            instance.columnData.delegate(
-                'mouseleave', A.bind(instance._onMouseLeaveEvent, instance), '.' + CSS_SCHEDULER_EVENT);
-
-            instance.columnData.delegate(
-                'mousemove', A.bind(instance._onMouseMoveTableCol, instance), '.' +
-                CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY);
-
-            instance.columnData.delegate(
-                'mouseup', A.bind(instance._onMouseUpTableCol, instance), '.' + CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
+            this._bindCurrentTimeInterval();
 
             instance.on('drag:end', instance._onEventDragEnd);
             instance.on('drag:start', instance._onEventDragStart);
@@ -580,6 +606,8 @@ var SchedulerDayView = A.Component.create({
             SchedulerDayView.superclass.syncUI.apply(this, arguments);
 
             instance.gridContainer.attr('colspan', instance.get('days'));
+
+            instance.syncCurrentTimeUI();
 
             instance._setupDragDrop();
         },
@@ -822,6 +850,21 @@ var SchedulerDayView = A.Component.create({
             });
 
             instance.syncHeaderViewUI();
+            instance.syncCurrentTimeUI();
+        },
+
+        /**
+         * Scrolls to given date.
+         *
+         * @method scrollToDate
+         * @param {Date} date The date to scroll to
+         */
+        scrollToDate: function(date) {
+            var scrollNode = this.get('boundingBox').one('.' + CSS_SCHEDULER_VIEW_SCROLLABLE);
+
+            if (this.get('scrollable') && scrollNode) {
+                scrollNode.set('scrollTop', this.calculateTop(date));
+            }
         },
 
         /**
@@ -839,6 +882,27 @@ var SchedulerDayView = A.Component.create({
                 columnNode.toggleClass(
                     CSS_SCHEDULER_TODAY, !DateMath.isDayOverlap(columnDate, todayDate));
             });
+
+            this.syncCurrentTimeUI();
+        },
+
+        /**
+         * Syncs the `SchedulerView` current time marker. Lifecycle.
+         *
+         * @method syncCurrentTimeUI
+         */
+        syncCurrentTimeUI: function() {
+            var currentTimeNode = this.get('currentTimeNode'),
+                todayColumn = this.colDaysNode.get('parentNode').one('.' + CSS_SCHEDULER_TODAY);
+
+            if (todayColumn) {
+                todayColumn.one('.' + CSS_SCHEDULER_VIEW_DAY_TABLE_COL_SHIM).append(currentTimeNode);
+
+                currentTimeNode.setStyle('top', this.calculateTop(new Date()) + 'px');
+            }
+            else {
+                currentTimeNode.remove();
+            }
         },
 
         /**
@@ -894,6 +958,13 @@ var SchedulerDayView = A.Component.create({
 
                     evtNode.setStyle('width', width + '%');
                     evtNode.setStyle('left', left + '%');
+
+                    if (total > 1) {
+                        evtNode.addClass(CSS_SCHEDULER_EVENT_INTERSECTING);
+                    }
+                    else {
+                        evtNode.removeClass(CSS_SCHEDULER_EVENT_INTERSECTING);
+                    }
 
                     var evtParentNode = evtNode.get('parentNode');
 
@@ -1076,6 +1147,55 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
+         * Binds the events related to the mouse.
+         *
+         * @method _bindMouseEvents
+         * @protected
+         */
+        _bindMouseEvents: function() {
+            this.columnData.delegate(
+                'mousedown', A.bind(this._onMouseDownTableCol, this), '.' +
+                CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
+
+            this.columnData.delegate(
+                'mouseenter', A.bind(this._onMouseEnterEvent, this), '.' + CSS_SCHEDULER_EVENT);
+
+            this.columnData.delegate(
+                'mouseleave', A.bind(this._onMouseLeaveEvent, this), '.' + CSS_SCHEDULER_EVENT);
+
+            this.columnData.delegate(
+                'mousemove', A.bind(this._onMouseMoveTableCol, this), '.' +
+                CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY);
+
+            this.columnData.delegate(
+                'mouseup', A.bind(this._onMouseUpTableCol, this), '.' + CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
+        },
+
+        /**
+         * Fired after the `visible` attribute changes.
+         *
+         * @method _afterVisibleChange
+         * @protected
+         */
+        _afterVisibleChange: function() {
+            clearInterval(this._currentTimeInterval);
+
+            if (this.get('visible')) {
+                this._bindCurrentTimeInterval();
+            }
+        },
+
+        /**
+         * Binds the listener that updates the current time marker every minute.
+         *
+         * @method _bindCurrentTimeInterval
+         * @protected
+         */
+        _bindCurrentTimeInterval: function() {
+            this._currentTimeInterval = setInterval(A.bind(this.syncCurrentTimeUI, this), 60000);
+        },
+
+        /**
          * Aligns the dragging `SchedulerEvent` to the X axis while bound to the
          * Y axis on the `activeColumn`.
          *
@@ -1143,6 +1263,17 @@ var SchedulerDayView = A.Component.create({
 
                 instance.plotEvent(placeholder);
             }
+        },
+
+        /**
+         * Finds and returns the column related to the given event.
+         *
+         * @method _findActiveColumn
+         * @param {EventFacade} event
+         * @protected
+         */
+        _findActiveColumn: function(event) {
+            return event.currentTarget;
         },
 
         /**
@@ -1317,31 +1448,7 @@ var SchedulerDayView = A.Component.create({
                 recorder.hidePopover();
 
                 if (target.test('.' + CSS_SCHEDULER_VIEW_DAY_TABLE_COL_SHIM)) {
-                    instance.startXY = [event.pageX, event.pageY];
-
-                    var colNumber = toNumber(event.currentTarget.attr('data-colnumber'));
-                    var startDate = instance.getDateByColumn(colNumber);
-                    var clickLeftTop = instance.getXYDelta(event);
-
-                    instance.roundToNearestHour(
-                        startDate, instance.getYCoordTime(clickLeftTop[1]));
-
-                    var endDate = DateMath.add(startDate, DateMath.MINUTES, recorder.get('duration'));
-
-                    recorder.move(startDate, {
-                        silent: true
-                    });
-
-                    recorder.setAttrs({
-                        allDay: false,
-                        endDate: endDate
-                    }, {
-                        silent: true
-                    });
-
-                    instance.creationStartDate = startDate;
-
-                    event.halt();
+                    this._prepareEventCreation(event);
                 }
                 else if (target.test(
                             ['.' + CSS_SCHEDULER_VIEW_DAY_RESIZER,
@@ -1395,7 +1502,7 @@ var SchedulerDayView = A.Component.create({
          */
         _onMouseMoveTableCol: function(event) {
             var instance = this;
-            var activeColumn = event.currentTarget;
+            var activeColumn = this._findActiveColumn(event);
             var recorder = instance.get('scheduler').get('eventRecorder');
 
             if (instance.activeColumn !== activeColumn) {
@@ -1475,6 +1582,44 @@ var SchedulerDayView = A.Component.create({
             if (instance.headerView) {
                 instance.headerView.set('scheduler', event.newVal);
             }
+        },
+
+        /**
+         * Prepares for the creation of a new scheduler event.
+         *
+         * @method _prepareEventCreation
+         * @protected
+         */
+        _prepareEventCreation: function(event, duration) {
+            var clickLeftTop = this.getXYDelta(event),
+                colNumber = toNumber(event.currentTarget.attr('data-colnumber')),
+                endDate,
+                startDate = this.getDateByColumn(colNumber),
+                recorder = this.get('scheduler').get('eventRecorder');
+
+            this.startXY = [event.pageX, event.pageY];
+
+            this.roundToNearestHour(startDate, this.getYCoordTime(clickLeftTop[1]));
+
+            if (!duration) {
+                duration = recorder.get('duration');
+            }
+            endDate = DateMath.add(startDate, DateMath.MINUTES, duration);
+
+            recorder.move(startDate, {
+                silent: true
+            });
+
+            recorder.setAttrs({
+                allDay: false,
+                endDate: endDate
+            }, {
+                silent: true
+            });
+
+            this.creationStartDate = startDate;
+
+            event.halt();
         },
 
         /**

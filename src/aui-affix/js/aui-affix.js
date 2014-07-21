@@ -4,10 +4,20 @@
  * @module aui-affix
  */
 
-var Affix,
-    win = A.config.win;
+var win = A.config.win;
 
-Affix = A.Base.create('affix', A.Base, [], {
+/**
+ * A base class for Affix.
+ *
+ * Check the [live demo](http://alloyui.com/examples/affix/).
+ *
+ * @class A.Affix
+ * @extends Base
+ * @param {Object} config Object literal specifying scrollspy configuration
+ *     properties.
+ * @constructor
+ */
+A.Affix = A.Base.create('affix', A.Base, [], {
     /**
      * Holds the scroll event handle.
      *
@@ -250,5 +260,3 @@ Affix = A.Base.create('affix', A.Base, [], {
         TOP: A.getClassName('affix', 'top')
     }
 });
-
-A.Affix = Affix;

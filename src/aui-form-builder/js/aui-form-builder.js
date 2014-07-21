@@ -32,7 +32,7 @@ var L = A.Lang,
     CSS_FORM_BUILDER_DROP_ZONE = getCN('form', 'builder', 'drop', 'zone'),
     CSS_FORM_BUILDER_FIELD = getCN('form', 'builder', 'field'),
     CSS_FORM_BUILDER_PLACEHOLDER = getCN('form', 'builder', 'placeholder'),
-    CSS_FORM_BUILDER_TABS = getCN('form', 'builder', 'tabs')
+    CSS_FORM_BUILDER_TABS = getCN('form', 'builder', 'tabs'),
 
     TPL_PLACEHOLDER = '<div class="' + CSS_FORM_BUILDER_PLACEHOLDER + '"></div>';
 

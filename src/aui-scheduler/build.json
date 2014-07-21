@@ -16,6 +16,12 @@
             ]
         },
 
+        "aui-scheduler-touch": {
+            "jsfiles": [
+                "js/aui-scheduler-touch.js"
+            ]
+        },
+
         "aui-scheduler-view-agenda": {
             "jsfiles": [
                 "js/aui-scheduler-view-agenda.js"

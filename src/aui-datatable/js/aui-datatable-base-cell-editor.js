@@ -40,7 +40,7 @@ BaseCellEditor = A.Component.create({
          * @type boolean | Node
          * @default true
          */
-        constrain : {
+        constrain: {
             value: true
         },
 

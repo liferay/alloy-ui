@@ -107,7 +107,17 @@ YUI({ filter:'raw' }).use('aui-form-builder', function(Y) {
 							value: 'blue'
 						}
 					]
-				}
+				},
+                {
+                    label: 'Nested fieldset',
+                    type: 'fieldset',
+                    fields: [
+                        {
+                            label: 'Comments',
+                            type: 'textarea'
+                        }
+                    ]
+                }
 			]
 		}
 	).render();

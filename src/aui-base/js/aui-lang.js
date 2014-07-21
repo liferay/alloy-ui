@@ -370,10 +370,10 @@
             return MAP_HTML_CHARS_ESCAPED[match];
         },
 
-        _unescapeHTML: function(match) {
-            var value = MAP_HTML_CHARS_UNESCAPED[match];
+        _unescapeHTML: function(match, entity) {
+            var value = MAP_HTML_CHARS_UNESCAPED[match] || match;
 
-            if (!value && value.charAt(0) === '#') {
+            if (!value && entity.charAt(0) === '#') {
                 var charCode = Number('0' + value.substr(1));
 
                 if (!isNaN(charCode)) {

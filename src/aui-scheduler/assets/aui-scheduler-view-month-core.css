@@ -18,3 +18,17 @@
 .scheduler-view-month .scheduler-event-title span {
     display: none;
 }
+
+.view-lt480 .scheduler-view-month .scheduler-event-title {
+    display: none;
+}
+
+.view-lt480 .scheduler-view-month .scheduler-event-content {
+    font-size: 10px;
+    padding: 0 2px;
+    text-overflow: ellipsis;
+}
+
+.view-lt480 .scheduler-view-table-more {
+    font-size: 10px;
+}
