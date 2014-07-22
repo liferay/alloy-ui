@@ -165,6 +165,8 @@ ButtonExt.prototype = {
         var instance = this;
 
         instance._uiSetIcon(instance.get('icon'));
+
+        instance._setButtonRole();
     },
 
     /**
@@ -191,6 +193,18 @@ ButtonExt.prototype = {
         var instance = this;
 
         instance._uiSetIconAlign(event.newVal);
+    },
+
+    /**
+     * Sets the role attribute on the bounding box to 'button';
+     *
+     * @method setButtonRole
+     */
+    _setButtonRole: function() {
+        var instance = this;
+        var boundingBox = instance.get('boundingBox');
+
+        boundingBox.setAttribute('role', 'button');
     },
 
     /**
