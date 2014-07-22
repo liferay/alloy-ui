@@ -1088,6 +1088,10 @@ var SchedulerTableView = A.Component.create({
                 evt.addPaddingNode();
             }
 
+            if (evtNodeList.size() <= paddingNodeIndex) {
+                paddingNodeIndex = evtNodeList.size() - 1;
+            }
+
             var evtNode = evtNodeList.item(paddingNodeIndex);
 
             evtNode.setStyles({
