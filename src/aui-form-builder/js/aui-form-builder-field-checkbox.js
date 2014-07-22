@@ -12,6 +12,7 @@ var L = A.Lang,
 
     getCN = A.getClassName,
 
+    CSS_CHECKBOX = getCN('checkbox'),
     CSS_FIELD = getCN('field'),
     CSS_FIELD_CHECKBOX = getCN('field', 'checkbox'),
     CSS_FIELD_CHOICE = getCN('field', 'choice'),
@@ -116,12 +117,10 @@ var FormBuilderCheckBoxField = A.Component.create({
          */
         renderUI: function() {
             var instance = this,
-                templateNode = instance.get('templateNode'),
-                labelNode = instance.get('labelNode');
+                contentBox = instance.get('contentBox');
 
             A.FormBuilderCheckBoxField.superclass.renderUI.apply(instance, arguments);
-
-            labelNode.insert(templateNode, labelNode, 'before');
+            contentBox.addClass(CSS_CHECKBOX);
         },
 
         /**
@@ -174,6 +173,44 @@ var FormBuilderCheckBoxField = A.Component.create({
                     value: AEscape.html(instance.get('predefinedValue'))
                 }
             );
+        },
+
+        /**
+         * Set the `label` attribute on the UI.
+         *
+         * @method _uiSetLabel
+         * @param val
+         * @protected
+         */
+        _uiSetLabel: function(val) {
+            var instance = this,
+                labelNode = instance.get('labelNode'),
+                templateNode = instance.get('templateNode');
+
+            labelNode.setContent(AEscape.html(val));
+            labelNode.prepend(templateNode);
+        },
+
+        /**
+         * Set the `showLabel` attribute on the UI.
+         *
+         * @method _uiSetShowLabel
+         * @param val
+         * @protected
+         */
+        _uiSetShowLabel: function(val) {
+            var instance = this,
+                label = instance.get('label'),
+                labelNode = instance.get('labelNode'),
+                templateNode = instance.get('templateNode');
+
+            if (val) {
+                labelNode.setContent(label);
+            } else {
+                labelNode.setContent();
+            }
+
+            labelNode.prepend(templateNode);
         },
 
         /**

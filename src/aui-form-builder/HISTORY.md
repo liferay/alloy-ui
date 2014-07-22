@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1545](https://issues.liferay.com/browse/AUI-1545) Form Builder Checkbox and Radio have incorrect markup
 * [AUI-1635](https://issues.liferay.com/browse/AUI-1635) Fix lint problems
 * [AUI-1606](https://issues.liferay.com/browse/AUI-1606) Form Builder select field closes by itself when clicking after already focused
 * [AUI-1612](https://issues.liferay.com/browse/AUI-1612) Form builder textfield and textarea need width validators
