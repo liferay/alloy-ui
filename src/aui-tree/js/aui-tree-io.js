@@ -65,17 +65,20 @@ TreeViewIO.prototype = {
 
 		var paginator = instance.get('paginator');
 
-		A.Array.each(A.Array(nodes), function(node) {
-			var childrenLength = instance.getChildrenLength();
+		A.Array.each(
+			A.Array(nodes),
+			function(node) {
+				var childrenLength = instance.getChildrenLength();
 
-			if (paginator && paginator.total > childrenLength) {
-				return;
+				if (paginator && paginator.total <= childrenLength) {
+					return;
+				}
+
+				instance.appendChild(
+					instance.createNode(node)
+				);
 			}
-
-			instance.appendChild(
-				instance.createNode(node);
-			);
-		});
+		);
 
 		instance._syncPaginatorUI(nodes);
 	},
