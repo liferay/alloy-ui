@@ -451,7 +451,19 @@ var SchedulerTableView = A.Component.create({
             var rowNode = A.Node.create(TPL_SVT_TABLE_DATA_ROW);
 
             instance.loopDates(rowStartDate, rowEndDate, function(celDate, index) {
+                var key = String(celDate.getTime());
+
+                var evtRenderedStack = instance.evtRenderedStack[key];
+
+                if (!evtRenderedStack) {
+                    instance.evtRenderedStack[key] = [];
+
+                    evtRenderedStack = instance.evtRenderedStack[key];
+                }
+
                 if (rowRenderedColumns > index) {
+                    evtRenderedStack.push(null);
+
                     return;
                 }
 
@@ -461,13 +473,13 @@ var SchedulerTableView = A.Component.create({
                 var evtColNode = A.Node.create(TPL_SVT_TABLE_DATA_COL);
                 var evtNodeContainer = evtColNode.one(DIV);
 
-                if ((displayRows < events.length) && (rowDisplayIndex === (displayRows - 1))) {
+                if ((evtRenderedStack.length < events.length) && (rowDisplayIndex === (displayRows - 1))) {
                     var strings = instance.get(STRINGS);
 
                     var showMoreEventsLink = A.Node.create(
                         Lang.sub(
                             TPL_SVT_MORE, {
-                                count: (events.length - (displayRows - 1)),
+                                count: (events.length - evtRenderedStack.length),
                                 labelPrefix: strings[SHOW],
                                 labelSuffix: strings[MORE]
                             }
@@ -488,9 +500,7 @@ var SchedulerTableView = A.Component.create({
                     instance._syncEventNodeContainerUI(evt, evtNodeContainer, evtSplitInfo);
                     instance._syncEventNodeUI(evt, evtNodeContainer, celDate);
 
-                    var key = String(celDate.getTime());
-
-                    instance.evtRenderedStack[key].push(evt);
+                    evtRenderedStack.push(evt);
                 }
 
                 rowRenderedColumns++;
