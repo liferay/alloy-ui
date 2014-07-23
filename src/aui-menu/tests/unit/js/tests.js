@@ -483,6 +483,157 @@ YUI.add('aui-menu-tests', function(Y) {
             );
         },
 
+        'should add items': function() {
+            var content = 'New Item';
+
+            this._createMenu();
+            this._menu.addItem({
+                content: content
+            });
+
+            Y.Assert.areEqual(
+                6,
+                this._menu.get('items').length,
+                'The new item should have been added to the list'
+            );
+            Y.Assert.areEqual(
+                content,
+                this._menu.get('items')[5].get('content'),
+                'The sixth item should have the given content'
+            );
+            Y.Assert.areEqual(
+                6,
+                this._menu.get('boundingBox').all('.menu-item').size(),
+                'The new item should have been rendered'
+            );
+        },
+
+        'should add items that are already MenuItem instances': function() {
+            var content = 'New Item';
+
+            this._createMenu();
+            this._menu.addItem(new Y.MenuItem({
+                content: content
+            }));
+
+            Y.Assert.areEqual(
+                6,
+                this._menu.get('items').length,
+                'The new item should have been added to the list'
+            );
+            Y.Assert.areEqual(
+                content,
+                this._menu.get('items')[5].get('content'),
+                'The sixth item should have the given content'
+            );
+            Y.Assert.areEqual(
+                6,
+                this._menu.get('boundingBox').all('.menu-item').size(),
+                'The new item should have been rendered'
+            );
+        },
+
+        'should add items at the requested position': function() {
+            var content = 'New Item';
+
+            this._createMenu();
+            this._menu.addItem({
+                content: content
+            }, 1);
+
+            Y.Assert.areEqual(
+                6,
+                this._menu.get('items').length,
+                'The new item should have been added to the list'
+            );
+            Y.Assert.areEqual(
+                content,
+                this._menu.get('items')[1].get('content'),
+                'The fifth item should have the given content'
+            );
+            Y.Assert.areEqual(
+                6,
+                this._menu.get('boundingBox').all('.menu-item').size(),
+                'The new item should have been rendered'
+            );
+        },
+
+        'should remove items': function() {
+            var item;
+
+            this._createMenu();
+            item = this._menu.get('items')[1];
+            this._menu.removeItem(item);
+
+            Y.Assert.areEqual(
+                4,
+                this._menu.get('items').length,
+                'The requested item should have been removed from the list'
+            );
+            Y.Assert.areNotSame(
+                item,
+                this._menu.get('items')[1],
+                'The requested item should have been removed from the list'
+            );
+            Y.Assert.areEqual(
+                4,
+                this._menu.get('boundingBox').all('.menu-item').size(),
+                'The requested item should have been removed from the DOM'
+            );
+        },
+
+        'should remove items at the requested position': function() {
+            var item;
+
+            this._createMenu();
+            item = this._menu.get('items')[1];
+            this._menu.removeItemAtIndex(1);
+
+            Y.Assert.areEqual(
+                4,
+                this._menu.get('items').length,
+                'The requested item should have been removed from the list'
+            );
+            Y.Assert.areNotSame(
+                item,
+                this._menu.get('items')[1],
+                'The requested item should have been removed from the list'
+            );
+            Y.Assert.areEqual(
+                4,
+                this._menu.get('boundingBox').all('.menu-item').size(),
+                'The requested item should have been removed from the DOM'
+            );
+        },
+
+        'should ignore requests to remove items at invalid positions': function() {
+            this._createMenu();
+
+            this._menu.removeItemAtIndex(-1);
+            Y.Assert.areEqual(
+                5,
+                this._menu.get('items').length,
+                'No items should have been removed from the list'
+            );
+            Y.Assert.areEqual(
+                5,
+                this._menu.get('boundingBox').all('.menu-item').size(),
+                'No items should have been removed from the DOM'
+            );
+
+            this._menu.removeItemAtIndex(10);
+            Y.Assert.areEqual(
+                5,
+                this._menu.get('items').length,
+                'No items should have been removed from the list'
+            );
+            Y.Assert.areEqual(
+                5,
+                this._menu.get('boundingBox').all('.menu-item').size(),
+                'No items should have been removed from the DOM'
+            );
+        },
+
         'should trigger item selection via shortcuts': function() {
             var item,
                 mock = new Y.Mock();

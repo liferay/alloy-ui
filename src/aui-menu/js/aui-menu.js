@@ -113,6 +113,27 @@ A.Menu = A.Base.create('menu', A.Widget, [
     },
 
     /**
+     * Adds a menu item in the requested position.
+     *
+     * @method addItem
+     * @param {Object} item The item to be added.
+     * @param {Number} index The index to add the item to. If none is given,
+     *  the item will be added to the end of the menu.
+     */
+    addItem: function(item, index) {
+        var items = this.get('items').concat();
+
+        if (index === undefined) {
+            items.push(item);
+        }
+        else {
+            items.splice(index, 0, item);
+        }
+
+        this.set('items', items);
+    },
+
+    /**
      * Returns the `A.MenuItem` instance for the given node.
      *
      * @method _getMenuItemFromNode
@@ -133,6 +154,35 @@ A.Menu = A.Base.create('menu', A.Widget, [
 
         for (var i = 0; i < items.length; i++) {
             this._hideItemSubmenu(items[i]);
+        }
+    },
+
+    /**
+     * Removes the menu item from the menu.
+     *
+     * @method removeItem
+     * @param {A.MenuItem} item The item to be removed.
+     */
+    removeItem: function(item) {
+        var index,
+            items = this.get('items');
+
+        index = A.Array.indexOf(items, item);
+        this.removeItemAtIndex(index);
+    },
+
+    /**
+     * Removes the menu item at the requested index.
+     *
+     * @method removeItemAtIndex
+     * @param {Number} index The index of the item to be removed.
+     */
+    removeItemAtIndex: function(index) {
+        var items = this.get('items');
+
+        if (index >= 0 && index < items.length) {
+            items.splice(index, 1);
+            this.set('items', items);
         }
     },
 
