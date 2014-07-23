@@ -34,6 +34,8 @@ var L = A.Lang,
     CSS_FORM_BUILDER_PLACEHOLDER = getCN('form', 'builder', 'placeholder'),
     CSS_FORM_BUILDER_TABS = getCN('form', 'builder', 'tabs'),
 
+    MOBILE_TOUCH_ENABLED = A.UA.touchEnabled && A.UA.mobile,
+
     TPL_PLACEHOLDER = '<div class="' + CSS_FORM_BUILDER_PLACEHOLDER + '"></div>';
 
 /**
@@ -213,7 +215,7 @@ var FormBuilder = A.Component.create({
 
             instance.dropContainer.delegate('click', A.bind(instance._onClickField, instance), '.' + CSS_FORM_BUILDER_FIELD);
 
-            if (!A.UA.touchEnabled) {
+            if (!MOBILE_TOUCH_ENABLED) {
                 instance.dropContainer.delegate('mouseover', A.bind(instance._onMouseOverField, instance), '.' + CSS_FORM_BUILDER_FIELD);
                 instance.dropContainer.delegate('mouseout', A.bind(instance._onMouseOutField, instance), '.' + CSS_FORM_BUILDER_FIELD);
             }
@@ -486,7 +488,7 @@ var FormBuilder = A.Component.create({
             var instance = this,
                 field = event.target;
 
-            if (event.newVal && isFormBuilderField(field) && !A.UA.touchEnabled) {
+            if (event.newVal && isFormBuilderField(field) && !MOBILE_TOUCH_ENABLED) {
                 instance.editField(field);
             }
         },
