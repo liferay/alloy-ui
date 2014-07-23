@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1591](https://issues.liferay.com/browse/AUI-1591) Fix scheduler behavior on touch screen desktop computers
 * [AUI-1309](https://issues.liferay.com/browse/AUI-1309) Make aui-scheduler responsive
 * [AUI-1809](https://issues.liferay.com/browse/AUI-1809) Events with duration longer than a week don't render correctly on month view
 * [AUI-1640](https://issues.liferay.com/browse/AUI-1640) Scheduler should create SchedulerEvent instances lazily
