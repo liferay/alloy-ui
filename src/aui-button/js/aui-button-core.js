@@ -422,7 +422,9 @@ A.mix(ButtonGroup.prototype, {
      * @protected
      */
     renderUI: function() {
-        var instance = this;
+        var instance = this,
+            boundingBox = instance.get('boundingBox'),
+            type = instance.get('type');
 
         instance.getButtons().each(function(button) {
             if (!button.button && !A.instanceOf(A.Widget.getByNode(button), A.Button)) {
@@ -430,6 +432,7 @@ A.mix(ButtonGroup.prototype, {
                 // A.Plugin.Button doesn't current allow augmentation, therefore
                 // it can't add A.ButtonExt extra attributes to it.
                 button.addClass(A.ButtonCore.CLASS_NAMES.BUTTON_DEFAULT);
+                button.setAttribute('role', 'option');
 
                 if (A.Button.hasWidgetLazyConstructorData(button)) {
                     new A.Button(A.Button.getWidgetLazyConstructorFromNodeData(button));
@@ -440,6 +443,15 @@ A.mix(ButtonGroup.prototype, {
                 }
             }
         });
+
+        boundingBox.setAttrs({
+            'role': 'listbox',
+            'aria-multiselectable': type === 'checkbox' ? true : false
+        });
+
+        instance.updateAriaSelected(instance.getButtons());
+
+        instance.after('selectionChange', instance._afterSelectionChange);
     },
 
     /**
@@ -511,5 +523,35 @@ A.mix(ButtonGroup.prototype, {
         var instance = this;
 
         return instance.toggleSelect(items, false);
+    },
+
+    /**
+     * Updates the 'aria-selected' attribute on all buttons.
+     *
+     * @method updateAriaSelected
+     * @param {Array} buttons
+     */
+    updateAriaSelected: function(buttons) {
+        buttons.each(function(button) {
+            if (button.hasClass(A.ButtonGroup.CLASS_NAMES.SELECTED)) {
+                button.setAttribute('aria-selected', true);
+            }
+            else {
+                button.setAttribute('aria-selected', false);
+            }
+        });
+    },
+
+    /**
+     * Fires after 'selectionChange' event.
+     *
+     * @method _afterSelectionChange
+     * @param {EventFacade} event
+     * @protected
+     */
+    _afterSelectionChange: function(event) {
+        var instance = this;
+
+        instance.updateAriaSelected(instance.getButtons());
     }
 }, true);
