@@ -1,4 +1,4 @@
-YUI.add('module-tests', function(Y) {
+YUI.add('aui-property-builder', function(Y) {
 
     var suite = new Y.Test.Suite('aui-property-builder');
 
