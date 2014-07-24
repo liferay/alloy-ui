@@ -472,6 +472,32 @@ YUI.add('aui-base-tests', function(Y) {
                 Assert.areEqual(Y.Lang.String.remove(removalTestStrings[i], removalSubstrings[i], true), removedStrings[i]);
                 Assert.areEqual(Y.Lang.String.remove(removalTestStrings[i], removalSubstrings[i], false), singleRemovedStrings[i]);
             }
+        },
+
+        'should truncate long strings consistently': function() {
+            var actual = Y.Lang.String.truncate('myteststring', 5, 'end');
+            var expected = 'my...';
+            Assert.areEqual(expected, actual);
+
+            actual = Y.Lang.String.truncate('myteststring', 5, 'start');
+            expected = '...ng';
+            Assert.areEqual(expected, actual);
+
+            actual = Y.Lang.String.truncate('myteststring', 8, 'middle');
+            expected = 'myt...ng';
+            Assert.areEqual(expected, actual);
+
+            actual = Y.Lang.String.truncate('myteststring', 9, 'middle');
+            expected = 'myt...ing';
+            Assert.areEqual(expected, actual);
+
+            actual = Y.Lang.String.truncate('string', 9, 'middle');
+            expected = 'string';
+            Assert.areEqual(expected, actual);
+
+            actual = Y.Lang.String.truncate('string', 6, 'middle');
+            expected = 'string';
+            Assert.areEqual(expected, actual);
         }
     }));
 
