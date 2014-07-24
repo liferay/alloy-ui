@@ -1333,6 +1333,12 @@
 	</ul>
 </div>
 
+<h2>TreeView reusing children array 1</h2>
+<div id="treeFirst"></div>
+
+<h2>TreeView reusing children array 2</h2>
+<div id="treeSecond"></div>
+
 <script type="text/javascript" charset="utf-8">
 
 AUI().ready('aui-tree-view', 'aui-tooltip', 'datatype-xml', 'dataschema-xml', function(A) {
@@ -1668,6 +1674,31 @@ AUI().ready('aui-tree-view', 'aui-tooltip', 'datatype-xml', 'dataschema-xml', fu
 			boundingBox: '#treeViewHTML',
 			contentBox: '.tree-view-list',
 			type: 'normal'
+		}
+	).render();
+
+	var reusedChildren = [
+		{
+			label: 'parent',
+			children: [
+				{
+					label: 'child'
+				}
+			]
+		}
+	];
+
+	new A.TreeView(
+		{
+			boundingBox: '#treeFirst',
+			children: reusedChildren
+		}
+	).render();
+
+	new A.TreeView(
+		{
+			boundingBox: '#treeSecond',
+			children: reusedChildren
 		}
 	).render();
 });
