@@ -449,7 +449,7 @@ A.mix(ButtonGroup.prototype, {
             role: 'listbox'
         });
 
-        instance.updateAriaSelected(instance.getButtons());
+        instance.syncAriaSelected(instance.getButtons());
 
         instance.after('selectionChange', instance._afterSelectionChange);
     },
@@ -464,6 +464,20 @@ A.mix(ButtonGroup.prototype, {
         var instance = this;
 
         return instance.toggleSelect(items, true);
+    },
+
+    /**
+     * Updates the 'aria-selected' attribute on all buttons.
+     *
+     * @method syncAriaSelected
+     * @param {Array} buttons
+     */
+    syncAriaSelected: function(buttons) {
+        buttons.each(function(button) {
+            var selected = button.hasClass(A.ButtonGroup.CLASS_NAMES.SELECTED);
+
+            button.setAttribute('aria-selected', selected);
+        });
     },
 
     /**
@@ -526,20 +540,6 @@ A.mix(ButtonGroup.prototype, {
     },
 
     /**
-     * Updates the 'aria-selected' attribute on all buttons.
-     *
-     * @method updateAriaSelected
-     * @param {Array} buttons
-     */
-    updateAriaSelected: function(buttons) {
-        buttons.each(function(button) {
-            var selected = button.hasClass(A.ButtonGroup.CLASS_NAMES.SELECTED);
-
-            button.setAttribute('aria-selected', selected);
-        });
-    },
-
-    /**
      * Fires after 'selectionChange' event.
      *
      * @method _afterSelectionChange
@@ -549,6 +549,6 @@ A.mix(ButtonGroup.prototype, {
     _afterSelectionChange: function(event) {
         var instance = this;
 
-        instance.updateAriaSelected(instance.getButtons());
+        instance.syncAriaSelected(instance.getButtons());
     }
 }, true);
