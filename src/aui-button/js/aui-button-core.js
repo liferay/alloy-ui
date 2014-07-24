@@ -445,8 +445,8 @@ A.mix(ButtonGroup.prototype, {
         });
 
         boundingBox.setAttrs({
-            'role': 'listbox',
-            'aria-multiselectable': type === 'checkbox' ? true : false
+            'aria-multiselectable': (type === 'checkbox') ? true : false,
+            role: 'listbox'
         });
 
         instance.updateAriaSelected(instance.getButtons());
@@ -533,12 +533,9 @@ A.mix(ButtonGroup.prototype, {
      */
     updateAriaSelected: function(buttons) {
         buttons.each(function(button) {
-            if (button.hasClass(A.ButtonGroup.CLASS_NAMES.SELECTED)) {
-                button.setAttribute('aria-selected', true);
-            }
-            else {
-                button.setAttribute('aria-selected', false);
-            }
+            var selected = button.hasClass(A.ButtonGroup.CLASS_NAMES.SELECTED);
+
+            button.setAttribute('aria-selected', selected);
         });
     },
 
