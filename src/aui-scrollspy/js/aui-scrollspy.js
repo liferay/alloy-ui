@@ -149,9 +149,17 @@ A.Scrollspy = A.Base.create('scrollspy', A.Base, [], {
     _isLinkInViewport: function(link) {
         var offset = this.get('offset'),
             scrollNode = this.get('scrollNode'),
-            anchor = scrollNode.one(link.getAttribute('href'));
+            scrollNodeY,
+            anchor = A.one(link.getAttribute('href'));
 
-        return (anchor && (scrollNode.getY() >= (anchor.getY() - offset)));
+        if (scrollNode.compareTo(A.config.win) || scrollNode.compareTo(A.config.doc)) {
+            scrollNodeY = scrollNode.get('scrollTop');
+        }
+        else {
+            scrollNodeY = scrollNode.getY();
+        }
+
+        return (anchor && (scrollNodeY >= (anchor.getY() - offset)));
     },
 
     /**
@@ -226,6 +234,7 @@ A.Scrollspy = A.Base.create('scrollspy', A.Base, [], {
          */
         scrollNode: {
             setter: A.one,
+            value: A.config.win,
             writeOnce: 'initOnly'
         },
 
