@@ -15,6 +15,7 @@ var L = A.Lang,
     CSS_CHECKBOX = getCN('checkbox'),
     CSS_FIELD = getCN('field'),
     CSS_FIELD_CHECKBOX = getCN('field', 'checkbox'),
+    CSS_FIELD_CHECKBOX_TEXT = getCN('field', 'checkbox', 'text'),
     CSS_FIELD_CHOICE = getCN('field', 'choice'),
     CSS_FORM_BUILDER_FIELD = getCN('form-builder-field'),
     CSS_FORM_BUILDER_FIELD_NODE = getCN('form-builder-field', 'node'),
@@ -185,9 +186,14 @@ var FormBuilderCheckBoxField = A.Component.create({
         _uiSetLabel: function(val) {
             var instance = this,
                 labelNode = instance.get('labelNode'),
+                showLabel = instance.get('showLabel'),
                 templateNode = instance.get('templateNode');
 
-            labelNode.setContent(AEscape.html(val));
+            labelNode.setContent('<span class="' + CSS_FIELD_CHECKBOX_TEXT +
+                '">' + AEscape.html(val) + '</span>');
+
+            instance._uiSetShowLabel(showLabel);
+
             labelNode.prepend(templateNode);
         },
 
@@ -200,17 +206,9 @@ var FormBuilderCheckBoxField = A.Component.create({
          */
         _uiSetShowLabel: function(val) {
             var instance = this,
-                label = instance.get('label'),
-                labelNode = instance.get('labelNode'),
-                templateNode = instance.get('templateNode');
+                labelNode = instance.get('labelNode');
 
-            if (val) {
-                labelNode.setContent(label);
-            } else {
-                labelNode.setContent();
-            }
-
-            labelNode.prepend(templateNode);
+            labelNode.one('.' + CSS_FIELD_CHECKBOX_TEXT).toggle(val);
         },
 
         /**
