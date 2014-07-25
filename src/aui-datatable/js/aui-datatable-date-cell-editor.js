@@ -221,6 +221,27 @@ DateCellEditor = A.Component.create({
         },
 
         /**
+         * Places keyboard focus on the first selected date, if any. Otherwise,
+         * places focus on the default date.
+         *
+         * @method _syncElementsFocus
+         * @protected
+         */
+        _syncElementsFocus: function() {
+            var instance = this;
+            var calendar = instance.calendar;
+            var date = calendar.get('selectedDates')[0];
+
+            A.DateCellEditor.superclass._syncElementsFocus.apply(instance, arguments);
+
+            if (!date) {
+                date = calendar.get('date');
+            }
+
+            calendar._highlightDateNode(date);
+        },
+
+        /**
          * Sets and formats `A.DateCellEditor` `A.Calendar` `date` attribute.
          *
          * @method _uiSetValue

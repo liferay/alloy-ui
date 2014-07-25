@@ -140,7 +140,8 @@ A.mix(CellEditorSupport.prototype, {
             if (!editor.get('rendered')) {
                 editor.on({
                     visibleChange: A.bind(instance._onEditorVisibleChange, instance),
-                    save: A.bind(instance._onEditorSave, instance)
+                    save: A.bind(instance._onEditorSave, instance),
+                    cancel: A.bind(instance._onEditorCancel, instance)
                 });
 
                 editor.set('zIndex', CellEditorSupport.EDITOR_ZINDEX);
@@ -151,6 +152,21 @@ A.mix(CellEditorSupport.prototype, {
 
             editor.show().move(alignNode.getXY());
         }
+    },
+
+    /**
+     * Invoked when the editor fires the 'cancel' event.
+     *
+     * Fires the '_refocusActiveCell' method, which returns keyboard focus to
+     * the last active cell.
+     *
+     * @method _onEditorCancel
+     * @protected
+     */
+    _onEditorCancel: function() {
+        var instance = this;
+
+        instance._refocusActiveCell();
     },
 
     /**
@@ -169,16 +185,9 @@ A.mix(CellEditorSupport.prototype, {
 
         editor.set('value', event.newVal);
 
-        // TODO: Memorize the activeCell coordinates to set the focus on it
-        // instead
-        instance.set('activeCell', instance.get('activeCell'));
-
         record.set(column.key, event.newVal);
 
-        // TODO: Sync highlight frames UI instead?
-        if (instance.highlight) {
-            instance.highlight.clear();
-        }
+        instance._refocusActiveCell();
     },
 
     /**
@@ -191,11 +200,29 @@ A.mix(CellEditorSupport.prototype, {
      * @protected
      */
     _onEditorVisibleChange: function(event) {
-        var editor = event.currentTarget;
+        var instance = this,
+            editor = event.currentTarget;
 
         if (event.newVal) {
             editor._syncFocus();
+
+            instance.blur();
         }
+    },
+
+    /**
+     * Places keyboard focus onto the last active cell
+     *
+     * @method _refocusActiveCell
+     * @protected
+     */
+    _refocusActiveCell: function() {
+        var instance = this,
+            activeCell = instance.get('activeCell'),
+            coords = instance.getCoord(activeCell);
+
+        instance.set('activeCoord', coords);
+        instance.set('selection', coords);
     },
 
     /**

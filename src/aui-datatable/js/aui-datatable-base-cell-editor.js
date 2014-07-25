@@ -605,6 +605,8 @@ BaseCellEditor = A.Component.create({
         _onEscKey: function() {
             var instance = this;
 
+            instance._handleCancelEvent();
+
             instance.hide();
         },
 
@@ -634,7 +636,7 @@ BaseCellEditor = A.Component.create({
             var instance = this;
             var strings = instance.getStrings();
 
-            return A.merge({
+            var config = {
                 activeState: false,
                 children: [
                     [
@@ -652,8 +654,11 @@ BaseCellEditor = A.Component.create({
                             label: strings.cancel
                         }
                     ]
-                ]
-            }, val);
+                ],
+                initializeAll: true
+            }
+
+            return A.merge(config, val);
         },
 
         /**
