@@ -2,11 +2,13 @@ YUI.add('aui-base-tests', function(Y) {
 
     var escapedEntities = ['&amp;', '&lt;', '&gt;', '&#034;', '&#039;', '&#047;', '&#096;'],
         symbolEntities = ['&','<','>','"','\'','/','`'],
-        uncamelizedStrings = ['this-should-be-camelized',
-                              'SoShould-this-ONE',
-                              'Letterpress-Neutra corNhOlE, pug-retro bespoke-kitsch-cliche +1 fanny pack',
-                              'Thundercats-bespoke-cray-locavore-disrupt,-meggings-quinoa-Marfa-meh-lo-fi. Cray-authentic-Helvetica-PBR&B',
-                              'Bacon-ipsum-dolor-sit-amet shoulder pastrami-pork loin, fatback-boudin-Beef pancettA-andouille beef riBs-meatball'];
+        uncamelizedStrings = [
+            'lorem-ipsum-dolor-sit-amet',
+            'LorEm-Ipsum-dolor-sit-AMET',
+            'Lorem-Ipsum-doLOR. sit-amet +1',
+            'lorem-ipsum-dolor-sit-amet, LOREM-ipsum-D&OLOR',
+            'Lorem-ipsum-dolor-sit-amet. lorem-ipsum-dolor-sit-amet, lorem-Ipsum-Dolor-Sit-Amet',
+        ];
 
     var Assert = Y.Assert,
         suite = new Y.Test.Suite('aui-base');
