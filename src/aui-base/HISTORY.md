@@ -4,4 +4,4 @@
 
 ## @VERSION@
 
-No registries yet.
+* [AUI-1576](https://issues.liferay.com/browse/AUI-1576) A.Lang.String.Uncamelize method drops letters from the string
