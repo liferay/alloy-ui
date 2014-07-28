@@ -25,6 +25,10 @@
     border-color: #ccc;
 }
 
+.form-builder-field-options-container {
+    clear: left;
+}
+
 .form-builder-field-selected {
     border-color: #76a7fa;
 }

@@ -121,6 +121,7 @@ var FormBuilderCheckBoxField = A.Component.create({
                 contentBox = instance.get('contentBox');
 
             A.FormBuilderCheckBoxField.superclass.renderUI.apply(instance, arguments);
+
             contentBox.addClass(CSS_CHECKBOX);
         },
 
@@ -206,9 +207,12 @@ var FormBuilderCheckBoxField = A.Component.create({
          */
         _uiSetShowLabel: function(val) {
             var instance = this,
-                labelNode = instance.get('labelNode');
+                labelNode = instance.get('labelNode'),
+                labelTextNode = labelNode.one('.' + CSS_FIELD_CHECKBOX_TEXT);
 
-            labelNode.one('.' + CSS_FIELD_CHECKBOX_TEXT).toggle(val);
+            if (labelTextNode) {
+                labelTextNode.toggle(val);
+            }
         },
 
         /**
