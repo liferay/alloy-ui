@@ -20,7 +20,7 @@ var Lang = A.Lang,
 	REGEX_STRIP_SCRIPTS = /(?:<script.*?>)((\n|\r|.)*?)(?:<\/script>)/gi,
 	REGEX_STRIP_TAGS = /<\/?[^>]+>/gi,
 	REGEX_UNCAMELIZE = /([a-zA-Z][a-zA-Z])([A-Z])([a-z])/g,
-	REGEX_UNCAMELIZE_REPLACE_SEPARATOR = /([a-zA-Z][a-zA-Z])([A-Z])([a-z])/g,
+	REGEX_UNCAMELIZE_REPLACE_SEPARATOR = /([a-z])([A-Z])/g,
 
 	STR_AMP = '&',
 	STR_CHEVRON_LEFT = '<',
