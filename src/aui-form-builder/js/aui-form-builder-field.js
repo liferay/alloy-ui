@@ -99,7 +99,7 @@ var FormBuilderField = A.Component.create({
 
                 return {
                     children: instance._getToolbarItems(instance.get('required'), instance.get('unique')),
-                    visible: A.UA.touchEnabled
+                    visible: A.UA.touchEnabled && A.UA.mobile
                 };
             }
         },
