@@ -7,8 +7,7 @@
 var getClassName = A.getClassName,
     Lang = A.Lang,
 
-    ACTIVATE_EVENT = 'activate',
-    CSS_ACTIVE_CLASS = getClassName('active');
+    ACTIVATE_EVENT = 'activate';
 
 /**
  * A base class for Scrollspy.
@@ -131,8 +130,7 @@ A.Scrollspy = A.Base.create('scrollspy', A.Base, [], {
         }
 
         this.cachedLinks = this.cachedLinks.filter(function(link) {
-            var href = link.getAttribute('href');
-            return (href && (href.length > 1) && href.charAt(0) === '#');
+            return link.hash && (link.hash.length > 1);
         });
 
         return this.cachedLinks;
@@ -149,9 +147,16 @@ A.Scrollspy = A.Base.create('scrollspy', A.Base, [], {
     _isLinkInViewport: function(link) {
         var offset = this.get('offset'),
             scrollNode = this.get('scrollNode'),
-            anchor = scrollNode.one(link.getAttribute('href'));
+            scrollNodeY,
+            anchor = A.one(link.hash);
 
-        return (anchor && (scrollNode.getY() >= (anchor.getY() - offset)));
+        if (scrollNode.compareTo(A.config.win) || scrollNode.compareTo(A.config.doc)) {
+            scrollNodeY = scrollNode.get('scrollTop');
+        }
+        else {
+            scrollNodeY = scrollNode.getY();
+        }
+        return (anchor && (scrollNodeY >= (anchor.getY() - offset)));
     },
 
     /**
@@ -174,14 +179,22 @@ A.Scrollspy = A.Base.create('scrollspy', A.Base, [], {
      **/
     _uiSetLink: function(val, prevVal) {
         var activeGroup = this.get('activeGroup');
+        var activeClass = this.get('activeClass');
+
+        // For the first time it gets here make sure to clean the previous active
+        if (!prevVal) {
+          this._getValidLinks().filter(function(link) {
+            return A.one(link).ancestors(activeGroup).removeClass(activeClass);
+          });
+        }
 
         if (prevVal) {
-            prevVal.ancestors(activeGroup).removeClass(CSS_ACTIVE_CLASS);
+            prevVal.ancestors(activeGroup).removeClass(activeClass);
             this.activeLink = null;
         }
 
         if (val) {
-            val.ancestors(activeGroup).addClass(CSS_ACTIVE_CLASS);
+            val.ancestors(activeGroup).addClass(activeClass);
             this.activeLink = val;
         }
     }
@@ -207,6 +220,17 @@ A.Scrollspy = A.Base.create('scrollspy', A.Base, [], {
         },
 
         /**
+         * Class to be used as active class.
+         *
+         * @attribute activeClass
+         * @type {String}
+         */
+        activeClass: {
+          validator: Lang.isString,
+          value: getClassName('active')
+        },
+
+        /**
          * Pixels to offset from top when calculating position of scroll.
          *
          * @attribute offset
@@ -226,6 +250,7 @@ A.Scrollspy = A.Base.create('scrollspy', A.Base, [], {
          */
         scrollNode: {
             setter: A.one,
+            value: A.config.win,
             writeOnce: 'initOnly'
         },
 
