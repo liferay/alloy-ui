@@ -285,10 +285,16 @@ YUI.add('aui-surface-tests', function(Y) {
             var instance = this;
 
             instance.app.navigate('/base/querystring?p=beforehash').then(function() {
-                instance.app.navigate('/base/page#hash').then(function() {
-                    instance.resume(function() {
-                        instance.assertNavigation('/base/page#hash', 'page');
-                    });
+                instance.app.navigate('/base/page#middle').then(function() {
+                    setTimeout(function() {
+                        instance.resume(function() {
+                            var pos = Y.one('#middle').getXY();
+
+                            instance.assertNavigation('/base/page#middle', 'page');
+                            Y.Assert.areEqual(Math.floor(pos[0]), Y.config.win.pageXOffset);
+                            Y.Assert.areEqual(Math.floor(pos[1]), Y.config.win.pageYOffset);
+                        });
+                    }, 500);
                 });
             });
             instance.wait();
