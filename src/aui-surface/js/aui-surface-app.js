@@ -694,10 +694,24 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
      * @private
      */
     _syncScrollPosition: function(opt_replaceHistory) {
-        win.scrollTo(
-            opt_replaceHistory ? this.pageXOffset : 0,
-            opt_replaceHistory ? this.pageYOffset : 0
-        );
+        var hash = win.location.hash,
+            hashEl,
+            pos = [0, 0];
+
+        if (opt_replaceHistory) {
+            win.scrollTo(this.pageXOffset, this.pageYOffset);
+            return;
+        }
+
+        if (hash) {
+            hashEl = A.one(hash);
+        }
+
+        if (hashEl) {
+            pos = hashEl.getXY();
+        }
+
+        win.scrollTo(pos[0], pos[1]);
     },
 
     /**
