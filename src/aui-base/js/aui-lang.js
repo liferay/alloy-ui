@@ -315,34 +315,34 @@
         truncate: function(str, length, where) {
             str = String(str);
 
-            var strLength = str.length;
+            var ellipsisLength = STR_ELLIPSIS.length,
+                strLength = str.length;
 
-            if (length <= 3) {
-                return STR_ELLIPSIS;
+            if (length > 3) {
+                if (str && (strLength > length)) {
+                    where = where || 'end';
+
+                    if (where === 'end') {
+                        str = str.substr(0, (length - ellipsisLength)) + STR_ELLIPSIS;
+                    }
+                    else if (where === 'middle') {
+                        var middlePointA = Math.floor((length - ellipsisLength) / 2),
+                            middlePointB = middlePointA;
+
+                        if (length % 2 === 0) {
+                            middlePointA = Math.ceil((length - ellipsisLength) / 2);
+                            middlePointB = Math.floor((length - ellipsisLength) / 2);
+                        }
+
+                        str = str.substr(0, middlePointA) + STR_ELLIPSIS + str.substr(strLength - middlePointB);
+                    }
+                    else if (where === 'start') {
+                        str = STR_ELLIPSIS + str.substr(strLength - length + ellipsisLength);
+                    }
+                }
             }
-
-            if (str && strLength > length) {
-                where = where || 'end';
-
-                if (where === 'end') {
-                    str = str.substr(0, length - STR_ELLIPSIS.length) + STR_ELLIPSIS;
-                }
-                else if (where === 'middle') {
-                    if (length % 2 === 0) {
-                        var middleA = Math.ceil((length - STR_ELLIPSIS.length) / 2);
-                        var middleB = Math.floor((length - STR_ELLIPSIS.length) / 2);
-
-                        str = str.substr(0, middleA) + STR_ELLIPSIS + str.substr(strLength - middleB);
-                    }
-                    else {
-                        var middlePoint = Math.floor((length - STR_ELLIPSIS.length) / 2);
-
-                        str = str.substr(0, middlePoint) + STR_ELLIPSIS + str.substr(strLength - middlePoint);
-                    }
-                }
-                else if (where === 'start') {
-                    str = STR_ELLIPSIS + str.substr(strLength - length + STR_ELLIPSIS.length);
-                }
+            else {
+                str = STR_ELLIPSIS;
             }
 
             return str;

@@ -500,8 +500,8 @@ YUI.add('aui-base-tests', function(Y) {
 
             Assert.areEqual(expected, actual);
 
-            actual = Y.Lang.String.truncate('string', 6, 'middle');
-            expected = 'string';
+            actual = Y.Lang.String.truncate('string', 2, 'middle');
+            expected = '...';
 
             Assert.areEqual(expected, actual);
         }
