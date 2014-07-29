@@ -35,15 +35,6 @@ var L = A.Lang,
 var FormBuilderCheckBoxField = A.Component.create({
 
     /**
-     * Static property provides a string to identify the class.
-     *
-     * @property NAME
-     * @type String
-     * @static
-     */
-    NAME: 'form-builder-checkbox-field',
-
-    /**
      * Static property used to define the default attribute
      * configuration for the `A.FormBuilderCheckBoxField`.
      *
@@ -107,6 +98,15 @@ var FormBuilderCheckBoxField = A.Component.create({
      */
     EXTENDS: A.FormBuilderField,
 
+    /**
+     * Static property provides a string to identify the class.
+     *
+     * @property NAME
+     * @type String
+     * @static
+     */
+    NAME: 'form-builder-checkbox-field',
+
     prototype: {
 
         /**
@@ -143,8 +143,8 @@ var FormBuilderCheckBoxField = A.Component.create({
                         attributeName: 'predefinedValue',
                         editor: new A.RadioCellEditor({
                             options: {
-                                'true': strings.yes,
-                                'false': strings.no
+                                'false': strings.no,
+                                'true': strings.yes
                             }
                         }),
                         formatter: A.bind(instance._booleanFormatter, instance),
@@ -198,23 +198,6 @@ var FormBuilderCheckBoxField = A.Component.create({
         },
 
         /**
-         * Set the `showLabel` attribute on the UI.
-         *
-         * @method _uiSetShowLabel
-         * @param val
-         * @protected
-         */
-        _uiSetShowLabel: function(val) {
-            var instance = this,
-                labelNode = instance.get('labelNode'),
-                labelTextNode = labelNode.one('.' + CSS_FIELD_CHECKBOX_TEXT);
-
-            if (labelTextNode) {
-                labelTextNode.toggle(val);
-            }
-        },
-
-        /**
          * Set the `predefinedValue` attribute on the UI.
          *
          * @method _uiSetPredefinedValue
@@ -231,8 +214,24 @@ var FormBuilderCheckBoxField = A.Component.create({
             else {
                 templateNode.removeAttribute('checked');
             }
-        }
+        },
 
+        /**
+         * Set the `showLabel` attribute on the UI.
+         *
+         * @method _uiSetShowLabel
+         * @param val
+         * @protected
+         */
+        _uiSetShowLabel: function(val) {
+            var instance = this,
+                labelNode = instance.get('labelNode'),
+                labelTextNode = labelNode.one('.' + CSS_FIELD_CHECKBOX_TEXT);
+
+            if (labelTextNode) {
+                labelTextNode.toggle(val);
+            }
+        }
     }
 
 });

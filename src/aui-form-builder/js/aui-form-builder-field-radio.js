@@ -37,15 +37,6 @@ var L = A.Lang,
 var FormBuilderRadioField = A.Component.create({
 
     /**
-     * Static property provides a string to identify the class.
-     *
-     * @property NAME
-     * @type String
-     * @static
-     */
-    NAME: 'form-builder-radio-field',
-
-    /**
      * Static property used to define the default attribute
      * configuration for the `A.FormBuilderRadioField`.
      *
@@ -94,6 +85,15 @@ var FormBuilderRadioField = A.Component.create({
      * @static
      */
     EXTENDS: A.FormBuilderMultipleChoiceField,
+
+    /**
+     * Static property provides a string to identify the class.
+     *
+     * @property NAME
+     * @type String
+     * @static
+     */
+    NAME: 'form-builder-radio-field',
 
     prototype: {
 
