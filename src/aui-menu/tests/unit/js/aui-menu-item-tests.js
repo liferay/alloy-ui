@@ -148,6 +148,10 @@ YUI.add('aui-menu-item-tests', function(Y) {
                 submenuNode,
                 'No submenu should have been rendered'
             );
+            Y.Assert.isFalse(
+                this._menuItem.isSubmenuOpen(),
+                'No submenu should be open'
+            );
 
             this._menuItem.set('submenu', {
                 items: [{}, {}]
@@ -247,6 +251,7 @@ YUI.add('aui-menu-item-tests', function(Y) {
             menu = new Y.Menu({
                 items: [item]
             }).render('#container');
+            menu.open();
 
             submenu = item.get('submenu');
 
@@ -375,6 +380,7 @@ YUI.add('aui-menu-item-tests', function(Y) {
             menu = new Y.Menu({
                 items: [item]
             }).render('#container');
+            menu.open();
 
             item.showSubmenu(true, 500);
 

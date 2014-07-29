@@ -13,6 +13,8 @@ var CSS_DROPDOWN_MENU = A.getClassName('dropdown', 'menu'),
     LAYOUT_INLINE = 'inline',
     LAYOUT_OVERLAY = 'overlay',
 
+    MENU_ITEMS_SELECTOR = '> .' + CSS_DROPDOWN_MENU + ' > .' + CSS_MENU_ITEM,
+
     MIN_OVERLAY_VIEWPORT_WIDTH = 768;
 
 /**
@@ -26,7 +28,7 @@ var CSS_DROPDOWN_MENU = A.getClassName('dropdown', 'menu'),
  * A base class for Menu.
  *
  * @class A.Menu
- * @extends Widget
+ * @extends A.Dropdown
  * @uses A.WidgetPosition, A.WidgetPositionAlign, A.WidgetPositionConstrain,
  *     A.WidgetStack
  * @param {Object} config Object literal specifying widget configuration
@@ -34,7 +36,7 @@ var CSS_DROPDOWN_MENU = A.getClassName('dropdown', 'menu'),
  * @constructor
  */
 
-A.Menu = A.Base.create('menu', A.Widget, [
+A.Menu = A.Base.create('menu', A.Dropdown, [
     A.WidgetPosition,
     A.WidgetPositionAlign,
     A.WidgetPositionConstrain,
@@ -53,11 +55,12 @@ A.Menu = A.Base.create('menu', A.Widget, [
                 itemsChange: this._afterItemsChange,
                 layoutModeChange: this._afterLayoutModeChange,
                 'menu-item:shortcut': this._afterShorcut,
-                'menu-item:submenuItemSelected': this._afterSubmenuItemSelected
+                'menu-item:submenuItemSelected': this._afterSubmenuItemSelected,
+                openChange: this._afterMenuOpenChange
             }),
             A.on(this._onUISetXY, this, '_uiSetXY'),
-            this.get('contentBox').delegate('click', this._onClickItem, '> .' + CSS_MENU_ITEM, this),
-            this.get('contentBox').delegate('mouseenter', this._onMouseEnterItem, '> .' + CSS_MENU_ITEM, this),
+            this.get('contentBox').delegate('click', this._onClickItem, MENU_ITEMS_SELECTOR, this),
+            this.get('contentBox').delegate('mouseenter', this._onMouseEnterItem, MENU_ITEMS_SELECTOR, this),
             A.after('windowresize', A.bind(this._afterWindowResize, this))
         ];
 
@@ -88,18 +91,6 @@ A.Menu = A.Base.create('menu', A.Widget, [
         }
 
         (new A.EventHandle(this._eventHandles)).detach();
-    },
-
-    /**
-     * Render the Menu component instance. Lifecycle.
-     *
-     * @method renderUI
-     * @protected
-     */
-    renderUI: function() {
-        this._uiSetItems(this.get('items'));
-
-        this.get('contentBox').addClass(CSS_DROPDOWN_MENU);
     },
 
     /**
@@ -213,8 +204,24 @@ A.Menu = A.Base.create('menu', A.Widget, [
         this.get('boundingBox').toggleClass(CSS_MENU_INLINE, layoutMode === LAYOUT_INLINE);
 
         if (this.get('layoutMode') === LAYOUT_OVERLAY) {
-            // Hide all submenus if we're starting to use the overlay layout, since
-            // they should only show up when hovering over an item.
+            this.close();
+        }
+    },
+
+    /**
+     * Fired after the `open` attribute is changed.
+     *
+     * @method _afterMenuOpenChange
+     * @protected
+     */
+    _afterMenuOpenChange: function() {
+        if (this.get('open')) {
+            if (!this._openedFirstTime) {
+                this._uiSetItems(this.get('items'));
+                this._openedFirstTime = true;
+            }
+        }
+        else {
             this.hideAllSubmenus();
         }
     },
@@ -259,7 +266,7 @@ A.Menu = A.Base.create('menu', A.Widget, [
      */
     _defItemSelected: function() {
         if (this.get('layoutMode') === LAYOUT_OVERLAY) {
-            this.hideAllSubmenus();
+            this.close();
         }
     },
 
@@ -401,11 +408,11 @@ A.Menu = A.Base.create('menu', A.Widget, [
      * @protected
      */
     _uiSetItems: function(items) {
-        var contentBox = this.get('contentBox');
+        var dropdownMenu = this.get('contentBox').one('.' + CSS_DROPDOWN_MENU);
 
-        contentBox.empty();
+        dropdownMenu.empty();
         for (var i = 0; i < items.length; i++) {
-            contentBox.append(items[i].get('node'));
+            dropdownMenu.append(items[i].get('node'));
         }
     },
 
@@ -487,6 +494,6 @@ A.Menu = A.Base.create('menu', A.Widget, [
      * @static
      */
     HTML_PARSER: {
-        items: ['> .' + CSS_MENU_ITEM]
+        items: [MENU_ITEMS_SELECTOR]
     }
 });

@@ -19,33 +19,37 @@
 <div id="logger"></div>
 <div id="container"></div>
 
-<ul class="dropdown-menu" id="menu">
-    <li class="menu-item">
-        <div class="menu-item-content">
-            <a>Change Color</a>
-        </div>
-        <div class="menu-item-submenu">
-            <ul class="menu-content">
-                <li class="menu-item item-magenta">
-                    <div class="menu-item-content">
-                         <a>Magenta</a>
-                    </div>
-                </li>
-                <li class="menu-item divider"></li>
-                <li class="menu-item item-cyan disabled">
-                    <div class="menu-item-content">
-                         <a>Cyan</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </li>
-    <li class="menu-item">
-        <div class="menu-item-content">
-            <a>Clear</a>
-        </div>
-    </li>
-</ul>
+<div id="menu">
+    <ul class="dropdown-menu">
+        <li class="menu-item">
+            <div class="menu-item-content">
+                <a>Change Color</a>
+            </div>
+            <div class="menu-item-submenu">
+                <div class="menu-content">
+                    <ul class="dropdown-menu">
+                        <li class="menu-item item-magenta">
+                            <div class="menu-item-content">
+                                 <a>Magenta</a>
+                            </div>
+                        </li>
+                        <li class="menu-item divider"></li>
+                        <li class="menu-item item-cyan disabled">
+                            <div class="menu-item-content">
+                                 <a>Cyan</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+        <li class="menu-item">
+            <div class="menu-item-content">
+                <a>Clear</a>
+            </div>
+        </li>
+    </ul>
+</div>
 
 <script>
 YUI({

@@ -11,6 +11,7 @@
             "widget-stack",
             "aui-classnamemanager",
             "aui-debounce",
+            "aui-dropdown",
             "aui-menu-item"
         ],
         "skinnable": true

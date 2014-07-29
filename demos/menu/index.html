@@ -8,73 +8,97 @@
     <script src="../../build/aui/aui.js"></script>
 
     <style>
-        .dropdown-menu {
-            display: block;
-        }
-
         #box {
             border: 1px solid #000;
+            float: left;
             height: 100px;
             margin-bottom: 10px;
+            margin-right: 20px;
             width: 100px
+        }
+
+        .navbar-collapse {
+            max-height: none;
         }
     </style>
 </head>
 <body>
     <h1>AlloyUI - Menu</h1>
 
-    <h1>From HTML</h1>
-    <div id="box"></div>
-    <div style="height: 250px;">
-        <ul class="dropdown-menu" id="contentBox1">
-            <li class="menu-item">
-                <div class="menu-item-content">
-                    <a>Change Color</a>
-                </div>
-                <div class="menu-item-submenu">
-                    <ul class="menu-content">
-                        <li class="menu-item item-magenta">
-                            <div class="menu-item-content">
-                                 <a>Magenta</a>
-                            </div>
-                        </li>
-                        <li class="menu-item divider"></li>
-                        <li class="menu-item item-cyan">
-                            <div class="menu-item-content">
-                                 <a>Cyan</a>
-                            </div>
-                        </li>
-                        <li class="menu-item item-yellow">
-                            <div class="menu-item-content">
-                                 <a>Yellow</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="menu-item disabled">
-                <div class="menu-item-content">
-                    <a>Change Shape</a>
-                </div>
-            </li>
-            <li class="menu-item divider"></li>
-            <li class="menu-item item-clear">
-                <div class="menu-item-content">
-                    <a>Clear</a>
-                </div>
-            </li>
-        </ul>
+    <div class="clearfix">
+        <div id="box"></div>
+        <span>Last Item Clicked: <span id="message"></span></span>
     </div>
 
-    <h1>From Javascript</h1>
-    <span>Last Item Clicked: <span id="message"></span></span>
-    <div id="demo"></div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li id="menu1">
+                        <a id="trigger" class="dropdown-toggle" data-toggle="dropdown">From HTML <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class="menu-item">
+                                <div class="menu-item-content">
+                                    <a>Change Color</a>
+                                </div>
+                                <div class="menu-item-submenu">
+                                    <div class="menu-content">
+                                        <ul class="dropdown-menu">
+                                            <li class="menu-item item-magenta">
+                                                <div class="menu-item-content">
+                                                     <a>Magenta</a>
+                                                </div>
+                                            </li>
+                                            <li class="menu-item divider"></li>
+                                            <li class="menu-item item-cyan">
+                                                <div class="menu-item-content">
+                                                     <a>Cyan</a>
+                                                </div>
+                                            </li>
+                                            <li class="menu-item item-yellow">
+                                                <div class="menu-item-content">
+                                                     <a>Yellow</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="menu-item disabled">
+                                <div class="menu-item-content">
+                                    <a>Change Shape</a>
+                                </div>
+                            </li>
+                            <li class="menu-item divider"></li>
+                            <li class="menu-item item-clear">
+                                <div class="menu-item-content">
+                                    <a>Clear</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li id="menu2">
+                        <a id="trigger2" class="dropdown-toggle" data-toggle="dropdown">From Javascript <b class="caret"></b></a>
+                        <ul class="dropdown-menu"></ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="text">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas nostrum cumque ex maiores voluptatibus, animi. Ab ipsum, impedit saepe minus necessitatibus accusantium. Nesciunt, hic quos quia quae, molestias rerum quidem.
+    </div>
+    <a id="trigger3" class="dropdown-toggle" data-toggle="dropdown">Edit Text</a>
+    <div id="menu3"></div>
 
     <script>
         YUI({ filter: 'raw' }).use('aui-menu', function(Y) {
             var box = Y.one('#box');
             var menu1 = new Y.Menu({
-                contentBox: '#contentBox1'
+                boundingBox: '#menu1',
+                contentBox: '#menu1',
+                trigger: '#trigger'
             }).render();
 
             menu1.after('itemSelected', function(event) {
@@ -94,6 +118,8 @@
             });
 
             var menu2 = new Y.Menu({
+                boundingBox: '#menu2',
+                contentBox: '#menu2',
                 items: [
                     {
                         content: '<a>Menu Item 1</a>',
@@ -131,16 +157,9 @@
                     {
                         content: '<a>Menu Item 2</a>',
                         shortcut: {
-                            macintosh: {
-                                metaKey: true,
-                                keys: ['B', 'b'],
-                                text: '⌘B'
-                            },
-                            defaultShortcut: {
-                                shiftKey: true,
-                                keys: ['B', 'b'],
-                                text: 'Shift + B'
-                            }
+                            shiftKey: true,
+                            keys: ['J', 'j'],
+                            text: 'Shift + J'
                         }
                     },
                     {
@@ -150,11 +169,85 @@
                         content: '<a>Menu Item 3</a>',
                         disabled: true
                     }
-                ]
-            }).render('#demo');
+                ],
+                trigger: '#trigger2'
+            }).render();
 
             menu2.after('itemSelected', function(event) {
                 Y.one('#message').text(event.item.get('content'));
+            });
+
+            var text = Y.one('#text');
+            var menu3 = new Y.Menu({
+                boundingBox: '#menu3',
+                items: [
+                    {
+                        content: '<a>Format</a>',
+                        submenu: {
+                            items: [
+                                {
+                                    content: '<span class="glyphicon glyphicon-bold"></span><a>Bold</a>',
+                                    shortcut: {
+                                        macintosh: {
+                                            metaKey: true,
+                                            keys: ['B', 'b'],
+                                            text: '⌘B'
+                                        },
+                                        defaultShortcut: {
+                                            shiftKey: true,
+                                            keys: ['B', 'b'],
+                                            text: 'Shift + B'
+                                        }
+                                    }
+                                },
+                                {
+                                    content: '<span class="glyphicon glyphicon-italic"></span><a>Italic</a>',
+                                    shortcut: {
+                                        macintosh: {
+                                            metaKey: true,
+                                            keys: ['I', 'i'],
+                                            text: '⌘I'
+                                        },
+                                        defaultShortcut: {
+                                            shiftKey: true,
+                                            keys: ['I', 'i'],
+                                            text: 'Shift + I'
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        divider: true
+                    },
+                    {
+                        content: '<a>Copy</a>',
+                        disabled: true
+                    },
+                    {
+                        content: '<a>Paste</a>',
+                        disabled: true
+                    }
+                ],
+                trigger: '#trigger3'
+            }).render();
+
+            menu3.after('itemSelected', function(event) {
+                var node = event.item.get('node');
+
+                if (node.one('.glyphicon-bold')) {
+                    text.setStyle(
+                        'font-weight',
+                        text.getStyle('font-weight') === 'bold' ? 'normal' : 'bold'
+                    );
+                }
+                else if (node.one('.glyphicon-italic')) {
+                    text.setStyle(
+                        'font-style',
+                        text.getStyle('font-style') === 'italic' ? 'normal' : 'italic'
+                    );
+                }
             });
         });
     </script>

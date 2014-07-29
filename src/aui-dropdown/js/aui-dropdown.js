@@ -22,27 +22,7 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
     A.WidgetStack,
     A.WidgetTrigger
 ], {
-    CONTENT_TEMPLATE: '<ul class="dropdown-menu"/>',
-
-    /**
-     * Defines the template for the divider item on the dropdown.
-     *
-     * @property TPL_DIVIDER
-     * @type {String}
-     * @default <li class="divider"></li>
-     * @protected
-     */
-    TPL_DIVIDER: '<li class="divider"></li>',
-
-    /**
-     * Defines the template for the entry item on the dropdown.
-     *
-     * @property TPL_ENTRY
-     * @type {String}
-     * @default <li id="{id}">{content}</li>
-     * @protected
-     */
-    TPL_ENTRY: '<li id="{id}">{content}</li>',
+    CONTENT_TEMPLATE: '<div><ul class="dropdown-menu"/></div>',
 
     /**
      * Holds the event handle for the `key` event.
@@ -84,10 +64,8 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
         this.after({
             hideOnClickOutSideChange: this._afterHideOnClickOutsideChange,
             hideOnEscChange: this._afterHideOnEscChange,
-            itemsChange: this._afterItemsChange,
             openChange: this._afterOpenChange
         });
-        this._bindFocusManager();
     },
 
     /**
@@ -97,7 +75,6 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
      * @protected
      */
     renderUI: function() {
-        this._uiSetItems(this.get('items'));
         this._setAriaUI();
     },
 
@@ -170,17 +147,6 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
     },
 
     /**
-     * Fires after `items` attribute change.
-     *
-     * @method _afterItemsChange
-     * @param {EventFacade} event
-     * @protected
-     */
-    _afterItemsChange: function(event) {
-        this._uiSetItems(event.newVal);
-    },
-
-    /**
      * Fires after `open` attribute change.
      *
      * @method _afterOpenChange
@@ -192,24 +158,16 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
     },
 
     /**
-     * Binds the `Plugin.NodeFocusManager` that handle dropdown keyboard
-     * navigation.
-     *
-     * @method _bindFocusManager
-     * @protected
-     */
-    _bindFocusManager: function() {
-        this.get('boundingBox').plug(A.Plugin.NodeFocusManager, this.get('focusmanager'));
-    },
-
-    /**
      * Fires when a click out of dropdown boundingBox.
      *
      * @method _onClickOutside
+     * @param {EventFacade} event
      * @protected
      */
-    _onClickOutside: function() {
-        this.close();
+    _onClickOutside: function(event) {
+        if (event.target !== this.get('trigger')) {
+            this.close();
+        }
     },
 
     /**
@@ -229,51 +187,15 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
      * @protected
      */
     _setAriaUI: function() {
-        var contentBox = this.get('contentBox'),
-            items = this.get('items'),
+        var dropdownMenu = this.get('boundingBox').one('.dropdown-menu'),
             trigger = this.get('trigger'),
-            triggerId = trigger && trigger.get('id');
+            triggerId = trigger && trigger.generateID();
 
         if (trigger && triggerId) {
-            contentBox.setAttribute('aria-labelledby', triggerId);
+            dropdownMenu.setAttribute('aria-labelledby', triggerId);
         }
 
-        contentBox.setAttribute('rule', 'menu');
-
-        if (items) {
-            items.setAttribute('rule', 'presentation');
-        }
-    },
-
-    /**
-     * Creates a list of items based on `items` parameter.
-     *
-     * @method _setItems
-     * @param {Array} items
-     * @protected
-     */
-    _setItems: function(items) {
-        var instance = this,
-            buffer = '';
-
-        if (A.Lang.isArray(items)) {
-            A.Array.each(items, function(item) {
-                if (item.divider) {
-                    buffer += instance.TPL_DIVIDER;
-                }
-                else {
-                    buffer += A.Lang.sub(
-                        instance.TPL_ENTRY, {
-                            content: item.content,
-                            id: item.id || A.guid()
-                        }
-                    );
-                }
-            });
-            return A.NodeList.create(buffer);
-        }
-
-        return items;
+        dropdownMenu.setAttribute('role', 'menu');
     },
 
     /**
@@ -309,17 +231,6 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
     },
 
     /**
-     * Sets the `items` on the UI.
-     *
-     * @method _uiSetItems
-     * @param {NodeList} val
-     * @protected
-     */
-    _uiSetItems: function(val) {
-        this.get('contentBox').setContent(val);
-    },
-
-    /**
      * Sets the `open` on the UI.
      *
      * @method _uiSetOpen
@@ -331,20 +242,7 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
             this.bringToTop();
         }
         this.get('boundingBox').toggleClass('open', val);
-    },
-
-    /**
-     * Validates the value of `items` attribute.
-     *
-     * @method _validateItems
-     * @param {Object} val
-     * @protected
-     * @return {Boolean} The result of the validation
-     */
-    _validateItems: function(val) {
-        return A.Lang.isArray(val) || A.instanceOf(val, A.NodeList);
     }
-
 }, {
 
     /**
@@ -375,44 +273,6 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
         bringToTop: {
             validator: A.Lang.isBoolean,
             value: true
-        },
-
-        /**
-         * Defines the keyboard configuration object for
-         * `Plugin.NodeFocusManager`.
-         *
-         * @attribute focusmanager
-         * @default {
-         *     descendants: 'li > a',
-         *     keys: {
-         *         next: 'down:40',
-         *         previous: 'down:38'
-         *     },
-         *     circular: false
-         * }
-         * @type {Object}
-         */
-        focusmanager: {
-            value: {
-                descendants: 'li > a',
-                keys: {
-                    next: 'down:40',
-                    previous: 'down:38'
-                },
-                circular: false
-            },
-            writeOnce: 'initOnly'
-        },
-
-        /**
-         * Holds a NodeList containing the menu items.
-         *
-         * @attribute items
-         * @type {NodeList}
-         */
-        items: {
-            setter: '_setItems',
-            validator: '_validateItems'
         },
 
         /**
@@ -461,17 +321,6 @@ A.Dropdown = A.Base.create('dropdown', A.Widget, [
         triggerToggleFn: {
             value: 'toggleContent'
         }
-    },
-
-    /**
-     * Object hash, defining how attribute values have to be parsed from markup.
-     *
-     * @property HTML_PARSER
-     * @type {Object}
-     * @static
-     */
-    HTML_PARSER: {
-        items: ['> li']
     },
 
     /**

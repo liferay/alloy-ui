@@ -6,6 +6,11 @@
     <title></title>
     <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
     <script src="../../build/aui/aui.js"></script>
+    <style>
+        .dropdown-menu {
+            padding: 5px;
+        }
+    </style>
 </head>
 <body>
     <h1>AlloyUI - Dropdown</h1>
@@ -15,17 +20,16 @@
                 <ul class="nav navbar-nav">
                     <li id="dropdown" class="dropdown">
                         <a id="trigger" href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <div>Hi! I'm a dropdown!</div>
+                            <div>Hi! I'm a dropdown!</div>
+                            <div>Hi! I'm a dropdown!</div>
+                        </ul>
                     </li>
                     <li id="stick" class="dropdown">
                         <a href="#" id="drop2" class="dropdown-toggle" data-toggle="dropdown">Stick <b class="caret"></b></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a role="menuitem" tabindex="-1" href="#">I only close on escape</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a role="menuitem" tabindex="-1" href="#">Some other link</a>
-                            </li>
+                            I only close on escape
                         </ul>
                     </li>
                 </ul>
@@ -36,43 +40,20 @@
 
     YUI({ filter: 'raw' }).use('aui-dropdown', function(Y) {
 
-        var dropdown = new Y.Dropdown({
+        new Y.Dropdown({
             boundingBox: '#dropdown',
+            contentBox: '#dropdown',
             trigger: '#trigger',
-            items: [
-                {
-                    id: 'first_i',
-                    content: '<a role="menuitem" tabindex="-1">Close on click outside</a>'
-                },
-                {
-                    id: 'second_i',
-                    content: '<a role="menuitem" tabindex="-1" >Close on escape</a>'
-                },
-                {
-                    divider: true
-                },
-                {
-                    id: 'third_i',
-                    content: '<a href="#" role="menuitem">I can fire a DOM event</a>'
-                }
-            ],
             render: true
         });
 
         new Y.Dropdown({
             boundingBox: '#stick',
-            contentBox: '#stick ul',
+            contentBox: '#stick',
             hideOnClickOutSide: false,
             trigger: '#stick .dropdown-toggle',
             render: true
         });
-
-        dropdown.get('boundingBox').delegate('click', function(event) {
-            switch (event.currentTarget.get('id')) {
-                case 'third_i':
-                    Y.log('Clicked third_i.');
-            }
-        }, 'li');
 
     });
     </script>

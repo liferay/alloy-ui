@@ -120,6 +120,13 @@ YUI.add('aui-menu-tests', function(Y) {
             this._createMenu();
 
             Y.Assert.areEqual(
+                0,
+                this._menu.get('boundingBox').all('.menu-item').size(),
+                'The menu should not be rendered until it\'s open for the first time'
+            );
+
+            this._menu.open();
+            Y.Assert.areEqual(
                 5,
                 this._menu.get('boundingBox').all('.menu-item').size(),
                 'The menu should have been rendered with its 4 menu items'
@@ -175,6 +182,7 @@ YUI.add('aui-menu-tests', function(Y) {
 
             this._stubViewportSize(false);
             this._createMenu();
+            this._menu.open();
 
             item = this._menu.get('items')[0];
             item2 = this._menu.get('items')[1];
@@ -225,6 +233,7 @@ YUI.add('aui-menu-tests', function(Y) {
 
             this._stubViewportSize(false);
             this._createMenu();
+            this._menu.open();
 
             item = this._menu.get('items')[0];
             itemNode = item.get('node');
@@ -248,6 +257,8 @@ YUI.add('aui-menu-tests', function(Y) {
 
             this._stubViewportSize(true);
             this._createMenu();
+            this._menu.open();
+
             menuNode = this._menu.get('boundingBox');
 
             Y.Assert.isNull(
@@ -318,6 +329,7 @@ YUI.add('aui-menu-tests', function(Y) {
 
             instance._stubViewportSize(true);
             this._createMenu();
+            this._menu.open();
 
             item = this._menu.get('items')[0];
             itemNode = item.get('node');
@@ -343,6 +355,7 @@ YUI.add('aui-menu-tests', function(Y) {
                 mock = new Y.Mock();
 
             this._createMenu();
+            this._menu.open();
 
             item = this._menu.get('items')[1];
             itemNode = item.get('node');
@@ -456,6 +469,7 @@ YUI.add('aui-menu-tests', function(Y) {
 
             this._stubViewportSize(true);
             this._createMenu();
+            this._menu.open();
 
             item = this._menu.get('items')[0];
             itemNode = item.get('node');
@@ -608,6 +622,7 @@ YUI.add('aui-menu-tests', function(Y) {
 
         'should ignore requests to remove items at invalid positions': function() {
             this._createMenu();
+            this._menu.open();
 
             this._menu.removeItemAtIndex(-1);
             Y.Assert.areEqual(

@@ -112,6 +112,7 @@ A.MenuItem = A.Base.create('menu-item', A.Base, [A.WidgetShortcut], {
         var submenu = this.get('submenu');
 
         if (submenu) {
+            submenu.set('open', false);
             this.get('node').removeClass(CSS_MENU_ITEM_SUBMENU_OPEN);
         }
     },
@@ -133,7 +134,14 @@ A.MenuItem = A.Base.create('menu-item', A.Base, [A.WidgetShortcut], {
      * @return {Boolean}
      */
     isSubmenuOpen: function() {
-        return this.get('node').hasClass(CSS_MENU_ITEM_SUBMENU_OPEN);
+        var submenu = this.get('submenu');
+
+        if (submenu) {
+            return submenu.get('open');
+        }
+        else {
+            return false;
+        }
     },
 
     /**
@@ -148,6 +156,8 @@ A.MenuItem = A.Base.create('menu-item', A.Base, [A.WidgetShortcut], {
 
         if (submenu && !this.get('disabled') && !this.isSubmenuOpen()) {
             this._renderSubmenu();
+
+            submenu.set('open', true);
             this.get('node').addClass(CSS_MENU_ITEM_SUBMENU_OPEN);
 
             if (align) {
@@ -198,6 +208,7 @@ A.MenuItem = A.Base.create('menu-item', A.Base, [A.WidgetShortcut], {
 
         if (node.hasClass(CSS_MENU_ITEM_SUBMENU_OPEN)) {
             this._renderSubmenu();
+            submenu.set('open', true);
         }
         this._renderSubmenuArrow();
 
@@ -279,6 +290,7 @@ A.MenuItem = A.Base.create('menu-item', A.Base, [A.WidgetShortcut], {
         this._uiSetDivider(this.get('divider'));
 
         node.setData('menu-item', this);
+        node.setAttribute('role', 'presentation');
     },
 
     /**
@@ -365,6 +377,7 @@ A.MenuItem = A.Base.create('menu-item', A.Base, [A.WidgetShortcut], {
 
         if (contentNode) {
             contentNode.setHTML(content);
+            contentNode.setAttribute('role', 'menuitem');
         }
     },
 

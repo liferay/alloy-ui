@@ -6,6 +6,10 @@
     position: relative;
 }
 
+.menu.open > .menu-content > .dropdown-menu {
+    display: block;
+}
+
 .menu .menu-item {
     cursor: pointer;
     position: relative;
@@ -34,6 +38,13 @@
 .menu .menu-item.disabled .menu-item-content a:hover {
     background-color: transparent;
     cursor: not-allowed;
+}
+
+.menu .menu-item .menu-item-content .glyphicon {
+    float: left;
+    font-size: 10px;
+    opacity: 0.8;
+    padding: 6px 0 6px 5px;
 }
 
 .menu .menu-item .menu-item-submenu-arrow {
@@ -73,10 +84,6 @@
     display: block;
 }
 
-.menu .menu-item .menu-item-submenu .menu {
-    position: fixed;
-}
-
 .menu .menu-item .menu-item-submenu .menu .menu-content {
     position: static;
 }
@@ -85,7 +92,7 @@
     position: static;
 }
 
-.menu.menu-inline .menu-item .menu-item-submenu .menu .menu-content {
+.menu.menu-inline .menu-item .menu-item-submenu > .menu.open > .menu-content {
     background-color: transparent;
     border: 1px solid #ccc;
     border-left: 0;
