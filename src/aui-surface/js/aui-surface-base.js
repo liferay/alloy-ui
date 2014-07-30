@@ -62,7 +62,7 @@ A.Surface = A.Base.create('surface', A.Base, [], {
      * @return {Node}
      */
     addContent: function(screenId, opt_content) {
-        if (!opt_content) {
+        if (!opt_content && opt_content !== '') {
             return this.getChild(screenId);
         }
 

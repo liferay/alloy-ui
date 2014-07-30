@@ -739,15 +739,16 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
     ATTRS: {
         /**
          * Defines the default document title in case the screen doesn't have
-         * any `title`.
+         * any `title`. If null, the default browser behavior for setting the
+         * title is used for when there's no title HTML tag on the document.
          *
          * @attribute defaultTitle
-         * @default Home
-         * @type {String}
+         * @default null
+         * @type {String|null}
          */
         defaultTitle: {
-            validator: A.Lang.isString,
-            value: 'Home'
+            validator: A.Lang.isString || A.Lang.isNull,
+            value: null
         },
 
         /**
