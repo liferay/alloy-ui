@@ -38,6 +38,10 @@ YUI.add('tests-aui-surface-utils', function(Y) {
             return path.substr(0, path.lastIndexOf('/'));
         },
 
+        getOriginalDefaultTitle: function() {
+            return this.originalDefaultTitle;
+        },
+
         getSurfaceContent: function(surfaceId) {
             return Y.one('#' + surfaceId).one('div').get('text').trim();
         }
@@ -104,6 +108,18 @@ YUI.add('tests-aui-surface-utils', function(Y) {
         ATTRS: {
             title: {
                 value: 'delayed'
+            }
+        }
+    });
+
+    Y.EmptyScreen = Y.Base.create('emptyScreen', Y.Screen, [], {
+        getSurfaceContent: function() {
+            return '';
+        }
+    }, {
+        ATTRS: {
+            title: {
+                value: ''
             }
         }
     });
