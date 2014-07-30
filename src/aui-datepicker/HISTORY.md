@@ -4,4 +4,5 @@
 
 ## @VERSION@
 
+* [AUI-1177](https://issues.liferay.com/browse/AUI-1177) Date disappears from input textbox when choosing the minimumDate from the DatePicker
 * [AUI-1169](https://issues.liferay.com/browse/AUI-1169) DatePicker does not disappear on blur of trigger
