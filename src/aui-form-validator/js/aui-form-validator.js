@@ -40,6 +40,7 @@ var Lang = A.Lang,
 	FIELD_CONTAINER = 'fieldContainer',
 	FIELD_STRINGS = 'fieldStrings',
 	FOCUS = 'focus',
+	LABEL_CSS_CLASS = 'labelCssClass',
 	MESSAGE = 'message',
 	MESSAGE_CONTAINER = 'messageContainer',
 	NAME = 'name',
@@ -221,6 +222,11 @@ var FormValidator = A.Component.create({
 		fieldStrings: {
 			value: {},
 			validator: isObject
+		},
+
+		labelCssClass: {
+			validator: isString,
+			value: 'control-label'
 		},
 
 		messageContainer: {
@@ -636,7 +642,7 @@ var FormValidator = A.Component.create({
 				if (nextSibling && nextSibling.get('nodeType') === 3) {
 					ancestor = field.ancestor();
 
-					if (ancestor && ancestor.hasClass('control-label')) {
+					if (ancestor && ancestor.hasClass(instance.get(LABEL_CSS_CLASS))) {
 						target = nextSibling;
 					}
 				}
@@ -827,7 +833,6 @@ var FormValidator = A.Component.create({
 				}
 			}
 		},
-
 
 		_uiSetValidateOnBlur: function(val) {
 			var instance = this,
