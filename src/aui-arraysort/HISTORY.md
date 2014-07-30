@@ -12,3 +12,5 @@ No registries yet.
 * [AUI-1273](https://issues.liferay.com/browse/AUI-1273) Describe source code changes in HISTORY.md
 
 ## [2.5.0](https://github.com/liferay/alloy-ui/releases/tag/2.5.0)
+
+No changes.
