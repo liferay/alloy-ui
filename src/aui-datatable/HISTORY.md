@@ -7,8 +7,8 @@
 ## [3.0.0pr2](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr2)
 
 * [AUI-1288](https://issues.liferay.com/browse/AUI-1288) Datatable Property List errors when 'enter' key is pressed when no active cell
-* [AUI-1300](https://issues.liferay.com/browse/AUI-1300) Make aui-datatable work on touch devices
 * [AUI-1342](https://issues.liferay.com/browse/AUI-1342) A User is unable to deselect their previous selection in a Datatable with Selection and Highlight
+* [AUI-1300](https://issues.liferay.com/browse/AUI-1300) Make aui-datatable work on touch devices
 * [AUI-1441](https://issues.liferay.com/browse/AUI-1441) Minimize property lookups for multiple A.Escape calls to use AEscape
 * [AUI-1383](https://issues.liferay.com/browse/AUI-1383) Decouple datatable subcomponents
 * [AUI-1170](https://issues.liferay.com/browse/AUI-1170) Datatable highlight should fit to element on browser window resize, also when the datatable container has overflow, highlighting should follow element.
