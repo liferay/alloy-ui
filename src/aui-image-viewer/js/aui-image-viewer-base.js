@@ -787,7 +787,7 @@ A.ImageViewerBase = A.Base.create(
                         sources.push(this.getAttribute('src'));
                     }
                     else {
-                        sources.push(this.getStyle('backgroundImage').slice(4, -1));
+                        sources.push(A.Lang.String.removeAll(this.getStyle('backgroundImage').slice(4, -1), '"'));
                     }
                 });
 
