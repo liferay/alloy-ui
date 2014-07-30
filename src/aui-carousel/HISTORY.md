@@ -10,11 +10,14 @@ No registries yet.
 
 * [AUI-1455](https://issues.liferay.com/browse/AUI-1455) Change listener method names on ImageViewer modules
 * [AUI-1305](https://issues.liferay.com/browse/AUI-1305) Make aui-image-gallery responsive
+
+## [3.0.0pr1](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr1)
+
 * [AUI-1299](https://issues.liferay.com/browse/AUI-1299) Make aui-carousel responsive
 * [AUI-1328](https://issues.liferay.com/browse/AUI-1328) Move automated tasks from Grunt to Gulp
 * [AUI-1316](https://issues.liferay.com/browse/AUI-1316) Can't pause carousel through button if pauseOnHover is true
 * [AUI-1292](https://issues.liferay.com/browse/AUI-1292) Unit test for aui-carousel module
-* [AUI-1287](https://issues.liferay.com/browse/AUI-1287) Apply CSS beautifier (grunt format) 
+* [AUI-1287](https://issues.liferay.com/browse/AUI-1287) Wrong css formatting when running "grunt format"
 * [AUI-1174](https://issues.liferay.com/browse/AUI-1174) Validate source code with JSHint
 * [AUI-1267](https://issues.liferay.com/browse/AUI-1267) Move CSS classes from Alloy Bootstrap to AlloyUI
 * [AUI-1273](https://issues.liferay.com/browse/AUI-1273) Describe source code changes in HISTORY.md
