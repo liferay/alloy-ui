@@ -175,9 +175,8 @@ var ProgressBar = A.Component.create({
          * @default 1
          * @type Number
          */
-        tabindex: {
-            value: 1,
-            validator: isNumber
+        tabIndex: {
+            value: 1
         },
 
         /**
@@ -264,21 +263,16 @@ var ProgressBar = A.Component.create({
          * @protected
          */
         syncUI: function() {
-            var instance = this,
-                boundingBox = instance.get('boundingBox');
-
-            boundingBox.setAttribute('tabindex', instance.get('tabindex'));
+            var instance = this;
 
             if (instance.get('useARIA')) {
-                var attributes = {
-                    value: 'valuenow',
-                    max: 'valuemax',
-                    min: 'valuemin',
-                    orientation: 'orientation'
-                };
-
                 instance.plug(A.Plugin.Aria, {
-                    attributes: attributes,
+                    attributes: {
+                        value: 'valuenow',
+                        max: 'valuemax',
+                        min: 'valuemin',
+                        orientation: 'orientation'
+                    },
                     roleName: 'progressbar'
                 });
             }
