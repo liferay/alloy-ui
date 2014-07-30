@@ -51,6 +51,17 @@ var Video = A.Component.create({
     ATTRS: {
 
         /**
+         * Sets the `aria-label` for Video.
+         *
+         * @attribute label
+         * @type String
+         */
+        label: {
+            value: 'Toggle play/pause with spacebar. Rewind with left arrow. Fast forward with right arrow. Increase volume with up arrow. Decrease volume with down arrow.',
+            validator: Lang.isString
+        },
+
+        /**
          * URL used by Video to play.
          *
          * @attribute url
@@ -139,6 +150,29 @@ var Video = A.Component.create({
          */
         render: {
             value: true
+        },
+
+        /**
+         * Sets the `aria-role` for Video.
+         *
+         * @attribute role
+         * @type String
+         */
+        role: {
+            value: 'application',
+            validator: Lang.isString
+        },
+
+        /**
+         * Boolean indicating if use of the WAI-ARIA Roles and States
+         * should be enabled.
+         *
+         * @attribute useARIA
+         * @default true
+         * @type Boolean
+         */
+        useARIA: {
+            value: true
         }
     },
 
@@ -207,6 +241,21 @@ var Video = A.Component.create({
 
             instance.publish('play');
             instance.publish('pause');
+        },
+
+        syncUI: function() {
+            var instance = this;
+
+            if (instance.get('useARIA')) {
+                instance.plug(A.Plugin.Aria, {
+                    attributeNode: instance.get('contentBox'),
+                    attributes: {
+                        label: 'label'
+                    },
+                    roleName: instance.get('role'),
+                    roleNode: instance.get('contentBox')
+                });
+            }
         },
 
         /**
