@@ -76,17 +76,6 @@ var AudioImpl = A.Component.create({
         },
 
         /**
-         * Sets the `aria-label` for Audio.
-         *
-         * @attribute label
-         * @type String
-         */
-        label: {
-            value: 'Toggle play/pause with spacebar. Rewind with left arrow. Fast forward with right arrow. Increase volume with up arrow. Decrease volume with down arrow.',
-            validator: Lang.isString
-        },
-
-        /**
          * URL (on .ogg format) used by Audio to play.
          *
          * @attribute oggUrl
@@ -261,9 +250,6 @@ var AudioImpl = A.Component.create({
 
             if (instance.get('useARIA')) {
                 instance.plug(A.Plugin.Aria, {
-                    attributes: {
-                        label: 'label'
-                    },
                     roleName: instance.get('role')
                 });
             }
