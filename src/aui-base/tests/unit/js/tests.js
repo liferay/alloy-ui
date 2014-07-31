@@ -1,6 +1,7 @@
 YUI.add('aui-base-tests', function(Y) {
 
     var escapedEntities = ['&amp;', '&lt;', '&gt;', '&#034;', '&#039;', '&#047;', '&#096;'],
+        numbersToPad = [1, 10, 2.5, 6.789, 123.4, 3000.3102, .5, .10001, 500000.0],
         symbolEntities = ['&','<','>','"','\'','/','`'],
         uncamelizedStrings = [
             'lorem-ipsum-dolor-sit-amet',
@@ -14,6 +15,15 @@ YUI.add('aui-base-tests', function(Y) {
         suite = new Y.Test.Suite('aui-base');
 
     suite.add(new Y.Test.Case({
+
+        getPrecisionPrePostDecimal: function(number) {
+            var split = number.toString().split('.');
+
+            return {
+                pre: split[0].length,
+                post: split[1] ? split[1].length : 0
+            };
+        },
 
         'should unescape symbols as HTML entities': function() {
             var escaped = [];
@@ -71,6 +81,30 @@ YUI.add('aui-base-tests', function(Y) {
                     else {
                         Assert.areSame(character.toUpperCase(), character);
                     }
+                }
+            }
+        },
+
+        'should pad numbers correctly': function() {
+            for (var i = 0; i < numbersToPad.length; i++) {
+                var toBePadded = numbersToPad[i],
+                    toBePaddedLengths = this.getPrecisionPrePostDecimal(toBePadded),
+                    length = null,
+                    padded = null,
+                    paddedLengths = null
+                    precision = null;
+
+                for (var j = 0; j < 20; j++) {
+                    length = Math.max(toBePaddedLengths.post, j);
+                    precision = Math.max(toBePaddedLengths.pre, j);
+                    padded = Y.Lang.String.padNumber(toBePadded, precision, length);
+                    paddedLengths = this.getPrecisionPrePostDecimal(padded);
+
+                    Assert.isTrue(Y.Lang.isString(padded));
+                    Assert.isTrue(Y.Lang.isNumber(parseFloat(toBePadded)));
+                    Assert.areEqual(toBePadded, parseFloat(padded));
+                    Assert.areEqual(paddedLengths.pre, precision);
+                    Assert.areEqual(paddedLengths.post, length);
                 }
             }
         }
