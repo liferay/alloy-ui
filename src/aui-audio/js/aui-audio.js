@@ -52,6 +52,17 @@ var AudioImpl = A.Component.create({
     ATTRS: {
 
         /**
+         * Sets the `aria-label` for Audio.
+         *
+         * @attribute label
+         * @type String
+         */
+        label: {
+            value: 'Toggle play/pause with spacebar. Rewind with left arrow. Fast forward with right arrow. Increase volume with up arrow. Decrease volume with down arrow.',
+            validator: Lang.isString
+        },
+
+        /**
          * URL used by Audio to play.
          *
          * @attribute url
@@ -72,6 +83,17 @@ var AudioImpl = A.Component.create({
          */
         oggUrl: {
             value: '',
+            validator: Lang.isString
+        },
+
+        /**
+         * Sets the `aria-role` for Audio.
+         *
+         * @attribute role
+         * @type String
+         */
+        role: {
+            value: 'application',
             validator: Lang.isString
         },
 
@@ -159,6 +181,18 @@ var AudioImpl = A.Component.create({
         render: {
             value: true,
             validator: Lang.isBoolean
+        },
+
+        /**
+         * Boolean indicating if use of the WAI-ARIA Roles and States
+         * should be enabled.
+         *
+         * @attribute useARIA
+         * @default true
+         * @type Boolean
+         */
+        useARIA: {
+            value: true
         }
     },
 
@@ -220,6 +254,19 @@ var AudioImpl = A.Component.create({
                 pause: instance._onPause,
                 play: instance._onPlay
             });
+        },
+
+        syncUI: function() {
+            var instance = this;
+
+            if (instance.get('useARIA')) {
+                instance.plug(A.Plugin.Aria, {
+                    attributes: {
+                        label: 'label'
+                    },
+                    roleName: instance.get('role')
+                });
+            }
         },
 
         /**

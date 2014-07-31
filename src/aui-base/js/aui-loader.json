@@ -70,6 +70,7 @@
     },
     "aui-audio": {
         "requires": [
+            "aui-aria",
             "aui-node",
             "aui-component",
             "querystring-stringify-simple"
