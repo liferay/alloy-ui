@@ -14,5 +14,5 @@ No registries yet.
 
 * [AUI-1373](https://issues.liferay.com/browse/AUI-1178) Use a getter instead of setter for the AUI affix's offsetTop attribute, like offsetBottom
 * [AUI-1285](https://issues.liferay.com/browse/AUI-1285) Wait for the browser to handle scrollTo before running tests
-* [AUI-1178](https://issues.liferay.com/browse/AUI-1178) Function attributes should be called on getter in order to allow dynamic logic when the attribute is read
+* [AUI-1178](https://issues.liferay.com/browse/AUI-1178) Enable use a function as value to widget position
 * [AUI-1150](https://issues.liferay.com/browse/AUI-1150) Create Bootstrap's Affix module
