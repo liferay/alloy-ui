@@ -85,17 +85,6 @@ var Video = A.Component.create({
         },
 
         /**
-         * Sets the `aria-label` for Video.
-         *
-         * @attribute label
-         * @type String
-         */
-        label: {
-            value: 'Toggle play/pause with spacebar. Rewind with left arrow. Fast forward with right arrow. Increase volume with up arrow. Decrease volume with down arrow.',
-            validator: Lang.isString
-        },
-
-        /**
          * URL (on .ogv format) used by Video to play.
          *
          * @attribute ogvUrl
@@ -248,10 +237,6 @@ var Video = A.Component.create({
 
             if (instance.get('useARIA')) {
                 instance.plug(A.Plugin.Aria, {
-                    attributeNode: instance.get('contentBox'),
-                    attributes: {
-                        label: 'label'
-                    },
                     roleName: instance.get('role'),
                     roleNode: instance.get('contentBox')
                 });
