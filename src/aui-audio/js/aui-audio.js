@@ -52,6 +52,30 @@ var AudioImpl = A.Component.create({
     ATTRS: {
 
         /**
+         * Variables used by Flash player.
+         *
+         * @attribute flashVars
+         * @default {}
+         * @type Object
+         */
+        flashVars: {
+            value: {},
+            validator: Lang.isObject
+        },
+
+        /**
+         * An additional list of attributes.
+         *
+         * @attribute fixedAttributes
+         * @default {}
+         * @type Object
+         */
+        fixedAttributes: {
+            value: {},
+            validator: Lang.isObject
+        },
+
+        /**
          * Sets the `aria-label` for Audio.
          *
          * @attribute label
@@ -59,18 +83,6 @@ var AudioImpl = A.Component.create({
          */
         label: {
             value: 'Toggle play/pause with spacebar. Rewind with left arrow. Fast forward with right arrow. Increase volume with up arrow. Decrease volume with down arrow.',
-            validator: Lang.isString
-        },
-
-        /**
-         * URL used by Audio to play.
-         *
-         * @attribute url
-         * @default ''
-         * @type String
-         */
-        url: {
-            value: '',
             validator: Lang.isString
         },
 
@@ -87,6 +99,19 @@ var AudioImpl = A.Component.create({
         },
 
         /**
+         * If `true` the render phase will be automatically invoked
+         * preventing the `.render()` manual call.
+         *
+         * @attribute render
+         * @default true
+         * @type Boolean
+         */
+        render: {
+            value: true,
+            validator: Lang.isBoolean
+        },
+
+        /**
          * Sets the `aria-role` for Audio.
          *
          * @attribute role
@@ -94,18 +119,6 @@ var AudioImpl = A.Component.create({
          */
         role: {
             value: 'application',
-            validator: Lang.isString
-        },
-
-        /**
-         * The type of audio.
-         *
-         * @attribute type
-         * @default mp3
-         * @type String
-         */
-        type: {
-            value: 'mp3',
             validator: Lang.isString
         },
 
@@ -147,40 +160,27 @@ var AudioImpl = A.Component.create({
         },
 
         /**
-         * An additional list of attributes.
+         * The type of audio.
          *
-         * @attribute fixedAttributes
-         * @default {}
-         * @type Object
+         * @attribute type
+         * @default mp3
+         * @type String
          */
-        fixedAttributes: {
-            value: {},
-            validator: Lang.isObject
+        type: {
+            value: 'mp3',
+            validator: Lang.isString
         },
 
         /**
-         * Variables used by Flash player.
+         * URL used by Audio to play.
          *
-         * @attribute flashVars
-         * @default {}
-         * @type Object
+         * @attribute url
+         * @default ''
+         * @type String
          */
-        flashVars: {
-            value: {},
-            validator: Lang.isObject
-        },
-
-        /**
-         * If `true` the render phase will be automatically invoked
-         * preventing the `.render()` manual call.
-         *
-         * @attribute render
-         * @default true
-         * @type Boolean
-         */
-        render: {
-            value: true,
-            validator: Lang.isBoolean
+        url: {
+            value: '',
+            validator: Lang.isString
         },
 
         /**
