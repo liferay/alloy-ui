@@ -996,10 +996,8 @@ var FormValidator = A.Component.create({
          */
         _defErrorFieldFn: function(event) {
             var instance = this,
-                ancestor,
                 field,
                 label,
-                nextSibling,
                 stackContainer,
                 target,
                 validator;
@@ -1015,21 +1013,8 @@ var FormValidator = A.Component.create({
 
                 stackContainer = instance.getFieldStackErrorContainer(field);
 
-                nextSibling = field.get('nextSibling');
-
-                if (nextSibling && nextSibling.get('nodeType') === 3) {
-                    ancestor = field.ancestor();
-
-                    if (ancestor) {
-                        if (ancestor.hasClass(label)) {
-                            target = nextSibling;
-                        }
-                        else if (A.FormValidator.isCheckable(target)) {
-                            label = ancestor.previous('.' + label);
-
-                            target = label;
-                        }
-                    }
+                if (A.FormValidator.isCheckable(target)) {
+                    target = field.ancestor('.' + CSS_HAS_ERROR).get('lastChild');
                 }
 
                 // Use aria-describedby to provide extra details for filling input field
@@ -1119,7 +1104,9 @@ var FormValidator = A.Component.create({
          */
         _findFieldLabel: function(field) {
             var labelCssClass = '.' + this.get('labelCssClass'),
-                label =  A.one('label[for=' + field.get('id') + ']') || field.ancestor().previous(labelCssClass);
+                label =  A.one('label[for=' + field.get('id') + ']') ||
+                    field.ancestor().previous(labelCssClass) ||
+                    field.ancestor('.' + CSS_HAS_ERROR).one(labelCssClass);
 
             if (label) {
                 return label.get('text');
