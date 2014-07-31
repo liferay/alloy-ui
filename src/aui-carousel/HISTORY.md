@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-No registries yet.
+* [AUI-1578](https://issues.liferay.com/browse/AUI-1578) AUI Carousel can be temporarily hidden if navigated between slides during transition
 
 ## [3.0.0pr2](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr2)
 

@@ -355,19 +355,6 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
     },
 
     /**
-     * Fired on the `responsive` event.
-     *
-     * @method _onResponsive
-     * @protected
-     */
-    _onResponsive: function() {
-        this.get('boundingBox').all('.image-viewer-base-image-list, .image-viewer-base-image').setStyles({
-            height: '',
-            width: ''
-        });
-    },
-
-    /**
      * Called when the mouse enters the carousel with pauseOnHover set to
      * true. Pauses the slideshow unless it was already paused.
      *
