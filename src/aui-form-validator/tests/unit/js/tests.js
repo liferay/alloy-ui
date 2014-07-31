@@ -65,13 +65,13 @@ YUI.add('module-tests', function(Y) {
          * @tests AUI-965
          */
         'test submit form': function() {
-            var buttonSubmit,
-                elementWithoutError,
-                form;
+            var elementWithoutError,
+                forms;
 
-            form = Y.one('#myForm');
-
-            form.simulate('submit');
+            forms = Y.all('form');
+            forms.each(function (form) {
+                form.simulate('submit');
+            });
 
             elementWithoutError = Y.one('.control-group:not(.error)');
 
@@ -99,6 +99,10 @@ YUI.add('module-tests', function(Y) {
             textNode = inputNode.get('nextSibling');
 
             Y.Assert.isTrue(textNode.get('nodeType') === 3, 'Next to the input should be a text node');
+
+            if (Y.FormValidator.isCheckable(inputNode)) {
+                textNode = inputNode.ancestor('.control-group').get('lastChild').previous();
+            }
 
             Y.Assert.isTrue(
                 textNode.next().hasClass('form-validator-stack'),
