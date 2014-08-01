@@ -5,6 +5,14 @@ YUI.add('aui-menu-tests', function(Y) {
     suite.add(new Y.Test.Case({
         name: 'Menu Tests',
 
+        _should: {
+            // Ignore the following tests in mobile devices, as the features they
+            // test don't exist in those.
+            ignore: {
+                'should trigger item selection via shortcuts': Y.UA.mobile
+            }
+        },
+
         init: function() {
             this._originalViewportRegion = Y.DOM.viewportRegion;
         },
@@ -473,6 +481,31 @@ YUI.add('aui-menu-tests', function(Y) {
                 this._menu.get('items').length,
                 'Menu should have 2 items'
             );
+        },
+
+        'should trigger item selection via shortcuts': function() {
+            var item,
+                mock = new Y.Mock();
+
+            this._createMenu();
+            item = this._menu.get('items')[1];
+
+            mock.onItemSelected = function(event) {
+                Y.Assert.areSame(
+                    item,
+                    event.item,
+                    'Items should match'
+                );
+            };
+            Y.Mock.expect(mock, {
+                callCount: 1,
+                method: 'onItemSelected',
+                args: [Y.Mock.Value.Object]
+            });
+            this._menu.once('itemSelected', mock.onItemSelected);
+
+            item.fire('shortcut');
+            Y.Mock.verify(mock);
         }
     }));
 

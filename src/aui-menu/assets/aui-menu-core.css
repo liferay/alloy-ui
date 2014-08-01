@@ -7,6 +7,7 @@
 }
 
 .menu .menu-item {
+    cursor: pointer;
     position: relative;
 }
 
@@ -23,7 +24,6 @@
 
 .menu .menu-item .menu-item-content a:hover {
     color: #262626;
-    cursor: pointer;
     text-decoration: none;
 }
 
@@ -104,4 +104,14 @@
 
 .menu.menu-inline .menu-item .menu-item-submenu .menu .menu-content .menu-item-content {
     padding-left: 15px;
+}
+
+.menu .menu-item.menu-item-has-shortcut > .menu-item-content {
+    padding-right: 60px;
+}
+
+.menu .menu-item .menu-item-shortcut {
+    color: #aaa;
+    float: right;
+    padding: 3px;
 }

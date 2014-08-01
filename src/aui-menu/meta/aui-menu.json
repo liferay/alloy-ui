@@ -21,7 +21,8 @@
             "base-build",
             "node-base",
             "aui-classnamemanager",
-            "aui-node"
+            "aui-node",
+            "aui-widget-shortcut"
         ]
     }
 }

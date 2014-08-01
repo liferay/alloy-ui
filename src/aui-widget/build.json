@@ -37,6 +37,12 @@
             ]
         },
 
+        "aui-widget-shortcut": {
+            "jsfiles": [
+                "js/aui-widget-shortcut.js"
+            ]
+        },
+
         "aui-widget-transition": {
             "jsfiles": [
                 "js/aui-widget-transition.js"

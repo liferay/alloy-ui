@@ -51,6 +51,12 @@
         ]
     },
 
+    "aui-widget-shortcut": {
+        "requires": [
+            "base"
+        ]
+    },
+
     "aui-widget-transition": {
         "requires": [
             "transition"

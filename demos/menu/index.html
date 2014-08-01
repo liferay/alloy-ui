@@ -67,6 +67,7 @@
     </div>
 
     <h1>From Javascript</h1>
+    <span>Last Item Clicked: <span id="message"></span></span>
     <div id="demo"></div>
 
     <script>
@@ -92,7 +93,7 @@
                 box.setStyle('backgroundColor', color);
             });
 
-            new Y.Menu({
+            var menu2 = new Y.Menu({
                 items: [
                     {
                         content: '<a>Menu Item 1</a>',
@@ -128,7 +129,19 @@
                         }
                     },
                     {
-                        content: '<a>Menu Item 2</a>'
+                        content: '<a>Menu Item 2</a>',
+                        shortcut: {
+                            macintosh: {
+                                metaKey: true,
+                                keys: ['B', 'b'],
+                                text: '⌘B'
+                            },
+                            defaultShortcut: {
+                                shiftKey: true,
+                                keys: ['B', 'b'],
+                                text: 'Shift + B'
+                            }
+                        }
                     },
                     {
                         divider: true
@@ -139,6 +152,10 @@
                     }
                 ]
             }).render('#demo');
+
+            menu2.after('itemSelected', function(event) {
+                Y.one('#message').text(event.item.get('content'));
+            });
         });
     </script>
 </body>

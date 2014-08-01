@@ -12,14 +12,17 @@ var ALIGN_THRESHOLD = 25,
     CSS_MENU_CONTENT = A.getClassName('menu', 'content'),
     CSS_MENU_ITEM = A.getClassName('menu', 'item'),
     CSS_MENU_ITEM_CONTENT = A.getClassName('menu', 'item', 'content'),
+    CSS_MENU_ITEM_HAS_SHORTCUT = A.getClassName('menu', 'item', 'has', 'shortcut'),
+    CSS_MENU_ITEM_SHORTCUT = A.getClassName('menu', 'item', 'shortcut'),
     CSS_MENU_ITEM_SUBMENU = A.getClassName('menu', 'item', 'submenu'),
     CSS_MENU_ITEM_SUBMENU_ARROW = A.getClassName('menu', 'item', 'submenu', 'arrow'),
     CSS_MENU_ITEM_SUBMENU_OPEN = A.getClassName('menu', 'item', 'submenu', 'open'),
 
     EVENT_SUBMENU_ITEM_SELECTED = 'submenuItemSelected',
 
-    TPL_MENU_ITEM = '<li class="' + CSS_MENU_ITEM + '">' +
+    TPL_MENU_ITEM = '<li class="' + CSS_MENU_ITEM + ' clearfix">' +
         '<div class="' + CSS_MENU_ITEM_CONTENT + '"></div></li>',
+    TPL_MENU_ITEM_SHORTCUT = '<div class="' + CSS_MENU_ITEM_SHORTCUT + '"></div>',
     TPL_MENU_ITEM_SUBMENU = '<div class="' + CSS_MENU_ITEM_SUBMENU + '"></div>',
     TPL_MENU_ITEM_SUBMENU_ARROW = '<div class="' + CSS_MENU_ITEM_SUBMENU_ARROW + '">' +
         '<span class="glyphicon glyphicon-play"></span><span class="caret"></span></div>';
@@ -39,7 +42,7 @@ var ALIGN_THRESHOLD = 25,
  *     properties.
  * @constructor
  */
-A.MenuItem = A.Base.create('menu-item', A.Base, [], {
+A.MenuItem = A.Base.create('menu-item', A.Base, [A.WidgetShortcut], {
     /**
      * Construction logic executed during instantiation. Lifecycle.
      *
@@ -52,7 +55,8 @@ A.MenuItem = A.Base.create('menu-item', A.Base, [], {
                 contentChange: this._afterContentChange,
                 disabledChange: this._afterDisabledChange,
                 submenuChange: this._afterSubmenuChange
-            })
+            }),
+            A.after(this._afterUISetShortcut, this, '_uiSetShortcut')
         ];
 
         this._render();
@@ -211,6 +215,34 @@ A.MenuItem = A.Base.create('menu-item', A.Base, [], {
         this.fire(EVENT_SUBMENU_ITEM_SELECTED, {
             item: event.item
         });
+    },
+
+    /**
+     * Fired after the `_uiSetShortcut` method runs.
+     *
+     * @method _afterUISetShortcut
+     * @param {Boolean | Object} shortcut
+     * @protected
+     */
+    _afterUISetShortcut: function(shortcut) {
+        var node = this.get('node'),
+            shortcutNode = node.one('.' + CSS_MENU_ITEM_SHORTCUT);
+
+        this.get('node').toggleClass(CSS_MENU_ITEM_HAS_SHORTCUT, shortcut);
+
+        if (!shortcut) {
+            if (shortcutNode) {
+                shortcutNode.remove();
+            }
+        }
+        else {
+            if (!shortcutNode) {
+                shortcutNode = A.Node.create(TPL_MENU_ITEM_SHORTCUT);
+                this.get('node').prepend(shortcutNode);
+            }
+
+            shortcutNode.set('text', shortcut.text);
+        }
     },
 
     /**
@@ -427,6 +459,7 @@ A.MenuItem = A.Base.create('menu-item', A.Base, [], {
          * @type Boolean | Object | A.Menu
          */
         submenu: {
+            lazyAdd: false,
             setter: '_setSubmenu',
             validator: function(val) {
                 return val === false || A.Lang.isObject(val);

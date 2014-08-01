@@ -52,6 +52,7 @@ A.Menu = A.Base.create('menu', A.Widget, [
             this.after({
                 itemsChange: this._afterItemsChange,
                 layoutModeChange: this._afterLayoutModeChange,
+                'menu-item:shortcut': this._afterShorcut,
                 'menu-item:submenuItemSelected': this._afterSubmenuItemSelected
             }),
             A.on(this._onUISetXY, this, '_uiSetXY'),
@@ -166,6 +167,17 @@ A.Menu = A.Base.create('menu', A.Widget, [
             // they should only show up when hovering over an item.
             this.hideAllSubmenus();
         }
+    },
+
+    /**
+     * Fired after the `shortcut` event is triggered.
+     *
+     * @method _afterShorcut
+     * @param {EventFacade} event
+     * @protected
+     */
+    _afterShorcut: function(event) {
+        this._selectItem(event.target, event.type);
     },
 
     /**
@@ -377,6 +389,7 @@ A.Menu = A.Base.create('menu', A.Widget, [
          * @type Array
          */
         items: {
+            lazyAdd: false,
             setter: '_setItems',
             validator: function(val) {
                 return A.Lang.isArray(val) || A.instanceOf(val, A.NodeList);

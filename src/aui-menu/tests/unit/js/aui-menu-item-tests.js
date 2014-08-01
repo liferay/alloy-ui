@@ -5,6 +5,14 @@ YUI.add('aui-menu-item-tests', function(Y) {
     suite.add(new Y.Test.Case({
         name: 'Menu Item Tests',
 
+        _should: {
+            // Ignore the following tests in mobile devices, as the features they
+            // test don't exist in those.
+            ignore: {
+                'should render shortcut text': Y.UA.mobile
+            }
+        },
+
         tearDown: function() {
             if (this._menuItem) {
                 this._menuItem.destroy();
@@ -388,6 +396,60 @@ YUI.add('aui-menu-item-tests', function(Y) {
             Y.Mock.verify(mock);
 
             menu.destroy();
+        },
+
+        'should render shortcut text': function() {
+            var shortcutNode;
+
+            this._menuItem = new Y.MenuItem();
+
+            shortcutNode = this._menuItem.get('node').one('.menu-item-shortcut');
+            Y.Assert.isNull(
+                shortcutNode,
+                'There should be no shortcut node'
+            );
+
+            this._menuItem.set('shortcut', {
+                altKey: true,
+                keys: ['B', 'b'],
+                text: 'Alt + B'
+            });
+
+            shortcutNode = this._menuItem.get('node').one('.menu-item-shortcut');
+            Y.Assert.isNotNull(
+                shortcutNode,
+                'Shortcut node should have been rendered'
+            );
+            Y.Assert.areEqual(
+                this._menuItem.get('shortcut').text,
+                shortcutNode.get('text'),
+                'Shortcut text should have been rendered'
+            );
+
+            this._menuItem.set('shortcut', {
+                ctrlKey: true,
+                keys: ['B', 'b'],
+                text: 'Ctrl + B'
+            });
+            shortcutNode = this._menuItem.get('node').one('.menu-item-shortcut');
+
+            Y.Assert.isNotNull(
+                shortcutNode,
+                'Shortcut node should still be rendered'
+            );
+            Y.Assert.areEqual(
+                this._menuItem.get('shortcut').text,
+                shortcutNode.get('text'),
+                'Shortcut text should have been updated'
+            );
+
+            this._menuItem.set('shortcut', false);
+            shortcutNode = this._menuItem.get('node').one('.menu-item-shortcut');
+
+            Y.Assert.isNull(
+                shortcutNode,
+                'Shortcut node should have been removed'
+            );
         }
     }));
 
