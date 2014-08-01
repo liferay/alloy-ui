@@ -26,7 +26,7 @@ var DataTableSelection = function() {};
 
 /**
  * Static property used to define the default attribute
- * configuration for the `DataTableSelection`.
+ * configuration for the `A.DataTableSelection`.
  *
  * @property ATTRS
  * @type Object
@@ -35,7 +35,7 @@ var DataTableSelection = function() {};
 DataTableSelection.ATTRS = {
 
     /**
-     * Defines the active cell of the `DataTableSelection`.
+     * Defines the active cell of the `A.DataTableSelection`.
      *
      * @attribute activeCell
      * @type Node
@@ -46,7 +46,7 @@ DataTableSelection.ATTRS = {
 
     /**
      * Defines and stores the active cell coordinates, `[row, cell]`, of the
-     * `DataTableSelection`.
+     * `A.DataTableSelection`.
      *
      * @attribute activeCoord
      * @default [-1, -1]
@@ -57,7 +57,7 @@ DataTableSelection.ATTRS = {
     },
 
     /**
-     * Defines the active row of the `DataTableSelection`.
+     * Defines the active row of the `A.DataTableSelection`.
      *
      * @attribute activeRow
      * @type Node
@@ -67,7 +67,7 @@ DataTableSelection.ATTRS = {
     },
 
     /**
-     * Defines the selected cells and rows of the `DataTableSelection`.
+     * Defines the selected cells and rows of the `A.DataTableSelection`.
      *
      * @attribute selection
      * @type Object
@@ -95,7 +95,7 @@ A.mix(DataTableSelection.prototype, {
     _selectionStart: null,
 
     /**
-     * Construction logic executed during `DataTableSelection` instantiation.
+     * Construction logic executed during `A.DataTableSelection` instantiation.
      * Lifecycle.
      *
      * @method initializer
@@ -117,7 +117,7 @@ A.mix(DataTableSelection.prototype, {
     },
 
     /**
-     * Destructor lifecycle implementation for the `DataTableSelection` class.
+     * Destructor lifecycle implementation for the `A.DataTableSelection` class.
      * Detaches `_selectionKeyHandler` event listener.
      *
      * @method destroy
@@ -130,8 +130,7 @@ A.mix(DataTableSelection.prototype, {
     },
 
     /**
-     * Determins and returns the selected cells and rows from the passed
-     * cell coordinates `coords`.
+     * Return the selected cells and within the coordinates `coords`.
      *
      * @method captureSelection
      * @param {Object} coords Cell coordinates.
@@ -212,7 +211,7 @@ A.mix(DataTableSelection.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Focus the active cell on datatable sorting.
      *
      * @method _afterActiveCoordChange
      * @param {EventFacade} event
@@ -228,7 +227,7 @@ A.mix(DataTableSelection.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Bind the selection UI.
      *
      * @method _bindSelectionUI
      * @protected
@@ -247,7 +246,7 @@ A.mix(DataTableSelection.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Return the active cell.
      *
      * @method _getActiveCell
      * @protected
@@ -266,7 +265,7 @@ A.mix(DataTableSelection.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Return the active row.
      *
      * @method _getActiveRow
      * @protected
@@ -284,7 +283,7 @@ A.mix(DataTableSelection.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires on `mousedown` event.
      *
      * @method _onSelectionMouseDown
      * @param {EventFacade} event
@@ -306,7 +305,7 @@ A.mix(DataTableSelection.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires on `mouseenter` event.
      *
      * @method _onSelectionMouseEnter
      * @param {EventFacade} event
@@ -330,7 +329,7 @@ A.mix(DataTableSelection.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires on `mouseup` event.
      *
      * @method _onSelectionMouseUp
      * @param {EventFacade} event
@@ -355,7 +354,7 @@ A.mix(DataTableSelection.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires on `key` event with the listened selection keys.
      *
      * @method _onSelectionKey
      * @param {EventFacade} event
@@ -404,10 +403,11 @@ A.mix(DataTableSelection.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Parse selection coordinates range.
      *
      * @method _parseRange
      * @param {Array} val
+     * @return {Array} coords
      * @protected
      */
     _parseRange: function(val) {
@@ -427,10 +427,11 @@ A.mix(DataTableSelection.prototype, {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Set selection.
      *
      * @method _setSelection
      * @param val
+     * @return {Object} Selected cells and rows.
      * @protected
      */
     _setSelection: function(val) {
@@ -457,7 +458,7 @@ A.DataTable.Selection = DataTableSelection;
 A.Base.mix(A.DataTable, [DataTableSelection]);
 
 /**
- * Determins and return the column based on the passed `seed`.
+ * Calculate and return the column based on the passed `seed`.
  *
  * @method getColumn
  * @param {Node} seed
@@ -479,7 +480,7 @@ A.DataTable.prototype.getColumn = (function(original) {
 }(A.DataTable.prototype.getColumn));
 
 /**
- * Determins and return the row based on the passed `seed`.
+ * Return the row based on the passed `seed`.
  *
  * Add support to get a row by seed on DataTable getRow
  * See http://yuilibrary.com/projects/yui3/ticket/2532605
@@ -508,8 +509,6 @@ A.DataTable.prototype.getRow = (function(original) {
 }(A.DataTable.prototype.getRow));
 
 /**
- * TODO. Wanna help? Please send a Pull Request.
- *
  * DataTable columns configuration breaks on n-depth cloning complex objects
  * See http://yuilibrary.com/projects/yui3/ticket/2532597
  *

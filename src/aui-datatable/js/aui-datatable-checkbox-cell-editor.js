@@ -24,7 +24,7 @@ var CheckboxCellEditor = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the `CheckboxCellEditor`.
+     * configuration for the `A.CheckboxCellEditor`.
      *
      * @property ATTRS
      * @type Object
@@ -60,7 +60,7 @@ var CheckboxCellEditor = A.Component.create({
         OPTION_WRAPPER: '<label class="checkbox" for="{id}"> {label}</label>',
 
         /**
-         * Gets the `CheckboxCellEditor` input value.
+         * Gets the `A.CheckboxCellEditor` input value.
          *
          * @method getElementsValue
          * @return {String} Input value.

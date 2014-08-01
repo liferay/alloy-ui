@@ -25,7 +25,7 @@ CellEditorSupport = function() {};
 CellEditorSupport.NAME = 'dataTableCellEditorSupport';
 
 /**
- * Number which provides a `z-index` style value for the `BaseCellEditor`.
+ * Number which provides a `z-index` style value for the `A.BaseCellEditor`.
  *
  * @property EDITOR_ZINDEX
  * @default 9999
@@ -35,8 +35,8 @@ CellEditorSupport.NAME = 'dataTableCellEditorSupport';
 CellEditorSupport.EDITOR_ZINDEX = 9999;
 
 /**
- * Static property used to define the default attribute
- * configuration for the CellEditorSupport.
+ * Static property used to define the default attribute configuration for the
+ * `A.CellEditorSupport`.
  *
  * @property ATTRS
  * @type Object
@@ -45,7 +45,7 @@ CellEditorSupport.EDITOR_ZINDEX = 9999;
 CellEditorSupport.ATTRS = {
 
     /**
-     * Defines the event which displays the `BaseCellEditor`.
+     * Defines the event which displays the `A.BaseCellEditor`.
      *
      * @attribute editEvent
      * @default 'click'
@@ -61,7 +61,7 @@ CellEditorSupport.ATTRS = {
 A.mix(CellEditorSupport.prototype, {
 
     /**
-     * Construction logic executed during CellEditorSupport instantiation.
+     * Construction logic executed during `A.CellEditorSupport` instantiation.
      * Lifecycle.
      *
      * @method initializer
@@ -83,7 +83,7 @@ A.mix(CellEditorSupport.prototype, {
     },
 
     /**
-     * Return the `BaseCellEditor` instance for the given `record` and `column`
+     * Return the `A.BaseCellEditor` instance for the given `record` and `column`
      * arguments.
      *
      * @param {Model} record
@@ -105,7 +105,7 @@ A.mix(CellEditorSupport.prototype, {
     },
 
     /**
-     * Fires after the `CellEditorSupport` has rendered, and calls
+     * Fires after the `A.CellEditorSupport` has rendered, and calls
      * `_syncModelsReadOnlyUI`.
      *
      * @method _afterCellEditorSupportRender
@@ -120,7 +120,7 @@ A.mix(CellEditorSupport.prototype, {
     },
 
     /**
-     * `render()` and `show()` the `BaseCellEditor`, of the active table cell.
+     * `render()` and `show()` the `A.BaseCellEditor`, of the active table cell.
      *
      * Called when active table cell is clicked (default).
      *
@@ -154,8 +154,8 @@ A.mix(CellEditorSupport.prototype, {
     },
 
     /**
-     * Saves the new value from the `BaseCellEditor` input to the `Model`, on
-     * the `save` event of the `BaseCellEditor`.
+     * Saves the new value from the `A.BaseCellEditor` input to the `Model`, on
+     * the `save` event of the `A.BaseCellEditor`.
      *
      * @method _onEditorSave
      * @param {EventFacade} event
@@ -182,7 +182,7 @@ A.mix(CellEditorSupport.prototype, {
     },
 
     /**
-     * Calls `_syncFocus` if the `BaseCellEditor` input has a new value.
+     * Calls `_syncFocus` if the `A.BaseCellEditor` input has a new value.
      *
      * Called on the `visibleChange` event.
      *

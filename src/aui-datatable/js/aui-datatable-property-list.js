@@ -49,7 +49,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
     },
 
     /**
-     * Creates and return a new `TextCellEditor`.
+     * Creates and return a new `A.TextCellEditor`.
      *
      * @method getDefaultEditor
      * @return {TextCellEditor}
@@ -59,7 +59,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires after the `renderUI` event.
      *
      * @method _afterRenderUI
      * @protected
@@ -73,7 +73,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires after the `UITriggerSort` event.
      *
      * @method _afterUITriggerSort
      * @param {EventFacade} event
@@ -86,7 +86,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Initializer for the `A.DataTable` highlighter.
      *
      * @method _initHighlight
      * @protected
@@ -101,7 +101,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires on `activeCellChange` event.
      *
      * @method _onActiveCellChange
      * @param {EventFacade} event
@@ -122,7 +122,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Callback for the selection key event listener.
      *
      * @method _onSelectionKey
      * @param {EventFacade} event
@@ -148,7 +148,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Callback for syncing `A.PropertyList` on scroll.
      *
      * @method _syncPropertyListScrollUI
      * @protected
@@ -183,7 +183,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
     ATTRS: {
 
         /**
-         * Defines the `column` config for the `PropertyList`.
+         * Defines the `column` config for `A.PropertyList`.
          *
          * @attribute columns
          * @type Function
@@ -224,7 +224,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
         },
 
         /**
-         * Determins whether the `PropertyList` is scrollable.
+         * Determines if the `A.PropertyList` is scrollable.
          *
          * @attribute scrollable
          * @default true
@@ -247,7 +247,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
         },
 
         /**
-         * Defines the width of the `PropertyList`.
+         * Defines the width of the `A.PropertyList`.
          *
          * DataTable scroll breaks when width value is a number
          * See http://yuilibrary.com/projects/yui3/ticket/2532600

@@ -69,7 +69,7 @@ DropDownCellEditor = A.Component.create({
         OPTION_TEMPLATE: '<option value="{value}">{label}</option>',
 
         /**
-         * Gets the `DropDownCellEditor` input value.
+         * Get the input value.
          *
          * @method getElementsValue
          * @return {String} Input value.
@@ -85,7 +85,7 @@ DropDownCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Syncs the element focus.
          *
          * @method _syncElementsFocus
          * @protected
@@ -97,7 +97,7 @@ DropDownCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `multiple` attribute in the UI.
          *
          * @method _uiSetMultiple
          * @param val

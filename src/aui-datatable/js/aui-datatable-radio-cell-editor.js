@@ -32,7 +32,7 @@ var RadioCellEditor = A.Component.create({
         OPTION_WRAPPER: '<label class="radio" for="{id}"> {label}</label>',
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the `A.RadioCellEditor` input value.
          *
          * @method getElementsValue
          * @return {String} Input value.

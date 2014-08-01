@@ -32,7 +32,7 @@ DateCellEditor = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the `DateCellEditor`.
+     * configuration for the `A.DateCellEditor`.
      *
      * @property ATTRS
      * @type Object
@@ -52,7 +52,7 @@ DateCellEditor = A.Component.create({
         },
 
         /**
-         * Defines the `Calendar` object used for the `DateCellEditor` input.
+         * Defines the `A.Calendar` object used for the `A.DateCellEditor` input.
          *
          * @attribute calendar
          * @default null
@@ -65,8 +65,8 @@ DateCellEditor = A.Component.create({
         },
 
         /**
-         * Defines the `DataType.Date` format used in input and output methods
-         * of the `DateCellEditor` input.
+         * Defines the `A.DataType.Date` format used in input and output methods
+         * of the `A.DateCellEditor` input.
          *
          * @attribute dateFormat
          * @default '%Y-%m-%d'
@@ -79,7 +79,7 @@ DateCellEditor = A.Component.create({
 
         /**
          * Defines the Function which is used in `formatValue` to modify values
-         * for the `DateCellEditor` input.
+         * for the `A.DateCellEditor` input.
          *
          * Default Function iterates and formats values using the `dateFormat`
          * attribute.
@@ -102,7 +102,7 @@ DateCellEditor = A.Component.create({
 
         /**
          * Defines the Function which is used in `formatValue` to modify values
-         * for the `DateCellEditor` input.
+         * for the `A.DateCellEditor` input.
          *
          * Default Function iterates and formats values using the `dateFormat`
          * attribute.
@@ -128,7 +128,7 @@ DateCellEditor = A.Component.create({
         ELEMENT_TEMPLATE: '<input class="' + CSS_CELLEDITOR_ELEMENT + '" type="hidden" />',
 
         /**
-         * Construction logic executed during `DateCellEditor` instantiation.
+         * Construction logic executed during `A.DateCellEditor` instantiation.
          * Lifecycle.
          *
          * @method initializer
@@ -141,7 +141,7 @@ DateCellEditor = A.Component.create({
         },
 
         /**
-         * Gets the `DateCellEditor` input value.
+         * Gets the `A.DateCellEditor` input value.
          *
          * @method getElementsValue
          * @return {String} Input value.
@@ -172,7 +172,8 @@ DateCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after `calendar:dateClick` event. Sets the elements values to
+         * the selected dates.
          *
          * @method _afterDateSelect
          * @param {EventFacade} event
@@ -186,7 +187,7 @@ DateCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after `render` event.
          *
          * @method _afterRender
          * @protected
@@ -202,12 +203,12 @@ DateCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Sets the calendar attribute.
          *
          * @method _setCalendar
          * @param {Object} val
          * @protected
-         * @return {Object} Merged `Calendar` object.
+         * @return {Object} Merged `A.Calendar` object.
          */
         _setCalendar: function(val) {
             var instance = this;
@@ -220,7 +221,7 @@ DateCellEditor = A.Component.create({
         },
 
         /**
-         * Sets and formats the `DateCellEditor` `Calendar` `date` attribute.
+         * Sets and formats `A.DateCellEditor` `A.Calendar` `date` attribute.
          *
          * @method _uiSetValue
          * @param {Array} val

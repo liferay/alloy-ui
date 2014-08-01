@@ -146,7 +146,8 @@ var DataTableHighlight = A.Base.create(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after the `activeCoordChange` event. Changes the highlight to
+         * a the selected table cell.
          *
          * @method _afterActiveCoordChange
          * @param {EventFacade} event
@@ -183,31 +184,30 @@ var DataTableHighlight = A.Base.create(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after `blur` event. Clear highlight.
          *
          * @method _afterBlur
          * @param {EventFacade} event
          * @protected
          */
         _afterBlur: function() {
+            console.log('blur');
             this.clear();
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after `dataChange` event.
          *
          * @method _afterDataChange
          * @param {EventFacade} event
          * @protected
          */
         _afterDataChange: function() {
-            var instance = this;
-
-            instance.clear();
+            this._afterBlur();
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after `selectionChange`.
          *
          * @method _afterSelectionChange
          * @param {EventFacade} event
@@ -239,7 +239,7 @@ var DataTableHighlight = A.Base.create(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after `windowresize`.
          *
          * @method _afterWindowResize
          * @protected
@@ -263,7 +263,7 @@ var DataTableHighlight = A.Base.create(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Align border.
          *
          * @method _alignBorder
          * @param overlayNode
@@ -299,7 +299,7 @@ var DataTableHighlight = A.Base.create(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Collect nodes.
          *
          * @method _collectNodes
          * @param selection
@@ -318,7 +318,7 @@ var DataTableHighlight = A.Base.create(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Clear borders.
          *
          * @method _clearBorders
          * @protected
@@ -331,7 +331,7 @@ var DataTableHighlight = A.Base.create(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Clear highlights.
          *
          * @method _clearHighlights
          * @protected
@@ -347,10 +347,10 @@ var DataTableHighlight = A.Base.create(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Type validator.
          *
          * @method _validateType
-         * @param val
+         * @param {String} val
          * @protected
          * @return {Boolean}
          */
@@ -378,7 +378,7 @@ var DataTableHighlight = A.Base.create(
 
         /**
          * Static property used to define the default attribute
-         * configuration for the DataTableHighlight.
+         * configuration for the `A.DataTableHighlight`.
          *
          * @property ATTRS
          * @type Object
@@ -440,7 +440,7 @@ var DataTableHighlight = A.Base.create(
             },
 
             /**
-             * Determins whether a range of elements are highlighted.
+             * Determines if a range of elements are highlighted.
              *
              * @attribute highlightRange
              * @default true
