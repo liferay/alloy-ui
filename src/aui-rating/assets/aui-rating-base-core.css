@@ -14,5 +14,11 @@
 }
 
 .rating .glyphicon {
-    font-size: 20px;
+    font-size: 1em;
+}
+
+@media (max-device-width : 568px) {
+    .rating .glyphicon {
+        font-size: 1.5em;
+    }
 }
