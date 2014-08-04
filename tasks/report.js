@@ -35,7 +35,7 @@ gulp.task('report', function (callback) {
 });
 
 gulp.task('report-browser', function (callback) {
-    var htmlReport = path.join(ROOT, 'coverage/lcov-report/index.html')
+    var htmlReport = path.join(ROOT, 'coverage/lcov-report/index.html');
 
     if (!fs.existsSync(htmlReport)) {
         callback(ERR_MSG);
