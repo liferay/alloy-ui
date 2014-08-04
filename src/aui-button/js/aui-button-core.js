@@ -397,6 +397,16 @@ A.mix(ButtonGroup.prototype, {
     CONTENT_TEMPLATE: null,
 
     /**
+     * Constructor for `A.ButtonGroup`. Lifecycle.
+     *
+     * @method initializer
+     * @protected
+     */
+    initializer: function() {
+        this.after('selectionChange', this._afterSelectionChange);
+    },
+
+    /**
      * Returns the `item` or `node` of specified `index`.
      *
      * @method item
@@ -450,8 +460,6 @@ A.mix(ButtonGroup.prototype, {
         });
 
         instance.syncAriaSelected(instance.getButtons());
-
-        instance.after('selectionChange', instance._afterSelectionChange);
     },
 
     /**
@@ -473,8 +481,10 @@ A.mix(ButtonGroup.prototype, {
      * @param {Array} buttons
      */
     syncAriaSelected: function(buttons) {
+        var selected;
+
         buttons.each(function(button) {
-            var selected = button.hasClass(A.ButtonGroup.CLASS_NAMES.SELECTED);
+            selected = button.hasClass(A.ButtonGroup.CLASS_NAMES.SELECTED);
 
             button.setAttribute('aria-selected', selected);
         });
@@ -543,10 +553,9 @@ A.mix(ButtonGroup.prototype, {
      * Fires after 'selectionChange' event.
      *
      * @method _afterSelectionChange
-     * @param {EventFacade} event
      * @protected
      */
-    _afterSelectionChange: function(event) {
+    _afterSelectionChange: function() {
         var instance = this;
 
         instance.syncAriaSelected(instance.getButtons());
