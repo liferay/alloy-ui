@@ -1,6 +1,12 @@
 {
     "name": "aui-toggler",
     "builds": {
+        "aui-toggler-accessibility": {
+            "jsfiles": [
+                "js/aui-toggler-accessibility.js"
+            ]
+        },
+
         "aui-toggler-base": {
             "jsfiles": [
                 "js/aui-toggler-base.js"

@@ -190,9 +190,7 @@ var TogglerDelegate = A.Component.create({
         renderUI: function() {
             var instance = this;
 
-            if (instance.get('closeAllOnExpand')) {
-                instance.createAll();
-            }
+            instance.createAll();
         },
 
         /**
