@@ -73,18 +73,6 @@ YUI.add('aui-node-tests', function(Y) {
                 Y.Assert.areSame(false, node.hasClass(CSS_HIDE));
                 Y.Assert.areNotSame('none', node.getStyle('display'));
             }, 1000);
-        },
-
-        'toggle accessible': function() {
-            var node = createNewNode(true);
-
-            node.toggleAccessible();
-
-            Y.Assert.isTrue(node.hasClass('sr-only'));
-
-            node.toggleAccessible();
-
-            Y.Assert.isFalse(node.hasClass('sr-only'));
         }
     }));
 
