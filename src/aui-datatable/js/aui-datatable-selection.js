@@ -378,10 +378,7 @@ A.mix(DataTableSelection.prototype, {
             i = activeCoord[0];
             j = activeCoord[1];
 
-            if (keyCode === 13) {
-                instance._onEditCell(activeCell);
-            }
-            else if (keyCode === 37) {
+            if (keyCode === 37) {
                 j--;
             }
             else if (keyCode === 38) {

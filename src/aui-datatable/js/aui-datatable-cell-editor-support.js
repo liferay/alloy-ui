@@ -80,6 +80,8 @@ A.mix(CellEditorSupport.prototype, {
 
         instance.delegate(editEvent, instance._onEditCell, '.' + instance.CLASS_NAMES_CELL_EDITOR_SUPPORT.cell,
             instance);
+
+        A.after(instance._afterSelectionKey, instance, '_onSelectionKey');
     },
 
     /**
@@ -117,6 +119,21 @@ A.mix(CellEditorSupport.prototype, {
         instance._syncModelsReadOnlyUI();
 
         instance.body.after(A.bind(instance._syncModelsReadOnlyUI, instance), instance.body, 'render');
+    },
+
+    /**
+     * Fires after '_onSelectionKey'. Opens editor of 'activeCell' on key press.
+     *
+     * @method _afterSelectionKey
+     * @protected
+     */
+    _afterSelectionKey: function(event) {
+        var instance = this,
+            activeCell = instance.get('activeCell');
+
+        if (activeCell && (event.keyCode === 13)) {
+            instance._onEditCell(activeCell);
+        }
     },
 
     /**
