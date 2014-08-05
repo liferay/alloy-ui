@@ -80,6 +80,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-audio": {
         "requires": [
+            "aui-aria",
             "aui-node",
             "aui-component",
             "querystring-stringify-simple"
@@ -1399,4 +1400,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '1d9b51f674b35ebcaadf149c02b0afec';
+YUI.Env[Y.version].md5 = 'c3509d25728b56acec8a9809ea8d71f9';
