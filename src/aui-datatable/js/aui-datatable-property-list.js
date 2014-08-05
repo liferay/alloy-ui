@@ -242,7 +242,14 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
          * @type String
          */
         editEvent: {
-            value: A.UA.touchEnabled ? 'click' : 'dblclick'
+            valueFn: function() {
+                if (A.UA.touchEnabled && A.UA.mobile) {
+                    return 'click';
+                }
+                else {
+                    return 'dblclick';
+                }
+            }
         },
 
         /**

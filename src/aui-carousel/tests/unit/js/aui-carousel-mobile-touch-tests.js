@@ -1,8 +1,8 @@
-YUI.add('aui-carousel-touch-tests', function(Y) {
-    var suite = new Y.Test.Suite('aui-carousel-touch');
+YUI.add('aui-carousel-mobile-touch-tests', function(Y) {
+    var suite = new Y.Test.Suite('aui-carousel-mobile-touch');
 
     suite.add(new Y.Test.Case({
-        name: 'AUI Carousel Touch Unit Tests',
+        name: 'AUI Carousel Mobile Touch Unit Tests',
 
         tearDown: function() {
             if (this._carousel) {
@@ -78,5 +78,5 @@ YUI.add('aui-carousel-touch-tests', function(Y) {
 
     Y.Test.Runner.add(suite);
 }, '', {
-    requires: ['aui-carousel-touch', 'node-base', 'test']
+    requires: ['aui-carousel-mobile-touch', 'node-base', 'test']
 });
