@@ -13,9 +13,9 @@
             ]
         },
 
-        "aui-carousel-touch": {
+        "aui-carousel-mobile-touch": {
             "jsfiles": [
-                "js/aui-carousel-touch.js"
+                "js/aui-carousel-mobile-touch.js"
             ]
         }
     }

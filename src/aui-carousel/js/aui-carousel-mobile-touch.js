@@ -1,18 +1,18 @@
 /**
- * The Carousel should work a little differently on touch devices,
- * having swipe turned on by default for example.
+ * The Carousel should work a little differently on mobile touch devices,
+ * changing the menu contents for example.
  * This module will be mixed into the Carousel automatically when loaded.
  *
  * @module aui-carousel-touch
  */
 
-function CarouselTouch() {}
+function CarouselMobileTouch() {}
 
-CarouselTouch.prototype = {
+CarouselMobileTouch.prototype = {
     TPL_MENU: '<div class="carousel-menu"><menu>{items}</menu></div>'
 };
 
-CarouselTouch.ATTRS = {
+CarouselMobileTouch.ATTRS = {
     /**
      * Position of the menu.
      *
@@ -26,4 +26,4 @@ CarouselTouch.ATTRS = {
     }
 };
 
-A.Base.mix(A.Carousel, [CarouselTouch]);
+A.Base.mix(A.Carousel, [CarouselMobileTouch]);
