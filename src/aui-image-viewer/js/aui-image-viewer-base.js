@@ -40,7 +40,7 @@ A.ImageViewerBase = A.Base.create(
             '"><span class="glyphicon glyphicon-chevron-left"></span></a>',
         TPL_CONTROL_RIGHT: '<a href="#" class="' + CSS_CONTROL + ' ' + CSS_CONTROL_RIGHT +
             '"><span class="glyphicon glyphicon-chevron-right"></span></a>',
-        TPL_IMAGE: '<img class="' + CSS_IMAGE + '"></img>',
+        TPL_IMAGE: '<img class="' + CSS_IMAGE + '"/>',
         TPL_IMAGE_CONTAINER: '<div class="' + CSS_IMAGE_CONTAINER + '">' +
             '<span class="glyphicon glyphicon-time ' + CSS_LOADING_ICON + '"></span></div>',
         TPL_IMAGE_LIST: '<div class="' + CSS_IMAGE_LIST + '"><div class="' + CSS_IMAGE_LIST_INNER + '"></div></div>',
@@ -423,13 +423,6 @@ A.ImageViewerBase = A.Base.create(
                 src = this.get('sources')[index];
 
             container.prepend(image);
-
-            if (A.UA.ie === 8) {
-                // YUI is currently losing the reference to the img node on IE8
-                // after creating it, in a way that setting attributes doesn't
-                // work on the img unless we find it from the DOM again.
-                image = container.one('.' + CSS_IMAGE);
-            }
 
             this._eventHandles.push(
                 image.once('load', A.bind(this._onImageLoad, this, image, index))
