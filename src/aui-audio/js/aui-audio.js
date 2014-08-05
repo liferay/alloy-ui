@@ -181,7 +181,9 @@ var AudioImpl = A.Component.create({
          * @type Boolean
          */
         useARIA: {
-            value: true
+            value: true,
+            validator: Lang.isBoolean,
+            writeOnce: 'initOnly'
         }
     },
 
@@ -245,6 +247,12 @@ var AudioImpl = A.Component.create({
             });
         },
 
+        /**
+         * Sync the Audio UI. Lifecycle.
+         *
+         * @method syncUI
+         * @protected
+         */
         syncUI: function() {
             var instance = this;
 
