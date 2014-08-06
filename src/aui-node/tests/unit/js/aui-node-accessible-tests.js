@@ -1,6 +1,6 @@
 YUI.add('aui-node-accessible-tests', function(Y) {
 
-    var suite = new Y.Test.Suite('aui-node');
+    var suite = new Y.Test.Suite('aui-node-accessible');
 
     //--------------------------------------------------------------------------
     // Test Case Node Accessible
@@ -21,6 +21,24 @@ YUI.add('aui-node-accessible-tests', function(Y) {
             node.toggleAccessible();
 
             Y.Assert.isFalse(node.hasClass('sr-only'));
+        },
+
+        'toggle accessible with force': function() {
+            var node = Y.Node.create('<div></div>');
+
+            Y.one('body').append(node);
+
+            node.toggleAccessible(false);
+            Y.Assert.isTrue(node.hasClass('sr-only'));
+
+            node.toggleAccessible(false);
+            Y.Assert.isTrue(node.hasClass('sr-only'));
+
+            node.toggleAccessible(true);
+            Y.Assert.isFalse(node.hasClass('sr-only'));
+
+            node.toggleAccessible(false);
+            Y.Assert.isTrue(node.hasClass('sr-only'));
         }
     }));
 

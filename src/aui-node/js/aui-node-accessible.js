@@ -11,7 +11,7 @@ var CSS_BOOTSTRAP_SR_ONLY = A.getClassName('sr-only');
 A.mix(A.Node.prototype, {
 
     /**
-     * Hides the node.
+     * Hides the node, while still keeping it accessible by screen readers.
      *
      * @method hideAccessible
      */
@@ -22,7 +22,8 @@ A.mix(A.Node.prototype, {
     },
 
     /**
-     * Shows the node. Fires after the node-base 'show' method.
+     * Shows the node. Fires after the node-base `show` method to clean up nodes
+     * which were hidden through the `hideAccessible` method.
      *
      * @method showAccessible
      */
@@ -31,9 +32,11 @@ A.mix(A.Node.prototype, {
     },
 
     /**
-     * Toggles the node visibility.
+     * Toggles the node visibility, while still keeping it accessible by screen\
+     * readers.
      *
-     * @param force
+     * @param {Boolean} force If true the node will be shown, otherwise it will
+     *     be hidden.
      * @method toggleAccessible
      */
     toggleAccessible: function(force) {
