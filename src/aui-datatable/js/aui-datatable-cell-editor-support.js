@@ -125,6 +125,7 @@ A.mix(CellEditorSupport.prototype, {
      * Fires after '_onSelectionKey'. Opens editor of 'activeCell' on key press.
      *
      * @method _afterSelectionKey
+     * @param {EventFacade} event
      * @protected
      */
     _afterSelectionKey: function(event) {
@@ -158,7 +159,7 @@ A.mix(CellEditorSupport.prototype, {
                 editor.on({
                     visibleChange: A.bind(instance._onEditorVisibleChange, instance),
                     save: A.bind(instance._onEditorSave, instance),
-                    cancel: A.bind(instance._refocusActiveCell, instance)
+                    cancel: A.bind(instance._onEditorCancel, instance)
                 });
 
                 editor.set('zIndex', CellEditorSupport.EDITOR_ZINDEX);
@@ -174,9 +175,6 @@ A.mix(CellEditorSupport.prototype, {
     /**
      * Invoked when the editor fires the 'cancel' event.
      *
-     * Fires the '_refocusActiveCell' method, which returns keyboard focus to
-     * the last active cell.
-     *
      * @method _onEditorCancel
      * @protected
      */
@@ -187,8 +185,7 @@ A.mix(CellEditorSupport.prototype, {
     },
 
     /**
-     * Saves the new value from the `A.BaseCellEditor` input to the `Model`, on
-     * the `save` event of the `A.BaseCellEditor`.
+     * Invoked when the editor fires the 'save' event.
      *
      * @method _onEditorSave
      * @param {EventFacade} event
