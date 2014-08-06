@@ -29,15 +29,37 @@ function TableSortable() {}
  * @static
  */
 TableSortable.ATTRS = {
+
+    /**
+     * The CSS class to be added to the caption element.
+     *
+     * @attribute captionCss
+     * @default ''
+     * @type String
+     */
     captionCss: {
-        validator: Lang.isString
+        validator: Lang.isString,
+        value: ''
     },
 
+    /**
+     * The value of the 'aria-live' attribute.
+     *
+     * @attribute captionLive
+     * @default ''
+     * @type String
+     */
     captionLive: {
         validator: Lang.isString,
         value: 'polite'
     },
 
+    /**
+     * The value of the 'aria-live' attribute.
+     *
+     * @attribute captionNode
+     * @type Node
+     */
     captionNode: {
         setter: function(val) {
             var instance = this;
@@ -56,21 +78,57 @@ TableSortable.ATTRS = {
         value: null
     },
 
+    /**
+     * The role for the caption element.
+     *
+     * @attribute captionRole
+     * @default 'alert'
+     * @type String
+     */
     captionRole: {
         validator: Lang.isString,
         value: 'alert'
     },
 
+    /**
+     * If the caption element is visible
+     *
+     * @attribute captionVisible
+     * @default false
+     * @type boolean
+     */
     captionVisible: {
         validator: Lang.isBoolean,
         value: false
     },
 
+    /**
+     * The class to used to hide the caption element but
+     * leave readable for screen readers.
+     *
+     * @attribute screenReaderClass
+     * @default 'sr-only'
+     * @type String
+     */
     screenReaderClass: {
         validator: Lang.isString,
         value: 'sr-only'
     },
 
+    /**
+     * The class to used to hide the caption element but
+     * leave readable for screen readers.
+     *
+     * @attribute stringsSortable
+     * @default {
+     *       asc: 'ascending',
+     *       desc: 'descending',
+     *       sorted: 'sorted',
+     *       sortedBy: 'sorted by',
+     *       notSorted: 'not sorted'
+     *   }
+     * @type Object
+     */
     stringsSortable: {
         value: {
             asc: 'ascending',
@@ -81,6 +139,12 @@ TableSortable.ATTRS = {
         }
     },
 
+    /**
+     * The table node containing the columns to be sorted.
+     *
+     * @attribute tableNode
+     * @type Node
+     */
     tableNode: {
         setter: A.one,
         valueFn: function() {
@@ -131,9 +195,10 @@ TableSortable.prototype = {
         );
     },
 
-     /* Handles `captionVisible` events.
+    /**
+     * Handles `captionVisible` events.
      *
-     * @method _afterAllDayChange
+     * @method _afterCaptionVisibleChange
      * @param {EventFacade} event
      * @protected
      */
@@ -164,7 +229,7 @@ TableSortable.prototype = {
     /**
      * Toggles the screen reader css class.
      *
-     * @method _toggleScreenReader
+     * @method _toggleScreenReaderClass
      * @param {Object} options
      * @protected
      */
@@ -176,11 +241,11 @@ TableSortable.prototype = {
         caption.toggleClass(instance.get('screenReaderClass'), toggle);
     },
 
-    /* Returns a reference to the `captionNode`, and accomplishes
-    * neccessary setup to prepare the element for screen readers.
+    /**
+     * Returns a reference to the `captionNode`, and accomplishes
+     * neccessary setup to prepare the element for screen readers.
      *
-     * @method _toggleScreenReader
-     * @param {Object} options
+     * @method _getCaption
      * @protected
      */
     _getCaption: function() {

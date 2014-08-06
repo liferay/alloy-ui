@@ -8,6 +8,7 @@
                 "js/aui-aria-attributes.js"
             ]
         },
+
         "aui-aria-table-sortable": {
             "jsfiles": [
                 "js/aui-aria-table-sortable.js"
