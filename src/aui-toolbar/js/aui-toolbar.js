@@ -223,6 +223,10 @@ A.Toolbar = A.Component.create({
                 currentTarget = event.currentTarget;
 
             instance._initEnclosingWidgetIfNeeded(currentTarget);
+
+            if (event.type !== 'mousemove') {
+                currentTarget.focus();
+            }
         },
 
         /**
