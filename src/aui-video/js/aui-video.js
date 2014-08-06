@@ -122,11 +122,13 @@ var Video = A.Component.create({
          * Sets the `aria-role` for Video.
          *
          * @attribute role
+         * @default 'application'
          * @type String
          */
         role: {
+            validator: Lang.isString,
             value: 'application',
-            validator: Lang.isString
+            writeOnce: 'initOnly'
         },
 
         /**
@@ -161,7 +163,9 @@ var Video = A.Component.create({
          * @type Boolean
          */
         useARIA: {
-            value: true
+            validator: Lang.isBoolean,
+            value: true,
+            writeOnce: 'initOnly'
         }
     },
 
@@ -232,6 +236,12 @@ var Video = A.Component.create({
             instance.publish('pause');
         },
 
+        /**
+         * Sync the Video UI. Lifecycle.
+         *
+         * @method syncUI
+         * @protected
+         */
         syncUI: function() {
             var instance = this;
 
