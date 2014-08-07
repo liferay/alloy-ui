@@ -4,6 +4,8 @@
 
 ## @VERSION@
 
+* [AUI-1587](https://issues.liferay.com/browse/AUI-1587) Rating - only set the font-size on mobile screen sizes
+
 No registries yet.
 
 ## [3.0.0pr1](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr1)
