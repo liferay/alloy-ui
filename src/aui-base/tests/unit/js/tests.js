@@ -1,6 +1,7 @@
 YUI.add('aui-base-tests', function(Y) {
 
-    var endsWithStrings = [
+    var containStrings = ['alongstring', 'a-different-string', 'anotherstring123'],
+        endsWithStrings = [
             'lorem-ipsum',
             'lorem ipsum',
             'loremipsumdolor',
@@ -214,6 +215,16 @@ YUI.add('aui-base-tests', function(Y) {
             Assert.areEqual('default', Y.Lang.String.defaultValue(undefined, 'default'));
             Assert.areNotEqual(undefined, Y.Lang.String.defaultValue('string', undefined));
             Assert.areNotEqual('default', Y.Lang.String.defaultValue('string', 'default'));
+        },
+
+        'should search strings correctly': function () {
+            for (var i = 0; i < containStrings.length; i++) {
+                var testString = containStrings[i],
+                    testSubString = testString.substring(0, testString.length - 3);
+
+                Assert.isTrue(Y.Lang.String.contains(testString, testSubString));
+                Assert.isFalse(Y.Lang.String.contains(testString, 'abcdefghijkl'));
+            }
         }
     }));
 
