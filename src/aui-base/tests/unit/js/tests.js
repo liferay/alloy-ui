@@ -1,6 +1,7 @@
 YUI.add('aui-base-tests', function(Y) {
 
-    var containStrings = ['alongstring', 'a-different-string', 'anotherstring123'],
+    var caseStrings = ['liferay', 'Liferay', 'cAPITAL', 'Capital', 'word-dash', 'Word-dash'],
+        containStrings = ['alongstring', 'a-different-string', 'anotherstring123'],
         endsWithStrings = [
             'lorem-ipsum',
             'lorem ipsum',
@@ -224,6 +225,16 @@ YUI.add('aui-base-tests', function(Y) {
 
                 Assert.isTrue(Y.Lang.String.contains(testString, testSubString));
                 Assert.isFalse(Y.Lang.String.contains(testString, 'abcdefghijkl'));
+            }
+        },
+
+        'should capitalize words correctly': function () {
+            for (var i = 0; i < caseStrings.length; i+=2) {
+                var actual = caseStrings[i],
+                    expected = caseStrings[i+1];
+
+                Assert.areNotEqual(expected, actual);
+                Assert.areEqual(expected, Y.Lang.String.capitalize(actual));
             }
         }
     }));
