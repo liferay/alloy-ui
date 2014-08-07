@@ -1,7 +1,7 @@
 /**
- * The Toggler Component
+ * The Toggler Accessibility Component
  *
- * @module aui-toggler
+ * @module aui-toggler-accessibility
  */
 
 function TogglerAccessibility() {}
@@ -15,48 +15,51 @@ TogglerAccessibility.prototype = {
      * @protected
      */
     initializer: function() {
-        var instance = this,
-            onToggle = instance.on('toggle', A.bind(instance._onToggleEvent, instance));
+        var instance = this;
 
-        instance._eventHandles.push(onToggle);
+        instance._eventHandles.push(
+            A.after(instance._afterToggle, instance, 'toggle')
+        );
 
-        instance.setAriaElements();
+        instance._setARIAElements();
     },
 
     /**
-     * Plugs the aui-aria plugin.
+     * Fires after toggle and syncs ARIA attributes.
      *
-     * @method plugAria
+     * @method _afterToggle
+     * @param {EventFacade} event
      */
-    setAriaElements: function() {
+    _afterToggle: function(expand) {
+        var instance = this,
+            content = instance.get('content'),
+            header = instance.get('header');
+
+        if (A.Lang.isUndefined(expand)) {
+            expand = instance.get('expanded');
+        }
+
+        header.setAttribute('aria-pressed', expand);
+        content.setAttribute('aria-hidden', !expand);
+    },
+
+    /**
+     * Sets the ARIA-WAI attributes.
+     *
+     * @method _setARIAElements
+     * @protected
+     */
+    _setARIAElements: function() {
         var instance = this,
             content = instance.get('content'),
             contentId = content.attr('id') || content.guid(),
             expanded = instance.get('expanded'),
             header = instance.get('header');
 
-        header.setAttribute('aria-pressed', expanded);
         header.setAttribute('aria-controls', contentId);
+        header.setAttribute('aria-pressed', expanded);
         content.setAttribute('aria-hidden', !expanded);
-    },
-
-    /**
-     * Fires after toggle event.
-     *
-     * @method _afterToggleEvent
-     * @param {EventFacade} event
-     */
-    _onToggleEvent: function(event) {
-        var instance = this,
-            expand = event.expand,
-            content = instance.get('content'),
-            header = instance.get('header');
-
-        header.setAttribute('aria-pressed', expand);
-        content.setAttribute('aria-hidden', !expand);
     }
 };
-
-TogglerAccessibility.ATTRS = {};
 
 A.Base.mix(A.Toggler, [TogglerAccessibility]);

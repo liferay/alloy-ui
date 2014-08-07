@@ -398,10 +398,6 @@ var Toggler = A.Component.create({
                 instance.set('expanded', expand, payload);
             }
 
-            instance.fire('toggle', {
-                expand: expand
-            });
-
             return expand;
         },
 
