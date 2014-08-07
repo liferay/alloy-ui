@@ -160,24 +160,31 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
+    "aui-carousel-mobile-touch": {
+        "condition": {
+            "name": "aui-carousel-mobile-touch",
+            "test": function(A) {
+    return A.UA.mobile && A.UA.touchEnabled;
+},
+            "trigger": "aui-carousel"
+        },
+        "requires": [
+            "base-build",
+            "aui-carousel"
+        ]
+    },
     "aui-carousel-swipe": {
+        "condition": {
+            "name": "aui-carousel-swipe",
+            "trigger": "aui-carousel",
+            "ua": "touchEnabled"
+        },
         "requires": [
             "aui-carousel",
             "aui-widget-swipe",
             "base-build"
         ],
         "skinnable": true
-    },
-    "aui-carousel-touch": {
-        "condition": {
-            "name": "aui-carousel-touch",
-            "trigger": "aui-carousel",
-            "ua": "touchEnabled"
-        },
-        "requires": [
-            "aui-carousel-swipe",
-            "base-build"
-        ]
     },
     "aui-char-counter": {
         "requires": [
@@ -970,6 +977,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-scheduler": {
         "use": [
+            "event-gestures",
             "aui-scheduler-base",
             "aui-scheduler-event-recorder",
             "aui-scheduler-view-agenda",
@@ -1014,7 +1022,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         },
         "requires": [
             "base-build",
-            "event-gestures",
             "aui-scheduler"
         ],
         "skinnable": true
@@ -1400,4 +1407,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'c3509d25728b56acec8a9809ea8d71f9';
+YUI.Env[Y.version].md5 = '13c0d691836e487bd1e66a1f26ca8706';
