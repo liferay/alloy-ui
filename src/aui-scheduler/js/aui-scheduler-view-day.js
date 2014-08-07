@@ -1154,7 +1154,7 @@ var SchedulerDayView = A.Component.create({
          */
         _bindMouseEvents: function() {
             this.columnData.delegate(
-                'mousedown', A.bind(this._onMouseDownTableCol, this), '.' +
+                'gesturemovestart', A.bind(this._onGestureMoveStartTableCol, this), '.' +
                 CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
 
             this.columnData.delegate(
@@ -1164,11 +1164,14 @@ var SchedulerDayView = A.Component.create({
                 'mouseleave', A.bind(this._onMouseLeaveEvent, this), '.' + CSS_SCHEDULER_EVENT);
 
             this.columnData.delegate(
-                'mousemove', A.bind(this._onMouseMoveTableCol, this), '.' +
-                CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY);
+                'gesturemove',
+                A.bind(this._onGestureMoveTableCol, this),
+                '.' + CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY,
+                {standAlone: true}
+            );
 
             this.columnData.delegate(
-                'mouseup', A.bind(this._onMouseUpTableCol, this), '.' + CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
+                'gesturemoveend', A.bind(this._onGestureMoveEndTableCol, this), '.' + CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
         },
 
         /**
@@ -1432,13 +1435,40 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Handles `mouseDownTableCol` events.
+         * Handles `gesturemoveend` events.
          *
-         * @method _onMouseDownTableCol
+         * @method _onGestureMoveEndTableCol
+         * @protected
+         */
+        _onGestureMoveEndTableCol: function() {
+            var instance = this;
+            var scheduler = instance.get('scheduler');
+            var recorder = scheduler.get('eventRecorder');
+
+            if (recorder && !scheduler.get('disabled')) {
+                if (instance.creationStartDate) {
+                    instance.plotEvent(recorder);
+
+                    recorder.showPopover();
+                }
+            }
+
+            instance.creationStartDate = null;
+            instance.resizing = false;
+            instance.startXY = null;
+
+            instance._removeResizer();
+            instance.get('boundingBox').selectable();
+        },
+
+        /**
+         * Handles `gestureMoveStart` events.
+         *
+         * @method _onGestureMoveStartTableCol
          * @param {EventFacade} event
          * @protected
          */
-        _onMouseDownTableCol: function(event) {
+        _onGestureMoveStartTableCol: function(event) {
             var instance = this;
             var target = event.target;
             var scheduler = instance.get('scheduler');
@@ -1462,45 +1492,13 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Handles `mouseEnter` events.
+         * Handles `gesturemove` events.
          *
-         * @method _onMouseEnterEvent
+         * @method _onGestureMoveTableCol
          * @param {EventFacade} event
          * @protected
          */
-        _onMouseEnterEvent: function(event) {
-            var instance = this;
-            var target = event.currentTarget;
-            var evt = target.getData('scheduler-event');
-
-            if (evt && !evt.get('disabled')) {
-                instance.resizerNode.appendTo(target);
-            }
-        },
-
-        /**
-         * Handles `mouseLeave` events.
-         *
-         * @method _onMouseLeaveEvent
-         * @param {EventFacade} event
-         * @protected
-         */
-        _onMouseLeaveEvent: function() {
-            var instance = this;
-
-            if (!instance.resizing) {
-                instance._removeResizer();
-            }
-        },
-
-        /**
-         * Handles `mouseMoveTableCol` events.
-         *
-         * @method _onMouseMoveTableCol
-         * @param {EventFacade} event
-         * @protected
-         */
-        _onMouseMoveTableCol: function(event) {
+        _onGestureMoveTableCol: function(event) {
             var instance = this;
             var activeColumn = this._findActiveColumn(event);
             var recorder = instance.get('scheduler').get('eventRecorder');
@@ -1542,31 +1540,35 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Handles `mouseUpTableCol` events.
+         * Handles `mouseEnter` events.
          *
-         * @method _onMouseUpTableCol
+         * @method _onMouseEnterEvent
          * @param {EventFacade} event
          * @protected
          */
-        _onMouseUpTableCol: function() {
+        _onMouseEnterEvent: function(event) {
             var instance = this;
-            var scheduler = instance.get('scheduler');
-            var recorder = scheduler.get('eventRecorder');
+            var target = event.currentTarget;
+            var evt = target.getData('scheduler-event');
 
-            if (recorder && !scheduler.get('disabled')) {
-                if (instance.creationStartDate) {
-                    instance.plotEvent(recorder);
-
-                    recorder.showPopover();
-                }
+            if (evt && !evt.get('disabled')) {
+                instance.resizerNode.appendTo(target);
             }
+        },
 
-            instance.creationStartDate = null;
-            instance.resizing = false;
-            instance.startXY = null;
+        /**
+         * Handles `mouseLeave` events.
+         *
+         * @method _onMouseLeaveEvent
+         * @param {EventFacade} event
+         * @protected
+         */
+        _onMouseLeaveEvent: function() {
+            var instance = this;
 
-            instance._removeResizer();
-            instance.get('boundingBox').selectable();
+            if (!instance.resizing) {
+                instance._removeResizer();
+            }
         },
 
         /**

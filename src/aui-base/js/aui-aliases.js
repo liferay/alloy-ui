@@ -19,7 +19,7 @@ Y.mix(YUI.Env.aliases, {
     "aui-overlay-deprecated": ["aui-overlay-base-deprecated","aui-overlay-context-deprecated","aui-overlay-context-panel-deprecated","aui-overlay-manager-deprecated","aui-overlay-mask-deprecated"],
     "aui-rating": ["aui-rating-base","aui-rating-thumb"],
     "aui-resize-deprecated": ["aui-resize-base-deprecated","aui-resize-constrain-deprecated"],
-    "aui-scheduler": ["aui-scheduler-base","aui-scheduler-event-recorder","aui-scheduler-view-agenda","aui-scheduler-view-day","aui-scheduler-view-month","aui-scheduler-view-table-dd","aui-scheduler-view-table","aui-scheduler-view-week","aui-viewport"],
+    "aui-scheduler": ["event-gestures","aui-scheduler-base","aui-scheduler-event-recorder","aui-scheduler-view-agenda","aui-scheduler-view-day","aui-scheduler-view-month","aui-scheduler-view-table-dd","aui-scheduler-view-table","aui-scheduler-view-week","aui-viewport"],
     "aui-search": ["aui-search-tst"],
     "aui-sortable": ["aui-sortable-layout","aui-sortable-list"],
     "aui-surface": ["aui-surface-app","aui-surface-screen"],

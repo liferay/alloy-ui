@@ -7,10 +7,9 @@
 
 var CSS_SCHEDULER_EVENT = A.getClassName('scheduler-event'),
     CSS_SCHEDULER_EVENT_ALL_DAY = A.getClassName('scheduler-event', 'all', 'day'),
+    CSS_SCHEDULER_MOBILE = A.getClassName('scheduler', 'mobile'),
     CSS_SCHEDULER_VIEW_DAY_RESIZER = A.getClassName('scheduler-view', 'day', 'resizer'),
-    CSS_SCHEDULER_VIEW_DAY_TABLE_COL = A.getClassName('scheduler-view', 'day', 'table', 'col'),
-    CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY = A.getClassName('scheduler-view', 'day', 'table', 'colday'),
-    CSS_SCHEDULER_TOUCH = A.getClassName('scheduler', 'touch');
+    CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY = A.getClassName('scheduler-view', 'day', 'table', 'colday');
 
 function SchedulerDayViewTouch() {}
 
@@ -47,14 +46,14 @@ SchedulerDayViewTouch.prototype = {
      */
     _afterBindUI: function() {
         this._schedulerTouchEventHandles.push(
-            A.on(this._onPrepareEventCreation, this, '_prepareEventCreation'),
-            A.after(this._afterPlotEvents, this, 'plotEvents'),
-            this.columnData.delegate(
-                'click',
-                A.bind(this._onClickTableCol, this),
-                '.' + CSS_SCHEDULER_VIEW_DAY_TABLE_COL
-            )
+            A.on(this._onPrepareEventCreation, this, '_prepareEventCreation')
         );
+
+        if (A.UA.mobile) {
+            this._schedulerTouchEventHandles.push(
+                A.after(this._afterPlotEvents, this, 'plotEvents')
+            );
+        }
     },
 
     /**
@@ -66,39 +65,16 @@ SchedulerDayViewTouch.prototype = {
     _afterSyncUI: function() {
         var scheduler = this.get('scheduler');
 
-        scheduler.controlsNode.get('parentNode').prepend(scheduler.viewDateNode);
-        scheduler.get('boundingBox').addClass(CSS_SCHEDULER_TOUCH);
-    },
-
-    /**
-     * Overrides the form builder mouse events to use touch gestures instead.
-     *
-     * @method _bindMouseEvents
-     * @protected
-     */
-    _bindMouseEvents: function() {
-        this._schedulerTouchEventHandles.push(
-            this.columnData.delegate(
-                'gesturemovestart',
-                A.bind(this._onGestureMoveStartTableCol, this),
-                '.' + CSS_SCHEDULER_VIEW_DAY_TABLE_COL
-            ),
-            this.columnData.delegate(
-                'gesturemove',
-                A.bind(this._onGestureMoveTableCol, this),
-                '.' + CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY
-            ),
-            this.columnData.delegate(
-                'gesturemoveend',
-                A.bind(this._onGestureMoveEndTableCol, this),
-                '.' + CSS_SCHEDULER_VIEW_DAY_TABLE_COL
-            )
-        );
+        if (A.UA.mobile) {
+            scheduler.controlsNode.get('parentNode').prepend(scheduler.viewDateNode);
+            scheduler.get('boundingBox').addClass(CSS_SCHEDULER_MOBILE);
+        }
     },
 
     /**
      * Fired after the `plotEvents` method runs. Adds the resizer node to all
-     * events.
+     * events, which is necessary on devices that don't have the hover interaction,
+     * like mobile devices.
      *
      * @method _afterPlotEvents
      * @protected
@@ -138,63 +114,16 @@ SchedulerDayViewTouch.prototype = {
     },
 
     /**
-     * Fired when the `click` event is triggered for a table column.
-     *
-     * @method _onClickTableCol
-     * @protected
-     */
-    _onClickTableCol: function(event) {
-        var recorder = this.get('scheduler').get('eventRecorder');
-
-        this._prepareEventCreation(event, 60);
-        this.plotEvent(recorder);
-        recorder.showPopover();
-
-        this.creationStartDate = null;
-        this.startXY = null;
-    },
-
-    /**
-     * Fired on the `gesturemoveend` event.
-     *
-     * @method _onGestureMoveEndTableCol
-     * @protected
-     */
-    _onGestureMoveEndTableCol: function() {
-        this.resizing = false;
-
-        this.get('boundingBox').selectable();
-    },
-
-    /**
-     * Fired on the `gesturemovestart` event.
-     *
-     * @method _onGestureMoveStartTableCol
-     * @param {EventFacade} event
-     * @protected
-     */
-    _onGestureMoveStartTableCol: function(event) {
-        this._onMouseDownTableCol(event);
-    },
-
-    /**
-     * Fired on the `gesturemove` event.
-     *
-     * @method _onGestureMoveTableCol
-     * @param {EventFacade} event
-     * @protected
-     */
-    _onGestureMoveTableCol: function(event) {
-        this._onMouseMoveTableCol(event);
-    },
-
-    /**
      * Fired before the `_prepareEventCreation` method runs. Prevents
-     * the original method from running if it came from a gesturemovestart
+     * the original method from running if it came from a touchstart
      * DOM event, as we only want this feature for click events on touch.
+     *
+     * @method _onPrepareEventCreation
+     * @param {EventFacade} event
+     * @protected
      */
     _onPrepareEventCreation: function(event) {
-        if (event.type === 'gesturemovestart') {
+        if (event._event.type === 'touchstart') {
             return new A.Do.Prevent();
         }
     }
@@ -209,7 +138,7 @@ SchedulerDayViewTouch.ATTRS = {
      * @type {Number}
      */
     eventWidth: {
-        value: 100,
+        value: A.UA.mobile ? 100 : 95,
         validator: A.Lang.isNumber
     }
 };

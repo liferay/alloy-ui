@@ -15,17 +15,21 @@
             "aui-widget-swipe",
             "base-build"
         ],
-        "skinnable": true
-    },
-
-    "aui-carousel-touch": {
-        "requires": [
-            "aui-carousel-swipe",
-            "base-build"
-        ],
         "condition": {
             "trigger": "aui-carousel",
             "ua": "touchEnabled"
+        },
+        "skinnable": true
+    },
+
+    "aui-carousel-mobile-touch": {
+        "requires": [
+            "base-build",
+            "aui-carousel"
+        ],
+        "condition": {
+            "test": "aui-carousel-mobile-touch-test.js",
+            "trigger": "aui-carousel"
         }
     }
 }

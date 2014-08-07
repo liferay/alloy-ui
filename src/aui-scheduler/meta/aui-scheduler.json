@@ -1,6 +1,7 @@
 {
     "aui-scheduler": {
         "use": [
+            "event-gestures",
             "aui-scheduler-base",
             "aui-scheduler-event-recorder",
             "aui-scheduler-view-agenda",
@@ -43,7 +44,6 @@
     "aui-scheduler-touch": {
         "requires": [
             "base-build",
-            "event-gestures",
             "aui-scheduler"
         ],
         "condition": {
