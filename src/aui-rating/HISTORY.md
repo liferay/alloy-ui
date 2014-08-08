@@ -6,6 +6,13 @@
 
 No registries yet.
 
+## [3.0.0pr1](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr1)
+
+* [AUI-1308](https://issues.liferay.com/browse/AUI-1308) Make aui-rating responsive
+* [AUI-1287](https://issues.liferay.com/browse/AUI-1287) Wrong css formatting when running "grunt format"
+* [AUI-1243](https://issues.liferay.com/browse/AUI-1243) Remove Rating's underline on hover
+* [AUI-1224](https://issues.liferay.com/browse/AUI-1224) Add .glyphicon and change prefix from .icon-* to .glyphicon-* on Bootstrap 3
+
 ## [2.5.0](https://github.com/liferay/alloy-ui/releases/tag/2.5.0)
 
 * [AUI-1250](https://issues.liferay.com/browse/AUI-1250) The rating display is not correct with floats
