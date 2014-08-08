@@ -32,7 +32,7 @@
     width: auto;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .scheduler-base-content .scheduler-base-views {
         float: left;
         margin-top: 5px;
