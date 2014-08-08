@@ -6,30 +6,18 @@ YUI.add('aui-toggler-accessibility-tests', function(Y) {
 
     var suite = new Y.Test.Suite('aui-toggler-accessibility');
 
-        togglerNode = Y.one('#toggler');
+    var togglerNode = Y.one('#toggler');
 
     suite.add(new Y.Test.Case({
 
         name: 'TogglerAccessibility',
 
-        simulateToggleEvent: function() {
-            togglerNode.simulate('keydown', { keyCode: 13 });
-        },
-
         setUp: function() {
             this.toggler = new Y.Toggler({
                 animated: false,
                 content: '.content',
-                header: '.btn',
                 expanded: true,
-                transition: {
-                    duration: .6,
-                    easing: 'cubic-bezier(0, 0.1, 0, 1.0)',
-                    on: {
-                        end: function() {
-                        }
-                    }
-                }
+                header: '.btn'
             });
         },
 
@@ -37,29 +25,36 @@ YUI.add('aui-toggler-accessibility-tests', function(Y) {
             this.toggler.destroy();
         },
 
+        _assertARIAAttributeValues: function(header, content, expanded) {
+            Y.Assert.isTrue(header.getAttribute('aria-pressed') === (expanded ? 'true' : 'false'));
+            Y.Assert.isTrue(content.getAttribute('aria-hidden') === (expanded ? 'false' : 'true'));
+        },
+
+        _simulateToggleEvent: function() {
+            togglerNode.simulate('keydown', { keyCode: 13 });
+        },
+
         'test toggler has correct aria attributes': function() {
             var instance = this,
                 toggler = instance.toggler,
-                header = toggler.get('header'),
-                content = toggler.get('content');
+                content = toggler.get('content'),
+                header = toggler.get('header');
 
             Y.Assert.isTrue(header.hasAttribute('aria-pressed'));
             Y.Assert.isTrue(header.hasAttribute('aria-controls'));
             Y.Assert.isTrue(content.hasAttribute('aria-hidden'));
 
-            Y.Assert.isTrue(header.getAttribute('aria-pressed') === 'true');
-            Y.Assert.isTrue(content.getAttribute('aria-hidden') === 'false');
+            instance._assertARIAAttributeValues(header, content, true);
+
             Y.Assert.areSame(content.guid(), header.getAttribute('aria-controls'));
 
-            instance.simulateToggleEvent();
+            instance._simulateToggleEvent();
 
-            Y.Assert.isTrue(header.getAttribute('aria-pressed') === 'false');
-            Y.Assert.isTrue(content.getAttribute('aria-hidden') === 'true');
+            instance._assertARIAAttributeValues(header, content, false);
 
-            instance.simulateToggleEvent();
+            instance._simulateToggleEvent();
 
-            Y.Assert.isTrue(header.getAttribute('aria-pressed') === 'true');
-            Y.Assert.isTrue(content.getAttribute('aria-hidden') === 'false');
+            instance._assertARIAAttributeValues(header, content, true);
         }
     }));
 
