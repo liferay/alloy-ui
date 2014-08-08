@@ -15,6 +15,10 @@
     margin: 0 0 0 20px;
 }
 
+.tree-node-content {
+    display: inline;
+}
+
 .tree-node-content .tree-hitarea {
     cursor: pointer;
     margin-right: 3px;
