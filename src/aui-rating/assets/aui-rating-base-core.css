@@ -17,7 +17,7 @@
     font-size: 1em;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .rating .glyphicon {
         font-size: 1.5em;
     }
