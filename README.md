@@ -22,10 +22,16 @@ IE 8+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 
 ## Automated tasks
 
-You can find a set of util tasks to work with [AlloyUI](http://github.com/liferay/alloy-ui) project using [Gulp](http://gulpjs.com/).
+We use [Gulp](http://gulpjs.com/), a task-runner in Node, to automate things.
 
 ```
 gulp <command>
+```
+
+To discover the most commonly used tasks, run:
+
+```
+gulp help
 ```
 
 ### Setup
@@ -44,12 +50,11 @@ gulp <command>
 npm install
     ```
 
-4. List most the most commonly used AlloyUI tasks:
+4. Build AlloyUI & YUI3 using Shifter:
 
     ```
-gulp help
+gulp build
     ```
-
 
 ## Discussion
 

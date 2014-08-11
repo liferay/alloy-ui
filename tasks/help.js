@@ -18,24 +18,26 @@ footer = 'AlloyUI ' + gutil.colors.green(project.version) + '\n' +
 content = {
     'api': 'Import code examples and build docs locally using YUIDoc',
     'api-watch': 'Watch for any changes and build docs locally using YUIDoc',
-    'init': 'Fetch dependencies, then copy YUI3 files to build folder',
-    'init-bower': 'Fetch dependencies using Bower',
-    'init-npm': 'Fetch dependencies using NPM',
-    'init-yui': 'Copy YUI3 files to the build folder',
     'build': 'Build AlloyUI & YUI3 using Shifter',
-    'watch': 'Watch for any changes and build using Shifter',
     'create': 'Create a new module under src folder using Yogi',
     'format': 'Format CSS & JavaScript code & images',
     'format-css': 'Format only CSS code using CSS Beautify',
     'format-js': 'Format only JavaScript code using JS Beautify',
+    'init': 'Fetch dependencies, then copy YUI3 files to build folder',
+    'init-bower': 'Fetch dependencies using Bower',
+    'init-npm': 'Fetch dependencies using NPM',
+    'init-yui': 'Copy YUI3 files to the build folder',
     'lint': 'Lint JavaScript code using JSHint',
     'release': 'Build modules and generate a release zip file',
     'release-cdn': 'Build modules optimized for CDN and generate a release',
-    'test': 'Run unit tests using PhantomJS',
-    'test-browser': 'Run tests in the browser using Yeti',
     'report': 'Show code coverage summary using Istanbul',
     'report-browser': 'Open code coverage report in the browser',
-    'update': 'Update dependencies using Bower and NPM'
+    'test': 'Run unit tests using PhantomJS',
+    'test-browser': 'Run tests in the browser using Yeti',
+    'test-coverage': 'Run test coverage using Yogi',
+    'test-coverage-watch': 'Watch for any changes and run test coverage',
+    'update': 'Update dependencies using Bower and NPM',
+    'watch': 'Watch for any changes and build using Shifter'
 };
 
 function help(callback) {
