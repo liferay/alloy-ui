@@ -39,10 +39,14 @@ A.Modal = A.Base.create('modal', A.Widget, [
     A.WidgetToggle,
     A.WidgetAutohide,
     A.WidgetToolbars,
-    A.WidgetModality,
     A.WidgetPositionAlign,
     A.WidgetPositionConstrain,
-    A.WidgetStack
+    A.WidgetStack,
+
+    // WidgetModality needs to be added after all WidgetPosition augmentations
+    // to prevent it from focusing the modal before it's properly positioned,
+    // which would cause the viewport to scroll to the top.
+    A.WidgetModality
 ], {
     CONTENT_TEMPLATE: '<div class="modal-content"></div>',
 
