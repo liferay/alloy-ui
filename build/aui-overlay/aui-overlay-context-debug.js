@@ -462,6 +462,11 @@ var OverlayContext = A.Component.create(
 			 */
 			_toggle: function(event) {
 				var instance = this;
+
+				if (instance.get('disabled')) {
+					return;
+				}
+
 				var currentTarget = event.currentTarget;
 
 				// check if the target is different and simulate a .hide() before toggle

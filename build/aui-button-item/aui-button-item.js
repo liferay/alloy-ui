@@ -480,6 +480,21 @@ var ButtonItem = A.Component.create(
 				boundingBox.toggleClass(CSS_BUTTON_LABEL_ONLY, hasLabelOnly);
 			},
 
+			_uiSetDisabled: function(val) {
+				var instance = this;
+
+				var boundingBox = instance.get(BOUNDING_BOX);
+
+				if (val) {
+					boundingBox.attr('disabled', 'disabled');
+				}
+				else {
+					boundingBox.removeAttribute('disabled');
+				}
+
+				A.ButtonItem.superclass._uiSetDisabled.apply(instance, arguments);
+			},
+
 			/**
 			 * Updates the UI for the icon in response to the <a href="ButtonItem.html#event_HandlerChange">Handler</a> event.
 			 *
@@ -618,4 +633,4 @@ var ButtonItem = A.Component.create(
 
 A.ButtonItem = ButtonItem;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-state-interaction','widget-child']});
+}, '@VERSION@' ,{requires:['aui-base','aui-state-interaction','widget-child'], skinnable:true});
