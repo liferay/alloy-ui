@@ -8,7 +8,7 @@ var CheckboxCellEditor,
  * @class A.CheckboxCellEditor
  * @extends A.BaseOptionsCellEditor
  * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * properties.
  * @constructor
  */
 var CheckboxCellEditor = A.Component.create({
@@ -24,7 +24,7 @@ var CheckboxCellEditor = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the CheckboxCellEditor.
+     * configuration for the `A.CheckboxCellEditor`.
      *
      * @property ATTRS
      * @type Object
@@ -33,7 +33,7 @@ var CheckboxCellEditor = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the selected state of an option.
          *
          * @attribute selectedAttrName
          * @default 'checked'
@@ -60,9 +60,10 @@ var CheckboxCellEditor = A.Component.create({
         OPTION_WRAPPER: '<label class="checkbox" for="{id}"> {label}</label>',
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Gets the `A.CheckboxCellEditor` input value.
          *
          * @method getElementsValue
+         * @return {String} Input value.
          */
         getElementsValue: function() {
             var instance = this;
@@ -71,7 +72,7 @@ var CheckboxCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Syncs the name attribute of the form input.
          *
          * @method _syncElementsFocus
          * @protected
@@ -86,7 +87,7 @@ var CheckboxCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Syncs the name attribute of the form input.
          *
          * @method _syncElementsName
          * @protected

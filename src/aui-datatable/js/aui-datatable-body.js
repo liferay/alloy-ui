@@ -12,7 +12,7 @@ var getCN = A.getClassName,
  *
  * @class A.DataTableBody
  * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * properties.
  * @constructor
  */
 

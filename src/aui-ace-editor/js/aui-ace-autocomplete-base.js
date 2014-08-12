@@ -20,7 +20,7 @@ var Lang = A.Lang,
  *
  * @class A.AceEditor.AutoCompleteBase
  * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * properties.
  * @constructor
  */
 Base.prototype = {

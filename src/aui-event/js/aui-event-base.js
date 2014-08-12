@@ -306,7 +306,8 @@ A.mix(
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Checks if an event is triggered by navigation keys like `PAGE UP`
+         * and `DOWN` keys.
          *
          * @method isNavKey
          * @return {Boolean}

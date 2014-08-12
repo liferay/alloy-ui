@@ -15,7 +15,7 @@ var Lang = A.Lang,
  * @extends DataTable
  * @uses A.WidgetCssClass, A.WidgetToggle
  * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * properties.
  * @constructor
  */
 A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass, A.WidgetToggle], {
@@ -49,16 +49,17 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Creates and return a new `A.TextCellEditor`.
      *
      * @method getDefaultEditor
+     * @return {TextCellEditor}
      */
     getDefaultEditor: function() {
         return new A.TextCellEditor();
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires after the `renderUI` event.
      *
      * @method _afterRenderUI
      * @protected
@@ -72,10 +73,10 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires after the `UITriggerSort` event.
      *
      * @method _afterUITriggerSort
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _afterUITriggerSort: function() {
@@ -85,7 +86,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Initializer for the `A.DataTable` highlighter.
      *
      * @method _initHighlight
      * @protected
@@ -100,10 +101,10 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires on `activeCellChange` event.
      *
      * @method _onActiveCellChange
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _onActiveCellChange: function(event) {
@@ -121,10 +122,10 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Callback for the selection key event listener.
      *
      * @method _onSelectionKey
-     * @param event
+     * @param {EventFacade} event
      * @protected
      */
     _onSelectionKey: function(event) {
@@ -147,7 +148,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Callback for syncing `A.PropertyList` on scroll.
      *
      * @method _syncPropertyListScrollUI
      * @protected
@@ -163,7 +164,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
 }, {
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Static property provides a string to identify the CSS prefix.
      *
      * @property CSS_PREFIX
      * @type String
@@ -182,7 +183,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the `column` config for `A.PropertyList`.
          *
          * @attribute columns
          * @type Function
@@ -223,7 +224,7 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Determines if the `A.PropertyList` is scrollable.
          *
          * @attribute scrollable
          * @default true
@@ -253,19 +254,20 @@ A.PropertyList = A.Base.create(A.DataTable.NAME, A.DataTable, [A.WidgetCssClass,
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Defines the width of the `A.PropertyList`.
          *
          * DataTable scroll breaks when width value is a number
          * See http://yuilibrary.com/projects/yui3/ticket/2532600
          *
          * @attribute width
+         * @type String|Number
          */
         width: {
             setter: String
         },
 
         /**
-         * Colection of strings used to label elements of the UI.
+         * Collection of strings used to label elements of the UI.
          *
          * @attribute strings
          * @type Object
