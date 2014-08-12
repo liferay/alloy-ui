@@ -917,6 +917,7 @@ var DatePickerSelect = A.Component.create(
 
 				instance.datePicker.set(DISABLED, disabled);
 
+				instance._buttonItem.set(DISABLED, disabled);
 				instance._buttonItem.StateInteraction.set(DISABLED, disabled);
 			}
 		}
