@@ -132,30 +132,10 @@ gulp release-cdn
 gulp test
     ```
 
-* Run unit tests and code coverage using [Yogi](http://yui.github.io/yogi/):
-
-    ```
-gulp test-coverage
-    ```
-
 * Run tests in the browser using [Yeti](http://yeti.cx/):
 
     ```
 gulp test-browser
-    ```
-
-### Code Coverage Report
-
-* Show code coverage summary using [Istanbul](https://github.com/gotwarlost/istanbul):
-
-   ```
-gulp report
-   ```
-
-* Open code coverage report in the browser:
-
-    ```
-gulp report-browser
     ```
 
 ### Update
