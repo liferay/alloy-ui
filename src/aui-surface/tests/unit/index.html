@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>aui-surface</title>
+
+    <script src="../../../../build/aui/aui.js"></script>
+    <script src="js/tests.js"></script>
+    <script src="js/tests-aui-surface-utils.js"></script>
+    <meta charset="utf-8" />
+</head>
+<body class="yui3-skin-sam">
+<a onclick="return false;" href="/base/page">page</a>
+<a onclick="return false;" href="/base/page#hash">hash</a>
+<a onclick="return false;" href="/base/querystring?p=1">querystring</a>
+<a onclick="return false;" href="/base/delayed">delayed</a>
+<a onclick="return false;" href="http://alloyui.com/external">external</a>
+<a onclick="return false;" href="/base/unrouted">unrouted</a>
+<a onclick="return false;" href="/outside">outside</a>
+<div id="header">
+    <div id="header-default">default</div>
+</div>
+<div id="body">
+    <div id="body-default">default</div>
+</div>
+<div id="logger"></div>
+<div style="height:10000px;width:10000px;"></div>
+<iframe style="display:none;" src="http://www.youtube.com/embed/G5aDDMpHZhY"></iframe>
+<script>
+YUI({
+    coverage: ['aui-surface-app', 'aui-surface-base', 'aui-surface-screen', 'aui-surface-screen-html', 'aui-surface-screen-route'],
+    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+}).use('test-console', 'test', 'aui-surface-tests', function(Y) {
+    (new Y.Test.Console()).render('#logger');
+
+    Y.Test.Runner.setName('aui-surface');
+    Y.Test.Runner.run();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+{
+    "aui-surface": {
+        "use": [
+            "aui-surface-app",
+            "aui-surface-screen"
+        ]
+    },
+
+    "aui-surface-base": {
+        "requires": [
+            "base-build",
+            "node-style",
+            "timers",
+            "aui-debounce",
+            "aui-promise",
+            "aui-parse-content"
+        ]
+    },
+
+    "aui-surface-app": {
+        "requires": [
+            "event-delegate",
+            "node-event-html5",
+            "aui-surface-base",
+            "aui-surface-screen",
+            "aui-surface-screen-route"
+        ]
+    },
+
+    "aui-surface-screen": {
+        "requires": [
+            "base-build"
+        ]
+    },
+
+    "aui-surface-screen-html": {
+        "requires": [
+            "io",
+            "aui-promise",
+            "aui-surface-screen",
+            "aui-url"
+        ]
+    },
+
+    "aui-surface-screen-route": {
+        "requires": [
+            "base-build"
+        ]
+    }
+}
