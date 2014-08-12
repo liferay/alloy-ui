@@ -182,7 +182,7 @@ var SchedulerTableView = A.Component.create({
          * Contains the function that formats the header date.
          *
          * @attribute headerDateFormatter
-         * @type {String}
+         * @type {Function}
          */
         headerDateFormatter: {
             value: function(date) {
@@ -196,7 +196,7 @@ var SchedulerTableView = A.Component.create({
                     }
                 );
             },
-            validator: isString
+            validator: isFunction
         },
 
         /**
