@@ -288,12 +288,12 @@ var Lang = A.Lang,
 	BODY = 'body',
 	BOUNDING_BOX = 'boundingBox',
 	BUTTON = 'button',
-	BUTTONITEM = 'buttonitem',
 	BUTTON_NODE = 'buttonNode',
+	BUTTONITEM = 'buttonitem',
 	CALENDAR = 'calendar',
 	CLEARFIX = 'clearfix',
-	CONTENT_BOX = 'contentBox',
 	CONTENT = 'content',
+	CONTENT_BOX = 'contentBox',
 	CURRENT_DAY = 'currentDay',
 	CURRENT_MONTH = 'currentMonth',
 	CURRENT_YEAR = 'currentYear',
@@ -302,9 +302,11 @@ var Lang = A.Lang,
 	DAY = 'day',
 	DAY_NODE = 'dayNode',
 	DAY_NODE_NAME = 'dayNodeName',
+	DISABLED = 'disabled',
 	DISPLAY = 'display',
 	DOT = '.',
 	HELPER = 'helper',
+	LOCALE = 'locale',
 	ID = 'id',
 	MAX_DATE = 'maxDate',
 	MIN_DATE = 'minDate',
@@ -1177,6 +1179,10 @@ var DatePickerSelect = A.Component.create(
 				instance.get(DAY_NODE).set('disabled', disabled);
 				instance.get(MONTH_NODE).set('disabled', disabled);
 				instance.get(YEAR_NODE).set('disabled', disabled);
+
+				instance.datePicker.set(DISABLED, disabled);
+
+				instance._buttonItem.StateInteraction.set(DISABLED, disabled);
 			}
 		}
 	}
