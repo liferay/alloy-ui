@@ -451,10 +451,8 @@ var FormBuilder = A.Component.create({
             var instance = this,
                 lastFocusedField = instance.lastFocusedField;
 
-            if (lastFocusedField) {
-                if (field != lastFocusedField) {
-                    lastFocusedField.blur();
-                }
+            if (lastFocusedField && (field != lastFocusedField)) {
+                lastFocusedField.blur();
             }
 
             instance.lastFocusedField = field.focus();
