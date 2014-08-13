@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-No registries yet.
+* [AUI-1543](https://issues.liferay.com/browse/AUI-1543) Make aui-button accessible
 
 ## [3.0.0pr1](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr1)
 
