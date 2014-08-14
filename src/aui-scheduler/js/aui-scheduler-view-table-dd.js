@@ -518,6 +518,8 @@ A.mix(A.SchedulerTableViewDD.prototype, {
                 silent: true
             });
 
+            recorder.populateForm();
+
             recorder.showPopover(instance.lasso);
 
             instance._recording = false;
