@@ -17,9 +17,9 @@ var L = A.Lang,
     CSS_FORM_BUILDER_FIELD = getCN('form-builder-field'),
     CSS_FORM_BUILDER_FIELD_NODE = getCN('form-builder-field', 'node'),
 
-    TPL_INPUT = '<input id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE,
+    TPL_INPUT = '<div class="form-builder-field-wrapper"><input id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE,
         CSS_FIELD_INPUT, CSS_FIELD_INPUT_TEXT,
-        CSS_FORM_CONTROL].join(' ') + '" name="{name}" type="text" value="{value}" />',
+        CSS_FORM_CONTROL].join(' ') + '" name="{name}" type="text" value="{value}" /></div>',
 
     WIDTH_VALUES_MAP = {
         small: 'col-xs-4',
