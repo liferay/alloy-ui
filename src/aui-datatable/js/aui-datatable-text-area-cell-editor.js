@@ -7,7 +7,7 @@ var CSS_FORM_CONTROL = A.getClassName('form', 'control'),
  * @class A.TextAreaCellEditor
  * @extends A.BaseCellEditor
  * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * properties.
  * @constructor
  */
 var TextAreaCellEditor = A.Component.create({

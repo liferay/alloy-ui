@@ -6,6 +6,12 @@
 
 No registries yet.
 
+## [3.0.0pr1](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr1)
+
+* [AUI-1287](https://issues.liferay.com/browse/AUI-1287) Apply css beautifier (grunt format)
+* [AUI-1174](https://issues.liferay.com/browse/AUI-1174) Validate source code with JSHint
+* [AUI-1256](https://issues.liferay.com/browse/AUI-1256) AUI Palette items can overflow their container
+
 ## [2.5.0](https://github.com/liferay/alloy-ui/releases/tag/2.5.0)
 
 * [AUI-1163](https://issues.liferay.com/browse/AUI-1163) Remove unnecessary constants

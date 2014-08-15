@@ -6,6 +6,21 @@
 
 No registries yet.
 
+## [3.0.0pr2](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr2)
+
+* [AUI-1541](https://issues.liferay.com/browse/AUI-1541) AUI tree view does not allow children array to be reused
+* [AUI-1450](https://issues.liferay.com/browse/AUI-1450) "Load More Results" always loads again and again last elements despite of there aren't more nodes
+* [AUI-1402](https://issues.liferay.com/browse/AUI-1402) Creating a TreeView from HTML markup is too slow
+
+## [3.0.0pr1](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr1)
+
+* [AUI-1320](https://issues.liferay.com/browse/AUI-1320) A User can add duplicate child nodes
+* [AUI-1287](https://issues.liferay.com/browse/AUI-1287) Wrong css formatting when running "grunt format"
+* [AUI-1174](https://issues.liferay.com/browse/AUI-1174) Validate source code with JSHint
+* [AUI-1249](https://issues.liferay.com/browse/AUI-1249) Fix Tree alignment on Bootstrap 3
+* [AUI-1223](https://issues.liferay.com/browse/AUI-1223) Use <span> instead of <i> when creating icons on Bootstrap 3
+* [AUI-1224](https://issues.liferay.com/browse/AUI-1224) Add .glyphicon and change prefix from .icon-* to .glyphicon-* on Bootstrap 3
+
 ## [2.5.0](https://github.com/liferay/alloy-ui/releases/tag/2.5.0)
 
 * [AUI-1163](https://issues.liferay.com/browse/AUI-1163) Remove unnecessary constants

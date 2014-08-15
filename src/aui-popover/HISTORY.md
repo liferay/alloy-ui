@@ -6,6 +6,13 @@
 
 No registries yet.
 
+## [3.0.0pr1](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr1)
+
+* [AUI-1310](https://issues.liferay.com/browse/AUI-1310) Make aui-tooltip responsive
+* [AUI-1307](https://issues.liferay.com/browse/AUI-1307) Make aui-popover responsive
+* [AUI-1174](https://issues.liferay.com/browse/AUI-1174) Validate source code with JSHint
+* [AUI-1267](https://issues.liferay.com/browse/AUI-1267) Move CSS classes from Alloy Bootstrap to AlloyUI
+
 ## [2.5.0](https://github.com/liferay/alloy-ui/releases/tag/2.5.0)
 
 * [AUI-1163](https://issues.liferay.com/browse/AUI-1163) Remove unnecessary constants

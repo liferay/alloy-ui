@@ -150,7 +150,7 @@ A.Event.define('input', {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Fires an event.
      *
      * @method _fireEvent
      * @param subscription

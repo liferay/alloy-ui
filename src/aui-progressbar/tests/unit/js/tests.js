@@ -88,9 +88,9 @@ YUI.add('aui-progressbar-tests', function(Y) {
             boundingBox = this.progressBar.get('boundingBox');
 
             Y.Assert.areEqual(
-                label,
-                boundingBox.getAttribute('aria-label'),
-                'aria-label should be set to specified label'
+                'progressbar',
+                boundingBox.getAttribute('role'),
+                'role should be set to progressbar'
             );
 
             Y.Assert.areEqual(

@@ -8,7 +8,7 @@ var CSS_FORM_CONTROL = A.getClassName('form', 'control'),
  * @class A.DropDownCellEditor
  * @extends A.BaseOptionsCellEditor
  * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * properties.
  * @constructor
  */
 DropDownCellEditor = A.Component.create({
@@ -24,7 +24,7 @@ DropDownCellEditor = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the DropDownCellEditor.
+     * configuration for the `DropDownCellEditor`.
      *
      * @property ATTRS
      * @type Object
@@ -33,7 +33,7 @@ DropDownCellEditor = A.Component.create({
     ATTRS: {
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Indicates whether or not multiple options are selectable.
          *
          * @attribute multiple
          * @default false
@@ -55,7 +55,7 @@ DropDownCellEditor = A.Component.create({
     EXTENDS: A.BaseOptionsCellEditor,
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Static property used to define the UI attributes.
      *
      * @property UI_ATTRS
      * @type Array
@@ -69,9 +69,10 @@ DropDownCellEditor = A.Component.create({
         OPTION_TEMPLATE: '<option value="{value}">{label}</option>',
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Get the input value.
          *
          * @method getElementsValue
+         * @return {String} Input value.
          */
         getElementsValue: function() {
             var instance = this;
@@ -84,7 +85,7 @@ DropDownCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Syncs the element focus.
          *
          * @method _syncElementsFocus
          * @protected
@@ -96,7 +97,7 @@ DropDownCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Set the `multiple` attribute in the UI.
          *
          * @method _uiSetMultiple
          * @param val
