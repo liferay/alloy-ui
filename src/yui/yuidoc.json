@@ -1,0 +1,15 @@
+{
+    "name": "AlloyUI",
+    "description": "AlloyUI is a framework built on top of YUI3 (JavaScript) that uses Bootstrap (HTML/CSS) to provide a simple API for building high scalable applications",
+    "version": "3.0.0p2",
+    "url": "http://alloyui.com/",
+    "options": {
+        "linkNatives": "true",
+        "attributesEmit": "true",
+        "selleck": "true",
+        "ignorePaths": [],
+        "paths": "*",
+        "outdir": "../build"
+    }
+}
+
