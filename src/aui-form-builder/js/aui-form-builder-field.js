@@ -18,6 +18,7 @@ var L = A.Lang,
     CSS_COMPONENT = getCN('component'),
     CSS_FB_DROP_ZONE = getCN('form', 'builder', 'drop', 'zone'),
     CSS_FB_FIELD = getCN('form', 'builder', 'field'),
+    CSS_FB_FIELD_NODE = getCN('form', 'builder', 'field', 'node'),
     CSS_FB_FIELD_SELECTED = getCN('form', 'builder', 'field', 'selected'),
     CSS_FB_UNIQUE = getCN('form', 'builder', 'unique'),
     CSS_ICON = getCN('glyphicon'),
@@ -769,6 +770,23 @@ var FormBuilderField = A.Component.create({
         },
 
         /**
+         * Returns the node for the current field.
+         *
+         * @method _getFieldNode
+         * @protected
+         */
+        _getFieldNode: function() {
+            var templateNode = this.get('templateNode'),
+                fieldNode = templateNode.one('.' + CSS_FB_FIELD_NODE);
+
+            if (!fieldNode) {
+                fieldNode = templateNode;
+            }
+
+            return fieldNode;
+        },
+
+        /**
          * Gets a list of toolbar items.
          *
          * @method _getToolbarItems
@@ -913,14 +931,13 @@ var FormBuilderField = A.Component.create({
          * @protected
          */
         _uiSetDisabled: function(val) {
-            var instance = this,
-                templateNode = instance.get('templateNode');
+            var fieldNode = this._getFieldNode();
 
             if (val) {
-                templateNode.setAttribute('disabled', val);
+                fieldNode.setAttribute('disabled', val);
             }
             else {
-                templateNode.removeAttribute('disabled');
+                fieldNode.removeAttribute('disabled');
             }
         },
 
@@ -961,10 +978,9 @@ var FormBuilderField = A.Component.create({
          * @protected
          */
         _uiSetName: function(val) {
-            var instance = this,
-                templateNode = instance.get('templateNode');
+            var fieldNode = this._getFieldNode();
 
-            templateNode.set('name', val);
+            fieldNode.set('name', val);
         },
 
         /**
@@ -975,10 +991,9 @@ var FormBuilderField = A.Component.create({
          * @protected
          */
         _uiSetPredefinedValue: function(val) {
-            var instance = this,
-                templateNode = instance.get('templateNode');
+            var fieldNode = this._getFieldNode();
 
-            templateNode.val(val);
+            fieldNode.val(val);
         },
 
         /**
