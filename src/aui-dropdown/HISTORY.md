@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
+## [3.0.0pr1](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr1)
 
 * [AUI-1377](https://issues.liferay.com/browse/AUI-1377) AUI-Dropdown tests fail on IE8
 * [AUI-1153](https://issues.liferay.com/browse/AUI-1153) Create Bootstrap's Dropdown module
