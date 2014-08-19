@@ -264,7 +264,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
                 options = instance.get(OPTIONS);
 
             instance.predefinedValueEditor = new A.DropDownCellEditor({
-                options: getEditorOptions(options)
+                options: instance._getPredefinedValuesOptions(options)
             });
         },
 
@@ -313,7 +313,10 @@ var FormBuilderMultipleChoiceField = A.Component.create({
                     editable: true,
                     on: {
                         optionsChange: function(event) {
-                            instance.predefinedValueEditor.set(OPTIONS, event.newVal);
+                            var values = instance._normalizeValues(event.newVal);
+
+                            values = instance._getPredefinedValuesOptions(values);
+                            instance.predefinedValueEditor.set(OPTIONS, values);
                         }
                     },
                     options: getEditorOptions(options),
@@ -363,7 +366,52 @@ var FormBuilderMultipleChoiceField = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a list of predefined values with an empty option
+         *
+         * @method _getPredefinedValuesOptions
+         * @param options
+         * @protected
+         */
+        _getPredefinedValuesOptions: function(options) {
+            var instance = this;
+
+            var predefinedOptions = { _EMPTY_STR: _EMPTY_STR };
+
+            var options = getEditorOptions(options);
+
+            for (var prop in options) {
+                predefinedOptions[prop] = options[prop];
+            }
+
+            return predefinedOptions;
+        },
+
+        /**
+         * Returns an array of objects with values
+         *
+         * @method _normalizeValues
+         * @param values
+         * @protected
+         */
+        _normalizeValues: function(values) {
+            var instance = this;
+
+            var normalizedValues = [];
+
+            for (var prop in values) {
+                normalizedValues.push(
+                    {
+                        label: values[prop],
+                        value: prop
+                    }
+                );
+            }
+
+            return normalizedValues;
+        },
+
+        /**
+         * Set the `options` attribute on the UI.
          *
          * @method _uiSetOptions
          * @param val
