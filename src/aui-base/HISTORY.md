@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-* [AUI-1553](https://issues.liferay.com/browse/AUI-1554) Create unit test for defaultValue
+* [AUI-1554](https://issues.liferay.com/browse/AUI-1554) Create unit test for defaultValue
 * [AUI-1348](https://issues.liferay.com/browse/AUI-1348) Make aui-audio module accessible
 * [AUI-1558](https://issues.liferay.com/browse/AUI-1558) Create unit test for padNumber
 
