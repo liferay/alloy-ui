@@ -674,7 +674,7 @@ A.mix(A.DataType.DateMath, {
     /**
      * Checks if the {date2} is the next day at 00:00:00.
      *
-     * @method isNextDayBoundary
+     * @method isDayBoundary
      * @param {Date} date1 Date
      * @param {Date} date2 Date
      * @return boolean
