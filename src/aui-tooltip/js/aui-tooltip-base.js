@@ -36,6 +36,7 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
     A.WidgetPositionAlign,
     A.WidgetPositionAlignSuggestion,
     A.WidgetPositionConstrain,
+    A.WidgetStack,
     A.WidgetTransition,
     A.WidgetTrigger
 ], {
