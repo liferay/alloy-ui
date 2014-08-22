@@ -34,6 +34,18 @@ YUI.add('aui-base-tests', function(Y) {
             'Lorem-Ipsum-doLOR. sit-amet +1',
             'lorem-ipsum-dolor-sit-amet, LOREM-ipsum-D&OLOR',
             'Lorem-ipsum-dolor-sit-amet. lorem-ipsum-dolor-sit-amet, lorem-Ipsum-Dolor-Sit-Amet'
+        ],
+        singularStrings = [
+            'octopus',
+            'fish',
+            'apple',
+            'mailman'
+        ],
+        pluralizedStrings = [
+            'octopi',
+            'fish',
+            'apples',
+            'mailmen'
         ];
 
     var Assert = Y.Assert,
@@ -150,6 +162,17 @@ YUI.add('aui-base-tests', function(Y) {
             for (var i = 0; i < endsWithStrings.length; i++) {
                 Assert.isTrue(Y.Lang.String.endsWith(endsWithStrings[i], endsWithStringsSuffixes[i]));
             }
+        },
+
+        'should pluralize known words correctly': function() {
+            for (var i = 0; i < singularStrings.length; i++) {
+                Assert.areEqual(Y.Lang.String.pluralize( 0, singularStrings[i], pluralizedStrings[i]), '0 '.concat(pluralizedStrings[i]));
+                Assert.areEqual(Y.Lang.String.pluralize( 1, singularStrings[i], pluralizedStrings[i]), '1 '.concat(singularStrings[i]));
+                Assert.areEqual(Y.Lang.String.pluralize( 2, singularStrings[i], pluralizedStrings[i]), '2 '.concat(pluralizedStrings[i]));
+                Assert.areEqual(Y.Lang.String.pluralize( 3, singularStrings[i], pluralizedStrings[i]), '3 '.concat(pluralizedStrings[i]));
+                Assert.areEqual(Y.Lang.String.pluralize( 4, singularStrings[i], pluralizedStrings[i]), '4 '.concat(pluralizedStrings[i]));
+            }
+
         }
     }));
 
