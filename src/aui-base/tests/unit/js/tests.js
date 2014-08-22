@@ -21,7 +21,8 @@ YUI.add('aui-base-tests', function(Y) {
             'Lorem-Ipsum-doLOR. sit-amet +1',
             'lorem-ipsum-dolor-sit-amet, LOREM-ipsum-D&OLOR',
             'Lorem-ipsum-dolor-sit-amet. lorem-ipsum-dolor-sit-amet, lorem-Ipsum-Dolor-Sit-Amet',
-        ];
+        ],
+        regExCharacters = ['(', ')', '^', '$', '.', '*', '?', '/', '+', '|', '[', ']', '\\'];
 
     var Assert = Y.Assert,
         suite = new Y.Test.Suite('aui-base');
@@ -124,6 +125,12 @@ YUI.add('aui-base-tests', function(Y) {
         'should convert new lines("\\n" & "\\r") to line breaks("<br />")': function() {
             for (var i = 0; i < nl2brStrings.length; i++) {
                 Assert.areEqual(Y.Lang.String.nl2br(nl2brStrings[i]),  nl2brStringsOutput[i]);
+            }
+        },
+
+        'should escape regular expressions correctly': function() {
+            for (var i = 0; i < regExCharacters.length; i++) {
+                Assert.areEqual(Y.Lang.String.escapeRegEx(regExCharacters[i]), '\\'.concat(regExCharacters[i]));
             }
         }
     }));
