@@ -9,6 +9,18 @@ YUI.add('aui-base-tests', function(Y) {
             'Lorem-Ipsum-doLOR. sit-amet +1',
             'lorem-ipsum-dolor-sit-amet, LOREM-ipsum-D&OLOR',
             'Lorem-ipsum-dolor-sit-amet. lorem-ipsum-dolor-sit-amet, lorem-Ipsum-Dolor-Sit-Amet',
+        ],
+        nl2brStrings = [
+            'Buffalo\r\n, buffalo!',
+            'Buffalo?\r',
+            'Buffalo buffalo buffalo\n buffalo buffalo.',
+            'Buffalo\n\r buffalo buffalo buffalo buffalo \r buffalo.'
+        ],
+        nl2brStringOutputs = [
+            'Buffalo<br />, buffalo!',
+            'Buffalo?\r',
+            'Buffalo buffalo buffalo<br /> buffalo buffalo.',
+            'Buffalo<br />\r buffalo buffalo buffalo buffalo \r buffalo.'
         ];
 
     var Assert = Y.Assert,
@@ -106,6 +118,12 @@ YUI.add('aui-base-tests', function(Y) {
                     Assert.areEqual(paddedLengths.pre, precision);
                     Assert.areEqual(paddedLengths.post, length);
                 }
+            }
+        },
+
+        'should convert new lines("\\n" & "\\r") to line breaks("<br />")': function() {
+            for (var i = 0; i < nl2brStrings.length; i++) {
+                Assert.areEqual(Y.Lang.String.nl2br(nl2brStrings[i]),  nl2brStringOutputs[i]);
             }
         }
     }));
