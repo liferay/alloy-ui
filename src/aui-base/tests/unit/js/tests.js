@@ -1,6 +1,18 @@
 YUI.add('aui-base-tests', function(Y) {
 
     var escapedEntities = ['&amp;', '&lt;', '&gt;', '&#034;', '&#039;', '&#047;', '&#096;'],
+        nl2brStrings = [
+            'lorem-ipsum-dolor\r\n, lorem-ipsum!',
+            'lorem?\r',
+            'lorem ipsum dolor\n lorem-ipsum dolor.',
+            'Lorem ipsum\n\r lorem-ipsum-dolor-sit-amet \r dolor.'
+        ],
+        nl2brStringsOutput = [
+            'lorem-ipsum-dolor<br />, lorem-ipsum!',
+            'lorem?\r',
+            'lorem ipsum dolor<br /> lorem-ipsum dolor.',
+            'Lorem ipsum<br />\r lorem-ipsum-dolor-sit-amet \r dolor.'
+        ],
         numbersToPad = [1, 10, 2.5, 6.789, 123.4, 3000.3102, .5, .10001, 500000.0],
         symbolEntities = ['&','<','>','"','\'','/','`'],
         uncamelizedStrings = [
@@ -9,18 +21,6 @@ YUI.add('aui-base-tests', function(Y) {
             'Lorem-Ipsum-doLOR. sit-amet +1',
             'lorem-ipsum-dolor-sit-amet, LOREM-ipsum-D&OLOR',
             'Lorem-ipsum-dolor-sit-amet. lorem-ipsum-dolor-sit-amet, lorem-Ipsum-Dolor-Sit-Amet',
-        ],
-        nl2brStrings = [
-            'Buffalo\r\n, buffalo!',
-            'Buffalo?\r',
-            'Buffalo buffalo buffalo\n buffalo buffalo.',
-            'Buffalo\n\r buffalo buffalo buffalo buffalo \r buffalo.'
-        ],
-        nl2brStringOutputs = [
-            'Buffalo<br />, buffalo!',
-            'Buffalo?\r',
-            'Buffalo buffalo buffalo<br /> buffalo buffalo.',
-            'Buffalo<br />\r buffalo buffalo buffalo buffalo \r buffalo.'
         ];
 
     var Assert = Y.Assert,
@@ -123,7 +123,7 @@ YUI.add('aui-base-tests', function(Y) {
 
         'should convert new lines("\\n" & "\\r") to line breaks("<br />")': function() {
             for (var i = 0; i < nl2brStrings.length; i++) {
-                Assert.areEqual(Y.Lang.String.nl2br(nl2brStrings[i]),  nl2brStringOutputs[i]);
+                Assert.areEqual(Y.Lang.String.nl2br(nl2brStrings[i]),  nl2brStringsOutput[i]);
             }
         }
     }));
