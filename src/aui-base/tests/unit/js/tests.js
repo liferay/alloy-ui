@@ -1,6 +1,18 @@
 YUI.add('aui-base-tests', function(Y) {
 
-    var escapedEntities = ['&amp;', '&lt;', '&gt;', '&#034;', '&#039;', '&#047;', '&#096;'],
+    var endsWithStrings = [
+            'lorem-ipsum',
+            'lorem ipsum',
+            'loremipsumdolor',
+            'lorem'
+        ],
+        endsWithStringsSuffixes = [
+            'ipsum',
+            ' ipsum',
+            'dolor',
+            'm'
+        ],
+        escapedEntities = ['&amp;', '&lt;', '&gt;', '&#034;', '&#039;', '&#047;', '&#096;'],
         nl2brStrings = [
             'lorem-ipsum-dolor\r\n, lorem-ipsum!',
             'lorem?\r',
@@ -22,24 +34,6 @@ YUI.add('aui-base-tests', function(Y) {
             'Lorem-Ipsum-doLOR. sit-amet +1',
             'lorem-ipsum-dolor-sit-amet, LOREM-ipsum-D&OLOR',
             'Lorem-ipsum-dolor-sit-amet. lorem-ipsum-dolor-sit-amet, lorem-Ipsum-Dolor-Sit-Amet'
-        ],
-        endsWithStrings = [
-            'novemnonagintillion ',
-            'flibberti gibbet',
-            'balderdash456',
-            'codswallop'
-        ],
-        endsWithStringsSuffixes = [
-            'gintillion ',
-            ' gibbet',
-            '456',
-            'codswallop'
-        ],
-        endsWithStringsWrongSuffixes = [
-            'gintillion',
-            'bet ',
-            'dash',
-            'cods'
         ];
 
     var Assert = Y.Assert,
@@ -155,10 +149,6 @@ YUI.add('aui-base-tests', function(Y) {
         'should check for ending suffix correctly': function() {
             for (var i = 0; i < endsWithStrings.length; i++) {
                 Assert.isTrue(Y.Lang.String.endsWith(endsWithStrings[i], endsWithStringsSuffixes[i]));
-            }
-
-            for (var j = 0; j < endsWithStrings.length; j++) {
-                Assert.isTrue(!Y.Lang.String.endsWith(endsWithStrings[j], endsWithStringsWrongSuffixes[j]));
             }
         }
     }));
