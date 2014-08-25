@@ -4,7 +4,6 @@
 
 ## @VERSION@
 
-* [AUI-1552](https://issues.liferay.com/browse/AUI-1552) Create unit test for capitalize
 * [AUI-1348](https://issues.liferay.com/browse/AUI-1348) Make aui-audio module accessible
 * [AUI-1558](https://issues.liferay.com/browse/AUI-1558) Create unit test for padNumber
 
