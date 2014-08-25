@@ -299,6 +299,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
                             var values = instance._normalizeValues(event.newVal);
 
                             values = instance._getPredefinedValuesOptions(values);
+
                             instance.predefinedValueEditor.set('options', values);
                         }
                     },
@@ -340,7 +341,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
                         }
                     );
 
-                    return buffer.join(',' + ' ');
+                    return buffer.join(', ');
                 },
                 name: strings.options
             });
@@ -356,17 +357,12 @@ var FormBuilderMultipleChoiceField = A.Component.create({
          * @protected
          */
         _getPredefinedValuesOptions: function(options) {
-            var instance = this;
+            var emptyOption = {
+                label: '',
+                value: ''
+            };
 
-            var predefinedOptions = { '': '' };
-
-            var options = getEditorOptions(options);
-
-            for (var prop in options) {
-                predefinedOptions[prop] = options[prop];
-            }
-
-            return predefinedOptions;
+            return getEditorOptions([emptyOption].concat(options));
         },
 
         /**
@@ -377,20 +373,12 @@ var FormBuilderMultipleChoiceField = A.Component.create({
          * @protected
          */
         _normalizeValues: function(values) {
-            var instance = this;
-
-            var normalizedValues = [];
-
-            for (var prop in values) {
-                normalizedValues.push(
-                    {
-                        label: values[prop],
-                        value: prop
-                    }
-                );
-            }
-
-            return normalizedValues;
+            return A.map(values, function(label, value) {
+                return {
+                    label: label,
+                    value: value
+                }
+            });
         },
 
         /**
