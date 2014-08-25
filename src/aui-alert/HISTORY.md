@@ -4,6 +4,8 @@
 
 ## @VERSION@
 
+No registries yet.
+
 ## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
 
 * [AUI-1145](https://issues.liferay.com/browse/AUI-1145) Create Bootstrap's Alert module
