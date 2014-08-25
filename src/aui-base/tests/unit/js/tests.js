@@ -32,13 +32,13 @@ YUI.add('aui-base-tests', function(Y) {
             'mailmen',
             'octopi'
         ],
-        prefixStrings = [
-            'black',
-            'gold',
-            'john ',
-            'smith',
-            'sword',
-            'word'
+        prefixedStrings = [
+            'blacksmith',
+            'goldsmith',
+            'john smith',
+            'smithereens',
+            'swordsmith',
+            'wordsmith'
         ],
         prefixLessStrings = [
             'smith',
@@ -48,13 +48,13 @@ YUI.add('aui-base-tests', function(Y) {
             'smith',
             'smith'
         ],
-        prefixedStrings = [
-            'blacksmith',
-            'goldsmith',
-            'john smith',
-            'smithereens',
-            'swordsmith',
-            'wordsmith'
+        prefixStrings = [
+            'black',
+            'gold',
+            'john ',
+            'smith',
+            'sword',
+            'word'
         ],
         regExCharacters = ['(', ')', '^', '$', '.', '*', '?', '/', '+', '|', '[', ']', '\\'],
         singularStrings = [
