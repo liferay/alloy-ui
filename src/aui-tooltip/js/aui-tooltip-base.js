@@ -353,6 +353,18 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
         triggerShowEvent: {
             validator: Lang.isString,
             value: 'mouseenter'
+        },
+
+        /**
+         * The z-index to apply to the Widgets boundingBox. Non-numerical values for
+         * zIndex will be converted to 0
+         *
+         * @attribute zIndex
+         * @default 1030
+         * @type Number
+         */
+        zIndex: {
+            value: 1030
         }
     },
 
