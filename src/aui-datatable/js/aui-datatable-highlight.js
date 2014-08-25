@@ -191,7 +191,6 @@ var DataTableHighlight = A.Base.create(
          * @protected
          */
         _afterBlur: function() {
-            console.log('blur');
             this.clear();
         },
 
