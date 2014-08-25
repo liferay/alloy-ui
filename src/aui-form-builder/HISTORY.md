@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1606](https://issues.liferay.com/browse/AUI-1606) Form Builder select field closes by itself when clicking after already focused
 * [AUI-1612](https://issues.liferay.com/browse/AUI-1612) Form builder textfield and textarea need width validators
 * [AUI-1610](https://issues.liferay.com/browse/AUI-1610) Changing predefinedValue for text fields doesn't update them
 
