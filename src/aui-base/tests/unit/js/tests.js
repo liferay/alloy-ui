@@ -72,11 +72,21 @@ YUI.add('aui-base-tests', function(Y) {
             'word'
         ],
         regExCharacters = ['(', ')', '^', '$', '.', '*', '?', '/', '+', '|', '[', ']', '\\'],
+        scriptStrings = [
+            "<p>I am <script>alert('not');</script>hungry</p>",
+            "'<s<script></script>cript>alert('Difficult test')</script>'')",
+            "</script><script>"
+        ],
         singularStrings = [
             'apple',
             'fish',
             'mailman',
             'octopus'
+        ],
+        strippedScriptStrings = [
+            "<p>I am hungry</p>",
+            "'<script>alert('Difficult test')</script>'')",
+            "</script><script>"
         ],
         subbableStrings = [
             'Apple',
@@ -337,6 +347,16 @@ YUI.add('aui-base-tests', function(Y) {
            for (var i = 0; i < taggedStringsLength; i++) {
                Assert.areEqual(Y.Lang.String.stripTags(taggedStrings[i]), taglessStrings[i]);
            }
+       },
+
+        'should strip scripts correctly': function() {
+            var scriptStringsLength = scriptStrings.length;
+
+            Assert.areEqual(scriptStringsLength, strippedScriptStrings.length);
+
+            for (var i = 0; i < scriptStringsLength; i++) {
+                Assert.areEqual(Y.Lang.String.stripScripts(scriptStrings[i]), strippedScriptStrings[i]);
+            }
         }
     }));
 
