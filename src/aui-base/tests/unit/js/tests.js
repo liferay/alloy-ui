@@ -21,7 +21,7 @@ YUI.add('aui-base-tests', function(Y) {
             'LorEm-Ipsum-dolor-sit-AMET',
             'Lorem-Ipsum-doLOR. sit-amet +1',
             'lorem-ipsum-dolor-sit-amet, LOREM-ipsum-D&OLOR',
-            'Lorem-ipsum-dolor-sit-amet. lorem-ipsum-dolor-sit-amet, lorem-Ipsum-Dolor-Sit-Amet',
+            'Lorem-ipsum-dolor-sit-amet. lorem-ipsum-dolor-sit-amet, lorem-Ipsum-Dolor-Sit-Amet'
         ];
 
     var Assert = Y.Assert,
@@ -88,7 +88,7 @@ YUI.add('aui-base-tests', function(Y) {
                 for (var k = 0; k < camelized.length; k++) {
                     character = camelized[k];
 
-                    if (capitalIndices.indexOf(k) === -1) {
+                    if (Y.Array.indexOf(capitalIndices, k) === -1) {
                         Assert.areSame(character.toLowerCase(), character);
                     }
                     else {
