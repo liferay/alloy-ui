@@ -4,6 +4,8 @@
 
 ## @VERSION@
 
+No registries yet.
+
 ## [3.0.0pr2](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr2)
 
 * [AUI-1332](https://issues.liferay.com/browse/AUI-1332) Decouple property list panel from the diagram builder
