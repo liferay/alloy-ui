@@ -249,11 +249,13 @@ YUI.add('aui-base-tests', function(Y) {
 
             for (var i = 0; i < entityCharactersLength; i++) {
                 Assert.areEqual(Y.Lang.String._unescapeEntitiesUsingDom(entityNumbers[i]), entityCharacters[i]);
+                Assert.areEqual(Y.Lang.String.unescapeEntities(entityNumbers[i]), entityCharacters[i]);
 
                 entityName = entityNames[i];
 
                 if (entityName != '') {
                     Assert.areEqual(Y.Lang.String._unescapeEntitiesUsingDom(entityName), entityCharacters[i]);
+                    Assert.areEqual(Y.Lang.String.unescapeEntities(entityName), entityCharacters[i]);
                 }
             }
         }
