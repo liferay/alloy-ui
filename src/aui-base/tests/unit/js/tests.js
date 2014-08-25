@@ -121,6 +121,13 @@ YUI.add('aui-base-tests', function(Y) {
             '</script><script>',
             '<script>alert("not")</script>'
         ],
+        singleRemovedStrings = [
+            ' roccoli brocoli broc coli brocoli.',
+            's carrot carrotscarrot carrotcarrot',
+            'not es,tomato?',
+            '. potatoes potahto plobflaybo',
+            'tables'
+        ],
         singularStrings = [
             'apple',
             'fish',
@@ -450,6 +457,19 @@ YUI.add('aui-base-tests', function(Y) {
                 Assert.areEqual(Y.Lang.String.repeat(repeatedString, i), testString);
 
                 testString = testString.concat(repeatedString);
+            }
+        },
+
+        'should remove matched strings correctly': function() {
+            var unremovedStringLength = removalTestStrings.length;
+
+            Assert.isTrue((unremovedStringLength == removalSubstrings.length) && (unremovedStringLength == removedStrings.length));
+
+            for (var i = 0; i < unremovedStringLength; i++) {
+                Assert.areEqual(Y.Lang.String.removeAll(removalTestStrings[i], removalSubstrings[i]), removedStrings[i]);
+
+                Assert.areEqual(Y.Lang.String.remove(removalTestStrings[i], removalSubstrings[i], true), removedStrings[i]);
+                Assert.areEqual(Y.Lang.String.remove(removalTestStrings[i], removalSubstrings[i], false), singleRemovedStrings[i]);
             }
         }
     }));
