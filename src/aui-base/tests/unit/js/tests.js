@@ -100,6 +100,18 @@ YUI.add('aui-base-tests', function(Y) {
             5, 9
         ],
         symbolEntities = ['&','<','>','"','\'','/','`'],
+        taggedStrings = [
+            "<p>Knock knock.</p> <a href='#question'>Who's there?</a>",
+            "<span>Git.</span>",
+            "<p>Git-who?</ br>",
+            "<a<a>></a> <a href='#'>Sorry, 'who' is not a git command - did you mean 'show'?</a><li></li>"
+        ],
+        taglessStrings = [
+            "Knock knock. Who's there?",
+            "Git.",
+            "Git-who?",
+            "> Sorry, 'who' is not a git command - did you mean 'show'?"
+        ],
         uncamelizedStrings = [
             'lorem-ipsum-dolor-sit-amet',
             'LorEm-Ipsum-dolor-sit-AMET',
@@ -315,6 +327,16 @@ YUI.add('aui-base-tests', function(Y) {
                     subbedStrings[i]
                 );
             }
+        },
+
+        'should strip tags correctly': function() {
+           var taggedStringsLength = taggedStrings.length;
+
+           Assert.areEqual(taggedStringsLength, taglessStrings.length);
+
+           for (var i = 0; i < taggedStringsLength; i++) {
+               Assert.areEqual(Y.Lang.String.stripTags(taggedStrings[i]), taglessStrings[i]);
+           }
         }
     }));
 
