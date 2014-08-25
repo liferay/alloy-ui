@@ -30,13 +30,12 @@ YUI.add('aui-toggler-accessibility-tests', function(Y) {
             Y.Assert.isTrue(content.getAttribute('aria-hidden') === (expanded ? 'false' : 'true'));
         },
 
-        _simulateToggleEvent: function() {
-            togglerNode.simulate('keydown', { keyCode: 13 });
+        _simulateToggleEvent: function(keyCode) {
+            togglerNode.simulate('keydown', { keyCode: keyCode || 13 });
         },
 
         'test toggler has correct aria attributes': function() {
-            var instance = this,
-                toggler = instance.toggler,
+            var toggler = this.toggler,
                 content = toggler.get('content'),
                 header = toggler.get('header');
 
@@ -44,17 +43,32 @@ YUI.add('aui-toggler-accessibility-tests', function(Y) {
             Y.Assert.isTrue(header.hasAttribute('aria-controls'));
             Y.Assert.isTrue(content.hasAttribute('aria-hidden'));
 
-            instance._assertARIAAttributeValues(header, content, true);
+            this._assertARIAAttributeValues(header, content, true);
 
             Y.Assert.areSame(content.guid(), header.getAttribute('aria-controls'));
 
-            instance._simulateToggleEvent();
+            this._simulateToggleEvent();
 
-            instance._assertARIAAttributeValues(header, content, false);
+            this._assertARIAAttributeValues(header, content, false);
 
-            instance._simulateToggleEvent();
+            this._simulateToggleEvent();
 
-            instance._assertARIAAttributeValues(header, content, true);
+            this._assertARIAAttributeValues(header, content, true);
+
+            // Simulate down arrow
+            this._simulateToggleEvent(40);
+
+            this._assertARIAAttributeValues(header, content, true);
+
+            // Simulate up arrow
+            this._simulateToggleEvent(38);
+
+            this._assertARIAAttributeValues(header, content, false);
+
+            // Simulate down arrow
+            this._simulateToggleEvent(40);
+
+            this._assertARIAAttributeValues(header, content, true);
         }
     }));
 

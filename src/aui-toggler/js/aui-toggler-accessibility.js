@@ -15,13 +15,11 @@ TogglerAccessibility.prototype = {
      * @protected
      */
     initializer: function() {
-        var instance = this;
-
-        instance._eventHandles.push(
-            A.after(instance._afterToggle, instance, 'toggle')
+        this._eventHandles.push(
+            A.after(this._afterToggle, this, 'toggle')
         );
 
-        instance._setARIAElements();
+        this._setARIAElements();
     },
 
     /**
@@ -29,14 +27,14 @@ TogglerAccessibility.prototype = {
      *
      * @method _afterToggle
      * @param {EventFacade} event
+     * @protected
      */
     _afterToggle: function(expand) {
-        var instance = this,
-            content = instance.get('content'),
-            header = instance.get('header');
+        var content = this.get('content'),
+            header = this.get('header');
 
         if (A.Lang.isUndefined(expand)) {
-            expand = instance.get('expanded');
+            expand = this.get('expanded');
         }
 
         header.setAttribute('aria-pressed', expand);
@@ -50,11 +48,10 @@ TogglerAccessibility.prototype = {
      * @protected
      */
     _setARIAElements: function() {
-        var instance = this,
-            content = instance.get('content'),
+        var content = this.get('content'),
             contentId = content.attr('id') || content.guid(),
-            expanded = instance.get('expanded'),
-            header = instance.get('header');
+            expanded = this.get('expanded'),
+            header = this.get('header');
 
         header.setAttribute('aria-controls', contentId);
         header.setAttribute('aria-pressed', expanded);
