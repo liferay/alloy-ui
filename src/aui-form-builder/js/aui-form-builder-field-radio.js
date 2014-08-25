@@ -202,11 +202,15 @@ var FormBuilderRadioField = A.Component.create({
          */
         _valuePredefinedValueFn: function() {
             var instance = this,
+                isRequired = instance.get('required'),
                 options = instance.get('options'),
                 predefinedValue;
 
-            if (options.length) {
+            if (isRequired && options.length) {
                 predefinedValue = options[0].value;
+            }
+            else {
+                predefinedValue = '';
             }
 
             return predefinedValue;
