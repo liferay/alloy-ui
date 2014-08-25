@@ -67,6 +67,8 @@ YUI.add('aui-base-tests', function(Y) {
             'mailmen',
             'octopi'
         ],
+        precisionNumberHigher = 1.56789,
+        precisionNumberLower = 1.123456789,
         prefixedStrings = [
             'blacksmith',
             'goldsmith',
@@ -388,6 +390,24 @@ YUI.add('aui-base-tests', function(Y) {
             for (var i = 0; i < prefixedStringsLength; i++) {
                 Assert.isTrue(Y.Lang.String.startsWith(prefixedStrings[i], prefixStrings[i]));
                 Assert.isTrue(!Y.Lang.String.startsWith(prefixedStrings[i], prefixLessStrings[i]));
+            }
+        },
+
+        'should round numbers to the specified precision correctly': function() {
+            var numArray = precisionNumberLower + "";
+            var numLength = numArray.length;
+            var numOffset;
+
+            for (var i = 2; i < numLength; i++) {
+                numOffset = numLength - i;
+                numArray = (Y.Lang.String.round(precisionNumberLower, numOffset) + '');
+
+                if ((numOffset < 9) && (numOffset > 3)) {
+                    Assert.areEqual(numOffset + 1, numArray[numArray.length - 1]);
+                }
+                else {
+                    Assert.areEqual(numOffset, numArray[numArray.length - 1]);
+                }
             }
         }
     }));
