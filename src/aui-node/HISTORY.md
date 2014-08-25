@@ -4,6 +4,8 @@
 
 ## @VERSION@
 
+No registries yet.
+
 ## [3.0.0pr1](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr1)
 
 * [AUI-1279](https://issues.liferay.com/browse/AUI-1279) Remove ancestors and ancestorsByClassName implementations
