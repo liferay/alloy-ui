@@ -373,17 +373,12 @@ var FormBuilderMultipleChoiceField = A.Component.create({
          * @protected
          */
         _getPredefinedValuesOptions: function(options) {
-            var instance = this;
+            var emptyOption = {
+                label: _EMPTY_STR,
+                value: _EMPTY_STR
+            };
 
-            var predefinedOptions = { _EMPTY_STR: _EMPTY_STR };
-
-            var options = getEditorOptions(options);
-
-            for (var prop in options) {
-                predefinedOptions[prop] = options[prop];
-            }
-
-            return predefinedOptions;
+            return getEditorOptions([emptyOption].concat(options));
         },
 
         /**
@@ -394,20 +389,12 @@ var FormBuilderMultipleChoiceField = A.Component.create({
          * @protected
          */
         _normalizeValues: function(values) {
-            var instance = this;
-
-            var normalizedValues = [];
-
-            for (var prop in values) {
-                normalizedValues.push(
-                    {
-                        label: values[prop],
-                        value: prop
-                    }
-                );
-            }
-
-            return normalizedValues;
+            return A.map(values, function(label, value) {
+                return {
+                    label: label,
+                    value: value
+                }
+            });
         },
 
         /**
