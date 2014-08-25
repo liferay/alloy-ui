@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1601](https://issues.liferay.com/browse/AUI-1601) Source format media query max-width for consistency with Bootstrap
 * [AUI-1611](https://issues.liferay.com/browse/AUI-1611) The scheduler-event-recorder-date on the popover is not updated after the first click when clicking multiple dates in a row.
 * [AUI-1591](https://issues.liferay.com/browse/AUI-1591) Fix scheduler behavior on touch screen desktop computers
 * [AUI-1546](https://issues.liferay.com/browse/AUI-1546) The Scheduler month view is incorrect if there are multiple overlapping events at the first day of the week
