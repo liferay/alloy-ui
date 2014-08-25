@@ -114,6 +114,7 @@ YUI.add('aui-base-tests', function(Y) {
             '. es potahto plobflaybo',
             'tables'
         ],
+        repeatedString = 'word',
         scriptStrings = [
             '<p>I am <script>alert("not");</script>hungry</p>',
             '"<s<script></script>cript>alert("Difficult test")</script>"")',
@@ -439,6 +440,16 @@ YUI.add('aui-base-tests', function(Y) {
 
             for (var i = 0; i < unremovedStringLength; i++) {
                 Assert.areEqual(Y.Lang.String.removeAll(removalTestStrings[i], removalSubstrings[i]), removedStrings[i]);
+            }
+        },
+
+        'should return a repeated string correctly': function() {
+            var testString = '';
+
+            for (var i = 0; i < 100; i++) {
+                Assert.areEqual(Y.Lang.String.repeat(repeatedString, i), testString);
+
+                testString = testString.concat(repeatedString);
             }
         }
     }));
