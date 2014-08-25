@@ -78,6 +78,27 @@ YUI.add('aui-base-tests', function(Y) {
             'mailman',
             'octopus'
         ],
+        subValues = [
+            0, 1,
+            3, 5,
+            0, 8,
+            1, 6,
+            5, 9
+        ],
+        subbableStrings = [
+            'Apple',
+            'Grape',
+            'Honeydew',
+            'Pineapple',
+            'Watermelon'
+        ],
+        subbedStrings = [
+            'A',
+            'pe',
+            'Honeydew',
+            'ineapp',
+            'melon'
+        ],
         symbolEntities = ['&','<','>','"','\'','/','`'],
         uncamelizedStrings = [
             'lorem-ipsum-dolor-sit-amet',
@@ -277,6 +298,16 @@ YUI.add('aui-base-tests', function(Y) {
 
             for (var i = 0; i < definitionStringsLength; i++) {
                 Assert.areEqual(Y.Lang.String.undef(definitionStrings[i]), definedStrings[i]);
+            }
+        },
+
+        'should return a substring correctly': function() {
+            var subbableStringsLength = subbableStrings.length;
+
+            Assert.isTrue((subbableStringsLength == (subValues.length / 2)) && (subbableStringsLength == subbedStrings.length));
+
+            for (var i = 0; i < subbableStringsLength; i++) {
+                Assert.areEqual(Y.Lang.String.substr(subbableStrings[i], subValues[i * 2], subValues[(i * 2) + 1]), subbedStrings[i])
             }
         }
     }));
