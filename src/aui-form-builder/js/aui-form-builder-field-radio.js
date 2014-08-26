@@ -47,15 +47,6 @@ var FormBuilderRadioField = A.Component.create({
     ATTRS: {
 
         /**
-         * Specifies a predefined value for the radio field.
-         *
-         * @attribute predefinedValue
-         */
-        predefinedValue: {
-            valueFn: '_valuePredefinedValueFn'
-        },
-
-        /**
          * Reusable block of markup used to generate the field.
          *
          * @attribute template
@@ -139,7 +130,6 @@ var FormBuilderRadioField = A.Component.create({
             var instance = this,
                 buffer = [],
                 counter = 0,
-                hasPredefinedValue = false,
                 predefinedValue = instance.get('predefinedValue'),
                 templateNode = instance.get('templateNode');
 
@@ -158,21 +148,13 @@ var FormBuilderRadioField = A.Component.create({
                         }
                     )
                 );
-
-                if (checked) {
-                    hasPredefinedValue = true;
-                }
             });
 
             instance.optionNodes = A.NodeList.create(buffer.join(''));
 
             templateNode.setContent(instance.optionNodes);
 
-            if (!hasPredefinedValue) {
-                instance.set('predefinedValue', instance._valuePredefinedValueFn());
-
-                instance.get('builder').editField(instance);
-            }
+            instance.get('builder').editField(instance);
         },
 
         /**
@@ -193,30 +175,7 @@ var FormBuilderRadioField = A.Component.create({
             optionNodes.set('checked', false);
 
             optionNodes.all('input[value="' + AEscape.html(val) + '"]').set('checked', true);
-        },
-
-        /**
-         * Returns the first option value if no predefined value is specified.
-         *
-         * @method _valuePredefinedValueFn
-         * @protected
-         */
-        _valuePredefinedValueFn: function() {
-            var instance = this,
-                isRequired = instance.get('required'),
-                options = instance.get('options'),
-                predefinedValue;
-
-            if (isRequired && options.length) {
-                predefinedValue = options[0].value;
-            }
-            else {
-                predefinedValue = '';
-            }
-
-            return predefinedValue;
         }
-
     }
 
 });
