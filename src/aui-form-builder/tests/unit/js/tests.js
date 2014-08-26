@@ -1,5 +1,9 @@
 YUI.add('aui-form-builder-tests', function(Y) {
 
+    var isNode = function(v) {
+        return (v instanceof Y.Node);
+    };
+
     var suite = new Y.Test.Suite('aui-form-builder');
 
     var radioField = new Y.FormBuilderRadioField({
@@ -9,16 +13,16 @@ YUI.add('aui-form-builder-tests', function(Y) {
             {
                 label: 'Red',
                 value: 'red'
-                },
+            },
             {
                 label: 'Green',
                 value: 'green'
-                },
+            },
             {
                 label: 'Blue',
                 value: 'blue'
-                }
-            ]
+            }
+        ]
     });
 
     var textAreaField = new Y.FormBuilderTextAreaField({
@@ -41,11 +45,25 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
     suite.add(new Y.Test.Case({
         name: 'FormBuilderRadioField',
-        'predefined value should default to first option value': function() {
-            var options = radioField.get('options'),
-                predefinedValue = radioField.get('predefinedValue');
+        'predefined value should default to empty value': function() {
+            var predefinedValue = radioField.get('predefinedValue');
 
-            Y.Assert.areEqual(options[0].value, predefinedValue);
+            Y.Assert.areEqual('', predefinedValue);
+        },
+
+        'changes in predefined value should reflect on UI': function() {
+            var templateNode = radioField.get('templateNode'),
+                options = radioField.get('options');
+
+            var value = options[0].value;
+
+            radioField.set('predefinedValue', value);
+
+            var checkedNode = templateNode.one('input[type=radio]:checked');
+
+            Y.Assert.areEqual(true, isNode(checkedNode), 'There should be a checked input.');
+
+            Y.Assert.areEqual(value, checkedNode.attr('value'), 'The value should be equal to "' + value + '".');
         }
     }));
 
