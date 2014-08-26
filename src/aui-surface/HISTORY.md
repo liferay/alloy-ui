@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-No registries yet.
+* [AUI-1584](https://issues.liferay.com/browse/AUI-1584) [Surface] Empty screens are not being rendered on page refresh
 
 ## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)
 
