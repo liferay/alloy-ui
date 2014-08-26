@@ -66,11 +66,12 @@ YUI.add('aui-form-validator-tests', function(Y) {
          */
         'test submit form': function() {
             var elementWithoutError,
-                form;
+                forms;
 
-            form = Y.one('#myForm');
-
-            form.simulate('submit');
+            forms = Y.all('form');
+            forms.each(function (form) {
+                form.simulate('submit');
+            });
 
             elementWithoutError = Y.one('.form-group:not(.has-error)');
 
@@ -131,6 +132,10 @@ YUI.add('aui-form-validator-tests', function(Y) {
             textNode = inputNode.get('nextSibling');
 
             Y.Assert.isTrue(textNode.get('nodeType') === 3, 'Next to the input should be a text node');
+
+            if (Y.FormValidator.isCheckable(inputNode)) {
+                textNode = inputNode.ancestor('.form-group').get('lastChild').previous();
+            }
 
             Y.Assert.isTrue(
                 textNode.next().hasClass('form-validator-stack'),

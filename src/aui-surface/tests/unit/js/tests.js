@@ -29,6 +29,7 @@ YUI.add('aui-surface-tests', function(Y) {
                 'should navigate when history buttons are clicked': noHTML5,
                 'should not navigate to history states that are not ours': noHTML5,
                 'should navigate fail using HTMLScreen': noHTML5,
+                'should update cached surfaces and title using HTMLScreen': noHTML5,
                 'should update surfaces and title using HTMLScreen': noHTML5,
                 'should update surfaces using HTMLScreen': noHTML5,
                 'should navigate to clicked links': noHTML5,
@@ -569,6 +570,31 @@ YUI.add('aui-surface-tests', function(Y) {
                             'querystring'
                         );
                         instance.app.set('basePath', '/base');
+                    });
+                });
+            });
+            instance.wait();
+        },
+
+        'should update cached surfaces and title using HTMLScreen': function() {
+            var instance = this,
+                path = instance.getOriginalBasePath() + '/content.txt?2';
+
+            instance.app.addScreenRoutes({
+                path: '/content.txt?2',
+                screen: Y.HTMLScreen
+            });
+
+            instance.app.set('basePath', instance.getOriginalBasePath());
+            instance.app.navigate(path).then(function() {
+                instance.app.set('basePath', '/base');
+                instance.app.navigate('/base/page').then(function() {
+                    instance.app.set('basePath', instance.getOriginalBasePath());
+                    instance.app.navigate(path).then(function() {
+                        instance.resume(function() {
+                            instance.assertNavigation(path, 'html');
+                            instance.app.set('basePath', '/base');
+                        });
                     });
                 });
             });

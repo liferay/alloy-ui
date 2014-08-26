@@ -60,6 +60,22 @@
                 <input name="custom" id="custom" class="form-control" type="text">
             </div>
         </div>
+        <div class="form-group">
+            <label class="control-label">Gender:</label>
+
+            <div class="radio">
+              <label class="control-label"><input type="radio" name="gender" value="male" /> Male</label>
+            </div>
+
+            <div class="radio">
+              <label class="control-label"><input type="radio" name="gender" value="female" /> Female</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="checkbox">
+              <label for="confirm" class="control-label"><input type="checkbox" name="confirm" id="confirm" value="true"/>Check this box</label>
+            </div>
+        </div>
         <input type="submit" class="btn btn-primary">
     </form>
     <script>
@@ -80,6 +96,13 @@
             boundingBox: Y.one('#fm2'),
             showAllMessages: true,
             rules: {
+                confirm: {
+                    required: true
+                },
+                custom: {
+                    digits: true,
+                    gt50: true
+                },
                 digit2: {
                     digits: true,
                     required: true
@@ -87,9 +110,8 @@
                 email2: {
                     email: true
                 },
-                custom: {
-                    digits: true,
-                    gt50: true
+                gender: {
+                    required: true
                 }
             }
         });
