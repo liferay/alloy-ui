@@ -9,7 +9,7 @@ var spawn = require('spawn-local-bin');
 var ROOT = path.join(__dirname, '..');
 
 gulp.task('init', function(callback) {
-    run('init-bower', 'init-npm', 'init-yui', callback);
+    run('init-bower', 'init-npm', 'init-yui', 'init-replace-yui', callback);
 });
 
 gulp.task('init-bower', function(callback) {
@@ -36,6 +36,11 @@ gulp.task('init-npm', function(callback) {
 
 gulp.task('init-yui', function() {
     return gulp.src('bower_components/yui3/build/**', { cwd: ROOT })
-        .pipe(gulpIf('!**/*.png', replace('@VERSION@', alloy.yuiversion)))
+        .pipe(gulp.dest('build', { cwd: ROOT }));
+});
+
+gulp.task('init-replace-yui', function() {
+    return gulp.src('build/**/*.js', { cwd: ROOT })
+        .pipe(replace('@VERSION@', alloy.yuiversion))
         .pipe(gulp.dest('build', { cwd: ROOT }));
 });
