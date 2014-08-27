@@ -1,6 +1,5 @@
 var alloy = require('../.alloy');
 var gulp = require('gulp');
-var gulpIf = require('gulp-if');
 var path = require('path');
 var replace = require('gulp-replace');
 var run = require('run-sequence');
@@ -36,6 +35,6 @@ gulp.task('init-npm', function(callback) {
 
 gulp.task('init-yui', function() {
     return gulp.src('bower_components/yui3/build/**', { cwd: ROOT })
-        .pipe(gulpIf('!**/*.png', replace('@VERSION@', alloy.yuiversion)))
+        .pipe(replace('@VERSION@', alloy.yuiversion, {skipBinary: true}))
         .pipe(gulp.dest('build', { cwd: ROOT }));
 });
