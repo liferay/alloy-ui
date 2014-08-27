@@ -394,19 +394,19 @@ YUI.add('aui-base-tests', function(Y) {
         },
 
         'should round numbers to the specified precision correctly': function() {
-            var numArray = precisionNumberLower + "";
-            var numLength = numArray.length;
-            var numOffset;
+            var numArray = precisionNumberLower + "",
+                numLength = numArray.length,
+                numOffset;
 
             for (var i = 2; i < numLength; i++) {
-                numOffset = numLength - i;
+                numOffset = (numLength - i);
                 numArray = (Y.Lang.String.round(precisionNumberLower, numOffset) + '');
 
                 if ((numOffset < 9) && (numOffset > 3)) {
-                    Assert.areEqual(numOffset + 1, numArray[numArray.length - 1]);
+                    Assert.areEqual((numOffset + 1), numArray[(numArray.length - 1)]);
                 }
                 else {
-                    Assert.areEqual(numOffset, numArray[numArray.length - 1]);
+                    Assert.areEqual(numOffset, numArray[(numArray.length - 1)]);
                 }
             }
         }
