@@ -73,9 +73,10 @@ YUI.add('aui-base-tests', function(Y) {
         ],
         regExCharacters = ['(', ')', '^', '$', '.', '*', '?', '/', '+', '|', '[', ']', '\\'],
         scriptStrings = [
-            "<p>I am <script>alert('not');</script>hungry</p>",
-            "'<s<script></script>cript>alert('Difficult test')</script>'')",
-            "</script><script>"
+            '<p>I am <script>alert("not");</script>hungry</p>',
+            '"<s<script></script>cript>alert("Difficult test")</script>"")',
+            '</script><script>',
+            '<script>alert("not")</script>'
         ],
         singularStrings = [
             'apple',
@@ -84,9 +85,10 @@ YUI.add('aui-base-tests', function(Y) {
             'octopus'
         ],
         strippedScriptStrings = [
-            "<p>I am hungry</p>",
-            "'<script>alert('Difficult test')</script>'')",
-            "</script><script>"
+            '<p>I am hungry</p>',
+            '"<script>alert("Difficult test")</script>"")',
+            '</script><script>',
+            ''
         ],
         subbableStrings = [
             'Apple',
