@@ -380,42 +380,55 @@ var Toggler = A.Component.create({
                     return expand;
                 }
 
-                var content = instance.get(CONTENT);
-
-                var height = instance.getContentHeight();
-                var gutter = instance.contentGutter;
-
-                if (isUndefined(gutter)) {
-                    gutter = instance.contentGutter = toInt(content.getStyle(MARGIN_TOP));
-                }
-
-                if (!instance.wrapped) {
-                    content.wrap(TPL_CONTENT_WRAPPER);
-
-                    if (expand) {
-                        content.setStyle(MARGIN_TOP, -(height + gutter));
-                    }
-
-                    instance.wrapped = true;
-                }
-
-                instance.set(ANIMATING, true);
-
-                instance.animate({
-                        marginTop: (expand ? gutter : -(height + gutter)) + PIXEL
-                    },
-                    function() {
-                        instance.set(ANIMATING, false);
-
-                        instance.set(EXPANDED, expand, payload);
-                    }
-                );
+            instance._animation(expand, payload);
+                
             }
             else {
                 instance.set(EXPANDED, expand, payload);
             }
 
             return expand;
+        },
+
+        /**
+         * Apply animation on `toggle`.
+         *
+         * @method _animation
+         * @param expand
+         */
+        _animation: function(expand, payload) {
+            var instance = this;
+
+            var content = instance.get(CONTENT);
+
+            var height = instance.getContentHeight();
+            var gutter = instance.contentGutter;
+
+            if (isUndefined(gutter)) {
+                gutter = instance.contentGutter = toInt(content.getStyle(MARGIN_TOP));
+            }
+
+            if (!instance.wrapped) {
+                content.wrap(TPL_CONTENT_WRAPPER);
+
+                if (expand) {
+                    content.setStyle(MARGIN_TOP, -(height + gutter));
+                }
+
+                instance.wrapped = true;
+            }
+
+            instance.set(ANIMATING, true);
+
+            instance.animate({
+                    marginTop: (expand ? gutter : -(height + gutter)) + PIXEL
+                },
+                function() {
+                    instance.set(ANIMATING, false);
+
+                    instance.set(EXPANDED, expand, payload);
+                }
+            );
         },
 
         /**
