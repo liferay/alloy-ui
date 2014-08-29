@@ -261,6 +261,14 @@ var Toggler = A.Component.create({
 
             instance.get('header').setData('toggler', null);
 
+            if (instance.wrapped) {
+                var content = instance.get('content');
+                var wrapper = content.get('parentNode');
+
+                wrapper.insert(content, 'before');
+                wrapper.remove();
+            }
+
             (new A.EventHandle(instance._eventHandles)).detach();
         },
 
