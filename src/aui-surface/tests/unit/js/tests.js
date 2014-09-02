@@ -675,6 +675,20 @@ YUI.add('aui-surface-tests', function(Y) {
             Y.Assert.isNull(this.app.pendingNavigate);
         },
 
+        'should not navigate to links clicked with modifier keys': function() {
+            Y.one('a[href="/base/page#hash"]').simulate('click', {altKey: true});
+            Y.Assert.isNull(this.app.pendingNavigate);
+
+            Y.one('a[href="/base/page#hash"]').simulate('click', {ctrlKey: true});
+            Y.Assert.isNull(this.app.pendingNavigate);
+
+            Y.one('a[href="/base/page#hash"]').simulate('click', {metaKey: true});
+            Y.Assert.isNull(this.app.pendingNavigate);
+
+            Y.one('a[href="/base/page#hash"]').simulate('click', {shiftKey: true});
+            Y.Assert.isNull(this.app.pendingNavigate);
+        },
+
         'should navigate to previous page asynchronously': function() {
             var instance = this,
                 start = 0,
