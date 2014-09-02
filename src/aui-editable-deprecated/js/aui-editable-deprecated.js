@@ -654,7 +654,7 @@ var Editable = A.Component.create({
                 value = instance._toHTML(value);
             }
 
-            instance.get('node').set('innerHTML', value);
+            instance.get('node').set('innerHTML', A.Escape.html(value));
         },
 
         /**
