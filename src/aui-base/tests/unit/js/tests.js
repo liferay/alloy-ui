@@ -24,9 +24,23 @@ YUI.add('aui-base-tests', function(Y) {
             'dolor',
             'm'
         ],
-        entityCharacters = ['!', '"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':', ';', '<', '=', '>', '?', '@', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '[', '\\', ']', '^', '_', '`', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '{', '|', '}', '~'],
-        entityNames = ['', '', '', '', '', '&amp;', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '&lt;', '', '&gt;', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-        entityNumbers = ['&#33;', '&#34;', '&#35;', '&#36;', '&#37;', '&#38;', '&#39;', '&#40;', '&#41;', '&#42;', '&#43;', '&#44;', '&#45;', '&#46;', '&#47;', '&#48;', '&#49;', '&#50;', '&#51;', '&#52;', '&#53;', '&#54;', '&#55;', '&#56;', '&#57;', '&#58;', '&#59;', '&#60;', '&#61;', '&#62;', '&#63;', '&#64;', '&#65;', '&#66;', '&#67;', '&#68;', '&#69;', '&#70;', '&#71;', '&#72;', '&#73;', '&#74;', '&#75;', '&#76;', '&#77;', '&#78;', '&#79;', '&#80;', '&#81;', '&#82;', '&#83;', '&#84;', '&#85;', '&#86;', '&#87;', '&#88;', '&#89;', '&#90;', '&#91;', '&#92;', '&#93;', '&#94;', '&#95;', '&#96;', '&#97;', '&#98;', '&#99;', '&#100;', '&#101;', '&#102;', '&#103;', '&#104;', '&#105;', '&#106;', '&#107;', '&#108;', '&#109;', '&#110;', '&#111;', '&#112;', '&#113;', '&#114;', '&#115;', '&#116;', '&#117;', '&#118;', '&#119;', '&#120;', '&#121;', '&#122;', '&#123;', '&#124;', '&#125;', '&#126;'],
+        entityCharacters = ['!', '"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/', '0', '1', '2', '3', '4', '5',
+                            '6', '7', '8', '9', ':', ';', '<', '=', '>', '?', '@', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+                            'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '[', '\\', ']', '^', '_',
+                            '`', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+                            'u', 'v', 'w', 'x', 'y', 'z', '{', '|', '}', '~'],
+        entityNames = ['', '', '', '', '', '&amp;', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
+                       '&lt;', '', '&gt;', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
+                       '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
+                       '', '', '', '', '', '', '', '', '', '', '', '', ''],
+        entityNumbers = ['&#33;', '&#34;', '&#35;', '&#36;', '&#37;', '&#38;', '&#39;', '&#40;', '&#41;', '&#42;', '&#43;', '&#44;',
+                         '&#45;', '&#46;', '&#47;', '&#48;', '&#49;', '&#50;', '&#51;', '&#52;', '&#53;', '&#54;', '&#55;', '&#56;',
+                         '&#57;', '&#58;', '&#59;', '&#60;', '&#61;', '&#62;', '&#63;', '&#64;', '&#65;', '&#66;', '&#67;', '&#68;',
+                         '&#69;', '&#70;', '&#71;', '&#72;', '&#73;', '&#74;', '&#75;', '&#76;', '&#77;', '&#78;', '&#79;', '&#80;',
+                         '&#81;', '&#82;', '&#83;', '&#84;', '&#85;', '&#86;', '&#87;', '&#88;', '&#89;', '&#90;', '&#91;', '&#92;',
+                         '&#93;', '&#94;', '&#95;', '&#96;', '&#97;', '&#98;', '&#99;', '&#100;', '&#101;', '&#102;', '&#103;', '&#104;',
+                         '&#105;', '&#106;', '&#107;', '&#108;', '&#109;', '&#110;', '&#111;', '&#112;', '&#113;', '&#114;', '&#115;',
+                         '&#116;', '&#117;', '&#118;', '&#119;', '&#120;', '&#121;', '&#122;', '&#123;', '&#124;', '&#125;', '&#126;'],
         escapedEntities = ['&amp;', '&lt;', '&gt;', '&#034;', '&#039;', '&#047;', '&#096;'],
         nl2brStrings = [
             'lorem-ipsum-dolor\r\n, lorem-ipsum!',
@@ -40,7 +54,7 @@ YUI.add('aui-base-tests', function(Y) {
             'lorem ipsum dolor<br /> lorem-ipsum dolor.',
             'Lorem ipsum<br />\r lorem-ipsum-dolor-sit-amet \r dolor.'
         ],
-        numbersToPad = [1, 10, 2.5, 6.789, 123.4, 3000.3102, .5, .10001, 500000.0],
+        numbersToPad = [1, 10, 2.5, 6.789, 123.4, 3000.3102, 0.5, 0.10001, 500000.0],
         pluralizedStrings = [
             'apples',
             'fish',
@@ -212,7 +226,7 @@ YUI.add('aui-base-tests', function(Y) {
                     toBePaddedLengths = this.getPrecisionPrePostDecimal(toBePadded),
                     length = null,
                     padded = null,
-                    paddedLengths = null
+                    paddedLengths = null,
                     precision = null;
 
                 for (var j = 0; j < 20; j++) {
@@ -261,7 +275,7 @@ YUI.add('aui-base-tests', function(Y) {
         'should prefix a string with a given string (does not work if the prefix is already appended) correctly': function() {
             var prefixStringsLength = prefixStrings.length;
 
-            Assert.isTrue((prefixStringsLength == prefixLessStrings.length) && (prefixStringsLength == prefixedStrings.length))
+            Assert.isTrue((prefixStringsLength === prefixLessStrings.length) && (prefixStringsLength === prefixedStrings.length));
 
             for (var i = 0; i < prefixStringsLength; i++) {
                 Assert.areEqual(Y.Lang.String.prefix(prefixStrings[i], prefixLessStrings[i]), prefixedStrings[i]);
@@ -300,7 +314,7 @@ YUI.add('aui-base-tests', function(Y) {
             var entityCharactersLength = entityCharacters.length,
                 entityName;
 
-            Assert.isTrue((entityCharactersLength == entityNumbers.length) && (entityCharacters.length == entityNames.length))
+            Assert.isTrue((entityCharactersLength === entityNumbers.length) && (entityCharacters.length === entityNames.length));
 
             for (var i = 0; i < entityCharactersLength; i++) {
                 Assert.areEqual(Y.Lang.String._unescapeEntitiesUsingDom(entityNumbers[i]), entityCharacters[i]);
@@ -308,7 +322,7 @@ YUI.add('aui-base-tests', function(Y) {
 
                 entityName = entityNames[i];
 
-                if (entityName != '') {
+                if (entityName !== '') {
                     Assert.areEqual(Y.Lang.String._unescapeEntitiesUsingDom(entityName), entityCharacters[i]);
                     Assert.areEqual(Y.Lang.String.unescapeEntities(entityName), entityCharacters[i]);
                 }
