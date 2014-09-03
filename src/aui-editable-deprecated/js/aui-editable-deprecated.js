@@ -109,6 +109,17 @@ var Editable = A.Component.create({
         },
 
         /**
+         * Event type to initialize the editable.
+         *
+         * @attribute eventType
+         * @default 'click'
+         * @type String
+         */
+        eventType: {
+            value: 'click'
+        },
+
+        /**
          * Function to format the input text displayed on the input.
          *
          * @attribute formatInput
@@ -116,8 +127,8 @@ var Editable = A.Component.create({
          * @type function
          */
         formatInput: {
-            value: null,
-            validator: isFunction
+            validator: isFunction,
+            value: null
         },
 
         /**
@@ -128,8 +139,40 @@ var Editable = A.Component.create({
          * @type function
          */
         formatOutput: {
-            value: null,
-            validator: isFunction
+            validator: isFunction,
+            value: null
+        },
+
+        /**
+         * Array with icons for the <a href="Toolbar.html">Toolbar</a>.
+         *
+         * @attribute icons
+         * @default []
+         * @type Array
+         */
+        icons: {
+            value: []
+        },
+
+        /**
+         * Type of the input used to edit the <a
+         * href="Editable.html#config_node">node</a>.
+         *
+         * @attribute inputType
+         * @default 'text'
+         * @type String
+         */
+        inputType: {
+            setter: function(value) {
+                var instance = this;
+
+                if (value != 'text' && value != 'textarea') {
+                    value = A.Attribute.INVALID_VALUE;
+                }
+
+                return value;
+            },
+            value: 'text'
         },
 
         /**
@@ -148,17 +191,6 @@ var Editable = A.Component.create({
 
                 return node;
             }
-        },
-
-        /**
-         * Event type to initialize the editable.
-         *
-         * @attribute eventType
-         * @default 'click'
-         * @type String
-         */
-        eventType: {
-            value: 'click'
         },
 
         /**
@@ -207,38 +239,6 @@ var Editable = A.Component.create({
                         click: A.bind(instance.save, instance)
                     }
                 };
-            }
-        },
-
-        /**
-         * Array with icons for the <a href="Toolbar.html">Toolbar</a>.
-         *
-         * @attribute icons
-         * @default []
-         * @type Array
-         */
-        icons: {
-            value: []
-        },
-
-        /**
-         * Type of the input used to edit the <a
-         * href="Editable.html#config_node">node</a>.
-         *
-         * @attribute inputType
-         * @default 'text'
-         * @type String
-         */
-        inputType: {
-            value: 'text',
-            setter: function(value) {
-                var instance = this;
-
-                if (value != 'text' && value != 'textarea') {
-                    value = A.Attribute.INVALID_VALUE;
-                }
-
-                return value;
             }
         },
 
@@ -491,6 +491,19 @@ var Editable = A.Component.create({
         },
 
         /**
+         * Fires the save event.
+         *
+         * @method _defSaveFn
+         * @param {EventFacade} event save event facade
+         * @protected
+         */
+        _defSaveFn: function(event) {
+            var instance = this;
+
+            instance.fire('stopEditing', true);
+        },
+
+        /**
          * Fires the startEditing event.
          *
          * @method _defStartEditingFn
@@ -550,19 +563,6 @@ var Editable = A.Component.create({
             else {
                 instance._setInput(instance.get('contentText'));
             }
-        },
-
-        /**
-         * Fires the save event.
-         *
-         * @method _defSaveFn
-         * @param {EventFacade} event save event facade
-         * @protected
-         */
-        _defSaveFn: function(event) {
-            var instance = this;
-
-            instance.fire('stopEditing', true);
         },
 
         /**
