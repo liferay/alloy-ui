@@ -78,13 +78,6 @@ YUI.add('aui-base-tests', function(Y) {
             'mailman',
             'octopus'
         ],
-        subValues = [
-            0, 1,
-            3, 5,
-            0, 8,
-            1, 6,
-            5, 9
-        ],
         subbableStrings = [
             'Apple',
             'Grape',
@@ -98,6 +91,13 @@ YUI.add('aui-base-tests', function(Y) {
             'Honeydew',
             'ineapp',
             'melon'
+        ],
+        subValues = [
+            0, 1,
+            3, 5,
+            0, 8,
+            1, 6,
+            5, 9
         ],
         symbolEntities = ['&','<','>','"','\'','/','`'],
         uncamelizedStrings = [
@@ -304,10 +304,16 @@ YUI.add('aui-base-tests', function(Y) {
         'should return a substring correctly': function() {
             var subbableStringsLength = subbableStrings.length;
 
-            Assert.isTrue((subbableStringsLength == (subValues.length / 2)) && (subbableStringsLength == subbedStrings.length));
+            Assert.isTrue(
+                (subbableStringsLength === (subValues.length / 2)) &&
+                (subbableStringsLength === subbedStrings.length)
+            );
 
             for (var i = 0; i < subbableStringsLength; i++) {
-                Assert.areEqual(Y.Lang.String.substr(subbableStrings[i], subValues[i * 2], subValues[(i * 2) + 1]), subbedStrings[i])
+                Assert.areEqual(
+                    Y.Lang.String.substr(subbableStrings[i], subValues[i * 2], subValues[(i * 2) + 1]),
+                    subbedStrings[i]
+                );
             }
         }
     }));
