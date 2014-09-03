@@ -2,7 +2,8 @@
     "aui-editable-deprecated": {
         "requires": [
             "aui-base-deprecated",
-            "aui-form-combobox-deprecated"
+            "aui-form-combobox-deprecated",
+            "escape"
         ],
         "skinnable": true
     }
