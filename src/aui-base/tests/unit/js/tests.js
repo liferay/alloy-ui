@@ -100,19 +100,19 @@ YUI.add('aui-base-tests', function(Y) {
             '.potato potatoes potahto plobflaybo',
             'vegetables'
         ],
-        removedStrings = [
-            ' roccoli brocoli broc coli brocoli.',
-            's  s ',
-            'not es,?',
-            '. es potahto plobflaybo',
-            'tables'
-        ],
         removalSubstrings = [
             'broccoli',
             'carrot',
             'tomato',
             'potato',
             'vege'
+        ],
+        removedStrings = [
+            ' roccoli brocoli broc coli brocoli.',
+            's  s ',
+            'not es,?',
+            '. es potahto plobflaybo',
+            'tables'
         ],
         scriptStrings = [
             '<p>I am <script>alert("not");</script>hungry</p>',
@@ -434,7 +434,8 @@ YUI.add('aui-base-tests', function(Y) {
         'should remove all matched strings correctly': function() {
             var unremovedStringLength = removalTestStrings.length;
 
-            Assert.isTrue((unremovedStringLength == removalSubstrings.length) && (unremovedStringLength == removedStrings.length));
+            Assert.isTrue(unremovedStringLength === removalSubstrings.length);
+            Assert.isTrue(unremovedStringLength === removedStrings.length);
 
             for (var i = 0; i < unremovedStringLength; i++) {
                 Assert.areEqual(Y.Lang.String.removeAll(removalTestStrings[i], removalSubstrings[i]), removedStrings[i]);
