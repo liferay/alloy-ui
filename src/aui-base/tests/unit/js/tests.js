@@ -463,7 +463,8 @@ YUI.add('aui-base-tests', function(Y) {
         'should remove matched strings correctly': function() {
             var unremovedStringLength = removalTestStrings.length;
 
-            Assert.isTrue((unremovedStringLength == removalSubstrings.length) && (unremovedStringLength == removedStrings.length));
+            Assert.isTrue(unremovedStringLength === removalSubstrings.length);
+            Assert.isTrue(unremovedStringLength === removedStrings.length);
 
             for (var i = 0; i < unremovedStringLength; i++) {
                 Assert.areEqual(Y.Lang.String.removeAll(removalTestStrings[i], removalSubstrings[i]), removedStrings[i]);
