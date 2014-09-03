@@ -348,10 +348,8 @@ YUI.add('aui-base-tests', function(Y) {
         'should return a substring correctly': function() {
             var subbableStringsLength = subbableStrings.length;
 
-            Assert.isTrue(
-                (subbableStringsLength === (subValues.length / 2)) &&
-                (subbableStringsLength === subbedStrings.length)
-            );
+            Assert.isTrue(subbableStringsLength === (subValues.length / 2));
+            Assert.isTrue(subbableStringsLength === subbedStrings.length);
 
             for (var i = 0; i < subbableStringsLength; i++) {
                 Assert.areEqual(
@@ -384,7 +382,8 @@ YUI.add('aui-base-tests', function(Y) {
         'should return whether or not a string starts with a specified prefix correctly': function() {
             var prefixedStringsLength = prefixedStrings.length;
 
-            Assert.isTrue((prefixedStringsLength == prefixStrings.length) && (prefixedStringsLength == prefixLessStrings.length))
+            Assert.isTrue(prefixedStringsLength === prefixStrings.length);
+            Assert.isTrue(prefixedStringsLength === prefixLessStrings.length);
 
             for (var i = 0; i < prefixedStringsLength; i++) {
                 Assert.isTrue(Y.Lang.String.startsWith(prefixedStrings[i], prefixStrings[i]));
