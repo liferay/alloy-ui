@@ -67,7 +67,6 @@ YUI.add('aui-base-tests', function(Y) {
             'mailmen',
             'octopi'
         ],
-        precisionNumberHigher = 1.56789,
         precisionNumberLower = 1.123456789,
         prefixedStrings = [
             'blacksmith',
@@ -394,7 +393,7 @@ YUI.add('aui-base-tests', function(Y) {
         },
 
         'should round numbers to the specified precision correctly': function() {
-            var numArray = precisionNumberLower + "",
+            var numArray = precisionNumberLower + '',
                 numLength = numArray.length,
                 numOffset;
 
