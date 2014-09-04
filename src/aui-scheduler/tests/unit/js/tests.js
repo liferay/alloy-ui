@@ -22,6 +22,7 @@ YUI.add('module-tests', function(Y) {
             this._scheduler = new Y.Scheduler(Y.merge({
                 boundingBox: '#myScheduler',
                 date: new Date(2013, 11, 4),
+                eventRecorder: new Y.SchedulerEventRecorder(),
                 items: [
                     {
                         color: '#8D8',
@@ -51,11 +52,34 @@ YUI.add('module-tests', function(Y) {
             Y.Assert.isNotNull(node);
             Y.Assert.isTrue(Y.Lang.String.startsWith(node.getStyle('color'), 'rgb('));
             Y.Assert.isTrue(Y.Lang.String.startsWith(node.getStyle('backgroundColor'), 'rgb('));
+        },
+
+        'events in the scheduler view should respond to the click event': function() {
+            this._createScheduler();
+            this._scheduler.set('disabled', true);
+
+            var recorder = this._scheduler.get('eventRecorder');
+
+            Y.one('button.scheduler-base-view-month').simulate('click');
+            Y.one('.scheduler-event').simulate('click');
+
+            Y.Assert.isTrue(
+                recorder.popover.get('visible'),
+                'Popover should be visible when event is clicked in month view'
+            );
+
+            Y.one('button.scheduler-base-view-agenda').simulate('click');
+            Y.one('.scheduler-view-agenda-event').simulate('click');
+
+            Y.Assert.isTrue(
+                recorder.popover.get('visible'),
+                'Popover should be visible when event is clicked in agenda view'
+            );
         }
     }));
 
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['test', 'aui-scheduler']
+    requires: ['node-event-simulate', 'test', 'aui-scheduler']
 });
