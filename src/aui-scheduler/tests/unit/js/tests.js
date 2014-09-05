@@ -55,10 +55,12 @@ YUI.add('module-tests', function(Y) {
         },
 
         'events in the scheduler view should respond to the click event': function() {
+            var recorder;
+
             this._createScheduler();
             this._scheduler.set('disabled', true);
 
-            var recorder = this._scheduler.get('eventRecorder');
+            recorder = this._scheduler.get('eventRecorder');
 
             Y.one('button.scheduler-base-view-month').simulate('click');
             Y.one('.scheduler-event').simulate('click');
