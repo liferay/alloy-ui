@@ -628,6 +628,23 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
+         * Returns the date interval in which this view shows events for.
+         *
+         * @method getDateInterval
+         * @return {Object} Object with 2 keys: startDate and endDate. Undefined
+         *   keys are interpreted as unlimited sides of the interval.
+         */
+        getDateInterval: function() {
+            var daysAmount = this.getWeekDaysCount() * this._getDisplayRowsCount() - 1,
+                startDate = this._findCurrentIntervalStart();
+
+            return {
+                endDate: DateMath.toLastHour(DateMath.add(startDate, DateMath.DAY, daysAmount)),
+                startDate: DateMath.toMidnight(startDate)
+            };
+        },
+
+        /**
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getIntersectEvents
@@ -676,6 +693,18 @@ var SchedulerTableView = A.Component.create({
             var displayDaysInterval = instance.get(DISPLAY_DAYS_INTERVAL);
 
             return DateMath.toMidnight(DateMath.subtract(viewDate, DateMath.DAY, displayDaysInterval));
+        },
+
+        /**
+         * Get the number of days that should be shown in the week.
+         *
+         * @method getWeekDaysCount
+         * @return {Number}
+         */
+        getWeekDaysCount: function() {
+            var displayDaysInterval = this.get('displayDaysInterval');
+
+            return Math.min(displayDaysInterval, WEEK_LENGTH);
         },
 
         /**
@@ -728,8 +757,7 @@ var SchedulerTableView = A.Component.create({
 
             instance.bodyNode.all(_DOT + CSS_SVT_TABLE_DATA).remove();
 
-            var displayDaysInterval = instance.get(DISPLAY_DAYS_INTERVAL);
-            var weekDaysCount = Math.min(displayDaysInterval, WEEK_LENGTH);
+            var weekDaysCount = this.getWeekDaysCount();
 
             var finalDate = DateMath.add(startDateRef, DateMath.DAY, (weekDaysCount * this.tableRows.size()) - 1);
             instance._findIntersections(startDateRef, finalDate);

@@ -14,6 +14,18 @@
  * @constructor
  */
 A.SchedulerEvents = A.Base.create('scheduler-events', A.ModelList, [], {
+    /**
+     * Constructor for the `A.SchedulerEvents`. Lifecycle.
+     *
+     * @method initializer
+     * @protected
+     */
+    initializer: function() {
+        this._remainingItems = this.get('originalItems');
+
+        this.after('originalItemsChange', this._afterOriginalItemsChange);
+        this.get('scheduler').on('plotViewEvents', A.bind(this._onPlotViewEvents, this));
+    },
 
     /**
      * TODO. Wanna help? Please send a Pull Request.
@@ -28,6 +40,92 @@ A.SchedulerEvents = A.Base.create('scheduler-events', A.ModelList, [], {
         return startDateTime + 1 / (endDateTime - startDateTime);
     },
 
+    /**
+     * Fired after the `originalItems` attribute changes.
+     *
+     * @method _afterOriginalItemsChange
+     * @protected
+     */
+    _afterOriginalItemsChange: function() {
+        this._remainingItems = this.get('originalItems');
+        this.remove(this.toArray());
+        this._updateEventsForView();
+    },
+
+    /**
+     * Fired when the `plotViewEvents` event is triggered.
+     *
+     * @method _onPlotViewEvents
+     * @protected
+     */
+    _onPlotViewEvents: function() {
+        this._updateEventsForView();
+    },
+
+    /**
+     * Sets the `originalItems` attribute.
+     *
+     * @method _setOriginalItems
+     * @param {Array} originalItems
+     * @protected
+     */
+    _setOriginalItems: function(val) {
+        var originalItems = [];
+
+        for (var i = 0; i < val.length; i++) {
+            if (A.instanceOf(val[i], this.model)) {
+                this.add(val[i]);
+            }
+            else {
+                val[i].startDate = val[i].startDate || new Date();
+                if (!val[i].endDate) {
+                    val[i].endDate = DateMath.clone(val[i].startDate);
+                    val[i].endDate.setHours(val[i].endDate.getHours() + 1);
+                }
+
+                originalItems.push(val[i]);
+            }
+        }
+
+        return originalItems;
+    },
+
+    /**
+     * Adds the necessary events for the view to the model list.
+     *
+     * @method _updateEventsForView
+     * @protected
+     */
+    _updateEventsForView: function() {
+        var dateInterval,
+            eventEndDate,
+            eventStartDate,
+            i,
+            remainingItems = [],
+            view = this.get('scheduler').get('activeView');
+
+        if (!view) {
+            return;
+        }
+
+        dateInterval = view.getDateInterval();
+
+        for (i = 0; i < this._remainingItems.length; i++) {
+            eventStartDate = this._remainingItems[i].startDate;
+            eventEndDate = this._remainingItems[i].endDate;
+
+            if ((!dateInterval.startDate || eventEndDate >= dateInterval.startDate) &&
+                (!dateInterval.endDate || eventStartDate <= dateInterval.endDate)) {
+                this.add(this._remainingItems[i]);
+            }
+            else {
+                remainingItems.push(this._remainingItems[i]);
+            }
+        }
+
+        this._remainingItems = remainingItems;
+    },
+
     model: A.SchedulerEvent
 }, {
 
@@ -40,6 +138,19 @@ A.SchedulerEvents = A.Base.create('scheduler-events', A.ModelList, [], {
      * @static
      */
     ATTRS: {
+        /**
+         * The original list of items.
+         *
+         * @attribute originalItems
+         * @default []
+         * @type {Array}
+         */
+        originalItems: {
+            setter: '_setOriginalItems',
+            validator: A.Lang.isArray,
+            value: []
+        },
+
         scheduler: {}
     }
 });
@@ -78,17 +189,21 @@ A.mix(SchedulerEventSupport.prototype, {
      * @protected
      */
     initializer: function(config) {
-        var instance = this;
+        var instance = this,
+            events = instance._toSchedulerEvents(config.items || config.events);
 
         instance._events = new instance.eventsModel({
             after: {
                 add: A.bind(instance._afterAddEvent, instance)
             },
             bubbleTargets: instance,
+            originalItems: this.get('pagination') ? events : [],
             scheduler: instance
         });
 
-        instance.addEvents(config.items || config.events);
+        if (!this.get('pagination')) {
+            this._events.add(events);
+        }
     },
 
     /**
@@ -285,6 +400,13 @@ A.mix(SchedulerEventSupport.prototype, {
 A.SchedulerEventSupport = SchedulerEventSupport;
 
 /**
+ * Fired when the current image will be animated in.
+ *
+ * @event plotViewEvents
+ * @preventable _defPlotViewEventsFn
+ */
+
+/**
  * A base class for SchedulerBase.
  *
  * @class A.SchedulerBase
@@ -379,6 +501,19 @@ var SchedulerBase = A.Component.create({
                 );
             },
             validator: isFunction
+        },
+
+        /**
+         * If the model items should be lazily loaded through pagination or not.
+         *
+         * @attribute pagination
+         * @default true
+         * @type {Boolean}
+         */
+        pagination: {
+            validator: A.Lang.isBoolean,
+            value: true,
+            writeOnce: 'initOnly'
         },
 
         /**
@@ -545,6 +680,12 @@ var SchedulerBase = A.Component.create({
                 activeViewChange: instance._afterActiveViewChange,
                 render: instance._afterRender
             });
+
+            this.publish({
+                plotViewEvents: {
+                    defaultFn: this._defPlotViewEventsFn
+                }
+            });
         },
 
         /**
@@ -652,7 +793,7 @@ var SchedulerBase = A.Component.create({
                 activeView = instance.get(ACTIVE_VIEW);
 
             if (activeView) {
-                instance.plotViewEvents(activeView);
+                this.fire('plotViewEvents');
             }
         },
 
@@ -787,6 +928,16 @@ var SchedulerBase = A.Component.create({
             }
 
             return view.get(TRIGGER_NODE);
+        },
+
+        /**
+         * Default behavior for the `plotViewEvents` event.
+         *
+         * @method _defPlotViewEventsFn
+         * @protected
+         */
+        _defPlotViewEventsFn: function() {
+            this.plotViewEvents(this.get('activeView'));
         },
 
         /**
