@@ -194,6 +194,13 @@ YUI.add('aui-base-tests', function(Y) {
             'Lorem-Ipsum-doLOR. sit-amet +1',
             'lorem-ipsum-dolor-sit-amet, LOREM-ipsum-D&OLOR',
             'Lorem-ipsum-dolor-sit-amet. lorem-ipsum-dolor-sit-amet, lorem-Ipsum-Dolor-Sit-Amet'
+        ],
+        camelizedStrings = [
+            'loremIpsumDolorSitAmet',
+            'LorEmIpsumDolorSitAMET',
+            'LoremIpsumDoLOR. sitAmet +1',
+            'loremIpsumDolorSitAmet, LOREMIpsumD&OLOR',
+            'LoremIpsumDolorSitAmet. loremIpsumDolorSitAmet, loremIpsumDolorSitAmet',
         ];
 
     var Assert = Y.Assert,
@@ -268,6 +275,39 @@ YUI.add('aui-base-tests', function(Y) {
                     }
                 }
             }
+        },
+
+        'should uncamelize strings correctly': function() {
+            for (var i = 0; i < camelizedStrings.length; i++) {
+                var toBeUncamelized = camelizedStrings[i],
+                    uncamelized = Y.Lang.String.uncamelize(toBeUncamelized, '-'),
+                    capitalIndices = [],
+                    character = null,
+                    dashCount = 0;
+
+                for (var j = 0; j < toBeUncamelized.length; j++) {
+                    character = toBeUncamelized[j];
+
+                    if (character.toUpperCase() === character) {
+                        capitalIndices.push(j);
+                    }
+                }
+
+                for (var k = 0; k < uncamelized.length; k++) {
+                    character = uncamelized[k];
+
+                    if (character === '-') {
+                        dashCount++;
+                    }
+
+                    if (capitalIndices.indexOf(k - dashCount) === -1) {
+                        Assert.areSame(character.toLowerCase(), character);
+                    }
+                    else {
+                        Assert.areSame(character.toUpperCase(), character);
+                    }
+                };
+            };
         },
 
         'should pad numbers correctly': function() {
