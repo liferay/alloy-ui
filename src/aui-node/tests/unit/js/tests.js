@@ -79,5 +79,5 @@ YUI.add('aui-node-tests', function(Y) {
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['aui-node', 'test', 'transition']
+    requires: ['aui-node', 'aui-node-accessible', 'test', 'transition']
 });

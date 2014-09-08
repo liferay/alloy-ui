@@ -185,18 +185,12 @@ var Toggler = A.Component.create({
      */
     headerEventHandler: function(event, instance) {
         if (event.type === instance.get('toggleEvent') || event.isKey('enter') || event.isKey('space')) {
-            event.preventDefault();
-
             return instance.toggle();
         }
         else if (event.isKey('down') || event.isKey('right') || event.isKey('num_plus')) {
-            event.preventDefault();
-
             return instance.expand();
         }
         else if (event.isKey('up') || event.isKey('left') || event.isKey('esc') || event.isKey('num_minus')) {
-            event.preventDefault();
-
             return instance.collapse();
         }
     },

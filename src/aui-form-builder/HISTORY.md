@@ -4,6 +4,8 @@
 
 ## @VERSION@
 
+* [AUI-1545](https://issues.liferay.com/browse/AUI-1545) Form Builder Checkbox and Radio have incorrect markup
+* [AUI-1635](https://issues.liferay.com/browse/AUI-1635) Fix lint problems
 * [AUI-1606](https://issues.liferay.com/browse/AUI-1606) Form Builder select field closes by itself when clicking after already focused
 * [AUI-1612](https://issues.liferay.com/browse/AUI-1612) Form builder textfield and textarea need width validators
 * [AUI-1610](https://issues.liferay.com/browse/AUI-1610) Changing predefinedValue for text fields doesn't update them
@@ -35,7 +37,7 @@
 
 ## [2.5.0](https://github.com/liferay/alloy-ui/releases/tag/2.5.0)
 
-* [AUI-1346](https://issues.liferay.com/browse/AUI-1346) Cannot clone hiddenAttributes in Form Builder
+* [AUI-1208](https://issues.liferay.com/browse/AUI-1346) Cannot clone hiddenAttributes in Form Builder
 * [AUI-1208](https://issues.liferay.com/browse/AUI-1208) Cloned fields displaying hidden attributes
 * [AUI-1163](https://issues.liferay.com/browse/AUI-1163) Remove unnecessary constants
 * [AUI-1130](https://issues.liferay.com/browse/AUI-1130) Field Label allows insertion of HTML tag in the Form Builder's DOM

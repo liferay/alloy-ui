@@ -333,9 +333,8 @@ var SchedulerView = A.Component.create({
          * Scrolls to given date.
          *
          * @method scrollToDate
-         * @param {Date} date The date to scroll to
          */
-        scrollToDate: function(date) {},
+        scrollToDate: function() {},
 
         /**
          * Sync `SchedulerView` StdContent.

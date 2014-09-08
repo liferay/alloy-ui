@@ -1,0 +1,15 @@
+{
+    "name": "aui-menu",
+    "builds": {
+        "aui-menu": {
+            "jsfiles": [
+                "js/aui-menu.js"
+            ]
+        },
+        "aui-menu-item": {
+            "jsfiles": [
+                "js/aui-menu-item.js"
+            ]
+        }
+    }
+}

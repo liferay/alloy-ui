@@ -619,7 +619,8 @@
     "aui-editable-deprecated": {
         "requires": [
             "aui-base-deprecated",
-            "aui-form-combobox-deprecated"
+            "aui-form-combobox-deprecated",
+            "escape"
         ],
         "skinnable": true
     },
@@ -994,6 +995,32 @@
             "base-build"
         ]
     },
+    "aui-menu": {
+        "requires": [
+            "base-build",
+            "event-mouseenter",
+            "event-resize",
+            "widget",
+            "widget-position",
+            "widget-position-align",
+            "widget-position-constrain",
+            "widget-stack",
+            "aui-classnamemanager",
+            "aui-debounce",
+            "aui-dropdown",
+            "aui-menu-item"
+        ],
+        "skinnable": true
+    },
+    "aui-menu-item": {
+        "requires": [
+            "base-build",
+            "node-base",
+            "aui-classnamemanager",
+            "aui-node",
+            "aui-widget-shortcut"
+        ]
+    },
     "aui-messaging": {
         "requires": [
             "querystring",
@@ -1035,6 +1062,12 @@
     "aui-node": {
         "use": [
             "aui-node-base"
+        ]
+    },
+    "aui-node-accessible": {
+        "requires": [
+            "aui-node-base",
+            "event-custom-base"
         ]
     },
     "aui-node-base": {
@@ -1527,6 +1560,11 @@
             "aui-toggler-delegate"
         ]
     },
+    "aui-toggler-accessibility": {
+        "requires": [
+            "aui-toggler-base"
+        ]
+    },
     "aui-toggler-base": {
         "requires": [
             "transition",
@@ -1695,6 +1733,7 @@
         "requires": [
             "node-event-html5",
             "querystring-stringify-simple",
+            "aui-aria",
             "aui-node",
             "aui-component",
             "aui-debounce"
@@ -1733,6 +1772,11 @@
         "requires": [
             "event-resize",
             "widget-base"
+        ]
+    },
+    "aui-widget-shortcut": {
+        "requires": [
+            "base"
         ]
     },
     "aui-widget-swipe": {

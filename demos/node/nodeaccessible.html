@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+    <style>
+        caption {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        table.demo-table {
+            width: 30%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>AlloyUI - Node Accessible demo</h1>
+    <button class="btn btn-primary">Click me to toggle accessibility hidden on the table caption.</button>
+    <table class="demo-table table table-bordered" aria-labelledby="caption" tabindex="0">
+        <caption id="caption">Citrus Price List</caption>
+        <thead>
+            <tr>
+                <th tabindex="0">Name</th>
+                <th tabindex="0">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td tabindex="0">Lime</td>
+                <td tabindex="0">$0.69</td>
+            </tr>
+            <tr>
+                <td tabindex="0">Lemon</td>
+                <td tabindex="0">$0.99</td>
+            </tr>
+            <tr>
+                <td tabindex="0">Orange</td>
+                <td tabindex="0">$1.19</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+    YUI({ filter:'raw' }).use('aui-node-accessible', function(Y) {
+        var caption = Y.one('caption');
+
+        Y.one('button').on('click',
+            function(event) {
+                caption.toggleAccessible();
+            }
+        );
+
+    });
+    </script>
+</body>
+</html>

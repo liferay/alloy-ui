@@ -8,6 +8,7 @@
 
 ## [3.0.0pr2](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr2)
 
+* [AUI-1550](https://issues.liferay.com/browse/AUI-1550) Make aui-datatable cell editing accessible
 * [AUI-1288](https://issues.liferay.com/browse/AUI-1288) Datatable Property List errors when 'enter' key is pressed when no active cell
 * [AUI-1342](https://issues.liferay.com/browse/AUI-1342) A User is unable to deselect their previous selection in a Datatable with Selection and Highlight
 * [AUI-1300](https://issues.liferay.com/browse/AUI-1300) Make aui-datatable work on touch devices

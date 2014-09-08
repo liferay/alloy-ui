@@ -2,6 +2,16 @@ YUI.add('aui-base-tests', function(Y) {
 
     var caseStrings = ['liferay', 'Liferay', 'cAPITAL', 'Capital', 'word-dash', 'Word-dash'],
         containStrings = ['alongstring', 'a-different-string', 'anotherstring123'],
+        definedStrings = [
+            '',
+            '',
+            'defined'
+        ],
+        definitionStrings = [
+            ,
+            '',
+            'defined'
+        ],
         endsWithStrings = [
             'lorem-ipsum',
             'lorem ipsum',
@@ -14,9 +24,29 @@ YUI.add('aui-base-tests', function(Y) {
             'dolor',
             'm'
         ],
-        entityCharacters = ['!', '"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':', ';', '<', '=', '>', '?', '@', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '[', '\\', ']', '^', '_', '`', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '{', '|', '}', '~'],
-        entityNames = ['', '', '', '', '', '&amp;', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '&lt;', '', '&gt;', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-        entityNumbers = ['&#33;', '&#34;', '&#35;', '&#36;', '&#37;', '&#38;', '&#39;', '&#40;', '&#41;', '&#42;', '&#43;', '&#44;', '&#45;', '&#46;', '&#47;', '&#48;', '&#49;', '&#50;', '&#51;', '&#52;', '&#53;', '&#54;', '&#55;', '&#56;', '&#57;', '&#58;', '&#59;', '&#60;', '&#61;', '&#62;', '&#63;', '&#64;', '&#65;', '&#66;', '&#67;', '&#68;', '&#69;', '&#70;', '&#71;', '&#72;', '&#73;', '&#74;', '&#75;', '&#76;', '&#77;', '&#78;', '&#79;', '&#80;', '&#81;', '&#82;', '&#83;', '&#84;', '&#85;', '&#86;', '&#87;', '&#88;', '&#89;', '&#90;', '&#91;', '&#92;', '&#93;', '&#94;', '&#95;', '&#96;', '&#97;', '&#98;', '&#99;', '&#100;', '&#101;', '&#102;', '&#103;', '&#104;', '&#105;', '&#106;', '&#107;', '&#108;', '&#109;', '&#110;', '&#111;', '&#112;', '&#113;', '&#114;', '&#115;', '&#116;', '&#117;', '&#118;', '&#119;', '&#120;', '&#121;', '&#122;', '&#123;', '&#124;', '&#125;', '&#126;'],
+        entityCharacters = [
+            '!', '"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/', '0', '1', '2', '3', '4', '5',
+            '6', '7', '8', '9', ':', ';', '<', '=', '>', '?', '@', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+            'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '[', '\\', ']', '^', '_',
+            '`', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+            'u', 'v', 'w', 'x', 'y', 'z', '{', '|', '}', '~'
+        ],
+        entityNames = [
+            '', '', '', '', '', '&amp;', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
+            '&lt;', '', '&gt;', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
+            '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
+            '', '', '', '', '', '', '', '', '', '', '', '', ''
+        ],
+        entityNumbers = [
+            '&#33;', '&#34;', '&#35;', '&#36;', '&#37;', '&#38;', '&#39;', '&#40;', '&#41;', '&#42;', '&#43;', '&#44;',
+            '&#45;', '&#46;', '&#47;', '&#48;', '&#49;', '&#50;', '&#51;', '&#52;', '&#53;', '&#54;', '&#55;', '&#56;',
+            '&#57;', '&#58;', '&#59;', '&#60;', '&#61;', '&#62;', '&#63;', '&#64;', '&#65;', '&#66;', '&#67;', '&#68;',
+            '&#69;', '&#70;', '&#71;', '&#72;', '&#73;', '&#74;', '&#75;', '&#76;', '&#77;', '&#78;', '&#79;', '&#80;',
+            '&#81;', '&#82;', '&#83;', '&#84;', '&#85;', '&#86;', '&#87;', '&#88;', '&#89;', '&#90;', '&#91;', '&#92;',
+            '&#93;', '&#94;', '&#95;', '&#96;', '&#97;', '&#98;', '&#99;', '&#100;', '&#101;', '&#102;', '&#103;', '&#104;',
+            '&#105;', '&#106;', '&#107;', '&#108;', '&#109;', '&#110;', '&#111;', '&#112;', '&#113;', '&#114;', '&#115;',
+            '&#116;', '&#117;', '&#118;', '&#119;', '&#120;', '&#121;', '&#122;', '&#123;', '&#124;', '&#125;', '&#126;'
+        ],
         escapedEntities = ['&amp;', '&lt;', '&gt;', '&#034;', '&#039;', '&#047;', '&#096;'],
         nl2brStrings = [
             'lorem-ipsum-dolor\r\n, lorem-ipsum!',
@@ -30,13 +60,14 @@ YUI.add('aui-base-tests', function(Y) {
             'lorem ipsum dolor<br /> lorem-ipsum dolor.',
             'Lorem ipsum<br />\r lorem-ipsum-dolor-sit-amet \r dolor.'
         ],
-        numbersToPad = [1, 10, 2.5, 6.789, 123.4, 3000.3102, .5, .10001, 500000.0],
+        numbersToPad = [1, 10, 2.5, 6.789, 123.4, 3000.3102, 0.5, 0.10001, 500000.0],
         pluralizedStrings = [
             'apples',
             'fish',
             'mailmen',
             'octopi'
         ],
+        precisionNumberLower = 1.123456789,
         prefixedStrings = [
             'blacksmith',
             'goldsmith',
@@ -62,13 +93,87 @@ YUI.add('aui-base-tests', function(Y) {
             'word'
         ],
         regExCharacters = ['(', ')', '^', '$', '.', '*', '?', '/', '+', '|', '[', ']', '\\'],
+        removalTestStrings = [
+            'broccoli roccoli brocoli broc coli brocoli.',
+            'carrots carrot carrotscarrot carrotcarrot',
+            'not tomatoes,tomato?',
+            '.potato potatoes potahto plobflaybo',
+            'vegetables'
+        ],
+        removalSubstrings = [
+            'broccoli',
+            'carrot',
+            'tomato',
+            'potato',
+            'vege'
+        ],
+        removedStrings = [
+            ' roccoli brocoli broc coli brocoli.',
+            's  s ',
+            'not es,?',
+            '. es potahto plobflaybo',
+            'tables'
+        ],
+        repeatedString = 'word',
+        scriptStrings = [
+            '<p>I am <script>alert("not");</script>hungry</p>',
+            '"<s<script></script>cript>alert("Difficult test")</script>"")',
+            '</script><script>',
+            '<script>alert("not")</script>'
+        ],
+        singleRemovedStrings = [
+            ' roccoli brocoli broc coli brocoli.',
+            's carrot carrotscarrot carrotcarrot',
+            'not es,tomato?',
+            '. potatoes potahto plobflaybo',
+            'tables'
+        ],
         singularStrings = [
             'apple',
             'fish',
             'mailman',
             'octopus'
         ],
+        strippedScriptStrings = [
+            '<p>I am hungry</p>',
+            '"<script>alert("Difficult test")</script>"")',
+            '</script><script>',
+            ''
+        ],
+        subbableStrings = [
+            'Apple',
+            'Grape',
+            'Honeydew',
+            'Pineapple',
+            'Watermelon'
+        ],
+        subbedStrings = [
+            'A',
+            'pe',
+            'Honeydew',
+            'ineapp',
+            'melon'
+        ],
+        subValues = [
+            0, 1,
+            3, 5,
+            0, 8,
+            1, 6,
+            5, 9
+        ],
         symbolEntities = ['&','<','>','"','\'','/','`'],
+        taggedStrings = [
+            '<p>Knock knock.</p> <a href="#question">Who\'s there?</a>',
+            '<span>Git.</span>',
+            '<p>Git-who?</ br>',
+            '<a<a>></a> <a href="#">Sorry, "who" is not a git command - did you mean "show"?</a><li></li>'
+        ],
+        taglessStrings = [
+            'Knock knock. Who\'s there?',
+            'Git.',
+            'Git-who?',
+            '> Sorry, "who" is not a git command - did you mean "show"?'
+        ],
         uncamelizedStrings = [
             'lorem-ipsum-dolor-sit-amet',
             'LorEm-Ipsum-dolor-sit-AMET',
@@ -157,7 +262,7 @@ YUI.add('aui-base-tests', function(Y) {
                     toBePaddedLengths = this.getPrecisionPrePostDecimal(toBePadded),
                     length = null,
                     padded = null,
-                    paddedLengths = null
+                    paddedLengths = null,
                     precision = null;
 
                 for (var j = 0; j < 20; j++) {
@@ -206,7 +311,7 @@ YUI.add('aui-base-tests', function(Y) {
         'should prefix a string with a given string (does not work if the prefix is already appended) correctly': function() {
             var prefixStringsLength = prefixStrings.length;
 
-            Assert.isTrue((prefixStringsLength == prefixLessStrings.length) && (prefixStringsLength == prefixedStrings.length))
+            Assert.isTrue((prefixStringsLength === prefixLessStrings.length) && (prefixStringsLength === prefixedStrings.length));
 
             for (var i = 0; i < prefixStringsLength; i++) {
                 Assert.areEqual(Y.Lang.String.prefix(prefixStrings[i], prefixLessStrings[i]), prefixedStrings[i]);
@@ -245,17 +350,160 @@ YUI.add('aui-base-tests', function(Y) {
             var entityCharactersLength = entityCharacters.length,
                 entityName;
 
-            Assert.isTrue((entityCharactersLength == entityNumbers.length) && (entityCharacters.length == entityNames.length))
+            Assert.isTrue((entityCharactersLength === entityNumbers.length) && (entityCharacters.length === entityNames.length));
 
             for (var i = 0; i < entityCharactersLength; i++) {
                 Assert.areEqual(Y.Lang.String._unescapeEntitiesUsingDom(entityNumbers[i]), entityCharacters[i]);
+                Assert.areEqual(Y.Lang.String.unescapeEntities(entityNumbers[i]), entityCharacters[i]);
 
                 entityName = entityNames[i];
 
-                if (entityName != '') {
+                if (entityName !== '') {
                     Assert.areEqual(Y.Lang.String._unescapeEntitiesUsingDom(entityName), entityCharacters[i]);
+                    Assert.areEqual(Y.Lang.String.unescapeEntities(entityName), entityCharacters[i]);
                 }
             }
+        },
+
+        'should define undefined values correctly': function() {
+            var definitionStringsLength = definitionStrings.length;
+
+            Assert.areEqual(definitionStringsLength, definedStrings.length);
+
+            for (var i = 0; i < definitionStringsLength; i++) {
+                Assert.areEqual(Y.Lang.String.undef(definitionStrings[i]), definedStrings[i]);
+            }
+        },
+
+        'should return a substring correctly': function() {
+            var subbableStringsLength = subbableStrings.length;
+
+            Assert.isTrue(subbableStringsLength === (subValues.length / 2));
+            Assert.isTrue(subbableStringsLength === subbedStrings.length);
+
+            for (var i = 0; i < subbableStringsLength; i++) {
+                Assert.areEqual(
+                    Y.Lang.String.substr(subbableStrings[i], subValues[i * 2], subValues[(i * 2) + 1]),
+                    subbedStrings[i]
+                );
+            }
+        },
+
+        'should strip tags correctly': function() {
+           var taggedStringsLength = taggedStrings.length;
+
+           Assert.areEqual(taggedStringsLength, taglessStrings.length);
+
+           for (var i = 0; i < taggedStringsLength; i++) {
+               Assert.areEqual(Y.Lang.String.stripTags(taggedStrings[i]), taglessStrings[i]);
+           }
+       },
+
+        'should strip scripts correctly': function() {
+            var scriptStringsLength = scriptStrings.length;
+
+            Assert.areEqual(scriptStringsLength, strippedScriptStrings.length);
+
+            for (var i = 0; i < scriptStringsLength; i++) {
+                Assert.areEqual(Y.Lang.String.stripScripts(scriptStrings[i]), strippedScriptStrings[i]);
+            }
+        },
+
+        'should return whether or not a string starts with a specified prefix correctly': function() {
+            var prefixedStringsLength = prefixedStrings.length;
+
+            Assert.isTrue(prefixedStringsLength === prefixStrings.length);
+            Assert.isTrue(prefixedStringsLength === prefixLessStrings.length);
+
+            for (var i = 0; i < prefixedStringsLength; i++) {
+                Assert.isTrue(Y.Lang.String.startsWith(prefixedStrings[i], prefixStrings[i]));
+                Assert.isTrue(!Y.Lang.String.startsWith(prefixedStrings[i], prefixLessStrings[i]));
+            }
+        },
+
+        'should round numbers to the specified precision correctly': function() {
+            var numArray = precisionNumberLower + '',
+                numLength = numArray.length,
+                numOffset;
+
+            for (var i = 2; i < numLength; i++) {
+                numOffset = (numLength - i);
+                numArray = (Y.Lang.String.round(precisionNumberLower, numOffset) + '');
+
+                if ((numOffset < 9) && (numOffset > 3)) {
+                    Assert.areEqual((numOffset + 1), numArray[(numArray.length - 1)]);
+                }
+                else {
+                    Assert.areEqual(numOffset, numArray[(numArray.length - 1)]);
+                }
+            }
+        },
+
+        'should remove all matched strings correctly': function() {
+            var unremovedStringLength = removalTestStrings.length;
+
+            Assert.isTrue(unremovedStringLength === removalSubstrings.length);
+            Assert.isTrue(unremovedStringLength === removedStrings.length);
+
+            for (var i = 0; i < unremovedStringLength; i++) {
+                Assert.areEqual(Y.Lang.String.removeAll(removalTestStrings[i], removalSubstrings[i]), removedStrings[i]);
+            }
+        },
+
+        'should return a repeated string correctly': function() {
+            var testString = '';
+
+            for (var i = 0; i < 100; i++) {
+                Assert.areEqual(Y.Lang.String.repeat(repeatedString, i), testString);
+
+                testString = testString.concat(repeatedString);
+            }
+        },
+
+        'should remove matched strings correctly': function() {
+            var unremovedStringLength = removalTestStrings.length;
+
+            Assert.isTrue(unremovedStringLength === removalSubstrings.length);
+            Assert.isTrue(unremovedStringLength === removedStrings.length);
+
+            for (var i = 0; i < unremovedStringLength; i++) {
+                Assert.areEqual(Y.Lang.String.removeAll(removalTestStrings[i], removalSubstrings[i]), removedStrings[i]);
+
+                Assert.areEqual(Y.Lang.String.remove(removalTestStrings[i], removalSubstrings[i], true), removedStrings[i]);
+                Assert.areEqual(Y.Lang.String.remove(removalTestStrings[i], removalSubstrings[i], false), singleRemovedStrings[i]);
+            }
+        },
+
+        'should truncate long strings consistently': function() {
+            var actual = Y.Lang.String.truncate('myteststring', 5, 'end'),
+                expected = 'my...';
+
+            Assert.areEqual(expected, actual);
+
+            actual = Y.Lang.String.truncate('myteststring', 5, 'start');
+            expected = '...ng';
+
+            Assert.areEqual(expected, actual);
+
+            actual = Y.Lang.String.truncate('myteststring', 8, 'middle');
+            expected = 'myt...ng';
+
+            Assert.areEqual(expected, actual);
+
+            actual = Y.Lang.String.truncate('myteststring', 9, 'middle');
+            expected = 'myt...ing';
+
+            Assert.areEqual(expected, actual);
+
+            actual = Y.Lang.String.truncate('string', 9, 'middle');
+            expected = 'string';
+
+            Assert.areEqual(expected, actual);
+
+            actual = Y.Lang.String.truncate('string', 2, 'middle');
+            expected = '...';
+
+            Assert.areEqual(expected, actual);
         }
     }));
 

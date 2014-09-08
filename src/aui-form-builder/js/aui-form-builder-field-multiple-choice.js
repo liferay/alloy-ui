@@ -246,7 +246,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
                 options = instance.get('options');
 
             instance.predefinedValueEditor = new A.DropDownCellEditor({
-                options: getEditorOptions(options)
+                options: instance._getPredefinedValuesOptions(options)
             });
         },
 
@@ -296,7 +296,11 @@ var FormBuilderMultipleChoiceField = A.Component.create({
                     editable: true,
                     on: {
                         optionsChange: function(event) {
-                            instance.predefinedValueEditor.set('options', event.newVal);
+                            var values = instance._normalizeValues(event.newVal);
+
+                            values = instance._getPredefinedValuesOptions(values);
+
+                            instance.predefinedValueEditor.set('options', values);
                         }
                     },
                     options: getEditorOptions(options),
@@ -337,12 +341,44 @@ var FormBuilderMultipleChoiceField = A.Component.create({
                         }
                     );
 
-                    return buffer.join(',' + ' ');
+                    return buffer.join(', ');
                 },
                 name: strings.options
             });
 
             return model;
+        },
+
+        /**
+         * Returns a list of predefined values with an empty option
+         *
+         * @method _getPredefinedValuesOptions
+         * @param options
+         * @protected
+         */
+        _getPredefinedValuesOptions: function(options) {
+            var emptyOption = {
+                label: '',
+                value: ''
+            };
+
+            return getEditorOptions([emptyOption].concat(options));
+        },
+
+        /**
+         * Returns an array of objects with values
+         *
+         * @method _normalizeValues
+         * @param values
+         * @protected
+         */
+        _normalizeValues: function(values) {
+            return A.map(values, function(label, value) {
+                return {
+                    label: label,
+                    value: value
+                };
+            });
         },
 
         /**

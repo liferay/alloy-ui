@@ -7,7 +7,6 @@
 
 var Lang = A.Lang,
     isFunction = Lang.isFunction,
-    isString = Lang.isString,
 
     DateMath = A.DataType.DateMath,
     WidgetStdMod = A.WidgetStdMod,

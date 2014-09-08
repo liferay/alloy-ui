@@ -222,7 +222,7 @@ A.Toolbar = A.Component.create({
             var instance = this,
                 currentTarget = event.currentTarget;
 
-            instance._initEnclosingWidgetIfNeeded(currentTarget);
+            instance._initEnclosingWidgetIfNeeded(currentTarget, event);
         },
 
         /**
@@ -232,7 +232,7 @@ A.Toolbar = A.Component.create({
          * @param seed
          * @protected
          */
-        _initEnclosingWidgetIfNeeded: function(seed) {
+        _initEnclosingWidgetIfNeeded: function(seed, event) {
             if (!seed || seed.getData('enclosingWidgetInitialized')) {
                 return;
             }
@@ -275,6 +275,10 @@ A.Toolbar = A.Component.create({
                         render: true
                     });
                 }
+            }
+
+            if (event && (event.type === 'focus')) {
+                seed.focus();
             }
         },
 

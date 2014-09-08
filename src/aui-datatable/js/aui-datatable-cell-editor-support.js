@@ -80,6 +80,8 @@ A.mix(CellEditorSupport.prototype, {
 
         instance.delegate(editEvent, instance._onEditCell, '.' + instance.CLASS_NAMES_CELL_EDITOR_SUPPORT.cell,
             instance);
+
+        A.after(instance._afterSelectionKey, instance, '_onSelectionKey');
     },
 
     /**
@@ -120,6 +122,22 @@ A.mix(CellEditorSupport.prototype, {
     },
 
     /**
+     * Fires after '_onSelectionKey'. Opens editor of 'activeCell' on key press.
+     *
+     * @method _afterSelectionKey
+     * @param {EventFacade} event
+     * @protected
+     */
+    _afterSelectionKey: function(event) {
+        var instance = this,
+            activeCell = instance.get('activeCell');
+
+        if (activeCell && (event.keyCode === 13)) {
+            instance._onEditCell(activeCell);
+        }
+    },
+
+    /**
      * `render()` and `show()` the `A.BaseCellEditor`, of the active table cell.
      *
      * Called when active table cell is clicked (default).
@@ -140,7 +158,8 @@ A.mix(CellEditorSupport.prototype, {
             if (!editor.get('rendered')) {
                 editor.on({
                     visibleChange: A.bind(instance._onEditorVisibleChange, instance),
-                    save: A.bind(instance._onEditorSave, instance)
+                    save: A.bind(instance._onEditorSave, instance),
+                    cancel: A.bind(instance._onEditorCancel, instance)
                 });
 
                 editor.set('zIndex', CellEditorSupport.EDITOR_ZINDEX);
@@ -154,8 +173,19 @@ A.mix(CellEditorSupport.prototype, {
     },
 
     /**
-     * Saves the new value from the `A.BaseCellEditor` input to the `Model`, on
-     * the `save` event of the `A.BaseCellEditor`.
+     * Invoked when the editor fires the 'cancel' event.
+     *
+     * @method _onEditorCancel
+     * @protected
+     */
+    _onEditorCancel: function() {
+        var instance = this;
+
+        instance._refocusActiveCell();
+    },
+
+    /**
+     * Invoked when the editor fires the 'save' event.
      *
      * @method _onEditorSave
      * @param {EventFacade} event
@@ -169,16 +199,9 @@ A.mix(CellEditorSupport.prototype, {
 
         editor.set('value', event.newVal);
 
-        // TODO: Memorize the activeCell coordinates to set the focus on it
-        // instead
-        instance.set('activeCell', instance.get('activeCell'));
-
         record.set(column.key, event.newVal);
 
-        // TODO: Sync highlight frames UI instead?
-        if (instance.highlight) {
-            instance.highlight.clear();
-        }
+        instance._refocusActiveCell();
     },
 
     /**
@@ -196,6 +219,21 @@ A.mix(CellEditorSupport.prototype, {
         if (event.newVal) {
             editor._syncFocus();
         }
+    },
+
+    /**
+     * Places keyboard focus onto the last active cell.
+     *
+     * @method _refocusActiveCell
+     * @protected
+     */
+    _refocusActiveCell: function() {
+        var instance = this,
+            activeCell = instance.get('activeCell'),
+            coords = instance.getCoord(activeCell);
+
+        instance.set('activeCoord', coords);
+        instance.set('selection', coords);
     },
 
     /**

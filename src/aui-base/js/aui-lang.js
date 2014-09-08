@@ -315,22 +315,34 @@
         truncate: function(str, length, where) {
             str = String(str);
 
-            var strLength = str.length;
+            var ellipsisLength = STR_ELLIPSIS.length,
+                strLength = str.length;
 
-            if (str && strLength > length) {
-                where = where || 'end';
+            if (length > 3) {
+                if (str && (strLength > length)) {
+                    where = where || 'end';
 
-                if (where === 'end') {
-                    str = str.substr(0, length - STR_ELLIPSIS.length) + STR_ELLIPSIS;
-                }
-                else if (where === 'middle') {
-                    var middlePoint = Math.floor(length / 2);
+                    if (where === 'end') {
+                        str = str.substr(0, (length - ellipsisLength)) + STR_ELLIPSIS;
+                    }
+                    else if (where === 'middle') {
+                        var middlePointA = Math.floor((length - ellipsisLength) / 2),
+                            middlePointB = middlePointA;
 
-                    str = str.substr(0, middlePoint) + STR_ELLIPSIS + str.substr(strLength - middlePoint);
+                        if (length % 2 === 0) {
+                            middlePointA = Math.ceil((length - ellipsisLength) / 2);
+                            middlePointB = Math.floor((length - ellipsisLength) / 2);
+                        }
+
+                        str = str.substr(0, middlePointA) + STR_ELLIPSIS + str.substr(strLength - middlePointB);
+                    }
+                    else if (where === 'start') {
+                        str = STR_ELLIPSIS + str.substr(strLength - length + ellipsisLength);
+                    }
                 }
-                else if (where === 'start') {
-                    str = STR_ELLIPSIS + str.substr(strLength - length);
-                }
+            }
+            else {
+                str = STR_ELLIPSIS;
             }
 
             return str;

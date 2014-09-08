@@ -1,107 +1,228 @@
 YUI.add('aui-dropdown-tests', function(Y) {
 
-    var Assert = Y.Assert,
-        suite = new Y.Test.Suite('aui-dropdown'),
-
-        stick = new Y.Dropdown({
-            boundingBox: '#stick',
-            contentBox: '#stick ul',
-            trigger: '#stick .dropdown-toggle',
-            hideOnClickOutSide: false,
-            hideOnEsc: false,
-            render: true
-        }),
-
-        dropdown = new Y.Dropdown({
-            trigger: '#trigger',
-            boundingBox: '#dropdown',
-            items: [
-                {
-                    id: 'first_i',
-                    content: '<a role="menuitem" tabindex="-1">Close on click outside</a>'
-                },
-                {
-                    id: 'second_i',
-                    content: '<a role="menuitem" tabindex="-1" >Close on esc</a>'
-                },
-                {
-                    id: 'third_i',
-                    content: '<a href="#" role="menuitem">Call function to print on console</a>'
-                }
-            ],
-            render: true
-        });
+    var suite = new Y.Test.Suite('aui-dropdown');
 
     suite.add(new Y.Test.Case({
+        init: function() {
+            this._dropdownNode = Y.one('#dropdownContainer');
+            this._dropdownNode.remove();
+        },
 
-        'should set attributes correctly': function() {
-            Assert.areEqual(stick.get('trigger'), Y.one('#stick .dropdown-toggle'));
-            Assert.areEqual(Y.Lang.trim(stick.get('items').item(0).text()), 'I never close');
-            Assert.isFalse(stick.get('hideOnClickOutSide'));
+        tearDown: function() {
+            if (this._dropdown) {
+                this._dropdown.destroy();
+            }
+        },
 
-            Assert.areEqual(dropdown.get('trigger'), Y.one('#dropdown .dropdown-toggle'));
-            Assert.areEqual(Y.Lang.trim(dropdown.get('items').item(0).text()), 'Close on click outside');
-            Assert.isTrue(dropdown.get('hideOnClickOutSide'));
+        /**
+         * Creates a Dropdown instance.
+         *
+         * @method _createDropdown
+         * @param {Object} Optional config params to override the default values.
+         * @protected
+         */
+        _createDropdown: function(config) {
+            var currentDropdownNode = this._dropdownNode.cloneNode(true);
+            Y.one('body').append(currentDropdownNode);
+
+            this._dropdown = new Y.Dropdown(Y.merge({
+                trigger: currentDropdownNode.one('.dropdown-toggle'),
+                boundingBox: currentDropdownNode.one('.dropdown'),
+                render: true
+            }, config));
         },
 
         'should add css class open on boundingBox after function open be called': function() {
-            dropdown.open();
-            Assert.isTrue(dropdown.get('boundingBox').hasClass('open'));
+            this._createDropdown();
+
+            this._dropdown.open();
+
+            Y.Assert.isTrue(
+                this._dropdown.get('boundingBox').hasClass('open'),
+                'Dropdown should have been opened'
+            );
         },
 
         'should remove css class open on boundingBox after function close be called': function() {
-            dropdown.open();
-            dropdown.close();
-            Assert.isFalse(dropdown.get('boundingBox').hasClass('open'));
+            this._createDropdown();
+
+            this._dropdown.open();
+            this._dropdown.close();
+
+            Y.Assert.isFalse(
+                this._dropdown.get('boundingBox').hasClass('open'),
+                'Dropdown should have been closed'
+            );
         },
 
-        'should add css class open on boundingBox after click on trigger': function() {
-            dropdown.get('trigger').simulate('click');
-            Assert.isTrue(dropdown.get('boundingBox').hasClass('open'));
+        'should open a closed dropdown when trigger is clicked': function() {
+            this._createDropdown();
+
+            this._dropdown.get('trigger').simulate('click');
+
+            Y.Assert.isTrue(
+                this._dropdown.get('boundingBox').hasClass('open'),
+                'Dropdown should have been opened'
+            );
+            Y.Assert.isTrue(
+                this._dropdown.get('open'),
+                'Dropdown should have been opened'
+            );
         },
 
-        'should remove css class open on boundingBox after click on trigger': function() {
-            dropdown.get('trigger').simulate('click');
-            Assert.isFalse(dropdown.get('boundingBox').hasClass('open'));
+        'should close an open dropdown when trigger is clicked': function() {
+            this._createDropdown();
+
+            this._dropdown.get('trigger').simulate('click');
+            this._dropdown.get('trigger').simulate('click');
+
+            Y.Assert.isFalse(
+                this._dropdown.get('boundingBox').hasClass('open'),
+                'Dropdown should have been closed'
+            );
+            Y.Assert.isFalse(
+                this._dropdown.get('open'),
+                'Dropdown should have been closed'
+            );
         },
 
-        'should close dropdown on click outside only if hideOnClickOutSide is true': function() {
-            dropdown.open();
-            stick.open();
+        'should open/close dropdown when clicking on trigger outside it': function() {
+            this._createDropdown({
+                trigger: '#outsideTrigger'
+            });
+
+            this._dropdown.get('trigger').simulate('click');
+            Y.Assert.isTrue(
+                this._dropdown.get('open'),
+                'Dropdown should have been opened'
+            );
+
+            this._dropdown.get('trigger').simulate('click');
+            Y.Assert.isFalse(
+                this._dropdown.get('open'),
+                'Dropdown should have been closed'
+            );
+        },
+
+        'should close dropdown on click outside': function() {
+            this._createDropdown();
+
+            this._dropdown.open();
             Y.one('body').simulate('click');
-            Assert.isTrue(stick.get('boundingBox').hasClass('open'));
-            Assert.isFalse(dropdown.get('boundingBox').hasClass('open'));
+
+            Y.Assert.isFalse(
+                this._dropdown.get('open'),
+                'Dropdown should have been closed'
+            );
         },
 
-        'should close dropdown on press esc only if hideOnEsc is true': function() {
-            dropdown.open();
-            stick.open();
+        'should not close dropdown on click outside when hideOnClickOutSide is false': function() {
+            this._createDropdown({
+                hideOnClickOutSide: false
+            });
 
+            this._dropdown.open();
+            Y.one('body').simulate('click');
+
+            Y.Assert.isTrue(
+                this._dropdown.get('open'),
+                'Dropdown should not have been closed'
+            );
+        },
+
+        'should be able to change hideOnClickOutSide dynamically': function() {
+            this._createDropdown();
+
+            this._dropdown.set('hideOnClickOutSide', false);
+            this._dropdown.open();
+            Y.one('body').simulate('click');
+
+            Y.Assert.isTrue(
+                this._dropdown.get('open'),
+                'Dropdown should not have been closed'
+            );
+
+            this._dropdown.set('hideOnClickOutSide', true);
+            this._dropdown.open();
+            Y.one('body').simulate('click');
+
+            Y.Assert.isFalse(
+                this._dropdown.get('open'),
+                'Dropdown should have been closed'
+            );
+        },
+
+        'should close dropdown when esc is pressed': function() {
+            this._createDropdown();
+
+            this._dropdown.open();
             Y.one('body').simulate('keydown', {
                 keyCode: 27
             });
 
-            Assert.isTrue(stick.get('boundingBox').hasClass('open'));
-            Assert.isFalse(dropdown.get('boundingBox').hasClass('open'));
+            Y.Assert.isFalse(
+                this._dropdown.get('open'),
+                'Dropdown should have been closed'
+            );
         },
 
-        'should set items to new values': function() {
-            dropdown.set('items', [
-                {
-                    content: '1'
-                },
-                {
-                    divider: true
-                },
-                {
-                    content: '2'
-                }
-            ]);
+        'should not close dropdown when esc is pressed when hideOnEsc is false': function() {
+            this._createDropdown({
+                hideOnEsc: false
+            });
 
-            var items = Y.all('#dropdown ul li');
-            Assert.areEqual(items.item(0).text(), '1');
-            Assert.areEqual(items.item(1).text(), '');
-            Assert.areEqual(items.item(2).text(), '2');
+            this._dropdown.open();
+            Y.one('body').simulate('keydown', {
+                keyCode: 27
+            });
+
+            Y.Assert.isTrue(
+                this._dropdown.get('open'),
+                'Dropdown should not have been closed'
+            );
+        },
+
+        'should be able to change hideOnEsc dynamically': function() {
+            this._createDropdown();
+
+            this._dropdown.set('hideOnEsc', false);
+            this._dropdown.open();
+            Y.one('body').simulate('keydown', {
+                keyCode: 27
+            });
+
+            Y.Assert.isTrue(
+                this._dropdown.get('open'),
+                'Dropdown should not have been closed'
+            );
+
+            this._dropdown.set('hideOnEsc', true);
+            this._dropdown.open();
+            Y.one('body').simulate('keydown', {
+                keyCode: 27
+            });
+
+            Y.Assert.isFalse(
+                this._dropdown.get('open'),
+                'Dropdown should have been closed'
+            );
+        },
+
+        'should be able to create dropdown without trigger': function() {
+            this._createDropdown({
+                trigger: null
+            });
+
+            Y.Assert.isFalse(
+                this._dropdown.get('open'),
+                'Dropdown should not be open'
+            );
+
+            this._dropdown.open();
+            Y.Assert.isTrue(
+                this._dropdown.get('open'),
+                'Dropdown should have been opened'
+            );
         }
     }));
 

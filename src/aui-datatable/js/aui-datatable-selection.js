@@ -239,7 +239,7 @@ A.mix(DataTableSelection.prototype, {
         instance._selectionKeyHandler = A.getDoc().on(
             'key', A.bind(instance._onSelectionKey, instance), 'down:enter,37,38,39,40');
 
-        instance.after('activeCoordChange', instance._afterActiveCellIndexChange);
+        instance.after('activeCoordChange', instance._afterActiveCoordChange);
         instance.delegate('mouseup', A.bind(instance._onSelectionMouseUp, instance), '.' + classNames.cell);
         instance.delegate('mousedown', A.bind(instance._onSelectionMouseDown, instance), '.' + classNames.cell);
         instance.delegate('mouseenter', A.bind(instance._onSelectionMouseEnter, instance), '.' + classNames.cell);

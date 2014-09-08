@@ -507,6 +507,11 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
             path = link.get('pathname') + link.get('search') + link.get('hash'),
             navigateFailed = false;
 
+        if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
+            A.log('Stop the SPA navigation when a modifier key is pressed');
+            return;
+        }
+
         if (!this._isLinkSameOrigin(hostname)) {
             A.log('Offsite link clicked', 'info');
             return;

@@ -631,7 +631,8 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-editable-deprecated": {
         "requires": [
             "aui-base-deprecated",
-            "aui-form-combobox-deprecated"
+            "aui-form-combobox-deprecated",
+            "escape"
         ],
         "skinnable": true
     },
@@ -1020,6 +1021,32 @@ Y.mix(YUI.Env[Y.version].modules, {
             "base-build"
         ]
     },
+    "aui-menu": {
+        "requires": [
+            "base-build",
+            "event-mouseenter",
+            "event-resize",
+            "widget",
+            "widget-position",
+            "widget-position-align",
+            "widget-position-constrain",
+            "widget-stack",
+            "aui-classnamemanager",
+            "aui-debounce",
+            "aui-dropdown",
+            "aui-menu-item"
+        ],
+        "skinnable": true
+    },
+    "aui-menu-item": {
+        "requires": [
+            "base-build",
+            "node-base",
+            "aui-classnamemanager",
+            "aui-node",
+            "aui-widget-shortcut"
+        ]
+    },
     "aui-messaging": {
         "requires": [
             "querystring",
@@ -1063,6 +1090,12 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-node": {
         "use": [
             "aui-node-base"
+        ]
+    },
+    "aui-node-accessible": {
+        "requires": [
+            "aui-node-base",
+            "event-custom-base"
         ]
     },
     "aui-node-base": {
@@ -1555,6 +1588,11 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-toggler-delegate"
         ]
     },
+    "aui-toggler-accessibility": {
+        "requires": [
+            "aui-toggler-base"
+        ]
+    },
     "aui-toggler-base": {
         "requires": [
             "transition",
@@ -1723,6 +1761,7 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "node-event-html5",
             "querystring-stringify-simple",
+            "aui-aria",
             "aui-node",
             "aui-component",
             "aui-debounce"
@@ -1763,6 +1802,11 @@ Y.mix(YUI.Env[Y.version].modules, {
             "widget-base"
         ]
     },
+    "aui-widget-shortcut": {
+        "requires": [
+            "base"
+        ]
+    },
     "aui-widget-swipe": {
         "requires": [
             "classnamemanager",
@@ -1789,4 +1833,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '39648ade665c17ed6149c63037b9c962';
+YUI.Env[Y.version].md5 = 'be096e7de9183ae356068281b327e9ef';

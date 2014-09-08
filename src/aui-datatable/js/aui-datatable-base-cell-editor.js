@@ -605,7 +605,7 @@ BaseCellEditor = A.Component.create({
         _onEscKey: function() {
             var instance = this;
 
-            instance.hide();
+            instance._handleCancelEvent();
         },
 
         /**

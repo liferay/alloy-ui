@@ -519,7 +519,7 @@ var SchedulerAgendaView = A.Component.create({
                 currentTarget.setData('schedulerEvent', schedulerEvent);
             }
 
-            if (schedulerEvent && recorder && !scheduler.get('disabled')) {
+            if (schedulerEvent && recorder) {
                 recorder.set('event', schedulerEvent, {
                     silent: true
                 });

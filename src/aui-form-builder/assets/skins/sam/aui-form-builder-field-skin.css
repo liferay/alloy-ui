@@ -1,14 +1,13 @@
 .form-builder-field {
     background: #FFF;
+    border-radius: 3px;
     border-top: 5px solid transparent;
+    box-shadow: 0 1px 2px #C4C4C4;
     margin: 8px 6px 0;
     outline: none;
     padding: 10px;
     position: relative;
-    border-radius: 3px;
-    -webkit-box-shadow: 0 1px 2px #c4c4c4;
-    box-shadow: 0 1px 2px #c4c4c4;
-    background-color: #fff;
+    -webkit-box-shadow: 0 1px 2px #C4C4C4;
 }
 
 .form-builder-field label {
@@ -22,13 +21,19 @@
 }
 
 .form-builder-field-hover {
-    border-color: #ccc;
+    border-color: #CCC;
+}
+
+.form-builder-field-options-container {
+    clear: left;
 }
 
 .form-builder-field-selected {
-    border-color: #76a7fa;
+    border-color: #76A7FA;
 }
+
 /* Field icons */
+
 .form-builder-field-icon {
     background-position: center center;
     background-repeat: no-repeat;
