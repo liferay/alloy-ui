@@ -1569,18 +1569,23 @@ var TreeNodeTask = A.Component.create({
                     if (isTreeNodeTask(parentNode)) {
                         var parentHasUncheckedDescendants = false;
 
-                        parentNode.eachChildren(function(child) {
-                            if ((child !== instance) && !child.isChecked()) {
-                                parentHasUncheckedDescendants = true;
-                            }
-                            else {
-                                var childHasUncheckedChild = child.get('contentBox').hasClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+                        var children = parentNode.getChildren();
 
-                                if (childHasUncheckedChild) {
-                                    parentHasUncheckedDescendants = true;
+                        parentHasUncheckedDescendants = A.Array.some(
+                            children,
+                            function(child) {
+                                if ((child !== instance) && !child.isChecked()) {
+                                    return true;
                                 }
+                            		else {
+                                		var childHasUncheckedChild = child.get('contentBox').hasClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+
+                                		if (childHasUncheckedChild) {
+		                                    return true;
+		                                }
+    		                        }
                             }
-                        });
+                        );
 
                         if (!parentHasUncheckedDescendants) {
                             parentNode.get('contentBox').removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
