@@ -1219,6 +1219,11 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-toggler-delegate"
         ]
     },
+    "aui-toggler-accessibility": {
+        "requires": [
+            "aui-toggler-base"
+        ]
+    },
     "aui-toggler-base": {
         "requires": [
             "transition",
@@ -1414,4 +1419,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '99a93dcaeebce7cacf59a00ca332f53b';
+YUI.Env[Y.version].md5 = '15ee70035e05703b076c9194bbfbd4cb';
