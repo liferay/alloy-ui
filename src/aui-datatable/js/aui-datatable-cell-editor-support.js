@@ -214,8 +214,7 @@ A.mix(CellEditorSupport.prototype, {
      * @protected
      */
     _onEditorVisibleChange: function(event) {
-        var instance = this,
-            editor = event.currentTarget;
+        var editor = event.currentTarget;
 
         if (event.newVal) {
             editor._syncFocus();
