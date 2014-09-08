@@ -1564,6 +1564,68 @@ var TreeNodeTask = A.Component.create({
                 });
             }
 
+            instance._ancestorUncheckedChildRemoveClass();
+
+            contentBox.removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+
+            // invoke default check logic
+            A.TreeNodeTask.superclass.check.call(this, originalTarget);
+        },
+
+        /**
+         * Uncheck the current TreeNodeTask.
+         *
+         * @method uncheck
+         * @param originalTarget
+         */
+        uncheck: function(originalTarget) {
+            var instance = this;
+
+            var contentBox = instance.get('contentBox');
+
+            originalTarget = originalTarget || instance;
+
+            if (!instance.isLeaf()) {
+                instance.eachChildren(function(child) {
+                    if (child instanceof A.TreeNodeCheck) {
+                        child.uncheck(originalTarget);
+                    }
+                });
+            }
+
+            instance._ancestorUncheckedChildAddClass();            
+
+            contentBox.removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+
+            // invoke default uncheck logic
+            A.TreeNodeTask.superclass.uncheck.call(this, originalTarget);
+        },
+
+        /**
+         * Adds the class `tree-node-child-unchecked` to all checked ancestor TreeNodeTasks.
+         *
+         * @method _ancestorUncheckedChildAddClass
+         */
+        _ancestorUncheckedChildAddClass: function() {
+            var instance = this;
+
+            instance.eachParent(
+                function(parentNode) {
+                    if (isTreeNodeTask(parentNode) && parentNode.isChecked()) {
+                        parentNode.get('contentBox').addClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+                    }
+                }
+            );
+        },
+
+        /**
+         * Removes the class `tree-node-child-unchecked` from ancestor TreeNodeTasks, when all descendant TreeNodeTasks are checked.
+         *
+         * @method _ancestorUncheckedChildRemoveClass
+         */
+        _ancestorUncheckedChildRemoveClass: function() {
+            var instance = this;
+
             var parentHasUncheckedDescendants;
 
             instance.eachParent(
@@ -1593,46 +1655,6 @@ var TreeNodeTask = A.Component.create({
                     }
                 }
             );
-
-            contentBox.removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
-
-            // invoke default check logic
-            A.TreeNodeTask.superclass.check.call(this, originalTarget);
-        },
-
-        /**
-         * Uncheck the current TreeNodeTask.
-         *
-         * @method uncheck
-         * @param originalTarget
-         */
-        uncheck: function(originalTarget) {
-            var instance = this;
-
-            var contentBox = instance.get('contentBox');
-
-            originalTarget = originalTarget || instance;
-
-            if (!instance.isLeaf()) {
-                instance.eachChildren(function(child) {
-                    if (child instanceof A.TreeNodeCheck) {
-                        child.uncheck(originalTarget);
-                    }
-                });
-            }
-
-            instance.eachParent(
-                function(parentNode) {
-                    if (isTreeNodeTask(parentNode) && parentNode.isChecked()) {
-                        parentNode.get('contentBox').addClass(CSS_TREE_NODE_CHILD_UNCHECKED);
-                    }
-                }
-            );
-
-            contentBox.removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
-
-            // invoke default uncheck logic
-            A.TreeNodeTask.superclass.uncheck.call(this, originalTarget);
         }
     }
 });
