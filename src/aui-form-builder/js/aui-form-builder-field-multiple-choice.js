@@ -377,7 +377,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
                 return {
                     label: label,
                     value: value
-                }
+                };
             });
         },
 

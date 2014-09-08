@@ -769,6 +769,32 @@
             "base-build"
         ]
     },
+    "aui-menu": {
+        "requires": [
+            "base-build",
+            "event-mouseenter",
+            "event-resize",
+            "widget",
+            "widget-position",
+            "widget-position-align",
+            "widget-position-constrain",
+            "widget-stack",
+            "aui-classnamemanager",
+            "aui-debounce",
+            "aui-dropdown",
+            "aui-menu-item"
+        ],
+        "skinnable": true
+    },
+    "aui-menu-item": {
+        "requires": [
+            "base-build",
+            "node-base",
+            "aui-classnamemanager",
+            "aui-node",
+            "aui-widget-shortcut"
+        ]
+    },
     "aui-messaging": {
         "requires": [
             "querystring",
@@ -1363,6 +1389,11 @@
         "requires": [
             "event-resize",
             "widget-base"
+        ]
+    },
+    "aui-widget-shortcut": {
+        "requires": [
+            "base"
         ]
     },
     "aui-widget-swipe": {

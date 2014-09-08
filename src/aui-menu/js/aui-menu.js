@@ -360,6 +360,7 @@ A.Menu = A.Base.create('menu', A.Dropdown, [
      */
     _setItems: function(val) {
         var items = [];
+        var i;
 
         if (A.instanceOf(val, A.NodeList)) {
             val.each(function() {
@@ -367,7 +368,7 @@ A.Menu = A.Base.create('menu', A.Dropdown, [
             });
         }
         else {
-            for (var i = 0; i < val.length; i++) {
+            for (i = 0; i < val.length; i++) {
                 if (!A.instanceOf(val[i], A.MenuItem)) {
                     items.push(new A.MenuItem(val[i]));
                 }
@@ -377,7 +378,7 @@ A.Menu = A.Base.create('menu', A.Dropdown, [
             }
         }
 
-        for (var i = 0; i < items.length; i++) {
+        for (i = 0; i < items.length; i++) {
             items[i].addTarget(this);
         }
 

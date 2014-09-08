@@ -273,5 +273,5 @@ YUI.add('aui-widget-shortcut-tests', function(Y) {
 
     Y.Test.Runner.add(suite);
 }, '', {
-    requires: ['event-custom','node-event-simulate', 'test', 'aui-widget-shortcut']
+    requires: ['event-custom', 'node-event-simulate', 'test', 'aui-widget-shortcut']
 });
