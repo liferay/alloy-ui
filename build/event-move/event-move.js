@@ -16,7 +16,9 @@ YUI.add('event-move', function(Y) {
  * @submodule event-move
  */
 
-var EVENT = ("ontouchstart" in Y.config.win && !Y.UA.chrome) ? {
+var UA = Y.UA,
+
+    EVENT = ((UA.mobile || UA.android || UA.ios) && UA.touch) ? {
         start: "touchstart",
         move: "touchmove",
         end: "touchend"

@@ -4555,7 +4555,9 @@ add('load', '10', {
 add('load', '11', {
     "name": "dd-gestures", 
     "test": function(Y) {
-    return (Y.config.win && ('ontouchstart' in Y.config.win && !Y.UA.chrome));
+    var UA = Y.UA;
+
+    return ((UA.mobile || UA.android || UA.ios) && UA.touch);
 }, 
     "trigger": "dd-drag"
 });
@@ -8184,7 +8186,9 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
         "condition": {
             "name": "dd-gestures", 
             "test": function(Y) {
-    return (Y.config.win && ('ontouchstart' in Y.config.win && !Y.UA.chrome));
+    var UA = Y.UA;
+
+    return ((UA.mobile || UA.android || UA.ios) && UA.touch);
 }, 
             "trigger": "dd-drag"
         }, 
